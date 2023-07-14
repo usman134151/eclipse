@@ -2,12 +2,13 @@
 
 namespace App\Http\Livewire\App\Admin\Staff;
 
+use App\Models\Tenant\User;
 use Livewire\Component;
 
 class AdminStaff extends Component
 {
 	public $showForm;
-	public $showProfile;
+	public $showProfile,$user=null;
 
     protected $listeners = [
 		'showList' => 'resetForm',
@@ -16,8 +17,13 @@ class AdminStaff extends Component
 		'updateRecordId' => 'updateRecordId', // update the ID of the record being edited/deleted
 	];
 
-	public function mount()
-	{}
+	public function mount($showProfile)
+	{
+		$this->showProfile = $showProfile;
+		if ($showProfile) {
+			$this->user = User::where('id', request()->userID)->with(['phones','admin_teams', 'userdetail', 'addresses'])->first()->toArray();
+		}
+	}
 
 	public function render()
 	{

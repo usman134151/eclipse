@@ -180,7 +180,7 @@
                                                         <div class="row">
                                                             <div class="col-md-4">
                                                                 <div class="d-inline-block position-relative">
-                                                                    <img src="/tenant-resources/images/portrait/small/avatar-s-9.jpg"
+                                                                    <img  style="width:300px;height:200px;top:1rem" src="{{$user['userdetail']['profile_pic'] !=null ? $user['userdetail']['profile_pic'] : '/tenant-resources/images/portrait/small/image4.png'}}"
                                                                         class="img-fluid rounded-circle"
                                                                         alt="Profile Image of Admin Staff" />
                                                                 </div>
@@ -283,186 +283,48 @@
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
-                                                                            <tr role="row" class="odd">
-                                                                                <td>1</td>
-                                                                                <td>
-                                                                                    <div class="row g-2">
-                                                                                        <div class="col-md-2">
-                                                                                            <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                                                                                class="img-fluid rounded-circle"
-                                                                                                alt="Team Profile Image">
-                                                                                        </div>
-                                                                                        <div class="col-md-10">
-                                                                                            <h6 class="fw-semibold">
-                                                                                                language Translation
-                                                                                            </h6>
-                                                                                            <p>languagetranslation@gmail.com
-                                                                                            </p>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <a href="#" aria-label="Chat"
-                                                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                                        {{-- Updated by Shanila to Add
-                                                                                        svg
-                                                                                        icon--}}
-                                                                                        <svg aria-label="Chat"
-                                                                                            width="20" height="20"
-                                                                                            viewBox="0 0 20 20">
-                                                                                            <use
-                                                                                                xlink:href="/css/common-icons.svg#chat">
-                                                                                            </use>
-                                                                                        </svg>
-                                                                                        {{-- End of update by Shanila
-                                                                                        --}}
-                                                                                    </a>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr role="row" class="odd">
-                                                                                <td>2</td>
-                                                                                <td>
-                                                                                    <div class="row g-2">
-                                                                                        <div class="col-md-2">
-                                                                                            <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                                                                                class="img-fluid rounded-circle"
-                                                                                                alt="Team Profile Image">
-                                                                                        </div>
-                                                                                        <div class="col-md-10">
-                                                                                            <h6 class="fw-semibold">
-                                                                                                language Translation
-                                                                                            </h6>
-                                                                                            <p>languagetranslation@gmail.com
-                                                                                            </p>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <a href="#" aria-label="Chat"
-                                                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                                        {{-- Updated by Shanila to Add
-                                                                                        svg
-                                                                                        icon--}}
-                                                                                        <svg aria-label="Chat"
-                                                                                            width="20" height="20"
-                                                                                            viewBox="0 0 20 20">
-                                                                                            <use
-                                                                                                xlink:href="/css/common-icons.svg#chat">
-                                                                                            </use>
-                                                                                        </svg>
-                                                                                        {{-- End of update by Shanila
-                                                                                        --}}
-                                                                                    </a>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr role="row" class="odd">
-                                                                                <td>3</td>
-                                                                                <td>
-                                                                                    <div class="row g-2">
-                                                                                        <div class="col-md-2">
-                                                                                            <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                                                                                class="img-fluid rounded-circle"
-                                                                                                alt="Team Profile Image">
-                                                                                        </div>
-                                                                                        <div class="col-md-10">
-                                                                                            <h6 class="fw-semibold">
-                                                                                                language Translation
-                                                                                            </h6>
-                                                                                            <p>languagetranslation@gmail.com
-                                                                                            </p>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <a href="#" aria-label="Chat"
-                                                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                                        {{-- Updated by Shanila to Add
-                                                                                        svg
-                                                                                        icon--}}
-                                                                                        <svg aria-label="Chat"
-                                                                                            width="20" height="20"
-                                                                                            viewBox="0 0 20 20">
-                                                                                            <use
-                                                                                                xlink:href="/css/common-icons.svg#chat">
-                                                                                            </use>
-                                                                                        </svg>
-                                                                                        {{-- End of update by Shanila
-                                                                                        --}}
-                                                                                    </a>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr role="row" class="odd">
-                                                                                <td>4</td>
-                                                                                <td>
-                                                                                    <div class="row g-2">
-                                                                                        <div class="col-md-2">
-                                                                                            <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                                                                                class="img-fluid rounded-circle"
-                                                                                                alt="Team Profile Image">
-                                                                                        </div>
-                                                                                        <div class="col-md-10">
-                                                                                            <h6 class="fw-semibold">
-                                                                                                language Translation
-                                                                                            </h6>
-                                                                                            <p>languagetranslation@gmail.com
-                                                                                            </p>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <a href="#" aria-label="Chat"
-                                                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                                        {{-- Updated by Shanila to Add
-                                                                                        svg
-                                                                                        icon--}}
-                                                                                        <svg aria-label="Chat"
-                                                                                            width="20" height="20"
-                                                                                            viewBox="0 0 20 20">
-                                                                                            <use
-                                                                                                xlink:href="/css/common-icons.svg#chat">
-                                                                                            </use>
-                                                                                        </svg>
-                                                                                        {{-- End of update by Shanila
-                                                                                        --}}
-                                                                                    </a>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr role="row" class="odd">
-                                                                                <td>5</td>
-                                                                                <td>
-                                                                                    <div class="row g-2">
-                                                                                        <div class="col-md-2">
-                                                                                            <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                                                                                class="img-fluid rounded-circle"
-                                                                                                alt="Team Profile Image">
-                                                                                        </div>
-                                                                                        <div class="col-md-10">
-                                                                                            <h6 class="fw-semibold">
-                                                                                                language Translation
-                                                                                            </h6>
-                                                                                            <p>languagetranslation@gmail.com
-                                                                                            </p>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <a href="#" aria-label="Chat"
-                                                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                                        {{-- Updated by Shanila to Add
-                                                                                        svg
-                                                                                        icon--}}
-                                                                                        <svg aria-label="Chat"
-                                                                                            width="20" height="20"
-                                                                                            viewBox="0 0 20 20">
-                                                                                            <use
-                                                                                                xlink:href="/css/common-icons.svg#chat">
-                                                                                            </use>
-                                                                                        </svg>
-                                                                                        {{-- End of update by Shanila
-                                                                                        --}}
-                                                                                    </a>
-                                                                                </td>
-                                                                            </tr>
+                                                                            @if(count($user['admin_teams']))
+                                                                                @foreach($user['admin_teams'] as $index=> $team)
+                                                                                    <tr role="row" class="odd">
+                                                                                        <td>{{$index+1}}</td>
+                                                                                        <td>
+                                                                                            <div class="row g-2">
+                                                                                                <div class="col-md-2">
+                                                                                                    <img style="width:64px;height:64px;top:1rem" src="{{ $team['team_image']!=null ? $team['team_image'] : '/tenant-resources/images/portrait/small/avatar-s-20.jpg'}}"
+                                                                                                        class="img-fluid rounded-circle"
+                                                                                                        alt="Team Profile Image">
+                                                                                                </div>
+                                                                                                <div class="col-md-10">
+                                                                                                    <h6 class="fw-semibold">
+                                                                                                        {{$team['team_name']}}
+                                                                                                    </h6>
+                                                                                                    <p>{{$team['team_email']}}
+                                                                                                    </p>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <a href="#" aria-label="Chat"
+                                                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                                                <svg aria-label="Chat"
+                                                                                                    width="20" height="20"
+                                                                                                    viewBox="0 0 20 20">
+                                                                                                    <use
+                                                                                                        xlink:href="/css/common-icons.svg#chat">
+                                                                                                    </use>
+                                                                                                </svg>
+                                                                                            </a>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    @if($index==4)
+                                                                                        @break
+                                                                                    @endif
+                                                                                @endforeach
+                                                                            @else
+                                                                                <tr>
+                                                                                    <td> No Assigned Teams.</td>
+                                                                                </tr>
+                                                                            @endif
                                                                         </tbody>
                                                                     </table>
                                                                 </div>

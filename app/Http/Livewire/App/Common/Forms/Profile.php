@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class Profile extends Component
 {
-    public $user;
+    public $user,$userid;
 	protected $listeners = [
 		'showDetails'
 	];
@@ -16,13 +16,16 @@ class Profile extends Component
         return view('livewire.app.common.forms.profile');
     }
 
-    public function mount()
+    public function mount($user=null)
     {
-
+        if ($user) {
+            $this->showdetails($user);
+        }
 
     }
     public function showDetails($user){
 		$this->user=$user;
+        $this->userid = $this->user['id'];
 
 	}
 
