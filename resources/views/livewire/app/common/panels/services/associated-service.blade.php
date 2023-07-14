@@ -38,10 +38,7 @@
           <div class="tab-pane fade active show" id="basic-service-setup" role="tabpanel" aria-labelledby="basic-service-setup-tab" tabindex="0">
            <div class="d-lg-flex justify-content-between align-items-center mb-4">
                <h2 class="mb-lg-0">Associated Service</h2>
-               <div class="form-check form-switch form-switch-column">
-                 <input class="form-check-input" type="checkbox" role="switch" id="basicService">
-                 <label class="form-check-label" for="basicService">Active</label>
-               </div>
+
              </div>
              <div class="d-lg-flex justify-content-between align-items-center mb-4">
                <div class="col-lg-4">
@@ -251,28 +248,6 @@
                                                                                 class="form-control text-center"
                                                                                 placeholder="00.00" aria-label=""
                                                                                 aria-describedby="" wire:key="payment_price_{{$type}}-{{ $index }}"  wire:model.defer="servicePayment.{{$type}}.{{$index}}.price"/>
-                                                                        </div>
-                                                                        <div>
-                                                                            <div class="form-check form-check-inline">
-                                                                                <input class="form-check-input" id=""
-                                                                                    name="" type="checkbox"
-                                                                                    tabindex="" wire:key="providers_{{$type}}-{{ $index }}"  wire:model.defer="servicePayment.{{$type}}.{{$index}}.multiply_providers"/>
-                                                                                <label class="form-check-label" for="">X
-                                                                                    by
-                                                                                    No. of Providers <i
-                                                                                        class="fa fa-question-circle"
-                                                                                        aria-hidden="true"
-                                                                                        data-bs-toggle="tooltip"
-                                                                                        data-bs-placement="top"
-                                                                                        title=""></i></label>
-                                                                            </div>
-                                                                            <div class="form-check form-check-inline">
-                                                                                <input class="form-check-input" id=""
-                                                                                    name="" type="checkbox"
-                                                                                    tabindex=""  wire:key="service_payment-customer{{$type}}{{ $index }}" wire:model.defer="servicePayment.{{$type}}.{{$index}}.charge_customer"/>
-                                                                                <label class="form-check-label" for="">
-                                                                                    Charge to Customer</label>
-                                                                            </div>
                                                                         </div>
 
                                                                     </div>

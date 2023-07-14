@@ -368,9 +368,9 @@ class AssociatedService extends Component
                 
             }
            
-         
+            $this->loadValues($this->service);
           
-           
+          
            
         }
 
@@ -398,7 +398,7 @@ class AssociatedService extends Component
                         $this->service->service_charge_p=str_replace("],]", "]]","[".$chargeData["4"]."]");
                         $this->service->service_charge_t=str_replace("],]", "]]","[".$chargeData["5"]."]");
                         
-            
+                     
                         $paymentData=[];
                         foreach($this->serviceTypes as $type=>$parameters){
                             $paymentData[$type]='';
