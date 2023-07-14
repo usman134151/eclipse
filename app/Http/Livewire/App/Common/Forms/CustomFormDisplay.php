@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class CustomFormDisplay extends Component
 {
-    public $showForm, $form_id,$assignment_id ,$questions,$formInfo, $answers=[];
+    public $showForm, $form_id,$assignment_id ,$questions=[],$formInfo=[], $answers=[];
     
     protected $listeners = ['showList' => 'resetForm'];
 
@@ -20,10 +20,12 @@ class CustomFormDisplay extends Component
     {
        $formService = new CustomizeForm();
        $formData = $formService->getFormDetails($this->form_id);
-       $this->formInfo = $formData['custom_form_details'];
-       foreach($formData['questions'] as $index=> $question){
-            $this->questions[]=$formService->getformfield($question, 'answers.'.$question['id'], $index);
-       }
+       if(count($formData)){
+            $this->formInfo = $formData['custom_form_details'];
+            foreach($formData['questions'] as $index=> $question){
+                    $this->questions[]=$formService->getformfield($question, 'answers.'.$question['id'], $index);
+            }
+        }
     }
 
     function showForm()

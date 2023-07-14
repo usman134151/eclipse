@@ -98,19 +98,24 @@ class CustomizeForm
 
     public function getFormDetails($formId){
 
-        $data['custom_form_details'] = CustomizeForms::where('id', $formId)->get()->toArray()[0];
-        $data['questions'] = CustomizeFormFields::where('customize_form_id', $formId)->orderBy('position')->get()->toArray();
-        foreach ($data['questions'] as $index => $question) {
-            if ($question['field_type'] > 2 && $question['field_type'] < 6) {
-                $data['questions'][$index]['options'] = CustomizeFormOptionFields::where(['form_id' => $formId, 'form_field_id' => $question['id']])->get()->toArray();
-                // dd(CustomizeFormOptionFields::where(['form_id' => $formId, 'form_field_id' => $question['id']])->get()->toArray());
-            } else
-                $data['questions'][$index]['options'] = [
-                    'option_field_name' => ''
-                ];
-        }
+        $data['custom_form_details'] = CustomizeForms::where('id', $formId)->get();
+        if(count($data['custom_form_details'])){
+            $data['custom_form_details'] = $data['custom_form_details']->toArray()[0];
+            $data['questions'] = CustomizeFormFields::where('customize_form_id', $formId)->orderBy('position')->get()->toArray();
+            foreach ($data['questions'] as $index => $question) {
+                if ($question['field_type'] > 2 && $question['field_type'] < 6) {
+                    $data['questions'][$index]['options'] = CustomizeFormOptionFields::where(['form_id' => $formId, 'form_field_id' => $question['id']])->get()->toArray();
+                    // dd(CustomizeFormOptionFields::where(['form_id' => $formId, 'form_field_id' => $question['id']])->get()->toArray());
+                } else
+                    $data['questions'][$index]['options'] = [
+                        'option_field_name' => ''
+                    ];
+            }
+            return $data;
 
-        return $data;
+        }
+        return [];
+
     }
 
     public static function getformfield($fieldArr=[], $wireVariable=null,$tabIndex =0)
