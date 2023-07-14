@@ -180,7 +180,7 @@
                                     <label class="form-label" for="work_address_line_1">
                                         Work Address Line 1
                                     </label>
-                                    <input type="text" id="work_address_line_1" class="form-control"
+                                    <input type="text" id="billing_address_form" class="form-control"
                                         name="work_address_line_1" placeholder="Enter Address 1" required
                                         aria-required="true" wire:model.defer="userdetail.address_line1"/>
                                 </div>

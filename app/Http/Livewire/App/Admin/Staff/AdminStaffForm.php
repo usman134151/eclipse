@@ -28,7 +28,7 @@ class AdminStaffForm extends Component
         'ethnicities' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 3, 'setup_value_label', false,'userdetail.ethnicity_id','','ethnicity_id',5]],
         'gender' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 2, 'setup_value_label', false,'userdetail.gender_id','','gender_id',4]],
         'timezones' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 4, 'setup_value_label', false,'userdetail.timezone_id','','timezone_id',16]],
-        'countries' => ['parameters' => ['Country', 'name', 'name', '', '', 'name', false, 'userdetail.country_id','','country',12]],
+        'countries' => ['parameters' => ['Country', 'name', 'name', '', '', 'name', false, 'userdetail.country','','country',12]],
         'roles'=>['parameters'=>['SystemRole', 'id',
         'system_role_name', 'status', 1, 'system_role_name', true, 'user_roles','','roles',7]]
 	];
