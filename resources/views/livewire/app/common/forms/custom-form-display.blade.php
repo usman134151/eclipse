@@ -1,6 +1,6 @@
 <div>
   <form class="form">
-                            @csrf
+    @csrf
                             <div class="col-md-12 mb-md-2">
                                 <h2 class="mb-5">{{$formInfo['request_form_name']}} </h2>
                                 <!-- Industry Form Begin -->
@@ -18,10 +18,13 @@
                                                     </label>
                                                     </a>
                                                 </div>
+                                                <div class="">
                                                 {!!$question['rendered']!!}
+                                                </div>
                                             </div>
                                         @endforeach
                                 </div>
                                
                             </div>
-                        </form></div>
+    </form>
+</div>

@@ -142,7 +142,7 @@ class CustomizeForm
             $options = self::addFieldOption($fieldArr['options']);
             $field['rendered'] = self::createDropDown($options,$wireVariable,"",$fieldArr['field_name'], $tabIndex);
         }elseif ($fieldArr['field_type'] == 4)  //checkbox
-            $field['rendered'] = '';
+            $field['rendered'] = self::createCheckboxes($options, $wireVariable, $fieldArr['field_name'],[], $tabIndex);
         elseif ($fieldArr['field_type'] == 5)  //radio 
             $field['rendered'] = '';
         elseif ($fieldArr['field_type'] == 6)  //file 
@@ -213,21 +213,21 @@ class CustomizeForm
 
         return $html;
     }
-    public static function createCheckboxes(array $values, string $valueCol, string $displayCol,array $selectedValues = [], $tabIndex = 0, $divClass = "form-check", $name = "", $wireModel = '', $checkValues = [], $wireClick = ''): string
+    public static function createCheckboxes(array $values,$wireModel = '', $displayCol = '',array $selectedValues = [], $tabIndex = 0): string
     {
-      
         $html = '';
-        $name == '' ? $name = $displayCol : $name;
+        $name = $displayCol;
         $loop = 0;
         foreach ($values as $value) {
 
 
-            $cValue = count($checkValues) == 0 ? $value->{$valueCol} : $checkValues[$loop];
+            // $cValue = count($checkValues) == 0 ? $value->{$valueCol} : $checkValues[$loop];
 
-            $isChecked = in_array($cValue, $selectedValues) ? 'checked' : '';
-            $html .= '<div class="' . $divClass . '">';
-            $html .= '<input class="form-check-input" type="checkbox" id="' . $name . '" name="' . $name . '[]" value="' . $cValue . '" ' . $isChecked . ' tabindex=' . $tabIndex . ' ' . $wireModel . ' ' . $wireClick . '>';
-            $html .= '<label class="form-check-label"  for="' . $value->{$valueCol} . '">' . $value->{$displayCol} . '</label>';
+            // $isChecked = in_array($cValue, $selectedValues) ? 'checked' : '';
+            $isChecked ='';
+            $html .= '<div class="form-check form-check-inline">';
+            $html .= '<input class="form-check-input" type="checkbox" id="' . $value['value'] . '" name="' . $name . '[]" value="' . $value['value'] . '" ' . $isChecked . ' tabindex=' . $tabIndex . ' ' . $wireModel .  '>';
+            $html .= '<label class="form-check-label"  for="' . $value['label'] . '">' . $value['label'] . '</label>';
             $html .= '</div>';
             $loop++;
         }
