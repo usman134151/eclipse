@@ -29,6 +29,7 @@ class CustomizeForm
         return $fieldSet;
     }
 
+
     /***
      *  Add Options For Options Feild
      */
@@ -93,10 +94,12 @@ class CustomizeForm
         }
     }
 
+
+
     public function getFormDetails($formId){
 
         $data['custom_form_details'] = CustomizeForms::where('id', $formId)->get()->toArray()[0];
-        $data['questions'] = CustomizeFormFields::where('customize_form_id', $formId)->get()->toArray();
+        $data['questions'] = CustomizeFormFields::where('customize_form_id', $formId)->orderBy('position')->get()->toArray();
         foreach ($data['questions'] as $index => $question) {
             if ($question['field_type'] > 2 && $question['field_type'] < 6) {
                 $data['questions'][$index]['options'] = CustomizeFormOptionFields::where(['form_id' => $formId, 'form_field_id' => $question['id']])->get()->toArray();
@@ -109,4 +112,145 @@ class CustomizeForm
 
         return $data;
     }
+
+    public static function getformfield($fieldArr=[], $wireVariable=null,$tabIndex =0)
+    {
+        $options = self::addFieldOption($fieldArr['options']);
+        $field['set'] = [
+            'id' => $fieldArr['id'],
+            'name' => str_replace(' ', '_', strtolower($fieldArr['field_name'])),
+            'value' => isset($fieldArr['value']) ? $fieldArr['value'] : false,
+            'title' => $fieldArr['field_name'],
+            'place_holder' => $fieldArr['placeholder'],
+            'type' => $fieldArr['field_type'],
+            'option' => $options,
+            'required' => $fieldArr['required'] ? $fieldArr['required'] : false,
+            'hide_response_from_provider' => $fieldArr['hide_response_from_provider'],
+            'allow_redo' => $fieldArr['allow_redo'],
+            // use these for future
+            'scenario' => $fieldArr['scenario'],
+            'document_name' => $fieldArr['document_name'],
+
+
+
+        ];
+        if($fieldArr['field_type'] == 1)    // text 
+            $field['rendered']= '';
+        elseif($fieldArr['field_type']==2)  //text area
+            $field['rendered'] = '';
+        elseif ($fieldArr['field_type'] == 3){  //dropdown
+            $options = self::addFieldOption($fieldArr['options']);
+            $field['rendered'] = self::createDropDown($options,$wireVariable,"",$fieldArr['field_name'], $tabIndex);
+        }elseif ($fieldArr['field_type'] == 4)  //checkbox
+            $field['rendered'] = '';
+        elseif ($fieldArr['field_type'] == 5)  //radio 
+            $field['rendered'] = '';
+        elseif ($fieldArr['field_type'] == 6)  //file 
+            $field['rendered'] = '';
+
+        return $field;
+    }
+
+
+    /***
+     *  Add Options For Options Feild
+     */
+    protected static function addFieldOption($options = array())
+    {
+        if (!empty($options)) {
+            $options_feild = array();
+            foreach ($options as $key => $option) {
+                $options_feild[] = [
+                    'label' => $option['option_field_name'],
+                    'value' => $option['id']
+                ];
+            }
+            return $options_feild;
+        }
+        return null;
+    }
+
+
+    protected static function getHtmlAttributes(array $attributes): string
+    {
+        $html = '';
+
+        foreach ($attributes as $name => $value) {
+            $html .= $name . '="' . htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false) . '" ';
+        }
+
+        return trim($html);
+    }
+
+
+    public static function createDropDown(array $values,  string $wireVariable = null, $selectedValue = '', string $selectName = '', int $tabIndex = 0,): string
+    {
+        $attributes = [
+            'name' => str_replace(' ', '_', strtolower($selectName)) ,
+            'id' => str_replace(' ', '_', strtolower($selectName)),
+            'class' => 'select2 form-select',
+        ];
+
+        if ($wireVariable) {
+            $attributes['wire:model'] = $wireVariable;
+        }
+
+            $attributes['class'] = 'select2 form-select';
+        
+        if ($tabIndex) {
+            $attributes['tabindex'] = $tabIndex;
+        }
+        $html = '<select ' . self::getHtmlAttributes($attributes) . '  aria-label="Select ' . str_replace('_', ' ', $selectName) . '">';
+
+        $html .= '<option value="">Select an option</option>';
+
+        foreach ($values as $value) {
+            $selected = ($selectedValue == $value['value']) ? 'selected' : '';
+            $html .= '<option value="' . $value['value'] . '" ' . $selected . '>' . $value['label'] . '</option>';
+        }
+
+        $html .= '</select>';
+
+        return $html;
+    }
+    public static function createCheckboxes(array $values, string $valueCol, string $displayCol,array $selectedValues = [], $tabIndex = 0, $divClass = "form-check", $name = "", $wireModel = '', $checkValues = [], $wireClick = ''): string
+    {
+      
+        $html = '';
+        $name == '' ? $name = $displayCol : $name;
+        $loop = 0;
+        foreach ($values as $value) {
+
+
+            $cValue = count($checkValues) == 0 ? $value->{$valueCol} : $checkValues[$loop];
+
+            $isChecked = in_array($cValue, $selectedValues) ? 'checked' : '';
+            $html .= '<div class="' . $divClass . '">';
+            $html .= '<input class="form-check-input" type="checkbox" id="' . $name . '" name="' . $name . '[]" value="' . $cValue . '" ' . $isChecked . ' tabindex=' . $tabIndex . ' ' . $wireModel . ' ' . $wireClick . '>';
+            $html .= '<label class="form-check-label"  for="' . $value->{$valueCol} . '">' . $value->{$displayCol} . '</label>';
+            $html .= '</div>';
+            $loop++;
+        }
+
+        return $html;
+    }
+
+    public static function createRadio( array $values, string $valueCol, string $displayCol, string $radioName = '', $selectedValue = '', $tabIndex = 0, $divClass = "form-check"): string
+    {
+
+        $html = '';
+
+        foreach ($values as $value) {
+            $checked = ($selectedValue == $value->{$valueCol}) ? 'checked' : '';
+
+
+            $html .= '<div class="' . $divClass . '">';
+            $html .= '<input class="form-check-input" type="radio" name="' . $radioName . '" value="' . $value->{$valueCol} . '" ' . $checked . ' tabindex=' . $tabIndex . '>';
+            $html .= '<label class="form-check-label"  for="' . $value->{$valueCol} . '">' . $value->{$displayCol} . '</label>';
+            $html .= '</div>';
+        }
+
+        return $html;
+    }
+
 }

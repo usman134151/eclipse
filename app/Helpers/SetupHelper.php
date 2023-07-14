@@ -80,7 +80,7 @@ class SetupHelper
         if ($multipleSelect) {
            // $attributes['multiple'] = 'multiple';
         }
-    //dd($wireVariable);
+        //dd($wireVariable);
         if ($wireVariable) {
             $attributes['wire:model'] = $wireVariable;
         }

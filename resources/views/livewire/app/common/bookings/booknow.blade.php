@@ -960,7 +960,7 @@
                     <!-- END: requester-info -->
                     <div class="tab-pane fade {{ $component == 'request-details' ? 'active show' : '' }}"
                         id="request-details" role="tabpanel" aria-labelledby="request-details-tab" tabindex="0">
-                             @livewire('app.common.forms.custom-form-display',['showForm'=>true,'form_id'=> 20 ,'assignment_id'=>1])
+                             @livewire('app.common.forms.custom-form-display',['showForm'=>true,'form_id'=> 25 ,'assignment_id'=>1])
                                               
                     </div>
                     <div class="tab-pane fade {{ $component == 'payment-info' ? 'active show' : '' }}" id="payment-info"
