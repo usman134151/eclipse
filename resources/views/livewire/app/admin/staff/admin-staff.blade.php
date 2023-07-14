@@ -9,7 +9,7 @@
 	@if($showForm)
 		@livewire('app.admin.staff.admin-staff-form')
 	@elseif($showProfile)
-		@livewire('app.common.forms.profile')
+		@livewire('app.common.forms.profile',['user'=>$user])
 	@else
 	<div class="content-header row">
 		<div class="content-header-left col-md-9 col-12 mb-2">
