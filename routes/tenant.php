@@ -93,8 +93,11 @@ Route::group([
 			// End of Admin Department Routes
 
 			// Admin Staff Routes
-			Route::view('/admin/admin-staff', 'tenant/admin/staff/admin-staff', ["showForm"=>false]);
-			Route::view('/admin/admin-staff/create-staff', 'tenant/admin/staff/admin-staff', ["showForm"=>true]);
+			Route::view('/admin/admin-staff', 'tenant/admin/staff/admin-staff', ["showForm"=>false, "showProfile" => false]);
+			Route::view('/admin/admin-staff/create-staff', 'tenant/admin/staff/admin-staff', ["showForm"=>true, "showProfile" => false]);
+			Route::view('/admin/admin-staff/edit-staff/{userID}', 'tenant/admin/staff/admin-staff', ["showForm" => true, "showProfile" => false])->name('edit-staff');
+			Route::view('/admin/admin-staff/profile/{userID}', 'tenant/admin/staff/admin-staff', ["showForm" => false, "showProfile" => true])->name('profile-staff');
+
 			Route::view('/admin/admin-team', 'tenant/admin/team/admin-team', ["showForm"=>false]);
 			Route::view('/admin/admin-team/create-admin-team', 'tenant/admin/team/admin-team', ["showForm"=>true]);
 			Route::view('/admin/role-permission', 'tenant/admin/role-permission', ["showForm"=>false]);

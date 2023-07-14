@@ -146,7 +146,7 @@
 		updateVal("address_line1", (billingPlace.name || ''));
 		updateVal("city",  getAddressComponent(billingPlace, 'locality') || '');
 		updateVal("state",  getAddressComponent(billingPlace, 'administrative_area_level_1') || '');
-		updateVal("country_id",  getAddressComponent(billingPlace, 'country') || '');
+		updateVal("country",  getAddressComponent(billingPlace, 'country') || '');
 		updateVal("zip",  getAddressComponent(billingPlace, 'postal_code') || '');
 	  }
 
