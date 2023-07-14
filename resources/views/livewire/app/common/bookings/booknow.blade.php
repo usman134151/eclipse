@@ -961,6 +961,14 @@
                     <div class="tab-pane fade {{ $component == 'request-details' ? 'active show' : '' }}"
                         id="request-details" role="tabpanel" aria-labelledby="request-details-tab" tabindex="0">
                              @livewire('app.common.forms.custom-form-display',['showForm'=>true,'form_id'=> 15 ,'assignment_id'=>1])
+                             <div
+                                        class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
+                                        <button type="button" class="btn btn-outline-dark rounded" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('requester-info')">Back</button>
+                                        <button type="submit" class="btn btn-primary rounded">Save as Draft</button>
+                                        <button type="submit" class="btn btn-primary rounded">Request from User</button>
+                                        <button type="button" class="btn btn-primary rounded"
+                                        x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('payment-info')">Proceed to  Payment Info</button>
+                            </div>
                                               
                     </div>
                     <div class="tab-pane fade {{ $component == 'payment-info' ? 'active show' : '' }}" id="payment-info"
