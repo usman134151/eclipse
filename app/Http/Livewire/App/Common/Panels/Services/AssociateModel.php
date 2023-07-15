@@ -10,7 +10,7 @@ use Livewire\Component;
 
 class AssociateModel extends Component
 {
-    public $service,$modelList,$searchParameter,$modelArr,$modelType='company';
+    public $service,$modelList,$searchParameter,$modelArr,$modelType='company',$parentId=0,$parentType='';
     
     protected $listeners = ['associateService','updateDepartments','updateUsers','updateDepartmentUsers'];
 
@@ -106,6 +106,8 @@ class AssociateModel extends Component
             $this->modelList=User::select('id','name')->where('company_name',$companyId)->orderby('name')->get()->toArray();
            
             $this->modelArr=$this->modelList;
+            $this->parentId=$companyId;
+            $this->parentType='company';
             $this->refreshList();
         }
 
@@ -122,7 +124,8 @@ class AssociateModel extends Component
             $this->modelList=User::join('user_departments', 'users.id', '=', 'user_departments.user_id')
             ->where('user_departments.department_id', '=', $departmentId)
             ->get()->toArray();
-           
+            $this->parentId=$departmentId;
+            $this->parentType='department';
             $this->modelArr=$this->modelList;
             $this->refreshList();
         }
@@ -135,7 +138,7 @@ class AssociateModel extends Component
     }
     public function updateServiceData($index){
         
-        $this->emit('updateModel', $this->modelList[$index]['id'],$this->modelList[$index]['name'],$this->modelType );
+        $this->emit('updateModel', $this->modelList[$index]['id'],$this->modelList[$index]['name'],$this->modelType,$this->parentId,$this->parentType);
 
     }
 }

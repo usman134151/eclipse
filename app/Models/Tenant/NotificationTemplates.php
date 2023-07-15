@@ -15,6 +15,10 @@ class NotificationTemplates extends Model
      * @var array
      */
     protected $fillable = [
-        'trigger', 'role_id', 'name', 'slug', 'redirect_to', 'body'
+        'trigger', 'role_id', 'name', 'slug', 'redirect_to', 'body', 'status', 'notification_type'
     ];
+    public function notificationTemplateRoles()
+    {
+        return $this->hasMany(NotificationTemplateRoles::class, 'notification_id');
+    }
 }

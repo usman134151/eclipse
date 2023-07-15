@@ -12,206 +12,153 @@
                     <!-- .... section 1..(start).. -->
                     <div class="row">
                       <div class="col-lg-5 pe-lg-4 mb-4">
-                          <label class="form-label" for="name-column">Name</label>
-                          <input type="text" id="name-column" class="form-control" name="name-column"
+                          <label class="form-label" for="trigger-name">Name</label>
+                          <input type="text" id="trigger-name" class="form-control" name="trigger-name"
                             placeholder="Enter Name" wire:model.defer="notification.name" />
-
-
-
+                            @error('notification.name')
+                              <span class="d-inline-block invalid-feedback mt-2">
+                                {{ $message }}
+                              </span>
+                            @enderror
                       </div>
-                      <div class="col-lg-5 pe-lg-4 mb-4">
-                          <label class="form-label" for="gender-column">Select Trigger</label>
-                          <select class="select2 form-select" id="gender-column">
+                      <div class="col-lg-5 pe-lg-4 mb-4" wire:ignore>
+                          <label class="form-label" for="trigger">Select Trigger</label>
+                          <select class="select2 form-select" id="trigger">
                             <option>Select Trigger</option>
-                            <option>Assignment Scheduled</option>
-												    <option>Assignment Modified</option>
-												    <option>Submit Request</option>
-												    <option>Approved Request</option>
+                            @foreach($triggers as $trigger)
+                              <option value="{{$trigger->id}}">{{$trigger->trigger}}</option>
+                            @endforeach
                           </select>
                       </div>
                       <div class="col-lg-5 pe-lg-4 mb-4">
                           <label class="form-label" for="trigger-description">
-                          Trigger Description
+                            Trigger Description
                           </label>
                           <textarea class="form-control" rows="2" cols="3" placeholder="" name="trigger-description"
-                            id="trigger-description" wire:model.defer="notification.trigger"></textarea>
+                            id="trigger-description" wire:model.defer="notification.slug"></textarea>
+                            
+                            @error('notification.slug')
+                              <span class="d-inline-block invalid-feedback mt-2">
+                                {{ $message }}
+                              </span>
+                            @enderror
                       </div>
                       <div class="col-lg-5 col-12 mb-4">
-                        <label class="form-label" for="ApplyTo">Select User Type</label>
-                        <select class="form-control  select2 form-select select2-hidden-accessible" data-placeholder="Please Choose Accommodation" aria-label="Please Select User Type" multiple="true" tabindex="" name="">
-                          <option value="1" selected>Admin</option>
-                          <option value="2" selected>Customer</option>
-                          <option value="3">Provider</option>   
+                        <label class="form-label" for="selectedTypesData">Select User Type</label>
+                        <select class="form-control select2 form-select select2-hidden-accessible" wire:model.defer="selectedUserTypes" data-placeholder="Please Choose Accommodation" aria-label="Please Select User Type" multiple="true" tabindex="" id="selectedTypesData" wire:ignore>
+                          @foreach($userTypes as $type)
+                            <option value="{{$type->id}}">{{$type->display_name}}</option>
+                          @endforeach
                         </select>
-                    </div>
-                    {{--
-                      <div class="col-lg-5 pe-lg-4 mb-4">
-                          <label class="form-label" for="select-role">Select Role</label>
-                          {!! $setupValues['roles']['rendered'] !!}
+                        @error('selectedTypesData')
+                            <span class="d-inline-block invalid-feedback mt-2">
+                              {{ $message }}
+                            </span>
+                        @enderror
                       </div>
-                    --}}  
                     </div>
-                    <!-- ...section 1 ...(ends)...  -->
-                    <!-- .......section 2....(start)....  -->
+                      @foreach($selectedTypesData as $key=>$selectedType)
                     <div class="row">
-                      <div class="col-lg-5 col-12">
-                        <div class="mb-4">
-                          <label class="form-label" for="SubjectColumn">
-                          Subject Admin
-                          </label>
-                          <textarea class="form-control" rows="3" cols="3" placeholder="Normal text"
-                            name="SubjectColumn" id="SubjectColumn">Enter Subject</textarea>
-                        </div>
-                      </div>
-                      <div class="col-lg-5 pe-lg-4 mb-4">
-                        <label class="form-label" for="select-role">Select Role</label>
-                        {!! $setupValues['roles']['rendered'] !!}
-                    </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-lg-7">
-                        <div class="row border-dashed rounded p-3 mb-3 mx-1">
-                          <div class="d-flex justify-content-end">
-                            <a  href="#" title="Delete" aria-label="Delete"
-                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                <svg class="delete-icon" width="20" height="20"
-                                    viewBox="0 0 20 20" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <use xlink:href="/css/sprite.svg#delete-icon"></use>
-                                </svg>
-                            </a>
-                        </div>
-                          <div class="col-lg-4 align-self-end mb-4">
-                            <div class="d-inline-flex gap-2 align-items-center">
-                              <label for="Frequency" class="form-label text-primary mb-lg-0">
-                                Frequency
-                              </label>
-                              <input type="text" class="form-control form-control-md form-control-max-w-xs text-center" id="frequency" name="frequency" placeholder="2" autocomplete="on"/>
-                            </div>
-                          </div>
-                          <div class="col-lg-4 text-center align-self-end mb-4">
-                            <div class="row g-0">
-                              <div class="col-4 text-center justify-content-center d-flex flex-column align-items-center">
-                                <label class="form-label-sm" for="DisplayToProviders"> Days</label>
-                                <input class="form-control form-control-md text-center" id="DisplayToProviders" name="DisplayToProviders" value="00" type="" tabindex="" />
-                              </div>
-                              <div class="col-4 text-center justify-content-center d-flex flex-column align-items-center">
-                                <label class="form-label-sm" for="DisplayToProviders"> Hours</label>
-                                <input class="form-control form-control-md text-center" id="DisplayToProviders" name="DisplayToProviders" value="00" type="" tabindex="" />
-                              </div>
-                              <div class="col-4 text-center justify-content-center d-flex flex-column align-items-center">
-                                <label class="form-label-sm" for="DisplayToProviders"> Minutes</label>
-                                <input class="form-control form-control-md text-center" id="DisplayToProviders" name="DisplayToProviders" value="00" type="" tabindex="" />
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-lg-4 mb-4">
-                            <div class="d-flex flex-column gap-2">
-                              <div class="form-check mb-0">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="Before-Booking" value="option2">
-                                <label class="form-check-label" for="Before-Booking">
-                                Before Booking
-                                </label>
-                              </div>
-                              <div class="form-check mb-0">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="After-Booking" value="option2">
-                                <label class="form-check-label" for="After-Booking">
-                                After Booking
-                                </label>
-                              </div>
-                              <div class="form-check mb-0">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="After-Trigger" value="option2">
-                                <label class="form-check-label" for="After-Trigger">
-                                After Trigger
-                                </label>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-lg-12 text-end mb-4">
-                            <button href="#" class="btn btn-has-icon">
-                                  {{-- Updated by Shanila to Add svg icon--}}
-                                  <svg aria-label="Add New" class="me-1" width="20" height="21"
-                                      viewBox="0 0 20 21">
-                                      <use xlink:href="/css/common-icons.svg#add-new"></use>
-                                  </svg>
-                                  {{-- End of update by Shanila --}}
-                                  <span class="text-primary">
-                                  Add Frequency
+                        @if($notification_type==1)
+                        <div class="col-lg-5 col-12 mb-4">
+                            <label class="form-label" for="subject-column-{{$selectedType['role_id']}}">Subject {{$selectedType['display_name']}}</label>
+                            <input type="text" wire:model.defer="selectedTypesData.{{$key}}.notification_subject" id="subject-column-{{$selectedType['role_id']}}" class="form-control" name="subject-column-{{$selectedType['role_id']}}"
+                              placeholder="Enter Subject" />
+                            @error('selectedTypesData.'.$key.'.notification_subject')
+                                <span class="d-inline-block invalid-feedback mt-2">
+                                  {{ $message }}
                                 </span>
-                            </button>
+                            @enderror
+                        </div>
+                        @endif
+                      @if($selectedType['name']=='admin')
+                        <div class="col-lg-5 pe-lg-4 mb-4">
+                          <label class="form-label" for="admin_roles">Select Role</label>
+                          <select wire:key="item-{{$key}}-{{$selectedType['role_id']}}" class="form-control select2 form-select select2-hidden-accessible select-event" data-key="{{$key}}" wire:model.defer="selectedTypesData.{{$key}}.admin_roles" id="admin_roles" name="admin_roles" data-placeholder="Please Choose Role" aria-label="Please Select Role" multiple="true" tabindex="">
+                            @foreach($adminRoles as $role)
+                              <option value="{{$role->id}}">{{$role->system_role_name}}</option>
+                            @endforeach
+                          </select>
+                          @error('selectedTypesData.'.$key.'.admin_roles')
+                              <span class="d-inline-block invalid-feedback mt-2">
+                                {{ $message }}
+                              </span>
+                          @enderror
+                        </div>
+                      @else
+                        @if($notification_type==1)
+                        <div class="col-lg-4 pe-lg-5 col-12 mb-4">
+                            <label class="form-label" for="send-from-column-{{$selectedType['role_id']}}">Send From:</label>
+                            <input type="text" wire:model.defer="selectedTypesData.{{$key}}.notification_email" id="send-from-column-{{$selectedType['role_id']}}" class="form-control" name="send-from-column-{{$selectedType['role_id']}}"
+                              placeholder="Enter Notification Email Address" />
+                            @error('selectedTypesData.'.$key.'.notification_email')
+                                <span class="d-inline-block invalid-feedback mt-2">
+                                  {{ $message }}
+                                </span>
+                            @enderror
+                        </div>
+                          @endif
+                        <div class="col-lg-3 col-12 mb-4">
+                          <label class="form-label" for="send-from-column">Reply to:</label>
+                          <div class="d-flex flex-column gap-2">
+                            <div class="form-check mb-0">
+                              <input class="form-check-input" wire:model.defer="selectedTypesData.{{$key}}.notification_reply_to" type="radio" name="exampleRadios-{{$selectedType['role_id']}}" id="AssignedAdminStaff-selectedTypesData.{{$key}}.notification_reply_to"
+                                value="option1">
+                              <label class="form-check-label" for="AssignedAdminStaff-selectedTypesData.{{$key}}.notification_reply_to">
+                              Assigned Admin-staff
+                              </label>
+                            </div>
+                            <div class="form-check mb-0">
+                              <input class="form-check-input" wire:model.defer="selectedTypesData.{{$key}}.notification_reply_to" type="radio" name="exampleRadios-{{$selectedType['role_id']}}" id="SelectAdminStaff-selectedTypesData.{{$key}}.notification_reply_to"
+                                value="option2">
+                              <label class="form-check-label" for="SelectAdminStaff-selectedTypesData.{{$key}}.notification_reply_to">
+                              Select Admin-staff
+                              </label>
+                            </div>
+                            <div class="form-check mb-0">
+                              <input class="form-check-input" wire:model.defer="selectedTypesData.{{$key}}.notification_reply_to" type="radio" name="exampleRadios-{{$selectedType['role_id']}}" id="Custom-Email-selectedTypesData.{{$key}}.notification_reply_to"
+                                value="option3">
+                              <label class="form-check-label" for="Custom-Email-selectedTypesData.{{$key}}.notification_reply_to">
+                              Custom Email
+                              </label>
+                            </div>
+                            @error('selectedTypesData.'.$key.'.notification_reply_to')
+                                <span class="d-inline-block invalid-feedback mt-2">
+                                  {{ $message }}
+                                </span>
+                            @enderror
+                          </div>
+                        </div>
+                      @endif
+                    </div>
+                    
+                    @if($selectedType['name']=='customer')
+                      <!-- ...... Select Apply to ....  -->
+                      <div class="col-lg-12 col-12">
+                        <div class="row">
+                          <div class="col-lg-5 col-12 mb-4">
+                              <label class="form-label" for="ApplyTo">Apply to:</label>
+                              <select class="form-control select2 form-select select2-hidden-accessible select-event" data-key="{{$key}}" wire:model.defer="selectedTypesData.{{$key}}.customer_roles" id="customer_roles" name="customer_roles" data-placeholder="Please Choose" aria-label="Please Choose Accommodation" multiple="true" tabindex="" wire:ignore>
+                                @foreach($customerApplyRoles as $role)
+                                  <option value="{{$role->id}}">{{$role->display_name}}</option>
+                                @endforeach
+                              </select>
+                              @error('selectedTypesData.'.$key.'.customer_roles')
+                                  <span class="d-inline-block invalid-feedback mt-2">
+                                    {{ $message }}
+                                  </span>
+                              @enderror
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="row">
-                     {{-- added by shanila to add text-editor --}}
-                     <div class="col-lg-8 col-12 mb-4" style="height: 340px">
-                     <textarea class="form-control" rows="11" cols="11" placeholder="Normal text"
-                      name="SubjectColumn" id="SubjectColumn"></textarea>
-                    </div>
-                    {{-- ended updated by shanila --}}
-                      <div class="col-lg-4 col-12 mb-4">
-                        <div class="p-3 border rounded">
-                          <label class="form-label">Tag Key</label>
-                          <div class="d-lg-flex flex-wrap gap-3">
-                            <div class="tag">@admin_company</div>
-                            <div class="tag">@booking_start_at</div>
-                            <div class="tag">@consumer</div>
-                            <div class="tag">@booking_end_at</div>
-                            <div class="tag">@booking_duration</div>
-                            <div class="tag">@booking_location</div>
-                            <div class="tag">@services</div>
-                            <div class="tag">@service_type</div>
-                            <div class="tag">@dashboard</div>
-                            <div class="tag">@reports</div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-lg-5 col-12 mb-4">
-                          <label class="form-label" for="subject-column">Subject Provider</label>
-                          <input type="text" id="subject-column" class="form-control" name="subject-column"
-                            placeholder="Enter Subject" />
-                      </div>
-                      <div class="col-lg-4 pe-lg-5 col-12 mb-4">
-                          <label class="form-label" for="send-from-column">Send From:</label>
-                          <input type="text" id="send-from-column" class="form-control" name="send-from-column"
-                            placeholder="Enter Notification Email Address" />
-                      </div>
-                      <div class="col-lg-3 col-12 mb-4">
-                        <label class="form-label" for="send-from-column">Reply to:</label>
-                        <div class="d-flex flex-column gap-2">
-                          <div class="form-check mb-0">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="AssignedAdminStaff"
-                              value="option1" checked>
-                            <label class="form-check-label" for="AssignedAdminStaff">
-                            Assigned Admin-staff
-                            </label>
-                          </div>
-                          <div class="form-check mb-0">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="SelectAdminStaff"
-                              value="option2">
-                            <label class="form-check-label" for="SelectAdminStaff">
-                            Select Admin-staff
-                            </label>
-                          </div>
-                          <div class="form-check mb-0">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="Custom-Email"
-                              value="option2">
-                            <label class="form-check-label" for="Custom-Email">
-                            Custom Email
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    @endif
                     <div class="col-lg-12">
                       <div class="row">
                         <div class="col-lg-7">
+                          @foreach($selectedType['frequencies'] as $fkey=> $frequency)
                           <div class="row border-dashed rounded p-3 mb-3 mx-1">
                             <div class="d-flex justify-content-end">
-                              <a  href="#" title="Delete" aria-label="Delete"
+                              <a  href="javascript:void(0)" wire:click="removeFrequency({{$key}},{{$fkey}})" title="Delete" aria-label="Delete"
                                   class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                   <svg class="delete-icon" width="20" height="20"
                                       viewBox="0 0 20 20" fill="none"
@@ -219,67 +166,88 @@
                                       <use xlink:href="/css/sprite.svg#delete-icon"></use>
                                   </svg>
                               </a>
-                          </div>
+                            </div>
                             <div class="col-lg-4 align-self-end mb-4">
                               <div class="d-inline-flex gap-2 align-items-center">
                                 <label for="Frequency" class="form-label text-primary mb-lg-0">
                                   Frequency
                                 </label>
-                                <input type="text" class="form-control form-control-md form-control-max-w-xs text-center" id="frequency" name="frequency" placeholder="2" autocomplete="on"/>
+                                <input type="text" class="form-control form-control-md form-control-max-w-xs text-center" id="frequency-{{$selectedType['role_id']}}" name="frequency-{{$selectedType['role_id']}}" placeholder="2" autocomplete="on"/>
                               </div>
                             </div>
                             <div class="col-lg-4 text-center align-self-end mb-4">
-                              <div class="row g-0">
+                              <div class="row g-0" wire:ignore wire:key="{{$key}}frequency{{$fkey}}">
                                 <div class="col-4 text-center justify-content-center d-flex flex-column align-items-center">
-                                  <label class="form-label-sm" for="DisplayToProviders"> Days</label>
-                                  <input class="form-control form-control-md text-center" id="DisplayToProviders" name="DisplayToProviders" value="00" type="" tabindex="" />
+                                  <label class="form-label-sm" for="Days-{{$selectedType['role_id']}}-{{$fkey}}"> Days</label>
+                                  <input wire:model.defer="selectedTypesData.{{$key}}.frequencies.{{$fkey}}.frequency_days" class="form-control form-control-md text-center" id="Days-{{$selectedType['role_id']}}-{{$fkey}}" name="Days-{{$selectedType['role_id']}}-{{$fkey}}" value="00" type="" tabindex="" />
                                 </div>
                                 <div class="col-4 text-center justify-content-center d-flex flex-column align-items-center">
-                                  <label class="form-label-sm" for="DisplayToProviders"> Hours</label>
-                                  <input class="form-control form-control-md text-center" id="DisplayToProviders" name="DisplayToProviders" value="00" type="" tabindex="" />
+                                  <label class="form-label-sm" for="Hours-{{$selectedType['role_id']}}-{{$fkey}}"> Hours</label>
+                                  <input wire:model.defer="selectedTypesData.{{$key}}.frequencies.{{$fkey}}.frequency_hour" class="form-control form-control-md text-center" id="Hours-{{$selectedType['role_id']}}-{{$fkey}}" name="Hours-{{$selectedType['role_id']}}-{{$fkey}}" value="00" type="" tabindex="" />
                                 </div>
                                 <div class="col-4 text-center justify-content-center d-flex flex-column align-items-center">
-                                  <label class="form-label-sm" for="DisplayToProviders"> Minutes</label>
-                                  <input class="form-control form-control-md text-center" id="DisplayToProviders" name="DisplayToProviders" value="00" type="" tabindex="" />
+                                  <label class="form-label-sm" for="Minutes-{{$selectedType['role_id']}}-{{$fkey}}"> Minutes</label>
+                                  <input wire:model.defer="selectedTypesData.{{$key}}.frequencies.{{$fkey}}.frequency_min" class="form-control form-control-md text-center" id="Minutes-{{$selectedType['role_id']}}-{{$fkey}}" name="Minutes-{{$selectedType['role_id']}}-{{$fkey}}" value="00" type="" tabindex="" />
                                 </div>
                               </div>
+                                @error('selectedTypesData.'.$key.'.frequencies.'.$fkey.'.frequency_days')
+                                    <span class="d-inline-block invalid-feedback mt-2">
+                                      {{ $message }}
+                                    </span>
+                                @enderror
+                                @error('selectedTypesData.'.$key.'.frequencies.'.$fkey.'.frequency_hour')
+                                    <span class="d-inline-block invalid-feedback mt-2">
+                                      {{ $message }}
+                                    </span>
+                                @enderror
+                                @error('selectedTypesData.'.$key.'.frequencies.'.$fkey.'.frequency_min')
+                                    <span class="d-inline-block invalid-feedback mt-2">
+                                      {{ $message }}
+                                    </span>
+                                @enderror
                             </div>
                             <div class="col-lg-4 mb-4">
                               <div class="d-flex flex-column gap-2">
                                 <div class="form-check mb-0">
-                                  <input class="form-check-input" type="radio" name="exampleRadios" id="Before-Booking" value="option2">
+                                  <input class="form-check-input" type="radio" wire:model.defer="selectedTypesData.{{$key}}.frequencies.{{$fkey}}.frequency_type" name="frequency_type-{{$selectedType['role_id']}}-{{$fkey}}" id="frequency_type-{{$selectedType['role_id']}}-{{$fkey}}-Before-Booking" value="1">
                                   <label class="form-check-label" for="Before-Booking">
                                   Before Booking
                                   </label>
                                 </div>
                                 <div class="form-check mb-0">
-                                  <input class="form-check-input" type="radio" name="exampleRadios" id="After-Booking" value="option2">
+                                  <input class="form-check-input" type="radio" wire:model.defer="selectedTypesData.{{$key}}.frequencies.{{$fkey}}.frequency_type" name="frequency_type-{{$selectedType['role_id']}}-{{$fkey}}" id="frequency_type-{{$selectedType['role_id']}}-{{$fkey}}-After-Booking" value="2">
                                   <label class="form-check-label" for="After-Booking">
                                   After Booking
                                   </label>
                                 </div>
                                 <div class="form-check mb-0">
-                                  <input class="form-check-input" type="radio" name="exampleRadios" id="After-Trigger" value="option2">
+                                  <input class="form-check-input" type="radio" wire:model.defer="selectedTypesData.{{$key}}.frequencies.{{$fkey}}.frequency_type" name="frequency_type-{{$selectedType['role_id']}}-{{$fkey}}" id="frequency_type-{{$selectedType['role_id']}}-{{$fkey}}-After-Trigger" value="3">
                                   <label class="form-check-label" for="After-Trigger">
                                   After Trigger
                                   </label>
                                 </div>
+                                @error('selectedTypesData.'.$key.'.frequencies.'.$fkey.'.frequency_type')
+                                    <span class="d-inline-block invalid-feedback mt-2">
+                                      {{ $message }}
+                                    </span>
+                                @enderror
                               </div>
                             </div>
                           </div>
+                          @endforeach
                           <div class="row">
                             <div class="col-lg-12 text-end mb-4">
-                              <button class="btn btn-has-icon">
+                              <div class="btn btn-has-icon">
                                 {{-- Updated by Shanila to Add svg icon--}}
                                 <svg aria-label="Add New" class="me-1" width="20" height="21"
                                     viewBox="0 0 20 21">
                                     <use xlink:href="/css/common-icons.svg#add-new"></use>
                                 </svg>
                                 {{-- End of update by Shanila --}}
-                                <span class="text-primary">
-                                Add Frequency
-                              </span>
-                          </button>
+                                <span class="text-primary" wire:click="addFrequency({{$key}})">
+                                  Add Frequency
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -290,200 +258,27 @@
                     <div class="row">
                       {{-- added by shanila to add text-editor --}}
                       <div class="col-lg-8 col-12 mb-4" style="height: 340px">
-                      <textarea class="form-control" rows="11" cols="11" placeholder="Normal text"
-                      name="SubjectColumn" id="SubjectColumn"></textarea>
-                    </div>
-                    {{-- ended updated by shanila --}}
-                      <div class="col-lg-4 col-12 mb-4">
-                        <div class="p-3 border rounded">
-                          <label class="form-label">Tag Key</label>
-                          <div class="d-lg-flex flex-wrap gap-3">
-                            <div class="tag">@admin_company</div>
-                            <div class="tag">@booking_start_at</div>
-                            <div class="tag">@consumer</div>
-                            <div class="tag">@booking_end_at</div>
-                            <div class="tag">@booking_duration</div>
-                            <div class="tag">@booking_location</div>
-                            <div class="tag">@services</div>
-                            <div class="tag">@service_type</div>
-                            <div class="tag">@dashboard</div>
-                            <div class="tag">@reports</div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-lg-5 col-12 mb-4">
-                          <label class="form-label" for="subject-column">Subject Customer</label>
-                          <input type="text" id="subject-column" class="form-control" name="subject-column"
-                            placeholder="Enter Subject" />
-                      </div>
-                      <div class="col-lg-4 pe-lg-5 col-12 mb-4">
-                          <label class="form-label" for="send-from-column">Send From:</label>
-                          <input type="text" id="send-from-column" class="form-control" name="send-from-column"
-                            placeholder="Enter Notification Email Address" />
-                      </div>
-                      <div class="col-lg-3 col-12 mb-4">
-                        <label class="form-label" for="send-from-column">Reply to:</label>
-                        <div class="d-flex flex-column gap-2">
-                          <div class="form-check mb-0">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="AssignedAdminStaff"
-                              value="option1" checked>
-                            <label class="form-check-label" for="AssignedAdminStaff">
-                            Assigned Admin-staff
-                            </label>
-                          </div>
-                          <div class="form-check mb-0">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="SelectAdminStaff"
-                              value="option2">
-                            <label class="form-check-label" for="SelectAdminStaff">
-                            Select Admin-staff
-                            </label>
-                          </div>
-                          <div class="form-check mb-0">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="Custom-Email"
-                              value="option2">
-                            <label class="form-check-label" for="Custom-Email">
-                            Custom Email
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- ...... Select Apply to ....  -->
-                      <div class="col-lg-12 col-12">
-                        <div class="row">
-                          <div class="col-lg-5 col-12 mb-4">
-                              <label class="form-label" for="ApplyTo">Apply to:</label>
-                              <select class="form-control  select2 form-select select2-hidden-accessible" data-placeholder="Please Choose Accommodation" aria-label="Please Choose Accommodation" multiple="true" tabindex="" name="">
-                                <option value="1" selected>Requester</option>
-                                <option value="2" selected>Billing Manager</option>
-                                <option value="3">Requester 2</option>
-                                <option value="5">Billing Manager 2</option>
-                                <option value="6">Requester 3</option>
-                                <option value="8">Billing Manager 3</option>
-                                <option value="9">Requester 3</option>
-                              </select>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- ....... ....  -->
-                    </div>
-                    <div class="col-lg-12 col-12">
-                      <div class="row">
-                        <div class="col-lg-7">
-                          <div class="row border-dashed rounded p-3 mb-3 mx-1">
-                            <div class="d-flex justify-content-end">
-                              <a  href="#" title="Delete" aria-label="Delete"
-                                  class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                  <svg class="delete-icon" width="20" height="20"
-                                      viewBox="0 0 20 20" fill="none"
-                                      xmlns="http://www.w3.org/2000/svg">
-                                      <use xlink:href="/css/sprite.svg#delete-icon"></use>
-                                  </svg>
-                              </a>
-                          </div>
-                            <div class="col-lg-4 align-self-end mb-4">
-                              <div class="d-inline-flex gap-2 align-items-center">
-                                <label for="Frequency" class="form-label text-primary mb-lg-0">
-                                  Frequency
-                                </label>
-                                <input type="text" class="form-control form-control-md form-control-max-w-xs text-center" id="frequency" name="frequency" placeholder="2" autocomplete="on"/>
-                              </div>
-                            </div>
-                            <div class="col-lg-4 text-center align-self-end mb-4">
-                              <div class="row g-0">
-                                <div class="col-4 text-center justify-content-center d-flex flex-column align-items-center">
-                                  <label class="form-label-sm" for="DisplayToProviders"> Days</label>
-                                  <input class="form-control form-control-md text-center" id="DisplayToProviders" name="DisplayToProviders" value="00" type="" tabindex="" />
-                                </div>
-                                <div class="col-4 text-center justify-content-center d-flex flex-column align-items-center">
-                                  <label class="form-label-sm" for="DisplayToProviders"> Hours</label>
-                                  <input class="form-control form-control-md text-center" id="DisplayToProviders" name="DisplayToProviders" value="00" type="" tabindex="" />
-                                </div>
-                                <div class="col-4 text-center justify-content-center d-flex flex-column align-items-center">
-                                  <label class="form-label-sm" for="DisplayToProviders"> Minutes</label>
-                                  <input class="form-control form-control-md text-center" id="DisplayToProviders" name="DisplayToProviders" value="00" type="" tabindex="" />
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-lg-4 mb-4">
-                              <div class="d-flex flex-column gap-2">
-                                <div class="form-check mb-0">
-                                  <input class="form-check-input" type="radio" name="exampleRadios" id="Before-Booking" value="option2">
-                                  <label class="form-check-label" for="Before-Booking">
-                                  Before Booking
-                                  </label>
-                                </div>
-                                <div class="form-check mb-0">
-                                  <input class="form-check-input" type="radio" name="exampleRadios" id="After-Booking" value="option2">
-                                  <label class="form-check-label" for="After-Booking">
-                                  After Booking
-                                  </label>
-                                </div>
-                                <div class="form-check mb-0">
-                                  <input class="form-check-input" type="radio" name="exampleRadios" id="After-Trigger" value="option2">
-                                  <label class="form-check-label" for="After-Trigger">
-                                  After Trigger
-                                  </label>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-lg-12 text-end mb-4">
-                              <button href="#" class="btn btn-has-icon">
-                                {{-- Updated by Shanila to Add svg icon--}}
-                                <svg aria-label="Add New" class="me-1" width="20" height="21"
-                                    viewBox="0 0 20 21">
-                                    <use xlink:href="/css/common-icons.svg#add-new"></use>
-                                </svg>
-                                {{-- End of update by Shanila --}}
-                                <span class="text-primary">
-                                Add Frequency
-                              </span>
-                          </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- ....   section 3 ends.... -->
-                    <!-- ....   section 4 start.... -->
-                    <div class="row mb-4">
-                        {{-- added by shanila to add text-editor --}}
-                      <div class="col-lg-8 col-12 mb-4" style="height: 340px">
-                      <textarea class="form-control" rows="11" cols="11" placeholder="Normal text"
-                      name="SubjectColumn" id="SubjectColumn"></textarea>
+                        <textarea class="form-control" rows="11" cols="11" placeholder="Normal text"
+                        name="SubjectColumn-{{$selectedType['role_id']}}" id="SubjectColumn-{{$selectedType['role_id']}}" wire:model.defer="selectedTypesData.{{$key}}.notification_text"></textarea>
+                        @error('selectedTypesData.'.$key.'.notification_text')
+                            <span class="d-inline-block invalid-feedback mt-2">
+                              {{ $message }}
+                            </span>
+                        @enderror
                       </div>
                       {{-- ended updated by shanila --}}
                       <div class="col-lg-4 col-12 mb-4">
                         <div class="p-3 border rounded">
                           <label class="form-label">Tag Key</label>
                           <div class="d-lg-flex flex-wrap gap-3">
-                            <div class="tag">@admin_company</div>
-                            <div class="tag">@booking_start_at</div>
-                            <div class="tag">@consumer</div>
-                            <div class="tag">@booking_end_at</div>
-                            <div class="tag">@booking_duration</div>
-                            <div class="tag">@booking_location</div>
-                            <div class="tag">@services</div>
-                            <div class="tag">@service_type</div>
-                            <div class="tag">@dashboard</div>
-                            <div class="tag">@reports</div>
+                            @foreach($tagValues as $tag)
+                              <div class="tag" onclick="appendTagInnerText(this,'SubjectColumn-{{$selectedType['role_id']}}')">{{$tag}}</div>
+                            @endforeach
                           </div>
                         </div>
                       </div>
-                      {{--  
-                      <div class="col-12 mt-4">
-                        <button type="button" class="btn btn-primary rounded gap-2">
-                          <svg aria-label="New Customer Notification Template" width="20" height="20" viewBox="0 0 20 20">
-                            <use xlink:href="/css/common-icons.svg#plus">
-                            </use>
-                        </svg>
-                          <span>New Customer Notification Template</span>
-                        </button>
-                      </div>
-                      --}}
                     </div>
-                    <!-- ....   section 4 ends.... -->
+                      @endforeach
                   </div>
                 </div>
                 <!-- ....cancel/next (buttons)... -->
@@ -500,22 +295,35 @@
       </div>
       </div>
     </section>
+    
+  {{-- added by shanila to add js and css files for editor--}}
+  <link rel="stylesheet" href='/css/quill.imageUploader.min.css'/>
+  <link rel="stylesheet" href='/css/quill.snow.css'/>
+  <script src="/js/quill.js"></script>
+  <script src="/js/quill.htmlEditButton.min.js"></script>
+  <script src="/js/quill.imageUploader.min.js"></script>
+  {{-- added by shanila to add link of js editor js --}}
+  <script src="/tenant-resources/js/editor.js"></script>
 </div>
- {{-- added by shanila to add js and css files for editor--}}
-<link rel="stylesheet" href='/css/quill.imageUploader.min.css'/>
-<link rel="stylesheet" href='/css/quill.snow.css'/>
- <script src="/js/quill.js"></script>
- <script src="/js/quill.htmlEditButton.min.js"></script>
- <script src="/js/quill.imageUploader.min.js"></script>
-{{-- added by shanila to add link of js editor js --}}
-<script src="/tenant-resources/js/editor.js"></script>
 {{-- ended updated by shanila --}}
 @push('scripts')
 <script>
-    Livewire.on('updateVal', (attrName, val) => {
-
-        // Call the updateVal function with the attribute name and value
-        @this.call('updateVal', attrName, val);
-    });
+      function appendTagInnerText(tag,id) {
+        var tagInnerText = tag.innerText;
+        var textarea = document.getElementById(id);
+        textarea.value += tagInnerText + " ";
+      }
+	    document.addEventListener('refreshSelectsOnly', function(event) {
+        $('.select2').select2();
+			});
+        
+	    document.addEventListener('refreshSelects2', function(event) {
+        $('.select2').select2();
+        $('.select-event').off('change').on('change',function(){
+            let attrName = $(this).attr('id');
+            let key = $(this).data('key');
+		        Livewire.emit('updateValArray', attrName, key, $(this).select2("val"));
+        });
+			});
 </script>
 @endpush
