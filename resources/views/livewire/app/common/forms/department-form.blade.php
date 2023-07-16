@@ -1,4 +1,4 @@
-<div x-data="{customers: false}">
+<div x-data="{customers: false,associateCustomer:false, associateservice:false}">
 <div id="loader-section" class="loader-section" wire:loading>
           <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
             <div class="spinner-border" role="status" aria-live="polite">
@@ -112,10 +112,7 @@
                                 <!-- Basic multiple Column Form section start -->
                                 <section id="multiple-column-form">
                                     <div class="row">
-                                        <form class="form">
-                                            {{-- updated by shanila to add csrf--}}
-                                            @csrf
-                                            {{-- update ended by shanila --}}
+
                                             <div class="col-12">
 
                                                 <div class="row mt-2 mb-5">
@@ -520,7 +517,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </form>
+                                     
 
                                     </div>
                                 </section>
@@ -553,12 +550,31 @@
 
                                 </div>
                                 <!-- END: Schedule -->
-                            @elseif($step==3)
+                                @endif
                             <!--BEGIN: Service Catalog-->
                             <div class="tab-pane fade" :class="{ 'active show': tab === 'service-catalog' }"
                                 id="service-catalog" role="tabpanel" aria-labelledby="service-catalog-tab" tabindex="0"
                                 x-show="tab === 'service-catalog'">
                                     <section id="multiple-column-form">
+                                    <a href="javascript:void(0)" @click="associateservice = true" id="serviceIco" title="Add Service Rates" aria-label="Add Service Rates" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                            <x-icon name="dollar-icon"/>
+                        </a>
+                        <a href="javascript:void(0)"   id="CustomerIco" @click="associateCustomer = true;"
+                                                                                                        title="Customers (coming soon)"
+                                                                                                        aria-label="Customers (coming soon)"
+                                                                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                                                        <svg aria-label="Customers"
+                                                                                                            class="fill"
+                                                                                                            width="21"
+                                                                                                            height="20"
+                                                                                                            viewBox="0 0 21 20"
+                                                                                                            fill="none"
+                                                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                                                            <use
+                                                                                                                xlink:href="/css/sprite.svg#user-group">
+                                                                                                            </use>
+                                                                                                        </svg>
+                                                                                                    </a>
                                             @livewire('app.admin.customer.service-catelog',['showButtons'=>false,'modelId'=>$department->id,'modelType'=>'department'])
                                             <div class="col-12 form-actions">
                                                     <button type="button" class="btn btn-outline-dark rounded px-4 py-2"
@@ -578,7 +594,7 @@
                             </div>
                             <!--End: Service Catalog-->
 
-                            @endif
+                          
 
                             <!--BEGIN: Drive Documents Pane-->
                             <div class="tab-pane fade" :class="{ 'active show': tab === 'drive-documents' }"
@@ -613,6 +629,9 @@
     document.getElementById("company_id").disabled = true;
     </script>
     @endif
+    @include('panels.services.associate-customers')
+   
+    @include('panels.services.associated-service') 
 </div>
 
 

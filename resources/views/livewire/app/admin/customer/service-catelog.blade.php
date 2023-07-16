@@ -1,8 +1,6 @@
 <div class="row">
                                     <div class="card-body">
-                                        <form class="form">
-                                            {{-- updated by shanila to add csrf--}}
-                                            @csrf
+                                      
                                             {{-- update ended by shanila --}}
                                             <div class="col-md-10">
                                                 <h2>Service Catalog</h2>
@@ -75,8 +73,8 @@
                                                             </div>
                                                         </div>
                                                         <div class="card">
-                                                            <div class="card-body">
-                                                                <form class="form">
+                                                            <div class="card-body" >
+                                                                
                                                                     <div class="overflow-y-auto">
                                                                         <table id="unassigned_data"
                                                                             class="table table-hover"
@@ -109,39 +107,22 @@
                                                                                             </td>
                                                                                             <td>
                                                                                                 <div class="d-flex actions">
-                                                                                                    <a @click="customers = true"
-                                                                                                        href="#"
-                                                                                                        title="Customers (coming soon)"
-                                                                                                        aria-label="Customers (coming soon)"
-                                                                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                                                        <svg aria-label="Customers"
-                                                                                                            class="fill"
-                                                                                                            width="21"
-                                                                                                            height="20"
-                                                                                                            viewBox="0 0 21 20"
-                                                                                                            fill="none"
-                                                                                                            xmlns="http://www.w3.org/2000/svg">
-                                                                                                            <use
-                                                                                                                xlink:href="/css/sprite.svg#user-group">
-                                                                                                            </use>
-                                                                                                        </svg>
-                                                                                                    </a>
-                                                                                                    <a href="#"
-                                                                                                        title="Department  (coming soon)"
-                                                                                                        aria-label="Department (coming soon)"
-                                                                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                                                        <svg aria-label="Department"
-                                                                                                            class="fill"
-                                                                                                            width="21"
-                                                                                                            height="20"
-                                                                                                            viewBox="0 0 21 20"
-                                                                                                            fill="none"
-                                                                                                            xmlns="http://www.w3.org/2000/svg">
-                                                                                                            <use
-                                                                                                                xlink:href="/css/sprite.svg#building">
-                                                                                                            </use>
-                                                                                                        </svg>
-                                                                                                    </a>
+                                                                                                <a href="javascript:void(0)" wire:click="updateServiceData({{$service['id']}})" title="Add Service Rates" aria-label="Add Service Rates" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                            <x-icon name="dollar-icon"/>
+                        </a>
+                        @if($modelType=='company')
+                        <a href="javascript:void(0)" wire:click="reloadDepartment({{$modelId}},{{$service['id']}})" title="View Departments" aria-label="View Departments" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                            <x-icon name="building"/>
+                        </a>
+                        <a href="#"  @click="associateCustomer = true;$wire.reloadUsers({{$service['id']}})" title="user-group" aria-label="user-group" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                            <x-icon name="user-group"/>
+                        </a>
+                        @elseif($modelType=='department')
+                        <a href="#"  @click="associateCustomer = true;$wire.reloadDepartmentUsers({{$service['id']}})" title="user-group" aria-label="user-group" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                            <x-icon name="user-group"/>
+                        </a>
+                        @endif
+
                                                                                                 </div>
                                                                                             </td>
                                                                                         </tr>
@@ -151,7 +132,7 @@
                                                                             </tbody>
                                                                         </table>
                                                                     </div>
-                                                                </form>
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -159,6 +140,7 @@
                                             </div>
 
 
-                                        </form>
+                                       
                                     </div>
+
                                 </div>

@@ -16,6 +16,7 @@ class AssociateModel extends Component
 
     public function render()
     {
+       
         return view('livewire.app.common.panels.services.associate-model');
     }
 
@@ -61,6 +62,7 @@ class AssociateModel extends Component
 
     }
     function associateService($service){
+       
         $this->service=$service;
        
         $this->refreshList();

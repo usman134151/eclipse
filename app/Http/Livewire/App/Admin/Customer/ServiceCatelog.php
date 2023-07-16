@@ -90,6 +90,46 @@ class ServiceCatelog extends Component
        // dd($this->accommodations);
         return  $this->$arr;
     }
+    public function associateService($serviceId){
+        // Emits an event to show the form for editing a record
+        $this->emit('associateService', ServiceCategory::find($serviceId));
+        
+    }
+    public function reloadDepartment($companyId,$serviceId){
+      
+        $this->associateService($serviceId);
+        $this->emit('updateDepartments', $companyId);
+        $this->dispatchBrowserEvent('updateModelVars', [
+            'elem' => 'departmentIco',
+            
+        ]);
+
+    }
+
+    public function updateServiceData($serviceId){
+        $this->associateService($serviceId);
+     
+        $this->emit('updateModel', $this->modelId,'',$this->modelType,'','');
+        $this->dispatchBrowserEvent('updateModelVars', [
+            'elem' => 'serviceIco',
+            
+        ]);
+
+    }
+    public function reloadDepartmentUsers($serviceId){
+        $this->associateService($serviceId);
+        $this->emit('updateDepartmentUsers', $this->modelId);
+
+    }
+    public function reloadUsers($serviceId){
+        $this->associateService($serviceId);
+        $this->emit('updateUsers', $this->modelId);
+        $this->dispatchBrowserEvent('updateModelVars', [
+            'elem' => 'customerIco',
+            
+        ]);
+
+    }
 
 
 
