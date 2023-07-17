@@ -988,12 +988,15 @@
                                 </section>
                             </div>
                             {{-- END: Permission Configurations --}}
-                        @elseif($step==3)
+                        @endif
                             {{-- BEGIN: Service Catalog --}}
                               <div class="tab-pane fade" :class="{ 'active show': tab === 'service-catalog' }"
                                     id="service-catalog" role="tabpanel" aria-labelledby="service-catalog-tab" tabindex="0"
                                     x-show="tab === 'service-catalog'">
                                     <section id="multiple-column-form">
+                                    <a href="javascript:void(0)" style="display:none" @click="associateservice = true" id="serviceIco" title="Add Service Rates" aria-label="Add Service Rates" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                            <x-icon name="dollar-icon"/>
+                        </a>
                                     @livewire('app.admin.customer.service-catelog',['showButtons'=>false,'modelId'=>$user->id,'modelType'=>'customer'])
                                     <div class="col-12 form-actions">
                                     <button type="button" class="btn btn-outline-dark rounded px-4 py-2"
@@ -1016,7 +1019,7 @@
                                 </div>
                             
                             {{-- END: Service Catalog --}}
-                                             @endif
+                                           
 
                             {{-- BEGIN: Drive Documents Pane --}}
                             <div class="tab-pane fade" :class="{ 'active show': tab === 'drive-documents' }"
@@ -1075,6 +1078,7 @@
     @include('modals.admin-staff')
     <!-- have to remove associate services panel as it was throwing errors --> 
     @include('modals.add-user')
+    @include('panels.services.associated-service') 
    
 </div>
 </div>

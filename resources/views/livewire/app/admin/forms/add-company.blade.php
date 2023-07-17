@@ -1,4 +1,4 @@
-<div x-data="{customers: false}">
+<div x-data="{customers: false,associateCompanies:false, associateCustomer:false, associateDepartment:false,associateservice:false}">
 <div id="loader-section" class="loader-section" wire:loading>
           <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
             <div class="spinner-border" role="status" aria-live="polite">
@@ -531,6 +531,7 @@
                             id="schedule" role="tabpanel" aria-labelledby="schedule-tab" tabindex="0"
                             x-show="tab === 'schedule'">
                             <section id="multiple-column-form">
+                                
                               @livewire('app.common.setup.business-hours-setup', ['model_id' => $company->id, 'model_type' => '2'])
                               <div
                                                     class="col-12 form-actions">
@@ -550,12 +551,34 @@
                             </section>
                         </div>
                         {{-- BEGIN: Service Catalog --}}
-                        @elseif($step==3)
+                        @endif
                        
                         <div class="tab-pane fade" :class="{ 'active show': tab === 'service-catalog' }"
                             id="service-catalog" role="tabpanel" aria-labelledby="service-catalog-tab" tabindex="0"
                             x-show="tab === 'service-catalog'">
                             <section id="multiple-column-form">
+                            <a href="javascript:void(0)" style="display:none" id="departmentIco" @click="associateDepartment = true;" title="View Departments" aria-label="View Departments" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                            <x-icon name="building"/>
+                        </a>
+                        <a href="javascript:void(0)" style="display:none" @click="associateservice = true" id="serviceIco" title="Add Service Rates" aria-label="Add Service Rates" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                            <x-icon name="dollar-icon"/>
+                        </a>
+                        <a href="javascript:void(0)"  style="display:none" id="CustomerIco" @click="associateCustomer = true;"
+                                                                                                        title="Customers (coming soon)"
+                                                                                                        aria-label="Customers (coming soon)"
+                                                                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                                                        <svg aria-label="Customers"
+                                                                                                            class="fill"
+                                                                                                            width="21"
+                                                                                                            height="20"
+                                                                                                            viewBox="0 0 21 20"
+                                                                                                            fill="none"
+                                                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                                                            <use
+                                                                                                                xlink:href="/css/sprite.svg#user-group">
+                                                                                                            </use>
+                                                                                                        </svg>
+                                                                                                    </a>
                              @livewire('app.admin.customer.service-catelog',['showButtons'=>false,'modelId'=>$company->id,'modelType'=>'company'])
                              <div class="col-12 form-actions">
                              <button type="button" class="btn btn-outline-dark rounded px-4 py-2"
@@ -576,7 +599,7 @@
                         </div>
                      
                         {{-- End: Service Catalog --}}
-                        @endif
+                       
                         
                         {{-- BEGIN: Drive Documents Pane --}}
                         <div class="tab-pane fade"  :class="{ 'active show': tab === 'drive-documents' }">
@@ -603,8 +626,11 @@
         </div>
     </div>
    
-    @include('modals.company-business-hours')
+   
     @include('modals.common.add-address')
+    @include('panels.services.associate-customers')
+    @include('panels.services.associate-department')
+    @include('panels.services.associated-service') 
 
 </div>
 

@@ -6,6 +6,7 @@ use App\Models\Tenant\ServiceSpecialization;
 use App\Models\Tenant\Specialization;
 use App\Models\Tenant\SetupValue;
 use App\Models\Tenant\StandardRate;
+use App\Models\Tenant\Department;
 use App\Helpers\SetupHelper;
 use App\Services\App\ServiceCatagoryService;
 
@@ -14,7 +15,7 @@ use Livewire\Component;
 
 class AssociatedService extends Component
 {
-    public $service,$modelId,$modelType,$modelName,$standardRate;
+    public $service,$modelId,$modelType,$modelName,$standardRate, $replicate=false,$parentId=0,$parentType='';
     protected $listeners = ['associateService','updateModel'];
     public $serviceTypes=['1'=>['class'=>'inperson-rate','postfix'=>'','title'=>'In-Person'],
     '2'=>['class'=>'virtual-rate','postfix'=>'_v','title'=>'Virtual'],
@@ -336,30 +337,63 @@ class AssociatedService extends Component
                 
         ];
         }
-        public function updateModel($modelId,$modelName,$modelType){
+        public function updateModel($modelId,$modelName,$modelType,$parentId,$parentType){
 
             $this->modelId=$modelId;
             $this->modelName=$modelName;
             $this->modelType=$modelType;
-            
+            $this->replicate=false;
+            $this->parentId=$parentId;
+            $this->parentType=$parentType;
            
             $existingRate = StandardRate::where('user_id', $this->modelId)
             ->where('accommodation_service_id', $this->service->id)
             ->where('model_type', $this->modelType)
             ->first();
 
+            if(!$existingRate && $modelType=='department'){
+                //check if department's company has rates confirgured
+                $companyId=Department::where('id',$this->modelId)->select('company_id')->first(); 
+                $existingRate = StandardRate::where('user_id', $companyId->company_id)
+                ->where('accommodation_service_id', $this->service->id)
+                ->where('model_type','company')
+                ->first();
+                $this->replicate=true;
+               
+            }
+            elseif(!$existingRate && $modelType=='customer'){
+                //check if customer department has rates confirgured
+               
+                    $existingRate = StandardRate::where('user_id', $parentId)
+                    ->where('accommodation_service_id', $this->service->id)
+                    ->where('model_type',$parentType)
+                    ->first();
+               
+
+                $this->replicate=true;
+               
+            }
+
             $this->associateService($this->service->toArray());   
     
             if ($existingRate) {
                 
-                $this->standardRate = $existingRate;
+                
                 $serviceAttributes = $this->service->getAttributes();
 
-                foreach ($this->standardRate->getAttributes() as $attribute => $value) {
+                foreach ($existingRate->getAttributes() as $attribute => $value) {
                     if (array_key_exists($attribute, $serviceAttributes) && $attribute!='id') {
                         $this->service->$attribute = $value;
                        
                     }
+                }
+
+                if($this->replicate){
+                    $this->standardRate = new StandardRate();
+
+                }
+                else{
+                    $this->standardRate = $existingRate;
                 }
                 
             } else {
@@ -367,6 +401,7 @@ class AssociatedService extends Component
 
                 
             }
+          
            
             $this->loadValues($this->service);
           
@@ -472,11 +507,12 @@ class AssociatedService extends Component
                     $this->standardRate->$attribute = $this->service->$attribute;
                
             }
+            
             $this->standardRate->user_id = $this->modelId;
             $this->standardRate->model_type = $this->modelType;
             $this->standardRate->accommodation_id = $this->service->accommodations_id;
             $this->standardRate->accommodation_service_id = $this->service->id;
-         
+          
             $this->standardRate->save();
             $this->associateService($this->service->toArray());   
             $message="Rates saved sucessfully for ".$this->modelName." associated with ".$this->service->name;
@@ -493,7 +529,7 @@ class AssociatedService extends Component
             ->where('model_type', $this->modelType)
             ->delete();
 
-            $this->updateModel($this->modelId,$this->modelName,$this->modelType);
+            $this->updateModel($this->modelId,$this->modelName,$this->modelType,$this->parentId,$this->parentType);
         }
 
         
