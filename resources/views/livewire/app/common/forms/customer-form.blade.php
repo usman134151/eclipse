@@ -994,7 +994,7 @@
                                     id="service-catalog" role="tabpanel" aria-labelledby="service-catalog-tab" tabindex="0"
                                     x-show="tab === 'service-catalog'">
                                     <section id="multiple-column-form">
-                                    <a href="javascript:void(0)" @click="associateservice = true" id="serviceIco" title="Add Service Rates" aria-label="Add Service Rates" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                    <a href="javascript:void(0)" style="display:none" @click="associateservice = true" id="serviceIco" title="Add Service Rates" aria-label="Add Service Rates" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                             <x-icon name="dollar-icon"/>
                         </a>
                                     @livewire('app.admin.customer.service-catelog',['showButtons'=>false,'modelId'=>$user->id,'modelType'=>'customer'])

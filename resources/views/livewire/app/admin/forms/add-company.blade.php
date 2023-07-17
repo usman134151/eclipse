@@ -560,6 +560,9 @@
                             <a href="javascript:void(0)" style="display:none" id="departmentIco" @click="associateDepartment = true;" title="View Departments" aria-label="View Departments" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                             <x-icon name="building"/>
                         </a>
+                        <a href="javascript:void(0)" style="display:none" @click="associateservice = true" id="serviceIco" title="Add Service Rates" aria-label="Add Service Rates" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                            <x-icon name="dollar-icon"/>
+                        </a>
                         <a href="javascript:void(0)"  style="display:none" id="CustomerIco" @click="associateCustomer = true;"
                                                                                                         title="Customers (coming soon)"
                                                                                                         aria-label="Customers (coming soon)"
