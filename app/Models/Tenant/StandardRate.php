@@ -44,5 +44,6 @@ class StandardRate extends Model
         'service_payment_p',
         'service_payment_t',
         'service_payment_v',
+        'request_form_id'
     ];
 }

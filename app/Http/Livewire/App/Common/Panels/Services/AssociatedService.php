@@ -8,7 +8,7 @@ use App\Models\Tenant\SetupValue;
 use App\Models\Tenant\StandardRate;
 use App\Models\Tenant\SpecializationRate;
 use App\Models\Tenant\Department;
-use App\Helpers\SetupHelper;
+use App\Models\Tenant\CustomizeForms;
 use App\Services\App\ServiceCatagoryService;
 use Auth;
 
@@ -17,7 +17,7 @@ use Livewire\Component;
 
 class AssociatedService extends Component
 {
-    public $service,$modelId,$modelType,$modelName,$standardRate, $replicate=false,$parentId=0,$parentType='', $specializationRate=[];
+    public $service,$modelId,$modelType,$modelName,$standardRate, $replicate=false,$parentId=0,$parentType='', $specializationRate=[],$requestForms;
     protected $listeners = ['associateService','updateModel'];
     public $serviceTypes=['1'=>['class'=>'inperson-rate','postfix'=>'','title'=>'In-Person'],
     '2'=>['class'=>'virtual-rate','postfix'=>'_v','title'=>'Virtual'],
@@ -72,10 +72,7 @@ class AssociatedService extends Component
         "5"=>['price'=>'']
         
     ]];
-    public $setupValues = [
-        'accomodations' => ['parameters' => ['Accommodation', 'id', 'name', '', '', 'name', false, 'service.accommodations_id','','accommodations_id',1]],
-        'customerForms' => ['parameters' => ['CustomizeForms', 'id', 'request_form_name', 'form_name_id', '37', 'request_form_name', false, 'service.request_form_id','','request_form_id',1]]
-    ];
+
 
     public function render()
     {
@@ -85,7 +82,7 @@ class AssociatedService extends Component
 
     public function mount()
     {
-       
+       $this->requestForm=CustomizeForms::where('status',1)->where('form_name_id',37)->get()->toArray();
        
     }
     public function rules()
@@ -114,7 +111,7 @@ class AssociatedService extends Component
             'service.day_rate_price_v' => 'nullable|numeric|max:999999.99',
             'service.day_rate_price_p' => 'nullable|numeric|max:999999.99',
             'service.day_rate_price_t' => 'nullable|numeric|max:999999.99',
-
+            'service.request_form_id'=> 'sometimes|nullable'
            
 
 		];
@@ -166,8 +163,7 @@ class AssociatedService extends Component
 
         }
        
-		$this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
-       // $this->setupCheckboxes['service_types']=['rendered'=>''];
+		
         $this->loadValues($this->service);
         $this->specializations=Specialization::all()->where('status',1);
         $serviceTypeLabels=SetupValue::where('setup_id',5)->pluck('setup_value_label')->toArray();

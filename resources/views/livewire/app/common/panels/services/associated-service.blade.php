@@ -499,13 +499,13 @@
                                                     <div class="d-lg-flex gap-4">
                                                         <div class="align-self-end col-lg-5">
                                                             <div class="input-group">
-                                                                <select class="form-select  w-75" wire:model.defer="serviceSpecialization.{{$index}}.specialization_id">
+                                                                <select class="form-select  w-75" wire:model.defer="serviceSpecialization.{{$index}}.specialization_id" disabled>
                                                                    <option value="0">Select Specialization</option>
                                                                    @foreach($specializations as $specialization)
                                                                    <option value="{{$specialization->id}}">{{$specialization->name}}</option>
                                                                    @endforeach
                                                                 </select>
-                                                                <select class="form-select" wire:model.defer="serviceSpecialization.{{$index}}.common.price_type">
+                                                                <select class="form-select" wire:model.defer="serviceSpecialization.{{$index}}.common.price_type" disabled>
                                                                     <option value="$">$</option>
                                                                     <option value="%">%</option>
 
@@ -560,59 +560,17 @@
                         <label class="form-check-label" for="SpecializationRates">Enable</label>
                      </div> -->
                      <h2 class="mb-lg-0">Customized Forms Selection</h2>
+
                    </div>
-                   <div class="row switch-toggle-content" x-show="open">
-                     <div class="col-lg-12">
-                       <div class="border p-3">
-                         <div class="text-lg-end mb-4">
-                           <a href="#" class="btn btn-primary">Create New Specialization</a>
-                         </div>
-                         <div class="d-flex flex-column gap-3">
-                           
-                         
-                           <div class="d-lg-flex gap-4">
-                             <div class="align-self-end col-lg-5">
-                               <div class="input-group">
-                                 <select class="form-select bg-secondary w-75">
-                                   <option>Medical Interpreting</option>
-                                 </select>
-                                 <select class="form-select">
-                                   <option>$</option>
-                                 </select>
-                               </div>
-                             </div>
-                             <div class="align-self-end">
-                               <div class="text-primary fw-bold">In-Person</div>
-                               <input type="text" class="form-control text-center" placeholder="00.00" aria-label="" aria-describedby="">
-                             </div>
-                             <div class="align-self-end">
-                               <div class="text-primary fw-bold">Virtual</div>
-                               <input type="text" class="form-control text-center" placeholder="00.00" aria-label="" aria-describedby="">
-                             </div>
-                             <div class="align-self-end">
-                               <div class="text-primary fw-bold">Phone</div>
-                               <input type="text" class="form-control text-center" placeholder="00.00" aria-label="" aria-describedby="">
-                             </div>
-                             <div class="align-self-end">
-                               <div class="text-primary fw-bold">Teleconference</div>
-                               <input type="text" class="form-control text-center" placeholder="00.00" aria-label="" aria-describedby="">
-                             </div>
-                           </div>
-                          
-                           <div class="text-end">
-                             <a href="#" class="fw-bold">
-                             <!--  <small>
-                                 Add Additional Specialization 
-                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                   <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58182 0 0 3.58182 0 8C0 12.4182 3.58182 16 8 16C12.4182 16 16 12.4182 16 8C16 3.58182 12.4182 0 8 0ZM8.72727 10.9091C8.72727 11.102 8.65065 11.287 8.51426 11.4234C8.37787 11.5597 8.19289 11.6364 8 11.6364C7.80712 11.6364 7.62213 11.5597 7.48574 11.4234C7.34935 11.287 7.27273 11.102 7.27273 10.9091V8.72727H5.09091C4.89802 8.72727 4.71304 8.65065 4.57665 8.51426C4.44026 8.37787 4.36364 8.19289 4.36364 8C4.36364 7.80712 4.44026 7.62213 4.57665 7.48574C4.71304 7.34935 4.89802 7.27273 5.09091 7.27273H7.27273V5.09091C7.27273 4.89802 7.34935 4.71304 7.48574 4.57665C7.62213 4.44026 7.80712 4.36364 8 4.36364C8.19289 4.36364 8.37787 4.44026 8.51426 4.57665C8.65065 4.71304 8.72727 4.89802 8.72727 5.09091V7.27273H10.9091C11.102 7.27273 11.287 7.34935 11.4234 7.48574C11.5597 7.62213 11.6364 7.80712 11.6364 8C11.6364 8.19289 11.5597 8.37787 11.4234 8.51426C11.287 8.65065 11.102 8.72727 10.9091 8.72727H8.72727V10.9091Z" fill="#0A1E46"/>
-                                 </svg>
-                               </small> -->
-                             </a>
-                           </div>
-                         </div>
-                       </div>
-                     </div>
-                   </div>
+                    <div>
+                        <select class="form-select rounded-0 w-25"  wire:model.defer="service.request_form_id">
+                            <option>Select Request Form</option>
+                            @foreach($requestForm as $form)
+                              <option value="{{$form['id']}}">{{$form['request_form_name']}}</option>
+                            @endforeach
+
+                        </select>
+                    </div>
                  </div> {{--Customized Forms Selection end  --}}
                <div class="col-12 justify-content-center form-actions d-flex gap-2">
                 
