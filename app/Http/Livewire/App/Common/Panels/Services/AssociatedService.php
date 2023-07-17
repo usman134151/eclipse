@@ -529,7 +529,7 @@ class AssociatedService extends Component
             ->where('model_type', $this->modelType)
             ->delete();
 
-            $this->updateModel($this->modelId,$this->modelName,$this->modelType);
+            $this->updateModel($this->modelId,$this->modelName,$this->modelType,$this->parentId,$this->parentType);
         }
 
         
