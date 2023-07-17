@@ -160,7 +160,7 @@
                                 <div class="col-lg-12 between-section-segment-spacing" x-data="{ open: false }">
                                 @endif    
                                     <div class="d-lg-flex align-items-center mb-4 gap-3">
-                                        <div class="form-check form-switch form-switch-column mb-lg-0">
+                                        <!--<div class="form-check form-switch form-switch-column mb-lg-0">
                                             <input class="form-check-input" type="checkbox" role="switch"
                                                 id="AdditionalServiceCharges" @click="open = !open"
                                                 x-text="open==true  ? 'hide' : 'show'" wire:model="additionalCharge">
@@ -168,7 +168,7 @@
                                                 for="AdditionalServiceCharges">Disable</label>
                                             <label class="form-check-label"
                                                 for="AdditionalServiceCharges">Enable</label>
-                                        </div>
+                                        </div> -->
                                         <h2 class="mb-lg-0">Additional Service Charges</h2>
                                     </div>
                                     <div class="row switch-toggle-content" x-show="open">
@@ -296,13 +296,13 @@
                                 <div class="col-lg-12 between-section-segment-spacing" x-data="{ open: false }">
                                 @endif    
                                     <div class="d-lg-flex align-items-center mb-4 gap-3">
-                                        <div class="form-check form-switch form-switch-column mb-lg-0">
+                                        <!-- <div class="form-check form-switch form-switch-column mb-lg-0">
                                             <input class="form-check-input" type="checkbox" role="switch"
                                                 id="ExpeditedServices" @click="open = !open"
                                                 x-text="open==true  ? 'hide' : 'show'" wire:model="emergencyCharge">
                                             <label class="form-check-label" for="ExpeditedServices">Disable</label>
                                             <label class="form-check-label" for="ExpeditedServices">Enable</label>
-                                        </div>
+                                        </div> -->
                                         <h2 class="mb-lg-0">Expedited Services</h2>
                                     </div>
                                     <div class="row switch-toggle-content" x-show="open">
@@ -386,7 +386,7 @@
                                 <div class="col-lg-12 between-section-segment-spacing" x-data="{ open: false }">
                                 @endif   
                                     <div class="d-lg-flex align-items-center mb-4 gap-3">
-                                        <div class="form-check form-switch form-switch-column mb-lg-0">
+                                      <!--  <div class="form-check form-switch form-switch-column mb-lg-0">
                                             <input class="form-check-input" type="checkbox" role="switch"
                                                 id="CancellationsModifications&Rescheduling" @click="open = !open"
                                                 x-text="open==true  ? 'hide' : 'show'" wire:model="cancelCharge">
@@ -394,7 +394,7 @@
                                                 for="CancellationsModifications&Rescheduling">Disable</label>
                                             <label class="form-check-label"
                                                 for="CancellationsModifications&Rescheduling">Enable</label>
-                                        </div>
+                                        </div> -->
                                         <h2 class="mb-lg-0">Cancellations, Modifications & Rescheduling</h2>
                                     </div>
                                     <div class="row switch-toggle-content" x-show="open">
@@ -478,13 +478,13 @@
                                 @endif    
                               
                                     <div class="d-lg-flex align-items-center mb-3 gap-3">
-                                        <div class="form-check form-switch form-switch-column mb-lg-0">
+                                       <!-- <div class="form-check form-switch form-switch-column mb-lg-0">
                                             <input class="form-check-input" type="checkbox" role="switch"
                                                 id="SpecializationRates" @click="open = !open"
                                                 x-text="open==true  ? 'hide' : 'show'" wire:model="showSpecialization">
                                             <label class="form-check-label" for="SpecializationRates">Disable</label>
                                             <label class="form-check-label" for="SpecializationRates">Enable</label>
-                                        </div>
+                                        </div> -->
                                         <h2 class="mb-lg-0">Specialization Rates</h2>
                                     </div>
                                     <div class="row switch-toggle-content" x-show="open">
@@ -554,11 +554,11 @@
                {{--Customized Forms Selection start  --}}
                <div class="col-lg-12 mb-5" x-data="{ open: false }">
                    <div class="d-lg-flex align-items-center mb-4 gap-3">
-                     <div class="form-check form-switch form-switch-column mb-lg-0">
+                     <!-- <div class="form-check form-switch form-switch-column mb-lg-0">
                        <input class="form-check-input" type="checkbox" role="switch" id="SpecializationRates" @click="open = !open" x-text="open==true  ? 'hide' : 'show'">
                         <label class="form-check-label" for="SpecializationRates">Disable</label>
                         <label class="form-check-label" for="SpecializationRates">Enable</label>
-                     </div>
+                     </div> -->
                      <h2 class="mb-lg-0">Customized Forms Selection</h2>
                    </div>
                    <div class="row switch-toggle-content" x-show="open">
