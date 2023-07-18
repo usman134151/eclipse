@@ -45,25 +45,25 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs nav-steps" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation" >
-                        <button class="nav-link {{ $component == 'requester-info' ? 'active' : '' }}"
+                        <button class="nav-link {{ $component == 'requester-info' ? 'active' : '' }}" wire:click="switch('requester-info')"
                             id="requester-info-tab" data-bs-toggle="tab" data-bs-target="#requester-info" type="button"
                             role="tab"  aria-controls="requester-info" aria-selected="true"><span class="number">1</span>
                             Requester Info</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link {{ $component == 'request-details' ? 'active' : '' }}"
+                        <button class="nav-link {{ $component == 'request-details' ? 'active' : '' }}" wire:click="switch('request-details')"
                             id="request-details-tab" data-bs-toggle="tab" data-bs-target="#request-details"
                             type="button" role="tab" aria-controls="request-details" aria-selected="false"><span
                                 class="number">2</span> Request Details</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link {{ $component == 'payment-info' ? 'active' : '' }}"
+                        <button class="nav-link {{ $component == 'payment-info' ? 'active' : '' }}" wire:click="switch('payment-info')"
                             id="payment-info-tab" data-bs-toggle="tab" data-bs-target="#payment-info" type="button"
                             role="tab" aria-controls="payment-info" aria-selected="false"><span class="number">3</span>
                             Payment Info</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link {{ $component == 'booking-summary' ? 'active' : '' }}"
+                        <button class="nav-link {{ $component == 'booking-summary' ? 'active' : '' }}" wire:click="switch('booking-summary')"
                             id="booking-summary-tab" data-bs-toggle="tab" data-bs-target="#booking-summary"
                             type="button" role="tab" aria-controls="booking-summary" aria-selected="false"><span
                                 class="number">4</span> Booking Summary</button>
@@ -71,6 +71,7 @@
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
+                    @if($component == 'requester-info')
                     <div class="tab-pane fade {{ $component == 'requester-info' ? 'active show' : '' }}"
                         id="requester-info" role="tabpanel" aria-labelledby="requester-info-tab" tabindex="0">
                         {{-- updated by shanila to add csrf and add form tag --}}
@@ -957,20 +958,16 @@
                         </form>
                         {{-- ended updated by shanila --}}
                     </div>
+                    
                     <!-- END: requester-info -->
+                    @elseif($component == 'request-details')
                     <div class="tab-pane fade {{ $component == 'request-details' ? 'active show' : '' }}"
                         id="request-details" role="tabpanel" aria-labelledby="request-details-tab" tabindex="0">
-                             @livewire('app.common.forms.custom-form-display',['showForm'=>true,'form_id'=> 15 ,'assignment_id'=>1])
-                             <div
-                                        class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
-                                        <button type="button" class="btn btn-outline-dark rounded" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('requester-info')">Back</button>
-                                        <button type="submit" class="btn btn-primary rounded">Save as Draft</button>
-                                        <button type="submit" class="btn btn-primary rounded">Request from User</button>
-                                        <button type="button" class="btn btn-primary rounded"
-                                        x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('payment-info')">Proceed to  Payment Info</button>
-                            </div>
+                             @livewire('app.common.forms.custom-form-display',['showForm'=>true,'form_id'=> 25 ,'assignment_id'=>1,'booking_id'=>2])
+                             
                                               
                     </div>
+                    @elseif($component == 'payment-info')
                     <div class="tab-pane fade {{ $component == 'payment-info' ? 'active show' : '' }}" id="payment-info"
                         role="tabpanel" aria-labelledby="payment-info-tab" tabindex="0">
                         {{-- updated by shanila to add csrf and add form tag --}}
@@ -1463,6 +1460,7 @@
                         </form>
                         {{-- ended update by shanila --}}
                     </div>
+                    @elseif($component == 'booking-summary')
                     <div class="tab-pane fade {{ $component == 'booking-summary' ? 'active show' : '' }}"
                         id="booking-summary" role="tabpanel" aria-labelledby="booking-summary-tab" tabindex="0">
                         {{-- updated by shanila to add csrf and add form tag --}}
@@ -1968,6 +1966,7 @@
                         {{-- ended update by shanila --}}
 
                     </div>
+                    @endif
                 </div>
                 <!-- END: Assignment Booking Form -->
             </div>
