@@ -997,7 +997,9 @@
                                     <a href="javascript:void(0)" style="display:none" @click="associateservice = true" id="serviceIco" title="Add Service Rates" aria-label="Add Service Rates" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                             <x-icon name="dollar-icon"/>
                         </a>
-                                    @livewire('app.admin.customer.service-catelog',['showButtons'=>false,'modelId'=>$user->id,'modelType'=>'customer'])
+                                    @if($step==3)                            
+                                        @livewire('app.admin.customer.service-catelog',['showButtons'=>false,'modelId'=>$user->id,'modelType'=>'customer','parentId'=>$user->company_name,'parentType'=>'company'])
+                                    @endif
                                     <div class="col-12 form-actions">
                                     <button type="button" class="btn btn-outline-dark rounded px-4 py-2"
                                                                 wire:click.prevent="setStep(2,'permissionActive','permission-configurations')" 
