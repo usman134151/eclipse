@@ -6,16 +6,18 @@ use App\Models\Tenant\ServiceSpecialization;
 use App\Models\Tenant\Specialization;
 use App\Models\Tenant\SetupValue;
 use App\Models\Tenant\StandardRate;
+use App\Models\Tenant\SpecializationRate;
 use App\Models\Tenant\Department;
-use App\Helpers\SetupHelper;
+use App\Models\Tenant\CustomizeForms;
 use App\Services\App\ServiceCatagoryService;
+use Auth;
 
 
 use Livewire\Component;
 
 class AssociatedService extends Component
 {
-    public $service,$modelId,$modelType,$modelName,$standardRate, $replicate=false,$parentId=0,$parentType='';
+    public $service,$modelId,$modelType,$modelName,$standardRate, $replicate=false,$parentId=0,$parentType='', $specializationRate=[],$requestForms;
     protected $listeners = ['associateService','updateModel'];
     public $serviceTypes=['1'=>['class'=>'inperson-rate','postfix'=>'','title'=>'In-Person'],
     '2'=>['class'=>'virtual-rate','postfix'=>'_v','title'=>'Virtual'],
@@ -70,20 +72,17 @@ class AssociatedService extends Component
         "5"=>['price'=>'']
         
     ]];
-    public $setupValues = [
-        'accomodations' => ['parameters' => ['Accommodation', 'id', 'name', '', '', 'name', false, 'service.accommodations_id','','accommodations_id',1]],
-        'customerForms' => ['parameters' => ['CustomizeForms', 'id', 'request_form_name', 'form_name_id', '37', 'request_form_name', false, 'service.request_form_id','','request_form_id',1]]
-    ];
+
 
     public function render()
     {
-       // dd($this->service->hours_price);
+
         return view('livewire.app.common.panels.services.associated-service');
     }
 
     public function mount()
     {
-       
+       $this->requestForm=CustomizeForms::where('status',1)->where('form_name_id',37)->get()->toArray();
        
     }
     public function rules()
@@ -112,7 +111,7 @@ class AssociatedService extends Component
             'service.day_rate_price_v' => 'nullable|numeric|max:999999.99',
             'service.day_rate_price_p' => 'nullable|numeric|max:999999.99',
             'service.day_rate_price_t' => 'nullable|numeric|max:999999.99',
-
+            'service.request_form_id'=> 'sometimes|nullable'
            
 
 		];
@@ -124,7 +123,28 @@ class AssociatedService extends Component
             $this->service = ServiceCategory::with('specializations')->find($service['id']);
            
         }
-        $this->service->specializaition=ServiceSpecialization::where('service_id',$this->service->id)->get()->toArray();
+
+        //checking if specialization rates are customized
+        $this->specializationRate=[];
+        $checkRate=SpecializationRate::where('accommodation_service_id',$this->service->id)->where('model_type',$this->modelType)->where('user_id',$this->modelId)->get()->toArray();
+        if(count($checkRate)){
+           
+            $index=0;
+           foreach($checkRate as $rate){
+
+
+                $this->specializationRate[$index]=['specialization_id'=>$rate['specialization'],'service_id'=>$rate['accommodation_service_id'],'specialization_price'=>$rate['specialization_rate'],'specialization_price_v'=>$rate['specialization_rate_v'],'specialization_price_p'=>$rate['specialization_rate_p'],'specialization_price_t'=>$rate['specialization_rate_t']];
+                $index++;
+             
+           }
+           
+          
+        }else{
+            $this->specializationRate=ServiceSpecialization::where('service_id',$this->service->id)->get()->toArray();
+        }
+      // dd($this->specializationRate);
+        //else get from specialization table
+      
       
         if(is_null($this->service->rate_status)){
             $this->service->rate_status=1;
@@ -143,8 +163,7 @@ class AssociatedService extends Component
 
         }
        
-		$this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
-       // $this->setupCheckboxes['service_types']=['rendered'=>''];
+		
         $this->loadValues($this->service);
         $this->specializations=Specialization::all()->where('status',1);
         $serviceTypeLabels=SetupValue::where('setup_id',5)->pluck('setup_value_label')->toArray();
@@ -158,7 +177,7 @@ class AssociatedService extends Component
     }
 
     public function loadValues($service){
-        
+         
         $selectedValues=[];$selectedFValues=[];
         if(!is_null($this->service->service_type)){
            
@@ -253,11 +272,12 @@ class AssociatedService extends Component
                     }
                     $index++;
                 }
-
-                if(!is_null($this->service->specializaition) && count($this->service->specializaition)){
+              
+                if(!is_null($this->specializationRate) && count($this->specializationRate)){
                     $this->showSpecialization=true;
                     $this->serviceSpecialization=[];
-                    foreach($this->service->specializaition as $specialization){
+                  
+                    foreach($this->specializationRate as $specialization){
                         //find common values 
                         $price=json_decode($specialization['specialization_price'],true);
                         $price_v=json_decode($specialization['specialization_price_v'],true);
@@ -514,6 +534,7 @@ class AssociatedService extends Component
             $this->standardRate->accommodation_service_id = $this->service->id;
           
             $this->standardRate->save();
+            $this->saveSpecialization();
             $this->associateService($this->service->toArray());   
             $message="Rates saved sucessfully for ".$this->modelName." associated with ".$this->service->name;
             $this->dispatchBrowserEvent('swal:modal', [
@@ -528,10 +549,59 @@ class AssociatedService extends Component
             ->where('accommodation_service_id', $this->service->id)
             ->where('model_type', $this->modelType)
             ->delete();
-
+            SpecializationRate::where('accommodation_service_id', $this->service->id)->where('model_type', $this->modelType)->where('user_id', $this->modelId)->delete();
             $this->updateModel($this->modelId,$this->modelName,$this->modelType,$this->parentId,$this->parentType);
         }
 
+        public function saveSpecialization(){
+                        //specializtions data
+           
+                        $index=0;
+            $specializationRecords=[];
+            foreach($this->serviceSpecialization as $specialization){
+                if(!is_null($specialization['specialization_id'])){
+                    
+                    $specializationRecords[$index]["specialization_price"]=$specialization["1"];
+                    $specializationRecords[$index]["specialization_price_v"]=$specialization["2"];
+                    $specializationRecords[$index]["specialization_price_p"]=$specialization["4"];
+                    $specializationRecords[$index]["specialization_price_t"]=$specialization["5"];
+                    $specializationRecords[$index]['specialization_id']=$specialization['specialization_id'];
+                }
+            
+                $index++;  
+            }
+          
+            if(count($specializationRecords)){
+                SpecializationRate::where('accommodation_service_id', $this->service->id)->where('model_type', $this->modelType)->where('user_id', $this->modelId)->delete();
+                foreach ($specializationRecords as $record) {
+                
+                 $specialization_id = $record['specialization_id'];
+                 if($specialization_id>0) {
+                 // Define the attributes to update or create
+                 $attributes = [
+                    'specialization_rate' => json_encode([$record['specialization_price']]),
+                    'specialization_rate_v' => json_encode([$record['specialization_price_v']]),
+                    'specialization_rate_p' => json_encode([$record['specialization_price_p']]),
+                    'specialization_rate_t' => json_encode([$record['specialization_price_t']]),
+                    'specialization' => $record['specialization_id'],
+                    'model_type'=>$this->modelType,
+                    'user_id'=>$this->modelId,
+                    'accommodation_service_id'=>$this->service->id,
+                    'accommodation_id'=>$this->service->accommodations_id,
+                    'added_by'=>Auth::id()
+                ];
+              
+                // Find the ServiceSpecialization record based on specialization_id and service_id
+                // If it exists, update it with the attributes; otherwise, create a new record
+                SpecializationRate::insert(
+                    
+                    $attributes
+                    );
+                    }
+                }  
+    
+            }
+        }
         
 
 }

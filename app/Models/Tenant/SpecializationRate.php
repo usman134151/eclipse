@@ -16,6 +16,6 @@ class SpecializationRate extends Model
      */
 
     protected $fillable = [
-        'user_id', 'accommodation_id', 'accommodation_service_id', 'required_specialization', 'specialization', 'specialization_other', 'specialization_rate', 'specialization_rate_v', 'added_by', 'updated_by', 'deleted_by'
+        'user_id', 'accommodation_id', 'accommodation_service_id', 'required_specialization', 'specialization', 'specialization_other', 'specialization_rate', 'specialization_rate_v', 'specialization_rate_t','specialization_rate_p'.'model_type','added_by', 'updated_by', 'deleted_by'
     ];
 }

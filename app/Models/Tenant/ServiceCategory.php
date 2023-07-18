@@ -22,4 +22,17 @@ class ServiceCategory extends Model
     {
         return $this->belongsToMany(Specialization::class, 'service_specializations', 'service_id', 'specialization_id');
     }
+
+    public function setSpecialization($index, $value)
+    {
+        $specializations = $this->specialization;
+
+        if (!is_array($specializations)) {
+            $specializations = [];
+        }
+
+        $specializations[$index] = $value;
+
+        $this->specialization = $specializations;
+    }
 }
