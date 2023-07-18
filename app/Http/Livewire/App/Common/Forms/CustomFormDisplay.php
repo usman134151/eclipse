@@ -2,14 +2,16 @@
 
 namespace App\Http\Livewire\App\Common\Forms;
 
+use App\Models\Tenant\BookingCustomizeData;
 use App\Services\CustomizeForm;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class CustomFormDisplay extends Component
 {
-    public $showForm, $form_id,$assignment_id ,$questions=[],$formInfo=[], $answers=[];
+    public $showForm, $form_id,$assignment_id ,$questions=[],$formInfo=[], $answers=[],$booking_id;
     
-    protected $listeners = ['showList' => 'resetForm'];
+    protected $listeners = ['showList' => 'resetForm', 'updateVal'];
 
     public function render()
     {
@@ -23,10 +25,22 @@ class CustomFormDisplay extends Component
        if(count($formData)){
             $this->formInfo = $formData['custom_form_details'];
             foreach($formData['questions'] as $index=> $question){
-                    $this->questions[]=$formService->getformfield($question, 'answers.'.$question['id'], $index);
+                    $this->answers[$index]['customize_id']= $question['id'];
+                    $this->answers[$index]['field_title'] = $question['field_name'];
+                    $this->answers[$index]['added_by'] = Auth::id();
+
+                    $this->questions[]=$formService->getformfield($question, 'answers.'.$index.'.data_value', $index);
             }
         }
     }
+
+    public function save(){
+        // dd($this->checkbox);
+        foreach($this->answers as $answer){
+            BookingCustomizeData::create($answer);
+        }
+    }
+
 
     function showForm()
     {     
@@ -36,5 +50,11 @@ class CustomFormDisplay extends Component
     {
         $this->showForm=false;
     }
+
+    public function updateVal($attrName, $val)
+    {
+        $this->answers[$attrName]['data_value'] = $val;
+    }
+
 
 }

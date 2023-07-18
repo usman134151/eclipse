@@ -147,11 +147,11 @@ class CustomizeForm
             $field['rendered'] =self::createTextAreaField($fieldArr['field_name'], $fieldArr['placeholder'], $field['set']['required'], $wireVariable, "",  $tabIndex);
         elseif ($fieldArr['field_type'] == 3){  //dropdown
             $options = self::addFieldOption($fieldArr['options']);
-            $field['rendered'] = self::createDropDown($options,$wireVariable,"",$fieldArr['field_name'], $tabIndex);
+            $field['rendered'] = self::createDropDown($options,$wireVariable,"",$fieldArr['field_name'], $field['set']['required'], $tabIndex);
         }elseif ($fieldArr['field_type'] == 4)  //checkbox
-            $field['rendered'] = self::createCheckboxes($options, $wireVariable, $fieldArr['field_name'],[], $tabIndex);
+            $field['rendered'] = self::createCheckboxes($options, $wireVariable, $fieldArr['field_name'], $field['set']['required'], [], $tabIndex);
         elseif ($fieldArr['field_type'] == 5)  //radio 
-            $field['rendered'] = self::createRadio($options, $wireVariable, $fieldArr['field_name'], [], $tabIndex);
+            $field['rendered'] = self::createRadio($options, $wireVariable, $fieldArr['field_name'], $field['set']['required'], [], $tabIndex);
         elseif ($fieldArr['field_type'] == 6)  //file 
             $field['rendered'] = '';
 
@@ -192,7 +192,7 @@ class CustomizeForm
     protected static function createTextField(string $fieldName ='',string $placeHolder='',bool $required=false, string $wireVariable ='', string $value='', int $tabIndex =0){
         $attributes = [
             'name' => str_replace(' ', '_', strtolower($fieldName)),
-            'id' => str_replace(' ', '_', strtolower($fieldName)),
+            'id' => $tabIndex,
             'class' => 'form-control', 'type'=>'text',
             'placeholder'=>$placeHolder , 
         ];
@@ -213,7 +213,7 @@ class CustomizeForm
                                               
         $attributes = [
             'name' => str_replace(' ', '_', strtolower($fieldName)),
-            'id' => str_replace(' ', '_', strtolower($fieldName)),
+            'id' => $tabIndex,
             'class' => 'form-control', 'rows' => '3', 'cols'=>4,
             'placeholder' => $placeHolder,
         ];
@@ -228,20 +228,21 @@ class CustomizeForm
         return $html;
     }
 
-    public static function createDropDown(array $values,  string $wireVariable = null, $selectedValue = '', string $selectName = '', int $tabIndex = 0,): string
+    public static function createDropDown(array $values,  string $wireVariable = null, $selectedValue = '', string $selectName = '', bool $required = false, int $tabIndex = 0,): string
     {
         $attributes = [
             'name' => str_replace(' ', '_', strtolower($selectName)) ,
-            'id' => str_replace(' ', '_', strtolower($selectName)),
+            'id' => $tabIndex,
             'class' => 'select2 form-select',
+            
         ];
 
         if ($wireVariable) {
             $attributes['wire:model'] = $wireVariable;
         }
+        if ($required) 
+            $attributes['required'] = 'true';
 
-            $attributes['class'] = 'select2 form-select';
-        
         if ($tabIndex) {
             $attributes['tabindex'] = $tabIndex;
         }
@@ -258,16 +259,23 @@ class CustomizeForm
 
         return $html;
     }
-    public static function createCheckboxes(array $values,$wireVariable = '', $displayCol = '',array $selectedValues = [], $tabIndex = 0): string
+    public static function createCheckboxes(array $values,$wireVariable = '', $displayCol = '',bool $required =false,array $selectedValues = [], $tabIndex = 0): string
     {
         $html = '';
         $name = $displayCol;
         $loop = 0;
         $wireAttribute ="";
         if ($wireVariable) {
-            $wireAttribute = 'wire:model.defer='.$wireVariable ."'";
+            $wireAttribute = 'wire:model.defer='.$wireVariable;
+            // .$wireVariable;
         }
-        foreach ($values as $value) {
+        if ($required)
+            $isRequired = 'required';
+        else
+            $isRequired = '';
+
+        
+        foreach ($values as $key=>$value) {
 
 
             // $cValue = count($checkValues) == 0 ? $value->{$valueCol} : $checkValues[$loop];
@@ -275,7 +283,7 @@ class CustomizeForm
             // $isChecked = in_array($cValue, $selectedValues) ? 'checked' : '';
             $isChecked ='';
             $html .= '<div class="form-check form-check-inline">';
-            $html .= '<input class="form-check-input" type="checkbox" id="' . $value['value'] . '" name="' . $name . '[]" value="' . $value['value'] . '" ' . $isChecked . ' tabindex=' . $tabIndex . ' ' . $wireAttribute .  '>';
+            $html .= '<input class="form-check-input" type="checkbox" wire:key="'. $key.'" name="'.$name.'[]" value="' . $value['label'] . '" ' . $isChecked . ' ' . $isRequired  . ' ' . $wireAttribute .  '>';
             $html .= '<label class="form-check-label"  for="' . $value['label'] . '">' . $value['label'] . '</label>';
             $html .= '</div>';
             $loop++;
@@ -284,7 +292,7 @@ class CustomizeForm
         return $html;
     }
 
-    public static function createRadio( array $values, $wireVariable ='', string $radioName = '', $selectedValue = '', $tabIndex = 0): string
+    public static function createRadio( array $values, $wireVariable ='', string $radioName = '', bool $required=false, $selectedValue = '', $tabIndex = 0): string
     {
 
         $html = '';
@@ -293,14 +301,18 @@ class CustomizeForm
         if ($wireVariable) {
             $wireAttribute = 'wire:model.defer=' . $wireVariable . "'";
         }
-       
+
+        if ($required)
+            $isRequired = 'required';
+        else
+            $isRequired = '';
 
         foreach ($values as $value) {
             $checked = ($selectedValue == $value['value']) ? 'checked' : '';
 
 
             $html .= '<div class=" form-check form-check-inline">';
-            $html .= '<input class="form-check-input" type="radio" name="' . $radioName . '" value="' . $value['value'] . '" ' . $checked . ' tabindex=' . $tabIndex . $wireAttribute. '>';
+            $html .= '<input class="form-check-input" type="radio" name="' . $radioName . '" value="' . $value['value'] . '" ' . $checked . '' . $isRequired . ' tabindex=' . $tabIndex ." " . $wireAttribute. '>';
             $html .= '<label class="form-check-label"  for="' . $value['label'] . '">' . $value['label'] . '</label>';
             $html .= '</div>';
         }
