@@ -52,7 +52,7 @@ class CustomFormDisplay extends Component
         }
     }
 
-    public function save(){
+    public function save($redirect = 1){
         // dd($this->answers);
         foreach($this->answers as $answer){
             if(isset($answer['data_value']))
@@ -71,8 +71,22 @@ class CustomFormDisplay extends Component
             }else
                 BookingCustomizeData::create($answer);
         }
-        $this->confirmation('Form saved successfully');
+        $this->emitToParent($redirect);
     }
+
+    public function emitToParent($redirect=1){
+        $this->emit('saveCustomFormData',$redirect);
+        // $this->emit('setStep', $redirect);
+
+    }
+
+    // public function switchParentComponent()
+    // {
+    //     $this->emit('switch', $redirect);
+    //     // $this->emit('setStep', $redirect);
+
+    // }
+
 
 
     public function confirmation($message = '')
