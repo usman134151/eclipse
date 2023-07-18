@@ -283,7 +283,7 @@ class CustomizeForm
             // $isChecked = in_array($cValue, $selectedValues) ? 'checked' : '';
             $isChecked ='';
             $html .= '<div class="form-check form-check-inline">';
-            $html .= '<input class="form-check-input" type="checkbox" wire:key="'. $key.'" name="'.$name.'[]" value="' . $value['label'] . '" ' . $isChecked . ' ' . $isRequired  . ' ' . $wireAttribute .  '>';
+            $html .= '<input class="form-check-input" type="checkbox" wire:key="'. $key.'" value="' . $value['label'] . '" ' . $isChecked . ' ' . $isRequired  . ' ' . $wireAttribute .  '>';
             $html .= '<label class="form-check-label"  for="' . $value['label'] . '">' . $value['label'] . '</label>';
             $html .= '</div>';
             $loop++;

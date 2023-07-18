@@ -28,6 +28,8 @@ class CustomFormDisplay extends Component
                     $this->answers[$index]['customize_id']= $question['id'];
                     $this->answers[$index]['field_title'] = $question['field_name'];
                     $this->answers[$index]['added_by'] = Auth::id();
+                    $this->answers[$index]['booking_id'] = $this->booking_id;
+
 
                     $this->questions[]=$formService->getformfield($question, 'answers.'.$index.'.data_value', $index);
             }
