@@ -4,6 +4,7 @@ namespace App\Models\Tenant;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Company extends Model
 {
@@ -42,5 +43,64 @@ class Company extends Model
         return $this->hasMany(AssociateService::class, 'model_id')
             ->where('model_type', 1);
     }
+
+	public function logs()
+	{
+		return $this->hasMany(Logs::class, 'action_to')
+		->where('item_type', 'company');
+	}
+
+	protected static function booted()
+	{
+
+		static::created(function ($model) {
+			$model->onRecordCreated();
+		});
+
+
+		static::updated(function ($model) {
+			$model->onRecordUpdated();
+		});
+	}
+
 	
+
+	public function onRecordCreated()
+	{
+		// Function called after a record is created
+		// Implement your custom logic here
+		$message = "Company created by " . Auth::user()->name;
+		$logs = array(
+			'action_by' => Auth::user()->id,
+			'action_to' => $this->id,
+			'item_type' => 'company',
+			'message' => $message,
+			'type' => 'create',
+			'ip_address'=> request()->ip(),
+			'request_from' => "",
+			'request_to' => ""
+		);
+		Logs::create($logs);
+       
+		// dd($this->name);
+	}
+
+	public function onRecordUpdated()
+	{
+		// Function called after a record is updated
+		// Implement your custom logic here
+
+		$message = "Company updated by " . Auth::user()->name;
+		$logs = array(
+			'action_by' => Auth::user()->id,
+			'action_to' => $this->id,
+			'item_type' => 'company',
+			'message' => $message,
+			'type' => 'create',
+			'ip_address' => request()->ip(),
+			'request_from' => "",
+			'request_to' => ""
+		);
+		Logs::create($logs);
+	}	
 }
