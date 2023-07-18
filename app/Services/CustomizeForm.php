@@ -265,10 +265,7 @@ class CustomizeForm
         $name = $displayCol;
         $loop = 0;
         $wireAttribute ="";
-        if ($wireVariable) {
-            $wireAttribute = 'wire:model.defer='.$wireVariable;
-            // .$wireVariable;
-        }
+       
         if ($required)
             $isRequired = 'required';
         else
@@ -277,13 +274,16 @@ class CustomizeForm
         
         foreach ($values as $key=>$value) {
 
-
+            if ($wireVariable) {
+                $wireAttribute = 'wire:model.defer="' . $wireVariable.'.'.$value['value'].'"';
+                // .$wireVariable;
+            }
             // $cValue = count($checkValues) == 0 ? $value->{$valueCol} : $checkValues[$loop];
 
             // $isChecked = in_array($cValue, $selectedValues) ? 'checked' : '';
             $isChecked ='';
             $html .= '<div class="form-check form-check-inline">';
-            $html .= '<input class="form-check-input" type="checkbox" wire:key="'. $key.'" name="'.$name.'[]" value="' . $value['label'] . '" ' . $isChecked . ' ' . $isRequired  . ' ' . $wireAttribute .  '>';
+            $html .= '<input class="form-check-input" type="checkbox" wire:key="'. $key.'" ' . $isChecked . ' ' . $isRequired  . ' ' . $wireAttribute . ' >';
             $html .= '<label class="form-check-label"  for="' . $value['label'] . '">' . $value['label'] . '</label>';
             $html .= '</div>';
             $loop++;
@@ -299,7 +299,7 @@ class CustomizeForm
         $wireAttribute = "";
 
         if ($wireVariable) {
-            $wireAttribute = 'wire:model.defer=' . $wireVariable . "'";
+            $wireAttribute = 'wire:model.defer="' . $wireVariable . '"';
         }
 
         if ($required)
