@@ -96,7 +96,7 @@ class Company extends Model
 			'action_to' => $this->id,
 			'item_type' => 'company',
 			'message' => $message,
-			'type' => 'create',
+			'type' => 'update',
 			'ip_address' => request()->ip(),
 			'request_from' => "",
 			'request_to' => ""
