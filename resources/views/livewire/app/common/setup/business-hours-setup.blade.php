@@ -103,7 +103,7 @@
                                 </div>
                                 @if($schedule->time_format==1)
                                 <div>
-                                    <select class="form-control form-control-sm text-center hours" wire:model.defer="timeslot_start_type" style="padding: 0.4rem 2.2rem">
+                                    <select class="form-control form-control-sm text-center hours" wire:model.defer="timeslot_start_type" style="padding: 0.4rem 2.2rem" aria-label="AM/PM">
                                         <option value="am">AM</option>
                                         <option value="pm">PM</option>
                                     </select>
@@ -125,7 +125,7 @@
                                 </div>
                                 @if($schedule->time_format==1)
                                 <div>
-                                    <select class="form-control form-control-sm text-center hours" wire:model.defer="timeslot_end_type" style="padding: 0.4rem 2.2rem">
+                                    <select class="form-control form-control-sm text-center hours" wire:model.defer="timeslot_end_type" style="padding: 0.4rem 2.2rem" aria-label="Select AM/PM">
                                         <option value="am">AM</option>
                                         <option value="pm">PM</option>
                                     </select>
