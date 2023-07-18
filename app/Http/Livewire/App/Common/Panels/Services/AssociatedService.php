@@ -372,6 +372,7 @@ class AssociatedService extends Component
             ->first();
 
             if(!$existingRate && $modelType=='department'){
+                
                 //check if department's company has rates confirgured
                 $companyId=Department::where('id',$this->modelId)->select('company_id')->first(); 
                 $existingRate = StandardRate::where('user_id', $companyId->company_id)
