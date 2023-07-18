@@ -42,15 +42,16 @@ class CustomerDetails extends Component
 		$data = explode(',', $this->user['userdetail']['favored_users']);
 		$this->user['userdetail']['favoured_users'] = User::whereIn('id', $data)->limit(5)->with('userdetail')->get()->toArray();
 		// dd($this->user['userdetail']['favoured_users']);
-
+		$this->user['userdetail']['physical_address'] = null;
+		$this->user['userdetail']['billing_address'] = null;
+	
 		if($user1->addresses->isNotEmpty()){
-			$this->user['userdetail']['physical_address'] =  $user1->addresses->sortBy('address_type')->toArray()[0];
-			$this->user['userdetail']['billing_address'] =  $user1->addresses->sortBy('address_type')->toArray()[1];
-		}else{
-			$this->user['userdetail']['physical_address']=null;
-			$this->user['userdetail']['billing_address']=null;
+			$addresses = $user1->addresses->sortBy('address_type')->toArray();
+			$this->user['userdetail']['physical_address'] =  $addresses[0];
+			if(isset($addresses[1]))
+				$this->user['userdetail']['billing_address'] =  $user1->addresses->sortBy('address_type')->toArray()[1];
 		}
-		
+			
 		if(key_exists('language_id',$this->user['userdetail']))
 			$this->user['userdetail']['language']=SetupHelper::getSetupValueById($this->user['userdetail']['language_id']);
 		else{
