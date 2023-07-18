@@ -259,7 +259,7 @@
                       {{-- added by shanila to add text-editor --}}
                       <div class="col-lg-8 col-12 mb-4" style="height: 340px">
                         <textarea class="form-control" rows="11" cols="11" placeholder="Normal text"
-                        name="SubjectColumn-{{$selectedType['role_id']}}" id="SubjectColumn-{{$selectedType['role_id']}}" wire:model.defer="selectedTypesData.{{$key}}.notification_text"></textarea>
+                        name="SubjectColumn-{{$selectedType['role_id']}}" aria-label="Text Area" id="SubjectColumn-{{$selectedType['role_id']}}" wire:model.defer="selectedTypesData.{{$key}}.notification_text"></textarea>
                         @error('selectedTypesData.'.$key.'.notification_text')
                             <span class="d-inline-block invalid-feedback mt-2">
                               {{ $message }}
