@@ -11,3 +11,14 @@ Build-Dev:
     - ics-dev-abmasoft
   only:
     - master
+    
+Build-Beta:
+  stage: deploy
+  script:
+    - echo "Compiling the code..."
+    - sudo -s bash deploy-beta.sh
+    - echo "Compile complete"
+  tags: 
+    - eclipse-betaprod
+  only:
+    - beta-branch
