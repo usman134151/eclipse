@@ -30,5 +30,13 @@
                                 </div>
                                
                             </div>
+                            <div
+                                        class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
+                                        <button type="button" class="btn btn-outline-dark rounded" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });" wire:click="$emit('switch','requester-info')">Back</button>
+                                        <button type="submit" class="btn btn-primary rounded" wire:click.prevent="save" =>Save as Draft</button>
+                                        <button type="submit" class="btn btn-primary rounded">Request from User</button>
+                                        <button type="button" class="btn btn-primary rounded"
+                                        x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });" wire:click.prevent="save(0)" >Proceed to  Payment Info</button>
+                            </div>
     </form>
 </div>

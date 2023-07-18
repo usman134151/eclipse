@@ -9,10 +9,11 @@ use App\Models\Tenant\User;
 class Booknow extends Component
 {
     public $component = 'requester-info';
-    public $showForm,$assignment,$requesters =[],$bManagers=[],$supervisors=[] ;
+    public $showForm,$assignment,$requesters =[],$bManagers=[],$supervisors=[], $step=1 ;
     protected $listeners = ['showList' => 'resetForm','updateVal', 'updateCompany',
         'updateSelectedIndustries' => 'selectIndustries',
-        'updateSelectedDepartments' => 'selectDepartments'];
+        'updateSelectedDepartments' => 'selectDepartments',
+        'saveCustomFormData'=>'save' ,'switch'];
 
     public $dates=[[
         'set_time_zone'=>'',
@@ -22,6 +23,7 @@ class Booknow extends Component
         'Total_Billable_Service_duration'=>''
 
     ]];
+    
     public $setupValues = [
         'timezones' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 4, 'setup_value_label', false,'assignment.timezone_id','','timezone',0]],
         'accomodations' => ['parameters' => ['Accommodation', 'id', 'name', '', '', 'name', false, 'assignment.accommodation_id','','accommodation',1]],
@@ -45,6 +47,32 @@ class Booknow extends Component
         return view('livewire.app.common.bookings.booknow');
     }
 
+    
+
+    public function save($redirect = 1)
+    {
+        // $this->validate();
+        
+        if ($redirect) {
+            $this->confirmation("Assignment Data has been saved successfully");
+        } else {
+            $this->switch('payment-info');
+      
+            $this->dispatchBrowserEvent('refreshSelects');
+        }
+    }
+
+    public function confirmation($message = '')
+    {
+        if ($message) {
+            // Emit an event to display a success message using the SweetAlert package
+            $this->dispatchBrowserEvent('swal:modal', [
+                'type' => 'success',
+                'title' => 'Success',
+                'text' => $message,
+            ]);
+        }
+    }
     public function mount()
     {
         $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
@@ -105,6 +133,8 @@ class Booknow extends Component
     public function switch($component)
 	{
 		$this->component = $component;
+        $this->dispatchBrowserEvent('refreshSelects');
+
 	}
     public function addMeeting($serviceIndex)
     {
