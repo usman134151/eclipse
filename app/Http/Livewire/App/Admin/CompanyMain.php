@@ -36,7 +36,7 @@ class CompanyMain extends Component
 	{
 		$this->showProfile = $showProfile;
 		if ($showProfile) {
-			$this->company = Company::where('id', request()->companyID)->with(['phones', 'user', 'addresses'])->first()->toArray();
+			$this->company = Company::where('id', request()->companyID)->with(['phones', 'user', 'addresses','logs'])->first()->toArray();
 		}
 	}
 	public function __construct()
