@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class ServiceCatelog extends Component
 {
-    public $accomodations,$accomodationsList,$services=[],$searchParameter,$modelId,$modelType,$modelServices=[],$servicesList=[],$serviceSearch;
+    public $accomodations,$accomodationsList,$services=[],$searchParameter,$modelId,$modelType,$modelServices=[],$servicesList=[],$serviceSearch,$parentId,$parentType;
     protected $listeners = ['resetCatalog'];
 
     public function render()
@@ -109,7 +109,7 @@ class ServiceCatelog extends Component
     public function updateServiceData($serviceId){
         $this->associateService($serviceId);
      
-        $this->emit('updateModel', $this->modelId,'',$this->modelType,'','');
+        $this->emit('updateModel', $this->modelId,'',$this->modelType,$this->parentId,$this->parentType);
         $this->dispatchBrowserEvent('updateModelVars', [
             'elem' => 'serviceIco',
             

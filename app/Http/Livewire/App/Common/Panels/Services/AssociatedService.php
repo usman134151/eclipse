@@ -384,7 +384,7 @@ class AssociatedService extends Component
             }
             elseif(!$existingRate && $modelType=='customer'){
                 //check if customer department has rates confirgured
-               
+            
                     $existingRate = StandardRate::where('user_id', $parentId)
                     ->where('accommodation_service_id', $this->service->id)
                     ->where('model_type',$parentType)
@@ -543,6 +543,7 @@ class AssociatedService extends Component
 				'title' => 'Success',
 				'text' => $message,
 			]);
+
         }
 
         public function resetConfigurations(){

@@ -579,7 +579,9 @@
                                                                                                             </use>
                                                                                                         </svg>
                                                                                                     </a>
-                             @livewire('app.admin.customer.service-catelog',['showButtons'=>false,'modelId'=>$company->id,'modelType'=>'company'])
+                             @if($step==3)                                                                       
+                                @livewire('app.admin.customer.service-catelog',['showButtons'=>false,'modelId'=>$company->id,'modelType'=>'company'])
+                             @endif
                              <div class="col-12 form-actions">
                              <button type="button" class="btn btn-outline-dark rounded px-4 py-2"
                                                         wire:click.prevent="setStep(2,'scheduleActive','schedule')" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-catalog')">
