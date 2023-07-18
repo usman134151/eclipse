@@ -432,17 +432,20 @@ class AddService extends Component
           
             foreach($this->serviceSpecialization as $specialization){
                 if(!is_null($specialization['specialization_id'])){
+                    $specialization['common']['price']=$specialization["1"]['price'];
                     $specializationRecords[$index]["specialization_price"]=array_merge($specialization["1"],$specialization['common']);
+                    $specialization['common']['price']=$specialization["2"]['price'];
                     $specializationRecords[$index]["specialization_price_v"]=array_merge($specialization["2"],$specialization['common']);
+                    $specialization['common']['price']=$specialization["4"]['price'];
                     $specializationRecords[$index]["specialization_price_p"]=array_merge($specialization["4"],$specialization['common']);
+                    $specialization['common']['price']=$specialization["5"]['price'];
                     $specializationRecords[$index]["specialization_price_t"]=array_merge($specialization["5"],$specialization['common']);
                     $specializationRecords[$index]['specialization_id']=$specialization['specialization_id'];
                 }
 
               $index++;  
             }
-        
-           
+       
             //end of refactor
            
         }
