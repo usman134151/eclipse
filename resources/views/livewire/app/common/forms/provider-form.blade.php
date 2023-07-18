@@ -1,4 +1,4 @@
-<div x-data="{addDocument: false , addNew: false}">
+<div x-data="{addDocument: false , addNew: false,associateservice: false}">
     <div id="loader-section" class="loader-section" wire:loading>
         <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
             <div class="spinner-border" role="status" aria-live="polite">
@@ -804,6 +804,9 @@
                                                         </div>
 
                                                     </div>
+                                                    <a href="javascript:void(0)" style="display:none" @click="associateservice = true" id="serviceIco" title="Add Service Rates" aria-label="Add Service Rates" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                            <x-icon name="dollar-icon"/>
+                        </a>
                                                     @if($step==2)                                                                       
                                 @livewire('app.admin.customer.service-catelog',['showButtons'=>false,'modelId'=>$user->id,'modelType'=>'provider'])
                              @endif
@@ -1049,4 +1052,5 @@
         }
 
     </script>
+        @include('panels.services.associated-service') 
 </div>
