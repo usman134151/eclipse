@@ -18,6 +18,7 @@ class NotificationConfigurationForm extends Component
 
 	public $from_email;//from route
 
+	public $editMode=false;
 	public $notification;
 	public $triggers;
 	public $userTypes;
@@ -151,11 +152,16 @@ class NotificationConfigurationForm extends Component
 				$this->selectedTypesData[] = $newType;
 				$this->selectedUserTypes[] = $role->role_id;
 			}
-			$this->dispatchBrowserEvent('refreshSelectsOnly');
-			$this->validate();
+			// $this->dispatchBrowserEvent('refreshSelects2');
+			// $this->validate();
 		}
-		$this->dispatchBrowserEvent('refreshSelectsOnly');
-		$this->validate();
+		$this->render();
+		if($this->editMode){
+			$this->dispatchBrowserEvent('editMode',['value' => $this->notification->id]);
+		}else{	
+			$this->dispatchBrowserEvent('refreshSelects2');
+		}
+		// $this->validate();
 	}
 	public function showList($message="")
 	{
@@ -169,9 +175,9 @@ class NotificationConfigurationForm extends Component
 			'notification.slug' => 'required',
 			'selectedTypesData' => 'required|array',
 			'selectedTypesData.*.frequencies.*.frequency_type' => 'required|integer',
-			'selectedTypesData.*.frequencies.*.frequency_days' => 'required|integer',
-			'selectedTypesData.*.frequencies.*.frequency_hour' => 'required|integer',
-			'selectedTypesData.*.frequencies.*.frequency_min' => 'required|integer',
+            'selectedTypesData.*.frequencies.*.frequency_days' => ['required_without_all:selectedTypesData.*.frequencies.*.frequency_hour,selectedTypesData.*.frequencies.*.frequency_min','nullable','integer'],
+            'selectedTypesData.*.frequencies.*.frequency_hour' => ['required_without_all:selectedTypesData.*.frequencies.*.frequency_days,selectedTypesData.*.frequencies.*.frequency_min','nullable','integer'],
+            'selectedTypesData.*.frequencies.*.frequency_min' => ['required_without_all:selectedTypesData.*.frequencies.*.frequency_days,selectedTypesData.*.frequencies.*.frequency_hour','nullable','integer'],
 			'selectedTypesData.*.notification_subject' => 'required_if:notification_type,1',
 			'selectedTypesData.*.notification_text' => [
 				'required',
@@ -202,9 +208,9 @@ class NotificationConfigurationForm extends Component
 			'selectedTypesData.required' => 'The User Type is required.',
 			'selectedTypesData.array' => 'The selected types data must be an array.',
 			'selectedTypesData.*.frequencies.*.frequency_type.required' => 'The frequency type is required.',
-			'selectedTypesData.*.frequencies.*.frequency_days.required' => 'The frequency days are required.',
-			'selectedTypesData.*.frequencies.*.frequency_hour.required' => 'The frequency hours are required.',
-			'selectedTypesData.*.frequencies.*.frequency_min.required' => 'The frequency minutes are required.',
+			'selectedTypesData.*.frequencies.*.frequency_days.required_without_all' => 'The frequency days are required.',
+			'selectedTypesData.*.frequencies.*.frequency_hour.required_without_all' => 'The frequency hours are required.',
+			'selectedTypesData.*.frequencies.*.frequency_min.required_without_all' => 'The frequency minutes are required.',
 			'selectedTypesData.*.frequencies.*.frequency_type.integer' => 'The frequency type should be integer.',
 			'selectedTypesData.*.frequencies.*.frequency_days.integer' => 'The frequency days should be integer.',
 			'selectedTypesData.*.frequencies.*.frequency_hour.integer' => 'The frequency hours should be integer.',
@@ -253,6 +259,9 @@ class NotificationConfigurationForm extends Component
 
 				foreach($frequencies as $frequency){
 					$frequency['notification_template_role_id']=$notificationTemplateRoles->id;
+					$frequency['frequency_days']=$frequency['frequency_days']?$frequency['frequency_days']:0;
+					$frequency['frequency_hour']=$frequency['frequency_hour']?$frequency['frequency_hour']:0;
+					$frequency['frequency_min']=$frequency['frequency_min']?$frequency['frequency_min']:0;
 					$newFrequency = NotificationTemplateRoleFrequencies::createOrUpdate($frequency);
 				}
 			}
@@ -267,9 +276,10 @@ class NotificationConfigurationForm extends Component
 		}
 	}
 	public function edit(NotificationTemplates $notification){
-        $this->notification=$notification;
+        // $this->notification=$notification;
+		$this->editMode=true;
+		$this->setNotificationData($notification->id);
     }
-
 
 	public function render()
 	{
