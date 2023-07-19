@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class ProviderCredentialsDrive extends Component
 {
-    public $showForm, $provider_id =0,$services=[] ,$user=null;
+    public $showForm, $provider_id =0,$credentials=[] ,$user=null;
     protected $listeners = ['showList' => 'resetForm'];
 
     public function render()
@@ -20,7 +20,9 @@ class ProviderCredentialsDrive extends Component
     {
         $this->user = User::find($this->provider_id);
         if($this->user){
-            $this->services = $this->user->services;
+            foreach($this->user->services as $service){
+                $this->credentials[] = $service->credentials;
+            };
             
         }      
     }
