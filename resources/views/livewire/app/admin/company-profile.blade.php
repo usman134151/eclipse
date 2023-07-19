@@ -683,7 +683,7 @@
 
                                         </div>
                                         <div class="d-inline-flex align-items-center gap-4 me-3">
-                                            <a href="/admin/department/create-department/{{$company['id']}}" type="button"
+                                            <a href="/admin/department/create-department/{{encrypt($company['id'])}}" type="button"
                                                 class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
                                                 {{-- Updated by Shanila to Add svg icon--}}
                                                 <svg aria-label="add department" width="20" height="20" viewBox="0 0 20 20">
