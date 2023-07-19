@@ -37,6 +37,7 @@
                                                                                         autocomplete="on"
                                                                                         aria-label="Search" 
                                                                                         wire:model.debounce.500ms="searchParameter"
+                                                                                        x-on:keydown.enter.prevent
                                                                                         wire:keyup="filterResults" />
                                                                                         @foreach($accomodations as $accomodation)
                                                                                     <tr role="row" class="odd">
@@ -86,6 +87,7 @@
                                                                                     autocomplete="on"
                                                                                     aria-label="Search"
                                                                                     wire:model.debounce.500ms="serviceSearch"
+                                                                                    x-on:keydown.enter.prevent
                                                                                     wire:keyup="filterResults('servicesList','services','serviceSearch')"                                                                                      />
                                                                                     @foreach($this->services as $index=>$service)
                                                                                         <tr role="row" class="odd">
