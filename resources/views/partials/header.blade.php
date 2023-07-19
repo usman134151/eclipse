@@ -124,7 +124,8 @@
               </form>
               
               <span class="avatar">
-                @if(Auth::user()->userDetails->profile_pic)
+                @if(!is_null(Auth::user()->userDetails) && Auth::user()->userDetails->profile_pic)
+               
                 <img class="round" src="{{Auth::user()->userDetails->profile_pic}}" alt="avatar" height="40" width="40">
                 @else
                 <img class="round" src="/tenant-resources/images/portrait/small/avatar-s-11.jpg" alt="avatar" height="40" width="40">
