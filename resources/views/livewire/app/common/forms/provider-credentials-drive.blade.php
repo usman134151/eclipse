@@ -74,119 +74,31 @@
 												<div class="container">
 													<div class="row mb-4">
 													  <div class="col-md-11">
-														<div class="row">
-															<div class="col border border-warning rounded ">
-																<div class="mt-4">
-																	<div>Credential Title</div>
-																	<div>Associated with Tag: Covid19</div>
-																	<div>Type: Upload Only</div>
-																	<button @click="pendingCredentials = true" class="btn btn-primary rounded mx-3 mt-3">Upload</button>
+														
+															@foreach($credentials as $index => $credential)
+																@if($index%4==1)
+																	<div class="row ">
+																@endif
+																		<div class="col-md-3 m-2 border border-warning rounded ">
+																			<div class="mt-4 pb-2"> 
+																				<div>{{$credential['title']}} </div>
+																				<div>Associated with Tag: Covid19</div>
+																				<div>Type: Upload Only</div>
+																				<button wire:click="openCredential({{$credential['id']}}, '{{$credential['title']}}')" @click="pendingCredentials = true" class="btn btn-primary rounded mx-3 mt-3">Upload</button>
+																			</div>
+																		</div>
+																@if($index%4==0)
 																	</div>
-															  </div>
-															  <div class="col border border-warning rounded mx-3">
-																<div class="mt-4">
-																<div>Credential Title</div>
-																<div>Associated with Tag: Covid19</div>
-																<div>Type: Upload Only</div>
-																<button @click="pendingCredentials = true" class="btn btn-primary rounded mx-3 mt-3">Upload</button>
-																</div>
-															  </div>
-															  <div class="col border border-warning rounded">
-																<div class="mt-4">
-																	<div>Credential Title</div>
-																	<div>Associated with Tag: Covid19</div>
-																	<div>Type: Upload Only</div>
-																	<button @click="pendingCredentials = true" class="btn btn-primary rounded mx-3 mt-3">Upload</button>
-																	</div>
-															  </div>
-															  <div class="col border border-warning rounded mx-3">
-																<div class="mt-4">
-																	<div>Credential Title</div>
-																	<div>Associated with Tag: Covid19</div>
-																	<div>Type: Upload Only</div>
-																	<button @click="pendingCredentials = true" class="btn btn-primary rounded m-3">Upload</button>
-																	</div>
-															  </div>
-														</div>
+																@endif
+															@endforeach
+															@if(count($credentials)%2==1)
+																
+																</div>	@endif
 													  </div>
 													</div>
-													<div class="row mb-4">
-														<div class="col-md-11">
-														  <div class="row">
-															  <div class="col border border-warning rounded ">
-																  <div class="mt-4">
-																	  <div>Credential Title</div>
-																	  <div>Associated with Tag: Covid19</div>
-																	  <div>Type: Upload Only</div>
-																	  <button @click="pendingCredentials = true" class="btn btn-primary rounded mx-3 mt-3">Upload</button>
-																	  </div>
-																</div>
-																<div class="col border border-warning rounded mx-3">
-																  <div class="mt-4">
-																  <div>Credential Title</div>
-																  <div>Associated with Tag: Covid19</div>
-																  <div>Type: Upload Only</div>
-																  <button @click="pendingCredentials = true" class="btn btn-primary rounded mx-3 mt-3">Upload</button>
-																  </div>
-																</div>
-																<div class="col border border-warning rounded">
-																  <div class="mt-4">
-																	  <div>Credential Title</div>
-																	  <div>Associated with Tag: Covid19</div>
-																	  <div>Type: Upload Only</div>
-																	  <button @click="pendingCredentials = true" class="btn btn-primary rounded mx-3 mt-3">Upload</button>
-																	  </div>
-																</div>
-																<div class="col border border-warning rounded mx-3">
-																  <div class="mt-4">
-																	  <div>Credential Title</div>
-																	  <div>Associated with Tag: Covid19</div>
-																	  <div>Type: Upload Only</div>
-																	  <button @click="pendingCredentials = true" class="btn btn-primary rounded m-3">Upload</button>
-																	  </div>
-																</div>
-														  </div>
-														</div>
-													  </div>
-													  <div class="row mb-4">
-														<div class="col-md-11">
-														  <div class="row">
-															  <div class="col border border-warning rounded ">
-																  <div class="mt-4">
-																	  <div>Credential Title</div>
-																	  <div>Associated with Tag: Covid19</div>
-																	  <div>Type: Upload Only</div>
-																	  <button @click="pendingCredentials = true" class="btn btn-primary rounded mx-3 mt-3">Upload</button>
-																	  </div>
-																</div>
-																<div class="col border border-warning rounded mx-3">
-																  <div class="mt-4">
-																  <div>Credential Title</div>
-																  <div>Associated with Tag: Covid19</div>
-																  <div>Type: Upload Only</div>
-																  <button @click="pendingCredentials = true" class="btn btn-primary rounded mx-3 mt-3">Upload</button>
-																  </div>
-																</div>
-																<div class="col border border-warning rounded">
-																  <div class="mt-4">
-																	  <div>Credential Title</div>
-																	  <div>Associated with Tag: Covid19</div>
-																	  <div>Type: Upload Only</div>
-																	  <button @click="pendingCredentials = true" class="btn btn-primary rounded mx-3 mt-3">Upload</button>
-																	  </div>
-																</div>
-																<div class="col border border-warning rounded mx-3">
-																  <div class="mt-4">
-																	  <div>Credential Title</div>
-																	  <div>Associated with Tag: Covid19</div>
-																	  <div>Type: Upload Only</div>
-																	  <button @click="pendingCredentials = true" class="btn btn-primary rounded m-3">Upload</button>
-																	  </div>
-																</div>
-														  </div>
-														</div>
-													  </div>
-												  </div>
+													</div>
+
+													
 											</div>
 											<div class="tab-pane fade" id="active-credentials-tab-pane" role="tabpanel" aria-labelledby="active-credentials-tab" tabindex="0">
 												<div class="row">

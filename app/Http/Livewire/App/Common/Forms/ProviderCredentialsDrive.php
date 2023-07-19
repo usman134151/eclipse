@@ -21,10 +21,17 @@ class ProviderCredentialsDrive extends Component
         $this->user = User::find($this->provider_id);
         if($this->user){
             foreach($this->user->services as $service){
-                $this->credentials[] = $service->credentials;
+                foreach($service->credentials as $credential){
+                    $this->credentials[$credential->id]=$credential->toArray();
+                }
             };
             
         }      
+    }
+
+    public function openCredential($credentialId,$label){
+        
+        $this->dispatchBrowserEvent('open-credential',['credentialId'=>$credentialId, 'credentialLabel'=>$label]);
     }
 
     function showForm()

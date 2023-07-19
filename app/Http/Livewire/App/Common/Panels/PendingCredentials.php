@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class PendingCredentials extends Component
 {
-    public $showForm;
+    public $showForm, $user_id, $credential_id;
     protected $listeners = ['showList' => 'resetForm'];
 
     public function render()
