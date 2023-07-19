@@ -5,7 +5,7 @@
 	        <x-slot name="title">{{$credentialLabel}} Document</x-slot>
             @if($credentialId>0)
 
-              @livewire('app.common.panels.pending-credentials')
+              @livewire('app.common.panels.pending-credentials',['user_id'=>$userid, 'credential_id'=>$credentialId])
             @endif
         </x-off-canvas>
 <script>
