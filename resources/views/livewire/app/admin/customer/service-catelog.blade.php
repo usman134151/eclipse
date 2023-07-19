@@ -42,8 +42,8 @@
                                                                                         @foreach($accomodations as $accomodation)
                                                                                     <tr role="row" class="odd">
                                                                                       
-                                                                                        <td class="text-start" wire:click="updateServices({{$accomodation['id']}})">
-                                                                                            <p>
+                                                                                        <td class="text-start">
+                                                                                            <p wire:click="updateServices({{$accomodation['id']}})">
                                                                                                {{$accomodation['name']}}
                                                                                             </p>
                                                                                         </td>
