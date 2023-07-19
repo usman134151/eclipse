@@ -154,6 +154,12 @@
             $('#changePasswordModal').modal('hide');
                
             });
+			document.addEventListener('updateModelVars', function (event) {
+				const elemId = event.detail.elem;
+				var elem = document.getElementById(elemId);
+				var clickEvent = new Event("click");
+				elem.dispatchEvent(clickEvent);
+            });
 
 </script>
 @endpush

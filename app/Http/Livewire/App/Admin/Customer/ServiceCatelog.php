@@ -5,6 +5,7 @@ use App\Models\Tenant\Company;
 use App\Models\Tenant\Accommodation;
 use App\Models\Tenant\ServiceCategory;
 use App\Models\Tenant\AssociateService;
+use App\Models\Tenant\ProviderAccommodationServices;
 use Livewire\Component;
 
 class ServiceCatelog extends Component
@@ -36,7 +37,7 @@ class ServiceCatelog extends Component
         $this->services=[];
         $this->servicesList=[];
         
-        $this->services=ServiceCategory::select('id', 'name', 'disable_for_companies')
+        $this->services=ServiceCategory::select('id', 'name', 'disable_for_companies','accommodations_id')
         ->where('status', 1)
         ->when($accomodationId, function ($query, $accomodationId) {
             return $query->where('accommodations_id', $accomodationId);
@@ -54,28 +55,41 @@ class ServiceCatelog extends Component
                 $modelService = $this->modelServices[$serviceId];
                 $this->services[$index]['activated'] = $modelService;
             } else {
-                if($this->services[$index]['disable_for_companies']==1)
-                $this->services[$index]['activated']=0;
+                if($this->modelType!='provider'){
+                    if($this->services[$index]['disable_for_companies']==1)
+                    $this->services[$index]['activated']=0;
+                    else
+                    $this->services[$index]['activated']=1;
+                }
                 else
-                $this->services[$index]['activated']=1;
+                    $this->services[$index]['activated']=0;
             }    
         }
         $this->servicesList=$this->services;
       
     }
 	public function updateService($index){
-        AssociateService::updateOrCreate(
-            ['service_id' => $this->services[$index]['id'], 'model_id' => $this->modelId, 'model_type' => $this->modelType],
-            ['status' =>  $this->services[$index]['activated']]);
+        if($this->modelType!='provider')
+            AssociateService::updateOrCreate(
+                ['service_id' => $this->services[$index]['id'], 'model_id' => $this->modelId, 'model_type' => $this->modelType],
+                ['status' =>  $this->services[$index]['activated']]);
+        else
+            ProviderAccommodationServices::updateOrCreate(
+                ['service_id' => $this->services[$index]['id'], 'user_id' => $this->modelId,'status' =>  $this->services[$index]['activated'],'accommodation_id'=>$this->services[$index]['accommodations_id']]);         
            // Update or add the record in $this->model_services array
             $this->modelServices[$this->services[$index]['id']] = $this->services[$index]['activated'];
     }
     public function fetchModelServices()
     {
-        $this->modelServices = AssociateService::where('model_id', $this->modelId)
-            ->where('model_type', $this->modelType)
+        if($this->modelType=='provider')
+            $this->modelServices = ProviderAccommodationServices::where('user_id', $this->modelId)
             ->pluck('status', 'service_id')
             ->toArray();
+        else
+            $this->modelServices = AssociateService::where('model_id', $this->modelId)
+                ->where('model_type', $this->modelType)
+                ->pluck('status', 'service_id')
+                ->toArray();
             
     }
 
