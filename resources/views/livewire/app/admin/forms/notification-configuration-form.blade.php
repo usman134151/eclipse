@@ -11,6 +11,16 @@
                   <div class="col-lg-12">
                     <!-- .... section 1..(start).. -->
                     <div class="row">
+                      <div class="col-lg-5 pe-lg-4 mb-4" wire:ignore>
+                          <label class="form-label" for="trigger">Select Trigger</label>
+                          <select class="select2 form-select trigger" id="trigger">
+                            <option>Select Trigger</option>
+                            @foreach($triggers as $trigger)
+                              <option value="{{$trigger->id}}">{{$trigger->trigger}}</option>
+                            @endforeach
+                          </select>
+                      </div>
+                      @if($notification->trigger)
                       <div class="col-lg-5 pe-lg-4 mb-4">
                           <label class="form-label" for="trigger-name">Name</label>
                           <input type="text" id="trigger-name" class="form-control" name="trigger-name"
@@ -20,15 +30,6 @@
                                 {{ $message }}
                               </span>
                             @enderror
-                      </div>
-                      <div class="col-lg-5 pe-lg-4 mb-4" wire:ignore>
-                          <label class="form-label" for="trigger">Select Trigger</label>
-                          <select class="select2 form-select" id="trigger">
-                            <option>Select Trigger</option>
-                            @foreach($triggers as $trigger)
-                              <option value="{{$trigger->id}}">{{$trigger->trigger}}</option>
-                            @endforeach
-                          </select>
                       </div>
                       <div class="col-lg-5 pe-lg-4 mb-4">
                           <label class="form-label" for="trigger-description">
@@ -45,7 +46,7 @@
                       </div>
                       <div class="col-lg-5 col-12 mb-4">
                         <label class="form-label" for="selectedTypesData">Select User Type</label>
-                        <select class="form-control select2 form-select select2-hidden-accessible" wire:model.defer="selectedUserTypes" data-placeholder="Please Choose Accommodation" aria-label="Please Select User Type" multiple="true" tabindex="" id="selectedTypesData" wire:ignore>
+                        <select class="form-control select2 form-select select2-hidden-accessible selectedTypesData" wire:model.defer="selectedUserTypes" data-placeholder="Please Choose Accommodation" aria-label="Please Select User Type" multiple="true" tabindex="" id="selectedTypesData" wire:ignore>
                           @foreach($userTypes as $type)
                             <option value="{{$type->id}}">{{$type->display_name}}</option>
                           @endforeach
@@ -56,6 +57,7 @@
                             </span>
                         @enderror
                       </div>
+                      @endif
                     </div>
                       @foreach($selectedTypesData as $key=>$selectedType)
                     <div class="row">
@@ -190,6 +192,14 @@
                                   <input wire:model.defer="selectedTypesData.{{$key}}.frequencies.{{$fkey}}.frequency_min" class="form-control form-control-md text-center" id="Minutes-{{$selectedType['role_id']}}-{{$fkey}}" name="Minutes-{{$selectedType['role_id']}}-{{$fkey}}" value="00" type="" tabindex="" />
                                 </div>
                               </div>
+                              @if($errors->has('selectedTypesData.'.$key.'.frequencies.'.$fkey.'.frequency_days') &&
+                                  $errors->has('selectedTypesData.'.$key.'.frequencies.'.$fkey.'.frequency_hour') &&
+                                  $errors->has('selectedTypesData.'.$key.'.frequencies.'.$fkey.'.frequency_min'))
+                                  
+                                    <span class="d-inline-block invalid-feedback mt-2">
+                                      Duration is required
+                                    </span>
+                              @else
                                 @error('selectedTypesData.'.$key.'.frequencies.'.$fkey.'.frequency_days')
                                     <span class="d-inline-block invalid-feedback mt-2">
                                       {{ $message }}
@@ -205,6 +215,7 @@
                                       {{ $message }}
                                     </span>
                                 @enderror
+                              @endif
                             </div>
                             <div class="col-lg-4 mb-4">
                               <div class="d-flex flex-column gap-2">
@@ -259,7 +270,7 @@
                       {{-- added by shanila to add text-editor --}}
                       <div class="col-lg-8 col-12 mb-4" style="height: 340px">
                         <textarea class="form-control" rows="11" cols="11" placeholder="Normal text"
-                        name="SubjectColumn-{{$selectedType['role_id']}}" aria-label="Text Area" id="SubjectColumn-{{$selectedType['role_id']}}" wire:model.defer="selectedTypesData.{{$key}}.notification_text"></textarea>
+                        name="SubjectColumn-{{$selectedType['role_id']}}" id="SubjectColumn-{{$selectedType['role_id']}}" wire:model.defer="selectedTypesData.{{$key}}.notification_text"></textarea>
                         @error('selectedTypesData.'.$key.'.notification_text')
                             <span class="d-inline-block invalid-feedback mt-2">
                               {{ $message }}
@@ -293,7 +304,6 @@
           </div>
         </div>
       </div>
-      </div>
     </section>
     
   {{-- added by shanila to add js and css files for editor--}}
@@ -308,22 +318,25 @@
 {{-- ended updated by shanila --}}
 @push('scripts')
 <script>
-      function appendTagInnerText(tag,id) {
+    function appendTagInnerText(tag,id) {
         var tagInnerText = tag.innerText;
         var textarea = document.getElementById(id);
         textarea.value += tagInnerText + " ";
       }
-	    document.addEventListener('refreshSelectsOnly', function(event) {
-        $('.select2').select2();
+	  document.addEventListener('refreshSelectsOnly', function(event) {
+			$('.select2').select2();
+		});
+	  document.addEventListener('refreshSelects2', function(event) {
+			$('.select2').select2();
+			$('.selectedTypesData').off('change').on('change', function (e) {
+				let attrName = $(this).attr('id');
+				updateVal(attrName,  $(this).select2("val"));
 			});
-        
-	    document.addEventListener('refreshSelects2', function(event) {
-        $('.select2').select2();
-        $('.select-event').off('change').on('change',function(){
-            let attrName = $(this).attr('id');
-            let key = $(this).data('key');
-		        Livewire.emit('updateValArray', attrName, key, $(this).select2("val"));
-        });
+			$('.select-event').off('change').on('change',function(){
+				let attrName = $(this).attr('id');
+				let key = $(this).data('key');
+				Livewire.emit('updateValArray', attrName, key, $(this).select2("val"));
 			});
+		});
 </script>
 @endpush

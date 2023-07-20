@@ -164,4 +164,41 @@
 		Livewire.emit('updateVal', attrName, val);
 	}
 </script>
+
+<script>
+    function appendTagInnerText(tag,id) {
+        var tagInnerText = tag.innerText;
+        var textarea = document.getElementById(id);
+        textarea.value += tagInnerText + " ";
+      }
+	  document.addEventListener('refreshSelectsOnly', function(event) {
+			$('.select2').select2();
+		});
+	  document.addEventListener('editMode', function(event) {
+			$('.trigger').val(event.detail.value);
+			$('.select2').select2();
+			$('.trigger').prop('disabled', true);
+			$('.selectedTypesData').off('change').on('change', function (e) {
+				let attrName = $(this).attr('id');
+				updateVal(attrName,  $(this).select2("val"));
+			});
+			$('.select-event').off('change').on('change',function(){
+				let attrName = $(this).attr('id');
+				let key = $(this).data('key');
+				Livewire.emit('updateValArray', attrName, key, $(this).select2("val"));
+			});
+	  });
+	  document.addEventListener('refreshSelects2', function(event) {
+			$('.select2').select2();
+			$('.selectedTypesData').off('change').on('change', function (e) {
+				let attrName = $(this).attr('id');
+				updateVal(attrName,  $(this).select2("val"));
+			});
+			$('.select-event').off('change').on('change',function(){
+				let attrName = $(this).attr('id');
+				let key = $(this).data('key');
+				Livewire.emit('updateValArray', attrName, key, $(this).select2("val"));
+			});
+		});
+</script>
 @endpush

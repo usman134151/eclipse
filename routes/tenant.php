@@ -86,8 +86,8 @@ Route::group([
 			Route::view('/admin/customer-invoices', 'tenant/common/customer-invoices', ["showForm"=>false]);
 
 			// Admin Department Routes
-			Route::view('/admin/department/{companyID}', 'tenant/common/department', ["showForm"=>false,'status'=>1]);
-			Route::view('/admin/department/create-department/{companyID}', 'tenant/common/department', ["showForm"=>true, 'status' => 1]);
+			Route::view('/admin/department/{companyID}', 'tenant/common/department', ["showForm"=>false,'status'=>1])->middleware(DecryptRouteParamater::class);
+			Route::view('/admin/department/create-department/{companyID}', 'tenant/common/department', ["showForm"=>true, 'status' => 1])->middleware(DecryptRouteParamater::class);
 			Route::view('/admin/department/edit-department/{departmentID}', 'tenant/common/department', ["showForm" => true, 'status' => 1]);
 			Route::view('/admin/department/profile/{departmentID}', 'tenant/common/department', ["showForm" => false, "showProfile"=>true , 'status' => 1]);
 
@@ -96,8 +96,8 @@ Route::group([
 			// Admin Staff Routes
 			Route::view('/admin/admin-staff', 'tenant/admin/staff/admin-staff', ["showForm"=>false, "showProfile" => false]);
 			Route::view('/admin/admin-staff/create-staff', 'tenant/admin/staff/admin-staff', ["showForm"=>true, "showProfile" => false]);
-			Route::view('/admin/admin-staff/edit-staff/{userID}', 'tenant/admin/staff/admin-staff', ["showForm" => true, "showProfile" => false])->name('edit-staff');
-			Route::view('/admin/admin-staff/profile/{userID}', 'tenant/admin/staff/admin-staff', ["showForm" => false, "showProfile" => true])->name('profile-staff');
+			Route::view('/admin/admin-staff/edit-staff/{userID}', 'tenant/admin/staff/admin-staff', ["showForm" => true, "showProfile" => false])->name('edit-staff')->middleware(DecryptRouteParamater::class);
+			Route::view('/admin/admin-staff/profile/{userID}', 'tenant/admin/staff/admin-staff', ["showForm" => false, "showProfile" => true])->name('profile-staff')->middleware(DecryptRouteParamater::class);
 
 			Route::view('/admin/admin-team', 'tenant/admin/team/admin-team', ["showForm"=>false]);
 			Route::view('/admin/admin-team/create-admin-team', 'tenant/admin/team/admin-team', ["showForm"=>true]);

@@ -37,7 +37,7 @@ class Department extends Component
 				'text' => $message,
 			]);
 		}
-		$this->dispatchBrowserEvent('update-url', ['url' => '/admin/department/'.$this->companyId]);
+		$this->dispatchBrowserEvent('update-url', ['url' => '/admin/department/'.encrypt($this->companyId)]);
 	}
 
 
