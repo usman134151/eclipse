@@ -38,9 +38,9 @@ class AdminStaffForm extends Component
 	{
 		$this->emit("showList",$message);
 	}
-    public function mount(){
+    public function mount(User $user){
 		$this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
-        // $this->user=$user;
+        $this->user=$user;
 
         if (request()->userID != null) {    //edit
             $user = User::where('id', request()->userID)->with(['phones', 'userdetail', 'addresses'])->first();

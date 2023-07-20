@@ -26,7 +26,7 @@
                         <div class="col-md-9"
                          >
                             <h6 class="fw-semibold">
-                                <a href="{{route('tenant.customer-profile',['customerID'=> $user->id])}}"> {{$user->name}} </a>
+                                <a href="{{route('tenant.customer-profile',['customerID'=> encrypt($user->id)])}}"> {{$user->name}} </a>
                             </h6>
                             <p> {{$user->email}} </p>
                         </div>

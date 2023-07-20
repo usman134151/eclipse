@@ -113,10 +113,16 @@ class User extends Authenticatable
 		return $this->hasMany(Note::class);
 	}
 
+	public function services(): BelongsToMany
+	{
+		return $this->belongsToMany(ServiceCategory::class, 'provider_accommodation_services', 'user_id','service_id')->withTimestamps();
+	}
+
+
 	public function logs()
 	{
 		return $this->hasMany(Logs::class, 'action_to')
-		->where('item_type', 'customer');
+		->where('item_type', 'user');
 	}
 
 	protected static function booted()

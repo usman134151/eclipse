@@ -8,9 +8,32 @@ use App\Services\App\UserService;
 class ProviderDetails extends Component
 {
     public $user, $userid;
+	public  $counter = 0, $credentialId, $credentialLabel="",$credentialDetails = false;
+
 	protected $listeners = [
-		'showDetails'
+		'showDetails', 'OpenProviderCredential', 'openActiveCredentialModal'
 	];
+
+	public function OpenProviderCredential($credentialId,$credentialLabel){
+		if ($this->counter == 0) {
+			$this->credentialId = 0;
+			$this->credentialLabel = $credentialLabel;
+			$this->dispatchBrowserEvent('open-credential', ['credentialId' => $credentialId, 'credentialLabel' => $credentialLabel]);
+			$this->counter = 1;
+			$this->credentialDetails = true;
+		} else {
+			$this->credentialId = $credentialId;
+			$this->counter = 0;
+			$this->dispatchBrowserEvent('refreshSelects');
+
+		}
+
+
+	}
+	public function openActiveCredentialModal($user_doc_id){
+		$this->emit('openActiveCredential', $user_doc_id);
+	}
+	
     public function showDetails($user){
 		$this->user=$user;
 		$this->userid = $user['id'];
