@@ -22,9 +22,16 @@ class ProviderCredentialsDrive extends Component
         if($this->user){
             foreach($this->user->services as $service){
                 foreach($service->credentials as $credential){
-                    $this->credentials[$credential->id]=$credential->toArray();
+                    foreach ($credential->documents as $doc) {
+
+                        $this->credentials[$doc->id]=$doc->toArray();
+                        $this->credentials[$doc->id]['title']= $credential->title;
+                        $this->credentials[$doc->id]['cred_id'] = $credential->id;
+                    }
                 }
             };
+            dd($this->credentials);
+            //multiple services can ask for the same credential -- how do we map that?
             
         }      
     }
