@@ -707,8 +707,7 @@
                                                                                     <div>
                                                                                         <label class="form-label-sm"
                                                                                             for="rate-per-mile-to-reimburse">
-                                                                                            Rate per mile to reimburse
-                                                                                            providers
+                                                                                            Rate per unit to reimburse provider
                                                                                         </label>
                                                                                     </div>
                                                                                     <div>
