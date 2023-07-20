@@ -262,7 +262,7 @@
 																	<a href="#" class="font-family-secondary">
 																	@if(count($department->supervisors))
 																	 @foreach($department->supervisors as $key=>$supervisor)
-                                                                            <a href="{{route('tenant.customer-profile',['customerID'=>$supervisor->id])}}"> {{$supervisor->name}} </a>
+                                                                            <a href="{{route('tenant.customer-profile',['customerID'=>encrypt($supervisor->id)])}}"> {{$supervisor->name}} </a>
                                                                              @if($key != count($department->supervisors)-1) , @endif
 
                                                                         @endforeach
