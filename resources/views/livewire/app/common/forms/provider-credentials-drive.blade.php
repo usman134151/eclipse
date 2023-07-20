@@ -74,7 +74,7 @@
 												<div class="container">
 													<div class="row mb-4">
 													  <div class="col-md-11">
-														
+														@if(isset($credentials['pending'])&&count($credentials['pending']))
 															@foreach($credentials['pending'] as $index => $credential)
 																@if($index%4==0)
 																	<div class="row flex-nowrap ">
@@ -108,6 +108,9 @@
 															@if(count($credentials['pending'])%2==1 || count($credentials['pending'])<4)
 																
 																</div>	@endif
+														@else
+															<p>No Pending Credentials</p>
+														@endif
 													  </div>
 													</div>
 													</div>
@@ -121,37 +124,42 @@
 												<div class="container">
 													<div class="row mb-4">
 													  <div class="col-md-11">
-													  	@foreach($credentials['active'] as $index => $credential)
-																@if($index%4==0)
-																	<div class="row flex-nowrap ">
-																@endif
-																	
-																		<div class="col-md-3 m-2  border border-success rounded ">
-																			<div class="mt-4 pb-2"> 
-																				<div>{{$credential['title']}}</div>
-																				@if($credential['upload_file']!=null)
-																					<div>Associated Document:
-																							@if($credential['document_type']=='acknowledge_document')
-																								<a href="{{$credential['upload_file']}}" target="_black">
-																									{{basename($credential['upload_file'])}}</a>
-																							@else
-																								{{basename($credential['upload_file'])}}
-																							@endif
-																					 </div>
-																				@endif
-																				<div>Type: {{ucwords(str_replace('_', ' ', strtolower($credential['document_type'])))}}</div>
+														@if(isset($credentials['active'])&&count($credentials['active']))
+															
+															@foreach($credentials['active'] as $index => $credential)
+																	@if($index%4==0)
+																		<div class="row flex-nowrap ">
+																	@endif
+																		
+																			<div class="col-md-3 m-2  border border-success rounded ">
+																				<div class="mt-4 pb-2"> 
+																					<div>{{$credential['title']}}</div>
+																					@if($credential['upload_file']!=null)
+																						<div>Associated Document:
+																								@if($credential['document_type']=='acknowledge_document')
+																									<a href="{{$credential['upload_file']}}" target="_black">
+																										{{basename($credential['upload_file'])}}</a>
+																								@else
+																									{{basename($credential['upload_file'])}}
+																								@endif
+																						</div>
+																					@endif
+																					<div>Type: {{ucwords(str_replace('_', ' ', strtolower($credential['document_type'])))}}</div>
+																						
+																					<button type="button" data-bs-toggle="modal" data-bs-target="#viewButtonModal" class="btn btn-primary btn-has-icon rounded m-3">View</button>
 																					
-																				<button type="button" data-bs-toggle="modal" data-bs-target="#viewButtonModal" class="btn btn-primary btn-has-icon rounded m-3">View</button>
-																				
+																				</div>
 																			</div>
+																	@if($index%4==3)
 																		</div>
-																@if($index%4==3)
-																	</div>
-																@endif
+																	@endif
 															@endforeach
 															@if(count($credentials['active'])%2==1 || count($credentials['pending'])<4)
-																
-																</div>	@endif
+																	</div>	
+															@endif
+														@else
+															<p>No Active Credentials</p>
+														@endif
 													
 													  </div>
 													</div>
@@ -164,6 +172,8 @@
 												<div class="container">
 													<div class="row mb-4">
 													  <div class="col-md-11">
+														@if(isset($credentials['expired'])&&count($credentials['expired']))
+
 														<div class="row">
 															<div class="col border border-danger rounded ">
 																<div class="mt-4">
@@ -202,6 +212,9 @@
 																	</div>
 															  </div>
 														</div>
+														@else
+															<p>No Expired Credentials</p>
+														@endif
 													  </div>
 													</div>
 												  </div>

@@ -43,8 +43,10 @@ class ProviderCredentialsDrive extends Component
                     }
                 }
             };
-            $this->credentials['pending'] = array_values($this->credentials['pending']);    //fixing index values
-            $this->credentials['active'] = array_values($this->credentials['active']);    //fixing index values
+            if(isset($this->credentials['pending']))
+                $this->credentials['pending'] = array_values($this->credentials['pending']);    //fixing index values
+            if (isset($this->credentials['active']))
+                $this->credentials['active'] = array_values($this->credentials['active']);    //fixing index values
 
         }     
     }
