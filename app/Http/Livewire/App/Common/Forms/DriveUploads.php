@@ -148,7 +148,7 @@ class DriveUploads extends Component
                 'text' => $message,
             ]);
         }
-        $this->dispatchBrowserEvent('update-url', ['url' => '/admin/company']);
+        // $this->dispatchBrowserEvent('update-url', ['url' => '/admin/company']);
     }
 
     public function deleteFile($file_record_id,$path)

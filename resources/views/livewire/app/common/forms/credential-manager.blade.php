@@ -346,9 +346,9 @@
                                         </label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <label class="form-check-label" for="acknoeledge-document-{{ $index }}">
-                                        <input class="form-check-input" id="acknoeledge-document-{{ $index }}"
-                                            name="documents_{{$index }}_document_type_radio" type="radio" tabindex="" wire:key="acknowledege-{{ $index }}" wire:model.lazy="documents.{{$index}}.document_type_radio" value="acknoeledge_document" />
+                                        <label class="form-check-label" for="acknowledge-document-{{ $index }}">
+                                        <input class="form-check-input" id="acknowledge-document-{{ $index }}"
+                                            name="documents_{{$index }}_document_type_radio" type="radio" tabindex="" wire:key="acknowledege-{{ $index }}" wire:model.lazy="documents.{{$index}}.document_type_radio" value="acknowledge_document" />
                                             Acknowledge Document
                                             <svg aria-label="Information" width="15" height="16" viewBox="0 0 15 16">
                                                 <use xlink:href="/css/common-icons.svg#fill-question"></use>

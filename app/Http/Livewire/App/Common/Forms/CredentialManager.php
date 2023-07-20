@@ -210,7 +210,7 @@ class CredentialManager extends Component
                         $document_array[$key]['expiry'] = null;
 
                     if (isset($value['formFile']) && !empty($value['formFile'])) {
-                        $document_array[$key]['upload_file'] = $this->saveFile($value['formFile'],$value['temp_file']);
+                        $document_array[$key]['upload_file'] = $this->saveFile($value['formFile'],$value['temp_file'],$key);
                 
                     }else{
                         $document_array[$key]['upload_file']= $value['temp_file'];
@@ -225,7 +225,7 @@ class CredentialManager extends Component
         $this->credential=new Credential;
     }
 
-    public function saveFile($temp_file,$existing_file=null)
+    public function saveFile($temp_file,$existing_file=null,$index=1)
     {
 
         if ($temp_file) {
@@ -234,7 +234,11 @@ class CredentialManager extends Component
                 if (File::exists(public_path($existing_file)))
                 File::delete(public_path($existing_file));
             }
-            $name = time().'_'.$temp_file->getClientOriginalName();
+            // $name = time().'_'.$temp_file->getClientOriginalName();
+            // dd();
+             
+            $name = str_replace(' ', '_', strtolower($this->credential->title)).'_'.'document_'.($index+1).'.'. $temp_file->getClientOriginalExtension();
+
             $uploadPath = $temp_file->storeAs('/credentials', $name, 'public');
             //dd($uploadPath);
             return '/tenant' . tenant('id') . '/app/public/credentials/' . $name;  //change domain here and in config/filesystems

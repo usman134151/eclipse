@@ -23,6 +23,12 @@ class ServiceCategory extends Model
         return $this->belongsToMany(Specialization::class, 'service_specializations', 'service_id', 'specialization_id');
     }
 
+    public function credentials()
+    {
+        return $this->belongsToMany(Credential::class, 'services_credentials', 'service_id', 'credential_id');
+    }
+
+
     public function setSpecialization($index, $value)
     {
         $specializations = $this->specialization;
