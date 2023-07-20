@@ -1,4 +1,8 @@
-<div class="row mb-4 mt-4">
+<div class="row mb-4 mt-4" x-data="{ isUploading: false, progress: 0 }"
+    x-on:livewire-upload-start="isUploading = true"
+    x-on:livewire-upload-finish="isUploading = false"
+    x-on:livewire-upload-error="isUploading = false"
+    x-on:livewire-upload-progress="progress = $event.detail.progress">
   @if($document)
     
       @if($document['upload_file']!=null)
@@ -27,6 +31,9 @@
                 Upload File
               </label>
               <input class="form-control mb-1" wire:model.defer="upload_file" type="file" id="formFile">
+              <div x-show="isUploading">
+                  <progress max="100" x-bind:value="progress"></progress>
+              </div>
                @error('upload_file')
                   <span class="d-inline-block invalid-feedback mt-2">
                       {{ $message }}
@@ -56,9 +63,9 @@
           @if($upload_file)
             <div class="row my-4">
                 <h3>Preview</h3>
-                <div class="col-md-2">
-                    <div class="position-relative">
-                      <img src="{{$this->isImage($upload_file) ? $upload_file : '/tenant-resources/images/img-placeholder-document.jpg'}}"/>
+                <div class="col-md-2" style="max-width:190px">
+                    <div class="position-relative" style="width:190px;height:250px">
+                      <img style="width:100%;height:100%" src="{{$this->isImage($upload_file) ? '/tenant'.tenant('id').'/app/livewire-tmp/'.$upload_file->getFilename() : '/tenant-resources/images/img-placeholder-document.jpg'}}"/>
                       <div class="position-absolute top-0 start-100">
                         <a  wire:click.prevent="deleteFile()"  href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-3">
                           <svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
@@ -76,7 +83,7 @@
               <button type="button" class="btn btn-outline-dark rounded" x-on:click="pendingCredentials = !pendingCredentials">
                   Cancel
               </button>
-              <button type="submit" wire:click.prevent="upload" class="btn btn-primary rounded" x-on:close-modal.window="pendingCredentials = !pendingCredentials">
+              <button  wire:loading.attr="disabled" wire:target="upload_file" type="submit" wire:click.prevent="upload" class="btn btn-primary rounded" x-on:close-modal.window="pendingCredentials = !pendingCredentials">
                   Upload
               </button>
           </div>

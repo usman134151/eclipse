@@ -66,7 +66,7 @@ class PendingCredentials extends Component
 
     public function isImage($file)
     {
-        $extension = pathinfo($file, PATHINFO_EXTENSION);
+        $extension = $file->getClientOriginalExtension();
         $imgExtArr = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg'];
         if (in_array($extension, $imgExtArr)) {
             return true;
