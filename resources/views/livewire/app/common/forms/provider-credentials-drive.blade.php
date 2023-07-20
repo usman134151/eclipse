@@ -75,25 +75,37 @@
 													<div class="row mb-4">
 													  <div class="col-md-11">
 														
-															@foreach($credentials as $index => $credential)
-																@if($index%4==1)
-																	<div class="row ">
+															@foreach($credentials['pending'] as $index => $credential)
+																@if($index%4==0)
+																	<div class="row flex-nowrap ">
 																@endif
-																		<div class="col-md-3 m-2 border border-warning rounded ">
+																	
+																		<div class="col-md-3 m-2  border border-warning rounded ">
 																			<div class="mt-4 pb-2"> 
-																				<div>{{$credential['title']}} </div>
+																				<div>{{$credential['title']}}</div>
 																				@if($credential['upload_file']!=null)
-																					<div>Associated Document: {{basename($credential['upload_file'])}}</div>
+																					<div>Associated Document:
+																							@if($credential['document_type']=='acknowledge_document')
+																								<a href="{{$credential['upload_file']}}" target="_black">
+																									{{basename($credential['upload_file'])}}</a>
+																							@else
+																								{{basename($credential['upload_file'])}}
+																							@endif
+																					 </div>
 																				@endif
-																				<div>Type: {{$credential['document_type']}}</div>
-																				<button wire:click="openCredential({{$credential['id']}}, '{{$credential['title']}}')" @click="pendingCredentials = true" class="btn btn-primary rounded mx-3 mt-3">Upload</button>
+																				<div>Type: {{ucwords(str_replace('_', ' ', strtolower($credential['document_type'])))}}</div>
+																				@if($credential['document_type']=='acknowledge_document')
+																					<button  wire:click="acceptCredential({{$credential['id']}})" class="btn btn-primary rounded mx-3 mt-3">Accept</button>
+																				@else	
+																					<button  wire:click="openCredential({{$credential['id']}}, '{{$credential['title']}}')" @click="pendingCredentials = true" class="btn btn-primary rounded mx-3 mt-3">Upload</button>
+																				@endif
 																			</div>
 																		</div>
-																@if($index%4==0)
+																@if($index%4==3)
 																	</div>
 																@endif
 															@endforeach
-															@if(count($credentials)%2==1)
+															@if(count($credentials['pending'])%2==1 || count($credentials['pending'])<4)
 																
 																</div>	@endif
 													  </div>
@@ -109,40 +121,38 @@
 												<div class="container">
 													<div class="row mb-4">
 													  <div class="col-md-11">
-														<div class="row">
-															<div class="col border border-success rounded ">
-																<div class="mt-4">
-																	<div>Credential Title</div>
-																	<div>Associated with Tag: Covid19</div>
-																	<div>Type: Upload Only</div>
-																	<button type="button" data-bs-toggle="modal" data-bs-target="#viewButtonModal" class="btn btn-primary btn-has-icon rounded m-3">View</button>
+													  	@foreach($credentials['active'] as $index => $credential)
+																@if($index%4==0)
+																	<div class="row flex-nowrap ">
+																@endif
+																	
+																		<div class="col-md-3 m-2  border border-success rounded ">
+																			<div class="mt-4 pb-2"> 
+																				<div>{{$credential['title']}}</div>
+																				@if($credential['upload_file']!=null)
+																					<div>Associated Document:
+																							@if($credential['document_type']=='acknowledge_document')
+																								<a href="{{$credential['upload_file']}}" target="_black">
+																									{{basename($credential['upload_file'])}}</a>
+																							@else
+																								{{basename($credential['upload_file'])}}
+																							@endif
+																					 </div>
+																				@endif
+																				<div>Type: {{ucwords(str_replace('_', ' ', strtolower($credential['document_type'])))}}</div>
+																					
+																				<button type="button" data-bs-toggle="modal" data-bs-target="#viewButtonModal" class="btn btn-primary btn-has-icon rounded m-3">View</button>
+																				
+																			</div>
+																		</div>
+																@if($index%4==3)
 																	</div>
-															  </div>
-															  <div class="col border border-success rounded mx-3">
-																<div class="mt-4">
-																<div>Credential Title</div>
-																<div>Associated with Tag: Covid19</div>
-																<div>Type: Upload Only</div>
-																<button type="button" data-bs-toggle="modal" data-bs-target="#viewButtonModal" class="btn btn-primary btn-has-icon rounded m-3">View</button>
-																</div>
-															  </div>
-															  <div class="col border border-success rounded">
-																<div class="mt-4">
-																	<div>Credential Title</div>
-																	<div>Associated with Tag: Covid19</div>
-																	<div>Type: Upload Only</div>
-																	<button type="button" data-bs-toggle="modal" data-bs-target="#viewButtonModal" class="btn btn-primary btn-has-icon rounded m-3">View</button>
-																	</div>
-															  </div>
-															  <div class="col border border-success rounded mx-3">
-																<div class="mt-4">
-																	<div>Credential Title</div>
-																	<div>Associated with Tag: Covid19</div>
-																	<div>Type: Upload Only</div>
-																	<button type="button" data-bs-toggle="modal" data-bs-target="#viewButtonModal" class="btn btn-primary btn-has-icon rounded m-3">View</button>
-																	</div>
-															  </div>
-														</div>
+																@endif
+															@endforeach
+															@if(count($credentials['active'])%2==1 || count($credentials['pending'])<4)
+																
+																</div>	@endif
+													
 													  </div>
 													</div>
 												  </div>
