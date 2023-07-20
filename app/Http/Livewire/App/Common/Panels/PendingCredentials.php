@@ -57,7 +57,7 @@ class PendingCredentials extends Component
 
         ProviderCredentials::create($this->field);
         $this->dispatchBrowserEvent('close-modal');
-        $this->confirmation("File Uploaded to drive successfully");
+        $this->emit('showConfirmation', "File Uploaded to drive successfully");
     }
 
     public function deleteFile(){
@@ -74,17 +74,6 @@ class PendingCredentials extends Component
         return false;
     }
 
-    public function confirmation($message = '')
-    {
-        if ($message) {
-            // Emit an event to display a success message using the SweetAlert package
-            $this->dispatchBrowserEvent('swal:modal', [
-                'type' => 'success',
-                'title' => 'Success',
-                'text' => $message,
-            ]);
-        }
-    }
 
     public function updateVal($attrName,$val)
     {
