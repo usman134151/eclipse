@@ -24,7 +24,10 @@ class ProviderDetails extends Component
 		} else {
 			$this->credentialId = $credentialId;
 			$this->counter = 0;
+			$this->dispatchBrowserEvent('refreshSelects');
+
 		}
+
 
 	}
     public function showDetails($user){

@@ -148,7 +148,6 @@
 	function updateVal(attrName,val){
 
 		Livewire.emit('updateVal', attrName, val);
-
 	}
 	Livewire.on('passwordmodalDismissed', () => {
             $('#changePasswordModal').modal('hide');

@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\File;
 class UploadFileService{
 
     
-    public function saveFile($dirName,$temp_file, $existing_file = null)
+    public function saveFile($dirName,$temp_file, $existing_file = null,$name=null)
     {
 
         if ($temp_file) {
@@ -15,7 +15,11 @@ class UploadFileService{
                 if (File::exists(public_path($existing_file)))
                     File::delete(public_path($existing_file));
             }
-            $name = time() . '_' . $temp_file->getClientOriginalName();
+            if($name==null)
+                $name = time() . '_' . $temp_file->getClientOriginalName(); //system assigned name
+            else
+                $name = $name.'.'.$temp_file->getClientOriginalExtension(); //name is passed
+
             $uploadPath = $temp_file->storeAs('/'.$dirName, $name, 'public');
             //dd($uploadPath);
             return '/tenant' . tenant('id') . '/app/public/'.$dirName.'/' . $name;  //change domain here and in config/filesystems

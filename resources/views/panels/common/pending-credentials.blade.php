@@ -10,7 +10,6 @@
         </x-off-canvas>
 <script>
   window.addEventListener('open-credential', function(event) {
-    console.log('in credential browser event', event.detail.credentialLabel);
     var credentialId = event.detail.credentialId;
     var credentialLabel=event.detail.credentialLabel;
 
