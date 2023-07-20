@@ -1078,7 +1078,7 @@
                                                                     </div>
                                                                     <div>
                                                                         <label class="form-label">
-                                                                            Apply too
+                                                                            Apply to
                                                                         </label>
                                                                         <div class="d-grid grid-cols-2 gap-1">
                                                                             <div class="form-check form-check-inline">

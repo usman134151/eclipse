@@ -189,6 +189,7 @@
                                                         <div class="d-flex flex-column gap-5">
                                                             <!-- In-Person Additional Service Charges -->
                                                             <div>
+                                                                @if($modelType!='provider')
                                                                 <div class="d-flex flex-column gap-4">
                                                                     @foreach($serviceCharge[$type] as $index=>$data)
                                                                     <div class="d-flex flex-column gap-3">
@@ -221,6 +222,7 @@
 
                                                                     </div>
                                                                 </div>
+                                                                @endif
                                                             </div>
                                                            
                                                             <!-- /In-Person Additional Service Charges -->
@@ -436,7 +438,79 @@
                                                                             placeholder="00.00" aria-label=""
                                                                             aria-describedby="" wire:model.defer="cancelCharges.{{$type}}.{{$index}}.price"/>
                                                                     </div>
-
+                                                                    <div>
+                                                                        <label class="form-label">
+                                                                            Apply to
+                                                                        </label>
+                                                                        <div class="d-grid grid-cols-2 gap-1">
+                                                                        @if($modelType!='provider')
+                                                                            <div class="form-check form-check-inline">
+                                                                                <input class="form-check-input"
+                                                                                    id="x-by-duration" name=""
+                                                                                    type="checkbox" tabindex="" wire:model.defer="cancelCharges.{{$type}}.{{$index}}.multiply_duration"/>
+                                                                                <label class="form-check-label"
+                                                                                    for="x-by-duration">X by
+                                                                                    Duration</label>
+                                                                            </div>
+                                                                          
+                                                                            <div class="form-check form-check-inline">
+                                                                                <input class="form-check-input"
+                                                                                    id="x-by-providers" name=""
+                                                                                    type="checkbox" tabindex="" wire:model.defer="cancelCharges.{{$type}}.{{$index}}.multiply_providers"/>
+                                                                                <label class="form-check-label"
+                                                                                    for="x-by-providers">X by No. of
+                                                                                    Providers</label>
+                                                                            </div>
+                                                                            @endif
+                                                                            <div class="form-check form-check-inline">
+                                                                                <input class="form-check-input" id=""
+                                                                                    name="" type="checkbox"
+                                                                                    tabindex=""  wire:model.defer="cancelCharges.{{$type}}.{{$index}}.cancellation"/>
+                                                                                <label class="form-check-label"
+                                                                                    for="">Cancellations</label>
+                                                                            </div>
+                                                                            @if($modelType!='provider')
+                                                                            <div class="form-check form-check-inline">
+                                                                                <input class="form-check-input" id=""
+                                                                                    name="" type="checkbox"
+                                                                                    tabindex="" wire:model.defer="cancelCharges.{{$type}}.{{$index}}.exclude_after_hours"/>
+                                                                                <label class="form-check-label"
+                                                                                    for="">Exclude After-hours</label>
+                                                                            </div>
+                                                                            @endif
+                                                                            <div class="form-check form-check-inline">
+                                                                                <input class="form-check-input" id=""
+                                                                                    name="" type="checkbox"
+                                                                                    tabindex=""  wire:model.defer="cancelCharges.{{$type}}.{{$index}}.modifications"/>
+                                                                                <label class="form-check-label"
+                                                                                    for="">Modifications</label>
+                                                                            </div>
+                                                                            @if($modelType!='provider')
+                                                                            <div class="form-check form-check-inline">
+                                                                                <input class="form-check-input" id=""
+                                                                                    name="" type="checkbox"
+                                                                                    tabindex=""  wire:model.defer="cancelCharges.{{$type}}.{{$index}}.exclude_holidays"/>
+                                                                                <label class="form-check-label"
+                                                                                    for="">Exclude Closed-hours</label>
+                                                                            </div>
+                                                                            @endif
+                                                                            <div class="form-check form-check-inline">
+                                                                                <input class="form-check-input" id=""
+                                                                                    name="" type="checkbox"
+                                                                                    tabindex="" wire:model.defer="cancelCharges.{{$type}}.{{$index}}.rescheduling"/>
+                                                                                <label class="form-check-label"
+                                                                                    for="">Rescheduling</label>
+                                                                            </div>
+                                                                            <div class="form-check form-check-inline">
+                                                                                <input class="form-check-input" id=""
+                                                                                    name="" type="checkbox"
+                                                                                    tabindex=""  wire:model.defer="cancelCharges.{{$type}}.{{$index}}.service_min"/>
+                                                                                <label class="form-check-label"
+                                                                                    for="">@if($modelType=='provider') Pay @else Bill @endif
+                                                                                    Service Minimums</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                                 @endforeach
                                                                 <div class="text-end">
@@ -552,7 +626,8 @@
                          
                         </div>
                {{--Customized Forms Selection start  --}}
-               <div class="col-lg-12 mb-5" x-data="{ open: false }">
+               @if($modelType!='provider')
+               <div class="col-lg-12 mb-5">
                    <div class="d-lg-flex align-items-center mb-4 gap-3">
                      <!-- <div class="form-check form-switch form-switch-column mb-lg-0">
                        <input class="form-check-input" type="checkbox" role="switch" id="SpecializationRates" @click="open = !open" x-text="open==true  ? 'hide' : 'show'">
@@ -572,6 +647,7 @@
                         </select>
                     </div>
                  </div> {{--Customized Forms Selection end  --}}
+                 @endif
                <div class="col-12 justify-content-center form-actions d-flex gap-2">
                 
                  <button type="submit" class="btn btn-primary rounded" @click="associateservice = false" wire:click="saveServiceRates()">Save Changes </button>
