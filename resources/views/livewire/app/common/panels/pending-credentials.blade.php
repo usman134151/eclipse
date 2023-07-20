@@ -1,11 +1,10 @@
 <div class="row mb-4 mt-4">
-  @if(count($documents))
-    @foreach($documents as $document)
+  @if($document)
     
       @if($document['upload_file']!=null)
         <div class="d-inline-flex mb-4">
         
-            <div> 
+            <div > 
                 <label class="form-label-sm mb-2 d-flex align-items-center gap-2">
                     <svg width="20" height="27" viewBox="0 0 20 27" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M20 23.3333V7.5L12.5 0H3.33333C2.44928 0 1.60143 0.35119 0.976311 0.976311C0.351189 1.60143 0 2.44928 0 3.33333V23.3333C0 24.2174 0.351189 25.0652 0.976311 25.6904C1.60143 26.3155 2.44928 26.6667 3.33333 26.6667H16.6667C17.5507 26.6667 18.3986 26.3155 19.0237 25.6904C19.6488 25.0652 20 24.2174 20 23.3333ZM12.5 5C12.5 5.66304 12.7634 6.29893 13.2322 6.76777C13.7011 7.23661 14.337 7.5 15 7.5H18.3333V23.3333C18.3333 23.7754 18.1577 24.1993 17.8452 24.5118C17.5326 24.8244 17.1087 25 16.6667 25H3.33333C2.89131 25 2.46738 24.8244 2.15482 24.5118C1.84226 24.1993 1.66667 23.7754 1.66667 23.3333V3.33333C1.66667 2.89131 1.84226 2.46738 2.15482 2.15482C2.46738 1.84226 2.89131 1.66667 3.33333 1.66667H12.5V5Z" fill="black"/>
@@ -44,22 +43,24 @@
                 </div>
               @endif
           </div>
-          <div class="row my-4">
-              <h3>Preview</h3>
-              <div class="col-md-2">
-                  <div class="position-relative">
-                    <img src="/tenant-resources/images/img-placeholder-document.jpg"/>
-                    <div class="position-absolute top-0 start-100">
-                      <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-3">
-                        <svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
-                          xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use>
-                        </svg>
-                      </a>
+          @if($file)
+            <div class="row my-4">
+                <h3>Preview</h3>
+                <div class="col-md-2">
+                    <div class="position-relative">
+                      <img src="/tenant-resources/images/img-placeholder-document.jpg"/>
+                      <div class="position-absolute top-0 start-100">
+                        <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-3">
+                          <svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                            xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use>
+                          </svg>
+                        </a>
+                      </div>
                     </div>
-                  </div>
-                  <p>Certification</p>
-              </div>
-          </div>
+                    <p>Certification</p>
+                </div>
+            </div>
+          @endif
           <div class="col-12 justify-content-center form-actions d-flex gap-3">
               <button type="button" class="btn btn-outline-dark rounded" x-on:click="pendingCredentials = !pendingCredentials">
                   Cancel
@@ -69,10 +70,9 @@
               </button>
           </div>
       @endif
-    @endforeach
   @else
     <div class="">
-      <p>No Documents have been added for this credential.</p>
+      <p>No Documents Available.</p>
     </div>  
   @endif
 </div>

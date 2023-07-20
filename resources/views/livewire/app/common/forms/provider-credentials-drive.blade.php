@@ -82,8 +82,10 @@
 																		<div class="col-md-3 m-2 border border-warning rounded ">
 																			<div class="mt-4 pb-2"> 
 																				<div>{{$credential['title']}} </div>
-																				<div>Associated with Tag: Covid19</div>
-																				<div>Type: Upload Only</div>
+																				@if($credential['upload_file']!=null)
+																					<div>Associated Document: {{basename($credential['upload_file'])}}</div>
+																				@endif
+																				<div>Type: {{$credential['document_type']}}</div>
 																				<button wire:click="openCredential({{$credential['id']}}, '{{$credential['title']}}')" @click="pendingCredentials = true" class="btn btn-primary rounded mx-3 mt-3">Upload</button>
 																			</div>
 																		</div>
