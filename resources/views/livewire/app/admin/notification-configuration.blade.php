@@ -54,7 +54,7 @@
 									<div class="row w-100">
 										<div class="col-md-6 mb-md-2">
 											<label class="form-label" for="company-column">
-												Select Trigger
+												Select Trigger Type
 											</label>
 										</div>
 										<div class="col-md-6 text-end">
@@ -68,12 +68,11 @@
 									</div>
 									<div class="row">
 										<div class="col-md-4">
-											<select class="select2 form-select" aria-label="Select Trigger">
-												<option>Select Trigger</option>
-												<option>Assignment Scheduled</option>
-												<option>Assignment Modified</option>
-												<option>Submit Request</option>
-												<option>Approved Request</option>
+											<select class="form-select" wire:model="typeId" aria-label="Select Trigger" id="triggerType" name="triggerType">
+												<option>Select Trigger Type</option>
+												@foreach($triggerTypes as $tType)
+													<option value="{{$tType->id}}">{{$tType->name}}</option>
+												@endforeach
 											</select>
 										</div>
 									</div>
@@ -170,6 +169,11 @@
         var tagInnerText = tag.innerText;
         var textarea = document.getElementById(id);
         textarea.value += tagInnerText + " ";
+		const inputEvent = new Event('input', {
+		bubbles: true,
+		cancelable: true,
+		});
+		textarea.dispatchEvent(inputEvent);
       }
 	  document.addEventListener('refreshSelectsOnly', function(event) {
 			$('.select2').select2();

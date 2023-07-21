@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\App\Admin\Forms;
 use App\Helpers\SetupHelper;
 use App\Models\Tenant\BusinessSetup;
+use App\Models\Tenant\NotificationTag;
 use App\Models\Tenant\NotificationTemplateRoleFrequencies;
 use App\Models\Tenant\NotificationTemplateRoles;
 use Livewire\Component;
@@ -35,18 +36,8 @@ class NotificationConfigurationForm extends Component
 	];
 
 	public function mount(NotificationTemplates $notification,$type){
-		$this->tagValues=[
-			"@admin_company",
-			"@booking_start_at",
-			"@consumer",
-			"@booking_end_at",
-			"@booking_duration",
-			"@booking_location",
-			"@services",
-			"@service_type",
-			"@dashboard",
-			"@reports"
-		];
+		$this->tagValues=NotificationTag::pluck('name')->toArray();
+		// dd($this->tagValues);
 		// dd($this->triggers);
 		$this->from_email=BusinessSetup::first()->notification_email;
 		$this->notification_type=$type;

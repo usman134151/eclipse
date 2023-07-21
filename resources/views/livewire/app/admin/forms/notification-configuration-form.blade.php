@@ -11,6 +11,14 @@
                   <div class="col-lg-12">
                     <!-- .... section 1..(start).. -->
                     <div class="row">
+                      <div class="col-lg-10 pe-lg-4 mb-4">
+                        
+                        @if($notification->trigger_type)
+                          <label class="form-label" for="trigger_type">Trigger Type: {{$notification->trigger_type->name}}</label>
+                        @endif
+                      </div>
+                    </div>
+                    <div class="row">
                       <div class="col-lg-5 pe-lg-4 mb-4" wire:ignore>
                           <label class="form-label" for="trigger">Select Trigger</label>
                           <select class="select2 form-select trigger" id="trigger">
@@ -322,6 +330,12 @@
         var tagInnerText = tag.innerText;
         var textarea = document.getElementById(id);
         textarea.value += tagInnerText + " ";
+        const inputEvent = new Event('input', {
+        bubbles: true,
+        cancelable: true,
+        });
+        textarea.dispatchEvent(inputEvent);
+
       }
 	  document.addEventListener('refreshSelectsOnly', function(event) {
 			$('.select2').select2();
