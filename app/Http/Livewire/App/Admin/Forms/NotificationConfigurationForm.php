@@ -45,7 +45,8 @@ class NotificationConfigurationForm extends Component
 		$this->notification->notification_type = $this->notification_type;
 		$this->triggers=NotificationTemplates::where("notification_type","=",$type)->get();
 		$this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
-		$this->userTypes=Role::where('role_type','=',1)->get();
+		// $this->userTypes=Role::where('role_type','=',1)->get();
+		$this->userTypes=Role::get();
 		$this->customerApplyRoles=Role::where('role_type','=',2)->get();
 		$this->adminRoles=SystemRole::all();
     }
@@ -181,7 +182,7 @@ class NotificationConfigurationForm extends Component
 				},
 			],
 			'selectedTypesData.*.admin_roles' => 'required_if:selectedTypesData.*.name,admin',
-			'selectedTypesData.*.customer_roles' => 'required_if:selectedTypesData.*.name,customer',
+			// 'selectedTypesData.*.customer_roles' => 'required_if:selectedTypesData.*.name,customer',
 			// 'selectedTypesData.*.notification_email' => 'required_if:selectedTypesData.*.name,customer,provider,staff|required_if:notification_type,1',
 			'selectedTypesData.*.notification_reply_to' => 'required_if:selectedTypesData.*.name,customer,provider,staff',
 			// 'notification.role_id' => 'required',

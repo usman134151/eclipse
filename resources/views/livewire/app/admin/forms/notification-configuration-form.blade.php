@@ -142,7 +142,7 @@
                       @endif
                     </div>
                     
-                    @if($selectedType['name']=='customer')
+                    {{--@if($selectedType['name']=='customer')
                       <!-- ...... Select Apply to ....  -->
                       <div class="col-lg-12 col-12">
                         <div class="row">
@@ -161,7 +161,7 @@
                           </div>
                         </div>
                       </div>
-                    @endif
+                    @endif--}}
                     <div class="col-lg-12">
                       <div class="row">
                         <div class="col-lg-7">

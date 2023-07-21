@@ -117,7 +117,7 @@
 													<svg aria-label="Admin"  width="23" height="26"
                                                        viewBox="0 0 23 26">
                                                     <use xlink:href="/css/common-icons.svg#admin-icon"></use>
-                                                </svg>
+                                                	</svg>
 													<span class="mx-1 text-sm">Billing Manger</span>
 												</button>
 												<button type="submit" wire:click="$set('selectedRoleId', 6)" class="btn btn-primary rounded btn-sm">
@@ -146,7 +146,7 @@
 										</div>
 									</div>
 								<!-- ...... -->
-								@livewire('app.common.lists.notification-configuration', ['selectedRoleId' => $selectedRoleId], key(Str::random(10)))
+								@livewire('app.common.lists.notification-configuration', ['selectedRoleId' => $selectedRoleId,'typeId' => $typeId], key(Str::random(10)))
 							</div>
 						</div>
 					</div>

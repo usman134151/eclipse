@@ -59,20 +59,21 @@ class NotificationConfiguration extends PowerGridComponent
             'notification_templates.name',
             'notification_templates.trigger',
             'notification_templates.slug',
-            // 'notification_templates.body',
-            // 'roles.display_name as role_id',
             'trigger_types.name as trigger_type',
-            'notification_templates.status as status'
+            'notification_templates.status as status',
+            'notification_template_roles.customer_roles'
         ]);
 
-        if ($this->selectedRoleId !== null) {
-            $query->where('notification_template_roles.role_id', $this->selectedRoleId);
-        }
-
         if ($this->typeId !== null) {
-            dd($this->typeId);
+            // dd($this->typeId);
             $query->where('trigger_types.id', $this->typeId);
         }
+        if ($this->selectedRoleId !== null) {
+                $query->where('notification_template_roles.role_id', $this->selectedRoleId);
+                        // ->orWhereRaw("JSON_SEARCH(notification_template_roles.customer_roles, 'one', ?) IS NOT NULL", [$this->selectedRoleId]);
+        }
+        // dd($query);
+    $query->distinct();
     return $query;
 }
     
