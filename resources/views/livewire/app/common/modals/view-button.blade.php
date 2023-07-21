@@ -8,7 +8,7 @@
       <div class="d-flex justify-content-center">
         <div class="row my-4"  style="max-width:190px">
           <div class="col-md-2"   style="width:190px;height:250px">
-            @if($credential_doc->document_type !=" acknowledge_document")
+            @if($credential_doc->document_type !="acknowledge_document")
                       <img style="width:100%;height:100%"  src="{{$this->isImage($u_doc->file_path) ? $u_doc->file_path : '/tenant-resources/images/img-placeholder-document.jpg'}}"/>
             
             @else

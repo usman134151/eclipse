@@ -11,7 +11,7 @@ class ProviderDetails extends Component
 	public  $counter = 0, $credentialId, $credentialLabel="",$credentialDetails = false;
 
 	protected $listeners = [
-		'showDetails', 'OpenProviderCredential', 
+		'showDetails',  'openActiveCredentialModal'
 	];
 
 	public function OpenProviderCredential($credentialId,$credentialLabel){
@@ -30,7 +30,9 @@ class ProviderDetails extends Component
 
 
 	}
-
+	public function openActiveCredentialModal($user_doc_id){
+		$this->emit('openActiveCredential', $user_doc_id);
+	}
 	
     public function showDetails($user){
 		$this->user=$user;

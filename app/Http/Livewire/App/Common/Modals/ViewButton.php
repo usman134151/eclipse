@@ -9,13 +9,13 @@ use Livewire\Component;
 class ViewButton extends Component
 {
     public $showForm,$u_doc,$credential_doc=null;
-    protected $listeners = ['showList' => 'resetForm', 'openActiveCredentialModal'];
+    protected $listeners = ['showList' => 'resetForm', 'openActiveCredential'];
 
     public function render()
     {
         return view('livewire.app.common.modals.view-button');
     }
-    public function openActiveCredentialModal($user_doc_id)
+    public function openActiveCredential($user_doc_id)
     {
         $this->u_doc = ProviderCredentials::where('id',$user_doc_id)->first();
         if($this->u_doc){
@@ -26,7 +26,6 @@ class ViewButton extends Component
 
     public function isImage($filepath)
     {
-        
         $extension = pathinfo($filepath, PATHINFO_EXTENSION);
         $imgExtArr = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg'];
         if (in_array($extension, $imgExtArr)) {
