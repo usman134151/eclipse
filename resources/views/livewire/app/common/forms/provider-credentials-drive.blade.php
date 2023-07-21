@@ -86,13 +86,15 @@
 																				@if($credential['upload_file']!=null)
 																					<div>Associated Document:
 																							@if($credential['document_type']=='acknowledge_document')
-																								<a href="{{$credential['upload_file']}}" target="_black">
+																								<a href="{{$credential['upload_file']}}" target="_blank">
 																									{{basename($credential['upload_file'])}}</a>
 																							@else
 																								{{basename($credential['upload_file'])}}
 																							@endif
 																					 </div>
 																				@endif
+																				{{-- <div>Associated with Tag: Covid19</div> --}}
+
 																				<div>Type: {{ucwords(str_replace('_', ' ', strtolower($credential['document_type'])))}}</div>
 																				@if($credential['document_type']=='acknowledge_document')
 																					<button  wire:click="acceptCredential({{$credential['id']}})" class="btn btn-primary rounded mx-3 mt-3">Accept</button>
@@ -144,6 +146,8 @@
 																								@endif
 																						</div>
 																					@endif
+																					{{-- <div>Associated with Tag: Covid19</div> --}}
+
 																					<div>Type: {{ucwords(str_replace('_', ' ', strtolower($credential['document_type'])))}}</div>
 																						
 																					<button type="button" wire:click="$emit('openActiveCredentialModal', {{ $credential['provider_doc_id'] }})"  data-bs-target="#viewButtonModal" class="btn btn-primary btn-has-icon rounded m-3">View</button>
@@ -156,7 +160,7 @@
 																		</div>
 																	@endif
 															@endforeach
-															@if(count($credentials['active'])%2==1 || count($credentials['pending'])<4)
+															@if(count($credentials['active'])%2==1 || count($credentials['active'])<4)
 																	</div>	
 															@endif
 														@else
@@ -175,8 +179,46 @@
 													<div class="row mb-4">
 													  <div class="col-md-11">
 														@if(isset($credentials['expired'])&&count($credentials['expired']))
+																@foreach($credentials['expired'] as $index => $credential)
+																	@if($index%4==0)
+																		<div class="row flex-nowrap ">
+																	@endif
+																		
+																			<div class="col-md-3 m-2  border border-danger rounded ">
+																				<div class="mt-4 pb-2"> 
+																					<div>{{$credential['title']}}</div>
+																					@if($credential['upload_file']!=null)
+																						<div>Associated Document:
+																								@if($credential['document_type']=='acknowledge_document')
+																									<a href="{{$credential['upload_file']}}" target="_blank">
+																										{{basename($credential['upload_file'])}}</a>
+																								@else
+																									{{basename($credential['upload_file'])}}
+																								@endif
+																						</div>
+																					@endif
+																					{{-- <div>Associated with Tag: Covid19</div> --}}
 
-														<div class="row">
+																					<div>Type: {{ucwords(str_replace('_', ' ', strtolower($credential['document_type'])))}}</div>
+																					<div>Expiry: {{date_format(date_create($credential['expiry_date']), "m/d/Y")}}</div>
+																						
+																					@if($credential['document_type']=='acknowledge_document')
+																						<button  wire:click="renewAcceptance({{$credential['id']}})" class="btn btn-primary rounded mx-3 mt-3">Renew</button>
+																					@else	
+																						<button  wire:click="openCredential({{$credential['id']}}, '{{$credential['title']}}')" @click="pendingCredentials = true" class="btn btn-primary rounded mx-3 mt-3">Renew</button>
+																					@endif
+																					 
+																					
+																				</div>
+																			</div>
+																	@if($index%4==3)
+																		</div>
+																	@endif
+															@endforeach
+															@if(count($credentials['expired'])%2==1 || count($credentials['expired'])<4)
+																	</div>	
+															@endif
+														{{-- <div class="row">
 															<div class="col border border-danger rounded ">
 																<div class="mt-4">
 																	<div>Credential Title</div>
@@ -213,7 +255,7 @@
 																	<button class="btn btn-primary rounded m-3">Renew</button>
 																	</div>
 															  </div>
-														</div>
+														</div> --}}
 														@else
 															<p>No Expired Credentials</p>
 														@endif

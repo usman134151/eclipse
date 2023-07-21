@@ -32,8 +32,10 @@ class ProviderCredentialsDrive extends Component
                     foreach ($credential->documents as $doc) {
                         $u_doc = ProviderCredentials::where(['provider_id' => $this->provider_id, 'credential_document_id' => $doc->id])->first();
                         if ($u_doc) {
-
-                            $type = "active";
+                            if ($u_doc->expiry_status==1)
+                                $type="expired";
+                            else
+                                $type = "active";
 
                         } else {
                             $type = 'pending';
@@ -41,9 +43,11 @@ class ProviderCredentialsDrive extends Component
                         $this->credentials[$type][$doc->id] = $doc->toArray();
                         $this->credentials[$type][$doc->id]['title'] = $credential->title;
                         $this->credentials[$type][$doc->id]['cred_id'] = $credential->id;
-                        if($type=='active')
-                            $this->credentials[$type][$doc->id]['provider_doc_id'] = $u_doc->id;
+                        if($type!='pending'){
 
+                            $this->credentials[$type][$doc->id]['provider_doc_id'] = $u_doc->id;
+                            $this->credentials[$type][$doc->id]['expiry_date'] = $u_doc->expiry_date;
+                        }
 
                     }
                 }
@@ -52,6 +56,9 @@ class ProviderCredentialsDrive extends Component
                 $this->credentials['pending'] = array_values($this->credentials['pending']);    //fixing index values
             if (isset($this->credentials['active']))
                 $this->credentials['active'] = array_values($this->credentials['active']);    //fixing index values
+            if (isset($this->credentials['expired']))
+                $this->credentials['expired'] = array_values($this->credentials['expired']);    //fixing index values
+          
         }     
     }
 
@@ -59,6 +66,16 @@ class ProviderCredentialsDrive extends Component
         ProviderCredentials::create(['credential_document_id'=>$doc_id,'provider_id'=>$this->user->id,'acknowledged'=>true]);
         $this->showConfirmation('Credential has been accepted');
     }
+
+    public function renewAcceptance($user_doc_id,$doc_id)
+    {
+        // check cred_doc new expiry
+        //add expiry to current date
+        // save in provider_credentials
+        // ProviderCredentials::where(['credential_document_id' => $doc_id, 'provider_id' => $this->user->id, 'acknowledged' => true]);
+        $this->showConfirmation('Credential has been accepted');
+    }
+    
 
     public function openCredential($credentialId,$label){
         
