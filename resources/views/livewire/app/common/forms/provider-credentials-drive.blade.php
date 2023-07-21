@@ -82,7 +82,7 @@
 																	
 																		<div class="col-md-3 m-2  border border-warning rounded ">
 																			<div class="mt-4 pb-2"> 
-																				<div>{{$credential['title']}}</div>
+																				<div>{{$credential['title']}} {{$credential['id']}}</div>
 																				@if($credential['upload_file']!=null)
 																					<div>Associated Document:
 																							@if($credential['document_type']=='acknowledge_document')
@@ -203,7 +203,7 @@
 																					<div>Expiry: {{date_format(date_create($credential['expiry_date']), "m/d/Y")}}</div>
 																						
 																					@if($credential['document_type']=='acknowledge_document')
-																						<button  wire:click="renewAcceptance({{$credential['id']}})" class="btn btn-primary rounded mx-3 mt-3">Renew</button>
+																						<button  wire:click="renewAcceptance({{$credential['id']}})" class="btn btn-primary rounded mx-3 mt-3">Accept</button>
 																					@else	
 																						<button  wire:click="openCredential({{$credential['id']}}, '{{$credential['title']}}')" @click="pendingCredentials = true" class="btn btn-primary rounded mx-3 mt-3">Renew</button>
 																					@endif
@@ -218,44 +218,7 @@
 															@if(count($credentials['expired'])%2==1 || count($credentials['expired'])<4)
 																	</div>	
 															@endif
-														{{-- <div class="row">
-															<div class="col border border-danger rounded ">
-																<div class="mt-4">
-																	<div>Credential Title</div>
-																	<div>Associated with Tag: Covid19</div>
-																	<div>Type: Sign & Upload</div>
-																	<div>Expiry: 12/04/2023</div>
-																	<button class="btn btn-primary rounded mx-3 mt-3">Renew</button>
-																	</div>
-															  </div>
-															  <div class="col border border-danger rounded mx-3">
-																<div class="mt-4">
-																<div>Credential Title</div>
-																<div>Associated with Tag: Covid19</div>
-																<div>Type: Sign & Upload</div>
-																<div>Expiry: 12/04/2023</div>
-																<button class="btn btn-primary rounded mx-3 mt-3">Renew</button>
-																</div>
-															  </div>
-															  <div class="col border border-danger rounded">
-																<div class="mt-4">
-																	<div>Credential Title</div>
-																	<div>Associated with Tag: Covid19</div>
-																	<div>Type: Sign & Upload</div>
-																	<div>Expiry: 12/04/2023</div>
-																	<button class="btn btn-primary rounded mx-3 mt-3">Renew</button>
-																	</div>
-															  </div>
-															  <div class="col border border-danger rounded mx-3">
-																<div class="mt-4">
-																	<div>Credential Title</div>
-																	<div>Associated with Tag: Covid19</div>
-																	<div>Type: Sign & Upload</div>
-																	<div>Expiry: 12/04/2023</div>
-																	<button class="btn btn-primary rounded m-3">Renew</button>
-																	</div>
-															  </div>
-														</div> --}}
+													
 														@else
 															<p>No Expired Credentials</p>
 														@endif
