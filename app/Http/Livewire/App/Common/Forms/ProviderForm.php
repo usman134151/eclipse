@@ -21,11 +21,13 @@ use Livewire\WithFileUploads;
 class ProviderForm extends Component
 {
     use WithFileUploads;
-    public $user,$isAdd=true,$image=null, $teamNames=[],$label="Add", $allTags = [], $tags = [];
+    public $user, $userid,$isAdd=true,$image=null, $teamNames=[],$label="Add", $allTags = [], $tags = [];
     public $ethnicity;
     public $timezone;
     public $gender;
     public $languages;
+    public  $counter = 0, $credentialId, $credentialLabel = "", $credentialDetails = false;
+
     public $documentActive, $serviceActive, $scheduleActive, $profileActive;
     public $schedule;
 	public $component = 'profile';
@@ -135,7 +137,9 @@ class ProviderForm extends Component
    protected $listeners = [
     'updateVal' => 'updateVal',
     'editRecord' => 'edit', 'stepIncremented',
-        'updateSelectedTeams'
+        'updateSelectedTeams',
+        'OpenProviderCredential', //for upload panel
+        'openActiveCredentialModal'	//for document view modal
     ];
     public $providers;
     public $selectedTeams =[], $media_file=null;
@@ -176,6 +180,8 @@ class ProviderForm extends Component
             $this->edit($user);
 
         }
+        $this->userid = $user->id;
+
 
 	}
 
@@ -601,5 +607,26 @@ class ProviderForm extends Component
     {
         $this->emit('setData', $this->selectedTeams);
     }
+
+    public function OpenProviderCredential($credentialId, $credentialLabel)
+    {
+        if ($this->counter == 0) {
+            $this->credentialId = 0;
+            $this->credentialLabel = $credentialLabel;
+            $this->dispatchBrowserEvent('open-credential', ['credentialId' => $credentialId, 'credentialLabel' => $credentialLabel]);
+            $this->counter = 1;
+            $this->credentialDetails = true;
+        } else {
+            $this->credentialId = $credentialId;
+            $this->counter = 0;
+        }
+        $this->dispatchBrowserEvent('refreshSelects');
+
+    }
+    public function openActiveCredentialModal($user_doc_id)
+    {
+        $this->emit('openActiveCredential', $user_doc_id);
+    }
+	
 
 }

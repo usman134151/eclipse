@@ -1,4 +1,4 @@
-<div x-data="{addDocument: false , addNew: false,associateservice: false}">
+<div x-data="{addDocument: false , addNew: false,associateservice: false,pendingCredentials: false}">
     <div id="loader-section" class="loader-section" wire:loading>
         <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
             <div class="spinner-border" role="status" aria-live="polite">
@@ -834,7 +834,6 @@
                             </section>
                         </div>
                         {{-- END: Provider Service --}}
-                        @if($step==3)
 
                         {{-- BEGIN: Upload Document --}}
 
@@ -845,141 +844,11 @@
                             <section id="multiple-column-form">
                                 <div class="row">
                                     <div class="col-12">
-                                        <form class="form">
-                                            {{-- updated by shanila to add csrf--}}
-                                            @csrf
-                                            {{-- update ended by shanila --}}
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <h2>Attach Document</h2>
-                                                </div>
-                                            </div>
-                                            <div class="row between-section-segment-spacing">
-                                                <div class="col-lg-12 mb-4 mt-5">
-                                                    <div class="row">
-                                                        <div class="col-lg-5 mb-4 ">
-                                                            <h3 class="mb-0 text-primary">Driving License<span
-                                                                    class="text-danger">*</span></h3>
-                                                        </div>
-                                                        <div class="col-lg-7 d-lg-flex justify-content-end gap-3 mb-4">
-                                                            <a href="#" class="btn btn-primary btn-has-icon rounded">
-                                                                {{-- Updated by Shanila to Add
-                                                                svg icon--}}
-                                                                <svg aria-label="Add Manually" width="24" height="19"
-                                                                    viewBox="0 0 24 19" fill="none">
-                                                                    <use xlink:href="/css/common-icons.svg#check-add">
-                                                                    </use>
-                                                                </svg>
-                                                                {{-- End of update by Shanila
-                                                                --}}
-                                                                Add Manually
-                                                            </a>
-                                                            <a href="#" class="btn btn-primary rounded">
-                                                                Request from User
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-12 mb-4">
-                                                    <div class="row">
-                                                        <div class="col-lg-4">
-                                                            <label class="form-label" for="ApplyTo">
-                                                                Document Title
-                                                            </label>
-                                                            <div>Driving License</div>
-                                                        </div>
-                                                        <div class="col-lg-4 col-12">
-                                                            <label class="form-label" for="document-type">
-                                                                Document Type
-                                                            </label>
-                                                            <div>Upload only</div>
-                                                        </div>
-                                                        <div class="col-lg-4 col-12">
-                                                            <label
-                                                                class="form-label-sm mb-2 d-flex align-items-center gap-2">
-                                                                {{-- Updated by Shanila to Add
-                                                                svg icon--}}
-                                                                <svg aria-label="File Name.pdf" width="20" height="27"
-                                                                    viewBox="0 0 20 27" fill="none">
-                                                                    <use xlink:href="/css/common-icons.svg#pdf-file">
-                                                                    </use>
-                                                                </svg>
-                                                                {{-- End of update by Shanila
-                                                                --}}
+                                            @if($step==3)
 
-                                                                <span class="fw-semibold text-sm">File Name.pdf</span>
-                                                            </label>
-                                                            <div>
-                                                                <a href="#"
-                                                                    class="btn btn-primary btn-sm rounded col-lg-4">Download</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-12 mb-4">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox"
-                                                            value="no-expiration" id="no-expiration-column">
-                                                        <label class="form-check-label" for="no-expiration-column">
-                                                            No Expiration
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 pe-lg-5 mb-4">
-                                                    <label class="form-label" for="end-date-column">Expiration
-                                                        Date</label>
-                                                    <div class="d-flex align-items-center w-100">
-                                                        <div class="position-relative flex-grow-1">
-                                                            <input type="text" class="form-control js-single-date"
-                                                                placeholder="Select Expiration Date" aria-label="Expiration Date"
-                                                                aria-describedby="" id="end-date-column">
-                                                            {{-- Updated by Shanila to Add svg icon--}}
-                                                            <svg aria-label="Date" class="icon-date" width="20"
-                                                                height="21" viewBox="0 0 20 21">
-                                                                <use xlink:href="/css/common-icons.svg#datefield-icon">
-                                                                </use>
-                                                            </svg>
-                                                            {{-- End of update by Shanila --}}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 ps-lg-5 mb-4">
-                                                    <label for="formFile" class="form-label">
-                                                        Upload File
-                                                    </label>
-                                                    <input class="form-control mb-1" type="file" id="formFile">
-                                                    <div class="text-primary text-sm">License.PDf</div>
-                                                </div>
-                                                <div class="col-lg-6 pe-lg-5 mb-4">
-                                                    <label class="form-label" for="notes">
-                                                        Note
-                                                    </label>
-                                                    <textarea class="form-control" rows="4" placeholder=""
-                                                        name="notesColumn" id="notes"></textarea>
-                                                </div>
-                                                <div class="col-lg-6 ps-lg-5 mb-4">
-                                                    <label class="form-label" for="tags">Tags</label>
-                                                    <select data-placeholder="" multiple
-                                                        class="form-select  select2 form-select select2-hidden-accessible" tabindex=""  aria-label="Tags">
-                                                        <option value=""></option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-12 gap-2">
-                                                    <div class="d-flex justify-content-center align-items-center">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                value="send-invitation-email-to-provider"
-                                                                id="send-invitation-email-to-provider">
-                                                            <label class="form-check-label"
-                                                                for="send-invitation-email-to-provider">
-                                                                Send Invitation Email to Provider
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+        									    @livewire('app.common.forms.provider-credentials-drive', ['showForm'=>true,'provider_id' => $user->id])
+                                             @endif
+
                                             <div class="col-12 form-actions">
                                                 <button type="button" class="btn btn-outline-dark rounded"
                                                 x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('provider-service')"
@@ -1006,12 +875,10 @@
                                                     </button>
                                                 @endif
                                             </div>
-                                        </form>
                                     </div>
                                 </div>
                             </section>
                         </div>
-                        @endif
                         {{-- END: Upload Document --}}
 
                         {{-- BEGIN: Provider Schedule --}}
@@ -1039,10 +906,13 @@
 
                         {{-- END: Provider Schedule --}}
                     </div>
+
                 </div>
             </div>
         </div>
+    
     </div>
+    
     <script>
         function updateVal(attrName,val){
           
@@ -1051,5 +921,9 @@
         }
 
     </script>
+    
         @include('panels.services.associated-service') 
+			 @include('panels.common.pending-credentials')
+
+
 </div>
