@@ -51,11 +51,14 @@ class PendingCredentials extends Component
             $this->field['expiry_date'] = Carbon::parse($this->field['expiry_date']);
         // else
         //     $this->field['expiry_date'] = Carbon::parse($this->document['expiry_date']);    //set expiration date from document details
-
+        $this->field['expiry_status'] = false;
         $this->field['provider_id']=$this->user_id;
         $this->field['credential_document_id'] = $this->document_id;
-
-        ProviderCredentials::create($this->field);
+        $u_doc = ProviderCredentials::where(['credential_document_id' => $this->document_id, 'provider_id' => $this->user_id])->first();
+        if($u_doc)
+            ProviderCredentials::where(['credential_document_id' => $this->document_id, 'provider_id' => $this->user_id])->update($this->field);
+        else
+            ProviderCredentials::create($this->field);
         $this->dispatchBrowserEvent('close-modal');
         $this->emit('showConfirmation', "File Uploaded to drive successfully");
     }
