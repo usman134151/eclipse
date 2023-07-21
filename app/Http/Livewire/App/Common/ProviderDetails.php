@@ -11,7 +11,9 @@ class ProviderDetails extends Component
 	public  $counter = 0, $credentialId, $credentialLabel="",$credentialDetails = false;
 
 	protected $listeners = [
-		'showDetails',  'openActiveCredentialModal'
+		'showDetails',
+		 'OpenProviderCredential',//for upload panel
+		 'openActiveCredentialModal'	//for document view modal
 	];
 
 	public function OpenProviderCredential($credentialId,$credentialLabel){
