@@ -17,11 +17,14 @@ class PendingCredentials extends Component
 
     public function render()
     {
+        $this->dispatchBrowserEvent('refreshSelects');
+
         return view('livewire.app.common.panels.pending-credentials');
     }
 
     public function mount()
     {
+
        $this->document = CredentialDocument::where('id',$this->document_id)->first();
         
     }
