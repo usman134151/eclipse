@@ -107,7 +107,7 @@
 																	</div>
 																@endif
 															@endforeach
-															@if(count($credentials['pending'])%2==1 || count($credentials['pending'])<4)
+															@if(count($credentials['pending'])%4==1 || count($credentials['pending'])%4==2)
 																
 																</div>	@endif
 														@else
@@ -160,7 +160,7 @@
 																		</div>
 																	@endif
 															@endforeach
-															@if(count($credentials['active'])%2==1 || count($credentials['active'])<4)
+															@if(count($credentials['active'])%4==1 || count($credentials['active'])%4==2)
 																	</div>	
 															@endif
 														@else
@@ -215,7 +215,7 @@
 																		</div>
 																	@endif
 															@endforeach
-															@if(count($credentials['expired'])%2==1 || count($credentials['expired'])<4)
+															@if(count($credentials['expired'])%4==1 || count($credentials['expired'])%4==2)
 																	</div>	
 															@endif
 													

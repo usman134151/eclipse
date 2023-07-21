@@ -47,11 +47,13 @@ class PendingCredentials extends Component
             $fileService = new UploadFileService();
             $this->field['file_path'] = $fileService->saveFile('drive/provider-credentials/', $this->upload_file, "credential_".$this->document_id.'_'.time());
         }
-        if ($this->document['expiration_type'=="user_set_expiry"]) 
+        if ($this->document['expiration_type']=="user_set_expiry"&&isset($this->field['expiry_date'])) 
             $this->field['expiry_date'] = Carbon::parse($this->field['expiry_date']); //convert before saving
-        else
+        elseif($this->document['expiry']>0)
             $this->field['expiry_date'] = Carbon::now()->addMonths($this->document['expiry']);    //set expiration date from document details
-        
+        else
+            $this->field['expiry_date'] = null;
+
         $this->field['expiry_status'] = false;
         $this->field['provider_id']=$this->user_id;
         $this->field['credential_document_id'] = $this->document_id;

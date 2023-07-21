@@ -3,8 +3,10 @@
 namespace App\Http\Livewire\App\Common\Forms;
 
 use App\Models\Tenant\Credential;
+use App\Models\Tenant\CredentialDocument;
 use App\Models\Tenant\ProviderCredentials;
 use App\Models\Tenant\User;
+use Carbon\Carbon;
 use Livewire\Component;
 
 class ProviderCredentialsDrive extends Component
@@ -67,12 +69,18 @@ class ProviderCredentialsDrive extends Component
         $this->showConfirmation('Credential has been accepted');
     }
 
-    public function renewAcceptance($user_doc_id,$doc_id)
+    public function renewAcceptance($doc_id)
     {
-        // check cred_doc new expiry
-        //add expiry to current date
-        // save in provider_credentials
-        // ProviderCredentials::where(['credential_document_id' => $doc_id, 'provider_id' => $this->user->id, 'acknowledged' => true]);
+        $cred_doc = CredentialDocument::where('id',$doc_id)->first();
+        if($cred_doc){
+            if($cred_doc->expiry)
+                $expiry= Carbon::now()->addMonths($cred_doc['expiry']);
+            else
+                $expiry =null;
+            ProviderCredentials::updateOrCreate(['credential_document_id' => $doc_id, 'provider_id' => $this->user->id])
+            ->update(['acknowledged'=>true,'expiry_date'=> $expiry,'expiry_status'=>0]);
+
+        }
         $this->showConfirmation('Credential has been accepted');
     }
     
