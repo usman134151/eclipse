@@ -139,8 +139,12 @@
 			</div>
 		</div>
 	</section>
+
 	{{-- Provider List - End --}}
 	@endif
+			 @include('modals.common.view-button')
+			 
+	
 </div>
 	@push('scripts')
 
@@ -159,6 +163,17 @@
 				var clickEvent = new Event("click");
 				elem.dispatchEvent(clickEvent);
             });
+Livewire.on('openActiveCredentialModal', (type) => {
+            // Handle the event here
+           
+            // Open the modal
+            $('#viewButtonModal').modal('show');
+        });
+        Livewire.on('documentModalDismissed', () => {
+            $('#viewButtonModal').modal('hide');
+               
+            });
+			
 
 </script>
 @endpush

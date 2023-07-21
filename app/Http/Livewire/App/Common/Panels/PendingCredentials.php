@@ -17,11 +17,14 @@ class PendingCredentials extends Component
 
     public function render()
     {
+        $this->dispatchBrowserEvent('refreshSelects');
+
         return view('livewire.app.common.panels.pending-credentials');
     }
 
     public function mount()
     {
+
        $this->document = CredentialDocument::where('id',$this->document_id)->first();
         
     }
@@ -47,15 +50,21 @@ class PendingCredentials extends Component
             $fileService = new UploadFileService();
             $this->field['file_path'] = $fileService->saveFile('drive/provider-credentials/', $this->upload_file, "credential_".$this->document_id.'_'.time());
         }
-        if (isset($this->field['expiry_date'])) //convert before saving
-            $this->field['expiry_date'] = Carbon::parse($this->field['expiry_date']);
-        // else
-        //     $this->field['expiry_date'] = Carbon::parse($this->document['expiry_date']);    //set expiration date from document details
+        if ($this->document['expiration_type']=="user_set_expiry"&&isset($this->field['expiry_date'])) 
+            $this->field['expiry_date'] = Carbon::parse($this->field['expiry_date']); //convert before saving
+        elseif($this->document['expiry']>0)
+            $this->field['expiry_date'] = Carbon::now()->addMonths($this->document['expiry']);    //set expiration date from document details
+        else
+            $this->field['expiry_date'] = null;
 
+        $this->field['expiry_status'] = false;
         $this->field['provider_id']=$this->user_id;
         $this->field['credential_document_id'] = $this->document_id;
-
-        ProviderCredentials::create($this->field);
+        $u_doc = ProviderCredentials::where(['credential_document_id' => $this->document_id, 'provider_id' => $this->user_id])->first();
+        if($u_doc)
+            ProviderCredentials::where(['credential_document_id' => $this->document_id, 'provider_id' => $this->user_id])->update($this->field);
+        else
+            ProviderCredentials::create($this->field);
         $this->dispatchBrowserEvent('close-modal');
         $this->emit('showConfirmation', "File Uploaded to drive successfully");
     }

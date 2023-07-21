@@ -3,8 +3,10 @@
 namespace App\Http\Livewire\App\Common\Forms;
 
 use App\Models\Tenant\Credential;
+use App\Models\Tenant\CredentialDocument;
 use App\Models\Tenant\ProviderCredentials;
 use App\Models\Tenant\User;
+use Carbon\Carbon;
 use Livewire\Component;
 
 class ProviderCredentialsDrive extends Component
@@ -32,8 +34,10 @@ class ProviderCredentialsDrive extends Component
                     foreach ($credential->documents as $doc) {
                         $u_doc = ProviderCredentials::where(['provider_id' => $this->provider_id, 'credential_document_id' => $doc->id])->first();
                         if ($u_doc) {
-
-                            $type = "active";
+                            if ($u_doc->expiry_status==1)
+                                $type="expired";
+                            else
+                                $type = "active";
 
                         } else {
                             $type = 'pending';
@@ -41,9 +45,11 @@ class ProviderCredentialsDrive extends Component
                         $this->credentials[$type][$doc->id] = $doc->toArray();
                         $this->credentials[$type][$doc->id]['title'] = $credential->title;
                         $this->credentials[$type][$doc->id]['cred_id'] = $credential->id;
-                        if($type=='active')
-                            $this->credentials[$type][$doc->id]['provider_doc_id'] = $u_doc->id;
+                        if($type!='pending'){
 
+                            $this->credentials[$type][$doc->id]['provider_doc_id'] = $u_doc->id;
+                            $this->credentials[$type][$doc->id]['expiry_date'] = $u_doc->expiry_date;
+                        }
 
                     }
                 }
@@ -52,6 +58,9 @@ class ProviderCredentialsDrive extends Component
                 $this->credentials['pending'] = array_values($this->credentials['pending']);    //fixing index values
             if (isset($this->credentials['active']))
                 $this->credentials['active'] = array_values($this->credentials['active']);    //fixing index values
+            if (isset($this->credentials['expired']))
+                $this->credentials['expired'] = array_values($this->credentials['expired']);    //fixing index values
+          
         }     
     }
 
@@ -59,6 +68,22 @@ class ProviderCredentialsDrive extends Component
         ProviderCredentials::create(['credential_document_id'=>$doc_id,'provider_id'=>$this->user->id,'acknowledged'=>true]);
         $this->showConfirmation('Credential has been accepted');
     }
+
+    public function renewAcceptance($doc_id)
+    {
+        $cred_doc = CredentialDocument::where('id',$doc_id)->first();
+        if($cred_doc){
+            if($cred_doc->expiry)
+                $expiry= Carbon::now()->addMonths($cred_doc['expiry']);
+            else
+                $expiry =null;
+            ProviderCredentials::updateOrCreate(['credential_document_id' => $doc_id, 'provider_id' => $this->user->id])
+            ->update(['acknowledged'=>true,'expiry_date'=> $expiry,'expiry_status'=>0]);
+
+        }
+        $this->showConfirmation('Credential has been accepted');
+    }
+    
 
     public function openCredential($credentialId,$label){
         
@@ -76,6 +101,8 @@ class ProviderCredentialsDrive extends Component
 
     public function showConfirmation($message = '')
     {
+        $this->setData();
+
         if ($message) {
             // Emit an event to display a success message using the SweetAlert package
             $this->dispatchBrowserEvent('swal:modal', [

@@ -2664,7 +2664,6 @@
 			 @include('panels.common.default-availability')
 			 @include('panels.common.specific-date-availibility')
 			 @include('panels.common.pending-credentials')
-			 @include('modals.common.view-button')
 			 @include('modals.common.add-address')
 			 @include('modals.mark-as-paid')
 			 @include('modals.common.revert-back')
@@ -2676,23 +2675,6 @@
 		   <!-- Basic Floating Label Form section end -->
 		 </div>
 		 
-		 <script>
-Livewire.on('', (type) => {
-            // Handle the event here
-           
-            // Open the modal
-            $('#viewButtonModal').modal('show');
-        });
-        Livewire.on('modalDismissed', () => {
-            $('#viewButtonModal').modal('hide');
-               
-            });
-			document.addEventListener('updateModelVars', function (event) {
-				const elemId = event.detail.elem;
-				var elem = document.getElementById(elemId);
-				var clickEvent = new Event("click");
-				elem.dispatchEvent(clickEvent);
-            });
-			</script>
+	
 	   </div>
 	 <!-- End: Content-->
