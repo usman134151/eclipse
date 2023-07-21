@@ -1,5 +1,6 @@
 <div>
-                    <div class="col-md-12 d-flex col-12 gap-4 mb-4">
+{{--                   					
+									<div class="col-md-12 d-flex col-12 gap-4 mb-4">
 										<div class="col-md-3 col-12">
 											<div>
 												<label class="form-label" for="keyword-search">
@@ -52,7 +53,7 @@
 												</select>
 											</div>
 										</div>
-									</div>
+									</div> --}}
 
 									<div class="row">
 										<ul class="nav nav-tabs" id="myTab" role="tablist">

@@ -834,7 +834,6 @@
                             </section>
                         </div>
                         {{-- END: Provider Service --}}
-                        @if($step==3)
 
                         {{-- BEGIN: Upload Document --}}
 
@@ -845,7 +844,10 @@
                             <section id="multiple-column-form">
                                 <div class="row">
                                     <div class="col-12">
-        									@livewire('app.common.forms.provider-credentials-drive', ['showForm'=>true,'provider_id' => $user->id])
+                                            @if($step==3)
+
+        									    @livewire('app.common.forms.provider-credentials-drive', ['showForm'=>true,'provider_id' => $user->id])
+                                             @endif
 
                                             <div class="col-12 form-actions">
                                                 <button type="button" class="btn btn-outline-dark rounded"
@@ -877,7 +879,6 @@
                                 </div>
                             </section>
                         </div>
-                        @endif
                         {{-- END: Upload Document --}}
 
                         {{-- BEGIN: Provider Schedule --}}
