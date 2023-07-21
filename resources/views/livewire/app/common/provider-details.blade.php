@@ -2518,7 +2518,7 @@
 											<div class="col-lg-6 mb-4">
 												<div class="d-lg-flex justify-content-between">
 													<label class="form-label" for="reimburseProviders">
-														Rate Per Mile to Reimburse Providers
+													Rate per unit to reimburse provider
 													</label>
 													<a href="#">
 														KM  <svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
