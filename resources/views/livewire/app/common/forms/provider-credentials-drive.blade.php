@@ -146,8 +146,8 @@
 																					@endif
 																					<div>Type: {{ucwords(str_replace('_', ' ', strtolower($credential['document_type'])))}}</div>
 																						
-																					<button type="button"  data-bs-toggle="modal" data-bs-target="#viewButtonModal" class="btn btn-primary btn-has-icon rounded m-3">View</button>
-																					 {{-- wire:click="$emit('openActiveCredentialModal', {{ $credential['provider_doc_id'] }})" --}}
+																					<button type="button" wire:click="$emit('openActiveCredentialModal', {{ $credential['provider_doc_id'] }})"  data-bs-target="#viewButtonModal" class="btn btn-primary btn-has-icon rounded m-3">View</button>
+																			
 																					 
 																					
 																				</div>
