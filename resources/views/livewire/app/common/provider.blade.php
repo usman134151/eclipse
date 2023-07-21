@@ -143,6 +143,7 @@
 	{{-- Provider List - End --}}
 	@endif
 			 @include('modals.common.view-button')
+			 
 	
 </div>
 	@push('scripts')

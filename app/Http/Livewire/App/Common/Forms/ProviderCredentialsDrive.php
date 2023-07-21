@@ -101,6 +101,8 @@ class ProviderCredentialsDrive extends Component
 
     public function showConfirmation($message = '')
     {
+        $this->setData();
+
         if ($message) {
             // Emit an event to display a success message using the SweetAlert package
             $this->dispatchBrowserEvent('swal:modal', [
