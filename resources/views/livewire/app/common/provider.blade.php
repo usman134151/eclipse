@@ -82,14 +82,14 @@
 												{{-- End of update by Shanila --}}
 												<span>Import Providers</span>
 											</button>
-											<button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2" wire:click="showForm">
-											{{-- Updated by Shanila to Add svg icon--}}
-											<svg aria-label="add provider" width="20" height="20" viewBox="0 0 20 20">
-												<use xlink:href="/css/common-icons.svg#plus"></use>
-											</svg>
-											{{-- End of update by Shanila --}}
-											<span>Add Provider</span>
-										</button>
+												<a href="{{route('tenant.create-provider')}}" type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2" >
+												{{-- Updated by Shanila to Add svg icon--}}
+												<svg aria-label="add provider" width="20" height="20" viewBox="0 0 20 20">
+													<use xlink:href="/css/common-icons.svg#plus"></use>
+												</svg>
+												{{-- End of update by Shanila --}}
+												<span>Add Provider</span>
+											</a>
 										{{-- End of update by Shanila --}}
 									</div>
 								</div>

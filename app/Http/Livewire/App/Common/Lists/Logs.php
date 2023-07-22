@@ -52,7 +52,7 @@ final class Logs extends PowerGridComponent
     */
     public function datasource(): Builder
     {
-        return LogsModel::query()->where(['action_to'=>$this->record_id, 'item_type'=>$this->record_type])->orderBy('created_at');
+        return LogsModel::query()->where(['action_to'=>$this->record_id, 'item_type'=>$this->record_type])->orderBy('created_at','desc');
     }
 
     /*

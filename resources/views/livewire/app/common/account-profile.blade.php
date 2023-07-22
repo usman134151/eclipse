@@ -177,9 +177,18 @@
                             </div>
                             <div class="col-md-6 col-12">
                                 <div class="mb-4">
-                                    <label class="form-label" for="work_address_line_1">
-                                        Work Address Line 1
-                                    </label>
+                                    
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <label class="form-label" for="address-line-1">
+                                            Work Address Line 1
+                                        </label>
+                                        
+                                        <a class="fw-bold {{trim($userdetail['address_line1'])==null ? 'hidden' : '' }}"  target="_blank" href="https://www.google.com/maps/search/?api=1&query={{ str_replace(" ","+",$userdetail['address_line1'].' '.$userdetail['address_line2'].' '.$userdetail['city'].' '.$userdetail['state'].' '.$userdetail['country']) }}" >
+                                            <small>
+                                                Open in Maps
+                                            </small>
+                                        </a>
+                                    </div>
                                     <input type="text" id="billing_address_form" class="form-control"
                                         name="work_address_line_1" placeholder="Enter Address 1" required
                                         aria-required="true" wire:model.defer="userdetail.address_line1"/>

@@ -31,8 +31,8 @@ class ProviderForm extends Component
     public $documentActive, $serviceActive, $scheduleActive, $profileActive;
     public $schedule;
 	public $component = 'profile';
-    public $userdetail=['gender_id','country','timezone_id','ethnicity_id','title','address_line1','address_line2','zip','permission','city','payment_settings',
-    'state','phone','education','note','user_introduction','user_experience','certificate','profile_pic'=>null, 'user_introduction_file' => null,'provider_type'=>null];
+    public $userdetail=['gender_id','country'=>"",'timezone_id','ethnicity_id','title','address_line1'=>"",'address_line2'=>"",'zip','permission','city'=>"",'payment_settings',
+    'state'=>"",'phone','education','note','user_introduction','user_experience','certificate','profile_pic'=>null, 'user_introduction_file' => null,'provider_type'=>null];
     
     public $setupValues = [
         'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'userdetail.language_id', '','language_id',0]],
@@ -142,7 +142,7 @@ class ProviderForm extends Component
         'openActiveCredentialModal'	//for document view modal
     ];
     public $providers;
-    public $selectedTeams =[], $media_file=null;
+    public $selectedTeams =[], $media_file=null, $provider_details=['set_rate'=>'no', 'staff_provider_rate_type'=>'per_hour_rate'];
 	public function render()
 	{
 
@@ -270,10 +270,19 @@ class ProviderForm extends Component
 		];
 	}
     public function ProviderService($redirect=1){
-        $rules=['userdetail.provider_type'=>'nullable'];
+        $rules=['userdetail.provider_type'=>'nullable',];
         $this->validate($rules);
 
-        UserDetail::where('user_id',$this->user->id)->update(['provider_type'=>$this->userdetail['provider_type']]);
+        if($this->userdetail['provider_type']!="staff_provider")    //setting values on BL
+            $this->provider_details['set_rate'] = 'no';
+
+        if($this->provider_details['set_rate']=='no'){
+            $this->provider_details['staff_provider_rate']=null;
+            $this->provider_details['staff_provider_rate_type']=null;
+
+        }
+
+        UserDetail::where('user_id',$this->user->id)->update(['provider_type'=>$this->userdetail['provider_type'],'provider_details'=> json_encode($this->provider_details)]);
 
         if ($redirect) {
             $this->showList("Provider has been saved successfully");
@@ -356,6 +365,8 @@ class ProviderForm extends Component
         $user['userdetail']['certification'] = explode(", ", $user['userdetail']['certification'] );
         $user['userdetail']['favored_users'] = explode(", ", $user['userdetail']['favored_users']);
         $user['userdetail']['unfavored_users'] = explode(", ", $user['userdetail']['unfavored_users']);
+        $this->provider_details = json_decode($user['userdetail']['provider_details'],true);
+
 
         if ($user['userdetail']['tags'] != null)
             $this->tags = json_decode($user['userdetail']['tags'], true);
@@ -442,11 +453,19 @@ class ProviderForm extends Component
             $this->tags = explode(',', $val);
             $this->allTags = array_unique(array_merge($this->allTags, $this->tags));
             $this->allTags = array_values($this->allTags);
+        }elseif($attrName=='set_rate'){
+            $this->provider_details['set_rate']=$val;
+        } elseif ($attrName == 'staff_provider_rate_type') {
+            $this->provider_details['staff_provider_rate_type'] = $val;
+        } elseif ($attrName == 'travel_rate_unit') {
+            $this->provider_details['travel_rate_unit'] = $val;
         }
        
         else
          $this->userdetail[$attrName] = $val;
 
+
+        $this->dispatchBrowserEvent('refreshSelects');
 
      }
      public function addscheduledInPerson(){
