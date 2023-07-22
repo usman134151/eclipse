@@ -14,7 +14,7 @@ class ProviderCredentialsDrive extends Component
 {
     public $showForm, $provider_id =0,$credentials=[] ,$user=null;
 
-    public $keywords, $documentType=''; 
+    public $keywords, $documentType='',$tab="pending"; 
     protected $listeners = ['showList' => 'resetForm', 'showConfirmation','updateVal'];
 
     public function render()
@@ -44,6 +44,10 @@ class ProviderCredentialsDrive extends Component
             $query->join('services_credentials', 'provider_accommodation_services.service_id', "services_credentials.service_id");
             $query->join('credentials', 'credentials.id', "services_credentials.credential_id");
             $query->join('credential_documents', 'credentials.id', "credential_documents.credential_id");
+            $query->leftJoin('provider_credentials', function($join){
+                    $join->on('provider_credentials.credential_document_id','credential_documents.id');
+                    $join->where('provider_credentials.provider_id',$this->provider_id);
+                });
             $query->select([
                 'credentials.id as cred_id', 'credentials.title',
                 'credentials.attach_accommodation_services',
@@ -51,7 +55,9 @@ class ProviderCredentialsDrive extends Component
                 'credential_documents.upload_file',
                 'credential_documents.document_type',
                 'credential_documents.expiration_type',
-                'credential_documents.expiry'
+                'credential_documents.expiry',
+                'provider_credentials.id as provider_doc_id','provider_credentials.expiry_date','provider_credentials.expiry_status',
+
             ]);
             $query->distinct('credential_documents.id');
 
@@ -71,10 +77,11 @@ class ProviderCredentialsDrive extends Component
 
             $documents = $query->get()->toArray();
 
+            // dd($documents);
             foreach ($documents as $doc) {
-                $u_doc = ProviderCredentials::where(['provider_id' => $this->provider_id, 'credential_document_id' => $doc['id']])->first();
-                if ($u_doc) {
-                    if ($u_doc->expiry_status == 1)
+                // $u_doc = ProviderCredentials::where(['provider_id' => $this->provider_id, 'credential_document_id' => $doc['id']])->first();
+                if ($doc['provider_doc_id']) {
+                    if ($doc['expiry_status'] == 1)
                         $type = "expired";
                     else
                         $type = "active";
@@ -82,11 +89,11 @@ class ProviderCredentialsDrive extends Component
                     $type = 'pending';
                 }
                 $this->credentials[$type][$doc['id']] = $doc;
-                if ($type != 'pending') {
+                // if ($type != 'pending') {
 
-                    $this->credentials[$type][$doc['id']]['provider_doc_id'] = $u_doc->id;
-                    $this->credentials[$type][$doc['id']]['expiry_date'] = $u_doc->expiry_date;
-                }
+                //     $this->credentials[$type][$doc['id']]['provider_doc_id'] = $u_doc->id;
+                //     $this->credentials[$type][$doc['id']]['expiry_date'] = $u_doc->expiry_date;
+                // }
             }
 
             if(isset($this->credentials['pending']))
