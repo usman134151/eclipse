@@ -76,7 +76,7 @@ class AssociatedService extends Component
 
     public function render()
     {
-
+       
         return view('livewire.app.common.panels.services.associated-service');
     }
 
@@ -165,6 +165,7 @@ class AssociatedService extends Component
        
 		
         $this->loadValues($this->service);
+        $this->loadSpecializations();
         $this->specializations=Specialization::all()->where('status',1);
         $serviceTypeLabels=SetupValue::where('setup_id',5)->pluck('setup_value_label')->toArray();
         for($i=0,$j=1;$i<4;$i++,$j++){
@@ -273,60 +274,7 @@ class AssociatedService extends Component
                     $index++;
                 }
               
-                if(!is_null($this->specializationRate) && count($this->specializationRate)){
-                    $this->showSpecialization=true;
-                    $this->serviceSpecialization=[];
-                  
-                    foreach($this->specializationRate as $specialization){
-                        //find common values 
-                        $price=json_decode($specialization['specialization_price'],true);
-                        $price_v=json_decode($specialization['specialization_price_v'],true);
-                        $price_p=json_decode($specialization['specialization_price_p'],true);
-                        $price_t=json_decode($specialization['specialization_price_t'],true);
-                        $commonValues=[];
-                        if(!is_null($price) && is_array($price)){
-                           
-                            $price=$price[0];
-                           foreach($price as $key=>$value){
-                            $commonValues[$key]=$value;
-                           }
-                           // $commonValues=['price_type'=>$price["price_type"],"hide_from_customers"=>$price["hide_from_customers"],"hide_from_providers"=>$price["hide_from_providers"],"multiply_provider"=>$price['multiply_provider'],"multiply_service_duration"=>$price['multiply_service_duration'],'disable'=>$price['disable']];
-                            $price=$price['price'];
-                        }
-                        if(!is_null($price_v)){
-                            $price_v=$price_v[0];
-                            foreach($price_v as $key=>$value){
-                                $commonValues[$key]=$value;
-                               }
-                            $price_v=$price_v['price'];
-                        }
-                        if(!is_null($price_t)){
-                            $price_t=$price_t[0];
-                            foreach($price_t as $key=>$value){
-                                $commonValues[$key]=$value;
-                               }
-                            $price_t=$price_t['price'];
-                        }
-                        if(!is_null($price_p)){
-                            $price_p=$price_p[0];
-                            foreach($price_p as $key=>$value){
-                                $commonValues[$key]=$value;
-                               }
-                            $price_p=$price_p['price'];
-                        }
-                        $this->serviceSpecialization[]=[
-                            'specialization_id'=>$specialization['specialization_id'],
-                            'common'=>$commonValues,
-                            "1"=>['price'=>$price],
-                            "2"=>['price'=>$price_v],
-                            "4"=>['price'=>$price_p],
-                            "5"=>['price'=>$price_t]
-                            
-                        ];
-                    }
-                  
-                  
-                }
+
               
                 
         }
@@ -419,12 +367,22 @@ class AssociatedService extends Component
                 
             } else {
                 $this->standardRate = new StandardRate();
-
+                if($this->modelType=='provider'){
+                
+                    foreach($this->serviceTypes as $type=>$parameters){
+                        $this->service->{'hours_price' . $parameters['postfix']} = '';
+                        $this->service->{'after_hours_price' . $parameters['postfix']} = '';
+                        $this->service->{'day_rate_price' . $parameters['postfix']} = '';
+                        $this->service->{'fixed_rates' . $parameters['postfix']} = '';
+                    }
                 
             }
-          
+            
+               
+               }
            
             $this->loadValues($this->service);
+            $this->loadSpecializations();
           
           
            
@@ -604,6 +562,71 @@ class AssociatedService extends Component
     
             }
         }
-        
+
+        public function removeSpecialization($index){
+            unset($this->serviceSpecialization[$index]);
+            $this->serviceSpecialization = array_values($this->serviceSpecialization);
+            $this->loadValues($this->service);
+           
+           
+        }
+        public function loadSpecializations(){
+            if(!is_null($this->specializationRate) && count($this->specializationRate)){
+                $this->showSpecialization=true;
+                $this->serviceSpecialization=[];
+              
+                foreach($this->specializationRate as $specialization){
+                    //find common values 
+                    $price=json_decode($specialization['specialization_price'],true);
+                    $price_v=json_decode($specialization['specialization_price_v'],true);
+                    $price_p=json_decode($specialization['specialization_price_p'],true);
+                    $price_t=json_decode($specialization['specialization_price_t'],true);
+                    $commonValues=[];
+                    if(!is_null($price) && is_array($price)){
+                       
+                        $price=$price[0];
+                       foreach($price as $key=>$value){
+                        $commonValues[$key]=$value;
+                       }
+                       // $commonValues=['price_type'=>$price["price_type"],"hide_from_customers"=>$price["hide_from_customers"],"hide_from_providers"=>$price["hide_from_providers"],"multiply_provider"=>$price['multiply_provider'],"multiply_service_duration"=>$price['multiply_service_duration'],'disable'=>$price['disable']];
+                        $price=$price['price'];
+                    }
+                    if(!is_null($price_v)){
+                        $price_v=$price_v[0];
+                        foreach($price_v as $key=>$value){
+                            $commonValues[$key]=$value;
+                           }
+                        $price_v=$price_v['price'];
+                    }
+                    if(!is_null($price_t)){
+                        $price_t=$price_t[0];
+                        foreach($price_t as $key=>$value){
+                            $commonValues[$key]=$value;
+                           }
+                        $price_t=$price_t['price'];
+                    }
+                    if(!is_null($price_p)){
+                        $price_p=$price_p[0];
+                        foreach($price_p as $key=>$value){
+                            $commonValues[$key]=$value;
+                           }
+                        $price_p=$price_p['price'];
+                    }
+                    $this->serviceSpecialization[]=[
+                        'specialization_id'=>$specialization['specialization_id'],
+                        'common'=>$commonValues,
+                        "1"=>['price'=>$price],
+                        "2"=>['price'=>$price_v],
+                        "4"=>['price'=>$price_p],
+                        "5"=>['price'=>$price_t]
+                        
+                    ];
+                }
+
+
+              
+              
+            }
+        }
 
 }

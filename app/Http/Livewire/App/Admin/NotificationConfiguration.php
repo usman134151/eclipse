@@ -4,6 +4,7 @@ namespace App\Http\Livewire\App\Admin;
 
 use Livewire\Component;
 use App\Models\Tenant\NotificationTemplates;
+use App\Models\Tenant\TriggerType;
 
 class NotificationConfiguration extends Component
 {
@@ -11,6 +12,8 @@ class NotificationConfiguration extends Component
     public $title;
     public $type;
     public $selectedRoleId;
+    public $typeId;
+	public $triggerTypes;
 
     public $confirmationMessage;
     public $recordId;
@@ -56,7 +59,10 @@ class NotificationConfiguration extends Component
     }
 
     public function mount()
-    {}
+    {
+		$this->triggerTypes=TriggerType::all();
+
+    }
 
     public function render()
     {

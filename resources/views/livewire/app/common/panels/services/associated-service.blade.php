@@ -597,7 +597,18 @@
                                                             <input type="text" class="form-control text-center"
                                                                 placeholder="00.00" aria-label="" aria-describedby="" wire:model.defer="serviceSpecialization.{{$index}}.{{$type}}.price" />
                                                         </div>
+                                                        
                                                         @endforeach
+                                                        <div class="align-self-end col-lg-1">
+                                                        <a wire:click.prevent="removeSpecialization({{$index}})" href="#" title="Delete" aria-label="Delete"
+                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                <svg aria-label="Delete" class="delete-icon" width="20" height="20"
+                                                                    viewBox="0 0 20 20" fill="none"
+                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                    <use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                                                </svg>
+                                                            </a>
+                                                        </div>    
                                                     </div>
 
 

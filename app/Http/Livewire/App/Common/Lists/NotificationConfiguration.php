@@ -17,6 +17,7 @@ class NotificationConfiguration extends PowerGridComponent
     protected $listeners = ['refresh'=>'setUp'];
     public $name;
     public $selectedRoleId;
+    public $typeId;
     /*
     |--------------------------------------------------------------------------
     |  Features Setup
@@ -51,21 +52,28 @@ class NotificationConfiguration extends PowerGridComponent
     public function datasource(): Builder
     {
         $query = NotificationTemplates::query()
-        ->join('roles', 'notification_templates.role_id', '=', 'roles.id')
+        ->join('notification_template_roles', 'notification_templates.id', '=', 'notification_template_roles.notification_id')
+        ->join('trigger_types', 'notification_templates.trigger_type_id', '=', 'trigger_types.id')
         ->select([
             'notification_templates.id',
             'notification_templates.name',
             'notification_templates.trigger',
             'notification_templates.slug',
-            'notification_templates.body',
-            'roles.display_name as role_id',
-            'notification_templates.status as status'
+            'trigger_types.name as trigger_type',
+            'notification_templates.status as status',
+            'notification_template_roles.customer_roles'
         ]);
 
-    if ($this->selectedRoleId !== null) {
-        $query->where('roles.id', $this->selectedRoleId);
-    }
-
+        if ($this->typeId !== null) {
+            // dd($this->typeId);
+            $query->where('trigger_types.id', $this->typeId);
+        }
+        if ($this->selectedRoleId !== null) {
+                $query->where('notification_template_roles.role_id', $this->selectedRoleId);
+                        // ->orWhereRaw("JSON_SEARCH(notification_template_roles.customer_roles, 'one', ?) IS NOT NULL", [$this->selectedRoleId]);
+        }
+        // dd($query);
+    $query->distinct();
     return $query;
 }
     
@@ -102,11 +110,16 @@ class NotificationConfiguration extends PowerGridComponent
     public function addColumns(): PowerGridEloquent
     {
         return PowerGrid::eloquent()
-            ->addColumn('role_id')
+            ->addColumn('trigger_type', function (NotificationTemplates $model) {
+                return ($model->trigger_type);
+            })
+            ->addColumn('role_id', function (NotificationTemplates $model) {
+                return ($model->notificationTemplateRoles->pluck('role.name')->implode(', '));
+            })
             ->addColumn('name')
             ->addColumn('trigger')
             ->addColumn('slug')
-            ->addColumn('body')
+            // ->addColumn('body')
             ->addColumn('status', function (NotificationTemplates $model) {
                 return ($model->status);
             })
@@ -133,11 +146,12 @@ class NotificationConfiguration extends PowerGridComponent
     {
         // Returns an array of columns for the PowerGrid component
         return [
-            Column::make('USER ROLE', 'role_id', 'Roles.name')->searchable()->editOnClick(),
+            Column::make('Type', 'trigger_type', ''),
             Column::make('Name', 'name', '')->searchable()->makeinputtext()->sortable()->editOnClick(),
             Column::make('TRIGGER', 'trigger', ''),
             Column::make('TRIGGER DESCRIPTION', 'slug', '')->editOnClick(),
-            Column::make('Subject', 'body', '')->editOnClick(),
+            // Column::make('Subject', 'body', '')->editOnClick(),
+            Column::make('USER ROLES', 'role_id', 'Roles.name')->searchable(),
             Column::make('Status', 'status', '')->makeBooleanFilter('status', 'Activated', 'Deactivated')
             ->toggleable(1, 'Activated', 'Dectivated'),
             Column::make('Actions', 'edit')->visibleInExport(false),
