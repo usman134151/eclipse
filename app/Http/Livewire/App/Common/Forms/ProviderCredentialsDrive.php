@@ -123,8 +123,9 @@ class ProviderCredentialsDrive extends Component
                 $expiry= Carbon::now()->addMonths($cred_doc['expiry']);
             else
                 $expiry =null;
-            ProviderCredentials::updateOrCreate(['credential_document_id' => $doc_id, 'provider_id' => $this->user->id])
-            ->update(['acknowledged'=>true,'expiry_date'=> $expiry,'expiry_status'=>0]);
+            $doc=ProviderCredentials::where(['credential_document_id' => $doc_id, 'provider_id' => $this->user->id])->first();
+            $doc->acknowledged=true; $doc->expiry_date =$expiry; $doc->expiry_status=0;
+            $doc->update();
 
         }
         $this->showConfirmation('Credential has been accepted');

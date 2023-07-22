@@ -64,12 +64,9 @@
 
                                                 <div wire:click.prevent="clearFilters()" style="cursor: pointer; padding-right: 4px">
                                                     <span class="badge rounded-pill bg-light text-dark">Clear
-                                                        {{-- <svg width="10" stroke="currentColor" fill="none" viewBox="0 0 8 8">
-                                                            <path stroke-linecap="round" stroke-width="1.5" d="M1 1l6 6m0-6L1 7"></path>
-                                                        </svg> --}}
                                                     </span>
                                                 </div>
-                                            </div>
+                                        </div>
 									</div>
 
 									<div class="row">
@@ -125,7 +122,7 @@
 																	</div>
 																@endif
 															@endforeach
-															@if(count($credentials['pending'])-1%4<3)
+															@if((count($credentials['pending'])-1)%4<3)
 																
 																</div>	@endif
 														@else
@@ -178,7 +175,7 @@
 																		</div>
 																	@endif
 															@endforeach
-															@if(count($credentials['active'])-1%4<3)
+															@if((count($credentials['active'])-1)%4<3)
 																	</div>	
 															@endif
 														@else
@@ -233,7 +230,7 @@
 																		</div>
 																	@endif
 															@endforeach
-															@if(count($credentials['expired'])-1%4<3 )
+															@if((count($credentials['expired'])-1)%4<3 )
 																	</div>	
 															@endif
 													
