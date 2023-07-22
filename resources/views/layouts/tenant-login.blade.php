@@ -23,7 +23,7 @@
 
 <body>
     <!-- BEGIN: Content-->
-    <div class="row m-0 auth-wrapper" style="--bs-gutter-x:0rem !important">
+    <div class="row m-0 auth-wrapper" style="--bs-gutter-x:0rem !important;background-color:#fff !important">
      <!-- <span class="brand-logo">
         <svg role="img" width="178" height="50" viewBox="0 0 178 50" fill="none" xmlns="http://www.w3.org/2000/svg">
           <title>Eclipse Scheduling Brand Logo</title>
