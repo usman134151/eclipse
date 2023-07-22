@@ -69,13 +69,18 @@ class ServiceCatelog extends Component
       
     }
 	public function updateService($index){
+        if(!$this->services[$index]['activated']){
+            $this->services[$index]['activated']=0;
+        }
+     
         if($this->modelType!='provider')
             AssociateService::updateOrCreate(
                 ['service_id' => $this->services[$index]['id'], 'model_id' => $this->modelId, 'model_type' => $this->modelType],
                 ['status' =>  $this->services[$index]['activated']]);
         else
             ProviderAccommodationServices::updateOrCreate(
-                ['service_id' => $this->services[$index]['id'], 'user_id' => $this->modelId,'status' =>  $this->services[$index]['activated'],'accommodation_id'=>$this->services[$index]['accommodations_id']]);         
+                ['service_id' => $this->services[$index]['id'], 'user_id' => $this->modelId,'accommodation_id'=>$this->services[$index]['accommodations_id']],
+                ['status' =>  $this->services[$index]['activated']]);         
            // Update or add the record in $this->model_services array
             $this->modelServices[$this->services[$index]['id']] = $this->services[$index]['activated'];
     }
