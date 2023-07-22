@@ -12,6 +12,7 @@
 	{{-- Login --}}
 	<div class="d-flex col-lg-4 align-items-center bg-white px-2 p-lg-5" x-data="{ show: true }">
 		<div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-4 mx-auto">
+			
 			<h1 class="card-title fw-normal mb-3">
 				Welcome to Eclipse Scheduling!
 			</h1>
