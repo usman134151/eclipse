@@ -31,8 +31,8 @@ class ProviderForm extends Component
     public $documentActive, $serviceActive, $scheduleActive, $profileActive;
     public $schedule;
 	public $component = 'profile';
-    public $userdetail=['gender_id','country','timezone_id','ethnicity_id','title','address_line1','address_line2','zip','permission','city','payment_settings',
-    'state','phone','education','note','user_introduction','user_experience','certificate','profile_pic'=>null, 'user_introduction_file' => null,'provider_type'=>null];
+    public $userdetail=['gender_id','country'=>"",'timezone_id','ethnicity_id','title','address_line1'=>"",'address_line2'=>"",'zip','permission','city'=>"",'payment_settings',
+    'state'=>"",'phone','education','note','user_introduction','user_experience','certificate','profile_pic'=>null, 'user_introduction_file' => null,'provider_type'=>null];
     
     public $setupValues = [
         'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'userdetail.language_id', '','language_id',0]],

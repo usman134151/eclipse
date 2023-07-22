@@ -336,6 +336,7 @@
                                                         <label class="form-label" for="address-line-1">
                                                             Address Line 1
                                                         </label>
+                                                        
                                                         <a class="fw-bold {{trim($userdetail['address_line1'])==null ? 'hidden' : '' }}"  target="_blank" href="https://www.google.com/maps/search/?api=1&query={{ str_replace(" ","+",$userdetail['address_line1'].' '.$userdetail['address_line2'].' '.$userdetail['city'].' '.$userdetail['state'].' '.$userdetail['country']) }}" >
                                                             <small>
                                                                 Open in Maps
