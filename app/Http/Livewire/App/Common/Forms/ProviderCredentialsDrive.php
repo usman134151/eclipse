@@ -13,7 +13,9 @@ use Livewire\Component;
 class ProviderCredentialsDrive extends Component
 {
     public $showForm, $provider_id =0,$credentials=[] ,$user=null;
-    protected $listeners = ['showList' => 'resetForm', 'showConfirmation'];
+
+    public $keywords, $documentType=''; 
+    protected $listeners = ['showList' => 'resetForm', 'showConfirmation','updateVal'];
 
     public function render()
     {   
@@ -25,45 +27,14 @@ class ProviderCredentialsDrive extends Component
     {
         $this->user = User::find($this->provider_id);
     }
+    
+    public function updateVal($attrName, $val){
+        $this->$attrName=$val;
+    }
 
     function setData(){
-        // select `service_categories`.*, `provider_accommodation_services`.`user_id` as `pivot_user_id`, `provider_accommodation_services`.`service_id` as `pivot_service_id`,
-        //  `provider_accommodation_services`.`created_at` as
-        //  `pivot_created_at`, `provider_accommodation_services`.`updated_at` as `pivot_updated_at` from `service_categories`
-        //  inner join `provider_accommodation_services` 
-        // on `service_categories`.`id` = `provider_accommodation_services`.`service_id` where `provider_accommodation_services`.`user_id` = 2
-
-
-        // select `credentials`.*, `services_credentials`.`service_id` as `pivot_service_id`, `services_credentials`.`credential_id` as 
-        // `pivot_credential_id` from `credentials` inner join `services_credentials` on `credentials`.`id` = `services_credentials`.`credential_id`
-        //  where `services_credentials`.`service_id` = 2
         
-        // select * from `credential_documents` where `credential_documents`.`credential_id` = 2 and `credential_documents`.`credential_id` is not null
-        
-        
-        // dd($documents);
 
-
-        
-        // $query->where(['record_id' => $this->field['record_id'], 'record_type' => $this->field['record_type']]);
-
-        // if ($this->keywords != null) {
-        //     $query->where('document_title', 'like', '%' . $this->keywords . '%');
-        // }
-
-        // if ($this->documentType != null) {
-        //     $query->where('document_type', '=', $this->documentType);
-        // }
-        // if ($this->dateRange != null) {
-        //     $date = Carbon::parse($this->dateRange);
-        //     $query->whereDate('expiration_date', '=', $date);
-        // }
-
-
-        // $this->existingDocuments = $query->get();
-
-        // where('id',$this->provider_id)->with('services','credentials','documents')->first();
-        // dd($details);
         if ($this->user) {
             $this->credentials=[];
 
@@ -71,7 +42,6 @@ class ProviderCredentialsDrive extends Component
             $query->where('users.id', $this->provider_id);
             $query->join('provider_accommodation_services', 'provider_accommodation_services.user_id', "users.id");
             $query->join('services_credentials', 'provider_accommodation_services.service_id', "services_credentials.service_id");
-            // $query->join('services_credentials', 'provider_accommodation_services.service_id', "services_credentials.service_id");
             $query->join('credentials', 'credentials.id', "services_credentials.credential_id");
             $query->join('credential_documents', 'credentials.id', "credential_documents.credential_id");
             $query->select([
@@ -84,6 +54,20 @@ class ProviderCredentialsDrive extends Component
                 'credential_documents.expiry'
             ]);
             $query->distinct('credential_documents.id');
+
+            // search enabled
+            if ($this->keywords != null) {
+                $query->where('credentials.title', 'like', '%' . $this->keywords . '%');
+            }
+
+            if ($this->documentType != null) {
+                $query->where('credential_documents.document_type', '=', $this->documentType);
+            }
+            // if ($this->dateRange != null) {
+            //     $date = Carbon::parse($this->dateRange);
+            //     $query->whereDate('expiration_date', '=', $date);
+            // }
+
 
             $documents = $query->get()->toArray();
 

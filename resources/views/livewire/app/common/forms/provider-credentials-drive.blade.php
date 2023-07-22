@@ -6,13 +6,13 @@
 												<label class="form-label" for="keyword-search">
 													Search
 												</label>
-												<input type="text" id="keyword-search" class="form-control"  placeholder="Keyword Search"/>
+												<input type="text" wire:model="keywords" id="keyword-search" class="form-control"  placeholder="Keyword Search"/>
 											</div>
 										</div>
 										<div class="col-md-3 col-12">
 											<div>
 												<label class="form-label" for="tags">
-													Tags
+													Tags <small>(coming soon)</small>
 												</label>
 												<input type="text" id="tags" class="form-control"  placeholder="Tags"/>
 											</div>
@@ -22,8 +22,11 @@
 												<label class="form-label" for="payment-status">
 													Document Type
 												</label>
-											    <select class="select2 form-select" id="payment-status">
-													<option>Select Document Type</option>
+											    <select class="select2 form-select" wire:model="documentType" id="documentType">
+													<option value="">Select Document Type</option>
+													<option value="acknowledge_document">Acknowledge Document</option>
+													<option value="upload_only">Upload Only</option>
+													<option value="sign_document">Sign & Upload</option>
 												</select>
 											</div>
 										</div>
