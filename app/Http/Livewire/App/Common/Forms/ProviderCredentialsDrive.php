@@ -5,6 +5,7 @@ namespace App\Http\Livewire\App\Common\Forms;
 use App\Models\Tenant\Credential;
 use App\Models\Tenant\CredentialDocument;
 use App\Models\Tenant\ProviderCredentials;
+use App\Models\Tenant\ServiceCategory;
 use App\Models\Tenant\User;
 use Carbon\Carbon;
 use Livewire\Component;
@@ -26,34 +27,84 @@ class ProviderCredentialsDrive extends Component
     }
 
     function setData(){
+        // select `service_categories`.*, `provider_accommodation_services`.`user_id` as `pivot_user_id`, `provider_accommodation_services`.`service_id` as `pivot_service_id`,
+        //  `provider_accommodation_services`.`created_at` as
+        //  `pivot_created_at`, `provider_accommodation_services`.`updated_at` as `pivot_updated_at` from `service_categories`
+        //  inner join `provider_accommodation_services` 
+        // on `service_categories`.`id` = `provider_accommodation_services`.`service_id` where `provider_accommodation_services`.`user_id` = 2
+
+
+        // select `credentials`.*, `services_credentials`.`service_id` as `pivot_service_id`, `services_credentials`.`credential_id` as 
+        // `pivot_credential_id` from `credentials` inner join `services_credentials` on `credentials`.`id` = `services_credentials`.`credential_id`
+        //  where `services_credentials`.`service_id` = 2
+        
+        // select * from `credential_documents` where `credential_documents`.`credential_id` = 2 and `credential_documents`.`credential_id` is not null
+        
+        
+        // dd($documents);
+
+
+        
+        // $query->where(['record_id' => $this->field['record_id'], 'record_type' => $this->field['record_type']]);
+
+        // if ($this->keywords != null) {
+        //     $query->where('document_title', 'like', '%' . $this->keywords . '%');
+        // }
+
+        // if ($this->documentType != null) {
+        //     $query->where('document_type', '=', $this->documentType);
+        // }
+        // if ($this->dateRange != null) {
+        //     $date = Carbon::parse($this->dateRange);
+        //     $query->whereDate('expiration_date', '=', $date);
+        // }
+
+
+        // $this->existingDocuments = $query->get();
+
+        // where('id',$this->provider_id)->with('services','credentials','documents')->first();
+        // dd($details);
         if ($this->user) {
             $this->credentials=[];
 
-            foreach ($this->user->services as $service) {
-                foreach ($service->credentials as $credential) {
-                    foreach ($credential->documents as $doc) {
-                        $u_doc = ProviderCredentials::where(['provider_id' => $this->provider_id, 'credential_document_id' => $doc->id])->first();
-                        if ($u_doc) {
-                            if ($u_doc->expiry_status==1)
-                                $type="expired";
-                            else
-                                $type = "active";
+            $query = User::query();
+            $query->where('users.id', $this->provider_id);
+            $query->join('provider_accommodation_services', 'provider_accommodation_services.user_id', "users.id");
+            $query->join('services_credentials', 'provider_accommodation_services.service_id', "services_credentials.service_id");
+            // $query->join('services_credentials', 'provider_accommodation_services.service_id', "services_credentials.service_id");
+            $query->join('credentials', 'credentials.id', "services_credentials.credential_id");
+            $query->join('credential_documents', 'credentials.id', "credential_documents.credential_id");
+            $query->select([
+                'credentials.id as cred_id', 'credentials.title',
+                'credentials.attach_accommodation_services',
+                'credential_documents.id as id',
+                'credential_documents.upload_file',
+                'credential_documents.document_type',
+                'credential_documents.expiration_type',
+                'credential_documents.expiry'
+            ]);
+            $query->distinct('credential_documents.id');
 
-                        } else {
-                            $type = 'pending';
-                        }
-                        $this->credentials[$type][$doc->id] = $doc->toArray();
-                        $this->credentials[$type][$doc->id]['title'] = $credential->title;
-                        $this->credentials[$type][$doc->id]['cred_id'] = $credential->id;
-                        if($type!='pending'){
+            $documents = $query->get()->toArray();
 
-                            $this->credentials[$type][$doc->id]['provider_doc_id'] = $u_doc->id;
-                            $this->credentials[$type][$doc->id]['expiry_date'] = $u_doc->expiry_date;
-                        }
-
-                    }
+            foreach ($documents as $doc) {
+                $u_doc = ProviderCredentials::where(['provider_id' => $this->provider_id, 'credential_document_id' => $doc['id']])->first();
+                if ($u_doc) {
+                    if ($u_doc->expiry_status == 1)
+                        $type = "expired";
+                    else
+                        $type = "active";
+                } else {
+                    $type = 'pending';
                 }
-            };
+                $this->credentials[$type][$doc['id']] = $doc;
+                if ($type != 'pending') {
+
+                    $this->credentials[$type][$doc['id']]['provider_doc_id'] = $u_doc->id;
+                    $this->credentials[$type][$doc['id']]['expiry_date'] = $u_doc->expiry_date;
+                }
+            }
+
             if(isset($this->credentials['pending']))
                 $this->credentials['pending'] = array_values($this->credentials['pending']);    //fixing index values
             if (isset($this->credentials['active']))
