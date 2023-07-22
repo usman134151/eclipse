@@ -1,17 +1,49 @@
 @extends('layouts.tenant-login')
 
 @section('content')
+<style>
+    /* Apply 100% width and height to the video container */
+    .video-container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
 
-	{{-- Left Text --}}
-	<div class="d-none d-lg-flex col-lg-8 align-items-center justify-content-center p-5">
-		<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-		<lottie-player src="video/video.json" background="transparent" speed="1" class="w-75 h-75" loop autoplay></lottie-player>
-	</div>
-	{{-- /Left Text --}}
+    /* Style the video to cover the container */
+    .video-container video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Style the content to be right-aligned with background color */
+    .video-content {
+      position: absolute;
+      top: 50%;
+      right: 10px; /* Updated to align content to the right */
+      transform: translateY(-50%);
+      background-color: rgba(255, 255, 255, 0.7) !important; /* Set your desired background color and opacity here */
+      padding: 10px; /* Add padding as needed */
+      border-radius: 10px; /* Optional: Add border-radius for rounded corners */
+    }
+  </style>
+</head>
+<body>
+  <div class="video-container">
+    <!-- Replace 'your-video.mp4' with the path to your video file -->
+    <video autoplay muted loop>
+      <source src="/tenant-resources/video/welcome.mp4" type="video/mp4">
+      <!-- Add fallback content if video playback fails -->
+      Your browser does not support the video tag.
+    </video>
 	
-	{{-- Login --}}
-	<div class="d-flex col-lg-4 align-items-center bg-white px-2 p-lg-5" x-data="{ show: true }">
-		<div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-4 mx-auto">
+    <div class="video-content d-flex col-lg-4 align-items-center bg-white px-2 p-lg-5" x-data="{ show: true }">
+      <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto">
+		<div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto">
 			<h1 class="card-title fw-normal mb-3">
 				Welcome to Eclipse Scheduling!
 			</h1>
@@ -97,6 +129,14 @@
 			</form>
 		</div>
 	</div>
+	{{-- Left Text --}}
+	
+
+	</div>
+	{{-- /Left Text --}}
+	
+	{{-- Login --}}
+
 	{{-- /Login --}}
 @endsection
 @push('scripts')
