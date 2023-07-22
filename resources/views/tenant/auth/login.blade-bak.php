@@ -1,31 +1,11 @@
 @extends('layouts.tenant-login')
 
 @section('content')
-<style>
-  .video-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  }
 
-  .video-container video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-</style>
 	{{-- Left Text --}}
-	<div class="d-none d-lg-flex col-lg-8 align-items-center justify-content-center">
-			<div class="video-container">
-			<video style="width: 100%; height: 100%;"  autoplay loop muted>
-			<source src="/tenant-resources/video/welcome.mp4" type="video/mp4">
-			Your browser does not support the video tag.
-		</video>	
-		</div>
+	<div class="d-none d-lg-flex col-lg-8 align-items-center justify-content-center p-5">
+		<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+		<lottie-player src="video/video.json" background="transparent" speed="1" class="w-75 h-75" loop autoplay></lottie-player>
 	</div>
 	{{-- /Left Text --}}
 	
