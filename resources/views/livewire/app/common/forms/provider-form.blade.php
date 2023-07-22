@@ -665,10 +665,10 @@
                                                                                     </h4>
                                                                                     <div class="d-flex">
                                                                                         <div class="form-check">
-                                                                                            <input class="form-check-input" type="radio"
-                                                                                                name="exampleRadios"
-                                                                                                id="provider-rate-schedule-radio-btn"
-                                                                                                value="option2" checked>
+                                                                                            <input class="form-check-input" wire:model="provider_details.set_rate" type="radio"
+                                                                                                name="set_rate"
+                                                                                                id="set_rate"
+                                                                                                value="yes">
                                                                                             <label class="form-check-label"
                                                                                                 for="provider-rate-schedule-radio-btn">
                                                                                                 Yes
@@ -676,15 +676,45 @@
                                                                                         </div>
                                                                                         <div class="form-check ms-4">
                                                                                             <input class="form-check-input" type="radio"
-                                                                                                name="exampleRadios"
-                                                                                                id="provider-rate-schedule-radio-button"
-                                                                                                value="option2">
+                                                                                                name="set_rate"  wire:model="provider_details.set_rate"
+                                                                                                id="set_rate"
+                                                                                                value="no">
                                                                                             <label class="form-check-label"
                                                                                                 for="provider-rate-schedule-radio-button">
                                                                                                 No
                                                                                             </label>
                                                                                         </div>
+
                                                                                     </div>
+                                                                                    
+                                                                                        <div class=" row mt-4 {{$provider_details['set_rate']=='yes'? '':'hidden' }} " >
+                                                                                        
+                                                                                          <div class="col-8 mb-3">
+                                                                                            <div
+                                                                                                class="d-flex justify-content-between">
+                                                                                                <div>
+                                                                                                    <label class="form-label-sm"
+                                                                                                        for="rate-per-mile-to-reimburse">
+                                                                                                        Set Rate
+                                                                                                    </label>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="row">
+                                                                                                <div class="col-7">
+                                                                                                    <input type="number" id="staff_provider_rate" class="form-control" name="staff_provider_rate" placeholder="$00:00" wire:model.defer="provider_details.staff_provider_rate"  />
+                                                                                                    {{-- <div class="mx-2">USD</div>/ --}}
+                                                                                                </div>
+                                                                                                <div class="col-1 align-items-center">USD</div>
+                                                                                                <div class="col-4">
+                                                                                                    <select  id="staff_provider_rate_type" class=" select2 form-select select2-hidden-accessible"wire:model.defer="provider_details.staff_provider_rate_type">
+                                                                                                        <option value="per_hour_rate" >Per Hour Rate</option>
+                                                                                                                    <option value="salary" >Salary</option>
+                                                                                                    </select>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                          
+                                                                                          
                                                                                 </div>
                                                                             </div>
                                                                     </div>
@@ -710,10 +740,8 @@
                                                                                             Rate per unit to reimburse provider
                                                                                         </label>
                                                                                     </div>
-                                                                                    <div>
+                                                                                    {{-- <div>
                                                                                         KM
-                                                                                        {{-- Updated by Shanila to Add
-                                                                                        svg icon--}}
                                                                                         <svg aria-label="Edit"
                                                                                             width="20" height="20"
                                                                                             viewBox="0 0 20 20">
@@ -721,15 +749,19 @@
                                                                                                 xlink:href="/css/common-icons.svg#pencil">
                                                                                             </use>
                                                                                         </svg>
-                                                                                        {{-- End of update by Shanila
-                                                                                        --}}
+                                                                                    </div> --}}
+                                                                                </div>
+                                                                                <div class="row">
+                                                                                    <div class="col-8">
+                                                                                        <input type="number" id="travel_rate_per_unit" class="form-control" name="rate-per-mile-to-reimburse" placeholder="$00:00" wire:model.defer="provider_details.travel_rate_per_unit"  />
+                                                                                    </div>
+                                                                                    <div class="col-4">
+                                                                                        <select  id="travel_rate_unit" class=" select2 form-select select2-hidden-accessible" wire:model.defer="provider_details.travel_rate_unit">
+                                                                                            <option value="km" >KM</option>
+                                                                                            <option value="m" >Miles</option>
+                                                                                        </select>
                                                                                     </div>
                                                                                 </div>
-                                                                                <input type="text"
-                                                                                    id="rate-per-mile-to-reimburse"
-                                                                                    class="form-control"
-                                                                                    name="rate-per-mile-to-reimburse"
-                                                                                    placeholder="$00:00" />
                                                                             </div>
                                                                             <div class="col-12 mb-2">
                                                                                 <label class="form-label-sm"
@@ -751,7 +783,7 @@
                                                                                     <div
                                                                                         class="d-flex align-items-center gap-2">
                                                                                         <div>
-                                                                                            <input type="text"
+                                                                                            <input type="number" wire:model.defer="provider_details.rate_for_travel_time"
                                                                                                 id="rate-to-reimburse-compensated-travel-time"
                                                                                                 class="form-control"
                                                                                                 name="rate-to-reimburse-compensated-travel-time"
@@ -763,10 +795,9 @@
                                                                             </div>
                                                                             <div class="col-12">
                                                                                 <div class="form-check">
-                                                                                    <input class="form-check-input"
+                                                                                    <input class="form-check-input" wire:model.defer="provider_details.same_as_service_rate"
                                                                                         type="checkbox"
-                                                                                        value="service-rate"
-                                                                                        id="service-rate">
+                                                                                        id="same_as_service_rate">
                                                                                     <label class="form-check-label"
                                                                                         for="service-rate">
                                                                                         Same as Service Rate
