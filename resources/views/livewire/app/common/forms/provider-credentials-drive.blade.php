@@ -39,7 +39,7 @@
 													Expiry Date
 												</label>
 												<div class="position-relative">
-													<input type="" name="" class="form-control js-single-date" placeholder="Jan 1, 2022 - Oct 1, 2022" id="">
+													<input wire:model='dateRange' id="dateRange" class="form-control js-single-date" placeholder="MM/DD/YYYY">
 													<svg class="icon-date" width="20" height="20" viewBox="0 0 20 20" fill="none"
 														xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#date-field"></use>
 													</svg>
@@ -60,6 +60,16 @@
 												</select>
 											</div>
 										</div>
+										<div class=" col-md-3  d-flex  " style="margin-top: 60px">
+
+                                                <div wire:click.prevent="clearFilters()" style="cursor: pointer; padding-right: 4px">
+                                                    <span class="badge rounded-pill bg-light text-dark">Clear
+                                                        {{-- <svg width="10" stroke="currentColor" fill="none" viewBox="0 0 8 8">
+                                                            <path stroke-linecap="round" stroke-width="1.5" d="M1 1l6 6m0-6L1 7"></path>
+                                                        </svg> --}}
+                                                    </span>
+                                                </div>
+                                            </div>
 									</div>
 
 									<div class="row">

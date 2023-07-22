@@ -14,7 +14,7 @@ class ProviderCredentialsDrive extends Component
 {
     public $showForm, $provider_id =0,$credentials=[] ,$user=null;
 
-    public $keywords, $documentType='',$tab="pending"; 
+    public $keywords, $documentType='',$tab="pending", $dateRange; 
     protected $listeners = ['showList' => 'resetForm', 'showConfirmation','updateVal'];
 
     public function render()
@@ -69,17 +69,16 @@ class ProviderCredentialsDrive extends Component
             if ($this->documentType != null) {
                 $query->where('credential_documents.document_type', '=', $this->documentType);
             }
-            // if ($this->dateRange != null) {
-            //     $date = Carbon::parse($this->dateRange);
-            //     $query->whereDate('expiration_date', '=', $date);
-            // }
+            if ($this->dateRange != null) {
+                $date = Carbon::parse($this->dateRange);
+                $query->whereDate('expiry_date', '<=', $date);
+            }
 
 
             $documents = $query->get()->toArray();
 
             // dd($documents);
             foreach ($documents as $doc) {
-                // $u_doc = ProviderCredentials::where(['provider_id' => $this->provider_id, 'credential_document_id' => $doc['id']])->first();
                 if ($doc['provider_doc_id']) {
                     if ($doc['expiry_status'] == 1)
                         $type = "expired";
@@ -89,11 +88,7 @@ class ProviderCredentialsDrive extends Component
                     $type = 'pending';
                 }
                 $this->credentials[$type][$doc['id']] = $doc;
-                // if ($type != 'pending') {
-
-                //     $this->credentials[$type][$doc['id']]['provider_doc_id'] = $u_doc->id;
-                //     $this->credentials[$type][$doc['id']]['expiry_date'] = $u_doc->expiry_date;
-                // }
+                
             }
 
             if(isset($this->credentials['pending']))
@@ -104,6 +99,15 @@ class ProviderCredentialsDrive extends Component
                 $this->credentials['expired'] = array_values($this->credentials['expired']);    //fixing index values
           
         }     
+    }
+
+    public function clearFilters()
+    {
+        $this->keywords = null;
+        $this->documentType = null;
+        $this->dateRange = '';
+        $this->tab = 'pending';
+        
     }
 
     public function acceptCredential($doc_id){
