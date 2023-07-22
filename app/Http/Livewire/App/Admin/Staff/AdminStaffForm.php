@@ -23,7 +23,7 @@ class AdminStaffForm extends Component
     public $component = 'profile',$label='Add';
     public $user,$isAdd=true,$user_roles=[],$image =null;
     
-    public $userdetail=['gender_id','country','timezone_id','ethnicity_id','title','user_position','address_line1','address_line2','zip','permission','city','state','phone','roles','profile_pic'=>null];
+    public $userdetail=['gender_id','country'=>"",'timezone_id','ethnicity_id','title','user_position','address_line1'=>"",'address_line2'=>"",'zip','permission','city'=>"",'state'=>'','phone','roles','profile_pic'=>null];
     public $setupValues = [
         'ethnicities' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 3, 'setup_value_label', false,'userdetail.ethnicity_id','','ethnicity_id',5]],
         'gender' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 2, 'setup_value_label', false,'userdetail.gender_id','','gender_id',4]],

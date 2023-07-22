@@ -22,7 +22,8 @@ class CustomerForm extends Component
 	use withFileUploads;
     public $user,$isAdd=true,$userAddresses=[],$image=null,$label='Add',$tags=[];
     public $userdetail=['industry'=>null, 'phone' => null, 'gender_id' => null, 'language_id' => null, 'timezone_id' => null, 'ethnicity_id' => null,
-	'user_introduction'=>null, 'title' => null, 'user_position' => null,'profile_pic'=>null];
+	'user_introduction'=>null, 'title' => null, 'user_position' => null,'profile_pic'=>null,'address_line1'=>
+		'', 'address_line2' => '','city'=>'','state'=>'','country'=>''];
     public $providers=[], $allUserSchedules=[],$unfavored_providers=[],$favored_providers=[];
 	public $user_configuration= ['hide_from_providers'=>"false",'grant_access_to_schedule'=> "false", 'hide_billing'=>"false", 'require_approval'=>"false", 'have_access_to'=>[] ];    
 	public $rolesArr=[],$same_sv,$same_bm;
