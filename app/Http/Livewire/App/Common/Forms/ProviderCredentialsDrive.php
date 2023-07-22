@@ -5,6 +5,7 @@ namespace App\Http\Livewire\App\Common\Forms;
 use App\Models\Tenant\Credential;
 use App\Models\Tenant\CredentialDocument;
 use App\Models\Tenant\ProviderCredentials;
+use App\Models\Tenant\ServiceCategory;
 use App\Models\Tenant\User;
 use Carbon\Carbon;
 use Livewire\Component;
@@ -12,7 +13,9 @@ use Livewire\Component;
 class ProviderCredentialsDrive extends Component
 {
     public $showForm, $provider_id =0,$credentials=[] ,$user=null;
-    protected $listeners = ['showList' => 'resetForm', 'showConfirmation'];
+
+    public $keywords, $documentType='',$tab="pending", $dateRange; 
+    protected $listeners = ['showList' => 'resetForm', 'showConfirmation','updateVal'];
 
     public function render()
     {   
@@ -24,36 +27,70 @@ class ProviderCredentialsDrive extends Component
     {
         $this->user = User::find($this->provider_id);
     }
+    
+    public function updateVal($attrName, $val){
+        $this->$attrName=$val;
+    }
 
     function setData(){
+        
+
         if ($this->user) {
             $this->credentials=[];
 
-            foreach ($this->user->services as $service) {
-                foreach ($service->credentials as $credential) {
-                    foreach ($credential->documents as $doc) {
-                        $u_doc = ProviderCredentials::where(['provider_id' => $this->provider_id, 'credential_document_id' => $doc->id])->first();
-                        if ($u_doc) {
-                            if ($u_doc->expiry_status==1)
-                                $type="expired";
-                            else
-                                $type = "active";
+            $query = User::query();
+            $query->where('users.id', $this->provider_id);
+            $query->join('provider_accommodation_services', 'provider_accommodation_services.user_id', "users.id");
+            $query->join('services_credentials', 'provider_accommodation_services.service_id', "services_credentials.service_id");
+            $query->join('credentials', 'credentials.id', "services_credentials.credential_id");
+            $query->join('credential_documents', 'credentials.id', "credential_documents.credential_id");
+            $query->leftJoin('provider_credentials', function($join){
+                    $join->on('provider_credentials.credential_document_id','credential_documents.id');
+                    $join->where('provider_credentials.provider_id',$this->provider_id);
+                });
+            $query->select([
+                'credentials.id as cred_id', 'credentials.title',
+                'credentials.attach_accommodation_services',
+                'credential_documents.id as id',
+                'credential_documents.upload_file',
+                'credential_documents.document_type',
+                'credential_documents.expiration_type',
+                'credential_documents.expiry',
+                'provider_credentials.id as provider_doc_id','provider_credentials.expiry_date','provider_credentials.expiry_status',
 
-                        } else {
-                            $type = 'pending';
-                        }
-                        $this->credentials[$type][$doc->id] = $doc->toArray();
-                        $this->credentials[$type][$doc->id]['title'] = $credential->title;
-                        $this->credentials[$type][$doc->id]['cred_id'] = $credential->id;
-                        if($type!='pending'){
+            ]);
+            $query->distinct('credential_documents.id');
 
-                            $this->credentials[$type][$doc->id]['provider_doc_id'] = $u_doc->id;
-                            $this->credentials[$type][$doc->id]['expiry_date'] = $u_doc->expiry_date;
-                        }
+            // search enabled
+            if ($this->keywords != null) {
+                $query->where('credentials.title', 'like', '%' . $this->keywords . '%');
+            }
 
-                    }
+            if ($this->documentType != null) {
+                $query->where('credential_documents.document_type', '=', $this->documentType);
+            }
+            if ($this->dateRange != null) {
+                $date = Carbon::parse($this->dateRange);
+                $query->whereDate('expiry_date', '<=', $date);
+            }
+
+
+            $documents = $query->get()->toArray();
+
+            // dd($documents);
+            foreach ($documents as $doc) {
+                if ($doc['provider_doc_id']) {
+                    if ($doc['expiry_status'] == 1)
+                        $type = "expired";
+                    else
+                        $type = "active";
+                } else {
+                    $type = 'pending';
                 }
-            };
+                $this->credentials[$type][$doc['id']] = $doc;
+                
+            }
+
             if(isset($this->credentials['pending']))
                 $this->credentials['pending'] = array_values($this->credentials['pending']);    //fixing index values
             if (isset($this->credentials['active']))
@@ -62,6 +99,15 @@ class ProviderCredentialsDrive extends Component
                 $this->credentials['expired'] = array_values($this->credentials['expired']);    //fixing index values
           
         }     
+    }
+
+    public function clearFilters()
+    {
+        $this->keywords = null;
+        $this->documentType = null;
+        $this->dateRange = '';
+        $this->tab = 'pending';
+        
     }
 
     public function acceptCredential($doc_id){
@@ -77,8 +123,9 @@ class ProviderCredentialsDrive extends Component
                 $expiry= Carbon::now()->addMonths($cred_doc['expiry']);
             else
                 $expiry =null;
-            ProviderCredentials::updateOrCreate(['credential_document_id' => $doc_id, 'provider_id' => $this->user->id])
-            ->update(['acknowledged'=>true,'expiry_date'=> $expiry,'expiry_status'=>0]);
+            $doc=ProviderCredentials::where(['credential_document_id' => $doc_id, 'provider_id' => $this->user->id])->first();
+            $doc->acknowledged=true; $doc->expiry_date =$expiry; $doc->expiry_status=0;
+            $doc->update();
 
         }
         $this->showConfirmation('Credential has been accepted');

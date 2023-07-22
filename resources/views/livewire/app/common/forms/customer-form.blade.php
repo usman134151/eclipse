@@ -429,9 +429,18 @@
 
                                                     </div>
                                                     <div class="col-lg-6 mb-4 pe-lg-5">
+                                                        
+                                                    <div class="d-flex justify-content-between align-items-center">
                                                         <label class="form-label" for="address-line-1">
                                                             Address Line 1
                                                         </label>
+                                                        
+                                                        <a class="fw-bold {{trim($userdetail['address_line1'])==null ? 'hidden' : '' }}"  target="_blank" href="https://www.google.com/maps/search/?api=1&query={{ str_replace(" ","+",$userdetail['address_line1'].' '.$userdetail['address_line2'].' '.$userdetail['city'].' '.$userdetail['state'].' '.$userdetail['country']) }}" >
+                                                            <small>
+                                                                Open in Maps
+                                                            </small>
+                                                        </a>
+                                                    </div>
                                                         <input type="text" id="billing_address_form" class="form-control"
                                                             name="address-line-1" placeholder="Enter Address Line 1" wire:model.defer="userdetail.address_line1"/>
                                                     </div>

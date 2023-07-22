@@ -62,7 +62,8 @@ class PendingCredentials extends Component
         $this->field['credential_document_id'] = $this->document_id;
         $u_doc = ProviderCredentials::where(['credential_document_id' => $this->document_id, 'provider_id' => $this->user_id])->first();
         if($u_doc)
-            ProviderCredentials::where(['credential_document_id' => $this->document_id, 'provider_id' => $this->user_id])->update($this->field);
+            $u_doc->update($this->field);
+            // ProviderCredentials::where(['credential_document_id' => $this->document_id, 'provider_id' => $this->user_id])->update($this->field);
         else
             ProviderCredentials::create($this->field);
         $this->dispatchBrowserEvent('close-modal');

@@ -21,7 +21,9 @@
                 <td class="position-relative ">
                     <div class="d-flex">
                         <p class="align-content-start">
+                        <a target="_blank" href="https://www.google.com/maps/search/?api=1&query={{ str_replace(" ","+",$address['address_line1'].' '.$address['address_line2'].' '.$address['city'].' '.$address['state'].' '.$address['country']) }}">
                         {{$address['address_name']}}:  {{ $address['address_line1'].', '.$address['address_line2'].','.$address['city'].', '.$address['state'].', '.$address['country'] }}
+                        </a>
                             </p>
                         <div class="align-center align-content-end">
                             <button  type="button"  wire:click.prevent="editAddress({{ $loop->index }},{{$type}})" title='Edit Address' aria-label='Edit Address'  class='btn btn-sm btn-secondary rounded btn-hs-icon position-absolute top-0 end-0' style="top:10px !important;right: 15px !important;" name="editIcon">

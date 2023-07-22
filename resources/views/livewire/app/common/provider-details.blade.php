@@ -2482,7 +2482,7 @@
 									<div class="row mb-4">
 										<h3>Logs </h3>
 									</div>
-                                    	@livewire('app.common.lists.logs',['record_id'=>$userid,'record_type'=>'user'])
+                                    	@livewire('app.common.lists.logs',['record_id'=>$user['id'],'record_type'=>'user'])
 
 								</div>
 								<!-- Log Tab End-->
