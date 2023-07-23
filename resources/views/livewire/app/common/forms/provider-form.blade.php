@@ -16,11 +16,11 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
                                 <a href="http://127.0.0.1:8000" title="Go to Dashboard" aria-label="Go to Dashboard">
-                                    {{-- Updated by Shanila to Add svg icon--}}
+                                   
                                     <svg aria-label="Go to Dashboard" width="22" height="23" viewBox="0 0 22 23">
                                         <use xlink:href="/css/common-icons.svg#home"></use>
                                     </svg>
-                                    {{-- End of update by Shanila --}} </a>
+                                    </a>
                             </li>
                             <li class="breadcrumb-item">
                                 <a href="javascript:void(0)">
@@ -105,8 +105,7 @@
                                     role="tabpanel" aria-labelledby="user-profile-tab" tabindex="0" x-show="tab === 'profile'">
                                     {{-- Tab Panes --}}
                                     {{-- updated by shanila to add csrf and add form tag --}}
-                                    <form class="form">
-                                        @csrf
+                                   
                                         <div class="row mt-2 mb-5">
                                             {{-- BEGIN: Profile --}}
                                             <div class="col-12 text-center">
@@ -191,7 +190,7 @@
                                                                 <use xlink:href="/css/common-icons.svg#datefield-icon">
                                                                 </use>
                                                             </svg>
-                                                            {{-- End of update by Shanila --}}
+                                                           
                                                         </div>
                                                         <button type="button" class="btn px-2">
                                                             <!-- Begin : it will be replaced with livewire module-->
@@ -200,7 +199,7 @@
                                                                 <use xlink:href="/css/common-icons.svg#eye-icon">
                                                                 </use>
                                                             </svg>
-                                                            {{-- End of update by Shanila --}}
+                                                           
                                                         </button>
                                                     </div>
                                                 </div>
@@ -264,7 +263,7 @@
                                                                 <use xlink:href="/css/common-icons.svg#right-color-arrow">
                                                                 </use>
                                                             </svg>
-                                                            {{-- End of update by Shanila --}}
+                                                           
                                                         </div>
                                                         <div class="text-primary fw-semibold">
                                                             Add Provider Teams
@@ -372,7 +371,7 @@
                                                                 <use xlink:href="/css/common-icons.svg#datefield-icon">
                                                                 </use>
                                                             </svg>
-                                                            {{-- End of update by Shanila --}}
+                                                            
                                                         </div>
                                                     </div>
                                                 </div>
@@ -391,7 +390,7 @@
                                                                 <use xlink:href="/css/common-icons.svg#datefield-icon">
                                                                 </use>
                                                             </svg>
-                                                            {{-- End of update by Shanila --}}
+                                                           
                                                         </div>
                                                     </div>
                                                 </div>
@@ -595,8 +594,8 @@
                                                 Next
                                             </button>
                                         </div>
-                                    </form>
-                                    {{-- ended update by shanila --}}
+                                   
+                                    
 
                                 </div>
                            
@@ -614,10 +613,7 @@
                             <section id="multiple-column-form">
                                 <div class="row">
                                     <div class="col-12">
-                                        <form class="form">
-                                            {{-- updated by shanila to add csrf--}}
-                                            @csrf
-                                            {{-- update ended by shanila --}}
+
                                             <div class="row">
                                                 <div class="col-md-12 mb-md-2">
                                                     <div class="col-md-12 col-12 mb-md-2">
@@ -672,6 +668,31 @@
                                                                                     type="radio" tabindex="">
 
                                                                                 <div class="hidden-content mt-3">
+                                                                                <div class=" row mt-4  " >
+                                                                                <h4 class="mb-2">
+                                                                                      Payout Details
+                                                                                    </h4>
+                                                                                        <div class="col-8 mb-3">
+                                                                                          <div
+                                                                                              class="d-flex justify-content-between">
+                                                                                              <div>
+
+                                                                                              </div>
+                                                                                          </div>
+                                                                                          <div class="row">
+                                                                                              <div class="col-2">
+                                                                                                  <input type="number" id="staff_provider_rate" class="form-control" name="staff_provider_rate" placeholder="$00:00" wire:model.defer="provider_details.staff_provider_rate"  />
+                                                                                                 
+                                                                                              </div>
+
+                                                                                              <div class="col-3">
+                                                                                                  <select  id="staff_provider_rate_type" class="form-select" wire:model.defer="provider_details.staff_provider_rate_type">
+                                                                                                      <option value="per_hour_rate" >Per Hour Rate</option>
+                                                                                                      <option value="salary" >Salary</option>
+                                                                                                  </select>
+                                                                                              </div>
+                                                                                          </div>
+                                                                                      </div>
                                                                                     <h4 class="mb-2">
                                                                                         Would you like to set a rate for when this provider
                                                                                         works outside their set schedule?
@@ -681,7 +702,7 @@
                                                                                             <input class="form-check-input" wire:model="provider_details.set_rate" type="radio"
                                                                                                 name="set_rate"
                                                                                                 id="set_rate"
-                                                                                                value="yes">
+                                                                                                value="yes" wire:click="setRate">
                                                                                             <label class="form-check-label"
                                                                                                 for="provider-rate-schedule-radio-btn">
                                                                                                 Yes
@@ -691,7 +712,7 @@
                                                                                             <input class="form-check-input" type="radio"
                                                                                                 name="set_rate"  wire:model="provider_details.set_rate"
                                                                                                 id="set_rate"
-                                                                                                value="no">
+                                                                                                value="no" wire:click="setRate">
                                                                                             <label class="form-check-label"
                                                                                                 for="provider-rate-schedule-radio-button">
                                                                                                 No
@@ -700,32 +721,7 @@
 
                                                                                     </div>
                                                                                     
-                                                                                        <div class=" row mt-4 {{$provider_details['set_rate']=='yes'? '':'hidden' }} " >
-                                                                                        
-                                                                                          <div class="col-8 mb-3">
-                                                                                            <div
-                                                                                                class="d-flex justify-content-between">
-                                                                                                <div>
-                                                                                                    <label class="form-label-sm"
-                                                                                                        for="rate-per-mile-to-reimburse">
-                                                                                                        Set Rate
-                                                                                                    </label>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="row">
-                                                                                                <div class="col-7">
-                                                                                                    <input type="number" id="staff_provider_rate" class="form-control" name="staff_provider_rate" placeholder="$00:00" wire:model.defer="provider_details.staff_provider_rate"  />
-                                                                                                    {{-- <div class="mx-2">USD</div>/ --}}
-                                                                                                </div>
-                                                                                                <div class="col-1 align-items-center">USD</div>
-                                                                                                <div class="col-4">
-                                                                                                    <select  id="staff_provider_rate_type" class=" select2 form-select select2-hidden-accessible"wire:model.defer="provider_details.staff_provider_rate_type">
-                                                                                                        <option value="per_hour_rate" >Per Hour Rate</option>
-                                                                                                                    <option value="salary" >Salary</option>
-                                                                                                    </select>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
+
                                                                           
                                                                                           
                                                                                 </div>
@@ -769,7 +765,7 @@
                                                                                         <input type="number" id="travel_rate_per_unit" class="form-control" name="rate-per-mile-to-reimburse" placeholder="$00:00" wire:model.defer="provider_details.travel_rate_per_unit"  />
                                                                                     </div>
                                                                                     <div class="col-4">
-                                                                                        <select  id="travel_rate_unit" class=" select2 form-select select2-hidden-accessible" wire:model.defer="provider_details.travel_rate_unit">
+                                                                                        <select  id="travel_rate_unit" class="form-select" wire:model.defer="provider_details.travel_rate_unit">
                                                                                             <option value="km" >KM</option>
                                                                                             <option value="m" >Miles</option>
                                                                                         </select>
@@ -790,7 +786,7 @@
                                                                                             xlink:href="/css/common-icons.svg#fill-question">
                                                                                         </use>
                                                                                     </svg>
-                                                                                    {{-- End of update by Shanila --}}
+                                                                                    
                                                                                 </label>
                                                                                 <div class="col-lg-8">
                                                                                     <div
@@ -851,7 +847,7 @@
                             <x-icon name="dollar-icon"/>
                         </a>
                                                     @if($step==2)                                                                       
-                                @livewire('app.admin.customer.service-catelog',['showButtons'=>false,'modelId'=>$user->id,'modelType'=>'provider'])
+                                @livewire('app.admin.customer.service-catelog',['showButtons'=>false,'modelId'=>$user->id,'modelType'=>'provider','showRates'=>$provider_details['set_rate']])
                              @endif
                                                    
 
@@ -872,7 +868,7 @@
                                                     </button>
                                                 </div>
                                             </div>
-                                        </form>
+                                       
                                     </div>
                                 </div>
                             </section>
