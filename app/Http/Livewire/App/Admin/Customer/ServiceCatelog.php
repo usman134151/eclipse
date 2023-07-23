@@ -94,10 +94,15 @@ class ServiceCatelog extends Component
     }
     public function updatePriority($index){
     
-        ProviderAccommodationServices::updateOrCreate(
-            ['service_id' => $this->services[$index]['id'], 'user_id' => $this->modelId,'accommodation_id'=>$this->services[$index]['accommodations_id']],
-            ['provider_priority' =>  $this->services[$index]['provider_priority']]);  
-            $this->providerPriority[$this->services[$index]['id']] = $this->services[$index]['provider_priority'];
+        if (is_numeric($this->services[$index]['provider_priority'])) {
+            ProviderAccommodationServices::updateOrCreate(
+                ['service_id' => $this->services[$index]['id'], 'user_id' => $this->modelId,'accommodation_id'=>$this->services[$index]['accommodations_id']],
+                ['provider_priority' =>  $this->services[$index]['provider_priority']]);  
+                $this->providerPriority[$this->services[$index]['id']] = $this->services[$index]['provider_priority'];
+            } 
+            else{
+                $this->services[$index]['provider_priority']=0;
+            }       
       
     }
     public function fetchModelServices()
