@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class PaymentPreferences extends Component
 {
-    public $showForm;
+    public $showForm, $provider_id;
     protected $listeners = ['showList' => 'resetForm'];
 
     public function render()
