@@ -95,7 +95,7 @@
                                                                                             <th>Priority</th>
                                                                                             @endif
                                                                                             <th>Status</th>
-                                                                                            @if($showRates!='no')
+                                                                                            @if($showRates!='no' || $modelType!='provider')
                                                                                             <th>Actions</th>
                                                                                             @endif
                                                                                         </tr>
@@ -124,7 +124,7 @@
                                                                                             </td>
                                                                                             <td>
                                                                                                 <div class="d-flex actions">
-                                                                                                    @if($showRates!='no')
+                                                                                                    @if($showRates!='no' || $modelType!='provider')
                                                                                                         <a href="javascript:void(0)" wire:click="updateServiceData({{$service['id']}})" title="Add Service Rates" aria-label="Add Service Rates" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                                                             <x-icon name="dollar-icon"/>
                                                                                                         </a>
