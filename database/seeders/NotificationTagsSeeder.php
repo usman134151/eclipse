@@ -27,7 +27,10 @@ class NotificationTagsSeeder extends Seeder
 			["name"=>"@reports"],
         );
         foreach ($notification_tags as $tag) {
-            DB::table('notification_tags')->insert($tag);
+            $existingTag = DB::table('notification_tags')->where('name', $tag['name'])->first();
+            if (!$existingTag) {
+                DB::table('notification_tags')->insert($tag);
+            }
         }
     }
 }
