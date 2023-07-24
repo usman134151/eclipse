@@ -32,6 +32,8 @@
             
     </div>
      @livewire('app.common.provider.drive')
+    @include('modals.common.view-button')    
+
 
 </div>
 

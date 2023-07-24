@@ -15,11 +15,11 @@
             </div>
 
             @livewire('app.common.forms.provider-credentials-drive',['showForm'=>true,'provider_id'=>Auth::id()])
-		@include('modals.common.view-button')
+		
        
         </div>
-    @include('panels.common.pending-credentials')
-        
+    
+    {{-- @include('panels.common.pending-credentials') --}}
     </div>
 
     
