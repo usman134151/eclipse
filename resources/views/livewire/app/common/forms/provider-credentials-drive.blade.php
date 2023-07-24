@@ -39,7 +39,7 @@
 													Expiry Date
 												</label>
 												<div class="position-relative">
-													<input wire:model='dateRange' id="dateRange" class="form-control js-single-date" placeholder="MM/DD/YYYY">
+													<input wire:model.lazy='dateRange' id="dateRange" class="form-control js-single-date" placeholder="MM/DD/YYYY">
 													<svg class="icon-date" width="20" height="20" viewBox="0 0 20 20" fill="none"
 														xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#date-field"></use>
 													</svg>

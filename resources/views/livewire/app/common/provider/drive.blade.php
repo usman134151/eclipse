@@ -38,8 +38,8 @@
     </div>
 
         <div class="card-body">
-            <div class="row">
-                <h3>My Drive</h3>
+            <div class="row my-2">
+                {{-- <h3>My Drive</h3> --}}
                 <p>Here you can manage your professional credentials and required documents. You will receive notifications when your credentials are approaching expiration or have expired.</p>
             </div>
 
