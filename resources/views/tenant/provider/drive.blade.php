@@ -1,7 +1,9 @@
 @extends('layouts.tenant', ['title' => 'My Drive'])
 
 @section('content')
+
 <div class="" x-data="{pendingCredentials: false}" >
+    
     <div class="content-header row">
             <div class="content-header-left col-12 mb-3">
                 <div class="row breadcrumbs-top">
@@ -27,10 +29,12 @@
                     </div>
                 </div>
             </div>
+            
     </div>
      @livewire('app.common.provider.drive')
 
 </div>
-    @include('modals.common.view-button')
+
+
 
 @endsection

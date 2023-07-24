@@ -1,6 +1,6 @@
 
 {{-- Sign & Upload Document Off Canvas - Start --}}
-<x-off-canvas show="pendingCredentials" style="z-index:99999">
+<x-off-canvas show="pendingCredentials" >
 
 	        <x-slot name="title">{{$credentialLabel}} Document</x-slot>
             @if($credentialId>0)
