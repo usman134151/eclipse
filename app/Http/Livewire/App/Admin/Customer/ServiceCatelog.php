@@ -58,7 +58,8 @@ class ServiceCatelog extends Component
             if (isset($this->modelServices[$serviceId])) {
                 $modelService = $this->modelServices[$serviceId];
                 $this->services[$index]['activated'] = $modelService;
-                $this->services[$index]['provider_priority']=$this->providerPriority[$serviceId];
+                if($this->modelType=='provider')
+                    $this->services[$index]['provider_priority']=$this->providerPriority[$serviceId];
             } else {
                 if($this->modelType!='provider'){
                     if($this->services[$index]['disable_for_companies']==1)
