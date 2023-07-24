@@ -276,9 +276,14 @@ class ProviderForm extends Component
         $rules=['userdetail.provider_type'=>'nullable',];
         $this->validate($rules);
 
+        if($this->userdetail['provider_type']!="staff_provider")    //setting values on BL
+            $this->provider_details['set_rate'] = 'no';
 
+        if($this->provider_details['set_rate']=='no'){
+            $this->provider_details['staff_provider_rate']=null;
+            $this->provider_details['staff_provider_rate_type']=null;
 
-
+        }
 
         UserDetail::where('user_id',$this->user->id)->update(['provider_type'=>$this->userdetail['provider_type'],'provider_details'=> json_encode($this->provider_details)]);
 

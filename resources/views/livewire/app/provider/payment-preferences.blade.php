@@ -1,43 +1,13 @@
-<div>
-    <div class="content-header row">
-		<div class="content-header-left col-12 mb-3">
-			<div class="row breadcrumbs-top">
-				<div class="col-12">
-					<h1 class="content-header-title float-start mb-0">
-						Payment Preferences
-					</h1>
-					<div class="breadcrumb-wrapper">
-						<ol class="breadcrumb">
-							<li class="breadcrumb-item">
-								<a href="javascript:void(0)" title="Go to Dashboard" aria-label="Go to Dashboard">
-									<svg aria-label="Home" width="22" height="23" viewBox="0 0 22 23">
-                                        <use xlink:href="/css/common-icons.svg#home"></use>
-                                      </svg>
-								</a>
-							</li>
-							<li class="breadcrumb-item">
-								Settings
-							</li>
-							<li class="breadcrumb-item">
-								Payment Preferences
-							</li>
-						</ol>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-   <div class="card">
-    <div class="card-body">
-        <div class="row mb-0 mt-3">
+<div class="">       
+ <div class="row mb-0 mt-3">
             <p>Here you can manage your preferred method of compensation for remittance payments.</p>
         </div>
-          <div class="col-12 form-actions">
-            <div class="mb-0" role="tablist" id="myTab" tabindex="0">
-                <button type="submit"  tabindex="0" class="btn btn-outline-primary active" id="direct-deposit-tab" data-bs-toggle="tab" data-bs-target="#direct-deposit" type="button" role="tab" aria-controls="direct-deposit" aria-selected="true">Direct Deposit</button>
-                <button type="button"  tabindex="0" class="btn btn-primary mx-2"  id="mail-a-check-tab" data-bs-toggle="tab" data-bs-target="#mail-a-check" type="button" role="tab" aria-controls="mail-a-check" aria-selected="false">Mail a Check</button>
+            <div class="col-12 form-actions">
+                <div class="mb-0" role="tablist" id="myTab" tabindex="0">
+                    <button type="submit"  tabindex="0" class="btn btn-outline-primary active" id="direct-deposit-tab" data-bs-toggle="tab" data-bs-target="#direct-deposit" type="button" role="tab" aria-controls="direct-deposit" aria-selected="true">Direct Deposit</button>
+                    <button type="button"  tabindex="0" class="btn btn-primary mx-2"  id="mail-a-check-tab" data-bs-toggle="tab" data-bs-target="#mail-a-check" type="button" role="tab" aria-controls="mail-a-check" aria-selected="false">Mail a Check</button>
+                </div>
             </div>
-        </div>
           <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="direct-deposit" role="tabpanel" aria-labelledby="direct-deposit-tab">
                 <div class="row">
@@ -113,7 +83,5 @@
         <div class="col-12 justify-content-center form-actions d-flex">
             <button type="submit"  class="btn btn-primary rounded">Save</button>
         </div>
-    </div>
-   </div>
-   @include('modals.common.add-address')
+   
 </div>
