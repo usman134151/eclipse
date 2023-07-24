@@ -1,13 +1,12 @@
 
 {{-- Sign & Upload Document Off Canvas - Start --}}
 <x-off-canvas show="pendingCredentials" style="z-index:99999">
-	        <x-slot name="title">Document</x-slot>
 
-	        {{-- <x-slot name="title">{{$credentialLabel}} Document</x-slot>
+	        <x-slot name="title">{{$credentialLabel}} Document</x-slot>
             @if($credentialId>0)
 
               @livewire('app.common.panels.pending-credentials',['user_id'=>$userid, 'document_id'=>$credentialId])
-            @endif --}}
+            @endif
         </x-off-canvas>
 <script>
   window.addEventListener('open-credential', function(event) {
