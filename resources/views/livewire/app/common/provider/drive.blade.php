@@ -288,6 +288,4 @@
             </div>
           </div>
         </div>  
-        @include('panels.common.pending-credentials')
-        @include('modals.common.view-button')  
 </div>
