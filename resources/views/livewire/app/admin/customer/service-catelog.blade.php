@@ -88,12 +88,27 @@
                                                                                     aria-label="Search"
                                                                                     wire:model.debounce.500ms="serviceSearch"
                                                                                     x-on:keydown.enter.prevent
-                                                                                    wire:keyup="filterResults('servicesList','services','serviceSearch')"                                                                                      />
+                                                                                    wire:keyup="filterResults('servicesList','services','serviceSearch')" />
+                                                                                    <tr>
+                                                                                            <th>Service</th>
+                                                                                            @if($modelType=='provider')
+                                                                                            <th>Priority</th>
+                                                                                            @endif
+                                                                                            <th>Status</th>
+                                                                                            @if($showRates!='no')
+                                                                                            <th>Actions</th>
+                                                                                            @endif
+                                                                                        </tr>
                                                                                     @foreach($this->services as $index=>$service)
+                                                                                       
+
                                                                                         <tr role="row" class="odd">
                                                                                             <td class="text-start">
                                                                                                 <p>{{$service['name']}}</p>
                                                                                             </td>
+                                                                                            @if($modelType=='provider')
+                                                                                                <td><input style="width: 60px;padding: 0.5rem;" type="text" size="2" class="form-control" maxlength="3" wire:model.lazy="services.{{$index}}.provider_priority"  wire:blur="updatePriority({{ $index }})"></td>
+                                                                                            @endif
                                                                                             <td>
                                                                                                 <div
                                                                                                     class="form-check form-switch">
@@ -109,21 +124,23 @@
                                                                                             </td>
                                                                                             <td>
                                                                                                 <div class="d-flex actions">
-                                                                                                <a href="javascript:void(0)" wire:click="updateServiceData({{$service['id']}})" title="Add Service Rates" aria-label="Add Service Rates" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                            <x-icon name="dollar-icon"/>
-                        </a>
-                        @if($modelType=='company')
-                        <a href="javascript:void(0)" wire:click="reloadDepartment({{$modelId}},{{$service['id']}})" title="View Departments" aria-label="View Departments" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                            <x-icon name="building"/>
-                        </a>
-                        <a href="#"  @click="associateCustomer = true;$wire.reloadUsers({{$service['id']}})" title="user-group" aria-label="user-group" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                            <x-icon name="user-group"/>
-                        </a>
-                        @elseif($modelType=='department')
-                        <a href="#"  @click="associateCustomer = true;$wire.reloadDepartmentUsers({{$service['id']}})" title="user-group" aria-label="user-group" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                            <x-icon name="user-group"/>
-                        </a>
-                        @endif
+                                                                                                    @if($showRates!='no')
+                                                                                                        <a href="javascript:void(0)" wire:click="updateServiceData({{$service['id']}})" title="Add Service Rates" aria-label="Add Service Rates" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                                                            <x-icon name="dollar-icon"/>
+                                                                                                        </a>
+                                                                                                    @endif
+                                                                                                        @if($modelType=='company')
+                                                                                                        <a href="javascript:void(0)" wire:click="reloadDepartment({{$modelId}},{{$service['id']}})" title="View Departments" aria-label="View Departments" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                                                            <x-icon name="building"/>
+                                                                                                        </a>
+                                                                                                        <a href="#"  @click="associateCustomer = true;$wire.reloadUsers({{$service['id']}})" title="user-group" aria-label="user-group" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                                                            <x-icon name="user-group"/>
+                                                                                                        </a>
+                                                                                                        @elseif($modelType=='department')
+                                                                                                        <a href="#"  @click="associateCustomer = true;$wire.reloadDepartmentUsers({{$service['id']}})" title="user-group" aria-label="user-group" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                                                            <x-icon name="user-group"/>
+                                                                                                        </a>
+                                                                                                        @endif
 
                                                                                                 </div>
                                                                                             </td>

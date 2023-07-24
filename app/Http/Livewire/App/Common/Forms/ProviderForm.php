@@ -146,6 +146,7 @@ class ProviderForm extends Component
 	public function render()
 	{
 
+       
         //null check to avoid break
         if (!is_array($this->tags))
             $this->tags = [];
@@ -156,6 +157,8 @@ class ProviderForm extends Component
         ]);
 	}
     public function mount(User $user){
+       
+       
         $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
         $this->user=$user;
 
@@ -366,6 +369,8 @@ class ProviderForm extends Component
         $user['userdetail']['favored_users'] = explode(", ", $user['userdetail']['favored_users']);
         $user['userdetail']['unfavored_users'] = explode(", ", $user['userdetail']['unfavored_users']);
         $this->provider_details = json_decode($user['userdetail']['provider_details'],true);
+        if(is_null($this->provider_details))
+            $this->provider_details=['set_rate'=>'no', 'staff_provider_rate_type'=>'per_hour_rate'];
 
 
         if ($user['userdetail']['tags'] != null)
@@ -645,6 +650,10 @@ class ProviderForm extends Component
     public function openActiveCredentialModal($user_doc_id)
     {
         $this->emit('openActiveCredential', $user_doc_id);
+    }
+
+    public function setRate(){
+        $this->emit('updateSetRate',$this->provider_details['set_rate']);
     }
 	
 

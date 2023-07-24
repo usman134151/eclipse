@@ -10,11 +10,12 @@ use Livewire\Component;
 
 class ServiceCatelog extends Component
 {
-    public $accomodations,$accomodationsList,$services=[],$searchParameter,$modelId,$modelType,$modelServices=[],$servicesList=[],$serviceSearch,$parentId,$parentType;
-    protected $listeners = ['resetCatalog'];
+    public $accomodations,$accomodationsList,$services=[],$searchParameter,$modelId,$modelType,$modelServices=[],$providerPriority=[],$servicesList=[],$serviceSearch,$parentId,$parentType,$showRates=true;
+    protected $listeners = ['resetCatalog','updateSetRate'];
 
     public function render()
     {
+        
         return view('livewire.app.admin.customer.service-catelog',[
             'accommodations' => $this->accomodations,
         ]);
@@ -24,6 +25,9 @@ class ServiceCatelog extends Component
     {
         $this->resetCatalog();
        
+    }
+    public function updateSetRate($value){
+        $this->showRates=$value;
     }
     public function resetCatalog(){
         $this->accomodationsList=Accommodation::where('status',1)->get()->toArray();
@@ -54,6 +58,7 @@ class ServiceCatelog extends Component
             if (isset($this->modelServices[$serviceId])) {
                 $modelService = $this->modelServices[$serviceId];
                 $this->services[$index]['activated'] = $modelService;
+                $this->services[$index]['provider_priority']=$this->providerPriority[$serviceId];
             } else {
                 if($this->modelType!='provider'){
                     if($this->services[$index]['disable_for_companies']==1)
@@ -61,8 +66,11 @@ class ServiceCatelog extends Component
                     else
                     $this->services[$index]['activated']=1;
                 }
-                else
+                else{
                     $this->services[$index]['activated']=0;
+                    $this->services[$index]['provider_priority']='';
+                }
+                   
             }    
         }
         $this->servicesList=$this->services;
@@ -84,12 +92,34 @@ class ServiceCatelog extends Component
            // Update or add the record in $this->model_services array
             $this->modelServices[$this->services[$index]['id']] = $this->services[$index]['activated'];
     }
+    public function updatePriority($index){
+    
+        if (is_numeric($this->services[$index]['provider_priority'])) {
+            ProviderAccommodationServices::updateOrCreate(
+                ['service_id' => $this->services[$index]['id'], 'user_id' => $this->modelId,'accommodation_id'=>$this->services[$index]['accommodations_id']],
+                ['provider_priority' =>  $this->services[$index]['provider_priority']]);  
+                $this->providerPriority[$this->services[$index]['id']] = $this->services[$index]['provider_priority'];
+            } 
+            else{
+                $this->services[$index]['provider_priority']=0;
+            }       
+      
+    }
     public function fetchModelServices()
     {
-        if($this->modelType=='provider')
+        if($this->modelType=='provider'){
             $this->modelServices = ProviderAccommodationServices::where('user_id', $this->modelId)
             ->pluck('status', 'service_id')
             ->toArray();
+        
+            $this->providerPriority=ProviderAccommodationServices::where('user_id', $this->modelId)
+            ->pluck('provider_priority', 'service_id')
+            ->toArray();
+
+          
+            
+        }
+
         else
             $this->modelServices = AssociateService::where('model_id', $this->modelId)
                 ->where('model_type', $this->modelType)

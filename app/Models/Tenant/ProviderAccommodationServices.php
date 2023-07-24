@@ -15,6 +15,6 @@ class ProviderAccommodationServices extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'accommodation_id', 'service_id','status'
+        'user_id', 'accommodation_id', 'service_id','status','provider_priority'
     ];
 }
