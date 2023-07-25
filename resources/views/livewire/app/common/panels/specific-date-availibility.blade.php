@@ -18,42 +18,57 @@
                     </div>
                   </div>
                     <label class="form-label-sm">Choose Time</label>
-                    <div class="d-flex">
-                      <div class="d-flex flex-column justify-content-between">
-                        <label class="form-label-sm" for="set_start_time">Start Time</label>
-                        <div class="d-flex gap-2">
-                          <div class="time d-flex align-items-center gap-2">
-                            <div class="hours">12</div>
-                            <svg aria-label="Start Time" width="5" height="19" viewBox="0 0 5 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M0.652588 16.6132C0.652588 16.1098 0.807878 15.6868 1.11846 15.3441C1.43975 14.9907 1.90026 14.814 2.5 14.814C3.09974 14.814 3.5549 14.9907 3.86548 15.3441C4.18677 15.6868 4.34741 16.1098 4.34741 16.6132C4.34741 17.1058 4.18677 17.5235 3.86548 17.8662C3.5549 18.2089 3.09974 18.3803 2.5 18.3803C1.90026 18.3803 1.43975 18.2089 1.11846 17.8662C0.807878 17.5235 0.652588 17.1058 0.652588 16.6132ZM0.668652 2.42827C0.668652 1.92492 0.823942 1.50189 1.13452 1.15918C1.45581 0.805761 1.91632 0.629052 2.51606 0.629052C3.1158 0.629052 3.57096 0.805761 3.88154 1.15918C4.20283 1.50189 4.36348 1.92492 4.36348 2.42827C4.36348 2.92091 4.20283 3.33859 3.88154 3.6813C3.57096 4.02401 3.1158 4.19536 2.51606 4.19536C1.91632 4.19536 1.45581 4.02401 1.13452 3.6813C0.823942 3.33859 0.668652 2.92091 0.668652 2.42827Z" fill="black"/>
-                            </svg>
-                            <div class="mins">59</div>
+                      <div class="d-flex">
+                          <div class="d-flex flex-column justify-content-between">
+                            <label class="form-label-sm" for="set_start_time">Start Time</label>
+                            <div class="d-flex gap-2">
+                              <div class="time d-flex align-items-center gap-2">
+                                <div >
+                                      <input class="form-control form-control-sm text-center hours" id="Days" aria-label="Start Time" name="start_hour" placeholder="" type="" tabindex="" wire:key="duration-0" wire:model.defer="timeslot.from_time_hour" maxlength="2"></div>
+                                      <svg width="5" height="19" viewBox="0 0 5 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M0.652588 16.6132C0.652588 16.1098 0.807878 15.6868 1.11846 15.3441C1.43975 14.9907 1.90026 14.814 2.5 14.814C3.09974 14.814 3.5549 14.9907 3.86548 15.3441C4.18677 15.6868 4.34741 16.1098 4.34741 16.6132C4.34741 17.1058 4.18677 17.5235 3.86548 17.8662C3.5549 18.2089 3.09974 18.3803 2.5 18.3803C1.90026 18.3803 1.43975 18.2089 1.11846 17.8662C0.807878 17.5235 0.652588 17.1058 0.652588 16.6132ZM0.668652 2.42827C0.668652 1.92492 0.823942 1.50189 1.13452 1.15918C1.45581 0.805761 1.91632 0.629052 2.51606 0.629052C3.1158 0.629052 3.57096 0.805761 3.88154 1.15918C4.20283 1.50189 4.36348 1.92492 4.36348 2.42827C4.36348 2.92091 4.20283 3.33859 3.88154 3.6813C3.57096 4.02401 3.1158 4.19536 2.51606 4.19536C1.91632 4.19536 1.45581 4.02401 1.13452 3.6813C0.823942 3.33859 0.668652 2.92091 0.668652 2.42827Z" fill="black"/>
+                                      </svg>
+                                      <div>
+                                      <input class="form-control form-control-sm text-center  mins" aria-label="Start Minutes" id="Days" name="DisplayToProviders" placeholder="" type="" tabindex="" wire:key="duration-0" wire:model.defer="timeslot.from_time_min" maxlength="2"></div>
+                                  </div>
+                                  
+                                  @if($time_format==1)
+                                    <div>
+                                        <select class="form-control form-control-sm text-center hours" wire:model.defer="timeslot_start_type" style="padding: 0.4rem 2.2rem" aria-label="AM/PM">
+                                            <option value="am">AM</option>
+                                            <option value="pm">PM</option>
+                                        </select>
+                                    </div>
+                                  @endif
+                              </div>
+
+                            </div>
                           </div>
-                          <div class="form-check form-switch form-switch-column mb-0">
-                              <input checked class="form-check-input" type="checkbox" role="switch" id="pm" aria-label="PM">
-                              <label class="form-check-label" for="pm">PM</label>
+                          <div class="d-flex flex-column justify-content-between">
+                              <label class="form-label-sm" for="set_start_time">End Time</label>
+                              <div class="d-flex gap-2">
+                                <div class="time d-flex align-items-center gap-2">
+                                  <div >
+                                        <input class="form-control form-control-sm text-center hours" id="hours" aria-label="End Time" name="end_hour" placeholder="" type="" tabindex="" wire:key="duration-0" wire:model.defer="timeslot.to_time_hour" maxlength="2"></div>
+                                        <svg width="5" height="19" viewBox="0 0 5 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M0.652588 16.6132C0.652588 16.1098 0.807878 15.6868 1.11846 15.3441C1.43975 14.9907 1.90026 14.814 2.5 14.814C3.09974 14.814 3.5549 14.9907 3.86548 15.3441C4.18677 15.6868 4.34741 16.1098 4.34741 16.6132C4.34741 17.1058 4.18677 17.5235 3.86548 17.8662C3.5549 18.2089 3.09974 18.3803 2.5 18.3803C1.90026 18.3803 1.43975 18.2089 1.11846 17.8662C0.807878 17.5235 0.652588 17.1058 0.652588 16.6132ZM0.668652 2.42827C0.668652 1.92492 0.823942 1.50189 1.13452 1.15918C1.45581 0.805761 1.91632 0.629052 2.51606 0.629052C3.1158 0.629052 3.57096 0.805761 3.88154 1.15918C4.20283 1.50189 4.36348 1.92492 4.36348 2.42827C4.36348 2.92091 4.20283 3.33859 3.88154 3.6813C3.57096 4.02401 3.1158 4.19536 2.51606 4.19536C1.91632 4.19536 1.45581 4.02401 1.13452 3.6813C0.823942 3.33859 0.668652 2.92091 0.668652 2.42827Z" fill="black"/>
+                                        </svg>
+                                        <div>
+                                        <input class="form-control form-control-sm text-center  mins" aria-label="End Minutes" id="end_min" name="end_min" placeholder="" type="" tabindex="" wire:key="duration-0" wire:model.defer="timeslot.to_time_min" maxlength="2"></div>
+                                    </div>
+                                    
+                                    @if($time_format==1)
+                                      <div>
+                                          <select class="form-control form-control-sm text-center hours" wire:model.defer="timeslot_end_type" style="padding: 0.4rem 2.2rem" aria-label="AM/PM">
+                                              <option value="am">AM</option>
+                                              <option value="pm">PM</option>
+                                          </select>
+                                      </div>
+                                    @endif
+                                </div>
+                              </div>
                           </div>
-                        </div>
                       </div>
-                    </div>
-                    <div class="d-flex">
-                      <div class="d-flex flex-column justify-content-between">
-                        <label class="form-label-sm" for="set_start_time">End Time</label>
-                        <div class="d-flex gap-2">
-                          <div class="time d-flex align-items-center gap-2">
-                            <div class="hours">12</div>
-                            <svg aria-label="End Time" width="5" height="19" viewBox="0 0 5 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M0.652588 16.6132C0.652588 16.1098 0.807878 15.6868 1.11846 15.3441C1.43975 14.9907 1.90026 14.814 2.5 14.814C3.09974 14.814 3.5549 14.9907 3.86548 15.3441C4.18677 15.6868 4.34741 16.1098 4.34741 16.6132C4.34741 17.1058 4.18677 17.5235 3.86548 17.8662C3.5549 18.2089 3.09974 18.3803 2.5 18.3803C1.90026 18.3803 1.43975 18.2089 1.11846 17.8662C0.807878 17.5235 0.652588 17.1058 0.652588 16.6132ZM0.668652 2.42827C0.668652 1.92492 0.823942 1.50189 1.13452 1.15918C1.45581 0.805761 1.91632 0.629052 2.51606 0.629052C3.1158 0.629052 3.57096 0.805761 3.88154 1.15918C4.20283 1.50189 4.36348 1.92492 4.36348 2.42827C4.36348 2.92091 4.20283 3.33859 3.88154 3.6813C3.57096 4.02401 3.1158 4.19536 2.51606 4.19536C1.91632 4.19536 1.45581 4.02401 1.13452 3.6813C0.823942 3.33859 0.668652 2.92091 0.668652 2.42827Z" fill="black"/>
-                            </svg>
-                            <div class="mins">59</div>
-                          </div>
-                          <div class="form-check form-switch form-switch-column mb-0">
-                              <input checked class="form-check-input" type="checkbox" role="switch" id="am" aria-label="AM">
-                              <label class="form-check-label" for="am">AM</label>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                 </div>
                 <button class="btn btn-primary btn-sm rounded">Submit</button>
             </div>
