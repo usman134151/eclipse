@@ -31,7 +31,7 @@
                                                     Date Range
                                                 </label>
                                                 <div class="position-relative">
-                                                    <input type="" wire:model="dateRange" name="dateRange" id="dateRange" class="form-control js-single-date"
+                                                    <input type="" wire:model.lazy="dateRange" name="dateRange" id="dateRange" class="form-control js-single-date"
                                                         placeholder="Jan 1, 2022 - Oct 1, 2022" id="">
                                                     <svg aria-label="Date" class="icon-date" width="20" height="20" viewBox="0 0 20 20">
                                                         <use xlink:href="/css/common-icons.svg#datefield-icon">

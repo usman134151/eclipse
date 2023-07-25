@@ -5,7 +5,7 @@ namespace App\Models\Tenant;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SpecificSchedule extends Model
+class ProviderSpecificSchedule extends Model
 {
     use HasFactory;
 
@@ -14,7 +14,8 @@ class SpecificSchedule extends Model
      *
      * @var array
      */
+    protected $table = 'provider_specific_schedules';
     protected $fillable = [
-        'name' , 'display_name' ,
+        'user_id' , 'scheduled_date' ,'from_time','to_time','notes'
     ];
 }
