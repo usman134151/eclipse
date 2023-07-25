@@ -65,7 +65,6 @@ class NotificationTagsSeeder extends Seeder
         foreach ($notification_tags as $tag) {
             $existingTag = DB::table('notification_tags')->where('name', $tag['name'])->first();
             if (!$existingTag) {
-                //check if data alreay present 
                 DB::table('notification_tags')->insert($tag);
             }
         }
