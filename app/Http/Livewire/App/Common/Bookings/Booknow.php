@@ -5,10 +5,12 @@ namespace App\Http\Livewire\App\Common\Bookings;
 use Livewire\Component;
 use App\Helpers\SetupHelper;
 use App\Models\Tenant\User;
+use App\Models\Tenant\Booking;
 
 class Booknow extends Component
 {
     public $component = 'requester-info';
+    public $booking;
     public $showForm,$assignment,$requesters =[],$bManagers=[],$supervisors=[], $step=1 ;
     protected $listeners = ['showList' => 'resetForm','updateVal', 'updateCompany',
         'updateSelectedIndustries' => 'selectIndustries',
@@ -42,8 +44,9 @@ class Booknow extends Component
             ]
         ]
     ];
-        public function render()
+    public function render()
     {
+       
         return view('livewire.app.common.bookings.booknow');
     }
 
@@ -73,8 +76,9 @@ class Booknow extends Component
             ]);
         }
     }
-    public function mount()
+    public function mount(Booking $booking)
     {
+        $this->booking=$booking;
         $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
         if($this->assignment){
             $this->updateCompany();

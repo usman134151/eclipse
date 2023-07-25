@@ -16,13 +16,14 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+	
   }
 </style>
 	{{-- Left Text --}}
 	<div class="d-none d-lg-flex col-lg-8 align-items-center justify-content-center">
 			<div class="video-container">
 			<video style="width: 100%; height: 100%;"  autoplay loop muted>
-			<source src="/tenant-resources/video/welcome.mp4" type="video/mp4">
+			<source src="/tenant-resources/video/v3.mp4" type="video/mp4">
 			Your browser does not support the video tag.
 		</video>	
 		</div>
