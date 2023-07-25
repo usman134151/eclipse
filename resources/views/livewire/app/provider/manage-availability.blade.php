@@ -37,7 +37,7 @@
                 <button @click="defaultAvailability = true" wire:click="getProviderSchedule"  class="btn btn-outline-primary rounded">Change Default Availability</button>
               </div>
               <div class="mb-4 mb-lg-0">
-                  <button @click="specificDateAvailability = true" class="btn btn-primary rounded">Change Availability For Specific Date</button>
+                  <button @click="specificDateAvailability = true" wire:click="$emit('clear')" class="btn btn-primary rounded">Change Availability For Specific Date</button>
               </div>
 
               <div class="d-flex justify-content-between ms-5">

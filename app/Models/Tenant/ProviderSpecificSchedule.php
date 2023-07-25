@@ -14,7 +14,7 @@ class ProviderSpecificSchedule extends Model
      *
      * @var array
      */
-    protected $table = 'provider_specific_schedule';
+    protected $table = 'provider_specific_schedules';
     protected $fillable = [
         'user_id' , 'scheduled_date' ,'from_time','to_time','notes'
     ];

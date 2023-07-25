@@ -10,10 +10,15 @@
                         Select Date & Time
                       </label>
                       <div class="position-relative">
-                        <input type="" name="" class="form-control js-single-date" placeholder="Jan 1, 2022 - Oct 1, 2022" id="select-date">
+                        <input type="" name="scheduled_date" class="form-control js-single-date" placeholder="MM/DD/YYYY" id="scheduled_date" wire:model.defer="timeslot.scheduled_date">
                         <svg aria-label="Date" class="icon-date" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#date-field"></use>
                                                 </svg>
+                          @error('timeslot.scheduled_date')
+													<span class="d-inline-block invalid-feedback mt-2">
+														{{ $message }}
+													</span>
+												@enderror
                       </div>
                     </div>
                   </div>
@@ -32,14 +37,14 @@
                                       <input class="form-control form-control-sm text-center  mins" aria-label="Start Minutes" id="Days" name="DisplayToProviders" placeholder="" type="" tabindex="" wire:key="duration-0" wire:model.defer="timeslot.from_time_min" maxlength="2"></div>
                                   </div>
                                   
-                                  @if($time_format==1)
+                                  {{-- @if($time_format==1)
                                     <div>
                                         <select class="form-control form-control-sm text-center hours" wire:model.defer="timeslot_start_type" style="padding: 0.4rem 2.2rem" aria-label="AM/PM">
                                             <option value="am">AM</option>
                                             <option value="pm">PM</option>
                                         </select>
                                     </div>
-                                  @endif
+                                  @endif --}}
                               </div>
 
                             </div>
@@ -57,20 +62,22 @@
                                         <input class="form-control form-control-sm text-center  mins" aria-label="End Minutes" id="end_min" name="end_min" placeholder="" type="" tabindex="" wire:key="duration-0" wire:model.defer="timeslot.to_time_min" maxlength="2"></div>
                                     </div>
                                     
-                                    @if($time_format==1)
+                                    {{-- @if($time_format==1)
                                       <div>
                                           <select class="form-control form-control-sm text-center hours" wire:model.defer="timeslot_end_type" style="padding: 0.4rem 2.2rem" aria-label="AM/PM">
                                               <option value="am">AM</option>
                                               <option value="pm">PM</option>
                                           </select>
                                       </div>
-                                    @endif
+                                    @endif --}}
                                 </div>
                               </div>
                           </div>
+                      <div class="d-inline-block invalid-feedback mt-2 " > {{ $errors->first('timeValidation') }}</div>
+
                       </div>
                 </div>
-                <button class="btn btn-primary btn-sm rounded">Submit</button>
+                {{-- <button class="btn btn-primary btn-sm rounded">Submit</button> --}}
             </div>
         </div>
         <div class="row">
@@ -78,7 +85,7 @@
                 <label class="form-label" for="notes">
                     Note
                 </label>
-                <textarea class="form-control" rows="4" placeholder="" name="notesColumn" id="notes"></textarea>
+                <textarea class="form-control" rows="4"  wire:model.defer="timeslot.notes" id="notes"></textarea>
             </div>
             <div>
                 <p>No Bookings Assigned from 11/02/2022 to 11/02/2022</p>
@@ -89,7 +96,8 @@
         <button type="button" class="btn btn-outline-dark rounded" x-on:click="specificDateAvailability = !specificDateAvailability">
             Cancel
         </button>
-        <button type="submit" class="btn btn-primary rounded" x-on:click="specificDateAvailability = !specificDateAvailability">
+         {{-- wire:click.prevent="$emit('saveSpecificSlot')" --}}
+        <button type="submit" class="btn btn-primary rounded" x-on:close-specific-panel.window="specificDateAvailability = !specificDateAvailability">
             Save
         </button>
     </div>
