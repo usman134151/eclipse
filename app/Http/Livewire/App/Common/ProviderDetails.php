@@ -5,10 +5,11 @@ namespace App\Http\Livewire\App\Common;
 use App\Models\Tenant\Schedule;
 use Livewire\Component;
 use App\Models\Tenant\User;
+use App\Models\Tenant\UserDetail;
 use App\Services\App\UserService;
 class ProviderDetails extends Component
 {
-    public $user, $userid;
+    public $user, $userid ,$settings=['travel_rate_per_unit'=>'', 'travel_rate_unit'=>"km", 'rate_for_travel_time'=>'', 'same_as_service_rate'=>''];
 
 	
 	// variabled for my-drive (upload-credential-file) panel 
@@ -21,6 +22,13 @@ class ProviderDetails extends Component
 		 'openActiveCredentialModal',	//for document view modal
 			'showConfirmation',
 		];
+
+	public function saveSettings(){
+		
+		UserDetail::where('id',$this->userid)->update(['provider_details'=> json_encode($this->settings)]);
+		$this->showConfirmation("Settings saved Successfully");
+
+	}
 
 	public function saveSchedule()
 	{
@@ -59,6 +67,13 @@ class ProviderDetails extends Component
 		$this->user=$user;
 		$this->userid = $user['id'];
 		$this->user['tags'] = json_decode($this->user['userdetail']['tags']);
+		if($this->user['userdetail']['provider_details']!=null)
+		// {
+			$this->settings = json_decode($this->user['userdetail']['provider_details'],true);
+		// 	foreach($details as $key=> $det){
+		// 		$this->settings[$key]=$det;
+		// 	}
+		// }
 		$this->dispatchBrowserEvent('refreshSelects');
 	}
 

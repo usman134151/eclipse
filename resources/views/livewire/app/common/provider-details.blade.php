@@ -665,19 +665,10 @@
 			                    	<p>In this section, you can add your availability schedule for each working day. You can also register any future holidays when you are not available. It is flexible to create same working hours schedule or different for each day. You can choose your working days as well.</p>
 		                          </div>
 			                      <div class="row mb-3">
-			                    	<h2>Availability </h2>
+			                    	<h2>Availability <small>(coming soon)</small> </h2>
 			                      </div>
 								  	@livewire('app.provider.manage-availability', ['provider_id' => $user['id']])
-			                       {{-- <div class="d-flex justify-content-between mb-4">
-			                    	<div class="d-inline-flex align-items-center gap-4">
-			                    		<div class="mb-4 mb-lg-0">
-			                    			<button @click="defaultAvailability = true" class="btn btn-outline-primary rounded">Change Default Availability</button>
-			                    		</div>
-			                    		<div class="mb-4 mb-lg-0">
-			                    			<button @click="specificDateAvailability = true" class="btn btn-primary rounded">Change Availability For Specific Date</button>
-			                    		</div>
-			                    	</div>
-			                      </div> --}}
+			                       
                                   <div>
 			                      </div>
 		                        </div>
@@ -2323,9 +2314,9 @@
 										<div class="row">
 											<div class="col-lg-12">
 												<div class="form-check form-switch">
-													<input class="form-check-input" aria-label="Toggle Provider Payroll" type="checkbox" role="switch" id="provider-payroll" checked>
-													<label class="form-check-label" for="provider-payroll">Provider Payroll</label>
-													<label class="form-check-label" for="provider-payroll">Provider Payroll</label>
+													<input class="form-check-input " aria-label="Toggle Provider Payroll" type="checkbox" role="switch" id="provider_payroll" >
+													<label class="form-check-label" for="provider_payroll">Provider Payroll</label>
+													<label class="form-check-label" for="provider_payroll">Provider Payroll</label>
 												</div>
 											</div>
 										</div>
@@ -2348,15 +2339,21 @@
 													<label class="form-label" for="reimburseProviders">
 													Rate per unit to reimburse provider
 													</label>
-													<a href="#">
-														KM  <svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
-															<use xlink:href="/css/common-icons.svg#pencil">
-															</use>
-														</svg>
-														</a>
+												
 												</div>
 
-												<input class="form-control" type="" id="reimburseProviders" placeholder="$00:00">
+
+												<div class="row">
+													<div class="col-8">
+														<input type="number" id="travel_rate_per_unit" class="form-control" name="rate-per-mile-to-reimburse" placeholder="$00:00" wire:model.defer="settings.travel_rate_per_unit"  />
+													</div>
+													<div class="col-4">
+														<select  id="travel_rate_unit" class="form-select" wire:model.defer="settings.travel_rate_unit">
+															<option value="km" >KM</option>
+															<option value="m" >Miles</option>
+														</select>
+													</div>
+												</div>										
 											</div>
 										</div>
 										<div class="row">
@@ -2373,19 +2370,30 @@
 												</div>
 												<div class="row">
 												<div class="col-lg-8 d-inline-flex">
-													<input class="form-control" type="" id="compensatedTravelTime" placeholder="$00:00">
+												 <input type="number" wire:model.defer="settings.rate_for_travel_time" id="rate-to-reimburse-compensated-travel-time"
+												  class="form-control" name="rate-to-reimburse-compensated-travel-time" placeholder="$00:00" />
 													<div class="col-lg-4 ms-2 mt-3"><span>Per hour</span></div>
 												</div>
 											</div>
 											<div class="row ms-2 mt-2">
 												<div class="form-check">
-													<input class="form-check-input" id="SameAsServiceRate" name="SameAsServiceRate" type="checkbox" tabindex="" />
+													 <input class="form-check-input" wire:model.defer="settings.same_as_service_rate"
+                                                                                        type="checkbox"
+                                                                                        id="same_as_service_rate">
 													<label class="form-check-label" for="SameAsServiceRate">Same as Service Rate</label>
 												  </div>
 											 </div>
 											</div>
 										</div>
 
+									</div>
+									<div class="row">
+										<div class="col-12 justify-content-center form-actions d-flex gap-3">
+											
+											<button type="submit" wire:click='saveSettings' class="btn btn-primary rounded">
+												Save
+											</button>
+										</div>
 									</div>
 								</div>
 								<!-- Settings Tab End-->
