@@ -665,9 +665,10 @@
 			                    	<p>In this section, you can add your availability schedule for each working day. You can also register any future holidays when you are not available. It is flexible to create same working hours schedule or different for each day. You can choose your working days as well.</p>
 		                          </div>
 			                      <div class="row mb-3">
-			                    	<h2>Availability <small>(coming soon)</small></h2>
+			                    	<h2>Availability </h2>
 			                      </div>
-			                       <div class="d-flex justify-content-between mb-4">
+								  	@livewire('app.provider.manage-availability', ['provider_id' => $user['id']])
+			                       {{-- <div class="d-flex justify-content-between mb-4">
 			                    	<div class="d-inline-flex align-items-center gap-4">
 			                    		<div class="mb-4 mb-lg-0">
 			                    			<button @click="defaultAvailability = true" class="btn btn-outline-primary rounded">Change Default Availability</button>
@@ -676,9 +677,8 @@
 			                    			<button @click="specificDateAvailability = true" class="btn btn-primary rounded">Change Availability For Specific Date</button>
 			                    		</div>
 			                    	</div>
-			                      </div>
+			                      </div> --}}
                                   <div>
-									<img  class="w-100" alt="Schedule Calendar" src="/tenant-resources/images/portrait/small/image-placeholder-calendar.png" />
 			                      </div>
 		                        </div>
 		                        <!-- Availability Tab End-->
