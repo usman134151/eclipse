@@ -25,6 +25,21 @@ class NotificationTagsSeeder extends Seeder
 			["name"=>"@service_type"],
 			["name"=>"@dashboard"],
 			["name"=>"@reports"],
+            ["name"=>"@Quote_Number"],
+            ["name"=>"@Accommodation"],
+            ["name"=>"@Specialization(s)"],
+            ["name"=>"@Start_Date"],
+            ["name"=>"@State_Time"],
+            ["name"=>"@End_Date"],
+            ["name"=>"@End_Time "],
+            ["name"=>"@Company"],
+            ["name"=>"@Reimbursement_Name"],
+            ["name"=>"@Reimbursement_Amount"],
+            ["name"=>"@Assigned_Providers"],
+            ["name"=>"@Provider_Payment"],
+            ["name"=>"@Billing_Total"],
+            ["name"=>"@Requester"],
+            ["name"=>"@Booking_Number"],
         );
         foreach ($notification_tags as $tag) {
             $existingTag = DB::table('notification_tags')->where('name', $tag['name'])->first();
