@@ -347,270 +347,99 @@
 				                        	 <div class="card">
 				                        	   <div class="table-responsive">
 				                        		 <!-- table one  -->
-				                                <table id="" class="table table-hover" aria-label="Admin Staff Teams Table">
-				                                       <thead>
-				                                       <tr role="row">
-				                                         <th class="align-middle text-nowrap" scope="col">Language Translation Services</th>
-				                                         <th class="text-end align-middle" scope="col">Service Rate</th>
-				                                         <th class="text-end align-middle col-3" scope="col">
-				                                         <div aria-expanded="true" data-bs-toggle="collapse" href="#collapseLanguageTranslationServices" role="button" aria-controls="collapseLanguageTranslationServices">
-															<svg class="me-4" width="26" height="13" viewBox="0 0 26 13">
-																<use xlink:href="/css/common-icons.svg#upper-arrow-head"></use>
-															</svg>
-				                                         </div>
-				                                         </th>
-				                                       </tr>
-				                                       </thead>
-				                                     </table>
-				                                     <div class="collapse " id="collapseLanguageTranslationServices">
-				                                        <table id="" class="table table-hover" aria-label="Admin Staff Teams Table">
+												@foreach($user['services'] as $service)
+
+				                                	<table id="" class="table table-hover" aria-label="Admin Staff Teams Table">
+				                                       	<thead>
+															<tr role="row">
+																	<th class="align-middle text-nowrap" scope="col">{{$service['name']}}</th>
+																	<th class="text-end align-middle" scope="col">Service Rate</th>
+																	<th class="text-end align-middle col-3" scope="col">
+																	<div aria-expanded="false" data-bs-toggle="collapse" href="#collapse{{ $service['id']}}" role="button" aria-controls="collapse{{ $service['id']}}">
+																		<svg class="me-4" width="26" height="13" viewBox="0 0 26 13">
+																			<use xlink:href="/css/common-icons.svg#lower-arrow-head"></use>
+																		</svg>
+																	</div>
+																	</th>
+															</tr>
+				                                       	</thead>
+				                                    </table>
+				                                    <div class="collapse " id="collapse{{ $service['id']}}">
+				                                        <table id="" class="table table-hover" aria-label="{{$service['name']}} Table">
 				                                          <tbody>
-				                                       <tr role="row" class="odd">
-				                                         <td class="align-middle">
-				                                          <p class="text-sm">Check service duration</p>
-				                                         </td>
-				                                         <td class="align-middle">
-				                                          <div class="d-flex text-nowrap justify-content-end gap-2 align-items-center">
-				                                            <small>Business Rate:</small><span class="text-sm"> $10.00</span>
-				                                          </div>
-				                                          <div class="d-flex text-nowrap justify-content-end gap-2 align-items-center">
-				                                            <small>After-hours Rate:</small> <span class="text-sm">$10.00</span>
-				                                          </div>
-				                                          </td>
-				                                          <td class="text-center align-middle ps-0">
-				                                         <div class="row">
-				                                           <div class="col-4 align-self-center pe-0 text-end text-sm">
-				                                           10
-				                                           </div>
-				                                           <div class="col-8">
-				                                           <button type="button" class="w-100 btn btn-sm btn-success px-4 fw-normal">High</button>
-				                                           </div>
+																<tr role="row" class="odd">
+																	<td class="align-middle">
+																		<p class="text-sm">Check service duration</p>
+																	</td>
+																	<td class="align-middle">
+																		<div class="d-flex text-nowrap justify-content-end gap-2 align-items-center">
+																			<small>Business Rate:</small><span class="text-sm"> $10.00</span>
+																		</div>
+																		<div class="d-flex text-nowrap justify-content-end gap-2 align-items-center">
+																			<small>After-hours Rate:</small> <span class="text-sm">$10.00</span>
+																		</div>
+																	</td>
+																	<td class="text-center align-middle ps-0">
+																		<div class="row">
+																			<div class="col-4 align-self-center pe-0 text-end text-sm">
+																			10
+																			</div>
+																			<div class="col-8">
+																				<button type="button" class="w-100 btn btn-sm btn-success px-4 fw-normal">High</button>
+																			</div>
+																		</div>
+																	</td>
+																</tr>
+																<tr role="row" class="even">
+																	<td class="align-middle">
+																	<p class="text-sm">New service capacity and capabilities</p>
+																	</td>
+																	<td class="align-middle">
+																		<div class="d-flex justify-content-end text-sm">
+																		$10.00
+																		</div>
 
-				                                         </div>
-				                                          </td>
-				                                                     </tr>
-				                                                     <tr role="row" class="even">
-				                                         <td class="align-middle">
-				                                          <p class="text-sm">New service capacity and capabilities</p>
-				                                         </td>
-				                                         <td class="align-middle">
-				                                            <div class="d-flex justify-content-end text-sm">
-				                                              $10.00
-				                                            </div>
+																	</td>
+																	<td class="text-center align-middle ps-0">
+																	<div class="row">
+																	<div class="col-4 align-self-center pe-0 text-end text-sm">
+																	50
+																	</div>
+																	<div class="col-8">
+																	<button type="button" class="w-100 btn btn-sm btn-warning px-4 fw-normal">Medium</button>
+																	</div>
 
-				                                          </td>
-				                                          <td class="text-center align-middle ps-0">
-				                                         <div class="row">
-				                                           <div class="col-4 align-self-center pe-0 text-end text-sm">
-				                                           50
-				                                           </div>
-				                                           <div class="col-8">
-				                                           <button type="button" class="w-100 btn btn-sm btn-warning px-4 fw-normal">Medium</button>
-				                                           </div>
+																	</div>
+																	</td>
+																				</tr>
+																				<tr role="row" class="odd">
+																	<td class="align-middle">
+																	<p class="text-sm">Service (in-person) hourly Rate</p>
+																	</td>
+																	<td class="align-middle">
+																		<div class="d-flex justify-content-end text-sm">
+																		$10.00
+																		</div>
+																	</td>
+																	<td class="text-center align-middle ps-0">
+																	<div class="row">
+																	<div class="col-4 align-self-center pe-0 text-end text-sm">
+																	80
+																	</div>
+																	<div class="col-8">
+																	<button type="button" class="w-100 btn btn-sm btn-danger px-4 fw-normal">Low</button>
+																	</div>
 
-				                                         </div>
-				                                          </td>
-				                                                     </tr>
-				                                                     <tr role="row" class="odd">
-				                                         <td class="align-middle">
-				                                          <p class="text-sm">Service (in-person) hourly Rate</p>
-				                                         </td>
-				                                         <td class="align-middle">
-				                                            <div class="d-flex justify-content-end text-sm">
-				                                              $10.00
-				                                            </div>
-				                                          </td>
-				                                          <td class="text-center align-middle ps-0">
-				                                         <div class="row">
-				                                           <div class="col-4 align-self-center pe-0 text-end text-sm">
-				                                           80
-				                                           </div>
-				                                           <div class="col-8">
-				                                           <button type="button" class="w-100 btn btn-sm btn-danger px-4 fw-normal">Low</button>
-				                                           </div>
+																	</div>
+																	</td>
+																</tr>
+				                                         	</tbody>
+				                                   		</table>
+				                                	</div>
+													@endforeach
 
-				                                         </div>
-				                                          </td>
-				                                                     </tr>
-				                                         </tbody>
-				                                   </table>
-				                                </div>
 
-				                                <!-- table two  -->
-				                                <table id="" class="table table-hover" aria-label="Admin Staff Teams Table">
-				                                  <thead>
-				                                       <tr role="row">
-				                                         <th class="align-middle text-nowrap" scope="col">Spoken Language Interpreting Services</th>
-				                                         <th class="text-end align-middle" scope="col">Service Rate</th>
-				                                         <th class="text-end align-middle col-3" scope="col">
-				                                         <div aria-expanded="false" data-bs-toggle="collapse" href="#collapseSpokenLanguageInterpretingServices" role="button" aria-controls="collapseSpokenLanguageInterpretingServices">
-															<svg class="me-4" width="26" height="13" viewBox="0 0 26 13">
-																<use xlink:href="/css/common-icons.svg#lower-arrow-head"></use>
-															</svg>
-				                                         </div>
-				                                         </th>
-				                                       </tr>
-				                                       </thead>
-				                                     </table>
-				                                     <div class="collapse" id="collapseSpokenLanguageInterpretingServices">
-				                                     <table id="" class="table table-hover" aria-label="Admin Staff Teams Table">
-				                                       <tbody>
-				                                         <tr role="row" class="odd">
-				                                           <td class="align-middle">
-				                                            <p class="text-sm">Check service duration</p>
-				                                           </td>
-				                                           <td class="align-middle">
-				                                            <div class="d-flex text-nowrap justify-content-end gap-2 align-items-center">
-				                                              <small>Business Rate:</small><span class="text-sm"> $10.00</span>
-				                                            </div>
-				                                            <div class="d-flex text-nowrap justify-content-end gap-2 align-items-center">
-				                                              <small>After-hours Rate:</small> <span class="text-sm">$10.00</span>
-				                                            </div>
-				                                            </td>
-				                                            <td class="text-center align-middle ps-0">
-				                                           <div class="row">
-				                                             <div class="col-4 align-self-center pe-0 text-end text-sm">
-				                                             10
-				                                             </div>
-				                                             <div class="col-8">
-				                                             <button type="button" class="w-100 btn btn-sm btn-success px-4 fw-normal">High</button>
-				                                             </div>
-				                                           </div>
-				                                            </td>
-				                                         </tr>
-				                                        <tr role="row" class="even">
-				                                           <td class="align-middle">
-				                                            <p class="text-sm">New service capacity and capabilities</p>
-				                                           </td>
-				                                           <td class="align-middle">
-				                                              <div class="d-flex justify-content-end text-sm">
-				                                                $10.00
-				                                              </div>
-
-				                                            </td>
-				                                            <td class="text-center align-middle ps-0">
-				                                           <div class="row">
-				                                             <div class="col-4 align-self-center pe-0 text-end text-sm">
-				                                             50
-				                                             </div>
-				                                             <div class="col-8">
-				                                             <button type="button" class="w-100 btn btn-sm btn-warning px-4 fw-normal">Medium</button>
-				                                             </div>
-				                                           </div>
-				                                            </td>
-				                                         </tr>
-				                                        <tr role="row" class="odd">
-				                                           <td class="align-middle">
-				                                            <p class="text-sm">Service (in-person) hourly Rate</p>
-				                                           </td>
-				                                           <td class="align-middle">
-				                                              <div class="d-flex justify-content-end text-sm">
-				                                                $10.00
-				                                              </div>
-				                                            </td>
-				                                            <td class="text-center align-middle ps-0">
-				                                           <div class="row">
-				                                             <div class="col-4 align-self-center pe-0 text-end text-sm">
-				                                             80
-				                                             </div>
-				                                             <div class="col-8">
-				                                             <button type="button" class="w-100 btn btn-sm btn-danger px-4 fw-normal">Low</button>
-				                                             </div>
-				                                           </div>
-				                                            </td>
-				                                         </tr>
-				                                         </tbody>
-				                                  </table>
-				                                </div>
-				                                <!-- table three  -->
-				                                <table id="" class="table table-hover" aria-label="Admin Staff Teams Table">
-				                                  <thead>
-				                                       <tr role="row">
-				                                         <th class="align-middle text-nowrap" scope="col">Sign Language Interpreting Services</th>
-				                                         <th class="text-end align-middle" scope="col">Service Rate</th>
-				                                         <th class="text-end align-middle col-3" scope="col">
-				                                         <div aria-expanded="false" data-bs-toggle="collapse" href="#collapseSignLanguageInterpretingServices" role="button" aria-controls="collapseSignLanguageInterpretingServices">
-															<svg class="me-4" width="26" height="13" viewBox="0 0 26 13">
-																<use xlink:href="/css/common-icons.svg#lower-arrow-head"></use>
-															</svg>
-				                                         </div>
-				                                         </th>
-				                                       </tr>
-				                                       </thead>
-				                                     </table>
-				                                     <div class="collapse" id="collapseSignLanguageInterpretingServices">
-				                                       <table id="" class="table table-hover" aria-label="Admin Staff Teams Table">
-				                                         <tbody>
-				                                           <tr role="row" class="odd">
-				                                             <td class="align-middle">
-				                                              <p class="text-sm">Check service duration</p>
-				                                             </td>
-				                                             <td class="align-middle">
-				                                              <div class="d-flex text-nowrap justify-content-end gap-2 align-items-center">
-				                                                <small>Business Rate:</small><span class="text-sm"> $10.00</span>
-				                                              </div>
-				                                              <div class="d-flex text-nowrap justify-content-end gap-2 align-items-center">
-				                                                <small>After-hours Rate:</small> <span class="text-sm">$10.00</span>
-				                                              </div>
-				                                              </td>
-				                                              <td class="text-center align-middle ps-0">
-				                                             <div class="row">
-				                                               <div class="col-4 align-self-center pe-0 text-end text-sm">
-				                                               10
-				                                               </div>
-				                                               <div class="col-8">
-				                                               <button type="button" class="w-100 btn btn-sm btn-success px-4 fw-normal">High</button>
-				                                               </div>
-
-				                                             </div>
-				                                              </td>
-				                                                         </tr>
-				                                                         <tr role="row" class="even">
-				                                             <td class="align-middle">
-				                                              <p class="text-sm">New service capacity and capabilities</p>
-				                                             </td>
-				                                             <td class="align-middle">
-				                                                <div class="d-flex justify-content-end text-sm">
-				                                                  $10.00
-				                                                </div>
-
-				                                              </td>
-				                                              <td class="text-center align-middle ps-0">
-				                                             <div class="row">
-				                                               <div class="col-4 align-self-center pe-0 text-end text-sm">
-				                                               50
-				                                               </div>
-				                                               <div class="col-8">
-				                                               <button type="button" class="w-100 btn btn-sm btn-warning px-4 fw-normal">Medium</button>
-				                                               </div>
-
-				                                             </div>
-				                                              </td>
-				                                                         </tr>
-				                                                         <tr role="row" class="odd">
-				                                             <td class="align-middle">
-				                                              <p class="text-sm">Service (in-person) hourly Rate</p>
-				                                             </td>
-				                                             <td class="align-middle">
-				                                                <div class="d-flex justify-content-end text-sm">
-				                                                  $10.00
-				                                                </div>
-				                                              </td>
-				                                              <td class="text-center align-middle ps-0">
-				                                             <div class="row">
-				                                               <div class="col-4 align-self-center pe-0 text-end text-sm">
-				                                               80
-				                                               </div>
-				                                               <div class="col-8">
-				                                               <button type="button" class="w-100 btn btn-sm btn-danger px-4 fw-normal">Low</button>
-				                                               </div>
-
-				                                             </div>
-				                                              </td>
-				                                                         </tr>
-				                                           </tbody>
-				                                  </table>
-				                                </div>
+				                               
 				                              	   </div>
 				                              	 </div>
 				                                 </div>
@@ -697,7 +526,6 @@
 																			</div>
 																			<div class="col-md-10 align-self-center">
 																			<h6 class="fw-semibold">{{$team['name']}}</h6>
-																			<p>{{$team['description']}}</p>
 																			</div>
 																		</div></td>
 																		<td class="align-middle">
