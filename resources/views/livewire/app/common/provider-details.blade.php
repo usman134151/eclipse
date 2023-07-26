@@ -286,7 +286,7 @@
 																	<label class="col-form-label" for="p-number">Phone Number:</label>
 							                                     </div>
 					                                            <div class="col-md-6 align-self-center">
-											                         <div class="font-family-secondary"> {{$user['userdetail']['phone']}}
+											                         <div class="font-family-secondary"> {{$user['userdetail']['phone'] ? $user['userdetail']['phone'] : 'N/A'}}
 																	 </div>
 											                    </div>
 					                                        </div>
@@ -294,37 +294,37 @@
 					                                    <div class="row mb-1 mx-2">
 					                                       <div class="col-md-12 d-flex">
 					                                           <div class="col-md-4 "><label class="col-form-label" for="first-address">Address line 1:</label></div>
-					                                            <div class="col-md-12 align-self-center"><div class="font-family-secondary">{{$user['userdetail']['address_line1']}}</div></div>
+					                                            <div class="col-md-12 align-self-center"><div class="font-family-secondary">{{$user['userdetail']['address_line1'] ? $user['userdetail']['address_line1'] : 'N/A'}}</div></div>
 					                                        </div>
 					                                    </div>
 					                                    <div class="row mb-1 mx-2">
 					                                     <div class="col-md-12 d-flex">
 					                                     <div class="col-md-4 "><label class="col-form-label" for="second-address">Address line 2:</label></div>
-					                                     <div class="col-md-12 align-self-center"><div class="font-family-secondary">{{$user['userdetail']['address_line2']}}</div></div>
+					                                     <div class="col-md-12 align-self-center"><div class="font-family-secondary">{{$user['userdetail']['address_line2'] ? $user['userdetail']['address_line2'] : "N/A"}}</div></div>
 					                                     </div>
 					                                    </div>
 					                                    <div class="row mb-1 mx-2">
 					                                      <div class="col-md-12 d-flex">
 					                                      <div class="col-md-4 fw"><label class="col-form-label" for="city">City / State:</label></div>
-					                                      <div class="col-md-8 align-self-center"><div class="font-family-secondary">{{$user['userdetail']['city']}}</div></div>
+					                                      <div class="col-md-8 align-self-center"><div class="font-family-secondary">{{$user['userdetail']['city'] ? $user['userdetail']['city'] : 'N/A'}}</div></div>
 					                                      </div>
 					                                    </div>
 					                                    <div class="row mb-1 mx-2">
 					                                      <div class="col-md-12 d-flex">
 					                                      <div class="col-md-4 "><label class="col-form-label" for="zip-code">Zip Code:</label></div>
-					                                      <div class="col-md-8 align-self-center"><div class="font-family-secondary">{{$user['userdetail']['zip']}}</div></div>
+					                                      <div class="col-md-8 align-self-center"><div class="font-family-secondary">{{$user['userdetail']['zip']? $user['userdetail']['zip'] : 'N/A'}}</div></div>
 					                                      </div>
 					                                    </div>
 					                                   <div class="row mb-1 mx-2">
 					                                     <div class="col-md-12 d-flex">
 					                                     <div class="col-md-4 "><label class="col-form-label" for="country">Country:</label></div>
-					                                     <div class="col-md-8 align-self-center"><div class="font-family-secondary">{{$user['userdetail']['country']}}</div></div>
+					                                     <div class="col-md-8 align-self-center"><div class="font-family-secondary">{{$user['userdetail']['country']? $user['userdetail']['country'] : 'N/A'}}</div></div>
 					                                     </div>
 					                                    </div>
 					                                    <div class="row mb-1 mx-2">
 					                                      <div class="col-md-12 d-flex">
 					                                      <div class="col-md-4 "><label class="col-form-label" for="education">Education:</label></div>
-					                                      <div class="col-md-8 align-self-center"><div class="font-family-secondary">{{$user['userdetail']['education']}}</div></div>
+					                                      <div class="col-md-8 align-self-center"><div class="font-family-secondary">{{$user['userdetail']['education'] ? $user['userdetail']['education'] : 'N/A'}}</div></div>
 					                                      </div>
 					                                     </div>
 					                                  <div class="row mb-1 mx-2">
@@ -342,7 +342,7 @@
 					                                 <div class="row mb-1 mx-2">
 					                                   <div class="col-md-12 d-flex">
 					                                   <div class="col-md-4 "><label class="col-form-label" for="r-code">Referral Code:</label></div>
-					                                   <div class="col-md-8 align-self-center"><div class="font-family-secondary">{{$user['userdetail']['user_number']}}</div></div>
+					                                   <div class="col-md-8 align-self-center"><div class="font-family-secondary">{{$user['userdetail']['user_number']!=null ? $user['userdetail']['user_number'] : ''}}</div></div>
 					                                   </div>
 					                                 </div>
 				                                    </div>
