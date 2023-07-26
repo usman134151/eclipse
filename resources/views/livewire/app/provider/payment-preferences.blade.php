@@ -1,4 +1,4 @@
-<div class="">       
+<div x-data="{ accountNumber:true, routingNumber:true}">       
  <div class="row mb-0 mt-3">
             <p>Here you can manage your preferred method of compensation for remittance payments.</p>
         </div>
@@ -29,7 +29,8 @@
                         </label>
                         <div class="d-flex align-items-center w-100">
                             <div class="position-relative flex-grow-1">
-                                <input type="text" wire:model.defer='payment.routing_number' id="routing-number" class="form-control" name="routing-number" placeholder="______________"/>
+                                <input type="password"
+														:type="routingNumber ? 'password' : 'text'" wire:model.defer='payment.routing_number' id="routing-number" class="form-control" name="routing-number" placeholder="______________"/>
                               @error('payment.routing_number')
                                     <span class="d-inline-block invalid-feedback mt-2">
                                         {{ $message }}
@@ -37,7 +38,7 @@
                                 @enderror
 
                             </div>
-                            <button type="button" class="btn px-2">
+                            <button type="button" class="btn px-2" @click="routingNumber = !routingNumber" >
                                 <svg aria-label="View" width="24" height="17" viewBox="0 0 24 17">
                                     <use xlink:href="/css/common-icons.svg#black-eye">
                                     </use>
@@ -53,14 +54,16 @@
                         </label>
                         <div class="d-flex align-items-center w-100">
                             <div class="position-relative flex-grow-1">
-                                <input wire:model.defer='payment.account_number' type="text" id="account-number" class="form-control" name="account-number" placeholder="______________"/>
+                                <input wire:model.defer='payment.account_number' type="password"
+														:type="accountNumber ? 'password' : 'text'"
+														 id="account-number" class="form-control" name="account-number" placeholder="______________"/>
                                 @error('payment.account_number')
                                     <span class="d-inline-block invalid-feedback mt-2">
                                         {{ $message }}
                                     </span>
                                 @enderror
                             </div>
-                            <button type="button" class="btn px-2">
+                            <button type="button" class="btn px-2" @click="accountNumber = !accountNumber" >
                                 <svg aria-label="View" width="24" height="17" viewBox="0 0 24 17">
                                     <use xlink:href="/css/common-icons.svg#black-eye">
                                     </use>
