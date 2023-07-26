@@ -477,13 +477,20 @@
                                                     <textarea class="form-control" rows="3" cols="3" placeholder=""
                                                         name="experienceColumn" id="experience" wire:model.defer="userdetail.user_experience"></textarea>
                                                 </div>
-                                                <div class="col-lg-6 ps-lg-5">
+                                                 <div class="col-lg-6 mb-4 ps-lg-5">
+                                                    <label class="form-label" for="provider-introduction">
+                                                        Provider Introduction
+                                                    </label>
+                                                    <textarea class="form-control" rows="3" cols="3" placeholder=""
+                                                        name="provider- introduction" id="provider-introduction" wire:model.defer="userdetail.user_introduction"></textarea>
+                                                </div>
+                                                {{-- <div class="col-lg-6 ps-lg-5">
                                                     <label class="form-label" for="notes_column">
                                                         Notes
                                                     </label>
                                                     <textarea class="form-control" rows="3" placeholder="" name="notesColumn"
                                                         id="notes_column" wire:model.defer="userdetail.note"></textarea>
-                                                </div>
+                                                </div> --}}
                                                 <div class="col-lg-6 mb-4 pe-lg-5">
                                                     <label class="form-label" for="preferred-language-column">
                                                         Preferred Language
@@ -491,10 +498,21 @@
                                                     {!! $setupValues['languages']['rendered'] !!}
                                                 </div>
                                                 <div class="col-lg-6 ps-lg-5">
-                                                    <label class="form-label" for="set-time-zone-column">
-                                                        Set Time Zone
+                                                    <label class="form-label" for="provider-introduction-media">
+                                                        Provider Introduction Media
                                                     </label>
-                                                    {!! $setupValues['timezones']['rendered'] !!}
+                                                    <input type="file" id="provider-introduction-media" class="form-control" wire:model.defer="media_file"
+                                                        name="provider_introduction_media" placeholder="Add Media Document" />
+                                                    @error('media_file')<span class="d-inline-block invalid-feedback mt-2">{{$message}}</span>@enderror 
+                                                
+                                                        {{-- displays existing document name --}}
+                                                        @if($userdetail['user_introduction_file']!=null)
+                                                            <p class="mt-2"> <b>Uploaded Document </b><br>
+                                                            <a href="{{$userdetail['user_introduction_file']}}" target="_blank" aria-label="file"  >
+                                                                        {{basename($userdetail['user_introduction_file'])}}
+                                                                    </a> 
+                                                            </p>
+                                                        @endif
                                                 </div>
                                                 <div class="col-lg-6 mb-4 pe-lg-5">
                                                     <label class="form-label" for="preferred-colleagues-column">
@@ -519,31 +537,15 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                                <div class="col-lg-6 mb-4 pe-lg-5">
-                                                    <label class="form-label" for="provider-introduction">
-                                                        Provider Introduction
+                                               
+                                                <div class="col-lg-6 pe-lg-5">
+                                                    <label class="form-label" for="set-time-zone-column">
+                                                        Set Time Zone
                                                     </label>
-                                                    <textarea class="form-control" rows="3" cols="3" placeholder=""
-                                                        name="provider- introduction" id="provider-introduction" wire:model.defer="userdetail.user_introduction"></textarea>
+                                                    {!! $setupValues['timezones']['rendered'] !!}
                                                 </div>
-                                                <div class="col-lg-6 ps-lg-5">
-                                                    <label class="form-label" for="provider-introduction-media">
-                                                        Provider Introduction Media
-                                                    </label>
-                                                    <input type="file" id="provider-introduction-media" class="form-control" wire:model.defer="media_file"
-                                                        name="provider_introduction_media" placeholder="Add Media Document" />
-                                                    @error('media_file')<span class="d-inline-block invalid-feedback mt-2">{{$message}}</span>@enderror 
                                                 
-                                                        {{-- displays existing document name --}}
-                                                        @if($userdetail['user_introduction_file']!=null)
-                                                            <p class="mt-2"> <b>Uploaded Document </b><br>
-                                                            <a href="{{$userdetail['user_introduction_file']}}" target="_blank" aria-label="file"  >
-                                                                        {{basename($userdetail['user_introduction_file'])}}
-                                                                    </a> 
-                                                            </p>
-                                                        @endif
-                                                </div>
-                                                <div class="col-lg-6 mb-4 pe-lg-5">
+                                                <div class="col-lg-6 mb-4 ps-lg-5">
                                                     <label class="form-label" for="payment-settings">
                                                         Payment Settings
                                                     </label>
@@ -556,7 +558,7 @@
 
                                                     </select>
                                                 </div>
-                                                <div class="col-lg-6 ps-lg-5">
+                                                <div class="col-lg-6 pe-lg-5">
                                                     <label class="form-label" for="default-remittance-temp">
                                                         Select Default Remittance Template <small>(coming soon)</small>
                                                     </label>
@@ -566,7 +568,7 @@
                                                         </option>
                                                     </select>
                                                 </div>
-                                                <div class="col-lg-6 mb-4 pe-lg-5">
+                                                <div class="col-lg-6 mb-4 ps-lg-5">
                                                         <label class="form-label" for="tags">Tags</label>
                                                         <select data-placeholder="" multiple 
                                                             class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="tags-select" aria-label="Select Tags">
