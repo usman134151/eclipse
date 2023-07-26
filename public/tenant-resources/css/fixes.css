@@ -1,0 +1,11 @@
+.profile-pic-div{
+    height: 145px;
+    overflow: hidden;
+    border-radius: 50%; 
+    width:145px;
+    border:1px solid #ddd;
+}
+
+.profile-pic-div img{
+    max-width:100%
+}

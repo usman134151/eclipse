@@ -27,6 +27,7 @@
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="/tenant-resources/css/fixes.css">
 		<style>
 		[x-cloak]
 		{
@@ -93,6 +94,7 @@
 		<script src="/tenant-resources/js/select2.min.js"></script>
 		<script src="/tenant-resources/js/sweetalert.min.js"></script>
 		<script src="/tenant-resources/js/common.js"></script>
+
 		<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyAANwmAq3UQc8j5GkJgzF9AglzF7XLfPxI&libraries=places&language=en-AU"></script>
 		@auth
 		@if(!request()->cookie('savedBrowser'))
@@ -106,211 +108,9 @@
 		@powerGridScripts
 		<script src="/tenant-resources/js/alpinejs-3.11.1.js" defer></script>
 		@stack('scripts')
-		
-<script>
-    $(document).ready(function() {
-      // Variables to store the selected places
-      var billingPlace;
-
-      var billingAutocomplete = new google.maps.places.Autocomplete(document.getElementById('billing_address'));
-      var formAddressAutocomplete = new google.maps.places.Autocomplete(document.getElementById('billing_address_form'));
 
 
-      google.maps.event.addListener(billingAutocomplete, 'place_changed', function() {
-        billingPlace = billingAutocomplete.getPlace();
-        fillBillingAddressFields();
-      });
-
-		google.maps.event.addListener(formAddressAutocomplete, 'place_changed', function() {
-				billingPlace = formAddressAutocomplete.getPlace();
-				fillFormAddressFields();
-			});
-
-		function updateAddress(attrName,val){
-			Livewire.emit('updateAddressValues', attrName, val);
-		}
-
-
-      function fillBillingAddressFields() {
-		//emit changes to livewire address component
-		updateAddress("address_line1",  billingPlace.name || '');
-		updateAddress("city",  getAddressComponent(billingPlace, 'locality') || '');
-		updateAddress("state",  getAddressComponent(billingPlace, 'administrative_area_level_1') || '');
-		updateAddress("country",  getAddressComponent(billingPlace, 'country') || '');
-		updateAddress("zip",  getAddressComponent(billingPlace, 'postal_code') || '');
-	  }
-	
-	  function fillFormAddressFields() {
-		//emit changes to livewire address component
-
-		updateVal("address_line1", (billingPlace.name || ''));
-		updateVal("city",  getAddressComponent(billingPlace, 'locality') || '');
-		updateVal("state",  getAddressComponent(billingPlace, 'administrative_area_level_1') || '');
-		updateVal("country",  getAddressComponent(billingPlace, 'country') || '');
-		updateVal("zip",  getAddressComponent(billingPlace, 'postal_code') || '');
-	  }
-
-      function getAddressComponent(place, component) {
-        for (var i = 0; i < place.address_components.length; i++) {
-          var addressType = place.address_components[i].types[0];
-          if (addressType === component) {
-            return place.address_components[i].long_name;
-          }
-        }
-        return '';
-      }
-    });
-</script>
-		<script>
-    window.addEventListener('update-url', function(event) {
-      pushStateToUrl(event.detail.url);
-    });
-	document.addEventListener('refreshSelects', function(event) {
-		
-		let el = $('.select2')
-		initSelect()
-		
-		Livewire.hook('message.processed', (message, component) => {
-			initSelect()
-		})
-
-
-		function initSelect () {
-			
-			
-			el.select2({
-				placeholder: '{{__('Select your option')}}',
-				allowClear: !el.attr('required'),
-			});
-			el.on('change', function (e) {
-				if($(this).attr('id')!='tags-select'){
-					let attrName = $(this).attr('id');
-					updateVal(attrName,  $(this).select2("val"));
-				}
-				else{
-						$('#tags-holder').val( $(this).select2("val"));
-					updateVal('tags',$('#tags-holder').val());
-				}
-            });
-		}
-		$('.js-single-date').daterangepicker({
-			singleDatePicker: true,
-			showDropdowns: true,
-			autoApply: true
-		});
-		$('.js-single-date').val('');
-		$('.js-single-date').attr("placeholder","MM/DD/YYYY");
-		$('.js-single-date').on('apply.daterangepicker', function(ev, picker) {
-        console.log($(this).val());
-        updateVal($(this).attr('id'),  $(this).val());
-
-    });
-		$('.js-select-day').daterangepicker({
-			singleDatePicker: true,
-			showDropdowns: true,
-			autoApply: true
-		});
-		$('.js-select-day').val('');
-		$('.js-select-day').attr("placeholder","Select Day");
-
-			
-	});
-	function pushStateToUrl(url) {
-  history.pushState(null, null, url);
-}
-       
-
-        
-window.addEventListener("livewire:load", () => {
-	
-		let el = $('.select2')
-		initSelect()
-
-		Livewire.hook('message.processed', (message, component) => {
-			initSelect()
-		})
-
-
-		function initSelect () {
-			
-			el.select2({
-				placeholder: '{{__('Select your options')}}',
-				allowClear: !el.attr('required'),
-			})
-			el.on('change', function (e) {
-				if($(this).attr('id')!='tags-select'){
-					let attrName = $(this).attr('id');
-					updateVal(attrName,  $(this).select2("val"));
-				}
-				else{
-					
-					$('#tags-holder').val( $(this).select2("val"));
-					updateVal('tags',$('#tags-holder').val());
-
-				}
-
-            });
-			$('#tags-select').select2({
-        tags: true,
-        createTag: function (params) {
-          return {
-            id: params.term,
-            text: params.term,
-            isNew: true
-          };
-        }
-      });
-
-      $('#mySelect').on('select2:select', function (e) {
-        var selectedOption = e.params.data;
-
-        if (selectedOption.isNew) {
-          // A new value was entered
-          console.log('New value:', selectedOption.text);
-        }
-      });
-		}
-		
-	})
-	$('.js-select-date').on('apply.daterangepicker', function(ev, picker) {
-   
-});
-</script>
-<script>
-
-	$(document).on("keypress", "input.js-search-by-keyword", function(e){
-        if(e.which == 13){
-            $('#searchByKeywordModal').modal('show');
-        }
-      });
-      $(document).on("keypress", "input.js-search-by-no", function(e){
-        if(e.which == 13){
-            $('#searchByNoModal').modal('show');
-        }
-      });
-	  $(document).ready(function() {
-      $('#tags-select').select2({
-        tags: true,
-        createTag: function (params) {
-          return {
-            id: params.term,
-            text: params.term,
-            isNew: true
-          };
-        }
-      });
-
-      $('#mySelect').on('select2:select', function (e) {
-        var selectedOption = e.params.data;
-
-        if (selectedOption.isNew) {
-          // A new value was entered
-          console.log('New value:', selectedOption.text);
-        }
-      });
-    });
-
-</script>
-
+		<script src="/tenant-resources/js/form-functions.js"></script>
+		<script src="/tenant-resources/js/select2-functions.js"></script>
 	</body>
 </html>

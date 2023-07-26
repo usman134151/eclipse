@@ -179,9 +179,9 @@
                                                     <div class="mb-4">
                                                         <div class="row">
                                                             <div class="col-md-4">
-                                                                <div class="d-inline-block position-relative">
-                                                                    <img  style="width:300px;height:200px;top:1rem" src="{{$user['userdetail']['profile_pic'] !=null ? $user['userdetail']['profile_pic'] : '/tenant-resources/images/portrait/small/image4.png'}}"
-                                                                        class="img-fluid rounded-circle"
+                                                                <div class="d-inline-block position-relative profile-pic-div">
+                                                                    <img  src="{{$user['userdetail']['profile_pic'] !=null ? $user['userdetail']['profile_pic'] : '/tenant-resources/images/portrait/small/image4.png'}}"
+                                                                        class="img-fluid"
                                                                         alt="Profile Image of Admin Staff" />
                                                                 </div>
                                                                 <div style="margin-left: -1rem;"
