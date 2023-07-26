@@ -237,9 +237,9 @@
                                                 <div class="mb-4">
                                                     <div class="row">
                                                         <div class="col-md-4">
-                                                            <div class="d-inline-block position-relative">
-                                                                <img  style="width:300px;height:200px;top:1rem" src="{{$company['company_logo'] !=null ? $company['company_logo'] : '/tenant-resources/images/portrait/small/image4.png'}}"
-                                                                    class="img-fluid rounded-circle"
+                                                            <div class="d-inline-block position-relative profile-pic-div">
+                                                                <img  src="{{$company['company_logo'] !=null ? $company['company_logo'] : '/tenant-resources/images/portrait/small/image4.png'}}"
+                                                                    class="img-fluid
                                                                     alt="Company Image" />
                                                             </div>
                                                             <div style="margin-left: -1rem;"

@@ -177,10 +177,10 @@
 												<div class="mb-5">
 													<div class="row">
 														<div class="col-md-6">
-															<div class="d-inline-block position-relative">
-																<img  style="max-width:250px;height:auto;top:1rem" src="{{$user['userdetail']['profile_pic'] !=null ? $user['userdetail']['profile_pic'] : '/tenant-resources/images/portrait/small/image4.png'}}"
+															<div class="d-inline-block position-relative profile-pic-div">
+																<img   src="{{$user['userdetail']['profile_pic'] !=null ? $user['userdetail']['profile_pic'] : '/tenant-resources/images/portrait/small/image4.png'}}"
 
-																 class="img-fluid rounded-circle" alt="Profile Image of Provider"/>
+																 class="img-fluid" alt="Profile Image of Provider"/>
 															</div>
 															<div class="d-flex">
 
