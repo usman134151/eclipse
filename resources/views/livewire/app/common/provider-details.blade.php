@@ -196,8 +196,12 @@
 																	</svg>
 
 																<div class="position-absolute bottom-0 p-0 d-flex justify-content-center align-items-center">
-																	<label class="text-white form-label-sm ps-2" for="">
-																		Sydney, Australia
+																	<label class="text-white form-label-sm ps-2" style="width:100%" for="">
+																		@if($user['userdetail']['city']!=null || $user['userdetail']['country']!=null  )
+																			{{$user['userdetail']['city'] . ', '.$user['userdetail']['country']}}
+																		@else
+																			N/A
+																		@endif
 																	</label>
 																</div>
 															</div>
@@ -213,7 +217,11 @@
 																</svg>
 																<div class="position-absolute bottom-0 p-0 d-flex justify-content-center align-items-center">
 																		<label class="text-white form-label-sm ps-2" for="">
-																			Staff Provider
+																		@if($user['userdetail']['provider_type'])
+																			{{ucwords(str_replace('_', ' ', strtolower($user['userdetail']['provider_type'])))}}
+																		@else
+																			N/A
+																		@endif
 																		</label>
 																</div>
 															</div>
