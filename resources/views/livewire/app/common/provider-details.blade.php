@@ -197,15 +197,15 @@
 
 																<div class="position-absolute bottom-0 p-0 d-flex justify-content-center align-items-center">
 																	<label class="text-white form-label-sm ps-2" style="width:100%" for="">
-																		@if($user['userdetail']['city']!=null || $user['userdetail']['country']!=null  )
-																			{{$user['userdetail']['city'] . ', '.$user['userdetail']['country']}}
+																	@if($user['userdetail']['provider_type'])
+																			{{ucwords(str_replace('_', ' ', strtolower($user['userdetail']['provider_type'])))}}
 																		@else
 																			N/A
 																		@endif
 																	</label>
 																</div>
 															</div>
-															<div style="margin-left: -1rem; left:8rem;" class="d-inline-block position-absolute mt-3">
+															{{-- <div style="margin-left: -1rem; left:8rem;" class="d-inline-block position-absolute mt-3">
 																<svg width="170" height="32" viewBox="0 0 170 32" fill="none" xmlns="http://www.w3.org/2000/svg">
 																	<path d="M0 0H147L170 32H0V0Z" fill="url(#paint0_linear_8719_187413)"/>
 																	<defs>
@@ -224,7 +224,7 @@
 																		@endif
 																		</label>
 																</div>
-															</div>
+															</div> --}}
 														</div>
 													</div>
 														<div class="col-md-6">
