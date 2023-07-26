@@ -9,7 +9,7 @@ use App\Models\Tenant\UserDetail;
 use App\Services\App\UserService;
 class ProviderDetails extends Component
 {
-    public $user, $userid , $accommodation_catalog;
+    public $user, $userid , $accommodation_catalog, $service_catalog;
 	public $settings=['travel_rate_per_unit'=>'', 'travel_rate_unit'=>"km", 'rate_for_travel_time'=>'', 'same_as_service_rate'=>''];
 
 	
@@ -81,12 +81,27 @@ class ProviderDetails extends Component
 		$query->select([
 			'accommodations.id as accommodation_id',
 			'accommodations.name as accommodation_name',
-			'service_categories.id as service_id','service_categories.name as service_name','service_categories.id as service_id',
+			'service_categories.id as service_id','service_categories.name as service_name',
 			'provider_accommodation_services.provider_priority',
 
 
 		]);
 			$this->accommodation_catalog = $query->distinct('service_id')->orderBy('provider_priority')->get()->groupBy('accommodation_id')->toArray();
+
+		$query = User::query();
+		$query->where('users.id', $this->userid);
+		$query->join('provider_accommodation_services', 'provider_accommodation_services.user_id', "users.id");
+		$query->join('accommodations', 'provider_accommodation_services.accommodation_id', "accommodations.id");
+		$query->join('service_categories', 'provider_accommodation_services.service_id', "service_categories.id");
+		$query->select([
+			'accommodations.id as accommodation_id',
+			'accommodations.name as accommodation_name',
+			'service_categories.id as service_id', 'service_categories.name as service_name',
+			'provider_accommodation_services.provider_priority',
+
+
+		]);
+		$this->service_catalog = $query->distinct('service_id')->orderBy('provider_priority')->get()->groupBy('accommodation_id')->toArray();
 
 		// dd($this->service_catalog);
 		$this->dispatchBrowserEvent('refreshSelects');
