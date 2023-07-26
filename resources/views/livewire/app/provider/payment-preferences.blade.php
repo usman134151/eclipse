@@ -75,13 +75,14 @@
                     <h2>Select Address</h2>
                     <div class="col-md-3">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            <input class="form-check-input" type="radio" value="0" wire:model.defer="payment.address_id" name="address_id" id="address_id">
                             <label class="form-check-label" for="flexRadioDefault1">
                                 Select Profile Default Address
                             </label>
                             </div>
                             <div class="mb-3 mx-4">
-                                <span class="text-secondary">Mrs Smith 98 Shirley Street PIMPAMAQLD 4209 AUSTRALIA</span>
+                                <span class="text-secondary">{{$user->userdetail->address_line1 . ', '. $user->userdetail->address_line2.', '. $user->userdetail->city.', '. $user->userdetail->state. ', '. $user->userdetail->country.'  '. $user->userdetail->zip}}
+                                </span>
                             </div>
                             <div>
                                 <button type="button" class="btn btn-primary btn-has-icon rounded mb-4" data-bs-toggle="modal" data-bs-target="#addAddressModal">
