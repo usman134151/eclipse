@@ -5,7 +5,7 @@ namespace App\Models\Tenant;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PaymentPrefrence extends Model
+class PaymentPreference extends Model
 {
     use HasFactory;
 
@@ -15,6 +15,6 @@ class PaymentPrefrence extends Model
      * @var array
      */
     protected $fillable = [
-        'provider_id', 'method', 'updated_by'
+        'provider_id', 'method', 'updated_by','account_number','bank_name','routing_number','address_id'
     ];
 }

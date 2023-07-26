@@ -119,6 +119,10 @@ class User extends Authenticatable
 		return $this->belongsToMany(ServiceCategory::class, 'provider_accommodation_services', 'user_id','service_id')->withTimestamps();
 	}
 
+	public function accommodations(): BelongsToMany
+	{
+		return $this->belongsToMany(Accommodation::class, 'provider_accommodation_services', 'user_id', 'accommodation_id')->withTimestamps();
+	}
 	
 
 	public function logs()
