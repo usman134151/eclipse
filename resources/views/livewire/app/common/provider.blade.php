@@ -8,16 +8,16 @@
 		</div>
 	</div>
 	@if($showForm)
-	@livewire('app.common.forms.provider-form') {{-- Show Add / Edit Form --}}
-    @include('panels.common.add-document')
-    @include('modals.assign-provider-team')
-    @include('modals.contract-provider-availiblity')
-    @include('modals.staff-provider-availiblity')
-    @include('panels.common.add-new')
+		@livewire('app.common.forms.provider-form') {{-- Show Add / Edit Form --}}
+   		@include('panels.common.add-document')
+    	@include('modals.assign-provider-team')
+    	@include('modals.contract-provider-availiblity')
+    	@include('modals.staff-provider-availiblity')
+    	@include('panels.common.add-new')
 	@elseif($showProfile)
-	@livewire('app.common.provider-details',['user'=>$user])
+		@livewire('app.common.provider-details',['user'=>$user])
 	@elseif($importFile)
-	@livewire('app.common.import.provider')
+		@livewire('app.common.import.provider')
 	@else
 	{{-- Header Section - Start --}}
 	<div class="content-header row">
@@ -139,10 +139,12 @@
 			</div>
 		</div>
 	</section>
-
+	
 	{{-- Provider List - End --}}
 	@endif
-			 @include('modals.common.view-button')
+	@if(!$importFile)
+	 @include('modals.common.view-button')		
+	@endif 
 			 
 	
 </div>
