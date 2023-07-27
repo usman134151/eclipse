@@ -169,7 +169,7 @@ class CustomerForm extends Component
         $this->user=$user;
 	    $this->isAdd=false;
 	    if($this->user->user_dob)
-			$this->user->user_dob = Carbon::createFromFormat('Y-m-d', $this->user->user_dob)->format('d/m/Y');
+			$this->user->user_dob = Carbon::createFromFormat('Y-m-d', $this->user->user_dob)->format('m/d/Y');
 
 		$this->industryNames = $this->user->industries->pluck('name');
 		$this->departmentNames = $this->user->departments->pluck('name');
@@ -258,7 +258,7 @@ class CustomerForm extends Component
 				Rule::unique('users', 'email')->ignore($this->user->id)],    
             'user.user_dob' => [
                     'nullable',
-                    'date',
+                    'date', 'date_format:m/d/Y',
                     'before:today'],                        
             'userdetail.user_position' => [
                     'nullable',
@@ -282,6 +282,7 @@ class CustomerForm extends Component
 			'userdetail.city' => ['nullable', 'max:150'],
 			'userdetail.zip' => ['nullable', 'max:150'],
 			'image' => 'nullable|image|mimes:jpg,png,jpeg',
+			'selectedIndustries'=>'required',
 
 
 			
@@ -395,6 +396,10 @@ class CustomerForm extends Component
 		$this->step = $step;
 		$this->$tabName = "active";
 		$this->switch($component);
+		if ($this->step == 1) {
+			if ($this->user->user_dob)
+				$this->user->user_dob = Carbon::parse($this->user->user_dob)->format('m/d/Y');
+		}
 
 		$this->dispatchBrowserEvent('refreshSelects');
 	}

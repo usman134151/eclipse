@@ -166,7 +166,7 @@
                                                     </div>
                                                 </div>
                                                 {{-- company dropdown --}}
-                                                <div class="col-lg-6 pe-lg-5 mb-4">
+                                                <div class="col-md-6 pe-lg-5 mb-4">
                                                     <label class="form-label" for="company-column">
                                                         Company
                                                         <span class="mandatory" aria-hidden="true">
@@ -273,8 +273,8 @@
                                                             Service Start Date
                                                         </label>
                                                         <div class="position-relative">
-                                                            <input type="" name="" class="form-control js-single-date" name="department_service_start_date" id="department_service_start_date"
-                                                                placeholder="17/01//2023" id="service-start-date" wire:model.defer="department.department_service_start_date">
+                                                            <input type="" class="form-control js-single-date" name="department_service_start_date" id="department_service_start_date"
+                                                                 id="service-start-date" wire:model.defer="department.department_service_start_date">
                                                             <svg class="icon-date" width="20" height="20"
                                                                 viewBox="0 0 20 20" fill="none"
                                                                 xmlns="http://www.w3.org/2000/svg">
@@ -297,8 +297,8 @@
                                                             Service End Date
                                                         </label>
                                                         <div class="position-relative">
-                                                            <input type="" name="" class="form-control js-single-date" name="department_service_end_date" id="department_service_end_date"
-                                                                placeholder="17/01//2023" id="service-end-date" wire:model.defer="department.department_service_end_date">
+                                                            <input type="" class="form-control js-single-date" name="department_service_end_date" id="department_service_end_date"
+                                                             id="service-end-date" wire:model.defer="department.department_service_end_date">
                                                             <svg class="icon-date" width="20" height="20"
                                                                 viewBox="0 0 20 20" fill="none"
                                                                 xmlns="http://www.w3.org/2000/svg">

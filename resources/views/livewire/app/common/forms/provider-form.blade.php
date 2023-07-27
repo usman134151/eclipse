@@ -200,8 +200,6 @@
                                                         </div>
 
                                                         <button type="button" class="btn px-2">
-                                                            <!-- Begin : it will be replaced with livewire module-->
-                                                            {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="show" width="24" height="17" viewBox="0 0 24 17">
                                                                 <use xlink:href="/css/common-icons.svg#eye-icon">
                                                                 </use>

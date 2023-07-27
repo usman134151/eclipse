@@ -29,12 +29,20 @@ window.addEventListener('update-url', function(event) {
               }
           });
       }
+
+    if ($('.js-single-date').val() == "")
+      setDefaultDate = true;
+    else
+      setDefaultDate = false; //field has some value
+
       $('.js-single-date').daterangepicker({
           singleDatePicker: true,
           showDropdowns: true,
           autoApply: true
       });
-      $('.js-single-date').val('');
+      if (setDefaultDate)
+        $('.js-single-date').val('');
+
       $('.js-single-date').attr("placeholder","MM/DD/YYYY");
       $('.js-single-date').on('apply.daterangepicker', function(ev, picker) {
       console.log($(this).val());
