@@ -139,7 +139,8 @@ class ProviderForm extends Component
     'editRecord' => 'edit', 'stepIncremented',
         'updateSelectedTeams',
         'OpenProviderCredential', //for upload panel
-        'openActiveCredentialModal'	//for document view modal
+        'openActiveCredentialModal',    //for document view modal
+        'viewCredentialModal'
     ];
     public $providers;
     public $selectedTeams =[], $media_file=null, $provider_details=['set_rate'=>'no', 'staff_provider_rate_type'=>'per_hour_rate'];
@@ -656,6 +657,14 @@ class ProviderForm extends Component
     {
         $this->emit('openActiveCredential', $user_doc_id);
     }
+
+
+    // open view document modal from my-drive
+    public function viewCredentialModal($doc_id)
+    {
+        $this->emit('viewCredential', $doc_id);
+    }
+
 
     public function setRate(){
         $this->emit('updateSetRate',$this->provider_details['set_rate']);

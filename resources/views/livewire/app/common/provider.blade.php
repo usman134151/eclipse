@@ -171,6 +171,11 @@ Livewire.on('openActiveCredentialModal', (type) => {
             // Open the modal
             $('#viewButtonModal').modal('show');
         });
+		  Livewire.on('viewCredentialModal', (type) => {
+				// Open the modal
+				$('#viewButtonModal').modal('show');
+			});
+
         Livewire.on('documentModalDismissed', () => {
             $('#viewButtonModal').modal('hide');
                

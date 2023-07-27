@@ -21,6 +21,7 @@ class ProviderDetails extends Component
 		'showDetails',
 		 'OpenProviderCredential',//for upload panel
 		 'openActiveCredentialModal',	//for document view modal
+		'viewCredentialModal', // for viewing acknowledge doc
 			'showConfirmation',
 		];
 
@@ -59,6 +60,12 @@ class ProviderDetails extends Component
 	// open view document modal from my-drive
 	public function openActiveCredentialModal($user_doc_id){
 		$this->emit('openActiveCredential', $user_doc_id);
+	}
+
+	// open view document modal from my-drive
+	public function viewCredentialModal($doc_id)
+	{
+		$this->emit('viewCredential', $doc_id);
 	}
 
 
