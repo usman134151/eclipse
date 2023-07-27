@@ -214,6 +214,7 @@ class ProviderForm extends Component
             'user.user_dob' => [
                 'nullable',
                 'date',
+                'date_format:m/d/Y',
                 'before:today'],
             'user.email' => [
                 'required',
