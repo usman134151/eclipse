@@ -330,7 +330,7 @@
 					                                  <div class="row mb-1 mx-2">
 					                                    <div class="col-md-12 d-flex">
 					                                    <div class="col-md-4 "><label class="col-form-label" for="experience">Experience:</label></div>
-					                                    <div class="col-md-8 align-self-center"><div class="font-family-secondary">5 Year</div></div>
+					                                    <div class="col-md-8 align-self-center"><div class="font-family-secondary">{{$user['userdetail']['user_experience'] ? $user['userdetail']['user_experience'] : 'N/A'}}</div></div>
 					                                    </div>
 					                                  </div>
 					                                 <div class="row mb-1 mx-2">
@@ -1126,7 +1126,7 @@
 			                      <div class="row mb-3">
 			                    	<h2>Availability <small>(coming soon)</small> </h2>
 			                      </div>
-								  	@livewire('app.provider.manage-availability', ['provider_id' => $user['id']])
+								  	{{-- @livewire('app.provider.manage-availability', ['provider_id' => $user['id']]) --}}
 			                       
                                   <div>
 			                      </div>
@@ -2877,8 +2877,8 @@
 				 </div>
 			   </div>
 			 </div>
-			 @include('panels.common.default-availability')
-			 @include('panels.common.specific-date-availibility')
+			 {{-- @include('panels.common.default-availability') --}}
+			 {{-- @include('panels.common.specific-date-availibility') --}}
 			 @include('panels.common.pending-credentials')
 			 @include('modals.common.add-address')
 			 @include('modals.mark-as-paid')

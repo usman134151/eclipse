@@ -139,7 +139,8 @@ class ProviderForm extends Component
     'editRecord' => 'edit', 'stepIncremented',
         'updateSelectedTeams',
         'OpenProviderCredential', //for upload panel
-        'openActiveCredentialModal'	//for document view modal
+        'openActiveCredentialModal',    //for document view modal
+        'viewCredentialModal'
     ];
     public $providers;
     public $selectedTeams =[], $media_file=null, $provider_details=['set_rate'=>'no', 'staff_provider_rate_type'=>'per_hour_rate'];
@@ -267,6 +268,9 @@ class ProviderForm extends Component
                 'nullable'],
             'userdetail.country' => [
                 'nullable'],
+            'userdetail.user_experience' => [
+                'nullable', 'max:255'
+            ],
             'image' => 'nullable|image|mimes:jpg,png,jpeg',
             'media_file' => 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv',
 
@@ -452,6 +456,7 @@ class ProviderForm extends Component
 
      public function updateVal($attrName, $val)
      {
+     
         if($attrName=='user_dob'){
             $this->user['user_dob']=$val;
         } elseif ($attrName == 'tags') {
@@ -464,13 +469,14 @@ class ProviderForm extends Component
             $this->provider_details['staff_provider_rate_type'] = $val;
         } elseif ($attrName == 'travel_rate_unit') {
             $this->provider_details['travel_rate_unit'] = $val;
+        }  elseif ($attrName == 'country') {
+            $this->userdetail['country'] = $val;
         }
        
         else
          $this->userdetail[$attrName] = $val;
 
-
-        $this->dispatchBrowserEvent('refreshSelects');
+        // $this->dispatchBrowserEvent('refreshSelects');
 
      }
      public function addscheduledInPerson(){
@@ -651,6 +657,14 @@ class ProviderForm extends Component
     {
         $this->emit('openActiveCredential', $user_doc_id);
     }
+
+
+    // open view document modal from my-drive
+    public function viewCredentialModal($doc_id)
+    {
+        $this->emit('viewCredential', $doc_id);
+    }
+
 
     public function setRate(){
         $this->emit('updateSetRate',$this->provider_details['set_rate']);

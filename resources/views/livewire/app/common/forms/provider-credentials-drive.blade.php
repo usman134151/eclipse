@@ -110,9 +110,13 @@
 																				@endif
 																				{{-- <div>Associated with Tag: Covid19</div> --}}
 
-																				<div>Type: {{ucwords(str_replace('_', ' ', strtolower($credential['document_type'])))}}</div>
+																				<div >Type: {{ucwords(str_replace('_', ' ', strtolower($credential['document_type'])))}}</div>
 																				@if($credential['document_type']=='acknowledge_document')
+																					<div class="d-flex-inline ">
+																					<button type="button" wire:click="$emit('viewCredentialModal', {{$credential['id']}})"  data-bs-target="#viewButtonModal" class="btn btn-primary rounded mx-3 mt-3">View</button>
+
 																					<button  wire:click="acceptCredential({{$credential['id']}})" class="btn btn-primary rounded mx-3 mt-3">Accept</button>
+																					</div>
 																				@else	
 																					<button  wire:click="openCredential({{$credential['id']}}, '{{$credential['title']}}')" @click="pendingCredentials = true" class="btn btn-primary rounded mx-3 mt-3">Upload</button>
 																				@endif
@@ -218,7 +222,11 @@
 																					<div>Expiry: {{date_format(date_create($credential['expiry_date']), "m/d/Y")}}</div>
 																						
 																					@if($credential['document_type']=='acknowledge_document')
-																						<button  wire:click="renewAcceptance({{$credential['id']}})" class="btn btn-primary rounded mx-3 mt-3">Accept</button>
+																						<div class="d-flex-inline ">
+																							<button type="button" wire:click="$emit('viewCredentialModal', {{$credential['id']}})"  data-bs-target="#viewButtonModal" class="btn btn-primary rounded mx-3 mt-3">View</button>
+
+																							<button  wire:click="renewAcceptance({{$credential['id']}})" class="btn btn-primary rounded mx-3 mt-3">Accept</button>
+																						</div>
 																					@else	
 																						<button  wire:click="openCredential({{$credential['id']}}, '{{$credential['title']}}')" @click="pendingCredentials = true" class="btn btn-primary rounded mx-3 mt-3">Renew</button>
 																					@endif
