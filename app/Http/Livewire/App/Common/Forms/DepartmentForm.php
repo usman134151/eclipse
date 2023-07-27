@@ -124,7 +124,7 @@ class DepartmentForm extends Component
 		$this->company_id = $this->department->company_id;
 
 
-		$this->dispatchBrowserEvent('refreshSelects');
+		// $this->dispatchBrowserEvent('refreshSelects');
 
 		// dd($this->department);
     }
