@@ -185,7 +185,7 @@ class ProviderForm extends Component
 
         }
         $this->userid = $user->id;
-
+        
 
 	}
 
@@ -395,7 +395,8 @@ class ProviderForm extends Component
         });
 
         $this->updateSelectedTeams($this->user->teams()->allRelatedIds());
-
+        // dd($this->use)
+        // $this->dispatchBrowserEvent('refreshSelects');
 
     }
 
@@ -441,6 +442,11 @@ class ProviderForm extends Component
         $this->switch($component);
         if ($this->step == 4)
             $this->getProviderSchedule();
+        if($this->step==1){
+            if ($this->user->user_dob) 
+                $this->user->user_dob = Carbon::parse($this->user->user_dob)->format('m/d/Y');
+        }
+    
         $this->dispatchBrowserEvent('refreshSelects');
     }
 
