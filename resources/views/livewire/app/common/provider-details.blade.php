@@ -1126,7 +1126,7 @@
 			                      <div class="row mb-3">
 			                    	<h2>Availability <small>(coming soon)</small> </h2>
 			                      </div>
-								  	@livewire('app.provider.manage-availability', ['provider_id' => $user['id']])
+								  	{{-- @livewire('app.provider.manage-availability', ['provider_id' => $user['id']]) --}}
 			                       
                                   <div>
 			                      </div>
@@ -2877,8 +2877,8 @@
 				 </div>
 			   </div>
 			 </div>
-			 @include('panels.common.default-availability')
-			 @include('panels.common.specific-date-availibility')
+			 {{-- @include('panels.common.default-availability') --}}
+			 {{-- @include('panels.common.specific-date-availibility') --}}
 			 @include('panels.common.pending-credentials')
 			 @include('modals.common.add-address')
 			 @include('modals.mark-as-paid')
