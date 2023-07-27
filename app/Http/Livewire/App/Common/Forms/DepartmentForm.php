@@ -126,6 +126,7 @@ class DepartmentForm extends Component
 
 		$this->dispatchBrowserEvent('refreshSelects');
 
+		// dd($this->department);
     }
 
 	public function setData(){

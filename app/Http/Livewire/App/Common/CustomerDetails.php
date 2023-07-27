@@ -84,7 +84,7 @@ class CustomerDetails extends Component
 		$user->status = !$user->status ;
 		$user->save();
 		$this->user['status']= $user->status;
-		$this->showConfirmation("Account Locked Successfully");
+		$this->showConfirmation("Account status changed Successfully");
 
 	}
 
