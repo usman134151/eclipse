@@ -18,6 +18,8 @@ class NotificationConfiguration extends PowerGridComponent
     public $name;
     public $selectedRoleId;
     public $typeId;
+
+    public $notification_type;
     /*
     |--------------------------------------------------------------------------
     |  Features Setup
@@ -61,8 +63,10 @@ class NotificationConfiguration extends PowerGridComponent
             'notification_templates.slug',
             'trigger_types.name as trigger_type',
             'notification_templates.status as status',
+            'notification_templates.notification_type',
             'notification_template_roles.customer_roles'
         ]);
+        $query->where('notification_templates.notification_type', $this->notification_type);
 
         if ($this->typeId !== null) {
             // dd($this->typeId);
