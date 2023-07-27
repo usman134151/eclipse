@@ -232,6 +232,8 @@ class AddCompany extends Component
 		}
 		else{
 			$this->getCompanySchedule();
+			
+			$this->setStep(2, 'scheduleActive', 'schedule');
 		
 		}
 
@@ -273,10 +275,9 @@ class AddCompany extends Component
 
 		}
 
-
-			$this->scheduleActive="active";
+			// $this->scheduleActive="active";
 			
-			$this->switch('schedule');
+			// $this->switch('schedule');
 			
 			$this->emit('getRecord', $this->schedule->id,true);
 	}

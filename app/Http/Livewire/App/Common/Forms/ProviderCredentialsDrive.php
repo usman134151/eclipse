@@ -40,7 +40,10 @@ class ProviderCredentialsDrive extends Component
 
             $query = User::query();
             $query->where('users.id', $this->provider_id);
-            $query->join('provider_accommodation_services', 'provider_accommodation_services.user_id', "users.id");
+            $query->join('provider_accommodation_services',function($join){
+                $join->on('provider_accommodation_services.user_id', "users.id");
+                $join->where('provider_accommodation_services.status', 1);
+            });
             $query->join('services_credentials', 'provider_accommodation_services.service_id', "services_credentials.service_id");
             $query->join('credentials', 'credentials.id', "services_credentials.credential_id");
             $query->join('credential_documents', 'credentials.id', "credential_documents.credential_id");
