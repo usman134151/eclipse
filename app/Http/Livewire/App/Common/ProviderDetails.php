@@ -82,7 +82,10 @@ class ProviderDetails extends Component
 		// accommodations and services for dashboard
 		$query = User::query();
 		$query->where('users.id', $this->userid);
-		$query->join('provider_accommodation_services', 'provider_accommodation_services.user_id', "users.id");
+		$query->join('provider_accommodation_services', function ($join) {
+			$join->on('provider_accommodation_services.user_id', "users.id");
+			$join->where('provider_accommodation_services.status', 1);
+		});
 		$query->join('accommodations', 'provider_accommodation_services.accommodation_id', "accommodations.id");
 		$query->join('service_categories', 'provider_accommodation_services.service_id', "service_categories.id");
 		$query->select([
@@ -97,7 +100,10 @@ class ProviderDetails extends Component
 
 		$query = User::query();
 		$query->where('users.id', $this->userid);
-		$query->join('provider_accommodation_services', 'provider_accommodation_services.user_id', "users.id");
+		$query->join('provider_accommodation_services', function ($join) {
+			$join->on('provider_accommodation_services.user_id', "users.id");
+			$join->where('provider_accommodation_services.status', 1);
+		});
 		$query->join('accommodations', 'provider_accommodation_services.accommodation_id', "accommodations.id");
 		$query->join('service_categories', 'provider_accommodation_services.service_id', "service_categories.id");
 		$query->select([
