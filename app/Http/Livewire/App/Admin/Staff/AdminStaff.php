@@ -17,7 +17,7 @@ class AdminStaff extends Component
 		'updateRecordId' => 'updateRecordId', // update the ID of the record being edited/deleted
 	];
 
-	public function mount($showProfile)
+	public function mount($showProfile=false)
 	{
 		$this->showProfile = $showProfile;
 		if ($showProfile) {
