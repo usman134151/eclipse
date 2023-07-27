@@ -330,7 +330,7 @@
 					                                  <div class="row mb-1 mx-2">
 					                                    <div class="col-md-12 d-flex">
 					                                    <div class="col-md-4 "><label class="col-form-label" for="experience">Experience:</label></div>
-					                                    <div class="col-md-8 align-self-center"><div class="font-family-secondary">5 Year</div></div>
+					                                    <div class="col-md-8 align-self-center"><div class="font-family-secondary">{{$user['userdetail']['user_experience'] ? $user['userdetail']['user_experience'] : 'N/A'}}</div></div>
 					                                    </div>
 					                                  </div>
 					                                 <div class="row mb-1 mx-2">
