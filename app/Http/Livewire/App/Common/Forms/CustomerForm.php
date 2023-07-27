@@ -395,6 +395,10 @@ class CustomerForm extends Component
 		$this->step = $step;
 		$this->$tabName = "active";
 		$this->switch($component);
+		if ($this->step == 1) {
+			if ($this->user->user_dob)
+				$this->user->user_dob = Carbon::parse($this->user->user_dob)->format('m/d/Y');
+		}
 
 		$this->dispatchBrowserEvent('refreshSelects');
 	}
