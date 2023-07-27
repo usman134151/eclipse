@@ -146,7 +146,7 @@
 										</div>
 									</div>
 								<!-- ...... -->
-								@livewire('app.common.lists.notification-configuration', ['selectedRoleId' => $selectedRoleId,'typeId' => $typeId], key(Str::random(10)))
+								@livewire('app.common.lists.notification-configuration', ['notification_type'=>$type,'selectedRoleId' => $selectedRoleId,'typeId' => $typeId], key(Str::random(10)))
 							</div>
 						</div>
 					</div>
