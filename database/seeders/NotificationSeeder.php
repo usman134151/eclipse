@@ -25,13 +25,13 @@ class NotificationSeeder extends Seeder
         DB::table('notification_templates')->delete();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        $email_notification = storage_path('app\email_notifications.xlsx'); // Path to your Excel sms_notification
+        $email_notification = public_path('seeders/').'email_notifications.xlsx'; // Path to your Excel email_notification
         Excel::import(new EmailNotificationsImport, $email_notification);
 
-        $sms_notification = storage_path('app\sms_notifications.xlsx'); // Path to your Excel sms_notification
+        $sms_notification = public_path('seeders/').'sms_notifications.xlsx'; // Path to your Excel sms_notification
         Excel::import(new SMSNotificationsImport, $sms_notification);
 
-        $system_notification = storage_path('app\system_notifications.xlsx'); // Path to your Excel sms_notification
+        $system_notification = public_path('seeders/').'system_notifications.xlsx'; // Path to your Excel system_notification
         Excel::import(new SystemNotificationsImport, $system_notification);
     }
 }
