@@ -157,9 +157,9 @@
                                             {!! $setupValues['gender']['rendered'] !!}
                                         </div>
                                     </div>
-                                    <div class="row inner-section-segment-spacing">
+                                    {{-- <div class="row inner-section-segment-spacing"> --}}
                                         <div class="col-md-6 col-12">
-                                            <div>
+                                            <div class="mb-4">
                                                 <div class="d-flex justify-content-between align-items-center">
                                                     <label class="form-label" for="ethnicity">
                                                         Ethnicity
@@ -179,14 +179,14 @@
                                                 {!! $setupValues['ethnicities']['rendered'] !!}
                                             </div>
                                         </div>
-                                        <div class="col-md-6 col-12">
-                                            <div>
+                                        <div class="col-md-6 col-12 ">
+                                            <div class="mb-4">
                                                 <label class="form-label" for="position">Position</label>
                                                 <input type="text" id="position" class="form-control"
                                                     placeholder="Enter Position" name="position" wire:model.defer="userdetail.user_position" />
                                             </div>
                                         </div>
-                                    </div>
+                                    {{-- </div> --}}
                                     {{-- updated by shanila to replace checkboxes with multidropdowns --}}
                                     <div class="col-md-6 col-12">
                                         <div class="mb-4">
