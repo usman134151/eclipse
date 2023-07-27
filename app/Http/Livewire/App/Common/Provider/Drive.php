@@ -10,7 +10,9 @@ class Drive extends Component
     public $showForm, $userid=0;
     protected $listeners = ['showList' => 'resetForm',
         'OpenProviderCredential',//for upload panel
-        'openActiveCredentialModal'	//for document view modal
+        'openActiveCredentialModal' ,   //for document view modal
+        'viewCredentialModal', // for viewing acknowledge doc
+
         ];
     public  $counter = 0, $credentialId, $credentialLabel = "", $credentialDetails = false;
 
@@ -43,7 +45,12 @@ class Drive extends Component
     {
         $this->emit('openActiveCredential', $user_doc_id);
     }
-	
+
+    // open view document modal from my-drive
+    public function viewCredentialModal($doc_id)
+    {
+        $this->emit('viewCredential', $doc_id);
+    }
 
     function showForm()
     {     
