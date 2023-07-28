@@ -14,6 +14,7 @@ class EmailNotificationsImport implements ToModel
     {
         if($row[0] && $row[0]!="Notification"){
             $notification = new NotificationTemplates([
+                'trigger_type_id'  => $row[11],
                 'trigger'  => $row[0],
                 'name' => $row[0],
                 'slug' => Str::slug($row[0], '_'),
