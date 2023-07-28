@@ -80,6 +80,10 @@
                                 </span>
                             @enderror
                         </div>
+                        @else
+                        <div class="col-lg-5 col-12 mb-4">
+                            <label class="form-label" for="subject-column-{{$selectedType['role_id']}}">Role: {{$selectedType['display_name']}}</label>
+                        </div>
                         @endif
                       @if($selectedType['name']=='admin')
                         <div class="col-lg-5 pe-lg-4 mb-4">

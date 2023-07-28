@@ -54,30 +54,30 @@ class NotificationConfiguration extends PowerGridComponent
     public function datasource(): Builder
     {
         $query = NotificationTemplates::query()
-        ->join('notification_template_roles', 'notification_templates.id', '=', 'notification_template_roles.notification_id')
+        // ->join('notification_template_roles', 'notification_templates.id', '=', 'notification_template_roles.notification_id')
         ->join('trigger_types', 'notification_templates.trigger_type_id', '=', 'trigger_types.id')
         ->select([
             'notification_templates.id',
             'notification_templates.name',
             'notification_templates.trigger',
-            'notification_templates.slug',
+            // 'notification_templates.slug',
             'trigger_types.name as trigger_type',
             'notification_templates.status as status',
             'notification_templates.notification_type',
-            'notification_template_roles.customer_roles'
+            // 'notification_template_roles.customer_roles'
         ]);
         $query->where('notification_templates.notification_type', $this->notification_type);
-
         if ($this->typeId !== null) {
-            // dd($this->typeId);
             $query->where('trigger_types.id', $this->typeId);
         }
         if ($this->selectedRoleId !== null) {
-                $query->where('notification_template_roles.role_id', $this->selectedRoleId);
-                        // ->orWhereRaw("JSON_SEARCH(notification_template_roles.customer_roles, 'one', ?) IS NOT NULL", [$this->selectedRoleId]);
+            $query->whereExists(function ($query) {
+                $query->select('notification_template_roles.id')
+                    ->from('notification_template_roles')
+                    ->whereColumn('notification_templates.id', 'notification_template_roles.notification_id')
+                    ->where('notification_template_roles.role_id', $this->selectedRoleId);
+            });
         }
-        // dd($query);
-    $query->distinct();
     return $query;
 }
     
@@ -122,7 +122,7 @@ class NotificationConfiguration extends PowerGridComponent
             })
             ->addColumn('name')
             ->addColumn('trigger')
-            ->addColumn('slug')
+            // ->addColumn('slug')
             // ->addColumn('body')
             ->addColumn('status', function (NotificationTemplates $model) {
                 return ($model->status);
@@ -153,7 +153,7 @@ class NotificationConfiguration extends PowerGridComponent
             Column::make('Type', 'trigger_type', ''),
             Column::make('Name', 'name', '')->searchable()->makeinputtext()->sortable()->editOnClick(),
             Column::make('TRIGGER', 'trigger', ''),
-            Column::make('TRIGGER DESCRIPTION', 'slug', '')->editOnClick(),
+            // Column::make('TRIGGER DESCRIPTION', 'slug', '')->editOnClick(),
             // Column::make('Subject', 'body', '')->editOnClick(),
             Column::make('USER ROLES', 'role_id', 'Roles.name')->searchable(),
             Column::make('Status', 'status', '')->makeBooleanFilter('status', 'Activated', 'Deactivated')
