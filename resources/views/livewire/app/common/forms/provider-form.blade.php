@@ -173,6 +173,11 @@
                                                     </label>
                                                     <input type="text" id="pronouns-column" class="form-control"
                                                         placeholder="Enter Pronouns" name="pronouns" wire:model.defer="userdetail.title"/>
+                                                    @error('userdetail.title')
+                                                            <span class="d-inline-block invalid-feedback mt-2">
+                                                                {{ $message }}
+                                                            </span>
+                                                            @enderror
                                                 </div>
                                                 <div class="col-lg-6 ps-lg-5 mb-4">
                                                     <label class="form-label" for="">
@@ -189,19 +194,26 @@
                                                                 viewBox="0 0 20 21">
                                                                 <use xlink:href="/css/common-icons.svg#datefield-icon">
                                                                 </use>
-                                                            </svg>
+                                                            </svg> 
+                                                           
                                                            
                                                         </div>
+
                                                         <button type="button" class="btn px-2">
-                                                            <!-- Begin : it will be replaced with livewire module-->
-                                                            {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="show" width="24" height="17" viewBox="0 0 24 17">
                                                                 <use xlink:href="/css/common-icons.svg#eye-icon">
                                                                 </use>
                                                             </svg>
                                                            
                                                         </button>
+                                                       
+
                                                     </div>
+                                                     @error('user.user_dob')
+                                                            <span class="d-inline-block invalid-feedback mt-2">
+                                                                {{ $message }}
+                                                            </span>
+                                                            @enderror
                                                 </div>
                                                 <div class="col-lg-6 mb-4 pe-lg-5">
                                                     <div class="d-flex justify-content-between align-items-center mb-1">
@@ -299,6 +311,12 @@
                                                     <label class="form-label" for="phone">Phone Number</label>
                                                     <input type="text" id="phone" class="form-control" name="phone"
                                                         placeholder="Enter Phone Number" wire:model.defer="userdetail.phone"/>
+                                                    @error('userdetail.phone')
+                                                            <span class="d-inline-block invalid-feedback mt-2">
+                                                                {{ $message }}
+                                                            </span>
+                                                            @enderror
+
                                                 </div>
                                                 <div class="col-lg-6 mb-4 pe-lg-5">
                                                     <label class="form-label" for="country">
@@ -312,7 +330,14 @@
                                                         <input type="text" id="state" class="form-control"
                                                             name="state" placeholder="Enter State Name"
                                                             required aria-required="true" wire:model.defer="userdetail.state"/>
+                                                            @error('userdetail.state')
+                                                            <span class="d-inline-block invalid-feedback mt-2">
+                                                                {{ $message }}
+                                                            </span>
+                                                            @enderror
+
                                                     </div>
+                                                    
                                                 </div>
                                                 <div class="col-lg-6 mb-4 pe-lg-5">
                                                     <div class="mb-4">
@@ -320,6 +345,12 @@
                                                         <input type="text" id="city" class="form-control"
                                                             name="city" placeholder="Enter City Name"
                                                             required aria-required="true" wire:model.defer="userdetail.city"/>
+                                                        @error('userdetail.city')
+                                                            <span class="d-inline-block invalid-feedback mt-2">
+                                                                {{ $message }}
+                                                            </span>
+                                                            @enderror
+
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 mb-4 ps-lg-5">
@@ -328,6 +359,12 @@
                                                     </label>
                                                     <input type="text" id="zip-code" class="form-control" name="zipCode"
                                                         placeholder="Enter Zip Code" wire:model.defer="userdetail.zip"/>
+                                                    @error('userdetail.zip')
+                                                            <span class="d-inline-block invalid-feedback mt-2">
+                                                                {{ $message }}
+                                                            </span>
+                                                            @enderror
+
                                                 </div>
                                                 <div class="col-lg-6 mb-4 pe-lg-5">
                                                     
@@ -346,6 +383,12 @@
                                                     <input type="text" id="billing_address_form" class="form-control"
                                                         name="address-line-1" placeholder="Enter Address Line 1" wire:model.defer="userdetail.address_line1"/>
                                                         <div class="">
+                                                        @error('userdetail.address_line1')
+                                                            <span class="d-inline-block invalid-feedback mt-2">
+                                                                {{ $message }}
+                                                            </span>
+                                                            @enderror
+
                                                     
                                                     </div>
                                                 </div>
@@ -355,6 +398,12 @@
                                                     </label>
                                                     <input type="text" id="address-line-2" class="form-control"
                                                         name="addressLine2" placeholder="Enter Address Line 2" wire:model.defer="userdetail.address_line2"/>
+                                                        @error('userdetail.address_line2')
+                                                            <span class="d-inline-block invalid-feedback mt-2">
+                                                                {{ $message }}
+                                                            </span>
+                                                            @enderror
+
                                                 </div>
                                                 <div class="col-lg-6 mb-4 pe-lg-5">
                                                     <label class="form-label" for="start-date-column">
@@ -413,6 +462,12 @@
                                                     </div>
                                                     <input type="text" id="education" class="form-control"
                                                         name="education-column" placeholder="Enter Education" wire:model.defer="userdetail.education" />
+                                                        @error('userdetail.education')
+                                                            <span class="d-inline-block invalid-feedback mt-2">
+                                                                {{ $message }}
+                                                            </span>
+                                                            @enderror
+
                                                 </div>
                                                 <div class="col-lg-6 mb-4 ps-lg-5">
                                                     <div class="d-flex justify-content-between align-items-center mb-2">
@@ -475,15 +530,33 @@
                                                         </a>
                                                     </div>
                                                     <textarea class="form-control" rows="3" cols="3" placeholder=""
-                                                        name="experienceColumn" id="experience" wire:model.defer="userdetail.user_experience"></textarea>
+                                                        name="user_experience" id="user_experience" wire:model.defer="userdetail.user_experience"></textarea>
+                                                     @error('userdetail.user_experience')
+                                                            <span class="d-inline-block invalid-feedback mt-2">
+                                                                {{ $message }}
+                                                            </span>
+                                                            @enderror
                                                 </div>
-                                                <div class="col-lg-6 ps-lg-5">
+                                                 <div class="col-lg-6 mb-4 ps-lg-5">
+                                                    <label class="form-label" for="provider-introduction">
+                                                        Provider Introduction
+                                                    </label>
+                                                    <textarea class="form-control" rows="3" cols="3" placeholder=""
+                                                        name="provider-introduction" id="provider-introduction" wire:model.defer="userdetail.user_introduction"></textarea>
+                                                    @error('userdetail.user_introduction')
+                                                            <span class="d-inline-block invalid-feedback mt-2">
+                                                                {{ $message }}
+                                                            </span>
+                                                            @enderror
+
+                                                </div>
+                                                {{-- <div class="col-lg-6 ps-lg-5">
                                                     <label class="form-label" for="notes_column">
                                                         Notes
                                                     </label>
                                                     <textarea class="form-control" rows="3" placeholder="" name="notesColumn"
                                                         id="notes_column" wire:model.defer="userdetail.note"></textarea>
-                                                </div>
+                                                </div> --}}
                                                 <div class="col-lg-6 mb-4 pe-lg-5">
                                                     <label class="form-label" for="preferred-language-column">
                                                         Preferred Language
@@ -491,10 +564,21 @@
                                                     {!! $setupValues['languages']['rendered'] !!}
                                                 </div>
                                                 <div class="col-lg-6 ps-lg-5">
-                                                    <label class="form-label" for="set-time-zone-column">
-                                                        Set Time Zone
+                                                    <label class="form-label" for="provider-introduction-media">
+                                                        Provider Introduction Media
                                                     </label>
-                                                    {!! $setupValues['timezones']['rendered'] !!}
+                                                    <input type="file" id="provider-introduction-media" class="form-control" wire:model.defer="media_file"
+                                                        name="provider_introduction_media" placeholder="Add Media Document" />
+                                                    @error('media_file')<span class="d-inline-block invalid-feedback mt-2">{{$message}}</span>@enderror 
+                                                
+                                                        {{-- displays existing document name --}}
+                                                        @if($userdetail['user_introduction_file']!=null)
+                                                            <p class="mt-2"> <b>Uploaded Document </b><br>
+                                                            <a href="{{$userdetail['user_introduction_file']}}" target="_blank" aria-label="file"  >
+                                                                        {{basename($userdetail['user_introduction_file'])}}
+                                                                    </a> 
+                                                            </p>
+                                                        @endif
                                                 </div>
                                                 <div class="col-lg-6 mb-4 pe-lg-5">
                                                     <label class="form-label" for="preferred-colleagues-column">
@@ -519,31 +603,15 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                                <div class="col-lg-6 mb-4 pe-lg-5">
-                                                    <label class="form-label" for="provider-introduction">
-                                                        Provider Introduction
+                                               
+                                                <div class="col-lg-6 pe-lg-5">
+                                                    <label class="form-label" for="set-time-zone-column">
+                                                        Set Time Zone
                                                     </label>
-                                                    <textarea class="form-control" rows="3" cols="3" placeholder=""
-                                                        name="provider- introduction" id="provider-introduction" wire:model.defer="userdetail.user_introduction"></textarea>
+                                                    {!! $setupValues['timezones']['rendered'] !!}
                                                 </div>
-                                                <div class="col-lg-6 ps-lg-5">
-                                                    <label class="form-label" for="provider-introduction-media">
-                                                        Provider Introduction Media
-                                                    </label>
-                                                    <input type="file" id="provider-introduction-media" class="form-control" wire:model.defer="media_file"
-                                                        name="provider_introduction_media" placeholder="Add Media Document" />
-                                                    @error('media_file')<span class="d-inline-block invalid-feedback mt-2">{{$message}}</span>@enderror 
                                                 
-                                                        {{-- displays existing document name --}}
-                                                        @if($userdetail['user_introduction_file']!=null)
-                                                            <p class="mt-2"> <b>Uploaded Document </b><br>
-                                                            <a href="{{$userdetail['user_introduction_file']}}" target="_blank" aria-label="file"  >
-                                                                        {{basename($userdetail['user_introduction_file'])}}
-                                                                    </a> 
-                                                            </p>
-                                                        @endif
-                                                </div>
-                                                <div class="col-lg-6 mb-4 pe-lg-5">
+                                                <div class="col-lg-6 mb-4 ps-lg-5">
                                                     <label class="form-label" for="payment-settings">
                                                         Payment Settings
                                                     </label>
@@ -556,7 +624,7 @@
 
                                                     </select>
                                                 </div>
-                                                <div class="col-lg-6 ps-lg-5">
+                                                <div class="col-lg-6 pe-lg-5">
                                                     <label class="form-label" for="default-remittance-temp">
                                                         Select Default Remittance Template <small>(coming soon)</small>
                                                     </label>
@@ -566,7 +634,7 @@
                                                         </option>
                                                     </select>
                                                 </div>
-                                                <div class="col-lg-6 mb-4 pe-lg-5">
+                                                <div class="col-lg-6 mb-4 ps-lg-5">
                                                         <label class="form-label" for="tags">Tags</label>
                                                         <select data-placeholder="" multiple 
                                                             class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="tags-select" aria-label="Select Tags">

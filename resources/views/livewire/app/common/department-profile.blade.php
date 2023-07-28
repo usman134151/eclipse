@@ -166,8 +166,8 @@
 												<div class="mb-4">
 													<div class="row">
 														<div class="col-md-4">
-															<div class="d-inline-block position-relative">
-																<img  style="width:300px;height:200px;top:1rem" src="{{$department->department_logo !=null ? $department->department_logo : '/tenant-resources/images/portrait/small/image4.png'}}"
+															<div class="d-inline-block position-relative profile-pic-div">
+																<img  src="{{$department->department_logo !=null ? $department->department_logo : '/tenant-resources/images/portrait/small/image4.png'}}"
                                                                      class="img-fluid rounded-circle" alt="Department Image"/>
 															</div>
 															<div style="margin-left: -1rem;" class="d-inline-block position-relative mt-3">

@@ -96,8 +96,8 @@
         <button type="button" class="btn btn-outline-dark rounded" x-on:click="specificDateAvailability = !specificDateAvailability">
             Cancel
         </button>
-         {{-- wire:click.prevent="$emit('saveSpecificSlot')" --}}
-        <button type="submit" class="btn btn-primary rounded" x-on:close-specific-panel.window="specificDateAvailability = !specificDateAvailability">
+         {{--  --}}
+        <button type="submit" class="btn btn-primary rounded" wire:click.prevent="$emit('saveSpecificSlot')" x-on:close-specific-panel.window="specificDateAvailability = !specificDateAvailability">
             Save
         </button>
     </div>

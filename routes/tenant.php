@@ -94,10 +94,10 @@ Route::group([
 			// End of Admin Department Routes
 
 			// Admin Staff Routes
-			Route::view('/admin/admin-staff', 'tenant/admin/staff/admin-staff', ["showForm"=>false, "showProfile" => false]);
-			Route::view('/admin/admin-staff/create-staff', 'tenant/admin/staff/admin-staff', ["showForm"=>true, "showProfile" => false]);
-			Route::view('/admin/admin-staff/edit-staff/{userID}', 'tenant/admin/staff/admin-staff', ["showForm" => true, "showProfile" => false])->name('edit-staff')->middleware(DecryptRouteParamater::class);
-			Route::view('/admin/admin-staff/profile/{userID}', 'tenant/admin/staff/admin-staff', ["showForm" => false, "showProfile" => true])->name('profile-staff')->middleware(DecryptRouteParamater::class);
+			Route::view('/admin/admin-staff', 'tenant/admin/staff/admin-staff', ["showForm"=>false, "showProfile" => 0]);
+			Route::view('/admin/admin-staff/create-staff', 'tenant/admin/staff/admin-staff', ["showForm"=>true, "showProfile" => 0]);
+			Route::view('/admin/admin-staff/edit-staff/{userID}', 'tenant/admin/staff/admin-staff', ["showForm" => true, "showProfile" => 0])->name('edit-staff')->middleware(DecryptRouteParamater::class);
+			Route::view('/admin/admin-staff/profile/{userID}', 'tenant/admin/staff/admin-staff', ["showForm" => false, "showProfile" => 1])->name('profile-staff')->middleware(DecryptRouteParamater::class);
 
 			Route::view('/admin/admin-team', 'tenant/admin/team/admin-team', ["showForm"=>false]);
 			Route::view('/admin/admin-team/create-admin-team', 'tenant/admin/team/admin-team', ["showForm"=>true]);

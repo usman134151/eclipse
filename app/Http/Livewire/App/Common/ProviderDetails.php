@@ -9,7 +9,8 @@ use App\Models\Tenant\UserDetail;
 use App\Services\App\UserService;
 class ProviderDetails extends Component
 {
-    public $user, $userid ,$settings=['travel_rate_per_unit'=>'', 'travel_rate_unit'=>"km", 'rate_for_travel_time'=>'', 'same_as_service_rate'=>''];
+    public $user, $userid , $accommodation_catalog, $service_catalog;
+	public $settings=['travel_rate_per_unit'=>'', 'travel_rate_unit'=>"km", 'rate_for_travel_time'=>'', 'same_as_service_rate'=>''];
 
 	
 	// variabled for my-drive (upload-credential-file) panel 
@@ -20,6 +21,7 @@ class ProviderDetails extends Component
 		'showDetails',
 		 'OpenProviderCredential',//for upload panel
 		 'openActiveCredentialModal',	//for document view modal
+		'viewCredentialModal', // for viewing acknowledge doc
 			'showConfirmation',
 		];
 
@@ -60,6 +62,12 @@ class ProviderDetails extends Component
 		$this->emit('openActiveCredential', $user_doc_id);
 	}
 
+	// open view document modal from my-drive
+	public function viewCredentialModal($doc_id)
+	{
+		$this->emit('viewCredential', $doc_id);
+	}
+
 
 
 	// fetches basis use data, refer to Provider.php to increase relation arrays
@@ -68,12 +76,47 @@ class ProviderDetails extends Component
 		$this->userid = $user['id'];
 		$this->user['tags'] = json_decode($this->user['userdetail']['tags']);
 		if($this->user['userdetail']['provider_details']!=null)
-		// {
 			$this->settings = json_decode($this->user['userdetail']['provider_details'],true);
-		// 	foreach($details as $key=> $det){
-		// 		$this->settings[$key]=$det;
-		// 	}
-		// }
+
+	
+		// accommodations and services for dashboard
+		$query = User::query();
+		$query->where('users.id', $this->userid);
+		$query->join('provider_accommodation_services', function ($join) {
+			$join->on('provider_accommodation_services.user_id', "users.id");
+			$join->where('provider_accommodation_services.status', 1);
+		});
+		$query->join('accommodations', 'provider_accommodation_services.accommodation_id', "accommodations.id");
+		$query->join('service_categories', 'provider_accommodation_services.service_id', "service_categories.id");
+		$query->select([
+			'accommodations.id as accommodation_id',
+			'accommodations.name as accommodation_name',
+			'service_categories.id as service_id','service_categories.name as service_name',
+			'provider_accommodation_services.provider_priority',
+
+
+		]);
+			$this->accommodation_catalog = $query->distinct('service_id')->orderBy('provider_priority')->get()->groupBy('accommodation_id')->toArray();
+
+		$query = User::query();
+		$query->where('users.id', $this->userid);
+		$query->join('provider_accommodation_services', function ($join) {
+			$join->on('provider_accommodation_services.user_id', "users.id");
+			$join->where('provider_accommodation_services.status', 1);
+		});
+		$query->join('accommodations', 'provider_accommodation_services.accommodation_id', "accommodations.id");
+		$query->join('service_categories', 'provider_accommodation_services.service_id', "service_categories.id");
+		$query->select([
+			'accommodations.id as accommodation_id',
+			'accommodations.name as accommodation_name',
+			'service_categories.id as service_id', 'service_categories.name as service_name',
+			'provider_accommodation_services.provider_priority',
+
+
+		]);
+		$this->service_catalog = $query->distinct('service_id')->orderBy('provider_priority')->get()->groupBy('accommodation_id')->toArray();
+
+		// dd($this->service_catalog);
 		$this->dispatchBrowserEvent('refreshSelects');
 	}
 
@@ -84,7 +127,7 @@ class ProviderDetails extends Component
 		$user->status = !$user->status;
 		$user->save();
 		$this->user['status'] = $user->status;
-		$this->showConfirmation("Account Locked Successfully");
+		$this->showConfirmation("Account status changed Successfully");
 	}
 
 	public function showConfirmation($message = "")

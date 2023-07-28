@@ -57,9 +57,9 @@
                         <div class="row mt-2 mb-5">
                             {{-- BEGIN: Profile --}}
                             <div class="col-12 text-center">
-                                <div class="d-inline-block position-relative mb-3">
+                                <div class="d-inline-block position-relative mb-3 profile-pic-div">
                                     <img src="/tenant-resources/images/portrait/small/avatar-s-9.jpg"
-                                        class="img-fluid rounded-circle" alt="Profile Image of Provider" />
+                                        class="img-fluid" alt="Profile Image of Provider" />
                                     {{--
                                     <div>
                                         <input class="position-absolute form-control" type="file" />

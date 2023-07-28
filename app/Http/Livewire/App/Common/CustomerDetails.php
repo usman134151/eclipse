@@ -8,7 +8,7 @@ use App\Services\App\UserService;
 use App\Helpers\SetupHelper;
 class CustomerDetails extends Component
 {
-	public $user,$userid;
+	public $user,$userid, $service_catalog;
 	protected $listeners = [
 		'showDetails', 'showConfirmation' => '$refresh'
 	];
@@ -59,6 +59,21 @@ class CustomerDetails extends Component
 		}
 		$this->user['tags'] = json_decode($this->user['userdetail']['tags']);
 
+		$query = User::query();
+		$query->where('users.id', $this->userid);
+		$query->join('associate_services', function($join){
+			$join->where('associate_services.model_type','=','customer');
+			$join->on('associate_services.model_id', 'users.id');
+			$join->where('associate_services.status', '=' ,1);
+		});
+		$query->join('service_categories', 'associate_services.service_id', "service_categories.id");
+		$query->join('accommodations', 'service_categories.accommodations_id', "accommodations.id");
+		$query->select([
+			'accommodations.id as accommodation_id',
+			'accommodations.name as accommodation_name',
+			'service_categories.id as service_id', 'service_categories.name as service_name',
+		]);
+		$this->service_catalog = $query->distinct('service_id')->get()->groupBy('accommodation_id')->toArray();
 		$this->dispatchBrowserEvent('refreshSelects');
 
 	}
@@ -69,7 +84,7 @@ class CustomerDetails extends Component
 		$user->status = !$user->status ;
 		$user->save();
 		$this->user['status']= $user->status;
-		$this->showConfirmation("Account Locked Successfully");
+		$this->showConfirmation("Account status changed Successfully");
 
 	}
 

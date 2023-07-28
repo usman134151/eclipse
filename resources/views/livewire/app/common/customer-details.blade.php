@@ -211,9 +211,9 @@
                                             <div class="col-lg-5 me-lg-5 between-section-segment-spacing">
                                                 <div class="row mb-4">
                                                     <div class="col-md-4">
-                                                        <div class="d-inline-block position-relative">
-                                                            <img style="width:300px;height:200px;top:1rem" src="{{$user['userdetail']['profile_pic'] !=null ? $user['userdetail']['profile_pic'] : '/tenant-resources/images/portrait/small/image4.png'}}"
-                                                                class="img-fluid rounded-circle"
+                                                        <div class="d-inline-block position-relative profile-pic-div">
+                                                            <img  src="{{$user['userdetail']['profile_pic'] !=null ? $user['userdetail']['profile_pic'] : '/tenant-resources/images/portrait/small/image4.png'}}"
+                                                                class="img-fluid"
                                                                 alt="Customer Profile Image" />
                                                         </div>
                                                         <div style="margin-left: -1rem;"
@@ -548,271 +548,81 @@
                                                     <div class="col-12">
                                                         <div class="card">
                                                             <div class="table-responsive">
-                                                            <small>(coming soon)</small>
-                                                                <!-- table one -->
-                                                                <table id="" class="table table-hover"
-                                                                    aria-label="American Sign Language Interpreting Table">
-                                                                    <thead>
-                                                                        <tr role="row">
-                                                                            <th class="align-middle text-nowrap"
-                                                                                scope="col">
-                                                                                American Sign Language Interpreting
-                                                                            </th>
-                                                                            <th class="text-center align-middle"
-                                                                                scope="col">
-                                                                                Service Rate
-                                                                            </th>
-                                                                            <th class="text-end align-middle"
-                                                                                scope="col">
-                                                                                <div aria-expanded="false"
-                                                                                    data-bs-toggle="collapse"
-                                                                                    href="#collapseAmericanSignLanguageInterpreting"
-                                                                                    role="button" aria-expanded="false"
-                                                                                    aria-controls="collapseAmericanSignLanguageInterpreting">
-                                                                                    {{-- Updated by Shanila to Add svg
-                                                                                    icon--}}
-                                                                                    <svg aria-label="collapse"
-                                                                                        width="26" height="13"
-                                                                                        viewBox="0 0 26 13">
-                                                                                        <use
-                                                                                            xlink:href="/css/common-icons.svg#collapse">
-                                                                                        </use>
-                                                                                    </svg>
-                                                                                    {{-- End of update by Shanila --}}
-                                                                                </div>
-                                                                            </th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                </table>
-                                                                <div class="collapse " 
-                                                                        id="collapseAmericanSignLanguageInterpreting">
-                                                                    <table class="table table-hover">
-                                                                        
-                                                                    
-                                                                        <tbody>
-                                                                            <tr role="row" class="odd">
-                                                                                <td class="align-middle">
-                                                                                    <div class="row g-2">
-                                                                                        <div class="col-md-10">
-                                                                                            <p>
-                                                                                                Blog Writing
-                                                                                            </p>
+                                                                @if(count($service_catalog))
+                                                                    @foreach($service_catalog as $accom)
+
+                                                                        <table id="" class="table table-hover"
+                                                                            aria-label="{{$accom[0]['accommodation_name']}}">
+                                                                            <thead>
+                                                                                <tr role="row">
+                                                                                    <th class="align-middle text-nowrap " style="width:70%" 
+                                                                                        scope="col">
+                                                                                        {{$accom[0]['accommodation_name']}}
+                                                                                    </th>
+                                                                                    <th class="text-center align-middle"
+                                                                                        scope="col">
+                                                                                        Service Rate
+                                                                                    </th>
+                                                                                    <th class="text-end align-middle"
+                                                                                        scope="col">
+                                                                                        <div aria-expanded="false"
+                                                                                            data-bs-toggle="collapse"
+                                                                                            href="#collapse{{$accom[0]['accommodation_id']}}"
+                                                                                            role="button" aria-expanded="false"
+                                                                                            aria-controls="collapse{{$accom[0]['accommodation_id']}}">
+                                                                                            {{-- Updated by Shanila to Add svg
+                                                                                            icon--}}
+                                                                                            <svg aria-label="collapse"
+                                                                                                width="26" height="13"
+                                                                                                viewBox="0 0 26 13">
+                                                                                                <use
+                                                                                                    xlink:href="/css/common-icons.svg#collapse">
+                                                                                                </use>
+                                                                                            </svg>
+                                                                                            {{-- End of update by Shanila --}}
                                                                                         </div>
+                                                                                    </th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                        </table>
+                                                                        <div class="collapse " 
+                                                                                id="collapse{{$accom[0]['accommodation_id']}}">
+                                                                                @if(count($accom))
+                                                                                    <table class="table table-hover">
+                                                                                        
+                                                                                    
+                                                                                        <tbody>
+                                                                                            @foreach($accom as $service)
+
+                                                                                            <tr role="row" class="odd">
+                                                                                                <td class="align-middle" style="width:70%" >
+                                                                                                    <div class="row g-2">
+                                                                                                        <div class="col-md-10">
+                                                                                                            <p>
+                                                                                                                {{$service['service_name']}}
+                                                                                                            </p>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </td>
+                                                                                                <td class="text-center align-middle">
+                                                                                                    $10.00
+                                                                                                </td>
+                                                                                                <td></td>
+                                                                                            </tr>
+                                                                                            @endforeach
+                                                                                        
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                @else
+                                                                                    <div class="">
+                                                                                        <small>No services associated</small>
                                                                                     </div>
-                                                                                </td>
-                                                                                <td class="text-center align-middle">
-                                                                                    $10.00
-                                                                                </td>
-                                                                                <td></td>
-                                                                            </tr>
-                                                                            <tr role="row" class="even">
-                                                                                <td class="align-middle">
-                                                                                    <div class="row g-2">
-                                                                                        <div class="col-md-10">
-                                                                                            <p>
-                                                                                                Closed-Captioning
-                                                                                            </p>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td class="text-center align-middle">
-                                                                                    $10.00
-                                                                                </td>
-                                                                                <td></td>
-                                                                            </tr>
-                                                                            <tr role="row" class="odd">
-                                                                                <td class="align-middle">
-                                                                                    <div class="row g-2">
-                                                                                        <div class="col-md-10">
-                                                                                            <p>
-                                                                                                Deaf-Blind Tactile
-                                                                                                Interpreting
-                                                                                            </p>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td class="text-center align-middle">
-                                                                                    $10.00
-                                                                                </td>
-                                                                                <td></td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                                <!-- table two -->
-                                                                <table id="" class="table table-hover"
-                                                                    aria-label="International Sign Interpreting Table">
-                                                                    <thead>
-                                                                        <tr role="row">
-                                                                            <th class="align-middle text-nowrap"
-                                                                                scope="col">
-                                                                                International Sign Interpreting
-                                                                            </th>
-                                                                            <th class="text-center align-middle"
-                                                                                scope="col">
-                                                                                Service Rate
-                                                                            </th>
-                                                                            <th class="text-end align-middle"
-                                                                                scope="col">
-                                                                                <div data-bs-toggle="collapse"
-                                                                                    href="#collapseInternationalSignInterpreting"
-                                                                                    role="button" aria-expanded="false"
-                                                                                    aria-controls="collapseInternationalSignInterpreting">
-                                                                                    {{-- Updated by Shanila to Add svg
-                                                                                    icon--}}
-                                                                                    <svg aria-label="collapse"
-                                                                                        width="26" height="13"
-                                                                                        viewBox="0 0 26 13">
-                                                                                        <use
-                                                                                            xlink:href="/css/common-icons.svg#collapse">
-                                                                                        </use>
-                                                                                    </svg>
-                                                                                    {{-- End of update by Shanila --}}
-                                                                                </div>
-                                                                            </th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                </table>
-                                                                <div class="collapse" 
-                                                                        id="collapseInternationalSignInterpreting">
-                                                                    <table class="table table-hover">
-                                                                        <tbody>
-                                                                            <tr role="row" class="odd">
-                                                                                <td class="align-middle">
-                                                                                    <div class="row g-2">
-                                                                                        <div class="col-md-10">
-                                                                                            <p>
-                                                                                                Blog Writing
-                                                                                            </p>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td class="text-center align-middle">
-                                                                                    $10.00
-                                                                                </td>
-                                                                                <td></td>
-                                                                            </tr>
-                                                                            <tr role="row" class="even">
-                                                                                <td class="align-middle">
-                                                                                    <div class="row g-2">
-                                                                                        <div class="col-md-10">
-                                                                                            <p>
-                                                                                                Closed-Captioning
-                                                                                            </p>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td class="text-center align-middle">
-                                                                                    $10.00
-                                                                                </td>
-                                                                                <td></td>
-                                                                            </tr>
-                                                                            <tr role="row" class="odd">
-                                                                                <td class="align-middle">
-                                                                                    <div class="row g-2">
-                                                                                        <div class="col-md-10">
-                                                                                            <p>
-                                                                                                Deaf-Blind Tactile
-                                                                                                Interpreting
-                                                                                            </p>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td class="text-center align-middle">
-                                                                                    $10.00
-                                                                                </td>
-                                                                                <td></td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                                <!-- table three -->
-                                                                <table id="" class="table table-hover"
-                                                                    aria-label="Sign Language Interpreting Services Table">
-                                                                    <thead>
-                                                                        <tr role="row">
-                                                                            <th class="align-middle text-nowrap"
-                                                                                scope="col">
-                                                                                Sign Language Interpreting Services
-                                                                            </th>
-                                                                            <th class="text-center align-middle"
-                                                                                scope="col">
-                                                                                Service Rate
-                                                                            </th>
-                                                                            <th class="text-end align-middle"
-                                                                                scope="col">
-                                                                                <div data-bs-toggle="collapse"
-                                                                                    href="#collapseSignLanguageInterpretingServices"
-                                                                                    role="button" aria-expanded="false"
-                                                                                    aria-controls="collapseSignLanguageInterpretingServices">
-                                                                                    {{-- Updated by Shanila to Add svg
-                                                                                    icon--}}
-                                                                                    <svg aria-label="collapse"
-                                                                                        width="26" height="13"
-                                                                                        viewBox="0 0 26 13">
-                                                                                        <use
-                                                                                            xlink:href="/css/common-icons.svg#collapse">
-                                                                                        </use>
-                                                                                    </svg>
-                                                                                    {{-- End of update by Shanila --}}
-                                                                                </div>
-                                                                            </th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                </table>
-                                                                <div class="collapse" 
-                                                                        id="collapseSignLanguageInterpretingServices">
-                                                                    <table class="table table-hover">
-                                                                        <tbody>
-                                                                            <tr role="row" class="odd">
-                                                                                <td class="align-middle">
-                                                                                    <div class="row g-2">
-                                                                                        <div class="col-md-10">
-                                                                                            <p>
-                                                                                                Blog Writing
-                                                                                            </p>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td class="text-center align-middle">
-                                                                                    $10.00
-                                                                                </td>
-                                                                                <td></td>
-                                                                            </tr>
-                                                                            <tr role="row" class="even">
-                                                                                <td class="align-middle">
-                                                                                    <div class="row g-2">
-                                                                                        <div class="col-md-10">
-                                                                                            <p>
-                                                                                                Closed-Captioning
-                                                                                            </p>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td class="text-center align-middle">
-                                                                                    $10.00
-                                                                                </td>
-                                                                                <td></td>
-                                                                            </tr>
-                                                                            <tr role="row" class="odd">
-                                                                                <td class="align-middle">
-                                                                                    <div class="row g-2">
-                                                                                        <div class="col-md-10">
-                                                                                            <p>
-                                                                                                Deaf-Blind Tactile
-                                                                                                Interpreting
-                                                                                            </p>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td class="text-center align-middle">
-                                                                                    $10.00
-                                                                                </td>
-                                                                                <td></td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
+                                                                                @endif
+                                                                        </div>
+                                                                    @endforeach
+                                                                @endif
+                                                                
+                                                                
                                                             </div>
                                                         </div>
                                                     </div>

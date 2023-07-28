@@ -184,6 +184,11 @@
                                                                 {{-- End of update by Shanila --}}
                                                                 Select Industry
                                                             </button>
+                                                            @error('selectedIndustries')
+                                                            <span class="d-inline-block invalid-feedback mt-2">
+                                                                {{ $message }}
+                                                            </span>
+                                                            @enderror  
                                                         </div>
                                                         <div>
                                                             @if(count($industryNames)>0)
