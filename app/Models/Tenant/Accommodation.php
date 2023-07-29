@@ -21,7 +21,7 @@ class Accommodation extends Model
     ];
 
     public function services(){
-        return $this->hasMany(ServiceCategory::class,'accomodation_id');
+        return $this->hasMany(ServiceCategory::class,'accommodations_id');
     }
 
     public function teams(): BelongsToMany
