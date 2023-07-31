@@ -57,6 +57,7 @@ class Booknow extends Component
         $this->frequencies=SetupValue::where('setup_id',6)->select('id','setup_value_label')->get()->toArray();
         $this->accommodations=Accommodation::with('services')->where('status',1)->get()->toArray();
        
+       
         if($this->assignment){
             $this->updateCompany();
         }else{
