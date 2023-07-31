@@ -15,4 +15,9 @@ class SystemRole extends Model
 		'system_role_name',
 		'status'
 	];
+	
+	public function sectionRights()
+	{
+		return $this->hasMany(SectionRight::class);
+	}
 }
