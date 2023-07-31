@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Tenant\SystemRoleUser;
+use App\Models\Tenant\SystemRoleUser;
 use App\PloiManager;
 
 if (! function_exists('ploi')) {
@@ -30,6 +31,10 @@ if (! function_exists('userPermissions')) {
 
 if (! function_exists('userHasPermission')) {
     function userHasPermission($collection, $section_id, $right_id) {
+        //all permissions for super admin
+        if(auth()->user()->id==1){
+            return true;
+        }
         foreach ($collection as $item) {
             if ($item->section_id === $section_id && $item->right_id === $right_id) {
                 return true; // Found a matching record, return true

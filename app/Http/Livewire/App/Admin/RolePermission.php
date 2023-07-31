@@ -4,6 +4,7 @@ namespace App\Http\Livewire\App\Admin;
 
 use App\Models\Tenant\SectionRight;
 use App\Models\Tenant\SystemRole;
+use App\Models\Tenant\SystemRoleUser;
 use Livewire\Component;
 
 class RolePermission extends Component
@@ -57,6 +58,7 @@ class RolePermission extends Component
 	{
 		// Delete the record from the database using the model
 		SectionRight::where('system_role_id', $this->systemRoleID)->delete();
+		SystemRoleUser::where('system_role_id', $this->systemRoleID)->delete();
 		SystemRole::where('id', $this->systemRoleID)->delete();
 		// Emit an event to reset the form and display a confirmation message
 		$this->emitSelf('showList', 'Role and permissions have been deleted');
