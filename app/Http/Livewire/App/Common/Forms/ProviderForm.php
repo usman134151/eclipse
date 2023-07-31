@@ -357,6 +357,7 @@ class ProviderForm extends Component
 		}else{
             $this->step = 2;
             //setting values for next
+            $this->userid = $this->user->id;
 
             $this->userdetail['certification'] = explode(', ', $this->userdetail['certification']);
             $this->userdetail['favored_users'] = explode(', ', $this->userdetail['favored_users']);
