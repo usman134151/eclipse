@@ -29,5 +29,16 @@
       </div>
     </div>
   </div>
- @livewire('app.common.settings.notifications')
+   <div class="container">
+      <div class="card">
+          <div class="card-body">
+              <div class="row mb-4">
+                <p class="mt-3">
+                    Here you can control how you are notified about Profile activity.
+                </p>
+              </div>
+                @livewire('app.common.settings.notifications',['model_type'=>3,'model_id'=>Auth::id()])
+          </div>
+      </div>
+   </div>
 @endsection

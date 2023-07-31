@@ -328,42 +328,49 @@ class CustomerForm extends Component
 			$this->user = new User;
 		}
 		else{
-		
-			if (!is_null($this->user->company_name)){
-				$this->emit('updateCompany', $this->user->company_name);
-			}
-
-			$company_id = $this->user->company_name;
-			$this->allUserSchedules = User::query()
-				->where(['users.status' => 1])
-				->where('users.id','<>',$this->user->id)
-				->whereHas('roles', function ($query) {
-					$query->where('role_id', '>', 4);
-				})
-				->leftJoin('user_details', 'user_details.user_id', '=', 'users.id')
-				->leftJoin('companies', 'companies.id', '=', 'users.company_name')
-				->where('companies.id', '=', $company_id)
-				->select('users.id', 'users.name', 'phone')
-				->get();
-			
-			if($this->user->userdetail->get('favored_users')!=null)
-				$this->favored_providers = explode(', ', $this->user->userdetail['favored_users']);
-			if ($this->user->userdetail->get('unfavored_users')!=null)
-				$this->unfavored_providers = explode(', ', $this->user->userdetail['unfavored_users']);
-			if ($this->user->userdetail->get('user_configuration') != null)
-				$this->user_configuration = json_decode($this->user->userdetail->user_configuration,true);
-
-			$this->rolesArr = $userService->getCustomerRoles($this->user->id);
-			// set modal values for step 2
-			$this->emit('setValues', $this->user->id);
 
 			$this->setStep(2, 'permissionActive', 'permission-configurations');
+
+			
 			
 
 			
 		}
 		
 		
+	}
+
+	public function setPermissions(){
+		if (!is_null($this->user->company_name)) {
+			$this->emit('updateCompany', $this->user->company_name);
+		}
+
+		$company_id = $this->user->company_name;
+		$this->allUserSchedules = User::query()
+			->where(['users.status' => 1])
+			->where('users.id', '<>', $this->user->id)
+			->whereHas('roles', function ($query) {
+				$query->where('role_id', '>', 4);
+			})
+			->leftJoin('user_details', 'user_details.user_id', '=', 'users.id')
+			->leftJoin('companies', 'companies.id', '=', 'users.company_name')
+			->where('companies.id', '=', $company_id)
+			->select('users.id', 'users.name', 'phone')
+			->get();
+
+		if ($this->user->userdetail->get('favored_users') != null)
+			$this->favored_providers = explode(', ', $this->user->userdetail['favored_users']);
+		if ($this->user->userdetail->get('unfavored_users') != null)
+			$this->unfavored_providers = explode(', ', $this->user->userdetail['unfavored_users']);
+		if ($this->user->userdetail->get('user_configuration') != null)
+			$this->user_configuration = json_decode($this->user->userdetail->user_configuration, true);
+		
+			$userService = new UserService;
+
+		$this->rolesArr = $userService->getCustomerRoles($this->user->id);
+		// set modal values for step 2
+		$this->emit('setValues', $this->user->id);
+
 	}
 
 	public function updateTags(){
@@ -400,6 +407,8 @@ class CustomerForm extends Component
 			if ($this->user->user_dob)
 				$this->user->user_dob = Carbon::parse($this->user->user_dob)->format('m/d/Y');
 		}
+		if($this->step==2)
+		$this->setPermissions();
 
 		$this->dispatchBrowserEvent('refreshSelects');
 	}
