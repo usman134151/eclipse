@@ -1,82 +1,494 @@
 <div>
-   <div class="container">
-    <div class="card">
-        <div class="card-body">
-            <div class="row mb-4">
-                <p class="mt-3">
-                    Here you can control how you are notified about Profile activity.
-                </p>
-            </div>
-            <div class="row mb-4 mx-2">
-                <div class="col-md-4 border rounded p-2">
-                    <div class="row">
-                        <div class="d-flex justify-content-between mb-2 p-2">
-                            <div class="d-inline-flex align-items-center gap-4">
-                                <svg aria-label="Text" width="47" height="41" class="ms-2" viewBox="0 0 47 41" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M39.4375 1H7.5625C3.94381 1 1 3.93694 1 7.54647V26.253C1 29.8632 3.94381 32.7994 7.5625 32.7994H9.79402L6.72272 38.9275C6.53873 39.2963 6.61737 39.7436 6.9174 40.0261C7.09528 40.1941 7.32812 40.2819 7.5625 40.2819C7.72206 40.2819 7.88162 40.2429 8.02743 40.159L20.9371 32.7994H39.4375C43.0562 32.7994 46 29.8632 46 26.253V7.54647C46 3.93694 43.0562 1 39.4375 1ZM44.1235 26.2507C44.1235 28.8288 42.0194 30.9275 39.436 30.9275H20.686C20.5226 30.9275 20.363 30.9702 20.2203 31.0504L9.7841 37.0014L12.1508 32.2818C12.2966 31.9932 12.2798 31.6474 12.1095 31.3726C11.9385 31.0977 11.637 30.929 11.3125 30.929H7.5625C4.97903 30.929 2.875 28.8303 2.875 26.253V7.54647C2.875 4.96911 4.97903 2.87042 7.5625 2.87042V2.86889H39.436C42.0194 2.86889 44.1235 4.96758 44.1235 7.54494V26.2507Z" fill="black" stroke="black"/>
-                                </svg>
-                                <span>Text</span>
-                            </div>
-                            <div class="d-inline-flex align-items-center gap-4">
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch" id="ToggleText" checked aria-label="ONN OFF Toggle">
-                                    <label class="form-check-label" for="ToggleText">OFF</label>
-                                    <label class="form-check-label" for="ToggleText">ON</label>
-                                </div>
-                            </div>
-                        </div>
+  
+            <div class="row mb-4 p-3">
+										<div class="col-md-4 border rounded">
+											<div class="row">
+												<div class="d-flex justify-content-between mb-2 p-2">
+													<div class="d-inline-flex align-items-center gap-4">
+														<svg  width="47" height="41" class="ms-2"  viewBox="0 0 47 41"  fill="none"
+														xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#text"></use>
+														</svg>
+														<span>Text</span>
+													</div>
+													<div class="d-inline-flex align-items-center gap-4">
+														<div class="form-check form-switch">
+															<input class="form-check-input" type="checkbox" role="switch" id="ToggleText" checked>
+															<label class="form-check-label" for="ToggleText">OFF</label>
+															<label class="form-check-label" for="ToggleText">ON</label>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-4 border rounded mx-5">
+											<div class="row">
+												<div class="d-flex justify-content-between mb-2 p-2">
+													<div class="d-inline-flex align-items-center gap-4">
+														<svg  width="52" height="36"  viewBox="0 0 52 36"  fill="none"
+														xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#email"></use>
+														</svg>
+														<span>Email</span>
+													</div>
+													<div class="d-inline-flex align-items-center gap-4">
+														<div class="form-check form-switch">
+															<input class="form-check-input" type="checkbox" role="switch" id="ToggleEmail" checked>
+															<label class="form-check-label" for="ToggleEmail">
+																OFF
+															</label>
+															<label class="form-check-label" for="ToggleEmail">
+																ON
+															</label>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-4"></div>
+									</div>
+									<div class="row mb-5 p-3">
+										<div class="col-md-4 mt-2 border rounded">
+											<div class="row">
+												<div class="d-flex justify-content-between mb-2 p-2">
+													<div class="d-inline-flex align-items-center gap-4">
+														<svg  width="57" height="41" viewBox="0 0 57 41"  fill="none"
+														xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#notification"></use>
+														</svg>
+														<span>Notification</span>
+													</div>
+													<div class="d-inline-flex align-items-center gap-4">
+														<div class="form-check form-switch">
+															<input class="form-check-input" type="checkbox" role="switch" id="NotificationToggle" checked>
+															<label class="form-check-label" for="NotificationToggle">OFF</label>
+															<label class="form-check-label" for="NotificationToggle">ON</label>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+            {{-- <div class="row mb-5">
+                    <h2>Account Management </h2>
+                    <div class="table-responsive">
+                        <table id="system-logs" class="table table-hover" aria-label="system-logs">
+                        <thead>
+                            <tr role="row">
+                                <th scope="col">Trigger</th>
+                                <th scope="col">Permission</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr role="row" class="odd">
+                                <td>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                    </p>
+                                </td>
+                                <td>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Disable
+                                        </label>
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Enable
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr role="row" class="even">
+                                <td>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                    </p>
+                                </td>
+                                <td>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle">
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Disable
+                                        </label>
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Enable
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr role="row" class="odd">
+                                <td>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                    </p>
+                                </td>
+                                <td>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle">
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Disable
+                                        </label>
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Enable
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr role="row" class="even">
+                                <td>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                    </p>
+                                </td>
+                                <td>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Disable
+                                        </label>
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Enable
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr role="row" class="odd">
+                                <td>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                    </p>
+                                </td>
+                                <td>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Disable
+                                        </label>
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Enable
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        </table>
                     </div>
                 </div>
-                <div class="col-md-4 border rounded mx-5 p-2">
-                    <div class="row">
-                        <div class="d-flex justify-content-between mb-2 p-2">
-                            <div class="d-inline-flex align-items-center gap-4">
-                                <svg aria-label="Email" width="52" height="36" viewBox="0 0 52 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M51 5.29326C50.9991 5.15222 50.9915 5.01288 50.9771 4.87269C50.9618 4.73335 50.9405 4.59485 50.9125 4.45721C50.8844 4.31957 50.8505 4.18363 50.8088 4.04938C50.7672 3.91599 50.7196 3.78344 50.6661 3.6543C50.6117 3.52515 50.5514 3.39855 50.4851 3.2745C50.4188 3.1513 50.3458 3.03066 50.2685 2.91425C50.1903 2.79785 50.1062 2.68485 50.017 2.57694C49.9277 2.46819 49.8343 2.36453 49.7349 2.26512C49.6355 2.16571 49.5318 2.07225 49.4231 1.98304C49.3152 1.89383 49.203 1.80971 49.0857 1.73155C48.9693 1.65338 48.8495 1.58116 48.7263 1.51489C48.6023 1.44861 48.4757 1.38829 48.3466 1.33391C48.2174 1.27953 48.0857 1.23195 47.9515 1.19117C47.8172 1.14954 47.6813 1.1147 47.5436 1.08666C47.4068 1.05863 47.2684 1.03738 47.1282 1.02294C46.9888 1.0085 46.8495 1.00085 46.7093 1H5.29072C5.15052 1 5.01033 1.00765 4.87014 1.02124C4.7308 1.03569 4.59231 1.05608 4.45466 1.08412C4.31702 1.1113 4.18108 1.14614 4.04598 1.18692C3.91174 1.22771 3.78004 1.27529 3.65005 1.32966C3.5209 1.38319 3.3943 1.44352 3.27026 1.50979C3.14621 1.57606 3.02641 1.64828 2.90916 1.72645C2.79275 1.80462 2.67975 1.88788 2.57185 1.97709C2.46309 2.06631 2.35943 2.16062 2.26003 2.26003C2.16062 2.35943 2.06631 2.46394 1.97709 2.57185C1.88788 2.6806 1.80462 2.7936 1.72645 2.91001C1.64828 3.02726 1.57606 3.14706 1.50979 3.27111C1.44352 3.39515 1.38319 3.52175 1.32966 3.65175C1.27529 3.78174 1.22855 3.91344 1.18692 4.04768C1.14614 4.18193 1.11215 4.31872 1.08412 4.45636C1.05693 4.594 1.03569 4.7325 1.02209 4.87269C1.00765 5.01203 1 5.15222 1 5.29326V30.9815C1.00085 31.1225 1.0085 31.2619 1.02294 31.4021C1.03823 31.5414 1.05948 31.6799 1.08751 31.8175C1.11555 31.9552 1.14954 32.0911 1.19117 32.2245C1.2328 32.3588 1.28038 32.4913 1.33391 32.6204C1.38829 32.7496 1.44861 32.8762 1.51489 33.0002C1.58116 33.1234 1.65338 33.2441 1.73155 33.3605C1.80971 33.4769 1.89383 33.589 1.98304 33.6978C2.0714 33.8066 2.16572 33.9102 2.26512 34.0096C2.36453 34.1082 2.46819 34.2025 2.57609 34.2917C2.68485 34.3809 2.797 34.465 2.9134 34.5432C3.02981 34.6214 3.15046 34.6936 3.27365 34.7599C3.39685 34.8261 3.52345 34.8865 3.65345 34.9408C3.78259 34.9952 3.91429 35.0428 4.04853 35.0836C4.18278 35.1252 4.31787 35.16 4.45551 35.1881C4.59316 35.2161 4.73165 35.2374 4.87099 35.2518C5.01033 35.2662 5.15052 35.2739 5.29072 35.2747H46.7093C46.8495 35.2747 46.9897 35.2679 47.1299 35.2535C47.2692 35.2391 47.4077 35.2187 47.5453 35.1906C47.683 35.1634 47.8198 35.1286 47.954 35.0878C48.0883 35.047 48.22 34.9995 48.35 34.9459C48.4791 34.8916 48.6065 34.8312 48.7297 34.765C48.8538 34.6987 48.9744 34.6265 49.0908 34.5483C49.2072 34.4701 49.3203 34.3869 49.429 34.2976C49.5369 34.2084 49.6414 34.1141 49.7408 34.0147C49.8394 33.9153 49.9337 33.8116 50.0229 33.7029C50.1121 33.5941 50.1954 33.4811 50.2736 33.3647C50.3517 33.2483 50.4239 33.1277 50.4902 33.0036C50.5565 32.8796 50.6168 32.753 50.6703 32.623C50.7247 32.4938 50.7723 32.3613 50.8131 32.2271C50.8539 32.0928 50.8878 31.9569 50.9159 31.8184C50.9439 31.6807 50.9643 31.5422 50.9788 31.4021C50.9924 31.2627 51 31.1225 51 30.9815V5.29326ZM34.2985 18.1374L49.0951 3.92703C49.3389 4.34931 49.4604 4.80472 49.4596 5.29241V30.9815C49.4596 31.47 49.3381 31.9246 49.0934 32.3469L34.2985 18.1374ZM46.7076 2.54126C47.1596 2.54041 47.5853 2.64577 47.9846 2.85648L26.9898 23.0194C26.9236 23.0832 26.8522 23.1392 26.7757 23.1894C26.6993 23.2395 26.6185 23.2811 26.5336 23.3151C26.4486 23.35 26.3611 23.3754 26.2719 23.3933C26.1818 23.4103 26.0909 23.4188 25.9992 23.4188C25.9082 23.4188 25.8173 23.4103 25.7273 23.3933C25.638 23.3754 25.5505 23.35 25.4656 23.3151C25.3806 23.2811 25.2999 23.2395 25.2234 23.1894C25.147 23.1392 25.0756 23.0832 25.0093 23.0194L4.01455 2.85818C4.41388 2.64661 4.83955 2.54211 5.29072 2.54296L46.7076 2.54126ZM2.90661 32.3469C2.66191 31.9246 2.53956 31.47 2.54041 30.9815V5.29326C2.53956 4.80557 2.66106 4.35016 2.90406 3.92788L17.7024 18.1374L2.90661 32.3469ZM5.29072 33.7335C4.83955 33.7352 4.41388 33.6298 4.01455 33.4183L18.8137 19.2054L23.9447 24.1316C24.0815 24.2633 24.2293 24.3806 24.3891 24.4842C24.548 24.587 24.7162 24.6746 24.8921 24.7451C25.0679 24.8164 25.2498 24.87 25.4358 24.9057C25.6219 24.9422 25.8105 24.96 26 24.96C26.1903 24.96 26.3781 24.9422 26.5642 24.9057C26.7511 24.87 26.9321 24.8164 27.1079 24.7451C27.2847 24.6746 27.452 24.587 27.6118 24.4842C27.7707 24.3806 27.9194 24.2633 28.0561 24.1316L33.1855 19.2054L47.9855 33.4166C47.5861 33.6281 47.1604 33.7326 46.7093 33.7318L5.29072 33.7335Z" fill="black" stroke="black"/>
-                                </svg>
-                                <span>Email</span>
-                            </div>
-                            <div class="d-inline-flex align-items-center gap-4">
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch" id="ToggleEmail" checked aria-label="ONN OFF Toggle">
-                                    <label class="form-check-label" for="ToggleEmail">
-                                        OFF
-                                    </label>
-                                    <label class="form-check-label" for="ToggleEmail">
-                                        ON
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+                <div class="row mb-5">
+                    <h2>Booking Management & Updates</h2>
+                    <div class="table-responsive">
+                        <table id="system-logs" class="table table-hover" aria-label="system-logs">
+                        <thead>
+                            <tr role="row">
+                                <th scope="col">Trigger</th>
+                                <th scope="col">Permission</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr role="row" class="odd">
+                                <td>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                    </p>
+                                </td>
+                                <td>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Disable
+                                        </label>
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Enable
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr role="row" class="even">
+                                <td>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                    </p>
+                                </td>
+                                <td>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle">
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Disable
+                                        </label>
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Enable
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr role="row" class="odd">
+                                <td>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                    </p>
+                                </td>
+                                <td>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle">
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Disable
+                                        </label>
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Enable
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr role="row" class="even">
+                                <td>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                    </p>
+                                </td>
+                                <td>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Disable
+                                        </label>
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Enable
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr role="row" class="odd">
+                                <td>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                    </p>
+                                </td>
+                                <td>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Disable
+                                        </label>
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Enable
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        </table>
                     </div>
                 </div>
-                <div class="col-md-4"></div>
-            </div>
-            <div class="row mb-5 mx-2">
-                <div class="col-md-4 mt-2 border rounded p-2">
-                    <div class="row">
-                        <div class="d-flex justify-content-between mb-2 p-2">
-                            <div class="d-inline-flex align-items-center gap-4">
-                                <svg aria-label="Notification" width="57" height="44" viewBox="0 0 57 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M41.3374 29.7475C41.2768 29.6869 41.2768 29.5647 41.2768 29.4424V17.7844C41.2768 11.1315 36.2269 5.69997 29.7167 5.02815V2.22048C29.7167 1.54866 29.17 1 28.5 1C27.831 1 27.2833 1.54866 27.2833 2.22048V5.02815C20.8347 5.63839 15.7241 11.1315 15.7241 17.7844V29.5031C15.7241 29.6253 15.6626 29.6869 15.6019 29.7475L12.56 32.7997C12.0123 33.3483 11.7688 34.0202 11.7688 34.8133V35.7286C11.7688 37.2552 13.0471 38.5363 14.568 38.5363H23.0853C23.5117 41.1004 25.7623 43.114 28.5 43.114C31.2386 43.114 33.4892 41.1611 33.9156 38.5363H42.4329C43.9538 38.5363 45.2312 37.2552 45.2312 35.7286V34.8133C45.2312 34.0808 44.927 33.3483 44.4409 32.7997L41.3374 29.7475ZM28.5 40.6731C27.162 40.6731 26.0059 39.7577 25.641 38.5363H31.4206C30.9951 39.7577 29.839 40.6731 28.5 40.6731ZM42.7977 35.7286C42.7977 35.9125 42.6158 36.0953 42.4329 36.0953H14.568C14.3852 36.0953 14.2032 35.9125 14.2032 35.7286V34.8133C14.2032 34.691 14.2639 34.6304 14.3245 34.5697L17.3664 31.5176C17.9141 30.968 18.1576 30.2971 18.1576 29.5031V17.7844C18.1576 12.1084 22.7811 7.40846 28.5 7.40846C34.2198 7.40846 38.8433 12.0468 38.8433 17.7844V29.5031C38.8433 30.2355 39.1475 30.968 39.6346 31.5176L42.6764 34.5697C42.7371 34.6304 42.7977 34.7526 42.7977 34.8133V35.7286ZM11.8304 28.4655C11.5868 28.7099 11.2826 28.8322 10.9785 28.8322C10.6743 28.8322 10.3701 28.7099 10.1265 28.4655C8.17919 26.5125 7.08467 23.8877 7.08467 21.1417C7.08467 18.3946 8.17919 15.7708 10.1265 13.8169C10.6136 13.3289 11.3433 13.3289 11.8304 13.8169C12.3165 14.3059 12.3165 15.0383 11.8304 15.5263C10.3094 17.0519 9.51817 19.0049 9.51817 21.1417C9.51817 23.2775 10.3701 25.2305 11.8304 26.757C12.3165 27.245 12.3165 27.9775 11.8304 28.4655ZM7.51016 31.0903C7.99723 31.5783 7.99723 32.3107 7.51016 32.7997C7.26663 33.0432 6.96244 33.1654 6.65825 33.1654C6.35406 33.1654 6.04988 33.0432 5.80634 32.7997C2.70382 29.6869 1 25.5356 1 21.1417C1 16.7468 2.70382 12.5964 5.80634 9.48365C6.29341 8.99564 7.02402 8.99564 7.51016 9.48365C7.99723 9.97165 7.99723 10.7041 7.51016 11.1931C4.89378 13.8169 3.43443 17.3571 3.43443 21.1417C3.43443 24.9253 4.89378 28.4048 7.51016 31.0903ZM46.8744 28.4655C46.6309 28.7099 46.3267 28.8322 46.0225 28.8322C45.7183 28.8322 45.4141 28.7099 45.1706 28.4655C44.6844 27.9775 44.6844 27.245 45.1706 26.757C48.274 23.6442 48.274 18.6391 45.1706 15.5263C44.6844 15.0383 44.6844 14.3059 45.1706 13.8169C45.6576 13.3289 46.3873 13.3289 46.8744 13.8169C50.8895 17.846 50.8895 24.4373 46.8744 28.4655ZM56 21.1417C56 25.5356 54.2971 29.6869 51.1937 32.7997C50.9501 33.0432 50.6459 33.1654 50.3418 33.1654C50.0376 33.1654 49.7334 33.0432 49.4908 32.7997C49.0037 32.3107 49.0037 31.5783 49.4908 31.0903C52.1062 28.4655 53.5665 24.9253 53.5665 21.1417C53.5665 17.3571 52.1062 13.8785 49.4908 11.1931C49.0037 10.7041 49.0037 9.97165 49.4908 9.48365C49.9769 8.99564 50.7075 8.99564 51.1937 9.48365C54.2971 12.5964 56 16.7468 56 21.1417Z" fill="black" stroke="black" stroke-width="0.7"/>
-                                </svg>
-                                <span>Notification</span>
-                            </div>
-                            <div class="d-inline-flex align-items-center gap-4">
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch" id="NotificationToggle" checked aria-label="ONN OFF Toggle">
-                                    <label class="form-check-label" for="NotificationToggle">OFF</label>
-                                    <label class="form-check-label" for="NotificationToggle">ON</label>
-                                </div>
-                            </div>
-                        </div>
+                <div class="row mb-5">
+                    <h2>Broadcast & Assign</h2>
+                    <div class="table-responsive">
+                        <table id="system-logs" class="table table-hover" aria-label="system-logs">
+                        <thead>
+                            <tr role="row">
+                                <th scope="col">Trigger</th>
+                                <th scope="col">Permission</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr role="row" class="odd">
+                                <td>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                    </p>
+                                </td>
+                                <td>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Disable
+                                        </label>
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Enable
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr role="row" class="even">
+                                <td>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                    </p>
+                                </td>
+                                <td>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle">
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Disable
+                                        </label>
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Enable
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr role="row" class="odd">
+                                <td>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                    </p>
+                                </td>
+                                <td>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle">
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Disable
+                                        </label>
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Enable
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr role="row" class="even">
+                                <td>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                    </p>
+                                </td>
+                                <td>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Disable
+                                        </label>
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Enable
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr role="row" class="odd">
+                                <td>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                    </p>
+                                </td>
+                                <td>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Disable
+                                        </label>
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Enable
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        </table>
                     </div>
                 </div>
-            </div>
+                <div class="row mb-4">
+                    <h2>Financials</h2>
+                    <div class="table-responsive">
+                        <table id="system-logs" class="table table-hover" aria-label="system-logs">
+                        <thead>
+                            <tr role="row">
+                                <th scope="col">Trigger</th>
+                                <th scope="col">Permission</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr role="row" class="odd">
+                                <td>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                    </p>
+                                </td>
+                                <td>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Disable
+                                        </label>
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Enable
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr role="row" class="even">
+                                <td>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                    </p>
+                                </td>
+                                <td>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle">
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Disable
+                                        </label>
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Enable
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr role="row" class="odd">
+                                <td>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                    </p>
+                                </td>
+                                <td>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle">
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Disable
+                                        </label>
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Enable
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr role="row" class="even">
+                                <td>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                    </p>
+                                </td>
+                                <td>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Disable
+                                        </label>
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Enable
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr role="row" class="odd">
+                                <td>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                    </p>
+                                </td>
+                                <td>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Disable
+                                        </label>
+                                        <label class="form-check-label" for="permissions-toggle">
+                                            Enable
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        </table>
+                    </div>
+            </div> --}}
             <div class="d-flex justify-content-center">
                 <button class="btn btn-primary rounded">Save</button>
             </div>
-        </div>
-       </div>
-   </div>
+        
 </div>
