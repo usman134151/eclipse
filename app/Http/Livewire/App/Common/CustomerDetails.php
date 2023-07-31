@@ -10,7 +10,7 @@ class CustomerDetails extends Component
 {
 	public $user,$userid, $service_catalog;
 	protected $listeners = [
-		'showDetails', 'showConfirmation' => '$refresh'
+		'showDetails', 'showConfirmation' 
 	];
 	public function render()
 	{

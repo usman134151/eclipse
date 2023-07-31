@@ -60,7 +60,7 @@
                             <a href="#" class="nav-link {{$permissionActive}} " :class="{ 'active': tab === 'permission-configurations' }"
                                 @click.prevent="tab = 'permission-configurations'" id="permission-configurations-tab"
                                 role="tab" aria-controls="permission-configurations" aria-selected="false" tabindex="0"
-                                wire:click.prevent="save(0)">
+                                wire:click.prevent="setStep(2, 'permissionActive', 'permission-configurations')">
                                 <span class="number">2</span>
                                 Permission Configurations
                             </a>

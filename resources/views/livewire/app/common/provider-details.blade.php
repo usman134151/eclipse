@@ -229,12 +229,17 @@
 													</div>
 														<div class="col-md-6">
 															<h3> {{$user['name']}}</h3>
-															<p>
-															  <svg aria-label="Certified" width="30" height="30" viewBox="0 0 30 30" fill="none"
-																xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#grey-tick-badge"></use>
-															  </svg>
-																Certified
-															</p>
+															@isset($settings['show_as_certified'])
+																@if($settings['show_as_certified'])
+																<p>
+																<svg aria-label="Certified" width="30" height="30" viewBox="0 0 30 30" fill="none"
+																	xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#grey-tick-badge"></use>
+																</svg>
+																	Certified
+																</p>
+																@endif
+															@endif
+
 															<div class="mb-3">
 																<svg width="18" height="16" viewBox="0 0 18 16" fill="none"
                                                                      xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#filled-star"></use>
@@ -351,83 +356,9 @@
 			                           <!-- right-col  -->
 			                           <div class="col-md-7">
 				                         <!-- ..... table s  -->
-				                         <div class="row" id="table-hover-row">
-				                           <div class="col-12">
-				                        	 <div class="card">
-				                        	   <div class="table-responsive">
-											   			@if(count($accommodation_catalog))
-															<!-- table one  -->
-															@foreach($accommodation_catalog as $accommodation)
-																@if(count($accommodation))
-																	<table id="" class="table table-hover" aria-label="Accommodations and Services Table">
-																		<thead>
-																			<tr role="row">
-																					<th class="align-middle text-nowrap" scope="col">{{$accommodation[0]['accommodation_name']}}</th>
-																					<th class="text-end align-middle" scope="col">
-																					{{-- Service Rate --}}
-																					</th>
-																					<th class="text-end align-middle col-3" scope="col">
-																					<div aria-expanded="false" data-bs-toggle="collapse" href="#collapse{{ $accommodation[0]['accommodation_id']}}" role="button" aria-controls="collapse{{ $accommodation[0]['accommodation_id']}}">
-																						<svg class="me-4" width="26" height="13" viewBox="0 0 26 13">
-																							<use xlink:href="/css/common-icons.svg#lower-arrow-head"></use>
-																						</svg>
-																					</div>
-																					</th>
-																			</tr>
-																		</thead>
-																	</table>
-																	<div class="collapse " id="collapse{{ $accommodation[0]['accommodation_id']}}">
-																		<table id="" class="table table-hover" aria-label="{{$accommodation[0]['accommodation_name']}} Table">
-																			<tbody>
-																				@foreach($accommodation as $service)
-																				<tr role="row">
-																					<td class="align-middle">
-																						<p class="text-sm">{{$service['service_name']}}</p>
-																					</td>
-																					<td class="align-middle">
-																						{{-- <div class="d-flex text-nowrap justify-content-end gap-2 align-items-center">
-																							<small>Business Rate:</small><span class="text-sm"> $10.00</span>
-																						</div>
-																						<div class="d-flex text-nowrap justify-content-end gap-2 align-items-center">
-																							<small>After-hours Rate:</small> <span class="text-sm">$10.00</span>
-																						</div> --}}
-																					</td>
-																					<td class="text-center align-middle ps-0" style="width:200px">
-																						<div class="row">
-																							<div class="col-4 align-self-center pe-0 text-end text-sm">
-																							{{$service['provider_priority']}}
-																							</div>
-																							<div class="col-8">
-																								@if($service['provider_priority'] > 0 && $service['provider_priority'] <= 33)
-																									<button class="w-100 btn btn-sm btn-success px-4 fw-normal">High</button>
-																								@elseif( $service['provider_priority'] > 33 && $service['provider_priority'] <= 66)
-																									<button  class="w-100 btn btn-sm btn-warning px-4 fw-normal">Medium</button>
-																								@else
-																									<button  class="w-100 btn btn-sm btn-danger px-4 fw-normal">Low</button>
-																								@endif
-
-																							
-																							</div>
-																						</div>
-																					</td>
-																				</tr>
-																				@endforeach
-																				
-																			</tbody>
-																		</table>
-																	</div>
-																@endif
-															@endforeach
-														@endif
-
-
-				                               
-				                              	   </div>
-				                              	 </div>
-				                                 </div>
-				                               </div>
+				                     
 			                                    	 <!-- ..... table e  -->
-			                                       </div>
+			                        	</div>
 			                                       <!-- Assigned Teams colums (start) -->
 			                                       <div class="col-md-11 d-flex mb-md-2 gap-5 mt-4 bg-light p-4 mx-3">
 			                                       <div class="row mb-4 mt-3">
@@ -589,7 +520,7 @@
 	                                              </div>
 	                                             <!-- in line / side by side buttons (end) -->
 			                                </div><!-- main row end  -->
-			                              </div>
+			                            </div>
 	                            </div>
 		                        <!-- Dashboard tab end -->
 		                        <div class="tab-pane fade" id="schedule-tab-pane" role="tabpanel" aria-labelledby="schedule-tab-tab" tabindex="0">
@@ -646,477 +577,79 @@
 			                        <div class="row mb-3">
 			                    	   <h3>Service Catalog & Rates </h3>
 			                        </div>
-			                        <div class="d-flex justify-content-between mb-2">
-			                        	<div class="d-inline-flex align-items-center gap-4">
-			                        		<section id="multiple-column-form">
-												<!-- END: Sign Language Interpreting Services -->
-												@if(count($service_catalog))
-													@foreach($service_catalog as $accom)
-														@if(count($accom))
-															<div class="my-4">
-																<div class="mb-3 fw-semibold" type="button" data-bs-toggle="collapse"
-																	data-bs-target="#accomodation-{{$accom[0]['accommodation_id']}}" aria-expanded="false" aria-controls="accomodation-{{$accom[0]['accommodation_id']}}">
-																	{{$accom[0]['accommodation_name']}}
-																	<svg aria-label="Accomodation" class="icon-arrow-bottom ms-5" width="32" height="15" viewBox="0 0 32 15"fill="none"
-																				xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#grey-upper-arrow"></use>
-																	</svg>
-																</div>
-																
-																<div class="collapse" id="accomodation-{{$accom[0]['accommodation_id']}}">
-																	@foreach($accom as $service)
-																		<div class="mb-3 fw-semibold" data-bs-toggle="collapse" type="button"
-																			data-bs-target="#service-{{$service['service_id']}}" aria-expanded="false"
-																			aria-controls="service-{{$service['service_id']}}">
-																				<div class="d-flex my-2 w-100">
-																							<div class=" ">
-																								<svg aria-label="Service" class="icon-arrow-bottom me-1" width="25" height="13" viewBox="0 0 25 13"fill="none"
-																										xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#grey-upper-arrow"></use>
-																								</svg>
-
-																								{{$service['service_name']}}
-																							</div>
-																							<div class="align-center justify-end mx-5">
-																								@if($service['provider_priority'] > 0 && $service['provider_priority'] <= 33)
-																									<button class="w-100 btn btn-sm btn-success px-4 fw-normal">High</button>
-																								@elseif( $service['provider_priority'] > 33 && $service['provider_priority'] <= 66)
-																									<button  class="w-100 btn btn-sm btn-warning px-4 fw-normal">Medium</button>
-																								@else
-																									<button  class="w-100 btn btn-sm btn-danger px-4 fw-normal">Low</button>
-																								@endif
-
-																							
-																							</div>
+									<div class="table-responsive ">
+												@if(count($accommodation_catalog))
+													<!-- table one  -->
+													@foreach($accommodation_catalog as $accommodation)
+														@if(count($accommodation))
+															<table id="" class="table table-hover" aria-label="Accommodations and Services Table">
+																<thead>
+																	<tr role="row">
+																			<th class="align-middle text-nowrap" scope="col">{{$accommodation[0]['accommodation_name']}}</th>
+																			<th class="text-end align-middle" scope="col">
+																			{{-- Service Rate --}}
+																			</th>
+																			<th class="text-end align-middle col-3" scope="col">
+																			<div aria-expanded="false" data-bs-toggle="collapse" href="#collapse{{ $accommodation[0]['accommodation_id']}}" role="button" aria-controls="collapse{{ $accommodation[0]['accommodation_id']}}">
+																				<svg class="me-4" width="26" height="13" viewBox="0 0 26 13">
+																					<use xlink:href="/css/common-icons.svg#lower-arrow-head"></use>
+																				</svg>
+																			</div>
+																			</th>
+																	</tr>
+																</thead>
+															</table>
+															<div class="collapse " id="collapse{{ $accommodation[0]['accommodation_id']}}">
+																<table id="" class="table table-hover" aria-label="{{$accommodation[0]['accommodation_name']}} Table">
+																	<tbody>
+																		@foreach($accommodation as $service)
+																		<tr role="row">
+																			<td class="align-middle ">
+																				<p class="text-sm">{{$service['service_name']}}</p>
+																			</td>
+																			<td class="align-middle">
+																				{{-- <div class="d-flex text-nowrap justify-content-end gap-2 align-items-center">
+																					<small>Business Rate:</small><span class="text-sm"> $10.00</span>
 																				</div>
+																				<div class="d-flex text-nowrap justify-content-end gap-2 align-items-center">
+																					<small>After-hours Rate:</small> <span class="text-sm">$10.00</span>
+																				</div> --}}
+																			</td>
+																			<td class="text-center align-middle ps-0"  style="width:200px" >
+																				<div class="row">
+																					<div class="col-4 align-self-center pe-0 text-end text-sm">
+																					{{$service['provider_priority']}}
+																					</div>
+																					<div class="col-8">
+																						@if($service['provider_priority'] > 0 && $service['provider_priority'] <= 33)
+																							<button class="w-100 btn btn-sm btn-success px-4 fw-normal">High</button>
+																						@elseif( $service['provider_priority'] > 33 && $service['provider_priority'] <= 66)
+																							<button  class="w-100 btn btn-sm btn-warning px-4 fw-normal">Medium</button>
+																						@else
+																							<button  class="w-100 btn btn-sm btn-danger px-4 fw-normal">Low</button>
+																						@endif
 
-																		</div>
+																					
+																					</div>
+																				</div>
+																			</td>
+																		</tr>
+																		@endforeach
 																		
-																		<div class="collapse" id="service-{{$service['service_id']}}">
-																			<div class="row">
-																				<div class="d-inline-flex mb-4">
-																					<h2>Standard Rates</h2>
-																					<svg aria-label="Set the standard rates for the service" class="mx-2 mt-2" width="15" height="16" viewBox="0 0 15 16"fill="none"
-																							xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#fill-question"></use>
-																					</svg>
-																				</div>
-																				<div class="row mb-4">
-																					<div class="col-md-4">
-																						<div class="d-inline-flex">
-																							<div>
-																								<svg aria-label="In-Person" width="25" height="24"
-																									viewBox="0 0 25 24" fill="none"
-																									xmlns="http://www.w3.org/2000/svg">
-																									<use xlink:href="/css/provider.svg#in-person"></use>
-																								</svg>
-																							</div>
-																							<div class="mx-3 fw-semibold">Day Rate In-person:</div>
-																							<div class="mx-3">$101.00</div>
-																						</div>
-																					</div>
-																					<div class="col-md-4">
-																						<div class="d-inline-flex">
-																							<div>
-																								<svg aria-label="Virtual" width="25" height="25"
-																									viewBox="0 0 25 25" fill="none"
-																									xmlns="http://www.w3.org/2000/svg">
-																									<use xlink:href="/css/provider.svg#virtual-service">
-																									</use>
-																								</svg>
-																							</div>
-																							<div class="mx-3 fw-semibold">Day Rate Virtual:</div>
-																							<div class="mx-3">$101.00</div>
-																						</div>
-																					</div>
-																				</div>
-																				<div class="row mb-4">
-																					<div class="col-md-4">
-																						<div class="d-inline-flex">
-																							<div>
-																								<svg aria-label="Phone" width="30" height="24"
-																									viewBox="0 0 30 24" fill="none"
-																									xmlns="http://www.w3.org/2000/svg">
-																									<use xlink:href="/css/provider.svg#phone"></use>
-																								</svg>
-																							</div>
-																							<div class="mx-3 fw-semibold">Day Rate Phone:</div>
-																							<div class="mx-3">$101.00</div>
-																						</div>
-																					</div>
-																					<div class="col-md-4">
-																						<div class="d-inline-flex">
-																							<div>
-																								<svg aria-label="Teleconference" width="30" height="26"
-																									viewBox="0 0 30 26" fill="none"
-																									xmlns="http://www.w3.org/2000/svg">
-																									<use xlink:href="/css/provider.svg#teleconference">
-																									</use>
-																								</svg>
-																							</div>
-																							<div class="mx-3 fw-semibold">Day Rate Teleconference:</div>
-																							<div class="mx-3">$101.00</div>
-																						</div>
-																					</div>
-																				</div>
-																				<hr>
-																			</div>
-																			{{-- Standandard Rates -End --}}
-																			{{-- InPerson Expedited Service -Start --}}
-																			<div class="row">
-																				<div class="d-inline-flex mb-4">
-																					<h2>Expedited Hours </h2>
-																					<svg aria-label="Expedited Hours for the service" class="mx-2 mt-2" width="15" height="16" viewBox="0 0 15 16"fill="none"
-																							xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#fill-question"></use>
-																					</svg>
-																				</div>
-																				<div class="row mb-3">
-																					<div class="d-inline-flex">
-																						<div class="d-inline-flex col-3">
-																							<div>
-																								<svg aria-label="In-Person" width="25" height="24"
-																									viewBox="0 0 25 24" fill="none"
-																									xmlns="http://www.w3.org/2000/svg">
-																									<use xlink:href="/css/provider.svg#in-person"></use>
-																								</svg>
-																							</div>
-																							<div class="mx-2 d-inline-flex">
-																								<div class="text-primary fw-semibold">In-person</div>
-																								<div class="mx-2 ">
-																									<svg aria-label="" width="15" height="16"
-																										viewBox="0 0 15 16" fill="none"
-																										xmlns="http://www.w3.org/2000/svg">
-																										<use xlink:href="/css/provider.svg#fill-question">
-																										</use>
-																									</svg>
-																								</div>
-																							</div>
-																						</div>
-																						<div class="d-inline-flex col-3">
-																							<div class="bg-muted rounded">
-																								<span class="fw-semibold">Parameter 1</span>
-																							</div>
-																							<div class="mx-3 mt-1"><span class="fw-semibold">Hours Notice:
-																								</span><span class="mx-1">5</span></div>
-																						</div>
-																						<div class="mx-2 d-inline-flex">
-																							<div class="d-inline-flex">
-																								<span class="fw-semibold">Rate: </span><span
-																									class="mx-1">$100.00</span>
-																							</div>
-																						</div>
-																						<div class="mx-4">
-																							Multiply by service duration
-																						</div>
-																					</div>
-																				</div>
-																				{{-- InPerson Expedited Service -End --}}
-																				<div class="row mb-3">
-																					<div class="d-inline-flex">
-																						<div class="d-inline-flex col-3">
-																							<div>
-																								<svg aria-label="Virtual" width="25" height="25"
-																									viewBox="0 0 25 25" fill="none"
-																									xmlns="http://www.w3.org/2000/svg">
-																									<use xlink:href="/css/provider.svg#virtual-service">
-																									</use>
-																								</svg>
-																							</div>
-																							<div class="mx-2 d-inline-flex">
-																								<div class="text-primary fw-semibold">Virtual</div>
-																								<div class="mx-2 ">
-																									<svg aria-label="" width="15" height="16"
-																										viewBox="0 0 15 16" fill="none"
-																										xmlns="http://www.w3.org/2000/svg">
-																										<use xlink:href="/css/provider.svg#fill-question">
-																										</use>
-																									</svg>
-																								</div>
-																							</div>
-																						</div>
-																						<div class="d-inline-flex col-3">
-																							<div class="bg-muted rounded">
-																								<span class="fw-semibold">Parameter 1</span>
-																							</div>
-																							<div class="mx-3 mt-1"><span class="fw-semibold">Hours Notice:
-																								</span><span class="mx-1">5</span></div>
-																						</div>
-																						<div class="mx-2 d-inline-flex">
-																							<div class="d-inline-flex">
-																								<span class="fw-semibold">Rate: </span><span
-																									class="mx-1">$100.00</span>
-																							</div>
-																						</div>
-																						<div class="mx-4">
-																							Multiply by service duration
-																						</div>
-																					</div>
-																				</div>
-																				{{-- Virtual Expedited service End --}}
-																				<div class="row mb-3">
-																					<div class="d-inline-flex">
-																						<div class="d-inline-flex col-3">
-																							<div>
-																								<svg aria-label="Phone" width="30" height="24"
-																									viewBox="0 0 30 24" fill="none"
-																									xmlns="http://www.w3.org/2000/svg">
-																									<use xlink:href="/css/provider.svg#phone"></use>
-																								</svg>
-																							</div>
-																							<div class="mx-2 d-inline-flex">
-																								<div class="text-primary fw-semibold">Phone</div>
-																								<div class="mx-2 ">
-																									<svg aria-label="" width="15" height="16"
-																										viewBox="0 0 15 16" fill="none"
-																										xmlns="http://www.w3.org/2000/svg">
-																										<use xlink:href="/css/provider.svg#fill-question">
-																										</use>
-																									</svg>
-																								</div>
-																							</div>
-																						</div>
-																						<div class="d-inline-flex col-3">
-																							<div class="bg-muted rounded">
-																								<span class="fw-semibold">Parameter 1</span>
-																							</div>
-																							<div class="mx-3 mt-1"><span class="fw-semibold">Hours Notice:
-																								</span><span class="mx-1">5</span></div>
-																						</div>
-																						<div class="mx-2 d-inline-flex">
-																							<div class="d-inline-flex">
-																								<span class="fw-semibold">Rate: </span><span
-																									class="mx-1">$100.00</span>
-																							</div>
-																						</div>
-																						<div class="mx-4">
-																							Multiply by service duration
-																						</div>
-																					</div>
-																				</div>
-																				{{-- Phone Expedited Service -End --}}
-																				<div class="row mb-4">
-																					<div class="d-inline-flex">
-																						<div class="d-inline-flex col-3">
-																							<div>
-																								<svg aria-label="Teleconference" width="30" height="26"
-																									viewBox="0 0 30 26" fill="none"
-																									xmlns="http://www.w3.org/2000/svg">
-																									<use xlink:href="/css/provider.svg#teleconference">
-																									</use>
-																								</svg>
-																							</div>
-																							<div class="mx-2 d-inline-flex">
-																								<div class="text-primary fw-semibold">Teleconference</div>
-																								<div class="mx-2 ">
-																									<svg aria-label="" width="15" height="16"
-																										viewBox="0 0 15 16" fill="none"
-																										xmlns="http://www.w3.org/2000/svg">
-																										<use xlink:href="/css/provider.svg#fill-question">
-																										</use>
-																									</svg>
-																								</div>
-																							</div>
-																						</div>
-																						<div class="d-inline-flex col-3">
-																							<div class="bg-muted rounded">
-																								<span class="fw-semibold">Parameter 1</span>
-																							</div>
-																							<div class="mx-3 mt-1"><span class="fw-semibold">Hours Notice:
-																								</span><span class="mx-1">5</span></div>
-																						</div>
-																						<div class="mx-2 d-inline-flex">
-																							<div class="d-inline-flex">
-																								<span class="fw-semibold">Rate: </span><span
-																									class="mx-1">$100.00</span>
-																							</div>
-																						</div>
-																						<div class="mx-4">
-																							Multiply by service duration
-																						</div>
-																					</div>
-																				</div>
-																				{{-- Teleconference Expedited Service End --}}
-																				<div class="row">
-																					<hr>
-																				</div>
-																				<div class="row">
-																					<div class="d-inline-flex mb-3">
-																						<h2>Specialization Rates</h2>
-																						<svg aria-label="Specialization Rates" class="mx-2 mt-2" width="15" height="16" viewBox="0 0 15 16"fill="none"
-																							xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#fill-question"></use>
-																					</svg>
-																					</div>
-																					<div class="bg-muted p-1 col-1 mx-3 mb-2">Medical</div>
-																					<div class="d-inline-flex">
-																						<div class="mx-2">
-																							<div class="d-inline-flex">
-																								<div>
-																									<span class="fw-semibold">Rate Type:</span>
-																									<span>%</span>
-																								</div>
-																							</div>
-																						</div>
-																						<div class="mx-3">
-																							<div class="d-inline-flex">
-																								<div>
-																									<svg aria-label="In-Person" width="25" height="24"
-																										viewBox="0 0 25 24" fill="none"
-																										xmlns="http://www.w3.org/2000/svg">
-																										<use xlink:href="/css/provider.svg#in-person"></use>
-																									</svg>
-																								</div>
-																								<div class="mx-1 mt-1"><span class="fw-semibold">In-Person:
-																									</span><span class="mx-1">$100.00</span></div>
-																							</div>
-																						</div>
-																						<div class="mx-3">
-																							<div class="d-inline-flex">
-																								<div>
-																									<svg aria-label="Virtual" width="25" height="25"
-																										viewBox="0 0 25 25" fill="none"
-																										xmlns="http://www.w3.org/2000/svg">
-																										<use xlink:href="/css/provider.svg#virtual-service">
-																										</use>
-																									</svg>
-																								</div>
-																								<div class="mx-1 mt-1"><span
-																										class="fw-semibold">Virtual:</span><span
-																										class="mx-1">$100.00</span></div>
-																							</div>
-																						</div>
-																						<div class="mx-3">
-																							<div class="d-inline-flex">
-																								<div>
-																									<svg aria-label="Phone" width="30" height="24"
-																										viewBox="0 0 30 24" fill="none"
-																										xmlns="http://www.w3.org/2000/svg">
-																										<use xlink:href="/css/provider.svg#phone"></use>
-																									</svg>
-																								</div>
-																								<div class="mx-1 mt-1"><span
-																										class="fw-semibold">Phone:</span><span
-																										class="mx-1">$100.00</span></div>
-																							</div>
-																						</div>
-																						<div class="mx-3">
-																							<div class="d-inline-flex">
-																								<div>
-																									<svg aria-label="Teleconference" width="30" height="26"
-																										viewBox="0 0 30 26" fill="none"
-																										xmlns="http://www.w3.org/2000/svg">
-																										<use xlink:href="/css/provider.svg#teleconference">
-																										</use>
-																									</svg>
-																								</div>
-																								<div class="mx-1 mt-1"><span
-																										class="fw-semibold">Teleconferencing:</span><span
-																										class="mx-1">$100.00</span></div>
-																							</div>
-																						</div>
-																					</div>
-																					<div class="row mt-4 mb-3">
-																						<div class="col-3 mb-2 mx-1">
-																							<span class="bg-muted p-1 mb-3"> Projector & Screen
-																								Rental</span>
-																						</div>
-																						<div class="d-inline-flex mt-2">
-																							<div class="mx-2">
-																								<div class="d-inline-flex">
-																									<div>
-																										<span class="fw-semibold"> Rate
-																											Type:</span><span>%</span>
-																									</div>
-																								</div>
-																							</div>
-																							<div class="mx-3">
-																								<div class="d-inline-flex">
-																									<div>
-																										<svg aria-label="In-Person" width="25" height="24"
-																											viewBox="0 0 25 24" fill="none"
-																											xmlns="http://www.w3.org/2000/svg">
-																											<use xlink:href="/css/provider.svg#in-person">
-																											</use>
-																										</svg>
-																									</div>
-																									<div class="mx-1 mt-1"><span
-																											class="fw-semibold">In-Person: </span><span
-																											class="mx-1">$100.00</span></div>
-																								</div>
-																							</div>
-																							<div class="mx-3">
-																								<div class="d-inline-flex">
-																									<div>
-																										<svg aria-label="Virtual" width="25" height="25"
-																											viewBox="0 0 25 25" fill="none"
-																											xmlns="http://www.w3.org/2000/svg">
-																											<use
-																												xlink:href="/css/provider.svg#virtual-service">
-																											</use>
-																										</svg>
-																									</div>
-																									<div class="mx-1 mt-1"><span
-																											class="fw-semibold">Virtual:</span><span
-																											class="mx-1">$100.00</span></div>
-																								</div>
-																							</div>
-																							<div class="mx-3">
-																								<div class="d-inline-flex">
-																									<div>
-																										<svg aria-label="Phone" width="30" height="24"
-																											viewBox="0 0 30 24" fill="none"
-																											xmlns="http://www.w3.org/2000/svg">
-																											<use xlink:href="/css/provider.svg#phone"></use>
-																										</svg>
-																									</div>
-																									<div class="mx-1 mt-1"><span
-																											class="fw-semibold">Phone:</span><span
-																											class="mx-1">$100.00</span></div>
-																								</div>
-																							</div>
-																							<div class="mx-3">
-																								<div class="d-inline-flex">
-																									<div>
-																										<svg aria-label="Teleconference" width="30"
-																											height="26" viewBox="0 0 30 26" fill="none"
-																											xmlns="http://www.w3.org/2000/svg">
-																											<use
-																												xlink:href="/css/provider.svg#teleconference">
-																											</use>
-																										</svg>
-																									</div>
-																									<div class="mx-1 mt-1"><span
-																											class="fw-semibold">Teleconferencing:</span><span
-																											class="mx-1">$100.00</span></div>
-																								</div>
-																							</div>
-																						</div>
-																					</div>
-																					<hr>
-																				</div>
-																				{{-- Specialization Rates -End --}}
-																			</div>
-																		</div>
-																	@endforeach
-																</div>
-															</div>
-														@else
-															<div class="row">
-																<div class="col-12">
-																	<small>No Services Setup</small>
-																</div>
+																	</tbody>
+																</table>
 															</div>
 														@endif
 													@endforeach
 												@else
-													<div class="row">
-														<div class="col-12">
-															<small>No Accomodations and Services Setup</small>
-														</div>
-													</div>
-												@endif	
-												<!-- END: Sign Language Interpreting Services -->
-												
-											</section>
-			                        	</div>
-			                        	
-			                        </div>
+												<div class="">
+													<small>No services available</small>
+												</div>
+												@endif
+
+
+									</div>
+														
 		                        </div>
 		                        <!-- Service Catalog and Rates tab end -->
 		                        <div class="tab-pane fade" id="availability-tab-pane" role="tabpanel" aria-labelledby="availability-tab" tabindex="0">
@@ -1126,7 +659,7 @@
 			                      <div class="row mb-3">
 			                    	<h2>Availability <small>(coming soon)</small> </h2>
 			                      </div>
-								  	{{-- @livewire('app.provider.manage-availability', ['provider_id' => $user['id']]) --}}
+								  	@livewire('app.provider.manage-availability', ['provider_id' => $user['id']])
 			                       
                                   <div>
 			                      </div>
@@ -1615,6 +1148,7 @@
 										</div>
 									</div>
 		                        </div>
+                                <!-- Provider Feedback Tab End-->
 								<div class="tab-pane fade" id="my-drive-tab-pane" role="tabpanel" aria-labelledby="my-drive-tab" tabindex="0">
 								    <div class="row">
 										<h3>My Drive</h3>
@@ -1623,7 +1157,7 @@
 									@livewire('app.common.forms.provider-credentials-drive', ['showForm'=>true,'provider_id' => $user['id']])
 									
 								</div>
-                                <!-- Provider Feedback Tab End-->
+		                        <!-- Provider Drive Tab End-->
 								<div class="tab-pane fade" id="invoices-remittances-tab-pane" role="tabpanel" aria-labelledby="invoices-remittances-tab" tabindex="0">
 									<div class="row">
 										<h3>Invoices & Remittances <small>(coming soon)</small></h3>
@@ -2194,497 +1728,434 @@
 								<!-- Notes Tab End-->
 								<div class="tab-pane fade" id="notifications-tab-pane" role="tabpanel" aria-labelledby="notifications-tab" tabindex="0">
 									<div class="row">
-										<h3>Notification <small>(coming soon)</small></h3>
+										<h3>Notification</h3>
 										<p class="mt-3">
 											Here you can control how you are notified about Profile activity.
 										</p>
 									</div>
-									<div class="row mb-4">
-										<div class="col-md-4 border rounded">
-											<div class="row">
-												<div class="d-flex justify-content-between mb-2 p-2">
-													<div class="d-inline-flex align-items-center gap-4">
-														<svg  width="47" height="41" class="ms-2"  viewBox="0 0 47 41"  fill="none"
-														xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#text"></use>
-														</svg>
-														<span>Text</span>
-													</div>
-													<div class="d-inline-flex align-items-center gap-4">
-														<div class="form-check form-switch">
-															<input class="form-check-input" type="checkbox" role="switch" id="ToggleText" checked>
-															<label class="form-check-label" for="ToggleText">OFF</label>
-															<label class="form-check-label" for="ToggleText">ON</label>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-md-4 border rounded mx-5">
-											<div class="row">
-												<div class="d-flex justify-content-between mb-2 p-2">
-													<div class="d-inline-flex align-items-center gap-4">
-														<svg  width="52" height="36"  viewBox="0 0 52 36"  fill="none"
-														xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#email"></use>
-														</svg>
-														<span>Email</span>
-													</div>
-													<div class="d-inline-flex align-items-center gap-4">
-														<div class="form-check form-switch">
-															<input class="form-check-input" type="checkbox" role="switch" id="ToggleEmail" checked>
-															<label class="form-check-label" for="ToggleEmail">
-																OFF
-															</label>
-															<label class="form-check-label" for="ToggleEmail">
-																ON
-															</label>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-md-4"></div>
+									<div class="mb-3">
+									@livewire('app.common.settings.notifications',['model_type'=>2,'model_id'=>$user['id']])
 									</div>
-									<div class="row mb-5">
-										<div class="col-md-4 mt-2 border rounded">
-											<div class="row">
-												<div class="d-flex justify-content-between mb-2 p-2">
-													<div class="d-inline-flex align-items-center gap-4">
-														<svg  width="57" height="41" viewBox="0 0 57 41"  fill="none"
-														xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#notification"></use>
-														</svg>
-														<span>Notification</span>
-													</div>
-													<div class="d-inline-flex align-items-center gap-4">
-														<div class="form-check form-switch">
-															<input class="form-check-input" type="checkbox" role="switch" id="NotificationToggle" checked>
-															<label class="form-check-label" for="NotificationToggle">OFF</label>
-															<label class="form-check-label" for="NotificationToggle">ON</label>
-														</div>
-													</div>
-												</div>
+									 {{-- <div class="row mb-5">
+											<h2>Account Management <small>(coming soon)</small> </h2>
+											<div class="table-responsive">
+												<table id="system-logs" class="table table-hover" aria-label="system-logs">
+												<thead>
+													<tr role="row">
+														<th scope="col">Trigger</th>
+														<th scope="col">Permission</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr role="row" class="odd">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+													<tr role="row" class="even">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle">
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+													<tr role="row" class="odd">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle">
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+													<tr role="row" class="even">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+													<tr role="row" class="odd">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+												</tbody>
+												</table>
 											</div>
 										</div>
-									</div>
-									<div class="row mb-5">
-										<h2>Account Management</h2>
-									    <div class="table-responsive">
-										  <table id="system-logs" class="table table-hover" aria-label="system-logs">
-											<thead>
-												<tr role="row">
-													<th scope="col">Trigger</th>
-													<th scope="col">Permission</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr role="row" class="odd">
-													<td>
-														<p>
-															Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-														</p>
-													</td>
-													<td>
-														<div class="form-check form-switch">
-															<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
-															<label class="form-check-label" for="permissions-toggle">
-																Disable
-															</label>
-															<label class="form-check-label" for="permissions-toggle">
-																Enable
-															</label>
-														</div>
-													</td>
-												</tr>
-												<tr role="row" class="even">
-													<td>
-														<p>
-															Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-														</p>
-													</td>
-													<td>
-														<div class="form-check form-switch">
-															<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle">
-															<label class="form-check-label" for="permissions-toggle">
-																Disable
-															</label>
-															<label class="form-check-label" for="permissions-toggle">
-																Enable
-															</label>
-														</div>
-													</td>
-												</tr>
-												<tr role="row" class="odd">
-													<td>
-														<p>
-															Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-														</p>
-													</td>
-													<td>
-														<div class="form-check form-switch">
-															<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle">
-															<label class="form-check-label" for="permissions-toggle">
-																Disable
-															</label>
-															<label class="form-check-label" for="permissions-toggle">
-																Enable
-															</label>
-														</div>
-													</td>
-												</tr>
-												<tr role="row" class="even">
-													<td>
-														<p>
-															Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-														</p>
-													</td>
-													<td>
-														<div class="form-check form-switch">
-															<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
-															<label class="form-check-label" for="permissions-toggle">
-																Disable
-															</label>
-															<label class="form-check-label" for="permissions-toggle">
-																Enable
-															</label>
-														</div>
-													</td>
-												</tr>
-												<tr role="row" class="odd">
-													<td>
-														<p>
-															Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-														</p>
-													</td>
-													<td>
-														<div class="form-check form-switch">
-															<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
-															<label class="form-check-label" for="permissions-toggle">
-																Disable
-															</label>
-															<label class="form-check-label" for="permissions-toggle">
-																Enable
-															</label>
-														</div>
-													</td>
-												</tr>
-											</tbody>
-										  </table>
-									    </div>
-								    </div>
-									<div class="row mb-5">
-										<h2>Booking Management & Updates</h2>
-									    <div class="table-responsive">
-										  <table id="system-logs" class="table table-hover" aria-label="system-logs">
-											<thead>
-												<tr role="row">
-													<th scope="col">Trigger</th>
-													<th scope="col">Permission</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr role="row" class="odd">
-													<td>
-														<p>
-															Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-														</p>
-													</td>
-													<td>
-														<div class="form-check form-switch">
-															<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
-															<label class="form-check-label" for="permissions-toggle">
-																Disable
-															</label>
-															<label class="form-check-label" for="permissions-toggle">
-																Enable
-															</label>
-														</div>
-													</td>
-												</tr>
-												<tr role="row" class="even">
-													<td>
-														<p>
-															Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-														</p>
-													</td>
-													<td>
-														<div class="form-check form-switch">
-															<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle">
-															<label class="form-check-label" for="permissions-toggle">
-																Disable
-															</label>
-															<label class="form-check-label" for="permissions-toggle">
-																Enable
-															</label>
-														</div>
-													</td>
-												</tr>
-												<tr role="row" class="odd">
-													<td>
-														<p>
-															Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-														</p>
-													</td>
-													<td>
-														<div class="form-check form-switch">
-															<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle">
-															<label class="form-check-label" for="permissions-toggle">
-																Disable
-															</label>
-															<label class="form-check-label" for="permissions-toggle">
-																Enable
-															</label>
-														</div>
-													</td>
-												</tr>
-												<tr role="row" class="even">
-													<td>
-														<p>
-															Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-														</p>
-													</td>
-													<td>
-														<div class="form-check form-switch">
-															<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
-															<label class="form-check-label" for="permissions-toggle">
-																Disable
-															</label>
-															<label class="form-check-label" for="permissions-toggle">
-																Enable
-															</label>
-														</div>
-													</td>
-												</tr>
-												<tr role="row" class="odd">
-													<td>
-														<p>
-															Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-														</p>
-													</td>
-													<td>
-														<div class="form-check form-switch">
-															<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
-															<label class="form-check-label" for="permissions-toggle">
-																Disable
-															</label>
-															<label class="form-check-label" for="permissions-toggle">
-																Enable
-															</label>
-														</div>
-													</td>
-												</tr>
-											</tbody>
-										  </table>
-									    </div>
-								    </div>
-									<div class="row mb-5">
-										<h2>Broadcast & Assign</h2>
-									    <div class="table-responsive">
-										  <table id="system-logs" class="table table-hover" aria-label="system-logs">
-											<thead>
-												<tr role="row">
-													<th scope="col">Trigger</th>
-													<th scope="col">Permission</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr role="row" class="odd">
-													<td>
-														<p>
-															Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-														</p>
-													</td>
-													<td>
-														<div class="form-check form-switch">
-															<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
-															<label class="form-check-label" for="permissions-toggle">
-																Disable
-															</label>
-															<label class="form-check-label" for="permissions-toggle">
-																Enable
-															</label>
-														</div>
-													</td>
-												</tr>
-												<tr role="row" class="even">
-													<td>
-														<p>
-															Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-														</p>
-													</td>
-													<td>
-														<div class="form-check form-switch">
-															<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle">
-															<label class="form-check-label" for="permissions-toggle">
-																Disable
-															</label>
-															<label class="form-check-label" for="permissions-toggle">
-																Enable
-															</label>
-														</div>
-													</td>
-												</tr>
-												<tr role="row" class="odd">
-													<td>
-														<p>
-															Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-														</p>
-													</td>
-													<td>
-														<div class="form-check form-switch">
-															<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle">
-															<label class="form-check-label" for="permissions-toggle">
-																Disable
-															</label>
-															<label class="form-check-label" for="permissions-toggle">
-																Enable
-															</label>
-														</div>
-													</td>
-												</tr>
-												<tr role="row" class="even">
-													<td>
-														<p>
-															Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-														</p>
-													</td>
-													<td>
-														<div class="form-check form-switch">
-															<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
-															<label class="form-check-label" for="permissions-toggle">
-																Disable
-															</label>
-															<label class="form-check-label" for="permissions-toggle">
-																Enable
-															</label>
-														</div>
-													</td>
-												</tr>
-												<tr role="row" class="odd">
-													<td>
-														<p>
-															Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-														</p>
-													</td>
-													<td>
-														<div class="form-check form-switch">
-															<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
-															<label class="form-check-label" for="permissions-toggle">
-																Disable
-															</label>
-															<label class="form-check-label" for="permissions-toggle">
-																Enable
-															</label>
-														</div>
-													</td>
-												</tr>
-											</tbody>
-										  </table>
-									    </div>
-								    </div>
-									<div class="row mb-4">
-										<h2>Financials</h2>
-									    <div class="table-responsive">
-										  <table id="system-logs" class="table table-hover" aria-label="system-logs">
-											<thead>
-												<tr role="row">
-													<th scope="col">Trigger</th>
-													<th scope="col">Permission</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr role="row" class="odd">
-													<td>
-														<p>
-															Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-														</p>
-													</td>
-													<td>
-														<div class="form-check form-switch">
-															<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
-															<label class="form-check-label" for="permissions-toggle">
-																Disable
-															</label>
-															<label class="form-check-label" for="permissions-toggle">
-																Enable
-															</label>
-														</div>
-													</td>
-												</tr>
-												<tr role="row" class="even">
-													<td>
-														<p>
-															Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-														</p>
-													</td>
-													<td>
-														<div class="form-check form-switch">
-															<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle">
-															<label class="form-check-label" for="permissions-toggle">
-																Disable
-															</label>
-															<label class="form-check-label" for="permissions-toggle">
-																Enable
-															</label>
-														</div>
-													</td>
-												</tr>
-												<tr role="row" class="odd">
-													<td>
-														<p>
-															Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-														</p>
-													</td>
-													<td>
-														<div class="form-check form-switch">
-															<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle">
-															<label class="form-check-label" for="permissions-toggle">
-																Disable
-															</label>
-															<label class="form-check-label" for="permissions-toggle">
-																Enable
-															</label>
-														</div>
-													</td>
-												</tr>
-												<tr role="row" class="even">
-													<td>
-														<p>
-															Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-														</p>
-													</td>
-													<td>
-														<div class="form-check form-switch">
-															<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
-															<label class="form-check-label" for="permissions-toggle">
-																Disable
-															</label>
-															<label class="form-check-label" for="permissions-toggle">
-																Enable
-															</label>
-														</div>
-													</td>
-												</tr>
-												<tr role="row" class="odd">
-													<td>
-														<p>
-															Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-														</p>
-													</td>
-													<td>
-														<div class="form-check form-switch">
-															<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
-															<label class="form-check-label" for="permissions-toggle">
-																Disable
-															</label>
-															<label class="form-check-label" for="permissions-toggle">
-																Enable
-															</label>
-														</div>
-													</td>
-												</tr>
-											</tbody>
-										  </table>
-									    </div>
-								    </div>
+										<div class="row mb-5">
+											<h2>Booking Management & Updates</h2>
+											<div class="table-responsive">
+												<table id="system-logs" class="table table-hover" aria-label="system-logs">
+												<thead>
+													<tr role="row">
+														<th scope="col">Trigger</th>
+														<th scope="col">Permission</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr role="row" class="odd">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+													<tr role="row" class="even">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle">
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+													<tr role="row" class="odd">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle">
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+													<tr role="row" class="even">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+													<tr role="row" class="odd">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+												</tbody>
+												</table>
+											</div>
+										</div>
+										<div class="row mb-5">
+											<h2>Broadcast & Assign</h2>
+											<div class="table-responsive">
+												<table id="system-logs" class="table table-hover" aria-label="system-logs">
+												<thead>
+													<tr role="row">
+														<th scope="col">Trigger</th>
+														<th scope="col">Permission</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr role="row" class="odd">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+													<tr role="row" class="even">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle">
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+													<tr role="row" class="odd">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle">
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+													<tr role="row" class="even">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+													<tr role="row" class="odd">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+												</tbody>
+												</table>
+											</div>
+										</div>
+										<div class="row mb-4">
+											<h2>Financials</h2>
+											<div class="table-responsive">
+												<table id="system-logs" class="table table-hover" aria-label="system-logs">
+												<thead>
+													<tr role="row">
+														<th scope="col">Trigger</th>
+														<th scope="col">Permission</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr role="row" class="odd">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+													<tr role="row" class="even">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle">
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+													<tr role="row" class="odd">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle">
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+													<tr role="row" class="even">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+													<tr role="row" class="odd">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+												</tbody>
+												</table>
+											</div>
+									</div> --}}
 								</div>
 								<!-- Notifications Tab End-->
 								<div class="tab-pane fade" id="reports-tab-pane" role="tabpanel" aria-labelledby="reports-tab" tabindex="0">
@@ -2766,29 +2237,22 @@
 								<!-- Log Tab End-->
 								<div class="tab-pane fade" id="settings-tab-pane" role="tabpanel" aria-labelledby="settings-tab" tabindex="0">
 									<div class="row mb-2">
-										<h2>Settings <small>(coming soon)</small></h2>
+										<h2>Settings</h2>
 									</div>
 								    <div class="row mb-2">
                                         <h3>Provider Payment & Preference</h3>
 										<div class="row">
 											<div class="col-lg-12">
 												<div class="form-check form-switch">
-													<input class="form-check-input " aria-label="Toggle Provider Payroll" type="checkbox" role="switch" id="provider_payroll" >
+													<input class="form-check-input " wire:model.defer="settings.provider_payroll" aria-label="Toggle Provider Payroll" type="checkbox" role="switch" id="provider_payroll" >
 													<label class="form-check-label" for="provider_payroll">Provider Payroll</label>
 													<label class="form-check-label" for="provider_payroll">Provider Payroll</label>
 												</div>
 											</div>
 										</div>
 									</div>
-									<div class="row mb-3">
-										<div class="col-lg-6 mb-5">
-											<label class="form-label" for="billingSchedule">
-												Payment Schedule <span class="text-sm">(Days after Provider Invoice / Remittance)</span>
-											</label>
-												<input class="form-control" type="" id="billingSchedule" placeholder="Enter Days">
-										</div>
-									</div>
-									<div class="row">
+								
+									<div class="row mt-5">
 										<div class="row mb-4">
 											<h3>Travel Reimbursement Rate</h3>
 										</div>
@@ -2868,17 +2332,17 @@
 
 
                             </div> <!-- tab-content -->
-		 <!-- END: Provider Details ................... -->
-		 </div>
+							<!-- END: Provider Details ................... -->
+							</div>
 
 
 
 
-				 </div>
+				 </div> 
 			   </div>
 			 </div>
-			 {{-- @include('panels.common.default-availability') --}}
-			 {{-- @include('panels.common.specific-date-availibility') --}}
+			 {{-- @include('panels.common.default-availability')
+			 @include('panels.common.specific-date-availibility') --}}
 			 @include('panels.common.pending-credentials')
 			 @include('modals.common.add-address')
 			 @include('modals.mark-as-paid')
