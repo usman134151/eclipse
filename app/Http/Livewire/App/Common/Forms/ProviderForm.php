@@ -143,7 +143,7 @@ class ProviderForm extends Component
         'viewCredentialModal'
     ];
     public $providers;
-    public $selectedTeams =[], $media_file=null, $provider_details=['set_rate'=>'no', 'staff_provider_rate_type'=>'per_hour_rate'];
+    public $selectedTeams =[], $media_file=null, $provider_details=['set_rate'=>'no', 'staff_provider_rate_type'=>'per_hour_rate', 'show_as_certified'=>false];
 	public function render()
 	{
 
@@ -333,6 +333,7 @@ class ProviderForm extends Component
         $this->userdetail['favored_users'] = implode(', ', $this->userdetail['favored_users']);
         $this->userdetail['unfavored_users'] = implode(', ', $this->userdetail['unfavored_users']);
 		$this->userdetail['tags'] = json_encode($this->tags);
+        $this->userdetail['provider_details'] = json_encode($this->provider_details);
 		$this->updateTags();
 
 
@@ -357,6 +358,7 @@ class ProviderForm extends Component
 		}else{
             $this->step = 2;
             //setting values for next
+            $this->userid = $this->user->id;
 
             $this->userdetail['certification'] = explode(', ', $this->userdetail['certification']);
             $this->userdetail['favored_users'] = explode(', ', $this->userdetail['favored_users']);
@@ -375,7 +377,7 @@ class ProviderForm extends Component
         $user['userdetail']['unfavored_users'] = explode(", ", $user['userdetail']['unfavored_users']);
         $this->provider_details = json_decode($user['userdetail']['provider_details'],true);
         if(is_null($this->provider_details))
-            $this->provider_details=['set_rate'=>'no', 'staff_provider_rate_type'=>'per_hour_rate'];
+            $this->provider_details=['set_rate'=>'no', 'staff_provider_rate_type'=>'per_hour_rate', 'show_as_certified'=>false];
 
 
         if ($user['userdetail']['tags'] != null)
