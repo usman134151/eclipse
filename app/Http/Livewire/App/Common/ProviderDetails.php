@@ -10,7 +10,7 @@ use App\Services\App\UserService;
 class ProviderDetails extends Component
 {
     public $user, $userid , $accommodation_catalog, $service_catalog;
-	public $settings=['travel_rate_per_unit'=>'', 'travel_rate_unit'=>"km", 'rate_for_travel_time'=>'', 'same_as_service_rate'=>''];
+	public $settings=['travel_rate_per_unit'=>'', 'travel_rate_unit'=>"km", 'rate_for_travel_time'=>'', 'same_as_service_rate'=>'','provider_payroll'=>false];
 
 	
 	// variabled for my-drive (upload-credential-file) panel 

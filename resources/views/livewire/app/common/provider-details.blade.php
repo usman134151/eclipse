@@ -2294,29 +2294,29 @@
 								<!-- Log Tab End-->
 								<div class="tab-pane fade" id="settings-tab-pane" role="tabpanel" aria-labelledby="settings-tab" tabindex="0">
 									<div class="row mb-2">
-										<h2>Settings <small>(coming soon)</small></h2>
+										<h2>Settings</h2>
 									</div>
 								    <div class="row mb-2">
                                         <h3>Provider Payment & Preference</h3>
 										<div class="row">
 											<div class="col-lg-12">
 												<div class="form-check form-switch">
-													<input class="form-check-input " aria-label="Toggle Provider Payroll" type="checkbox" role="switch" id="provider_payroll" >
+													<input class="form-check-input " wire:model.defer="settings.provider_payroll" aria-label="Toggle Provider Payroll" type="checkbox" role="switch" id="provider_payroll" >
 													<label class="form-check-label" for="provider_payroll">Provider Payroll</label>
 													<label class="form-check-label" for="provider_payroll">Provider Payroll</label>
 												</div>
 											</div>
 										</div>
 									</div>
-									<div class="row mb-3">
+									{{-- <div class="row mb-3">
 										<div class="col-lg-6 mb-5">
 											<label class="form-label" for="billingSchedule">
 												Payment Schedule <span class="text-sm">(Days after Provider Invoice / Remittance)</span>
 											</label>
 												<input class="form-control" type="" id="billingSchedule" placeholder="Enter Days">
 										</div>
-									</div>
-									<div class="row">
+									</div> --}}
+									<div class="row mt-5">
 										<div class="row mb-4">
 											<h3>Travel Reimbursement Rate</h3>
 										</div>
