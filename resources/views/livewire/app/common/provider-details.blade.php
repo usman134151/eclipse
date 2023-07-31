@@ -654,7 +654,7 @@
 			                      <div class="row mb-3">
 			                    	<h2>Availability <small>(coming soon)</small> </h2>
 			                      </div>
-								  	{{-- @livewire('app.provider.manage-availability', ['provider_id' => $user['id']]) --}}
+								  	@livewire('app.provider.manage-availability', ['provider_id' => $user['id']])
 			                       
                                   <div>
 			                      </div>
@@ -1143,6 +1143,7 @@
 										</div>
 									</div>
 		                        </div>
+                                <!-- Provider Feedback Tab End-->
 								<div class="tab-pane fade" id="my-drive-tab-pane" role="tabpanel" aria-labelledby="my-drive-tab" tabindex="0">
 								    <div class="row">
 										<h3>My Drive</h3>
@@ -1151,7 +1152,7 @@
 									@livewire('app.common.forms.provider-credentials-drive', ['showForm'=>true,'provider_id' => $user['id']])
 									
 								</div>
-                                <!-- Provider Feedback Tab End-->
+		                        <!-- Provider Drive Tab End-->
 								<div class="tab-pane fade" id="invoices-remittances-tab-pane" role="tabpanel" aria-labelledby="invoices-remittances-tab" tabindex="0">
 									<div class="row">
 										<h3>Invoices & Remittances <small>(coming soon)</small></h3>
@@ -1722,12 +1723,12 @@
 								<!-- Notes Tab End-->
 								<div class="tab-pane fade" id="notifications-tab-pane" role="tabpanel" aria-labelledby="notifications-tab" tabindex="0">
 									<div class="row">
-										<h3>Notification <small>(coming soon)</small></h3>
+										<h3>Notification</h3>
 										<p class="mt-3">
 											Here you can control how you are notified about Profile activity.
 										</p>
 									</div>
-									<div class="row mb-4">
+									<div class="row mb-4 p-3">
 										<div class="col-md-4 border rounded">
 											<div class="row">
 												<div class="d-flex justify-content-between mb-2 p-2">
@@ -1772,7 +1773,7 @@
 										</div>
 										<div class="col-md-4"></div>
 									</div>
-									<div class="row mb-5">
+									<div class="row mb-5 p-3">
 										<div class="col-md-4 mt-2 border rounded">
 											<div class="row">
 												<div class="d-flex justify-content-between mb-2 p-2">
@@ -1793,8 +1794,8 @@
 											</div>
 										</div>
 									</div>
-									<div class="row mb-5">
-										<h2>Account Management</h2>
+									{{-- <div class="row mb-5">
+										<h2>Account Management </h2>
 									    <div class="table-responsive">
 										  <table id="system-logs" class="table table-hover" aria-label="system-logs">
 											<thead>
@@ -2212,7 +2213,7 @@
 											</tbody>
 										  </table>
 									    </div>
-								    </div>
+								    </div> --}}
 								</div>
 								<!-- Notifications Tab End-->
 								<div class="tab-pane fade" id="reports-tab-pane" role="tabpanel" aria-labelledby="reports-tab" tabindex="0">
@@ -2308,14 +2309,7 @@
 											</div>
 										</div>
 									</div>
-									{{-- <div class="row mb-3">
-										<div class="col-lg-6 mb-5">
-											<label class="form-label" for="billingSchedule">
-												Payment Schedule <span class="text-sm">(Days after Provider Invoice / Remittance)</span>
-											</label>
-												<input class="form-control" type="" id="billingSchedule" placeholder="Enter Days">
-										</div>
-									</div> --}}
+								
 									<div class="row mt-5">
 										<div class="row mb-4">
 											<h3>Travel Reimbursement Rate</h3>
@@ -2396,17 +2390,17 @@
 
 
                             </div> <!-- tab-content -->
-		 <!-- END: Provider Details ................... -->
-		 </div>
+							<!-- END: Provider Details ................... -->
+							</div>
 
 
 
 
-				 </div>
+				 </div> 
 			   </div>
 			 </div>
-			 {{-- @include('panels.common.default-availability') --}}
-			 {{-- @include('panels.common.specific-date-availibility') --}}
+			 {{-- @include('panels.common.default-availability')
+			 @include('panels.common.specific-date-availibility') --}}
 			 @include('panels.common.pending-credentials')
 			 @include('modals.common.add-address')
 			 @include('modals.mark-as-paid')
