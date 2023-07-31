@@ -133,7 +133,7 @@ class AccountProfile extends Component
     public function showForm(User $user)
 {
     $this->user = $user;
-    $this->userdetail = $user->userdetail ? $user->userdetail->toArray() : [];
+    $this->userdetail = $user->userdetail ? $user->userdetail->toArray() : ['user_position'=>'','address_line1'=>'','address_line2'=>'','zip'=>'','city'=>'','state'=>'','title'=>'','phone'=>'','ethnicity_id'=>'','gender_id'=>'','country'=>'0','profile_pic'=>''];
     $this->showForm = true;
 }
     public function edit(User $user){

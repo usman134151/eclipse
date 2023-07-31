@@ -44,7 +44,7 @@
                                         @if ($image!=null)
                                             <img class="user_img cropfile" src="{{ '/tenant'.tenant('id').'/app/livewire-tmp/'.$image->getFilename() }}">
                                         @else
-                                           
+                                            <img class="user_img cropfile" src="{{$userdetail['profile_pic'] == null ? '/tenant-resources/images/img-placeholder-document.jpg' : url($userdetail['profile_pic']) }}">
                                         @endif
                                         <div class="input--file">
                                             <span>
