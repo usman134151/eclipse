@@ -14,7 +14,8 @@ class CompanyProfile extends Component
 
 	protected $listeners = [
 		'showDetails',
-		'showDepartmentProfile', 'refreshDepartmentUsers'
+		'showDepartmentProfile', 'refreshDepartmentUsers',
+		'showConfirmation'
 	];
 
 	public function render()
@@ -47,6 +48,17 @@ class CompanyProfile extends Component
 
         $this->dispatchBrowserEvent('refreshSelects');
 
+	}
+	public function showConfirmation($message = "")
+	{
+		if ($message) {
+			// Emit an event to display a success message using the SweetAlert package
+			$this->dispatchBrowserEvent('swal:modal', [
+				'type' => 'success',
+				'title' => 'Success',
+				'text' => $message,
+			]);
+		}
 	}
 
 	public function lockAccount()
