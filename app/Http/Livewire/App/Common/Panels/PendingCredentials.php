@@ -88,6 +88,7 @@ class PendingCredentials extends Component
     public function updateVal($attrName,$val)
     {
         $this->field[$attrName] = $val;
+        // dd($this->field,$attrName,$val);
     }
 
     function showForm()

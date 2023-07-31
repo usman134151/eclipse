@@ -26,8 +26,10 @@ class ProviderDetails extends Component
 		];
 
 	public function saveSettings(){
-		
-		UserDetail::where('id',$this->userid)->update(['provider_details'=> json_encode($this->settings)]);
+
+
+		// dd(json_encode($this->settings));
+		UserDetail::where('user_id',$this->userid)->update(['provider_details'=> json_encode($this->settings)]);
 		$this->showConfirmation("Settings saved Successfully");
 
 	}
@@ -70,7 +72,7 @@ class ProviderDetails extends Component
 
 
 
-	// fetches basis use data, refer to Provider.php to increase relation arrays
+	// fetches basic user data, refer to Provider.php to increase relation arrays
     public function showDetails($user){
 		$this->user=$user;
 		$this->userid = $user['id'];
@@ -79,7 +81,7 @@ class ProviderDetails extends Component
 			$this->settings = json_decode($this->user['userdetail']['provider_details'],true);
 
 	
-		// accommodations and services for dashboard
+		// accommodations and services 
 		$query = User::query();
 		$query->where('users.id', $this->userid);
 		$query->join('provider_accommodation_services', function ($join) {

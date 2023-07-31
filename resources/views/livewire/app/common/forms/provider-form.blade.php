@@ -505,11 +505,12 @@
                                                         {{--ended updated--}}
                                                     </div>
                                                     <div class="mt-2">
-                                                        <input class="form-check-input" type="checkbox" value="display-provider"
-                                                            id="display-provider">
-                                                        <label class="form-check-label" for="display-provider">
-                                                            Display Provider as Certified
-                                                        </label>
+                                                        <div class="form-check">
+                                                                <input class="form-check-input" wire:model.defer="provider_details.show_as_certified" type="checkbox" id="show_as_certified">
+                                                                <label class="form-check-label" for="display-provider">
+                                                                    Display Provider as Certified
+                                                                </label>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 mb-4 pe-lg-5">
