@@ -23,7 +23,7 @@ class UserDetail extends Model
            'physical_phone', 'physical_city', 'physical_state', 'physical_country', 'physical_zip', 'note', 
            'referral_by','language_id','timezone_id','ethnicity_id','user_introduction','title','user_position',
            'user_number','user_experience','user_introduction_file','favored_users','unfavored_users','department','user_configuration',
-           'payment_settings','tags','provider_type'];
+           'payment_settings','tags','provider_type','provider_details'];
 
     public function user():BelongsTo
     {

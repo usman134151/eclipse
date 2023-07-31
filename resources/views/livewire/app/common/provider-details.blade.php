@@ -229,12 +229,17 @@
 													</div>
 														<div class="col-md-6">
 															<h3> {{$user['name']}}</h3>
-															<p>
-															  <svg aria-label="Certified" width="30" height="30" viewBox="0 0 30 30" fill="none"
-																xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#grey-tick-badge"></use>
-															  </svg>
-																Certified
-															</p>
+															@isset($settings['show_as_certified'])
+																@if($settings['show_as_certified'])
+																<p>
+																<svg aria-label="Certified" width="30" height="30" viewBox="0 0 30 30" fill="none"
+																	xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#grey-tick-badge"></use>
+																</svg>
+																	Certified
+																</p>
+																@endif
+															@endif
+
 															<div class="mb-3">
 																<svg width="18" height="16" viewBox="0 0 18 16" fill="none"
                                                                      xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#filled-star"></use>
