@@ -10,18 +10,19 @@ class DepartmentProfile extends Component
 	public $showForm;
 	public $department;
 	protected $listeners = [
-		'showDepartmentDetails'
+		'showDepartmentDetails', 'showConfirmation'
 	];
 
 	public function render()
 	{
+		$this->showDepartmentDetails($this->department);
+
 		return view('livewire.app.common.department-profile');
 	}
 
 	public function mount($departmentId)
 	{
 		$this->department= Department::find($departmentId);
-		$this->showDepartmentDetails($this->department);
 	}
 
 	public function lockAccount()
