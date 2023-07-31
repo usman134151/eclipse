@@ -151,9 +151,7 @@
                             <div class="col-md-6 col-12">
                                 <div class="mb-4">
                                             <label class="form-label">Roles and Permissions</label>
-                                            {!! App\Helpers\SetupHelper::createDropDown('SystemRole', 'id',
-                                                    'system_role_name', 'status', 1, 'system_role_name', true, 'roles',
-                                             '','roles') !!}
+                                            {!! $setupValues['roles']['rendered'] !!}
                                 </div>
                               </div>
                               {{-- updated completed by shanila --}}
