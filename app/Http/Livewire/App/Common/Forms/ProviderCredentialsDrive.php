@@ -15,7 +15,7 @@ class ProviderCredentialsDrive extends Component
     public $showForm, $provider_id =0,$credentials=[] ,$user=null;
 
     public $keywords, $documentType='',$tab="pending", $dateRange; 
-    protected $listeners = ['showList' => 'resetForm', 'showConfirmation'];
+    protected $listeners = ['showList' => 'resetForm', 'showConfirmation','updateVal'];
 
     public function render()
     {   
@@ -28,9 +28,9 @@ class ProviderCredentialsDrive extends Component
         $this->user = User::find($this->provider_id);
     }
     
-    // public function updateVal($attrName, $val){
-    //     $this->$attrName=$val;
-    // }
+    public function updateVal($attrName, $val){
+        $this->$attrName=$val;
+    }
 
     function setData(){
         
