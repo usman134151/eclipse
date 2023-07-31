@@ -1731,6 +1731,426 @@
 									<div class="mb-3">
 									@livewire('app.common.settings.notifications',['model_type'=>2,'model_id'=>$user['id']])
 									</div>
+									 {{-- <div class="row mb-5">
+											<h2>Account Management <small>(coming soon)</small> </h2>
+											<div class="table-responsive">
+												<table id="system-logs" class="table table-hover" aria-label="system-logs">
+												<thead>
+													<tr role="row">
+														<th scope="col">Trigger</th>
+														<th scope="col">Permission</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr role="row" class="odd">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+													<tr role="row" class="even">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle">
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+													<tr role="row" class="odd">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle">
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+													<tr role="row" class="even">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+													<tr role="row" class="odd">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+												</tbody>
+												</table>
+											</div>
+										</div>
+										<div class="row mb-5">
+											<h2>Booking Management & Updates</h2>
+											<div class="table-responsive">
+												<table id="system-logs" class="table table-hover" aria-label="system-logs">
+												<thead>
+													<tr role="row">
+														<th scope="col">Trigger</th>
+														<th scope="col">Permission</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr role="row" class="odd">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+													<tr role="row" class="even">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle">
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+													<tr role="row" class="odd">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle">
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+													<tr role="row" class="even">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+													<tr role="row" class="odd">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+												</tbody>
+												</table>
+											</div>
+										</div>
+										<div class="row mb-5">
+											<h2>Broadcast & Assign</h2>
+											<div class="table-responsive">
+												<table id="system-logs" class="table table-hover" aria-label="system-logs">
+												<thead>
+													<tr role="row">
+														<th scope="col">Trigger</th>
+														<th scope="col">Permission</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr role="row" class="odd">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+													<tr role="row" class="even">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle">
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+													<tr role="row" class="odd">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle">
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+													<tr role="row" class="even">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+													<tr role="row" class="odd">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+												</tbody>
+												</table>
+											</div>
+										</div>
+										<div class="row mb-4">
+											<h2>Financials</h2>
+											<div class="table-responsive">
+												<table id="system-logs" class="table table-hover" aria-label="system-logs">
+												<thead>
+													<tr role="row">
+														<th scope="col">Trigger</th>
+														<th scope="col">Permission</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr role="row" class="odd">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+													<tr role="row" class="even">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle">
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+													<tr role="row" class="odd">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle">
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+													<tr role="row" class="even">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+													<tr role="row" class="odd">
+														<td>
+															<p>
+																Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+															</p>
+														</td>
+														<td>
+															<div class="form-check form-switch">
+																<input class="form-check-input" type="checkbox" role="switch" id="permissions-toggle" checked>
+																<label class="form-check-label" for="permissions-toggle">
+																	Disable
+																</label>
+																<label class="form-check-label" for="permissions-toggle">
+																	Enable
+																</label>
+															</div>
+														</td>
+													</tr>
+												</tbody>
+												</table>
+											</div>
+									</div> --}}
 								</div>
 								<!-- Notifications Tab End-->
 								<div class="tab-pane fade" id="reports-tab-pane" role="tabpanel" aria-labelledby="reports-tab" tabindex="0">
