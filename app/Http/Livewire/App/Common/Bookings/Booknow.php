@@ -6,6 +6,8 @@ use Livewire\Component;
 use App\Helpers\SetupHelper;
 use App\Models\Tenant\User;
 use App\Models\Tenant\Booking;
+use App\Models\Tenant\SetupValue;
+use App\Models\Tenant\Accommodation;
 
 class Booknow extends Component
 {
@@ -28,22 +30,48 @@ class Booknow extends Component
     
     public $setupValues = [
         'timezones' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 4, 'setup_value_label', false,'assignment.timezone_id','','timezone',0]],
-        'accomodations' => ['parameters' => ['Accommodation', 'id', 'name', '', '', 'name', false, 'assignment.accommodation_id','','accommodation',1]],
-        'services' => ['parameters' => ['ServiceCategory', 'id', 'name', '', '', 'name', false, 'assignment.service_id','','services',2]],
+    
         'companies' => ['parameters' => ['Company', 'id', 'name', '', '', 'name', false, 'assignment.company_id', '', 'company_id', 3]],
     ];
 
     //modal variables
     public $selectedIndustries=[],  $selectedDepartments = [], $svDepartments=[],$industryNames=[], $departmentNames=[];
 
+   
+
     public $services=[
-        [
-            'meetings' =>
-            [
-                ['meeting_name' => '','phone_number' => '','access_code' => ''] //updated by Amna Bilal to define meeting links array within services array
-            ]
+        [   'accommodation_id'=>'',
+            'service_id'=>'',
+            'meetings' =>['meeting_name' => '','phone_number' => '','access_code' => ''] //updated by Amna Bilal to define meeting links array within services array
+            
         ]
     ];
+
+    public $freqencies=[],$accommodations=[];
+
+
+    public function mount(Booking $booking)
+    {
+        $this->booking=$booking;
+        $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
+        $this->frequencies=SetupValue::where('setup_id',6)->select('id','setup_value_label')->get()->toArray();
+        $this->accommodations=Accommodation::with('services')->where('status',1)->get()->toArray();
+       
+        if($this->assignment){
+            $this->updateCompany();
+        }else{
+            $this->assignment=[
+                'company_id'=>null,
+                'requester' => null,
+                'supervisor' => null,
+                'billing_manager' => null,
+
+            ];
+        }
+    
+
+    }
+
     public function render()
     {
        
@@ -76,24 +104,7 @@ class Booknow extends Component
             ]);
         }
     }
-    public function mount(Booking $booking)
-    {
-        $this->booking=$booking;
-        $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
-        if($this->assignment){
-            $this->updateCompany();
-        }else{
-            $this->assignment=[
-                'company_id'=>null,
-                'requester' => null,
-                'supervisor' => null,
-                'billing_manager' => null,
 
-            ];
-        }
-    
-
-    }
 
     // update all dropdown values when company is changed
     public function updateCompany(){
@@ -180,14 +191,20 @@ class Booknow extends Component
 
     public function updateVal($attrName, $val)
     {
+       
         if ($attrName == "company_id") {
 
                 $this->assignment['company_id'] = $val;
                 // Emit an event with data
                 $this->emit('updateCompany', $val);
                 $this->departmentNames = [];
-            } else {
-                $this->assignment[$attrName] = $val;
+            } elseif (preg_match('/accommodation_id_(\d+)/', $attrName, $matches)) {
+                $index = intval($matches[1]);
+               
+        
+                if (isset($this->services[$index])) {
+                    $this->services[$index]['accommodation_id'] = $val;
+                }
             }
         // else
         // $this->$attrName = $val;
@@ -207,6 +224,12 @@ class Booknow extends Component
         $this->selectedDepartments = $selectedDepartments;
         // $this->userdetail['department'] = $defaultDepartment;
         $this->departmentNames = $departmentNames;
+    }
+
+    public function rules(){
+        return [
+            'booking.frequency_id'=>'required',
+        ];
     }
 
 }

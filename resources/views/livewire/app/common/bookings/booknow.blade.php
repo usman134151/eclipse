@@ -84,12 +84,15 @@
                                         class="fa fa-question-circle text-muted" aria-hidden="true"
                                         data-bs-toggle="tooltip" data-bs-placement="top" title=""></i></label>
                                 <div class="d-flex gap-3 flex-column flex-lg-row mb-0">
-                                    {{-- updated by shanila to add dropdown --}}
-                                    {!! App\Helpers\SetupHelper::createRadio('SetupValue', 'id',
-                                    'setup_value_label', 'setup_id', '6', 'id','',1,'form-check-input ')
-                                    !!}
-
-                                    {{-- ended update --}}
+                                    @foreach($frequencies as $frequency)
+                                        <input class="form-check-input" type="radio" wire:model="booking.frequency_id" id="frequency_id" name="frequency_id" value="{{$frequency['id']}}">
+                                        <label class="form-check-label" for="{$frequency['id']}}">{{$frequency['setup_value_label']}}</label>
+                                    @endforeach
+                                    @error('booking.frequency_id')
+                                                <span class="d-inline-block invalid-feedback mt-2">
+                                                        {{ $message }}
+                                                    </span>
+                                                @enderror
                                 </div>
                             </div>
                             <div class="row between-section-segment-spacing">
@@ -136,32 +139,8 @@
                                         @endif
                                     </div>
                                 </div>
+
                                 <div class="col-lg-6 mb-4 pe-lg-5">
-                                    <label class="form-label" >Industry <span class="mandatory">*</span></label>
-                                    <div>
-                                        <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup"
-                                            data-bs-toggle="modal" data-bs-target="#industryModal" aria-label="Industry">
-                                            {{-- Updated by Shanila to Add svg icon--}}
-                                            <svg aria-label=" Select Industry" width="25" height="18"
-                                                viewBox="0 0 25 18">
-                                                <use xlink:href="/css/common-icons.svg#right-color-arrow">
-                                                </use>
-                                            </svg>
-                                            {{-- End of update by Shanila --}}
-                                            Select Industry
-                                        </button>
-                                    </div>
-                                    <div>
-                                        @if(count($industryNames)>0)
-                                            Selected Industries : 
-                                            @foreach($industryNames as $key=> $ind)
-                                            {{$ind }}
-                                            @if($key != count($industryNames)-1) , @endif
-                                            @endforeach
-                                        @endif
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4 ps-lg-5">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <label class="form-label" for="requestor">Requester <span class="mandatory">*</span></label>
                                         <div class="form-check ">
@@ -198,12 +177,37 @@
                                                 Requester's Info from Providers</small></label>
                                     </div>
                                 </div>
+                                <div class="col-lg-6 mb-4 ps-lg-5">
+                                    <label class="form-label" >Industry <span class="mandatory">*</span></label>
+                                    <div>
+                                        <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup"
+                                            data-bs-toggle="modal" data-bs-target="#industryModal" aria-label="Industry">
+                                            {{-- Updated by Shanila to Add svg icon--}}
+                                            <svg aria-label=" Select Industry" width="25" height="18"
+                                                viewBox="0 0 25 18">
+                                                <use xlink:href="/css/common-icons.svg#right-color-arrow">
+                                                </use>
+                                            </svg>
+                                            {{-- End of update by Shanila --}}
+                                            Select Industry
+                                        </button>
+                                    </div>
+                                    <div>
+                                        @if(count($industryNames)>0)
+                                            Selected Industries : 
+                                            @foreach($industryNames as $key=> $ind)
+                                            {{$ind }}
+                                            @if($key != count($industryNames)-1) , @endif
+                                            @endforeach
+                                        @endif
+                                    </div>
+                                </div>
                                 <div class="col-lg-6 mb-4 pe-lg-5">
-                                    <label class="form-label" for="point-of-contact">Point of Contact <span class="mandatory">*</span></label>
+                                    <label class="form-label" for="point-of-contact">Point of Contact </label>
                                     <input type="" class="form-control" placeholder="Enter Name" id="point-of-contact" name="point_of_contact" wire:model.defer="assignment.point_of_contact">
                                 </div>
                                 <div class="col-lg-6 mb-4 ps-lg-5">
-                                    <label class="form-label" for="ph-number">Phone Number <span class="mandatory">*</span></label>
+                                    <label class="form-label" for="ph-number">Phone Number</label>
                                     <input type="" class="form-control" placeholder="Enter Phone Number" id="ph-number" name="phone_number" wire:model.defer="assignment.phone_number">
                                 </div>
                             </div>
@@ -244,7 +248,7 @@
                                     <div class="row">
                                         <div class="col-lg-6 pe-lg-5 mb-4">
                                             <label class="form-label" for="booking-title">Booking Title</label>
-                                            <input type="text" class="form-control" placeholder="Enter Booking Title" id="booking-title">
+                                            <input type="text" class="form-control" placeholder="Enter Booking Title" id="booking-title" wire:model.defer="booking.booking_title">
                                         </div>
                                     </div>
 
@@ -268,14 +272,22 @@
                                             <div class="col-lg-6 mb-4 pe-lg-5">
                                                 <label class="form-label">Accommodation <span
                                                         class="mandatory">*</span></label>
-                                                        {!! $setupValues['accomodations']['rendered'] !!}
+                                                        <select class="form-select select2 mb-2" id="accommodation_id_{{$index}}" name="accommodation_id_{{$index}}" wire:model="services.{{$index}}.accommodation_id">
+                                                                           
+                                                        @foreach($accommodations as $accommodation)
+                                                            <option value="{{$accommodation['id']}}">{{$accommodation['name']}}</option>
+                                                        @endforeach
+                                                        </select>
                                             </div>
                                             <div class="col-lg-6 mb-4 ps-lg-5">
                                                 <label class="form-label" for="service">Service <span class="mandatory">*</span> <i
                                                         class="fa fa-question-circle text-muted" aria-hidden="true"
                                                         data-bs-toggle="tooltip" data-bs-placement="top"
                                                         title="" ></i></label>
-                                                        {!! $setupValues['services']['rendered'] !!}
+                                                        @if($services[$index]['accommodation_id'])
+                                                            
+                                                        @endif
+                                                      
                                             </div>
                                             <div class="col-lg-6 mb-4 pe-lg-5">
                                                 <label class="form-label">Service Type <span
