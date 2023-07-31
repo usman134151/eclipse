@@ -3866,95 +3866,16 @@
                                 <div class="tab-pane fade" id="notifications-tab-pane" role="tabpanel"
                                     aria-labelledby="notifications-tab" tabindex="0">
                                     <div class="row">
-                                        <h3>Notification <small>(coming soon)</small></h3>
+                                        <h3>Notification</h3>
                                         <p class="mt-3">
                                             Here you can control how you are notified about Profile activity.
                                         </p>
                                     </div>
-                                    <div class="row mb-4">
-                                        <div class="col-md-4 border rounded">
-                                            <div class="row">
-                                                <div class="d-flex justify-content-between mb-2 p-2">
-                                                    <div class="d-inline-flex align-items-center gap-4">
-                                                        {{-- Updated by Shanila to Add svg icon--}}
-                                                        <svg aria-label="text" width="47" height="41" class="ms-2" viewBox="0 0 47 41">
-                                                            <use xlink:href="/css/common-icons.svg#text">
-                                                            </use>
-                                                        </svg>
-                                                        {{-- End of update by Shanila --}}
+                                    <div class="mb-3">
+									@livewire('app.common.settings.notifications',['model_type'=>1,'model_id'=>$company['id']])
+									</div>
 
-                                                        <span>Text</span>
-                                                    </div>
-                                                    <div class="d-inline-flex align-items-center gap-4">
-                                                        <div class="form-check form-switch">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                role="switch" id="ToggleText" checked>
-                                                            <label class="form-check-label" for="ToggleText">OFF</label>
-                                                            <label class="form-check-label" for="ToggleText">ON</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 border rounded mx-5">
-                                            <div class="row">
-                                                <div class="d-flex justify-content-between mb-2 p-2">
-                                                    <div class="d-inline-flex align-items-center gap-4">
-
-                                                        {{-- Updated by Shanila to Add svg icon--}}
-                                                        <svg aria-label="email" width="52" height="36" viewBox="0 0 52 36">
-                                                            <use xlink:href="/css/common-icons.svg#email">
-                                                            </use>
-                                                        </svg>
-                                                        {{-- End of update by Shanila --}}
-                                                        <span>Email</span>
-                                                    </div>
-                                                    <div class="d-inline-flex align-items-center gap-4">
-                                                        <div class="form-check form-switch">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                role="switch" id="ToggleEmail" checked>
-                                                            <label class="form-check-label" for="ToggleEmail">
-                                                                OFF
-                                                            </label>
-                                                            <label class="form-check-label" for="ToggleEmail">
-                                                                ON
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4"></div>
-                                    </div>
-                                    <div class="row mb-5">
-                                        <div class="col-md-4 mt-2 border rounded">
-                                            <div class="row">
-                                                <div class="d-flex justify-content-between mb-2 p-2">
-                                                    <div class="d-inline-flex align-items-center gap-4">
-                                                        {{-- Updated by Shanila to Add svg icon--}}
-                                                        <svg aria-label="Notification" width="57" height="44" viewBox="0 0 57 44">
-                                                            <use xlink:href="/css/common-icons.svg#notification">
-                                                            </use>
-                                                        </svg>
-                                                        {{-- End of update by Shanila --}}
-                                                        <span>Notification</span>
-                                                    </div>
-                                                    <div class="d-inline-flex align-items-center gap-4">
-                                                        <div class="form-check form-switch">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                role="switch" id="NotificationToggle" checked>
-                                                            <label class="form-check-label"
-                                                                for="NotificationToggle">OFF</label>
-                                                            <label class="form-check-label"
-                                                                for="NotificationToggle">ON</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="table-responsive">
+                                    {{-- <div class="table-responsive">
                                         <table id="system-logs" class="table table-hover" aria-label="system-logs">
                                             <thead>
                                                 <tr role="row">
@@ -4068,7 +3989,7 @@
                                                 </tr>
                                             </tbody>
                                         </table>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 {{-- Notifications Tab - End --}}
 
