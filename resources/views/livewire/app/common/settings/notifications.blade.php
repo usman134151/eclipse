@@ -12,7 +12,7 @@
 													</div>
 													<div class="d-inline-flex align-items-center gap-4">
 														<div class="form-check form-switch">
-															<input class="form-check-input" type="checkbox" role="switch" id="ToggleText" checked>
+															<input class="form-check-input" wire:model.defer="text" type="checkbox" role="switch" id="ToggleText">
 															<label class="form-check-label" for="ToggleText">OFF</label>
 															<label class="form-check-label" for="ToggleText">ON</label>
 														</div>
@@ -31,7 +31,7 @@
 													</div>
 													<div class="d-inline-flex align-items-center gap-4">
 														<div class="form-check form-switch">
-															<input class="form-check-input" type="checkbox" role="switch" id="ToggleEmail" checked>
+															<input wire:model.defer="email" class="form-check-input" type="checkbox" role="switch" id="ToggleEmail">
 															<label class="form-check-label" for="ToggleEmail">
 																OFF
 															</label>
@@ -57,7 +57,7 @@
 													</div>
 													<div class="d-inline-flex align-items-center gap-4">
 														<div class="form-check form-switch">
-															<input class="form-check-input" type="checkbox" role="switch" id="NotificationToggle" checked>
+															<input wire:model.defer="notification" class="form-check-input" type="checkbox" role="switch" id="NotificationToggle">
 															<label class="form-check-label" for="NotificationToggle">OFF</label>
 															<label class="form-check-label" for="NotificationToggle">ON</label>
 														</div>
@@ -488,7 +488,7 @@
                     </div>
             </div> --}}
             <div class="d-flex justify-content-center">
-                <button class="btn btn-primary rounded">Save</button>
+                <button class="btn btn-primary rounded" wire:click.prevent="save">Save</button>
             </div>
         
 </div>

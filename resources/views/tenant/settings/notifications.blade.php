@@ -37,7 +37,7 @@
                     Here you can control how you are notified about Profile activity.
                 </p>
               </div>
-                @livewire('app.common.settings.notifications')
+                @livewire('app.common.settings.notifications',['model_type'=>3,'model_id'=>Auth::id()])
           </div>
       </div>
    </div>

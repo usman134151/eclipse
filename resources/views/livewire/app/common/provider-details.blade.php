@@ -1729,7 +1729,7 @@
 										</p>
 									</div>
 									<div class="mb-3">
-									@livewire('app.common.settings.notifications')
+									@livewire('app.common.settings.notifications',['model_type'=>2,'model_id'=>$user['id']])
 									</div>
 								</div>
 								<!-- Notifications Tab End-->
