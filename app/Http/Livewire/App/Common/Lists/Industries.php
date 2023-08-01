@@ -92,15 +92,21 @@ final class Industries extends PowerGridComponent
                 return ($model->status);
             })
             ->addColumn('edit',function(Industry $model){
-                return '<div class="d-flex actions">
-                <a href="#" title="Edit Industry" wire:click="edit('.$model->id.')"  aria-label="Edit Industry" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                   <svg aria-label="Edit Industry" width="30" height="30" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#edit-icon"></use></svg>
-                </a>
-
-            <a href="#" title="Delete Industry" aria-label="Delete Industry" wire:click="deleteRecord('.$model->id.')"  class="btn btn-sm btn-secondary rounded btn-hs-icon">
-            <svg aria-label="Edit Industry" width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use></svg>
-            </a>
-              </div>';
+                $actions='<div class="d-flex actions">';
+                //show edit button
+                if(userHasPermission(9,3)){
+                    $actions.='<a href="#" title="Edit Industry" wire:click="edit('.$model->id.')"  aria-label="Edit Industry" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                        <svg aria-label="Edit Industry" width="30" height="30" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#edit-icon"></use></svg>
+                    </a>';
+                }
+                //show delete button
+                if(userHasPermission(9,4)){
+                    $actions.='<a href="#" title="Delete Industry" aria-label="Delete Industry" wire:click="deleteRecord('.$model->id.')"  class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                        <svg aria-label="Edit Industry" width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use></svg>
+                    </a>';
+                }
+                $actions.='</div>';
+                return $actions;
             });
     }
 

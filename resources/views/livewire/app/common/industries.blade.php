@@ -74,7 +74,9 @@
 												{{-- End of update by Shanila --}}
 												<span>Import industry</span>
 											</button>
+                      @if(userHasPermission(9,2))
                             <a href="#"  wire:click="showForm" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">Add Industry</a>
+                      @endif
                           </div>
                           <p>{{$listDescription}}</p>
                         </div>

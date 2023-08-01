@@ -544,6 +544,7 @@
                   <span class="menu-item">Industries</span>
                 </a>
                 <ul role="menu" class="menu-content " id="Industry">
+                  @if(userHasPermission(9,2))
                   <li role="menuitem" class="nav-item " id="create-industry">
                     <a class="nav-link" href="/admin/industry/create-industry">
                       <svg aria-label="Add Industry"  width="16" height="19" viewBox="0 0 16 19" xmlns="http://www.w3.org/2000/svg">
@@ -552,6 +553,7 @@
                       <span class="menu-item">Add Industry</span>
                     </a>
                   </li>
+                  @endif
                   <li role="menuitem" class="nav-item  " id="all-industry">
                     <a class="nav-link" href="/admin/all-industry">
                       <svg aria-label="Industries"  width="20" height="19" viewBox="0 0 20 19" xmlns="http://www.w3.org/2000/svg">
