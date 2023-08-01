@@ -8,9 +8,11 @@ use App\Services\OptService;
 ####END-OPT####
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Tenant\Helper\Helper;
+use App\Models\Tenant\SystemRoleUser;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -94,6 +96,16 @@ class LoginController extends Controller
 						
 					}
 				}
+				
+				//saving permissions in session
+				$userPermissions=userPermissions();
+				Session::put('userPermissions', $userPermissions->toArray());
+				// $super_admin_user = SystemRoleUser::where('system_role_id', 1)->orderBy('id','asc')->first();
+				// if(auth()->user()->id==$super_admin_user->user_id){
+				// 	Session::put('isSuperAdmin', 1);
+				// }else{
+				// 	Session::put('isSuperAdmin', $super_admin_user);
+				// }
 
 				return redirect('home');
 			}
