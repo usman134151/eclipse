@@ -70,5 +70,6 @@ if (!function_exists('addLogs')) {
         //     return;
             //  Redirect::back()->send()->with(['error_message' => 'There is something wrong.Please try again later.']);
         // }
+        }
     }
 }
