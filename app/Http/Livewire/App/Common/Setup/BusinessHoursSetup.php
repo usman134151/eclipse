@@ -179,6 +179,16 @@ class BusinessHoursSetup extends Component
     public function saveSchedule(){
        
         $this->schedule->save();
+        
+        addLogs([
+            'action_by'     => \Auth::id(),
+            'action_to'     => $this->model_id,
+            'item_type'     => 'user',
+            'type'          => 'create',
+            'message'         => "User schedule updated by " . \Auth::user()->name,
+            'ip_address'     => \request()->ip(),
+        ]);
+
     }
 
     public function saveHoliday(){

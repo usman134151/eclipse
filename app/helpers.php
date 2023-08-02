@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Tenant\Logs;
 use App\Models\Tenant\SystemRoleUser;
 
 use App\PloiManager;
@@ -45,4 +46,25 @@ if (! function_exists('userHasPermission')) {
         }
         return false; // No matching record found, return false
     }
+}
+
+if (!function_exists('addLogs')) {
+ function addLogs($data)
+	{
+		try {
+			Logs::create([
+				'action_by' 	=> $data['action_by'],
+				'action_to' 	=> $data['action_to'],
+				'item_type' 	=> $data['item_type'],
+				'type' 				=>isset($data['type']) ? $data['type'] : '',
+				'message' 		=> $data['message'],
+				'ip_address' 	=> \request()->ip(),
+				'request_from'=> isset($data['request_from']) ? $data['request_from'] : '',
+				'request_to'	=> isset($data['request_to']) ? $data['request_to'] : ''
+			]);
+			return true;
+		} catch (\Exception $e) {
+			return Redirect::back()->send()->with(['error_message' => 'There is something wrong.Please try again later.']);
+		}
+	}
 }
