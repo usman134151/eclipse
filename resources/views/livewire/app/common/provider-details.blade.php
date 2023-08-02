@@ -1,4 +1,4 @@
-<div x-data="{defaultAvailability: false, specificDateAvailability: false, pendingCredentials: false}">
+<div x-data="{ pendingCredentials: false, defaultAvailability: false, specificDateAvailability: false}">
 	 <div id="loader-section" class="loader-section" wire:loading>
         <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
             <div class="spinner-border" role="status" aria-live="polite">
@@ -347,7 +347,10 @@
 					                                 <div class="row mb-1 mx-2">
 					                                   <div class="col-md-12 d-flex">
 					                                   <div class="col-md-4 "><label class="col-form-label" for="r-code">Referral Code:</label></div>
-					                                   <div class="col-md-8 align-self-center"><div class="font-family-secondary">{{$user['userdetail']['user_number']!=null ? $user['userdetail']['user_number'] : ''}}</div></div>
+					                                   <div class="col-md-8 align-self-center"><div class="font-family-secondary">
+													   MYRSLD112
+													   {{-- {{$user['userdetail']['user_number']!=null ? $user['userdetail']['user_number'] : ''}} --}}
+													   </div></div>
 					                                   </div>
 					                                 </div>
 				                                    </div>
@@ -2341,8 +2344,8 @@
 				 </div> 
 			   </div>
 			 </div>
-			 {{-- @include('panels.common.default-availability')
-			 @include('panels.common.specific-date-availibility') --}}
+			 @include('panels.common.default-availability')
+			 @include('panels.common.specific-date-availibility')
 			 @include('panels.common.pending-credentials')
 			 @include('modals.common.add-address')
 			 @include('modals.mark-as-paid')
