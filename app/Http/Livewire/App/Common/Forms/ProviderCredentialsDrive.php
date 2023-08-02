@@ -115,6 +115,14 @@ class ProviderCredentialsDrive extends Component
 
     public function acceptCredential($doc_id){
         ProviderCredentials::create(['credential_document_id'=>$doc_id,'provider_id'=>$this->user->id,'acknowledged'=>true]);
+        addLogs([
+            'action_by'     => \Auth::id(),
+            'action_to'     => $this->user->id,
+            'item_type'     => 'user',
+            'type'          => 'create',
+            'message'         => "Document acknowledged by " . \Auth::user()->name,
+            'ip_address'     => \request()->ip(),
+        ]);
         $this->showConfirmation('Credential has been accepted');
     }
 
@@ -130,6 +138,15 @@ class ProviderCredentialsDrive extends Component
             $doc->acknowledged=true; $doc->expiry_date =$expiry; $doc->expiry_status=0;
             $doc->update();
 
+            addLogs([
+                'action_by'     => \Auth::id(),
+                'action_to'     => $this->user->id,
+                'item_type'     => 'user',
+                'type'          => 'create',
+                'message'         => "Document acknowledged by " . \Auth::user()->name,
+                'ip_address'     => \request()->ip(),
+            ]);
+     
         }
         $this->showConfirmation('Credential has been accepted');
     }
