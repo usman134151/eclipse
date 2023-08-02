@@ -353,29 +353,14 @@ class ProviderForm extends Component
 		
         
 		if($redirect){
-            addLogs([
-                'action_by'     => Auth::id(),
-                'action_to'     => $this->user->id,
-                'item_type'     => 'user',
-                'type'          => 'create',
-                'message'         => "User created by " . Auth::user()->name,
-                'ip_address'     => \request()->ip(),
-            ]);
+            
 			$this->showList("Provider has been saved successfully");
 			$this->user = new User;
 		}else{
             $this->step = 2;
             //setting values for next
             $this->userid = $this->user->id;
-            addLogs([
-                'action_by'     => Auth::id(),
-                'action_to'     => $this->user->id,
-                'item_type'     => 'user',
-                'type'          => 'create',
-                'message'         => "User updated by " . Auth::user()->name,
-                'ip_address'     => \request()->ip(),
-            ]);
-
+          
             $this->userdetail['certification'] = explode(', ', $this->userdetail['certification']);
             $this->userdetail['favored_users'] = explode(', ', $this->userdetail['favored_users']);
             $this->userdetail['unfavored_users'] = explode(', ', $this->userdetail['unfavored_users']);

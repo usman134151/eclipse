@@ -67,6 +67,17 @@ class PendingCredentials extends Component
         else
             ProviderCredentials::create($this->field);
         $this->dispatchBrowserEvent('close-modal');
+
+
+        addLogs([
+            'action_by'     => \Auth::id(),
+            'action_to'     => $this->user_id,
+            'item_type'     => 'user',
+            'type'          => 'create',
+            'message'         => "Document uploaded by " . \Auth::user()->name,
+            'ip_address'     => \request()->ip(),
+        ]);
+
         $this->emit('showConfirmation', "File Uploaded to drive successfully");
     }
 
