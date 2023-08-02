@@ -41,6 +41,7 @@ if (!function_exists('userHasPermission')) {
         if ($userPermissions) {
             foreach ($userPermissions as $item) {
                 if (($item['section_id'] === $section_id && $item['right_id'] === $right_id) || ($item['section_id'] === $section_id && $item['right_id'] == 5)) {
+                if (($item['section_id'] === $section_id && $item['right_id'] === $right_id) || ($item['section_id'] === $section_id && $item['right_id'] == 5)) {
                     return true; // Found a matching record, return true
                 }
             }
@@ -53,7 +54,7 @@ if (!function_exists('userHasPermission')) {
 if (!function_exists('addLogs')) {
     function addLogs($data)
     {
-        try {
+        // try {
             Logs::create([
                 'action_by'     => $data['action_by'],
                 'action_to'     => $data['action_to'],
@@ -65,8 +66,10 @@ if (!function_exists('addLogs')) {
                 'request_to'    => isset($data['request_to']) ? $data['request_to'] : ''
             ]);
             return true;
-        } catch (\Exception $e) {
-            return Redirect::back()->send()->with(['error_message' => 'There is something wrong.Please try again later.']);
+        // } catch (\Exception $e) {
+        //     return;
+            //  Redirect::back()->send()->with(['error_message' => 'There is something wrong.Please try again later.']);
+        // }
         }
     }
 }
