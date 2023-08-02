@@ -34,6 +34,7 @@ class UserService
 
     if (!is_null($user->id)) {
       $userId = $user->id;
+      $type="update";
     } elseif ($isAdd && !(User::where('email', $user->email)->exists())) {
 
       $user->security_token = Str::random(32);
@@ -41,11 +42,15 @@ class UserService
       $user->save();
 
       $userId = $user->id;
+      $type = "create";
+
     } else {
 
       //if user is in database, attach id
       $existingUser = User::where('email', $user->email)->first();
       $userId = $existingUser->id;
+      $type = "update";
+
     }
 
     RoleUser::updateOrCreate(['user_id' => $userId, 'role_id' => $role]);
@@ -70,6 +75,16 @@ class UserService
       $subject = 'Welcome ' . $user->first_name . '! Set up your Eclipse account.';
       //$mail = Helper::sendmail($request->email,'',$subject,['data' => $user,'type'=>'1'],'emails.welcome_email_on');
     }
+
+    addLogs([
+      'action_by'     => \Auth::id(),
+      'action_to'     => $user->id,
+      'item_type'     => 'user',
+      'type'          => $type,
+      'message'         => "User " . $type . "d by " . \Auth::user()->name,
+      'ip_address'     => \request()->ip(),
+    ]);
+        
 
     return $user;
   }
