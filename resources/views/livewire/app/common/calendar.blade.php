@@ -1,5 +1,6 @@
 <div x-data="{ bookingDetails: false }"> {{-- Updated by Sohail Asghar to link bookings detail panel --}}
-	<div class="w-100 h-100" id='calendar-container' wire:ignore>
+
+	<div class="w-100 h-100" id='calendar-container'> {{-- Updated by Maarooshaa Asim : removed wire:ignore from div as calender was not loading --}}
 		<div id='calendar'></div>
 	</div>
 	{{-- Updated by Sohail Asghar to link bookings detail panel --}}
