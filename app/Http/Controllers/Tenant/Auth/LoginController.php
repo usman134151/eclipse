@@ -101,12 +101,12 @@ class LoginController extends Controller
 				//saving permissions in session
 				$userPermissions=userPermissions();
 				Session::put('userPermissions', $userPermissions->toArray());
-				// $super_admin_user = SystemRoleUser::where('system_role_id', 1)->orderBy('id','asc')->first();
-				// if(auth()->user()->id==$super_admin_user->user_id){
-				// 	Session::put('isSuperAdmin', 1);
-				// }else{
-				// 	Session::put('isSuperAdmin', $super_admin_user);
-				// }
+				$super_admin_user = SystemRoleUser::where('system_role_id', 1)->where('user_id',auth()->user()->id)->orderBy('id','asc')->first();
+				if($super_admin_user){
+					Session::put('isSuperAdmin', 1);
+				}else{
+					Session::put('isSuperAdmin', $super_admin_user);
+				}
 
 				return redirect('home');
 			}
