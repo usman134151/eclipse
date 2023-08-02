@@ -134,6 +134,23 @@ class DriveUploads extends Component
 
             DriveUpload::create($this->field);
         $this->confirmation("File Uploaded to drive successfully");
+
+        //1 ->company, 2 -> provider, 3->customer , 4-departments (can add as needed)
+        if($this->field['record_type']==1)
+            $type='company';
+        elseif ($this->field['record_type'] == 3)
+            $type = 'user';
+        elseif ($this->field['record_type'] == 4)
+        $type = 'department';
+            
+        addLogs([
+            'action_by'     => \Auth::id(),
+            'action_to'     => $this->field['record_id'],
+            'item_type'     => $type,
+            'type'          => 'create',
+            'message'         => "Document uploaded by " . \Auth::user()->name,
+            'ip_address'     => \request()->ip(),
+        ]);
         $this->refreshData();
 
     }
