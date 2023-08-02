@@ -62,9 +62,7 @@
         
         </div>
       
-        <div class="col-12">
-          @livewire('app.common.calendar')
-        </div>
+          @livewire('app.common.calendar',['model_id'=>$provider_id,'model_type'=>3,'displayAvailability'=>true])
       
       </div>
     {{-- </div>
