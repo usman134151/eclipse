@@ -3,21 +3,27 @@
 namespace App\Http\Livewire\App\Common;
 
 use App\Models\Tenant\Booking;
+use App\Models\Tenant\Schedule;
 use Livewire\Component;
 
 class Calendar extends Component
 {
-	public $events = [];
+	public $events = [], $model_id=0,$model_type=0,$displayAvailability=false;
 
 	public function render()
 	{
+
+		if ($this->displayAvailability)
+			$this->events=	$this->getUserSchedule();
+		else
 		$this->events = $this->getCalendarEvents();
 
 		return view('livewire.app.common.calendar');
 	}
 
 	public function mount()
-	{}
+	{
+	}
 
 	// Updated by Sohail Asghar to get booking events for dashboard calendar
 	private function getCalendarEvents()
@@ -95,4 +101,30 @@ class Calendar extends Component
 		return json_encode($newEvents);
 	}
 	// End of update by Sohail Asghar
-}
+
+	public function getUserSchedule(){
+		$schedule = Schedule::where('model_id', $this->model_id)->where('model_type', $this->model_type)->get()->first();
+		$daysOfWeek = ['Sunday'=>'0','Monday'=>'1','Tuesday'=>'2','Wednesday'=>'3','Thursday'=>'4','Friday'=>'5','Saturday'=>'6'];
+		$activeDays = json_decode($schedule->working_days,true);
+		foreach($schedule->timeslots->toArray() as $key=>  $timeslot){
+			$events[$key]['daysOfWeek'] = $daysOfWeek[$timeslot['timeslot_day']];
+			$events[$key]['startTime'] = date_format(date_create($timeslot['timeslot_start_time']), "H:i:s");
+			$events[$key]['endTime'] = date_format(date_create($timeslot['timeslot_end_time']), "H:i:s");
+			$events[$key]['title'] = date_format(date_create($timeslot['timeslot_start_time']), "h:i A") . " to " . date_format(date_create($timeslot['timeslot_end_time']), "h:i A") ;
+			if(!$activeDays[$timeslot['timeslot_day']])	//if day is inactive - set color gray
+			$events[$key]['color'] = '#6C757D';
+			elseif($timeslot['timeslot_type']==1)	//business hours
+			$events[$key]['color'] = '#198754';
+			else									//after hours
+				$events[$key]['color'] = '#FFC107';
+
+		}
+		return json_encode($events);
+
+      }
+
+	}
+
+
+	
+

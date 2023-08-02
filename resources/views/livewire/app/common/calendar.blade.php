@@ -1,5 +1,5 @@
 <div x-data="{ bookingDetails: false }"> {{-- Updated by Sohail Asghar to link bookings detail panel --}}
-	<div id='calendar-container' wire:ignore>
+	<div class="w-100 h-100" id='calendar-container' wire:ignore>
 		<div id='calendar'></div>
 	</div>
 	{{-- Updated by Sohail Asghar to link bookings detail panel --}}
