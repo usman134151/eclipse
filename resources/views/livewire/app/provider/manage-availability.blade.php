@@ -62,7 +62,7 @@
         
         </div>
       
-        <div>
+        <div class="col-12">
           @livewire('app.common.calendar')
         </div>
       
