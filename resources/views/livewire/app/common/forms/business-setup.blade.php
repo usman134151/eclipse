@@ -293,23 +293,23 @@
                                                     <div class="col-xl-6">
                                                         <h3>Display:</h3>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" id="DisplayOnLoginScreen" wire:model.defer="messages.{{$index}}.on_log_in_screen"
-                                                                name="DisplayOnLoginScreen" type="checkbox" tabindex="" />
-                                                            <label class="form-check-label" for="DisplayOnLoginScreen">
+                                                            <input class="form-check-input" id="DisplayOnLoginScreen-{{$index}}" wire:model.defer="messages.{{$index}}.on_log_in_screen"
+                                                                name="DisplayOnLoginScreen-{{$index}}" type="checkbox" tabindex="" />
+                                                            <label class="form-check-label" for="DisplayOnLoginScreen-{{$index}}">
                                                                 Display On Log-in Screen</label>
                                                         </div>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" id="DisplayOnDashboard" wire:model.defer="messages.{{$index}}.on_dashboard"
-                                                                name="DisplayOnDashboard" type="checkbox" tabindex="" />
-                                                            <label class="form-check-label" for="DisplayOnDashboard">
+                                                            <input class="form-check-input" id="DisplayOnDashboard-{{$index}}" wire:model.defer="messages.{{$index}}.on_dashboard"
+                                                                name="DisplayOnDashboard-{{$index}}" type="checkbox" tabindex="" />
+                                                            <label class="form-check-label" for="DisplayOnDashboard-{{$index}}">
                                                                 Display On Dashboard</label>
                                                         </div>
                                                         <div class="row mb-4 mt-4">
                                                             <div class="col-lg-8">
                                                                 <h3>Duration:</h3>
-                                                                <label class="form-label-sm" for="Days"> Days</label>
-                                                                <input class="form-control form-control-sm text-center w-25"
-                                                                    id="Days" name="DisplayToProviders" placeholder="" type="number"
+                                                                <label class="form-label-sm" for="Days"> Expiry Date</label>
+                                                                <input class="form-control js-single-date-picker text-center days-event"
+                                                                    id="Days" data-index="{{$index}}" name="DisplayToProviders" placeholder="" type=""
                                                                     tabindex="" wire:key="duration-{{ $index }}" wire:model.defer="messages.{{$index}}.days"/>
                                                             </div>
                                                         </div>
@@ -318,21 +318,21 @@
                                                     <div class="col-xl-6">
                                                         <h3>Audience:</h3>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" id="DisplayToProviders" wire:model.defer="messages.{{$index}}.display_to_providers"
-                                                                name="DisplayToProviders" type="checkbox" tabindex="" />
-                                                            <label class="form-check-label" for="DisplayToProviders">
+                                                            <input class="form-check-input" id="DisplayToProviders-{{$index}}" wire:model.defer="messages.{{$index}}.display_to_providers"
+                                                                name="DisplayToProviders-{{$index}}" type="checkbox" tabindex="" />
+                                                            <label class="form-check-label" for="DisplayToProviders-{{$index}}">
                                                                 Display to Providers</label>
                                                         </div>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" id="DisplayToCustomers" wire:model.defer="messages.{{$index}}.display_to_providers"
-                                                                name="DisplayToCustomers" type="checkbox" tabindex="" />
-                                                            <label class="form-check-label" for="DisplayToCustomers">
+                                                            <input class="form-check-input" id="DisplayToCustomers-{{$index}}" wire:model.defer="messages.{{$index}}.display_to_providers"
+                                                                name="DisplayToCustomers-{{$index}}" type="checkbox" tabindex="" />
+                                                            <label class="form-check-label" for="DisplayToCustomers-{{$index}}">
                                                                 Display to Customers</label>
                                                         </div>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" id="DisplayToAdminUsers" wire:model.defer="messages.{{$index}}.display_to_admin"
-                                                                name="DisplayToAdminUsers" type="checkbox" tabindex="" />
-                                                            <label class="form-check-label" for="DisplayToAdminUsers">
+                                                            <input class="form-check-input" id="DisplayToAdminUsers-{{$index}}" wire:model.defer="messages.{{$index}}.display_to_admin"
+                                                                name="DisplayToAdminUsers-{{$index}}" type="checkbox" tabindex="" />
+                                                            <label class="form-check-label" for="DisplayToAdminUsers-{{$index}}">
                                                                 Display to Admin-users</label>
                                                         </div>
                                                     </div>
@@ -1333,6 +1333,7 @@
     </div>
 </div>
 </div>
+@push('scripts')
 
 <script>
 function toggleItems(classname) {
@@ -1359,12 +1360,55 @@ function showSelectedItems(classname, parentClass) {
   }
   
 }
+    // Function to dispatch the event on each datepicker element
+    function triggerEventOnDatepicker(element) {
+        const inputEvent = new Event('input', {
+            bubbles: true,
+            cancelable: true,
+        });
+    // Dispatch the event on the element
+        element.dispatchEvent(inputEvent);
+    }
+
 
 	function updateVal(attrName,val){
+		if(attrName=='Days'){
+            let datepickers = document.getElementsByClassName("js-single-date-picker");
+            // Loop through the datepickers and trigger the event on each of them
+            for (let i = 0; i < datepickers.length; i++) {
+                triggerEventOnDatepicker(datepickers[i]);
+            }
+        }
 		if(attrName=='select-days')
 			Livewire.emit('updateDay', val);
 		if(attrName!='address.country')
-		Livewire.emit('updateVal', attrName, val);
-
+		    Livewire.emit('updateVal', attrName, val);
 	}
+    
+    $('.js-single-date-picker').daterangepicker({
+        singleDatePicker: true,
+        showDropdowns: true,
+        autoApply: true
+    });
+    $('.js-single-date-picker').attr("placeholder","MM/DD/YYYY");
+    
+    $('.js-single-date-picker').on('apply.daterangepicker', function(ev, picker) {
+        console.log($(this).val());
+        updateVal($(this).attr('id'),  $(this).val());
+    });
+    document.addEventListener('refreshDatePickers', function(event) {
+
+        $('.js-single-date-picker').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoApply: true
+        });
+        $('.js-single-date-picker').attr("placeholder","MM/DD/YYYY");
+        $('.js-single-date-picker').on('apply.daterangepicker', function(ev, picker) {
+            console.log($(this).val());
+            updateVal($(this).attr('id'),  $(this).val());
+        });
+            
+    });
 </script>
+@endpush

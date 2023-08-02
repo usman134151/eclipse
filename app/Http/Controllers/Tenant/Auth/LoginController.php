@@ -8,6 +8,7 @@ use App\Services\OptService;
 ####END-OPT####
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Tenant\Helper\Helper;
+use App\Models\Tenant\BusinessSetup;
 use App\Models\Tenant\SystemRoleUser;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -28,11 +29,11 @@ class LoginController extends Controller
 	*/
 
 	use AuthenticatesUsers;
-
 	/** @override */
 	public function showLoginForm()
 	{
-		return view('tenant.auth.login');
+		$welcome_text=BusinessSetup::first()->welcome_text;
+		return view('tenant.auth.login',['welcome_text'=>$welcome_text]);
 	}
 
 	/**
