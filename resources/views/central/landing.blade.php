@@ -354,7 +354,7 @@ Quickly assess provider availability and coordinate schedules; manage providersâ
 <p>Our pricing is designed to suit companies of all sizes so that you never pay for more than you need. We donâ€™t limit your operations with confusing and restrictive tiers. Instead, we give you full access to our powerhouse of management features to grow your business without limits!</p>
 <div class="row">
 <div class="col-xl-7">
-<a target="_blank" href="https://checkout.eclipsescheduling.com/pricing" class="btn btn-primary w-100">Start A Free Trial</a>
+<a target="_blank" href="https://checkout.eclipsescheduling.com/pricing" class="btn btn-primary w-100">Schedule My Demo</a>
 </div>
 </div>
 </div>

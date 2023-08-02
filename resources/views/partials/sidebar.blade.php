@@ -63,6 +63,7 @@
               <span class="menu-item">Chat</span>
             </a>
           </li>
+          @if(userHasPermission(1,1))
           <li class="nav-item has-sub" id="assignments">
             <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
               <svg aria-label="Assignments" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -71,6 +72,7 @@
               <span class="menu-item">Assignments</span>
             </a>
             <ul class="menu-content " id="Bookings">
+              @if(userHasPermission(1,2))
               <li class="nav-item " id="create">
                 <a class="nav-link" href="/admin/booknow/create">
                   <svg aria-label="Create" width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -79,6 +81,8 @@
                   <span class="menu-item">Create</span>
                 </a>
               </li>
+              @endif
+              @if(userHasPermission(15,1))
               <li class="nav-item " id="today">
                 <a class="nav-link" href="/admin/bookings/today">
                   <svg aria-label="Today's Assignments" width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -111,6 +115,7 @@
                   <span class="menu-item">Pending Review</span>
                 </a>
               </li>
+              @endif
               <li class="nav-item  " id="drafts">
                 <a class="nav-link" href="/admin/bookings/drafts">
                   <svg aria-label="Draft Assignments" width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -135,6 +140,7 @@
                   <span class="menu-item">Invitations</span>
                 </a>
               </li>
+              @if(userHasPermission(17,1))
               <li class="nav-item has-sub">
                 <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
                   <svg  aria-label="Quotes And Leads" width="18" height="22" viewBox="0 0 18 22" xmlns="http://www.w3.org/2000/svg">
@@ -162,8 +168,11 @@
                   </li>
                 </ul>
               </li>
+              @endif
             </ul>
           </li>
+          @endif
+          @if(userHasPermission(2,1))
           <li class="nav-item has-sub">
             <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
               <svg aria-label="Customers" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -223,6 +232,8 @@
               </li>
             </ul>
           </li>
+          @endif
+          @if(userHasPermission(3,1))
           <li class="nav-item has-sub">
             <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
               <svg aria-label="Providers" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -322,6 +333,8 @@
               </li>
             </ul>
           </li>
+          @endif
+          @if(userHasPermission(4,1))
           <li class="nav-item " id="reports">
             <a href="/admin/reports">
               <svg aria-label="Reports" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -330,6 +343,8 @@
               <span class="menu-item">Reports</span>
             </a>
           </li>
+          @endif
+          @if(userHasPermission(5,1))
           <li class="nav-item " id="logs">
             <a href="/admin/system-logs">
               <svg aria-label="System Logs" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -338,6 +353,7 @@
               <span class="menu-item">System Logs</span>
             </a>
           </li>
+          @endif
           <li class="nav-item has-sub">
             <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
               <svg fill="none" aria-label="Settings" width="20" height="20" viewBox="0 0 20 20"  xmlns="http://www.w3.org/2000/svg">
@@ -357,6 +373,7 @@
                 </a>
               </li>
               */ ?>
+              @if(userHasPermission(6,1))
               <li role="menuitem" class="nav-item has-sub">
                 <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
                   <svg aria-label="Business Profile & Settings" width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -443,6 +460,8 @@
                   </li>
                 </ul>
               </li>
+              @endif
+              @if(userHasPermission(7,1))
               <li class="nav-item has-sub">
                 <a class="d-flex align-items-start" href="#" aria-haspopup="true" aria-expanded="true">
                   <svg class="fill-none" aria-label="Accommodations & Services Setup"  width="21" height="18" viewBox="0 0 21 18" xmlns="http://www.w3.org/2000/svg">
@@ -487,6 +506,8 @@
                   </li>
                 </ul>
               </li>
+              @endif
+              @if(userHasPermission(8,1))
               <li role="menuitem" class="nav-item has-sub">
                 <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
                   <svg aria-label="Specializations"  width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -513,6 +534,8 @@
                   </li>
                 </ul>
               </li>
+              @endif
+              @if(userHasPermission(9,1))
               <li role="menuitem" class="nav-item has-sub">
                 <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
                   <svg aria-label="Industries"  width="20" height="19" viewBox="0 0 20 19" xmlns="http://www.w3.org/2000/svg">
@@ -521,6 +544,7 @@
                   <span class="menu-item">Industries</span>
                 </a>
                 <ul role="menu" class="menu-content " id="Industry">
+                  @if(userHasPermission(9,2))
                   <li role="menuitem" class="nav-item " id="create-industry">
                     <a class="nav-link" href="/admin/industry/create-industry">
                       <svg aria-label="Add Industry"  width="16" height="19" viewBox="0 0 16 19" xmlns="http://www.w3.org/2000/svg">
@@ -529,6 +553,7 @@
                       <span class="menu-item">Add Industry</span>
                     </a>
                   </li>
+                  @endif
                   <li role="menuitem" class="nav-item  " id="all-industry">
                     <a class="nav-link" href="/admin/all-industry">
                       <svg aria-label="Industries"  width="20" height="19" viewBox="0 0 20 19" xmlns="http://www.w3.org/2000/svg">
@@ -539,6 +564,8 @@
                   </li>
                 </ul>
               </li>
+              @endif
+              @if(userHasPermission(10,1))
               <li role="menuitem" class="nav-item has-sub">
                 <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
                   <svg aria-label="Saved Forms"  width="21" height="19" viewBox="0 0 21 19" xmlns="http://www.w3.org/2000/svg">
@@ -567,6 +594,8 @@
                 </ul>
               </li>
               {{--  
+              @endif
+              @if(userHasPermission(11,1))
               <li role="menuitem" class="nav-item has-sub">
                 <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
                   <svg aria-label="Coupons & Referrals Setup"  width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -595,6 +624,8 @@
                   </li>
                 </ul>
               </li>
+              @endif
+              @if(userHasPermission(12,1))
               <li role="menuitem" class="nav-item has-sub">
                 <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
                   <svg aria-label="Platform Integrations"  width="21" height="21" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
@@ -641,6 +672,8 @@
                 </ul>
               </li>
               --}}
+              @endif
+              @if(userHasPermission(13,1))
               <li role="menuitem" class="nav-item has-sub">
                 <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
                   <svg class="fill-none" aria-label="Admin Staff"  width="23" height="21" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -699,6 +732,8 @@
                   </li>
                 </ul>
               </li>
+              @endif
+              @if(userHasPermission(14,1))
               <li role="menuitem" class="nav-item" id="jira-status">
                 <a class="nav-link" href="/admin/jira-status">
                   <svg aria-label="Support Tickets"  width="23" height="21" viewBox="0 0 23 21" xmlns="http://www.w3.org/2000/svg">
@@ -707,7 +742,7 @@
                   <span class="menu-item">Support Tickets</span>
                 </a>
               </li>
-              </li>
+              @endif
             </ul>
           </li>
         </ul>

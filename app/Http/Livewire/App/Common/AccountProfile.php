@@ -6,23 +6,27 @@ use Livewire\Component;
 use App\Helpers\SetupHelper;
 use App\Models\Tenant\User;
 use App\Models\Tenant\SystemRole;
+use App\Models\Tenant\SystemRoleUser;
 use App\Services\App\UploadFileService;
 use Illuminate\Support\Facades\Auth;
 use App\Services\App\UserService;
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
+use Arr;
 
 class AccountProfile extends Component
 {
     use WithFileUploads;
     public $showForm;
-    public $user,$isAdd=true,$image=null;
+    public $user,$isAdd=true,$image=null,$user_roles=[];
     public $userdetail=['gender_id','country','timezone_id','userdetail.ethnicity_id','title','user_position','address_line1','address_line2','zip','permission','city','state','phone'];
     public $setupValues = [
         'ethnicities' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 3, 'setup_value_label', false,'userdetail.ethnicity_id','','ethnicity_id',0]],
         'gender' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 2, 'setup_value_label', false,'userdetail.gender_id','','gender_id',1]],
         'timezones' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 4, 'setup_value_label', false,'userdetail.timezone_id','','timezone_id',2]],
         'countries' => ['parameters' => ['Country', 'name', 'name', '', '', 'name', false, 'userdetail.country','','country',3]],
+        'roles'=>['parameters'=>['SystemRole', 'id',
+        'system_role_name', 'status', 1, 'system_role_name', true, 'user_roles','','roles',7]]
 	];
     protected $listeners = ['updateVal' => 'updateVal','editRecord' => 'edit'];
     public function render()
@@ -37,6 +41,8 @@ class AccountProfile extends Component
     {
         $this->setupValues = SetupHelper::loadSetupValues($this->setupValues);
         $this->showForm(User::with('userdetail')->find(Auth::id()));
+        $this->user_roles=Arr::flatten(SystemRoleUser::where(['user_id'=>$this->user->id,'system_user_type'=>1])->select('system_role_id')->get()->toArray());
+        
     }
 
     public function rules()
@@ -113,6 +119,7 @@ class AccountProfile extends Component
 		$userService = new UserService;
        // dd($this->user);
         $this->user = $userService->createUser($this->user,$this->userdetail,1,1,[],false);
+        $userService->storeAdminRoles($this->user_roles,$this->user->id);
     	// Emit an event to display a success message using the SweetAlert package
 			$this->dispatchBrowserEvent('swal:modal', [
 				'type' => 'success',
@@ -125,7 +132,9 @@ class AccountProfile extends Component
 	}
     public function updateVal($attrName, $val)
 	{
-
+        if($attrName=='roles')
+            $this->user_roles = $val;
+        else
         $this->userdetail[$attrName] = $val;
 
 
@@ -133,11 +142,12 @@ class AccountProfile extends Component
     public function showForm(User $user)
 {
     $this->user = $user;
-    $this->userdetail = $user->userdetail ? $user->userdetail->toArray() : [];
+    $this->userdetail = $user->userdetail ? $user->userdetail->toArray() : ['user_position'=>'','address_line1'=>'','address_line2'=>'','zip'=>'','city'=>'','state'=>'','title'=>'','phone'=>'','ethnicity_id'=>'0','gender_id'=>'0','country'=>'0','profile_pic'=>''];
     $this->showForm = true;
 }
     public function edit(User $user){
         $this->user=$user;
+
         $this->userdetail=$user['userdetail']->toArray();
         $this->label="Edit";
       

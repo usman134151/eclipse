@@ -273,9 +273,10 @@
                                                 <label class="form-label">Accommodation <span
                                                         class="mandatory">*</span></label>
                                                         <select class="form-select select2 mb-2" id="accommodation_id_{{$index}}" name="accommodation_id_{{$index}}" wire:model="services.{{$index}}.accommodation_id">
-                                                                           
+                                                        <option value="0">Select Accommodation</option>  
                                                         @foreach($accommodations as $accommodation)
                                                             <option value="{{$accommodation['id']}}">{{$accommodation['name']}}</option>
+                                                            
                                                         @endforeach
                                                         </select>
                                             </div>
