@@ -27,9 +27,12 @@ class DashboardMessages extends Component
         $messagesNoExpired=[];
         foreach($messages as $messagee){
             if($messagee['days']){
-                $expiry_date=Carbon::parse($messagee['days']);
-                if(!$expiry_date->isPast()){
-                    $messagesNoExpired[]=$messagee;
+                try {
+                    $expiry_date=Carbon::parse($messagee['days']);
+                    if(!$expiry_date->isPast()){
+                        $messagesNoExpired[]=$messagee;
+                    }
+                } catch (\Exception $e) {
                 }
             }else{
                 $messagesNoExpired[]=$messagee;
