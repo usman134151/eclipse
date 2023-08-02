@@ -41,6 +41,7 @@ if (!function_exists('userHasPermission')) {
         if ($userPermissions) {
             foreach ($userPermissions as $item) {
                 if (($item['section_id'] === $section_id && $item['right_id'] === $right_id) || ($item['section_id'] === $section_id && $item['right_id'] == 5)) {
+                if (($item['section_id'] === $section_id && $item['right_id'] === $right_id) || ($item['section_id'] === $section_id && $item['right_id'] == 5)) {
                     return true; // Found a matching record, return true
                 }
             }
