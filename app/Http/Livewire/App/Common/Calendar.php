@@ -103,21 +103,24 @@ class Calendar extends Component
 	// End of update by Sohail Asghar
 
 	public function getUserSchedule(){
+		$events = [];
 		$schedule = Schedule::where('model_id', $this->model_id)->where('model_type', $this->model_type)->get()->first();
-		$daysOfWeek = ['Sunday'=>'0','Monday'=>'1','Tuesday'=>'2','Wednesday'=>'3','Thursday'=>'4','Friday'=>'5','Saturday'=>'6'];
-		$activeDays = json_decode($schedule->working_days,true);
-		foreach($schedule->timeslots->toArray() as $key=>  $timeslot){
-			$events[$key]['daysOfWeek'] = $daysOfWeek[$timeslot['timeslot_day']];
-			$events[$key]['startTime'] = date_format(date_create($timeslot['timeslot_start_time']), "H:i:s");
-			$events[$key]['endTime'] = date_format(date_create($timeslot['timeslot_end_time']), "H:i:s");
-			$events[$key]['title'] = date_format(date_create($timeslot['timeslot_start_time']), "h:i A") . " to " . date_format(date_create($timeslot['timeslot_end_time']), "h:i A") ;
-			if(!$activeDays[$timeslot['timeslot_day']])	//if day is inactive - set color gray
-			$events[$key]['color'] = '#6C757D';
-			elseif($timeslot['timeslot_type']==1)	//business hours
-			$events[$key]['color'] = '#198754';
-			else									//after hours
-				$events[$key]['color'] = '#FFC107';
+		if($schedule){
+			$daysOfWeek = ['Sunday'=>'0','Monday'=>'1','Tuesday'=>'2','Wednesday'=>'3','Thursday'=>'4','Friday'=>'5','Saturday'=>'6'];
+			$activeDays = json_decode($schedule->working_days,true);
+			foreach($schedule->timeslots->toArray() as $key=>  $timeslot){
+				$events[$key]['daysOfWeek'] = $daysOfWeek[$timeslot['timeslot_day']];
+				$events[$key]['startTime'] = date_format(date_create($timeslot['timeslot_start_time']), "H:i:s");
+				$events[$key]['endTime'] = date_format(date_create($timeslot['timeslot_end_time']), "H:i:s");
+				$events[$key]['title'] = date_format(date_create($timeslot['timeslot_start_time']), "h:i A") . " to " . date_format(date_create($timeslot['timeslot_end_time']), "h:i A") ;
+				if(!$activeDays[$timeslot['timeslot_day']])	//if day is inactive - set color gray
+				$events[$key]['color'] = '#6C757D';
+				elseif($timeslot['timeslot_type']==1)	//business hours
+				$events[$key]['color'] = '#198754';
+				else									//after hours
+					$events[$key]['color'] = '#FFC107';
 
+			}
 		}
 		return json_encode($events);
 
