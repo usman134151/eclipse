@@ -9,6 +9,7 @@ use Livewire\Component;
 class Calendar extends Component
 {
 	public $events = [], $model_id=0,$model_type=0,$displayAvailability=false;
+	public $holidays =[];
 
 	public function render()
 	{
@@ -109,7 +110,9 @@ class Calendar extends Component
 			$daysOfWeek = ['Sunday'=>'0','Monday'=>'1','Tuesday'=>'2','Wednesday'=>'3','Thursday'=>'4','Friday'=>'5','Saturday'=>'6'];
 			$activeDays = json_decode($schedule->working_days,true);
 			foreach($schedule->timeslots->toArray() as $key=>  $timeslot){
-				$events[$key]['daysOfWeek'] = $daysOfWeek[$timeslot['timeslot_day']];
+				$events[$key]['className'] = date_format(date_create($timeslot['timeslot_start_time']), "Y-m-d") . ' general'; 
+
+				$events[$key]['daysOfWeek'] = $daysOfWeek[$timeslot['timeslot_day']];	//recurring on week days
 				$events[$key]['startTime'] = date_format(date_create($timeslot['timeslot_start_time']), "H:i:s");
 				$events[$key]['endTime'] = date_format(date_create($timeslot['timeslot_end_time']), "H:i:s");
 				$events[$key]['title'] = date_format(date_create($timeslot['timeslot_start_time']), "h:i A") . " to " . date_format(date_create($timeslot['timeslot_end_time']), "h:i A") ;
@@ -119,18 +122,35 @@ class Calendar extends Component
 				$events[$key]['color'] = '#198754';
 				else									//after hours
 					$events[$key]['color'] = '#FFC107';
+				// $events[$key]['overlap'] = false;
+
+
+				$events[$key]['extendedProps'] = ['type'=>'general']; 
 
 			}
-			foreach ($schedule->holidays->toArray() as $holiday) {
-				$events[]['startTime'] = date_format(date_create($holiday['holiday_date']), "d/m/YYYY");
-				$events[]['allDay'] = true;
-				$events[]['title'] = ' Holiday'; 
-				$events[]['color'] = '#6C757D';
+			$count = count($events);
+			foreach ($schedule->holidays->toArray() as  $holiday) {
+				$events[$count]['className'] = date_format(date_create($holiday['holiday_date']), "Y-m-d"). ' holiday fc-nonbusiness';
+				$events[$count]['id'] = date_format(date_create($holiday['holiday_date']), "Y-m-d");
+				$events[$count]['extendedProps'] = ['type'=>'holiday'];
+				$events[$count]['overlap'] = false;
+
+
+
+				$events[$count]['start'] = $holiday['holiday_date'];
 				
-
+				$events[$count]['allDay'] = true;
+				$events[$count]['title'] = 'Holiday';
+				$events[$count]['color'] = '#6C757D';
+				$events[$count]['rendering'] = 'background';
+				
+				
 			}
+			
+			$this->holidays = $schedule->holidays->pluck('holiday_date');
 
 		}
+		// dd($events);
 		return json_encode($events);
 
       }
