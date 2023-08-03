@@ -78,10 +78,10 @@
 						$('#'+holidayMoment.format('YYYY-MM-DD')+'-general').hide()
 				}
 			},
-			editable: true,
-			selectable: true,
+			//editable: true,
+			//selectable: true,
 			displayEventTime: false,
-			droppable: true, // this allows things to be dropped onto the calendar
+			//droppable: true, // this allows things to be dropped onto the calendar
 			drop: function(info) {
 				// is the "remove after drop" checkbox checked?
 				if (checkbox.checked) {
