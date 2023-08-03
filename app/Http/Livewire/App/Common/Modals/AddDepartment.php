@@ -66,6 +66,7 @@ class AddDepartment extends Component
     }
 
     public function updateCompany($companyId){
+       
         $this->companyId=$companyId;
         $this->departments = Department::where('company_id',$companyId)->get();
         //  $this->selectedDepartments = [];

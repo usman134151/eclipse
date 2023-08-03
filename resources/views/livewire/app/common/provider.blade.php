@@ -183,6 +183,7 @@ Livewire.on('openActiveCredentialModal', (type) => {
 			
 
 </script>
+<script src="/tenant-resources/js/form-functions.js"></script>
 @endpush
 
 </div>
