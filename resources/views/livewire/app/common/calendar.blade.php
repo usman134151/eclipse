@@ -77,6 +77,12 @@
 						$("td[data-date=" + holidayMoment.format('YYYY-MM-DD') + "]").addClass('holiday');
 						$('#'+holidayMoment.format('YYYY-MM-DD')+'-general').hide()
 				}
+				var specificTimings = @this.specific;
+				var specificMoment;
+				for(var i = 0; i < specificTimings.length; i++) {				
+					specificMoment = moment(specificTimings[i],'YYYY-MM-DD');
+						$('#'+specificMoment.format('YYYY-MM-DD')+'-general').hide()
+				}
 			},
 			//editable: true,
 			//selectable: true,
@@ -111,14 +117,7 @@
 			//calendar.refetchEvents()
 		});
 
-		function updateCalendarData() {
-			{{-- calendar.removeAllEvents(); --}}
-			{{-- calendar.removeAllEventSources(); --}}
-			var events = '';
-
-			events = @this.holidays
-			calendar.addEventSource(events);
-		}
+		
 	});
 </script>
 @endpush

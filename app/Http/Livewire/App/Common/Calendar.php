@@ -3,13 +3,14 @@
 namespace App\Http\Livewire\App\Common;
 
 use App\Models\Tenant\Booking;
+use App\Models\Tenant\ProviderSpecificSchedule;
 use App\Models\Tenant\Schedule;
 use Livewire\Component;
 
 class Calendar extends Component
 {
 	public $events = [], $model_id=0,$model_type=0,$displayAvailability=false;
-	public $holidays =[];
+	public $holidays =[], $specific=[];
 
 	public function render()
 	{
@@ -149,6 +150,27 @@ class Calendar extends Component
 			
 			$this->holidays = $schedule->holidays->pluck('holiday_date');
 
+			$specifiSchedule = ProviderSpecificSchedule::where('user_id',$this->model_id)->whereRaw("scheduled_date BETWEEN (ADDDATE(CURDATE(), INTERVAL -1 YEAR)) AND  (ADDDATE(CURDATE(), INTERVAL 1 YEAR))")->get();
+			if(count($specifiSchedule)){
+				$i = count($events);
+				foreach($specifiSchedule->toArray() as  $ss){
+					$events[$i]['className'] = date_format(date_create($ss['scheduled_date']), "Y-m-d") . ' specific'; 
+
+					$events[$i]['extendedProps'] = ['type' => 'specific'];
+					$events[$i]['overlap'] = false;
+					// $events[$i]['start'] = $ss['scheduled_date'];
+
+
+					$events[$i]['title'] = date_format(date_create($ss['from_time']), "h:i A") . " to " . date_format(date_create($ss['to_time']), "h:i A");
+					$events[$i]['start'] =  date_format(date_create($ss['scheduled_date']), "Y-m-d")." ". date_format(date_create($ss['from_time']), "H:i:s");
+					$events[$i]['end'] = date_format(date_create($ss['scheduled_date']), "Y-m-d") . " " . date_format(date_create($ss['to_time']), "H:i:s");
+					$events[$i]['color'] = '#20c997';
+
+					$i++;
+				
+				}
+				$this->specific = $specifiSchedule->pluck('scheduled_date');
+			}
 		}
 		// dd($events);
 		return json_encode($events);
