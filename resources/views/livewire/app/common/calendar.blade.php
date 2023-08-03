@@ -87,6 +87,7 @@
 		});
 
 		calendar.render();
+		setTimeout(() => { window.dispatchEvent(new Event('resize')) }, 500)
 		@this.on('refreshCalendar', () => {
 			//calendar.refetchEvents()
 		});
