@@ -17,8 +17,13 @@
 				Welcome to Eclipse Scheduling!
 			</h1>
 			<p class="card-text mb-4">
-				Please sign into your account to start exploring.
+				@if($welcome_text)
+					{{$welcome_text}}
+				@else
+					Please sign into your account to start exploring.
+				@endif
 			</p>
+			@livewire('app.common.dashboard-messages', ['userType' => 0,'displayTo'=>'login_screen'])
 			{{-- Show auth errors --}}
 			@if($errors->has('loginError'))
 			<div class="alert px-3 py-3 alert-danger d-flex align-items-center" role="alert">

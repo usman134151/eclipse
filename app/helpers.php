@@ -33,8 +33,8 @@ if (!function_exists('userPermissions')) {
 if (!function_exists('userHasPermission')) {
     function userHasPermission($section_id, $right_id)
     {
-        // $isSuperAdmin=Session::get('isSuperAdmin');
-        if (auth()->user()->id == 1) {
+        $isSuperAdmin=Session::get('isSuperAdmin');
+        if ($isSuperAdmin) {
             return true;
         }
         $userPermissions = Session::get('userPermissions');

@@ -161,6 +161,7 @@ class BusinessSetup extends Component
             if (count($this->policies) == 0) {
                 $this->addPolicy();
             }
+            $this->dispatchBrowserEvent('refreshDatePickers');
     }
 
 	public function render()
@@ -181,6 +182,7 @@ class BusinessSetup extends Component
 
     public function save($submit = 1)
     {
+        // dd($this->messages);
         $this->validate();
 
         $fileService = new UploadFileService();
@@ -320,6 +322,7 @@ class BusinessSetup extends Component
         'message'=>'', 'on_log_in_screen'=>0, 'on_dashboard'=>0, 'display_to_providers'=>0, 'display_to_customers'=>0,
         'display_to_admin'=>0, 'days'=>''
         ];
+        $this->dispatchBrowserEvent('refreshDatePickers');
     }
 
     // for array of submission days in select-days
@@ -347,6 +350,7 @@ class BusinessSetup extends Component
     public function removeMessage($index){
         unset($this->messages[$index]);
         $this->messages = array_values($this->messages);
+        $this->dispatchBrowserEvent('refreshDatePickers');
     }
     public function addPolicy(){
         $this->policies[]=[
