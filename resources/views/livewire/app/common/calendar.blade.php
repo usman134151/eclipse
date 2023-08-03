@@ -18,6 +18,8 @@
 	{{-- End of update by Sohail Asghar --}}
 </div>
 @push('scripts')
+{{-- <script src='https://cdn.jsdelivr.net/npm/rrule@2.6.4/dist/es5/rrule.min.js'></script> --}}
+
 <script src="/tenant-resources/js/index.global.min.js"></script>
 <script src="/tenant-resources/js/bs-index.global.min.js"></script>
 
@@ -29,6 +31,7 @@
 		var checkbox = document.getElementById('drop-remove');
 		var data =	@this.events;
 		var calendar = new Calendar(calendarEl, {
+			
 			themeSystem: 'bootstrap5',
 			headerToolbar: {
 				left: 'prev,next today',
@@ -46,12 +49,16 @@
 			dayMaxEvents: true,	// allow "more" link when too many events
 			events: JSON.parse(data),
 			eventDisplay: 'block',
+			
 			eventDidMount: function(info) {
-				$(info.el).attr('x-on:click', 'bookingDetails = true');
+
+				//$(info.el).attr('x-on:click', 'bookingDetails = true');
 				$(info.el).attr('tabindex', '0');
 				// $(info.el).attr('data-id',info.event.id); // When off canvas panel will be dynamic
 				let event = info.event;
+
 				startDate = moment(event.start).format('MMMM DD, YYYY');
+				$(info.el).attr('id', moment(event.start).format('YYYY-MM-DD')+'-'+event.extendedProps.type);
 				// var tooltip = new bootstrap.Popover(info.el, {
 				// 	title: startDate,
 				// 	content: info.event.extendedProps.description,
@@ -61,11 +68,26 @@
 				// 	html: true,
 				// 	// delay: {"show":0, "hide":1000}
 				// });
+
+				view = info.view;
+				var holidays = @this.holidays;
+				var holidayMoment;
+				for(var i = 0; i < holidays.length; i++) {				
+					holidayMoment = moment(holidays[i],'YYYY-MM-DD');
+						$("td[data-date=" + holidayMoment.format('YYYY-MM-DD') + "]").addClass('holiday');
+						$('#'+holidayMoment.format('YYYY-MM-DD')+'-general').hide()
+				}
+				var specificTimings = @this.specific;
+				var specificMoment;
+				for(var i = 0; i < specificTimings.length; i++) {				
+					specificMoment = moment(specificTimings[i],'YYYY-MM-DD');
+						$('#'+specificMoment.format('YYYY-MM-DD')+'-general').hide()
+				}
 			},
-			editable: true,
-			selectable: true,
+			//editable: true,
+			//selectable: true,
 			displayEventTime: false,
-			droppable: true, // this allows things to be dropped onto the calendar
+			//droppable: true, // this allows things to be dropped onto the calendar
 			drop: function(info) {
 				// is the "remove after drop" checkbox checked?
 				if (checkbox.checked) {
@@ -83,14 +105,19 @@
 				// 		}
 				// 	});
 				// }
-			}
+			},
+
 		});
 
 		calendar.render();
+		//updateCalendarData();
+
 		setTimeout(() => { window.dispatchEvent(new Event('resize')) }, 500)
 		@this.on('refreshCalendar', () => {
 			//calendar.refetchEvents()
 		});
+
+		
 	});
 </script>
 @endpush
