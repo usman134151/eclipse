@@ -8,6 +8,7 @@ use App\Services\OptService;
 ####END-OPT####
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Tenant\Helper\Helper;
+use App\Models\Tenant\BusinessSetup;
 use App\Models\Tenant\SystemRoleUser;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -28,11 +29,11 @@ class LoginController extends Controller
 	*/
 
 	use AuthenticatesUsers;
-
 	/** @override */
 	public function showLoginForm()
 	{
-		return view('tenant.auth.login');
+		$welcome_text=BusinessSetup::first()->welcome_text;
+		return view('tenant.auth.login',['welcome_text'=>$welcome_text]);
 	}
 
 	/**
@@ -100,12 +101,12 @@ class LoginController extends Controller
 				//saving permissions in session
 				$userPermissions=userPermissions();
 				Session::put('userPermissions', $userPermissions->toArray());
-				// $super_admin_user = SystemRoleUser::where('system_role_id', 1)->orderBy('id','asc')->first();
-				// if(auth()->user()->id==$super_admin_user->user_id){
-				// 	Session::put('isSuperAdmin', 1);
-				// }else{
-				// 	Session::put('isSuperAdmin', $super_admin_user);
-				// }
+				$super_admin_user = SystemRoleUser::where('system_role_id', 1)->where('user_id',auth()->user()->id)->orderBy('id','asc')->first();
+				if($super_admin_user){
+					Session::put('isSuperAdmin', 1);
+				}else{
+					Session::put('isSuperAdmin', $super_admin_user);
+				}
 
 				return redirect('home');
 			}
