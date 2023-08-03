@@ -121,6 +121,15 @@ class Calendar extends Component
 					$events[$key]['color'] = '#FFC107';
 
 			}
+			foreach ($schedule->holidays->toArray() as $holiday) {
+				$events[]['startTime'] = date_format(date_create($holiday['holiday_date']), "d/m/YYYY");
+				$events[]['allDay'] = true;
+				$events[]['title'] = ' Holiday'; 
+				$events[]['color'] = '#6C757D';
+				
+
+			}
+
 		}
 		return json_encode($events);
 
