@@ -189,7 +189,96 @@ class Calendar extends Component
 
       }
 
+	//   Handling events on backend. will need ajax request 
+	// public function getEvents(Request $request)
+	// {
+
+	// 	$user_id        = $this->model_id;
+	// 	$start          = date('Y-m-1');
+	// 	$end            = date('Y-m-t');
+	// 	$today          = Carbon::now()->toDateString();
+	// 	// if (!empty($request->start)) {
+	// 	// 	$start =     $request->start;
+	// 	// }
+	// 	// if (!empty($request->end)) {
+	// 	// 	$end =     $request->end;
+	// 	// }
+	// 	$startDate      = date('Y-m-d', strtotime($start));
+	// 	$endDate        = date('Y-m-d', strtotime($end));
+	// 	$weekdays       = Carbon::getDays();
+	// 	$schedule = Schedule::where('model_id', $this->model_id)->where('model_type', $this->model_type)->get()->first();
+	// 	$activeDays = json_decode($schedule->working_days, true);
+
+	// 	$generals = $schedule->timeslots;
+	// 	$eventData      = array();
+	// 	$i              = 1;
+	// 	for ($date = $startDate; $date <= $endDate;) {
+	// 		$dayNumber         = date("w", strtotime($date));
+	// 		$data              = array();
+	// 		$vacation          =  ProviderVacation::where('user_id', $user_id)->whereRaw("'$date'  Between  Date(from_date) AND Date(to_date)")->count();
+	// 		if ($vacation) {
+	// 			$date    = date("Y-m-d", strtotime("$date +1 day"));
+	// 			continue;
+	// 		}
+
+	// 		$specific          = ProviderSpecificSchedule::where(['user_id' => $user_id, 'scheduled_date' => $date]);
+
+	// 		if ($specific->count()) {
+	// 			foreach ($specific->get() as $event) {
+	// 				$data                   = array();
+	// 				$title                  = date_format(date_create($event->from_time), "h:i A") . " to " . date_format(date_create($event->to_time), "h:i A");
+	// 				$data['color']          = '#20c997';
+	// 				if ($date < $today) {
+	// 					$data['color']      = '#6c757d';
+	// 				}
+	// 				$data['id']             = $i;
+	// 				$data['start']          = $date;
+	// 				$data['end']            = $date;
+	// 				$data['title']          = $title;
+	// 				$data['description']    = 'description';
+	// 				array_push($eventData, $data);
+	// 				$i++;
+	// 			}
+	// 		} else {
+	// 			// $activeDays = json_decode($schedule->working_days, true);
+	// 			$day   =     $generals->where('timeslot_day', $weekdays[$dayNumber]);
+
+
+	// 			foreach ($day as $event) {
+	// 				$data                    = array();
+	// 				$title                   = date('h:i A', strtotime($event->timeslot_start_time)) . '-' . date('h:i A', strtotime($event->timeslot_end_time));
+
+	// 				if ($event->timeslot_type == 1)
+	// 					$data['color']          = '#008856';
+	// 				else
+	// 					$data['color']          = '#FFC107';
+
+	// 				if ($date < $today) {
+	// 					$data['color']      = '#6c757d';
+	// 				}
+	// 				if (!$activeDays[$event->timeslot_day])	//if day is inactive - set color gray
+	// 					$data['color'] = '#6C757D';
+
+	// 				$data['id']             = $i;
+	// 				$data['start']          = $date;
+	// 				$data['end']            = $date;
+	// 				$data['title']          = $title;
+	// 				$data['description']    = 'description';
+	// 				array_push($eventData, $data);
+	// 				$i++;
+	// 			}
+	// 		}
+
+	// 		$date    = date("Y-m-d", strtotime("$date +1 day"));
+	// 	}
+
+
+	// 	// dd($i);
+	// 	echo json_encode($eventData, JSON_UNESCAPED_UNICODE);
+	// }
 	}
+
+	
 
 
 	
