@@ -1,4 +1,4 @@
-$(document).ready(function() {
+jQuery(document).ready(function() {
     // Variables to store the selected places
     var billingPlace;
    
