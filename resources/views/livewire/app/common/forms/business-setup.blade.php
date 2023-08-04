@@ -182,11 +182,11 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-3 col-lg-6 mb-4 align-self-end ps-lg-5 profile-pic-div">
+                                            <div class="col-md-3 col-lg-6 mb-4 align-self-end ps-lg-5">
                                                 @if ($company_logo!=null)
-                                                    <img class="user_img "    src="{{ '/tenant'.tenant('id').'/app/livewire-tmp/'.$company_logo->getFilename() }}">
+                                                    <img class="user_img w-50"    src="{{ '/tenant'.tenant('id').'/app/livewire-tmp/'.$company_logo->getFilename() }}">
                                                 @else
-                                                    <img class="user_img "  src="{{$configuration->company_logo == null ? '' : url($configuration->company_logo) }}">
+                                                    <img class="user_img w-50"  src="{{$configuration->company_logo == null ? '' : url($configuration->company_logo) }}">
                                                 @endif
                                               
                                             </div>
@@ -211,11 +211,11 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-3 col-lg-6 mb-4 align-self-end ps-lg-5 profile-pic-div">
+                                            <div class="col-md-3 col-lg-6 mb-4 align-self-end ps-lg-5 ">
                                                 @if ($login_screen!=null)
-                                                    <img class="user_img "  src="{{ '/tenant'.tenant('id').'/app/livewire-tmp/'.$login_screen->getFilename() }}">
+                                                    <img class="user_img w-50"  src="{{ '/tenant'.tenant('id').'/app/livewire-tmp/'.$login_screen->getFilename() }}">
                                                 @else
-                                                    <img class="user_img "  src="{{$configuration->login_screen == null ? '' : url($configuration->login_screen) }}">
+                                                    <img class="user_img w-50"  src="{{$configuration->login_screen == null ? '' : url($configuration->login_screen) }}">
                                                 @endif
                                                 {{-- <img src="/html-prototype/images/company/help-desk.png" class="img-fluid"
                                                     alt="help-desk" /> --}}
