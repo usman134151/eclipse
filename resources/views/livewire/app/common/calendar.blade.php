@@ -18,7 +18,6 @@
 	{{-- End of update by Sohail Asghar --}}
 </div>
 @push('scripts')
-{{-- <script src='https://cdn.jsdelivr.net/npm/rrule@2.6.4/dist/es5/rrule.min.js'></script> --}}
 
 <script src="/tenant-resources/js/index.global.min.js"></script>
 <script src="/tenant-resources/js/bs-index.global.min.js"></script>
@@ -49,7 +48,6 @@
 			dayMaxEvents: true,	// allow "more" link when too many events
 			events: JSON.parse(data),
 			eventDisplay: 'block',
-			
 			eventDidMount: function(info) {
 
 				//$(info.el).attr('x-on:click', 'bookingDetails = true');
@@ -58,7 +56,8 @@
 				let event = info.event;
 
 				startDate = moment(event.start).format('MMMM DD, YYYY');
-				$(info.el).attr('data-date', moment(event.start).format('YYYY-MM-DD'));
+				let curr_date_moment = moment(event.start).format('YYYY-MM-DD');
+				$(info.el).attr('data-date', curr_date_moment);
 				// var tooltip = new bootstrap.Popover(info.el, {
 				// 	title: startDate,
 				// 	content: info.event.extendedProps.description,
@@ -68,23 +67,18 @@
 				// 	html: true,
 				// 	// delay: {"show":0, "hide":1000}
 				// });
-
-				view = info.view;
-				var holidays = @this.holidays;
-				var holidayMoment;
-				for(var i = 0; i < holidays.length; i++) {				
-					holidayMoment = moment(holidays[i],'YYYY-MM-DD');
-						$("td[data-date=" + holidayMoment.format('YYYY-MM-DD') + "]").addClass('holiday');
-						$('.general' , '[data-date='+ holidayMoment.format('YYYY-MM-DD') +']').hide();
-						$('.specific' , '[data-date='+ holidayMoment.format('YYYY-MM-DD') +']').hide();
+				if(event.extendedProps.type=='holiday'){
+					$("td[data-date=" + curr_date_moment + "]").addClass('holiday');
+					$('.general' , '[data-date='+ curr_date_moment +']').hide();
+					$('.specific' , '[data-date='+ curr_date_moment +']').hide();
 				}
-				var specificTimings = @this.specific;
-				var specificMoment;
-				for(var i = 0; i < specificTimings.length; i++) {				
-					specificMoment = moment(specificTimings[i],'YYYY-MM-DD');
-					$('.general' , '[data-date='+ specificMoment.format('YYYY-MM-DD') +']').hide();
+				if(event.extendedProps.type=='specific'){
+					$('.general' , '[data-date='+ curr_date_moment +']').hide();
 
 				}
+
+				
+				
 			},
 			//editable: true,
 			//selectable: true,
@@ -99,7 +93,7 @@
 			},
 			// eventDrop: info => @this.eventDrop(info.event, info.oldEvent),
 			loading: function(isLoading) {
-				// if (!isLoading) {
+				//	if (!isLoading) {
 				// 	// Reset custom events
 				// 	this.getEvents().forEach(function(e) {
 				// 		if (e.source === null) {
@@ -112,13 +106,11 @@
 		});
 
 		calendar.render();
-		//updateCalendarData();
 
 		setTimeout(() => { window.dispatchEvent(new Event('resize')) }, 500)
 		@this.on('refreshCalendar', () => {
 			//calendar.refetchEvents()
 		});
-
 		
 	});
 </script>

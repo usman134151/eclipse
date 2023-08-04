@@ -141,13 +141,14 @@ class Calendar extends Component
 				$events[$count]['title'] = 'Holiday';
 				$events[$count]['color'] = '#6C757D';
 				$events[$count]['rendering'] = 'background';
+				$events[$count]['extendedProps'] = ['type'=>'holiday'];
 				
 				$count++;
 			}
 			
 
 
-			$this->holidays = $schedule->holidays->pluck('holiday_date');
+			// $this->holidays = $schedule->holidays->pluck('holiday_date')->toArray();
 
 			$specifiSchedule = ProviderSpecificSchedule::where('user_id',$this->model_id)->whereRaw("scheduled_date BETWEEN (ADDDATE(CURDATE(), INTERVAL -1 YEAR)) AND  (ADDDATE(CURDATE(), INTERVAL 1 YEAR))")->get();
 			if(count($specifiSchedule)){
@@ -163,11 +164,12 @@ class Calendar extends Component
 					$events[$i]['start'] =  date_format(date_create($ss['scheduled_date']), "Y-m-d")." ". date_format(date_create($ss['from_time']), "H:i:s");
 					$events[$i]['end'] = date_format(date_create($ss['scheduled_date']), "Y-m-d") . " " . date_format(date_create($ss['to_time']), "H:i:s");
 					$events[$i]['color'] = '#20c997';
+					$events[$count]['extendedProps'] = ['type' => 'specific'];
 
 					$i++;
 				
 				}
-				$this->specific = $specifiSchedule->pluck('scheduled_date');
+				// $this->specific = $specifiSchedule->pluck('scheduled_date');
 			}
 		}
 		// dd($events);
