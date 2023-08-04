@@ -1,7 +1,7 @@
 @props([
 'type'=>''
 ])
-<div class="row">
+<div class="row" wire:ignore>
     <div class="col-lg-5 ps-lg-3 mb-5">
         <label class="form-label" for="service">Filter by Service</label>
         {!! App\Helpers\SetupHelper::createDropDown('ServiceCategory', 'id',
@@ -23,7 +23,7 @@
         </a>
     </div>
 </div>
-<div class="collapse" id="collapseAdvanceFilter">
+<div class="collapse" id="collapseAdvanceFilter" wire:ignore>
     <div class="col-lg-12">
         <div class="row">
             <div class="col-lg-5 ps-lg-3 mb-5">
