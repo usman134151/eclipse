@@ -58,7 +58,7 @@
 				let event = info.event;
 
 				startDate = moment(event.start).format('MMMM DD, YYYY');
-				$(info.el).attr('id', moment(event.start).format('YYYY-MM-DD')+'-'+event.extendedProps.type);
+				$(info.el).attr('data-date', moment(event.start).format('YYYY-MM-DD'));
 				// var tooltip = new bootstrap.Popover(info.el, {
 				// 	title: startDate,
 				// 	content: info.event.extendedProps.description,
@@ -75,13 +75,15 @@
 				for(var i = 0; i < holidays.length; i++) {				
 					holidayMoment = moment(holidays[i],'YYYY-MM-DD');
 						$("td[data-date=" + holidayMoment.format('YYYY-MM-DD') + "]").addClass('holiday');
-						$('#'+holidayMoment.format('YYYY-MM-DD')+'-general').hide()
+						$('.general' , '[data-date='+ holidayMoment.format('YYYY-MM-DD') +']').hide();
+						$('.specific' , '[data-date='+ holidayMoment.format('YYYY-MM-DD') +']').hide();
 				}
 				var specificTimings = @this.specific;
 				var specificMoment;
 				for(var i = 0; i < specificTimings.length; i++) {				
 					specificMoment = moment(specificTimings[i],'YYYY-MM-DD');
-						$('#'+specificMoment.format('YYYY-MM-DD')+'-general').hide()
+					$('.general' , '[data-date='+ specificMoment.format('YYYY-MM-DD') +']').hide();
+
 				}
 			},
 			//editable: true,

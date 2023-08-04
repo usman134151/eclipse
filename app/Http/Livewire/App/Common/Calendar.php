@@ -111,7 +111,7 @@ class Calendar extends Component
 			$daysOfWeek = ['Sunday'=>'0','Monday'=>'1','Tuesday'=>'2','Wednesday'=>'3','Thursday'=>'4','Friday'=>'5','Saturday'=>'6'];
 			$activeDays = json_decode($schedule->working_days,true);
 			foreach($schedule->timeslots->toArray() as $key=>  $timeslot){
-				$events[$key]['className'] = date_format(date_create($timeslot['timeslot_start_time']), "Y-m-d") . ' general'; 
+				$events[$key]['className'] = 'general'; 
 
 				$events[$key]['daysOfWeek'] = $daysOfWeek[$timeslot['timeslot_day']];	//recurring on week days
 				$events[$key]['startTime'] = date_format(date_create($timeslot['timeslot_start_time']), "H:i:s");
@@ -123,16 +123,13 @@ class Calendar extends Component
 				$events[$key]['color'] = '#198754';
 				else									//after hours
 					$events[$key]['color'] = '#FFC107';
-				// $events[$key]['overlap'] = false;
-
-
-				$events[$key]['extendedProps'] = ['type'=>'general']; 
 
 			}
+
 			$count = count($events);
+
 			foreach ($schedule->holidays->toArray() as  $holiday) {
-				$events[$count]['className'] = date_format(date_create($holiday['holiday_date']), "Y-m-d"). ' holiday fc-nonbusiness';
-				$events[$count]['id'] = date_format(date_create($holiday['holiday_date']), "Y-m-d");
+				$events[$count]['className'] =' holiday fc-nonbusiness';
 				$events[$count]['extendedProps'] = ['type'=>'holiday'];
 				$events[$count]['overlap'] = false;
 
@@ -145,20 +142,21 @@ class Calendar extends Component
 				$events[$count]['color'] = '#6C757D';
 				$events[$count]['rendering'] = 'background';
 				
-				
+				$count++;
 			}
 			
+
+
 			$this->holidays = $schedule->holidays->pluck('holiday_date');
 
 			$specifiSchedule = ProviderSpecificSchedule::where('user_id',$this->model_id)->whereRaw("scheduled_date BETWEEN (ADDDATE(CURDATE(), INTERVAL -1 YEAR)) AND  (ADDDATE(CURDATE(), INTERVAL 1 YEAR))")->get();
 			if(count($specifiSchedule)){
 				$i = count($events);
 				foreach($specifiSchedule->toArray() as  $ss){
-					$events[$i]['className'] = date_format(date_create($ss['scheduled_date']), "Y-m-d") . ' specific'; 
+					$events[$i]['className'] = ' specific'; 
 
 					$events[$i]['extendedProps'] = ['type' => 'specific'];
 					$events[$i]['overlap'] = false;
-					// $events[$i]['start'] = $ss['scheduled_date'];
 
 
 					$events[$i]['title'] = date_format(date_create($ss['from_time']), "h:i A") . " to " . date_format(date_create($ss['to_time']), "h:i A");
