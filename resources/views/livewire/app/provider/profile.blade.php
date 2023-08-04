@@ -1332,4 +1332,5 @@
             </div>
         </div>
     </div>
+    <script src="/tenant-resources/js/form-functions.js"></script>
 </div>

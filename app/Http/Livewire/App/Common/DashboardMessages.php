@@ -15,6 +15,7 @@ class DashboardMessages extends Component
     public function mount(){
         $messages=[];
         
+        
         if($this->displayTo=="login_screen"){
             $messages=AnnouncementMessage::where('on_log_in_screen',1)->get()->toArray();
         }else if($this->userType==1){

@@ -128,9 +128,14 @@ class AdminStaffForm extends Component
         $this->user->name=$this->user->first_name.' '.$this->user->last_name;
 		$this->user->added_by = Auth::id();
         $this->user->status=1;
-        $fileService = new UploadFileService();
-        $this->userdetail['profile_pic'] = $fileService->saveFile('profile_pic', $this->image, $this->userdetail['profile_pic']);
 
+
+        if ($this->image != null) {
+            $fileService = new UploadFileService();
+
+            $this->userdetail['profile_pic'] = $fileService->saveFile('profile_pic', $this->image, $this->userdetail['profile_pic']);
+        }
+        
 
 		$userService = new UserService;
        

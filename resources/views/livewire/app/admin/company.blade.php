@@ -214,7 +214,8 @@ Livewire.on('updateAddressType', (type) => {
             });
         
 </script>
-
-
+@if($showForm)
+	<script src="/tenant-resources/js/form-functions.js"></script>
+@endif
 
 @endpush
