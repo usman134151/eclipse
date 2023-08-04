@@ -634,6 +634,7 @@
     @include('panels.services.associate-customers')
    
     @include('panels.services.associated-service') 
+    
 </div>
 
 

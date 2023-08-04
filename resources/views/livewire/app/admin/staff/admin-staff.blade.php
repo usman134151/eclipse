@@ -97,5 +97,5 @@
         }
 		
     </script>
-	<script src="/tenant-resources/js/form-functions.js"></script>
+
 </div>

@@ -170,7 +170,8 @@ Livewire.on('updateAddressType', (type) => {
 				elem.dispatchEvent(clickEvent);
             });
 </script>
-
-
+@if ($showForm)
+	<script src="/tenant-resources/js/form-functions.js"></script>
+@endif
 
 @endpush
