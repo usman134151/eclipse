@@ -138,7 +138,7 @@ class Calendar extends Component
 
 
 
-				$events[$count]['start'] = $holiday['holiday_date'];
+				$events[$count]['start'] = date_format(date_create($holiday['holiday_date']), "Y-m-d");
 				
 				$events[$count]['allDay'] = true;
 				$events[$count]['title'] = 'Holiday';
