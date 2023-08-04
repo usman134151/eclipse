@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Tenant\Helper\Helper;
 use App\Models\Tenant\BusinessSetup;
 use App\Models\Tenant\SystemRoleUser;
+use App\Models\Tenant\RoleUser;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -101,7 +102,7 @@ class LoginController extends Controller
 				//saving permissions in session
 				$userPermissions=userPermissions();
 				Session::put('userPermissions', $userPermissions->toArray());
-				$super_admin_user = SystemRoleUser::where('system_role_id', 1)->where('user_id',auth()->user()->id)->orderBy('id','asc')->first();
+				$super_admin_user = RoleUser::where('role_id', 1)->where('user_id',auth()->user()->id)->orderBy('id','asc')->first();
 				if($super_admin_user){
 					Session::put('isSuperAdmin', 1);
 				}else{
