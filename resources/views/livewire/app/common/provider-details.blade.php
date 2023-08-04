@@ -1,4 +1,4 @@
-<div x-data="{ pendingCredentials: false, defaultAvailability: false, specificDateAvailability: false}">
+<div x-data="{ pendingCredentials: false, defaultAvailability: false, specificDateAvailability: false,timeOffSlots:false}">
 	 <div id="loader-section" class="loader-section" wire:loading>
         <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
             <div class="spinner-border" role="status" aria-live="polite">
@@ -2767,6 +2767,7 @@
 			 </div>
 			 @include('panels.common.default-availability')
 			 @include('panels.common.specific-date-availibility')
+			 @include('panels.common.time-off-panel')
 			 @include('panels.common.pending-credentials')
 			 @include('modals.common.add-address')
 			 @include('modals.mark-as-paid')
