@@ -33,8 +33,7 @@ class Role
 		{
 			return $next($request);
 		}
-		if($roleName=='staff') 
-		 	$roleName='admin';
+
 		return redirect('/'.$roleName.'/dashboard');
 	}
 }
