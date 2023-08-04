@@ -110,7 +110,7 @@
 		@stack('scripts')
 
 
-		<script src="/tenant-resources/js/form-functions.js"></script>
+		
 		<script src="/tenant-resources/js/select2-functions.js"></script>
 	</body>
 </html>

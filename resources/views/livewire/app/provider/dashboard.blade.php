@@ -24,6 +24,7 @@
 		</div>
 		</div>
 	</div>
+	@livewire('app.common.dashboard-messages', ['userType' => 3,'displayTo'=>'dashboard'])
 	<div class="row mb-5">
 		<ul class="d-grid grid-cols-6 gap-4 list-unstyled mb-5" id="myTab" role="tablist">
 		<li class="" role="presentation">

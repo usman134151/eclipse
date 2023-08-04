@@ -2,5 +2,5 @@
 
 @section('content')
 <h2>Submit Service Request </h2>
-@livewire('app.customer.booking.booknow')
+@livewire('app.common.bookings.booknow')
 @endsection

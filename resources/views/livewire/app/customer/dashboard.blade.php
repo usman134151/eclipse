@@ -25,6 +25,7 @@
             </div>
         </div>
     </div>
+    @livewire('app.common.dashboard-messages', ['userType' => 2,'displayTo'=>'dashboard'])
     <div class="row mb-5">
         <ul class="d-grid grid-cols-6 gap-4 list-unstyled mb-5" id="myTab" role="tablist">
             <li class="" role="presentation">
@@ -217,7 +218,7 @@
                             </div>
                         </div>
                     </div>
-                    @livewire('app.customer.booking.booknow')
+                    @livewire('app.common.bookings.booknow')
                 </div>
             </div>
             <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">

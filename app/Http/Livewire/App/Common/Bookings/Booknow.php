@@ -16,7 +16,7 @@ class Booknow extends Component
     public $showForm,$assignment,$requesters =[],$bManagers=[],$supervisors=[], $step=1 ;
     protected $listeners = ['showList' => 'resetForm','updateVal', 'updateCompany',
         'updateSelectedIndustries' => 'selectIndustries',
-        'updateSelectedDepartments' => 'selectDepartments',
+        'updateSelectedDepartments',
         'saveCustomFormData'=>'save' ,'switch'];
 
     public $dates=[[
@@ -109,7 +109,14 @@ class Booknow extends Component
 
     // update all dropdown values when company is changed
     public function updateCompany(){
-        $this->requesters = User::query()->where(['users.status' => 1])
+        $this->requesters = $this->getRequesters();
+
+        $this->supervisors = $this->getSupervisors();
+        $this->bManagers = $this->getbManagers();
+    }
+    
+    public function getRequesters(){
+       return User::query()->where(['users.status' => 1])
             ->whereHas('roles', function ($query) {
                 $query->where('role_id', 6);
             })
@@ -118,24 +125,82 @@ class Booknow extends Component
             ->where('companies.id', '=', $this->assignment['company_id'])
             ->select('users.id', 'users.name', 'phone', 'email')
             ->get();
-        $this->supervisors = User::query()->where(['users.status' => 1])
+    }
+
+    public function getSupervisors(){
+        return User::query()->where(['users.status' => 1])
+        ->whereHas('roles', function ($query) {
+            $query->where('role_id', 5);
+        })
+        ->leftJoin('user_details', 'user_details.user_id', '=', 'users.id')
+        ->leftJoin('companies', 'companies.id', '=', 'users.company_name')
+        ->where('companies.id', '=', $this->assignment['company_id'])
+        ->select('users.id', 'users.name', 'phone', 'email')
+        ->get();
+    }
+
+    public function getbManagers(){
+        return User::query()->where(['users.status' => 1])
+        ->whereHas('roles', function ($query) {
+            $query->where('role_id', 8);
+        })
+        ->leftJoin('user_details', 'user_details.user_id', '=', 'users.id')
+        ->leftJoin('companies', 'companies.id', '=', 'users.company_name')
+        ->where('companies.id', '=', $this->assignment['company_id'])
+        ->select('users.id', 'users.name', 'phone', 'email')
+        ->get();
+    }
+
+    public function updateUsers(){
+      //updating users related fields
+     
+        $departmentIds = array_column($this->selectedDepartments, 'department_id');
+
+        // Requesters
+        $this->requesters = User::query()
+            ->where(['users.status' => 1])
+            ->whereHas('roles', function ($query) {
+                $query->where('role_id', 6);
+            })
+            ->leftJoin('user_details', 'user_details.user_id', '=', 'users.id')
+            ->leftJoin('user_departments', 'user_departments.user_id', '=', 'users.id')
+            ->where('user_departments.department_id', '=', $departmentIds)
+            ->select('users.id', 'users.name', 'phone', 'email')
+            ->get();
+
+         if($this->requesters->count()==0){
+            $this->requesters = $this->getRequesters();
+         }   
+
+        // Supervisors
+        $this->supervisors = User::query()
+            ->where(['users.status' => 1])
             ->whereHas('roles', function ($query) {
                 $query->where('role_id', 5);
             })
             ->leftJoin('user_details', 'user_details.user_id', '=', 'users.id')
-            ->leftJoin('companies', 'companies.id', '=', 'users.company_name')
-            ->where('companies.id', '=', $this->assignment['company_id'])
+            ->leftJoin('user_departments', 'user_departments.user_id', '=', 'users.id')
+            ->where('user_departments.department_id', '=', $departmentIds)
             ->select('users.id', 'users.name', 'phone', 'email')
             ->get();
-        $this->bManagers = User::query()->where(['users.status' => 1])
+            if($this->supervisors->count()==0){
+                $this->supervisors =$this->getSupervisors();
+             }     
+
+        // BManagers
+        $this->bManagers = User::query()
+            ->where(['users.status' => 1])
             ->whereHas('roles', function ($query) {
                 $query->where('role_id', 8);
             })
             ->leftJoin('user_details', 'user_details.user_id', '=', 'users.id')
-            ->leftJoin('companies', 'companies.id', '=', 'users.company_name')
-            ->where('companies.id', '=', $this->assignment['company_id'])
+            ->leftJoin('user_departments', 'user_departments.user_id', '=', 'users.id')
+            ->where('user_departments.department_id', '=', $departmentIds)
             ->select('users.id', 'users.name', 'phone', 'email')
             ->get();
+            if($this->bManagers->count()==0){
+                $this->bManagers =  $this->getbManagers();
+             }       
     }
 
     function showForm()
@@ -219,12 +284,14 @@ class Booknow extends Component
         $this->industryNames = $industryNames;
         // $this->userdetail['industry'] = $defaultIndustry;
     }
-    public function selectDepartments($selectedDepartments, $defaultDepartment, $departmentNames)
+    public function updateSelectedDepartments($selectedDepartments, $defaultDepartment, $departmentNames)
     {
         //need to pass user to set values
         $this->selectedDepartments = $selectedDepartments;
         // $this->userdetail['department'] = $defaultDepartment;
         $this->departmentNames = $departmentNames;
+        $this->updateUsers();
+       
     }
 
     public function rules(){

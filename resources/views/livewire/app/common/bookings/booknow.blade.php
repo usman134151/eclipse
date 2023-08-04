@@ -6,7 +6,7 @@
                 <span class="visually-hidden">Loading...</span>
             </div>
           </div>
-    </div>
+</div>
     <!-- BEGIN: Content-->
     <div class="content-header row">
         <div class="content-header-left col-12 mb-2">
@@ -1985,10 +1985,15 @@
             </div>
         </div>
     </div>
+    @include('modals.common.add-address')
+@include('modals.common.add-industry')
+@include('modals.common.add-department')
+@include('modals.common.add-document')
+@include('modals.common.add-new-customer')
+@include('modals.common.assign-admin-staff')
+@include('modals.common.assign-admin-staff-team')
 </div>
-</div>
-<!-- End: Content-->
-</div>
+
 <!-- Modal Request from User -->
 <div class="modal fade" id="RequestfromUserModal" tabindex="-1" aria-labelledby="RequestfromUserModalLabel"
     aria-hidden="true">
@@ -2109,13 +2114,7 @@
 </div>
 
 <!-- /Modal Request from User -->
-@include('modals.common.add-address')
-@include('modals.common.add-industry')
-@include('modals.common.add-department')
-@include('modals.common.add-document')
-@include('modals.common.add-new-customer')
-@include('modals.common.assign-admin-staff')
-@include('modals.common.assign-admin-staff-team')
+
 
 @push('scripts')
 
@@ -2130,3 +2129,4 @@
 
 </script>
 @endpush
+    </div>

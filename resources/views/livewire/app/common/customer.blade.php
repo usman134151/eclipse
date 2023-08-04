@@ -164,6 +164,8 @@
 				var clickEvent = new Event("click");
 				elem.dispatchEvent(clickEvent);
             });
+			
 </script>
+<script src="/tenant-resources/js/form-functions.js"></script>
 @endpush
 </div>
