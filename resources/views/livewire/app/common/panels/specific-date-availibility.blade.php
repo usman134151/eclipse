@@ -8,7 +8,7 @@
                     </label>
                     <div class="position-relative">
                         <input type="" name="scheduled_date" class="form-control js-single-date"
-                            placeholder="MM/DD/YYYY" id="scheduled_date" wire:model.defer="timeslot.scheduled_date">
+                            placeholder="MM/DD/YYYY" id="scheduled_date" wire:model.defer="scheduled_date">
                         <svg aria-label="Date" class="icon-date" width="20" height="20" viewBox="0 0 20 20"
                             fill="none" xmlns="http://www.w3.org/2000/svg">
                             <use xlink:href="/css/provider.svg#date-field"></use>
@@ -128,7 +128,7 @@
                 <label class="form-label" for="notes">
                     Note
                 </label>
-                <textarea class="form-control" rows="4" wire:model.defer="timeslot.notes" id="notes"></textarea>
+                <textarea class="form-control" rows="4" wire:model.defer="notes" id="notes"></textarea>
             </div>
             <div>
                 <p>No Bookings Assigned from 11/02/2022 to 11/02/2022</p>
