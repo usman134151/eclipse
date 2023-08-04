@@ -47,7 +47,7 @@ class ScheduleService{
     public static function saveHoliday($holidayDate,$repeatYearly,$scheduleId){
         // Convert the provided date to a DateTime object
        
-        $date = Carbon::createFromFormat('d/m/Y', $holidayDate);
+        $date = Carbon::createFromFormat('m/d/Y', $holidayDate);
         // Convert the holiday date to MySQL-supported format (Y-m-d)
         $holidayDate = $date->format('Y-m-d');
             

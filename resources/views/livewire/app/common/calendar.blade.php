@@ -18,6 +18,7 @@
 	{{-- End of update by Sohail Asghar --}}
 </div>
 @push('scripts')
+
 <script src="/tenant-resources/js/index.global.min.js"></script>
 <script src="/tenant-resources/js/bs-index.global.min.js"></script>
 
@@ -29,6 +30,7 @@
 		var checkbox = document.getElementById('drop-remove');
 		var data =	@this.events;
 		var calendar = new Calendar(calendarEl, {
+			
 			themeSystem: 'bootstrap5',
 			headerToolbar: {
 				left: 'prev,next today',
@@ -47,11 +49,15 @@
 			events: JSON.parse(data),
 			eventDisplay: 'block',
 			eventDidMount: function(info) {
-				$(info.el).attr('x-on:click', 'bookingDetails = true');
+
+				//$(info.el).attr('x-on:click', 'bookingDetails = true');
 				$(info.el).attr('tabindex', '0');
 				// $(info.el).attr('data-id',info.event.id); // When off canvas panel will be dynamic
 				let event = info.event;
+
 				startDate = moment(event.start).format('MMMM DD, YYYY');
+				let curr_date_moment = moment(event.start).format('YYYY-MM-DD');
+				$(info.el).attr('data-date', curr_date_moment);
 				// var tooltip = new bootstrap.Popover(info.el, {
 				// 	title: startDate,
 				// 	content: info.event.extendedProps.description,
@@ -61,11 +67,27 @@
 				// 	html: true,
 				// 	// delay: {"show":0, "hide":1000}
 				// });
+				if(event.extendedProps.type=='holiday'){
+					$("td[data-date=" + curr_date_moment + "]").addClass('holiday');
+					$('.general' , '[data-date='+ curr_date_moment +']').hide();
+					$('.specific' , '[data-date='+ curr_date_moment +']').hide();
+				}
+				if(event.extendedProps.type=='specific'){
+					$('.general' , '[data-date='+ curr_date_moment +']').hide();
+
+				}
+				//if(event.extendedProps.type=='vacation'){
+				//	console.log('vacation', curr_date_moment);
+				//}
+
+
+				
+				
 			},
-			editable: true,
-			selectable: true,
+			//editable: true,
+			//selectable: true,
 			displayEventTime: false,
-			droppable: true, // this allows things to be dropped onto the calendar
+			//droppable: true, // this allows things to be dropped onto the calendar
 			drop: function(info) {
 				// is the "remove after drop" checkbox checked?
 				if (checkbox.checked) {
@@ -75,7 +97,7 @@
 			},
 			// eventDrop: info => @this.eventDrop(info.event, info.oldEvent),
 			loading: function(isLoading) {
-				// if (!isLoading) {
+				//	if (!isLoading) {
 				// 	// Reset custom events
 				// 	this.getEvents().forEach(function(e) {
 				// 		if (e.source === null) {
@@ -83,14 +105,23 @@
 				// 		}
 				// 	});
 				// }
-			}
+			},
+
 		});
 
 		calendar.render();
+
 		setTimeout(() => { window.dispatchEvent(new Event('resize')) }, 500)
 		@this.on('refreshCalendar', () => {
 			//calendar.refetchEvents()
 		});
+		
 	});
+	window.addEventListener('updateCalender', function(event) {
+		console.log('emit recieved');
+    		calendar.render();
+ 
+  });
+
 </script>
 @endpush

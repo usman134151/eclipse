@@ -39,6 +39,8 @@ class ProviderDetails extends Component
 		$this->emit('saveSchedule');
 		$this->emit('showConfirmation', "Availability has been saved successfully");
 		$this->dispatchBrowserEvent('close-default-schedule-modal');
+		$this->dispatchBrowserEvent('updateCalender');
+
 	}
 
 	// open panel in my-drive to upload credential 
