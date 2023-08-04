@@ -113,5 +113,11 @@
 		});
 		
 	});
+	window.addEventListener('updateCalender', function(event) {
+		console.log('emit recieved');
+    		calendar.render();
+ 
+  });
+
 </script>
 @endpush
