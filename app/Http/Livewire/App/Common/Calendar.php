@@ -140,7 +140,7 @@ class Calendar extends Component
 				
 				$events[$count]['allDay'] = true;
 				$events[$count]['title'] = 'Holiday';
-				$events[$count]['color'] = '#e5e5e5';
+				$events[$count]['color'] = '#d3d3d3';
 				$events[$count]['display'] = 'background';
 				$events[$count]['extendedProps'] = ['type'=>'holiday'];
 				

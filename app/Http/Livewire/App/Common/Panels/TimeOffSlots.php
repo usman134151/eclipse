@@ -42,10 +42,7 @@ class TimeOffSlots extends Component
                 'required',
                 'date_format:m/d/Y', 'after:slot.from_date'
             ],
-            // 'timeslot.from_time' => [
-            //     'required',],
-            // 'timeslot.to_time' => [
-            //     'required',],
+           
         ];
     }
 
