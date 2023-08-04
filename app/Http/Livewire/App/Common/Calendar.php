@@ -124,6 +124,8 @@ class Calendar extends Component
 				$events[$key]['color'] = '#198754';
 				else									//after hours
 					$events[$key]['color'] = '#FFC107';
+				$events[$key]['extendedProps'] = ['type' => 'general'];
+
 
 			}
 
@@ -142,49 +144,43 @@ class Calendar extends Component
 				$events[$count]['title'] = 'Holiday';
 				$events[$count]['color'] = '#d3d3d3';
 				$events[$count]['display'] = 'background';
-				$events[$count]['extendedProps'] = ['type'=>'holiday'];
 				
 				$count++;
 			}
 			
-
-
-
 			$specifiSchedule = ProviderSpecificSchedule::where('user_id',$this->model_id)->whereRaw("scheduled_date BETWEEN (ADDDATE(CURDATE(), INTERVAL -1 YEAR)) AND  (ADDDATE(CURDATE(), INTERVAL 1 YEAR))")->get();
 			if(count($specifiSchedule)){
-				$i = count($events);
+				$count = count($events);
 				foreach($specifiSchedule->toArray() as  $ss){
-					$events[$i]['className'] = ' specific'; 
+					$events[$count]['className'] = ' specific'; 
 
-					$events[$i]['extendedProps'] = ['type' => 'specific'];
-					$events[$i]['overlap'] = false;
+					$events[$count]['extendedProps'] = ['type' => 'specific'];
+					$events[$count]['overlap'] = false;
 
 
-					$events[$i]['title'] = date_format(date_create($ss['from_time']), "h:i A") . " to " . date_format(date_create($ss['to_time']), "h:i A");
-					$events[$i]['start'] =  date_format(date_create($ss['scheduled_date']), "Y-m-d")." ". date_format(date_create($ss['from_time']), "H:i:s");
-					$events[$i]['end'] = date_format(date_create($ss['scheduled_date']), "Y-m-d") . " " . date_format(date_create($ss['to_time']), "H:i:s");
-					$events[$i]['color'] = '#20c997';
+					$events[$count]['title'] = date_format(date_create($ss['from_time']), "h:i A") . " to " . date_format(date_create($ss['to_time']), "h:i A");
+					$events[$count]['start'] =  date_format(date_create($ss['scheduled_date']), "Y-m-d")." ". date_format(date_create($ss['from_time']), "H:i:s");
+					$events[$count]['end'] = date_format(date_create($ss['scheduled_date']), "Y-m-d") . " " . date_format(date_create($ss['to_time']), "H:i:s");
+					$events[$count]['color'] = '#20c997';
 
-					$i++;
-				
+					$count++;
 				}
 			}
 
 			$vacations = ProviderVacation::where('user_id', $this->model_id)->whereRaw("from_date BETWEEN (ADDDATE(CURDATE(), INTERVAL -1 YEAR)) AND  (ADDDATE(CURDATE(), INTERVAL 1 YEAR))")->get();
 			if (count($vacations)) {
-				$i = count($events);
+				$count = count($events);
 				foreach ($vacations->toArray() as  $vacation) {
-					$events[$i]['className'] = ' vacation';
+					$events[$count]['className'] = ' vacation';
 
-					$events[$i]['extendedProps'] = ['type' => 'vacation'];
-					$events[$i]['overlap'] = false;
-					$events[$i]['color'] = '#ffc6c4';
-
-					$events[$i]['title'] = $vacation['notes'];
-					$events[$i]['start'] =  date_format(date_create($vacation['from_date']), "Y-m-d");
-					$events[$i]['end'] = date_format(date_create($vacation['to_date']), "Y-m-d") ;
-					$events[$i]['display'] = 'background';
-					$i++;
+					$events[$count]['extendedProps'] = ['type' => 'vacation'];
+					$events[$count]['overlap'] = false;
+					$events[$count]['color'] = '#ffc6c4';
+					$events[$count]['title'] = $vacation['notes'];
+					$events[$count]['start'] =  date_format(date_create($vacation['from_date']), "Y-m-d");
+					$events[$count]['end'] = date_format(date_create($vacation['to_date']), "Y-m-d") ;
+					$events[$count]['display'] = 'background';
+					$count++;
 				}
 			}
 		}
