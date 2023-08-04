@@ -76,6 +76,10 @@
 					$('.general' , '[data-date='+ curr_date_moment +']').hide();
 
 				}
+				//if(event.extendedProps.type=='vacation'){
+				//	console.log('vacation', curr_date_moment);
+				//}
+
 
 				
 				

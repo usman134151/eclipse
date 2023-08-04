@@ -4,6 +4,7 @@ namespace App\Http\Livewire\App\Common;
 
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\ProviderSpecificSchedule;
+use App\Models\Tenant\ProviderVacation;
 use App\Models\Tenant\Schedule;
 use Livewire\Component;
 
@@ -129,7 +130,7 @@ class Calendar extends Component
 			$count = count($events);
 
 			foreach ($schedule->holidays->toArray() as  $holiday) {
-				$events[$count]['className'] =' holiday fc-nonbusiness';
+				$events[$count]['className'] =' holiday';
 				$events[$count]['extendedProps'] = ['type'=>'holiday'];
 				$events[$count]['overlap'] = false;
 
@@ -139,8 +140,8 @@ class Calendar extends Component
 				
 				$events[$count]['allDay'] = true;
 				$events[$count]['title'] = 'Holiday';
-				$events[$count]['color'] = '#6C757D';
-				$events[$count]['rendering'] = 'background';
+				$events[$count]['color'] = '#e5e5e5';
+				$events[$count]['display'] = 'background';
 				$events[$count]['extendedProps'] = ['type'=>'holiday'];
 				
 				$count++;
@@ -148,7 +149,6 @@ class Calendar extends Component
 			
 
 
-			// $this->holidays = $schedule->holidays->pluck('holiday_date')->toArray();
 
 			$specifiSchedule = ProviderSpecificSchedule::where('user_id',$this->model_id)->whereRaw("scheduled_date BETWEEN (ADDDATE(CURDATE(), INTERVAL -1 YEAR)) AND  (ADDDATE(CURDATE(), INTERVAL 1 YEAR))")->get();
 			if(count($specifiSchedule)){
@@ -164,12 +164,28 @@ class Calendar extends Component
 					$events[$i]['start'] =  date_format(date_create($ss['scheduled_date']), "Y-m-d")." ". date_format(date_create($ss['from_time']), "H:i:s");
 					$events[$i]['end'] = date_format(date_create($ss['scheduled_date']), "Y-m-d") . " " . date_format(date_create($ss['to_time']), "H:i:s");
 					$events[$i]['color'] = '#20c997';
-					$events[$count]['extendedProps'] = ['type' => 'specific'];
 
 					$i++;
 				
 				}
-				// $this->specific = $specifiSchedule->pluck('scheduled_date');
+			}
+
+			$vacations = ProviderVacation::where('user_id', $this->model_id)->whereRaw("from_date BETWEEN (ADDDATE(CURDATE(), INTERVAL -1 YEAR)) AND  (ADDDATE(CURDATE(), INTERVAL 1 YEAR))")->get();
+			if (count($vacations)) {
+				$i = count($events);
+				foreach ($vacations->toArray() as  $vacation) {
+					$events[$i]['className'] = ' vacation';
+
+					$events[$i]['extendedProps'] = ['type' => 'vacation'];
+					$events[$i]['overlap'] = false;
+					$events[$i]['color'] = '#ffc6c4';
+
+					$events[$i]['title'] = $vacation['notes'];
+					$events[$i]['start'] =  date_format(date_create($vacation['from_date']), "Y-m-d");
+					$events[$i]['end'] = date_format(date_create($vacation['to_date']), "Y-m-d") ;
+					$events[$i]['display'] = 'background';
+					$i++;
+				}
 			}
 		}
 		// dd($events);
