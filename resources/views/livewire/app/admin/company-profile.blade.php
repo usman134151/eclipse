@@ -283,7 +283,7 @@
                                                                             <p class="font-family-tertiary">
                                                                                      @foreach ($company['phones'] as $phone)
                                                                                         @if ($phone['phone_number'])
-                                                                                            <p>{{ $phone['phone_number'] }}</p>
+                                                                                            <p>{{ $phone['phone_title'] }} : {{ $phone['phone_number'] }}</p>
                                                                                              @else
                                                                                                  <p>N/A</p>
                                                                                          @endif

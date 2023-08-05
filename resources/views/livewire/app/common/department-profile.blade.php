@@ -208,7 +208,7 @@
 																			<p class="font-family-tertiary">
 																			@foreach($department->phones as $phone)
 																					@if($phone->phone_number)
-																					{{$phone->phone_number}}
+																					<p>{{$phone->phone_title}} : {{$phone->phone_number}}<p>
 																					@else
 																					N/A
 																					@endif
