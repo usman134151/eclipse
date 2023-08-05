@@ -149,8 +149,8 @@ class DepartmentForm extends Component
 			'department.language_id' => 'nullable',
 			'department.company_phones.*' => 'nullable',
 			'department.hide_details' => 'nullable',
-			'department.department_service_start_date' => 'nullable|date_format:m/d/Y',
-			'department.department_service_end_date' => 'nullable|date_format:m/d/Y',
+			'department.department_service_start_date' => 'nullable|date|date_format:m/d/Y',
+			'department.department_service_end_date' => 'nullable|date|date_format:m/d/Y',
 			'image' => 'nullable|image|mimes:jpg,png,jpeg',
 
 		];
@@ -167,7 +167,6 @@ class DepartmentForm extends Component
 
 		$this->department->favored_providers = implode(', ', $this->fv);
 		$this->department->unfavored_providers = implode(', ', $this->unfv);
-
 		if(($this->department->company_phones!=null)&&count($this->department->company_phones))
 			$this->department->company_phones = implode(', ', $this->department->company_phones);
 
@@ -191,6 +190,11 @@ class DepartmentForm extends Component
 			$this->department = new Department;
 
 		} else {
+			if ($this->department->department_service_start_date)
+				$this->department->department_service_start_date = Carbon::parse( $this->department->department_service_start_date)->format('m/d/Y');
+			if ($this->department->department_service_end_date)
+			$this->department->department_service_end_date = Carbon::parse($this->department->department_service_end_date)->format('m/d/Y');
+
 			$this->getCompanySchedule();
 			if ($this->department->get('company_phones') != null)
 				$this->department->company_phones = explode(', ', $this->department->company_phones);
@@ -277,6 +281,13 @@ class DepartmentForm extends Component
 		// loading schedule on back button
 		if($this->step==2)
 			$this->getCompanySchedule();
+		
+		if($this->step==1){
+			if ($this->department->department_service_start_date)
+				$this->department->department_service_start_date = Carbon::parse($this->department->department_service_start_date)->format('m/d/Y');
+			if ($this->department->department_service_end_date)
+				$this->department->department_service_end_date = Carbon::parse($this->department->department_service_end_date)->format('m/d/Y');
+		}
 			
 		$this->dispatchBrowserEvent('refreshSelects');
 	}

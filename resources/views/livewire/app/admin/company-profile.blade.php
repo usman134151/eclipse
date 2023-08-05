@@ -283,7 +283,7 @@
                                                                             <p class="font-family-tertiary">
                                                                                      @foreach ($company['phones'] as $phone)
                                                                                         @if ($phone['phone_number'])
-                                                                                            <p>{{ $phone['phone_number'] }}</p>
+                                                                                            <p>{{ $phone['phone_title'] }} : {{ $phone['phone_number'] }}</p>
                                                                                              @else
                                                                                                  <p>N/A</p>
                                                                                          @endif
@@ -515,97 +515,64 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="col-md-6">  
+
                                                 <div class="row" id="table-hover-row">
                                                     <div class="col-12">
                                                         <div class="mb-2">
-                                                            <small>(coming soon)</small>
                                                             <h2>Business Hours</h2>
                                                             
                                                         </div>
+
                                                         <div class="card">
-                                                            <div class="table-responsive">
-                                                                <table id="unassigned_data" class="table table-hover"
-                                                                    aria-label="Business Hours">
-                                                                    <thead>
-                                                                        <tr role="row">
-                                                                            <th scope="col">Days</th>
-                                                                            <th scope="col">
-                                                                                Business Hours
-                                                                            </th>
-                                                                            <th scope="col">
-                                                                                After Business Hours
-                                                                            </th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr role="row" class="odd">
-                                                                            <td>Monday</td>
-                                                                            <td>
-                                                                                09 : 00 AM To 06 : 00 PM
-                                                                            </td>
-                                                                            <td>
-                                                                                06 : 00 PM To 10 : 00 PM
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr role="row" class="even">
-                                                                            <td>Tuesday</td>
-                                                                            <td>
-                                                                                09 : 00 AM To 06 : 00 PM
-                                                                            </td>
-                                                                            <td>
-                                                                                06 : 00 PM To 10 : 00 PM
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr role="row" class="odd">
-                                                                            <td>Wednesday</td>
-                                                                            <td>
-                                                                                09 : 00 AM To 06 : 00 PM
-                                                                            </td>
-                                                                            <td>
-                                                                                06 : 00 PM To 10 : 00 PM
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr role="row" class="even">
-                                                                            <td>Thursday</td>
-                                                                            <td>
-                                                                                09 : 00 AM To 06 : 00 PM
-                                                                            </td>
-                                                                            <td>
-                                                                                06 : 00 PM To 10 : 00 PM
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr role="row" class="odd">
-                                                                            <td>Friday</td>
-                                                                            <td>
-                                                                                09 : 00 AM To 06 : 00 PM
-                                                                            </td>
-                                                                            <td>
-                                                                                06 : 00 PM To 10 : 00 PM
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr role="row" class="even">
-                                                                            <td>Saturday</td>
-                                                                            <td>
-                                                                                09 : 00 AM To 06 : 00 PM
-                                                                            </td>
-                                                                            <td>
-                                                                                06 : 00 PM To 10 : 00 PM
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr role="row" class="odd">
-                                                                            <td>Sunday</td>
-                                                                            <td>
-                                                                                09 : 00 AM To 06 : 00 PM
-                                                                            </td>
-                                                                            <td>
-                                                                                06 : 00 PM To 10 : 00 PM
-                                                                            </td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
+                                                            @isset($company['schedule'])
+
+                                                                <div class="table-responsive">
+                                                                    <table id="unassigned_data" class="table table-hover"
+                                                                        aria-label="Business Hours">
+                                                                        <thead>
+                                                                            <tr role="row">
+                                                                                <th scope="col">Days</th>
+                                                                                <th scope="col">
+                                                                                    Business Hours
+                                                                                </th>
+                                                                                <th scope="col">
+                                                                                    After Business Hours
+                                                                                </th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            @foreach($company['schedule'] as $key=> $timeslot)
+                                                                                <tr role="row" class="odd">
+                                                                                    <td>{{$key}}</td>
+                                                                                    @foreach($timeslot as  $slot)
+                                                                                        @if($slot['timeslot_type'] == 2 && count($timeslot)==1)
+                                                                                            <td></td>
+                                                                                        
+                                                                                        @endif
+                                                                                            <td>
+                                                                                                    {{date('h:i A', strtotime($slot['timeslot_start_time'])) . ' to ' . date('h:i A', strtotime($slot['timeslot_end_time']))}}
+
+                                                                                            </td>
+                                                                                        @if($slot['timeslot_type'] == 1 && count($timeslot)==1)
+                                                                                            <td></td>
+                                                                                        
+                                                                                        @endif
+                                                                                        
+                                                                                        
+
+                                                                                    @endforeach
+                                                                                </tr>
+                                                                            @endforeach
+                                                                        
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            @else
+                                                                <small>Business Hours have not be setup.</small>
+                                                            @endif
                                                         </div>
+                                                        
                                                     </div>
                                                 </div>
                                                 <div class="row">

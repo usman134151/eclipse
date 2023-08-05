@@ -1,5 +1,5 @@
 <div x-data="{ bookingDetails: false }"> {{-- Updated by Sohail Asghar to link bookings detail panel --}}
-	<div id='calendar-container' class="w-100">
+	<div wire:ignore id='calendar-container' class="w-100">
 		<div id='calendar'></div>
 	</div>
 	{{-- Updated by Sohail Asghar to link bookings detail panel --}}
@@ -67,22 +67,6 @@
 				// 	html: true,
 				// 	// delay: {"show":0, "hide":1000}
 				// });
-				if(event.extendedProps.type=='holiday'){
-					$("td[data-date=" + curr_date_moment + "]").addClass('holiday');
-					$('.general' , '[data-date='+ curr_date_moment +']').hide();
-					$('.specific' , '[data-date='+ curr_date_moment +']').hide();
-				}
-				if(event.extendedProps.type=='specific'){
-					$('.general' , '[data-date='+ curr_date_moment +']').hide();
-
-				}
-				//if(event.extendedProps.type=='vacation'){
-				//	console.log('vacation', curr_date_moment);
-				//}
-
-
-				
-				
 			},
 			//editable: true,
 			//selectable: true,
@@ -115,13 +99,24 @@
 		@this.on('refreshCalendar', () => {
 			//calendar.refetchEvents()
 		});
+		calendar.on('dateClick', function (info)
+ 		{
+                // You can handle date clicks here if needed
+            });
+
+            calendar.on('datesSet', function (info)
+ 			{
+                // Refresh events whenever the month changes
+                @this.call('refreshEvents', info.view.currentStart.toISOString().slice(0, 7));
+				  calendar.removeAllEvents();
+    				calendar.removeAllEventSources();
+					var data = JSON.parse(@this.events);
+					calendar.addEventSource( data);
+            });
+        
 		
 	});
-	window.addEventListener('updateCalender', function(event) {
-		console.log('emit recieved');
-    		calendar.render();
- 
-  });
+	 		
 
 </script>
 @endpush
