@@ -700,7 +700,7 @@
                                                                                             type="radio"
                                                                                             name="ProviderType"
                                                                                             id="ContractProviderType" value="contract_provider"
-                                                                                            wire:model.defer="userdetail.provider_type">
+                                                                                            wire:model="userdetail.provider_type" wire:click="setRate">
                                                                                         <label class="form-check-label"
                                                                                             for="ContractProviderType">
                                                                                             Contract Provider
