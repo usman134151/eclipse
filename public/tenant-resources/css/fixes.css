@@ -9,3 +9,20 @@
 .profile-pic-div img{
     max-width:100%
 }
+
+div .icon-arrow-right, div .heading-arrow {
+    transition: all 0.2s ease-in-out;
+}
+
+tr[data-bs-toggle="collapse"][aria-expanded="true"] .icon-arrow-right ,tr[data-bs-toggle="collapse"][aria-expanded="true"] .heading-arrow {
+    transform: rotate(90deg);
+}
+
+div .icon-arrow-bottom, div .heading-arrow {
+    transition: all 0.2s ease-in-out;
+}
+
+tr[data-bs-toggle="collapse"][aria-expanded="true"] .icon-arrow-bottom , tr[data-bs-toggle="collapse"][aria-expanded="true"] .heading-arrow {
+    transform: rotate(180deg);
+}
+

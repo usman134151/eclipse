@@ -554,7 +554,11 @@
                                                                         <table id="" class="table table-hover"
                                                                             aria-label="{{$accom[0]['accommodation_name']}}">
                                                                             <thead>
-                                                                                <tr role="row">
+                                                                                <tr role="row" aria-expanded="false"
+                                                                                            data-bs-toggle="collapse"
+                                                                                            href="#collapse{{$accom[0]['accommodation_id']}}"
+                                                                                            role="button" aria-expanded="false"
+                                                                                            aria-controls="collapse{{$accom[0]['accommodation_id']}}" >
                                                                                     <th class="align-middle text-nowrap " style="width:70%" 
                                                                                         scope="col">
                                                                                         {{$accom[0]['accommodation_name']}}
@@ -565,14 +569,10 @@
                                                                                     </th>
                                                                                     <th class="text-end align-middle"
                                                                                         scope="col">
-                                                                                        <div aria-expanded="false"
-                                                                                            data-bs-toggle="collapse"
-                                                                                            href="#collapse{{$accom[0]['accommodation_id']}}"
-                                                                                            role="button" aria-expanded="false"
-                                                                                            aria-controls="collapse{{$accom[0]['accommodation_id']}}">
+                                                                                        <div >
                                                                                             {{-- Updated by Shanila to Add svg
                                                                                             icon--}}
-                                                                                            <svg aria-label="collapse"
+                                                                                            <svg aria-label="collapse" class="heading-arrow"
                                                                                                 width="26" height="13"
                                                                                                 viewBox="0 0 26 13">
                                                                                                 <use
