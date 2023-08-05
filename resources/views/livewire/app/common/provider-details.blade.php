@@ -587,14 +587,14 @@
 														@if(count($accommodation))
 															<table id="" class="table table-hover" aria-label="Accommodations and Services Table">
 																<thead>
-																	<tr role="row">
+																	<tr role="row" aria-expanded="false" data-bs-toggle="collapse" href="#collapse{{ $accommodation[0]['accommodation_id']}}" role="button" aria-controls="collapse{{ $accommodation[0]['accommodation_id']}}">
 																			<th class="align-middle text-nowrap" scope="col">{{$accommodation[0]['accommodation_name']}}</th>
 																			<th class="text-end align-middle" scope="col">
 																			{{-- Service Rate --}}
 																			</th>
 																			<th class="text-end align-middle col-3" scope="col">
-																			<div aria-expanded="false" data-bs-toggle="collapse" href="#collapse{{ $accommodation[0]['accommodation_id']}}" role="button" aria-controls="collapse{{ $accommodation[0]['accommodation_id']}}">
-																				<svg class="me-4" width="26" height="13" viewBox="0 0 26 13">
+																			<div >
+																				<svg class="me-4 heading-arrow" width="26" height="13" viewBox="0 0 26 13">
 																					<use xlink:href="/css/common-icons.svg#lower-arrow-head"></use>
 																				</svg>
 																			</div>
@@ -607,7 +607,7 @@
 																	<tbody>
 																		@foreach($accommodation as $service)
 																		<table id="" class="table table-hove" >
-																		<tr role="row">
+																		<tr role="row" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#accomodation-{{$service['service_id']}}" aria-controls="accomodation-{{$service['service_id']}}">
 																			<th class="align-middle ">
 																				<p class="text-sm">{{$service['service_name']}}</p>
 																			</th>
@@ -638,9 +638,9 @@
 																			</th>
 																			<th   style="width:50px">
 																			
-																						<div class="mb-3 fw-semibold" data-bs-toggle="collapse" type="button"
-																							data-bs-target="#accomodation-{{$service['service_id']}}" aria-expanded="false"
-																							aria-controls="accomodation-{{$service['service_id']}}">
+																						<div class="mb-3 fw-semibold"  type="button"
+																							 
+																							>
 																							<svg aria-label="Service" class="icon-arrow-bottom me-1" width="25" height="13" viewBox="0 0 25 13"fill="none"
 																									xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#grey-upper-arrow"></use>
 																						</svg>

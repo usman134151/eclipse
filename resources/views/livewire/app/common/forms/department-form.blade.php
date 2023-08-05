@@ -191,6 +191,11 @@
                                                                     class="form-control" name="department-website"
                                                                     placeholder="Enter Website URL" required
                                                                     aria-required="true" wire:model.defer="department.department_website"/>
+                                                                    @error('department.department_website')
+                                                                <span class="d-inline-block invalid-feedback mt-2">
+                                                                    {{ $message }}
+                                                                </span>
+                                                                @enderror
                                                     </div>
                                                 </div>
 
@@ -410,9 +415,9 @@
                                                                     <label class="form-label" for="service-name">
                                                                         Company Phone Number
                                                                     </label>
-                                                                    @foreach($companyPhones as $phone)
+                                                                    @foreach($companyPhones as $index=> $phone)
                                                                     <div class="form-check">
-                                                                        <input class="form-check-input" wire:key='{{$phone['id']}}' wire:model.defer="department.company_phones"
+                                                                        <input class="form-check-input" wire:key='{{$phone['id']}}' wire:model.defer="department.company_phones.{{$index}}"
                                                                             id="{{$phone['id']}}"  value="{{$phone['id']}}"
                                                                             type="checkbox"
                                                                             tabindex="" />
