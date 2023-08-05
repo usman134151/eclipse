@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\App\Common;
 
 use App\Models\Tenant\Department;
+use App\Models\Tenant\Schedule;
 use Livewire\Component;
 
 class DepartmentProfile extends Component
@@ -58,6 +59,11 @@ class DepartmentProfile extends Component
 	public function showDepartmentDetails($department){
 		$this->department=$department;
 		$this->department['tags'] = json_decode($this->department->tags);
+		$schedule =  Schedule::where(['model_id' => $department->id, 'model_type' => 4])->first();
+		if ($schedule){
+			$days = ["Monday" => 1, "Tuesday" => 2, "Wednesday" => 3, "Thursday" => 4, "Friday" => 5, "Saturday" => 6, "Sunday" => 7];
+
+			$this->department['schedule'] = $schedule->timeslots->groupBy('timeslot_day')->sortBy(fn ($val, $key) => $days[$key])->toArray();}
 		
         $this->dispatchBrowserEvent('refreshSelects');
 
