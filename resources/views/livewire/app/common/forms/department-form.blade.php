@@ -410,9 +410,9 @@
                                                                     <label class="form-label" for="service-name">
                                                                         Company Phone Number
                                                                     </label>
-                                                                    @foreach($companyPhones as $phone)
+                                                                    @foreach($companyPhones as $index=> $phone)
                                                                     <div class="form-check">
-                                                                        <input class="form-check-input" wire:key='{{$phone['id']}}' wire:model.defer="department.company_phones"
+                                                                        <input class="form-check-input" wire:key='{{$phone['id']}}' wire:model.defer="department.company_phones.{{$index}}"
                                                                             id="{{$phone['id']}}"  value="{{$phone['id']}}"
                                                                             type="checkbox"
                                                                             tabindex="" />

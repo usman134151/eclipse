@@ -89,6 +89,9 @@ final class Companies extends PowerGridComponent
 	{
 		return PowerGrid::eloquent()
 			->addColumn('name')
+			->addColumn('displayname', function (Company $model) {
+				return "<a href='". route('tenant.company-profile', ['companyID' => encrypt($model->id)])."'>".$model->name."</a>";
+			})
 			->addColumn('phone', function (Company $model) {
 			    if(count($model->phones)){
 
@@ -146,11 +149,12 @@ final class Companies extends PowerGridComponent
 	public function columns(): array
 	{
 		return [
-			Column::make('Name', 'name')
+			Column::make('Name', 'displayname')
+				->field('displayname','companies.name')
 				->searchable()
 				->makeinputtext()
-				->sortable()
-				->editOnClick(),
+				->sortable(),
+				// ->editOnClick()
 			Column::make('Phone Number', 'phone'),
 			Column::make('Total Departments', 'departments'),
 			Column::make('Company User', 'users'),

@@ -21,7 +21,7 @@ use Livewire\WithFileUploads;
 class ProviderForm extends Component
 {
     use WithFileUploads;
-    public $user, $userid,$isAdd=true,$image=null, $teamNames=[],$label="Add", $allTags = [], $tags = [];
+    public $user, $userid, $isAdd = true, $image = null, $teamNames = [], $label = "Add", $allTags = [], $tags = [];
     public $ethnicity;
     public $timezone;
     public $gender;
@@ -30,138 +30,141 @@ class ProviderForm extends Component
 
     public $documentActive, $serviceActive, $scheduleActive, $profileActive;
     public $schedule;
-	public $component = 'profile';
-    public $userdetail=['gender_id','country'=>"",'timezone_id','ethnicity_id','title','address_line1'=>"",'address_line2'=>"",'zip','permission','city'=>"",'payment_settings',
-    'state'=>"",'phone','education','note','user_introduction','user_experience','certificate','profile_pic'=>null, 'user_introduction_file' => null,'provider_type'=>null];
-    
+    public $component = 'profile';
+    public $userdetail = [
+        'gender_id', 'country' => "", 'timezone_id', 'ethnicity_id', 'title', 'address_line1' => "", 'address_line2' => "", 'zip', 'permission', 'city' => "", 'payment_settings',
+        'state' => "", 'phone', 'education', 'note', 'user_introduction', 'user_experience', 'certificate', 'profile_pic' => null, 'user_introduction_file' => null, 'provider_type' => null
+    ];
+
     public $setupValues = [
-        'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'userdetail.language_id', '','language_id',0]],
-        'ethnicities' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 3, 'setup_value_label', false,'userdetail.ethnicity_id','','ethnicity_id',1]],
-        'gender' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 2, 'setup_value_label', false,'userdetail.gender_id','','gender_id',2]],
-        'timezones' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 4, 'setup_value_label', false,'userdetail.timezone_id','','timezone_id',3]],
-        'countries' => ['parameters' => ['Country', 'name', 'name', '', '', 'name', false, 'userdetail.country','','country',4]],
+        'languages' => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 1, 'setup_value_label', false, 'userdetail.language_id', '', 'language_id', 0]],
+        'ethnicities' => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 3, 'setup_value_label', false, 'userdetail.ethnicity_id', '', 'ethnicity_id', 1]],
+        'gender' => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 2, 'setup_value_label', false, 'userdetail.gender_id', '', 'gender_id', 2]],
+        'timezones' => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 4, 'setup_value_label', false, 'userdetail.timezone_id', '', 'timezone_id', 3]],
+        'countries' => ['parameters' => ['Country', 'name', 'name', '', '', 'name', false, 'userdetail.country', '', 'country', 4]],
         'certifications' => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 8, 'setup_value_label', true, 'userdetail.certification', '', 'certification', 5]],
     ];
 
-      
-    public $inpersons=[[
-        'hours'=>'',
-        'charges'=>'',
-        'duration'=>'',
-        'exclude_after_hours'=>'',
-        'exclude_closed_hours'=>''
+
+    public $inpersons = [[
+        'hours' => '',
+        'charges' => '',
+        'duration' => '',
+        'exclude_after_hours' => '',
+        'exclude_closed_hours' => ''
 
     ]];
-    public $invirtuals=[[
-        'hours'=>'',
-        'charges'=>'',
-        'duration'=>'',
-        'exclude_after_hours'=>'',
-        'exclude_closed_hours'=>''
+    public $invirtuals = [[
+        'hours' => '',
+        'charges' => '',
+        'duration' => '',
+        'exclude_after_hours' => '',
+        'exclude_closed_hours' => ''
 
     ]];
-    public $phones=[[
-        'hours'=>'',
-        'charges'=>'',
-        'duration'=>'',
-        'exclude_after_hours'=>'',
-        'exclude_closed_hours'=>''
+    public $phones = [[
+        'hours' => '',
+        'charges' => '',
+        'duration' => '',
+        'exclude_after_hours' => '',
+        'exclude_closed_hours' => ''
 
     ]];
-    public $teleconfrences=[[
-        'hours'=>'',
-        'charges'=>'',
-        'duration'=>'',
-        'exclude_after_hours'=>'',
-        'exclude_closed_hours'=>''
+    public $teleconfrences = [[
+        'hours' => '',
+        'charges' => '',
+        'duration' => '',
+        'exclude_after_hours' => '',
+        'exclude_closed_hours' => ''
 
     ]];
-    public $scheduled_inpersons=[[
-        'hours'=>'',
-        'charges'=>'',
-        'cancellations'=>'',
-        'exclude-after-hours'=>'',
-        'modification'=>'',
-        'exclude_closed_hours'=>'',
-        'rescheduling'=>'',
-        'bill_service_minimum'=>'',
-        'duration'=>'',
+    public $scheduled_inpersons = [[
+        'hours' => '',
+        'charges' => '',
+        'cancellations' => '',
+        'exclude-after-hours' => '',
+        'modification' => '',
+        'exclude_closed_hours' => '',
+        'rescheduling' => '',
+        'bill_service_minimum' => '',
+        'duration' => '',
 
     ]];
-    public $scheduled_virtules=[[
-        'hours'=>'',
-        'charges'=>'',
-        'cancellations'=>'',
-        'exclude-after-hours'=>'',
-        'modification'=>'',
-        'exclude_closed_hours'=>'',
-        'rescheduling'=>'',
-        'bill_service_minimum'=>'',
-        'duration'=>'',
+    public $scheduled_virtules = [[
+        'hours' => '',
+        'charges' => '',
+        'cancellations' => '',
+        'exclude-after-hours' => '',
+        'modification' => '',
+        'exclude_closed_hours' => '',
+        'rescheduling' => '',
+        'bill_service_minimum' => '',
+        'duration' => '',
 
     ]];
-    public $scheduled_phones=[[
-        'hours'=>'',
-        'charges'=>'',
-        'cancellations'=>'',
-        'exclude-after-hours'=>'',
-        'modification'=>'',
-        'exclude_closed_hours'=>'',
-        'rescheduling'=>'',
-        'bill_service_minimum'=>'',
-        'duration'=>'',
+    public $scheduled_phones = [[
+        'hours' => '',
+        'charges' => '',
+        'cancellations' => '',
+        'exclude-after-hours' => '',
+        'modification' => '',
+        'exclude_closed_hours' => '',
+        'rescheduling' => '',
+        'bill_service_minimum' => '',
+        'duration' => '',
 
     ]];
-    public $scheduled_teleconfrences=[[
-        'hours'=>'',
-        'charges'=>'',
-        'cancellations'=>'',
-        'exclude-after-hours'=>'',
-        'modification'=>'',
-        'exclude_closed_hours'=>'',
-        'rescheduling'=>'',
-        'bill_service_minimum'=>'',
-        'duration'=>'',
+    public $scheduled_teleconfrences = [[
+        'hours' => '',
+        'charges' => '',
+        'cancellations' => '',
+        'exclude-after-hours' => '',
+        'modification' => '',
+        'exclude_closed_hours' => '',
+        'rescheduling' => '',
+        'bill_service_minimum' => '',
+        'duration' => '',
 
     ]];
-    public $speclizations=[[
-        'in_person'=>'',
-        'virtual'=>'',
-        'phone'=>'',
-        'teleconference'=>'',
-        'hide_from_customers'=>'',
-        'hide_from_providers'=>"",
-        'duration'=>''
+    public $speclizations = [[
+        'in_person' => '',
+        'virtual' => '',
+        'phone' => '',
+        'teleconference' => '',
+        'hide_from_customers' => '',
+        'hide_from_providers' => "",
+        'duration' => ''
     ]];
-   public $step = 1,$email_invitation;
-   protected $listeners = [
-    'updateVal' => 'updateVal',
-    'editRecord' => 'edit', 'stepIncremented',
+    public $step = 1, $email_invitation;
+    protected $listeners = [
+        'updateVal' => 'updateVal',
+        'editRecord' => 'edit', 'stepIncremented',
         'updateSelectedTeams',
         'OpenProviderCredential', //for upload panel
         'openActiveCredentialModal',    //for document view modal
         'viewCredentialModal'
     ];
     public $providers;
-    public $selectedTeams =[], $media_file=null, $provider_details=['set_rate'=>'no', 'staff_provider_rate_type'=>'per_hour_rate', 'show_as_certified'=>false];
-	public function render()
-	{
+    public $selectedTeams = [], $media_file = null, $provider_details = ['set_rate' => 'no', 'staff_provider_rate_type' => 'per_hour_rate', 'show_as_certified' => false];
+    public function render()
+    {
 
-       
+
         //null check to avoid break
         if (!is_array($this->tags))
             $this->tags = [];
-            
+
         $roles = SystemRole::get();
-		return view('livewire.app.common.forms.provider-form',[
+        return view('livewire.app.common.forms.provider-form', [
             'roles' => $roles
         ]);
-	}
-    public function mount(User $user){
-       
-       
-        $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
-        $this->user=$user;
+    }
+    public function mount(User $user)
+    {
+
+
+        $this->setupValues = SetupHelper::loadSetupValues($this->setupValues);
+        $this->user = $user;
 
         // initialization 
         $this->userdetail['certification'] = [];
@@ -170,11 +173,12 @@ class ProviderForm extends Component
         $this->allTags = Tag::pluck('name')->toArray();
 
         $this->providers = User::query()
-		->where('status',1)
-		->whereHas('roles', function ($query) {
-			$query->where('role_id',2);})
-        ->select('id','name')
-        ->get();
+            ->where('status', 1)
+            ->whereHas('roles', function ($query) {
+                $query->where('role_id', 2);
+            })
+            ->select('id', 'name')
+            ->get();
 
         if (request()->providerID != null) {
 
@@ -182,133 +186,144 @@ class ProviderForm extends Component
             $user = User::with(['userdetail', 'teams', 'addresses'])->find($provider_id);
 
             $this->edit($user);
-
         }
         $this->userid = $user->id;
-        
-
-	}
+    }
 
 
-	public function showList($message = "")
-	{
-		// Save data
-		$this->emit('showList', $message);
-	}
+    public function showList($message = "")
+    {
+        // Save data
+        $this->emit('showList', $message);
+    }
 
-	public function switch($component)
-	{
-		$this->component = $component;
-	}
+    public function switch($component)
+    {
+        $this->component = $component;
+    }
     public function rules()
-	{
-		return [
-			'user.first_name' => [
-				'required',
-				'string',
-				'max:255'],
+    {
+        return [
+            'user.first_name' => [
+                'required',
+                'string',
+                'max:255'
+            ],
             'user.last_name' => [
                 'required',
                 'string',
-                'max:255'],
+                'max:255'
+            ],
             'user.user_dob' => [
                 'nullable',
                 'date',
                 'date_format:m/d/Y',
-                'before:today'],
+                'before:today'
+            ],
             'user.email' => [
                 'required',
                 'email',
                 'max:255',
-				Rule::unique('users', 'email')->ignore($this->user->id)],
+                Rule::unique('users', 'email')->ignore($this->user->id)
+            ],
             'userdetail.user_introduction' => [
                 'nullable',
                 'string',
-                'max:255'],
+                'max:255'
+            ],
             'userdetail.address_line1' => [
                 'nullable',
                 'string',
-                'max:255'],
+                'max:255'
+            ],
             'userdetail.address_line2' => [
                 'nullable',
                 'string',
-                'max:255'],
+                'max:255'
+            ],
             'userdetail.zip' => [
                 'nullable',
                 'string',
-                'max:255'],
+                'max:255'
+            ],
             'userdetail.city' => [
                 'nullable',
                 'string',
-                'max:255'],
+                'max:255'
+            ],
             'userdetail.state' => [
                 'nullable',
                 'string',
-                'max:255'],
+                'max:255'
+            ],
             'userdetail.title' => [
                 'nullable',
                 'string',
-                'max:255'],
+                'max:255'
+            ],
             'userdetail.education' => [
                 'nullable',
                 'string',
-                'max:255'],
+                'max:255'
+            ],
             'userdetail.note' => [
                 'nullable',
                 'string',
-                'max:255'],
+                'max:255'
+            ],
             'userdetail.phone' => [
                 'nullable',
                 'string',
-                'max:255'],
+                'max:255'
+            ],
             'userdetail.ethnicity_id' => [
-                'nullable'],
+                'nullable'
+            ],
             'userdetail.timezone_id' => [
-                'nullable'],
+                'nullable'
+            ],
             'userdetail.gender_id' => [
-                'nullable'],
+                'nullable'
+            ],
             'userdetail.country' => [
-                'nullable'],
+                'nullable'
+            ],
             'userdetail.user_experience' => [
                 'nullable', 'max:255'
             ],
             'image' => 'nullable|image|mimes:jpg,png,jpeg',
             'media_file' => 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv',
 
-		];
-	}
-    public function ProviderService($redirect=1){
-        $rules=['userdetail.provider_type'=>'nullable',];
+        ];
+    }
+    public function ProviderService($redirect = 1)
+    {
+        $rules = ['userdetail.provider_type' => 'nullable',];
         $this->validate($rules);
 
-        if($this->userdetail['provider_type']!="staff_provider")    //setting values on BL
+        if ($this->userdetail['provider_type'] != "staff_provider")    //setting values on BL
+        {
             $this->provider_details['set_rate'] = 'no';
-
-        if($this->provider_details['set_rate']=='no'){
-            $this->provider_details['staff_provider_rate']=null;
-            $this->provider_details['staff_provider_rate_type']=null;
-
+            $this->provider_details['staff_provider_rate'] = null;
+            $this->provider_details['staff_provider_rate_type'] = null;
         }
-
-        UserDetail::where('user_id',$this->user->id)->update(['provider_type'=>$this->userdetail['provider_type'],'provider_details'=> json_encode($this->provider_details)]);
+        UserDetail::where('user_id', $this->user->id)->update(['provider_type' => $this->userdetail['provider_type'], 'provider_details' => json_encode($this->provider_details)]);
 
         if ($redirect) {
             $this->showList("Provider has been saved successfully");
             $this->user = new User;
-        }else
+        } else
             $this->setStep(3, 'documentActive', 'upload-document');
-
-        }
+    }
 
     public function uploadDocument($redirect = 1)
-    {   
+    {
 
         if ($redirect) {
             $this->showList("Provider has been saved successfully");
             $this->user = new User;
-        }else
+        } else
             $this->setStep(4, 'scheduleActive', 'schedule');
-
     }
 
     public function updateTags()
@@ -317,82 +332,82 @@ class ProviderForm extends Component
             Tag::firstOrCreate(['name' => $tag]);
         }
     }
-    
-    public function save($redirect=1){
-		$this->validate();
-        if($this->user->user_dob){
-            $this->user->user_dob =Carbon::parse($this->user->user_dob);
+
+    public function save($redirect = 1)
+    {
+        $this->validate();
+        if ($this->user->user_dob) {
+            $this->user->user_dob = Carbon::parse($this->user->user_dob);
             // Carbon::createFromFormat('d/m/Y', $this->user->user_dob)->format('Y-m-d');
 
         }
-        $this->user->name=$this->user->first_name.' '.$this->user->last_name;
-		$this->user->added_by = Auth::id();
-        $this->user->status=1;
+        $this->user->name = $this->user->first_name . ' ' . $this->user->last_name;
+        $this->user->added_by = Auth::id();
+        $this->user->status = 1;
         // process multiselect values
-        $this->userdetail['certification'] =implode(', ', $this->userdetail['certification']);
+        $this->userdetail['certification'] = implode(', ', $this->userdetail['certification']);
         $this->userdetail['favored_users'] = implode(', ', $this->userdetail['favored_users']);
         $this->userdetail['unfavored_users'] = implode(', ', $this->userdetail['unfavored_users']);
-		$this->userdetail['tags'] = json_encode($this->tags);
+        $this->userdetail['tags'] = json_encode($this->tags);
+
         $this->userdetail['provider_details'] = json_encode($this->provider_details);
-		$this->updateTags();
+        $this->updateTags();
 
 
         $fileService = new UploadFileService();
-        
-        if($this->image!=null){
-            $this->userdetail['profile_pic']= $fileService->saveFile('profile_pic',$this->image, $this->userdetail['profile_pic']);
+
+        if ($this->image != null) {
+            $this->userdetail['profile_pic'] = $fileService->saveFile('profile_pic', $this->image, $this->userdetail['profile_pic']);
         }
 
         if ($this->media_file != null) {
             $this->userdetail['user_introduction_file'] = $fileService->saveFile('files', $this->media_file, $this->userdetail['user_introduction_file']);
         }
         $userService = new UserService;
-        $this->user = $userService->createUser($this->user,$this->userdetail,2,1,[],$this->isAdd);
+        $this->user = $userService->createUser($this->user, $this->userdetail, 2, 1, [], $this->isAdd);
         // put null/empty check for teams 
-        $userService->addProviderTeams($this->selectedTeams,$this->user);
-		
-        
-		if($redirect){
-            
-			$this->showList("Provider has been saved successfully");
-			$this->user = new User;
-		}else{
+        $userService->addProviderTeams($this->selectedTeams, $this->user);
+
+
+        if ($redirect) {
+
+            $this->showList("Provider has been saved successfully");
+            $this->user = new User;
+        } else {
             $this->step = 2;
             //setting values for next
             $this->userid = $this->user->id;
-          
+
             $this->userdetail['certification'] = explode(', ', $this->userdetail['certification']);
             $this->userdetail['favored_users'] = explode(', ', $this->userdetail['favored_users']);
             $this->userdetail['unfavored_users'] = explode(', ', $this->userdetail['unfavored_users']);
 
             $this->dispatchBrowserEvent('refreshSelects');
-
-
         }
-	}
+    }
 
-    public function edit(User $user){
-        $this->user=$user;
-        $user['userdetail']['certification'] = explode(", ", $user['userdetail']['certification'] );
+    public function edit(User $user)
+    {
+        $this->user = $user;
+        $user['userdetail']['certification'] = explode(", ", $user['userdetail']['certification']);
         $user['userdetail']['favored_users'] = explode(", ", $user['userdetail']['favored_users']);
         $user['userdetail']['unfavored_users'] = explode(", ", $user['userdetail']['unfavored_users']);
-        $this->provider_details = json_decode($user['userdetail']['provider_details'],true);
-        if(is_null($this->provider_details))
-            $this->provider_details=['set_rate'=>'no', 'staff_provider_rate_type'=>'per_hour_rate', 'show_as_certified'=>false];
-
+        $this->provider_details = json_decode($user['userdetail']['provider_details'], true);
+        if (is_null($this->provider_details))
+            $this->provider_details = ['set_rate' => 'no', 'staff_provider_rate_type' => 'per_hour_rate', 'show_as_certified' => false];
 
         if ($user['userdetail']['tags'] != null)
             $this->tags = json_decode($user['userdetail']['tags'], true);
         else
             $this->tags = [];
-	
-        
-	   $this->userdetail=$user['userdetail']->toArray();
-       $this->label="Edit";
-       $this->user=$user;
-	   $this->isAdd=false;
-       if($this->user->user_dob)
-           $this->user->user_dob = Carbon::createFromFormat('Y-m-d', $this->user->user_dob)->format('m/d/Y');
+
+
+        $this->userdetail = $user['userdetail']->toArray();
+        $this->label = "Edit";
+        $this->user = $user;
+        $this->isAdd = false;
+        if ($this->user->user_dob)
+            $this->user->user_dob = Carbon::createFromFormat('Y-m-d', $this->user->user_dob)->format('m/d/Y');
         //removing edit-user from provider list
         $this->providers = $this->providers->filter(function ($provider, $key) {
             return $provider->id != $this->user->id;
@@ -431,26 +446,25 @@ class ProviderForm extends Component
     public function saveSchedule()
     {
         $this->emit('saveSchedule');
-            $this->showList("Company has been saved successfully");
-            $this->user = new User;
-            $this->schedule = new Schedule;
-        
+        $this->showList("Company has been saved successfully");
+        $this->user = new User;
+        $this->schedule = new Schedule;
     }
     public function setStep($step, $tabName, $component)
     {
         $tabs = ['profileActive', 'serviceActive', 'scheduleActive', 'documentActive'];
         foreach ($tabs as $key)
-        $this->$key = '';
+            $this->$key = '';
         $this->step = $step;
         $this->$tabName = "active";
         $this->switch($component);
         if ($this->step == 4)
             $this->getProviderSchedule();
-        if($this->step==1){
-            if ($this->user->user_dob) 
+        if ($this->step == 1) {
+            if ($this->user->user_dob)
                 $this->user->user_dob = Carbon::parse($this->user->user_dob)->format('m/d/Y');
         }
-    
+
         $this->dispatchBrowserEvent('refreshSelects');
     }
 
@@ -464,129 +478,135 @@ class ProviderForm extends Component
         }
     }
 
-     public function updateVal($attrName, $val)
-     {
-     
-        if($attrName=='user_dob'){
-            $this->user['user_dob']=$val;
+    public function updateVal($attrName, $val)
+    {
+
+        if ($attrName == 'user_dob') {
+            $this->user['user_dob'] = $val;
         } elseif ($attrName == 'tags') {
             $this->tags = explode(',', $val);
             $this->allTags = array_unique(array_merge($this->allTags, $this->tags));
             $this->allTags = array_values($this->allTags);
-        }elseif($attrName=='set_rate'){
-            $this->provider_details['set_rate']=$val;
+        } elseif ($attrName == 'set_rate') {
+            $this->provider_details['set_rate'] = $val;
         } elseif ($attrName == 'staff_provider_rate_type') {
             $this->provider_details['staff_provider_rate_type'] = $val;
         } elseif ($attrName == 'travel_rate_unit') {
             $this->provider_details['travel_rate_unit'] = $val;
-        }  elseif ($attrName == 'country') {
+        } elseif ($attrName == 'country') {
             $this->userdetail['country'] = $val;
-        }
-       
-        else
-         $this->userdetail[$attrName] = $val;
+        } else
+            $this->userdetail[$attrName] = $val;
 
         // $this->dispatchBrowserEvent('refreshSelects');
 
-     }
-     public function addscheduledInPerson(){
+    }
+    public function addscheduledInPerson()
+    {
         $this->scheduled_inpersons[] = [
-            'hours'=>'',
-            'charges'=>'',
-            'cancellations'=>'',
-            'exclude-after-hours'=>'',
-            'modification'=>'',
-            'exclude_closed_hours'=>'',
-            'rescheduling'=>'',
-            'bill_service_minimum'=>'',
-            'duration'=>'',
+            'hours' => '',
+            'charges' => '',
+            'cancellations' => '',
+            'exclude-after-hours' => '',
+            'modification' => '',
+            'exclude_closed_hours' => '',
+            'rescheduling' => '',
+            'bill_service_minimum' => '',
+            'duration' => '',
         ];
     }
-    public function addscheduledVirtual(){
+    public function addscheduledVirtual()
+    {
         $this->scheduled_virtules[] = [
-            'hours'=>'',
-            'charges'=>'',
-            'cancellations'=>'',
-            'exclude-after-hours'=>'',
-            'modification'=>'',
-            'exclude_closed_hours'=>'',
-            'rescheduling'=>'',
-            'bbill_service_minimum'=>'',
-            'duration'=>'',
+            'hours' => '',
+            'charges' => '',
+            'cancellations' => '',
+            'exclude-after-hours' => '',
+            'modification' => '',
+            'exclude_closed_hours' => '',
+            'rescheduling' => '',
+            'bbill_service_minimum' => '',
+            'duration' => '',
         ];
     }
-    public function addscheduledPhone(){
+    public function addscheduledPhone()
+    {
         $this->scheduled_phones[] = [
-            'hours'=>'',
-            'charges'=>'',
-            'cancellations'=>'',
-            'exclude-after-hours'=>'',
-            'modification'=>'',
-            'exclude_closed_hours'=>'',
-            'rescheduling'=>'',
-            'bill_service_minimum'=>'',
-            'duration'=>'',
+            'hours' => '',
+            'charges' => '',
+            'cancellations' => '',
+            'exclude-after-hours' => '',
+            'modification' => '',
+            'exclude_closed_hours' => '',
+            'rescheduling' => '',
+            'bill_service_minimum' => '',
+            'duration' => '',
         ];
     }
-    public function addscheduledTeleconference(){
+    public function addscheduledTeleconference()
+    {
         $this->scheduled_teleconfrences[] = [
-            'hours'=>'',
-            'charges'=>'',
-            'cancellations'=>'',
-            'exclude-after-hours'=>'',
-            'modification'=>'',
-            'exclude_closed_hours'=>'',
-            'rescheduling'=>'',
-            'bill_service_minimum'=>'',
-            'duration'=>'',
+            'hours' => '',
+            'charges' => '',
+            'cancellations' => '',
+            'exclude-after-hours' => '',
+            'modification' => '',
+            'exclude_closed_hours' => '',
+            'rescheduling' => '',
+            'bill_service_minimum' => '',
+            'duration' => '',
         ];
     }
-    public function addInPerson(){
+    public function addInPerson()
+    {
         $this->inpersons[] = [
-            'hours'=>'',
-            'charges'=>'',
-            'duration'=>'',
-            'exclude-after-hours'=>'',
-            'exclude_closed_hours'=>''
+            'hours' => '',
+            'charges' => '',
+            'duration' => '',
+            'exclude-after-hours' => '',
+            'exclude_closed_hours' => ''
         ];
     }
-    public function addInVirtual(){
+    public function addInVirtual()
+    {
         $this->invirtuals[] = [
-            'hours'=>'',
-            'charges'=>'',
-            'duration'=>'',
-            'exclude-after-hours'=>'',
-            'exclude_closed_hours'=>''
+            'hours' => '',
+            'charges' => '',
+            'duration' => '',
+            'exclude-after-hours' => '',
+            'exclude_closed_hours' => ''
         ];
     }
-    public function addPhone(){
+    public function addPhone()
+    {
         $this->phones[] = [
-            'hours'=>'',
-            'charges'=>'',
-            'duration'=>'',
-            'exclude-after-hours'=>'',
-            'exclude_closed_hours'=>''
+            'hours' => '',
+            'charges' => '',
+            'duration' => '',
+            'exclude-after-hours' => '',
+            'exclude_closed_hours' => ''
         ];
     }
-    public function addTeleconference(){
+    public function addTeleconference()
+    {
         $this->teleconfrences[] = [
-            'hours'=>'',
-            'charges'=>'',
-            'duration'=>'',
-            'exclude-after-hours'=>'',
-            'exclude_closed_hours'=>''
+            'hours' => '',
+            'charges' => '',
+            'duration' => '',
+            'exclude-after-hours' => '',
+            'exclude_closed_hours' => ''
         ];
     }
     public function addSpeclizations()
     {
-        $this->speclizations[]=[
-            'in_person'=>'',
-            'virtual'=>'',
-            'phone'=>'',
-            'teleconference'=>'',
-            'hide_from_customers'=>'',
-            'hide_from_providers'=>"",
-            'duration'=>''
+        $this->speclizations[] = [
+            'in_person' => '',
+            'virtual' => '',
+            'phone' => '',
+            'teleconference' => '',
+            'hide_from_customers' => '',
+            'hide_from_providers' => "",
+            'duration' => ''
         ];
     }
     public function removeInPerson($index)
@@ -661,7 +681,6 @@ class ProviderForm extends Component
             $this->counter = 0;
         }
         $this->dispatchBrowserEvent('refreshSelects');
-
     }
     public function openActiveCredentialModal($user_doc_id)
     {
@@ -676,9 +695,8 @@ class ProviderForm extends Component
     }
 
 
-    public function setRate(){
-        $this->emit('updateSetRate',$this->provider_details['set_rate']);
+    public function setRate()
+    {
+        $this->emit('updateSetRate', $this->provider_details['set_rate']);
     }
-	
-
 }

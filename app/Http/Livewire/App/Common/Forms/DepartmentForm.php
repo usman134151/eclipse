@@ -167,7 +167,6 @@ class DepartmentForm extends Component
 
 		$this->department->favored_providers = implode(', ', $this->fv);
 		$this->department->unfavored_providers = implode(', ', $this->unfv);
-
 		if(($this->department->company_phones!=null)&&count($this->department->company_phones))
 			$this->department->company_phones = implode(', ', $this->department->company_phones);
 

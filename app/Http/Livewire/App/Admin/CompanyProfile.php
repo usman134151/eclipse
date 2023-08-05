@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\App\Admin;
 
 use App\Models\Tenant\Company;
+use App\Models\Tenant\Schedule;
 use App\Models\Tenant\User;
 use Livewire\Component;
 
@@ -45,6 +46,12 @@ class CompanyProfile extends Component
 			->get()->toArray();
 
 		$this->company['tags'] = json_decode($this->company['tags']);
+		$schedule =  Schedule::where(['model_id'=>$company['id'],'model_type'=>2])->first();
+		if($schedule){
+			$days = ["Monday" => 1, "Tuesday" => 2, "Wednesday" => 3, "Thursday" => 4, "Friday" => 5, "Saturday" => 6, "Sunday" => 7];
+
+			$this->company['schedule'] = $schedule->timeslots->groupBy('timeslot_day')->sortBy(fn ($val, $key) => $days[$key])->toArray();
+		}// dd($this->company['schedule']->timeslots);
 
         $this->dispatchBrowserEvent('refreshSelects');
 

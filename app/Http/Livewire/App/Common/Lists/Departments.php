@@ -92,6 +92,9 @@ final class Departments extends PowerGridComponent
 	{
 		return PowerGrid::eloquent()
 			->addColumn('name')
+			->addColumn('displayname', function (Department $model) {
+				return "<a href='" . route('tenant.department-profile', ['departmentID' => $model->id]) . "'>" . $model->name . "</a>";
+			})
 			->addColumn('phone', function (Department $model) {
 			    if(count($model->phones)){
 
@@ -163,7 +166,8 @@ final class Departments extends PowerGridComponent
 	public function columns(): array
 	{
 		return [
-			Column::make('Name', 'name')
+			Column::make('Name', 'displayname')
+				->field('displayname', 'departments.name')
 				->searchable()
 				// ->makeinputtext()
 				->sortable(),
