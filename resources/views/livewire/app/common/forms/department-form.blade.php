@@ -191,6 +191,11 @@
                                                                     class="form-control" name="department-website"
                                                                     placeholder="Enter Website URL" required
                                                                     aria-required="true" wire:model.defer="department.department_website"/>
+                                                                    @error('department.department_website')
+                                                                <span class="d-inline-block invalid-feedback mt-2">
+                                                                    {{ $message }}
+                                                                </span>
+                                                                @enderror
                                                     </div>
                                                 </div>
 
