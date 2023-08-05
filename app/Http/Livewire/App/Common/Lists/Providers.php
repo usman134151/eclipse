@@ -11,7 +11,7 @@ use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Heade
 final class Providers extends PowerGridComponent
 {
 	use ActionButton;
-	protected $listeners = ['refresh'=>'setUp'];
+	protected $listeners = ['refresh' => 'setUp'];
 	public $name;
 	public $status;
 
@@ -33,7 +33,7 @@ final class Providers extends PowerGridComponent
 				->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
 			Header::make()->showSearchInput()->showToggleColumns(),
 			Footer::make()
-                ->showPerPage(config('app.per_page'))
+				->showPerPage(config('app.per_page'))
 				->showRecordCount(),
 		];
 	}
@@ -47,32 +47,29 @@ final class Providers extends PowerGridComponent
 	*/
 
 	/**
-	* PowerGrid datasource.
-	*
-	* @return Builder<\App\Models\Tenant\User>
-	*/
+	 * PowerGrid datasource.
+	 *
+	 * @return Builder<\App\Models\Tenant\User>
+	 */
 
 	public function datasource(): Builder
-    {
-		
+	{
+
 
 		return User::query()
-		->where('status',$this->status)
-		->whereHas('roles', function ($query) {
-			$query->wherein('role_id',[2]);
-		})->join('user_details', function ($userdetails) {
-			$userdetails->on('user_details.user_id', '=', 'users.id');
-		})->select([
-			'users.id',
-			'users.name',
-			'users.email',
-			'user_details.phone','user_details.profile_pic',
-			'status'
-		])
-
-;
-
-    }
+			->where('status', $this->status)
+			->whereHas('roles', function ($query) {
+				$query->wherein('role_id', [2]);
+			})->join('user_details', function ($userdetails) {
+				$userdetails->on('user_details.user_id', '=', 'users.id');
+			})->select([
+				'users.id',
+				'users.name',
+				'users.email',
+				'user_details.phone', 'user_details.profile_pic',
+				'status'
+			]);
+	}
 
 
 	/*
@@ -108,35 +105,36 @@ final class Providers extends PowerGridComponent
 	{
 		return PowerGrid::eloquent()
 
-		->addColumn('name')
-		->addColumn('customer', function (User $model) {
-			if($model->profile_pic==null)
-				$col= '<div class="row g-2 align-items-center"><div class="col-md-2"><img style="" src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Profile Image"></div><div class="col-md-10"><h6 class="fw-semibold">'. $model->name .'</h6><p>'. $model->email .'</p></div></div>';
-			else
-				$col = '<div class="row g-2 align-items-center"><div class="col-md-2 provider_image_panel">			
+			->addColumn('name')
+			->addColumn('customer', function (User $model) {
+				if ($model->profile_pic == null)
+					$col = '<div class="row g-2 align-items-center"><div class="col-md-2"><img style="" src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Profile Image"></div><div class="col-md-10"><h6 class="fw-semibold"><a href="' . route('tenant.provider-profile', ['providerID' => $model->id]) . '">' . $model->name . '</a></h6><p>' . $model->email . '</p></div></div>';
+				else
+					$col = '<div class="row g-2 align-items-center"><div class="col-md-2 provider_image_panel">			
 				<div class="provider_image" style="width:64px;height:64px;top:1rem;max-width:100%"> <img class="user_img cropfile" src="' . $model->profile_pic . '" style="max-width:100%;"></div>
-				</div><div class="col-md-10"><h6 class="fw-semibold">' . $model->name . '</h6><p>' . $model->email . '</p></div></div>';
-			return $col;
-		})
-		->addColumn('phone')
-		->addColumn('upcoming', function (User $model) {
-			return rand(0,20);
-		})
-        ->addColumn('status', function (User $model) {
-			return ($model->status);
-		})
+				</div><div class="col-md-10"><h6 class="fw-semibold"><a href="' . route('tenant.provider-profile', ['providerID' => $model->id]) . '">' . $model->name . '</a></h6><p>' . $model->email . '</p></div></div>';
+				return $col;
+			})
+			->addColumn('phone')
+			->addColumn('upcoming', function (User $model) {
+				return rand(0, 20);
+			})
+			->addColumn('status', function (User $model) {
+				return ($model->status);
+			})
 
-		->addColumn('edit', function(User $model) {
-			return "<div class='d-flex actions'>
-            <a href='".route('tenant.provider-edit',['providerID'=>$model->id])."' title='Edit Team' aria-label='Edit Team' class='btn btn-sm btn-secondary rounded btn-hs-icon'><svg title='Edit Team' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#pencil'></use></svg></a>
-            <a href='". route('tenant.provider-profile', ['providerID' => $model->id])."' title='View Provider' aria-label='View Provider' class='btn btn-sm btn-secondary rounded btn-hs-icon' ><svg aria-label='View Provider' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#view'><use></svg></a>
+			->addColumn('edit', function (User $model) {
+				return "<div class='d-flex actions'>
+            <a href='" . route('tenant.provider-edit', ['providerID' => $model->id]) . "' title='Edit Team' aria-label='Edit Team' class='btn btn-sm btn-secondary rounded btn-hs-icon'><svg title='Edit Team' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#pencil'></use></svg></a>
+            <a href='" . route('tenant.provider-profile', ['providerID' => $model->id]) . "' title='View Provider' aria-label='View Provider' class='btn btn-sm btn-secondary rounded btn-hs-icon' ><svg aria-label='View Provider' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#view'><use></svg></a>
             </div>";
-		});
+			});
 	}
-    function edit($id){
-        // Emits an event to show the form for editing a record
-        $this->emit('showForm', User::with(['userdetail'])->find($id));
-    }
+	function edit($id)
+	{
+		// Emits an event to show the form for editing a record
+		$this->emit('showForm', User::with(['userdetail'])->find($id));
+	}
 
 	/*
 	|--------------------------------------------------------------------------
@@ -147,7 +145,7 @@ final class Providers extends PowerGridComponent
 	|
 	*/
 
-	 /**
+	/**
 	 * PowerGrid Columns.
 	 *
 	 * @return array<int, Column>
@@ -164,17 +162,17 @@ final class Providers extends PowerGridComponent
 
 
 
-            // ->editOnClick(),
-            Column::make('Phone Number', 'phone', '')
-			->searchable()
+			// ->editOnClick(),
+			Column::make('Phone Number', 'phone', '')
+				->searchable()
 				->makeinputtext()
 				->sortable(),
 			Column::make('Upcoming Appointments', 'upcoming', ''),
-			
-	
+
+
 			Column::make('Status', 'status', '')
-			->toggleable(1, 'Deactivated', 'Activated'),
-		   Column::make('Actions', 'edit')->visibleInExport(false)
+				->toggleable(1, 'Deactivated', 'Activated'),
+			Column::make('Actions', 'edit')->visibleInExport(false)
 		];
 	}
 
@@ -182,29 +180,27 @@ final class Providers extends PowerGridComponent
 
 
 
-	 // A method to handle the toggleable columns update event
-	 public function onUpdatedToggleable(string $id, string $field, string $value): void
-	 {
+	// A method to handle the toggleable columns update event
+	public function onUpdatedToggleable(string $id, string $field, string $value): void
+	{
 
-		 // Updates the specified field of the record with the new value
+		// Updates the specified field of the record with the new value
 
-	    User::query()->where('id',$id)->update([
-			 $field => $value,
-		 ]);
-		 $this->dispatchBrowserEvent('swal:modal', [
+		User::query()->where('id', $id)->update([
+			$field => $value,
+		]);
+		$this->dispatchBrowserEvent('swal:modal', [
 			'type' => 'success',
 			'title' => 'Success',
 			'text' => 'Status updated',
 		]);
-		
-
-	 }
-     function showProfile($id) {
+	}
+	function showProfile($id)
+	{
 
 		// Emits an event to show the customer profile
 		$this->emit('showProfile');
 
 		$this->emit('showProfile', User::with(['userdetail'])->find($id));
 	}
-
 }
