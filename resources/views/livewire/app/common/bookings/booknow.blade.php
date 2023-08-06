@@ -165,15 +165,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <select class="form-select select2 mb-2" id="requester" name="requester" wire:model.defer="assignment.requester">
+                                    <select class="form-select select2 mb-2" id="requester" name="requester" wire:model.defer="booking.customer_id">
                                         @foreach($requesters as $requester)
                                         <option value="{{$requester->id}}">{{$requester->name}}</option>
                                         @endforeach
                                     </select>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" id="hide_request_from_providers" wire:model.defer="assignment.hide_request_from_providers"
+                                        <input class="form-check-input" id="hide_request_from_providers" wire:model.defer="booking.requester_information"
                                             name="hide_request_from_providers" type="checkbox" tabindex="" />
-                                        <label class="form-check-label" for="HideRequesterInfofromProviders"><small>Hide
+                                        <label class="form-check-label" for="HideRequesterInfofromProviders" value="0"><small>Hide
                                                 Requester's Info from Providers</small></label>
                                     </div>
                                 </div>
@@ -204,11 +204,11 @@
                                 </div>
                                 <div class="col-lg-6 mb-4 pe-lg-5">
                                     <label class="form-label" for="point-of-contact">Point of Contact </label>
-                                    <input type="" class="form-control" placeholder="Enter Name" id="point-of-contact" name="point_of_contact" wire:model.defer="assignment.point_of_contact">
+                                    <input type="" class="form-control" placeholder="Enter Name" id="point-of-contact" name="point_of_contact" wire:model.defer="booking.contact_point">
                                 </div>
                                 <div class="col-lg-6 mb-4 ps-lg-5">
                                     <label class="form-label" for="ph-number">Phone Number</label>
-                                    <input type="" class="form-control" placeholder="Enter Phone Number" id="ph-number" name="phone_number" wire:model.defer="assignment.phone_number">
+                                    <input type="" class="form-control" placeholder="Enter Phone Number" id="ph-number" name="phone_number" wire:model.defer="booking.poc_phone">
                                 </div>
                             </div>
                             <div class="row between-section-segment-spacing">
@@ -224,7 +224,7 @@
                                         <div class="col-lg-6 mb-4 pe-lg-5">
                                             <label class="form-label" for="supervisor">Supervisor <span
                                                     class="mandatory">*</span></label>
-                                            <select class="form-select select2" id="supervisor" name="supervisor" wire:model.defer='assignment.supervisor'>
+                                            <select class="form-select select2" id="supervisor" name="supervisor" wire:model.defer='booking.supervisor'>
                                                 @foreach($supervisors as $supervisor)
                                                 <option value="{{$supervisor->id}}">{{$supervisor->name}}</option>
                                                 @endforeach
@@ -232,7 +232,7 @@
                                         </div>
                                         <div class="col-lg-6 mb-4 ps-lg-5">
                                             <label class="form-label" for="billing-manager">Billing Manager</label>
-                                            <select class="form-select select2" id="billing_manager" name="billing_manager" wire:model.defer="assignment.billing_manager">
+                                            <select class="form-select select2" id="billing_manager" name="billing_manager" wire:model.defer="booking.billing_manager_id">
                                                  @foreach($bManagers as $manager)
                                                     <option value="{{$manager->id}}">{{$manager->name}}</option>
                                                 @endforeach
@@ -286,7 +286,15 @@
                                                         data-bs-toggle="tooltip" data-bs-placement="top"
                                                         title="" ></i></label>
                                                         @if($services[$index]['accommodation_id'])
-                                                            
+                                                            @foreach($accommodations as $accommodation)
+                                                                @if($services[$index]['accommodation_id']==$accommodation['id'])
+                                                                    <select class="form-select select2 mb-2" id="service_id_{{$index}}" name="service_id_{{$index}}" wire:model="services.{{$index}}.service_id">
+                                                                    @foreach($accommodation['services'] as $service_id)
+                                                                        <option value="{{$service_id['id']}}">{{$service_id['name']}}</option>
+                                                                    @endforeach
+                                                                    </select>
+                                                                @endif
+                                                            @endforeach
                                                         @endif
                                                       
                                             </div>

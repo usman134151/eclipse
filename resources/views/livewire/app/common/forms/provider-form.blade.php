@@ -887,7 +887,7 @@
                                                                     <div class="col-4 ms-auto mb-3">
                                                                         <label class="form-label-sm mb-2 d-block"
                                                                             for="copy_provider">
-                                                                            Copy from Other Provider
+                                                                            Copy from Other Provider (coming soon)
                                                                         </label>
                                                                         <div class="row">
                                                                             <div class="col-lg-7">

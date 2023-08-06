@@ -56,7 +56,7 @@ class Booknow extends Component
         $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
         $this->frequencies=SetupValue::where('setup_id',6)->select('id','setup_value_label')->get()->toArray();
         $this->accommodations=Accommodation::with('services')->where('status',1)->get()->toArray();
-       
+     
        
         if($this->assignment){
             $this->updateCompany();
@@ -297,6 +297,9 @@ class Booknow extends Component
     public function rules(){
         return [
             'booking.frequency_id'=>'required',
+            'booking.requester_information'=>'nullable',
+            'booking.poc_phone'=>'nullable',
+
         ];
     }
 
