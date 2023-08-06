@@ -8,6 +8,7 @@ use App\Models\Tenant\User;
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\SetupValue;
 use App\Models\Tenant\Accommodation;
+use Illuminate\Support\Collection;
 
 class Booknow extends Component
 {
@@ -49,15 +50,43 @@ class Booknow extends Component
 
     public $freqencies=[],$accommodations=[];
 
+    public $serviceTypes=['1'=>['class'=>'inperson-rate','postfix'=>'','title'=>'In-Person'],
+    '2'=>['class'=>'virtual-rate','postfix'=>'_v','title'=>'Virtual'],
+    '4'=>['class'=>'phone-rate','postfix'=>'_p','title'=>'Phone'],
+    '5'=>['class'=>'teleconference-rate','postfix'=>'_t','title'=>'Teleconference'],
+  ];
+
 
     public function mount(Booking $booking)
     {
         $this->booking=$booking;
+        $accommodationsCollection = collect($this->accommodations);
         $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
         $this->frequencies=SetupValue::where('setup_id',6)->select('id','setup_value_label')->get()->toArray();
-        $this->accommodations=Accommodation::with('services')->where('status',1)->get()->toArray();
-     
-       
+        $this->accommodations=Accommodation::with('services.specializations')->where('status',1)->get()->toArray();
+        $serviceTypeLabels=SetupValue::where('setup_id',5)->pluck('setup_value_label')->toArray();
+        for($i=0,$j=1;$i<4;$i++,$j++){
+            if($j==3)
+               $j=4;
+            $this->serviceTypes[$j]['title']=$serviceTypeLabels[$i];
+        }
+
+        //loop to implode service type for services arrays
+
+        foreach($this->accommodations as &$accommodation){
+           foreach($accommodation['services'] as &$service)
+           {
+            if(!is_null($service['service_type'])){
+           
+                if(!is_array($service['service_type']))
+                $service['service_type']=explode(',',$service['service_type']);
+              
+              
+            }
+           }
+        }
+      
+        
         if($this->assignment){
             $this->updateCompany();
         }else{

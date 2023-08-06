@@ -289,6 +289,7 @@
                                                             @foreach($accommodations as $accommodation)
                                                                 @if($services[$index]['accommodation_id']==$accommodation['id'])
                                                                     <select class="form-select select2 mb-2" id="service_id_{{$index}}" name="service_id_{{$index}}" wire:model="services.{{$index}}.service_id">
+                                                                    <option value="">Select Service</option>
                                                                     @foreach($accommodation['services'] as $service_id)
                                                                         <option value="{{$service_id['id']}}">{{$service_id['name']}}</option>
                                                                     @endforeach
@@ -298,28 +299,48 @@
                                                         @endif
                                                       
                                             </div>
+                                            @if($services[$index]['service_id'])
                                             <div class="col-lg-6 mb-4 pe-lg-5">
                                                 <label class="form-label">Service Type <span
                                                         class="mandatory" >*</span></label>
                                                 <div class="d-grid grid-cols-3">
-                                                    {{-- updated by shanila to add dropdown --}}
-                                                    {!! App\Helpers\SetupHelper::createRadio('SetupValue', 'id',
-                                                    'setup_value_label', 'setup_id', '5', 'id','',1,'form-check-input ')
-                                                    !!}
-                                                    {{--ended updated--}}
+                                                  
+                                                       @php
+                                                       // Convert the array to a Laravel Collection
+                                                            $accommodationsCollection = collect($accommodations);
+
+                                                            // Perform the search using the filter method
+
+                                                            $serviceIdToFind = $services[$index]['service_id'];
+                                                            $foundService = $accommodationsCollection
+                                                                ->flatMap(fn($item) => $item['services'])
+                                                                ->firstWhere('id', $serviceIdToFind);
+    
+                                                       @endphp
+                                                      @foreach($serviceTypes as $key=>$serviceType)
+                                                        @if(in_array($key,$foundService['service_type']))
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio"
+                                                                name="serviceType" id="serviceType-{{$index}}" wire:model="services.{{$index}}.service_type" value={{$key}}>
+                                                            <label class="form-check-label" for="serviceType-{{$index}}">
+                                                                {{$serviceType['title']}}
+                                                            </label>
+                                                        </div>
+                                                        @endif    
+                                                      @endforeach
+                                                    
 
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 mb-4 ps-lg-5">
                                                 <label class="form-label" >Specializations</label>
                                                 <div class="" >
-                                                    {{-- updated by shanila to add dropdown --}}
-                                                    {!! App\Helpers\SetupHelper::createCheckboxes('Specialization',
-                                                    'id',
-                                                    'name', 'status', 1, 'name', [],1,'form-check') !!}
-                                                    {{--ended updated--}}
+                                                  @foreach($foundService['specializations'] as $specialization)
+                                                  <div class="form-check"><input class="form-check-input" type="checkbox" id="service_specializations-{{$index}}-{{$specialization['id']}}" name="service_specializations" value="{{$specialization['id']}}" tabindex="1"><label class="form-check-label" for="service_specializations-{{$index}}-{{$specialization['id']}}">{{$specialization['name']}}</label></div>
+                                                  @endforeach
                                                 </div>
                                             </div>
+                                            @endif
                                             <div class="col-lg-6 mb-4 pe-lg-5">
                                                 <label class="form-label" for="number-of-provider">Number of Providers <span
                                                         class="mandatory">*</span></label>
