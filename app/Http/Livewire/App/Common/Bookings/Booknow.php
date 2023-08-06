@@ -43,7 +43,9 @@ class Booknow extends Component
     public $services=[
         [   'accommodation_id'=>'',
             'service_id'=>'',
-            'meetings' =>['meeting_name' => '','phone_number' => '','access_code' => ''] //updated by Amna Bilal to define meeting links array within services array
+            'service_type'=>'',
+            'specializations'=>[],
+            'meetings' =>[['meeting_name' => '','phone_number' => '','access_code' => '']] //updated by Amna Bilal to define meeting links array within services array
             
         ]
     ];
@@ -60,6 +62,9 @@ class Booknow extends Component
     public function mount(Booking $booking)
     {
         $this->booking=$booking;
+        if(!$this->booking->id){
+            $this->booking->requester_information=0;
+        }
         $accommodationsCollection = collect($this->accommodations);
         $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
         $this->frequencies=SetupValue::where('setup_id',6)->select('id','setup_value_label')->get()->toArray();
@@ -274,7 +279,13 @@ class Booknow extends Component
         $this->dates = array_values($this->dates);
     }
     public function addService(){
-        $this->services[]= ['meetings' => [['meeting_name' => '','phone_number' => '','access_code' => '']]]; //updated by Amna Bilal to define meeting links array within services array
+        $this->services[]=         [   'accommodation_id'=>'',
+        'service_id'=>'',
+        'service_type'=>'',
+        'specializations'=>[],
+        'meetings' =>[['meeting_name' => '','phone_number' => '','access_code' => '']] //updated by Amna Bilal to define meeting links array within services array
+        
+    ];
 
     }
     public function removeServices($index)

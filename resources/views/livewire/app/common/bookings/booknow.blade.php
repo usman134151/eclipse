@@ -171,9 +171,9 @@
                                         @endforeach
                                     </select>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" id="hide_request_from_providers" wire:model.defer="booking.requester_information"
+                                        <input class="form-check-input" id="hide_request_from_providers" wire:model="booking.requester_information"
                                             name="hide_request_from_providers" type="checkbox" tabindex="" />
-                                        <label class="form-check-label" for="HideRequesterInfofromProviders" value="0"><small>Hide
+                                        <label class="form-check-label" for="HideRequesterInfofromProviders" value="1"><small>Hide
                                                 Requester's Info from Providers</small></label>
                                     </div>
                                 </div>
@@ -202,6 +202,7 @@
                                         @endif
                                     </div>
                                 </div>
+                                @if($booking['requester_information']==1)
                                 <div class="col-lg-6 mb-4 pe-lg-5">
                                     <label class="form-label" for="point-of-contact">Point of Contact </label>
                                     <input type="" class="form-control" placeholder="Enter Name" id="point-of-contact" name="point_of_contact" wire:model.defer="booking.contact_point">
@@ -210,6 +211,7 @@
                                     <label class="form-label" for="ph-number">Phone Number</label>
                                     <input type="" class="form-control" placeholder="Enter Phone Number" id="ph-number" name="phone_number" wire:model.defer="booking.poc_phone">
                                 </div>
+                                @endif
                             </div>
                             <div class="row between-section-segment-spacing">
                                 <div class="col-lg-12" x-data="{ open: true }">
@@ -522,7 +524,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                @foreach($service['meetings'] as $meetingIndex=>$meeting)
+                                                @foreach($services[$index]['meetings'] as $meetingIndex=>$meeting)
                                                 <div class="border-dashed rounded p-3 mb-3" >
                                                     <div class="d-flex justify-content-between">
 
