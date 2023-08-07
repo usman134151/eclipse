@@ -95,7 +95,7 @@
 								</div>
 							</div>
 						</div>
-						@if($status) <x-advanceproviderfilters /> @endif 
+						@if($status)     <x-advance-provider-filters /> @endif 
 
 						
 
