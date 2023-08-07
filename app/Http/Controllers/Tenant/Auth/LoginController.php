@@ -35,6 +35,9 @@ class LoginController extends Controller
 	{
 		$welcome_text='';
 		$login_screen = null;
+		$data['company_logo']=null;
+
+		
 		
 		$businessSetup = BusinessSetup::first();
 
@@ -44,7 +47,16 @@ class LoginController extends Controller
                 if (\File::exists(public_path($businessSetup->login_screen)))
 				$login_screen = $businessSetup->login_screen;
 			}
+			if ($businessSetup->company_logo != null) {
+				if (\File::exists(public_path($businessSetup->company_logo)))
+					$data['company_logo'] = $businessSetup->company_logo;
+			}
+			$data['default_colour'] = $businessSetup->default_colour;
+			$data['foreground_colour'] = $businessSetup->foreground_colour;
+			
 		}
+		session($data);	//storing setup details 
+
 		return view('tenant.auth.login',['welcome_text'=>$welcome_text,'login_screen'=> $login_screen]);
 	}
 

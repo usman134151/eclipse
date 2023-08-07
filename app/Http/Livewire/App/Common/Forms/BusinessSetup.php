@@ -243,6 +243,7 @@ class BusinessSetup extends Component
             $this->configuration['contract_providers'] = null;
 
             $this->configuration->save();
+        session(['company_logo'=>$this->configuration->company_logo]);
 
         AnnouncementMessage::truncate();
         foreach($this->messages as $m){
