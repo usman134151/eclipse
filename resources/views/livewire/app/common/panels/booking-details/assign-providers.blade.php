@@ -420,5 +420,5 @@
             <button type="" class="btn btn-outline-dark rounded">Cancel</button>
             <button type="" class="btn btn-primary rounded">Save</button>
         </div>
-    
+        </x-slot>
 </div>    
