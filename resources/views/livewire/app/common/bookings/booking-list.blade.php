@@ -166,14 +166,14 @@
                                                 $status = ['1', '2', '3'];
                                                 $statusCode = ['bg-success', 'bg-gray', 'bg-warning'];
                                                 @endphp
-                                                @for ($i = 1; $i <= 7; $i++) <tr role="row"
+                                                @foreach ($booking_assignments as $i => $booking) <tr role="row"
                                                     class="{{ ($i % 2 == 0) ? 'even' : 'odd' }} {{ $statusCode[array_rand($status)] }}">
                                                     <td class="text-center">
                                                         <input class="form-check-input" type="checkbox" value=""
                                                             aria-label="Select Booking">
                                                     </td>
                                                     <td wire:click="showBookingDetails">
-                                                        <a href="#">100995-6</a>
+                                                        <a href="#">{{$booking['booking_number']}}</a>
                                                         <div>
                                                             <div class="time-date">08/24/2022</div>
                                                             <div class="time-date">
@@ -314,7 +314,7 @@
                                                         </div>
                                                     </td>
                                                     </tr>
-                                                    @endfor
+                                                    @endforeach
                                             </tbody>
                                         </table>
                                     </div>
