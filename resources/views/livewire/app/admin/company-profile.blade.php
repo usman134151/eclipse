@@ -291,13 +291,15 @@
                                                                             </p>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <p class="font-family-tertiary">
-                                                                                www.examplecompy.com
-                                                                            </p>
+                                                                    @if($company['company_website']!=null)
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <p class="font-family-tertiary">
+                                                                                    {{$company['company_website']}}
+                                                                                </p>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
+                                                                    @endif
                                                                     <div class="row">
                                                                         <div class="col-md-12">
                                                                             <p class="font-family-tertiary">

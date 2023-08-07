@@ -215,13 +215,15 @@
 																			@endforeach</p>
 																		</div>
 																	</div>
+																	@if($department->department_website)
 																	<div class="row">
 																		<div class="col-md-12">
 																			<p class="font-family-tertiary">
-																				www.examplecompy.com
+																				{{$department->department_website}}
 																			</p>
 																		</div>
 																	</div>
+																	@endif
 																	<div class="row">
 																		<div class="col-md-12">
 																			<p class="font-family-tertiary">
