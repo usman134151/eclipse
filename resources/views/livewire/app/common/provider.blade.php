@@ -95,14 +95,15 @@
 								</div>
 							</div>
 						</div>
-						@if($status) <x-advancefilters /> @endif 
+						@if($status) <x-advanceproviderfilters /> @endif 
+
 						
 
 
 						<div class="row" id="table-hover-row">
 							<div class="col-12">
 								<div class="card">
-									@livewire('app.common.lists.providers', ['status' => $status],key(Str::random(10)))
+								@livewire('app.common.lists.providers', ['status' => $status,'service_type_ids' => $service_type_ids,'tag_names' => $tag_names,'provider_ids' => $provider_ids,'services' => $services,'specializations'=>$specializations],key(Str::random(10)))
 
 						{{-- Icon Legend Bar - Start --}}
 						<div class="d-flex actions gap-3 justify-content-end mb-2">
@@ -152,10 +153,11 @@
 
 <script>
 	function updateVal(attrName,val){
-		if(attrName=='select-days')
-			Livewire.emit('updateDay', val);
-		else
-		Livewire.emit('updateVal', attrName, val);
+		// if(attrName=='select-days')
+		// 	Livewire.emit('updateDay', val);
+		// else
+		// Livewire.emit('updateVal', attrName, val);
+		Livewire.emit('refreshFilters', attrName, val);
 	}
 	Livewire.on('passwordmodalDismissed', () => {
             $('#changePasswordModal').modal('hide');

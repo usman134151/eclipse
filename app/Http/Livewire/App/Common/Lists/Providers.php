@@ -15,6 +15,11 @@ final class Providers extends PowerGridComponent
 	public $name;
 	public $status;
 
+	public $provider_ids=[];
+	public $tag_names=[];
+	public $service_type_ids=[];
+	public $services=[];
+	public $specializations=[];
 
 	/*
 	|--------------------------------------------------------------------------
@@ -56,7 +61,7 @@ final class Providers extends PowerGridComponent
 	{
 
 
-		return User::query()
+		$query = User::query()
 			->where('status', $this->status)
 			->whereHas('roles', function ($query) {
 				$query->wherein('role_id', [2]);
@@ -66,9 +71,50 @@ final class Providers extends PowerGridComponent
 				'users.id',
 				'users.name',
 				'users.email',
-				'user_details.phone', 'user_details.profile_pic',
+				'user_details.phone','user_details.profile_pic','user_details.tags',
 				'status'
 			]);
+			if(count($this->tag_names)){
+				$query->whereJsonContains('tags', $this->tag_names);
+			}
+			if(count($this->provider_ids)){
+				$query->whereIn('users.id', $this->provider_ids);
+			}
+			if(count($this->services)){
+				// dd($this->services);
+				$query->whereHas('services', function ($query) {
+						$query->wherein('service_id',$this->services);
+					});
+		     }
+			if(count($this->service_type_ids)){
+				//as ids are different in dropdown and in table need to replace for filter
+				$replacements = [
+					28 => 1,
+					29 => 2,
+					30 => 4,
+					31 => 5
+				];
+				$filterArray = array_map(function ($item) use ($replacements) {
+					return isset($replacements[$item]) ? $replacements[$item] : $item;
+				}, $this->service_type_ids);
+				$query->whereHas('services', function ($query) use ($filterArray) {
+					$query->where(function ($query) use ($filterArray) {
+						foreach ($filterArray as $item) {
+							$query->orWhereRaw("FIND_IN_SET($item, service_type)");
+						}
+					});
+				});
+		     }
+			if(count($this->specializations)){
+				$specializations=$this->specializations;
+				// dd($this->services);
+				$query->whereHas('services', function ($query) use ($specializations) {
+					$query->whereHas('specializations', function ($query) use ($specializations) {
+						$query->whereIn('specialization_id', $specializations);
+					});
+				});
+		     }
+			return $query;
 	}
 
 
