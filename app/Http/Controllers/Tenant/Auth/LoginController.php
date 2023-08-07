@@ -34,13 +34,18 @@ class LoginController extends Controller
 	public function showLoginForm()
 	{
 		$welcome_text='';
+		$login_screen = null;
 		
 		$businessSetup = BusinessSetup::first();
 
 		if ($businessSetup) {
 			$welcome_text = $businessSetup->welcome_text;
+			if($businessSetup->login_screen!=null){
+                if (\File::exists(public_path($businessSetup->login_screen)))
+				$login_screen = $businessSetup->login_screen;
+			}
 		}
-		return view('tenant.auth.login',['welcome_text'=>$welcome_text]);
+		return view('tenant.auth.login',['welcome_text'=>$welcome_text,'login_screen'=> $login_screen]);
 	}
 
 	/**
