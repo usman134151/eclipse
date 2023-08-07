@@ -414,6 +414,9 @@ class ProviderForm extends Component
         });
 
         $this->updateSelectedTeams($this->user->teams()->allRelatedIds());
+        if($this->userdetail['provider_type']=='contract_provider'){
+            $this->provider_details['set_rate']='yes';
+        }
         // dd($this->use)
         // $this->dispatchBrowserEvent('refreshSelects');
 
@@ -697,6 +700,11 @@ class ProviderForm extends Component
 
     public function setRate()
     {
+        if($this->userdetail['provider_type']=='contract_provider'){
+            $this->provider_details['set_rate']='yes';
+        }
+
+           
         $this->emit('updateSetRate', $this->provider_details['set_rate']);
     }
 }

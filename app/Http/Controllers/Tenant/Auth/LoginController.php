@@ -33,7 +33,13 @@ class LoginController extends Controller
 	/** @override */
 	public function showLoginForm()
 	{
-		$welcome_text=BusinessSetup::first()->welcome_text;
+		$welcome_text='';
+		
+		$businessSetup = BusinessSetup::first();
+
+		if ($businessSetup) {
+			$welcome_text = $businessSetup->welcome_text;
+		}
 		return view('tenant.auth.login',['welcome_text'=>$welcome_text]);
 	}
 

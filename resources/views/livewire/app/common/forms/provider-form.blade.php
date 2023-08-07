@@ -700,7 +700,7 @@
                                                                                             type="radio"
                                                                                             name="ProviderType"
                                                                                             id="ContractProviderType" value="contract_provider"
-                                                                                            wire:model.defer="userdetail.provider_type">
+                                                                                            wire:model="userdetail.provider_type" wire:click="setRate">
                                                                                         <label class="form-check-label"
                                                                                             for="ContractProviderType">
                                                                                             Contract Provider
@@ -887,7 +887,7 @@
                                                                     <div class="col-4 ms-auto mb-3">
                                                                         <label class="form-label-sm mb-2 d-block"
                                                                             for="copy_provider">
-                                                                            Copy from Other Provider
+                                                                            Copy from Other Provider (coming soon)
                                                                         </label>
                                                                         <div class="row">
                                                                             <div class="col-lg-7">
