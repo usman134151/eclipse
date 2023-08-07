@@ -243,6 +243,7 @@ class BusinessSetup extends Component
             $this->configuration['contract_providers'] = null;
 
             $this->configuration->save();
+        session(['company_logo'=>$this->configuration->company_logo]);
 
         AnnouncementMessage::truncate();
         foreach($this->messages as $m){
@@ -301,9 +302,9 @@ class BusinessSetup extends Component
 		}
 
 
-			$this->scheduleActive="active";
+			// $this->scheduleActive="active";
 			
-			$this->switch('schedule');
+			// $this->switch('schedule');
 			
 			$this->emit('getRecord', $this->schedule->id,true);
 	}
@@ -352,6 +353,21 @@ class BusinessSetup extends Component
         $this->messages = array_values($this->messages);
         $this->dispatchBrowserEvent('refreshDatePickers');
     }
+
+    public function deleteFile($fieldName){
+        if($this->$fieldName)   //remove temp img
+            $this->$fieldName = null;
+
+        if($this->configuration->$fieldName!=null){    //if field in filled in db
+            $fileService = new UploadFileService();
+            $fileService->deleteFile($this->configuration->$fieldName);
+            
+            $this->configuration->$fieldName = null;
+            $this->configuration->save();
+
+        }
+    }
+
     public function addPolicy(){
         $this->policies[]=[
             'title'=>'',

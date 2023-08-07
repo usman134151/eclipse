@@ -34,13 +34,30 @@ class LoginController extends Controller
 	public function showLoginForm()
 	{
 		$welcome_text='';
+		$login_screen = null;
+		$data['company_logo']=null;
+
+		
 		
 		$businessSetup = BusinessSetup::first();
 
 		if ($businessSetup) {
 			$welcome_text = $businessSetup->welcome_text;
+			if($businessSetup->login_screen!=null){
+                if (\File::exists(public_path($businessSetup->login_screen)))
+				$login_screen = $businessSetup->login_screen;
+			}
+			if ($businessSetup->company_logo != null) {
+				if (\File::exists(public_path($businessSetup->company_logo)))
+					$data['company_logo'] = $businessSetup->company_logo;
+			}
+			$data['default_colour'] = $businessSetup->default_colour;
+			$data['foreground_colour'] = $businessSetup->foreground_colour;
+			
 		}
-		return view('tenant.auth.login',['welcome_text'=>$welcome_text]);
+		session($data);	//storing setup details 
+
+		return view('tenant.auth.login',['welcome_text'=>$welcome_text,'login_screen'=> $login_screen]);
 	}
 
 	/**
