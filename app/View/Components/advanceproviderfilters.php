@@ -8,24 +8,14 @@ use Illuminate\View\Component;
 
 class AdvanceProviderFilters extends Component
 {
-    public $tags;
-    public $providers;
 
     public function __construct()
     {
         //
-        $this->tags=Tag::all();
-        $this->providers=User::where('status',1)
-             ->whereHas('roles', function ($query) {
-                 $query->wherein('role_id',[2]);
-             })->get([
-                 'id',
-                 'name',
-             ]);
     }
 
     public function render()
     {         
-        return view('components.advance-provider-filters');
+        return view('components.advanceproviderfilters');
     }
 }

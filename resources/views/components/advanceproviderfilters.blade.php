@@ -1,5 +1,7 @@
 @props([
-'type'=>''
+'type'=>'',
+'tags'=>[],
+'providers'=>[],
 ])
 <div class="row" wire:ignore>
     <div class="col-lg-5 ps-lg-3 mb-5">
