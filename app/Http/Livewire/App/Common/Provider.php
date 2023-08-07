@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\App\Common;
 
+use App\Models\Tenant\Tag;
 use App\Models\Tenant\User;
 use Livewire\Component;
 use App\Services\ExportDataFile;
@@ -26,6 +27,10 @@ class Provider extends Component
 	public $service_type_ids=[];
 	public $services=[];
 	public $specializations=[];
+
+	
+    public $tags;
+    public $providers;
 
     public function __construct()
     {
@@ -55,6 +60,15 @@ class Provider extends Component
 		if ($showProfile) {
 			$this->user = User::where('id', request()->providerID)->with(['userdetail', 'teams','services'])->first()->toArray();
 		}
+		
+        $this->tags=Tag::all();
+        $this->providers=User::where('status',1)
+             ->whereHas('roles', function ($query) {
+                 $query->wherein('role_id',[2]);
+             })->get([
+                 'id',
+                 'name',
+             ]);
 	}
 	public function refreshFilters($name,$value){
 		if($name=="Service_filter"){
