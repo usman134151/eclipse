@@ -294,9 +294,10 @@
                                                                     @if($company['company_website']!=null)
                                                                         <div class="row">
                                                                             <div class="col-md-12">
+                                                                                <a href="{{$company['company_website']}}" target="_blank">
                                                                                 <p class="font-family-tertiary">
                                                                                     {{$company['company_website']}}
-                                                                                </p>
+                                                                                </p></a>
                                                                             </div>
                                                                         </div>
                                                                     @endif
@@ -547,23 +548,23 @@
                                                                             @foreach($company['schedule'] as $key=> $timeslot)
                                                                                 <tr role="row" class="odd">
                                                                                     <td>{{$key}}</td>
-                                                                                    @foreach($timeslot as  $slot)
-                                                                                        @if($slot['timeslot_type'] == 2 && count($timeslot)==1)
-                                                                                            <td></td>
-                                                                                        
-                                                                                        @endif
-                                                                                            <td>
-                                                                                                    {{date('h:i A', strtotime($slot['timeslot_start_time'])) . ' to ' . date('h:i A', strtotime($slot['timeslot_end_time']))}}
+                                                                                    <td colSpan=2>
+                                                                                            <div class="row">
 
-                                                                                            </td>
-                                                                                        @if($slot['timeslot_type'] == 1 && count($timeslot)==1)
-                                                                                            <td></td>
-                                                                                        
-                                                                                        @endif
-                                                                                        
-                                                                                        
+                                                                                                @foreach($timeslot as  $slots)
+                                                                                                    <div class="col-md-6">
 
-                                                                                    @endforeach
+                                                                                                    @foreach($slots as $slot)
+                                                                                                            {{date('h:i A', strtotime($slot['timeslot_start_time'])) . ' to ' . date('h:i A', strtotime($slot['timeslot_end_time']))}} <br>
+                                                                                                    @endforeach
+
+                                                                                                    </div>
+                                                                                                @endforeach
+                                                                                            </div>
+
+
+                                                                                        </td>
+
                                                                                 </tr>
                                                                             @endforeach
                                                                         

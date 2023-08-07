@@ -50,8 +50,12 @@ class CompanyProfile extends Component
 		if($schedule){
 			$days = ["Monday" => 1, "Tuesday" => 2, "Wednesday" => 3, "Thursday" => 4, "Friday" => 5, "Saturday" => 6, "Sunday" => 7];
 
-			$this->company['schedule'] = $schedule->timeslots->groupBy('timeslot_day')->sortBy(fn ($val, $key) => $days[$key])->toArray();
-		}// dd($this->company['schedule']->timeslots);
+			$sch = $schedule->timeslots->groupBy('timeslot_day')->sortBy(fn ($val, $key) => $days[$key]);
+			foreach($sch as $dayName=> $slots){
+				$this->company['schedule'][$dayName] = $slots->groupBy('timeslot_type')->toArray();
+			}
+		}
+		// dd($this->company['schedule']);
 
         $this->dispatchBrowserEvent('refreshSelects');
 

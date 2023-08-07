@@ -9,7 +9,7 @@ use Livewire\Component;
 class DepartmentProfile extends Component
 {
 	public $showForm;
-	public $department, $schedule;
+	public $department, $schedule, $timeslots=null;
 	protected $listeners = [
 		'showDepartmentDetails', 'showConfirmation'
 	];
@@ -63,8 +63,11 @@ class DepartmentProfile extends Component
 		if ($schedule){
 			$days = ["Monday" => 1, "Tuesday" => 2, "Wednesday" => 3, "Thursday" => 4, "Friday" => 5, "Saturday" => 6, "Sunday" => 7];
 
-			$this->department['schedule'] = $schedule->timeslots->groupBy('timeslot_day')->sortBy(fn ($val, $key) => $days[$key])->toArray();}
-
+			$sch = $schedule->timeslots->groupBy('timeslot_day')->sortBy(fn ($val, $key) => $days[$key]);
+			foreach ($sch as $dayName => $slots) {
+				$this->timeslots[$dayName] = $slots->groupBy('timeslot_type')->toArray();
+			}
+		}
 		$this->getDepartmentSchedule();
 		
         $this->dispatchBrowserEvent('refreshSelects');

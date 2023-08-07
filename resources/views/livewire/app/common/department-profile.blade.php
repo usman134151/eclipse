@@ -218,9 +218,9 @@
 																	@if($department->department_website)
 																	<div class="row">
 																		<div class="col-md-12">
-																			<p class="font-family-tertiary">
-																				{{$department->department_website}}
-																			</p>
+																			<a href="{{$department->department_website}}" target="_blank" ><p class="font-family-tertiary">
+																				{{$department->department_website}} </p>
+																			</a>
 																		</div>
 																	</div>
 																	@endif
@@ -462,7 +462,7 @@
 															<h2>Business Hours</h2>
 														</div>
 															<div class="card">
-																@isset($department['schedule'])
+																@if($timeslots)
 
 																	<div class="table-responsive">
 																		<table id="unassigned_data" class="table table-hover"
@@ -479,26 +479,25 @@
 																				</tr>
 																			</thead>
 																			<tbody>
-																				@foreach($department['schedule'] as $key=> $timeslot)
+																				@foreach($timeslots as $key=> $timeslot)
 																					<tr role="row" class="odd">
 																						<td>{{$key}}</td>
-																						@foreach($timeslot as  $slot)
-																							@if($slot['timeslot_type'] == 2 && count($timeslot)==1)
-																								<td></td>
-																							
-																							@endif
-																								<td>
-																										{{date('h:i A', strtotime($slot['timeslot_start_time'])) . ' to ' . date('h:i A', strtotime($slot['timeslot_end_time']))}}
+																						<td colSpan=2>
+                                                                                            <div class="row">
 
-																								</td>
-																							@if($slot['timeslot_type'] == 1 && count($timeslot)==1)
-																								<td></td>
-																							
-																							@endif
-																							
-																							
+                                                                                                @foreach($timeslot as  $slots)
+                                                                                                    <div class="col-md-6">
 
-																						@endforeach
+                                                                                                    @foreach($slots as $slot)
+                                                                                                            {{date('h:i A', strtotime($slot['timeslot_start_time'])) . ' to ' . date('h:i A', strtotime($slot['timeslot_end_time']))}} <br>
+                                                                                                    @endforeach
+
+                                                                                                    </div>
+                                                                                                @endforeach
+                                                                                            </div>
+
+
+                                                                                        </td>
 																					</tr>
 																				@endforeach
 																			
