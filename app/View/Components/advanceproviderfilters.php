@@ -6,7 +6,7 @@ use App\Models\Tenant\Tag;
 use App\Models\Tenant\User;
 use Illuminate\View\Component;
 
-class advanceproviderfilters extends Component
+class AdvanceProviderFilters extends Component
 {
     public $tags;
     public $providers;
@@ -26,6 +26,6 @@ class advanceproviderfilters extends Component
 
     public function render()
     {         
-        return view('components.advanceproviderfilters');
+        return view('components.advance-provider-filters');
     }
 }
