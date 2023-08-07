@@ -107,6 +107,9 @@ final class Teams extends PowerGridComponent
             ->addColumn('status', function (Team $model) {
                 return $model->status;
             })
+            ->addColumn('specializations', function (Team $model) {
+                return $model->specializations->count();
+            })
             ->addColumn('edit', function (Team $model) {
                 return '<div class="d-flex actions">
                 <a href="#" title="Edit Provider Team" wire:click="edit('.$model->id.')"  aria-label="Edit Provider Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
@@ -142,7 +145,7 @@ final class Teams extends PowerGridComponent
                 ->sortable()
                 ->editOnClick(),
 
-            Column::make('Specialization Count', 'accommodation_count', ''),
+            Column::make('Specialization Count', 'specializations', ''),
             Column::make('Accomodation Count', 'accommodation_count', ''),
 
             Column::make('Provider Count', 'provider_count', ''),

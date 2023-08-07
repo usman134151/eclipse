@@ -96,8 +96,8 @@
                                     <label for="show_records" class="form-label-sm mb-0">
                                         Show
                                     </label>
-                                    <select class="form-select form-select-sm" id="show_records">
-                                        <option>7</option>
+                                    <select wire:model="limit" class="form-select form-select-sm" id="limit">
+                                        <option>10</option>
                                         <option>15</option>
                                         <option>20</option>
                                         <option>25</option>
@@ -128,11 +128,11 @@
                                                     </svg>
                                                     {{-- End of update by Shanila --}}
                                                 </button>
-                                                <ul class="dropdown-menu">
+                                                {{-- <ul class="dropdown-menu">
                                                     <li><a class="dropdown-item" href="#">Action</a></li>
                                                     <li><a class="dropdown-item" href="#">Another action</a></li>
                                                     <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                                </ul>
+                                                </ul> --}}
                                             </div>
                                         </div>
                                     </div>
@@ -166,18 +166,18 @@
                                                 $status = ['1', '2', '3'];
                                                 $statusCode = ['bg-success', 'bg-gray', 'bg-warning'];
                                                 @endphp
-                                                @for ($i = 1; $i <= 7; $i++) <tr role="row"
+                                                @foreach ($booking_assignments as $i => $booking) <tr role="row"
                                                     class="{{ ($i % 2 == 0) ? 'even' : 'odd' }} {{ $statusCode[array_rand($status)] }}">
                                                     <td class="text-center">
                                                         <input class="form-check-input" type="checkbox" value=""
                                                             aria-label="Select Booking">
                                                     </td>
                                                     <td wire:click="showBookingDetails">
-                                                        <a href="#">100995-6</a>
+                                                        <a href="#">{{$booking['booking_number']}}</a>
                                                         <div>
-                                                            <div class="time-date">08/24/2022</div>
+                                                            <div class="time-date">{{date_format(date_create($booking['booking_start_at']), "m/d/Y")}}</div>
                                                             <div class="time-date">
-                                                                9:59 AM to 4:22 PM
+                                                            {{date_format(date_create($booking['booking_start_at']), "h:i A")}} to {{date_format(date_create($booking['booking_end_at']), "h:i A")}}
                                                             </div>
                                                         </div>
                                                     </td>
@@ -188,12 +188,19 @@
                                                     </td>
                                                     <td>
                                                         <div class="badge bg-warning mb-1">
-                                                            Teleconference
+                                                            @if($booking['service_type']==1)
+                                                                In-Person
+                                                            @elseif($booking['service_type']==2)
+                                                                Virtual
+                                                            @elseif($booking['service_type']==3)
+                                                                Teleconference
+                                                            @endif
+
                                                         </div>
                                                         <div>292332811 - Code 2131</div>
                                                     </td>
                                                     <td>
-                                                        <div>Demo Company</div>
+                                                        <div>{{$booking['company'] ? $booking['company']['name'] : ''}}</div>
                                                         <div>No. of Providers: 5</div>
                                                     </td>
                                                     <td>$100</td>
@@ -314,7 +321,7 @@
                                                         </div>
                                                     </td>
                                                     </tr>
-                                                    @endfor
+                                                    @endforeach
                                             </tbody>
                                         </table>
                                     </div>
