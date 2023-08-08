@@ -184,7 +184,8 @@
                                                     <td>
                                                         <div>{{$booking['accommodations']['name']}}</div>
                                                         {{-- <div>Shelby Sign Language</div> --}}
-                                                        <div>Service: {{$booking['service']['name']}}</div>
+                                                        @if($booking['service'])
+                                                        <div>Service: {{$booking['service']['name']}}</div>@endif
                                                     </td>
                                                     <td>
                                                         <div class="badge bg-warning mb-1">
@@ -330,7 +331,9 @@
 
                             {{-- Hoverable rows End --}}
                             <div class="d-flex flex-column flex-md-row justify-content-between">
-                                <div>
+                                {{ $booking_assignments->links() }}
+
+                                {{-- <div>
                                     <p class="fw-semibold mb-lg-0 text-sm font-family-secondary">
                                         Showing 1 to 5 of 100 entries
                                     </p>
@@ -368,7 +371,7 @@
                                             </a>
                                         </li>
                                     </ul>
-                                </nav>
+                                </nav> --}}
                             </div>
                             {{-- icon legend bar start --}}
                             <div class="d-flex actions gap-3 justify-content-md-end mb-2">

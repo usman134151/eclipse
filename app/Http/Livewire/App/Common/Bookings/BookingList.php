@@ -5,46 +5,43 @@ namespace App\Http\Livewire\App\Common\Bookings;
 use App\Models\Tenant\Booking;
 use Carbon\Carbon;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class BookingList extends Component
 {
+	use WithPagination;
+
 	public $bookingType='past';	
 	public $showBookingDetails;
 	public $bookingSection;
-	public $booking_assignments, $limit = 10;
+	public  $limit = 10;
 	
 
 protected $listeners = ['showList' => 'resetForm', 'updateVal'];
 
 	public function render()
 	{
-		// dd($this->booking_assignments,$this->bookingType);
-
-		$this->fetchBookings();
-		return view('livewire.app.common.bookings.booking-list');
-	}
-
-	public function fetchBookings(){
-		switch($this->bookingType){
-			case('Past'):
-				$query = Booking::where('booking_end_at', '<>', null)->whereDate('booking_start_at','<', Carbon::today());
+		switch ($this->bookingType) {
+			case ('Past'):
+				$query = Booking::where('booking_end_at', '<>', null)->whereDate('booking_end_at', '<', Carbon::today())->orderBy('booking_start_at','DESC');
 				break;
 			case ("Today's"):
-				$query = Booking::whereDate('booking_start_at',Carbon::today());
+				$query = Booking::whereDate('booking_start_at', Carbon::today())->orderBy('booking_start_at', 'ASC');
 				break;
 			case ('Upcoming'):
-				$query = Booking::whereDate('booking_start_at', '>', Carbon::today());
+				$query = Booking::whereDate('booking_start_at', '>', Carbon::today())->orderBy('booking_start_at', 'ASC');
 				break;
 			case ('Pending Approval'):
-				$query = Booking::where('booking_status', 0);
+				$query = Booking::where('booking_status', 0)->orderBy('booking_start_at', 'DESC');
 				break;
 			case ('Draft'):
-				$query = Booking::where('type', 2);
+				$query = Booking::where('type', 2)->orderBy('booking_start_at', 'DESC');
 				break;
-
 		}
-		$this->booking_assignments =$query->limit($this->limit)->with(['company','accommodations'])->get();
+
+		return view('livewire.app.common.bookings.booking-list',['booking_assignments' => $query->paginate($this->limit)]);
 	}
+
 
 	public function mount()
 	{
