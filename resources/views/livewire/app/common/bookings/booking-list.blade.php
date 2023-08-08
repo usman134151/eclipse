@@ -182,9 +182,9 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <div>Shelby Sign Language</div>
-                                                        <div>Shelby Sign Language</div>
-                                                        <div>Service: Language interpreting</div>
+                                                        <div>{{$booking['accommodations']['name']}}</div>
+                                                        {{-- <div>Shelby Sign Language</div> --}}
+                                                        <div>Service: {{$booking['service']['name']}}</div>
                                                     </td>
                                                     <td>
                                                         <div class="badge bg-warning mb-1">
@@ -201,7 +201,7 @@
                                                     </td>
                                                     <td>
                                                         <div>{{$booking['company'] ? $booking['company']['name'] : ''}}</div>
-                                                        <div>No. of Providers: 5</div>
+                                                        <div>No. of Providers: {{$booking['provider_count']}}</div>
                                                     </td>
                                                     <td>$100</td>
                                                     <td>
