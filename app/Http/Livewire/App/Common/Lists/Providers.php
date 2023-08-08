@@ -81,11 +81,11 @@ final class Providers extends PowerGridComponent
 				$query->whereIn('users.id', $this->provider_ids);
 			}
 			if(count($this->services)){
-				// dd($this->services);
-				$query->whereHas('services', function ($query) {
-						$query->wherein('service_id',$this->services);
-					});
-		     }
+				$services=$this->services;
+				$query->whereHas('services', function ($query) use ($services) {
+					$query->whereIn('service_id', $services)->where('provider_accommodation_services.status','=',1);
+				}, '=', count($services));
+		    }
 			if(count($this->service_type_ids)){
 				//as ids are different in dropdown and in table need to replace for filter
 				$replacements = [
