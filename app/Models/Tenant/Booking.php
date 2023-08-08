@@ -2,6 +2,7 @@
 
 namespace App\Models\Tenant;
 
+use App\Http\Livewire\App\Admin\Customer\ServiceCatelog;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,4 +23,32 @@ class Booking extends Model
     {
         return $this->belongsTo(Company::class, 'company_id');
     }
+
+    public function accommodations()
+    {
+        return $this->belongsTo(Accommodation::class, 'accommodation_id');
+    }
+    public function service()
+    {
+        return $this->belongsTo(ServiceCategory::class, 'service_category');
+    }
+    public function industry()
+    {
+        return $this->belongsTo(Industry::class, 'industry_id');
+    }
+    public function customer()
+    {
+        return $this->belongsTo(User::class, 'customer_id');
+    }
+
+    public function booking_supervisor()
+    {
+        return $this->belongsTo(User::class, 'supervisor');
+    }
+    public function billing_manager()
+    {
+        return $this->belongsTo(User::class, 'billing_manager_id');
+    }
+
+    
 }
