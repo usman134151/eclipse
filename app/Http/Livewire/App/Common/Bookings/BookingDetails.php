@@ -17,7 +17,7 @@ class BookingDetails extends Component
 		if(!$booking)
 			$booking = new Booking;	// new booking field 
 
-		dd($booking->services);
+		// dd($booking->services);
 
 		return view('livewire.app.common.bookings.booking-details', ['component' => $this->component,'booking'=>$booking]);
 	}
