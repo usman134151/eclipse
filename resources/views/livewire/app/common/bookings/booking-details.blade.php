@@ -2270,26 +2270,7 @@
                     <div class="tab-pane fade {{ $component == 'attachments' ? 'active show' : '' }}" id="attachments"
                         role="tabpanel" aria-labelledby="attachments-tab" tabindex="0">
                         <h2>Attachments</h2>
-                        <div class="col-lg-8 between-section-segment-spacing">
-                            <div class="mb-3 position-relative">
-                                <a href="#" @click="addDocuments = true"
-                                    class="position-absolute w-100 h-100 d-block"></a>
-                                <label for="AddDocuments" class="form-label">Add Documents</label>
-                                <input class="form-control" type="file" aria-label="Add Document">
-                            </div>
-                            <div class="row mb-4">
-                                <div class="col-lg-3">
-                                    <img src="/tenant-resources/images/img-placeholder-document.jpg"
-                                        alt="img-placeholder-document" class="w-100">
-                                    <p class="font-family-secondary"><small>File Name</small></p>
-                                </div>
-                                <div class="col-lg-3">
-                                    <img src="/tenant-resources/images/img-placeholder-document.jpg"
-                                        alt="img-placeholder-document" class="w-100">
-                                    <p class="font-family-secondary"><small>File Name</small></p>
-                                </div>
-                            </div>
-                        </div>
+                            @livewire('app.common.bookings.booking-attachments',['booking_id'=>$booking_id])
                         <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                             <button type="" class="btn btn-outline-dark rounded"
                                 x-on:click="$wire.switch('assigned-providers')">Back</button>

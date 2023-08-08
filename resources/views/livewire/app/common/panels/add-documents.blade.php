@@ -21,7 +21,7 @@
             </div>
             <div class="col-lg-8 mb-4">
                 <div class="row">
-                    <div class="text-center col-lg-3 d-flex">
+                    {{-- <div class="text-center col-lg-3 d-flex">
                         <a href="#" class="btn btn-outline-dark d-block px-2 pb-0">
                             <svg class="mb-2" width="40" height="36" viewBox="0 0 40 36" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -60,9 +60,9 @@
                                 Attach from Google Drive
                             </p>
                         </a>
-                    </div>
-                    <div class="text-center col-lg-3 d-flex">
-                        <a href="#" class="btn btn-outline-dark d-block px-2 pb-0">
+                    </div> --}}
+                    <div class="text-center col-lg-3 d-flex ">
+                        <a href="#" class="btn btn-outline-dark d-block px-2 pb-0 " >
                             <svg class="mb-2" width="35" height="35" viewBox="0 0 35 35" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -78,10 +78,11 @@
                             </svg>
                             <p class="text-primary mb-0 fw-medium">
                                 Attach from Disk
+						        <input wire:model="file" class="form-control inputFile" id="" name="document" type="file" aria-invalid="false" >
                             </p>
                         </a>
                     </div>
-                    <div class="text-center col-lg-3 d-flex">
+                    {{-- <div class="text-center col-lg-3 d-flex">
                         <a href="#" class="btn btn-outline-dark d-block px-2 pb-0">
                             <svg class="mb-2" width="42" height="35" viewBox="0 0 42 35" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -100,7 +101,7 @@
                                 Attach from Dropbox
                             </p>
                         </a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="col-lg-8 mb-4">
