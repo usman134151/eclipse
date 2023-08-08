@@ -3,23 +3,49 @@
 namespace App\Http\Livewire\App\Common\Bookings;
 
 use App\Models\Tenant\Booking;
+use Carbon\Carbon;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class BookingList extends Component
 {
-	public $bookingType;
+	use WithPagination;
+
+	public $bookingType='past';	
 	public $showBookingDetails;
 	public $bookingSection;
-	public $booking_assignments, $limit = 10;
+	public  $limit = 10;
 	
 
 protected $listeners = ['showList' => 'resetForm', 'updateVal'];
 
 	public function render()
 	{
-		$this->booking_assignments = Booking::where('company_id','<>',null)->limit($this->limit)->with(['company'])->get();
-		return view('livewire.app.common.bookings.booking-list');
+		switch ($this->bookingType) {
+			case ('Past'):
+				$query = Booking::where('booking_end_at', '<>', null)->whereDate('booking_end_at', '<', Carbon::today())->orderBy('booking_start_at','DESC');
+				break;
+			case ("Today's"):
+				$query = Booking::whereDate('booking_start_at', Carbon::today())->orderBy('booking_start_at', 'ASC');
+				break;
+			case ('Upcoming'):
+				$query = Booking::whereDate('booking_start_at', '>', Carbon::today())->orderBy('booking_start_at', 'ASC');
+				break;
+			case ('Pending Approval'):
+				$query = Booking::where('booking_status', 0)->orderBy('booking_start_at', 'DESC');
+				break;
+			case ('Draft'):
+				$query = Booking::where('type', 2)->orderBy('booking_start_at', 'DESC');
+				break;
+		}
+
+		return view('livewire.app.common.bookings.booking-list',['booking_assignments' => $query->paginate($this->limit)->onEachSide(2)]);
 	}
+
+	// public function paginationView()
+	// {
+	// 	return 'app.common.bookings.booking-nav';
+	// }
 
 	public function mount()
 	{
