@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\App\Common;
 
+use App\Models\Tenant\Tag;
 use App\Models\Tenant\User;
 use Livewire\Component;
 use App\Services\ExportDataFile;
@@ -13,12 +14,23 @@ class Provider extends Component
 	public $importFile;
 	public $status,$user;
     protected $listeners = [
+		'refreshFilters',
 		'showList' => 'resetForm',
 		'showProfile' => 'showProfile',
 		'showForm' => 'showForm', // show form when the parent component requests it
 		'updateRecordId' => 'updateRecordId', // update the ID of the record being edited/deleted
 	];
 	protected $exportDataFile;
+
+	public $provider_ids=[];
+	public $tag_names=[];
+	public $service_type_ids=[];
+	public $services=[];
+	public $specializations=[];
+
+	
+    public $tags;
+    public $providers;
 
     public function __construct()
     {
@@ -48,8 +60,29 @@ class Provider extends Component
 		if ($showProfile) {
 			$this->user = User::where('id', request()->providerID)->with(['userdetail', 'teams','services'])->first()->toArray();
 		}
+		
+        $this->tags=Tag::all();
+        $this->providers=User::where('status',1)
+             ->whereHas('roles', function ($query) {
+                 $query->wherein('role_id',[2]);
+             })->get([
+                 'id',
+                 'name',
+             ]);
 	}
-
+	public function refreshFilters($name,$value){
+		if($name=="Service_filter"){
+			$this->services = $value;
+		}else if($name=="specialization_search_filter"){
+			$this->specializations = $value;
+		}else if($name=="setup_value_label"){
+			$this->service_type_ids = $value;
+		}else if($name=="tags_selected"){
+			$this->tag_names = $value;
+		}else if($name=="providers_selected"){
+			$this->provider_ids = $value;
+		}
+	}
 	function showForm($user = null)
 	{
         if ($user) {
