@@ -12,7 +12,7 @@
                                 <use xlink:href="/css/common-icons.svg#tablet"></use>
                             </svg>
                             {{-- End of update by Shanila --}}
-                            <span>Booking Details</span>
+                            <span>Booking Details </span>
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
@@ -315,7 +315,7 @@
                                                     <label class="col-form-label">Assignment No:</label>
                                                 </div>
                                                 <div class="col-lg-7 align-self-center">
-                                                    <div class="font-family-tertiary">101929</div>
+                                                    <div class="font-family-tertiary">{{$booking['booking_number']}}</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -326,7 +326,7 @@
                                                 </div>
                                                 <div class="col-lg-7 align-self-center">
                                                     <div class="font-family-tertiary">
-                                                        Language Interpreter
+                                                        {{$booking['booking_title'] ? $booking['booking_title'] :'N/A'}}
                                                     </div>
                                                 </div>
                                             </div>
@@ -338,7 +338,8 @@
                                                 </div>
                                                 <div class="col-lg-7 align-self-center">
                                                     <div class="font-family-tertiary">
-                                                        10/25/2022 4:20 PM
+                                                        {{$booking['booking_start_at'] ? date_format(date_create($booking['booking_start_at']), 'd/m/Y h:i A') : ''}}
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -350,7 +351,7 @@
                                                 </div>
                                                 <div class="col-lg-7 align-self-center">
                                                     <div class="font-family-tertiary">
-                                                        10/25/2022 8:20 PM
+                                                        {{$booking['booking_end_at'] ? date_format(date_create($booking['booking_end_at']), 'd/m/Y h:i A') : ''}}
                                                     </div>
                                                 </div>
                                             </div>
@@ -362,7 +363,7 @@
                                                 </div>
                                                 <div class="col-lg-7 align-self-center">
                                                     <div class="font-family-tertiary">
-                                                        4 Hours 0 Minutes
+                                                        {{$booking['duration_hours']}} Hours {{$booking['duration_minute']}} Minutes
                                                     </div>
                                                 </div>
                                             </div>
@@ -373,7 +374,19 @@
                                                     <label class="col-form-label">Frequency:</label>
                                                 </div>
                                                 <div class="col-lg-7 align-self-center">
-                                                    <div class="font-family-tertiary">One Time</div>
+                                                    <div class="font-family-tertiary">
+                                                        @if($booking['frequency_id']==1)
+                                                            One Time
+                                                        @elseif($booking['frequency_id']==2)
+                                                            Daily
+                                                        @elseif($booking['frequency_id']==3)
+                                                            Weekly
+                                                        @elseif($booking['frequency_id']==4)
+                                                            Monthly
+                                                        @elseif($booking['frequency_id']==5)
+                                                            Week Daily
+                                                        @endif
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -384,7 +397,7 @@
                                                 </div>
                                                 <div class="col-lg-7 align-self-center">
                                                     <div class="font-family-tertiary">
-                                                        Information Technology
+                                                        {{$booking['industry'] ? $booking['industry']['name'] : 'N/A' }}
                                                     </div>
                                                 </div>
                                             </div>
@@ -396,7 +409,7 @@
                                                 </div>
                                                 <div class="col-lg-7 align-self-center">
                                                     <div class="font-family-tertiary">
-                                                        Software Agency
+                                                        {{$booking['company'] ? $booking['company']['name'] : 'N/A' }}
                                                     </div>
                                                 </div>
                                             </div>
@@ -460,7 +473,7 @@
                                                 </div>
                                                 <div class="col-lg-7 align-self-center">
                                                     <div class="font-family-tertiary">
-                                                        (923) 023-9683
+                                                        {{$booking['phone'] ? $booking['phone'] : 'N/A' }}
                                                     </div>
                                                 </div>
                                             </div>

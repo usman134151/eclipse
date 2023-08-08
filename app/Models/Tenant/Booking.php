@@ -32,4 +32,8 @@ class Booking extends Model
     {
         return $this->belongsTo(ServiceCategory::class, 'service_category');
     }
+    public function industry()
+    {
+        return $this->belongsTo(Industry::class, 'industry_id');
+    }
 }

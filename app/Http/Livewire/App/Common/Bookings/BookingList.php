@@ -15,6 +15,8 @@ class BookingList extends Component
 	public $showBookingDetails;
 	public $bookingSection;
 	public  $limit = 10;
+	public  $booking_id = 0;
+
 	
 
 protected $listeners = ['showList' => 'resetForm', 'updateVal'];
@@ -45,10 +47,6 @@ protected $listeners = ['showList' => 'resetForm', 'updateVal'];
 		return view('livewire.app.common.bookings.booking-list',['booking_assignments' => $query->paginate($this->limit)]);
 	}
 
-	// public function paginationView()
-	// {
-	// 	return 'app.common.bookings.booking-nav';
-	// }
 
 	public function mount()
 	{
@@ -64,8 +62,9 @@ protected $listeners = ['showList' => 'resetForm', 'updateVal'];
 		$this->showBookingDetails = false;
 	}
 
-	public function showBookingDetails()
+	public function showBookingDetails($booking_id)
 	{
 		$this->showBookingDetails = true;
+		$this->booking_id=$booking_id;
 	}
 }
