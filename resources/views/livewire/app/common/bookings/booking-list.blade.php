@@ -330,8 +330,8 @@
                             </div>
 
                             {{-- Hoverable rows End --}}
-                            <div class="d-flex flex-column flex-md-row justify-content-between">
-                                {{ $booking_assignments->links() }}
+                            {{-- <div class="d-flex flex-column flex-md-row justify-content-between"> --}}
+                                {{ $booking_assignments->links('livewire.app.common.bookings.booking-nav') }}
 
                                 {{-- <div>
                                     <p class="fw-semibold mb-lg-0 text-sm font-family-secondary">
@@ -372,7 +372,7 @@
                                         </li>
                                     </ul>
                                 </nav> --}}
-                            </div>
+                            {{-- </div> --}}
                             {{-- icon legend bar start --}}
                             <div class="d-flex actions gap-3 justify-content-md-end mb-2">
                                 <div class="d-flex gap-2 align-items-center">

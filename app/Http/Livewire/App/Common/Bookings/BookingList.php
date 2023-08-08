@@ -39,9 +39,13 @@ protected $listeners = ['showList' => 'resetForm', 'updateVal'];
 				break;
 		}
 
-		return view('livewire.app.common.bookings.booking-list',['booking_assignments' => $query->paginate($this->limit)]);
+		return view('livewire.app.common.bookings.booking-list',['booking_assignments' => $query->paginate($this->limit)->onEachSide(2)]);
 	}
 
+	// public function paginationView()
+	// {
+	// 	return 'app.common.bookings.booking-nav';
+	// }
 
 	public function mount()
 	{
