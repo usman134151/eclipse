@@ -40,7 +40,7 @@
                 </div>
             </div>
         </div>
-        @livewire('app.common.bookings.booking-details')
+        @livewire('app.common.bookings.booking-details',['booking_id'=>$booking_id])
     @else
         {{-- BEGIN: Content --}}
         @if ($bookingSection != 'customer')
@@ -164,7 +164,7 @@
                                                                 <input class="form-check-input" type="checkbox"
                                                                     value="" aria-label="Select Booking">
                                                             </td>
-                                                            <td wire:click="showBookingDetails">
+                                                            <td wire:click="showBookingDetails({{$booking['id']}})">
                                                                 <a href="#">{{ $booking['booking_number'] ? $booking['booking_number'] : '' }}</a>
                                                                 <div>
                                                                     <div class="time-date">
