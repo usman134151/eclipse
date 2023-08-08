@@ -37,9 +37,12 @@ protected $listeners = ['showList' => 'resetForm', 'updateVal'];
 			case ('Draft'):
 				$query = Booking::where('type', 2)->orderBy('booking_start_at', 'DESC');
 				break;
+			default:
+				$query = Booking::where('booking_end_at', '<>', null)->whereDate('booking_end_at', '<', Carbon::today())->orderBy('booking_start_at', 'DESC');
+				break;
 		}
 
-		return view('livewire.app.common.bookings.booking-list',['booking_assignments' => $query->paginate($this->limit)->onEachSide(2)]);
+		return view('livewire.app.common.bookings.booking-list',['booking_assignments' => $query->paginate($this->limit)]);
 	}
 
 	// public function paginationView()
