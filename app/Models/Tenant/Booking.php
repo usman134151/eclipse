@@ -36,4 +36,19 @@ class Booking extends Model
     {
         return $this->belongsTo(Industry::class, 'industry_id');
     }
+    public function customer()
+    {
+        return $this->belongsTo(User::class, 'customer_id');
+    }
+
+    public function booking_supervisor()
+    {
+        return $this->belongsTo(User::class, 'supervisor');
+    }
+    public function billing_manager()
+    {
+        return $this->belongsTo(User::class, 'billing_manager_id');
+    }
+
+    
 }

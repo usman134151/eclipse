@@ -74,7 +74,7 @@
                                     <div class="mb-4">
                                         <label class="form-label text-primary">Booking Title</label>
                                         <div class="font-family-tertiary value">
-                                            Language Interpreter
+                                            {{$booking['booking_title'] ? $booking['booking_title'] :'N/A'}}
                                         </div>
                                     </div>
                                     <div>
@@ -94,6 +94,9 @@
                                         <div>
                                             <select class="form-select form-select-sm" id="status-column">
                                                 <option>Pending</option>
+                                                <option>Assigned</option>
+                                                <option>Un-assigned</option>
+
                                             </select>
                                         </div>
                                     </div>
@@ -433,7 +436,7 @@
                                                 </div>
                                                 <div class="col-lg-7 align-self-center">
                                                     <div class="font-family-tertiary">
-                                                        <a href="#">Mr. Ali Ahmed</a>
+                                                        <a href="#">{{$booking->booking_supervisor ? $booking->booking_supervisor->name : 'N/A' }}</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -447,7 +450,7 @@
                                                 </div>
                                                 <div class="col-lg-7 align-self-center">
                                                     <div class="font-family-tertiary">
-                                                        <a href="#">Mr. Ali Ahmed</a>
+                                                        <a href="#">{{$booking->billing_manager ? $booking->billing_manager->name : 'N/A' }}</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -914,7 +917,9 @@
                                                     Provider Notes
                                                 </label>
                                                 <textarea class="form-control" rows="4" cols="4">
-													Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+													{{$booking['provider_notes']}}
+
+													{{-- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua --}}
 												</textarea>
                                             </div>
                                             <!-- /Provider Notes -->
@@ -926,7 +931,8 @@
                                                     Customer Notes
                                                 </label>
                                                 <textarea class="form-control" rows="4" cols="4">
-													Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+													{{$booking['customer_notes']}}
+                                                    {{-- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua --}}
 												</textarea>
                                             </div>
                                             <!-- /Customer Notes -->
@@ -938,7 +944,9 @@
                                                     Private Notes
                                                 </label>
                                                 <textarea class="form-control" rows="4" cols="4">
-													Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+													{{$booking['private_notes']}}
+
+													{{-- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua --}}
 												</textarea>
                                             </div>
                                             <!-- /Private Notes -->
