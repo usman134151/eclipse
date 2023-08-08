@@ -157,6 +157,7 @@
 		// 	Livewire.emit('updateDay', val);
 		// else
 		// Livewire.emit('updateVal', attrName, val);
+		Livewire.emit('updateVal', attrName, val);
 		Livewire.emit('refreshFilters', attrName, val);
 	}
 	Livewire.on('passwordmodalDismissed', () => {

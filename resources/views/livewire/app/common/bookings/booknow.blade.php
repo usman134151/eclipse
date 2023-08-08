@@ -403,32 +403,16 @@
                                                                     class="d-flex justify-content-between align-items-center">
                                                                     <label class="form-label">Service
                                                                         Consumer(s)</label>
-                                                                        <div class="form-check ">
-                                                                            <label class="form-check-label" for="addnewserviceconsumer">Add New Service Consumer</label>
-                                                                            <input class="form-check-input show-hidden-content"
-                                                                                id="addnewserviceconsumer" name="addnewserviceconsumer"
-                                                                                type="checkbox" tabindex="">
-                                                                            <div class="hidden-content">
-                                                                                <div class="form-check-inline">
-                                                                                    <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup"
-                                                                                    data-bs-toggle="modal" data-bs-target="#addNewCustomer" aria-label="Service Consumer">
-                                                                                <svg aria-label="Service consumer" width="25" height="18"
-                                                                                    viewBox="0 0 25 18">
-                                                                                    <use xlink:href="/css/common-icons.svg#right-color-arrow">
-                                                                                    </use>
-                                                                                </svg>
-                                                                                Service Consumer
-                                                                            </button>
 
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
                                                                 </div>
                                                                 <div class="js-wrapper-manual-entry">
                                                                     <select
                                                                         class="form-select mb-2 js-form-select-manual-entry"
-                                                                        aria-label="Select Service Consumer(s)">
+                                                                        aria-label="Select Service Consumer(s)" wire:model="">
                                                                         <option>Select Service Consumer(s)</option>
+                                                                        @foreach($consumers as $consumer)
+                                                                        <option value="{{$consumer['id']}}">{{$consumer['name']}}</option>
+                                                                        @endforeach
                                                                     </select>
                                                                     <input type="" name=""
                                                                         class="form-control mb-2 hidden js-form-input-manual-entry"
