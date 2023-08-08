@@ -103,7 +103,7 @@
 						<div class="row" id="table-hover-row">
 							<div class="col-12">
 								<div class="card">
-								@livewire('app.common.lists.providers', ['status' => $status,'service_type_ids' => $service_type_ids,'tag_names' => $tag_names,'provider_ids' => $provider_ids,'services' => $services,'specializations'=>$specializations],key(Str::random(10)))
+								@livewire('app.common.lists.providers', ['status' => $status,'service_type_ids' => $service_type_ids,'tag_names' => $tag_names,'provider_ids' => $provider_ids,'services' => $services,'specializations'=>$specializations,'gender'=>$gender,'ethnicity'=>$ethnicity,'certifications'=>$certifications],key(Str::random(10)))
 
 						{{-- Icon Legend Bar - Start --}}
 						<div class="d-flex actions gap-3 justify-content-end mb-2">

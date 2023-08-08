@@ -20,6 +20,9 @@ final class Providers extends PowerGridComponent
 	public $service_type_ids=[];
 	public $services=[];
 	public $specializations=[];
+	public $gender;
+	public $ethnicity;
+	public $certifications=[];
 
 	/*
 	|--------------------------------------------------------------------------
@@ -59,7 +62,6 @@ final class Providers extends PowerGridComponent
 
 	public function datasource(): Builder
 	{
-
 
 		$query = User::query()
 			->where('status', $this->status)
@@ -114,6 +116,15 @@ final class Providers extends PowerGridComponent
 					});
 				});
 		     }
+			if($this->gender){
+				$query->where('user_details.gender_id', $this->gender);
+			}
+			if($this->ethnicity){
+				$query->where('user_details.ethnicity_id', $this->ethnicity);
+			}
+			if($this->certifications){
+				// $query->where('user_details.ethnicity_id', $this->ethnicity);
+			}
 			return $query;
 	}
 

@@ -27,8 +27,10 @@ class Provider extends Component
 	public $service_type_ids=[];
 	public $services=[];
 	public $specializations=[];
+	public $gender;
+	public $ethnicity;
+	public $certifications=[];
 
-	
     public $tags;
     public $providers;
 
@@ -81,6 +83,12 @@ class Provider extends Component
 			$this->tag_names = $value;
 		}else if($name=="providers_selected"){
 			$this->provider_ids = $value;
+		}else if($name=="gender"){
+			$this->gender = $value;
+		}else if($name=="ethnicity"){
+			$this->ethnicity = $value;
+		}else if($name=="certifications"){
+			$this->certifications = $value;
 		}
 	}
 	function showForm($user = null)
