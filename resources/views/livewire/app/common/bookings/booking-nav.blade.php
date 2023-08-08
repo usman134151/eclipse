@@ -21,13 +21,15 @@
                         </nav>
                     @endif
                 </div> --}}
-                <div class="d-flex flex-column flex-md-row justify-content-between">
-                 <div>
-                                    <p class="fw-semibold mb-lg-0 text-sm font-family-secondary">
-                                  {{ "Showing page " . $paginator->currentPage() . "  of  " . $paginator->lastPage() }}
-              {{-- Showing 1 to 5 of 100 entries --}}
-                                    </p>
-                                </div>
+                <div class="d-flex flex-column flex-md-row justify-content-end">
+                <small class="text-muted d-block mb-2 my-md-2 me-1">
+                        Showing
+                        <span class="font-semibold">{{$paginator->currentPage()}}</span>
+                        of
+                        <span class="font-semibold">{{$paginator->lastPage()}}</span>
+                                                Pages
+                    </small>
+                            
                     @if ($paginator->hasPages())
                                 
                                 <nav aria-label="Page Navigation">
