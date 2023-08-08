@@ -14,7 +14,7 @@ class BookingAttachments extends Component
     public function render()
     {
         if ($this->booking_id) {
-            $this->booking_id = 3374;
+            // $this->booking_id = 3374;
             $this->documents = BookingDocument::where('booking_id', $this->booking_id)->get();
         }
         return view('livewire.app.common.bookings.booking-attachments');
