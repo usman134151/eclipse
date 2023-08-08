@@ -57,21 +57,22 @@
             <div class="col-lg-5 mb-4">
                 <div class="d-lg-flex justify-content-between align-items-center">
                     <label class="form-label mb-lg-0">Preferred Providers</label>
-                    <div class="form-check">
+                    <!-- <div class="form-check">
                         <input class="form-check-input" id="MatchAllPreferredProviders" name=""
                             type="checkbox" tabindex="">
                         <label class="form-check-label" for="MatchAllPreferredProviders">
                             <small>Match All</small>
                         </label>
-                    </div>
+                    </div> -->
                 </div>
-                <select data-placeholder="Select Accommodation" multiple
-                    class="select2 form-select" tabindex="8">
+                <select wire:model.defer="preferred_provider_ids" data-placeholder="Select Preferred Providers" multiple
+                    class="select2 form-select" tabindex="8" id="preferred_provider_ids">
                     <option value=""></option>
-                    <option selected>Thomas Charles</option>
-                    <option selected>Paulie Durber</option>
+                    @foreach($providers as $provider)
+                        <option value="{{$provider->id}}">{{$provider->name}}</option>
+                    @endforeach
                 </select>
-                <div class="mt-2">
+                <!-- <div class="mt-2">
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" id="Requester" name="" type="checkbox"
                             tabindex="">
@@ -90,9 +91,9 @@
                         <label class="form-check-label"
                             for="Participants"><small>Participant(s)</small></label>
                     </div>
-                </div>
+                </div> -->
             </div>
-            <div class="col-lg-5 mb-4">
+            <!-- <div class="col-lg-5 mb-4">
                 <label class="form-label">Preferred Team Providers</label>
                 <select data-placeholder="Select Accommodation" multiple
                     class="select2 form-select" tabindex="8">
@@ -108,7 +109,7 @@
                                 Providers</small></label>
                     </div>
                 </div>
-            </div> 
+            </div>  -->
             <div class="col-lg-5 mb-4">
                 <label class="form-label">Gender</label>
                 {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
@@ -124,7 +125,7 @@
             <div class="col-lg-5 mb-4">
                 <label class="form-label">Certification</label>
                 {{-- updated by shanila to add multiselectdropdown --}}
-                {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id', 'setup_value_label', 'setup_id', 8, 'setup_value_label', true, 'certifications','','form-check') !!}
+                {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id', 'setup_value_label', 'setup_id', 8, 'setup_value_label', true, 'certifications','','certifications') !!}
                 {{--ended updated--}}
             </div>
         </div>
