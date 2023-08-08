@@ -165,20 +165,20 @@
                                                                     value="" aria-label="Select Booking">
                                                             </td>
                                                             <td wire:click="showBookingDetails">
-                                                                <a href="#">{{ $booking['booking_number'] }}</a>
+                                                                <a href="#">{{ $booking['booking_number'] ? $booking['booking_number'] : '' }}</a>
                                                                 <div>
                                                                     <div class="time-date">
                                                                         {{ date_format(date_create($booking['booking_start_at']), 'm/d/Y') }}
                                                                     </div>
                                                                     <div class="time-date">
-                                                                        {{ date_format(date_create($booking['booking_start_at']), 'h:i A') }}
+                                                                        {{$booking['booking_start_at'] ? date_format(date_create($booking['booking_start_at']), 'h:i A') : ''}}
                                                                         to
-                                                                        {{ date_format(date_create($booking['booking_end_at']), 'h:i A') }}
+                                                                        {{ $booking['booking_end_at']? date_format(date_create($booking['booking_end_at']), 'h:i A'):'' }}
                                                                     </div>
                                                                 </div>
                                                             </td>
                                                             <td>
-                                                                <div>{{ $booking['accommodations']['name'] }}</div>
+                                                                <div>{{$booking['accommodations']? $booking['accommodations']['name'] : '' }}</div>
                                                                 {{-- <div>Shelby Sign Language</div> --}}
                                                                 @if ($booking['service'])
                                                                     <div>Service: {{ $booking['service']['name'] }}
@@ -371,45 +371,6 @@
 
                                     {{ $booking_assignments->links('livewire.app.common.bookings.booking-nav') }}
 
-                                    {{-- <div>
-                                    <p class="fw-semibold mb-lg-0 text-sm font-family-secondary">
-                                        Showing 1 to 5 of 100 entries
-                                    </p>
-                                </div>
-                                <nav aria-label="Page Navigation">
-                                    <ul class="pagination justify-content-start justify-content-lg-end">
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Previous">
-                                                <span aria-hidden="true">&laquo;</span>
-                                            </a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">
-                                                1
-                                            </a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">
-                                                2
-                                            </a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">
-                                                3
-                                            </a>
-                                        </li>
-                                        <li class="page-item active">
-                                            <a class="page-link" href="#">
-                                                4
-                                            </a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Next">
-                                                <span aria-hidden="true">&raquo;</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav> --}}
                                 </div>
                                 {{-- icon legend bar start --}}
                                 <div class="d-flex actions gap-3 justify-content-md-end mb-2">
