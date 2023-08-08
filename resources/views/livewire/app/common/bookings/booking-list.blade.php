@@ -191,8 +191,10 @@
                                                                         In-Person
                                                                     @elseif($booking['service_type'] == 2)
                                                                         Virtual
-                                                                    @elseif($booking['service_type'] == 3)
-                                                                        Teleconference
+                                                                    @elseif($booking['service_type'] == 4)
+                                                                        Phone
+                                                                    @elseif($booking['service_type'] == 5)
+                                                                        Teleconference                                                                        
                                                                     @endif
 
                                                                 </div>
