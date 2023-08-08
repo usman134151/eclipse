@@ -66,5 +66,6 @@ protected $listeners = ['showList' => 'resetForm', 'updateVal'];
 	{
 		$this->showBookingDetails = true;
 		$this->booking_id=$booking_id;
+		$this->emit('setBookingId',$booking_id);
 	}
 }
