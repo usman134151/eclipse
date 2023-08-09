@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class AddDocuments extends Component
 {
-    public $showForm,$booking_id=0, $document =[], $file=null;
+    public $showForm,$booking_id=0, $document =[], $file=null, $request_from_user=false,$permissions=[], $notification=[];
     protected $listeners = ['showList' => 'resetForm', 'setBookingId'];
 
     public function render()
@@ -20,6 +20,28 @@ class AddDocuments extends Component
 
     }
 
+    public function rules()
+    {
+        return [
+            'document.document_title' => [
+                'required',
+                'string',
+                'max:255',
+            ],
+            'document.description' => 'nullable',
+            'file' => 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv',
+            'document.permissions' => 'nullable',
+        ];
+    }
+
+    public function save(){
+        $this->validate();
+        dd($this->document,$this->permissions);
+
+    }
+
+	
+
     public function initFields(){
         $this->document=[
             'booking_id'=>$this->booking_id,
@@ -29,7 +51,31 @@ class AddDocuments extends Component
             'description'=>null,
             'shared'=>0,
             'added_by'=>Auth::id(),
-            'request_from_user'=>false
+            'request_from_user'=>false,
+            'permissions'=>[
+                'attach_to_customer_confirmation'=>false,
+                'attach_to_provider_confirmation' => false
+                ]
+        ];
+        $this->permissions=[
+            "all_users"=>false,
+            'service_providers'=>false,
+            'customers'=>false,
+            'requesters'=>false,
+            'supervisors'=>false,
+            'billing_manager'=>false,
+            'service_consumers'=>false,
+            'participants'=>false
+        ];
+        $this->request_from_user = false;
+        $this->notification =[
+            'requestee_id'=>null,
+            'notify'=>'now',
+            'notify_before'=>null,
+            'repeat_notification'=>false,
+            'repeat_notify_type'=>'time',
+            'repeat_notify_value'=>null,
+            'message_to_requestee'=>null
         ];
     }
 

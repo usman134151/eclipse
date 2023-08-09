@@ -40,7 +40,7 @@
                 </div>
             </div>
         </div>
-        @livewire('app.common.bookings.booking-details',['booking_id'=>$booking_id])
+        @livewire('app.common.bookings.booking-details', ['booking_id' => $booking_id])
     @else
         {{-- BEGIN: Content --}}
         @if ($bookingSection != 'customer')
@@ -164,21 +164,24 @@
                                                                 <input class="form-check-input" type="checkbox"
                                                                     value="" aria-label="Select Booking">
                                                             </td>
-                                                            <td wire:click="showBookingDetails({{$booking['id']}})">
-                                                                <a href="#">{{ $booking['booking_number'] ? $booking['booking_number'] : '' }}</a>
+                                                            <td wire:click="showBookingDetails({{ $booking['id'] }})">
+                                                                <a
+                                                                    href="#">{{ $booking['booking_number'] ? $booking['booking_number'] : '' }}</a>
                                                                 <div>
                                                                     <div class="time-date">
                                                                         {{ date_format(date_create($booking['booking_start_at']), 'm/d/Y') }}
                                                                     </div>
                                                                     <div class="time-date">
-                                                                        {{$booking['booking_start_at'] ? date_format(date_create($booking['booking_start_at']), 'h:i A') : ''}}
+                                                                        {{ $booking['booking_start_at'] ? date_format(date_create($booking['booking_start_at']), 'h:i A') : '' }}
                                                                         to
-                                                                        {{ $booking['booking_end_at']? date_format(date_create($booking['booking_end_at']), 'h:i A'):'' }}
+                                                                        {{ $booking['booking_end_at'] ? date_format(date_create($booking['booking_end_at']), 'h:i A') : '' }}
                                                                     </div>
                                                                 </div>
                                                             </td>
                                                             <td>
-                                                                <div>{{$booking['accommodations']? $booking['accommodations']['name'] : '' }}</div>
+                                                                <div>
+                                                                    {{ $booking['accommodations'] ? $booking['accommodations']['name'] : '' }}
+                                                                </div>
                                                                 {{-- <div>Shelby Sign Language</div> --}}
                                                                 @if ($booking['service'])
                                                                     <div>Service: {{ $booking['service']['name'] }}
@@ -194,7 +197,7 @@
                                                                     @elseif($booking['service_type'] == 4)
                                                                         Phone
                                                                     @elseif($booking['service_type'] == 5)
-                                                                        Teleconference                                                                        
+                                                                        Teleconference
                                                                     @endif
 
                                                                 </div>
