@@ -110,6 +110,7 @@ class Calendar extends Component
 		$month = date("Y-m", strtotime("+1 month", $m));
 
 		$this->events = $this->getEventsForMonth($month);
+		$this->dispatchBrowserEvent('updateCalendar',['events'=>$this->events]);
 	}
 
 	public function getUserSchedule()
