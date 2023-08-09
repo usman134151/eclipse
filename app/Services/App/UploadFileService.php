@@ -16,7 +16,8 @@ class UploadFileService{
                     File::delete(public_path($existing_file));
             }
             if($name==null)
-                $name = time() . '_' . $temp_file->getClientOriginalName(); //system assigned name
+                $name = time() ;
+                // . '_' . $temp_file->getClientOriginalName(); //system assigned name
             else
                 $name = $name.'.'.$temp_file->getClientOriginalExtension(); //name is passed
 
