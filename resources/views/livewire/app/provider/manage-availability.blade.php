@@ -1,35 +1,5 @@
 <div >
     
-    {{-- <div class="content-header row">
-        <div class="content-header-left col-md-9 col-12 mb-2">
-          <div class="row breadcrumbs-top">
-            <div class="col-12">
-              <h1 class="content-header-title float-start mb-0">Manage Availability</h1>
-              <div class="breadcrumb-wrapper">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item">
-                    <a href="http://127.0.0.1:8000" title="Go to Dashboard" aria-label="Go to Dashboard">
-                      <svg aria-label="Home" width="22" height="23" viewBox="0 0 22 23">
-                        <use xlink:href="/css/common-icons.svg#home"></use>
-                      </svg>
-                    </a>
-                  </li>
-                  <li class="breadcrumb-item">
-                    <a href="javascript:void(0)">
-                        Manage Availability
-                    </a>
-                  </li>
-                </ol>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    <div class="card">
-        <div class="card-body">
-    <div class="row inner-section-segment-spacing">
-        <p>Here you can set your default or custom availability to ensure you only receive service requests for dates and times that match your set availability.</p>
-      </div>--}}
       <div class="row between-section-segment-spacing"> 
         <div class="d-flex justify-content-between mb-4">
           <div class="d-inline-flex align-items-center gap-4">
@@ -64,12 +34,8 @@
         
         </div>
       
-          @livewire('app.common.calendar',['model_id'=>$provider_id,'model_type'=>3,'displayAvailability'=>true])
+          @livewire('app.common.calendar',['model_id'=>$provider_id,'model_type'=>3,'providerProfile'=>true])
       
       </div>
-    {{-- </div>
-    </div> --}}
-      {{-- @include('panels.common.default-availability') --}}
-      {{-- @include('panels.common.specific-date-availibility') --}}
-      
+    
 </div>

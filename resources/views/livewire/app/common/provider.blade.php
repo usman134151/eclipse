@@ -153,9 +153,9 @@
 
 <script>
 	function updateVal(attrName,val){
-		// if(attrName=='select-days')
-		// 	Livewire.emit('updateDay', val);
-		// else
+		 if(attrName=='select-days')
+		 	Livewire.emit('updateDay', val);
+		 else
 		// Livewire.emit('updateVal', attrName, val);
 		Livewire.emit('updateVal', attrName, val);
 		Livewire.emit('refreshFilters', attrName, val);
