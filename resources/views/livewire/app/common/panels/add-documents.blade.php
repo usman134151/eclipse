@@ -81,6 +81,7 @@
                     <div class="text-center col-lg-3 d-flex ">
 
                         <div class="btn btn-outline-primary d-block px-2 pb-0">
+                            <label for="file">
                             <svg class="mb-2" width="35" height="35" viewBox="0 0 35 35" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -94,7 +95,8 @@
                                     </linearGradient>
                                 </defs>
                             </svg>
-                            <label for="file" class="text-primary mb-0 fw-medium"> Attach from Device </label>
+                            <p  class="text-primary mb-0 fw-medium"> Attach from Device </p>
+                            </label>
                             <input style=" opacity: 0; z-index: -1; position: absolute;" id="file" class="" wire:model="file" type="file">
 
 

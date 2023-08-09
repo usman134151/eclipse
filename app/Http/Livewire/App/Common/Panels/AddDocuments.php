@@ -94,6 +94,8 @@ class AddDocuments extends Component
             'message_to_requestee'=>null
         ];
         $this->file=null;
+        $this->selectAll = false;
+
     }
 
     public function mount()
