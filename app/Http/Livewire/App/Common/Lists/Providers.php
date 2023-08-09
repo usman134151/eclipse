@@ -101,9 +101,10 @@ final class Providers extends PowerGridComponent
 					return isset($replacements[$item]) ? $replacements[$item] : $item;
 				}, $this->service_type_ids);
 				$query->whereHas('services', function ($query) use ($filterArray) {
-					$query->where(function ($query) use ($filterArray) {
+					$query->where('provider_accommodation_services.status','=',1)->where(function ($query) use ($filterArray) {
 						foreach ($filterArray as $item) {
-							$query->orWhereRaw("FIND_IN_SET($item, service_type)");
+							// $query->orWhereRaw("FIND_IN_SET($item, service_type)");
+							$query->where('service_type', 'LIKE', "%$item%");
 						}
 					});
 				});
@@ -112,9 +113,10 @@ final class Providers extends PowerGridComponent
 				$specializations=$this->specializations;
 				// dd($this->services);
 				$query->whereHas('services', function ($query) use ($specializations) {
-					$query->whereHas('specializations', function ($query) use ($specializations) {
-						$query->whereIn('specialization_id', $specializations);
-					});
+					$query->where('provider_accommodation_services.status','=',1)
+							->whereHas('specializations', function ($query) use ($specializations) {
+								$query->whereIn('specialization_id', $specializations);
+							}, '=', count($specializations));
 				});
 		     }
 			if($this->gender){

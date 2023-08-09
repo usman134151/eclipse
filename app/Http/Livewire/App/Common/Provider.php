@@ -121,6 +121,8 @@ class Provider extends Component
 			]);
 		}
 		$this->dispatchBrowserEvent('update-url', ['url' => '/admin/provider']);
+		$this->dispatchBrowserEvent('refreshSelects');
+
 	}
 
 	public function showProfile($user=null)
