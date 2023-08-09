@@ -29,7 +29,7 @@
             var checkbox = document.getElementById('drop-remove');
             var data = @this.events;
             var calendar = new Calendar(calendarEl, {
-
+				//showNonCurrentDates: false ,
                 themeSystem: 'bootstrap5',
                 headerToolbar: {
                     left: 'prev,next today',

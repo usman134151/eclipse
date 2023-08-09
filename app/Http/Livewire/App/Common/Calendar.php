@@ -13,8 +13,8 @@ class Calendar extends Component
 {
 	public $events = [], $model_id = 0, $model_type = 0, $providerProfile = false;
 	public $holidays = [], $specific = [];
-	protected $listeners = ['showConfirmation'=>'render'];
-	
+	protected $listeners = ['refreshCalendar'=> 'refreshEvents'];
+
 
 	public function render()
 	{
@@ -104,96 +104,16 @@ class Calendar extends Component
 	}
 	// End of update by Sohail Asghar
 
-	public function refreshEvents($month)
+	public function refreshEvents($month=null)
 	{
-		$m = strtotime($month);
-		$month = date("Y-m", strtotime("+1 month", $m));
-
-		$this->events = $this->getEventsForMonth($month);
-		$this->dispatchBrowserEvent('updateCalendar',['events'=>$this->events]);
-	}
-
-	public function getUserSchedule()
-	{
-		$events = [];
-		$schedule = Schedule::where('model_id', $this->model_id)->where('model_type', $this->model_type)->get()->first();
-		if ($schedule) {
-			$daysOfWeek = ['Sunday' => '0', 'Monday' => '1', 'Tuesday' => '2', 'Wednesday' => '3', 'Thursday' => '4', 'Friday' => '5', 'Saturday' => '6'];
-			$activeDays = json_decode($schedule->working_days, true);
-			foreach ($schedule->timeslots->toArray() as $key =>  $timeslot) {
-				$events[$key]['className'] = 'general';
-
-				$events[$key]['daysOfWeek'] = $daysOfWeek[$timeslot['timeslot_day']];	//recurring on week days
-				$events[$key]['startTime'] = date_format(date_create($timeslot['timeslot_start_time']), "H:i:s");
-				$events[$key]['endTime'] = date_format(date_create($timeslot['timeslot_end_time']), "H:i:s");
-				$events[$key]['title'] = date_format(date_create($timeslot['timeslot_start_time']), "h:i A") . " to " . date_format(date_create($timeslot['timeslot_end_time']), "h:i A");
-				if (!$activeDays[$timeslot['timeslot_day']])	//if day is inactive - set color gray
-					$events[$key]['color'] = '#6C757D';
-				elseif ($timeslot['timeslot_type'] == 1)	//business hours
-					$events[$key]['color'] = '#198754';
-				else									//after hours
-					$events[$key]['color'] = '#FFC107';
-				$events[$key]['extendedProps'] = ['type' => 'general'];
-			}
-
-			$count = count($events);
-
-			foreach ($schedule->holidays->toArray() as  $holiday) {
-				$events[$count]['className'] = ' holiday';
-				$events[$count]['extendedProps'] = ['type' => 'holiday'];
-				$events[$count]['overlap'] = false;
-
-
-
-				$events[$count]['start'] = date_format(date_create($holiday['holiday_date']), "Y-m-d");
-
-				$events[$count]['allDay'] = true;
-				$events[$count]['title'] = 'Holiday';
-				$events[$count]['color'] = '#d3d3d3';
-				$events[$count]['display'] = 'background';
-
-				$count++;
-			}
-
-			$specifiSchedule = ProviderSpecificSchedule::where('user_id', $this->model_id)->whereRaw("scheduled_date BETWEEN (ADDDATE(CURDATE(), INTERVAL -1 YEAR)) AND  (ADDDATE(CURDATE(), INTERVAL 1 YEAR))")->get();
-			if (count($specifiSchedule)) {
-				$count = count($events);
-				foreach ($specifiSchedule->toArray() as  $ss) {
-					$events[$count]['className'] = ' specific';
-
-					$events[$count]['extendedProps'] = ['type' => 'specific'];
-					$events[$count]['overlap'] = false;
-
-
-					$events[$count]['title'] = date_format(date_create($ss['from_time']), "h:i A") . " to " . date_format(date_create($ss['to_time']), "h:i A");
-					$events[$count]['start'] =  date_format(date_create($ss['scheduled_date']), "Y-m-d") . " " . date_format(date_create($ss['from_time']), "H:i:s");
-					$events[$count]['end'] = date_format(date_create($ss['scheduled_date']), "Y-m-d") . " " . date_format(date_create($ss['to_time']), "H:i:s");
-					$events[$count]['color'] = '#20c997';
-
-					$count++;
-				}
-			}
-
-			$vacations = ProviderVacation::where('user_id', $this->model_id)->whereRaw("from_date BETWEEN (ADDDATE(CURDATE(), INTERVAL -1 YEAR)) AND  (ADDDATE(CURDATE(), INTERVAL 1 YEAR))")->get();
-			if (count($vacations)) {
-				$count = count($events);
-				foreach ($vacations->toArray() as  $vacation) {
-					$events[$count]['className'] = ' vacation';
-
-					$events[$count]['extendedProps'] = ['type' => 'vacation'];
-					$events[$count]['overlap'] = false;
-					$events[$count]['color'] = '#ffc6c4';
-					$events[$count]['title'] = $vacation['notes'];
-					$events[$count]['start'] =  date_format(date_create($vacation['from_date']), "Y-m-d");
-					$events[$count]['end'] = date_format(date_create($vacation['to_date']), "Y-m-d");
-					$events[$count]['display'] = 'background';
-					$count++;
-				}
-			}
+		if ($month) {
+			$m = strtotime($month);
+			$month = date("Y-m", strtotime("+1 month", $m));
 		}
-		// dd($events);
-		return json_encode($events);
+		$this->events = $this->getEventsForMonth($month);
+		$this->dispatchBrowserEvent('updateCalendar', ['events' => $this->events]);
 	}
+
 
 	//   Handling fullcalendar events for specified month on backend
 	public function getEventsForMonth($month = null)
