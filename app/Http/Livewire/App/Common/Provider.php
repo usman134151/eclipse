@@ -23,12 +23,15 @@ class Provider extends Component
 	protected $exportDataFile;
 
 	public $provider_ids=[];
+	public $preferred_provider_ids=[];
 	public $tag_names=[];
 	public $service_type_ids=[];
 	public $services=[];
 	public $specializations=[];
+	public $gender;
+	public $ethnicity;
+	public $certifications=[];
 
-	
     public $tags;
     public $providers;
 
@@ -71,6 +74,7 @@ class Provider extends Component
              ]);
 	}
 	public function refreshFilters($name,$value){
+		// dd($name,$value);
 		if($name=="Service_filter"){
 			$this->services = $value;
 		}else if($name=="specialization_search_filter"){
@@ -81,6 +85,14 @@ class Provider extends Component
 			$this->tag_names = $value;
 		}else if($name=="providers_selected"){
 			$this->provider_ids = $value;
+		}else if($name=="preferred_provider_ids"){
+			$this->preferred_provider_ids = $value;
+		}else if($name=="gender"){
+			$this->gender = $value;
+		}else if($name=="ethnicity"){
+			$this->ethnicity = $value;
+		}else if($name=="certifications"){
+			$this->certifications = $value;
 		}
 	}
 	function showForm($user = null)

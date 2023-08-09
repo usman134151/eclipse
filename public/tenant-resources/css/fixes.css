@@ -48,5 +48,7 @@ li.page-item {
 
     display: block;
 }
-
+.select2-selection__clear{
+    display: none !important;
+}
 /* } */

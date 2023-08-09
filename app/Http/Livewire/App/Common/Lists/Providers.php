@@ -18,8 +18,12 @@ final class Providers extends PowerGridComponent
 	public $provider_ids=[];
 	public $tag_names=[];
 	public $service_type_ids=[];
+	public $preferred_provider_ids=[];
 	public $services=[];
 	public $specializations=[];
+	public $gender;
+	public $ethnicity;
+	public $certifications=[];
 
 	/*
 	|--------------------------------------------------------------------------
@@ -60,7 +64,6 @@ final class Providers extends PowerGridComponent
 	public function datasource(): Builder
 	{
 
-
 		$query = User::query()
 			->where('status', $this->status)
 			->whereHas('roles', function ($query) {
@@ -81,11 +84,11 @@ final class Providers extends PowerGridComponent
 				$query->whereIn('users.id', $this->provider_ids);
 			}
 			if(count($this->services)){
-				// dd($this->services);
-				$query->whereHas('services', function ($query) {
-						$query->wherein('service_id',$this->services);
-					});
-		     }
+				$services=$this->services;
+				$query->whereHas('services', function ($query) use ($services) {
+					$query->whereIn('service_id', $services)->where('provider_accommodation_services.status','=',1);
+				}, '=', count($services));
+		    }
 			if(count($this->service_type_ids)){
 				//as ids are different in dropdown and in table need to replace for filter
 				$replacements = [
@@ -114,6 +117,28 @@ final class Providers extends PowerGridComponent
 					});
 				});
 		     }
+			if($this->gender){
+				$query->where('user_details.gender_id', $this->gender);
+			}
+			if($this->ethnicity){
+				$query->where('user_details.ethnicity_id', $this->ethnicity);
+			}
+			if(count($this->certifications)){
+				$certifications=$this->certifications;
+				$query->where(function ($query) use ($certifications) {
+					foreach ($certifications as $certId) {
+						$query->where('certification', 'LIKE', "%$certId%");
+					}
+				});
+			}
+			if(count($this->preferred_provider_ids)){
+				$preferred_provider_ids=$this->preferred_provider_ids;
+				$query->where(function ($query) use ($preferred_provider_ids) {
+					foreach ($preferred_provider_ids as $prefId) {
+						$query->where('favored_users', 'LIKE', "%$prefId%");
+					}
+				});
+			}
 			return $query;
 	}
 
