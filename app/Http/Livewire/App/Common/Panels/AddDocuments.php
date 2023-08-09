@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire\App\Common\Panels;
 
+use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingDocument;
+use App\Models\Tenant\BookingDocumentUser;
 use App\Services\App\UploadFileService;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -48,10 +50,44 @@ class AddDocuments extends Component
         }
         $this->document['permissions']=json_encode($this->permissions);
         $this->document['booking_id']=$this->booking_id;
-        BookingDocument::create($this->document);
+        $document = BookingDocument::create($this->document);
+        $booking = Booking::where('id',$this->booking_id)->first();
+        if($booking){
+            //add document permissions
+            
+            if($this->permissions['all_users']){
+
+            }
+            if ($this->permissions['service_providers']) {
+            }
+            if ($this->permissions['customers']) {
+                if($booking->customer_id)
+                BookingDocumentUser::create(['user_id' => $booking->customer_id, 'document_id' => $document->id, 'booking_id' => $this->booking_id]);
+
+            }
+            if ($this->permissions['supervisor']) {
+                if ($booking->supervisor)
+                BookingDocumentUser::create(['user_id'=>$booking->supervisor,'document_id'=> $document->id,'booking_id'=>$this->booking_id]);
+            }
+            if ($this->permissions['billing_manager']) {
+                if($booking->billing_manager)
+                BookingDocumentUser::create(['user_id' => $booking->billing_manager, 'document_id' => $document->id, 'booking_id' => $this->booking_id]);
+
+            }
+
+            if ($this->permissions['requesters']) {
+            }
+            if ($this->permissions['service_consumers']) {
+            }
+            if ($this->permissions['participants']) {
+            }
+        }
+        //how to implement Request From User? 
+        // notification needs to be sent for that
+        
         $this->dispatchBrowserEvent('close-add-documents');
         $this->emit('showConfirmation','Document added successfully');
-
+        $this->initFields();
     }
 
 	
@@ -76,7 +112,7 @@ class AddDocuments extends Component
             'service_providers'=>false,
             'customers'=>false,
             'requesters'=>false,
-            'supervisors'=>false,
+            'supervisor'=>false,
             'billing_manager'=>false,
             'service_consumers'=>false,
             'participants'=>false
@@ -91,6 +127,7 @@ class AddDocuments extends Component
             'repeat_notify_value'=>null,
             'message_to_requestee'=>null
         ];
+        $this->file=null;
     }
 
     public function mount()
