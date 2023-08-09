@@ -11,13 +11,15 @@ use Livewire\Component;
 
 class Calendar extends Component
 {
-	public $events = [], $model_id = 0, $model_type = 0, $displayAvailability = false;
+	public $events = [], $model_id = 0, $model_type = 0, $providerProfile = false;
 	public $holidays = [], $specific = [];
+	protected $listeners = ['showConfirmation'=>'render'];
+	
 
 	public function render()
 	{
 
-		if ($this->displayAvailability)
+		if ($this->providerProfile)
 			$this->events = $this->getEventsForMonth();
 		else
 			$this->events = $this->getCalendarEvents();

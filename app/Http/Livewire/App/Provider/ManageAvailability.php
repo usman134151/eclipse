@@ -11,7 +11,17 @@ class ManageAvailability extends Component
     //variables for availability (default-availability-panel)
     public $schedule;
 
-    protected $listeners = ['showList' => 'resetForm'];
+    protected $listeners = ['showList' => 'resetForm', 'initiateSaveSchedule'];
+
+    public function initiateSaveSchedule()
+    {
+        dd('emit recieved');
+        $this->emit('saveSchedule');
+        $this->emit('showConfirmation', "Availability has been saved successfully");
+        $this->dispatchBrowserEvent('close-default-schedule-modal');
+        $this->dispatchBrowserEvent('updateCalender');
+    }
+
 
     public function getProviderSchedule()
     {

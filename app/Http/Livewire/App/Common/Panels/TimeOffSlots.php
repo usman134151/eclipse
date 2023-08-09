@@ -56,6 +56,7 @@ class TimeOffSlots extends Component
 
         $this->dispatchBrowserEvent('close-timeoff-panel');
         $this->emit('showConfirmation', ' Time off dates saved!');
+        $this->clear();
        
 
     }
