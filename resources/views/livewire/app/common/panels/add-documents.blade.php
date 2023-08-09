@@ -7,14 +7,25 @@
                 <label class="form-label" for="document-title">
                     Document Title
                 </label>
-                <input type="text" id="document-title" class="form-control" name="document-title"
-                    placeholder="Enter Document Title" required aria-required="true" />
+                <input type="text" id="document_title" wire:model.lazy="document.document_title" class="form-control"
+                    name="document-title" placeholder="Enter Document Title" required aria-required="true" />
+                @error('document.document_title')
+                    <span class="d-inline-block invalid-feedback mt-2">
+                        {{ $message }}
+                    </span>
+                @enderror
             </div>
             <div class="col-lg-8 mb-4">
                 <label class="form-label" for="notes-column">
                     Note
                 </label>
-                <textarea class="form-control" rows="3" placeholder="" name="notesColumn" id="notes-column"></textarea>
+                <textarea wire:model.lazy="document.description" class="form-control" rows="3" placeholder="" name="notesColumn"
+                    id="notes-column"></textarea>
+                @error('document.document_title')
+                    <span class="d-inline-block invalid-feedback mt-2">
+                        {{ $message }}
+                    </span>
+                @enderror
             </div>
             <div class="col-lg-8 mb-4">
                 <label class="form-label" for="set_set_date">Upload File</label>
@@ -62,7 +73,7 @@
                         </a>
                     </div> --}}
                     <div class="text-center col-lg-3 d-flex ">
-                        <a href="#" class="btn btn-outline-dark d-block px-2 pb-0 " >
+                        <a href="#" class="btn btn-outline-dark d-block px-2 pb-0 ">
                             <svg class="mb-2" width="35" height="35" viewBox="0 0 35 35" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -78,7 +89,8 @@
                             </svg>
                             <p class="text-primary mb-0 fw-medium">
                                 Attach from Disk
-						        <input wire:model="file" class="form-control inputFile" id="" name="document" type="file" aria-invalid="false" >
+                                <input wire:model="file" class="form-control inputFile" id="" name="document"
+                                    type="file" aria-invalid="false">
                             </p>
                         </a>
                     </div>
@@ -103,6 +115,11 @@
                         </a>
                     </div> --}}
                 </div>
+                @error('file')
+                    <span class="d-inline-block invalid-feedback mt-2">
+                        {{ $message }}
+                    </span>
+                    @enderror
             </div>
             <div class="col-lg-8 mb-4">
                 <div class="form-check">
@@ -120,14 +137,13 @@
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" id="RequestfromUser" name="" type="checkbox"
-                        tabindex="">
+                    <input wire:model="document.request_from_user" class="form-check-input" id="request_from_user" name="" type="checkbox" tabindex="">
                     <label class="form-check-label" for="RequestfromUser">
                         Request from User
                     </label>
                 </div>
             </div>
-            <div class="col-lg-8 mb-4">
+            <div class="col-lg-8 mb-4 {{$document['request_from_user'] ? '' :'hidden'}}">
                 <label class="form-label">
                     Who would you like to request this information from?
                 </label>
@@ -135,7 +151,7 @@
                     <option>Select</option>
                 </select>
             </div>
-            <div class="col-lg-8 mb-4">
+            <div class="col-lg-8 mb-4 {{$document['request_from_user'] ? '' :'hidden'}}">
                 <div class="d-flex flex-column gap-4">
                     <div>
                         <label class="form-label">
@@ -150,8 +166,8 @@
                                 </label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" id="WhenshouldtheyfirstbenotifiedLater"
-                                    name="" type="checkbox" tabindex="">
+                                <input class="form-check-input" id="WhenshouldtheyfirstbenotifiedLater" name=""
+                                    type="checkbox" tabindex="">
                                 <label class="form-check-label" for="WhenshouldtheyfirstbenotifiedLater">
                                     Later
                                 </label>
@@ -184,7 +200,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-8 mb-4">
+            <div class="col-lg-8 mb-4 {{$document['request_from_user'] ? '' :'hidden'}}">
                 <div class="d-flex flex-column gap-4">
                     <div>
                         <label class="form-label">
@@ -213,7 +229,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-8 mb-4">
+            <div class="col-lg-8 mb-4 {{$document['request_from_user'] ? '' :'hidden'}}">
                 <label class="form-label">Message to User</label>
                 <textarea class="form-control" rows="5" cols="5"></textarea>
             </div>
@@ -229,3 +245,5 @@
     </form>
 
 </div>
+
+
