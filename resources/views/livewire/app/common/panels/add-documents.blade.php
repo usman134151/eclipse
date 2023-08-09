@@ -1,28 +1,45 @@
-<div class="row">
-    <form class="form">
-        @csrf
+<div>
+    <div class="row">
+        <div class="row">
 
-        <div class="col-lg-12">
-            <div class="col-lg-8 mb-4">
-                <label class="form-label" for="document-title">
-                    Document Title
-                </label>
-                <input type="text" id="document-title" class="form-control" name="document-title"
-                    placeholder="Enter Document Title" required aria-required="true" />
+            <div class="col-lg-12 d-flex gap-2">
+
+                <div class="col-md-6 col-12">
+                    <div class="mb-4">
+                        <label class="form-label" for="first-name-column">
+                            Document Title</label>
+                        <input wire:model.defer="document.document_title" type="text" id="first-name-column"
+                            class="form-control" placeholder="Document Title" name="document-column" />
+                        @error('document.document_title')
+                            <span class="d-inline-block invalid-feedback mt-2">
+                                {{ $message }}
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="mb-4">
+                        <label class="form-label" for="first-name-column">Notes</label>
+                        <textarea wire:model.defer="document.description" class="form-control" name="" id="" cols="35"
+                            rows="3"></textarea>
+                        @error('document.description')
+                            <span class="d-inline-block invalid-feedback mt-2">
+                                {{ $message }}
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+
             </div>
-            <div class="col-lg-8 mb-4">
-                <label class="form-label" for="notes-column">
-                    Note
-                </label>
-                <textarea class="form-control" rows="3" placeholder="" name="notesColumn" id="notes-column"></textarea>
-            </div>
-            <div class="col-lg-8 mb-4">
-                <label class="form-label" for="set_set_date">Upload File</label>
-            </div>
-            <div class="col-lg-8 mb-4">
-                <div class="row">
-                    {{-- <div class="text-center col-lg-3 d-flex">
-                        <a href="#" class="btn btn-outline-dark d-block px-2 pb-0">
+            <div class="col-lg-12 mb-4">
+                <div class="row d-flex">
+                    <div class="col-lg-2 d-flex text-center">
+                        <p class="mt-5 fw-medium">
+                            Upload File
+                        </p>
+                    </div>
+                    {{-- <div class="col-lg-3 d-flex text-center">
+                        <a href="#" class="btn btn-outline-primary d-block px-2 pb-0">
                             <svg class="mb-2" width="40" height="36" viewBox="0 0 40 36" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -42,7 +59,7 @@
                         </a>
                     </div>
                     <div class="text-center col-lg-3 d-flex">
-                        <a href="#" class="btn btn-outline-dark d-block px-2 pb-0">
+                        <a href="#" class="btn btn-outline-primary d-block px-2 pb-0">
                             <svg class="mb-2" width="40" height="36" viewBox="0 0 40 36" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -62,7 +79,9 @@
                         </a>
                     </div> --}}
                     <div class="text-center col-lg-3 d-flex ">
-                        <a href="#" class="btn btn-outline-dark d-block px-2 pb-0 " >
+
+                        <div class="btn btn-outline-primary d-block px-2 pb-0">
+                            <label for="file">
                             <svg class="mb-2" width="35" height="35" viewBox="0 0 35 35" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -76,156 +95,185 @@
                                     </linearGradient>
                                 </defs>
                             </svg>
-                            <p class="text-primary mb-0 fw-medium">
-                                Attach from Disk
-						        <input wire:model="file" class="form-control inputFile" id="" name="document" type="file" aria-invalid="false" >
-                            </p>
-                        </a>
-                    </div>
-                    {{-- <div class="text-center col-lg-3 d-flex">
-                        <a href="#" class="btn btn-outline-dark d-block px-2 pb-0">
-                            <svg class="mb-2" width="42" height="35" viewBox="0 0 42 35" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M20.6185 6.57682L10.3093 13.1536L20.6185 19.7305L10.3093 26.3073L0 19.6944L10.3093 13.1176L0 6.57682L10.3093 0L20.6185 6.57682ZM10.2552 28.4232L20.567 21.8464L30.8763 28.4232L20.567 35L10.2552 28.4232ZM20.6185 19.697L30.9278 13.1176L20.6185 6.57682L30.8763 0L41.1856 6.57682L30.8763 13.1536L41.1856 19.7305L30.8763 26.3073L20.6185 19.6944V19.697Z"
-                                    fill="url(#paint0_linear_7724_170911)" />
-                                <defs>
-                                    <linearGradient id="paint0_linear_7724_170911" x1="20.5928" y1="0"
-                                        x2="37.1163" y2="0" gradientUnits="userSpaceOnUse">
-                                        <stop stop-color="#213969" />
-                                        <stop offset="1" stop-color="#204387" />
-                                    </linearGradient>
-                                </defs>
-                            </svg>
-                            <p class="text-primary mb-0 fw-medium">
-                                Attach from Dropbox
-                            </p>
-                        </a>
-                    </div> --}}
-                </div>
-            </div>
-            <div class="col-lg-8 mb-4">
-                <div class="form-check">
-                    <input class="form-check-input" id="AttachtoProviderConfirmation" name="" type="checkbox"
-                        tabindex="">
-                    <label class="form-check-label" for="AttachtoProviderConfirmation">
-                        Attach to Provider Confirmation
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" id="AttachtoCustomerConfirmation" name="" type="checkbox"
-                        tabindex="">
-                    <label class="form-check-label" for="AttachtoCustomerConfirmation">
-                        Attach to Customer Confirmation
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" id="RequestfromUser" name="" type="checkbox"
-                        tabindex="">
-                    <label class="form-check-label" for="RequestfromUser">
-                        Request from User
-                    </label>
-                </div>
-            </div>
-            <div class="col-lg-8 mb-4">
-                <label class="form-label">
-                    Who would you like to request this information from?
-                </label>
-                <select class="form-select">
-                    <option>Select</option>
-                </select>
-            </div>
-            <div class="col-lg-8 mb-4">
-                <div class="d-flex flex-column gap-4">
-                    <div>
-                        <label class="form-label">
-                            When should they first be notified?
-                        </label>
-                        <div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" id="WhenshouldtheyfirstbenotifiedNow" name=""
-                                    type="checkbox" tabindex="">
-                                <label class="form-check-label" for="WhenshouldtheyfirstbenotifiedNow">
-                                    Now
-                                </label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" id="WhenshouldtheyfirstbenotifiedLater"
-                                    name="" type="checkbox" tabindex="">
-                                <label class="form-check-label" for="WhenshouldtheyfirstbenotifiedLater">
-                                    Later
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <label class="form-label-sm">Notify</label>
-                        <div class="d-flex gap-2">
-                            <input type="" name=""
-                                class="form-control form-control-sm text-center w-25" value="2">
-                            <label class="form-label mb-0">
-                                Day(s)
+                            <p  class="text-primary mb-0 fw-medium"> Attach from Device </p>
                             </label>
-                        </div>
-                        <div>
-                            <label class="form-label-sm">
-                                Before the service start-time
-                            </label>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="RepeatNotification"
-                                checked>
-                            <label class="form-check-label" for="RepeatNotification">
-                                Repeat Notification
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-8 mb-4">
-                <div class="d-flex flex-column gap-4">
-                    <div>
-                        <label class="form-label">
-                            How often should they be notified?
-                        </label>
-                        <div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" id="HowoftenshouldtheybenotifiedTime" name=""
-                                    type="radio" tabindex="">
-                                <label class="form-check-label" for="HowoftenshouldtheybenotifiedTime">
-                                    Time(s)
-                                </label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" id="HowoftenshouldtheybenotifiedEveryDay"
-                                    name="" type="radio" tabindex="" checked>
-                                <label class="form-check-label" for="HowoftenshouldtheybenotifiedEveryDay">
-                                    (*) Every ___ Days
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <input type="" name="" class="form-control form-control-sm text-center w-25"
-                            value="10">
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-8 mb-4">
-                <label class="form-label">Message to User</label>
-                <textarea class="form-control" rows="5" cols="5"></textarea>
-            </div>
-        </div>
-        <div class="col-lg-12 justify-content-center gap-2 d-flex mt-5 form-actions">
-            <a href="javascript:void(0);" class="btn btn-outline-dark rounded" role="button">
-                Cancel
-            </a>
-            <button type="submit" class="btn btn-primary rounded">
-                Upload
-            </button>
-        </div>
-    </form>
+                            <input style=" opacity: 0; z-index: -1; position: absolute;" id="file" class="" wire:model="file" type="file">
 
+
+
+                        </div>
+
+                    </div>
+                    @error('file')
+                        <span class="d-inline-block invalid-feedback mt-2">
+                            {{ $message }}
+                        </span>
+                    @enderror
+
+                </div>
+            </div>
+            <div class="col-lg-8 gap-2 d-flex form-check">
+
+                <input wire:model.defer="document.permissions.attach_to_provider_confirmation" class="form-check-input"
+                    type="checkbox">
+                <p>Attach to Provider Confirmation</p>
+
+            </div>
+            <div class="col-lg-8 gap-2 d-flex form-check">
+
+                <input class="form-check-input" type="checkbox"
+                    wire:model.defer="document.permissions.attach_to_customer_confirmation">
+                <p>Attach to Customer Confirmation</p>
+
+            </div>
+            <div class="col-lg-8 d-flex">
+
+                <h6>Permission </h6>
+                <p>(who can see that uploaded documents)</p>
+
+            </div>
+            <div class="row px-5">
+
+                <div class="col-lg-8 gap-2 d-flex form-check">
+
+                    <input wire:click="selectAllUsers" class="form-check-input" type="checkbox" wire:model.defer="selectAll">
+
+                    <p>All Users</p>
+
+                </div>
+                <div class="col-lg-8 gap-2 d-flex form-check">
+
+                    <input class="form-check-input" type="checkbox" wire:model.defer="permissions" value="2">
+
+                    <p>Service Providers</p>
+
+                </div>
+                <div class="col-lg-12 ">
+                    <div class="col-lg-8 gap-2 d-flex form-check">
+                        <input class="form-check-input" type="checkbox" wire:model.defer="permissions" value="4">
+
+                        <p>Customers</p>
+                    </div>
+                    <div class="col-lg-8 gap-2 d-flex px-4 form-check">
+                        <input class="form-check-input" type="checkbox" wire:model.defer="permissions" value="6">
+
+                        <p>Requester</p>
+                    </div>
+                    <div class="col-lg-8 gap-2 d-flex px-4 form-check">
+                        <input class="form-check-input" type="checkbox" wire:model.defer="permissions" value="5">
+
+                        <p>Supervisor</p>
+                    </div>
+                    <div class="col-lg-8 gap-2 d-flex px-4 form-check">
+                        <input class="form-check-input" type="checkbox" wire:model.defer="permissions" value="9">
+
+                        <p>Billing Manager</p>
+                    </div>
+                    <div class="col-lg-8 gap-2 d-flex px-4 form-check">
+                        <input class="form-check-input" type="checkbox"
+                            wire:model.defer="permissions" value="7">
+
+                        <p>Service Consumers</p>
+                    </div>
+                    <div class="col-lg-8 gap-2 d-flex px-4 form-check">
+                        <input class="form-check-input" type="checkbox" wire:model.defer="permissions" value="8">
+
+                        <p>Participants</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8 gap-2 d-flex form-check">
+
+
+            <input class="form-check-input" wire:model.defe="request_from_user" type="checkbox">
+            <label class="form-label">Request from User</label>
+
+        </div>
+        <div class="row {{ $request_from_user ? '' : 'hidden' }}">
+            <div class="col-lg-12 mb-3 ">
+
+                <label class="form-label">Who would you like to request this information from?</label>
+                <div class="col-lg-8">
+                    <select class="form-select">
+                        <option>Select</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="col-lg-12">
+                <label class="form-label">When should they first be notified?</label>
+                <div class="col-lg-8 d-flex">
+                    <div class="col-lg-2 d-flex gap-1">
+                        <a href="">
+                            <input class="form-check-input" type="checkbox" value="">
+                        </a>
+                        <p>Now</p>
+                    </div>
+                    <div class="col-lg-2 d-flex gap-1">
+                        <a href="">
+                            <input class="form-check-input" type="checkbox" value="">
+                        </a>
+                        <p>Later</p>
+                    </div>
+
+                </div>
+                <p>Notify before the service start-time</p>
+                <div class="col-lg-2 d-flex gap-1 mb-5 ">
+                    <input class="form-control text-center" type="text" placeholder="2">
+                    <p class="mt-3">Day(s)</p>
+                </div>
+            </div>
+            <div class="d-md-flex align-items-center mb-4 gap-3 gap-md-0">
+                <div class="form-check form-switch form-switch-column mb-lg-0">
+                    <input class="form-check-input" wire:model="notification.repeat_notification" type="checkbox"
+                        role="switch" id="">
+                </div>
+                <h6 class="mb-lg-0">Repeat Notification</h6>
+            </div>
+            <div class="{{ $notification['repeat_notification'] ? '' : 'hidden' }}">
+                <div class="col-lg-12">
+                    <label class="form-label">When should they first be notified?</label>
+                    <div class="col-lg-8 d-flex gap-4">
+                        <div class="col-lg-2 d-flex gap-2">
+                            <a href="">
+                                <input class="form-check-input" type="radio" value="">
+                            </a>
+                            <p>Time(s)</p>
+                        </div>
+                        <div class="col-lg-2 d-flex gap-2">
+                            <a href="">
+                                <input class="form-check-input" type="radio" value="">
+                            </a>
+                            <p>Day(s)</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-2 gap-1 mb-4">
+                    <input class="form-control text-center" type="text" id="before-service-start-time"
+                        placeholder="10">
+                    <label class="form-label form-label-sm text-sm" for="before-service-start-time">Before the service
+                        start-time</label>
+                </div>
+            </div>
+            <div class="col-lg-12 gap-1">
+                <label class="form-label" for="message-to-requestee">Message to Requestee</label>
+                <textarea class="form-control" cols="30" rows="5" id="message-to-requestee"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 form-actions mb-2">
+            <div class="col-lg-3">
+                <button type="button" wire:click="initFields" class="btn rounded w-100 btn-outline-dark"
+                    x-on:click="addDocuments = !addDocuments">Cancel</button>
+            </div>
+            <div class="col-lg-3">
+                <button wire:click.prevent="save" type="button"
+                    x-on:close-add-documents.window="addDocuments = !addDocuments"class="btn rounded w-100 btn-primary">Add</button>
+            </div>
+        </div>
+    </div>
 </div>

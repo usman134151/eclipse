@@ -4,21 +4,25 @@
             Add Documents</button>
     </div>
     <div class="row mb-4">
-        @foreach ($documents as $document)
-            <div class="col-lg-2 position-relative"  >
-                <img src="{{ $this->isImage($document['document_type']) ? $document['document_name'] : '/tenant-resources/images/img-placeholder-document.jpg' }}"
-                    alt="img-placeholder-document" class="w-100">
-                <p class="font-family-secondary"><small> {{ $document['document_title'] }} </small></p>
-                <div class="position-absolute top-0 end-0">
-                    <a wire:click.prevent="deleteFile({{ $document['id'] }},'{{ $document->document_name }}')" href="#"
-                        title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-0">
-                        <svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20"
-                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <use xlink:href="/css/sprite.svg#delete-icon"></use>
-                        </svg>
-                    </a>
+        @if(count($documents))
+            @foreach ($documents as $document)
+                <div class="col-lg-2 position-relative" style="width:190px;height:250px"  >
+                    <img src="{{ $this->isImage($document['document_type']) ? $document['document_name'] : '/tenant-resources/images/img-placeholder-document.jpg' }}"
+                        alt="img-placeholder-document" class="w-100 h-100">
+                    <p class="font-family-secondary"><small> {{ $document['document_title'] }} </small></p>
+                    <div class="position-absolute top-0 end-0">
+                        <a wire:click.prevent="deleteFile({{ $document['id'] }},'{{ $document->document_name }}')" href="#"
+                            title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-0">
+                            <svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <use xlink:href="/css/sprite.svg#delete-icon"></use>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
-            </div>
-        @endforeach
+            @endforeach
+        @else
+            <small>No Documents Attached</small>
+        @endif
     </div>
 </div>

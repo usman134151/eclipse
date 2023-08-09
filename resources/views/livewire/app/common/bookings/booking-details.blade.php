@@ -7,7 +7,7 @@
                         <button class="nav-link {{ $component == 'booking-details' ? 'active' : '' }}"
                             id="booking-details-tab" data-bs-toggle="tab" data-bs-target="#booking-details"
                             type="button" role="tab" aria-controls="booking-details" aria-selected="true">
-                            {{-- Updated by Shanila to Add svg icon--}}
+                            {{-- Updated by Shanila to Add svg icon --}}
                             <svg aria-label="Booking Details" width="31" height="29" viewBox="0 0 31 29">
                                 <use xlink:href="/css/common-icons.svg#tablet"></use>
                             </svg>
@@ -20,7 +20,7 @@
                             id="assigned-providers-tab" data-bs-toggle="tab" data-bs-target="#assigned-providers"
                             type="button" role="tab" aria-controls="assigned-providers" aria-selected="false">
 
-                            {{-- Updated by Shanila to Add svg icon--}}
+                            {{-- Updated by Shanila to Add svg icon --}}
                             <svg aria-label="Assigned Providers" width="25" height="28" viewBox="0 0 25 28">
                                 <use xlink:href="/css/common-icons.svg#gray-user"></use>
                             </svg>
@@ -32,7 +32,7 @@
                         <button class="nav-link {{ $component == 'attachments' ? 'active' : '' }}" id="attachments-tab"
                             data-bs-toggle="tab" data-bs-target="#attachments" type="button" role="tab"
                             aria-controls="attachments" aria-selected="false">
-                            {{-- Updated by Shanila to Add svg icon--}}
+                            {{-- Updated by Shanila to Add svg icon --}}
                             <svg aria-label="Attachments" width="35" height="30" viewBox="0 0 35 30">
                                 <use xlink:href="/css/common-icons.svg#gray-drive"></use>
                             </svg>
@@ -44,7 +44,7 @@
                         <button class="nav-link {{ $component == 'payment-details' ? 'active' : '' }}"
                             id="payment-details-tab" data-bs-toggle="tab" data-bs-target="#payment-details"
                             type="button" role="tab" aria-controls="payment-details" aria-selected="false">
-                            {{-- Updated by Shanila to Add svg icon--}}
+                            {{-- Updated by Shanila to Add svg icon --}}
                             <svg aria-label="Payment Details" width="27" height="31" viewBox="0 0 27 31">
                                 <use xlink:href="/css/common-icons.svg#gray-payment"></use>
                             </svg>
@@ -56,7 +56,7 @@
                         <button class="nav-link {{ $component == 'assignment-log' ? 'active' : '' }}"
                             id="assignment-log-tab" data-bs-toggle="tab" data-bs-target="#assignment-log" type="button"
                             role="tab" aria-controls="assignment-log" aria-selected="false">
-                            {{-- Updated by Shanila to Add svg icon--}}
+                            {{-- Updated by Shanila to Add svg icon --}}
                             <svg aria-label="Assignment Log" width="28" height="31" viewBox="0 0 28 31">
                                 <use xlink:href="/css/common-icons.svg#gray-journal"></use>
                             </svg>
@@ -74,7 +74,7 @@
                                     <div class="mb-4">
                                         <label class="form-label text-primary">Booking Title</label>
                                         <div class="font-family-tertiary value">
-                                            {{$booking['booking_title'] ? $booking['booking_title'] :'N/A'}}
+                                            {{ $booking['booking_title'] ? $booking['booking_title'] : 'N/A' }}
                                         </div>
                                     </div>
                                     <div>
@@ -171,9 +171,9 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="d-flex flex-lg-row flex-column gap-3 justify-content-center">
-                                        <a href="#" class="btn btn-has-icon btn-primary rounded" data-bs-toggle="modal"
-                                            data-bs-target="#ProviderMessageModal">
-                                            {{-- Updated by Shanila to Add svg icon--}}
+                                        <a href="#" class="btn btn-has-icon btn-primary rounded"
+                                            data-bs-toggle="modal" data-bs-target="#ProviderMessageModal">
+                                            {{-- Updated by Shanila to Add svg icon --}}
                                             <svg aria-label="Message Providers" width="18" height="18"
                                                 viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
                                                 <use xlink:href="/css/common-icons.svg#message-icon"></use>
@@ -181,9 +181,9 @@
                                             {{-- End of update by Shanila --}}
                                             Message Providers
                                         </a>
-                                        <a href="#" class="btn btn-has-icon btn-primary rounded" data-bs-toggle="modal"
-                                            data-bs-target="#AssignproviderTeamModal">
-                                            {{-- Updated by Shanila to Add svg icon--}}
+                                        <a href="#" class="btn btn-has-icon btn-primary rounded"
+                                            data-bs-toggle="modal" data-bs-target="#AssignproviderTeamModal">
+                                            {{-- Updated by Shanila to Add svg icon --}}
                                             <svg aria-label=" Manage Providers" width="18" height="18"
                                                 viewBox="0 0 18 18">
                                                 <use xlink:href="/css/common-icons.svg#manage-icon"></use>
@@ -191,9 +191,9 @@
                                             {{-- End of update by Shanila --}}
                                             Manage Providers
                                         </a>
-                                        <a href="#" class="btn btn-has-icon btn-primary rounded" data-bs-toggle="modal"
-                                            data-bs-target="#AssignproviderTeamModal">
-                                            {{-- Updated by Shanila to Add svg icon--}}
+                                        <a href="#" class="btn btn-has-icon btn-primary rounded"
+                                            data-bs-toggle="modal" data-bs-target="#AssignproviderTeamModal">
+                                            {{-- Updated by Shanila to Add svg icon --}}
                                             <svg aria-label="Invite Providers" width="18" height="18"
                                                 viewBox="0 0 18 18" fill="none">
                                                 <use xlink:href="/css/common-icons.svg#invite-icon"></use>
@@ -201,9 +201,9 @@
                                             {{-- End of update by Shanila --}}
                                             Invite Providers
                                         </a>
-                                        <a href="#" class="btn btn-has-icon btn-primary rounded" data-bs-toggle="modal"
-                                            data-bs-target="#adminStaffModal">
-                                            {{-- Updated by Shanila to Add svg icon--}}
+                                        <a href="#" class="btn btn-has-icon btn-primary rounded"
+                                            data-bs-toggle="modal" data-bs-target="#adminStaffModal">
+                                            {{-- Updated by Shanila to Add svg icon --}}
                                             <svg aria-label="View Assigned Admin-staff" width="18" height="18"
                                                 viewBox="0 0 18 18" fill="none">
                                                 <use xlink:href="/css/common-icons.svg#invite-icon"></use>
@@ -220,7 +220,7 @@
                                 <div class="col-lg-12">
                                     <div class="d-flex flex-lg-row flex-column gap-3 justify-content-center">
                                         <a href="#" class="btn btn-has-icon btn-primary rounded">
-                                            {{-- Updated by Shanila to Add svg icon--}}
+                                            {{-- Updated by Shanila to Add svg icon --}}
                                             <svg aria-label="Message Requester" width="18" height="18"
                                                 viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
                                                 <use xlink:href="/css/common-icons.svg#message-icon"></use>
@@ -229,8 +229,9 @@
                                             Message Requester
                                         </a>
                                         <a href="#" class="btn btn-has-icon btn-outline-dark rounded">
-                                            {{-- Updated by Shanila to Add svg icon--}}
-                                            <svg aria-label="Duplicate" width="19" height="19" viewBox="0 0 19 19">
+                                            {{-- Updated by Shanila to Add svg icon --}}
+                                            <svg aria-label="Duplicate" width="19" height="19"
+                                                viewBox="0 0 19 19">
                                                 <use xlink:href="/css/common-icons.svg#duplicate"></use>
                                             </svg>
                                             {{-- End of update by Shanila --}}
@@ -238,18 +239,20 @@
                                         </a>
                                         <a href="#" class="btn btn-has-icon btn-primary rounded"
                                             @click="rescheduleBooking = true">
-                                            {{-- Updated by Shanila to Add svg icon--}}
-                                            <svg aria-label="Reschedule" width="20" height="20" viewBox="0 0 20 20">
+                                            {{-- Updated by Shanila to Add svg icon --}}
+                                            <svg aria-label="Reschedule" width="20" height="20"
+                                                viewBox="0 0 20 20">
                                                 <use xlink:href="/css/common-icons.svg#datefield-icon-white"></use>
                                             </svg>
                                             {{-- End of update by Shanila --}}
                                             Reschedule
                                         </a>
-                                        <a href="#" class="btn btn-has-icon btn-primary rounded" data-bs-toggle="modal"
-                                            data-bs-target="#UnassignModal">
+                                        <a href="#" class="btn btn-has-icon btn-primary rounded"
+                                            data-bs-toggle="modal" data-bs-target="#UnassignModal">
                                             {{-- Updated by Shanila to Add
-                                            svg icon--}}
-                                            <svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
+                                            svg icon --}}
+                                            <svg aria-label="Edit" width="20" height="20"
+                                                viewBox="0 0 20 20">
                                                 <use xlink:href="/css/common-icons.svg#pencil-white">
                                                 </use>
                                             </svg>
@@ -259,8 +262,9 @@
                                         </a>
                                         <a href="#" class="btn btn-has-icon btn-primary rounded">
                                             {{-- Updated by Shanila to Add
-                                            svg icon--}}
-                                            <svg aria-label="Cancel" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                            svg icon --}}
+                                            <svg aria-label="Cancel" width="20" height="20"
+                                                viewBox="0 0 20 20" fill="none">
                                                 <use xlink:href="/css/common-icons.svg#cancel-icon">
                                                 </use>
                                             </svg>
@@ -268,11 +272,12 @@
                                             --}}
                                             Cancel
                                         </a>
-                                        <a href="#" class="btn btn-has-icon btn-primary rounded" data-bs-toggle="modal"
-                                            data-bs-target="#reviewFeedbackModal">
+                                        <a href="#" class="btn btn-has-icon btn-primary rounded"
+                                            data-bs-toggle="modal" data-bs-target="#reviewFeedbackModal">
                                             {{-- Updated by Shanila to Add
-                                            svg icon--}}
-                                            <svg aria-label="Review Feedback" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                            svg icon --}}
+                                            <svg aria-label="Review Feedback" width="20" height="20"
+                                                viewBox="0 0 20 20" fill="none">
                                                 <use xlink:href="/css/common-icons.svg#review-feedback">
                                                 </use>
                                             </svg>
@@ -293,7 +298,7 @@
                                                     class="btn btn-outline-primary btn-has-icon btn-sm dropdown-toggle h-100"
                                                     type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                     <span>
-                                                        {{-- Updated by Shanila to Add svg icon--}}
+                                                        {{-- Updated by Shanila to Add svg icon --}}
                                                         <svg aria-label="Export" width="23" height="26"
                                                             viewBox="0 0 23 26">
                                                             <use xlink:href="/css/common-icons.svg#document-dropdown">
@@ -304,7 +309,8 @@
                                                 </button>
                                             </div>
                                             <div class="d-flex gap-2 align-items-center">
-                                                <input type="" name="" class="form-control" placeholder="Enter Email" aria-label="Enter Email">
+                                                <input type="" name="" class="form-control"
+                                                    placeholder="Enter Email" aria-label="Enter Email">
                                                 <button class="btn btn-primary px-4 rounded">
                                                     Send
                                                 </button>
@@ -318,7 +324,8 @@
                                                     <label class="col-form-label">Assignment No:</label>
                                                 </div>
                                                 <div class="col-lg-7 align-self-center">
-                                                    <div class="font-family-tertiary">{{$booking['booking_number']}}</div>
+                                                    <div class="font-family-tertiary">{{ $booking['booking_number'] }}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -329,7 +336,7 @@
                                                 </div>
                                                 <div class="col-lg-7 align-self-center">
                                                     <div class="font-family-tertiary">
-                                                        {{$booking['booking_title'] ? $booking['booking_title'] :'N/A'}}
+                                                        {{ $booking['booking_title'] ? $booking['booking_title'] : 'N/A' }}
                                                     </div>
                                                 </div>
                                             </div>
@@ -341,7 +348,7 @@
                                                 </div>
                                                 <div class="col-lg-7 align-self-center">
                                                     <div class="font-family-tertiary">
-                                                        {{$booking['booking_start_at'] ? date_format(date_create($booking['booking_start_at']), 'd/m/Y h:i A') : ''}}
+                                                        {{ $booking['booking_start_at'] ? date_format(date_create($booking['booking_start_at']), 'd/m/Y h:i A') : '' }}
 
                                                     </div>
                                                 </div>
@@ -354,7 +361,7 @@
                                                 </div>
                                                 <div class="col-lg-7 align-self-center">
                                                     <div class="font-family-tertiary">
-                                                        {{$booking['booking_end_at'] ? date_format(date_create($booking['booking_end_at']), 'd/m/Y h:i A') : ''}}
+                                                        {{ $booking['booking_end_at'] ? date_format(date_create($booking['booking_end_at']), 'd/m/Y h:i A') : '' }}
                                                     </div>
                                                 </div>
                                             </div>
@@ -366,7 +373,8 @@
                                                 </div>
                                                 <div class="col-lg-7 align-self-center">
                                                     <div class="font-family-tertiary">
-                                                        {{$booking['duration_hours']}} Hours {{$booking['duration_minute']}} Minutes
+                                                        {{ $booking['duration_hours'] }} Hours
+                                                        {{ $booking['duration_minute'] }} Minutes
                                                     </div>
                                                 </div>
                                             </div>
@@ -378,15 +386,15 @@
                                                 </div>
                                                 <div class="col-lg-7 align-self-center">
                                                     <div class="font-family-tertiary">
-                                                        @if($booking['frequency_id']==1)
+                                                        @if ($booking['frequency_id'] == 1)
                                                             One Time
-                                                        @elseif($booking['frequency_id']==2)
+                                                        @elseif($booking['frequency_id'] == 2)
                                                             Daily
-                                                        @elseif($booking['frequency_id']==3)
+                                                        @elseif($booking['frequency_id'] == 3)
                                                             Weekly
-                                                        @elseif($booking['frequency_id']==4)
+                                                        @elseif($booking['frequency_id'] == 4)
                                                             Monthly
-                                                        @elseif($booking['frequency_id']==5)
+                                                        @elseif($booking['frequency_id'] == 5)
                                                             Week Daily
                                                         @endif
                                                     </div>
@@ -400,7 +408,7 @@
                                                 </div>
                                                 <div class="col-lg-7 align-self-center">
                                                     <div class="font-family-tertiary">
-                                                        {{$booking['industry'] ? $booking['industry']['name'] : 'N/A' }}
+                                                        {{ $booking['industry'] ? $booking['industry']['name'] : 'N/A' }}
                                                     </div>
                                                 </div>
                                             </div>
@@ -412,7 +420,7 @@
                                                 </div>
                                                 <div class="col-lg-7 align-self-center">
                                                     <div class="font-family-tertiary">
-                                                        {{$booking['company'] ? $booking['company']['name'] : 'N/A' }}
+                                                        {{ $booking['company'] ? $booking['company']['name'] : 'N/A' }}
                                                     </div>
                                                 </div>
                                             </div>
@@ -436,7 +444,8 @@
                                                 </div>
                                                 <div class="col-lg-7 align-self-center">
                                                     <div class="font-family-tertiary">
-                                                        <a href="#">{{$booking->booking_supervisor ? $booking->booking_supervisor->name : 'N/A' }}</a>
+                                                        <a
+                                                            href="#">{{ $booking->booking_supervisor ? $booking->booking_supervisor->name : 'N/A' }}</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -450,7 +459,8 @@
                                                 </div>
                                                 <div class="col-lg-7 align-self-center">
                                                     <div class="font-family-tertiary">
-                                                        <a href="#">{{$booking->billing_manager ? $booking->billing_manager->name : 'N/A' }}</a>
+                                                        <a
+                                                            href="#">{{ $booking->billing_manager ? $booking->billing_manager->name : 'N/A' }}</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -476,7 +486,7 @@
                                                 </div>
                                                 <div class="col-lg-7 align-self-center">
                                                     <div class="font-family-tertiary">
-                                                        {{$booking['phone'] ? $booking['phone'] : 'N/A' }}
+                                                        {{ $booking['phone'] ? $booking['phone'] : 'N/A' }}
                                                     </div>
                                                 </div>
                                             </div>
@@ -557,8 +567,10 @@
                                                 </div>
                                                 <div class="col-lg-7 align-self-center">
                                                     <div class="font-family-tertiary">
-                                                        <a href="#">Thomas Charles</a> , <a href="#">Richard Payne</a> ,
-                                                        <a href="#">Jennifer Summers</a> , <a href="#">Lori Wells</a>
+                                                        <a href="#">Thomas Charles</a> , <a
+                                                            href="#">Richard Payne</a> ,
+                                                        <a href="#">Jennifer Summers</a> , <a
+                                                            href="#">Lori Wells</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -572,8 +584,10 @@
                                                 </div>
                                                 <div class="col-lg-7 align-self-center">
                                                     <div class="font-family-tertiary">
-                                                        <a href="#">Thomas Charles</a> , <a href="#">Richard Payne</a> ,
-                                                        <a href="#">Jennifer Summers</a> , <a href="#">Lori Wells</a>
+                                                        <a href="#">Thomas Charles</a> , <a
+                                                            href="#">Richard Payne</a> ,
+                                                        <a href="#">Jennifer Summers</a> , <a
+                                                            href="#">Lori Wells</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -599,10 +613,12 @@
                                                         <div class="font-family-tertiary">
                                                             Spoken Language Interpreting Services
                                                         </div>
-                                                        <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                            data-bs-toggle="modal" data-bs-target="#MeetingLinksModal">
+                                                        <a href="#"
+                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#MeetingLinksModal">
                                                             {{-- Updated by Shanila to Add
-                                                            svg icon--}}
+                                                            svg icon --}}
                                                             <svg aria-label="Edit" width="20" height="20"
                                                                 viewBox="0 0 20 20">
                                                                 <use xlink:href="/css/common-icons.svg#pencil">
@@ -628,7 +644,7 @@
                                                         <a href="#"
                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                             {{-- Updated by Shanila to Add
-                                                            svg icon--}}
+                                                            svg icon --}}
                                                             <svg aria-label="Edit" width="20" height="20"
                                                                 viewBox="0 0 20 20">
                                                                 <use xlink:href="/css/common-icons.svg#pencil">
@@ -714,7 +730,7 @@
                                                         <a href="#"
                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                             {{-- Updated by Shanila to Add
-                                                            svg icon--}}
+                                                            svg icon --}}
                                                             <svg aria-label="Edit" width="20" height="20"
                                                                 viewBox="0 0 20 20">
                                                                 <use xlink:href="/css/common-icons.svg#pencil">
@@ -771,8 +787,9 @@
                                     <!-- Map -->
                                     <iframe
                                         src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d96779.59535015929!2d-74.00126600000002!3d40.710039!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1676478925644!5m2!1sen!2sus"
-                                        width="304" height="228" style="border:0;" allowfullscreen="" loading="lazy"
-                                        referrerpolicy="no-referrer-when-downgrade" class="map"></iframe>
+                                        width="304" height="228" style="border:0;" allowfullscreen=""
+                                        loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                                        class="map"></iframe>
                                     <!-- /Map -->
                                 </div>
                             </div>
@@ -795,7 +812,7 @@
                                                         <a href="#"
                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                             {{-- Updated by Shanila to Add
-                                                            svg icon--}}
+                                                            svg icon --}}
                                                             <svg aria-label="Edit" width="20" height="20"
                                                                 viewBox="0 0 20 20">
                                                                 <use xlink:href="/css/common-icons.svg#pencil">
@@ -819,7 +836,7 @@
                                                         <a href="#"
                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                             {{-- Updated by Shanila to Add
-                                                            svg icon--}}
+                                                            svg icon --}}
                                                             <svg aria-label="Edit" width="20" height="20"
                                                                 viewBox="0 0 20 20">
                                                                 <use xlink:href="/css/common-icons.svg#pencil">
@@ -845,7 +862,7 @@
                                                         <a href="#"
                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                             {{-- Updated by Shanila to Add
-                                                            svg icon--}}
+                                                            svg icon --}}
                                                             <svg aria-label="Edit" width="20" height="20"
                                                                 viewBox="0 0 20 20">
                                                                 <use xlink:href="/css/common-icons.svg#pencil">
@@ -917,7 +934,7 @@
                                                     Provider Notes
                                                 </label>
                                                 <textarea class="form-control" rows="4" cols="4">
-													{{$booking['provider_notes']}}
+													{{ $booking['provider_notes'] }}
 
 													{{-- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua --}}
 												</textarea>
@@ -931,7 +948,7 @@
                                                     Customer Notes
                                                 </label>
                                                 <textarea class="form-control" rows="4" cols="4">
-													{{$booking['customer_notes']}}
+													{{ $booking['customer_notes'] }}
                                                     {{-- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua --}}
 												</textarea>
                                             </div>
@@ -944,7 +961,7 @@
                                                     Private Notes
                                                 </label>
                                                 <textarea class="form-control" rows="4" cols="4">
-													{{$booking['private_notes']}}
+													{{ $booking['private_notes'] }}
 
 													{{-- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua --}}
 												</textarea>
@@ -1198,15 +1215,15 @@
                                                         </label>
                                                     </div>
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" id="ServiceConsumers" name=""
-                                                            type="checkbox" tabindex="">
+                                                        <input class="form-check-input" id="ServiceConsumers"
+                                                            name="" type="checkbox" tabindex="">
                                                         <label class="form-check-label" for="ServiceConsumers">
                                                             Service Consumer(s)
                                                         </label>
                                                     </div>
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" id="Participants" name=""
-                                                            type="checkbox" tabindex="">
+                                                        <input class="form-check-input" id="Participants"
+                                                            name="" type="checkbox" tabindex="">
                                                         <label class="form-check-label" for="Participants">
                                                             Participant(s)
                                                         </label>
@@ -1224,7 +1241,8 @@
                             <!-- /Notes -->
                         </div>
                         <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
-                            <button type="" class="btn btn-outline-dark rounded" wire:click.prevent="showList">
+                            <button type="" class="btn btn-outline-dark rounded"
+                                wire:click.prevent="showList">
                                 Cancel
                             </button>
                             <button type="button" class="btn btn-primary rounded"
@@ -1235,16 +1253,19 @@
                     </div>
                     <!-- END: booking-details-tab -->
                     <div class="tab-pane fade {{ $component == 'assigned-providers' ? 'active show' : '' }}"
-                        id="assigned-providers" role="tabpanel" aria-labelledby="assigned-providers-tab" tabindex="0">
+                        id="assigned-providers" role="tabpanel" aria-labelledby="assigned-providers-tab"
+                        tabindex="0">
                         <!-- Service 1 Assigned Providers -->
                         <div class="between-section-segment-spacing">
                             <div class="d-lg-flex align-items-center justify-content-between header-row">
                                 <h2 class="mb-lg-0">Service 1 Assigned Providers</h2>
                                 <div class="d-flex flex-md-row flex-column gap-3">
-                                    <a class="btn btn-has-icon btn-outline-dark rounded" @click="assignProvider = true">
+                                    <a class="btn btn-has-icon btn-outline-dark rounded"
+                                        @click="assignProvider = true">
                                         {{-- Updated by Shanila to Add
-                                        svg icon--}}
-                                        <svg aria-label="Assign Providers" vwidth="20" height="20" viewBox="0 0 20 20">
+                                        svg icon --}}
+                                        <svg aria-label="Assign Providers" vwidth="20" height="20"
+                                            viewBox="0 0 20 20">
                                             <use xlink:href="/css/common-icons.svg#assign-providers">
                                             </use>
                                         </svg>
@@ -1254,9 +1275,9 @@
                                     </a>
                                     <a href="#" class="btn btn-has-icon btn-primary rounded">
                                         {{-- Updated by Shanila to Add
-                                        svg icon--}}
-                                        <svg aria-label="Team Chat" width="20" height="20" viewBox="0 0 20 20"
-                                            fill="none">
+                                        svg icon --}}
+                                        <svg aria-label="Team Chat" width="20" height="20"
+                                            viewBox="0 0 20 20" fill="none">
                                             <use xlink:href="/css/common-icons.svg#message-icon">
                                             </use>
                                         </svg>
@@ -1270,7 +1291,7 @@
                                 <button class="btn btn-outline-primary btn-has-icon btn-sm dropdown-toggle h-100"
                                     type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <span>
-                                        {{-- Updated by Shanila to Add svg icon--}}
+                                        {{-- Updated by Shanila to Add svg icon --}}
                                         <svg aria-label="Export " width="23" height="26" viewBox="0 0 23 26">
                                             <use xlink:href="/css/common-icons.svg#document-dropdown">
                                             </use>
@@ -1305,8 +1326,8 @@
                                 </div>
                                 <div class="d-inline-flex align-items-center gap-4">
                                     <label for="search-coulmn" class="form-label-sm mb-0">Search</label>
-                                    <input type="search" class="form-control form-control-sm" id="search-coulmn" name="search"
-                                        placeholder="Search here" autocomplete="on" />
+                                    <input type="search" class="form-control form-control-sm" id="search-coulmn"
+                                        name="search" placeholder="Search here" autocomplete="on" />
                                 </div>
                             </div>
                             <!-- Hoverable rows start -->
@@ -1319,8 +1340,8 @@
                                                 <thead>
                                                     <tr role="row">
                                                         <th scope="col" class="text-center">
-                                                            <input class="form-check-input" type="checkbox" value=""
-                                                                aria-label="Select All Teams">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" aria-label="Select All Teams">
                                                         </th>
                                                         <th scope="col">Provider</th>
                                                         <th scope="col">Additional Pay</th>
@@ -1333,18 +1354,20 @@
                                                 <tbody>
                                                     <tr role="row" class="odd">
                                                         <td class="text-center align-middle">
-                                                            <input class="form-check-input" type="checkbox" value=""
-                                                                aria-label="Select Team">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" aria-label="Select Team">
                                                         </td>
                                                         <td class="align-middle">
                                                             <div class="d-flex gap-2 align-items-center">
                                                                 <div>
                                                                     <img width="50" height="50"
                                                                         src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                                                        class="rounded-circle" alt="Provider Profile Image">
+                                                                        class="rounded-circle"
+                                                                        alt="Provider Profile Image">
                                                                 </div>
                                                                 <div class="pt-2">
-                                                                    <div class="font-family-secondary leading-none">Dori
+                                                                    <div class="font-family-secondary leading-none">
+                                                                        Dori
                                                                         Griffiths</div>
                                                                     <a href="#"
                                                                         class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
@@ -1366,9 +1389,9 @@
                                                                 <a href="#" title="Revoke" aria-label="Revoke"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                     {{-- Updated by Shanila to Add
-                                                                    svg icon--}}
-                                                                    <svg aria-label="Revoke" width="19" height="20"
-                                                                        viewBox="0 0 19 20">
+                                                                    svg icon --}}
+                                                                    <svg aria-label="Revoke" width="19"
+                                                                        height="20" viewBox="0 0 19 20">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#unassign">
                                                                         </use>
@@ -1378,9 +1401,9 @@
                                                                 </a>
                                                                 <a href="#" title="View" aria-label="View"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="View" width="20" height="20"
-                                                                        viewBox="0 0 20 20">
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="View" width="20"
+                                                                        height="20" viewBox="0 0 20 20">
                                                                         <use xlink:href="/css/common-icons.svg#view">
                                                                         </use>
                                                                     </svg>
@@ -1388,9 +1411,9 @@
                                                                 </a>
                                                                 <a href="#" title="Chat" aria-label="Chat"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="Chat" width="18" height="18"
-                                                                        viewBox="0 0 18 18"
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="Chat" width="18"
+                                                                        height="18" viewBox="0 0 18 18"
                                                                         xmlns="http://www.w3.org/2000/svg">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#chat-icon">
@@ -1398,11 +1421,13 @@
                                                                     </svg>
                                                                     {{-- End of update by Shanila --}}
                                                                 </a>
-                                                                <a href="#" title="Feedback" aria-label="Feedback"
+                                                                <a href="#" title="Feedback"
+                                                                    aria-label="Feedback"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="Rating" width="22" height="22"
-                                                                        viewBox="0 0 22 22" fill="none">
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="Rating" width="22"
+                                                                        height="22" viewBox="0 0 22 22"
+                                                                        fill="none">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#rating-icon">
                                                                         </use>
@@ -1414,18 +1439,20 @@
                                                     </tr>
                                                     <tr role="row" class="even">
                                                         <td class="text-center align-middle">
-                                                            <input class="form-check-input" type="checkbox" value=""
-                                                                aria-label="Select Team">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" aria-label="Select Team">
                                                         </td>
                                                         <td class="align-middle">
                                                             <div class="d-flex gap-2 align-items-center">
                                                                 <div>
                                                                     <img width="50" height="50"
                                                                         src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                                                        class="rounded-circle" alt="Provider Profile Image">
+                                                                        class="rounded-circle"
+                                                                        alt="Provider Profile Image">
                                                                 </div>
                                                                 <div class="pt-2">
-                                                                    <div class="font-family-secondary leading-none">Dori
+                                                                    <div class="font-family-secondary leading-none">
+                                                                        Dori
                                                                         Griffiths</div>
                                                                     <a href="#"
                                                                         class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
@@ -1447,9 +1474,9 @@
                                                                 <a href="#" title="Revoke" aria-label="Revoke"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                     {{-- Updated by Shanila to Add
-                                                                    svg icon--}}
-                                                                    <svg aria-label="Revoke" width="19" height="20"
-                                                                        viewBox="0 0 19 20">
+                                                                    svg icon --}}
+                                                                    <svg aria-label="Revoke" width="19"
+                                                                        height="20" viewBox="0 0 19 20">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#unassign">
                                                                         </use>
@@ -1459,9 +1486,9 @@
                                                                 </a>
                                                                 <a href="#" title="View" aria-label="View"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="View" width="20" height="20"
-                                                                        viewBox="0 0 20 20">
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="View" width="20"
+                                                                        height="20" viewBox="0 0 20 20">
                                                                         <use xlink:href="/css/common-icons.svg#view">
                                                                         </use>
                                                                     </svg>
@@ -1469,9 +1496,9 @@
                                                                 </a>
                                                                 <a href="#" title="Chat" aria-label="Chat"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="Chat" width="18" height="18"
-                                                                        viewBox="0 0 18 18"
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="Chat" width="18"
+                                                                        height="18" viewBox="0 0 18 18"
                                                                         xmlns="http://www.w3.org/2000/svg">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#chat-icon">
@@ -1479,11 +1506,13 @@
                                                                     </svg>
                                                                     {{-- End of update by Shanila --}}
                                                                 </a>
-                                                                <a href="#" title="Feedback" aria-label="Feedback"
+                                                                <a href="#" title="Feedback"
+                                                                    aria-label="Feedback"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="Rating" width="22" height="22"
-                                                                        viewBox="0 0 22 22" fill="none">
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="Rating" width="22"
+                                                                        height="22" viewBox="0 0 22 22"
+                                                                        fill="none">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#rating-icon">
                                                                         </use>
@@ -1495,18 +1524,20 @@
                                                     </tr>
                                                     <tr role="row" class="odd">
                                                         <td class="text-center align-middle">
-                                                            <input class="form-check-input" type="checkbox" value=""
-                                                                aria-label="Select Team">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" aria-label="Select Team">
                                                         </td>
                                                         <td class="align-middle">
                                                             <div class="d-flex gap-2 align-items-center">
                                                                 <div>
                                                                     <img width="50" height="50"
                                                                         src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                                                        class="rounded-circle" alt="Provider Profile Image">
+                                                                        class="rounded-circle"
+                                                                        alt="Provider Profile Image">
                                                                 </div>
                                                                 <div class="pt-2">
-                                                                    <div class="font-family-secondary leading-none">Dori
+                                                                    <div class="font-family-secondary leading-none">
+                                                                        Dori
                                                                         Griffiths</div>
                                                                     <a href="#"
                                                                         class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
@@ -1525,12 +1556,13 @@
                                                         <td class="text-center align-middle">$00:00</td>
                                                         <td class="align-middle">
                                                             <div class="d-flex actions justify-content-center">
-                                                                <a href="#" title="Revoke" aria-label="Revoke"
+                                                                <a href="#" title="Revoke"
+                                                                    aria-label="Revoke"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                     {{-- Updated by Shanila to Add
-                                                                    svg icon--}}
-                                                                    <svg aria-label="Revoke" width="19" height="20"
-                                                                        viewBox="0 0 19 20">
+                                                                    svg icon --}}
+                                                                    <svg aria-label="Revoke" width="19"
+                                                                        height="20" viewBox="0 0 19 20">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#unassign">
                                                                         </use>
@@ -1540,9 +1572,9 @@
                                                                 </a>
                                                                 <a href="#" title="View" aria-label="View"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="View" width="20" height="20"
-                                                                        viewBox="0 0 20 20">
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="View" width="20"
+                                                                        height="20" viewBox="0 0 20 20">
                                                                         <use xlink:href="/css/common-icons.svg#view">
                                                                         </use>
                                                                     </svg>
@@ -1550,9 +1582,9 @@
                                                                 </a>
                                                                 <a href="#" title="Chat" aria-label="Chat"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="Chat" width="18" height="18"
-                                                                        viewBox="0 0 18 18"
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="Chat" width="18"
+                                                                        height="18" viewBox="0 0 18 18"
                                                                         xmlns="http://www.w3.org/2000/svg">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#chat-icon">
@@ -1560,11 +1592,13 @@
                                                                     </svg>
                                                                     {{-- End of update by Shanila --}}
                                                                 </a>
-                                                                <a href="#" title="Feedback" aria-label="Feedback"
+                                                                <a href="#" title="Feedback"
+                                                                    aria-label="Feedback"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="Rating" width="22" height="22"
-                                                                        viewBox="0 0 22 22" fill="none">
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="Rating" width="22"
+                                                                        height="22" viewBox="0 0 22 22"
+                                                                        fill="none">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#rating-icon">
                                                                         </use>
@@ -1576,18 +1610,20 @@
                                                     </tr>
                                                     <tr role="row" class="even">
                                                         <td class="text-center align-middle">
-                                                            <input class="form-check-input" type="checkbox" value=""
-                                                                aria-label="Select Team">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" aria-label="Select Team">
                                                         </td>
                                                         <td class="align-middle">
                                                             <div class="d-flex gap-2 align-items-center">
                                                                 <div>
                                                                     <img width="50" height="50"
                                                                         src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                                                        class="rounded-circle" alt="Provider Profile Image">
+                                                                        class="rounded-circle"
+                                                                        alt="Provider Profile Image">
                                                                 </div>
                                                                 <div class="pt-2">
-                                                                    <div class="font-family-secondary leading-none">Dori
+                                                                    <div class="font-family-secondary leading-none">
+                                                                        Dori
                                                                         Griffiths</div>
                                                                     <a href="#"
                                                                         class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
@@ -1606,12 +1642,13 @@
                                                         <td class="text-center align-middle">$00:00</td>
                                                         <td class="align-middle">
                                                             <div class="d-flex actions justify-content-center">
-                                                                <a href="#" title="Revoke" aria-label="Revoke"
+                                                                <a href="#" title="Revoke"
+                                                                    aria-label="Revoke"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                     {{-- Updated by Shanila to Add
-                                                                    svg icon--}}
-                                                                    <svg aria-label="Revoke" width="19" height="20"
-                                                                        viewBox="0 0 19 20">
+                                                                    svg icon --}}
+                                                                    <svg aria-label="Revoke" width="19"
+                                                                        height="20" viewBox="0 0 19 20">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#unassign">
                                                                         </use>
@@ -1621,20 +1658,21 @@
                                                                 </a>
                                                                 <a href="#" title="View" aria-label="View"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="View" width="20" height="20"
-                                                                        viewBox="0 0 20 20">
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="View" width="20"
+                                                                        height="20" viewBox="0 0 20 20">
                                                                         <use xlink:href="/css/common-icons.svg#view">
                                                                         </use>
                                                                     </svg>
                                                                     {{-- End of update by Shanila --}}
                                                                 </a>
                                                                 <a href="#" title="Chat" aria-label="Chat"
-                                                                <a href="#" title="View" aria-label="View"
+                                                                    <a href="#" title="View"
+                                                                    aria-label="View"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="View" width="20" height="20"
-                                                                        viewBox="0 0 20 20">
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="View" width="20"
+                                                                        height="20" viewBox="0 0 20 20">
                                                                         <use xlink:href="/css/common-icons.svg#view">
                                                                         </use>
                                                                     </svg>
@@ -1642,9 +1680,9 @@
                                                                 </a>
                                                                 <a href="#" title="Chat" aria-label="Chat"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="Chat" width="18" height="18"
-                                                                        viewBox="0 0 18 18"
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="Chat" width="18"
+                                                                        height="18" viewBox="0 0 18 18"
                                                                         xmlns="http://www.w3.org/2000/svg">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#chat-icon">
@@ -1652,11 +1690,13 @@
                                                                     </svg>
                                                                     {{-- End of update by Shanila --}}
                                                                 </a>
-                                                                <a href="#" title="Feedback" aria-label="Feedback"
+                                                                <a href="#" title="Feedback"
+                                                                    aria-label="Feedback"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="Rating" width="22" height="22"
-                                                                        viewBox="0 0 22 22" fill="none">
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="Rating" width="22"
+                                                                        height="22" viewBox="0 0 22 22"
+                                                                        fill="none">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#rating-icon">
                                                                         </use>
@@ -1688,7 +1728,8 @@
                                         <li class="page-item"><a class="page-link" href="#">1</a></li>
                                         <li class="page-item"><a class="page-link" href="#">2</a></li>
                                         <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item active"><a class="page-link" href="#">4</a></li>
+                                        <li class="page-item active"><a class="page-link" href="#">4</a>
+                                        </li>
                                         <li class="page-item">
                                             <a class="page-link" href="#" aria-label="Next">
                                                 <span aria-hidden="true">&raquo;</span>
@@ -1703,7 +1744,8 @@
                             <div class="d-lg-flex align-items-center justify-content-between mb-4">
                                 <h2 class="mb-lg-0">Service 2 Assigned Providers</h2>
                                 <div class="d-flex flex-md-row flex-column gap-3">
-                                    <a class="btn btn-has-icon btn-outline-dark rounded" @click="assignProvider = true">
+                                    <a class="btn btn-has-icon btn-outline-dark rounded"
+                                        @click="assignProvider = true">
                                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -1775,8 +1817,8 @@
                                 </div>
                                 <div class="d-inline-flex align-items-center gap-4">
                                     <label for="search" class="form-label-sm mb-0">Search</label>
-                                    <input type="search" class="form-control form-control-sm" id="search" name="search"
-                                        placeholder="Search here" autocomplete="on" />
+                                    <input type="search" class="form-control form-control-sm" id="search"
+                                        name="search" placeholder="Search here" autocomplete="on" />
                                 </div>
                             </div>
                             <!-- Hoverable rows start -->
@@ -1789,8 +1831,8 @@
                                                 <thead>
                                                     <tr role="row">
                                                         <th scope="col" class="text-center">
-                                                            <input class="form-check-input" type="checkbox" value=""
-                                                                aria-label="Select All Teams">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" aria-label="Select All Teams">
                                                         </th>
                                                         <th scope="col">Provider</th>
                                                         <th scope="col">Additional Pay</th>
@@ -1803,8 +1845,8 @@
                                                 <tbody>
                                                     <tr role="row" class="odd">
                                                         <td class="text-center align-middle">
-                                                            <input class="form-check-input" type="checkbox" value=""
-                                                                aria-label="Select Team">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" aria-label="Select Team">
                                                         </td>
                                                         <td class="align-middle">
                                                             <div class="d-flex gap-2 align-items-center">
@@ -1814,7 +1856,8 @@
                                                                         class="rounded-circle" alt="Image">
                                                                 </div>
                                                                 <div class="pt-2">
-                                                                    <div class="font-family-secondary leading-none">Dori
+                                                                    <div class="font-family-secondary leading-none">
+                                                                        Dori
                                                                         Griffiths</div>
                                                                     <a href="#"
                                                                         class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
@@ -1833,12 +1876,13 @@
                                                         <td class="text-center align-middle">$00:00</td>
                                                         <td class="align-middle">
                                                             <div class="d-flex actions justify-content-center">
-                                                                <a href="#" title="Revoke" aria-label="Revoke"
+                                                                <a href="#" title="Revoke"
+                                                                    aria-label="Revoke"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                     {{-- Updated by Shanila to Add
-                                                                    svg icon--}}
-                                                                    <svg aria-label="Revoke" width="19" height="20"
-                                                                        viewBox="0 0 19 20">
+                                                                    svg icon --}}
+                                                                    <svg aria-label="Revoke" width="19"
+                                                                        height="20" viewBox="0 0 19 20">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#unassign">
                                                                         </use>
@@ -1848,9 +1892,9 @@
                                                                 </a>
                                                                 <a href="#" title="View" aria-label="View"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="View" width="20" height="20"
-                                                                        viewBox="0 0 20 20">
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="View" width="20"
+                                                                        height="20" viewBox="0 0 20 20">
                                                                         <use xlink:href="/css/common-icons.svg#view">
                                                                         </use>
                                                                     </svg>
@@ -1858,9 +1902,9 @@
                                                                 </a>
                                                                 <a href="#" title="Chat" aria-label="Chat"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="Chat" width="18" height="18"
-                                                                        viewBox="0 0 18 18"
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="Chat" width="18"
+                                                                        height="18" viewBox="0 0 18 18"
                                                                         xmlns="http://www.w3.org/2000/svg">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#chat-icon">
@@ -1868,11 +1912,13 @@
                                                                     </svg>
                                                                     {{-- End of update by Shanila --}}
                                                                 </a>
-                                                                <a href="#" title="Feedback" aria-label="Feedback"
+                                                                <a href="#" title="Feedback"
+                                                                    aria-label="Feedback"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="Rating" width="22" height="22"
-                                                                        viewBox="0 0 22 22" fill="none">
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="Rating" width="22"
+                                                                        height="22" viewBox="0 0 22 22"
+                                                                        fill="none">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#rating-icon">
                                                                         </use>
@@ -1884,8 +1930,8 @@
                                                     </tr>
                                                     <tr role="row" class="even">
                                                         <td class="text-center align-middle">
-                                                            <input class="form-check-input" type="checkbox" value=""
-                                                                aria-label="Select Team">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" aria-label="Select Team">
                                                         </td>
                                                         <td class="align-middle">
                                                             <div class="d-flex gap-2 align-items-center">
@@ -1895,7 +1941,8 @@
                                                                         class="rounded-circle" alt="Image">
                                                                 </div>
                                                                 <div class="pt-2">
-                                                                    <div class="font-family-secondary leading-none">Dori
+                                                                    <div class="font-family-secondary leading-none">
+                                                                        Dori
                                                                         Griffiths</div>
                                                                     <a href="#"
                                                                         class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
@@ -1914,10 +1961,12 @@
                                                         <td class="text-center align-middle">$00:00</td>
                                                         <td class="align-middle">
                                                             <div class="d-flex actions justify-content-center">
-                                                                <a href="#" title="Revoke" aria-label="Revoke"
+                                                                <a href="#" title="Revoke"
+                                                                    aria-label="Revoke"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    <svg width="19" height="20" viewBox="0 0 19 20"
-                                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <svg width="19" height="20"
+                                                                        viewBox="0 0 19 20" fill="none"
+                                                                        xmlns="http://www.w3.org/2000/svg">
                                                                         <path
                                                                             d="M9.00065 9.9974C11.3018 9.9974 13.1673 8.13192 13.1673 5.83073C13.1673 3.52954 11.3018 1.66406 9.00065 1.66406C6.69946 1.66406 4.83398 3.52954 4.83398 5.83073C4.83398 8.13192 6.69946 9.9974 9.00065 9.9974Z"
                                                                             stroke="black" stroke-width="2" />
@@ -1934,8 +1983,9 @@
                                                                 </a>
                                                                 <a href="#" title="View" aria-label="View"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    <svg width="20" height="20" viewBox="0 0 20 20"
-                                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <svg width="20" height="20"
+                                                                        viewBox="0 0 20 20" fill="none"
+                                                                        xmlns="http://www.w3.org/2000/svg">
                                                                         <path
                                                                             d="M14.286 17.1462C15.075 17.1462 15.7146 16.5066 15.7146 15.7176C15.7146 14.9287 15.075 14.2891 14.286 14.2891C13.497 14.2891 12.8574 14.9287 12.8574 15.7176C12.8574 16.5066 13.497 17.1462 14.286 17.1462Z"
                                                                             fill="black" />
@@ -1949,8 +1999,9 @@
                                                                 </a>
                                                                 <a href="#" title="Chat" aria-label="Chat"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    <svg width="20" height="20" viewBox="0 0 20 20"
-                                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <svg width="20" height="20"
+                                                                        viewBox="0 0 20 20" fill="none"
+                                                                        xmlns="http://www.w3.org/2000/svg">
                                                                         <path
                                                                             d="M3 16V19.766L4.515 18.857L9.277 16H14C15.103 16 16 15.103 16 14V6C16 4.897 15.103 4 14 4H2C0.897 4 0 4.897 0 6V14C0 15.103 0.897 16 2 16H3ZM2 6H14V14H8.723L5 16.234V14H2V6Z"
                                                                             fill="black" />
@@ -1959,16 +2010,20 @@
                                                                             fill="black" />
                                                                     </svg>
                                                                 </a>
-                                                                <a href="#" title="Feedback" aria-label="Feedback"
+                                                                <a href="#" title="Feedback"
+                                                                    aria-label="Feedback"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    <svg width="22" height="22" viewBox="0 0 22 22"
-                                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <svg width="22" height="22"
+                                                                        viewBox="0 0 22 22" fill="none"
+                                                                        xmlns="http://www.w3.org/2000/svg">
                                                                         <mask id="mask0_8558_148040"
                                                                             style="mask-type:luminance"
-                                                                            maskUnits="userSpaceOnUse" x="0" y="0"
+                                                                            maskUnits="userSpaceOnUse"
+                                                                            x="0" y="0"
                                                                             width="22" height="21">
-                                                                            <path d="M1 1H21V20.2377H1V1Z" fill="white"
-                                                                                stroke="white" stroke-width="0.5" />
+                                                                            <path d="M1 1H21V20.2377H1V1Z"
+                                                                                fill="white" stroke="white"
+                                                                                stroke-width="0.5" />
                                                                         </mask>
                                                                         <g mask="url(#mask0_8558_148040)">
                                                                             <path
@@ -1987,8 +2042,8 @@
                                                     </tr>
                                                     <tr role="row" class="odd">
                                                         <td class="text-center align-middle">
-                                                            <input class="form-check-input" type="checkbox" value=""
-                                                                aria-label="Select Team">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" aria-label="Select Team">
                                                         </td>
                                                         <td class="align-middle">
                                                             <div class="d-flex gap-2 align-items-center">
@@ -1998,7 +2053,8 @@
                                                                         class="rounded-circle" alt="Image">
                                                                 </div>
                                                                 <div class="pt-2">
-                                                                    <div class="font-family-secondary leading-none">Dori
+                                                                    <div class="font-family-secondary leading-none">
+                                                                        Dori
                                                                         Griffiths</div>
                                                                     <a href="#"
                                                                         class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
@@ -2017,12 +2073,13 @@
                                                         <td class="text-center align-middle">$00:00</td>
                                                         <td class="align-middle">
                                                             <div class="d-flex actions justify-content-center">
-                                                                <a href="#" title="Revoke" aria-label="Revoke"
+                                                                <a href="#" title="Revoke"
+                                                                    aria-label="Revoke"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                     {{-- Updated by Shanila to Add
-                                                                    svg icon--}}
-                                                                    <svg aria-label="Revoke" width="19" height="20"
-                                                                        viewBox="0 0 19 20">
+                                                                    svg icon --}}
+                                                                    <svg aria-label="Revoke" width="19"
+                                                                        height="20" viewBox="0 0 19 20">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#unassign">
                                                                         </use>
@@ -2032,9 +2089,9 @@
                                                                 </a>
                                                                 <a href="#" title="View" aria-label="View"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="View" width="20" height="20"
-                                                                        viewBox="0 0 20 20">
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="View" width="20"
+                                                                        height="20" viewBox="0 0 20 20">
                                                                         <use xlink:href="/css/common-icons.svg#view">
                                                                         </use>
                                                                     </svg>
@@ -2042,9 +2099,9 @@
                                                                 </a>
                                                                 <a href="#" title="Chat" aria-label="Chat"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="Chat" width="18" height="18"
-                                                                        viewBox="0 0 18 18"
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="Chat" width="18"
+                                                                        height="18" viewBox="0 0 18 18"
                                                                         xmlns="http://www.w3.org/2000/svg">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#chat-icon">
@@ -2052,11 +2109,13 @@
                                                                     </svg>
                                                                     {{-- End of update by Shanila --}}
                                                                 </a>
-                                                                <a href="#" title="Feedback" aria-label="Feedback"
+                                                                <a href="#" title="Feedback"
+                                                                    aria-label="Feedback"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="Rating" width="22" height="22"
-                                                                        viewBox="0 0 22 22" fill="none">
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="Rating" width="22"
+                                                                        height="22" viewBox="0 0 22 22"
+                                                                        fill="none">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#rating-icon">
                                                                         </use>
@@ -2068,8 +2127,8 @@
                                                     </tr>
                                                     <tr role="row" class="even">
                                                         <td class="text-center align-middle">
-                                                            <input class="form-check-input" type="checkbox" value=""
-                                                                aria-label="Select Team">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" aria-label="Select Team">
                                                         </td>
                                                         <td class="align-middle">
                                                             <div class="d-flex gap-2 align-items-center">
@@ -2079,7 +2138,8 @@
                                                                         class="rounded-circle" alt="Image">
                                                                 </div>
                                                                 <div class="pt-2">
-                                                                    <div class="font-family-secondary leading-none">Dori
+                                                                    <div class="font-family-secondary leading-none">
+                                                                        Dori
                                                                         Griffiths</div>
                                                                     <a href="#"
                                                                         class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
@@ -2098,12 +2158,13 @@
                                                         <td class="text-center align-middle">$00:00</td>
                                                         <td class="align-middle">
                                                             <div class="d-flex actions justify-content-center">
-                                                                <a href="#" title="Revoke" aria-label="Revoke"
+                                                                <a href="#" title="Revoke"
+                                                                    aria-label="Revoke"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                     {{-- Updated by Shanila to Add
-                                                                    svg icon--}}
-                                                                    <svg aria-label="Revoke" width="19" height="20"
-                                                                        viewBox="0 0 19 20">
+                                                                    svg icon --}}
+                                                                    <svg aria-label="Revoke" width="19"
+                                                                        height="20" viewBox="0 0 19 20">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#unassign">
                                                                         </use>
@@ -2113,9 +2174,9 @@
                                                                 </a>
                                                                 <a href="#" title="View" aria-label="View"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="View" width="20" height="20"
-                                                                        viewBox="0 0 20 20">
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="View" width="20"
+                                                                        height="20" viewBox="0 0 20 20">
                                                                         <use xlink:href="/css/common-icons.svg#view">
                                                                         </use>
                                                                     </svg>
@@ -2123,9 +2184,9 @@
                                                                 </a>
                                                                 <a href="#" title="Chat" aria-label="Chat"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="Chat" width="18" height="18"
-                                                                        viewBox="0 0 18 18"
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="Chat" width="18"
+                                                                        height="18" viewBox="0 0 18 18"
                                                                         xmlns="http://www.w3.org/2000/svg">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#chat-icon">
@@ -2133,11 +2194,13 @@
                                                                     </svg>
                                                                     {{-- End of update by Shanila --}}
                                                                 </a>
-                                                                <a href="#" title="Feedback" aria-label="Feedback"
+                                                                <a href="#" title="Feedback"
+                                                                    aria-label="Feedback"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="Rating" width="22" height="22"
-                                                                        viewBox="0 0 22 22" fill="none">
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="Rating" width="22"
+                                                                        height="22" viewBox="0 0 22 22"
+                                                                        fill="none">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#rating-icon">
                                                                         </use>
@@ -2149,8 +2212,8 @@
                                                     </tr>
                                                     <tr role="row" class="odd">
                                                         <td class="text-center align-middle">
-                                                            <input class="form-check-input" type="checkbox" value=""
-                                                                aria-label="Select Team">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" aria-label="Select Team">
                                                         </td>
                                                         <td class="align-middle">
                                                             <div class="d-flex gap-2 align-items-center">
@@ -2160,7 +2223,8 @@
                                                                         class="rounded-circle" alt="Image">
                                                                 </div>
                                                                 <div class="pt-2">
-                                                                    <div class="font-family-secondary leading-none">Dori
+                                                                    <div class="font-family-secondary leading-none">
+                                                                        Dori
                                                                         Griffiths</div>
                                                                     <a href="#"
                                                                         class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
@@ -2179,12 +2243,13 @@
                                                         <td class="text-center align-middle">$00:00</td>
                                                         <td class="align-middle">
                                                             <div class="d-flex actions justify-content-center">
-                                                                <a href="#" title="Revoke" aria-label="Revoke"
+                                                                <a href="#" title="Revoke"
+                                                                    aria-label="Revoke"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                     {{-- Updated by Shanila to Add
-                                                                    svg icon--}}
-                                                                    <svg aria-label="Revoke" width="19" height="20"
-                                                                        viewBox="0 0 19 20">
+                                                                    svg icon --}}
+                                                                    <svg aria-label="Revoke" width="19"
+                                                                        height="20" viewBox="0 0 19 20">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#unassign">
                                                                         </use>
@@ -2194,9 +2259,9 @@
                                                                 </a>
                                                                 <a href="#" title="View" aria-label="View"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="View" width="20" height="20"
-                                                                        viewBox="0 0 20 20">
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="View" width="20"
+                                                                        height="20" viewBox="0 0 20 20">
                                                                         <use xlink:href="/css/common-icons.svg#view">
                                                                         </use>
                                                                     </svg>
@@ -2204,9 +2269,9 @@
                                                                 </a>
                                                                 <a href="#" title="Chat" aria-label="Chat"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="Chat" width="18" height="18"
-                                                                        viewBox="0 0 18 18"
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="Chat" width="18"
+                                                                        height="18" viewBox="0 0 18 18"
                                                                         xmlns="http://www.w3.org/2000/svg">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#chat-icon">
@@ -2214,11 +2279,13 @@
                                                                     </svg>
                                                                     {{-- End of update by Shanila --}}
                                                                 </a>
-                                                                <a href="#" title="Feedback" aria-label="Feedback"
+                                                                <a href="#" title="Feedback"
+                                                                    aria-label="Feedback"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="Rating" width="22" height="22"
-                                                                        viewBox="0 0 22 22" fill="none">
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="Rating" width="22"
+                                                                        height="22" viewBox="0 0 22 22"
+                                                                        fill="none">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#rating-icon">
                                                                         </use>
@@ -2250,7 +2317,8 @@
                                         <li class="page-item"><a class="page-link" href="#">1</a></li>
                                         <li class="page-item"><a class="page-link" href="#">2</a></li>
                                         <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item active"><a class="page-link" href="#">4</a></li>
+                                        <li class="page-item active"><a class="page-link" href="#">4</a>
+                                        </li>
                                         <li class="page-item">
                                             <a class="page-link" href="#" aria-label="Next">
                                                 <span aria-hidden="true">&raquo;</span>
@@ -2267,10 +2335,10 @@
                                 x-on:click="$wire.switch('attachments')">Next</button>
                         </div>
                     </div><!-- END: assigned-providers-tab -->
-                    <div class="tab-pane fade {{ $component == 'attachments' ? 'active show' : '' }}" id="attachments"
-                        role="tabpanel" aria-labelledby="attachments-tab" tabindex="0">
+                    <div class="tab-pane fade {{ $component == 'attachments' ? 'active show' : '' }}"
+                        id="attachments" role="tabpanel" aria-labelledby="attachments-tab" tabindex="0">
                         <h2>Attachments</h2>
-                            @livewire('app.common.bookings.booking-attachments',['booking_id'=>$booking_id])
+                        @livewire('app.common.bookings.booking-attachments', ['booking_id' => $booking_id])
                         <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                             <button type="" class="btn btn-outline-dark rounded"
                                 x-on:click="$wire.switch('assigned-providers')">Back</button>
@@ -2279,7 +2347,8 @@
                         </div>
                     </div><!-- END: attachments-tab -->
                     <div class="tab-pane fade {{ $component == 'payment-details' ? 'active show' : '' }}"
-                        id="payment-details" role="tabpanel" aria-labelledby="payment-details-tab" tabindex="0">
+                        id="payment-details" role="tabpanel" aria-labelledby="payment-details-tab"
+                        tabindex="0">
                         <div class="row inner-section-segment-spacing">
                             <h2>Payment Detail</h2>
                         </div>
@@ -2420,16 +2489,14 @@
                                     <label class="form-label" for="billing-notes">
                                         Billing Notes
                                     </label>
-                                    <textarea class="form-control" rows="4"
-                                        cols="4" id="billing-notes">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</textarea>
+                                    <textarea class="form-control" rows="4" cols="4" id="billing-notes">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</textarea>
                                 </div><!-- /Billing Notes -->
                                 <!-- Payment Notes -->
                                 <div class="mb-4">
                                     <label class="form-label" for="payment-notes">
                                         Payment Notes
                                     </label>
-                                    <textarea class="form-control" rows="4"
-                                        cols="4" id="payment-notes">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</textarea>
+                                    <textarea class="form-control" rows="4" cols="4" id="payment-notes">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</textarea>
                                 </div><!-- /Payment Notes -->
                             </div>
                         </div>
@@ -2451,8 +2518,9 @@
                                 <button class="btn btn-outline-primary btn-has-icon btn-sm dropdown-toggle h-100"
                                     type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <span>
-                                        {{-- Updated by Shanila to Add svg icon--}}
-                                        <svg aria-label="Export Button" width="23" height="26" viewBox="0 0 23 26">
+                                        {{-- Updated by Shanila to Add svg icon --}}
+                                        <svg aria-label="Export Button" width="23" height="26"
+                                            viewBox="0 0 23 26">
                                             <use xlink:href="/css/common-icons.svg#document-dropdown">
                                             </use>
                                         </svg>
@@ -2460,7 +2528,8 @@
                                     </span>
                                 </button>
                                 <a href="#" class="btn btn-primary btn-has-icon rounded">
-                                    <svg aria-label="Add Date" width="20" height="20" viewBox="0 0 20 20">
+                                    <svg aria-label="Add Date" width="20" height="20"
+                                        viewBox="0 0 20 20">
                                         <use xlink:href="/css/common-icons.svg#plus">
                                         </use>
                                     </svg>
@@ -2470,7 +2539,8 @@
                             <div class="d-flex justify-content-between mb-2">
                                 <div class="d-inline-flex align-items-center gap-4">
                                     <div class="d-inline-flex align-items-center gap-4">
-                                        <label for="show_records_number-coulmn" class="form-label-sm mb-0">Show</label>
+                                        <label for="show_records_number-coulmn"
+                                            class="form-label-sm mb-0">Show</label>
                                         <select class="form-select form-select-sm" id="show_records_number-coulmn">
                                             <option>10</option>
                                             <option>15</option>
@@ -2481,8 +2551,9 @@
                                 </div>
                                 <div class="d-inline-flex align-items-center gap-4">
                                     <label for="search-record-column" class="form-label-sm mb-0">Search</label>
-                                    <input type="search" class="form-control form-control-sm" id="search-record-column" name="search"
-                                        placeholder="Search here" autocomplete="on" />
+                                    <input type="search" class="form-control form-control-sm"
+                                        id="search-record-column" name="search" placeholder="Search here"
+                                        autocomplete="on" />
                                 </div>
                             </div>
                             <!-- Hoverable rows start -->
@@ -2495,8 +2566,8 @@
                                                 <thead>
                                                     <tr role="row">
                                                         <th scope="col" class="text-center">
-                                                            <input class="form-check-input" type="checkbox" value=""
-                                                                aria-label="Select All Teams">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" aria-label="Select All Teams">
                                                         </th>
                                                         <th scope="col">Name</th>
                                                         <th scope="col" width="50%">Comment</th>
@@ -2507,18 +2578,20 @@
                                                 <tbody>
                                                     <tr role="row" class="odd">
                                                         <td class="text-center align-middle">
-                                                            <input class="form-check-input" type="checkbox" value=""
-                                                                aria-label="Select Team">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" aria-label="Select Team">
                                                         </td>
                                                         <td class="align-middle">
                                                             <div class="d-flex gap-2 align-items-center">
                                                                 <div>
                                                                     <img width="50" height="50"
                                                                         src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                                                        class="rounded-circle" alt="User Profile Image">
+                                                                        class="rounded-circle"
+                                                                        alt="User Profile Image">
                                                                 </div>
                                                                 <div class="pt-2">
-                                                                    <div class="font-family-secondary leading-none">Dori
+                                                                    <div class="font-family-secondary leading-none">
+                                                                        Dori
                                                                         Griffiths (Admin)</div>
                                                                     <a href="#"
                                                                         class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
@@ -2535,11 +2608,12 @@
                                                         </td>
                                                         <td class="align-middle">
                                                             <div class="d-flex actions justify-content-center">
-                                                                <a href="#" title="Revoke" aria-label="Revoke"
+                                                                <a href="#" title="Revoke"
+                                                                    aria-label="Revoke"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                     {{-- update by Shanila to add svg icon --}}
-                                                                    <svg aria-label="Revoke" width="21" height="21"
-                                                                        viewBox="0 0 21 21">
+                                                                    <svg aria-label="Revoke" width="21"
+                                                                        height="21" viewBox="0 0 21 21">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#recycle-bin">
                                                                         </use>
@@ -2551,18 +2625,20 @@
                                                     </tr>
                                                     <tr role="row" class="even">
                                                         <td class="text-center align-middle">
-                                                            <input class="form-check-input" type="checkbox" value=""
-                                                                aria-label="Select Team">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" aria-label="Select Team">
                                                         </td>
                                                         <td class="align-middle">
                                                             <div class="d-flex gap-2 align-items-center">
                                                                 <div>
                                                                     <img width="50" height="50"
                                                                         src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                                                        class="rounded-circle" alt="User Profile Image">
+                                                                        class="rounded-circle"
+                                                                        alt="User Profile Image">
                                                                 </div>
                                                                 <div class="pt-2">
-                                                                    <div class="font-family-secondary leading-none">Dori
+                                                                    <div class="font-family-secondary leading-none">
+                                                                        Dori
                                                                         Griffiths (Admin)</div>
                                                                     <a href="#"
                                                                         class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
@@ -2579,11 +2655,12 @@
                                                         </td>
                                                         <td class="align-middle">
                                                             <div class="d-flex actions justify-content-center">
-                                                                <a href="#" title="Revoke" aria-label="Revoke"
+                                                                <a href="#" title="Revoke"
+                                                                    aria-label="Revoke"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                     {{-- update by Shanila to add svg icon --}}
-                                                                    <svg aria-label="Revoke" width="21" height="21"
-                                                                        viewBox="0 0 21 21">
+                                                                    <svg aria-label="Revoke" width="21"
+                                                                        height="21" viewBox="0 0 21 21">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#recycle-bin">
                                                                         </use>
@@ -2595,18 +2672,20 @@
                                                     </tr>
                                                     <tr role="row" class="odd">
                                                         <td class="text-center align-middle">
-                                                            <input class="form-check-input" type="checkbox" value=""
-                                                                aria-label="Select Team">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" aria-label="Select Team">
                                                         </td>
                                                         <td class="align-middle">
                                                             <div class="d-flex gap-2 align-items-center">
                                                                 <div>
                                                                     <img width="50" height="50"
                                                                         src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                                                        class="rounded-circle" alt="User Profile Image">
+                                                                        class="rounded-circle"
+                                                                        alt="User Profile Image">
                                                                 </div>
                                                                 <div class="pt-2">
-                                                                    <div class="font-family-secondary leading-none">Dori
+                                                                    <div class="font-family-secondary leading-none">
+                                                                        Dori
                                                                         Griffiths (Admin)</div>
                                                                     <a href="#"
                                                                         class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
@@ -2623,11 +2702,12 @@
                                                         </td>
                                                         <td class="align-middle">
                                                             <div class="d-flex actions justify-content-center">
-                                                                <a href="#" title="Revoke" aria-label="Revoke"
+                                                                <a href="#" title="Revoke"
+                                                                    aria-label="Revoke"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                     {{-- update by Shanila to add svg icon --}}
-                                                                    <svg aria-label="Revoke" width="21" height="21"
-                                                                        viewBox="0 0 21 21">
+                                                                    <svg aria-label="Revoke" width="21"
+                                                                        height="21" viewBox="0 0 21 21">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#recycle-bin">
                                                                         </use>
@@ -2639,18 +2719,20 @@
                                                     </tr>
                                                     <tr role="row" class="even">
                                                         <td class="text-center align-middle">
-                                                            <input class="form-check-input" type="checkbox" value=""
-                                                                aria-label="Select Team">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" aria-label="Select Team">
                                                         </td>
                                                         <td class="align-middle">
                                                             <div class="d-flex gap-2 align-items-center">
                                                                 <div>
                                                                     <img width="50" height="50"
                                                                         src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                                                        class="rounded-circle" alt="User Profile Image">
+                                                                        class="rounded-circle"
+                                                                        alt="User Profile Image">
                                                                 </div>
                                                                 <div class="pt-2">
-                                                                    <div class="font-family-secondary leading-none">Dori
+                                                                    <div class="font-family-secondary leading-none">
+                                                                        Dori
                                                                         Griffiths (Admin)</div>
                                                                     <a href="#"
                                                                         class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
@@ -2667,11 +2749,12 @@
                                                         </td>
                                                         <td class="align-middle">
                                                             <div class="d-flex actions justify-content-center">
-                                                                <a href="#" title="Revoke" aria-label="Revoke"
+                                                                <a href="#" title="Revoke"
+                                                                    aria-label="Revoke"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                     {{-- update by Shanila to add svg icon --}}
-                                                                    <svg aria-label="Revoke" width="21" height="21"
-                                                                        viewBox="0 0 21 21">
+                                                                    <svg aria-label="Revoke" width="21"
+                                                                        height="21" viewBox="0 0 21 21">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#recycle-bin">
                                                                         </use>
@@ -2683,18 +2766,20 @@
                                                     </tr>
                                                     <tr role="row" class="odd">
                                                         <td class="text-center align-middle">
-                                                            <input class="form-check-input" type="checkbox" value=""
-                                                                aria-label="Select Team">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" aria-label="Select Team">
                                                         </td>
                                                         <td class="align-middle">
                                                             <div class="d-flex gap-2 align-items-center">
                                                                 <div>
                                                                     <img width="50" height="50"
                                                                         src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                                                        class="rounded-circle" alt="User Profile Image">
+                                                                        class="rounded-circle"
+                                                                        alt="User Profile Image">
                                                                 </div>
                                                                 <div class="pt-2">
-                                                                    <div class="font-family-secondary leading-none">Dori
+                                                                    <div class="font-family-secondary leading-none">
+                                                                        Dori
                                                                         Griffiths (Admin)</div>
                                                                     <a href="#"
                                                                         class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
@@ -2711,11 +2796,12 @@
                                                         </td>
                                                         <td class="align-middle">
                                                             <div class="d-flex actions justify-content-center">
-                                                                <a href="#" title="Revoke" aria-label="Revoke"
+                                                                <a href="#" title="Revoke"
+                                                                    aria-label="Revoke"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                     {{-- update by Shanila to add svg icon --}}
-                                                                    <svg aria-label="Revoke" width="21" height="21"
-                                                                        viewBox="0 0 21 21">
+                                                                    <svg aria-label="Revoke" width="21"
+                                                                        height="21" viewBox="0 0 21 21">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#recycle-bin">
                                                                         </use>
@@ -2747,7 +2833,8 @@
                                         <li class="page-item"><a class="page-link" href="#">1</a></li>
                                         <li class="page-item"><a class="page-link" href="#">2</a></li>
                                         <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item active"><a class="page-link" href="#">4</a></li>
+                                        <li class="page-item active"><a class="page-link" href="#">4</a>
+                                        </li>
                                         <li class="page-item">
                                             <a class="page-link" href="#" aria-label="Next">
                                                 <span aria-hidden="true">&raquo;</span>
@@ -2764,8 +2851,9 @@
                                 <button class="btn btn-outline-primary btn-has-icon btn-sm dropdown-toggle h-100"
                                     type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <span>
-                                        {{-- Updated by Shanila to Add svg icon--}}
-                                        <svg aria-label="Export Button" width="23" height="26" viewBox="0 0 23 26">
+                                        {{-- Updated by Shanila to Add svg icon --}}
+                                        <svg aria-label="Export Button" width="23" height="26"
+                                            viewBox="0 0 23 26">
                                             <use xlink:href="/css/common-icons.svg#document-dropdown">
                                             </use>
                                         </svg>
@@ -2787,8 +2875,8 @@
                                 </div>
                                 <div class="d-inline-flex align-items-center gap-4">
                                     <label for="search-data" class="form-label-sm mb-0">Search</label>
-                                    <input type="search" class="form-control form-control-sm" id="search-data" name="search"
-                                        placeholder="Search here" autocomplete="on" />
+                                    <input type="search" class="form-control form-control-sm" id="search-data"
+                                        name="search" placeholder="Search here" autocomplete="on" />
                                 </div>
                             </div>
                             <!-- Hoverable rows start -->
@@ -2801,8 +2889,8 @@
                                                 <thead>
                                                     <tr role="row">
                                                         <th scope="col" class="text-center">
-                                                            <input class="form-check-input" type="checkbox" value=""
-                                                                aria-label="Select All Teams">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" aria-label="Select All Teams">
                                                         </th>
                                                         <th scope="col">Interpreter</th>
                                                         <th scope="col" class="text-center">Running Late</th>
@@ -2816,18 +2904,20 @@
                                                 <tbody>
                                                     <tr role="row" class="odd">
                                                         <td class="text-center align-middle">
-                                                            <input class="form-check-input" type="checkbox" value=""
-                                                                aria-label="Select Team">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" aria-label="Select Team">
                                                         </td>
                                                         <td class="align-middle">
                                                             <div class="d-flex gap-2 align-items-center">
                                                                 <div>
                                                                     <img width="50" height="50"
                                                                         src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                                                        class="rounded-circle" alt="User Profile Image">
+                                                                        class="rounded-circle"
+                                                                        alt="User Profile Image">
                                                                 </div>
                                                                 <div class="pt-2">
-                                                                    <div class="font-family-secondary leading-none">Dori
+                                                                    <div class="font-family-secondary leading-none">
+                                                                        Dori
                                                                         Griffiths</div>
                                                                     <a href="#"
                                                                         class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
@@ -2850,10 +2940,12 @@
                                                         </td>
                                                         <td class="align-middle">
                                                             <div class="d-flex align-items-center gap-1">
-                                                                {{-- Updated by Shanila to Add svg icon--}}
+                                                                {{-- Updated by Shanila to Add svg icon --}}
                                                                 <svg aria-label="pending" class="fill-warning"
-                                                                    width="12" height="12" viewBox="0 0 512 512">
-                                                                    <use xlink:href="/css/common-icons.svg#yellow-dot">
+                                                                    width="12" height="12"
+                                                                    viewBox="0 0 512 512">
+                                                                    <use
+                                                                        xlink:href="/css/common-icons.svg#yellow-dot">
                                                                     </use>
                                                                 </svg>
                                                                 {{-- End of update by Shanila --}}
@@ -2864,19 +2956,19 @@
                                                             <div class="d-flex actions justify-content-center">
                                                                 <a href="#" title="View" aria-label="View"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                     {{-- Updated by Shanila to Add svg icon--}}
-                                                                     <svg aria-label="View" width="20"
-                                                                     height="20" viewBox="0 0 20 20">
-                                                                     <use xlink:href="/css/common-icons.svg#view">
-                                                                     </use>
-                                                                 </svg>
-                                                                 {{-- End of update by Shanila --}}
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="View" width="20"
+                                                                        height="20" viewBox="0 0 20 20">
+                                                                        <use xlink:href="/css/common-icons.svg#view">
+                                                                        </use>
+                                                                    </svg>
+                                                                    {{-- End of update by Shanila --}}
                                                                 </a>
                                                                 <a href="#" title="Chat" aria-label="Chat"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="Chat" width="18" height="18"
-                                                                        viewBox="0 0 18 18"
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="Chat" width="18"
+                                                                        height="18" viewBox="0 0 18 18"
                                                                         xmlns="http://www.w3.org/2000/svg">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#chat-icon">
@@ -2887,28 +2979,33 @@
                                                                 <a href="#" title="Download PDF"
                                                                     aria-label="Download PDF"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="Download PDF" width="17" height="21" viewBox="0 0 17 21">
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="Download PDF" width="17"
+                                                                        height="21" viewBox="0 0 17 21">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#download-pdf">
                                                                         </use>
                                                                     </svg>
                                                                     {{-- End of update by Shanila --}}
                                                                 </a>
-                                                                <a href="#" title="Accept" aria-label="Accept"
+                                                                <a href="#" title="Accept"
+                                                                    aria-label="Accept"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="Accept" width="22" height="21" viewBox="0 0 22 21">
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="Accept" width="22"
+                                                                        height="21" viewBox="0 0 22 21">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#accept">
                                                                         </use>
                                                                     </svg>
                                                                     {{-- End of update by Shanila --}}
                                                                 </a>
-                                                                <a href="#" title="Decline" aria-label="Decline"
+                                                                <a href="#" title="Decline"
+                                                                    aria-label="Decline"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="Decline" width="21" height="21" viewBox="0 0 21 21">
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="Decline" width="21"
+                                                                        height="21" viewBox="0 0 21 21">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#decline">
                                                                         </use>
@@ -2920,18 +3017,20 @@
                                                     </tr>
                                                     <tr role="row" class="even">
                                                         <td class="text-center align-middle">
-                                                            <input class="form-check-input" type="checkbox" value=""
-                                                                aria-label="Select Team">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" aria-label="Select Team">
                                                         </td>
                                                         <td class="align-middle">
                                                             <div class="d-flex gap-2 align-items-center">
                                                                 <div>
                                                                     <img width="50" height="50"
                                                                         src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                                                        class="rounded-circle" alt="User Profile Image">
+                                                                        class="rounded-circle"
+                                                                        alt="User Profile Image">
                                                                 </div>
                                                                 <div class="pt-2">
-                                                                    <div class="font-family-secondary leading-none">Dori
+                                                                    <div class="font-family-secondary leading-none">
+                                                                        Dori
                                                                         Griffiths</div>
                                                                     <a href="#"
                                                                         class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
@@ -2954,9 +3053,9 @@
                                                         </td>
                                                         <td class="align-middle">
                                                             <div class="d-flex align-items-center gap-1">
-                                                                {{-- Updated by Shanila to Add svg icon--}}
-                                                                <svg aria-label="Approved" width="12" height="12"
-                                                                    viewBox="0 0 12 12">
+                                                                {{-- Updated by Shanila to Add svg icon --}}
+                                                                <svg aria-label="Approved" width="12"
+                                                                    height="12" viewBox="0 0 12 12">
                                                                     <use xlink:href="/css/common-icons.svg#green-dot">
                                                                     </use>
                                                                 </svg>
@@ -2968,19 +3067,19 @@
                                                             <div class="d-flex actions justify-content-center">
                                                                 <a href="#" title="View" aria-label="View"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                     {{-- Updated by Shanila to Add svg icon--}}
-                                                                     <svg aria-label="View" width="20"
-                                                                     height="20" viewBox="0 0 20 20">
-                                                                     <use xlink:href="/css/common-icons.svg#view">
-                                                                     </use>
-                                                                 </svg>
-                                                                 {{-- End of update by Shanila --}}
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="View" width="20"
+                                                                        height="20" viewBox="0 0 20 20">
+                                                                        <use xlink:href="/css/common-icons.svg#view">
+                                                                        </use>
+                                                                    </svg>
+                                                                    {{-- End of update by Shanila --}}
                                                                 </a>
                                                                 <a href="#" title="Chat" aria-label="Chat"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="Chat" width="18" height="18"
-                                                                        viewBox="0 0 18 18"
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="Chat" width="18"
+                                                                        height="18" viewBox="0 0 18 18"
                                                                         xmlns="http://www.w3.org/2000/svg">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#chat-icon">
@@ -2991,8 +3090,9 @@
                                                                 <a href="#" title="Download PDF"
                                                                     aria-label="Download PDF"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="Download PDF" width="17" height="21" viewBox="0 0 17 21">
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="Download PDF" width="17"
+                                                                        height="21" viewBox="0 0 17 21">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#download-pdf">
                                                                         </use>
@@ -3004,18 +3104,20 @@
                                                     </tr>
                                                     <tr role="row" class="odd">
                                                         <td class="text-center align-middle">
-                                                            <input class="form-check-input" type="checkbox" value=""
-                                                                aria-label="Select Team">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" aria-label="Select Team">
                                                         </td>
                                                         <td class="align-middle">
                                                             <div class="d-flex gap-2 align-items-center">
                                                                 <div>
                                                                     <img width="50" height="50"
                                                                         src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                                                        class="rounded-circle" alt="User Profile Image">
+                                                                        class="rounded-circle"
+                                                                        alt="User Profile Image">
                                                                 </div>
                                                                 <div class="pt-2">
-                                                                    <div class="font-family-secondary leading-none">Dori
+                                                                    <div class="font-family-secondary leading-none">
+                                                                        Dori
                                                                         Griffiths</div>
                                                                     <a href="#"
                                                                         class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
@@ -3038,10 +3140,12 @@
                                                         </td>
                                                         <td class="align-middle">
                                                             <div class="d-flex align-items-center gap-1">
-                                                                {{-- Updated by Shanila to Add svg icon--}}
+                                                                {{-- Updated by Shanila to Add svg icon --}}
                                                                 <svg aria-label="pending" class="fill-warning"
-                                                                    width="12" height="12" viewBox="0 0 512 512">
-                                                                    <use xlink:href="/css/common-icons.svg#yellow-dot">
+                                                                    width="12" height="12"
+                                                                    viewBox="0 0 512 512">
+                                                                    <use
+                                                                        xlink:href="/css/common-icons.svg#yellow-dot">
                                                                     </use>
                                                                 </svg>
                                                                 {{-- End of update by Shanila --}}
@@ -3052,19 +3156,19 @@
                                                             <div class="d-flex actions justify-content-center">
                                                                 <a href="#" title="View" aria-label="View"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                     {{-- Updated by Shanila to Add svg icon--}}
-                                                                     <svg aria-label="View" width="20"
-                                                                     height="20" viewBox="0 0 20 20">
-                                                                     <use xlink:href="/css/common-icons.svg#view">
-                                                                     </use>
-                                                                 </svg>
-                                                                 {{-- End of update by Shanila --}}
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="View" width="20"
+                                                                        height="20" viewBox="0 0 20 20">
+                                                                        <use xlink:href="/css/common-icons.svg#view">
+                                                                        </use>
+                                                                    </svg>
+                                                                    {{-- End of update by Shanila --}}
                                                                 </a>
                                                                 <a href="#" title="Chat" aria-label="Chat"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="Chat" width="18" height="18"
-                                                                        viewBox="0 0 18 18"
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="Chat" width="18"
+                                                                        height="18" viewBox="0 0 18 18"
                                                                         xmlns="http://www.w3.org/2000/svg">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#chat-icon">
@@ -3075,29 +3179,34 @@
                                                                 <a href="#" title="Download PDF"
                                                                     aria-label="Download PDF"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                     {{-- Updated by Shanila to Add svg icon--}}
-                                                                     <svg aria-label="Download PDF" width="17" height="21" viewBox="0 0 17 21">
-                                                                     <use
-                                                                         xlink:href="/css/common-icons.svg#download-pdf">
-                                                                     </use>
-                                                                 </svg>
-                                                                 {{-- End of update by Shanila --}}
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="Download PDF" width="17"
+                                                                        height="21" viewBox="0 0 17 21">
+                                                                        <use
+                                                                            xlink:href="/css/common-icons.svg#download-pdf">
+                                                                        </use>
+                                                                    </svg>
+                                                                    {{-- End of update by Shanila --}}
 
                                                                 </a>
-                                                                <a href="#" title="Accept" aria-label="Accept"
+                                                                <a href="#" title="Accept"
+                                                                    aria-label="Accept"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="Accept" width="22" height="21" viewBox="0 0 22 21">
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="Accept" width="22"
+                                                                        height="21" viewBox="0 0 22 21">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#accept">
                                                                         </use>
                                                                     </svg>
                                                                     {{-- End of update by Shanila --}}
                                                                 </a>
-                                                                <a href="#" title="Decline" aria-label="Decline"
+                                                                <a href="#" title="Decline"
+                                                                    aria-label="Decline"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="Decline" width="21" height="21" viewBox="0 0 21 21">
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="Decline" width="21"
+                                                                        height="21" viewBox="0 0 21 21">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#decline">
                                                                         </use>
@@ -3109,18 +3218,20 @@
                                                     </tr>
                                                     <tr role="row" class="even">
                                                         <td class="text-center align-middle">
-                                                            <input class="form-check-input" type="checkbox" value=""
-                                                                aria-label="Select Team">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" aria-label="Select Team">
                                                         </td>
                                                         <td class="align-middle">
                                                             <div class="d-flex gap-2 align-items-center">
                                                                 <div>
                                                                     <img width="50" height="50"
                                                                         src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                                                        class="rounded-circle" alt="User Profile Image">
+                                                                        class="rounded-circle"
+                                                                        alt="User Profile Image">
                                                                 </div>
                                                                 <div class="pt-2">
-                                                                    <div class="font-family-secondary leading-none">Dori
+                                                                    <div class="font-family-secondary leading-none">
+                                                                        Dori
                                                                         Griffiths</div>
                                                                     <a href="#"
                                                                         class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
@@ -3143,9 +3254,9 @@
                                                         </td>
                                                         <td class="align-middle">
                                                             <div class="d-flex align-items-center gap-1">
-                                                                {{-- Updated by Shanila to Add svg icon--}}
-                                                                <svg aria-label="Approved" width="12" height="12"
-                                                                    viewBox="0 0 12 12">
+                                                                {{-- Updated by Shanila to Add svg icon --}}
+                                                                <svg aria-label="Approved" width="12"
+                                                                    height="12" viewBox="0 0 12 12">
                                                                     <use xlink:href="/css/common-icons.svg#green-dot">
                                                                     </use>
                                                                 </svg>
@@ -3157,19 +3268,19 @@
                                                             <div class="d-flex actions justify-content-center">
                                                                 <a href="#" title="View" aria-label="View"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
                                                                     <svg aria-label="View" width="20"
-                                                                    height="20" viewBox="0 0 20 20">
-                                                                    <use xlink:href="/css/common-icons.svg#view">
-                                                                    </use>
-                                                                </svg>
-                                                                {{-- End of update by Shanila --}}
+                                                                        height="20" viewBox="0 0 20 20">
+                                                                        <use xlink:href="/css/common-icons.svg#view">
+                                                                        </use>
+                                                                    </svg>
+                                                                    {{-- End of update by Shanila --}}
                                                                 </a>
                                                                 <a href="#" title="Chat" aria-label="Chat"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="Chat" width="18" height="18"
-                                                                        viewBox="0 0 18 18"
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="Chat" width="18"
+                                                                        height="18" viewBox="0 0 18 18"
                                                                         xmlns="http://www.w3.org/2000/svg">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#chat-icon">
@@ -3180,31 +3291,34 @@
                                                                 <a href="#" title="Download PDF"
                                                                     aria-label="Download PDF"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                   {{-- Updated by Shanila to Add svg icon--}}
-                                                                   <svg aria-label="Download PDF" width="17" height="21" viewBox="0 0 17 21">
-                                                                    <use
-                                                                        xlink:href="/css/common-icons.svg#download-pdf">
-                                                                    </use>
-                                                                </svg>
-                                                                {{-- End of update by Shanila --}}
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="Download PDF" width="17"
+                                                                        height="21" viewBox="0 0 17 21">
+                                                                        <use
+                                                                            xlink:href="/css/common-icons.svg#download-pdf">
+                                                                        </use>
+                                                                    </svg>
+                                                                    {{-- End of update by Shanila --}}
                                                                 </a>
                                                             </div>
                                                         </td>
                                                     </tr>
                                                     <tr role="row" class="odd">
                                                         <td class="text-center align-middle">
-                                                            <input class="form-check-input" type="checkbox" value=""
-                                                                aria-label="Select Team">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" aria-label="Select Team">
                                                         </td>
                                                         <td class="align-middle">
                                                             <div class="d-flex gap-2 align-items-center">
                                                                 <div>
                                                                     <img width="50" height="50"
                                                                         src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                                                        class="rounded-circle" alt="User Profile Image">
+                                                                        class="rounded-circle"
+                                                                        alt="User Profile Image">
                                                                 </div>
                                                                 <div class="pt-2">
-                                                                    <div class="font-family-secondary leading-none">Dori
+                                                                    <div class="font-family-secondary leading-none">
+                                                                        Dori
                                                                         Griffiths</div>
                                                                     <a href="#"
                                                                         class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
@@ -3227,10 +3341,12 @@
                                                         </td>
                                                         <td class="align-middle">
                                                             <div class="d-flex align-items-center gap-1">
-                                                                {{-- Updated by Shanila to Add svg icon--}}
+                                                                {{-- Updated by Shanila to Add svg icon --}}
                                                                 <svg aria-label="pending" class="fill-warning"
-                                                                    width="12" height="12" viewBox="0 0 512 512">
-                                                                    <use xlink:href="/css/common-icons.svg#yellow-dot">
+                                                                    width="12" height="12"
+                                                                    viewBox="0 0 512 512">
+                                                                    <use
+                                                                        xlink:href="/css/common-icons.svg#yellow-dot">
                                                                     </use>
                                                                 </svg>
                                                                 {{-- End of update by Shanila --}}
@@ -3241,51 +3357,56 @@
                                                             <div class="d-flex actions justify-content-center">
                                                                 <a href="#" title="View" aria-label="View"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                     {{-- Updated by Shanila to Add svg icon--}}
-                                                                     <svg aria-label="View" width="20"
-                                                                     height="20" viewBox="0 0 20 20">
-                                                                     <use xlink:href="/css/common-icons.svg#view">
-                                                                     </use>
-                                                                 </svg>
-                                                                 {{-- End of update by Shanila --}}
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="View" width="20"
+                                                                        height="20" viewBox="0 0 20 20">
+                                                                        <use xlink:href="/css/common-icons.svg#view">
+                                                                        </use>
+                                                                    </svg>
+                                                                    {{-- End of update by Shanila --}}
                                                                 </a>
                                                                 <a href="#" title="Chat" aria-label="Chat"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                  {{-- Updated by Shanila to Add svg icon--}}
-                                                                  <svg aria-label="Chat" width="18" height="18"
-                                                                  viewBox="0 0 18 18"
-                                                                  xmlns="http://www.w3.org/2000/svg">
-                                                                  <use
-                                                                      xlink:href="/css/common-icons.svg#chat-icon">
-                                                                  </use>
-                                                              </svg>
-                                                              {{-- End of update by Shanila --}}
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="Chat" width="18"
+                                                                        height="18" viewBox="0 0 18 18"
+                                                                        xmlns="http://www.w3.org/2000/svg">
+                                                                        <use
+                                                                            xlink:href="/css/common-icons.svg#chat-icon">
+                                                                        </use>
+                                                                    </svg>
+                                                                    {{-- End of update by Shanila --}}
                                                                 </a>
                                                                 <a href="#" title="Download PDF"
                                                                     aria-label="Download PDF"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="Download PDF" width="17" height="21" viewBox="0 0 17 21">
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="Download PDF" width="17"
+                                                                        height="21" viewBox="0 0 17 21">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#download-pdf">
                                                                         </use>
                                                                     </svg>
                                                                     {{-- End of update by Shanila --}}
                                                                 </a>
-                                                                <a href="#" title="Accept" aria-label="Accept"
+                                                                <a href="#" title="Accept"
+                                                                    aria-label="Accept"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="Accept" width="22" height="21" viewBox="0 0 22 21">
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="Accept" width="22"
+                                                                        height="21" viewBox="0 0 22 21">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#accept">
                                                                         </use>
                                                                     </svg>
                                                                     {{-- End of update by Shanila --}}
                                                                 </a>
-                                                                <a href="#" title="Decline" aria-label="Decline"
+                                                                <a href="#" title="Decline"
+                                                                    aria-label="Decline"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="Decline" width="21" height="21" viewBox="0 0 21 21">
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="Decline" width="21"
+                                                                        height="21" viewBox="0 0 21 21">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#decline">
                                                                         </use>
@@ -3317,7 +3438,8 @@
                                         <li class="page-item"><a class="page-link" href="#">1</a></li>
                                         <li class="page-item"><a class="page-link" href="#">2</a></li>
                                         <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item active"><a class="page-link" href="#">4</a></li>
+                                        <li class="page-item active"><a class="page-link" href="#">4</a>
+                                        </li>
                                         <li class="page-item">
                                             <a class="page-link" href="#" aria-label="Next">
                                                 <span aria-hidden="true">&raquo;</span>
@@ -3334,13 +3456,13 @@
                                 <button class="btn btn-outline-primary btn-has-icon btn-sm dropdown-toggle h-100"
                                     type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <span>
-                                         {{-- Updated by Shanila to Add svg icon--}}
-                                         <svg aria-label="Export" width="23" height="26"
-                                         viewBox="0 0 23 26">
-                                         <use xlink:href="/css/common-icons.svg#document-dropdown">
-                                         </use>
-                                     </svg>
-                                     {{-- End of update by Shanila --}}
+                                        {{-- Updated by Shanila to Add svg icon --}}
+                                        <svg aria-label="Export" width="23" height="26"
+                                            viewBox="0 0 23 26">
+                                            <use xlink:href="/css/common-icons.svg#document-dropdown">
+                                            </use>
+                                        </svg>
+                                        {{-- End of update by Shanila --}}
                                     </span>
                                 </button>
                             </div>
@@ -3358,8 +3480,8 @@
                                 </div>
                                 <div class="d-inline-flex align-items-center gap-4">
                                     <label for="search_record" class="form-label-sm mb-0">Search</label>
-                                    <input type="search" class="form-control form-control-sm" id="search_record" name="search"
-                                        placeholder="Search here" autocomplete="on" />
+                                    <input type="search" class="form-control form-control-sm" id="search_record"
+                                        name="search" placeholder="Search here" autocomplete="on" />
                                 </div>
                             </div>
                             <!-- Hoverable rows start -->
@@ -3465,7 +3587,8 @@
                                         <li class="page-item"><a class="page-link" href="#">1</a></li>
                                         <li class="page-item"><a class="page-link" href="#">2</a></li>
                                         <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item active"><a class="page-link" href="#">4</a></li>
+                                        <li class="page-item active"><a class="page-link" href="#">4</a>
+                                        </li>
                                         <li class="page-item">
                                             <a class="page-link" href="#" aria-label="Next">
                                                 <span aria-hidden="true">&raquo;</span>
@@ -3478,7 +3601,8 @@
                         <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                             <button type="" class="btn btn-outline-dark rounded"
                                 x-on:click="$wire.switch('payment-details')">Back</button>
-                            <button type="" class="btn btn-primary rounded" wire:click.prevent="showList">Exit</button>
+                            <button type="" class="btn btn-primary rounded"
+                                wire:click.prevent="showList">Exit</button>
                         </div>
                     </div><!-- END: assignment-log-tab -->
                 </div>
@@ -3646,7 +3770,7 @@
     <!-- /Modal - Unassign -->
     {{-- End of update by Sohail Asghar --}}
     @include('panels.booking-details.reschedule-booking')
-    @include('panels.common.add-documents',['booking_id'=>$booking_id])
+    @include('panels.common.add-documents', ['booking_id' => $booking_id])
     @include('panels.booking-details.assign-providers')
 
 </div>
