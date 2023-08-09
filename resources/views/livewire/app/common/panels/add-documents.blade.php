@@ -10,7 +10,7 @@
                             Document Title</label>
                         <input wire:model.defer="document.document_title" type="text" id="first-name-column"
                             class="form-control" placeholder="Document Title" name="document-column" />
-                        @error('document.documet_title')
+                        @error('document.document_title')
                             <span class="d-inline-block invalid-feedback mt-2">
                                 {{ $message }}
                             </span>
@@ -98,10 +98,10 @@
                                 <p class="text-primary mb-0 fw-medium">
                                     Attach from
                                     Device </p>
-                            <input class="form-control" wire:model="file" type="file" id="upload">
 
 
                             </a>
+                            <input class="" wire:model="file" type="file" id="upload">
 
                         </div>
                     </div>
@@ -270,10 +270,10 @@
         <div class="col-12 form-actions mb-2">
             <div class="col-lg-3">
                 <button type="button" wire:click="initFields" class="btn rounded w-100 btn-outline-dark"
-                    data-bs-dismiss="modal">Cancel</button>
+                    x-on:click="addDocuments = !addDocuments">Cancel</button>
             </div>
             <div class="col-lg-3">
-                <button wire:click.prevent="save" type="button" class="btn rounded w-100 btn-primary">Add</button>
+                <button wire:click.prevent="save" type="button"  x-on:close-add-documents.window="addDocuments = !addDocuments"class="btn rounded w-100 btn-primary">Add</button>
             </div>
         </div>
     </div>

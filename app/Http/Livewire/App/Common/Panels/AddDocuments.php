@@ -2,11 +2,16 @@
 
 namespace App\Http\Livewire\App\Common\Panels;
 
+use App\Models\Tenant\BookingDocument;
+use App\Services\App\UploadFileService;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class AddDocuments extends Component
 {
+    use WithFileUploads;
+
     public $showForm,$booking_id=0, $document =[], $file=null, $request_from_user=false,$permissions=[], $notification=[];
     protected $listeners = ['showList' => 'resetForm', 'setBookingId'];
 
@@ -36,7 +41,16 @@ class AddDocuments extends Component
 
     public function save(){
         $this->validate();
-        dd($this->document,$this->permissions);
+        if ($this->file != null) {
+            $fileService = new UploadFileService();
+            $this->document['document_name'] = $fileService->saveFile('bookings/' . $this->booking_id , $this->file);
+            $this->document['document_type']= $this->file->getClientOriginalExtension();
+        }
+        $this->document['permissions']=json_encode($this->permissions);
+        $this->document['booking_id']=$this->booking_id;
+        BookingDocument::create($this->document);
+        $this->dispatchBrowserEvent('close-add-documents');
+        $this->emit('showConfirmation','Document added successfully');
 
     }
 
