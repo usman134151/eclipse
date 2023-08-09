@@ -9,7 +9,7 @@ use Livewire\Component;
 class BookingAttachments extends Component
 {
     public $showForm, $booking_id=0, $documents=[];
-    protected $listeners = ['showList' => 'resetForm'];
+    protected $listeners = ['showList' => 'resetForm', 'showConfirmation'=>'render'];
 
     public function render()
     {

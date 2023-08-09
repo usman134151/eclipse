@@ -14,7 +14,7 @@ class AddDocuments extends Component
 {
     use WithFileUploads;
 
-    public $showForm,$booking_id=0, $document =[], $file=null, $request_from_user=false,$permissions=[], $notification=[];
+    public $showForm,$booking_id=0, $document =[], $file=null, $request_from_user=false,$permissions=[], $notification=[], $selectAll=false;
     protected $listeners = ['showList' => 'resetForm', 'setBookingId'];
 
     public function render()
@@ -48,46 +48,21 @@ class AddDocuments extends Component
             $this->document['document_name'] = $fileService->saveFile('bookings/' . $this->booking_id , $this->file);
             $this->document['document_type']= $this->file->getClientOriginalExtension();
         }
+
         $this->document['permissions']=json_encode($this->permissions);
         $this->document['booking_id']=$this->booking_id;
-        $document = BookingDocument::create($this->document);
-        $booking = Booking::where('id',$this->booking_id)->first();
-        if($booking){
-            //add document permissions
-            
-            if($this->permissions['all_users']){
-
-            }
-            if ($this->permissions['service_providers']) {
-            }
-            if ($this->permissions['customers']) {
-                if($booking->customer_id)
-                BookingDocumentUser::create(['user_id' => $booking->customer_id, 'document_id' => $document->id, 'booking_id' => $this->booking_id]);
-
-            }
-            if ($this->permissions['supervisor']) {
-                if ($booking->supervisor)
-                BookingDocumentUser::create(['user_id'=>$booking->supervisor,'document_id'=> $document->id,'booking_id'=>$this->booking_id]);
-            }
-            if ($this->permissions['billing_manager']) {
-                if($booking->billing_manager)
-                BookingDocumentUser::create(['user_id' => $booking->billing_manager, 'document_id' => $document->id, 'booking_id' => $this->booking_id]);
-
-            }
-
-            if ($this->permissions['requesters']) {
-            }
-            if ($this->permissions['service_consumers']) {
-            }
-            if ($this->permissions['participants']) {
-            }
-        }
-        //how to implement Request From User? 
-        // notification needs to be sent for that
+        BookingDocument::create($this->document);
         
         $this->dispatchBrowserEvent('close-add-documents');
         $this->emit('showConfirmation','Document added successfully');
         $this->initFields();
+    }
+
+    public function selectAllUsers(){
+        if($this->selectAll)
+            $this->permissions=['2','4','5','6','7','8','9'];
+        else
+            $this->permissions=[];
     }
 
 	
@@ -107,16 +82,7 @@ class AddDocuments extends Component
                 'attach_to_provider_confirmation' => false
                 ]
         ];
-        $this->permissions=[
-            "all_users"=>false,
-            'service_providers'=>false,
-            'customers'=>false,
-            'requesters'=>false,
-            'supervisor'=>false,
-            'billing_manager'=>false,
-            'service_consumers'=>false,
-            'participants'=>false
-        ];
+        $this->permissions=[];
         $this->request_from_user = false;
         $this->notification =[
             'requestee_id'=>null,

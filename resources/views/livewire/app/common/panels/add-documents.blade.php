@@ -78,32 +78,29 @@
                             </p>
                         </a>
                     </div> --}}
-                    <div class="text-center col-lg-3 d-flex provider-image-panel">
+                    <div class="text-center col-lg-3 d-flex ">
 
-                        <div class="input--file">
-                            <a href="#" class="btn btn-outline-primary d-block px-2 pb-0">
-                                <svg class="mb-2" width="35" height="35" viewBox="0 0 35 35" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M32.0833 1.1498e-06H25.5208C25.3274 1.1498e-06 25.142 0.076824 25.0052 0.213569C24.8685 0.350315 24.7917 0.535781 24.7917 0.729168V8.75C24.7917 9.13678 24.638 9.50771 24.3645 9.7812C24.091 10.0547 23.7201 10.2083 23.3333 10.2083H11.7214C11.3429 10.2143 10.9763 10.0765 10.6955 9.82281C10.4147 9.56906 10.2406 9.21824 10.2083 8.84115C10.1959 8.64211 10.2244 8.44263 10.292 8.25504C10.3597 8.06745 10.4652 7.89573 10.6019 7.75051C10.7385 7.60528 10.9036 7.48964 11.0867 7.41072C11.2699 7.3318 11.4672 7.29128 11.6667 7.29167H21.875V0.729168C21.875 0.535781 21.7982 0.350315 21.6614 0.213569C21.5247 0.076824 21.3392 1.1498e-06 21.1458 1.1498e-06H10.8099C10.427 -0.000339916 10.0478 0.0752001 9.69421 0.222257C9.34065 0.369313 9.01973 0.584972 8.75 0.856772L0.856772 8.75C0.584972 9.01973 0.369313 9.34065 0.222257 9.69421C0.0752001 10.0478 -0.000339916 10.427 1.1498e-06 10.8099V32.0833C1.1498e-06 32.8569 0.307292 33.5987 0.854273 34.1457C1.40125 34.6927 2.14312 35 2.91667 35H32.0833C32.8569 35 33.5987 34.6927 34.1457 34.1457C34.6927 33.5987 35 32.8569 35 32.0833V2.91667C35 2.14312 34.6927 1.40125 34.1457 0.854273C33.5987 0.307292 32.8569 1.1498e-06 32.0833 1.1498e-06ZM17.5 26.25C16.4905 26.25 15.5037 25.9506 14.6643 25.3898C13.8249 24.8289 13.1707 24.0318 12.7844 23.0991C12.398 22.1665 12.297 21.1402 12.4939 20.1501C12.6909 19.16 13.177 18.2505 13.8908 17.5366C14.6046 16.8228 15.5141 16.3367 16.5042 16.1397C17.4943 15.9428 18.5206 16.0439 19.4533 16.4302C20.3859 16.8165 21.1831 17.4707 21.744 18.3101C22.3048 19.1495 22.6042 20.1363 22.6042 21.1458C22.5994 22.4981 22.0601 23.7935 21.1039 24.7497C20.1477 25.7059 18.8522 26.2452 17.5 26.25Z"
-                                        fill="url(#paint0_linear_2957_105064)" />
-                                    <defs>
-                                        <linearGradient id="paint0_linear_2957_105064" x1="17.5" y1="0"
-                                            x2="31.5419" y2="0" gradientUnits="userSpaceOnUse">
-                                            <stop stop-color="#213969" />
-                                            <stop offset="1" stop-color="#204387" />
-                                        </linearGradient>
-                                    </defs>
-                                </svg>
-                                <p class="text-primary mb-0 fw-medium">
-                                    Attach from
-                                    Device </p>
+                        <div class="btn btn-outline-primary d-block px-2 pb-0">
+                            <svg class="mb-2" width="35" height="35" viewBox="0 0 35 35" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M32.0833 1.1498e-06H25.5208C25.3274 1.1498e-06 25.142 0.076824 25.0052 0.213569C24.8685 0.350315 24.7917 0.535781 24.7917 0.729168V8.75C24.7917 9.13678 24.638 9.50771 24.3645 9.7812C24.091 10.0547 23.7201 10.2083 23.3333 10.2083H11.7214C11.3429 10.2143 10.9763 10.0765 10.6955 9.82281C10.4147 9.56906 10.2406 9.21824 10.2083 8.84115C10.1959 8.64211 10.2244 8.44263 10.292 8.25504C10.3597 8.06745 10.4652 7.89573 10.6019 7.75051C10.7385 7.60528 10.9036 7.48964 11.0867 7.41072C11.2699 7.3318 11.4672 7.29128 11.6667 7.29167H21.875V0.729168C21.875 0.535781 21.7982 0.350315 21.6614 0.213569C21.5247 0.076824 21.3392 1.1498e-06 21.1458 1.1498e-06H10.8099C10.427 -0.000339916 10.0478 0.0752001 9.69421 0.222257C9.34065 0.369313 9.01973 0.584972 8.75 0.856772L0.856772 8.75C0.584972 9.01973 0.369313 9.34065 0.222257 9.69421C0.0752001 10.0478 -0.000339916 10.427 1.1498e-06 10.8099V32.0833C1.1498e-06 32.8569 0.307292 33.5987 0.854273 34.1457C1.40125 34.6927 2.14312 35 2.91667 35H32.0833C32.8569 35 33.5987 34.6927 34.1457 34.1457C34.6927 33.5987 35 32.8569 35 32.0833V2.91667C35 2.14312 34.6927 1.40125 34.1457 0.854273C33.5987 0.307292 32.8569 1.1498e-06 32.0833 1.1498e-06ZM17.5 26.25C16.4905 26.25 15.5037 25.9506 14.6643 25.3898C13.8249 24.8289 13.1707 24.0318 12.7844 23.0991C12.398 22.1665 12.297 21.1402 12.4939 20.1501C12.6909 19.16 13.177 18.2505 13.8908 17.5366C14.6046 16.8228 15.5141 16.3367 16.5042 16.1397C17.4943 15.9428 18.5206 16.0439 19.4533 16.4302C20.3859 16.8165 21.1831 17.4707 21.744 18.3101C22.3048 19.1495 22.6042 20.1363 22.6042 21.1458C22.5994 22.4981 22.0601 23.7935 21.1039 24.7497C20.1477 25.7059 18.8522 26.2452 17.5 26.25Z"
+                                    fill="url(#paint0_linear_2957_105064)" />
+                                <defs>
+                                    <linearGradient id="paint0_linear_2957_105064" x1="17.5" y1="0"
+                                        x2="31.5419" y2="0" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#213969" />
+                                        <stop offset="1" stop-color="#204387" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                            <label for="file" class="text-primary mb-0 fw-medium"> Attach from Device </label>
+                            <input style=" opacity: 0; z-index: -1; position: absolute;" id="file" class="" wire:model="file" type="file">
 
 
-                            </a>
-                            <input class="" wire:model="file" type="file" id="upload">
 
                         </div>
+
                     </div>
                     @error('file')
                         <span class="d-inline-block invalid-feedback mt-2">
@@ -137,48 +134,47 @@
 
                 <div class="col-lg-8 gap-2 d-flex form-check">
 
-                    <input wire:model.defer="permissions.all_users" class="form-check-input" type="checkbox"
-                        value="">
+                    <input wire:click="selectAllUsers" class="form-check-input" type="checkbox" wire:model.defer="selectAll">
 
                     <p>All Users</p>
 
                 </div>
                 <div class="col-lg-8 gap-2 d-flex form-check">
 
-                    <input class="form-check-input" type="checkbox" wire:model.defer="permissions.service_providers">
+                    <input class="form-check-input" type="checkbox" wire:model.defer="permissions" value="2">
 
                     <p>Service Providers</p>
 
                 </div>
                 <div class="col-lg-12 ">
                     <div class="col-lg-8 gap-2 d-flex form-check">
-                        <input class="form-check-input" type="checkbox" wire:model.defer="permissions.customers">
+                        <input class="form-check-input" type="checkbox" wire:model.defer="permissions" value="4">
 
                         <p>Customers</p>
                     </div>
                     <div class="col-lg-8 gap-2 d-flex px-4 form-check">
-                        <input class="form-check-input" type="checkbox" wire:model.defer="permissions.requesters">
+                        <input class="form-check-input" type="checkbox" wire:model.defer="permissions" value="6">
 
                         <p>Requester</p>
                     </div>
                     <div class="col-lg-8 gap-2 d-flex px-4 form-check">
-                        <input class="form-check-input" type="checkbox" wire:model.defer="permissions.supervisor">
+                        <input class="form-check-input" type="checkbox" wire:model.defer="permissions" value="5">
 
                         <p>Supervisor</p>
                     </div>
                     <div class="col-lg-8 gap-2 d-flex px-4 form-check">
-                        <input class="form-check-input" type="checkbox" wire:model.defer="permissions.billing_manager">
+                        <input class="form-check-input" type="checkbox" wire:model.defer="permissions" value="9">
 
                         <p>Billing Manager</p>
                     </div>
                     <div class="col-lg-8 gap-2 d-flex px-4 form-check">
                         <input class="form-check-input" type="checkbox"
-                            wire:model.defer="permissions.service_consumers">
+                            wire:model.defer="permissions" value="7">
 
                         <p>Service Consumers</p>
                     </div>
                     <div class="col-lg-8 gap-2 d-flex px-4 form-check">
-                        <input class="form-check-input" type="checkbox" wire:model.defer="permissions.participants">
+                        <input class="form-check-input" type="checkbox" wire:model.defer="permissions" value="8">
 
                         <p>Participants</p>
                     </div>
@@ -228,12 +224,12 @@
             </div>
             <div class="d-md-flex align-items-center mb-4 gap-3 gap-md-0">
                 <div class="form-check form-switch form-switch-column mb-lg-0">
-                    <input class="form-check-input" wire:model="notification.repeat_notification"
-                        type="checkbox" role="switch" id="">
+                    <input class="form-check-input" wire:model="notification.repeat_notification" type="checkbox"
+                        role="switch" id="">
                 </div>
                 <h6 class="mb-lg-0">Repeat Notification</h6>
             </div>
-            <div class="{{$notification['repeat_notification'] ? '' : 'hidden'}}">
+            <div class="{{ $notification['repeat_notification'] ? '' : 'hidden' }}">
                 <div class="col-lg-12">
                     <label class="form-label">When should they first be notified?</label>
                     <div class="col-lg-8 d-flex gap-4">
@@ -273,7 +269,8 @@
                     x-on:click="addDocuments = !addDocuments">Cancel</button>
             </div>
             <div class="col-lg-3">
-                <button wire:click.prevent="save" type="button"  x-on:close-add-documents.window="addDocuments = !addDocuments"class="btn rounded w-100 btn-primary">Add</button>
+                <button wire:click.prevent="save" type="button"
+                    x-on:close-add-documents.window="addDocuments = !addDocuments"class="btn rounded w-100 btn-primary">Add</button>
             </div>
         </div>
     </div>
