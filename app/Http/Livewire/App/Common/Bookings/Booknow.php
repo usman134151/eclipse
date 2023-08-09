@@ -8,13 +8,14 @@ use App\Models\Tenant\User;
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\SetupValue;
 use App\Models\Tenant\Accommodation;
+use App\Models\Tenant\UserAddress;
 use Illuminate\Support\Collection;
 
 class Booknow extends Component
 {
     public $component = 'requester-info';
-    public $booking;
-    public $showForm,$assignment,$requesters =[],$bManagers=[],$supervisors=[],$consumers=[],$participants=[], $step=1 ;
+    
+    public $showForm,$booking,$requesters =[],$bManagers=[],$supervisors=[],$consumers=[],$participants=[], $step=1,$userAddresses=[] ;
     protected $listeners = ['showList' => 'resetForm','updateVal', 'updateCompany',
         'updateSelectedIndustries' => 'selectIndustries',
         'updateSelectedDepartments',
@@ -30,9 +31,9 @@ class Booknow extends Component
     ]];
     
     public $setupValues = [
-        'timezones' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 4, 'setup_value_label', false,'assignment.timezone_id','','timezone',0]],
+        'timezones' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 4, 'setup_value_label', false,'booking.timezone_id','','timezone',0]],
     
-        'companies' => ['parameters' => ['Company', 'id', 'name', '', '', 'name', false, 'assignment.company_id', '', 'company_id', 3]],
+        'companies' => ['parameters' => ['Company', 'id', 'name', '', '', 'name', false, 'booking.company_id', '', 'company_id', 3]],
     ];
 
     //modal variables
@@ -92,16 +93,8 @@ class Booknow extends Component
         }
       
         
-        if($this->assignment){
-            $this->updateCompany();
-        }else{
-            $this->assignment=[
-                'company_id'=>null,
-                'requester' => null,
-                'supervisor' => null,
-                'billing_manager' => null,
-
-            ];
+        if($this->booking){
+          //  $this->updateCompany();
         }
     
 
@@ -143,6 +136,7 @@ class Booknow extends Component
 
     // update all dropdown values when company is changed
     public function updateCompany(){
+       
       $this->updateUsers();
     }
     
@@ -166,8 +160,8 @@ class Booknow extends Component
         })
         ->leftJoin('user_details', 'user_details.user_id', '=', 'users.id')
         ->leftJoin('companies', 'companies.id', '=', 'users.company_name')
-        ->when(isset($this->assignment['company_id']), function ($query) {
-            return $query->where('companies.id', '=', $this->assignment['company_id']);
+        ->when(isset($this->booking['company_id']), function ($query) {
+            return $query->where('companies.id', '=', $this->booking['company_id']);
         })
         ->leftJoin('user_departments', 'user_departments.user_id', '=', 'users.id')
         ->where('user_departments.department_id', '=', $departmentIds)
@@ -186,7 +180,7 @@ class Booknow extends Component
             })
             ->leftJoin('user_details', 'user_details.user_id', '=', 'users.id')
             ->leftJoin('companies', 'companies.id', '=', 'users.company_name')
-            ->where('companies.id', '=', $this->assignment['company_id'])
+            ->where('companies.id', '=', $this->booking['company_id'])
             ->select('users.id', 'users.name', 'phone', 'email')
             ->get();
     }
@@ -259,7 +253,8 @@ class Booknow extends Component
        
         if ($attrName == "company_id") {
 
-                $this->assignment['company_id'] = $val;
+                $this->booking['company_id'] = $val;
+                
                 // Emit an event with data
                 $this->emit('updateCompany', $val);
                 $this->departmentNames = [];
@@ -271,8 +266,35 @@ class Booknow extends Component
                     $this->services[$index]['accommodation_id'] = $val;
                 }
             }
-        // else
-        // $this->$attrName = $val;
+            elseif (preg_match('/service_consumer_(\d+)/', $attrName, $matches)) {
+                $index = intval($matches[1]);
+               
+        
+                if (isset($this->services[$index])) {
+                    $this->services[$index]['service_consumer'] = $val;
+                }
+            }
+            elseif (preg_match('/attendees_(\d+)/', $attrName, $matches)) {
+                $index = intval($matches[1]);
+               
+        
+                if (isset($this->services[$index])) {
+                    $this->services[$index]['attendees'] = $val;
+                }
+            }  
+            elseif($attrName=='customer_id'){
+                $this->booking['customer_id']=$val;
+                $this->refreshAddresses();
+               
+             }
+
+        else
+        $this->booking[$attrName] = $val;
+
+
+         //extra checks to call additional functions
+
+
     }
 
     //functions to set modal values
@@ -298,8 +320,26 @@ class Booknow extends Component
             'booking.frequency_id'=>'required',
             'booking.requester_information'=>'nullable',
             'booking.poc_phone'=>'nullable',
+            'booking.company_id'=>'required',
+            'booking.customer_id'=>'required',
+            'booking.supervisor'=>'required',
+            'booking.billing_manager_id'=>'nullable'
 
         ];
     }
+
+    public function refreshAddresses(){
+       //query to fetch addresses
+      $addresses=UserAddress::where(['address_type'=>1,'user_id'=>$this->booking['customer_id']])->orderBy('id','desc')->limit('4')->get();
+      foreach($addresses as $address){
+        $this->userAddresses[]=$address->toArray();
+         }
+    }
+
+    public function editAddress($index, $type)
+	{
+		$this->userAddresses[$index]['index'] = $index;	//passing ref index
+		$this->emit('updateAddressType', $type, $this->userAddresses[$index]);
+	}
 
 }
