@@ -407,8 +407,8 @@
                                                                 </div>
                                                                 <div class="js-wrapper-manual-entry">
                                                                     <select
-                                                                        class="form-select mb-2 js-form-select-manual-entry"
-                                                                        aria-label="Select Service Consumer(s)" wire:model="">
+                                                                        class="form-select select2 select2-container js-form-select-manual-entry"
+                                                                        aria-label="Select Service Consumer(s)" wire:model="services.{{$index}}.service_consumer">
                                                                         <option>Select Service Consumer(s)</option>
                                                                         @foreach($consumers as $consumer)
                                                                         <option value="{{$consumer['id']}}">{{$consumer['name']}}</option>
@@ -421,7 +421,7 @@
                                                                         <input
                                                                             class="form-check-input js-form-check-input-manual-entry"
                                                                             id="ManualEntryServiceConsumer" name=""
-                                                                            type="checkbox" tabindex="" wire:key="manual-{{ $index }}" wire:model.lazy="services.{{$index}}.services">
+                                                                            type="checkbox" tabindex="" wire:key="manual-{{ $index }}">
                                                                         <label class="form-check-label"
                                                                             for="ManualEntryServiceConsumer"><small>Manual
                                                                                 Entry</small></label>
@@ -429,35 +429,24 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-6 mb-4 ps-lg-5">
-                                                                <div
-                                                                    class="d-flex justify-content-between align-items-center">
+                                                                <div class="d-flex justify-content-between align-items-center js-form-select-manual-entry">
                                                                     <label class="form-label">Participant(s)</label>
                                                                     <div class="form-check ">
                                                                         <label class="form-check-label" for="EnableCloseOutStatuses">Add New Participant</label>
-                                                                        <input class="form-check-input show-hidden-content"
-                                                                            id="EnableCloseOutStatuses" name="RequestStartTimeforServices"
-                                                                            type="checkbox" tabindex="">
-                                                                        <div class="hidden-content">
-                                                                            <div class="form-check-inline">
-                                                                                <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup"
-                                                                                data-bs-toggle="modal" data-bs-target="#addNewCustomer" aria-label="Participant">
-                                                                            <svg aria-label="Participant" width="25" height="18"
-                                                                                viewBox="0 0 25 18">
-                                                                                <use xlink:href="/css/common-icons.svg#right-color-arrow">
-                                                                                </use>
-                                                                            </svg>
-                                                                            Participant
-                                                                        </button>
 
-                                                                            </div>
+
+                                                                       
                                                                         </div>
                                                                     </div>
-                                                                </div>
+                                                                
                                                                 <div class="js-wrapper-manual-entry">
                                                                     <select
-                                                                        class="form-select mb-2 js-form-select-manual-entry"
-                                                                        aria-label="Select Participant(s)">
+                                                                        class="form-select select2 select2-container"  multiple
+                                                                        aria-label="Select Participant(s)" wire:model.lazy="services.{{$index}}.attendees">
                                                                         <option>Select Participant(s)</option>
+                                                                        @foreach($participants as $participant)
+                                                                        <option value="{{$participant['id']}}">{{$participant['name']}}</option>
+                                                                        @endforeach
                                                                     </select>
                                                                     <input type="" name=""
                                                                         class="form-control mb-2 hidden js-form-input-manual-entry"
@@ -466,7 +455,7 @@
                                                                         <input
                                                                             class="form-check-input js-form-check-input-manual-entry"
                                                                             id="ManualEntryParticipant" name=""
-                                                                            type="checkbox" tabindex="" wire:key="manual-{{ $index }}" wire:model.lazy="services.{{$index}}.services">
+                                                                            type="checkbox" tabindex="" wire:key="manual-{{ $index }}" wire:model.lazy="services.{{$index}}.attendees">
                                                                         <label class="form-check-label"
                                                                             for="ManualEntryParticipant"><small>Manual
                                                                                 Entry</small></label>
@@ -476,6 +465,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                @if($services[$index]['service_type']>1)
                                                 <div class="row mb-md-4" >
                                                     <div class="col-lg-6 align-self-center">
                                                         <h2 class="mb-lg-0">Meeting Information</h2>
@@ -485,16 +475,14 @@
                                                             <div class="col-md-6 mb-4 mb-md-0">
                                                                 <a href="#"
                                                                     class="btn btn-primary rounded w-100 btn-has-icon">
-                                                                    {{-- Updated by Shanila to Add
-                                                                    svg icon--}}
+                                                                  
                                                                     <svg aria-label="Add Manually" width="24"
                                                                         height="19" viewBox="0 0 24 19" fill="none">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#check-add">
                                                                         </use>
                                                                     </svg>
-                                                                    {{-- End of update by Shanila
-                                                                    --}}
+                                                                  
                                                                     Add Manually
                                                                 </a>
                                                             </div>
@@ -545,6 +533,7 @@
                                                     </div>
                                                 </div>
                                                 @endforeach
+                                             
                                                 <div class="row justify-content-end">
                                                     <div class="col-md-6 col-lg-3">
                                                         <a href="#" wire:click.prevent="addMeeting({{$index}})" class="btn btn-primary rounded btn-has-icon w-100">
@@ -557,6 +546,7 @@
                                                         </a>
                                                     </div>
                                                 </div>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>

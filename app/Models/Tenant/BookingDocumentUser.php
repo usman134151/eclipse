@@ -15,6 +15,6 @@ class BookingDocumentUser extends Model
      * @var array
      */
     protected $fillable = [
-        'message', 'title', 'base_code'
+        'user_id','document_id','booking_id'
     ];
 }
