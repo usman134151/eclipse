@@ -114,6 +114,7 @@
                                     {!! $setupValues['companies']['rendered'] !!}
 
                                 </div>
+                              
                                 <div class="col-lg-6 mb-4 ps-lg-5">
                                     <label class="form-label">Department <span class="mandatory">*</span></label>
                                     <div>
@@ -146,7 +147,7 @@
                                         <div class="form-check ">
                                             <label class="form-check-label" for="addnewrequestor">Add New Requester  </label>
                                             <small>(coming soon)</small>
-                                            <input disabled class="form-check-input show-hidden-content"
+                                            <input  class="form-check-input show-hidden-content"
                                                 id="addnewrequestor" name="addnewrequestor"
                                                 type="checkbox" tabindex="">
                                             <div class="hidden-content">
@@ -165,7 +166,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <select class="form-select select2 mb-2" id="requester" name="requester" wire:model.defer="booking.customer_id">
+                                    <select class="form-select select2 mb-2" id="customer_id" name="customer_id" wire:model.defer="booking.customer_id">
+                                    <option value="0">Select User</option>
                                         @foreach($requesters as $requester)
                                         <option value="{{$requester->id}}">{{$requester->name}}</option>
                                         @endforeach
@@ -227,6 +229,7 @@
                                             <label class="form-label" for="supervisor">Supervisor <span
                                                     class="mandatory">*</span></label>
                                             <select class="form-select select2" id="supervisor" name="supervisor" wire:model.defer='booking.supervisor'>
+                                            <option value="0">Select User</option>
                                                 @foreach($supervisors as $supervisor)
                                                 <option value="{{$supervisor->id}}">{{$supervisor->name}}</option>
                                                 @endforeach
@@ -234,7 +237,8 @@
                                         </div>
                                         <div class="col-lg-6 mb-4 ps-lg-5">
                                             <label class="form-label" for="billing-manager">Billing Manager</label>
-                                            <select class="form-select select2" id="billing_manager" name="billing_manager" wire:model.defer="booking.billing_manager_id">
+                                            <select class="form-select select2" id="billing_manager_id" name="billing_manager_id" wire:model.defer="booking.billing_manager_id">
+                                            <option value="0">Select User</option>
                                                  @foreach($bManagers as $manager)
                                                     <option value="{{$manager->id}}">{{$manager->name}}</option>
                                                 @endforeach
@@ -243,6 +247,7 @@
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="row between-section-segment-spacing">
                                 <!-- Service Information -->
                                 <div class="col-lg-12 mb-4">
@@ -406,7 +411,7 @@
 
                                                                 </div>
                                                                 <div class="js-wrapper-manual-entry">
-                                                                    <select
+                                                                    <select id="service_consumer_{{$index}}" name="service_consumer_{{$index}}"
                                                                         class="form-select select2 select2-container js-form-select-manual-entry"
                                                                         aria-label="Select Service Consumer(s)" wire:model="services.{{$index}}.service_consumer">
                                                                         <option>Select Service Consumer(s)</option>
@@ -441,7 +446,7 @@
                                                                 
                                                                 <div class="js-wrapper-manual-entry">
                                                                     <select
-                                                                        class="form-select select2 select2-container"  multiple
+                                                                        class="form-select select2 select2-container"  multiple id="attendees_{{$index}}" name="attendees_{{$index}}"
                                                                         aria-label="Select Participant(s)" wire:model.lazy="services.{{$index}}.attendees">
                                                                         <option>Select Participant(s)</option>
                                                                         @foreach($participants as $participant)
@@ -719,6 +724,13 @@
                                 <!-- /Select Dates & Times -->
                             </div>
                             <div class="row between-section-segment-spacing">
+                            {{-- Default Billing Address --}}
+                                                   @php
+                                                   $filteredServices = array_filter($services, function($subArray) {
+                                                        return isset($subArray['service_type']) && $subArray['service_type'] == 1;
+                                                        });
+                                                   @endphp
+                                @if($filteredServices)
                                 <div class="col-lg-12">
                                     <!-- Physical Address -->
                                     <div class="row mb-4">
@@ -736,8 +748,7 @@
                                                             <use xlink:href="/css/common-icons.svg#check-add">
                                                             </use>
                                                         </svg>
-                                                        {{-- End of update by Shanila
-                                                        --}}
+
                                                         Add Manually
                                                     </a>
                                                 </div>
@@ -749,109 +760,15 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
-                                            <div class="mb-4">
-                                                <h3 class="mb-lg-0">Start Service Address</h3>
-                                                <p class="mt-3">List of most recently used address from the requester
-                                                </p>
-                                            </div>
-                                            <!-- Button trigger modal | Add Address POPUP-->
-                                            <div class="col-lg-12 text-lg-end">
-                                                <div class="mb-4">
-                                                    <button type="button" class="btn btn-primary btn-sm rounded gap-2"
-                                                        data-bs-toggle="modal" data-bs-target="#addAddressModal">
-                                                        <svg aria-label="Add New Address" width="20" height="20"
-                                                            viewBox="0 0 20 20">
-                                                            <use xlink:href="/css/common-icons.svg#plus">
-                                                            </use>
-                                                        </svg>
-                                                        <span>Add New Address</span>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <!-- #Address Tables-->
-                                            <div class="col-lg-12 mb-4 border">
-                                                <table class="table table-hover">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>#</th>
-                                                            <th>Address</th>
-                                                            <th></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr class="odd js-selected-row">
-                                                            <td>
-                                                                1
-                                                            </td>
-                                                            <td>
-                                                                <p>Mrs Smith 98 Shirley Street PIMPAMA QLD 4209
-                                                                    AUSTRALIA
-                                                                </p>
-                                                            </td>
-                                                            <!-- for active class row integrated with JS  -->
-                                                            <td class="align-middle">
-                                                                {{-- Updated by Shanila to Add
-                                                                svg icon--}}
-                                                                <svg aria-label="Add" class="d-none js-tick" width="24"
-                                                                    height="19" viewBox="0 0 24 19" fill="none">
-                                                                    <use xlink:href="/css/common-icons.svg#check-add">
-                                                                    </use>
-                                                                </svg>
-                                                                {{-- End of update by Shanila
-                                                                --}}
-                                                            </td>
-                                                        </tr>
-                                                        <tr class="even js-selected-row">
-                                                            <td>
-                                                                2
-                                                            </td>
-                                                            <td>
-                                                                <p>Mrs Smith 98 Shirley Street PIMPAMA QLD 4209
-                                                                    AUSTRALIA
-                                                                </p>
-                                                            </td>
-                                                            <!-- for active class row integrated with JS  -->
-                                                            <td class="align-middle">
-                                                                {{-- Updated by Shanila to Add
-                                                                svg icon--}}
-                                                                <svg aria-label="Add " class="d-none js-tick" width="24"
-                                                                    height="19" viewBox="0 0 24 19" fill="none">
-                                                                    <use xlink:href="/css/common-icons.svg#check-add">
-                                                                    </use>
-                                                                </svg>
-                                                                {{-- End of update by Shanila
-                                                                --}}
-                                                            </td>
-                                                        </tr>
-                                                        <tr class="odd js-selected-row">
-                                                            <td>
-                                                                3
-                                                            </td>
-                                                            <td>
-                                                                <p>Mrs Smith 98 Shirley Street PIMPAMA QLD 4209
-                                                                    AUSTRALIA
-                                                                </p>
-                                                            </td>
-                                                            <!-- for active class row integrated with JS  -->
-                                                            <td class="align-middle">
-                                                                {{-- Updated by Shanila to Add
-                                                                svg icon--}}
-                                                                <svg aria-label="Add" class="d-none js-tick" width="24"
-                                                                    height="19" viewBox="0 0 24 19" fill="none">
-                                                                    <use xlink:href="/css/common-icons.svg#check-add">
-                                                                    </use>
-                                                                </svg>
-                                                                {{-- End of update by Shanila
-                                                                --}}
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <!-- #Address Tables-->
-                                        </div>
-                                        <div class="col-lg-6">
+
+                                                    <div class="col-lg-12">
+                                                        <div class="row between-section-segment-spacing">
+                                                        @include('components.default-address', ['type' => 1, 'userAddresses' => $userAddresses, 'title'=>'Physical'])
+                                                        </div>
+                                                    </div>    
+                                                 
+
+                                        <!-- end address <div class="col-lg-6">
                                             <div class="mb-4">
                                                 <div class="d-lg-flex justify-content-between align-items-center">
                                                     <h3 class="mb-lg-0">Start End Address</h3>
@@ -861,7 +778,7 @@
                                                 </div>
                                             </div>
                                             <div class="js-start-service-hidden-content hidden">
-                                                <!-- Button trigger modal | Add Address POPUP-->
+                                               
                                                 <div class="col-lg-12 text-lg-end">
                                                     <div class="mb-4">
                                                         <button type="button"
@@ -876,96 +793,17 @@
                                                         </button>
                                                     </div>
                                                 </div>
-                                                <!-- #Address Tables-->
+                                              
                                                 <div class="col-lg-12 mb-4 border">
-                                                    <table class="table table-hover">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>#</th>
-                                                                <th>Address</th>
-                                                                <th></th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr class="odd js-selected-row">
-                                                                <td>
-                                                                    1
-                                                                </td>
-                                                                <td>
-                                                                    <p>Mrs Smith 98 Shirley Street PIMPAMA QLD 4209
-                                                                        AUSTRALIA</p>
-                                                                </td>
-                                                                <!-- for active class row integrated with JS  -->
-                                                                <td class="align-middle">
-                                                                    {{-- Updated by Shanila to Add
-                                                                    svg icon--}}
-                                                                    <svg aria-label="Add " class="d-none js-tick"
-                                                                        width="24" height="19" viewBox="0 0 24 19"
-                                                                        fill="none">
-                                                                        <use
-                                                                            xlink:href="/css/common-icons.svg#check-add">
-                                                                        </use>
-                                                                    </svg>
-                                                                    {{-- End of update by Shanila
-                                                                    --}}
 
-                                                                </td>
-                                                            </tr>
-                                                            <tr class="even js-selected-row">
-                                                                <td>
-                                                                    2
-                                                                </td>
-                                                                <td>
-                                                                    <p>Mrs Smith 98 Shirley Street PIMPAMA QLD 4209
-                                                                        AUSTRALIA</p>
-                                                                </td>
-                                                                <!-- for active class row integrated with JS  -->
-                                                                <td class="align-middle">
-                                                                    {{-- Updated by Shanila to Add
-                                                                    svg icon--}}
-                                                                    <svg aria-label="Add " class="d-none js-tick"
-                                                                        width="24" height="19" viewBox="0 0 24 19"
-                                                                        fill="none">
-                                                                        <use
-                                                                            xlink:href="/css/common-icons.svg#check-add">
-                                                                        </use>
-                                                                    </svg>
-                                                                    {{-- End of update by Shanila
-                                                                    --}}
-                                                                </td>
-                                                            </tr>
-                                                            <tr class="odd js-selected-row">
-                                                                <td>
-                                                                    3
-                                                                </td>
-                                                                <td>
-                                                                    <p>Mrs Smith 98 Shirley Street PIMPAMA QLD 4209
-                                                                        AUSTRALIA</p>
-                                                                </td>
-                                                                <!-- for active class row integrated with JS  -->
-                                                                <td class="align-middle">
-                                                                    {{-- Updated by Shanila to Add
-                                                                    svg icon--}}
-                                                                    <svg aria-label="Add" class="d-none js-tick"
-                                                                        width="24" height="19" viewBox="0 0 24 19"
-                                                                        fill="none">
-                                                                        <use
-                                                                            xlink:href="/css/common-icons.svg#check-add">
-                                                                        </use>
-                                                                    </svg>
-                                                                    {{-- End of update by Shanila
-                                                                    --}}
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
                                                 </div>
-                                                <!-- #Address Tables-->
+                                           
                                             </div>
-                                        </div>
+                                        </div> end address-->
                                     </div>
                                     <!-- /Physical Address -->
                                 </div>
+                                @endif 
                                 <div class="justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                                     <button type="button" class="btn btn-outline-dark rounded">Cancel</button>
                                     <button type="button" class="btn btn-primary rounded">Save as Draft</button>
@@ -973,6 +811,7 @@
                                     x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('request-details')">Proceed to Request Details</button>
                                 </div>
                             </div>
+                           
                         </form>
                         {{-- ended updated by shanila --}}
                     </div>
@@ -1990,7 +1829,7 @@
             </div>
         </div>
     </div>
-    @include('modals.common.add-address')
+@include('modals.common.add-address')
 @include('modals.common.add-industry')
 @include('modals.common.add-department')
 @include('modals.common.add-document')
