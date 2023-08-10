@@ -1,4 +1,4 @@
 <div>
-		@livewire('app.common.provider-details',['user'=>$user])
+		@livewire('app.common.provider-details',['user'=>$user,'isProvider'=>true])
    
 </div>

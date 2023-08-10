@@ -116,7 +116,6 @@
 				
                 var data = JSON.parse(event.detail.events);
                 calendar.addEventSource(data);
-                window.dispatchEvent(new Event('resize'));
 
 			})
 
