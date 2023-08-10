@@ -18,9 +18,9 @@ class Availability extends Component
     public function saveSchedule()
     {
         $this->emit('saveSchedule');
+		$this->emit('refreshCalendar'); //emit to update calendar events
         $this->emit('showConfirmation', "Availability has been saved successfully");
         $this->dispatchBrowserEvent('close-default-schedule-modal');
-        $this->dispatchBrowserEvent('updateCalender');
     }
 
     public function mount()

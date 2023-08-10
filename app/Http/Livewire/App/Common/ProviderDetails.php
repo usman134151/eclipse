@@ -37,9 +37,11 @@ class ProviderDetails extends Component
 	public function saveSchedule()
 	{
 		$this->emit('saveSchedule');
-		$this->emit('refreshCalendar');
-		$this->dispatchBrowserEvent('close-default-schedule-modal');
+		//causing distortion on calendar 
+		// $this->emit('refreshCalendar'); //emit to update calendar events
 		$this->showConfirmation("Availability has been saved successfully");
+		$this->dispatchBrowserEvent('close-default-schedule-modal');
+
 
 	}
 
