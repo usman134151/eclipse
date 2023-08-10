@@ -1261,7 +1261,7 @@
                                 <h2 class="mb-lg-0">Service 1 Assigned Providers</h2>
                                 <div class="d-flex flex-md-row flex-column gap-3">
                                     <a class="btn btn-has-icon btn-outline-dark rounded"
-                                        @click="assignProvider = true">
+                                        @click="assignProvider = true" href="javascript:refreshSelectsEvent()">
                                         {{-- Updated by Shanila to Add
                                         svg icon --}}
                                         <svg aria-label="Assign Providers" vwidth="20" height="20"
@@ -1745,7 +1745,7 @@
                                 <h2 class="mb-lg-0">Service 2 Assigned Providers</h2>
                                 <div class="d-flex flex-md-row flex-column gap-3">
                                     <a class="btn btn-has-icon btn-outline-dark rounded"
-                                        @click="assignProvider = true">
+                                        @click="assignProvider = true" href="javascript:refreshSelectsEvent()">
                                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path

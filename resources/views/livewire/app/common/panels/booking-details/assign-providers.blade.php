@@ -1,6 +1,6 @@
  {{-- BEGIN: Filters --}}
  <div>
-    <div class="accordion mb-4" id="accordionFilters">
+    <div class="accordion mb-4" id="accordionFilters" wire:ignore>
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingFilters">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -24,7 +24,7 @@
             <div id="collapseFilters" class="accordion-collapse collapse" aria-labelledby="headingFilters"
                 data-bs-parent="#accordionFilters">
                 <div class="accordion-body">
-                    <x-advanceproviderfilters type="assignProvider" :providers="$providers" :tags="[]" />
+                    <x-advanceproviderfilters type="assignProvider" :providers="$allproviders" :tags="$tags" />
                 </div>
             </div>
         </div>
@@ -53,18 +53,22 @@
                 </tr>
             </thead>
             <tbody>
-               @foreach($providers as $provier)
+               @foreach($providers as $provider)
                 <tr>
                     <td>
                         <div class="d-flex gap-2 align-items-center">
                             <div>
-                                <img width="50" height="50" src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
+                                @if($provider->profile_pic)
+                                    <img  width="50" height="50" src="{{ $provider->profile_pic }}" style="max-width:100%;" class="rounded-circle" alt="Image">
+                                @else
+                                    <img width="50" height="50" src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                     class="rounded-circle" alt="Image">
+                                @endif
                             </div>
                             <div class="pt-2">
-                                <div class="font-family-secondary leading-none">{{$provier->name}}</div>
+                                <div class="font-family-secondary leading-none">{{$provider->name}}</div>
                                 <a href="#"
-                                    class="font-family-secondary text-sm"><small>{{$provier->email}}</small></a>
+                                    class="font-family-secondary text-sm"><small>{{$provider->email}}</small></a>
                                 <div class="text-sm">599 Miles</div>
                                 <div></div>
                             </div>

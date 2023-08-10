@@ -55,7 +55,7 @@
                 </button>
             </div>
             <div class="mb-4 mb-lg-0">
-                <button type="button" class="btn btn-xs btn-outline-dark rounded">
+                <button wire:click="resetFilters" type="button" class="btn btn-xs btn-outline-dark rounded">
                     Clear all
                 </button>
             </div>
