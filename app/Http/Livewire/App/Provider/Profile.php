@@ -4,10 +4,12 @@ namespace App\Http\Livewire\App\Provider;
 
 use Livewire\Component;
 use App\Helpers\SetupHelper;
+use App\Models\Tenant\User;
+use Illuminate\Support\Facades\Auth;
 
 class Profile extends Component
 {
-    public $showForm;
+    public $showForm,$user;
     protected $listeners = ['showList' => 'resetForm'];
     public $component = 'profile';
     public $setupValues = [
@@ -24,6 +26,7 @@ class Profile extends Component
 
     public function mount()
     {
+        $this->user=User::where('id',Auth::id())->first();
         $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
 
     }

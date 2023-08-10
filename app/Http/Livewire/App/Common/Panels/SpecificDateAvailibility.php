@@ -84,7 +84,7 @@ class SpecificDateAvailibility extends Component
         }
         $this->dispatchBrowserEvent('close-specific-panel');
         //for some reason distorts calendar display
-		// $this->emit('refreshCalendar'); //emit to update calendar events
+		$this->emit('refreshCalendar'); //emit to update calendar events
         $this->emit('showConfirmation', ' Availability for Specific Date saved!');
 
     }
