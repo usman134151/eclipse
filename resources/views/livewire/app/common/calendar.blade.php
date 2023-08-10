@@ -116,6 +116,7 @@
 				
                 var data = JSON.parse(event.detail.events);
                 calendar.addEventSource(data);
+
 			})
 
 

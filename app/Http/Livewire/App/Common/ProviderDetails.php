@@ -9,7 +9,7 @@ use App\Models\Tenant\UserDetail;
 use App\Services\App\UserService;
 class ProviderDetails extends Component
 {
-    public $user, $userid , $accommodation_catalog, $service_catalog;
+    public $user, $userid , $accommodation_catalog, $service_catalog, $isProvider=false;
 	public $settings=['travel_rate_per_unit'=>'', 'travel_rate_unit'=>"km", 'rate_for_travel_time'=>'', 'same_as_service_rate'=>'','provider_payroll'=>false];
 
 	
@@ -37,9 +37,11 @@ class ProviderDetails extends Component
 	public function saveSchedule()
 	{
 		$this->emit('saveSchedule');
-		$this->emit('refreshCalendar');
-		$this->dispatchBrowserEvent('close-default-schedule-modal');
+		//causing distortion on calendar 
+		// $this->emit('refreshCalendar'); //emit to update calendar events
 		$this->showConfirmation("Availability has been saved successfully");
+		$this->dispatchBrowserEvent('close-default-schedule-modal');
+
 
 	}
 
