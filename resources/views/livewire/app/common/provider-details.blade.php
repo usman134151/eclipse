@@ -121,17 +121,18 @@
                                         </svg>
 										<span>Payments & Preferences</span>
 									</button>
-								</li>
-
-								<li class="nav-item" role="presentation">
-									<button class="nav-link" id="notes-tab" data-bs-toggle="tab" data-bs-target="#notes-tab-pane" type="button" role="tab" aria-controls="notes-tab-pane" aria-selected="false">
-										<svg aria-label="Notes" width="28" height="29" viewBox="0 0 28 29" fill="none"
-                                          xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#gray-notes"></use>
-                                        </svg>
-										<span>Notes</span>
-									</button>
-								</li>
-
+								</li>	
+								{{-- dont display on self profile --}}
+								@if($userid!=Auth::user()->id)
+									<li class="nav-item" role="presentation">
+										<button class="nav-link" id="notes-tab" data-bs-toggle="tab" data-bs-target="#notes-tab-pane" type="button" role="tab" aria-controls="notes-tab-pane" aria-selected="false">
+											<svg aria-label="Notes" width="28" height="29" viewBox="0 0 28 29" fill="none"
+											xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#gray-notes"></use>
+											</svg>
+											<span>Notes</span>
+										</button>
+									</li>
+								@endif
 								<li class="nav-item" role="presentation">
 									<button class="nav-link" id="reports-tab" data-bs-toggle="tab" data-bs-target="#reports-tab-pane" type="button" role="tab" aria-controls="reports-tab-pane" aria-selected="false">
 										<svg aria-label="Reports" width="30" height="28" viewBox="0 0 30 28" fill="none"
@@ -2144,11 +2145,15 @@
 										</nav>
 									</div>
 								</div>
+								
 								<!-- Invoices Remittances Tab End-->
-								<div class="tab-pane fade" id="notes-tab-pane" role="tabpanel" aria-labelledby="notes-tab" tabindex="0">
-									@livewire('app.common.forms.notes', ['showForm'=>true,'record_id' => $user['id'],'record_type'=>2])
+								@if($userid!=Auth::user()->id)
 
-								</div>
+									<div class="tab-pane fade" id="notes-tab-pane" role="tabpanel" aria-labelledby="notes-tab" tabindex="0">
+										@livewire('app.common.forms.notes', ['showForm'=>true,'record_id' => $user['id'],'record_type'=>2])
+
+									</div>
+								@endif
 								<!-- Notes Tab End-->
 								<div class="tab-pane fade" id="notifications-tab-pane" role="tabpanel" aria-labelledby="notifications-tab" tabindex="0">
 									<div class="row">
