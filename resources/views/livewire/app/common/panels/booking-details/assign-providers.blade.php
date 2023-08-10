@@ -1,6 +1,6 @@
  {{-- BEGIN: Filters --}}
  <div>
-    <div class="accordion mb-4" id="accordionFilters">
+    <div class="accordion mb-4" id="accordionFilters" wire:ignore>
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingFilters">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -24,193 +24,7 @@
             <div id="collapseFilters" class="accordion-collapse collapse" aria-labelledby="headingFilters"
                 data-bs-parent="#accordionFilters">
                 <div class="accordion-body">
-                    <div class="row">
-                        <div class="col-lg-6 mb-4">
-                            <label class="form-label">Accommodation</label>
-                            {!! App\Helpers\SetupHelper::createDropDown('Accommodation', 'id',
-                            'name', 'status', 1, 'name', true, '',
-                            '','accommodation_filter') !!}
-                        </div>
-                        <div class="col-lg-6 mb-4">
-                            <label class="form-label">Service</label>
-                            <select data-placeholder="Select Accommodation" multiple class="select2 form-select"
-                                tabindex="8">
-                                <option value=""></option>
-                                <option selected>Language Translation</option>
-                                <option selected>Real Time Captioning</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-6 mb-4">
-                            <label class="form-label">Specialization</label>
-                            {!! App\Helpers\SetupHelper::createDropDown('Specialization', 'id',
-                            'name', 'status', 1, 'name', true, '',
-                            '','specialization_filter') !!}
-                        </div>
-                        <div class="col-lg-6 mb-4">
-                            <div class="d-lg-flex justify-content-between align-items-center">
-                                <label class="form-label mb-lg-0">Associated Tags</label>
-                                <div class="form-check">
-                                    <input class="form-check-input" id="MatchAll" name="" type="checkbox" tabindex="">
-                                    <label class="form-check-label" for="MatchAll">
-                                        <small>Match All</small>
-                                    </label>
-                                </div>
-                            </div>
-                            <select data-placeholder="Select Accommodation" multiple class="select2 form-select"
-                                tabindex="8">
-                                <option value=""></option>
-                                <option selected>Medical</option>
-                                <option selected>Conference</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="d-flex justify-content-start gap-2 mb-4">
-                                <div class="mb-4 mb-lg-0">
-                                    <button class="btn btn-xs btn-inactive dropdown-toggle bg-secondary rounded"
-                                        data-bs-toggle="collapse" href="#collapseAdvanceFilter" role="button"
-                                        aria-expanded="false" aria-controls="collapseAdvanceFilter">
-                                        Advance Filter
-                                    </button>
-                                </div>
-                                <div class="mb-4 mb-lg-0">
-                                    <button type="button" class="btn btn-xs btn-outline-dark rounded">
-                                        Clear all
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="collapse" id="collapseAdvanceFilter">
-                                <div class="row">
-                                    <div class="col-lg-6 mb-4">
-                                        <div class="d-lg-flex justify-content-between align-items-center">
-                                            <label class="form-label mb-lg-0">Preferred Providers</label>
-                                            <div class="form-check">
-                                                <input class="form-check-input" id="MatchAllPreferredProviders" name=""
-                                                    type="checkbox" tabindex="">
-                                                <label class="form-check-label" for="MatchAllPreferredProviders">
-                                                    <small>Match All</small>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <select data-placeholder="Select Accommodation" multiple
-                                            class="select2 form-select" tabindex="8">
-                                            <option value=""></option>
-                                            <option selected>Thomas Charles</option>
-                                            <option selected>Paulie Durber</option>
-                                        </select>
-                                        <div class="mt-2">
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" id="Requester" name="" type="checkbox"
-                                                    tabindex="">
-                                                <label class="form-check-label"
-                                                    for="Requester"><small>Requester</small></label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" id="ServiceConsumers" name=""
-                                                    type="checkbox" tabindex="">
-                                                <label class="form-check-label" for="ServiceConsumers"><small>Service
-                                                        Consumer(s)</small></label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" id="Participants" name=""
-                                                    type="checkbox" tabindex="">
-                                                <label class="form-check-label"
-                                                    for="Participants"><small>Participant(s)</small></label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 mb-4">
-                                        <label class="form-label">Preferred Team Providers</label>
-                                        <select data-placeholder="Select Accommodation" multiple
-                                            class="select2 form-select" tabindex="8">
-                                            <option value=""></option>
-                                            <option selected>Richard Payne</option>
-                                            <option selected>Mr. Justin Richardson</option>
-                                        </select>
-                                        <div class="mt-2">
-                                            <div class="form-check">
-                                                <input class="form-check-input" id="AssignedProviders" name=""
-                                                    type="checkbox" tabindex="">
-                                                <label class="form-check-label" for="AssignedProviders"><small>Assigned
-                                                        Providers</small></label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 mb-4">
-                                        <label class="form-label">Gender</label>
-                                        {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
-                                        'setup_value_label', 'setup_id', 2, 'setup_value_label', false, 'gender',
-                                        '','gender') !!}
-                                    </div>
-                                    <div class="col-lg-4 mb-4">
-                                        <label class="form-label">Ethnicity</label>
-                                        {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
-                                        'setup_value_label', 'setup_id', 3, 'setup_value_label', false, 'ethnicity',
-                                        '','ethnicity') !!}
-                                    </div>
-                                    <div class="col-lg-4 mb-4">
-                                        <label class="form-label">Certification</label>
-                                        {{-- updated by shanila to add multiselectdropdown --}}
-                                {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id', 'setup_value_label', 'setup_id', 8, 'setup_value_label', true, '','','form-check') !!}
-                                {{--ended updated--}}
-                                    </div>
-                                    <div class="col-lg-4 mb-4">
-                                        <div class="d-lg-flex justify-content-between align-items-center mb-2">
-                                            <label class="form-label mb-lg-0">Distance</label>
-                                            <div>
-                                                KM
-                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M1 12.0837V15H3.91626L12.5173 6.39897L9.60103 3.48271L1 12.0837ZM14.7725 4.14373C15.0758 3.84044 15.0758 3.35051 14.7725 3.04722L12.9528 1.22747C12.6495 0.924177 12.1596 0.924177 11.8563 1.22747L10.4331 2.6506L13.3494 5.56687L14.7725 4.14373Z"
-                                                        fill="#0A1E46" />
-                                                </svg>
-                                            </div>
-                                        </div>
-                                        <select class="form-select">
-                                            <option>Select Certification</option>
-                                        </select>
-                                        <div class="mt-2 d-flex gap-2">
-                                            <div class="form-check">
-                                                <input class="form-check-input" id="ReimburseTravelTime" name=""
-                                                    type="checkbox" tabindex="">
-                                                <label class="form-check-label"
-                                                    for="ReimburseTravelTime"><small>Reimburse Travel
-                                                        Time</small></label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" id="ReimburseTravelTime" name=""
-                                                    type="checkbox" tabindex="">
-                                                <label class="form-check-label"
-                                                    for="ReimburseTravelTime"><small>Reimburse Mileage</small></label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 mb-4">
-                                        <label class="form-label">Search</label>
-                                        <input class="form-control" type="" name="" placeholder="Name Search">
-                                    </div>
-                                    <div class="col-lg-4 mb-4">
-                                        <div class="mt-5 d-flex gap-1">
-                                            <div class="form-check">
-                                                <input class="form-check-input" id="ProviderAvailability" name=""
-                                                    type="checkbox" tabindex="">
-                                                <label class="form-check-label text-nowrap"
-                                                    for="ProviderAvailability"><small>Provider
-                                                        Availability</small></label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" id="ProviderServiceRadius" name=""
-                                                    type="checkbox" tabindex="">
-                                                <label class="form-check-label text-nowrap"
-                                                    for="ProviderServiceRadius"><small>Provider Service
-                                                        Radius</small></label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <x-advanceproviderfilters type="assignProvider" :providers="$allproviders" :tags="$tags" />
                 </div>
             </div>
         </div>
@@ -239,18 +53,22 @@
                 </tr>
             </thead>
             <tbody>
-               @foreach($providers as $provier)
+               @foreach($providers as $provider)
                 <tr>
                     <td>
                         <div class="d-flex gap-2 align-items-center">
                             <div>
-                                <img width="50" height="50" src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
+                                @if($provider->profile_pic)
+                                    <img  width="50" height="50" src="{{ $provider->profile_pic }}" style="max-width:100%;" class="rounded-circle" alt="Image">
+                                @else
+                                    <img width="50" height="50" src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                     class="rounded-circle" alt="Image">
+                                @endif
                             </div>
                             <div class="pt-2">
-                                <div class="font-family-secondary leading-none">{{$provier->name}}</div>
+                                <div class="font-family-secondary leading-none">{{$provider->name}}</div>
                                 <a href="#"
-                                    class="font-family-secondary text-sm"><small>{{$provier->email}}</small></a>
+                                    class="font-family-secondary text-sm"><small>{{$provider->email}}</small></a>
                                 <div class="text-sm">599 Miles</div>
                                 <div></div>
                             </div>
