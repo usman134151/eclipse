@@ -903,7 +903,7 @@
                                 </div>
                                  <!-- Additional service charges -->
                                  @if($emergencyCharge) 
-                                 <div class="col-lg-12 between-section-segment-spacing">
+                                 <div class="col-lg-12 between-section-segment-spacing" x-data="{ open: true }">
                                  @else
                                 <div class="col-lg-12 between-section-segment-spacing" x-data="{ open: false }">
                                 @endif    
@@ -1021,7 +1021,7 @@
                                     </div>
                                 </div><!-- /Expedited Services -->
                                 @if($cancelCharge) 
-                                 <div class="col-lg-12 between-section-segment-spacing">
+                                 <div class="col-lg-12 between-section-segment-spacing" x-data="{ open: true }">
                                  @else
                                 <div class="col-lg-12 between-section-segment-spacing" x-data="{ open: false }">
                                 @endif   
@@ -2310,7 +2310,7 @@
                                                     </label>
                                                     <div class="form-check form-switch form-switch-column">
                                                         <input class="form-check-input" type="checkbox" role="switch"
-                                                             checked aria-label="Broadcast toggle" wire:model.defer="notificationSettings.{{$type}}.broadcast">
+                                                             aria-label="Broadcast toggle" wire:model.defer="notificationSettings.{{$type}}.broadcast">
                                                         <label class="form-check-label"
                                                             for="AutoNotifyBroadcast">Auto-notify</label>
                                                     </div>
