@@ -51,4 +51,8 @@ li.page-item {
 .select2-selection__clear{
     display: none !important;
 }
+
+.select2-container--default .select2-search--inline .select2-search__field{
+    padding: 0.4rem 0.75rem;
+}
 /* } */

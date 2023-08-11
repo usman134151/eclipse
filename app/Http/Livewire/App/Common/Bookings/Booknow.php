@@ -266,6 +266,14 @@ class Booknow extends Component
                     $this->services[$index]['accommodation_id'] = $val;
                 }
             }
+            elseif (preg_match('/service_id_(\d+)/', $attrName, $matches)) {
+                $index = intval($matches[1]);
+               
+        
+                if (isset($this->services[$index])) {
+                    $this->services[$index]['service_id'] = $val;
+                }
+            }
             elseif (preg_match('/service_consumer_(\d+)/', $attrName, $matches)) {
                 $index = intval($matches[1]);
                
