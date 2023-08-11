@@ -190,7 +190,7 @@ class ProviderForm extends Component
         }
 
         //edit from provider panel
-        if($this->isProvider){
+        if ($this->isProvider) {
             $this->edit($user);
         }
         $this->userid = $user->id;
@@ -371,23 +371,27 @@ class ProviderForm extends Component
         }
         $userService = new UserService;
         $this->user = $userService->createUser($this->user, $this->userdetail, 2, 1, [], $this->isAdd);
-        // put null/empty check for teams 
-        $userService->addProviderTeams($this->selectedTeams, $this->user);
 
+        if (!$this->isProvider)  //cant update teams from provider panel
+            $userService->addProviderTeams($this->selectedTeams, $this->user);
+
+
+
+        $this->userdetail['certification'] = explode(', ', $this->userdetail['certification']);
+        $this->userdetail['favored_users'] = explode(', ', $this->userdetail['favored_users']);
+        $this->userdetail['unfavored_users'] = explode(', ', $this->userdetail['unfavored_users']);
 
         if ($redirect) {
-
-            $this->showList("Provider has been saved successfully");
-            $this->user = new User;
+            if ($this->isProvider)
+                $this->emit('showConfirmation', 'Profile updated successfully');
+            else {
+                $this->showList("Provider has been saved successfully");
+                $this->user = new User;
+            }
         } else {
             $this->step = 2;
             //setting values for next
             $this->userid = $this->user->id;
-
-            $this->userdetail['certification'] = explode(', ', $this->userdetail['certification']);
-            $this->userdetail['favored_users'] = explode(', ', $this->userdetail['favored_users']);
-            $this->userdetail['unfavored_users'] = explode(', ', $this->userdetail['unfavored_users']);
-
             $this->dispatchBrowserEvent('refreshSelects');
         }
     }
@@ -420,8 +424,8 @@ class ProviderForm extends Component
         });
 
         $this->updateSelectedTeams($this->user->teams()->allRelatedIds());
-        if($this->userdetail['provider_type']=='contract_provider'){
-            $this->provider_details['set_rate']='yes';
+        if ($this->userdetail['provider_type'] == 'contract_provider') {
+            $this->provider_details['set_rate'] = 'yes';
         }
         // dd($this->use)
         // $this->dispatchBrowserEvent('refreshSelects');
@@ -706,11 +710,11 @@ class ProviderForm extends Component
 
     public function setRate()
     {
-        if($this->userdetail['provider_type']=='contract_provider'){
-            $this->provider_details['set_rate']='yes';
+        if ($this->userdetail['provider_type'] == 'contract_provider') {
+            $this->provider_details['set_rate'] = 'yes';
         }
 
-           
+
         $this->emit('updateSetRate', $this->provider_details['set_rate']);
     }
 }
