@@ -903,7 +903,7 @@
                                 </div>
                                  <!-- Additional service charges -->
                                  @if($emergencyCharge) 
-                                 <div class="col-lg-12 between-section-segment-spacing">
+                                 <div class="col-lg-12 between-section-segment-spacing" x-data="{ open: true }">
                                  @else
                                 <div class="col-lg-12 between-section-segment-spacing" x-data="{ open: false }">
                                 @endif    
@@ -1021,7 +1021,7 @@
                                     </div>
                                 </div><!-- /Expedited Services -->
                                 @if($cancelCharge) 
-                                 <div class="col-lg-12 between-section-segment-spacing">
+                                 <div class="col-lg-12 between-section-segment-spacing" x-data="{ open: true }">
                                  @else
                                 <div class="col-lg-12 between-section-segment-spacing" x-data="{ open: false }">
                                 @endif   
@@ -2058,7 +2058,7 @@
                                                                                 with Payment</label>
                                                                             <input class="form-check-input"
                                                                                 id="CancelBookingWithChargeNoShowPayment"
-                                                                                name="EnableCloseoutStatusesNoShowPayment"
+                                                                                name="noshow_payment"
                                                                                 type="radio" tabindex="" name="noshow_payment" value="3" wire:model.defer="checkOut.noshow_payment">
                                                                         </div>
                                                                         <div class="form-check">
@@ -2309,10 +2309,10 @@
                                                         Broadcast
                                                     </label>
                                                     <div class="form-check form-switch form-switch-column">
-                                                        <input class="form-check-input" type="checkbox" role="switch"
-                                                             checked aria-label="Broadcast toggle" wire:model.defer="notificationSettings.{{$type}}.broadcast">
+                                                        <input class="form-check-input" type="checkbox" role="switch" name="AutoNotifyBroadcast-{{$type}}"
+                                                             aria-label="Broadcast toggle" wire:model.defer="notificationSettings.{{$type}}.broadcast">
                                                         <label class="form-check-label"
-                                                            for="AutoNotifyBroadcast">Auto-notify</label>
+                                                            for="AutoNotifyBroadcast-{{$type}}">Auto-notify</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2339,36 +2339,36 @@
                                                         <div class="d-flex flex-column gap-3">
                                                             <div class="form-check">
                                                                 <label class="form-check-label"
-                                                                    for="FirstAvailableAssign">First
+                                                                    for="FirstAvailableAssign-{{$type}}">First
                                                                     Available</label>
                                                                 <input class="form-check-input"
-                                                                    id="FirstAvailableAssign"
+                                                                    id="FirstAvailableAssign-{{$type}}"
                                                                     name="auto_assign_type{{$type}}" value="1" wire:model.defer="notificationSettings.{{$type}}.auto_assign_type" type="radio"
                                                                     tabindex="">
                                                             </div>
                                                             <div class="form-check">
                                                                 <label class="form-check-label"
-                                                                    for="PriorityAssign">Priority</label>
-                                                                <input class="form-check-input" id="PriorityAssign"
+                                                                    for="PriorityAssign-{{$type}}">Priority</label>
+                                                                <input class="form-check-input" id="PriorityAssign-{{$type}}"
                                                                 name="auto_assign_type{{$type}}" value="2" wire:model.defer="notificationSettings.{{$type}}.auto_assign_type" type="radio"
                                                                     tabindex="">
                                                             </div>
                                                             <div class="form-check">
                                                                 <label class="form-check-label"
-                                                                    for="PriorityPreferredProvidersAssign">Priority &
+                                                                    for="PriorityPreferredProvidersAssign-{{$type}}">Priority &
                                                                     Preferred
                                                                     Providers</label>
                                                                 <input class="form-check-input"
-                                                                    id="PriorityPreferredProvidersAssign"
+                                                                    id="PriorityPreferredProvidersAssign-{{$type}}"
                                                                     name="auto_assign_type{{$type}}" value="3" wire:model.defer="notificationSettings.{{$type}}.auto_assign_type" type="radio"
                                                                     tabindex="">
                                                             </div>
                                                             <div class="form-check">
                                                                 <label class="form-check-label"
-                                                                    for="ClosestProviderAssign">Closest Provider</label>
+                                                                    for="ClosestProviderAssign-{{$type}}">Closest Provider</label>
                                                                 <input class="form-check-input"
-                                                                    id="ClosestProviderAssign"
-                                                                    nname="auto_assign_type{{$type}}" value="4" wire:model.defer="notificationSettings.{{$type}}.auto_assign_type" type="radio"
+                                                                    id="ClosestProviderAssign-{{$type}}"
+                                                                    name="auto_assign_type{{$type}}" value="4" wire:model.defer="notificationSettings.{{$type}}.auto_assign_type" type="radio"
                                                                     tabindex="">
                                                             </div>
                                                         </div>
@@ -2380,24 +2380,24 @@
                                                     <label class="form-label mb-lg-0">Broadcast via</label>
                                                     <div class="form-check mb-lg-0">
                                                         <label class="form-check-label"
-                                                            for="emailBroadcast-via">Email</label>
-                                                        <input class="form-check-input" id="emailBroadcast-via"
+                                                            for="emailBroadcast-via-{{$type}}">Email</label>
+                                                        <input class="form-check-input" id="emailBroadcast-via-{{$type}}"
                                                             name="emailBroadcast-via" type="checkbox"  wire:model.defer="notificationSettings.{{$type}}.broadcast_via_email" value="true"
                                                             tabindex="" >
                                                     </div>
                                                     <div class="form-check mb-lg-0">
                                                         <label class="form-check-label"
-                                                            for="smsBroadcast-via">SMS</label>
-                                                        <input class="form-check-input" id="smsBroadcast-via"
+                                                            for="smsBroadcast-via-{{$type}}">SMS</label>
+                                                        <input class="form-check-input" id="smsBroadcast-via-{{$type}}"
                                                             name="smsBroadcast-via" type="checkbox"  wire:model.defer="notificationSettings.{{$type}}.broadcast_via_sms" value="true"
                                                             tabindex="">
                                                     </div>
                                                     <div class="form-check mb-lg-0">
                                                         <label class="form-check-label"
-                                                            for="pushNotificationBroadcast-via">Push
+                                                            for="pushNotificationBroadcast-via-{{$type}}">Push
                                                             Notification</label>
                                                         <input class="form-check-input"
-                                                            id="pushNotificationBroadcast-via"
+                                                            id="pushNotificationBroadcast-via-{{$type}}"
                                                             name="pushNotificationBroadcast-via"  wire:model.defer="notificationSettings.{{$type}}.broadcast_via_push" value="true" type="checkbox"
                                                             tabindex="">
                                                     </div>
@@ -2407,18 +2407,18 @@
                                                 <div class="d-lg-flex align-items-center gap-5">
                                                     <label class="form-label mb-lg-0">Variable</label>
                                                     <div class="form-check mb-lg-0">
-                                                        <label class="form-check-label" for="Provider-Priority">Provider
+                                                        <label class="form-check-label" for="Provider-Priority-{{$type}}">Provider
                                                             Priority</label>
-                                                        <input class="form-check-input" id="Provider-Priority"
+                                                        <input class="form-check-input" id="Provider-Priority-{{$type}}"
                                                             name="Provider-Priority" type="checkbox"
                                                             tabindex=""  wire:model.defer="notificationSettings.{{$type}}.provider_priority" value="true">
                                                     </div>
                                                     @if($type==1)
                                                     <div class="form-check mb-lg-0">
                                                         <label class="form-check-label"
-                                                            for="ProximitytoService-Address">Proximity to Service
+                                                            for="ProximitytoService-Address-{{$type}}">Proximity to Service
                                                             Address</label>
-                                                        <input class="form-check-input" id="ProximitytoService-Address"
+                                                        <input class="form-check-input" id="ProximitytoService-Address-{{$type}}"
                                                             name="ProximitytoService-Address" type="checkbox"
                                                             tabindex="" wire:model.defer="notificationSettings.{{$type}}.service_address" value="true" >
                                                     </div>
@@ -2441,9 +2441,9 @@
                                                         </div>
                                                     </div>
                                                     <div>
-                                                        <label class="form-label-sm" for="provider-count">Provider Count</label>
+                                                        <label class="form-label-sm" for="provider-count-{{$type}}">Provider Count</label>
                                                         <div class="input-group">
-                                                            <input type="" name="" class="form-control form-control-sm"
+                                                            <input type="" name="provider-count-{{$type}}" class="form-control form-control-sm"
                                                                 placeholder="00" id="provider-count" wire:model.defer="notificationSettings.{{$type}}.count">
                                                         </div>
                                                     </div>
