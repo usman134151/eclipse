@@ -21,6 +21,7 @@ use Livewire\WithFileUploads;
 class ProviderForm extends Component
 {
     use WithFileUploads;
+    public $isProvider = false; // true when component called from provider panel
     public $user, $userid, $isAdd = true, $image = null, $teamNames = [], $label = "Add", $allTags = [], $tags = [];
     public $ethnicity;
     public $timezone;
