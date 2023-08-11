@@ -188,6 +188,11 @@ class ProviderForm extends Component
 
             $this->edit($user);
         }
+
+        //edit from provider panel
+        if($this->isProvider){
+            $this->edit($user);
+        }
         $this->userid = $user->id;
     }
 
