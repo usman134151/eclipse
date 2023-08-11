@@ -28,9 +28,9 @@ class Booking extends Model
     {
         return $this->belongsTo(Accommodation::class, 'accommodation_id');
     }
-    public function service()
+    public function services()
     {
-        return $this->belongsTo(ServiceCategory::class, 'service_category');
+        return $this->belongsToMany(ServiceCategory::class, 'booking_services','booking_id','services')->withPivot(['service_types']);
     }
     public function industry()
     {

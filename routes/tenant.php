@@ -163,6 +163,7 @@ Route::group([
 				Route::view('/dashboard', 'tenant/provider/dashboard');
 
 				Route::view('/chat', 'tenant/provider/chat');
+				Route::view('/edit-profile', 'tenant/provider/edit-profile');
 
 				Route::view('/set-availability', 'tenant/provider/manage-availability');
 

@@ -247,6 +247,14 @@
 				    <span class="menu-item">Reset Password</span>
 				</a>
 			  </li>
+			   <li class="nav-item" id="edit-profile">
+				<a href="/provider/edit-profile">
+					 <svg  aria-label="Edit Profile" width="24" height="17" viewBox="0 0 24 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <use xlink:href="/css/admin-menu.svg#account-profile"></use>
+                    </svg>
+				    <span class="menu-item">Edit My Profile</span>
+				</a>
+			  </li>
 		  </ul>
 		</li>
 	  </ul>

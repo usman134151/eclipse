@@ -131,6 +131,13 @@ class LoginController extends Controller
 				}else{
 					Session::put('isSuperAdmin', $super_admin_user);
 				}
+				$is_provider = RoleUser::where('role_id', 2)->where('user_id', auth()->user()->id)->orderBy('id', 'asc')->first();
+				if ($is_provider) {
+					Session::put('isProvider', 1);
+				} else {
+					Session::put('isProvider', $is_provider);
+				}
+
 
 				return redirect('home');
 			}
