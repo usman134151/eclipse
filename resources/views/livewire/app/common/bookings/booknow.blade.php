@@ -1,12 +1,6 @@
 <div>
 
-<div id="loader-section" class="loader-section" wire:loading>
-          <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
-            <div class="spinner-border" role="status" aria-live="polite">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-          </div>
-</div>
+
     <!-- BEGIN: Content-->
     <div class="content-header row">
         <div class="content-header-left col-12 mb-2">
@@ -292,19 +286,20 @@
                                                         class="fa fa-question-circle text-muted" aria-hidden="true"
                                                         data-bs-toggle="tooltip" data-bs-placement="top"
                                                         title="" ></i></label>
+                                                        <select class="form-select select2 mb-2" id="service_id_{{$index}}" name="service_id_{{$index}}" wire:model="services.{{$index}}.service_id">
                                                         @if($services[$index]['accommodation_id'])
                                                             @foreach($accommodations as $accommodation)
                                                                 @if($services[$index]['accommodation_id']==$accommodation['id'])
-                                                                    <select class="form-select select2 mb-2" id="service_id_{{$index}}" name="service_id_{{$index}}" wire:model="services.{{$index}}.service_id">
+                                                                   
                                                                     <option value="">Select Service</option>
                                                                     @foreach($accommodation['services'] as $service_id)
                                                                         <option value="{{$service_id['id']}}">{{$service_id['name']}}</option>
                                                                     @endforeach
-                                                                    </select>
+                                                                 
                                                                 @endif
                                                             @endforeach
                                                         @endif
-                                                      
+                                                        </select>
                                             </div>
                                             @if($services[$index]['service_id'])
                                             <div class="col-lg-6 mb-4 pe-lg-5">
@@ -446,9 +441,9 @@
                                                                 
                                                                 <div class="js-wrapper-manual-entry">
                                                                     <select
-                                                                        class="form-select select2 select2-container"  multiple id="attendees_{{$index}}" name="attendees_{{$index}}"
+                                                                        class="form-select select2 select2-container js-form-select-manual-entry"  multiple id="attendees_{{$index}}" name="attendees_{{$index}}"
                                                                         aria-label="Select Participant(s)" wire:model.lazy="services.{{$index}}.attendees">
-                                                                        <option>Select Participant(s)</option>
+                                                                       
                                                                         @foreach($participants as $participant)
                                                                         <option value="{{$participant['id']}}">{{$participant['name']}}</option>
                                                                         @endforeach
