@@ -197,6 +197,7 @@ Route::group([
 			Route::prefix('customer')->namespace('Customer')->group(function(){
 				Route::view('/dashboard', 'tenant/customer/dashboard');
                 Route::view('/chat', 'tenant/customer/chat');
+
                 Route::view('booking/booknow', 'tenant/customer/booking/service-request');
                 Route::view('/pending-reviews', 'tenant/customer/pending-reviews');
                 Route::view('/booking/today', 'tenant/customer/booking/booking-list', ["bookingType"=>"Today's"]);
@@ -205,6 +206,8 @@ Route::group([
                 Route::view('/booking/draft', 'tenant/customer/booking/booking-list', ["bookingType"=>"Draft"]);
                 Route::view('/invoices', 'tenant/customer/invoices');
                 Route::view('/payments-receipts', 'tenant/customer/payment-receipts');
+				Route::view('/departments/{companyID}','tenant/customer/departments')->middleware(DecryptRouteParamater::class);
+
                 Route::view('/add-team', 'tenant/customer/add-team');
                 Route::view('/payments-setting', 'tenant/customer/payment-setting');
                 Route::view('/myprofile', 'tenant/customer/myprofile');
