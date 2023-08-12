@@ -317,7 +317,7 @@
                             </a>
                         </li>
                         <li role="menuitem" class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="/customer/department-profile">
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <use xlink:href="/css/customer.svg#profile-nav-icon"></use>

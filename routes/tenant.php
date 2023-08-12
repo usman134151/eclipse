@@ -206,10 +206,14 @@ Route::group([
                 Route::view('/booking/draft', 'tenant/customer/booking/booking-list', ["bookingType"=>"Draft"]);
                 Route::view('/invoices', 'tenant/customer/invoices');
                 Route::view('/payments-receipts', 'tenant/customer/payment-receipts');
+
 				Route::view('/departments/{companyID}','tenant/customer/departments')->middleware(DecryptRouteParamater::class);
+				Route::view('/department-profile', 'tenant/customer/department-profile');
 
                 Route::view('/add-team', 'tenant/customer/add-team');
-                Route::view('/payments-setting', 'tenant/customer/payment-setting');
+				Route::view('/team-members', 'tenant/customer/team-members');
+
+				Route::view('/payments-setting', 'tenant/customer/payment-setting');
                 Route::view('/myprofile', 'tenant/customer/myprofile');
                 Route::view('/company-profile', 'tenant/customer/company-profile');
                 Route::view('/system-logs', 'tenant/customer/system-logs');
