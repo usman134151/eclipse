@@ -17,7 +17,7 @@ return new class extends Migration
             Schema::create('admin_teams', function (Blueprint $table) {
                 $table->id();
                 $table->string('team_name');
-                $table->foreignId('admin_id')->constrained('users');
+                $table->integer('admin_id');
                 $table->string('team_phone');
                 $table->string('team_email');
                 $table->text('team_description');

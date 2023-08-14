@@ -123,11 +123,10 @@ class LoginController extends Controller
 				$userPermissions = userPermissions();
 				Session::put('userPermissions', $userPermissions->toArray());
 				$super_admin_user = RoleUser::where('role_id', 1)->where('user_id', auth()->user()->id)->orderBy('id', 'asc')->first();
+				
 				if ($super_admin_user) {
 					Session::put('isSuperAdmin', 1);
-				} else {
-					Session::put('isSuperAdmin', $super_admin_user);
-				}
+				} 
 				$is_provider = RoleUser::where('role_id', 2)->where('user_id', auth()->user()->id)->orderBy('id', 'asc')->first();
 				if ($is_provider) {
 					Session::put('isProvider', 1);

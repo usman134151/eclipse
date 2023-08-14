@@ -432,7 +432,7 @@
                                                 </div>
                                                 <div class="col-lg-7 align-self-center">
                                                     <div class="font-family-tertiary">
-                                                        <a href="#">Mr. Ali Ahmed</a>
+                                                        <a href="#">{{ $booking['contact_point'] ? $booking['contact_point'] : 'N/A' }}</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -474,7 +474,7 @@
                                                 </div>
                                                 <div class="col-lg-7 align-self-center">
                                                     <div class="font-family-tertiary">
-                                                        Mr. Ali Ahmed
+                                                        {{ $booking['contact_point'] ? $booking['contact_point'] : 'N/A' }}
                                                     </div>
                                                 </div>
                                             </div>
@@ -816,7 +816,7 @@
                             <div class="row between-section-segment-spacing">
                                 <div class="col-lg-12">
                                     <div class="d-lg-flex justify-content-between align-items-center">
-                                        <h2 class="">Service Form Detail</h2>
+                                        <h2 class="">Service Form Detail (Needs to be updated)</h2>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-8 mb-3">
@@ -911,7 +911,7 @@
                             <div class="row between-section-segment-spacing">
                                 <div class="col-lg-12">
                                     <div class="d-lg-flex justify-content-between align-items-center">
-                                        <h2 class="">Industry Form Detail</h2>
+                                        <h2 class="">Industry Form Detail (needs to be updated)</h2>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-8 mb-3">
