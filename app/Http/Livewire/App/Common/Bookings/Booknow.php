@@ -65,6 +65,7 @@ class Booknow extends Component
         $this->booking=$booking;
         if(!$this->booking->id){
             $this->booking->requester_information=0;
+            $this->booking->frequency_id=32;
         }
         $accommodationsCollection = collect($this->accommodations);
         $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);

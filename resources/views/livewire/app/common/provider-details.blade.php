@@ -101,7 +101,7 @@
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="availability-tab" data-bs-toggle="tab"
                                             data-bs-target="#availability-tab-pane" type="button" role="tab"
-                                            aria-controls="availability-tab-pane" aria-selected="false">
+                                            aria-controls="availability-tab-pane" aria-selected="false" onclick="window.dispatchEvent(new Event('resize'))">
                                             <svg aria-label="Availability" width="31" height="30"
                                                 viewBox="0 0 31 30" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
