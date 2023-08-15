@@ -199,7 +199,7 @@ Route::group([
                 Route::view('/chat', 'tenant/customer/chat');
 
                 Route::view('booking/booknow', 'tenant/customer/booking/service-request');
-                Route::view('/pending-reviews', 'tenant/customer/pending-reviews');
+                Route::view('/pending-reviews', 'tenant/customer/booking/booking-list', ["bookingType" => "Pending Approval"]);
                 Route::view('/booking/today', 'tenant/customer/booking/booking-list', ["bookingType"=>"Today's"]);
 				Route::view('/booking/upcoming', 'tenant/customer/booking/booking-list', ["bookingType"=>"Upcoming"]);
 				Route::view('/booking/past', 'tenant/customer/booking/booking-list', ["bookingType"=>"Past"]);

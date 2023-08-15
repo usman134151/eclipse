@@ -8,10 +8,12 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
                                 <a href="#" title="Go to Dashboard" aria-label="Go to Dashboard">
-                                {{-- updated Sana to change x-icon to svg --}}
-                                <svg aria-label="Home" width="22" height="23" viewBox="0 0 22 23"><use xlink:href="/css/common-icons.svg#home"></use></svg>
-                     {{-- end updated by Sana --}}  
-                               
+                                    {{-- updated Sana to change x-icon to svg --}}
+                                    <svg aria-label="Home" width="22" height="23" viewBox="0 0 22 23">
+                                        <use xlink:href="/css/common-icons.svg#home"></use>
+                                    </svg>
+                                    {{-- end updated by Sana --}}
+
                                 </a>
                             </li>
                             <li class="breadcrumb-item">
@@ -21,11 +23,11 @@
                             </li>
                         </ol>
                     </div>
-                </div> 
+                </div>
             </div>
         </div>
     </div>
-    @livewire('app.common.dashboard-messages', ['userType' => 2,'displayTo'=>'dashboard'])
+    @livewire('app.common.dashboard-messages', ['userType' => 2, 'displayTo' => 'dashboard'])
     <div class="row mb-5">
         <ul class="d-grid grid-cols-6 gap-4 list-unstyled mb-5" id="myTab" role="tablist">
             <li class="" role="presentation">
@@ -34,8 +36,8 @@
                     aria-selected="true">
                     <div class="text-center block-text">Service Calendar</div>
                     <div class="text-center block-icon">
-                        <svg aria-label="Service Calendar" class="fill" width="57" height="57" viewBox="0 0 57 57" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
+                        <svg aria-label="Service Calendar" class="fill" width="57" height="57"
+                            viewBox="0 0 57 57" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <use xlink:href="/css/customer.svg#calendar-icon"></use>
                         </svg>
                     </div>
@@ -50,8 +52,8 @@
                     aria-controls="scheduled-services-tab-pane" aria-selected="false">
                     <div class="text-center block-text">Scheduled Services</div>
                     <div class="text-center block-icon">
-                        <svg aria-label="Scheduled Services" class="fill" width="54" height="61" viewBox="0 0 54 61" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
+                        <svg aria-label="Scheduled Services" class="fill" width="54" height="61"
+                            viewBox="0 0 54 61" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <use xlink:href="/css/customer.svg#scheduled-services-icon"></use>
                         </svg>
                     </div>
@@ -66,8 +68,8 @@
                     aria-controls="submit-service-request-pane" aria-selected="false">
                     <div class="text-center block-text">Submit Service Request</div>
                     <div class="text-center block-icon">
-                        <svg aria-label="Submit Service Request" class="fill icon-availability" height="" viewBox="0 0 1440 809.999993" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
+                        <svg aria-label="Submit Service Request" class="fill icon-availability" height="61"
+                            viewBox="0 0 1440 809.999993" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <use xlink:href="/css/customer.svg#submit-service-icon"></use>
                         </svg>
                     </div>
@@ -82,8 +84,8 @@
                     aria-controls="assignments-tab-pane" aria-selected="false">
                     <div class="text-center block-text">Notifications List</div>
                     <div class="text-center block-icon">
-                        <svg aria-label="Notifications List" class="stroke" width="54" height="61" viewBox="0 0 60 68" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
+                        <svg aria-label="Notifications List" class="stroke" width="54" height="61"
+                            viewBox="0 0 60 68" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <use xlink:href="/css/customer.svg#notification-icon"></use>
                         </svg>
                     </div>
@@ -97,8 +99,8 @@
                     type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">
                     <div class="text-center block-text">My Profile</div>
                     <div class="text-center block-icon">
-                        <svg aria-label="My Profile" class="fill" width="55" height="55" viewBox="0 0 55 55" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
+                        <svg aria-label="My Profile" class="fill" width="55" height="55"
+                            viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <use xlink:href="/css/customer.svg#myprofile"></use>
                         </svg>
                     </div>
@@ -109,8 +111,8 @@
             </li>
         </ul>
         <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="calendar-tab-pane" role="tabpanel" aria-labelledby="calendar-tab"
-                tabindex="0">
+            <div class="tab-pane fade show active" id="calendar-tab-pane" role="tabpanel"
+                aria-labelledby="calendar-tab" tabindex="0">
                 <h3>Booking Calendar</h3>
                 <!-- Filters -->
                 <div class="d-flex justify-content-start gap-4 mb-4">
@@ -118,9 +120,12 @@
                         <div class="mb-4 mb-lg-0 position-relative">
                             <!-- Begin : it will be replaced with livewire module-->
                             {{-- updated Sana to change x-icon to svg --}}
-                            <svg aria-label="Input-calender" class="icon-date sm cursor-pointer" width="20" height="20" viewBox="0 0 20 20"><use xlink:href="/css/common-icons.svg#input-calender"></use></svg>
-                            {{-- end updated by Sana --}} 
-                            
+                            <svg aria-label="Input-calender" class="icon-date sm cursor-pointer" width="20"
+                                height="20" viewBox="0 0 20 20">
+                                <use xlink:href="/css/common-icons.svg#input-calender"></use>
+                            </svg>
+                            {{-- end updated by Sana --}}
+
                             <input type="" class="form-control form-control-sm w-auto js-single-date"
                                 placeholder="MM/DD/YYYY" name="selectDate" aria-label="Select Date">
                             <!-- End : it will be replaced with livewire module -->
@@ -145,8 +150,8 @@
             </div>
 
             {{-- Add services Form --}}
-            <div class="tab-pane fade" id="notifications-tab-pane" role="tabpanel" aria-labelledby="notifications-tab"
-                tabindex="0">
+            <div class="tab-pane fade" id="notifications-tab-pane" role="tabpanel"
+                aria-labelledby="notifications-tab" tabindex="0">
                 @livewire('app.common.notifications')
             </div>
             <div class="tab-pane fade" id="scheduled-services-tab-pane" role="tabpanel"
@@ -158,8 +163,11 @@
                         <div class="mb-4 mb-lg-0 position-relative">
                             <!-- Begin : it will be replaced with livewire module-->
                             {{-- updated Sana to change x-icon to svg --}}
-                            <svg aria-label="Input-calender" class="icon-date sm cursor-pointer" width="20" height="20" viewBox="0 0 20 20"><use xlink:href="/css/common-icons.svg#input-calender"></use></svg>
-                            {{-- end updated by Sana --}} 
+                            <svg aria-label="Input-calender" class="icon-date sm cursor-pointer" width="20"
+                                height="20" viewBox="0 0 20 20">
+                                <use xlink:href="/css/common-icons.svg#input-calender"></use>
+                            </svg>
+                            {{-- end updated by Sana --}}
                             <input type="" class="form-control form-control-sm w-auto js-single-date"
                                 placeholder="MM/DD/YYYY" name="selectDate" aria-label="Select Date">
                             <!-- End : it will be replaced with livewire module -->
@@ -201,7 +209,7 @@
                     </div>
                 </div>
 
-                @livewire('app.common.bookings.booking-list',['bookingSection'=>'customer','bookingType'=>"Today's"])
+                @livewire('app.common.bookings.booking-list', ['bookingSection' => 'customer', 'bookingType' => "Today's"])
             </div>
             <!-- /Today's Assignment -->
 
@@ -221,7 +229,8 @@
                     @livewire('app.common.bookings.booknow')
                 </div>
             </div>
-            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
+                tabindex="0">
 
                 <!-- Filters -->
                 @livewire('app.customer.profile')
@@ -229,8 +238,8 @@
         </div>
     </div>
     <style>
-.tab-content>.active {
-    display: contents !important;
-}
-
-</style>
+        .tab-content>.active {
+            display: contents !important;
+        }
+    </style>
+</div>
