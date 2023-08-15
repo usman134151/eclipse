@@ -14,7 +14,11 @@
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
                         <h1 class="content-header-title float-start mb-0">
-                            {{ $label }} Customer
+                            @if (!$isCustomer)
+                                {{ $label }} Customer
+                            @else
+                                My Profile
+                            @endif
                         </h1>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
@@ -29,10 +33,18 @@
                                     </a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    Customers
+                                    @if (!$isCustomer)
+                                        Customers
+                                    @else
+                                        Settings
+                                    @endif
                                 </li>
                                 <li class="breadcrumb-item">
-                                    {{ $label }} Customer
+                                    @if (!$isCustomer)
+                                        {{ $label }} Customer
+                                    @else
+                                        Edit Profile
+                                    @endif
                                 </li>
                             </ol>
                         </div>
@@ -163,24 +175,26 @@
                                                         </div>
                                                     </div>
                                                     <div class="row between-section-segment-spacing">
-                                                        <div class="col-lg-12">
-                                                            <h2>Customer Information</h2>
-                                                        </div>
-                                                        <div class="col-lg-6 pe-lg-5 mb-4">
-                                                            <label class="form-label" for="company-column">
-                                                                Company
-                                                                <span class="mandatory" aria-hidden="true">
-                                                                    *
-                                                                </span>
-                                                            </label>
+                                                        @if (!$isCustomer)
+                                                            <div class="col-lg-12">
+                                                                <h2>Customer Information</h2>
+                                                            </div>
+                                                            <div class="col-lg-6 pe-lg-5 mb-4">
+                                                                <label class="form-label" for="company-column">
+                                                                    Company
+                                                                    <span class="mandatory" aria-hidden="true">
+                                                                        *
+                                                                    </span>
+                                                                </label>
 
-                                                            {!! $setupValues['companies']['rendered'] !!}
-                                                            @error('user.company_name')
-                                                                <span class="d-inline-block invalid-feedback mt-2">
-                                                                    {{ $message }}
-                                                                </span>
-                                                            @enderror
-                                                        </div>
+                                                                {!! $setupValues['companies']['rendered'] !!}
+                                                                @error('user.company_name')
+                                                                    <span class="d-inline-block invalid-feedback mt-2">
+                                                                        {{ $message }}
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                        @endif
 
                                                         <div class="col-lg-6 ps-lg-5 mb-4">
                                                             <label class="form-label" for="industry-column">
@@ -223,57 +237,55 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="col-lg-6 pe-lg-5 mb-4">
-                                                            <div
-                                                                class="d-flex justify-content-between align-items-center">
-                                                                <label for="department-column"
-                                                                    class="form-label">Department</label>
-                                                                <!-- <a href="#" class="fw-bold">
-                                                                <small>
-                                                                    <svg aria-label="Add Department" width="16" height="16" viewBox="0 0 16 16"
-                                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                                                            d="M8 0C3.58182 0 0 3.58182 0 8C0 12.4182 3.58182 16 8 16C12.4182 16 16 12.4182 16 8C16 3.58182 12.4182 0 8 0ZM8.72727 10.9091C8.72727 11.102 8.65065 11.287 8.51426 11.4234C8.37787 11.5597 8.19289 11.6364 8 11.6364C7.80712 11.6364 7.62213 11.5597 7.48574 11.4234C7.34935 11.287 7.27273 11.102 7.27273 10.9091V8.72727H5.09091C4.89802 8.72727 4.71304 8.65065 4.57665 8.51426C4.44026 8.37787 4.36364 8.19289 4.36364 8C4.36364 7.80712 4.44026 7.62213 4.57665 7.48574C4.71304 7.34935 4.89802 7.27273 5.09091 7.27273H7.27273V5.09091C7.27273 4.89802 7.34935 4.71304 7.48574 4.57665C7.62213 4.44026 7.80712 4.36364 8 4.36364C8.19289 4.36364 8.37787 4.44026 8.51426 4.57665C8.65065 4.71304 8.72727 4.89802 8.72727 5.09091V7.27273H10.9091C11.102 7.27273 11.287 7.34935 11.4234 7.48574C11.5597 7.62213 11.6364 7.80712 11.6364 8C11.6364 8.19289 11.5597 8.37787 11.4234 8.51426C11.287 8.65065 11.102 8.72727 10.9091 8.72727H8.72727V10.9091Z"
-                                                                            fill="#0A1E46" />
-                                                                    </svg>
-                                                                    Add Department
-                                                                </small>
-                                                            </a> -->
-                                                            </div>
-                                                            <div class="mb-1">
-                                                                <button type="button"
-                                                                    class="btn btn-has-icon px-0 btn-multiselect-popup"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#departmentModal">
-                                                                    {{-- Updated by Shanila to Add svg icon --}}
-                                                                    <svg aria-label="Select Department" width="25"
-                                                                        height="18" viewBox="0 0 25 18">
-                                                                        <use
-                                                                            xlink:href="/css/common-icons.svg#right-color-arrow">
-                                                                        </use>
-                                                                    </svg>
-                                                                    {{-- End of update by Shanila --}}
-                                                                    Select Department
-                                                                </button>
-                                                            </div>
+                                                        @if (!$isCustomer || ($isCustomer && in_array(10, session()->get('customerRoles'))))
+                                                            <div class="col-lg-6 pe-lg-5 mb-4">
+                                                                <div
+                                                                    class="d-flex justify-content-between align-items-center">
+                                                                    <label for="department-column"
+                                                                        class="form-label">Department</label>
+                                                                    <!-- <a href="#" class="fw-bold">
+                                                                        <small>
+                                                                            <svg aria-label="Add Department" width="16" height="16" viewBox="0 0 16 16"
+                                                                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                                    d="M8 0C3.58182 0 0 3.58182 0 8C0 12.4182 3.58182 16 8 16C12.4182 16 16 12.4182 16 8C16 3.58182 12.4182 0 8 0ZM8.72727 10.9091C8.72727 11.102 8.65065 11.287 8.51426 11.4234C8.37787 11.5597 8.19289 11.6364 8 11.6364C7.80712 11.6364 7.62213 11.5597 7.48574 11.4234C7.34935 11.287 7.27273 11.102 7.27273 10.9091V8.72727H5.09091C4.89802 8.72727 4.71304 8.65065 4.57665 8.51426C4.44026 8.37787 4.36364 8.19289 4.36364 8C4.36364 7.80712 4.44026 7.62213 4.57665 7.48574C4.71304 7.34935 4.89802 7.27273 5.09091 7.27273H7.27273V5.09091C7.27273 4.89802 7.34935 4.71304 7.48574 4.57665C7.62213 4.44026 7.80712 4.36364 8 4.36364C8.19289 4.36364 8.37787 4.44026 8.51426 4.57665C8.65065 4.71304 8.72727 4.89802 8.72727 5.09091V7.27273H10.9091C11.102 7.27273 11.287 7.34935 11.4234 7.48574C11.5597 7.62213 11.6364 7.80712 11.6364 8C11.6364 8.19289 11.5597 8.37787 11.4234 8.51426C11.287 8.65065 11.102 8.72727 10.9091 8.72727H8.72727V10.9091Z"
+                                                                                    fill="#0A1E46" />
+                                                                            </svg>
+                                                                            Add Department
+                                                                        </small>
+                                                                    </a> -->
+                                                                </div>
+                                                                <div class="mb-1">
+                                                                    <button type="button"
+                                                                        class="btn btn-has-icon px-0 btn-multiselect-popup"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#departmentModal">
+                                                                        {{-- Updated by Shanila to Add svg icon --}}
+                                                                        <svg aria-label="Select Department"
+                                                                            width="25" height="18"
+                                                                            viewBox="0 0 25 18">
+                                                                            <use
+                                                                                xlink:href="/css/common-icons.svg#right-color-arrow">
+                                                                            </use>
+                                                                        </svg>
+                                                                        {{-- End of update by Shanila --}}
+                                                                        Select Department
+                                                                    </button>
+                                                                </div>
 
-                                                            <!-- <div class="mb-4">
-                                                            Assign as Department Supervisor
-                                                        </div> -->
-                                                            <div>
-                                                                @if (count($departmentNames) > 0)
-                                                                    Selected Department(s) :
-                                                                    @foreach ($departmentNames as $key => $dept)
-                                                                        {{ $dept }}
-                                                                        @if ($key != count($departmentNames) - 1)
-                                                                            ,
-                                                                        @endif
-                                                                    @endforeach
-                                                                @endif
+                                                                <div>
+                                                                    @if (count($departmentNames) > 0)
+                                                                        Selected Department(s) :
+                                                                        @foreach ($departmentNames as $key => $dept)
+                                                                            {{ $dept }}
+                                                                            @if ($key != count($departmentNames) - 1)
+                                                                                ,
+                                                                            @endif
+                                                                        @endforeach
+                                                                    @endif
+                                                                </div>
                                                             </div>
-                                                            {{-- <input class="form-check-input" type="checkbox" value=""
-                                                            id="assign-as-department-supervisor"> --}}
-                                                        </div>
+                                                        @endif
 
                                                         <div class="col-lg-6 ps-lg-5 mb-4">
                                                             <label class="form-label" for="position-column">
@@ -585,48 +597,54 @@
                                                         {{-- </div> --}}
 
 
-
-                                                        <div
-                                                            class="col-lg-12 d-lg-flex gap-5 justify-content-center between-section-segment-spacing">
-                                                            <div class="form-check mb-lg-0">
-                                                                <input class="form-check-input" type="checkbox"
-                                                                    wire:model.defer="user_configuration.hide_from_providers"
-                                                                    id="HideUsersDetailsfromProvider" value="true">
-                                                                <label class="form-check-label"
-                                                                    for="HideUsersDetailsfromProvider">
-                                                                    Hide User's Details from Providers
-                                                                </label>
+                                                        @if (!$isCustomer)
+                                                            <div
+                                                                class="col-lg-12 d-lg-flex gap-5 justify-content-center between-section-segment-spacing">
+                                                                <div class="form-check mb-lg-0">
+                                                                    <input class="form-check-input" type="checkbox"
+                                                                        wire:model.defer="user_configuration.hide_from_providers"
+                                                                        id="HideUsersDetailsfromProvider"
+                                                                        value="true">
+                                                                    <label class="form-check-label"
+                                                                        for="HideUsersDetailsfromProvider">
+                                                                        Hide User's Details from Providers
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-check mb-lg-0">
+                                                                    <input class="form-check-input" type="checkbox"
+                                                                        value="1" id="email_invitation"
+                                                                        wire:model.defer="email_invitation">
+                                                                    <label class="form-check-label"
+                                                                        for="SendInvitationEmailtotheCustomer">
+                                                                        Send Invitation Email to the Customer
+                                                                    </label>
+                                                                </div>
                                                             </div>
-                                                            <div class="form-check mb-lg-0">
-                                                                <input class="form-check-input" type="checkbox"
-                                                                    value="1" id="email_invitation"
-                                                                    wire:model.defer="email_invitation">
-                                                                <label class="form-check-label"
-                                                                    for="SendInvitationEmailtotheCustomer">
-                                                                    Send Invitation Email to the Customer
-                                                                </label>
-                                                            </div>
-                                                        </div>
+                                                        @endif
 
                                                         {{-- Action Buttons Start --}}
                                                         <div class="col-12 form-actions">
-                                                            <button type="button"
-                                                                class="btn btn-outline-dark rounded px-4 py-2"
-                                                                wire:click.prevent="showList">
-                                                                Cancel
-                                                            </button>
+                                                            @if (!$isCustomer)
+                                                                <button type="button"
+                                                                    class="btn btn-outline-dark rounded px-4 py-2"
+                                                                    wire:click.prevent="showList">
+                                                                    Cancel
+                                                                </button>
+                                                            @endif
                                                             <button type="submit"
                                                                 class="btn btn-primary rounded px-4 py-2"
                                                                 wire:click.prevent="save"
                                                                 x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">
                                                                 Save & Exit
                                                             </button>
-                                                            <button type="button"
-                                                                class="btn btn-primary rounded px-4 py-2"
-                                                                wire:click.prevent="save(0)"
-                                                                x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('permission-configurations')">
-                                                                Next
-                                                            </button>
+                                                            @if (!$isCustomer)
+                                                                <button type="button"
+                                                                    class="btn btn-primary rounded px-4 py-2"
+                                                                    wire:click.prevent="save(0)"
+                                                                    x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('permission-configurations')">
+                                                                    Next
+                                                                </button>
+                                                            @endif
                                                         </div>
                                                         {{-- Action Buttons End --}}
 
@@ -1275,5 +1293,4 @@
         }
     </script>
     <script src="/tenant-resources/js/form-functions.js"></script>
-    
 @endpush
