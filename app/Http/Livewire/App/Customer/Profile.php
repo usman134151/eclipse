@@ -4,16 +4,13 @@ namespace App\Http\Livewire\App\Customer;
 
 use Livewire\Component;
 use App\Helpers\SetupHelper;
+use App\Models\Tenant\User;
+use Illuminate\Support\Facades\Auth;
+
 class Profile extends Component
 {
-    public $showForm;
+    public $showForm, $user;
     protected $listeners = ['showList' => 'resetForm'];
-    public $setupValues = [
-        'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'profile.languges_id','','languages',0]],
-        'industries'=>['parameters'=>['Industry', 'id', 'name', '', '', 'name', false, 'profile.industry_id','','industry',1]],
-        'countries' => ['parameters' => ['Country', 'id', 'name', '', '', 'name', false, 'profile.country_id','','country',4]]
-
-	];
 
     public function render()
     {
@@ -22,7 +19,8 @@ class Profile extends Component
 
     public function mount()
     {
-        $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
+        $this->user = User::where('id', Auth::id())->with(['userdetail','company'])->first()->toArray();
+
     }
 
     function showForm()

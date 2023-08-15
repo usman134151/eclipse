@@ -4,6 +4,7 @@ namespace App\Http\Livewire\App\Common\Modals;
 
 use App\Models\Tenant\Department;
 use App\Models\Tenant\User;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class AddDepartment extends Component
@@ -20,10 +21,13 @@ class AddDepartment extends Component
     {
 
         if(request()->customerID){
-            $this->user = User::find(request()->customerID);
-            $this->companyId = $this->user->company_name;
-            // $this->setDepartmentsDetails();
+            $customer_id = request()->customerID;
+        }elseif(session()->get('isCustomer')){
+            $customer_id  = Auth::id();
         }
+
+        $this->user = User::find($customer_id);
+        $this->companyId = $this->user->company_name;
         $this->departments = Department::where('company_id', $this->companyId)->get();
         if($this->user)
            $this->setDepartmentsDetails();

@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class EditMyProfile extends Component
 {
-    public $showForm, $user;
+    public $showForm, $user , $userType = 'provider';
     protected $listeners = ['showList' => 'resetForm', 'showConfirmation'];
 
     public function render()

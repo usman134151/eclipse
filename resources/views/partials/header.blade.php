@@ -194,9 +194,11 @@
                         data-bs-popper="static">
                         @if (session()->get('isProvider'))
                             <a href="/provider/profile" class="dropdown-item" href="#">
-                            @else
-                                {{-- for admin --}}
-                                <a href="/admin/profile" class="dropdown-item" href="#">
+                        @elseif (session()->get('isCustomer'))
+                                <a href="/customer/profile" class="dropdown-item" href="#">
+                        @else
+                                    {{-- for admin --}}
+                                    <a href="/admin/profile" class="dropdown-item" href="#">
                         @endif
                         <svg aria-label="Profile" xmlns="http://www.w3.org/2000/svg" width="14" height="14"
                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -207,6 +209,8 @@
                         Profile
                         </a>
                         @if (session()->get('isProvider'))
+                            <a href="{{ url('/provider/bookings/upcoming') }}" class="dropdown-item" href="#">
+                          @elseif (session()->get('isProvider'))
                             <a href="{{ url('/provider/bookings/upcoming') }}" class="dropdown-item" href="#">
                             @else
                                 <a href="{{ url('/admin/bookings/upcoming') }}" class="dropdown-item"
@@ -219,7 +223,7 @@
                         Assignments
                         </a>
                         @if (!session()->get('isProvider'))
-                            <a href="{{ url('/admin/bookings/pending-approval') }}" class="dropdown-item"
+                            <a href="{{ session()->get('isCustomer') ? url('/customer/pending-reviews') : url('/admin/bookings/pending-approval') }}" class="dropdown-item"
                                 href="#">
                                 <svg aria-label="Pending Assignments" aria-label="Pending Assignments" width="18"
                                     height="18" viewBox="0 0 18 18" fill="none"
@@ -232,6 +236,8 @@
 
                         @if (session()->get('isProvider'))
                             <a href="{{ url('/provider/chat') }}" class="dropdown-item" href="#">
+                        @elseif (session()->get('isCustomer'))
+                            <a href="{{ url('/customer/chat') }}" class="dropdown-item" href="#">
                             @else
                                 <a href="{{ url('/admin/chat') }}" class="dropdown-item" href="#">
                         @endif
@@ -245,6 +251,7 @@
                         </a>
                         <div class="dropdown-divider"></div>
                         @if (!session()->get('isProvider'))
+                            @if (!session()->get('isCustomer'))
                             <a href="{{ url('/admin/business-setup') }}" class="dropdown-item" href="#">
                                 <svg aria-label="Business Setup" aria-label="Business Setup" width="20"
                                     height="20" viewBox="0 0 20 20" fill="none"
@@ -253,14 +260,15 @@
                                 </svg>
                                 Business Setup
                             </a>
-                            <a href="{{ url('/admin/reports') }}" class="dropdown-item" href="#">
+                            @endif
+                            <a href="{{session()->get('isCustomer') ? url('/customer/reports') : url('/admin/reports') }}" class="dropdown-item" href="#">
                                 <svg aria-label="Reports" aria-label="Business Setup" width="13" height="19"
                                     viewBox="0 0 13 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <use xlink:href="/css/common-icons.svg#reports-header-icons"></use>
                                 </svg>
                                 Reports
                             </a>
-                            <a href="{{ url('/admin/jira-status') }}" class="dropdown-item" href="#">
+                            <a href="{{ session()->get('isCustomer')? url('/customer/jira-status'): url('/admin/jira-status') }}" class="dropdown-item" href="#">
                                 <svg aria-label="Support Tickets" aria-label="Support Tickets" width="19"
                                     height="19" viewBox="0 0 19 19" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">

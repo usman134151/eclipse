@@ -8,7 +8,7 @@ use App\Services\App\UserService;
 use App\Helpers\SetupHelper;
 class CustomerDetails extends Component
 {
-	public $user,$userid, $service_catalog;
+	public $user,$userid, $service_catalog, $isCustomer=false;
 	protected $listeners = [
 		'showDetails', 'showConfirmation' 
 	];
