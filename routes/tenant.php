@@ -208,7 +208,11 @@ Route::group([
                 Route::view('/payments-receipts', 'tenant/customer/payment-receipts');
 
 				Route::view('/departments/{companyID}','tenant/customer/departments')->middleware(DecryptRouteParamater::class);
-				Route::view('/department-profile', 'tenant/customer/department-profile');
+				Route::view('/department/create-department/{companyID}', 'tenant/common/department', ["showForm" => true, 'status' => 1])->middleware(DecryptRouteParamater::class);
+				Route::view('/department/edit-department/{departmentID}', 'tenant/common/department', ["showForm" => true, 'status' => 1]);
+				Route::view('/department/profile/{departmentID}', 'tenant/common/department', ["showForm" => false, "showProfile" => true, 'status' => 1])->name('department-profile');
+
+				Route::view('/department-profile/{companyID}', 'tenant/customer/department-profile')->middleware(DecryptRouteParamater::class);
 
                 Route::view('/add-team', 'tenant/customer/add-team');
 				Route::view('/team-members', 'tenant/customer/team-members');

@@ -87,7 +87,7 @@
                                     <div class="col-12">
                                         <div class="card">
 
-                                            @livewire('app.common.lists.departments', ['companyId' => $companyId, 'listpage' => true])
+                                            @livewire('app.common.lists.departments', ['companyId' => $companyId, 'listpage' => true,'isSupervisor'=>$isSupervisor])
 
                                             @include('panels.company.department-users')
 
