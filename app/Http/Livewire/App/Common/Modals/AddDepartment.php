@@ -25,9 +25,14 @@ class AddDepartment extends Component
         }elseif(session()->get('isCustomer')){
             $customer_id  = Auth::id();
         }
+        else{
+            $customer_id='';
+        }
+        if($customer_id){
+            $this->user = User::find($customer_id);
+            $this->companyId = $this->user->company_name;
+        }
 
-        $this->user = User::find($customer_id);
-        $this->companyId = $this->user->company_name;
         $this->departments = Department::where('company_id', $this->companyId)->get();
         if($this->user)
            $this->setDepartmentsDetails();
