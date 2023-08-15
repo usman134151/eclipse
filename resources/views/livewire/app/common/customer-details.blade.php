@@ -5,7 +5,7 @@
             <div class="row breadcrumbs-top">
                 <div class="col-12">
                     <h1 class="content-header-title float-start mb-0">
-                                                    {{$isCustomer ? 'My Profile' : 'Customers'}}
+                        {{ $isCustomer ? 'My Profile' : 'Customers' }}
                     </h1>
                     <div class="breadcrumb-wrapper">
                         <ol class="breadcrumb">
@@ -19,10 +19,10 @@
                                 </a>
                             </li>
                             <li class="breadcrumb-item">
-                                {{$isCustomer ? 'Home' : 'Customers'}}
+                                {{ $isCustomer ? 'Home' : 'Customers' }}
                             </li>
                             <li class="breadcrumb-item">
-                                                                {{$isCustomer ? 'My Profile' : 'Customer Details'}}
+                                {{ $isCustomer ? 'My Profile' : 'Customer Details' }}
                             </li>
                         </ol>
                     </div>
@@ -818,36 +818,38 @@
 </div>
 <!-- Last Login colums (end) -->
 <!-- in line / side by side buttons (start) -->
-<div class="col-md-12 d-flex form-actions flex-lg-row flex-column justify-content-center gap-2">
-    <button type="button" wire:click="lockAccount()"
-        class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
-        <span>
+@if (!$isCustomer)
+    <div class="col-md-12 d-flex form-actions flex-lg-row flex-column justify-content-center gap-2">
+        <button type="button" wire:click="lockAccount()"
+            class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
+            <span>
 
-            @if ($this->user['status'])
-                Lock Account
-            @else
-                Unlock Account
-            @endif
+                @if ($this->user['status'])
+                    Lock Account
+                @else
+                    Unlock Account
+                @endif
 
-        </span>
-    </button>
-    <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2"
-        data-bs-toggle="modal" data-bs-target="#changePasswordModal">
-        <span>
-            Reset Customer Password
-        </span>
-    </button>
-    <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
-        <span>
-            Message Customer
-        </span>
-    </button>
-    <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
-        <span>
-            Resend Welcome Email
-        </span>
-    </button>
-</div>
+            </span>
+        </button>
+        <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2"
+            data-bs-toggle="modal" data-bs-target="#changePasswordModal">
+            <span>
+                Reset Customer Password
+            </span>
+        </button>
+        <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
+            <span>
+                Message Customer
+            </span>
+        </button>
+        <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
+            <span>
+                Resend Welcome Email
+            </span>
+        </button>
+    </div>
+@endif
 <!-- inline / side by side buttons (end) -->
 </div><!-- main row end -->
 </div>

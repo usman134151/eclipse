@@ -219,6 +219,9 @@ Route::group([
 
                 Route::view('/company-profile', 'tenant/customer/company-profile');
                 Route::view('/system-logs', 'tenant/customer/system-logs');
+				Route::view('/reports', 'tenant/customer/reports');
+				Route::view('/jira-status', 'tenant/customer/jira-status');
+
                 Route::view('/settings', 'tenant/settings/notifications');
                 Route::view('/change-password', 'tenant/customer/change-password');
 			  });

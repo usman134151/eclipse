@@ -336,7 +336,7 @@ class CustomerForm extends Component
 		}
 
 		if ($redirect) {
-			if ($this->isCustomer)
+			if ($this->isCustomer)//for customer panel
 				$this->emit('showConfirmation', 'Profile updated successfully');
 			else {
 
