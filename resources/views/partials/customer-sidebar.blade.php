@@ -194,8 +194,10 @@
                 </ul>
             </li>
 
-            {{-- billing Manager OR Company Admin  OR Supervisor--}}
-            @if (in_array(9, session()->get('customerRoles')) || in_array(10, session()->get('customerRoles')) || in_array(5, session()->get('customerRoles')))
+            {{-- billing Manager OR Company Admin  OR Supervisor --}}
+            @if (in_array(9, session()->get('customerRoles')) ||
+                    in_array(10, session()->get('customerRoles')) ||
+                    in_array(5, session()->get('customerRoles')))
                 <li class="nav-item has-sub">
                     <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
                         <svg aria-label="Billing" width="16" height="20" viewBox="0 0 16 20"
@@ -268,7 +270,8 @@
                             </a>
                         </li>
                         <li role="menuitem" class="nav-item">
-                            <a class="nav-link" href="/customer/departments/{{encrypt(Auth()->user()->company_name)}}">
+                            <a class="nav-link"
+                                href="/customer/departments/{{ encrypt(Auth()->user()->company_name) }}">
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <use xlink:href="/css/customer.svg#profile-nav-icon"></use>
@@ -317,7 +320,7 @@
                             </a>
                         </li>
                         <li role="menuitem" class="nav-item">
-                            <a class="nav-link" href="/customer/department-profile">
+                            <a class="nav-link" href="/customer/department-profile/{{ encrypt(Auth()->user()->company_name) }}">
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <use xlink:href="/css/customer.svg#profile-nav-icon"></use>
@@ -390,6 +393,15 @@
                                 <use xlink:href="/css/menu.svg#reset-password-icon"></use>
                             </svg>
                             <span class="menu-item">Password Reset</span>
+                        </a>
+                    </li>
+                    <li role="menuitem" class="nav-item" id="edit-profile">
+                        <a class="nav-link" href="/customer/edit-profile">
+                            <svg aria-label="Edit Profile" width="24" height="17" viewBox="0 0 24 17"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <use xlink:href="/css/admin-menu.svg#account-profile"></use>
+                            </svg>
+                            <span class="menu-item">Edit My Profile</span>
                         </a>
                     </li>
                 </ul>

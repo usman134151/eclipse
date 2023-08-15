@@ -1,7 +1,6 @@
 @extends('layouts.tenant', ['title' => 'Departments'])
 
 @section('content')
-    <x-coming-soon moduleName="Department Profile"></x-coming-soon>
 
-    {{-- @livewire('app.common.department', ["showForm"=>false,'status'=>1]) --}}
+    @livewire('app.common.department', ['isSupervisor'=>true,"showForm"=>false,'status'=>1])
 @endsection

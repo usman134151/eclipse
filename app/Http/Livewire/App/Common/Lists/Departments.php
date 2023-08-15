@@ -5,6 +5,7 @@ namespace App\Http\Livewire\app\common\lists;
 use App\Models\Tenant\Company;
 use App\Models\Tenant\Department;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Header, PowerGrid, PowerGridComponent, PowerGridEloquent};
@@ -13,6 +14,7 @@ final class Departments extends PowerGridComponent
 {
 	use ActionButton;
 	public $name;
+	public $isSupervisor = false;
     public $companyId;
 	public $companyLabel;
 	public $listpage=false;
@@ -56,7 +58,14 @@ final class Departments extends PowerGridComponent
 	*/
 	public function datasource(): Builder
 	{
-		return Department::query()->with(['phones','supervisors','users'])->where('company_id',$this->companyId);
+		if($this->isSupervisor)
+			return Department::query()->with(['phones', 'supervisors', 'users'])->where('company_id',$this->companyId)
+			->whereHas('supervisors', function ($query) {
+			$query->where('user_departments.user_id', Auth::id());
+		});
+
+		else
+			return Department::query()->with(['phones','supervisors','users'])->where('company_id',$this->companyId);
 	}
 
 	/*
@@ -138,7 +147,12 @@ final class Departments extends PowerGridComponent
 				return $col;
 			})
 			->addColumn('edit', function (Department $model) {
-				return "<div class='d-flex actions'><a href='".url('/admin/department/edit-department/'.$model->id)."' title='Edit Department' aria-label='Edit Department' class='btn btn-sm btn-secondary rounded btn-hs-icon'><svg aria-label='Edit' class='fill' width='20' height='28' viewBox='0 0 20 28'fill='none' xmlns='http://www.w3.org/2000/svg'><use xlink:href='/css/sprite.svg#edit-icon'></use></svg></a>
+				if(session()->get("isCustomer")){
+					$base = 'customer';
+				}
+				else 
+				$base ='admin';
+				return "<div class='d-flex actions'><a href='".url('/'.$base.'/department/edit-department/'.$model->id)."' title='Edit Department' aria-label='Edit Department' class='btn btn-sm btn-secondary rounded btn-hs-icon'><svg aria-label='Edit' class='fill' width='20' height='28' viewBox='0 0 20 28'fill='none' xmlns='http://www.w3.org/2000/svg'><use xlink:href='/css/sprite.svg#edit-icon'></use></svg></a>
 				<a href='javascript:void(0)'  @click='departmentProfile = true' wire:click=\"showDepartmentProfile($model->id,'$model->name')\" title='View Department' aria-label='View Department' class='btn btn-sm btn-secondary rounded btn-hs-icon' wire:click='showProfile'><svg aria-label='View' class='fill' width='20' height='28' viewBox='0 0 20 28'fill='none' xmlns='http://www.w3.org/2000/svg'><use xlink:href='/css/provider.svg#view'></use></svg></a><div class='d-flex actions'><div class='dropdown ac-cstm'><a href='javascript:void(0)' class='btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle' title='More Options' aria-label='More Options' data-bs-toggle='dropdown' data-bs-auto-close='outside' data-bs-popper-config='{&quot;strategy&quot;:&quot;fixed&quot;}'><svg aria-label='More Options' class='fill' width='20' height='20' viewBox='0 0 20 20'fill='none' xmlns='http://www.w3.org/2000/svg'><use xlink:href='/css/sprite.svg#dropdown'></use></svg></a><div class='tablediv dropdown-menu'><a title='View Department Users' aria-label='View Department Users' href='javascript:void(0)' wire:click.prevent='showDepartmentUsers(" . $model->id . ",\"" . $model->name . "\")'  @click='departmentUsers = true' class='dropdown-item'><i class='fa fa-users'></i>View Department Users</a></div></div></div></div>";
 			});
 	}
@@ -200,8 +214,13 @@ final class Departments extends PowerGridComponent
 		$this->emit('refreshDepartmentProfile', $departmentId, $departmentLabel);
 
 		else	//reroute to profile page 
-			return redirect(url('admin/department/profile/'.$departmentId));
-
+		{
+			if (session()->get("isCustomer"))
+			$base = 'customer';
+			else
+			$base = 'admin';
+			return redirect(url($base.'/department/profile/'.$departmentId));
+}
 			// $this->emit('showDepartmentProfile', Department::with(['phones', 'addresses'])->find($departmentId)); //on department page
 
 	}

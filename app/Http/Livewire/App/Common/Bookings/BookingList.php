@@ -66,6 +66,7 @@ protected $listeners = ['showList' => 'resetForm', 'updateVal'];
 	{
 		$this->showBookingDetails = true;
 		$this->booking_id=$booking_id;
-		$this->emit('setBookingId',$booking_id);
+		//to set booking_id in panels and sub-components 
+		$this->emit('setBookingId', $booking_id); 
 	}
 }

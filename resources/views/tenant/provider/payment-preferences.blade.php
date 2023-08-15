@@ -32,7 +32,7 @@
 	</div>
    <div class="card">
     <div class="card-body">
-  @livewire('app.provider.payment-preferences')
+  	@livewire('app.provider.payment-preferences',['provider_id'=>Auth::id()])
    </div>
    </div>
    @include('modals.common.add-address')

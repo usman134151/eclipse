@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class Department extends Component
 {
-	public $showForm, $confirmationMessage;
+	public $showForm, $confirmationMessage, $isSupervisor;
 	public $showProfile, $status, $companyId=0,$company, $department;
 	public $du_counter = 0, $du_departmentId, $du_departmentLabel,  $du_departmentDetails = false; //for company users
 
