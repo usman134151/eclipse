@@ -62,9 +62,10 @@
 
                                                 <h2>{{ $company->name }} Departments</h2>
                                             </div>
+                                            @if(!$isSupervisor)
                                             <div
                                                 class="d-flex flex-column flex-md-row justify-content-end mt-4 mb-3 gap-2">
-                                                        <a href="/admin/department/create-department/{{ encrypt($companyId) }}"
+                                                        <a href="/{{session()->get('isCustomer') ? 'customer' : 'admin'}}/department/create-department/{{ encrypt($companyId) }}"
                                                             type="button"
                                                             class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2"
                                                             wire:click="showForm">
@@ -77,6 +78,7 @@
                                                             <span>Add Department</span>
                                                         </a>
                                             </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
