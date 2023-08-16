@@ -336,9 +336,12 @@ class CustomerForm extends Component
 		}
 
 		if ($redirect) {
-			if ($this->isCustomer)//for customer panel
+			if ($this->isCustomer){ //for customer panel
+
+				if ($this->user->user_dob)
+					$this->user->user_dob = Carbon::parse($this->user->user_dob)->format('m/d/Y');
 				$this->emit('showConfirmation', 'Profile updated successfully');
-			else {
+			}else {
 
 				$this->showList("Customer has been saved successfully");
 				$this->user = new User;

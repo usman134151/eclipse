@@ -20,4 +20,33 @@
 
     </script>
     <script src="/tenant-resources/js/form-functions.js"></script>
+	<script>
+
+	Livewire.on('updateAddressType', (type) => {
+            // Handle the event here
+           
+            // Open the modal
+            $('#addAddressModal').modal('show');
+        });
+        Livewire.on('modalDismissed', () => {
+            $('#addAddressModal').modal('hide');
+               
+            });
+
+   
+        Livewire.on('passwordmodalDismissed', () => {
+            $('#changePasswordModal').modal('hide');
+               
+            });
+
+			document.addEventListener('updateModelVars', function (event) {
+				const elemId = event.detail.elem;
+				var elem = document.getElementById(elemId);
+				var clickEvent = new Event("click");
+				elem.dispatchEvent(clickEvent);
+            });
+			
+</script>
+
+
 @endpush

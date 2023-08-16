@@ -195,7 +195,7 @@
                         @if (session()->get('isProvider'))
                             <a href="/provider/profile" class="dropdown-item" href="#">
                         @elseif (session()->get('isCustomer'))
-                                <a href="/customer/profile" class="dropdown-item" href="#">
+                                <a href="/customer/myprofile" class="dropdown-item" href="#">
                         @else
                                     {{-- for admin --}}
                                     <a href="/admin/profile" class="dropdown-item" href="#">
