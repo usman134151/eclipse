@@ -192,7 +192,7 @@ class CustomerForm extends Component
 		$this->user = $user;
 		$this->isAdd = false;
 		if ($this->user->user_dob)
-			$this->user->user_dob = Carbon::parse()->format('m/d/Y');
+			$this->user->user_dob = Carbon::parse($this->user->user_dob)->format('m/d/Y');
 
 		$this->industryNames = $this->user->industries->pluck('name');
 		$this->departmentNames = $this->user->departments->pluck('name');
