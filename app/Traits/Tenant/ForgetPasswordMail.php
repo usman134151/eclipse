@@ -15,4 +15,14 @@ trait ForgetPasswordMail
         sendMail($user->email, $user->subject, ['data' => $user], 'tenant.emails.forget_password', [],'dispatch');
               
     }
+    public function changePasswordMail($user)
+    {
+        $company = User::find(1);
+        $company = isset($company->users_business)?$company->users_business->company_name:'';
+        $user->subject = $company.' Portal - Password Reset';
+        $user->company = $company;
+        //dd(sendmail($user->email,'',$user->subject,['data' => $user],'tenant.emails.forgot_password'));
+        sendMail($user->email, $user->subject, ['data' => $user], 'tenant.emails.change_password', [],'dispatch');
+              
+    }
 }    
