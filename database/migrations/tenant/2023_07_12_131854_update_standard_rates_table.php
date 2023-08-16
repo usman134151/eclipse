@@ -31,7 +31,7 @@ return new class extends Migration
 
             // Modify column definitions
             $table->string('hours_price')->nullable()->change();
-            $table->boolean('after_hours_price')->nullable()->default(0)->change();
+            $table->string('after_hours_price')->nullable()->default(0)->change();
 
             $table->string('payment_increment', 10)->nullable()->default(0);
             $table->string('payment_increment_p', 10)->nullable()->default(0);

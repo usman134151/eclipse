@@ -20,37 +20,42 @@ use Carbon\Carbon;
 class CustomerForm extends Component
 {
 	use withFileUploads;
-    public $user,$isAdd=true,$userAddresses=[],$image=null,$label='Add',$tags=[];
-    public $userdetail=['industry'=>null, 'phone' => null, 'gender_id' => null, 'language_id' => null, 'timezone_id' => null, 'ethnicity_id' => null,
-	'user_introduction'=>null, 'title' => null, 'user_position' => null,'profile_pic'=>null,'address_line1'=>
-		'', 'address_line2' => '','city'=>'','state'=>'','country'=>''];
-    public $providers=[], $allUserSchedules=[],$unfavored_providers=[],$favored_providers=[];
-	public $user_configuration= ['hide_from_providers'=>"false",'grant_access_to_schedule'=> "false", 'hide_billing'=>"false", 'require_approval'=>"false", 'have_access_to'=>[] ];    
-	public $rolesArr=[],$same_sv,$same_bm;
+	public $isCustomer = false, $selfProfile = false;		// true when component called from customer panel	
+	public $user, $isAdd = true, $userAddresses = [], $image = null, $label = 'Add', $tags = [];
+	public $userdetail = [
+		'industry' => null, 'phone' => null, 'gender_id' => null, 'language_id' => null, 'timezone_id' => null, 'ethnicity_id' => null,
+		'user_introduction' => null, 'title' => null, 'user_position' => null, 'profile_pic' => null, 'address_line1' =>
+		'', 'address_line2' => '', 'city' => '', 'state' => '', 'country' => ''
+	];
+	public $providers = [], $allUserSchedules = [], $unfavored_providers = [], $favored_providers = [];
+	public $user_configuration = ['hide_from_providers' => "false", 'grant_access_to_schedule' => "false", 'hide_billing' => "false", 'require_approval' => "false", 'have_access_to' => []];
+	public $rolesArr = [], $same_sv, $same_bm;
 	public $component = 'customer-info';
-    public $setupValues = [
-        'companies'=>['parameters'=>['Company', 'id', 'name', '', '', 'name', false, 'user.company_name','','user.company_name',1]],
-        'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'userdetail.language_id', '','language_id',4]],
-        'ethnicities' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 3, 'setup_value_label', false,'userdetail.ethnicity_id','','ethnicity_id',2]],
-        'gender' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 2, 'setup_value_label', false,'userdetail.gender_id','','gender_id',3]],
-        'timezones' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 4, 'setup_value_label', false,'userdetail.timezone_id','','timezone_id',4]],
-		'countries' => ['parameters' => ['Country', 'name', 'name', '', '', 'name', false, 'userdetail.country','','country',4]],
+	public $setupValues = [
+		'companies' => ['parameters' => ['Company', 'id', 'name', '', '', 'name', false, 'user.company_name', '', 'user.company_name', 1]],
+		'languages' => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 1, 'setup_value_label', false, 'userdetail.language_id', '', 'language_id', 4]],
+		'ethnicities' => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 3, 'setup_value_label', false, 'userdetail.ethnicity_id', '', 'ethnicity_id', 2]],
+		'gender' => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 2, 'setup_value_label', false, 'userdetail.gender_id', '', 'gender_id', 3]],
+		'timezones' => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 4, 'setup_value_label', false, 'userdetail.timezone_id', '', 'timezone_id', 4]],
+		'countries' => ['parameters' => ['Country', 'name', 'name', '', '', 'name', false, 'userdetail.country', '', 'country', 4]],
 
 	];
 	public $driveActive, $serviceActive, $permissionActive, $customerActive;
 
-	
-    public $step = 1,$email_invitation,$limit, $allTags=[];
-    protected $listeners = ['updateVal' => 'updateVal', 'stepIncremented', 'updateSelectedIndustries' => 'selectIndustries',
-		'updateSelectedDepartments' => 'selectDepartments', 'updateSelectedSupervisors', 'updateSelectedBManagers','updateSelectedSupervising', 'updateSelectedUsersToManager',
-		'updateSelectedStaff','updateAddress' => 'addAddress'];
-	public $serviceConsumer=false;
+
+	public $step = 1, $email_invitation, $limit, $allTags = [];
+	protected $listeners = [
+		'updateVal' => 'updateVal', 'stepIncremented', 'updateSelectedIndustries' => 'selectIndustries',
+		'updateSelectedDepartments' => 'selectDepartments', 'updateSelectedSupervisors', 'updateSelectedBManagers', 'updateSelectedSupervising', 'updateSelectedUsersToManager',
+		'updateSelectedStaff', 'updateAddress' => 'addAddress'
+	];
+	public $serviceConsumer = false;
 
 	//modals variables
-	public $selectedIndustries=[],  $selectedDepartments = [], $svDepartments=[],$industryNames=[], $departmentNames=[],$selectedSupervisors=[],
-		$defaultSupervisor, $selectedSupervising=[],$supervisingNames=[], $selectedBManagers=[], $defaultBManager,$selectedUsersToManage=[],$selectedAdminStaff=[];
-	
-		public $supervisorNames=[],$sv_limit, $bManagerNames=[],$bm_limit,$managerNames=[],$m_limit,$adminStaffNames=[],$s_limit;
+	public $selectedIndustries = [],  $selectedDepartments = [], $svDepartments = [], $industryNames = [], $departmentNames = [], $selectedSupervisors = [],
+		$defaultSupervisor, $selectedSupervising = [], $supervisingNames = [], $selectedBManagers = [], $defaultBManager, $selectedUsersToManage = [], $selectedAdminStaff = [];
+
+	public $supervisorNames = [], $sv_limit, $bManagerNames = [], $bm_limit, $managerNames = [], $m_limit, $adminStaffNames = [], $s_limit;
 	//end of modals variables
 
 
@@ -63,13 +68,14 @@ class CustomerForm extends Component
 
 		return view('livewire.app.common.forms.customer-form');
 	}
-    public function mount(User $user){
-		
-		
-       
+	public function mount(User $user)
+	{
 
-		$this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
-        $this->user=$user;
+
+
+
+		$this->setupValues = SetupHelper::loadSetupValues($this->setupValues);
+		$this->user = $user;
 		$this->providers = User::query()
 			->where('status', 1)
 			->whereHas('roles', function ($query) {
@@ -78,7 +84,7 @@ class CustomerForm extends Component
 			->select('id', 'name')
 			->get();
 		$this->allTags = Tag::pluck('name')->toArray();
-		$this->tags=[];
+		$this->tags = [];
 
 		if (request()->customerID != null) {
 
@@ -91,11 +97,23 @@ class CustomerForm extends Component
 
 			// $this->switch(request()->step);/
 
-			
+
 
 		}
-
-
+		//edit from customer panel
+		if ($this->isCustomer) {
+			if ($user->id)
+				$this->edit($user);
+			else	//create
+			{
+				$this->user->company_name = Auth::user()->company_name;
+				$admin_user = User::find(Auth::id());	//set default values same as current logged in user
+				$this->industryNames = $admin_user->industries->pluck('name');
+				$this->departmentNames = $admin_user->supervised_departments->pluck('name');
+				$this->selectedDepartments = $admin_user->supervised_departments->pluck('id');
+				$this->selectedIndustries = $admin_user->industries->pluck('id');
+			}
+		}
 	}
 
 	public function showList($message = "")
@@ -104,23 +122,23 @@ class CustomerForm extends Component
 		$this->emit('showList', $message);
 	}
 
-	public function switch($component,$step=0,$check=false)
+	public function switch($component, $step = 0, $check = false)
 	{
-		
-		if($step!=0){
-			if($check==false || ($check==true && !is_null($this->user->email)))
-			   $this->step=$step;
+
+		if ($step != 0) {
+			if ($check == false || ($check == true && !is_null($this->user->email)))
+				$this->step = $step;
 		}
 		$this->component = $component;
-
 	}
 
-    public function permissionConfiguration($redirect=1){
+	public function permissionConfiguration($redirect = 1)
+	{
 
 		// dd($this->selectedSupervisors);
 		$userService = new UserService;
-		$userService->storeCustomerRoles($this->rolesArr,$this->user->id);
-		$userService->storeUserRolesDetails($this->user->id,$this->selectedSupervisors,5,1,$this->defaultSupervisor);
+		$userService->storeCustomerRoles($this->rolesArr, $this->user->id);
+		$userService->storeUserRolesDetails($this->user->id, $this->selectedSupervisors, 5, 1, $this->defaultSupervisor);
 		$userService->storeUserRolesDetails($this->user->id, $this->selectedSupervising, 5, 0);
 		$userService->storeUserRolesDetails($this->user->id, $this->selectedBManagers, 9, 1, $this->defaultBManager);
 		$userService->storeUserRolesDetails($this->user->id, $this->selectedUsersToManage, 9, 0);
@@ -136,56 +154,60 @@ class CustomerForm extends Component
 
 
 		if ($redirect) {
+			 if ($this->isCustomer) {	//return to team members page 
+				return redirect('/customer/team-members');
+			}
 
 			$this->showList("Customer has been saved successfully");
 			$this->user = new User;
 		}
-        $this->step =3;
+		$this->step = 3;
 		$this->switch('service-catalog');
-    }
-    public function addServices(){
-        $this->step = 4;
-		
-		$this->switch('drive-documents');
-    }
+	}
+	public function addServices()
+	{
+		$this->step = 4;
 
-    public function edit(User $user){
-		
-	   $this->user=$user;
+		$this->switch('drive-documents');
+	}
+
+	public function edit(User $user)
+	{
+
+		$this->user = $user;
 		//    if(is_array($user['userdetail']))
 		//    	$this->userdetail=$user['userdetail'];
 
-		if($user->userdetail!=null && $user->userdetail->exists())
+		if ($user->userdetail != null && $user->userdetail->exists())
 			$this->userdetail = $user->userdetail->toArray();
 
 		if ($this->user->userdetail->get('user_configuration') != null)
-		 $this->user_configuration = json_decode($this->userdetail['user_configuration'],true);
-		if ($this->user->userdetail->get('tags')!=null)
+			$this->user_configuration = json_decode($this->userdetail['user_configuration'], true);
+		if ($this->user->userdetail->get('tags') != null)
 			$this->tags = json_decode($this->userdetail['tags'], true);
 		else
-			$this->tags=[];
-   
-		$this->label="Edit";
-        $this->user=$user;
-	    $this->isAdd=false;
-	    if($this->user->user_dob)
-			$this->user->user_dob = Carbon::createFromFormat('Y-m-d', $this->user->user_dob)->format('m/d/Y');
+			$this->tags = [];
+
+		$this->label = "Edit";
+		$this->user = $user;
+		$this->isAdd = false;
+		if ($this->user->user_dob)
+			$this->user->user_dob = Carbon::parse($this->user->user_dob)->format('m/d/Y');
 
 		$this->industryNames = $this->user->industries->pluck('name');
 		$this->departmentNames = $this->user->departments->pluck('name');
 		$this->selectedDepartments = $this->user->departments->pluck('id');
 		$this->selectedIndustries = $this->user->industries->pluck('id');
 
-		
 
-		if(count($user->addresses)){
+
+		if (count($user->addresses)) {
 			//dd($company->phones);
-			$this->userAddresses=[];
-			foreach($user->addresses as $address){
-				$this->userAddresses[]=$address->toArray();
+			$this->userAddresses = [];
+			foreach ($user->addresses as $address) {
+				$this->userAddresses[] = $address->toArray();
 			}
-		
-		}	
+		}
 		// dd($this->userdetail);
 		if (!is_null($this->user->company_name)) {
 			$this->emit('updateCompany', $this->user->company_name);
@@ -194,153 +216,159 @@ class CustomerForm extends Component
 
 
 		$this->dispatchBrowserEvent('refreshSelects');
-     
-    }
+	}
 
 	// TO-DO:
 	// if user's company is changed
 	// all its records will be changed
 	// departments, roles, roles_details (choosen from modals),user_configuration
-	
+
 	// remove self-customer from lists?
 
 	public function updateVal($attrName, $val)
-	{  
-		if($this->step == 1){
-			if($attrName=='user_dob'){
-            	$this->user['user_dob']=$val;
-				
-        	}
-		   elseif($attrName=="user.company_name"){
-			
-			$this->user['company_name'] = $val;
-			// Emit an event with data
-			$this->emit('updateCompany', $val);
-			$this->departmentNames=[];
-			
-		   }
-		   else{
-			$this->userdetail[$attrName] = $val;
-		   }
+	{
+		if ($this->step == 1) {
+			if ($attrName == 'user_dob') {
+				$this->user['user_dob'] = $val;
+			} elseif ($attrName == "user.company_name") {
+
+				$this->user['company_name'] = $val;
+				// Emit an event with data
+				$this->emit('updateCompany', $val);
+				$this->departmentNames = [];
+			} else {
+				$this->userdetail[$attrName] = $val;
+			}
 			if ($attrName == 'tags') {
-				$this->tags =explode(',', $val);
-				$this->allTags =array_unique(array_merge($this->allTags, $this->tags));
+				$this->tags = explode(',', $val);
+				$this->allTags = array_unique(array_merge($this->allTags, $this->tags));
 				$this->allTags = array_values($this->allTags);
 			}
-		  
-		}
-		else if($attrName == "have_access_to")
-				$this->user_configuration['have_access_to'] =$val;
+		} else if ($attrName == "have_access_to")
+			$this->user_configuration['have_access_to'] = $val;
 		else
 			$this->$attrName = $val;
-
-		
-
 	}
 
 	public function rules()
 	{
 		return [
-            'user.company_name' => [
-				'required'],
+			'user.company_name' => [
+				'required'
+			],
 			'user.first_name' => [
 				'required',
 				'string',
-				'max:255'],
-            'user.last_name' => [
-                'required',
-                'string',
-                'max:255'],
-            'user.email' => [
-                'required',
-                'email',
-                'max:255',
-				Rule::unique('users', 'email')->ignore($this->user->id)],    
-            'user.user_dob' => [
-                    'nullable',
-                    'date', 'date_format:m/d/Y',
-                    'before:today'],                        
-            'userdetail.user_position' => [
-                    'nullable',
-                    'string',
-                    'max:255'],  
-            'userdetail.title' => [
-                'nullable',
-                'string',
-                'max:255'],            
-            'userdetail.ethnicity_id' => [
-                'nullable'],  
-            'userdetail.language_id' => [
-                'nullable'],  
-            'userdetail.timezone_id' => [
-                'nullable'],  
-            'userdetail.gender_id' => [
-                'nullable'],
+				'max:255'
+			],
+			'user.last_name' => [
+				'required',
+				'string',
+				'max:255'
+			],
+			'user.email' => [
+				'required',
+				'email',
+				'max:255',
+				Rule::unique('users', 'email')->ignore($this->user->id)
+			],
+			'user.user_dob' => [
+				'nullable',
+				'date', 'date_format:m/d/Y',
+				'before:today'
+			],
+			'userdetail.user_position' => [
+				'nullable',
+				'string',
+				'max:255'
+			],
+			'userdetail.title' => [
+				'nullable',
+				'string',
+				'max:255'
+			],
+			'userdetail.ethnicity_id' => [
+				'nullable'
+			],
+			'userdetail.language_id' => [
+				'nullable'
+			],
+			'userdetail.timezone_id' => [
+				'nullable'
+			],
+			'userdetail.gender_id' => [
+				'nullable'
+			],
 			'userdetail.phone' => [
-					'nullable','max:150'],
-			'userdetail.state'=>['nullable','max:150'],
+				'nullable', 'max:150'
+			],
+			'userdetail.state' => ['nullable', 'max:150'],
 			'userdetail.city' => ['nullable', 'max:150'],
 			'userdetail.zip' => ['nullable', 'max:150'],
 			'image' => 'nullable|image|mimes:jpg,png,jpeg',
-			'selectedIndustries'=>'required',
+			'selectedIndustries' => 'required',
 
 
-			
+
 		];
 	}
 
 
-	public function save($redirect=1){
-		
-		
+	public function save($redirect = 1)
+	{
+
+
 		$this->validate();
 		if ($this->user->user_dob) {
-			$this->user->user_dob = Carbon::parse($this->user->user_dob); 
+			$this->user->user_dob = Carbon::parse($this->user->user_dob);
 			// Carbon::createFromFormat('d/m/Y', $this->user->user_dob)->format('Y-m-d');
 		}
 
-        $this->user->name=$this->user->first_name.' '.$this->user->last_name;
+		$this->user->name = $this->user->first_name . ' ' . $this->user->last_name;
 		$this->user->added_by = Auth::id();
-		$this->user->status=1;
+		$this->user->status = 1;
 
-		$this->userdetail['user_configuration']= json_encode($this->user_configuration);
+		$this->userdetail['user_configuration'] = json_encode($this->user_configuration);
 		$this->userdetail['tags'] = json_encode($this->tags);
 		$this->updateTags();
 
 
-		if($this->image!=null){
+		if ($this->image != null) {
 			$fileService = new UploadFileService();
-			$this->userdetail['profile_pic'] = $fileService->saveFile('profile_pic', $this->image, $this->userdetail['profile_pic']);	
+			$this->userdetail['profile_pic'] = $fileService->saveFile('profile_pic', $this->image, $this->userdetail['profile_pic']);
 		}
 		$userService = new UserService;
-		
-        $this->user = $userService->createUser($this->user,$this->userdetail,4,$this->email_invitation,$this->selectedIndustries,$this->isAdd);
+
+		$this->user = $userService->createUser($this->user, $this->userdetail, 4, $this->email_invitation, $this->selectedIndustries, $this->isAdd);
 
 		$this->user->departments()->sync($this->selectedDepartments);
-		if($this->step==1){
+		if ($this->step == 1) {
 
 			$addressService = new AddressService();
 			$addressService->saveAddresses($this->user->id, 1, $this->userAddresses);
 		}
-		if ($redirect) {
 
-			$this->showList("Customer has been saved successfully");
-			$this->user = new User;
-		}
-		else{
+		if ($redirect) {
+			if ($this->isCustomer && $this->selfProfile) { //for customer panel
+
+				if ($this->user->user_dob)
+					$this->user->user_dob = Carbon::parse($this->user->user_dob)->format('m/d/Y');
+				$this->emit('showConfirmation', 'Profile updated successfully');
+			} elseif ($this->isCustomer) {	//return to team members page 
+				return redirect('/customer/team-members');
+			} else {
+
+				$this->showList("Customer has been saved successfully");
+				$this->user = new User;
+			}
+		} else {
 
 			$this->setStep(2, 'permissionActive', 'permission-configurations');
-
-			
-			
-
-			
 		}
-		
-		
 	}
 
-	public function setPermissions(){
+	public function setPermissions()
+	{
 		if (!is_null($this->user->company_name)) {
 			$this->emit('updateCompany', $this->user->company_name);
 		}
@@ -364,18 +392,18 @@ class CustomerForm extends Component
 			$this->unfavored_providers = explode(', ', $this->user->userdetail['unfavored_users']);
 		if ($this->user->userdetail->get('user_configuration') != null)
 			$this->user_configuration = json_decode($this->user->userdetail->user_configuration, true);
-		
-			$userService = new UserService;
+
+		$userService = new UserService;
 
 		$this->rolesArr = $userService->getCustomerRoles($this->user->id);
 		// set modal values for step 2
 		$this->emit('setValues', $this->user->id);
-
 	}
 
-	public function updateTags(){
-		foreach($this->allTags as $tag){
-			Tag::firstOrCreate(['name'=>$tag]);
+	public function updateTags()
+	{
+		foreach ($this->allTags as $tag) {
+			Tag::firstOrCreate(['name' => $tag]);
 		}
 	}
 
@@ -384,8 +412,12 @@ class CustomerForm extends Component
 	{
 
 		if ($redirect) {
-			$this->showList("Company has been saved successfully");
-			$this->user = new User;
+			if ($this->isCustomer) {
+				return redirect('/customer/team-members');
+			} else {
+				$this->showList("Company has been saved successfully");
+				$this->user = new User;
+			}
 		} else {
 			$this->serviceActive = "";
 			$this->permissionActive = "";
@@ -407,15 +439,16 @@ class CustomerForm extends Component
 			if ($this->user->user_dob)
 				$this->user->user_dob = Carbon::parse($this->user->user_dob)->format('m/d/Y');
 		}
-		if($this->step==2)
-		$this->setPermissions();
+		if ($this->step == 2)
+			$this->setPermissions();
 
 		$this->dispatchBrowserEvent('refreshSelects');
 	}
 
 
-	public function selectSameSupervisor(){
-			$this->emit('selectSelfSupervisor',$this->same_sv);
+	public function selectSameSupervisor()
+	{
+		$this->emit('selectSelfSupervisor', $this->same_sv);
 	}
 	public function selectSameBManager()
 	{
@@ -424,28 +457,25 @@ class CustomerForm extends Component
 
 	public function stepIncremented()
 	{
-	
-		$this->step=$this->step+1;
-		if($this->step==3)
-		 {
-			$this->driveActive='active';
-			$this->serviceActive='';
-		 }
+
+		$this->step = $this->step + 1;
+		if ($this->step == 3) {
+			$this->driveActive = 'active';
+			$this->serviceActive = '';
+		}
 	}
 
 	//modal functions
 
-	public function selectIndustries($selectedIndustries, $defaultIndustry,$industryNames)
+	public function selectIndustries($selectedIndustries, $defaultIndustry, $industryNames)
 	{
 
-		$this->selectedIndustries=$selectedIndustries;
+		$this->selectedIndustries = $selectedIndustries;
 		$this->industryNames = $industryNames;
-    	$this->userdetail['industry'] = $defaultIndustry;
-		
-
+		$this->userdetail['industry'] = $defaultIndustry;
 	}
 
-	public function selectDepartments($selectedDepartments, $defaultDepartment,$departmentNames)
+	public function selectDepartments($selectedDepartments, $defaultDepartment, $departmentNames)
 	{
 		$this->selectedDepartments = $selectedDepartments;
 		$this->userdetail['department'] = $defaultDepartment;
@@ -453,14 +483,14 @@ class CustomerForm extends Component
 		$this->departmentNames = $departmentNames;
 	}
 
-	public function updateSelectedSupervisors($selectedSupervisors,$default)
+	public function updateSelectedSupervisors($selectedSupervisors, $default)
 	{
 		$this->selectedSupervisors = $selectedSupervisors;
 		$this->defaultSupervisor = $default;
 
-		$this->supervisorNames=[];
+		$this->supervisorNames = [];
 		foreach ($selectedSupervisors as $us) {
-			$this->supervisorNames[] = User::where('id',$us)->with('userdetail')->first()->toArray();
+			$this->supervisorNames[] = User::where('id', $us)->with('userdetail')->first()->toArray();
 		}
 		if (count($this->supervisorNames) >= 4)
 			$this->sv_limit = 3;
@@ -474,31 +504,31 @@ class CustomerForm extends Component
 	}
 	public function updateSelectedSupervising($selectedSupervising)
 	{
-		$this->supervisingNames=[];
+		$this->supervisingNames = [];
 		$this->selectedSupervising = $selectedSupervising;
-		$this->supervisingNames =[];
-		foreach($selectedSupervising as $us){
-			$this->supervisingNames[]= User::where('id', $us)->with('userdetail')->first()->toArray();
+		$this->supervisingNames = [];
+		foreach ($selectedSupervising as $us) {
+			$this->supervisingNames[] = User::where('id', $us)->with('userdetail')->first()->toArray();
 		}
-		if(count($this->supervisingNames)>=4)
+		if (count($this->supervisingNames) >= 4)
 			$this->limit = 3;
 		else
-			$this->limit= count($this->supervisingNames)-1;
+			$this->limit = count($this->supervisingNames) - 1;
 	}
 	public function updateSelectedBManagers($selectedBManagers, $default)
 	{
 		$this->selectedBManagers = $selectedBManagers;
 		$this->defaultBManager = $default;
 
-		$this->bManagerNames=[];
+		$this->bManagerNames = [];
 		foreach ($selectedBManagers as $us) {
-			$this->bManagerNames[]= User::where('id', $us)->with('userdetail')->first()->toArray();
+			$this->bManagerNames[] = User::where('id', $us)->with('userdetail')->first()->toArray();
 		}
 		if (count($this->bManagerNames) >= 4)
 			$this->bm_limit = 3;
 		else
 			$this->bm_limit = count($this->bManagerNames) - 1;
-        // if (in_array($this->user->id, $this->selectedBManagers)) //setting checkbox
+		// if (in_array($this->user->id, $this->selectedBManagers)) //setting checkbox
 		// 	$this->same_bm = true; 
 		// else
 		// 	$this->same_bm = false;
@@ -511,7 +541,7 @@ class CustomerForm extends Component
 
 		$this->managerNames = [];
 		foreach ($selectedUsersToManage as $us) {
-			$this->managerNames[] =User::where('id', $us)->with('userdetail')->first()->toArray();
+			$this->managerNames[] = User::where('id', $us)->with('userdetail')->first()->toArray();
 		}
 		if (count($this->managerNames) >= 4)
 			$this->m_limit = 3;
@@ -523,7 +553,7 @@ class CustomerForm extends Component
 		$this->selectedAdminStaff = $selectedStaff;
 		$this->adminStaffNames = [];
 		foreach ($selectedStaff as $us) {
-			$this->adminStaffNames[] =User::where('id', $us['id'])->with('userdetail')->first()->toArray();;
+			$this->adminStaffNames[] = User::where('id', $us['id'])->with('userdetail')->first()->toArray();;
 		}
 		if (count($this->adminStaffNames) >= 4)
 			$this->s_limit = 3;
@@ -531,8 +561,9 @@ class CustomerForm extends Component
 			$this->s_limit = count($this->adminStaffNames) - 1;
 	}
 
-	public function updateAddressType($type){
-		$this->emit('updateAddressType',$type);
+	public function updateAddressType($type)
+	{
+		$this->emit('updateAddressType', $type);
 	}
 
 	public function addAddress($addressArr)
@@ -541,29 +572,26 @@ class CustomerForm extends Component
 		if (isset($addressArr['index'])) { //update existing
 			$this->userAddresses[$addressArr['index']] = $addressArr;
 		} else
-		$this->userAddresses[] = $addressArr;
+			$this->userAddresses[] = $addressArr;
 	}
 
-	public function back($component){
-        $this->step--;
+	public function back($component)
+	{
+		$this->step--;
 		$this->switch($component);
-		
-    
-    }
-	public function deleteAddress($index){
-		if(key_exists('id',$this->userAddresses[$index])){
+	}
+	public function deleteAddress($index)
+	{
+		if (key_exists('id', $this->userAddresses[$index])) {
 			AddressService::deleteAddress($this->userAddresses[$index]['id']);
-			
 		}
-       
+
 		unset($this->userAddresses[$index]);
-        $this->userAddresses= array_values($this->userAddresses);
-		
+		$this->userAddresses = array_values($this->userAddresses);
 	}
 	public function editAddress($index, $type)
 	{
 		$this->userAddresses[$index]['index'] = $index;	//passing ref index
 		$this->emit('updateAddressType', $type, $this->userAddresses[$index]);
 	}
-
 }

@@ -9,8 +9,8 @@ use App\Services\OptService;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Tenant\Helper\Helper;
 use App\Models\Tenant\BusinessSetup;
-use App\Models\Tenant\SystemRoleUser;
 use App\Models\Tenant\RoleUser;
+use App\Services\App\UserService;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,19 +33,19 @@ class LoginController extends Controller
 	/** @override */
 	public function showLoginForm()
 	{
-		$welcome_text='';
+		$welcome_text = '';
 		$login_screen = null;
-		$data['company_logo']=null;
+		$data['company_logo'] = null;
 
-		
-		
+
+
 		$businessSetup = BusinessSetup::first();
 
 		if ($businessSetup) {
 			$welcome_text = $businessSetup->welcome_text;
-			if($businessSetup->login_screen!=null){
-                if (\File::exists(public_path($businessSetup->login_screen)))
-				$login_screen = $businessSetup->login_screen;
+			if ($businessSetup->login_screen != null) {
+				if (\File::exists(public_path($businessSetup->login_screen)))
+					$login_screen = $businessSetup->login_screen;
 			}
 			if ($businessSetup->company_logo != null) {
 				if (\File::exists(public_path($businessSetup->company_logo)))
@@ -53,11 +53,10 @@ class LoginController extends Controller
 			}
 			$data['default_colour'] = $businessSetup->default_colour;
 			$data['foreground_colour'] = $businessSetup->foreground_colour;
-			
 		}
 		session($data);	//storing setup details 
 
-		return view('tenant.auth.login',['welcome_text'=>$welcome_text,'login_screen'=> $login_screen]);
+		return view('tenant.auth.login', ['welcome_text' => $welcome_text, 'login_screen' => $login_screen]);
 	}
 
 	/**
@@ -84,15 +83,15 @@ class LoginController extends Controller
 	 */
 	public function login(Request $request)
 	{
-		$this->validate($request,[
-			'email'=>'required|email',
-			'password'=>'required'
-		 ]);
+		$this->validate($request, [
+			'email' => 'required|email',
+			'password' => 'required'
+		]);
 
 		$credentials = $request->only('email', 'password');
 		if (Auth::attempt($credentials)) {
-		   // if (Auth::user()->status == 1) {
-			if(!$request->cookie('savedBrowser') && !Helper::checkUserSavedBrowser() && env('2FA')){
+			// if (Auth::user()->status == 1) {
+			if (!$request->cookie('savedBrowser') && !Helper::checkUserSavedBrowser() && env('2FA')) {
 
 				####Task:OPT Add Services (Sakhawat Kamran) ####
 				OptService::optExpired();
@@ -108,36 +107,52 @@ class LoginController extends Controller
 				####END-OPT####
 				return redirect('otpverify');
 				die();
-			}else{
-			//tmp fix to check if required directories are created
-		
-				$directories=['/framework/cache/','app/public','app/tmp','app/livewire-tmp'];
-				foreach($directories as $directory){
-							
-					if (!file_exists(storage_path().$directory)) {
-						
-						mkdir(storage_path().$directory, 0755, true);
-						
-						
+			} else {
+				//tmp fix to check if required directories are created
+
+				$directories = ['/framework/cache/', 'app/public', 'app/tmp', 'app/livewire-tmp'];
+				foreach ($directories as $directory) {
+
+					if (!file_exists(storage_path() . $directory)) {
+
+						mkdir(storage_path() . $directory, 0755, true);
 					}
 				}
-				
+
 				//saving permissions in session
-				$userPermissions=userPermissions();
+				$userPermissions = userPermissions();
 				Session::put('userPermissions', $userPermissions->toArray());
-				$super_admin_user = RoleUser::where('role_id', 1)->where('user_id',auth()->user()->id)->orderBy('id','asc')->first();
-				if($super_admin_user){
+				$super_admin_user = RoleUser::where('role_id', 1)->where('user_id', auth()->user()->id)->orderBy('id', 'asc')->first();
+				
+				if ($super_admin_user) {
 					Session::put('isSuperAdmin', 1);
-				}else{
-					Session::put('isSuperAdmin', $super_admin_user);
+				} 
+				$is_provider = RoleUser::where('role_id', 2)->where('user_id', auth()->user()->id)->orderBy('id', 'asc')->first();
+				if ($is_provider) {
+					Session::put('isProvider', 1);
+				} else {
+					Session::put('isProvider', $is_provider);
+				}
+				$is_customer = RoleUser::where('role_id', 4)->where('user_id', auth()->user()->id)->orderBy('id', 'asc')->first();
+				if ($is_customer) {
+					Session::put('isCustomer', 1);
+					//fetch customer Roles
+					$service = new UserService();
+					$customer_roles =  $service->getCustomerRoles(Auth::id());
+					if (count($customer_roles))
+						Session::put('customerRoles', array_keys($customer_roles));
+					else
+						Session::put('customerRoles', []);
+				} else {
+					Session::put('isCustomer', $is_customer);
 				}
 
 				return redirect('home');
 			}
-		   // } else {
-			 //   Auth::logout();
-			   // return redirect("login")->withErrors(['loginError' => __('auth.notActiveError')]);
-			   // die();
+			// } else {
+			//   Auth::logout();
+			// return redirect("login")->withErrors(['loginError' => __('auth.notActiveError')]);
+			// die();
 			//}
 		}
 

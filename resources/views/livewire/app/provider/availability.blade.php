@@ -39,3 +39,14 @@
 			 @include('panels.common.time-off-panel',['userid'=>Auth::id()])
 
     </div>
+    @push('scripts')
+    <script>
+    function updateVal(attrName,val){
+		 if(attrName=='select-days')
+		 	Livewire.emit('updateDay', val);
+		 else
+		 Livewire.emit('updateVal', attrName, val);
+		//Livewire.emit('refreshFilters', attrName, val);
+	}
+    </script>
+    @endpush

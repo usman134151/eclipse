@@ -183,23 +183,25 @@
                                                                     {{ $booking['accommodations'] ? $booking['accommodations']['name'] : '' }}
                                                                 </div>
                                                                 {{-- <div>Shelby Sign Language</div> --}}
-                                                                @if ($booking['service'])
-                                                                    <div>Service: {{ $booking['service']['name'] }}
+                                                                @if ($booking->services->isNotEmpty())
+                                                                    <div>Service:
+                                                                        {{ $booking->services->first()->name }}
                                                                     </div>
                                                                 @endif
                                                             </td>
                                                             <td>
                                                                 <div class="badge bg-warning mb-1">
-                                                                    @if ($booking['service_type'] == 1)
-                                                                        In-Person
-                                                                    @elseif($booking['service_type'] == 2)
-                                                                        Virtual
-                                                                    @elseif($booking['service_type'] == 4)
-                                                                        Phone
-                                                                    @elseif($booking['service_type'] == 5)
-                                                                        Teleconference
+                                                                    @if ($booking->services->isNotEmpty())
+                                                                        @if ($booking->services->first()->pivot->service_types == 1)
+                                                                            In-Person
+                                                                        @elseif($booking->services->first()->pivot->service_types == 2)
+                                                                            Virtual
+                                                                        @elseif($booking->services->first()->pivot->service_types == 4)
+                                                                            Phone
+                                                                        @elseif($booking->services->first()->pivot->service_types == 5)
+                                                                            Teleconference
+                                                                        @endif
                                                                     @endif
-
                                                                 </div>
                                                                 <div>292332811 - Code 2131</div>
                                                             </td>
@@ -424,37 +426,37 @@
 </div>
 {{-- End: Content --}}
 @push('scripts')
-<script>
-    function updateVal(attrName, val) {
-        
-		if(attrName=="Service_filter" ||
-	        attrName=="specialization_search_filter" ||
-	        attrName=="setup_value_label" ||
-	        attrName=="tags_selected" ||
-	        attrName=="providers_selected" ||
-	        attrName=="preferred_provider_ids" ||
-	        attrName=="gender" ||
-	        attrName=="ethnicity" ||
-	        attrName=="certifications")
-        {
-            Livewire.emit('refreshFilters', attrName, val);
-		}else{
-            Livewire.emit('updateVal', attrName, val);
+    <script>
+        function updateVal(attrName, val) {
+
+            if (attrName == "Service_filter" ||
+                attrName == "specialization_search_filter" ||
+                attrName == "setup_value_label" ||
+                attrName == "tags_selected" ||
+                attrName == "providers_selected" ||
+                attrName == "preferred_provider_ids" ||
+                attrName == "gender" ||
+                attrName == "ethnicity" ||
+                attrName == "certifications") {
+                Livewire.emit('refreshFilters', attrName, val);
+            } else {
+                Livewire.emit('updateVal', attrName, val);
+            }
         }
-    }
-    document.addEventListener('refreshSelects2', function(event) {
-        $('.select2').select2();
-        $('.select2').off('change').on('change', function (e) {
-            let attrName = $(this).attr('id');
-            updateVal(attrName,  $(this).select2("val"));
+        document.addEventListener('refreshSelects2', function(event) {
+            $('.select2').select2();
+            $('.select2').off('change').on('change', function(e) {
+                let attrName = $(this).attr('id');
+                updateVal(attrName, $(this).select2("val"));
+            });
         });
-    });
-    function refreshSelectsEvent(){
-        $('.select2').select2();
-        $('.select2').off('change').on('change', function (e) {
-            let attrName = $(this).attr('id');
-            updateVal(attrName,  $(this).select2("val"));
-        });
-    }
-</script>
+
+        function refreshSelectsEvent() {
+            $('.select2').select2();
+            $('.select2').off('change').on('change', function(e) {
+                let attrName = $(this).attr('id');
+                updateVal(attrName, $(this).select2("val"));
+            });
+        }
+    </script>
 @endpush

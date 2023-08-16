@@ -163,6 +163,7 @@ Route::group([
 				Route::view('/dashboard', 'tenant/provider/dashboard');
 
 				Route::view('/chat', 'tenant/provider/chat');
+				Route::view('/edit-profile', 'tenant/provider/edit-profile');
 
 				Route::view('/set-availability', 'tenant/provider/manage-availability');
 
@@ -196,19 +197,37 @@ Route::group([
 			Route::prefix('customer')->namespace('Customer')->group(function(){
 				Route::view('/dashboard', 'tenant/customer/dashboard');
                 Route::view('/chat', 'tenant/customer/chat');
+
                 Route::view('booking/booknow', 'tenant/customer/booking/service-request');
-                Route::view('/pending-reviews', 'tenant/customer/pending-reviews');
+                Route::view('/pending-reviews', 'tenant/customer/booking/booking-list', ["bookingType" => "Pending Approval"]);
                 Route::view('/booking/today', 'tenant/customer/booking/booking-list', ["bookingType"=>"Today's"]);
 				Route::view('/booking/upcoming', 'tenant/customer/booking/booking-list', ["bookingType"=>"Upcoming"]);
 				Route::view('/booking/past', 'tenant/customer/booking/booking-list', ["bookingType"=>"Past"]);
                 Route::view('/booking/draft', 'tenant/customer/booking/booking-list', ["bookingType"=>"Draft"]);
                 Route::view('/invoices', 'tenant/customer/invoices');
                 Route::view('/payments-receipts', 'tenant/customer/payment-receipts');
+
+				Route::view('/departments/{companyID}','tenant/customer/departments')->middleware(DecryptRouteParamater::class);
+				Route::view('/department/create-department/{companyID}', 'tenant/common/department', ["showForm" => true, 'status' => 1])->middleware(DecryptRouteParamater::class);
+				Route::view('/department/edit-department/{departmentID}', 'tenant/common/department', ["showForm" => true, 'status' => 1]);
+				Route::view('/department/profile/{departmentID}', 'tenant/common/department', ["showForm" => false, "showProfile" => true, 'status' => 1])->name('customer-department-profile');
+
+				Route::view('/department-profile/{companyID}', 'tenant/customer/department-profile')->middleware(DecryptRouteParamater::class);
+
                 Route::view('/add-team', 'tenant/customer/add-team');
-                Route::view('/payments-setting', 'tenant/customer/payment-setting');
+				Route::view('/edit-team/{customerID}', 'tenant/customer/add-team')->name('customer-edit-team')->middleware(DecryptRouteParamater::class);
+
+				Route::view('/team-members', 'tenant/customer/team-members');
+
+				Route::view('/payments-setting', 'tenant/customer/payment-setting');
                 Route::view('/myprofile', 'tenant/customer/myprofile');
+				Route::view('/edit-profile', 'tenant/customer/edit-profile');
+
                 Route::view('/company-profile', 'tenant/customer/company-profile');
                 Route::view('/system-logs', 'tenant/customer/system-logs');
+				Route::view('/reports', 'tenant/customer/reports');
+				Route::view('/jira-status', 'tenant/customer/jira-status');
+
                 Route::view('/settings', 'tenant/settings/notifications');
                 Route::view('/change-password', 'tenant/customer/change-password');
 			  });

@@ -65,6 +65,7 @@ class Booknow extends Component
         $this->booking=$booking;
         if(!$this->booking->id){
             $this->booking->requester_information=0;
+            $this->booking->frequency_id=32;
         }
         $accommodationsCollection = collect($this->accommodations);
         $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
@@ -266,6 +267,14 @@ class Booknow extends Component
                     $this->services[$index]['accommodation_id'] = $val;
                 }
             }
+            elseif (preg_match('/service_id_(\d+)/', $attrName, $matches)) {
+                $index = intval($matches[1]);
+               
+        
+                if (isset($this->services[$index])) {
+                    $this->services[$index]['service_id'] = $val;
+                }
+            }
             elseif (preg_match('/service_consumer_(\d+)/', $attrName, $matches)) {
                 $index = intval($matches[1]);
                
@@ -323,7 +332,8 @@ class Booknow extends Component
             'booking.company_id'=>'required',
             'booking.customer_id'=>'required',
             'booking.supervisor'=>'required',
-            'booking.billing_manager_id'=>'nullable'
+            'booking.billing_manager_id'=>'nullable',
+            'booking.recurring_end_at'=>'nullable'
 
         ];
     }

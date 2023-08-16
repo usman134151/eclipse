@@ -8,12 +8,13 @@ use App\Services\ExportDataFile;
 
 class CompanyMain extends Component
 {
+	
 	public $showForm, $counter = 0, $companyId, $companyLabel,  $companyDetails = false;
 	public  $dcounter = 0, $departmentId, $departmentLabel,  $departmentDetails = false;
 	public $cu_counter = 0, $cu_companyId, $cu_companyLabel,  $cu_companyDetails = false; //for company users
 	public $du_counter = 0, $du_departmentId, $du_departmentLabel,  $du_departmentDetails = false; //for company users
 	
-	public $showProfile;
+	public $showProfile, $isCustomer=false;
 	public $importFile, $company;
 
 	protected $listeners = [
@@ -36,7 +37,10 @@ class CompanyMain extends Component
 	{
 		$this->showProfile = $showProfile;
 		if ($showProfile) {
+			if(!$this->company)
 			$this->company = Company::where('id', request()->companyID)->with(['phones', 'user', 'addresses','logs'])->first()->toArray();
+			if(session()->get('isCustomer'))
+				$this->isCustomer=true;
 		}
 	}
 	public function __construct()

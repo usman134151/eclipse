@@ -5,6 +5,7 @@ namespace App\Http\Livewire\app\common\lists;
 use App\Models\Tenant\Company;
 use App\Models\Tenant\Department;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Header, PowerGrid, PowerGridComponent, PowerGridEloquent};
@@ -13,9 +14,10 @@ final class Departments extends PowerGridComponent
 {
 	use ActionButton;
 	public $name;
-    public $companyId;
+	public $isSupervisor = false;
+	public $companyId;
 	public $companyLabel;
-	public $listpage=false;
+	public $listpage = false;
 
 
 	/*
@@ -25,7 +27,7 @@ final class Departments extends PowerGridComponent
 	| Setup Table's general features
 	|
 	*/
-	protected $listeners = ['refresh'=>'setUp'];
+	protected $listeners = ['refresh' => 'setUp'];
 	public function setUp(): array
 	{
 		$this->showCheckBox();
@@ -36,7 +38,7 @@ final class Departments extends PowerGridComponent
 				->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
 			Header::make()->showSearchInput()->showToggleColumns(),
 			Footer::make()
-                ->showPerPage(config('app.per_page'))
+				->showPerPage(config('app.per_page'))
 				->showRecordCount(),
 		];
 	}
@@ -50,13 +52,20 @@ final class Departments extends PowerGridComponent
 	*/
 
 	/**
-	* PowerGrid datasource.
-	*
-	* @return Builder<\App\Models\Tenant\Department>
-	*/
+	 * PowerGrid datasource.
+	 *
+	 * @return Builder<\App\Models\Tenant\Department>
+	 */
 	public function datasource(): Builder
 	{
-		return Department::query()->with(['phones','supervisors','users'])->where('company_id',$this->companyId);
+		if ($this->isSupervisor)
+			return Department::query()->with(['phones', 'supervisors', 'users'])->where('company_id', $this->companyId)
+				->whereHas('supervisors', function ($query) {
+					$query->where('user_departments.user_id', Auth::id());
+				});
+
+		else
+			return Department::query()->with(['phones', 'supervisors', 'users'])->where('company_id', $this->companyId);
 	}
 
 	/*
@@ -93,18 +102,20 @@ final class Departments extends PowerGridComponent
 		return PowerGrid::eloquent()
 			->addColumn('name')
 			->addColumn('displayname', function (Department $model) {
-				return "<a href='" . route('tenant.department-profile', ['departmentID' => $model->id]) . "'>" . $model->name . "</a>";
+			if (session()->get("isCustomer"))
+				$base = 'customer-department-profile';
+			else
+				$base = 'department-profile';
+
+				return "<a href='" . route('tenant.'.$base, ['departmentID' => $model->id]) . "'>" . $model->name . "</a>";
 			})
 			->addColumn('phone', function (Department $model) {
-			    if(count($model->phones)){
+				if (count($model->phones)) {
 
 					return $model->phones[0]->phone_number;
-				}
-				else{
+				} else {
 					return 'N/A';
 				}
-
-
 			})
 
 			->addColumn('users', function (Department $model) {
@@ -113,32 +124,34 @@ final class Departments extends PowerGridComponent
 			->addColumn('supervisors', function (Department $model) {
 				// return "<div class='text-center'>".count($model->users)."</div>";
 
-				$col=' <div class="uploaded-data d-flex align-items-center">';
-				if(count($model->supervisors)>0){
-									// dd($model->supervisors->first()->userdetail);
-						// $s = $model->supervisors->userdetail->toArray();
-						
-                         foreach ($model->supervisors as $index =>$s){
-                                $col.='<img style="width:50px;height:50px;top:1rem" src="';
-								if($s->userdetail->profile_pic != null)
-									$image_path = $s->userdetail->profile_pic;
-								else
-									$image_path= '/tenant-resources/images/portrait/small/avatar-s-20.jpg';
+				$col = ' <div class="uploaded-data d-flex align-items-center">';
+				if (count($model->supervisors) > 0) {
+					// dd($model->supervisors->first()->userdetail);
+					// $s = $model->supervisors->userdetail->toArray();
 
-								 $col.=$image_path.'" class="" title="'. $s->name.'"alt="Profile Image">';
-							if($index==3)
+					foreach ($model->supervisors as $index => $s) {
+						$col .= '<img style="width:50px;height:50px;top:1rem" src="';
+						if ($s->userdetail->profile_pic != null)
+							$image_path = $s->userdetail->profile_pic;
+						else
+							$image_path = '/tenant-resources/images/portrait/small/avatar-s-20.jpg';
+
+						$col .= $image_path . '" class="" title="' . $s->name . '"alt="Profile Image">';
+						if ($index == 3)
 							break;
-						}
-							if(count($model->supervisors)>4)
-							$col.='<div class="more"><span class="value">'. count($model->supervisors)-4 .'</span> more</div>';
-							
-
+					}
+					if (count($model->supervisors) > 4)
+						$col .= '<div class="more"><span class="value">' . count($model->supervisors) - 4 . '</span> more</div>';
 				}
-                $col.='</div>';
+				$col .= '</div>';
 				return $col;
 			})
 			->addColumn('edit', function (Department $model) {
-				return "<div class='d-flex actions'><a href='".url('/admin/department/edit-department/'.$model->id)."' title='Edit Department' aria-label='Edit Department' class='btn btn-sm btn-secondary rounded btn-hs-icon'><svg aria-label='Edit' class='fill' width='20' height='28' viewBox='0 0 20 28'fill='none' xmlns='http://www.w3.org/2000/svg'><use xlink:href='/css/sprite.svg#edit-icon'></use></svg></a>
+				if (session()->get("isCustomer")) {
+					$base = 'customer';
+				} else
+					$base = 'admin';
+				return "<div class='d-flex actions'><a href='" . url('/' . $base . '/department/edit-department/' . $model->id) . "' title='Edit Department' aria-label='Edit Department' class='btn btn-sm btn-secondary rounded btn-hs-icon'><svg aria-label='Edit' class='fill' width='20' height='28' viewBox='0 0 20 28'fill='none' xmlns='http://www.w3.org/2000/svg'><use xlink:href='/css/sprite.svg#edit-icon'></use></svg></a>
 				<a href='javascript:void(0)'  @click='departmentProfile = true' wire:click=\"showDepartmentProfile($model->id,'$model->name')\" title='View Department' aria-label='View Department' class='btn btn-sm btn-secondary rounded btn-hs-icon' wire:click='showProfile'><svg aria-label='View' class='fill' width='20' height='28' viewBox='0 0 20 28'fill='none' xmlns='http://www.w3.org/2000/svg'><use xlink:href='/css/provider.svg#view'></use></svg></a><div class='d-flex actions'><div class='dropdown ac-cstm'><a href='javascript:void(0)' class='btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle' title='More Options' aria-label='More Options' data-bs-toggle='dropdown' data-bs-auto-close='outside' data-bs-popper-config='{&quot;strategy&quot;:&quot;fixed&quot;}'><svg aria-label='More Options' class='fill' width='20' height='20' viewBox='0 0 20 20'fill='none' xmlns='http://www.w3.org/2000/svg'><use xlink:href='/css/sprite.svg#dropdown'></use></svg></a><div class='tablediv dropdown-menu'><a title='View Department Users' aria-label='View Department Users' href='javascript:void(0)' wire:click.prevent='showDepartmentUsers(" . $model->id . ",\"" . $model->name . "\")'  @click='departmentUsers = true' class='dropdown-item'><i class='fa fa-users'></i>View Department Users</a></div></div></div></div>";
 			});
 	}
@@ -147,7 +160,7 @@ final class Departments extends PowerGridComponent
 	{
 		$this->emit('refreshDepartmentUsers', $du_companyId, $du_companyLabel);
 	}
-	
+
 
 	/*
 	|--------------------------------------------------------------------------
@@ -158,7 +171,7 @@ final class Departments extends PowerGridComponent
 	|
 	*/
 
-	 /**
+	/**
 	 * PowerGrid Columns.
 	 *
 	 * @return array<int, Column>
@@ -186,29 +199,35 @@ final class Departments extends PowerGridComponent
 			$field => $value,
 		]);
 	}
-    // A method to handle the edit button click event
-    function edit($id){
+	// A method to handle the edit button click event
+	function edit($id)
+	{
 
-        // Emits an event to show the form for editing a record
-        $this->emit('showForm', Department::with('phones')->find($id));
-    }
+		// Emits an event to show the form for editing a record
+		$this->emit('showForm', Department::with('phones')->find($id));
+	}
 	function showDepartmentProfile($departmentId, $departmentLabel)
 	{
 		// Emits an event to show the  profile
 
-		if(isset($this->companyLabel))		//open profile in panel
-		$this->emit('refreshDepartmentProfile', $departmentId, $departmentLabel);
+		if (isset($this->companyLabel))		//open profile in panel
+			$this->emit('refreshDepartmentProfile', $departmentId, $departmentLabel);
 
 		else	//reroute to profile page 
-			return redirect(url('admin/department/profile/'.$departmentId));
-
-			// $this->emit('showDepartmentProfile', Department::with(['phones', 'addresses'])->find($departmentId)); //on department page
+		{
+			if (session()->get("isCustomer"))
+				$base = 'customer';
+			else
+				$base = 'admin';
+			return redirect(url($base . '/department/profile/' . $departmentId));
+		}
+		// $this->emit('showDepartmentProfile', Department::with(['phones', 'addresses'])->find($departmentId)); //on department page
 
 	}
 
 	// function showDepartmentProfile($id) {
 	// 	// Emits an event to show the customer profile
-       
-    //     $this->emit('showDepartmentProfile', Department::with(['phones','addresses'])->find($id));
+
+	//     $this->emit('showDepartmentProfile', Department::with(['phones','addresses'])->find($id));
 	// }
 }

@@ -55,8 +55,7 @@ class TimeOffSlots extends Component
 
 
         $this->dispatchBrowserEvent('close-timeoff-panel');
-        //for some reason distorts calendar display
-		// $this->emit('refreshCalendar'); //emit to update calendar 
+		$this->emit('refreshCalendar'); //emit to update calendar 
         $this->emit('showConfirmation', ' Time off dates saved!');
         
         $this->clear();

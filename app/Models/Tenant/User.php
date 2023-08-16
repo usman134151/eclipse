@@ -108,6 +108,11 @@ class User extends Authenticatable
 	{
 		return $this->belongsToMany(Department::class, 'user_departments')->withPivot('is_supervisor')->withTimestamps();
 	}
+	public function supervised_departments(): BelongsToMany
+	{
+		return $this->belongsToMany(Department::class, 'user_departments')->withPivot('is_supervisor')->withTimestamps()
+		->where('is_supervisor', true);;
+	}
 
 	public function notes(): HasMany
 	{

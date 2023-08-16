@@ -432,7 +432,7 @@
                                                 </div>
                                                 <div class="col-lg-7 align-self-center">
                                                     <div class="font-family-tertiary">
-                                                        <a href="#">Mr. Ali Ahmed</a>
+                                                        <a href="#">{{ $booking['contact_point'] ? $booking['contact_point'] : 'N/A' }}</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -474,7 +474,7 @@
                                                 </div>
                                                 <div class="col-lg-7 align-self-center">
                                                     <div class="font-family-tertiary">
-                                                        Mr. Ali Ahmed
+                                                        {{ $booking['contact_point'] ? $booking['contact_point'] : 'N/A' }}
                                                     </div>
                                                 </div>
                                             </div>
@@ -495,310 +495,328 @@
                                 </div>
                             </div>
                             <!-- /Requester Detail -->
-                            <!-- Service 1 -->
-                            <div class="row between-section-segment-spacing">
-                                <div class="col-lg-12">
-                                    <div class="d-lg-flex justify-content-between align-items-center">
-                                        <h2 class="">Service 1</h2>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-8 mb-3">
-                                            <div class="row">
-                                                <div class="col-lg-5">
-                                                    <label class="col-form-label">Accommodation:</label>
-                                                </div>
-                                                <div class="col-lg-7 align-self-center">
-                                                    <div class="font-family-tertiary">
-                                                        Spoken Language Interpreting Services
+                            @foreach ($booking['services'] as $index => $service)
+                                <!-- Service 1 -->
+                                <div class="row between-section-segment-spacing">
+                                    <div class="col-lg-12">
+                                        <div class="d-lg-flex justify-content-between align-items-center">
+                                            <h2 class="">Service {{ $index + 1 }}</h2>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-8 mb-3">
+                                                <div class="row">
+                                                    <div class="col-lg-5">
+                                                        <label class="col-form-label">Accommodation:</label>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-8 mb-3">
-                                            <div class="row">
-                                                <div class="col-lg-5">
-                                                    <label class="col-form-label">Service:</label>
-                                                </div>
-                                                <div class="col-lg-7 align-self-center">
-                                                    <div class="font-family-tertiary">
-                                                        English to French Interpreting
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-8 mb-3">
-                                            <div class="row">
-                                                <div class="col-lg-5">
-                                                    <label class="col-form-label">Specialization:</label>
-                                                </div>
-                                                <div class="col-lg-7 align-self-center">
-                                                    <div class="font-family-tertiary">Legal</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-8 mb-3">
-                                            <div class="row">
-                                                <div class="col-lg-5">
-                                                    <label class="col-form-label">Service Type:</label>
-                                                </div>
-                                                <div class="col-lg-7 align-self-center">
-                                                    <div class="font-family-tertiary">Virtual</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-8 mb-3">
-                                            <div class="row">
-                                                <div class="col-lg-5">
-                                                    <label class="col-form-label">
-                                                        Number of Providers:
-                                                    </label>
-                                                </div>
-                                                <div class="col-lg-7 align-self-center">
-                                                    <div class="font-family-tertiary">10</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-8 mb-3">
-                                            <div class="row">
-                                                <div class="col-lg-5">
-                                                    <label class="col-form-label">
-                                                        Service Consumer:
-                                                    </label>
-                                                </div>
-                                                <div class="col-lg-7 align-self-center">
-                                                    <div class="font-family-tertiary">
-                                                        <a href="#">Thomas Charles</a> , <a
-                                                            href="#">Richard Payne</a> ,
-                                                        <a href="#">Jennifer Summers</a> , <a
-                                                            href="#">Lori Wells</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-8 mb-3">
-                                            <div class="row">
-                                                <div class="col-lg-5">
-                                                    <label class="col-form-label">
-                                                        Participants:
-                                                    </label>
-                                                </div>
-                                                <div class="col-lg-7 align-self-center">
-                                                    <div class="font-family-tertiary">
-                                                        <a href="#">Thomas Charles</a> , <a
-                                                            href="#">Richard Payne</a> ,
-                                                        <a href="#">Jennifer Summers</a> , <a
-                                                            href="#">Lori Wells</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /Service 1 -->
-                            <!-- Service 1 Meeting Detail -->
-                            <div class="row between-section-segment-spacing">
-                                <div class="col-lg-12">
-                                    <div class="d-lg-flex justify-content-between align-items-center">
-                                        <h2 class="">Service 1 Meeting Detail</h2>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-8 mb-3">
-                                            <div class="row">
-                                                <div class="col-lg-5">
-                                                    <label class="col-form-label">Meeting Name:</label>
-                                                </div>
-                                                <div class="col-lg-7 align-self-center">
-                                                    <div class="d-flex align-items-center gap-2">
+                                                    <div class="col-lg-7 align-self-center">
                                                         <div class="font-family-tertiary">
-                                                            Spoken Language Interpreting Services
+                                                            {{ $service['accommodation_name'] }}
                                                         </div>
-                                                        <a href="#"
-                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#MeetingLinksModal">
-                                                            {{-- Updated by Shanila to Add
-                                                            svg icon --}}
-                                                            <svg aria-label="Edit" width="20" height="20"
-                                                                viewBox="0 0 20 20">
-                                                                <use xlink:href="/css/common-icons.svg#pencil">
-                                                                </use>
-                                                            </svg>
-                                                            {{-- End of update by Shanila
-                                                            --}}
-                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-8 mb-3">
-                                            <div class="row">
-                                                <div class="col-lg-5">
-                                                    <label class="col-form-label">Meeting Link:</label>
-                                                </div>
-                                                <div class="col-lg-7 align-self-center">
-                                                    <div class="d-flex align-items-center gap-2">
-                                                        <div class="font-family-tertiary text-primary">
-                                                            https://meet.google.com/xxxxxxxx
-                                                        </div>
-                                                        <a href="#"
-                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                            {{-- Updated by Shanila to Add
-                                                            svg icon --}}
-                                                            <svg aria-label="Edit" width="20" height="20"
-                                                                viewBox="0 0 20 20">
-                                                                <use xlink:href="/css/common-icons.svg#pencil">
-                                                                </use>
-                                                            </svg>
-                                                            {{-- End of update by Shanila
-                                                            --}}
-                                                        </a>
+                                            <div class="col-lg-8 mb-3">
+                                                <div class="row">
+                                                    <div class="col-lg-5">
+                                                        <label class="col-form-label">Service:</label>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-8 mb-3">
-                                            <div class="row">
-                                                <div class="col-lg-5">
-                                                    <label class="col-form-label">
-                                                        Meeting Phone Number:
-                                                    </label>
-                                                </div>
-                                                <div class="col-lg-7 align-self-center">
-                                                    <div class="font-family-tertiary">
-                                                        (923) 023-9683
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-8 mb-3">
-                                            <div class="row">
-                                                <div class="col-lg-5">
-                                                    <label class="col-form-label">
-                                                        Meeting Passcode:
-                                                    </label>
-                                                </div>
-                                                <div class="col-lg-7 align-self-center">
-                                                    <div class="font-family-tertiary">********</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-8 mb-3">
-                                            <div class="row">
-                                                <div class="col-lg-5">
-                                                    <label class="col-form-label">Status:</label>
-                                                </div>
-                                                <div class="col-lg-7 align-self-center">
-                                                    <div class="font-family-tertiary">Active</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-8 mb-3">
-                                            <div class="row">
-                                                <div class="col-lg-5">
-                                                    <label class="col-form-label">Created:</label>
-                                                </div>
-                                                <div class="col-lg-7 align-self-center">
-                                                    <div class="font-family-tertiary">
-                                                        10/15/2022 12:20 PM
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /Service 1 Meeting Detail -->
-                            <!-- Service 2 Meeting Detail -->
-                            <div class="row between-section-segment-spacing has-map">
-                                <div class="col-lg-12">
-                                    <div class="d-lg-flex justify-content-between align-items-center">
-                                        <h2 class="">Service 2 Meeting Detail</h2>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-10 mb-3">
-                                            <div class="row">
-                                                <div class="col-lg-4">
-                                                    <label class="col-form-label">Location:</label>
-                                                </div>
-                                                <div class="col-lg-7 align-self-center">
-                                                    <div class="d-flex gap-2">
+                                                    <div class="col-lg-7 align-self-center">
                                                         <div class="font-family-tertiary">
-                                                            Mrs Smith 98 Shirley Street Appartment No. 45 PIMPAMA QLD
-                                                            4209 AUSTRALIA
+                                                            {{ $service['service_name'] }}
                                                         </div>
-                                                        <a href="#"
-                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                            {{-- Updated by Shanila to Add
-                                                            svg icon --}}
-                                                            <svg aria-label="Edit" width="20" height="20"
-                                                                viewBox="0 0 20 20">
-                                                                <use xlink:href="/css/common-icons.svg#pencil">
-                                                                </use>
-                                                            </svg>
-                                                            {{-- End of update by Shanila
-                                                            --}}
-                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-8 mb-3">
+                                                <div class="row">
+                                                    <div class="col-lg-5">
+                                                        <label class="col-form-label">Specialization:</label>
+                                                    </div>
+                                                    <div class="col-lg-7 align-self-center">
+                                                        <div class="font-family-tertiary">Legal</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-8 mb-3">
+                                                <div class="row">
+                                                    <div class="col-lg-5">
+                                                        <label class="col-form-label">Service Type:</label>
+                                                    </div>
+                                                    <div class="col-lg-7 align-self-center">
+                                                        <div class="font-family-tertiary">
+                                                            @if ($service['service_types'] == 1)
+                                                                In-Person
+                                                            @elseif($service['service_types'] == 2)
+                                                                Virtual
+                                                            @elseif($service['service_types'] == 4)
+                                                                Phone
+                                                            @elseif($service['service_types'] == 5)
+                                                                Teleconference
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-8 mb-3">
+                                                <div class="row">
+                                                    <div class="col-lg-5">
+                                                        <label class="col-form-label">
+                                                            Number of Providers:
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-lg-7 align-self-center">
+                                                        <div class="font-family-tertiary">{{$service['provider_count']}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-8 mb-3">
+                                                <div class="row">
+                                                    <div class="col-lg-5">
+                                                        <label class="col-form-label">
+                                                            Service Consumer:
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-lg-7 align-self-center">
+                                                        <div class="font-family-tertiary">
+                                                            <a href="#">Thomas Charles</a> , <a
+                                                                href="#">Richard Payne</a> ,
+                                                            <a href="#">Jennifer Summers</a> , <a
+                                                                href="#">Lori Wells</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-8 mb-3">
+                                                <div class="row">
+                                                    <div class="col-lg-5">
+                                                        <label class="col-form-label">
+                                                            Participants:
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-lg-7 align-self-center">
+                                                        <div class="font-family-tertiary">
+                                                            <a href="#">Thomas Charles</a> , <a
+                                                                href="#">Richard Payne</a> ,
+                                                            <a href="#">Jennifer Summers</a> , <a
+                                                                href="#">Lori Wells</a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-10 mb-3">
+                                    </div>
+                                </div>
+                                <!-- /Service 1 -->
+                                @if ($service['service_types'] == 1)
+                                    <!-- In-Person Meeting Detail -->
+                                    <div class="row between-section-segment-spacing has-map">
+                                        <div class="col-lg-12">
+                                            <div class="d-lg-flex justify-content-between align-items-center">
+                                                <h2 class="">Service {{$index+1}} Meeting Detail</h2>
+                                            </div>
                                             <div class="row">
-                                                <div class="col-lg-4">
-                                                    <label class="col-form-label">City:</label>
+                                                <div class="col-lg-10 mb-3">
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <label class="col-form-label">Location:</label>
+                                                        </div>
+                                                        <div class="col-lg-7 align-self-center">
+                                                            <div class="d-flex gap-2">
+                                                                <div class="font-family-tertiary">
+                                                                    Mrs Smith 98 Shirley Street Appartment No. 45
+                                                                    PIMPAMA QLD
+                                                                    4209 AUSTRALIA
+                                                                </div>
+                                                                <a href="#"
+                                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                    {{-- Updated by Shanila to Add
+                                                            svg icon --}}
+                                                                    <svg aria-label="Edit" width="20"
+                                                                        height="20" viewBox="0 0 20 20">
+                                                                        <use xlink:href="/css/common-icons.svg#pencil">
+                                                                        </use>
+                                                                    </svg>
+                                                                    {{-- End of update by Shanila
+                                                            --}}
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="col-lg-7 align-self-center">
-                                                    <div class="font-family-tertiary">City Name</div>
+                                                <div class="col-lg-10 mb-3">
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <label class="col-form-label">City:</label>
+                                                        </div>
+                                                        <div class="col-lg-7 align-self-center">
+                                                            <div class="font-family-tertiary">City Name</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-10 mb-3">
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <label class="col-form-label">State:</label>
+                                                        </div>
+                                                        <div class="col-lg-7 align-self-center">
+                                                            <div class="font-family-tertiary">State Name</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-10 mb-3">
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <label class="col-form-label">Zip Code:</label>
+                                                        </div>
+                                                        <div class="col-lg-7 align-self-center">
+                                                            <div class="font-family-tertiary">129839</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-10 mb-3">
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <label class="col-form-label">Arrival Notes::</label>
+                                                        </div>
+                                                        <div class="col-lg-7 align-self-center">
+                                                            <div class="font-family-tertiary">Active</div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <!-- Map -->
+                                            <iframe
+                                                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d96779.59535015929!2d-74.00126600000002!3d40.710039!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1676478925644!5m2!1sen!2sus"
+                                                width="304" height="228" style="border:0;" allowfullscreen=""
+                                                loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                                                class="map"></iframe>
+                                            <!-- /Map -->
                                         </div>
-                                        <div class="col-lg-10 mb-3">
-                                            <div class="row">
-                                                <div class="col-lg-4">
-                                                    <label class="col-form-label">State:</label>
-                                                </div>
-                                                <div class="col-lg-7 align-self-center">
-                                                    <div class="font-family-tertiary">State Name</div>
-                                                </div>
+                                    </div>
+                                    <!-- /In-Person Meeting Detail -->
+                                @else
+                                    <!-- Phone / Teleconference / Virtual Meeting Detail -->
+                                    <div class="row between-section-segment-spacing">
+                                        <div class="col-lg-12">
+                                            <div class="d-lg-flex justify-content-between align-items-center">
+                                                <h2 class="">Service {{$index+1}} Meeting Detail</h2>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-10 mb-3">
                                             <div class="row">
-                                                <div class="col-lg-4">
-                                                    <label class="col-form-label">Zip Code:</label>
+                                                <div class="col-lg-8 mb-3">
+                                                    <div class="row">
+                                                        <div class="col-lg-5">
+                                                            <label class="col-form-label">Meeting Name:</label>
+                                                        </div>
+                                                        <div class="col-lg-7 align-self-center">
+                                                            <div class="d-flex align-items-center gap-2">
+                                                                <div class="font-family-tertiary">
+                                                                    {{-- {{isset($service['meeting_name'])? $service['meeting_name'] : 'N/A'}} --}}
+                                                                </div>
+                                                                <a href="#"
+                                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#MeetingLinksModal">
+                                                                    {{-- Updated by Shanila to Add
+                                                            svg icon --}}
+                                                                    <svg aria-label="Edit" width="20"
+                                                                        height="20" viewBox="0 0 20 20">
+                                                                        <use xlink:href="/css/common-icons.svg#pencil">
+                                                                        </use>
+                                                                    </svg>
+                                                                    {{-- End of update by Shanila
+                                                            --}}
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="col-lg-7 align-self-center">
-                                                    <div class="font-family-tertiary">129839</div>
+                                                <div class="col-lg-8 mb-3">
+                                                    <div class="row">
+                                                        <div class="col-lg-5">
+                                                            <label class="col-form-label">Meeting Link:</label>
+                                                        </div>
+                                                        <div class="col-lg-7 align-self-center">
+                                                            <div class="d-flex align-items-center gap-2">
+                                                                <div class="font-family-tertiary text-primary">
+                                                                    {{$service['meeting_link']? $service['meeting_link'] : 'N/A'}}
+
+                                                                    {{-- https://meet.google.com/xxxxxxxx --}}
+                                                                </div>
+                                                                <a href="#"
+                                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                    {{-- Updated by Shanila to Add
+                                                            svg icon --}}
+                                                                    <svg aria-label="Edit" width="20"
+                                                                        height="20" viewBox="0 0 20 20">
+                                                                        <use xlink:href="/css/common-icons.svg#pencil">
+                                                                        </use>
+                                                                    </svg>
+                                                                    {{-- End of update by Shanila
+                                                            --}}
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-10 mb-3">
-                                            <div class="row">
-                                                <div class="col-lg-4">
-                                                    <label class="col-form-label">Arrival Notes::</label>
+                                                <div class="col-lg-8 mb-3">
+                                                    <div class="row">
+                                                        <div class="col-lg-5">
+                                                            <label class="col-form-label">
+                                                                Meeting Phone Number:
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-lg-7 align-self-center">
+                                                            <div class="font-family-tertiary">
+                                                                {{$service['meeting_phone']}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="col-lg-7 align-self-center">
-                                                    <div class="font-family-tertiary">Active</div>
+                                                <div class="col-lg-8 mb-3">
+                                                    <div class="row">
+                                                        <div class="col-lg-5">
+                                                            <label class="col-form-label">
+                                                                Meeting Passcode:
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-lg-7 align-self-center">
+                                                            <div class="font-family-tertiary">{{$service['meeting_passcode']}}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-8 mb-3">
+                                                    <div class="row">
+                                                        <div class="col-lg-5">
+                                                            <label class="col-form-label">Status:</label>
+                                                        </div>
+                                                        <div class="col-lg-7 align-self-center">
+                                                            <div class="font-family-tertiary">Active</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-8 mb-3">
+                                                    <div class="row">
+                                                        <div class="col-lg-5">
+                                                            <label class="col-form-label">Created:</label>
+                                                        </div>
+                                                        <div class="col-lg-7 align-self-center">
+                                                            <div class="font-family-tertiary">
+                                                                {{date_format(date_create($service['created_at']), "d/m/Y h:i A")}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Map -->
-                                    <iframe
-                                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d96779.59535015929!2d-74.00126600000002!3d40.710039!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1676478925644!5m2!1sen!2sus"
-                                        width="304" height="228" style="border:0;" allowfullscreen=""
-                                        loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-                                        class="map"></iframe>
-                                    <!-- /Map -->
-                                </div>
-                            </div>
-                            <!-- /Service 2 Meeting Detail -->
+                                    <!-- /Phone / Teleconference / Virtual Meeting Detail -->
+                                @endif
+                            @endforeach
                             <!-- Service Form Detail -->
                             <div class="row between-section-segment-spacing">
                                 <div class="col-lg-12">
                                     <div class="d-lg-flex justify-content-between align-items-center">
-                                        <h2 class="">Service Form Detail</h2>
+                                        <h2 class="">Service Form Detail (Needs to be updated)</h2>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-8 mb-3">
@@ -893,7 +911,7 @@
                             <div class="row between-section-segment-spacing">
                                 <div class="col-lg-12">
                                     <div class="d-lg-flex justify-content-between align-items-center">
-                                        <h2 class="">Industry Form Detail</h2>
+                                        <h2 class="">Industry Form Detail (needs to be updated)</h2>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-8 mb-3">
