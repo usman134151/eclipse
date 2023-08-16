@@ -20,7 +20,7 @@ use Carbon\Carbon;
 class CustomerForm extends Component
 {
 	use withFileUploads;
-	public $isCustomer = false , $selfProfile = false;		// true when component called from customer panel	
+	public $isCustomer = false, $selfProfile = false;		// true when component called from customer panel	
 	public $user, $isAdd = true, $userAddresses = [], $image = null, $label = 'Add', $tags = [];
 	public $userdetail = [
 		'industry' => null, 'phone' => null, 'gender_id' => null, 'language_id' => null, 'timezone_id' => null, 'ethnicity_id' => null,
@@ -102,14 +102,18 @@ class CustomerForm extends Component
 		}
 		//edit from customer panel
 		if ($this->isCustomer) {
-			if($user->id)
-			$this->edit($user);
+			if ($user->id)
+				$this->edit($user);
 			else	//create
+			{
 				$this->user->company_name = Auth::user()->company_name;
-
+				$admin_user = User::find(Auth::id());	//set default values same as current logged in user
+				$this->industryNames = $admin_user->industries->pluck('name');
+				$this->departmentNames = $admin_user->departments->pluck('name');
+				$this->selectedDepartments = $admin_user->departments->pluck('id');
+				$this->selectedIndustries = $admin_user->industries->pluck('id');
+			}
 		}
-
-
 	}
 
 	public function showList($message = "")
@@ -150,6 +154,9 @@ class CustomerForm extends Component
 
 
 		if ($redirect) {
+			 if ($this->isCustomer) {	//return to team members page 
+				return redirect('/customer/team-members');
+			}
 
 			$this->showList("Customer has been saved successfully");
 			$this->user = new User;
@@ -185,7 +192,7 @@ class CustomerForm extends Component
 		$this->user = $user;
 		$this->isAdd = false;
 		if ($this->user->user_dob)
-			$this->user->user_dob = Carbon::createFromFormat('Y-m-d', $this->user->user_dob)->format('m/d/Y');
+			$this->user->user_dob = Carbon::parse()->format('m/d/Y');
 
 		$this->industryNames = $this->user->industries->pluck('name');
 		$this->departmentNames = $this->user->departments->pluck('name');
@@ -342,12 +349,14 @@ class CustomerForm extends Component
 		}
 
 		if ($redirect) {
-			if ($this->isCustomer){ //for customer panel
+			if ($this->isCustomer && $this->selfProfile) { //for customer panel
 
 				if ($this->user->user_dob)
 					$this->user->user_dob = Carbon::parse($this->user->user_dob)->format('m/d/Y');
 				$this->emit('showConfirmation', 'Profile updated successfully');
-			}else {
+			} elseif ($this->isCustomer) {	//return to team members page 
+				return redirect('/customer/team-members');
+			} else {
 
 				$this->showList("Customer has been saved successfully");
 				$this->user = new User;
@@ -403,8 +412,12 @@ class CustomerForm extends Component
 	{
 
 		if ($redirect) {
-			$this->showList("Company has been saved successfully");
-			$this->user = new User;
+			if ($this->isCustomer) {
+				return redirect('/customer/team-members');
+			} else {
+				$this->showList("Company has been saved successfully");
+				$this->user = new User;
+			}
 		} else {
 			$this->serviceActive = "";
 			$this->permissionActive = "";

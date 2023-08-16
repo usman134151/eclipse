@@ -19,7 +19,7 @@
                                     @elseif ($isCustomer && $selfProfile)
                                 My Profile
                             @else 
-                            Add Team Member
+                            {{ $label }} Team Member
                             @endif
                         </h1>
                         <div class="breadcrumb-wrapper">
@@ -49,7 +49,7 @@
                                     @elseif ($isCustomer && $selfProfile)
                                         Edit Profile
                                     @else
-                                        Add Team Members
+                                         {{ $label }} Team Members
                                     @endif
                                 </li>
                             </ol>
