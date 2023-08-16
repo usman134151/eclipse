@@ -148,4 +148,9 @@ class ProviderDetails extends Component
 
 		$this->emit('showList');
 	}
+	public function resendWelcomeEmail(){
+        $user=User::find($this->user['id']);
+		sendWelcomeMail($user);
+		$this->showConfirmation("Welcome Email Send Successfully");
+	}
 }
