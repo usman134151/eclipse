@@ -20,7 +20,7 @@ use Carbon\Carbon;
 class CustomerForm extends Component
 {
 	use withFileUploads;
-	public $isCustomer = false;		// true when component called from customer panel	
+	public $isCustomer = false , $selfProfile = false;		// true when component called from customer panel	
 	public $user, $isAdd = true, $userAddresses = [], $image = null, $label = 'Add', $tags = [];
 	public $userdetail = [
 		'industry' => null, 'phone' => null, 'gender_id' => null, 'language_id' => null, 'timezone_id' => null, 'ethnicity_id' => null,
@@ -102,8 +102,14 @@ class CustomerForm extends Component
 		}
 		//edit from customer panel
 		if ($this->isCustomer) {
+			if($user->id)
 			$this->edit($user);
+			else	//create
+				$this->user->company_name = Auth::user()->company_name;
+
 		}
+
+
 	}
 
 	public function showList($message = "")

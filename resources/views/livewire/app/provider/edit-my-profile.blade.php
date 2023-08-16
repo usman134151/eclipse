@@ -2,7 +2,7 @@
 @if($userType=='provider')
     @livewire('app.common.forms.provider-form', ['user' => $user, 'isProvider' => true]) {{-- Show Add / Edit Form With Provider Restrictions --}}
 @elseif($userType=='customer')
-    @livewire('app.common.forms.customer-form', ['user' => $user, 'isCustomer' => true]) {{-- Show Add / Edit Form With Provider Restrictions --}}
+    @livewire('app.common.forms.customer-form', ['user' => $user, 'isCustomer' => true,'selfProfile'=>true]) {{-- Show Add / Edit Form With Provider Restrictions --}}
 
 @endif
 
