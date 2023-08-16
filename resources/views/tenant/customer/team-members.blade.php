@@ -1,7 +1,5 @@
-@extends('layouts.tenant', ['title' => 'Departments'])
+@extends('layouts.tenant', ['title' => 'Team Members'])
 
 @section('content')
-    <x-coming-soon moduleName="Team Members"></x-coming-soon>
-
-    {{-- @livewire('app.common.department', ["showForm"=>false,'status'=>1]) --}}
+    @livewire('app.customer.company-team-members',['company_id'=>Auth::user()->company_name])
 @endsection
