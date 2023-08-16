@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\App\Common\Forms;
 
 use App\Models\Tenant\User;
+use App\Traits\Tenant\ForgetPasswordMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use ZxcvbnPhp\Zxcvbn;
@@ -10,6 +11,8 @@ use Livewire\Component;
 
 class ChangePassword extends Component
 {
+	use ForgetPasswordMail;
+
 	public $current_password;
 	public string $password = '';
 	public $password_confirmation;
@@ -77,9 +80,9 @@ class ChangePassword extends Component
 				'title' => 'Success',
 				'text' => 'Password updated successfully!',
 			]);
+            $this->changePasswordMail($user);
 			$this->resetFields();
 		}
-
 	}
 
 	public function updatedPassword($value)

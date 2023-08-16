@@ -46,16 +46,27 @@ if(!function_exists('sendMail'))
                 $response = sendEmail::dispatch($to, $subject, $data, $mailview)->delay(now()->addMinutes($delaymin))->onQueue('emails');
             }
             if ($response) {
-        return true;
-      } else {
-        return false;
-      }
+              return true;
+            } else {
+              return false;
+            }
     } catch (\Exception $e) {
       Log::error($e->getMessage());
     }
   }
 }
 
+if(!function_exists('sendWelcomeMail'))
+{
+  function sendWelcomeMail($user)
+  {
+    $company = User::find(1);
+    $company = isset($company->users_business)?$company->users_business->company_name:'';
+    $user->subject = $company.' Portal - Welcome';
+    $user->company = $company;
+    sendMail($user->email, $user->subject, $user, 'tenant.emails.welcome_email', [],'dispatch');
+  }
+}
 /**
  * send sms generic method
  *
