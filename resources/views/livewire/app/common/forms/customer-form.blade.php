@@ -16,8 +16,10 @@
                         <h1 class="content-header-title float-start mb-0">
                             @if (!$isCustomer)
                                 {{ $label }} Customer
-                            @else
+                                    @elseif ($isCustomer && $selfProfile)
                                 My Profile
+                            @else 
+                            {{ $label }} Team Member
                             @endif
                         </h1>
                         <div class="breadcrumb-wrapper">
@@ -35,15 +37,19 @@
                                 <li class="breadcrumb-item">
                                     @if (!$isCustomer)
                                         Customers
-                                    @else
+                                    @elseif ($isCustomer && $selfProfile)
                                         Settings
+                                    @else
+                                        Profile
                                     @endif
                                 </li>
                                 <li class="breadcrumb-item">
                                     @if (!$isCustomer)
                                         {{ $label }} Customer
-                                    @else
+                                    @elseif ($isCustomer && $selfProfile)
                                         Edit Profile
+                                    @else
+                                         {{ $label }} Team Members
                                     @endif
                                 </li>
                             </ol>
@@ -57,7 +63,7 @@
                 <div class="card-body">
                     {{-- BEGIN: Steps --}}
                     <div x-data="{ tab: @entangle('component') }" id="tab_wrapper">
-                        @if (!$isCustomer)
+                        @if (!$isCustomer || ($isCustomer && !$selfProfile))
                             {{-- Nav tabs --}}
                             <ul class="nav nav-tabs nav-steps" id="myTab" role="tablist">
                                 <li class="nav-item" role="presentation">
@@ -128,7 +134,7 @@
                             </ul>
                         @endif
                         {{-- Tab panes --}}
-                        <div class="tab-content  {{ $isCustomer ? 'mt-5' : '' }}">
+                        <div class="tab-content  {{ $selfProfile ? 'mt-5' : '' }}">
 
                             @if ($step == 1)
                                 {{-- BEGIN: Customer Info --}}
@@ -175,7 +181,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="row between-section-segment-spacing">
-                                                        @if (!$isCustomer)
+                                                        @if (!$isCustomer )
                                                             <div class="col-lg-12">
                                                                 <h2>Customer Information</h2>
                                                             </div>
@@ -237,7 +243,7 @@
                                                             </div>
                                                         </div>
 
-                                                        @if (!$isCustomer || ($isCustomer && in_array(10, session()->get('customerRoles'))))
+                                                        @if (!$isCustomer || ($isCustomer && !$selfProfile))
                                                             <div class="col-lg-6 pe-lg-5 mb-4">
                                                                 <div
                                                                     class="d-flex justify-content-between align-items-center">
@@ -597,7 +603,7 @@
                                                         {{-- </div> --}}
 
 
-                                                        @if (!$isCustomer)
+                                                        @if (!$isCustomer ||  ($isCustomer && !$selfProfile))
                                                             <div
                                                                 class="col-lg-12 d-lg-flex gap-5 justify-content-center between-section-segment-spacing">
                                                                 <div class="form-check mb-lg-0">
@@ -624,7 +630,7 @@
 
                                                         {{-- Action Buttons Start --}}
                                                         <div class="col-12 form-actions">
-                                                            @if (!$isCustomer)
+                                                            @if (!$isCustomer || ($isCustomer && !$selfProfile))
                                                                 <button type="button"
                                                                     class="btn btn-outline-dark rounded px-4 py-2"
                                                                     wire:click.prevent="showList">
@@ -637,7 +643,7 @@
                                                                 x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">
                                                                 Save & Exit
                                                             </button>
-                                                            @if (!$isCustomer)
+                                                            @if (!$isCustomer || ($isCustomer && !$selfProfile))
                                                                 <button type="button"
                                                                     class="btn btn-primary rounded px-4 py-2"
                                                                     wire:click.prevent="save(0)"
@@ -1178,7 +1184,7 @@
                                 {{-- END: Permission Configurations --}}
                             @endif
 
-                            @if (!$isCustomer)
+                            @if (!$isCustomer || ($isCustomer && !$selfProfile))
 
                                 {{-- BEGIN: Service Catalog --}}
                                 <div class="tab-pane fade" :class="{ 'active show': tab === 'service-catalog' }"

@@ -215,6 +215,8 @@ Route::group([
 				Route::view('/department-profile/{companyID}', 'tenant/customer/department-profile')->middleware(DecryptRouteParamater::class);
 
                 Route::view('/add-team', 'tenant/customer/add-team');
+				Route::view('/edit-team/{customerID}', 'tenant/customer/add-team')->name('customer-edit-team')->middleware(DecryptRouteParamater::class);
+
 				Route::view('/team-members', 'tenant/customer/team-members');
 
 				Route::view('/payments-setting', 'tenant/customer/payment-setting');

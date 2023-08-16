@@ -1,29 +1,37 @@
 <?php
 
 namespace App\Http\Livewire\App\Common\Modals;
+
 use App\Models\Tenant\Industry;
 use App\Models\Tenant\User;
 use App\Models\Tenant\Company;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class AddIndustry extends Component
 {
-    public $selectedIndustries=[],$defaultIndustry,$industries,$user=null,$companyId;
-    protected $listeners = ['editRecord' => 'setUser','updateCompany'];
+    public $selectedIndustries = [], $defaultIndustry, $industries, $user = null, $companyId;
+    protected $listeners = ['editRecord' => 'setUser', 'updateCompany'];
 
     public function render()
     {
         return view('livewire.app.common.modals.add-industry');
-
     }
 
     public function mount()
     {
         if (request()->customerID) {
-            $this->user = User::find(request()->customerID);
+            $customer_id = request()->customerID;
+        } elseif (session()->get('isCustomer')) {
+            $customer_id  = Auth::id();
+        } else {
+            $customer_id = '';
+        }
+        if ($customer_id) {
+            $this->user = User::find($customer_id);
             $this->companyId = $this->user->company_name;
         }
-        $this->industries= Industry::where('status', 1)->get();
+        $this->industries = Industry::where('status', 1)->get();
         if ($this->user)
             $this->setIndustries();
     }
@@ -32,26 +40,27 @@ class AddIndustry extends Component
     {
         $this->user = $user;
     }
-    public function setIndustries(){
+    public function setIndustries()
+    {
         $this->selectedIndustries = $this->user->industries()->allRelatedIds()->toArray();
-        if(!is_null($this->user->userdetail))
+        if (!is_null($this->user->userdetail))
             $this->defaultIndustry = $this->user->userdetail->industry;
     }
 
-    public function updateCompany($companyId){
-       
-        $company=Company::where('id',$companyId)->first();
+    public function updateCompany($companyId)
+    {
+
+        $company = Company::where('id', $companyId)->first();
         if ($company->industry_id) {
 
-            if($this->user==null){ //new record 
-                    $this->selectedIndustries = [$company->industry_id];
-                    $this->defaultIndustry=$company->industry_id;
-                }
-            else{
-                if($this->user->company_name == $companyId){ //checking if company is changed
+            if ($this->user == null) { //new record 
+                $this->selectedIndustries = [$company->industry_id];
+                $this->defaultIndustry = $company->industry_id;
+            } else {
+                if ($this->user->company_name == $companyId) { //checking if company is changed
 
                     $this->setIndustries();
-                }else{
+                } else {
                     $this->selectedIndustries = [$company->industry_id];
                     $this->defaultIndustry = $company->industry_id;
                 }
@@ -59,26 +68,19 @@ class AddIndustry extends Component
         }
 
         $this->updateData();
-
-
-        
     }
 
     // Child Laravel component's updateData function
     public function updateData()
     {
-        $industryNames=[];
-        foreach($this->selectedIndustries as $ind){
-            $industryRecord= $this->industries->firstWhere('id',$ind);
-            if(!is_null($industryRecord)){
-                $industryNames[]= $industryRecord->name;
+        $industryNames = [];
+        foreach ($this->selectedIndustries as $ind) {
+            $industryRecord = $this->industries->firstWhere('id', $ind);
+            if (!is_null($industryRecord)) {
+                $industryNames[] = $industryRecord->name;
             }
         }
-    // Emit an event to the parent component with the selected industries and default industry
-    $this->emitUp('updateSelectedIndustries', $this->selectedIndustries, $this->defaultIndustry, $industryNames);
+        // Emit an event to the parent component with the selected industries and default industry
+        $this->emitUp('updateSelectedIndustries', $this->selectedIndustries, $this->defaultIndustry, $industryNames);
     }
-
-
-
-
 }
