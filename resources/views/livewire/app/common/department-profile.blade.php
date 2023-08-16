@@ -3535,7 +3535,7 @@
 								<div class="tab-pane fade" id="settings-tab-pane" role="tabpanel" aria-labelledby="settings-tab" tabindex="0">
 									<div >
 										@if($department->id)
-                                            @livewire('app.common.setup.business-hours-setup', ['model_id' => $department->id, 'model_type' => '4', 'isForm'=>true])
+                                            @livewire('app.common.setup.business-hours-setup', ['model_id' => $department->id, 'model_type' => '4'])
 										@endif
 									</div>
 									<div class="col-lg-12 form-check form-switch">
