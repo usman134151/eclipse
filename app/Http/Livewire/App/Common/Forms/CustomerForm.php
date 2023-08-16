@@ -109,8 +109,8 @@ class CustomerForm extends Component
 				$this->user->company_name = Auth::user()->company_name;
 				$admin_user = User::find(Auth::id());	//set default values same as current logged in user
 				$this->industryNames = $admin_user->industries->pluck('name');
-				$this->departmentNames = $admin_user->departments->pluck('name');
-				$this->selectedDepartments = $admin_user->departments->pluck('id');
+				$this->departmentNames = $admin_user->supervised_departments->pluck('name');
+				$this->selectedDepartments = $admin_user->supervised_departments->pluck('id');
 				$this->selectedIndustries = $admin_user->industries->pluck('id');
 			}
 		}

@@ -243,7 +243,7 @@
                                                             </div>
                                                         </div>
 
-                                                        @if (!$isCustomer || ($isCustomer && in_array(10, session()->get('customerRoles'))))
+                                                        @if (!$isCustomer || ($isCustomer && !$selfProfile))
                                                             <div class="col-lg-6 pe-lg-5 mb-4">
                                                                 <div
                                                                     class="d-flex justify-content-between align-items-center">
