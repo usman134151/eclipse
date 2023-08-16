@@ -88,6 +88,16 @@
                                                     </span>
                                                 @enderror
                                 </div>
+                                @if($booking['frequency_id']=='32')
+                                    <div class="mt-4 w-25 hidden">
+                                @else
+                                    <div class="mt-4 w-25">        
+                                @endif           
+                                                    <label class="form-label-sm" for="set_start_date">Frequency end at <span class="mandatory">*</span></label>
+                                                    <input type="text" class="form-control form-control-md js-single-date" placeholder="Frequency End Date" aria-label="" aria-describedby="" wire:model.defer="booking.recurring_end_at" name="recurring_end_at" id="recurring_end_at">
+                                    </div>
+                                            
+                                
                             </div>
                             <div class="row between-section-segment-spacing">
                                 <div class="col-lg-6 mb-4 pe-lg-5">

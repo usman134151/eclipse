@@ -332,7 +332,8 @@ class Booknow extends Component
             'booking.company_id'=>'required',
             'booking.customer_id'=>'required',
             'booking.supervisor'=>'required',
-            'booking.billing_manager_id'=>'nullable'
+            'booking.billing_manager_id'=>'nullable',
+            'booking.recurring_end_at'=>'nullable'
 
         ];
     }
