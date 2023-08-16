@@ -28,7 +28,7 @@
                                 </a>
                             </li>
                             <li class="breadcrumb-item">
-                                All Companies
+                            {{$isCustomer ? 'Home' : 'All Companies'}}
                             </li>
                             <li class="breadcrumb-item">
                                 Company Details
@@ -163,7 +163,7 @@
                                     </button>
                                 </li>
                                 --}}
-
+                                @if(!$isCustomer)
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="notes-tab" data-bs-toggle="tab"
                                         data-bs-target="#notes-tab-pane" type="button" role="tab"
@@ -176,6 +176,7 @@
                                         <span>Notes</span>
                                     </button>
                                 </li>
+                                @endif
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="reports-tab" data-bs-toggle="tab"
                                         data-bs-target="#reports-tab-pane" type="button" role="tab"
@@ -607,6 +608,7 @@
 		                                             
                                                 </div>
                                             </div>
+                                            @if(!$isCustomer)
                                             <div class="col-md-12 mb-md-2 text-center gap-2 mt-4">
                                                 <button type="button" wire:click='lockAccount()'
                                                     class="d-inline-flex align-items-center btn {{$company["status"] ? 'btn-outline-dark' : 'btn-primary' }}  rounded px-3 py-2 gap-2">
@@ -623,6 +625,7 @@
                                                     <span>Resend Welcome Email</span>
                                                 </button>
                                             </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -3826,10 +3829,13 @@
                                 {{-- Referrals Tab - End --}}
 
                                 {{-- Notes Tab - Start --}}
+                                @if(!$isCustomer)
+
                                 <div class="tab-pane fade" id="notes-tab-pane" role="tabpanel"
                                     aria-labelledby="notes-tab" tabindex="0">
                                         @livewire('app.common.forms.notes', ['showForm'=>true,'record_id' => $company['id'],'record_type'=>1])
                                 </div>
+                                @endif
                                 {{-- Notes Tab -End --}}
 
                                 {{-- Notifications Tab - Start --}}

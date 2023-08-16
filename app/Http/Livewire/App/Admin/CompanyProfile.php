@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class CompanyProfile extends Component
 {
-    public $company;
+    public $company, $isCustomer=false;
 	public $showDepartmentProfile;
 	public $du_counter = 0, $du_departmentId, $du_departmentLabel,  $du_departmentDetails = false; //for company users
 
