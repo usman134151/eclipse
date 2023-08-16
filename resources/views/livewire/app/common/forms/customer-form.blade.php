@@ -202,7 +202,7 @@
                                                             </div>
                                                         @endif
 
-                                                        <div class="col-lg-6 ps-lg-5 mb-4">
+                                                        <div class="col-lg-6 {{$isCustomer ? 'pe' : 'ps'}}-lg-5 mb-4">
                                                             <label class="form-label" for="industry-column">
                                                                 Industry
                                                                 <span class="mandatory" aria-hidden="true">
@@ -293,7 +293,7 @@
                                                             </div>
                                                         @endif
 
-                                                        <div class="col-lg-6 ps-lg-5 mb-4">
+                                                        <div class="col-lg-6 {{$isCustomer ? 'pe' : 'ps'}}-lg-5 mb-4">
                                                             <label class="form-label" for="position-column">
                                                                 Position
                                                             </label>
@@ -321,7 +321,7 @@
                                                             @enderror
                                                         </div>
 
-                                                        <div class="col-lg-6 ps-lg-5 mb-4">
+                                                        <div class="col-lg-6 {{$isCustomer ? 'pe' : 'ps'}}-lg-5 mb-4">
                                                             <label class="form-label" for="l-name">
                                                                 Last Name
                                                                 <span class="mandatory" aria-hidden="true">
@@ -348,7 +348,7 @@
                                                                 name="pronouns" wire:model.defer="userdetail.title" />
                                                         </div>
 
-                                                        <div class="col-lg-6 ps-lg-5 mb-4">
+                                                        <div class="col-lg-6 {{$isCustomer ? 'pe' : 'ps'}}-lg-5 mb-4">
                                                             <label class="form-label" for="">
                                                                 Date of Birth
                                                             </label>
@@ -410,7 +410,7 @@
                                                             {!! $setupValues['gender']['rendered'] !!}
                                                         </div>
 
-                                                        <div class="col-lg-6 ps-lg-5 mb-4">
+                                                        <div class="col-lg-6 {{$isCustomer ? 'pe' : 'ps'}}-lg-5 mb-4">
                                                             <div
                                                                 class="d-flex justify-content-between align-items-center">
                                                                 <label class="form-label" for="ethnicity-column">
@@ -449,7 +449,7 @@
                                                             @enderror
                                                         </div>
 
-                                                        <div class="col-lg-6 ps-lg-5 mb-4">
+                                                        <div class="col-lg-6 {{$isCustomer ? 'pe' : 'ps'}}-lg-5 mb-4">
                                                             <label class="form-label" for="phone-number">
                                                                 Phone Number
                                                             </label>
@@ -469,7 +469,7 @@
                                                             </label>
                                                             {!! $setupValues['countries']['rendered'] !!}
                                                         </div>
-                                                        <div class="col-lg-6 mb-4 ps-lg-5">
+                                                        <div class="col-lg-6 mb-4 {{$isCustomer ? 'pe' : 'ps'}}-lg-5">
                                                             <div class="mb-4">
                                                                 <label class="form-label" for="state">State /
                                                                     Province</label>
@@ -500,7 +500,7 @@
 
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-6 mb-4 ps-lg-5">
+                                                        <div class="col-lg-6 mb-4 {{$isCustomer ? 'pe' : 'ps'}}-lg-5">
                                                             <label class="form-label" for="zip-code">
                                                                 Zip Code
                                                             </label>
@@ -534,7 +534,7 @@
                                                                 placeholder="Enter Address Line 1"
                                                                 wire:model.defer="userdetail.address_line1" />
                                                         </div>
-                                                        <div class="col-lg-6 mb-4 ps-lg-5">
+                                                        <div class="col-lg-6 mb-4 {{$isCustomer ? 'pe' : 'ps'}}-lg-5">
                                                             <label class="form-label" for="address-line-2">
                                                                 Address Line 2
                                                             </label>
@@ -550,7 +550,7 @@
                                                             {!! $setupValues['languages']['rendered'] !!}
                                                         </div>
 
-                                                        <div class="col-lg-6 ps-lg-5 mb-4">
+                                                        <div class="col-lg-6 {{$isCustomer ? 'pe' : 'ps'}}-lg-5 mb-4">
                                                             <label class="form-label" for="time-zone">
                                                                 Time Zone
                                                             </label>

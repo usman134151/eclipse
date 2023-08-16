@@ -12,6 +12,7 @@ class CompanyProfile extends Component
     public $company, $isCustomer=false;
 	public $showDepartmentProfile;
 	public $du_counter = 0, $du_departmentId, $du_departmentLabel,  $du_departmentDetails = false; //for company users
+	public $schedule;
 
 	protected $listeners = [
 		'showDetails',
@@ -29,6 +30,34 @@ class CompanyProfile extends Component
 		if($company)
 			$this->showDetails($company);
 	}
+
+	public function getCompanySchedule()
+	{
+		//reinit schedule
+		$companySchedule = Schedule::where('model_id', $this->company['id'])->where('model_type', 2)->get()->first();
+		if (!is_null($companySchedule)) {
+			$this->schedule = $companySchedule;
+		} else {
+			$this->schedule = new Schedule;
+			$this->schedule->model_type = 2;
+			$this->schedule->working_days = json_encode([]);
+			$this->schedule->timezone_id = 0;
+
+			$this->schedule->model_id = $this->company->id;
+			$this->schedule->save();
+		}
+
+
+		$this->emit('getRecord', $this->schedule->id, true);
+	}
+
+	public function saveSchedule($redirect = 1)
+	{
+		$this->emit('saveSchedule');
+		$this->showConfirmation("Company has been saved successfully");
+
+	}
+	
 		
     public function showDetails($company){
 		$this->company=$company;
@@ -46,11 +75,11 @@ class CompanyProfile extends Component
 			->get()->toArray();
 
 		$this->company['tags'] = json_decode($this->company['tags']);
-		$schedule =  Schedule::where(['model_id'=>$company['id'],'model_type'=>2])->first();
-		if($schedule){
+		$d_schedule =  Schedule::where(['model_id'=>$company['id'],'model_type'=>2])->first();
+		if($d_schedule){
 			$days = ["Monday" => 1, "Tuesday" => 2, "Wednesday" => 3, "Thursday" => 4, "Friday" => 5, "Saturday" => 6, "Sunday" => 7];
 
-			$sch = $schedule->timeslots->groupBy('timeslot_day')->sortBy(fn ($val, $key) => $days[$key]);
+			$sch = $d_schedule->timeslots->groupBy('timeslot_day')->sortBy(fn ($val, $key) => $days[$key]);
 			foreach($sch as $dayName=> $slots){
 				$this->company['schedule'][$dayName] = $slots->groupBy('timeslot_type')->toArray();
 			}
@@ -58,6 +87,7 @@ class CompanyProfile extends Component
 		// dd($this->company['schedule']);
 
         $this->dispatchBrowserEvent('refreshSelects');
+		$this->getCompanySchedule();
 
 	}
 	public function showConfirmation($message = "")
