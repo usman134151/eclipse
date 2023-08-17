@@ -520,13 +520,12 @@
             </div>
             <div class="col-md-6">
                 <div class="row mb-1">
-                    <small>(coming soon)</small>
 
                     <h2 class="text-primary">Last Login:</h2>
                     <div class="col-md-12 d-flex">
                         <div class="col-md-3 "><label class="col-form-label" for="date">Date:</label></div>
                         <div class="col-md-5 align-self-center">
-                            <div class="font-family-secondary">20/10/2022</div>
+                            <div class="font-family-secondary">{{$user['last_login'] ? date_format(date_create( $user['last_login']['created_at']), "d/m/Y") : 'N/A' }}</div>
                         </div>
                     </div>
                 </div>
@@ -534,16 +533,19 @@
                     <div class="col-md-12 d-flex">
                         <div class="col-md-3 "><label class="col-form-label" for="time">Time:</label></div>
                         <div class="col-md-5 align-self-center">
-                            <div class="font-family-secondary">01:34 PM</div>
+                            <div class="font-family-secondary">{{$user['last_login'] ? date_format(date_create( $user['last_login']['created_at']), "h:i A") : 'N/A' }}</div>
                         </div>
                     </div>
                 </div>
                 <div class="row mb-1">
                     <div class="col-md-12 d-flex">
-                        <div class="col-md-3"><label class="col-form-label" for="location">Location:</label></div>
-                        <div class="col-md-10 align-self-center">
-                            <div class="font-family-secondary text-sm">Mrs Smith 98 Shirley Street PIMPAMA QLD 4209
-                                AUSTRALIA</div>
+                        <div class="col-md-3"><label class="col-form-label" for="location">IP Address:</label></div>
+                        <div class="col-md-10 align-self-center mx-3">
+                            {{-- <div class="font-family-secondary text-sm mx-2 mt-2"> --}}
+                            {{$user['last_login'] ? $user['last_login']['ip_address'] : 'N/A' }}
+                            {{-- Mrs Smith 98 Shirley Street PIMPAMA QLD 4209
+                                AUSTRALIA --}}
+                                {{-- </div> --}}
                         </div>
                     </div>
                 </div>

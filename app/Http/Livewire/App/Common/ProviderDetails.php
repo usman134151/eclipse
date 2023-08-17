@@ -7,6 +7,7 @@ use App\Models\Tenant\ServiceSpecialization;
 use Livewire\Component;
 use App\Models\Tenant\User;
 use App\Models\Tenant\UserDetail;
+use App\Models\Tenant\UserLoginAddress;
 use App\Services\App\UserService;
 
 class ProviderDetails extends Component
@@ -128,6 +129,12 @@ class ProviderDetails extends Component
 					$this->accommodation_catalog[$key][$index]['specializations'] = null;
 			}
 		}
+
+		$lastLogin = UserLoginAddress::where('user_id',$this->userid)->orderBy('created_at','DESC')->first();
+		if($lastLogin)
+		$this->user['last_login'] =$lastLogin->toArray();
+		else
+		$this->user['last_login'] =null;
 
 		// dd($this->accommodation_catalog);
 		$this->dispatchBrowserEvent('refreshSelects');
