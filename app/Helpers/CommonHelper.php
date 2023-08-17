@@ -63,7 +63,6 @@ if(!function_exists('sendWelcomeMail'))
     $company = User::find(1);
     $company = isset($company->users_business)?$company->users_business->company_name:'';
     $user->subject = $company.' Portal - Welcome';
-    $user->company = $company;
     sendMail($user->email, $user->subject, $user, 'tenant.emails.welcome_email', [],'dispatch');
   }
 }
