@@ -4,7 +4,7 @@
   <tr>
     @php
     $company = $data->company;
-    // $company = isset($company->users_business)?$company->users_business->company_name:'';
+    $company = isset($company->users_business)?$company->users_business->company_name:'';
 
 
       $desc2 = "To enter the portal, log into your Eclipse account.";
