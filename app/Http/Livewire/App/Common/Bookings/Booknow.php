@@ -26,8 +26,14 @@ class Booknow extends Component
         'saveCustomFormData'=>'save' ,'switch'];
 
     public $dates=[[
-            'start_time' => '',
-            'end_time' => '',
+            'start_date'=>'',
+            'start_hour' => '',
+            'start_min'=>'',
+            'end_date'=>'',
+            'end_hour' => '',
+            'end_min'=>'',
+            'start_am'=>'',
+            'end_am'=>'',
             'duration_day' => '',
             'duration_hour' => '',
             'duration_minute' => '',
@@ -246,16 +252,22 @@ class Booknow extends Component
         unset($this->services[$serviceIndex]['meetings'][$index]);
         $this->services[$serviceIndex]['meetings'] = array_values($this->services[$serviceIndex]['meetings']); //updated by Amna Bilal to meeting remove link from service array
     }
-    public function adddate(){
-        $this->dates[] = [
-           
-            'start_time' => '',
-            'end_time' => '',
+    public function addDate(){
+        $this->dates[] =[
+            'start_date'=>'',
+            'start_hour' => '',
+            'start_min'=>'',
+            'end_date'=>'',
+            'end_hour' => '',
+            'end_min'=>'',
+            'start_am'=>'',
+            'end_am'=>'',
             'duration_day' => '',
             'duration_hour' => '',
             'duration_minute' => '',
-            'time_zone' => $this->timeZone
-        ];
+            'time_zone' => ''
+
+    ];
     }
     public function removeDate($index)
     {

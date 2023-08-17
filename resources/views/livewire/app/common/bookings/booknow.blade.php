@@ -631,8 +631,8 @@
                                                     <div class="d-flex">
                                                         <div class="time d-flex align-items-center gap-2">
                                                             <select wire:model.defer="dates.{{$index}}.start_hour">
-                                                                @for($i=1;$i<24;$i++)
-                                                                 <option value="{{$i}}">{{$i}}</option>
+                                                                @for($i=0;$i<24;$i++)
+                                                                 <option value="{{$i}}">{{str_pad($i, 2, '0', STR_PAD_LEFT)}}</option>
                                                                 @endfor
 
                                                             </select>
@@ -645,7 +645,7 @@
                                                             {{-- End of update by Shanila --}}
                                                             <select wire:model.defer="dates.{{$index}}.start_min">
                                                                 @for($i=0;$i<59;$i++)
-                                                                 <option value="{{$i}}">{{$i}}</option>
+                                                                 <option value="{{$i}}">{{str_pad($i, 2, '0', STR_PAD_LEFT)}}</option>
                                                                 @endfor
 
                                                             </select>
@@ -679,11 +679,13 @@
                                                 </div>
                                             </div>
                                             <div class="d-flex col-lg-auto mb-4">
-                                            <div class="d-flex">
+                                                <div class="d-flex flex-column">
+                                                    <label class="form-label-sm" for="set_start_time">End Time</label>
+                                                    <div class="d-flex">
                                                         <div class="time d-flex align-items-center gap-2">
                                                             <select wire:model.defer="dates.{{$index}}.end_hour">
-                                                                @for($i=1;$i<24;$i++)
-                                                                 <option value="{{$i}}">{{$i}}</option>
+                                                                @for($i=0;$i<24;$i++)
+                                                                 <option value="{{$i}}">{{str_pad($i, 2, '0', STR_PAD_LEFT)}}</option>
                                                                 @endfor
 
                                                             </select>
@@ -696,20 +698,21 @@
                                                             {{-- End of update by Shanila --}}
                                                             <select wire:model.defer="dates.{{$index}}.end_min">
                                                                 @for($i=0;$i<59;$i++)
-                                                                 <option value="{{$i}}">{{$i}}</option>
+                                                                 <option value="{{$i}}">{{str_pad($i, 2, '0', STR_PAD_LEFT)}}</option>
                                                                 @endfor
 
                                                             </select>
                                                         </div>
                                                         <div class="form-check form-switch form-switch-column mb-0">
                                                             <input checked="" class="form-check-input" type="checkbox"
-                                                                role="switch" id="startTimeAMPM" aria-label="AM PM Toggle button" wire:key="starttime-{{ $index }}" wire:model.defer="dates.{{$index}}.start_time">
+                                                                role="switch" id="startTimeAMPM" aria-label="AM PM Toggle button" wire:key="starttime-{{ $index }}" wire:model.defer="dates.{{$index}}.end_time">
                                                             <label class="form-check-label"
                                                                 for="startTimeAMPM">AM</label>
                                                             <label class="form-check-label"
                                                                 for="startTimeAMPM">PM</label>
                                                         </div>
                                                     </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="d-md-flex align-items-center gap-5">
@@ -739,7 +742,7 @@
                                     @endforeach
                                     <!-- /Select Dates & Times Duplicate Block -->
                                     <div class="d-flex justify-content-end mt-3">
-                                        <button class="btn btn-primary rounded" wire:click.prevent="adddate">
+                                        <button class="btn btn-primary rounded" wire:click.prevent="addDate">
                                             <svg aria-label="Add Date" width="20" height="20" viewBox="0 0 20 20">
                                                 <use xlink:href="/css/common-icons.svg#plus">
                                                 </use>
