@@ -1,4 +1,5 @@
 <div x-data="{ rescheduleBooking: false, addDocuments: false, assignProvider: false }">
+    @if($booking)
     <div class="content-body">
         <div class="card">
             <div class="card-body">
@@ -1566,5 +1567,5 @@
     @include('panels.booking-details.reschedule-booking')
     @include('panels.common.add-documents', ['booking_id' => $booking_id])
     @include('panels.booking-details.assign-providers')
-
+@endif
 </div>

@@ -94,6 +94,7 @@ class BookingDetails extends Component
         $this->validate();
 		$booking=$this->booking;
 		$booking->save();
+		
 		$message="Notes Updates !";
 		$this->dispatchBrowserEvent('swal:modal', [
 			'type' => 'success',
