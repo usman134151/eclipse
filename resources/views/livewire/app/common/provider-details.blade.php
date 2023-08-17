@@ -661,9 +661,9 @@
             </button>
             <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
 
-                <span>Message Provider</span>
-            </button>
-            <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
+	                                            		 <span>Message Provider</span>
+	                                            	 </button>
+	                                            	 <button wire:click="resendWelcomeEmail" type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
 
                 <span>Resend Welcome Email</span>
             </button>
