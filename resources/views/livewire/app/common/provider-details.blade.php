@@ -101,7 +101,8 @@
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="availability-tab" data-bs-toggle="tab"
                                             data-bs-target="#availability-tab-pane" type="button" role="tab"
-                                            aria-controls="availability-tab-pane" aria-selected="false" onclick="window.dispatchEvent(new Event('resize'))">
+                                            aria-controls="availability-tab-pane" aria-selected="false"
+                                            onclick="window.dispatchEvent(new Event('resize'))">
                                             <svg aria-label="Availability" width="31" height="30"
                                                 viewBox="0 0 31 30" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -661,9 +662,10 @@
             </button>
             <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
 
-	                                            		 <span>Message Provider</span>
-	                                            	 </button>
-	                                            	 <button wire:click="resendWelcomeEmail" type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
+                <span>Message Provider</span>
+            </button>
+            <button wire:click="resendWelcomeEmail" type="button"
+                class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
 
                 <span>Resend Welcome Email</span>
             </button>
@@ -843,7 +845,9 @@
                                                                         </div>
                                                                         <div class="mx-3 fw-semibold">Day Rate In-person:
                                                                         </div>
-                                                                        <div class="mx-3">{{$service['hours_price'] ? '$'.number_format($service['hours_price'],2) : 'N/A'}}</div>
+                                                                        <div class="mx-3">
+                                                                            {{ $service['hours_price'] ? '$' . number_format($service['hours_price'], 2) : 'N/A' }}
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-4">
@@ -860,7 +864,9 @@
                                                                         </div>
                                                                         <div class="mx-3 fw-semibold">Day Rate Virtual:
                                                                         </div>
-                                                                        <div class="mx-3">{{$service['hours_price_v'] ? '$'.number_format($service['hours_price_v'],2) : 'N/A'}}</div>
+                                                                        <div class="mx-3">
+                                                                            {{ $service['hours_price_v'] ? '$' . number_format($service['hours_price_v'], 2) : 'N/A' }}
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -877,7 +883,9 @@
                                                                             </svg>
                                                                         </div>
                                                                         <div class="mx-3 fw-semibold">Day Rate Phone:</div>
-                                                                        <div class="mx-3">{{$service['hours_price_p'] ? '$'.number_format($service['hours_price_p'],2) : 'N/A'}}</div>
+                                                                        <div class="mx-3">
+                                                                            {{ $service['hours_price_p'] ? '$' . number_format($service['hours_price_p'], 2) : 'N/A' }}
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-4">
@@ -894,7 +902,9 @@
                                                                         </div>
                                                                         <div class="mx-3 fw-semibold">Day Rate
                                                                             Teleconference:</div>
-                                                                        <div class="mx-3">{{$service['hours_price_t'] ? '$'.number_format($service['hours_price_t'],2) : 'N/A'}}</div>
+                                                                        <div class="mx-3">
+                                                                            {{ $service['hours_price_t'] ? '$' . number_format($service['hours_price_t'], 2) : 'N/A' }}
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -941,22 +951,50 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="d-inline-flex col-3">
-                                                                        <div class="bg-muted rounded">
-                                                                            <span class="fw-semibold">Parameter 1</span>
-                                                                        </div>
-                                                                        <div class="mx-3 mt-1"><span
-                                                                                class="fw-semibold">Hours Notice:
-                                                                            </span><span class="mx-1">5</span></div>
-                                                                    </div>
-                                                                    <div class="mx-2 d-inline-flex">
-                                                                        <div class="d-inline-flex">
-                                                                            <span class="fw-semibold">Rate: </span><span
-                                                                                class="mx-1">$100.00</span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="mx-4">
-                                                                        Multiply by service duration
+                                                                    <div class="col-9">
+                                                                        @if ($service['emergency_hour'] != null)
+                                                                            <div class="row">
+
+                                                                                @foreach ($service['emergency_hour'] as $index => $param)
+                                                                                    <div class=" col-2 mb-1">
+                                                                                        <span
+                                                                                            class="bg-muted rounded fw-semibold px-1">Parameter
+                                                                                            {{ $index + 1 }}</span>
+                                                                                    </div>
+                                                                                    <div class="mx-3 mt-1 col-2"><span
+                                                                                            class="fw-semibold">Hours
+                                                                                            Notice:
+                                                                                        </span><span
+                                                                                            class="mx-1">{{ $param[0]['hour'] ? $param[0]['hour'] : 'N/A' }}</span>
+                                                                                    </div>
+                                                                                    <div class="mx-2  col-2">
+                                                                                        <div class="d-inline-flex">
+                                                                                            <span class="fw-semibold">Rate:
+                                                                                            </span><span
+                                                                                                class="mx-1">{{ $param[0]['price'] ? $param[0]['price_type'] . number_format($param[0]['price'], 2) : 'N/A' }}</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="mx-4 col-4">
+                                                                                        @if ($param[0]['exclude_holidays'] == true)
+                                                                                            Exclude After Hours <br>
+                                                                                        @endif
+                                                                                        @if ($param[0]['multiply_duration'] == true)
+                                                                                            Multiply by service duration
+                                                                                            <br>
+                                                                                        @endif
+                                                                                        @if ($param[0]['multiply_providers'] == true)
+                                                                                            Multiply by no. of Providers
+                                                                                            <br>
+                                                                                        @endif
+                                                                                        @if ($param[0]['exclude_after_hour'] == true)
+                                                                                            Exclude Closed Hours <br>
+                                                                                        @endif
+                                                                                    </div>
+                                                                                @endforeach
+                                                                            </div>
+                                                                        @else
+                                                                            N/A
+                                                                        @endif
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -989,23 +1027,55 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="d-inline-flex col-3">
-                                                                        <div class="bg-muted rounded">
-                                                                            <span class="fw-semibold">Parameter 1</span>
-                                                                        </div>
-                                                                        <div class="mx-3 mt-1"><span
-                                                                                class="fw-semibold">Hours Notice:
-                                                                            </span><span class="mx-1">5</span></div>
+                                                                    <div class="col-9">
+
+                                                                        @if ($service['emergency_hour_v'] != null)
+                                                                            <div class="row">
+
+                                                                                @foreach ($service['emergency_hour_v'] as $index => $param)
+                                                                                    {{-- <div class="my-1"> --}}
+                                                                                    <div class=" col-2 mb-1">
+                                                                                        <span
+                                                                                            class="bg-muted rounded fw-semibold px-1">Parameter
+                                                                                            {{ $index + 1 }}</span>
+                                                                                    </div>
+                                                                                    <div class="mx-3 mt-1 col-2"><span
+                                                                                            class="fw-semibold">Hours
+                                                                                            Notice:
+                                                                                        </span><span
+                                                                                            class="mx-1">{{ $param[0]['hour'] ? $param[0]['hour'] : 'N/A' }}</span>
+                                                                                    </div>
+                                                                                    <div class="mx-2  col-2">
+                                                                                        <div class="d-inline-flex">
+                                                                                            <span class="fw-semibold">Rate:
+                                                                                            </span><span
+                                                                                                class="mx-1">{{ $param[0]['price'] ? $param[0]['price_type'] . number_format($param[0]['price'], 2) : 'N/A' }}</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="mx-4 col-4">
+                                                                                        @if ($param[0]['exclude_holidays'] == true)
+                                                                                            Exclude After Hours <br>
+                                                                                        @endif
+                                                                                        @if ($param[0]['multiply_duration'] == true)
+                                                                                            Multiply by service duration
+                                                                                            <br>
+                                                                                        @endif
+                                                                                        @if ($param[0]['multiply_providers'] == true)
+                                                                                            Multiply by no. of Providers
+                                                                                            <br>
+                                                                                        @endif
+                                                                                        @if ($param[0]['exclude_after_hour'] == true)
+                                                                                            Exclude Closed Hours <br>
+                                                                                        @endif
+                                                                                    </div>
+                                                                                    {{-- </div> --}}
+                                                                                @endforeach
+                                                                            </div>
+                                                                        @else
+                                                                            N/A
+                                                                        @endif
                                                                     </div>
-                                                                    <div class="mx-2 d-inline-flex">
-                                                                        <div class="d-inline-flex">
-                                                                            <span class="fw-semibold">Rate: </span><span
-                                                                                class="mx-1">$100.00</span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="mx-4">
-                                                                        Multiply by service duration
-                                                                    </div>
+
                                                                 </div>
                                                             </div>
                                                             {{-- Virtual Expedited service End --}}
@@ -1036,22 +1106,53 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="d-inline-flex col-3">
-                                                                        <div class="bg-muted rounded">
-                                                                            <span class="fw-semibold">Parameter 1</span>
-                                                                        </div>
-                                                                        <div class="mx-3 mt-1"><span
-                                                                                class="fw-semibold">Hours Notice:
-                                                                            </span><span class="mx-1">5</span></div>
-                                                                    </div>
-                                                                    <div class="mx-2 d-inline-flex">
-                                                                        <div class="d-inline-flex">
-                                                                            <span class="fw-semibold">Rate: </span><span
-                                                                                class="mx-1">$100.00</span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="mx-4">
-                                                                        Multiply by service duration
+                                                                    <div class="col-9">
+
+                                                                        @if ($service['emergency_hour_p'] != null)
+                                                                            <div class="row">
+
+                                                                                @foreach ($service['emergency_hour_p'] as $index => $param)
+                                                                                    {{-- <div class="my-1"> --}}
+                                                                                    <div class=" col-2 mb-1">
+                                                                                        <span
+                                                                                            class="bg-muted rounded fw-semibold px-1">Parameter
+                                                                                            {{ $index + 1 }}</span>
+                                                                                    </div>
+                                                                                    <div class="mx-3 mt-1 col-2"><span
+                                                                                            class="fw-semibold">Hours
+                                                                                            Notice:
+                                                                                        </span><span
+                                                                                            class="mx-1">{{ $param[0]['hour'] ? $param[0]['hour'] : 'N/A' }}</span>
+                                                                                    </div>
+                                                                                    <div class="mx-2  col-2">
+                                                                                        <div class="d-inline-flex">
+                                                                                            <span class="fw-semibold">Rate:
+                                                                                            </span><span
+                                                                                                class="mx-1">{{ $param[0]['price'] ? $param[0]['price_type'] . number_format($param[0]['price'], 2) : 'N/A' }}</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="mx-4 col-4">
+                                                                                        @if ($param[0]['exclude_holidays'] == true)
+                                                                                            Exclude After Hours <br>
+                                                                                        @endif
+                                                                                        @if ($param[0]['multiply_duration'] == true)
+                                                                                            Multiply by service duration
+                                                                                            <br>
+                                                                                        @endif
+                                                                                        @if ($param[0]['multiply_providers'] == true)
+                                                                                            Multiply by no. of Providers
+                                                                                            <br>
+                                                                                        @endif
+                                                                                        @if ($param[0]['exclude_after_hour'] == true)
+                                                                                            Exclude Closed Hours <br>
+                                                                                        @endif
+                                                                                    </div>
+                                                                                    {{-- </div> --}}
+                                                                                @endforeach
+                                                                            </div>
+                                                                        @else
+                                                                            N/A
+                                                                        @endif
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1084,22 +1185,53 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="d-inline-flex col-3">
-                                                                        <div class="bg-muted rounded">
-                                                                            <span class="fw-semibold">Parameter 1</span>
-                                                                        </div>
-                                                                        <div class="mx-3 mt-1"><span
-                                                                                class="fw-semibold">Hours Notice:
-                                                                            </span><span class="mx-1">5</span></div>
-                                                                    </div>
-                                                                    <div class="mx-2 d-inline-flex">
-                                                                        <div class="d-inline-flex">
-                                                                            <span class="fw-semibold">Rate: </span><span
-                                                                                class="mx-1">$100.00</span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="mx-4">
-                                                                        Multiply by service duration
+                                                                    <div class="col-9">
+
+                                                                        @if ($service['emergency_hour_t'] != null)
+                                                                            <div class="row">
+
+                                                                                @foreach ($service['emergency_hour_t'] as $index => $param)
+                                                                                    {{-- <div class="my-1"> --}}
+                                                                                    <div class=" col-2 mb-1">
+                                                                                        <span
+                                                                                            class="bg-muted rounded fw-semibold px-1">Parameter
+                                                                                            {{ $index + 1 }}</span>
+                                                                                    </div>
+                                                                                    <div class="mx-3 mt-1 col-2"><span
+                                                                                            class="fw-semibold">Hours
+                                                                                            Notice:
+                                                                                        </span><span
+                                                                                            class="mx-1">{{ $param[0]['hour'] ? $param[0]['hour'] : 'N/A' }}</span>
+                                                                                    </div>
+                                                                                    <div class="mx-2  col-2">
+                                                                                        <div class="d-inline-flex">
+                                                                                            <span class="fw-semibold">Rate:
+                                                                                            </span><span
+                                                                                                class="mx-1">{{ $param[0]['price'] ? $param[0]['price_type'] . number_format($param[0]['price'], 2) : 'N/A' }}</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="mx-4 col-4">
+                                                                                        @if ($param[0]['exclude_holidays'] == true)
+                                                                                            Exclude After Hours <br>
+                                                                                        @endif
+                                                                                        @if ($param[0]['multiply_duration'] == true)
+                                                                                            Multiply by service duration
+                                                                                            <br>
+                                                                                        @endif
+                                                                                        @if ($param[0]['multiply_providers'] == true)
+                                                                                            Multiply by no. of Providers
+                                                                                            <br>
+                                                                                        @endif
+                                                                                        @if ($param[0]['exclude_after_hour'] == true)
+                                                                                            Exclude Closed Hours <br>
+                                                                                        @endif
+                                                                                    </div>
+                                                                                    {{-- </div> --}}
+                                                                                @endforeach
+                                                                            </div>
+                                                                        @else
+                                                                            N/A
+                                                                        @endif
                                                                     </div>
                                                                 </div>
                                                             </div>

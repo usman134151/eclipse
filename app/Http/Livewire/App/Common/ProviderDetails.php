@@ -7,31 +7,32 @@ use Livewire\Component;
 use App\Models\Tenant\User;
 use App\Models\Tenant\UserDetail;
 use App\Services\App\UserService;
+
 class ProviderDetails extends Component
 {
-    public $user, $userid , $accommodation_catalog, $service_catalog, $isProvider=false;
-	public $settings=['travel_rate_per_unit'=>'', 'travel_rate_unit'=>"km", 'rate_for_travel_time'=>'', 'same_as_service_rate'=>'','provider_payroll'=>false];
+	public $user, $userid, $accommodation_catalog, $service_catalog, $isProvider = false;
+	public $settings = ['travel_rate_per_unit' => '', 'travel_rate_unit' => "km", 'rate_for_travel_time' => '', 'same_as_service_rate' => '', 'provider_payroll' => false];
 
-	
+
 	// variabled for my-drive (upload-credential-file) panel 
-	public  $counter = 0, $credentialId, $credentialLabel="",$credentialDetails = false;
+	public  $counter = 0, $credentialId, $credentialLabel = "", $credentialDetails = false;
 
 
 	protected $listeners = [
 		'showDetails',
-		 'OpenProviderCredential',//for upload panel
-		 'openActiveCredentialModal',	//for document view modal
+		'OpenProviderCredential', //for upload panel
+		'openActiveCredentialModal',	//for document view modal
 		'viewCredentialModal', // for viewing acknowledge doc
-			'showConfirmation',
-		];
+		'showConfirmation',
+	];
 
-	public function saveSettings(){
+	public function saveSettings()
+	{
 
 
 		// dd(json_encode($this->settings));
-		UserDetail::where('user_id',$this->userid)->update(['provider_details'=> json_encode($this->settings)]);
+		UserDetail::where('user_id', $this->userid)->update(['provider_details' => json_encode($this->settings)]);
 		$this->showConfirmation("Settings saved Successfully");
-
 	}
 
 	public function saveSchedule()
@@ -41,12 +42,11 @@ class ProviderDetails extends Component
 		// $this->emit('refreshCalendar'); //emit to update calendar events
 		$this->showConfirmation("Availability has been saved successfully");
 		$this->dispatchBrowserEvent('close-default-schedule-modal');
-
-
 	}
 
 	// open panel in my-drive to upload credential 
-	public function OpenProviderCredential($credentialId,$credentialLabel){
+	public function OpenProviderCredential($credentialId, $credentialLabel)
+	{
 		if ($this->counter == 0) {
 			$this->credentialId = 0;
 			$this->credentialLabel = $credentialLabel;
@@ -57,14 +57,12 @@ class ProviderDetails extends Component
 			$this->credentialId = $credentialId;
 			$this->counter = 0;
 			$this->dispatchBrowserEvent('refreshSelects');
-
 		}
-
-
 	}
 
 	// open view document modal from my-drive
-	public function openActiveCredentialModal($user_doc_id){
+	public function openActiveCredentialModal($user_doc_id)
+	{
 		$this->emit('openActiveCredential', $user_doc_id);
 	}
 
@@ -77,14 +75,15 @@ class ProviderDetails extends Component
 
 
 	// fetches basic user data, refer to Provider.php to increase relation arrays
-    public function showDetails($user){
-		$this->user=$user;
+	public function showDetails($user)
+	{
+		$this->user = $user;
 		$this->userid = $user['id'];
 		$this->user['tags'] = json_decode($this->user['userdetail']['tags']);
-		if($this->user['userdetail']['provider_details']!=null)
-			$this->settings = json_decode($this->user['userdetail']['provider_details'],true);
+		if ($this->user['userdetail']['provider_details'] != null)
+			$this->settings = json_decode($this->user['userdetail']['provider_details'], true);
 
-	
+
 		// accommodations and services 
 		$query = User::query();
 		$query->where('users.id', $this->userid);
@@ -97,15 +96,27 @@ class ProviderDetails extends Component
 		$query->select([
 			'accommodations.id as accommodation_id',
 			'accommodations.name as accommodation_name',
-			'service_categories.id as service_id','service_categories.name as service_name',
+			'service_categories.id as service_id', 'service_categories.name as service_name',
 			'provider_accommodation_services.provider_priority',
 			'service_categories.*'
 
 
 		]);
-			$this->accommodation_catalog = $query->distinct('service_id')->orderBy('provider_priority')->get()->groupBy('accommodation_id')->toArray();
-
+		$this->accommodation_catalog = $query->distinct('service_id')->orderBy('provider_priority')->get()->groupBy('accommodation_id')->toArray();
+		foreach ($this->accommodation_catalog as $key=> $accom) {
+			foreach ($accom as $index=> $service) {
+				if ($service['emergency_hour'])
+				$this->accommodation_catalog[$key][$index]['emergency_hour'] = json_decode($service['emergency_hour'], true);
+				if ($service['emergency_hour_v'])
+				$this->accommodation_catalog[$key][$index]['emergency_hour_v'] = json_decode($service['emergency_hour_v'], true);
+				if ($service['emergency_hour_p'])
+					$this->accommodation_catalog[$key][$index]['emergency_hour_p'] = json_decode($service['emergency_hour_p'], true);
+				if ($service['emergency_hour_t'])
+					$this->accommodation_catalog[$key][$index]['emergency_hour_t'] = json_decode($service['emergency_hour_t'], true);
 		
+			}
+		}
+
 		// dd($this->accommodation_catalog);
 		$this->dispatchBrowserEvent('refreshSelects');
 	}
@@ -136,21 +147,22 @@ class ProviderDetails extends Component
 		return view('livewire.app.common.provider-details');
 	}
 
-	public function mount($user=null)
+	public function mount($user = null)
 	{
 		if ($user) {
 			$this->showdetails($user);
 		}
 	}
 
-	public function showList($userId=1)
+	public function showList($userId = 1)
 	{
-        $user=User::find($userId);
+		$user = User::find($userId);
 
 		$this->emit('showList');
 	}
-	public function resendWelcomeEmail(){
-        $user=User::find($this->user['id']);
+	public function resendWelcomeEmail()
+	{
+		$user = User::find($this->user['id']);
 		sendWelcomeMail($user);
 		$this->showConfirmation("Welcome Email Send Successfully");
 	}
