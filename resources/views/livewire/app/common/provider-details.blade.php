@@ -101,7 +101,8 @@
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="availability-tab" data-bs-toggle="tab"
                                             data-bs-target="#availability-tab-pane" type="button" role="tab"
-                                            aria-controls="availability-tab-pane" aria-selected="false" onclick="window.dispatchEvent(new Event('resize'))">
+                                            aria-controls="availability-tab-pane" aria-selected="false"
+                                            onclick="window.dispatchEvent(new Event('resize'))">
                                             <svg aria-label="Availability" width="31" height="30"
                                                 viewBox="0 0 31 30" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -519,13 +520,12 @@
             </div>
             <div class="col-md-6">
                 <div class="row mb-1">
-                    <small>(coming soon)</small>
 
                     <h2 class="text-primary">Last Login:</h2>
                     <div class="col-md-12 d-flex">
                         <div class="col-md-3 "><label class="col-form-label" for="date">Date:</label></div>
                         <div class="col-md-5 align-self-center">
-                            <div class="font-family-secondary">20/10/2022</div>
+                            <div class="font-family-secondary">{{$user['last_login'] ? date_format(date_create( $user['last_login']['created_at']), "d/m/Y") : 'N/A' }}</div>
                         </div>
                     </div>
                 </div>
@@ -533,16 +533,19 @@
                     <div class="col-md-12 d-flex">
                         <div class="col-md-3 "><label class="col-form-label" for="time">Time:</label></div>
                         <div class="col-md-5 align-self-center">
-                            <div class="font-family-secondary">01:34 PM</div>
+                            <div class="font-family-secondary">{{$user['last_login'] ? date_format(date_create( $user['last_login']['created_at']), "h:i A") : 'N/A' }}</div>
                         </div>
                     </div>
                 </div>
                 <div class="row mb-1">
                     <div class="col-md-12 d-flex">
-                        <div class="col-md-3"><label class="col-form-label" for="location">Location:</label></div>
-                        <div class="col-md-10 align-self-center">
-                            <div class="font-family-secondary text-sm">Mrs Smith 98 Shirley Street PIMPAMA QLD 4209
-                                AUSTRALIA</div>
+                        <div class="col-md-3"><label class="col-form-label" for="location">IP Address:</label></div>
+                        <div class="col-md-10 align-self-center mx-3">
+                            {{-- <div class="font-family-secondary text-sm mx-2 mt-2"> --}}
+                            {{$user['last_login'] ? $user['last_login']['ip_address'] : 'N/A' }}
+                            {{-- Mrs Smith 98 Shirley Street PIMPAMA QLD 4209
+                                AUSTRALIA --}}
+                                {{-- </div> --}}
                         </div>
                     </div>
                 </div>
@@ -661,9 +664,10 @@
             </button>
             <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
 
-	                                            		 <span>Message Provider</span>
-	                                            	 </button>
-	                                            	 <button wire:click="resendWelcomeEmail" type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
+                <span>Message Provider</span>
+            </button>
+            <button wire:click="resendWelcomeEmail" type="button"
+                class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
 
                 <span>Resend Welcome Email</span>
             </button>
@@ -679,7 +683,7 @@
         <div class="row mb-3">
             <h3>Schedule <small>(coming soon)</small> </h3>
         </div>
-        <div class="d-flex justify-content-between mb-2">
+        {{-- <div class="d-flex justify-content-between mb-2">
             <div class="d-inline-flex align-items-center gap-4">
                 <div class="mb-4 mb-lg-0">
                     <select class="form-select form-select-sm rounded bg-secondary text-white rounded"
@@ -721,11 +725,10 @@
                     </ul>
                 </div>
             </div>
-        </div>
-        <div>
+        </div> --}}
+        <div class="w-100">
             <x-advancefilters />
-            <img class="w-100" alt="Schedule Calendar"
-                src="/tenant-resources/images/portrait/small/image-placeholder-calendar.png" />
+            @livewire('app.common.calendar', ['profileProvider' => false])
         </div>
     </div>
     <!-- Schedule tab end -->
@@ -843,7 +846,9 @@
                                                                         </div>
                                                                         <div class="mx-3 fw-semibold">Day Rate In-person:
                                                                         </div>
-                                                                        <div class="mx-3">$101.00</div>
+                                                                        <div class="mx-3">
+                                                                            {{ $service['hours_price'] ? '$' . number_format($service['hours_price'], 2) : 'N/A' }}
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-4">
@@ -860,7 +865,9 @@
                                                                         </div>
                                                                         <div class="mx-3 fw-semibold">Day Rate Virtual:
                                                                         </div>
-                                                                        <div class="mx-3">$101.00</div>
+                                                                        <div class="mx-3">
+                                                                            {{ $service['hours_price_v'] ? '$' . number_format($service['hours_price_v'], 2) : 'N/A' }}
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -877,7 +884,9 @@
                                                                             </svg>
                                                                         </div>
                                                                         <div class="mx-3 fw-semibold">Day Rate Phone:</div>
-                                                                        <div class="mx-3">$101.00</div>
+                                                                        <div class="mx-3">
+                                                                            {{ $service['hours_price_p'] ? '$' . number_format($service['hours_price_p'], 2) : 'N/A' }}
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-4">
@@ -894,7 +903,9 @@
                                                                         </div>
                                                                         <div class="mx-3 fw-semibold">Day Rate
                                                                             Teleconference:</div>
-                                                                        <div class="mx-3">$101.00</div>
+                                                                        <div class="mx-3">
+                                                                            {{ $service['hours_price_t'] ? '$' . number_format($service['hours_price_t'], 2) : 'N/A' }}
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -941,22 +952,50 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="d-inline-flex col-3">
-                                                                        <div class="bg-muted rounded">
-                                                                            <span class="fw-semibold">Parameter 1</span>
-                                                                        </div>
-                                                                        <div class="mx-3 mt-1"><span
-                                                                                class="fw-semibold">Hours Notice:
-                                                                            </span><span class="mx-1">5</span></div>
-                                                                    </div>
-                                                                    <div class="mx-2 d-inline-flex">
-                                                                        <div class="d-inline-flex">
-                                                                            <span class="fw-semibold">Rate: </span><span
-                                                                                class="mx-1">$100.00</span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="mx-4">
-                                                                        Multiply by service duration
+                                                                    <div class="col-9">
+                                                                        @if ($service['emergency_hour'] != null)
+                                                                            <div class="row">
+
+                                                                                @foreach ($service['emergency_hour'] as $index => $param)
+                                                                                    <div class=" col-2 mb-1">
+                                                                                        <span
+                                                                                            class="bg-muted rounded fw-semibold px-1">Parameter
+                                                                                            {{ $index + 1 }}</span>
+                                                                                    </div>
+                                                                                    <div class="mx-3 mt-1 col-2"><span
+                                                                                            class="fw-semibold">Hours
+                                                                                            Notice:
+                                                                                        </span><span
+                                                                                            class="mx-1">{{ $param[0]['hour'] ? $param[0]['hour'] : 'N/A' }}</span>
+                                                                                    </div>
+                                                                                    <div class="mx-2  col-2">
+                                                                                        <div class="d-inline-flex">
+                                                                                            <span class="fw-semibold">Rate:
+                                                                                            </span><span
+                                                                                                class="mx-1">{{ $param[0]['price'] ? $param[0]['price_type'] . number_format($param[0]['price'], 2) : 'N/A' }}</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="mx-4 col-4">
+                                                                                        @if ($param[0]['exclude_holidays'] == true)
+                                                                                            Exclude After Hours <br>
+                                                                                        @endif
+                                                                                        @if ($param[0]['multiply_duration'] == true)
+                                                                                            Multiply by service duration
+                                                                                            <br>
+                                                                                        @endif
+                                                                                        @if ($param[0]['multiply_providers'] == true)
+                                                                                            Multiply by no. of Providers
+                                                                                            <br>
+                                                                                        @endif
+                                                                                        @if ($param[0]['exclude_after_hour'] == true)
+                                                                                            Exclude Closed Hours <br>
+                                                                                        @endif
+                                                                                    </div>
+                                                                                @endforeach
+                                                                            </div>
+                                                                        @else
+                                                                            N/A
+                                                                        @endif
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -989,23 +1028,55 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="d-inline-flex col-3">
-                                                                        <div class="bg-muted rounded">
-                                                                            <span class="fw-semibold">Parameter 1</span>
-                                                                        </div>
-                                                                        <div class="mx-3 mt-1"><span
-                                                                                class="fw-semibold">Hours Notice:
-                                                                            </span><span class="mx-1">5</span></div>
+                                                                    <div class="col-9">
+
+                                                                        @if ($service['emergency_hour_v'] != null)
+                                                                            <div class="row">
+
+                                                                                @foreach ($service['emergency_hour_v'] as $index => $param)
+                                                                                    {{-- <div class="my-1"> --}}
+                                                                                    <div class=" col-2 mb-1">
+                                                                                        <span
+                                                                                            class="bg-muted rounded fw-semibold px-1">Parameter
+                                                                                            {{ $index + 1 }}</span>
+                                                                                    </div>
+                                                                                    <div class="mx-3 mt-1 col-2"><span
+                                                                                            class="fw-semibold">Hours
+                                                                                            Notice:
+                                                                                        </span><span
+                                                                                            class="mx-1">{{ $param[0]['hour'] ? $param[0]['hour'] : 'N/A' }}</span>
+                                                                                    </div>
+                                                                                    <div class="mx-2  col-2">
+                                                                                        <div class="d-inline-flex">
+                                                                                            <span class="fw-semibold">Rate:
+                                                                                            </span><span
+                                                                                                class="mx-1">{{ $param[0]['price'] ? $param[0]['price_type'] . number_format($param[0]['price'], 2) : 'N/A' }}</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="mx-4 col-4">
+                                                                                        @if ($param[0]['exclude_holidays'] == true)
+                                                                                            Exclude After Hours <br>
+                                                                                        @endif
+                                                                                        @if ($param[0]['multiply_duration'] == true)
+                                                                                            Multiply by service duration
+                                                                                            <br>
+                                                                                        @endif
+                                                                                        @if ($param[0]['multiply_providers'] == true)
+                                                                                            Multiply by no. of Providers
+                                                                                            <br>
+                                                                                        @endif
+                                                                                        @if ($param[0]['exclude_after_hour'] == true)
+                                                                                            Exclude Closed Hours <br>
+                                                                                        @endif
+                                                                                    </div>
+                                                                                    {{-- </div> --}}
+                                                                                @endforeach
+                                                                            </div>
+                                                                        @else
+                                                                            N/A
+                                                                        @endif
                                                                     </div>
-                                                                    <div class="mx-2 d-inline-flex">
-                                                                        <div class="d-inline-flex">
-                                                                            <span class="fw-semibold">Rate: </span><span
-                                                                                class="mx-1">$100.00</span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="mx-4">
-                                                                        Multiply by service duration
-                                                                    </div>
+
                                                                 </div>
                                                             </div>
                                                             {{-- Virtual Expedited service End --}}
@@ -1036,22 +1107,53 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="d-inline-flex col-3">
-                                                                        <div class="bg-muted rounded">
-                                                                            <span class="fw-semibold">Parameter 1</span>
-                                                                        </div>
-                                                                        <div class="mx-3 mt-1"><span
-                                                                                class="fw-semibold">Hours Notice:
-                                                                            </span><span class="mx-1">5</span></div>
-                                                                    </div>
-                                                                    <div class="mx-2 d-inline-flex">
-                                                                        <div class="d-inline-flex">
-                                                                            <span class="fw-semibold">Rate: </span><span
-                                                                                class="mx-1">$100.00</span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="mx-4">
-                                                                        Multiply by service duration
+                                                                    <div class="col-9">
+
+                                                                        @if ($service['emergency_hour_p'] != null)
+                                                                            <div class="row">
+
+                                                                                @foreach ($service['emergency_hour_p'] as $index => $param)
+                                                                                    {{-- <div class="my-1"> --}}
+                                                                                    <div class=" col-2 mb-1">
+                                                                                        <span
+                                                                                            class="bg-muted rounded fw-semibold px-1">Parameter
+                                                                                            {{ $index + 1 }}</span>
+                                                                                    </div>
+                                                                                    <div class="mx-3 mt-1 col-2"><span
+                                                                                            class="fw-semibold">Hours
+                                                                                            Notice:
+                                                                                        </span><span
+                                                                                            class="mx-1">{{ $param[0]['hour'] ? $param[0]['hour'] : 'N/A' }}</span>
+                                                                                    </div>
+                                                                                    <div class="mx-2  col-2">
+                                                                                        <div class="d-inline-flex">
+                                                                                            <span class="fw-semibold">Rate:
+                                                                                            </span><span
+                                                                                                class="mx-1">{{ $param[0]['price'] ? $param[0]['price_type'] . number_format($param[0]['price'], 2) : 'N/A' }}</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="mx-4 col-4">
+                                                                                        @if ($param[0]['exclude_holidays'] == true)
+                                                                                            Exclude After Hours <br>
+                                                                                        @endif
+                                                                                        @if ($param[0]['multiply_duration'] == true)
+                                                                                            Multiply by service duration
+                                                                                            <br>
+                                                                                        @endif
+                                                                                        @if ($param[0]['multiply_providers'] == true)
+                                                                                            Multiply by no. of Providers
+                                                                                            <br>
+                                                                                        @endif
+                                                                                        @if ($param[0]['exclude_after_hour'] == true)
+                                                                                            Exclude Closed Hours <br>
+                                                                                        @endif
+                                                                                    </div>
+                                                                                    {{-- </div> --}}
+                                                                                @endforeach
+                                                                            </div>
+                                                                        @else
+                                                                            N/A
+                                                                        @endif
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1084,210 +1186,179 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="d-inline-flex col-3">
-                                                                        <div class="bg-muted rounded">
-                                                                            <span class="fw-semibold">Parameter 1</span>
-                                                                        </div>
-                                                                        <div class="mx-3 mt-1"><span
-                                                                                class="fw-semibold">Hours Notice:
-                                                                            </span><span class="mx-1">5</span></div>
-                                                                    </div>
-                                                                    <div class="mx-2 d-inline-flex">
-                                                                        <div class="d-inline-flex">
-                                                                            <span class="fw-semibold">Rate: </span><span
-                                                                                class="mx-1">$100.00</span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="mx-4">
-                                                                        Multiply by service duration
+                                                                    <div class="col-9">
+
+                                                                        @if ($service['emergency_hour_t'] != null)
+                                                                            <div class="row">
+
+                                                                                @foreach ($service['emergency_hour_t'] as $index => $param)
+                                                                                    {{-- <div class="my-1"> --}}
+                                                                                    <div class=" col-2 mb-1">
+                                                                                        <span
+                                                                                            class="bg-muted rounded fw-semibold px-1">Parameter
+                                                                                            {{ $index + 1 }}</span>
+                                                                                    </div>
+                                                                                    <div class="mx-3 mt-1 col-2"><span
+                                                                                            class="fw-semibold">Hours
+                                                                                            Notice:
+                                                                                        </span><span
+                                                                                            class="mx-1">{{ $param[0]['hour'] ? $param[0]['hour'] : 'N/A' }}</span>
+                                                                                    </div>
+                                                                                    <div class="mx-2  col-2">
+                                                                                        <div class="d-inline-flex">
+                                                                                            <span class="fw-semibold">Rate:
+                                                                                            </span><span
+                                                                                                class="mx-1">{{ $param[0]['price'] ? $param[0]['price_type'] . number_format($param[0]['price'], 2) : 'N/A' }}</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="mx-4 col-4">
+                                                                                        @if ($param[0]['exclude_holidays'] == true)
+                                                                                            Exclude After Hours <br>
+                                                                                        @endif
+                                                                                        @if ($param[0]['multiply_duration'] == true)
+                                                                                            Multiply by service duration
+                                                                                            <br>
+                                                                                        @endif
+                                                                                        @if ($param[0]['multiply_providers'] == true)
+                                                                                            Multiply by no. of Providers
+                                                                                            <br>
+                                                                                        @endif
+                                                                                        @if ($param[0]['exclude_after_hour'] == true)
+                                                                                            Exclude Closed Hours <br>
+                                                                                        @endif
+                                                                                    </div>
+                                                                                    {{-- </div> --}}
+                                                                                @endforeach
+                                                                            </div>
+                                                                        @else
+                                                                            N/A
+                                                                        @endif
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             {{-- Teleconference Expedited Service End --}}
-                                                            <div class="row">
-                                                                <hr>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="d-inline-flex mb-3">
-                                                                    <h2>Specialization Rates</h2>
-                                                                    <svg aria-label="Specialization Rates"
-                                                                        class="mx-2 mt-2" width="15" height="16"
-                                                                        viewBox="0 0 15 16"fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <use
-                                                                            xlink:href="/css/common-icons.svg#fill-question">
-                                                                        </use>
-                                                                    </svg>
+                                                            @if ($service['specializations'])
+                                                                <div class="row">
+                                                                    <hr>
                                                                 </div>
-                                                                <div class="bg-muted p-1 col-1 mx-3 mb-2">Medical</div>
-                                                                <div class="d-inline-flex">
-                                                                    <div class="mx-2">
-                                                                        <div class="d-inline-flex">
-                                                                            <div>
-                                                                                <span class="fw-semibold">Rate Type:</span>
-                                                                                <span>%</span>
+                                                                <div class="row mb-5">
+                                                                    <div class="d-inline-flex mb-3">
+                                                                        <h2>Specialization Rates</h2>
+                                                                        <svg aria-label="Specialization Rates"
+                                                                            class="mx-2 mt-2" width="15"
+                                                                            height="16"
+                                                                            viewBox="0 0 15 16"fill="none"
+                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                            <use
+                                                                                xlink:href="/css/common-icons.svg#fill-question">
+                                                                            </use>
+                                                                        </svg>
+                                                                    </div>
+                                                                    @foreach ($service['specializations'] as $row)
+                                                                        <div class="row">
+                                                                            <div class="bg-muted p-1 col-3 mx-3 mb-2">
+                                                                                {{ $row['sp_name'] }}</div>
+                                                                            <div class="d-inline-flex col-10">
+                                                                                <div class="mx-2">
+                                                                                    <div class="d-inline-flex">
+                                                                                        <div>
+                                                                                            <span class="fw-semibold">Rate
+                                                                                                Type:</span>
+                                                                                            <span>{{ $row['sp_price_type'] }}</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="mx-3">
+                                                                                    <div class="d-inline-flex">
+                                                                                        <div>
+                                                                                            <svg aria-label="In-Person"
+                                                                                                width="25"
+                                                                                                height="24"
+                                                                                                viewBox="0 0 25 24"
+                                                                                                fill="none"
+                                                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                                                <use
+                                                                                                    xlink:href="/css/provider.svg#in-person">
+                                                                                                </use>
+                                                                                            </svg>
+                                                                                        </div>
+                                                                                        <div class="mx-1 mt-1"><span
+                                                                                                class="fw-semibold">In-Person:
+                                                                                            </span><span
+                                                                                                class="mx-1">${{ $row['sp'] ? '$'.number_format($row['sp'], 2) : 'N/A' }}</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="mx-3">
+                                                                                    <div class="d-inline-flex">
+                                                                                        <div>
+                                                                                            <svg aria-label="Virtual"
+                                                                                                width="25"
+                                                                                                height="25"
+                                                                                                viewBox="0 0 25 25"
+                                                                                                fill="none"
+                                                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                                                <use
+                                                                                                    xlink:href="/css/provider.svg#virtual-service">
+                                                                                                </use>
+                                                                                            </svg>
+                                                                                        </div>
+                                                                                        <div class="mx-1 mt-1"><span
+                                                                                                class="fw-semibold">Virtual:</span><span
+                                                                                                class="mx-1">{{$row['sp_v'] ?  '$'.number_format($row['sp_v'], 2) :'N/A' }}</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="mx-3">
+                                                                                    <div class="d-inline-flex">
+                                                                                        <div>
+                                                                                            <svg aria-label="Phone"
+                                                                                                width="30"
+                                                                                                height="24"
+                                                                                                viewBox="0 0 30 24"
+                                                                                                fill="none"
+                                                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                                                <use
+                                                                                                    xlink:href="/css/provider.svg#phone">
+                                                                                                </use>
+                                                                                            </svg>
+                                                                                        </div>
+                                                                                        <div class="mx-1 mt-1"><span
+                                                                                                class="fw-semibold">Phone:</span><span
+                                                                                                class="mx-1">{{$row['sp_p'] ? '$'.number_format($row['sp_p'], 2) : 'N/A' }}</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="mx-3">
+                                                                                    <div class="d-inline-flex">
+                                                                                        <div>
+                                                                                            <svg aria-label="Teleconference"
+                                                                                                width="30"
+                                                                                                height="26"
+                                                                                                viewBox="0 0 30 26"
+                                                                                                fill="none"
+                                                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                                                <use
+                                                                                                    xlink:href="/css/provider.svg#teleconference">
+                                                                                                </use>
+                                                                                            </svg>
+                                                                                        </div>
+                                                                                        <div class="mx-1 mt-1"><span
+                                                                                                class="fw-semibold">Teleconferencing:</span><span
+                                                                                                class="mx-1">{{ $row['sp_t'] ? '$'.number_format($row['sp_t'], 2) : 'N/A' }}</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="mx-3">
-                                                                        <div class="d-inline-flex">
-                                                                            <div>
-                                                                                <svg aria-label="In-Person" width="25"
-                                                                                    height="24" viewBox="0 0 25 24"
-                                                                                    fill="none"
-                                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                                    <use
-                                                                                        xlink:href="/css/provider.svg#in-person">
-                                                                                    </use>
-                                                                                </svg>
-                                                                            </div>
-                                                                            <div class="mx-1 mt-1"><span
-                                                                                    class="fw-semibold">In-Person:
-                                                                                </span><span class="mx-1">$100.00</span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="mx-3">
-                                                                        <div class="d-inline-flex">
-                                                                            <div>
-                                                                                <svg aria-label="Virtual" width="25"
-                                                                                    height="25" viewBox="0 0 25 25"
-                                                                                    fill="none"
-                                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                                    <use
-                                                                                        xlink:href="/css/provider.svg#virtual-service">
-                                                                                    </use>
-                                                                                </svg>
-                                                                            </div>
-                                                                            <div class="mx-1 mt-1"><span
-                                                                                    class="fw-semibold">Virtual:</span><span
-                                                                                    class="mx-1">$100.00</span></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="mx-3">
-                                                                        <div class="d-inline-flex">
-                                                                            <div>
-                                                                                <svg aria-label="Phone" width="30"
-                                                                                    height="24" viewBox="0 0 30 24"
-                                                                                    fill="none"
-                                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                                    <use
-                                                                                        xlink:href="/css/provider.svg#phone">
-                                                                                    </use>
-                                                                                </svg>
-                                                                            </div>
-                                                                            <div class="mx-1 mt-1"><span
-                                                                                    class="fw-semibold">Phone:</span><span
-                                                                                    class="mx-1">$100.00</span></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="mx-3">
-                                                                        <div class="d-inline-flex">
-                                                                            <div>
-                                                                                <svg aria-label="Teleconference"
-                                                                                    width="30" height="26"
-                                                                                    viewBox="0 0 30 26" fill="none"
-                                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                                    <use
-                                                                                        xlink:href="/css/provider.svg#teleconference">
-                                                                                    </use>
-                                                                                </svg>
-                                                                            </div>
-                                                                            <div class="mx-1 mt-1"><span
-                                                                                    class="fw-semibold">Teleconferencing:</span><span
-                                                                                    class="mx-1">$100.00</span></div>
-                                                                        </div>
-                                                                    </div>
+                                                                    @endforeach
                                                                 </div>
-                                                                <div class="row mt-4 mb-3">
-                                                                    <div class="col-3 mb-2 mx-1">
-                                                                        <span class="bg-muted p-1 mb-3"> Projector & Screen
-                                                                            Rental</span>
-                                                                    </div>
-                                                                    <div class="d-inline-flex mt-2">
-                                                                        <div class="mx-2">
-                                                                            <div class="d-inline-flex">
-                                                                                <div>
-                                                                                    <span class="fw-semibold"> Rate
-                                                                                        Type:</span><span>%</span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="mx-3">
-                                                                            <div class="d-inline-flex">
-                                                                                <div>
-                                                                                    <svg aria-label="In-Person"
-                                                                                        width="25" height="24"
-                                                                                        viewBox="0 0 25 24" fill="none"
-                                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                                        <use
-                                                                                            xlink:href="/css/provider.svg#in-person">
-                                                                                        </use>
-                                                                                    </svg>
-                                                                                </div>
-                                                                                <div class="mx-1 mt-1"><span
-                                                                                        class="fw-semibold">In-Person:
-                                                                                    </span><span
-                                                                                        class="mx-1">$100.00</span></div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="mx-3">
-                                                                            <div class="d-inline-flex">
-                                                                                <div>
-                                                                                    <svg aria-label="Virtual"
-                                                                                        width="25" height="25"
-                                                                                        viewBox="0 0 25 25" fill="none"
-                                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                                        <use
-                                                                                            xlink:href="/css/provider.svg#virtual-service">
-                                                                                        </use>
-                                                                                    </svg>
-                                                                                </div>
-                                                                                <div class="mx-1 mt-1"><span
-                                                                                        class="fw-semibold">Virtual:</span><span
-                                                                                        class="mx-1">$100.00</span></div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="mx-3">
-                                                                            <div class="d-inline-flex">
-                                                                                <div>
-                                                                                    <svg aria-label="Phone" width="30"
-                                                                                        height="24" viewBox="0 0 30 24"
-                                                                                        fill="none"
-                                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                                        <use
-                                                                                            xlink:href="/css/provider.svg#phone">
-                                                                                        </use>
-                                                                                    </svg>
-                                                                                </div>
-                                                                                <div class="mx-1 mt-1"><span
-                                                                                        class="fw-semibold">Phone:</span><span
-                                                                                        class="mx-1">$100.00</span></div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="mx-3">
-                                                                            <div class="d-inline-flex">
-                                                                                <div>
-                                                                                    <svg aria-label="Teleconference"
-                                                                                        width="30" height="26"
-                                                                                        viewBox="0 0 30 26" fill="none"
-                                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                                        <use
-                                                                                            xlink:href="/css/provider.svg#teleconference">
-                                                                                        </use>
-                                                                                    </svg>
-                                                                                </div>
-                                                                                <div class="mx-1 mt-1"><span
-                                                                                        class="fw-semibold">Teleconferencing:</span><span
-                                                                                        class="mx-1">$100.00</span></div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <hr>
-                                                            </div>
-                                                            {{-- Specialization Rates -End --}}
+                                                            @endif
+
+                                                            <hr>
+
                                                         </div>
+                                                        {{-- Specialization Rates -End --}}
                                                     </div>
 
                                                 </td>
@@ -1422,8 +1493,8 @@
                 <label for="searchRecord" class="form-label fw-semibold">
                     Search
                 </label>
-                <input type="search" class="form-control" id="searchRecord" name="search"
-                    placeholder="Search here" autocomplete="on" />
+                <input type="search" class="form-control" id="searchRecord" name="search" placeholder="Search here"
+                    autocomplete="on" />
             </div>
         </div>
         <div class="card">
