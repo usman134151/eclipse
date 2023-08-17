@@ -18,7 +18,7 @@ class BusinessHoursSetup extends Component
     public $model_id,$model_type,$timeslot_end_type='pm',$timeslot_start_type='am';
     public $days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     public $holidays;
-    protected $listeners = ['getRecord','saveSchedule','updateDay'],$rules=[];
+    protected $listeners = ['getRecord','saveSchedule1','updateDay','updateVal'],$rules=[];
    
     public $timeslot=[];
     public $timeslots=[
@@ -148,7 +148,13 @@ class BusinessHoursSetup extends Component
         // Reset the timeslot array
         $this->resetTimeSlot();
     }
+    public function updateVal($attrName, $val)
+	{
+       $this->schedule[$attrName]=$val;
     
+
+
+	}
 
     public function resetTimeSlot(){
         $this->timeslot=['timeslot_type'=>1,'timeslot_day'=>'Monday','timeslot_end_min'=>'00','timeslot_start_hour'=>"9",'timeslot_start_min'=>'00','timeslot_end_hour'=>"18"];
@@ -179,6 +185,7 @@ class BusinessHoursSetup extends Component
     public function saveSchedule(){
        
         $this->schedule->save();
+       
         $model=null;
         if ($this->model_type == 1)
             $model = "system";

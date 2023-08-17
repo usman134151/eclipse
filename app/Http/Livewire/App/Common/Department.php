@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class Department extends Component
 {
-	public $showForm, $confirmationMessage, $isSupervisor;
+	public $showForm, $confirmationMessage, $isSupervisor=false;
 	public $showProfile, $status, $companyId=0,$company, $department;
 	public $du_counter = 0, $du_departmentId, $du_departmentLabel,  $du_departmentDetails = false; //for company users
 
@@ -76,6 +76,11 @@ class Department extends Component
 			$this->department = TenantDepartment::find(request()->departmentID);
 			$this->showProfile($this->department);
 		}
+
+		if(session('isCustomer')&&(in_array(5,session('customerRoles'))))
+			$this->isSupervisor=true;
+
+		
 
 	}
 
