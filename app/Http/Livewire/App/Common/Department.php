@@ -77,6 +77,16 @@ class Department extends Component
 			$this->showProfile($this->department);
 		}
 
+		// if(session()->get('showConfirmation')) {
+		// 	$message = session('showConfirmation');
+		// 	// Emit an event to display a success message using the SweetAlert package
+		// 	$this->dispatchBrowserEvent('swal:modal', [
+		// 		'type' => 'success',
+		// 		'title' => 'Success',
+		// 		'text' => $message,
+		// 	]);
+		// }
+
 	}
 
 	public function render()

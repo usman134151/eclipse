@@ -7,7 +7,7 @@
         </div>
     </div>
     @if ($showForm)
-        <div>@livewire('app.common.forms.department-form') {{-- Show Add / Edit Form --}}</div>
+        <div>@livewire('app.common.forms.department-form',['isSupervisor'=>$isSupervisor]) {{-- Show Add / Edit Form --}}</div>
         {{-- Show Add / Edit Form --}}
     @elseif ($showProfile)
         @livewire('app.common.department-profile', ['departmentId' => $department['id']])
