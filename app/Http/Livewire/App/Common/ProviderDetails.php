@@ -99,13 +99,14 @@ class ProviderDetails extends Component
 			'accommodations.name as accommodation_name',
 			'service_categories.id as service_id','service_categories.name as service_name',
 			'provider_accommodation_services.provider_priority',
+			'service_categories.*'
 
 
 		]);
 			$this->accommodation_catalog = $query->distinct('service_id')->orderBy('provider_priority')->get()->groupBy('accommodation_id')->toArray();
 
 		
-		// dd($this->service_catalog);
+		// dd($this->accommodation_catalog);
 		$this->dispatchBrowserEvent('refreshSelects');
 	}
 

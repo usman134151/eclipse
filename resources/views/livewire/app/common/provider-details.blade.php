@@ -843,7 +843,7 @@
                                                                         </div>
                                                                         <div class="mx-3 fw-semibold">Day Rate In-person:
                                                                         </div>
-                                                                        <div class="mx-3">$101.00</div>
+                                                                        <div class="mx-3">{{$service['hours_price'] ? '$'.number_format($service['hours_price'],2) : 'N/A'}}</div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-4">
@@ -860,7 +860,7 @@
                                                                         </div>
                                                                         <div class="mx-3 fw-semibold">Day Rate Virtual:
                                                                         </div>
-                                                                        <div class="mx-3">$101.00</div>
+                                                                        <div class="mx-3">{{$service['hours_price_v'] ? '$'.number_format($service['hours_price_v'],2) : 'N/A'}}</div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -877,7 +877,7 @@
                                                                             </svg>
                                                                         </div>
                                                                         <div class="mx-3 fw-semibold">Day Rate Phone:</div>
-                                                                        <div class="mx-3">$101.00</div>
+                                                                        <div class="mx-3">{{$service['hours_price_p'] ? '$'.number_format($service['hours_price_p'],2) : 'N/A'}}</div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-4">
@@ -894,7 +894,7 @@
                                                                         </div>
                                                                         <div class="mx-3 fw-semibold">Day Rate
                                                                             Teleconference:</div>
-                                                                        <div class="mx-3">$101.00</div>
+                                                                        <div class="mx-3">{{$service['hours_price_t'] ? '$'.number_format($service['hours_price_t'],2) : 'N/A'}}</div>
                                                                     </div>
                                                                 </div>
                                                             </div>
