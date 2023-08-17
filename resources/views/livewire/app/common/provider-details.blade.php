@@ -683,7 +683,7 @@
         <div class="row mb-3">
             <h3>Schedule <small>(coming soon)</small> </h3>
         </div>
-        <div class="d-flex justify-content-between mb-2">
+        {{-- <div class="d-flex justify-content-between mb-2">
             <div class="d-inline-flex align-items-center gap-4">
                 <div class="mb-4 mb-lg-0">
                     <select class="form-select form-select-sm rounded bg-secondary text-white rounded"
@@ -725,11 +725,10 @@
                     </ul>
                 </div>
             </div>
-        </div>
-        <div>
+        </div> --}}
+        <div class="w-100">
             <x-advancefilters />
-            <img class="w-100" alt="Schedule Calendar"
-                src="/tenant-resources/images/portrait/small/image-placeholder-calendar.png" />
+            @livewire('app.common.calendar', ['profileProvider' => false])
         </div>
     </div>
     <!-- Schedule tab end -->
