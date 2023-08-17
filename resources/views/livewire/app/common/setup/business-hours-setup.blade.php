@@ -49,10 +49,12 @@
                         </div>
 
                   </div>
-
+                
 
 
               </div>
+              <div class="row mb-4"><div class="d-lg-flex gap-3 align-items-center mb-3">            <button type="submit"
+            class="btn btn-primary rounded" wire:click="saveSchedule">Update Settings</button></div></div>
                 <div class="row mb-4">
                   <h3>Add Hours Slot In Schedule</h3>
                   <label class="form-label">Type Of Slot</label>

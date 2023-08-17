@@ -296,7 +296,7 @@
                                                         class="fa fa-question-circle text-muted" aria-hidden="true"
                                                         data-bs-toggle="tooltip" data-bs-placement="top"
                                                         title="" ></i></label>
-                                                        <select class="form-select select2 mb-2" id="service_id_{{$index}}" name="service_id_{{$index}}" wire:model="services.{{$index}}.service_id">
+                                                        <select class="form-select select2 mb-2" id="services_{{$index}}" name="services_{{$index}}" wire:model="services.{{$index}}.services">
                                                         @if($services[$index]['accommodation_id'])
                                                             @foreach($accommodations as $accommodation)
                                                                 @if($services[$index]['accommodation_id']==$accommodation['id'])
@@ -311,7 +311,7 @@
                                                         @endif
                                                         </select>
                                             </div>
-                                            @if($services[$index]['service_id'])
+                                            @if($services[$index]['services'])
                                             <div class="col-lg-6 mb-4 pe-lg-5">
                                                 <label class="form-label">Service Type <span
                                                         class="mandatory" >*</span></label>
@@ -323,7 +323,7 @@
 
                                                             // Perform the search using the filter method
 
-                                                            $serviceIdToFind = $services[$index]['service_id'];
+                                                            $serviceIdToFind = $services[$index]['services'];
                                                             $foundService = $accommodationsCollection
                                                                 ->flatMap(fn($item) => $item['services'])
                                                                 ->firstWhere('id', $serviceIdToFind);
@@ -333,7 +333,7 @@
                                                         @if(in_array($key,$foundService['service_type']))
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio"
-                                                                name="serviceType" id="serviceType-{{$index}}" wire:model="services.{{$index}}.service_type" value={{$key}}>
+                                                                name="serviceType" id="serviceType-{{$index}}" wire:model="services.{{$index}}.service_types" value={{$key}}>
                                                             <label class="form-check-label" for="serviceType-{{$index}}">
                                                                 {{$serviceType['title']}}
                                                             </label>
@@ -357,7 +357,7 @@
                                                 <label class="form-label" for="number-of-provider">Number of Providers <span
                                                         class="mandatory">*</span></label>
                                                 <input type="" class="form-control"
-                                                    placeholder="Enter Number of Providers" id="number-of-provider" >
+                                                    placeholder="Enter Number of Providers" id="number-of-provider" wire:model.defer="services.{{$index}}.provider_count" >
                                             </div>
                                             <div class="col-lg-6 mb-4 ps-lg-5">
                                                 <div class="row">
@@ -431,7 +431,7 @@
                                                                         <input
                                                                             class="form-check-input js-form-check-input-manual-entry"
                                                                             id="ManualEntryServiceConsumer" name=""
-                                                                            type="checkbox" tabindex="" wire:key="manual-{{ $index }}">
+                                                                            type="checkbox" tabindex="" wire:key="manual-{{ $index }}" wire:model.defer="services.{{$index}}.is_manual_consumer">
                                                                         <label class="form-check-label"
                                                                             for="ManualEntryServiceConsumer"><small>Manual
                                                                                 Entry</small></label>
@@ -452,7 +452,7 @@
                                                                 <div class="js-wrapper-manual-entry">
                                                                     <select
                                                                         class="form-select select2 select2-container js-form-select-manual-entry"  multiple id="attendees_{{$index}}" name="attendees_{{$index}}"
-                                                                        aria-label="Select Participant(s)" wire:model.lazy="services.{{$index}}.attendees">
+                                                                        aria-label="Select Participant(s)" wire:model.defer="services.{{$index}}.attendees">
                                                                        
                                                                         @foreach($participants as $participant)
                                                                         <option value="{{$participant['id']}}">{{$participant['name']}}</option>
@@ -465,7 +465,7 @@
                                                                         <input
                                                                             class="form-check-input js-form-check-input-manual-entry"
                                                                             id="ManualEntryParticipant" name=""
-                                                                            type="checkbox" tabindex="" wire:key="manual-{{ $index }}" wire:model.lazy="services.{{$index}}.attendees">
+                                                                            type="checkbox" tabindex="" wire:key="manual-{{ $index }}" wire:model="services.{{$index}}.is_manual_attendees">
                                                                         <label class="form-check-label"
                                                                             for="ManualEntryParticipant"><small>Manual
                                                                                 Entry</small></label>
@@ -475,7 +475,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                @if($services[$index]['service_type']>1)
+                                                @if($services[$index]['service_types']>1)
                                                 <div class="row mb-md-4" >
                                                     <div class="col-lg-6 align-self-center">
                                                         <h2 class="mb-lg-0">Meeting Information</h2>
@@ -732,7 +732,7 @@
                             {{-- Default Billing Address --}}
                                                    @php
                                                    $filteredServices = array_filter($services, function($subArray) {
-                                                        return isset($subArray['service_type']) && $subArray['service_type'] == 1;
+                                                        return isset($subArray['service_types']) && $subArray['service_types'] == 1;
                                                         });
                                                    @endphp
                                 @if($filteredServices)
