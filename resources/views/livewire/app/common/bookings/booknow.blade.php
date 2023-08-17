@@ -601,9 +601,12 @@
                                             <div class="col-lg-3 col-md-6 pe-md-2 pe-lg-0 mb-4">
                                                 <label class="form-label-sm" for="set_time_zone">Set Time Zone <span
                                                         class="mandatory">*</span></label>
-                                                {{-- updated by shanila to add dropdown --}}
-                                                {!! $setupValues['timezones']['rendered'] !!}
-                                                {{-- end updated --}}
+                                               <select class="form-select select2 mb-2" wire:model.defer='dates.{{ $index }}.timezone'  id="timezone_{{$index}}" name="timezone_{{$index}}">
+                                                 @foreach($timezones as $zone)
+                                                  <option value="{{$zone['id']}}">{{$zone['setup_value_label']}}</option>
+                                                 @endforeach
+
+                                               </select>
                                             </div>
                                             <div class="col-lg-auto col-md-6 ps-md-2 ps-lg-0 mb-4">
                                                 <label class="form-label-sm" for="set_start_date">Start Date <span

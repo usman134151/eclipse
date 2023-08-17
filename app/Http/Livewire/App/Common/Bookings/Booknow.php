@@ -19,7 +19,7 @@ class Booknow extends Component
 {
     public $component = 'requester-info';
     
-    public $showForm,$booking,$requesters =[],$bManagers=[],$supervisors=[],$consumers=[],$participants=[], $step=1,$userAddresses=[], $timezone, $schedule ;
+    public $showForm,$booking,$requesters =[],$bManagers=[],$supervisors=[],$consumers=[],$participants=[], $step=1,$userAddresses=[], $timezone, $schedule, $timezones ;
     protected $listeners = ['showList' => 'resetForm','updateVal', 'updateCompany',
         'updateSelectedIndustries' => 'selectIndustries',
         'updateSelectedDepartments',
@@ -34,9 +34,11 @@ class Booknow extends Component
             'time_zone' => ''
 
     ]];
+
+    
     
     public $setupValues = [
-        'timezones' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 4, 'setup_value_label', false,'booking.timezone_id','','timezone',0]],
+      
     
         'companies' => ['parameters' => ['Company', 'id', 'name', '', '', 'name', false, 'booking.company_id', '', 'company_id', 3]],
     ];
@@ -93,6 +95,7 @@ class Booknow extends Component
            
         }
         $accommodationsCollection = collect($this->accommodations);
+        $this->timezones=SetupValue::where('setup_id',4)->select('id','setup_value_label')->get()->toArray();
         $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
         $this->frequencies=SetupValue::where('setup_id',6)->select('id','setup_value_label')->get()->toArray();
         $this->accommodations=Accommodation::with('services.specializations')->where('status',1)->get()->toArray();
