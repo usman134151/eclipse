@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\App\Common;
 
 use App\Models\Tenant\Schedule;
+use App\Models\Tenant\ServiceSpecialization;
 use Livewire\Component;
 use App\Models\Tenant\User;
 use App\Models\Tenant\UserDetail;
@@ -93,27 +94,38 @@ class ProviderDetails extends Component
 		});
 		$query->join('accommodations', 'provider_accommodation_services.accommodation_id', "accommodations.id");
 		$query->join('service_categories', 'provider_accommodation_services.service_id', "service_categories.id");
+
 		$query->select([
 			'accommodations.id as accommodation_id',
 			'accommodations.name as accommodation_name',
 			'service_categories.id as service_id', 'service_categories.name as service_name',
 			'provider_accommodation_services.provider_priority',
 			'service_categories.*'
-
-
 		]);
 		$this->accommodation_catalog = $query->distinct('service_id')->orderBy('provider_priority')->get()->groupBy('accommodation_id')->toArray();
-		foreach ($this->accommodation_catalog as $key=> $accom) {
-			foreach ($accom as $index=> $service) {
+		foreach ($this->accommodation_catalog as $key => $accom) {
+			foreach ($accom as $index => $service) {
 				if ($service['emergency_hour'])
-				$this->accommodation_catalog[$key][$index]['emergency_hour'] = json_decode($service['emergency_hour'], true);
+					$this->accommodation_catalog[$key][$index]['emergency_hour'] = json_decode($service['emergency_hour'], true);
 				if ($service['emergency_hour_v'])
-				$this->accommodation_catalog[$key][$index]['emergency_hour_v'] = json_decode($service['emergency_hour_v'], true);
+					$this->accommodation_catalog[$key][$index]['emergency_hour_v'] = json_decode($service['emergency_hour_v'], true);
 				if ($service['emergency_hour_p'])
 					$this->accommodation_catalog[$key][$index]['emergency_hour_p'] = json_decode($service['emergency_hour_p'], true);
 				if ($service['emergency_hour_t'])
 					$this->accommodation_catalog[$key][$index]['emergency_hour_t'] = json_decode($service['emergency_hour_t'], true);
-		
+				$specializations = ServiceSpecialization::where('service_id', $service['id'])->with('specialization')->get()->toArray();
+				if ($specializations)
+					foreach ($specializations as $i => $s) {
+						$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp'] = json_decode($s['specialization_price'], true)[0]['price'];
+						$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_v'] = json_decode($s['specialization_price_v'], true)[0]['price'];
+						$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_p'] = json_decode($s['specialization_price_p'], true)[0]['price'];
+						$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_t'] = json_decode($s['specialization_price_t'], true)[0]['price'];
+						$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_price_type'] = json_decode($s['specialization_price'], true)[0]['price_type'];
+
+						$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_name'] = $s['specialization']['name'];
+					}
+				else
+					$this->accommodation_catalog[$key][$index]['specializations'] = null;
 			}
 		}
 

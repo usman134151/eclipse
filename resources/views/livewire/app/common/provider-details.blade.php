@@ -1236,190 +1236,128 @@
                                                                 </div>
                                                             </div>
                                                             {{-- Teleconference Expedited Service End --}}
-                                                            <div class="row">
-                                                                <hr>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="d-inline-flex mb-3">
-                                                                    <h2>Specialization Rates</h2>
-                                                                    <svg aria-label="Specialization Rates"
-                                                                        class="mx-2 mt-2" width="15" height="16"
-                                                                        viewBox="0 0 15 16"fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <use
-                                                                            xlink:href="/css/common-icons.svg#fill-question">
-                                                                        </use>
-                                                                    </svg>
+                                                            @if ($service['specializations'])
+                                                                <div class="row">
+                                                                    <hr>
                                                                 </div>
-                                                                <div class="bg-muted p-1 col-1 mx-3 mb-2">Medical</div>
-                                                                <div class="d-inline-flex">
-                                                                    <div class="mx-2">
-                                                                        <div class="d-inline-flex">
-                                                                            <div>
-                                                                                <span class="fw-semibold">Rate Type:</span>
-                                                                                <span>%</span>
+                                                                <div class="row mb-5">
+                                                                    <div class="d-inline-flex mb-3">
+                                                                        <h2>Specialization Rates</h2>
+                                                                        <svg aria-label="Specialization Rates"
+                                                                            class="mx-2 mt-2" width="15"
+                                                                            height="16"
+                                                                            viewBox="0 0 15 16"fill="none"
+                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                            <use
+                                                                                xlink:href="/css/common-icons.svg#fill-question">
+                                                                            </use>
+                                                                        </svg>
+                                                                    </div>
+                                                                    @foreach ($service['specializations'] as $row)
+                                                                        <div class="row">
+                                                                            <div class="bg-muted p-1 col-3 mx-3 mb-2">
+                                                                                {{ $row['sp_name'] }}</div>
+                                                                            <div class="d-inline-flex col-10">
+                                                                                <div class="mx-2">
+                                                                                    <div class="d-inline-flex">
+                                                                                        <div>
+                                                                                            <span class="fw-semibold">Rate
+                                                                                                Type:</span>
+                                                                                            <span>{{ $row['sp_price_type'] }}</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="mx-3">
+                                                                                    <div class="d-inline-flex">
+                                                                                        <div>
+                                                                                            <svg aria-label="In-Person"
+                                                                                                width="25"
+                                                                                                height="24"
+                                                                                                viewBox="0 0 25 24"
+                                                                                                fill="none"
+                                                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                                                <use
+                                                                                                    xlink:href="/css/provider.svg#in-person">
+                                                                                                </use>
+                                                                                            </svg>
+                                                                                        </div>
+                                                                                        <div class="mx-1 mt-1"><span
+                                                                                                class="fw-semibold">In-Person:
+                                                                                            </span><span
+                                                                                                class="mx-1">${{ number_format($row['sp'], 2) }}</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="mx-3">
+                                                                                    <div class="d-inline-flex">
+                                                                                        <div>
+                                                                                            <svg aria-label="Virtual"
+                                                                                                width="25"
+                                                                                                height="25"
+                                                                                                viewBox="0 0 25 25"
+                                                                                                fill="none"
+                                                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                                                <use
+                                                                                                    xlink:href="/css/provider.svg#virtual-service">
+                                                                                                </use>
+                                                                                            </svg>
+                                                                                        </div>
+                                                                                        <div class="mx-1 mt-1"><span
+                                                                                                class="fw-semibold">Virtual:</span><span
+                                                                                                class="mx-1">${{ number_format($row['sp_v'], 2) }}</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="mx-3">
+                                                                                    <div class="d-inline-flex">
+                                                                                        <div>
+                                                                                            <svg aria-label="Phone"
+                                                                                                width="30"
+                                                                                                height="24"
+                                                                                                viewBox="0 0 30 24"
+                                                                                                fill="none"
+                                                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                                                <use
+                                                                                                    xlink:href="/css/provider.svg#phone">
+                                                                                                </use>
+                                                                                            </svg>
+                                                                                        </div>
+                                                                                        <div class="mx-1 mt-1"><span
+                                                                                                class="fw-semibold">Phone:</span><span
+                                                                                                class="mx-1">${{ number_format($row['sp_p'], 2) }}</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="mx-3">
+                                                                                    <div class="d-inline-flex">
+                                                                                        <div>
+                                                                                            <svg aria-label="Teleconference"
+                                                                                                width="30"
+                                                                                                height="26"
+                                                                                                viewBox="0 0 30 26"
+                                                                                                fill="none"
+                                                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                                                <use
+                                                                                                    xlink:href="/css/provider.svg#teleconference">
+                                                                                                </use>
+                                                                                            </svg>
+                                                                                        </div>
+                                                                                        <div class="mx-1 mt-1"><span
+                                                                                                class="fw-semibold">Teleconferencing:</span><span
+                                                                                                class="mx-1">${{ $row['sp_t'] ? number_format($row['sp_t'], 2) : 'N/A' }}</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="mx-3">
-                                                                        <div class="d-inline-flex">
-                                                                            <div>
-                                                                                <svg aria-label="In-Person" width="25"
-                                                                                    height="24" viewBox="0 0 25 24"
-                                                                                    fill="none"
-                                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                                    <use
-                                                                                        xlink:href="/css/provider.svg#in-person">
-                                                                                    </use>
-                                                                                </svg>
-                                                                            </div>
-                                                                            <div class="mx-1 mt-1"><span
-                                                                                    class="fw-semibold">In-Person:
-                                                                                </span><span class="mx-1">$100.00</span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="mx-3">
-                                                                        <div class="d-inline-flex">
-                                                                            <div>
-                                                                                <svg aria-label="Virtual" width="25"
-                                                                                    height="25" viewBox="0 0 25 25"
-                                                                                    fill="none"
-                                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                                    <use
-                                                                                        xlink:href="/css/provider.svg#virtual-service">
-                                                                                    </use>
-                                                                                </svg>
-                                                                            </div>
-                                                                            <div class="mx-1 mt-1"><span
-                                                                                    class="fw-semibold">Virtual:</span><span
-                                                                                    class="mx-1">$100.00</span></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="mx-3">
-                                                                        <div class="d-inline-flex">
-                                                                            <div>
-                                                                                <svg aria-label="Phone" width="30"
-                                                                                    height="24" viewBox="0 0 30 24"
-                                                                                    fill="none"
-                                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                                    <use
-                                                                                        xlink:href="/css/provider.svg#phone">
-                                                                                    </use>
-                                                                                </svg>
-                                                                            </div>
-                                                                            <div class="mx-1 mt-1"><span
-                                                                                    class="fw-semibold">Phone:</span><span
-                                                                                    class="mx-1">$100.00</span></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="mx-3">
-                                                                        <div class="d-inline-flex">
-                                                                            <div>
-                                                                                <svg aria-label="Teleconference"
-                                                                                    width="30" height="26"
-                                                                                    viewBox="0 0 30 26" fill="none"
-                                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                                    <use
-                                                                                        xlink:href="/css/provider.svg#teleconference">
-                                                                                    </use>
-                                                                                </svg>
-                                                                            </div>
-                                                                            <div class="mx-1 mt-1"><span
-                                                                                    class="fw-semibold">Teleconferencing:</span><span
-                                                                                    class="mx-1">$100.00</span></div>
-                                                                        </div>
-                                                                    </div>
+                                                                    @endforeach
                                                                 </div>
-                                                                <div class="row mt-4 mb-3">
-                                                                    <div class="col-3 mb-2 mx-1">
-                                                                        <span class="bg-muted p-1 mb-3"> Projector & Screen
-                                                                            Rental</span>
-                                                                    </div>
-                                                                    <div class="d-inline-flex mt-2">
-                                                                        <div class="mx-2">
-                                                                            <div class="d-inline-flex">
-                                                                                <div>
-                                                                                    <span class="fw-semibold"> Rate
-                                                                                        Type:</span><span>%</span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="mx-3">
-                                                                            <div class="d-inline-flex">
-                                                                                <div>
-                                                                                    <svg aria-label="In-Person"
-                                                                                        width="25" height="24"
-                                                                                        viewBox="0 0 25 24" fill="none"
-                                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                                        <use
-                                                                                            xlink:href="/css/provider.svg#in-person">
-                                                                                        </use>
-                                                                                    </svg>
-                                                                                </div>
-                                                                                <div class="mx-1 mt-1"><span
-                                                                                        class="fw-semibold">In-Person:
-                                                                                    </span><span
-                                                                                        class="mx-1">$100.00</span></div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="mx-3">
-                                                                            <div class="d-inline-flex">
-                                                                                <div>
-                                                                                    <svg aria-label="Virtual"
-                                                                                        width="25" height="25"
-                                                                                        viewBox="0 0 25 25" fill="none"
-                                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                                        <use
-                                                                                            xlink:href="/css/provider.svg#virtual-service">
-                                                                                        </use>
-                                                                                    </svg>
-                                                                                </div>
-                                                                                <div class="mx-1 mt-1"><span
-                                                                                        class="fw-semibold">Virtual:</span><span
-                                                                                        class="mx-1">$100.00</span></div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="mx-3">
-                                                                            <div class="d-inline-flex">
-                                                                                <div>
-                                                                                    <svg aria-label="Phone" width="30"
-                                                                                        height="24" viewBox="0 0 30 24"
-                                                                                        fill="none"
-                                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                                        <use
-                                                                                            xlink:href="/css/provider.svg#phone">
-                                                                                        </use>
-                                                                                    </svg>
-                                                                                </div>
-                                                                                <div class="mx-1 mt-1"><span
-                                                                                        class="fw-semibold">Phone:</span><span
-                                                                                        class="mx-1">$100.00</span></div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="mx-3">
-                                                                            <div class="d-inline-flex">
-                                                                                <div>
-                                                                                    <svg aria-label="Teleconference"
-                                                                                        width="30" height="26"
-                                                                                        viewBox="0 0 30 26" fill="none"
-                                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                                        <use
-                                                                                            xlink:href="/css/provider.svg#teleconference">
-                                                                                        </use>
-                                                                                    </svg>
-                                                                                </div>
-                                                                                <div class="mx-1 mt-1"><span
-                                                                                        class="fw-semibold">Teleconferencing:</span><span
-                                                                                        class="mx-1">$100.00</span></div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <hr>
-                                                            </div>
-                                                            {{-- Specialization Rates -End --}}
+                                                            @endif
+
+                                                            <hr>
+
                                                         </div>
+                                                        {{-- Specialization Rates -End --}}
                                                     </div>
 
                                                 </td>
@@ -1554,8 +1492,8 @@
                 <label for="searchRecord" class="form-label fw-semibold">
                     Search
                 </label>
-                <input type="search" class="form-control" id="searchRecord" name="search"
-                    placeholder="Search here" autocomplete="on" />
+                <input type="search" class="form-control" id="searchRecord" name="search" placeholder="Search here"
+                    autocomplete="on" />
             </div>
         </div>
         <div class="card">
