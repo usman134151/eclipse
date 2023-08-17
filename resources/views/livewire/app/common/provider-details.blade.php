@@ -1284,7 +1284,7 @@
                                                                                         <div class="mx-1 mt-1"><span
                                                                                                 class="fw-semibold">In-Person:
                                                                                             </span><span
-                                                                                                class="mx-1">${{ number_format($row['sp'], 2) }}</span>
+                                                                                                class="mx-1">${{ $row['sp'] ? '$'.number_format($row['sp'], 2) : 'N/A' }}</span>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -1304,7 +1304,7 @@
                                                                                         </div>
                                                                                         <div class="mx-1 mt-1"><span
                                                                                                 class="fw-semibold">Virtual:</span><span
-                                                                                                class="mx-1">${{ number_format($row['sp_v'], 2) }}</span>
+                                                                                                class="mx-1">{{$row['sp_v'] ?  '$'.number_format($row['sp_v'], 2) :'N/A' }}</span>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -1324,7 +1324,7 @@
                                                                                         </div>
                                                                                         <div class="mx-1 mt-1"><span
                                                                                                 class="fw-semibold">Phone:</span><span
-                                                                                                class="mx-1">${{ number_format($row['sp_p'], 2) }}</span>
+                                                                                                class="mx-1">{{$row['sp_p'] ? '$'.number_format($row['sp_p'], 2) : 'N/A' }}</span>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -1344,7 +1344,7 @@
                                                                                         </div>
                                                                                         <div class="mx-1 mt-1"><span
                                                                                                 class="fw-semibold">Teleconferencing:</span><span
-                                                                                                class="mx-1">${{ $row['sp_t'] ? number_format($row['sp_t'], 2) : 'N/A' }}</span>
+                                                                                                class="mx-1">{{ $row['sp_t'] ? '$'.number_format($row['sp_t'], 2) : 'N/A' }}</span>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>

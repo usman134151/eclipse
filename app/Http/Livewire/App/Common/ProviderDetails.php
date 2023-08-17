@@ -85,7 +85,7 @@ class ProviderDetails extends Component
 			$this->settings = json_decode($this->user['userdetail']['provider_details'], true);
 
 
-		// accommodations and services 
+		// accommodations and services - Service Catalogue and Rates Tab
 		$query = User::query();
 		$query->where('users.id', $this->userid);
 		$query->join('provider_accommodation_services', function ($join) {
