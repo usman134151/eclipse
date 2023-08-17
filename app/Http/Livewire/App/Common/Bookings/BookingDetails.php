@@ -68,6 +68,7 @@ class BookingDetails extends Component
 
 	public function showConfirmation($message = '')
 	{
+		
 		if ($message) {
 			// Emit an event to display a success message using the SweetAlert package
 			$this->dispatchBrowserEvent('swal:modal', [
@@ -95,13 +96,9 @@ class BookingDetails extends Component
 		$booking=$this->booking;
 		$booking->save();
 		
-		$message="Notes Updates !";
-		$this->dispatchBrowserEvent('swal:modal', [
-			'type' => 'success',
-			'title' => 'Success',
-			'text' => $message,
-		]);
-		$this->getServiceDetails();
+		
+		$this->showConfirmation('Booking notes updated');
+	//	$this->getServiceDetails();
     }
 	
 

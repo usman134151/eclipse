@@ -820,16 +820,16 @@
                                         <h2 class="">Service Form Detail (Needs to be updated)</h2>
                                     </div>
                                     <div class="row">
-                                    @foreach($serviceDetails as $index => $serviceDetails)
+                                    @foreach($serviceDetails as $index => $serviceDetail)
                                         <div class="col-lg-8 mb-3">
                                             <div class="row">
                                                 <div class="col-lg-5">
-                                                    <label class="col-form-label">{{ $serviceDetails['field_name'] ? $serviceDetails['field_name'] : 'N/A' }}:
+                                                    <label class="col-form-label">{{ $serviceDetail['field_name'] ? $serviceDetail['field_name'] : 'N/A' }}:
                                                     </label>
                                                 </div>
                                                 <div class="col-lg-7 align-self-center">
                                                     <div class="d-flex align-items-center gap-2">
-                                                        <div class="font-family-tertiary">{{ $serviceDetails['data_value'] ? $serviceDetails['data_value'] : 'N/A' }}</div>
+                                                        <div class="font-family-tertiary">{{ $serviceDetail['data_value'] ? $serviceDetail['data_value'] : 'N/A' }}</div>
                                                         <a href="#"
                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                             {{-- Updated by Shanila to Add
