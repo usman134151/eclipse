@@ -9,24 +9,29 @@ use App\Models\Tenant\Booking;
 use App\Models\Tenant\SetupValue;
 use App\Models\Tenant\Accommodation;
 use App\Models\Tenant\UserAddress;
+use App\Models\Tenant\Schedule;
+use App\Models\Tenant\Company;
+
 use Illuminate\Support\Collection;
+
 
 class Booknow extends Component
 {
     public $component = 'requester-info';
     
-    public $showForm,$booking,$requesters =[],$bManagers=[],$supervisors=[],$consumers=[],$participants=[], $step=1,$userAddresses=[] ;
+    public $showForm,$booking,$requesters =[],$bManagers=[],$supervisors=[],$consumers=[],$participants=[], $step=1,$userAddresses=[], $timezone, $schedule ;
     protected $listeners = ['showList' => 'resetForm','updateVal', 'updateCompany',
         'updateSelectedIndustries' => 'selectIndustries',
         'updateSelectedDepartments',
         'saveCustomFormData'=>'save' ,'switch'];
 
     public $dates=[[
-        'set_time_zone'=>'',
-        'start_date'=>'',
-        'start_time'=>'',
-        'end_time'=>'',
-        'Total_Billable_Service_duration'=>''
+            'start_time' => '',
+            'end_time' => '',
+            'duration_day' => '',
+            'duration_hour' => '',
+            'duration_minute' => '',
+            'time_zone' => ''
 
     ]];
     
@@ -43,10 +48,22 @@ class Booknow extends Component
 
     public $services=[
         [   'accommodation_id'=>'',
-            'service_id'=>'',
-            'service_type'=>'',
+            'services'=>'',
+            'service_types'=>'',
             'specializations'=>[],
-            'meetings' =>[['meeting_name' => '','phone_number' => '','access_code' => '']] //updated by Amna Bilal to define meeting links array within services array
+            'meetings' =>[['meeting_name' => '','phone_number' => '','access_code' => '']], //updated by Amna Bilal to define meeting links array within services array
+            'time_zone'=>'',
+            'is_manual_consumer' =>'',
+            'is_manual_attendees' =>'',
+            'service_consumer' => '',
+            'attendees' => '',
+            'provider_count'=>'',
+            'specialization' =>'',
+            'meeting_link' => '',
+            'meeting_phone' => '',
+            'meeting_passcode' => '',
+            'day_rate' =>'',
+            
             
         ]
     ];
@@ -63,9 +80,17 @@ class Booknow extends Component
     public function mount(Booking $booking)
     {
         $this->booking=$booking;
-        if(!$this->booking->id){
+        if(!$this->booking->id){ //init data in case of new booking
             $this->booking->requester_information=0;
             $this->booking->frequency_id=32;
+
+           
+
+            $this->schedule=Schedule::where('model_id',1)->where('model_type',1)->get()->first();
+            if($this->schedule)
+            $this->dates[0]['time_zone']=$this->schedule->timezone_id;
+       
+           
         }
         $accommodationsCollection = collect($this->accommodations);
         $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
@@ -220,11 +245,13 @@ class Booknow extends Component
     }
     public function adddate(){
         $this->dates[] = [
-            'set_time_zone'=>'',
-            'start_date'=>'',
-            'start_time'=>'',
-            'end_time'=>'',
-            'Total_Billable_Service_duration'=>''
+           
+            'start_time' => '',
+            'end_time' => '',
+            'duration_day' => '',
+            'duration_hour' => '',
+            'duration_minute' => '',
+            'time_zone' => $this->timeZone
         ];
     }
     public function removeDate($index)
@@ -233,12 +260,22 @@ class Booknow extends Component
         $this->dates = array_values($this->dates);
     }
     public function addService(){
-        $this->services[]=         [   'accommodation_id'=>'',
-        'service_id'=>'',
-        'service_type'=>'',
+        $this->services[]= [   'accommodation_id'=>'',
+        'services'=>'',
+        'service_types'=>'',
         'specializations'=>[],
-        'meetings' =>[['meeting_name' => '','phone_number' => '','access_code' => '']] //updated by Amna Bilal to define meeting links array within services array
-        
+        'meetings' =>[['meeting_name' => '','phone_number' => '','access_code' => '']], //updated by Amna Bilal to define meeting links array within services array
+        'time_zone'=>'',
+        'is_manual_consumer' =>'',
+        'is_manual_attendees' =>'',
+        'service_consumer' => '',
+        'attendees' => '',
+        'provider_count'=>'',
+        'specialization' =>'',
+        'meeting_link' => '',
+        'meeting_phone' => '',
+        'meeting_passcode' => '',
+        'day_rate' =>''
     ];
 
     }
@@ -267,12 +304,12 @@ class Booknow extends Component
                     $this->services[$index]['accommodation_id'] = $val;
                 }
             }
-            elseif (preg_match('/service_id_(\d+)/', $attrName, $matches)) {
+            elseif (preg_match('/services_(\d+)/', $attrName, $matches)) {
                 $index = intval($matches[1]);
                
         
                 if (isset($this->services[$index])) {
-                    $this->services[$index]['service_id'] = $val;
+                    $this->services[$index]['services'] = $val;
                 }
             }
             elseif (preg_match('/service_consumer_(\d+)/', $attrName, $matches)) {
@@ -333,17 +370,20 @@ class Booknow extends Component
             'booking.customer_id'=>'required',
             'booking.supervisor'=>'required',
             'booking.billing_manager_id'=>'nullable',
-            'booking.recurring_end_at'=>'nullable'
+            'booking.recurring_end_at'=>'nullable',
+            'booking.booking_title'=>'nullable'
 
         ];
     }
 
     public function refreshAddresses(){
        //query to fetch addresses
+       $this->userAddresses=[];
       $addresses=UserAddress::where(['address_type'=>1,'user_id'=>$this->booking['customer_id']])->orderBy('id','desc')->limit('4')->get();
       foreach($addresses as $address){
         $this->userAddresses[]=$address->toArray();
          }
+        
     }
 
     public function editAddress($index, $type)

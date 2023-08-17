@@ -310,8 +310,9 @@ class BusinessSetup extends Component
 	}
     public function saveSchedule(){
         
+        
 		$this->emit('saveSchedule');
-		//dd($this->schedule);
+		
 	}
     
 	public function switch($component)
