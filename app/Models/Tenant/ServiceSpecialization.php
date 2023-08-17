@@ -17,4 +17,8 @@ class ServiceSpecialization extends Model
     protected $fillable = [
         'service_id', 'specialization_id', 'specialization_price', 'specialization_price_v', 'added_by'
     ];
+    public function specialization()
+    {
+        return $this->belongsTo(Specialization::class, 'specialization_id');
+    }
 }

@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Tenant\Helper\Helper;
 use App\Models\Tenant\BusinessSetup;
 use App\Models\Tenant\RoleUser;
+use App\Models\Tenant\UserLoginAddress;
 use App\Services\App\UserService;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -130,6 +131,9 @@ class LoginController extends Controller
 				$is_provider = RoleUser::where('role_id', 2)->where('user_id', auth()->user()->id)->orderBy('id', 'asc')->first();
 				if ($is_provider) {
 					Session::put('isProvider', 1);
+					//save ip from where user logged in
+					UserLoginAddress::create(['user_id'=>Auth::id(),'ip_address'=> request()->ip()]);
+
 				} else {
 					Session::put('isProvider', $is_provider);
 				}
