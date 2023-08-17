@@ -108,7 +108,7 @@
 					</div>
 					<div class="d-flex flex-column flex-md-row justify-content-between mb-2 gap-2">
 						<div class="d-inline-flex align-items-center gap-4">
-							<div class="d-inline-flex align-items-center gap-4">
+							<!-- <div class="d-inline-flex align-items-center gap-4">
 								<label for="show_records" class="form-label-sm mb-0">
 									Show
 								</label>
@@ -118,7 +118,7 @@
 									<option>20</option>
 									<option>25</option>
 								</select>
-							</div>
+							</div> -->
 						</div>
 						<a @click="createInvoices = true" href="#" aria-label="Create Invoice" class="btn btn-primary btn-has-icon rounded">
 							<svg class="mx-2" aria-label="Create Invoice" width="20" height="20" viewBox="0 0 20 20">
@@ -128,7 +128,9 @@
 							<span>Create Invoice</span>
 						</a>
 					</div>
-					<div class="row" id="table-hover-row">
+					@livewire('app.common.lists.draft-invoices', [],key(Str::random(10)))
+
+					<!-- <div class="row" id="table-hover-row">
 						<div class="col-12">
 							<div class="table-responsive border mb-4">
 								<table id="" class="table table-fs-md table-hover" aria-label="">
@@ -241,7 +243,7 @@
 								</li>
 							</ul>
 						</nav>
-					</div>
+					</div> -->
 					{{-- Icon Legend Bar - Start --}}
 					<div class="d-flex actions gap-3 justify-content-end mb-2">
 						<div class="d-flex gap-2 align-items-center">
