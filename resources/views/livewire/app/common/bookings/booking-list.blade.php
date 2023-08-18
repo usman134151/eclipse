@@ -40,7 +40,9 @@
                 </div>
             </div>
         </div>
-        @livewire('app.common.bookings.booking-details', ['booking_id' => $booking_id])
+       
+            @livewire('app.common.bookings.booking-details', ['booking_id' => $booking_id])
+       
     @else
         {{-- BEGIN: Content --}}
         @if ($bookingSection != 'customer')

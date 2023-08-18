@@ -79,8 +79,8 @@
                                         data-bs-toggle="tooltip" data-bs-placement="top" title=""></i></label>
                                 <div class="d-flex gap-3 flex-column flex-lg-row mb-0">
                                     @foreach($frequencies as $frequency)
-                                        <input class="form-check-input" type="radio" wire:model="booking.frequency_id" id="frequency_id" name="frequency_id" value="{{$frequency['id']}}">
-                                        <label class="form-check-label" for="{$frequency['id']}}">{{$frequency['setup_value_label']}}</label>
+                                        <input class="form-check-input" type="radio" wire:model="booking.frequency_id" id="frequency_id-{{$frequency['id']}}" name="frequency_id" value="{{$frequency['id']}}">
+                                        <label class="form-check-label" for="frequency_id-{{$frequency['id']}}">{{$frequency['setup_value_label']}}</label>
                                     @endforeach
                                     @error('booking.frequency_id')
                                                 <span class="d-inline-block invalid-feedback mt-2">
@@ -615,7 +615,7 @@
                                                     <input type="" name=""
                                                         class="form-control form-control-md js-single-date"
                                                         placeholder="MM/DD/YYYY" id="set_start_date"
-                                                        aria-label="Set Start Date" wire:key="start-{{ $index }}" wire:model.lazy="dates.{{$index}}.start_date">
+                                                        aria-label="Set Start Date" wire:key="start-{{ $index }}" wire:model.defer="dates.{{$index}}.start_date" style="width:200px">
                                                     {{-- Updated by Shanila to Add svg icon--}}
                                                     <svg aria-label="Date" class="icon-date md" width="20" height="20"
                                                         viewBox="0 0 20 20">
@@ -626,11 +626,16 @@
                                                 </div>
                                             </div>
                                             <div class="d-flex col-lg-auto mb-4">
-                                                <div class="d-flex flex-column justify-content-between">
+                                                <div class="d-flex flex-column">
                                                     <label class="form-label-sm" for="set_start_time">Start Time</label>
-                                                    <div class="d-flex gap-2">
+                                                    <div class="d-flex">
                                                         <div class="time d-flex align-items-center gap-2">
-                                                            <div class="hours">12</div>
+                                                            <select wire:model.defer="dates.{{$index}}.start_hour">
+                                                                @for($i=0;$i<24;$i++)
+                                                                 <option value="{{$i}}">{{str_pad($i, 2, '0', STR_PAD_LEFT)}}</option>
+                                                                @endfor
+
+                                                            </select>
                                                             {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="colon" width="5" height="19"
                                                                 viewBox="0 0 5 19">
@@ -638,11 +643,16 @@
                                                                 </use>
                                                             </svg>
                                                             {{-- End of update by Shanila --}}
-                                                            <div class="mins">59</div>
+                                                            <select wire:model.defer="dates.{{$index}}.start_min">
+                                                                @for($i=0;$i<59;$i++)
+                                                                 <option value="{{$i}}">{{str_pad($i, 2, '0', STR_PAD_LEFT)}}</option>
+                                                                @endfor
+
+                                                            </select>
                                                         </div>
                                                         <div class="form-check form-switch form-switch-column mb-0">
                                                             <input checked="" class="form-check-input" type="checkbox"
-                                                                role="switch" id="startTimeAMPM" aria-label="AM PM Toggle button" wire:key="starttime-{{ $index }}" wire:model.lazy="dates.{{$index}}.start_time">
+                                                                role="switch" id="startTimeAMPM" aria-label="AM PM Toggle button" wire:key="starttime-{{ $index }}" wire:model.defer="dates.{{$index}}.start_time">
                                                             <label class="form-check-label"
                                                                 for="startTimeAMPM">AM</label>
                                                             <label class="form-check-label"
@@ -658,7 +668,7 @@
                                                     <input type="" name=""
                                                         class="form-control form-control-md js-single-date"
                                                         placeholder="MM/DD/YYYY" id="set_end_date"
-                                                        aria-label="Set End Date" wire:key="endtime-{{ $index }}" wire:model.lazy="dates.{{$index}}.end_time">
+                                                        aria-label="Set End Date" wire:key="endtime-{{ $index }}" wire:model.lazy="dates.{{$index}}.end_time"  style="width:200px">
                                                     {{-- Updated by Shanila to Add svg icon--}}
                                                     <svg aria-label="Date" class="icon-date md" width="20" height="20"
                                                         viewBox="0 0 20 20">
@@ -669,11 +679,16 @@
                                                 </div>
                                             </div>
                                             <div class="d-flex col-lg-auto mb-4">
-                                                <div class="d-flex flex-column justify-content-between">
-                                                    <label class="form-label-sm" for="set_start_time" >End Time</label>
-                                                    <div class="d-flex gap-2">
+                                                <div class="d-flex flex-column">
+                                                    <label class="form-label-sm" for="set_start_time">End Time</label>
+                                                    <div class="d-flex">
                                                         <div class="time d-flex align-items-center gap-2">
-                                                            <div class="hours">12</div>
+                                                            <select wire:model.defer="dates.{{$index}}.end_hour">
+                                                                @for($i=0;$i<24;$i++)
+                                                                 <option value="{{$i}}">{{str_pad($i, 2, '0', STR_PAD_LEFT)}}</option>
+                                                                @endfor
+
+                                                            </select>
                                                             {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="colon" width="5" height="19"
                                                                 viewBox="0 0 5 19">
@@ -681,13 +696,20 @@
                                                                 </use>
                                                             </svg>
                                                             {{-- End of update by Shanila --}}
-                                                            <div class="mins">59</div>
+                                                            <select wire:model.defer="dates.{{$index}}.end_min">
+                                                                @for($i=0;$i<59;$i++)
+                                                                 <option value="{{$i}}">{{str_pad($i, 2, '0', STR_PAD_LEFT)}}</option>
+                                                                @endfor
+
+                                                            </select>
                                                         </div>
                                                         <div class="form-check form-switch form-switch-column mb-0">
                                                             <input checked="" class="form-check-input" type="checkbox"
-                                                                role="switch" id="endTimeAMPM" wire:key="endtime-{{ $index }}" wire:model.lazy="dates.{{$index}}.end_time" aria-label="Ante meridiem and Post meridiem toggle">
-                                                            <label class="form-check-label" for="endTimeAMPM">AM</label>
-                                                            <label class="form-check-label" for="endTimeAMPM">PM</label>
+                                                                role="switch" id="startTimeAMPM" aria-label="AM PM Toggle button" wire:key="starttime-{{ $index }}" wire:model.defer="dates.{{$index}}.end_time">
+                                                            <label class="form-check-label"
+                                                                for="startTimeAMPM">AM</label>
+                                                            <label class="form-check-label"
+                                                                for="startTimeAMPM">PM</label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -720,7 +742,7 @@
                                     @endforeach
                                     <!-- /Select Dates & Times Duplicate Block -->
                                     <div class="d-flex justify-content-end mt-3">
-                                        <button class="btn btn-primary rounded" wire:click.prevent="adddate">
+                                        <button class="btn btn-primary rounded" wire:click.prevent="addDate">
                                             <svg aria-label="Add Date" width="20" height="20" viewBox="0 0 20 20">
                                                 <use xlink:href="/css/common-icons.svg#plus">
                                                 </use>
