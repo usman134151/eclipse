@@ -682,7 +682,6 @@
         tabindex="0">
         <div class="row mb-3">
             <h3>Schedule <small>(coming soon)</small> </h3>
-        </div>
         {{-- <div class="d-flex justify-content-between mb-2">
             <div class="d-inline-flex align-items-center gap-4">
                 <div class="mb-4 mb-lg-0">
@@ -728,8 +727,10 @@
         </div> --}}
         <div class="w-100">
             <x-advancefilters />
-            @livewire('app.common.calendar', ['profileProvider' => false])
+            @livewire('app.common.calendar', ['profileProvider' => false,'user_id'=>$userid])
         </div>
+        </div>
+
     </div>
     <!-- Schedule tab end -->
     <div class="tab-pane fade" id="service-catalog-and-rates-tab-pane" role="tabpanel"
