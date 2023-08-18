@@ -119,7 +119,7 @@
 
 			</div>
 			<!-- /Filters -->
-			@livewire('app.common.calendar',)
+            @livewire('app.common.calendar', ['profileProvider' => false,'user_id'=>Auth::id()])
 			{{-- <div>
 			<img src="/tenant-resources/images/img-placeholder-calendar.png" class="img-fluid" alt="Dashboard Calender"/>
 			</div> --}}
