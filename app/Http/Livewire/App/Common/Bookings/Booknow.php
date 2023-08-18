@@ -11,7 +11,7 @@ use App\Models\Tenant\Accommodation;
 use App\Models\Tenant\UserAddress;
 use App\Models\Tenant\Schedule;
 use App\Models\Tenant\Company;
-use App\Services\App\BookingService;
+use App\Services\App\BookingOperationsService;
 
 use Illuminate\Support\Collection;
 use Carbon\Carbon;
@@ -64,8 +64,8 @@ class Booknow extends Component
             'service_types'=>'',
             'meetings' =>[['meeting_name' => '','phone_number' => '','access_code' => '']], //updated by Amna Bilal to define meeting links array within services array
             'time_zone'=>'',
-            'is_manual_consumer' =>'',
-            'is_manual_attendees' =>'',
+            'is_manual_consumer' =>0,
+            'is_manual_attendees' =>0,
             'service_consumer' => '',
             'attendees' => '',
             'provider_count'=>'',
@@ -157,7 +157,7 @@ class Booknow extends Component
             $this->validate();
             //calling booking service passing required data
             
-            BookingService::createBooking($this->booking,$this->services,$this->dates,$this->selectedIndustries);
+            BookingOperationsService::createBooking($this->booking,$this->services,$this->dates,$this->selectedIndustries);
             
             
 
@@ -298,8 +298,8 @@ class Booknow extends Component
         'service_types'=>'',
         'meetings' =>[['meeting_name' => '','phone_number' => '','access_code' => '']], //updated by Amna Bilal to define meeting links array within services array
         'time_zone'=>'',
-        'is_manual_consumer' =>'',
-        'is_manual_attendees' =>'',
+        'is_manual_consumer' =>0,
+        'is_manual_attendees' =>0,
         'service_consumer' => '',
         'attendees' => '',
         'provider_count'=>'',

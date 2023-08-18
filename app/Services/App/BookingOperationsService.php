@@ -2,6 +2,7 @@
 namespace app\Services\App;
 use App\Models\Tenant\User;
 use App\Models\Tenant\Booking;
+use App\Models\Tenant\BookingServices;
 use App\Models\Tenant\SetupValue;
 use App\Models\Tenant\Accommodation;
 use App\Models\Tenant\UserAddress;
@@ -10,7 +11,7 @@ use App\Models\Tenant\Company;
 use Auth;
 use Carbon\Carbon;
 
-class BookingService{
+class BookingOperationsService{
 
   public static function createBooking($booking, $services, $dates,$selectedIndustries){
     $booking->booking_number=self::generateBookingNumber();
@@ -32,13 +33,25 @@ class BookingService{
     $booking->provider_response='';
     $booking->admin_response='';
 
-
+    $booking->save();
     //end of data mapping for main booking table
-
+    foreach($services as $service){
+        $service['booking_id']=$booking->id;
+        $service['booking_log_id']=0;
+        $service['meetings']= json_encode($service['meetings']);
+        $service['specialization']=json_encode($service['specialization']);
+        $service['attendees']=implode(',',$service['attendees']);
+        $service['status']='1';
+        $service['start_time'] =  Carbon::parse($dates[0]['start_date'].' '.$dates[0]['start_hour'].':'.$dates[0]['start_min'].':00')->format('Y-m-d H:i:s');;
+        $service['end_time'] =  Carbon::parse($dates[0]['start_date'].' '.$dates[0]['start_hour'].':'.$dates[0]['start_min'].':00')->format('Y-m-d H:i:s');;
+    
+       // dd($service);
+        BookingServices::create($service);
+    }
     //store services
 
 
-    $booking->save();
+    
   }
 
 
