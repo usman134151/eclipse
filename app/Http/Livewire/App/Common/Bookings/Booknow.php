@@ -11,6 +11,7 @@ use App\Models\Tenant\Accommodation;
 use App\Models\Tenant\UserAddress;
 use App\Models\Tenant\Schedule;
 use App\Models\Tenant\Company;
+use App\Services\App\BookingService;
 
 use Illuminate\Support\Collection;
 use Carbon\Carbon;
@@ -154,7 +155,11 @@ class Booknow extends Component
 
         if($step==1){
             $this->validate();
-            dd($this->services);
+            //calling booking service passing required data
+            BookingService::createBooking($this->booking,$this->services,$this->dates,$this->selectIndustries);
+            
+            
+
 
         }
         
