@@ -76,6 +76,7 @@
             <div class="tab-pane fade {{$method==2? 'show active' : ''}}" id="mail-a-check" role="tabpanel" aria-labelledby="mail-a-check-tab">
                 <div class="row">
                     <h2>Select Address</h2>
+                    <small>(coming soon)</small>
                     <div class="col-md-3">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" value="0" wire:model.defer="payment.address_id" name="address_id" id="address_id">
