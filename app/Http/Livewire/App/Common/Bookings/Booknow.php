@@ -469,8 +469,24 @@ class Booknow extends Component
             $rules['services.' . $index . '.service_types'] = 'required';
             $rules['services.' . $index . '.provider_count'] = 'required';
         }
+        foreach ($this->dates as $index => $date) {
+            $rules['dates.' . $index . '.start_date'] = 'required';
+            $rules['dates.' . $index . '.end_date'] = 'required|after_or_equal:dates.' . $index . '.start_date';
 
+        }
         return $rules;
+    }
+
+    public function messages()
+    {
+        $messages = [];
+
+        foreach ($this->dates as $index => $date) {
+            $messages['dates.' . $index . '.end_date.required'] = 'End date is required';
+            $messages['dates.' . $index . '.end_date.after_or_equal'] = 'End date must be greater than start date';
+        }
+
+        return $messages;
     }
 
     public function refreshAddresses(){

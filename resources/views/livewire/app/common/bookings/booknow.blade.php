@@ -661,6 +661,11 @@
                                                     </svg>
                                                     
                                                 </div>
+                                                @error('dates.' . $index . '.start_date')
+                                                             <span class="d-inline-block invalid-feedback mt-2">
+                                                             Start date is required
+                                                            </span>
+                                                @enderror 
                                             </div>
                                             <div class="d-flex col-lg-auto mb-4">
                                                 <div class="d-flex flex-column">
@@ -714,6 +719,11 @@
                                                     </svg>
                                                     
                                                 </div>
+                                                @error('dates.' . $index . '.end_date')
+                                                             <span class="d-inline-block invalid-feedback mt-2">
+                                                             {{ $message }}
+                                                            </span>
+                                                @enderror 
                                             </div>
                                             <div class="d-flex col-lg-auto mb-4">
                                                 <div class="d-flex flex-column">
