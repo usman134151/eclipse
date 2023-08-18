@@ -24,6 +24,7 @@ protected $listeners = ['showList' => 'resetForm', 'updateVal'];
 
 	public function render()
 	{
+		$base = '';
 		switch ($this->bookingType) {
 			case ('Past'):
 				$query = Booking::where('booking_end_at', '<>', null)->whereDate('booking_end_at', '<', Carbon::today())->orderBy('booking_start_at','DESC');
@@ -50,10 +51,11 @@ protected $listeners = ['showList' => 'resetForm', 'updateVal'];
 				$join->where('booking_providers.provider_id', $this->provider_id);
 				$join->on('booking_providers.booking_id', 'bookings.id');
 			});
+			$base = "provider-";
 		
 		}
 		// dd($query->get());
-		return view('livewire.app.common.bookings.booking-list',['booking_assignments' => $query->paginate($this->limit)]);
+		return view('livewire.app.common.bookings.' . $base . 'booking-list',['booking_assignments' => $query->paginate($this->limit)]);
 	}
 
 
