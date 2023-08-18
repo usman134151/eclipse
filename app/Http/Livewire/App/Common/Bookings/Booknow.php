@@ -13,6 +13,7 @@ use App\Models\Tenant\Schedule;
 use App\Models\Tenant\Company;
 
 use Illuminate\Support\Collection;
+use Carbon\Carbon;
 
 
 class Booknow extends Component
@@ -27,11 +28,11 @@ class Booknow extends Component
 
     public $dates=[[
             'start_date'=>'',
-            'start_hour' => '',
-            'start_min'=>'',
+            'start_hour' => '00',
+            'start_min'=>'00',
             'end_date'=>'',
-            'end_hour' => '',
-            'end_min'=>'',
+            'end_hour' => '00',
+            'end_min'=>'00',
             'start_am'=>'',
             'end_am'=>'',
             'duration_day' => '',
@@ -58,7 +59,6 @@ class Booknow extends Component
         [   'accommodation_id'=>'',
             'services'=>'',
             'service_types'=>'',
-            'specializations'=>[],
             'meetings' =>[['meeting_name' => '','phone_number' => '','access_code' => '']], //updated by Amna Bilal to define meeting links array within services array
             'time_zone'=>'',
             'is_manual_consumer' =>'',
@@ -66,11 +66,14 @@ class Booknow extends Component
             'service_consumer' => '',
             'attendees' => '',
             'provider_count'=>'',
-            'specialization' =>'',
-            'meeting_link' => '',
-            'meeting_phone' => '',
-            'meeting_passcode' => '',
+            'specialization' =>[],
             'day_rate' =>'',
+            'duration_day'=>'',
+            'duration_hour'=>'',
+            'duration_minutue'=>'',
+            'start_time'=>'',
+            'end_time'=>'',
+            'status'=>0
             
             
         ]
@@ -143,9 +146,15 @@ class Booknow extends Component
 
     
 
-    public function save($redirect = 1)
+    public function save($redirect = 1,$draft=0,$step=1)
     {
-        // $this->validate();
+        //booking basic info
+
+        if($step==1){
+            $this->validate();
+            dd($this->services);
+
+        }
         
         if ($redirect) {
             $this->confirmation("Assignment Data has been saved successfully");
@@ -275,10 +284,10 @@ class Booknow extends Component
         $this->dates = array_values($this->dates);
     }
     public function addService(){
-        $this->services[]= [   'accommodation_id'=>'',
+        $this->services[]= [   
+        'accommodation_id'=>'',
         'services'=>'',
         'service_types'=>'',
-        'specializations'=>[],
         'meetings' =>[['meeting_name' => '','phone_number' => '','access_code' => '']], //updated by Amna Bilal to define meeting links array within services array
         'time_zone'=>'',
         'is_manual_consumer' =>'',
@@ -286,11 +295,14 @@ class Booknow extends Component
         'service_consumer' => '',
         'attendees' => '',
         'provider_count'=>'',
-        'specialization' =>'',
-        'meeting_link' => '',
-        'meeting_phone' => '',
-        'meeting_passcode' => '',
-        'day_rate' =>''
+        'specialization' =>[],
+        'day_rate' =>'',
+        'duration_day'=>'',
+        'duration_hour'=>'',
+        'duration_minutue'=>'',
+        'start_time'=>'',
+        'end_time'=>'',
+        'status'=>0
     ];
 
     }
@@ -303,6 +315,7 @@ class Booknow extends Component
 
     public function updateVal($attrName, $val)
     {
+        
        
         if ($attrName == "company_id") {
 
@@ -343,6 +356,25 @@ class Booknow extends Component
                     $this->services[$index]['attendees'] = $val;
                 }
             }  
+            elseif (preg_match('/start_date_(\d+)/', $attrName, $matches)) {
+                $index = intval($matches[1]);
+               
+        
+                if (isset($this->dates[$index])) {
+                    $this->dates[$index]['start_date'] = $val;
+                    $this->updateDurations($index);
+                }
+              
+            }              
+            elseif (preg_match('/end_date_(\d+)/', $attrName, $matches)) {
+                $index = intval($matches[1]);
+               
+        
+                if (isset($this->dates[$index])) {
+                    $this->dates[$index]['end_date'] = $val;
+                    $this->updateDurations($index);
+                }
+            }  
             elseif($attrName=='customer_id'){
                 $this->booking['customer_id']=$val;
                 $this->refreshAddresses();
@@ -375,6 +407,44 @@ class Booknow extends Component
         $this->updateUsers();
        
     }
+
+    public function updateDurations($index)
+    {
+        // Assuming you have the $date array in your Livewire component.
+        try {
+        if (isset($this->dates[$index]['start_date']) && isset($this->dates[$index]['end_date']) &&
+            isset($this->dates[$index]['start_hour']) && isset($this->dates[$index]['start_min']) &&
+            isset($this->dates[$index]['end_hour']) && isset($this->dates[$index]['end_min'])) {
+            $timezoneLabel = $this->timezones[$this->dates[$index]['time_zone']]['setup_value_label'];
+             
+            $startDateTime = Carbon::create($this->dates[$index]['start_date'].$this->dates[$index]['start_hour'].':'.$this->dates[$index]['start_min'].':00');
+    
+            $endDateTime =  Carbon::create($this->dates[$index]['end_date'].$this->dates[$index]['end_hour'].':'.$this->dates[$index]['end_min'].':00');
+    
+            if ($endDateTime > $startDateTime) {
+                $diff = $endDateTime->diff($startDateTime);
+    
+                $days = $diff->days;
+                $hours = $diff->h;
+                $minutes = $diff->i;
+    
+                $this->dates[$index]['duration_day']=$days;
+                $this->dates[$index]['duration_hour']=$hours;
+                $this->dates[$index]['duration_minute']=$minutes;
+                
+            } else {
+                // Return an error message or handle the case where end date/time is not greater than start date/time.
+               // return ['error' => 'End date/time must be greater than start date/time.'];
+            }
+        }
+    } catch (\Exception $e) {
+        // Handle the exception, log the error, or debug further
+        dd($e->getMessage());
+    }
+    
+        return null; // Return null if the required fields are not set.
+    }
+    
 
     public function rules(){
         return [
