@@ -79,7 +79,7 @@
                                         data-bs-toggle="tooltip" data-bs-placement="top" title=""></i></label>
                                 <div class="d-flex gap-3 flex-column flex-lg-row mb-0">
                                     @foreach($frequencies as $frequency)
-                                        <input class="form-check-input" type="radio" wire:model="booking.frequency_id" id="frequency_id-{{$frequency['id']}}" name="frequency_id" value="{{$frequency['id']}}">
+                                        <input class="form-check-input" type="radio" wire:model="booking.frequency_id" id="frequency_id-{{$frequency['id']}}" name="frequency_id" value="{{$loop->index+1}}">
                                         <label class="form-check-label" for="frequency_id-{{$frequency['id']}}">{{$frequency['setup_value_label']}}</label>
                                     @endforeach
                                     @error('booking.frequency_id')
@@ -88,7 +88,7 @@
                                                     </span>
                                     @enderror
                                 </div>
-                                @if($booking['frequency_id']=='32')
+                                @if($booking['frequency_id']=='1')
                                     <div class="mt-4 w-25 hidden">
                                 @else
                                     <div class="mt-4 w-25">        
@@ -185,7 +185,7 @@
                                     </select>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" id="hide_request_from_providers" wire:model="booking.requester_information"
-                                            name="hide_request_from_providers" type="checkbox" tabindex="" />
+                                            name="hide_request_from_providers" type="checkbox" tabindex="" value="1" />
                                         <label class="form-check-label" for="HideRequesterInfofromProviders" value="1"><small>Hide
                                                 Requester's Info from Providers</small></label>
                                     </div>
@@ -360,7 +360,7 @@
                                                         @if(in_array($key,$foundService['service_type']))
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio"
-                                                                name="serviceType" id="serviceType-{{$serviceType['title']}}-{{$index}}" wire:model="services.{{$index}}.service_types" value={{$key}}>
+                                                                name="serviceType" id="serviceType-{{$serviceType['title']}}-{{$index}}" wire:model="services.{{$index}}.service_types" value="{{$key}}">
                                                             <label class="form-check-label" for="serviceType-{{$serviceType['title']}}-{{$index}}">
                                                                 {{$serviceType['title']}}
                                                             </label>

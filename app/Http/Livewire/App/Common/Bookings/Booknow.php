@@ -95,8 +95,8 @@ class Booknow extends Component
     {
         $this->booking=$booking;
         if(!$this->booking->id){ //init data in case of new booking
-            $this->booking->requester_information=0;
-            $this->booking->frequency_id=32;
+            $this->booking->requester_information='0';
+            $this->booking->frequency_id=1;
 
            
 
@@ -156,7 +156,8 @@ class Booknow extends Component
         if($step==1){
             $this->validate();
             //calling booking service passing required data
-            BookingService::createBooking($this->booking,$this->services,$this->dates,$this->selectIndustries);
+            
+            BookingService::createBooking($this->booking,$this->services,$this->dates,$this->selectedIndustries);
             
             
 
