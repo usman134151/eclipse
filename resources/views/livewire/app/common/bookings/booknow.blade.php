@@ -11,11 +11,11 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
                                 <a href="http://127.0.0.1:8000" title="Go to Dashboard" aria-label="Go to Dashboard">
-                                    {{-- Updated by Shanila to Add svg icon--}}
+                                   
                                     <svg aria-label="Go to Dashboard" width="22" height="23" viewBox="0 0 22 23">
                                         <use xlink:href="/css/common-icons.svg#home"></use>
                                     </svg>
-                                    {{-- End of update by Shanila --}} </a>
+                                     </a>
                                 </a>
                             </li>
                             <li class="breadcrumb-item">
@@ -68,7 +68,7 @@
                     @if($component == 'requester-info')
                     <div class="tab-pane fade {{ $component == 'requester-info' ? 'active show' : '' }}"
                         id="requester-info" role="tabpanel" aria-labelledby="requester-info-tab" tabindex="0">
-                        {{-- updated by shanila to add csrf and add form tag --}}
+                       
                         <form class="form">
                             @csrf
 
@@ -105,13 +105,12 @@
                                         <label class="form-label" for="company-column">Company <span class="mandatory">*</span></label>
                                         <a href="#" class="fw-bold">
                                             <small>
-                                                {{-- Updated by Shanila to Add svg icon
+                                                {{-- 
                                                 <svg aria-label="Add New" class="me-1" width="20" height="21"
                                                     viewBox="0 0 20 21">
                                                     <use xlink:href="/css/common-icons.svg#add-new"></use>
                                                 </svg>
-                                                 End of update by Shanila
-                                                Add New Company  --}}
+                                                 --}}
                                             </small> 
                                         </a>
                                     </div>
@@ -124,13 +123,13 @@
                                     <div>
                                         <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup"
                                             data-bs-toggle="modal" data-bs-target="#departmentModal" aria-label="Department">
-                                            {{-- Updated by Shanila to Add svg icon--}}
+                                           
                                             <svg aria-label=" Select Department" width="25" height="18"
                                                 viewBox="0 0 25 18">
                                                 <use xlink:href="/css/common-icons.svg#right-color-arrow">
                                                 </use>
                                             </svg>
-                                            {{-- End of update by Shanila --}}
+                                            
                                             Select Department
                                         </button>
                                     </div>
@@ -188,13 +187,13 @@
                                     <div>
                                         <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup"
                                             data-bs-toggle="modal" data-bs-target="#industryModal" aria-label="Industry">
-                                            {{-- Updated by Shanila to Add svg icon--}}
+                                           
                                             <svg aria-label=" Select Industry" width="25" height="18"
                                                 viewBox="0 0 25 18">
                                                 <use xlink:href="/css/common-icons.svg#right-color-arrow">
                                                 </use>
                                             </svg>
-                                            {{-- End of update by Shanila --}}
+                                            
                                             Select Industry
                                         </button>
                                     </div>
@@ -333,8 +332,8 @@
                                                         @if(in_array($key,$foundService['service_type']))
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio"
-                                                                name="serviceType" id="serviceType-{{$index}}" wire:model="services.{{$index}}.service_types" value={{$key}}>
-                                                            <label class="form-check-label" for="serviceType-{{$index}}">
+                                                                name="serviceType" id="serviceType-{{$serviceType['title']}}-{{$index}}" wire:model="services.{{$index}}.service_types" value={{$key}}>
+                                                            <label class="form-check-label" for="serviceType-{{$serviceType['title']}}-{{$index}}">
                                                                 {{$serviceType['title']}}
                                                             </label>
                                                         </div>
@@ -348,7 +347,7 @@
                                                 <label class="form-label" >Specializations</label>
                                                 <div class="" >
                                                   @foreach($foundService['specializations'] as $specialization)
-                                                  <div class="form-check"><input class="form-check-input" type="checkbox" id="service_specializations-{{$index}}-{{$specialization['id']}}" name="service_specializations" value="{{$specialization['id']}}" tabindex="1"><label class="form-check-label" for="service_specializations-{{$index}}-{{$specialization['id']}}">{{$specialization['name']}}</label></div>
+                                                  <div class="form-check"><input class="form-check-input" type="checkbox" id="service_specializations-{{$index}}-{{$specialization['id']}}" name="service_specializations" value="{{$specialization['id']}}" tabindex="1" wire.model.defer="services.{{$index}}.specialization"><label class="form-check-label" for="service_specializations-{{$index}}-{{$specialization['id']}}">{{$specialization['name']}}</label></div>
                                                   @endforeach
                                                 </div>
                                             </div>
@@ -528,17 +527,17 @@
                                                         <div class="col-lg-4 mb-3">
                                                             <label class="form-label" for="meeting-name" >Meeting Name</label>
                                                             <input type="" class="form-control"
-                                                                placeholder="Enter Meeting Name" id="meeting-name" wire:key="name-{{$index}}-{{ $meetingIndex }}" wire:model.lazy="meetings.{{$meetingIndex}}.meeting_name" >
+                                                                placeholder="Enter Meeting Name" id="meeting-name" wire:key="name-{{$index}}-{{ $meetingIndex }}" wire:model.lazy="services.{{$index}}.meetings.{{$meetingIndex}}.meeting_name" >
                                                         </div>
                                                         <div class="col-lg-4 mb-3">
                                                             <label class="form-label" for="phone-number">Phone Number</label>
                                                             <input type="" class="form-control"
-                                                                placeholder="Enter Phone Number" id="phone-number" wire:key="phone-{{$index}}-{{ $meetingIndex }}" wire:model.lazy="meetings.{{$meetingIndex}}.phone_number">
+                                                                placeholder="Enter Phone Number" id="phone-number" wire:key="phone-{{$index}}-{{ $meetingIndex }}" wire:model.lazy="services.{{$index}}.meetings.{{$meetingIndex}}.phone_number">
                                                         </div>
                                                         <div class="col-lg-4 mb-3">
                                                             <label class="form-label" for="access-code">Access Code</label>
                                                             <input type="" class="form-control"
-                                                                placeholder="Enter Access Code" id="access-code" wire:key="access-{{$index}}-{{ $meetingIndex }}" wire:model.lazy="meetings.{{$meetingIndex}}.access_code">
+                                                                placeholder="Enter Access Code" id="access-code" wire:key="access-{{$index}}-{{ $meetingIndex }}" wire:model.lazy="services.{{$index}}.meetings.{{$meetingIndex}}.access_code">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -609,20 +608,20 @@
                                                </select>
                                             </div>
                                             <div class="col-lg-auto col-md-6 ps-md-2 ps-lg-0 mb-4">
-                                                <label class="form-label-sm" for="set_start_date">Start Date <span
+                                                <label class="form-label-sm" for="start_date_{{$index}}">Start Date <span
                                                         class="mandatory">*</span></label>
                                                 <div class="position-relative">
                                                     <input type="" name=""
                                                         class="form-control form-control-md js-single-date"
-                                                        placeholder="MM/DD/YYYY" id="set_start_date"
+                                                        placeholder="MM/DD/YYYY" id="start_date_{{$index}}"
                                                         aria-label="Set Start Date" wire:key="start-{{ $index }}" wire:model.defer="dates.{{$index}}.start_date" style="width:200px">
-                                                    {{-- Updated by Shanila to Add svg icon--}}
+                                                   
                                                     <svg aria-label="Date" class="icon-date md" width="20" height="20"
                                                         viewBox="0 0 20 20">
                                                         <use xlink:href="/css/common-icons.svg#datefield-icon">
                                                         </use>
                                                     </svg>
-                                                    {{-- End of update by Shanila --}}
+                                                    
                                                 </div>
                                             </div>
                                             <div class="d-flex col-lg-auto mb-4">
@@ -630,20 +629,20 @@
                                                     <label class="form-label-sm" for="set_start_time">Start Time</label>
                                                     <div class="d-flex">
                                                         <div class="time d-flex align-items-center gap-2">
-                                                            <select wire:model.defer="dates.{{$index}}.start_hour">
+                                                            <select wire:model.defer="dates.{{$index}}.start_hour"  wire:change="updateDurations({{ $index }})">
                                                                 @for($i=0;$i<24;$i++)
                                                                  <option value="{{$i}}">{{str_pad($i, 2, '0', STR_PAD_LEFT)}}</option>
                                                                 @endfor
 
                                                             </select>
-                                                            {{-- Updated by Shanila to Add svg icon--}}
+                                                           
                                                             <svg aria-label="colon" width="5" height="19"
                                                                 viewBox="0 0 5 19">
                                                                 <use xlink:href="/css/common-icons.svg#date-colon">
                                                                 </use>
                                                             </svg>
-                                                            {{-- End of update by Shanila --}}
-                                                            <select wire:model.defer="dates.{{$index}}.start_min">
+                                                            
+                                                            <select wire:model.defer="dates.{{$index}}.start_min"  wire:change="updateDurations({{ $index }})">
                                                                 @for($i=0;$i<59;$i++)
                                                                  <option value="{{$i}}">{{str_pad($i, 2, '0', STR_PAD_LEFT)}}</option>
                                                                 @endfor
@@ -662,20 +661,20 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-auto mb-4">
-                                                <label class="form-label-sm" for="set_end_date">End Date<span
+                                                <label class="form-label-sm" for="end_date_{{$index}}">End Date<span
                                                         class="mandatory">*</span></label>
                                                 <div class="position-relative">
                                                     <input type="" name=""
                                                         class="form-control form-control-md js-single-date"
-                                                        placeholder="MM/DD/YYYY" id="set_end_date"
-                                                        aria-label="Set End Date" wire:key="endtime-{{ $index }}" wire:model.lazy="dates.{{$index}}.end_time"  style="width:200px">
-                                                    {{-- Updated by Shanila to Add svg icon--}}
+                                                        placeholder="MM/DD/YYYY" id="end_date_{{$index}}"
+                                                        aria-label="Set End Date" wire:key="endtime-{{ $index }}" wire:model.lazy="dates.{{$index}}.end_date"  style="width:200px">
+                                                   
                                                     <svg aria-label="Date" class="icon-date md" width="20" height="20"
                                                         viewBox="0 0 20 20">
                                                         <use xlink:href="/css/common-icons.svg#datefield-icon">
                                                         </use>
                                                     </svg>
-                                                    {{-- End of update by Shanila --}}
+                                                    
                                                 </div>
                                             </div>
                                             <div class="d-flex col-lg-auto mb-4">
@@ -683,20 +682,20 @@
                                                     <label class="form-label-sm" for="set_start_time">End Time</label>
                                                     <div class="d-flex">
                                                         <div class="time d-flex align-items-center gap-2">
-                                                            <select wire:model.defer="dates.{{$index}}.end_hour">
+                                                            <select wire:model.defer="dates.{{$index}}.end_hour"  wire:change="updateDurations({{ $index }})">
                                                                 @for($i=0;$i<24;$i++)
                                                                  <option value="{{$i}}">{{str_pad($i, 2, '0', STR_PAD_LEFT)}}</option>
                                                                 @endfor
 
                                                             </select>
-                                                            {{-- Updated by Shanila to Add svg icon--}}
+                                                           
                                                             <svg aria-label="colon" width="5" height="19"
                                                                 viewBox="0 0 5 19">
                                                                 <use xlink:href="/css/common-icons.svg#date-colon">
                                                                 </use>
                                                             </svg>
-                                                            {{-- End of update by Shanila --}}
-                                                            <select wire:model.defer="dates.{{$index}}.end_min">
+                                                            
+                                                            <select wire:model.defer="dates.{{$index}}.end_min"  wire:change="updateDurations({{ $index }})">
                                                                 @for($i=0;$i<59;$i++)
                                                                  <option value="{{$i}}">{{str_pad($i, 2, '0', STR_PAD_LEFT)}}</option>
                                                                 @endfor
@@ -722,20 +721,20 @@
                                                     for="total_billable_service_duration_days">Days</label>
                                                 <input type="" class="form-control form-control-md text-center"
                                                     aria-label="Days" placeholder="0"
-                                                    id="total_billable_service_duration_days" wire:key="total-{{ $index }}" wire:model.lazy="dates.{{$index}}.Total_Billable_Service_duration">
+                                                    id="dates.{{$index}}.duration_day" wire:key="total-{{ $index }}" wire:model="dates.{{$index}}.duration_day" style="width:100px">
                                             </div>
                                             <div>
                                                 <label class="form-label-sm">Hours</label>
                                                 <input type=""
                                                     class="form-control form-control-md form-control-md text-center"
                                                     aria-label="Hours" placeholder="00"
-                                                    id="total_billable_service_duration_hours" wire:key="total-{{ $index }}" wire:model.lazy="dates.{{$index}}.Total_Billable_Service_duration">
+                                                    id="dates.{{$index}}.duration_hour" wire:key="total-{{ $index }}" wire:model="dates.{{$index}}.duration_hour" style="width:100px" >
                                             </div>
                                             <div>
                                                 <label class="form-label-sm">Minutes</label>
                                                 <input type="" class="form-control form-control-md text-center"
                                                     aria-label="Minutes" placeholder="00"
-                                                    id="total_billable_service_duration_minutes" wire:key="total-{{ $index }}" wire:model.lazy="dates.{{$index}}.Total_Billable_Service_duration">
+                                                    id="dates.{{$index}}.duration_minute" wire:key="total-{{ $index }}" wire:model="dates.{{$index}}.duration_minute" style="width:100px">
                                             </div>
                                         </div>
                                     </div>
@@ -771,8 +770,7 @@
                                             <div class="row">
                                                 <div class="col-md-6 mb-4">
                                                     <a href="#" class="btn btn-primary rounded w-100 btn-has-icon">
-                                                        {{-- Updated by Shanila to Add
-                                                        svg icon--}}
+                                                       
                                                         <svg aria-label="Add Manually" width="24" height="19"
                                                             viewBox="0 0 24 19" fill="none">
                                                             <use xlink:href="/css/common-icons.svg#check-add">
@@ -836,14 +834,14 @@
                                 @endif 
                                 <div class="justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                                     <button type="button" class="btn btn-outline-dark rounded">Cancel</button>
-                                    <button type="button" class="btn btn-primary rounded">Save as Draft</button>
+                                    <button type="button" class="btn btn-primary rounded" wire:click="save(1,1)">Save as Draft</button>
                                     <button type="button" class="btn btn-primary rounded"
                                     x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('request-details')">Proceed to Request Details</button>
                                 </div>
                             </div>
                            
                         </form>
-                        {{-- ended updated by shanila --}}
+                     
                     </div>
                     
                     <!-- END: requester-info -->
@@ -857,7 +855,7 @@
                     @elseif($component == 'payment-info')
                     <div class="tab-pane fade {{ $component == 'payment-info' ? 'active show' : '' }}" id="payment-info"
                         role="tabpanel" aria-labelledby="payment-info-tab" tabindex="0">
-                        {{-- updated by shanila to add csrf and add form tag --}}
+                      
                         <form class="form">
                             @csrf
                             <h2>Payment Summary</h2>
@@ -944,12 +942,12 @@
                                             <a href="#" class="fw-bold">
                                                 <small>
                                                     Add Additional Charges
-                                                    {{-- Updated by Shanila to Add svg icon--}}
+                                                   
                                                     <svg aria-label="Add Additional Charges" class="me-1" width="20"
                                                         height="21" viewBox="0 0 20 21">
                                                         <use xlink:href="/css/common-icons.svg#add-new"></use>
                                                     </svg>
-                                                    {{-- End of update by Shanila --}}
+                                                    
                                                 </small>
                                             </a>
                                         </div>
@@ -973,12 +971,12 @@
                                             <a href="#" class="fw-bold">
                                                 <small>
                                                     Add Additional Charges
-                                                    {{-- Updated by Shanila to Add svg icon--}}
+                                                   
                                                     <svg aria-label="Add Additional Charges" class="me-1" width="20"
                                                         height="21" viewBox="0 0 20 21">
                                                         <use xlink:href="/css/common-icons.svg#add-new"></use>
                                                     </svg>
-                                                    {{-- End of update by Shanila --}}
+                                                    
                                                 </small>
                                             </a>
                                         </div>
@@ -1345,12 +1343,12 @@
                                 <button type="button" class="btn btn-primary rounded" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('booking-summary')">Booking Summary</button>
                             </div>
                         </form>
-                        {{-- ended update by shanila --}}
+                      
                     </div>
                     @elseif($component == 'booking-summary')
                     <div class="tab-pane fade {{ $component == 'booking-summary' ? 'active show' : '' }}"
                         id="booking-summary" role="tabpanel" aria-labelledby="booking-summary-tab" tabindex="0">
-                        {{-- updated by shanila to add csrf and add form tag --}}
+                        
                         <form class="form">
                             @csrf
 
@@ -1692,14 +1690,13 @@
                                     <div class="col-lg-6">
                                         <div class="d-flex justify-content-end mb-1">
                                             <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                {{-- Updated by Shanila to Add
+                                              
                                                 svg icon--}}
                                                 <svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
                                                     <use xlink:href="/css/common-icons.svg#pencil">
                                                     </use>
                                                 </svg>
-                                                {{-- End of update by Shanila
-                                                --}}
+                                               
                                             </a>
                                         </div>
                                         <div class="table-responsive">
@@ -1850,7 +1847,7 @@
                             </div>
                             <!-- /Service Request -->
                         </form>
-                        {{-- ended update by shanila --}}
+                        
 
                     </div>
                     @endif
