@@ -56,11 +56,13 @@ class Calendar extends Component
 
 		$query = Booking::query();
 		if($this->user_id)
-			$query->where('user_id',$this->user_id);
+			$query->join('booking_providers', function($join){
+				$join->where('booking_providers.provider_id',$this->user_id);
+				$join->on('booking_providers.booking_id', 'bookings.id');
+			});
 		$events = $query->select('booking_number', 'booking_title', 'booking_start_at', 'booking_end_at')
 			->get()
 			->toArray();
-
 		// $keys = ['title', 'start', 'end'];
 		$newEvents = [];
 		// $count = 0;
