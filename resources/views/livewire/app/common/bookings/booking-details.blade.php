@@ -1392,7 +1392,7 @@
                     </div><!-- END: payment-details-tab -->
                     <div class="tab-pane fade {{ $component == 'assignment-log' ? 'active show' : '' }}"
                         id="assignment-log" role="tabpanel" aria-labelledby="assignment-log-tab" tabindex="0">
-                        @livewire('app.common.bookings.assignment-log',['booking_id' => $booking_id])
+                        <livewire:app.common.bookings.assignment-logs :booking_id="$booking_id"/>
                       <!--  <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                             <button type="" class="btn btn-outline-dark rounded"
                                 x-on:click="$wire.switch('payment-details')">Back</button>
