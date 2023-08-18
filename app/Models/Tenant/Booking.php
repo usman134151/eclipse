@@ -36,6 +36,14 @@ class Booking extends Model
     {
         return $this->belongsTo(Industry::class, 'industry_id');
     }
+
+    public function industries()
+    {
+        return $this->belongsToMany(Industry::class, 'booking_industries');
+    }
+
+
+
     public function customer()
     {
         return $this->belongsTo(User::class, 'customer_id');
@@ -78,10 +86,7 @@ class Booking extends Model
     {
         return $this->hasOne(ServiceCategory::class, 'id', 'service_category');
     }
-    public function industries()
-    {
-        return $this->belongsTo(Industry::class,'industry_id','id');
-    }
+
     public function accommodation()
     {
         return $this->hasOne(Accommodation::class, 'id', 'accommodation_id');

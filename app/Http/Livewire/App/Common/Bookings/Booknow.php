@@ -50,6 +50,8 @@ class Booknow extends Component
         'companies' => ['parameters' => ['Company', 'id', 'name', '', '', 'name', false, 'booking.company_id', '', 'company_id', 3]],
     ];
 
+    
+
     //modal variables
     public $selectedIndustries=[],  $selectedDepartments = [], $svDepartments=[],$industryNames=[], $departmentNames=[];
 
@@ -447,18 +449,28 @@ class Booknow extends Component
     
 
     public function rules(){
-        return [
+        $rules= [
             'booking.frequency_id'=>'required',
             'booking.requester_information'=>'nullable',
             'booking.poc_phone'=>'nullable',
             'booking.company_id'=>'required',
             'booking.customer_id'=>'required',
-            'booking.supervisor'=>'required',
+            'booking.supervisor'=>'nullable',
             'booking.billing_manager_id'=>'nullable',
             'booking.recurring_end_at'=>'nullable',
-            'booking.booking_title'=>'nullable'
+            'booking.booking_title'=>'nullable',
+            'selectedIndustries' => 'required|array|min:1',
 
         ];
+
+        foreach ($this->services as $index => $service) {
+            $rules['services.' . $index . '.accommodation_id'] = 'required';
+            $rules['services.' . $index . '.services'] = 'required';
+            $rules['services.' . $index . '.service_types'] = 'required';
+            $rules['services.' . $index . '.provider_count'] = 'required';
+        }
+
+        return $rules;
     }
 
     public function refreshAddresses(){

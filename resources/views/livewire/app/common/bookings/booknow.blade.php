@@ -86,7 +86,7 @@
                                                 <span class="d-inline-block invalid-feedback mt-2">
                                                         {{ $message }}
                                                     </span>
-                                                @enderror
+                                    @enderror
                                 </div>
                                 @if($booking['frequency_id']=='32')
                                     <div class="mt-4 w-25 hidden">
@@ -97,7 +97,11 @@
                                                     <input type="text" class="form-control form-control-md js-single-date" placeholder="Frequency End Date" aria-label="" aria-describedby="" wire:model.defer="booking.recurring_end_at" name="recurring_end_at" id="recurring_end_at">
                                     </div>
                                             
-                                
+                                    @error('booking.frequency_id')
+                                                    <span class="d-inline-block invalid-feedback mt-2">
+                                                        {{ $message }}
+                                                    </span>
+                                    @enderror
                             </div>
                             <div class="row between-section-segment-spacing">
                                 <div class="col-lg-6 mb-4 pe-lg-5">
@@ -115,7 +119,11 @@
                                         </a>
                                     </div>
                                     {!! $setupValues['companies']['rendered'] !!}
-
+                                    @error('booking.company_id')
+                                                    <span class="d-inline-block invalid-feedback mt-2">
+                                                        {{ $message }}
+                                                    </span>
+                                    @enderror
                                 </div>
                               
                                 <div class="col-lg-6 mb-4 ps-lg-5">
@@ -181,6 +189,11 @@
                                         <label class="form-check-label" for="HideRequesterInfofromProviders" value="1"><small>Hide
                                                 Requester's Info from Providers</small></label>
                                     </div>
+                                    @error('booking.customer_id')
+                                                    <span class="d-inline-block invalid-feedback mt-2">
+                                                        {{ $message }}
+                                                    </span>
+                                    @enderror
                                 </div>
                                 <div class="col-lg-6 mb-4 ps-lg-5">
                                     <label class="form-label" >Industry <span class="mandatory">*</span></label>
@@ -206,6 +219,11 @@
                                             @endforeach
                                         @endif
                                     </div>
+                                    @error('selectedIndustries')
+                                                <span class="d-inline-block invalid-feedback mt-2">
+                                                        {{ $message }}
+                                                    </span>
+                                    @enderror
                                 </div>
                                 @if($booking['requester_information']==1)
                                 <div class="col-lg-6 mb-4 pe-lg-5">
@@ -289,6 +307,11 @@
                                                             
                                                         @endforeach
                                                         </select>
+                                                        @error('services.' . $index . '.accommodation_id')
+                                                             <span class="d-inline-block invalid-feedback mt-2">
+                                                                Accommodation is required
+                                                            </span>
+                                                        @enderror
                                             </div>
                                             <div class="col-lg-6 mb-4 ps-lg-5">
                                                 <label class="form-label" for="service">Service <span class="mandatory">*</span> <i
@@ -309,6 +332,11 @@
                                                             @endforeach
                                                         @endif
                                                         </select>
+                                                        @error('services.' . $index . '.services')
+                                                             <span class="d-inline-block invalid-feedback mt-2">
+                                                               Service is required
+                                                            </span>
+                                                        @enderror
                                             </div>
                                             @if($services[$index]['services'])
                                             <div class="col-lg-6 mb-4 pe-lg-5">
@@ -342,6 +370,11 @@
                                                     
 
                                                 </div>
+                                                @error('services.' . $index . '.service_types')
+                                                             <span class="d-inline-block invalid-feedback mt-2">
+                                                               Service type is required
+                                                            </span>
+                                                @enderror
                                             </div>
                                             <div class="col-lg-6 mb-4 ps-lg-5">
                                                 <label class="form-label" >Specializations</label>
@@ -357,6 +390,11 @@
                                                         class="mandatory">*</span></label>
                                                 <input type="" class="form-control"
                                                     placeholder="Enter Number of Providers" id="number-of-provider" wire:model.defer="services.{{$index}}.provider_count" >
+                                                    @error('services.' . $index . '.provider_count')
+                                                             <span class="d-inline-block invalid-feedback mt-2">
+                                                              Provider count is required
+                                                            </span>
+                                                @enderror    
                                             </div>
                                             <div class="col-lg-6 mb-4 ps-lg-5">
                                                 <div class="row">
@@ -834,7 +872,7 @@
                                 @endif 
                                 <div class="justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                                     <button type="button" class="btn btn-outline-dark rounded">Cancel</button>
-                                    <button type="button" class="btn btn-primary rounded" wire:click="save(1,1)">Save as Draft</button>
+                                    <button type="button" class="btn btn-primary rounded" wire:click="save(1,1)" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">Save as Draft</button>
                                     <button type="button" class="btn btn-primary rounded"
                                     x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('request-details')">Proceed to Request Details</button>
                                 </div>
