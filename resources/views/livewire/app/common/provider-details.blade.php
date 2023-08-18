@@ -682,7 +682,6 @@
         tabindex="0">
         <div class="row mb-3">
             <h3>Schedule <small>(coming soon)</small> </h3>
-        </div>
         {{-- <div class="d-flex justify-content-between mb-2">
             <div class="d-inline-flex align-items-center gap-4">
                 <div class="mb-4 mb-lg-0">
@@ -728,8 +727,10 @@
         </div> --}}
         <div class="w-100">
             <x-advancefilters />
-            @livewire('app.common.calendar', ['profileProvider' => false])
+            @livewire('app.common.calendar', ['profileProvider' => false,'user_id'=>$userid])
         </div>
+        </div>
+
     </div>
     <!-- Schedule tab end -->
     <div class="tab-pane fade" id="service-catalog-and-rates-tab-pane" role="tabpanel"
@@ -847,7 +848,7 @@
                                                                         <div class="mx-3 fw-semibold">Day Rate In-person:
                                                                         </div>
                                                                         <div class="mx-3">
-                                                                            {{ $service['hours_price'] ? '$' . number_format($service['hours_price'], 2) : 'N/A' }}
+                                                                            {{ $service['price'] ? '$' . number_format($service['price'], 2) : 'N/A' }}
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -866,7 +867,7 @@
                                                                         <div class="mx-3 fw-semibold">Day Rate Virtual:
                                                                         </div>
                                                                         <div class="mx-3">
-                                                                            {{ $service['hours_price_v'] ? '$' . number_format($service['hours_price_v'], 2) : 'N/A' }}
+                                                                            {{ $service['price_v'] ? '$' . number_format($service['price_v'], 2) : 'N/A' }}
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -885,7 +886,7 @@
                                                                         </div>
                                                                         <div class="mx-3 fw-semibold">Day Rate Phone:</div>
                                                                         <div class="mx-3">
-                                                                            {{ $service['hours_price_p'] ? '$' . number_format($service['hours_price_p'], 2) : 'N/A' }}
+                                                                            {{ $service['price_p'] ? '$' . number_format($service['price_p'], 2) : 'N/A' }}
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -904,7 +905,7 @@
                                                                         <div class="mx-3 fw-semibold">Day Rate
                                                                             Teleconference:</div>
                                                                         <div class="mx-3">
-                                                                            {{ $service['hours_price_t'] ? '$' . number_format($service['hours_price_t'], 2) : 'N/A' }}
+                                                                            {{ $service['price_t'] ? '$' . number_format($service['price_t'], 2) : 'N/A' }}
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -1285,7 +1286,7 @@
                                                                                         <div class="mx-1 mt-1"><span
                                                                                                 class="fw-semibold">In-Person:
                                                                                             </span><span
-                                                                                                class="mx-1">${{ $row['sp'] ? '$'.number_format($row['sp'], 2) : 'N/A' }}</span>
+                                                                                                class="mx-1">{{ $row['sp'] ? '$'.number_format($row['sp'], 2) : 'N/A' }}</span>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
