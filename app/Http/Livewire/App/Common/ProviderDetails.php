@@ -117,13 +117,13 @@ class ProviderDetails extends Component
 				$specializations = ServiceSpecialization::where('service_id', $service['id'])->with('specialization')->get()->toArray();
 				if ($specializations)
 					foreach ($specializations as $i => $s) {
-						$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp'] = json_decode($s['specialization_price'], true)[0]['price'];
-						$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_v'] = json_decode($s['specialization_price_v'], true)[0]['price'];
-						$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_p'] = json_decode($s['specialization_price_p'], true)[0]['price'];
-						$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_t'] = json_decode($s['specialization_price_t'], true)[0]['price'];
-						$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_price_type'] = json_decode($s['specialization_price'], true)[0]['price_type'];
+						$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp'] = isset(json_decode($s['specialization_price'], true)[0]['price']) ? json_decode($s['specialization_price'], true)[0]['price'] : null;
+						$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_v'] = isset(json_decode($s['specialization_price_v'], true)[0]['price']) ? json_decode($s['specialization_price_v'], true)[0]['price'] : null;
+						$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_p'] = isset(json_decode($s['specialization_price_p'], true)[0]['price']) ? json_decode($s['specialization_price_p'], true)[0]['price'] : null;
+						$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_t'] = isset(json_decode($s['specialization_price_t'], true)[0]['price']) ? json_decode($s['specialization_price_t'], true)[0]['price'] :null;
+						$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_price_type'] = isset(json_decode($s['specialization_price'], true)[0]['price_type']) ? json_decode($s['specialization_price'], true)[0]['price_type'] : null;
 
-						$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_name'] = $s['specialization']['name'];
+						$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_name'] = isset($s['specialization']['name']) ? $s['specialization']['name'] : null;
 					}
 				else
 					$this->accommodation_catalog[$key][$index]['specializations'] = null;

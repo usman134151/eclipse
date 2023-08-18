@@ -1285,7 +1285,7 @@
                                                                                         <div class="mx-1 mt-1"><span
                                                                                                 class="fw-semibold">In-Person:
                                                                                             </span><span
-                                                                                                class="mx-1">${{ $row['sp'] ? '$'.number_format($row['sp'], 2) : 'N/A' }}</span>
+                                                                                                class="mx-1">{{ $row['sp'] ? '$'.number_format($row['sp'], 2) : 'N/A' }}</span>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
