@@ -12,7 +12,7 @@ use Livewire\Component;
 class Calendar extends Component
 {
 	public $events = [], $model_id = 0, $model_type = 0, $providerProfile = false;
-	public $holidays = [], $specific = [];
+	public $holidays = [], $specific = [], $user_id=null;
 	protected $listeners = ['refreshCalendar'=> 'refreshEvents'];
 
 
@@ -54,7 +54,10 @@ class Calendar extends Component
 		// 	],
 		// ];
 
-		$events = Booking::select('booking_number', 'booking_title', 'booking_start_at', 'booking_end_at')
+		$query = Booking::query();
+		if($this->user_id)
+			$query->where('user_id',$this->user_id);
+		$events = $query->select('booking_number', 'booking_title', 'booking_start_at', 'booking_end_at')
 			->get()
 			->toArray();
 
@@ -116,6 +119,7 @@ class Calendar extends Component
 
 
 	//   Handling fullcalendar events for specified month on backend
+	//	returns schedule 
 	public function getEventsForMonth($month = null)
 	{
 		//check if month passed, else use default 
