@@ -168,13 +168,13 @@ Route::group([
 				Route::view('/set-availability', 'tenant/provider/manage-availability');
 
 				// Provider Booking Routes
-				Route::view('/bookings/today', 'tenant/provider/bookings/booking-list', ["bookingType"=>"Today's"]);
-				Route::view('/bookings/upcoming', 'tenant/provider/bookings/booking-list', ["bookingType"=>"Upcoming"]);
-				Route::view('/bookings/past', 'tenant/provider/bookings/booking-list', ["bookingType"=>"Past"]);
-                Route::view('/bookings/active', 'tenant/provider/bookings/booking-list', ["bookingType"=>"Active"]);
-                Route::view('/bookings/cancelled', 'tenant/provider/bookings/booking-list', ["bookingType"=>"Cancelled"]);
-				Route::view('/bookings/unassigned', 'tenant/provider/bookings/booking-list', ["bookingType"=>"Unassigned"]);
-				Route::view('/bookings/invitations', 'tenant/provider/bookings/booking-list', ["bookingType"=>"Invitations"]);
+				Route::view('/bookings/today', 'tenant/common/bookings/booking-list', ["bookingType"=>"Today's"]);
+				Route::view('/bookings/upcoming', 'tenant/common/bookings/booking-list', ["bookingType"=>"Upcoming"]);
+				Route::view('/bookings/past', 'tenant/common/bookings/booking-list', ["bookingType"=>"Past"]);
+                Route::view('/bookings/active', 'tenant/common/bookings/booking-list', ["bookingType"=>"Active"]);
+                Route::view('/bookings/cancelled', 'tenant/common/bookings/booking-list', ["bookingType"=>"Cancelled"]);
+				Route::view('/bookings/unassigned', 'tenant/common/bookings/booking-list', ["bookingType"=>"Unassigned"]);
+				Route::view('/bookings/invitations', 'tenant/common/bookings/booking-list', ["bookingType"=>"Invitations"]);
 
 				// Provider Payment Routes
 				Route::view('/reimbursement', 'tenant/provider/reimbursement');
