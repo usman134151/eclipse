@@ -4,6 +4,8 @@ namespace App\Http\Livewire\App\Common;
 
 use App\Models\Tenant\Schedule;
 use App\Models\Tenant\ServiceSpecialization;
+use App\Models\Tenant\SpecializationRate;
+use App\Models\Tenant\StandardRate;
 use Livewire\Component;
 use App\Models\Tenant\User;
 use App\Models\Tenant\UserDetail;
@@ -104,37 +106,111 @@ class ProviderDetails extends Component
 			'service_categories.*'
 		]);
 		$this->accommodation_catalog = $query->distinct('service_id')->orderBy('provider_priority')->get()->groupBy('accommodation_id')->toArray();
+
+		// rate_status 1 => hourly
+		// rate_status 2 => day rate
+		// rate_status 4 => fixed
+
 		foreach ($this->accommodation_catalog as $key => $accom) {
+
 			foreach ($accom as $index => $service) {
-				if ($service['emergency_hour'])
-					$this->accommodation_catalog[$key][$index]['emergency_hour'] = json_decode($service['emergency_hour'], true);
-				if ($service['emergency_hour_v'])
-					$this->accommodation_catalog[$key][$index]['emergency_hour_v'] = json_decode($service['emergency_hour_v'], true);
-				if ($service['emergency_hour_p'])
-					$this->accommodation_catalog[$key][$index]['emergency_hour_p'] = json_decode($service['emergency_hour_p'], true);
-				if ($service['emergency_hour_t'])
-					$this->accommodation_catalog[$key][$index]['emergency_hour_t'] = json_decode($service['emergency_hour_t'], true);
+				//check if user has has custom rates for service 
+
+
+				$custom_rates = StandardRate::where(['accommodation_service_id' => $service['id'], 'user_id' => $this->userid])->first();
+				if ($custom_rates) {
+
+					//setting standard rates
+					if ($service['rate_status'] == 1) {
+						$this->accommodation_catalog[$key][$index]['price'] = $custom_rates['hours_price'] ? $custom_rates['hours_price'] : null;
+						$this->accommodation_catalog[$key][$index]['price_p'] = $custom_rates['hours_price_p'] ? $custom_rates['hours_price_p'] : null;
+						$this->accommodation_catalog[$key][$index]['price_v'] = $custom_rates['hours_price_v'] ? $custom_rates['hours_price_v'] : null;
+						$this->accommodation_catalog[$key][$index]['price_t'] = $custom_rates['hours_price_t'] ? $custom_rates['hours_price_t'] : null;
+					} elseif ($service['rate_status'] == 2) {
+						$this->accommodation_catalog[$key][$index]['price'] = $custom_rates['day_rate_price'] ? $custom_rates['day_rate_price'] : null;
+						$this->accommodation_catalog[$key][$index]['price_p'] = $custom_rates['day_rate_price_p'] ? $custom_rates['day_rate_price_p'] : null;
+						$this->accommodation_catalog[$key][$index]['price_v'] = $custom_rates['day_rate_price_v'] ? $custom_rates['day_rate_price_v'] : null;
+						$this->accommodation_catalog[$key][$index]['price_t'] = $custom_rates['day_rate_price_t'] ? $custom_rates['day_rate_price_t'] : null;
+					} elseif ($service['rate_status'] == 4) {
+
+						$this->accommodation_catalog[$key][$index]['price'] = $custom_rates['fixed_rate'] ? $custom_rates['fixed_rate'] : null;
+						$this->accommodation_catalog[$key][$index]['price_p'] = $custom_rates['fixed_rate_p'] ? $custom_rates['fixed_rate_p'] : null;
+						$this->accommodation_catalog[$key][$index]['price_v'] = $custom_rates['fixed_rate_v'] ? $custom_rates['fixed_rate_v'] : null;
+						$this->accommodation_catalog[$key][$index]['price_t'] = $custom_rates['fixed_rate_t'] ? $custom_rates['fixed_rate_t'] : null;
+					}
+					// customer emergency rates
+					if ($custom_rates['emergency_hour'])
+						$this->accommodation_catalog[$key][$index]['emergency_hour'] = json_decode($custom_rates['emergency_hour'], true);
+					if ($custom_rates['emergency_hour_v'])
+						$this->accommodation_catalog[$key][$index]['emergency_hour_v'] = json_decode($custom_rates['emergency_hour_v'], true);
+					if ($custom_rates['emergency_hour_p'])
+						$this->accommodation_catalog[$key][$index]['emergency_hour_p'] = json_decode($custom_rates['emergency_hour_p'], true);
+					if ($custom_rates['emergency_hour_t'])
+						$this->accommodation_catalog[$key][$index]['emergency_hour_t'] = json_decode($custom_rates['emergency_hour_t'], true);
+				} else {
+
+					// use default standard rates
+					if ($service['rate_status'] == 1) {
+						$this->accommodation_catalog[$key][$index]['price'] = $service['hours_price'] ? $service['hours_price'] : null;
+						$this->accommodation_catalog[$key][$index]['price_p'] = $service['hours_price_p'] ? $service['hours_price_p'] : null;
+						$this->accommodation_catalog[$key][$index]['price_v'] = $service['hours_price_v'] ? $service['hours_price_v'] : null;
+						$this->accommodation_catalog[$key][$index]['price_t'] = $service['hours_price_t'] ? $service['hours_price_t'] : null;
+					} elseif ($service['rate_status'] == 2) {
+						$this->accommodation_catalog[$key][$index]['price'] = $service['day_rate_price'] ? $service['day_rate_price'] : null;
+						$this->accommodation_catalog[$key][$index]['price_p'] = $service['day_rate_price_p'] ? $service['day_rate_price_p'] : null;
+						$this->accommodation_catalog[$key][$index]['price_v'] = $service['day_rate_price_v'] ? $service['day_rate_price_v'] : null;
+						$this->accommodation_catalog[$key][$index]['price_t'] = $service['day_rate_price_t'] ? $service['day_rate_price_t'] : null;
+					} elseif ($service['rate_status'] == 4) {
+
+						$this->accommodation_catalog[$key][$index]['price'] = $service['fixed_rate'] ? $service['fixed_rate'] : null;
+						$this->accommodation_catalog[$key][$index]['price_p'] = $service['fixed_rate_p'] ? $service['fixed_rate_p'] : null;
+						$this->accommodation_catalog[$key][$index]['price_v'] = $service['fixed_rate_v'] ? $service['fixed_rate_v'] : null;
+						$this->accommodation_catalog[$key][$index]['price_t'] = $service['fixed_rate_t'] ? $service['fixed_rate_t'] : null;
+					}
+
+
+					//use default emergency rates
+
+					if ($service['emergency_hour'])
+						$this->accommodation_catalog[$key][$index]['emergency_hour'] = json_decode($service['emergency_hour'], true);
+					if ($service['emergency_hour_v'])
+						$this->accommodation_catalog[$key][$index]['emergency_hour_v'] = json_decode($service['emergency_hour_v'], true);
+					if ($service['emergency_hour_p'])
+						$this->accommodation_catalog[$key][$index]['emergency_hour_p'] = json_decode($service['emergency_hour_p'], true);
+					if ($service['emergency_hour_t'])
+						$this->accommodation_catalog[$key][$index]['emergency_hour_t'] = json_decode($service['emergency_hour_t'], true);
+				}
 				$specializations = ServiceSpecialization::where('service_id', $service['id'])->with('specialization')->get()->toArray();
+
 				if ($specializations)
 					foreach ($specializations as $i => $s) {
-						$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp'] = json_decode($s['specialization_price'], true)[0]['price'];
-						$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_v'] = json_decode($s['specialization_price_v'], true)[0]['price'];
-						$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_p'] = json_decode($s['specialization_price_p'], true)[0]['price'];
-						$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_t'] = json_decode($s['specialization_price_t'], true)[0]['price'];
-						$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_price_type'] = json_decode($s['specialization_price'], true)[0]['price_type'];
 
-						$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_name'] = $s['specialization']['name'];
+						$custom_special_rates = SpecializationRate::where(['accommodation_service_id' => $service['id'], 'user_id' => $this->userid, 'specialization' => $s['specialization']['id']])->first();
+						if ($custom_special_rates) {
+							// check if user has specialized services
+							$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp'] = isset(json_decode($custom_special_rates['specialization_rate'], true)[0]['price']) ? json_decode($custom_special_rates['specialization_rate'], true)[0]['price'] : null;
+							$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_v'] =  isset(json_decode($custom_special_rates['specialization_rate_v'], true)[0]['price']) ? json_decode($custom_special_rates['specialization_rate_v'], true)[0]['price'] : null;
+							$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_p'] =  isset(json_decode($custom_special_rates['specialization_rate_p'], true)[0]['price']) ? json_decode($custom_special_rates['specialization_rate_p'], true)[0]['price'] : null;
+							$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_t'] =  isset(json_decode($custom_special_rates['specialization_rate_t'], true)[0]['price']) ? json_decode($custom_special_rates['specialization_rate_t'], true)[0]['price'] : null;
+						} else {
+							$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp'] = isset(json_decode($s['specialization_price'], true)[0]['price']) ? json_decode($s['specialization_price'], true)[0]['price'] : null;
+							$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_v'] = isset(json_decode($s['specialization_price_v'], true)[0]['price']) ? json_decode($s['specialization_price_v'], true)[0]['price'] : null;
+							$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_p'] = isset(json_decode($s['specialization_price_p'], true)[0]['price']) ? json_decode($s['specialization_price_p'], true)[0]['price'] : null;
+							$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_t'] = isset(json_decode($s['specialization_price_t'], true)[0]['price']) ? json_decode($s['specialization_price_t'], true)[0]['price'] : null;
+						}
+						$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_price_type'] = isset(json_decode($s['specialization_price'], true)[0]['price_type']) ? json_decode($s['specialization_price'], true)[0]['price_type'] : null;
+						$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_name'] = isset($s['specialization']['name']) ? $s['specialization']['name'] : null;
 					}
 				else
 					$this->accommodation_catalog[$key][$index]['specializations'] = null;
 			}
 		}
 
-		$lastLogin = UserLoginAddress::where('user_id',$this->userid)->orderBy('created_at','DESC')->first();
-		if($lastLogin)
-		$this->user['last_login'] =$lastLogin->toArray();
+		$lastLogin = UserLoginAddress::where('user_id', $this->userid)->orderBy('created_at', 'DESC')->first();
+		if ($lastLogin)
+			$this->user['last_login'] = $lastLogin->toArray();
 		else
-		$this->user['last_login'] =null;
+			$this->user['last_login'] = null;
 
 		// dd($this->accommodation_catalog);
 		$this->dispatchBrowserEvent('refreshSelects');

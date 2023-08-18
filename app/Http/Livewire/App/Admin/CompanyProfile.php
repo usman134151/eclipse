@@ -43,7 +43,7 @@ class CompanyProfile extends Component
 			$this->schedule->working_days = json_encode([]);
 			$this->schedule->timezone_id = 0;
 
-			$this->schedule->model_id = $this->company->id;
+			$this->schedule->model_id = $this->company['id'];
 			$this->schedule->save();
 		}
 
