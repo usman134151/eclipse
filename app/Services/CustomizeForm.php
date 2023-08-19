@@ -91,7 +91,10 @@ class CustomizeForm
                     }
                 }
             }
+
         }
+        return $form->id;
+
     }
 
 
