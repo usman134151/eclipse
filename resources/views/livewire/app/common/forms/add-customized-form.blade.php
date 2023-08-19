@@ -60,6 +60,22 @@
 									</div>
 								</div>
 
+									<div class="col-md-6 col-12 {{$custom_form_details['form_name_id']==37 ? '' : 'hidden'}}">
+										<div class="mb-4">
+											<div class="form-group">
+			                       				<label class="form-label" for="service">Select Service
+						                            {{-- <span class="mandatory" aria-hidden="true">*</span> --}}
+                						        </label>
+									
+													{!! App\Helpers\SetupHelper::createDropDown('ServiceCategory', 'id',
+															'name', 'status', 1, 'name', true,
+															'services',
+													'','services') !!}
+												  {{-- @error('custom_form_details.industry_id')<span class="d-inline-block invalid-feedback mt-2">The selected industry is a required field</span>@enderror --}}
+											
+                    			 			</div>	
+                    			 		</div>	
+                    			 	</div>	
 								@if($custom_form_details['form_name_id']==37 || $custom_form_details['form_name_id']==38)
 								<!-- Begin: This is conditional, link with select "Form" / option "Customer Request Form" / option "Customer Lead and Qoute Form"   -->
 								 	<div class="col-md-6 col-12">
@@ -79,7 +95,7 @@
                     			 		</div>	
                     			 	</div>	
 								<!-- End: This is conditional, link with select "Form" / option "Customer Request Form"   -->
-
+									
 								@endif
 
 								@if($custom_form_details['form_name_id']==40)
