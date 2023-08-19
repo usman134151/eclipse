@@ -3,6 +3,7 @@ namespace app\Services\App;
 use App\Models\Tenant\User;
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingServices;
+use App\Models\Tenant\BookingIndustry;
 use App\Models\Tenant\SetupValue;
 use App\Models\Tenant\Accommodation;
 use App\Models\Tenant\UserAddress;
@@ -50,7 +51,15 @@ class BookingOperationsService{
     }
     //store services
 
+    //saving industries
+    foreach($selectedIndustries as $industry){
+      BookingIndustry::updateOrInsert( [
+        'booking_id' => $booking->id,
+        'industry_id' => $industry,
+      ], []);
+    }
 
+    return $booking;
     
   }
 

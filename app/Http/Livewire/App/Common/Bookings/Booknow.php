@@ -12,6 +12,7 @@ use App\Models\Tenant\UserAddress;
 use App\Models\Tenant\Schedule;
 use App\Models\Tenant\Company;
 use App\Services\App\BookingOperationsService;
+use App\Models\Tenant\CustomizeForms;
 
 use Illuminate\Support\Collection;
 use Carbon\Carbon;
@@ -21,7 +22,7 @@ class Booknow extends Component
 {
     public $component = 'requester-info';
     
-    public $showForm,$booking,$requesters =[],$bManagers=[],$supervisors=[],$consumers=[],$participants=[], $step=1,$userAddresses=[], $timezone, $schedule, $timezones ;
+    public $showForm,$booking,$requesters =[],$bManagers=[],$supervisors=[],$consumers=[],$participants=[], $step=1,$userAddresses=[], $timezone, $schedule, $timezones, $formIds ;
     protected $listeners = ['showList' => 'resetForm','updateVal', 'updateCompany',
         'updateSelectedIndustries' => 'selectIndustries',
         'updateSelectedDepartments',
@@ -157,8 +158,8 @@ class Booknow extends Component
             $this->validate();
             //calling booking service passing required data
             
-            BookingOperationsService::createBooking($this->booking,$this->services,$this->dates,$this->selectedIndustries);
-            
+            $this->booking=BookingOperationsService::createBooking($this->booking,$this->services,$this->dates,$this->selectedIndustries);
+            $this->getForms();
             
 
 
@@ -510,5 +511,28 @@ class Booknow extends Component
 		$this->userAddresses[$index]['index'] = $index;	//passing ref index
 		$this->emit('updateAddressType', $type, $this->userAddresses[$index]);
 	}
+
+    public function getForms(){
+        $this->formIds=[];
+        foreach($this->selectedIndustries as $industry){ //getting industry forms
+            $this->formIds[]=CustomizeForms::where('industry_id',$industry)->select('id')->first();
+            
+        }
+        foreach($this->accommodations as &$accommodation){
+            foreach($accommodation['services'] as $service)
+            {
+                 foreach($this->services as $selectedService){
+                 //getitng service forms
+                    
+                    if($selectedService['services']==$service['id'])
+                        {
+                            if(!in_array($service['request_form_id'],$this->formIds)) //checking if form id already there, can happen if same form is selected for industry and servcies 
+                            $this->formIds[]=$service['request_form_id'];    
+                        }
+                           
+                }
+            }
+        }        
+    }
 
 }
