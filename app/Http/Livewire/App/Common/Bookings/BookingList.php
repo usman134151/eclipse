@@ -18,6 +18,7 @@ class BookingList extends Component
 	public $bookingSection;
 	public  $limit = 10;
 	public  $booking_id = 0, $provider_id = null;
+	public $bookingNumber='';
 
 
 
@@ -54,7 +55,7 @@ class BookingList extends Component
 		}
 		if ($this->provider_id) {	//from provider panel
 			//limit bookings to this providers
-			$query->whereHas('providers', function ($join) {
+			$query->whereHas('booking_provider', function ($join) {
 				$join->where('provider_id', $this->provider_id);
 			});
 			$base = "provider-";
@@ -98,5 +99,15 @@ class BookingList extends Component
 		$this->booking_id = $booking_id;
 		//to set booking_id in panels and sub-components 
 		$this->emit('setBookingId', $booking_id);
+	}
+
+	// provider panel functions
+
+	public function showCheckInPanel($booking_id, $bookingNumber){
+		$this->booking_id = $booking_id;
+		$this->bookingNumber = $bookingNumber;
+		$this->emit('setBookingId', $booking_id);
+
+
 	}
 }
