@@ -95,6 +95,11 @@ class Booknow extends Component
     public function mount(Booking $booking)
     {
         $this->booking=$booking;
+        if (request()->bookingID != null) {
+            $id=request()->bookingID;
+            $this->booking=Booking::with(Booking::find($id)->getRelations())->find($id);
+           
+        }
         if(!$this->booking->id){ //init data in case of new booking
             $this->booking->requester_information='0';
             $this->booking->frequency_id=1;

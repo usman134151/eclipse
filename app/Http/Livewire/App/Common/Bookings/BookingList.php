@@ -114,4 +114,6 @@ class BookingList extends Component
 		$this->bookingNumber = $bookingNumber;
 		$this->emit('setCheckoutBookingId', $booking_id);
 	}
+
+	
 }
