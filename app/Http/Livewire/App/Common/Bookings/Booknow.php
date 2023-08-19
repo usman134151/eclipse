@@ -157,8 +157,12 @@ class Booknow extends Component
         if($step==1){
             $this->validate();
             //calling booking service passing required data
-            
-            $this->booking=BookingOperationsService::createBooking($this->booking,$this->services,$this->dates,$this->selectedIndustries);
+            if(is_null($this->booking->id))
+                $this->booking=BookingOperationsService::createBooking($this->booking,$this->services,$this->dates,$this->selectedIndustries);
+            else
+            {
+                //update booking
+            }
             $this->getForms();
             
 
@@ -515,7 +519,7 @@ class Booknow extends Component
     public function getForms(){
         $this->formIds=[];
         foreach($this->selectedIndustries as $industry){ //getting industry forms
-            $this->formIds[]=CustomizeForms::where('industry_id',$industry)->select('id')->first();
+            $this->formIds[]=CustomizeForms::where('industry_id',$industry)->select('id')->first()->id;
             
         }
         foreach($this->accommodations as &$accommodation){
@@ -526,13 +530,14 @@ class Booknow extends Component
                     
                     if($selectedService['services']==$service['id'])
                         {
-                            if(!in_array($service['request_form_id'],$this->formIds)) //checking if form id already there, can happen if same form is selected for industry and servcies 
-                            $this->formIds[]=$service['request_form_id'];    
+                            if(!in_array($service['request_form_id'],$this->formIds) && !is_null($service['request_form_id'])) //checking if form id already there, can happen if same form is selected for industry and servcies 
+                                $this->formIds[]=$service['request_form_id'];    
                         }
                            
                 }
             }
-        }        
+        }   
+       
     }
 
 }
