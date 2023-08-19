@@ -8,7 +8,7 @@ use Livewire\Component;
 class CheckIn extends Component
 {
     public $showForm;
-    protected $listeners = ['showList' => 'resetForm', 'setBookingId'];
+    protected $listeners = ['showList' => 'resetForm', 'setCheckInBookingId'=>'setBookingId'];
     public $booking_id=0, $assignment=null;
 
     public function render()
@@ -17,6 +17,7 @@ class CheckIn extends Component
         return view('livewire.app.common.panels.provider.check-in');
     }
 
+    //set booking id when ever panel is opened
     public function setBookingId($booking_id){
         $this->booking_id = $booking_id;
 

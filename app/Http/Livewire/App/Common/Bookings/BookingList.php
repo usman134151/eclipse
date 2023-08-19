@@ -106,8 +106,12 @@ class BookingList extends Component
 	public function showCheckInPanel($booking_id, $bookingNumber){
 		$this->booking_id = $booking_id;
 		$this->bookingNumber = $bookingNumber;
-		$this->emit('setBookingId', $booking_id);
-
-
+		$this->emit('setCheckInBookingId', $booking_id);
+	}
+	public function showCheckOutPanel($booking_id, $bookingNumber)
+	{
+		$this->booking_id = $booking_id;
+		$this->bookingNumber = $bookingNumber;
+		$this->emit('setCheckoutBookingId', $booking_id);
 	}
 }
