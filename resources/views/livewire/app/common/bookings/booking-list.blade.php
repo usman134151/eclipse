@@ -193,16 +193,8 @@
                                                             </td>
                                                             <td>
                                                                 <div class="badge bg-warning mb-1">
-                                                                    @if ($booking->services->isNotEmpty())
-                                                                        @if ($booking->services->first()->pivot->service_types == 1)
-                                                                            In-Person
-                                                                        @elseif($booking->services->first()->pivot->service_types == 2)
-                                                                            Virtual
-                                                                        @elseif($booking->services->first()->pivot->service_types == 4)
-                                                                            Phone
-                                                                        @elseif($booking->services->first()->pivot->service_types == 5)
-                                                                            Teleconference
-                                                                        @endif
+                                                                    @if ($booking->services->isNotEmpty()) 
+                                                                        {{$serviceTypes[$booking->services->first()->pivot->service_types]['title']}}
                                                                     @endif
                                                                 </div>
                                                                 <div>292332811 - Code 2131</div>
