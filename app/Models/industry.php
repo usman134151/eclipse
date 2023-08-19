@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class industry extends Model
 {
     use HasFactory;
+    public function bookings()
+    {
+        return $this->belongsToMany(Booking::class, 'booking_industries');
+    }
 }

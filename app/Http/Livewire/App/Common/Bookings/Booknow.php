@@ -11,6 +11,7 @@ use App\Models\Tenant\Accommodation;
 use App\Models\Tenant\UserAddress;
 use App\Models\Tenant\Schedule;
 use App\Models\Tenant\Company;
+use App\Services\App\BookingOperationsService;
 
 use Illuminate\Support\Collection;
 use Carbon\Carbon;
@@ -50,6 +51,8 @@ class Booknow extends Component
         'companies' => ['parameters' => ['Company', 'id', 'name', '', '', 'name', false, 'booking.company_id', '', 'company_id', 3]],
     ];
 
+    
+
     //modal variables
     public $selectedIndustries=[],  $selectedDepartments = [], $svDepartments=[],$industryNames=[], $departmentNames=[];
 
@@ -61,8 +64,8 @@ class Booknow extends Component
             'service_types'=>'',
             'meetings' =>[['meeting_name' => '','phone_number' => '','access_code' => '']], //updated by Amna Bilal to define meeting links array within services array
             'time_zone'=>'',
-            'is_manual_consumer' =>'',
-            'is_manual_attendees' =>'',
+            'is_manual_consumer' =>0,
+            'is_manual_attendees' =>0,
             'service_consumer' => '',
             'attendees' => '',
             'provider_count'=>'',
@@ -92,8 +95,8 @@ class Booknow extends Component
     {
         $this->booking=$booking;
         if(!$this->booking->id){ //init data in case of new booking
-            $this->booking->requester_information=0;
-            $this->booking->frequency_id=32;
+            $this->booking->requester_information='0';
+            $this->booking->frequency_id=1;
 
            
 
@@ -152,7 +155,12 @@ class Booknow extends Component
 
         if($step==1){
             $this->validate();
-            dd($this->services);
+            //calling booking service passing required data
+            
+            BookingOperationsService::createBooking($this->booking,$this->services,$this->dates,$this->selectedIndustries);
+            
+            
+
 
         }
         
@@ -290,8 +298,8 @@ class Booknow extends Component
         'service_types'=>'',
         'meetings' =>[['meeting_name' => '','phone_number' => '','access_code' => '']], //updated by Amna Bilal to define meeting links array within services array
         'time_zone'=>'',
-        'is_manual_consumer' =>'',
-        'is_manual_attendees' =>'',
+        'is_manual_consumer' =>0,
+        'is_manual_attendees' =>0,
         'service_consumer' => '',
         'attendees' => '',
         'provider_count'=>'',
@@ -447,18 +455,44 @@ class Booknow extends Component
     
 
     public function rules(){
-        return [
+        $rules= [
             'booking.frequency_id'=>'required',
             'booking.requester_information'=>'nullable',
             'booking.poc_phone'=>'nullable',
             'booking.company_id'=>'required',
             'booking.customer_id'=>'required',
-            'booking.supervisor'=>'required',
+            'booking.supervisor'=>'nullable',
             'booking.billing_manager_id'=>'nullable',
             'booking.recurring_end_at'=>'nullable',
-            'booking.booking_title'=>'nullable'
+            'booking.booking_title'=>'nullable',
+            'selectedIndustries' => 'required|array|min:1',
 
         ];
+
+        foreach ($this->services as $index => $service) {
+            $rules['services.' . $index . '.accommodation_id'] = 'required';
+            $rules['services.' . $index . '.services'] = 'required';
+            $rules['services.' . $index . '.service_types'] = 'required';
+            $rules['services.' . $index . '.provider_count'] = 'required';
+        }
+        foreach ($this->dates as $index => $date) {
+            $rules['dates.' . $index . '.start_date'] = 'required';
+            $rules['dates.' . $index . '.end_date'] = 'required|after_or_equal:dates.' . $index . '.start_date';
+
+        }
+        return $rules;
+    }
+
+    public function messages()
+    {
+        $messages = [];
+
+        foreach ($this->dates as $index => $date) {
+            $messages['dates.' . $index . '.end_date.required'] = 'End date is required';
+            $messages['dates.' . $index . '.end_date.after_or_equal'] = 'End date must be greater than start date';
+        }
+
+        return $messages;
     }
 
     public function refreshAddresses(){
