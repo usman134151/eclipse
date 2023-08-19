@@ -200,7 +200,7 @@
                             <label class="col-form-label">Point of contact:</label>
                         </div>
                         <div class="col-lg-7 align-self-center">
-                        <a href="#">{{ $booking['contact_point'] ? $booking['contact_point'] : 'N/A' }}</a>
+                        <a href="#">{{(isset($booking) && $booking['contact_point']) ? $booking['contact_point'] : 'N/A' }}</a>
                         </div>
                     </div>
                 </div>
