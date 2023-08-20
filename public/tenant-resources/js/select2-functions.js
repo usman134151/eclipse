@@ -35,11 +35,7 @@ window.addEventListener('update-url', function(event) {
     else
       setDefaultDate = false; //field has some value
 
-      $('.js-single-date').daterangepicker({
-          singleDatePicker: true,
-          showDropdowns: true,
-          autoApply: true
-      });
+
       if (setDefaultDate)
         $('.js-single-date').val('');
 
@@ -150,4 +146,10 @@ $(document).on("keypress", "input.js-search-by-keyword", function(e){
       console.log('New value:', selectedOption.text);
     }
   });
+});
+
+$('.js-single-date').daterangepicker({
+  singleDatePicker: true,
+  showDropdowns: true,
+  autoApply: true
 });

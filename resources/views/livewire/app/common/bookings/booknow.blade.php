@@ -656,9 +656,9 @@
                                                         class="mandatory">*</span></label>
                                                 <div class="position-relative">
                                                     <input type="" name=""
-                                                        class="form-control form-control-md js-single-date"
-                                                        placeholder="MM/DD/YYYY" id="start_date_{{$index}}"
-                                                        aria-label="Set Start Date" wire:key="start-{{ $index }}" wire:model.defer="dates.{{$index}}.start_date" style="width:200px">
+                                                        class="form-control form-control-md js-single-date" 
+                                                        placeholder="MM/DD/YYYY" id="start_date_{{$index}}" value="{{$dates[0]['start_date']}}"
+                                                        aria-label="Set Start Date" wire:model.defer="dates.{{$index}}.start_date" style="width:200px">
                                                    
                                                     <svg aria-label="Date" class="icon-date md" width="20" height="20"
                                                         viewBox="0 0 20 20">

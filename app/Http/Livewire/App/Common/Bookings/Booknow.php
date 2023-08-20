@@ -181,11 +181,10 @@ class Booknow extends Component
            }
         }
       
-        
-        if($this->booking){
-          //  $this->updateCompany();
-        }
+       
+
     
+        $this->dispatchBrowserEvent('refreshSelects');
 
     }
 
@@ -503,7 +502,7 @@ class Booknow extends Component
         }
     } catch (\Exception $e) {
         // Handle the exception, log the error, or debug further
-        dd($e->getMessage());
+        //dd($e->getMessage());
     }
     
         return null; // Return null if the required fields are not set.
