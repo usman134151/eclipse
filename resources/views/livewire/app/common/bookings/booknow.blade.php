@@ -1,5 +1,11 @@
 <div>
-
+<div id="loader-section" class="loader-section" wire:loading>
+        <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
+            <div class="spinner-border" role="status" aria-live="polite">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
 
     <!-- BEGIN: Content-->
     <div class="content-header row">
@@ -884,7 +890,7 @@
                                     <button type="button" class="btn btn-outline-dark rounded">Cancel</button>
                                     <button type="button" class="btn btn-primary rounded" wire:click="save(1,1)" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">Save as Draft</button>
                                     <button type="button" class="btn btn-primary rounded"
-                                    x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('request-details')">Proceed to Request Details</button>
+                                    wire:click="save(1,1)" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('request-details')">Proceed to Request Details</button>
                                 </div>
                             </div>
                            
@@ -896,8 +902,9 @@
                     @elseif($component == 'request-details')
                     <div class="tab-pane fade {{ $component == 'request-details' ? 'active show' : '' }}"
                         id="request-details" role="tabpanel" aria-labelledby="request-details-tab" tabindex="0">
-                             @livewire('app.common.forms.custom-form-display',['showForm'=>true,'form_id'=> 25 ,'assignment_id'=>1,'booking_id'=>2])
-                             
+                        @foreach($formIds as $formId)
+                             @livewire('app.common.forms.custom-form-display',['showForm'=>true,'formId'=> $formId  ,'bookingId'=>$booking->id])
+                        @endforeach     
                                               
                     </div>
                     @elseif($component == 'payment-info')

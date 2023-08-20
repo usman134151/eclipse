@@ -12,16 +12,18 @@ use App\Models\Tenant\UserAddress;
 use App\Models\Tenant\Schedule;
 use App\Models\Tenant\Company;
 use App\Services\App\BookingOperationsService;
+use App\Models\Tenant\CustomizeForms;
 
 use Illuminate\Support\Collection;
 use Carbon\Carbon;
+use DateTime;
 
 
 class Booknow extends Component
 {
     public $component = 'requester-info';
     
-    public $showForm,$booking,$requesters =[],$bManagers=[],$supervisors=[],$consumers=[],$participants=[], $step=1,$userAddresses=[], $timezone, $schedule, $timezones ;
+    public $showForm,$booking,$requesters =[],$bManagers=[],$supervisors=[],$consumers=[],$participants=[], $step=1,$userAddresses=[], $timezone, $schedule, $timezones, $formIds ;
     protected $listeners = ['showList' => 'resetForm','updateVal', 'updateCompany',
         'updateSelectedIndustries' => 'selectIndustries',
         'updateSelectedDepartments',
@@ -94,13 +96,59 @@ class Booknow extends Component
     public function mount(Booking $booking)
     {
         $this->booking=$booking;
+        $this->schedule=Schedule::where('model_id',1)->where('model_type',1)->get()->first();
+        if (request()->bookingID != null) {
+            $id=request()->bookingID;
+            $this->booking=Booking::with('company','accommodation','booking_services_new_layout','industries','customer',)->find($id);
+         // dd($this->booking);
+            $this->updateCompany();
+            $this->services=$this->booking->booking_services_new_layout->toArray();
+            $this->selectedIndustries=$this->booking->industries->pluck('industy_id');
+           //dd($this->booking->industries);
+            $this->industryNames = $this->booking->industries->pluck('name');
+            $this->dates=[];
+            foreach($this->services as  $index => &$service){
+               
+                $service['meetings']=json_decode($service['meetings'], true);
+                //date time mapping
+                $startDate = new DateTime($service['start_time']);
+                $endDate = new DateTime($service['end_time']);
+                $this->dates[$index]=[
+                    'start_date'=>$startDate->format('m/d/Y'),
+                    'start_hour' => $startDate->format('H'),
+                    'start_min'=>$startDate->format('i'),
+                    'end_date'=>$endDate->format('m/d/Y'),
+                    'end_hour' => $endDate->format('H'),
+                    'end_min'=>$endDate->format('i'),
+                    'start_am'=>'',
+                    'end_am'=>'',
+                    'duration_day' => '',
+                    'duration_hour' => '',
+                    'duration_minute' => '',
+                    'time_zone' => $service['time_zone']
+        
+                ];
+
+                if(is_null($this->dates[$index]['time_zone']))
+                    if($this->schedule)
+                        $this->dates[$index]['time_zone']=$this->schedule->timezone_id;
+              
+                if($this->dates[$index])
+                    $this->updateDurations($index);
+
+
+            }
+
+            
+
+        }
         if(!$this->booking->id){ //init data in case of new booking
             $this->booking->requester_information='0';
             $this->booking->frequency_id=1;
 
            
 
-            $this->schedule=Schedule::where('model_id',1)->where('model_type',1)->get()->first();
+           
             if($this->schedule)
             $this->dates[0]['time_zone']=$this->schedule->timezone_id;
        
@@ -156,9 +204,13 @@ class Booknow extends Component
         if($step==1){
             $this->validate();
             //calling booking service passing required data
-            
-            BookingOperationsService::createBooking($this->booking,$this->services,$this->dates,$this->selectedIndustries);
-            
+            if(is_null($this->booking->id))
+                $this->booking=BookingOperationsService::createBooking($this->booking,$this->services,$this->dates,$this->selectedIndustries);
+            else
+            {
+                //update booking
+            }
+            $this->getForms();
             
 
 
@@ -418,28 +470,32 @@ class Booknow extends Component
 
     public function updateDurations($index)
     {
+      
         // Assuming you have the $date array in your Livewire component.
         try {
+           
         if (isset($this->dates[$index]['start_date']) && isset($this->dates[$index]['end_date']) &&
             isset($this->dates[$index]['start_hour']) && isset($this->dates[$index]['start_min']) &&
             isset($this->dates[$index]['end_hour']) && isset($this->dates[$index]['end_min'])) {
-            $timezoneLabel = $this->timezones[$this->dates[$index]['time_zone']]['setup_value_label'];
+               
+                if($this->dates[$index]['time_zone'])
+                    $timezoneLabel = $this->timezones[$this->dates[$index]['time_zone']]['setup_value_label'];
              
             $startDateTime = Carbon::create($this->dates[$index]['start_date'].$this->dates[$index]['start_hour'].':'.$this->dates[$index]['start_min'].':00');
     
             $endDateTime =  Carbon::create($this->dates[$index]['end_date'].$this->dates[$index]['end_hour'].':'.$this->dates[$index]['end_min'].':00');
-    
-            if ($endDateTime > $startDateTime) {
+           
+            if ($endDateTime >= $startDateTime) {
                 $diff = $endDateTime->diff($startDateTime);
     
                 $days = $diff->days;
                 $hours = $diff->h;
                 $minutes = $diff->i;
-    
+              
                 $this->dates[$index]['duration_day']=$days;
                 $this->dates[$index]['duration_hour']=$hours;
                 $this->dates[$index]['duration_minute']=$minutes;
-                
+               
             } else {
                 // Return an error message or handle the case where end date/time is not greater than start date/time.
                // return ['error' => 'End date/time must be greater than start date/time.'];
@@ -510,5 +566,29 @@ class Booknow extends Component
 		$this->userAddresses[$index]['index'] = $index;	//passing ref index
 		$this->emit('updateAddressType', $type, $this->userAddresses[$index]);
 	}
+
+    public function getForms(){
+        $this->formIds=[];
+        foreach($this->selectedIndustries as $industry){ //getting industry forms
+            $this->formIds[]=CustomizeForms::where('industry_id',$industry)->select('id')->first()->id;
+            
+        }
+        foreach($this->accommodations as &$accommodation){
+            foreach($accommodation['services'] as $service)
+            {
+                 foreach($this->services as $selectedService){
+                 //getitng service forms
+                    
+                    if($selectedService['services']==$service['id'])
+                        {
+                            if(!in_array($service['request_form_id'],$this->formIds) && !is_null($service['request_form_id'])) //checking if form id already there, can happen if same form is selected for industry and servcies 
+                                $this->formIds[]=$service['request_form_id'];    
+                        }
+                           
+                }
+            }
+        }   
+       
+    }
 
 }

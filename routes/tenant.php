@@ -125,6 +125,8 @@ Route::group([
 
 			// Admin Booking Routes
 			Route::view('/admin/booknow/create', 'tenant/common/bookings/booknow', ["showForm"=>true]);
+			Route::view('/admin/booknow/edit-booking/{bookingID}', 'tenant/common/bookings/booknow', ["showForm" => true])->name('booking-edit')->middleware(DecryptRouteParamater::class);
+			
 			Route::view('/admin/bookings/today', 'tenant/common/bookings/booking-list', ["bookingType"=>"Today's"]);
 			Route::view('/admin/bookings/upcoming', 'tenant/common/bookings/booking-list', ["bookingType"=>"Upcoming"]);
 			Route::view('/admin/bookings/past', 'tenant/common/bookings/booking-list', ["bookingType"=>"Past"]);

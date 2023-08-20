@@ -192,12 +192,18 @@
                                                                 @endif
                                                             </td>
                                                             <td>
+                                                            @if ($booking->services->isNotEmpty()) 
                                                                 <div class="badge bg-warning mb-1">
-                                                                    @if ($booking->services->isNotEmpty()) 
+                                                                   
                                                                         {{$serviceTypes[$booking->services->first()->pivot->service_types]['title']}}
-                                                                    @endif
-                                                                </div>
-                                                                <div>292332811 - Code 2131</div>
+                                                                   
+                                                                </div> 
+                                                                @if($booking->services->first()->pivot->service_types==1)
+                                                                    <div>Address</div>
+                                                                @else
+                                                                    <div>Meeting link</div>
+                                                                @endif
+                                                                @endif   
                                                             </td>
                                                             <td>
                                                                 <div>
@@ -224,7 +230,7 @@
                                                             <td>
                                                                 <div class="d-flex actions">
 
-                                                                    <a href="#" title="Edit"
+                                                                    <a href="{{route('tenant.booking-edit', ['bookingID' => encrypt($booking->id)])}}" title="Edit"
                                                                         aria-label="Edit Booking"
                                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                         <svg aria-label="Edit" class="fill"

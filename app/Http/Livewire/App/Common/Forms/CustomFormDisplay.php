@@ -10,7 +10,7 @@ use Livewire\Component;
 
 class CustomFormDisplay extends Component
 {
-    public $showForm, $form_id,$assignment_id ,$questions=[],$formInfo=[], $answers=[],$booking_id;
+    public $showForm, $formId ,$questions=[],$formInfo=[], $answers=[],$bookingId;
     
     protected $listeners = ['showList' => 'resetForm', 'updateVal'];
 
@@ -22,11 +22,11 @@ class CustomFormDisplay extends Component
     public function mount()
     {
        $formService = new CustomizeForm();
-       $formData = $formService->getFormDetails($this->form_id);
+       $formData = $formService->getFormDetails($this->formId);
        if(count($formData)){
             $this->formInfo = $formData['custom_form_details'];
             foreach($formData['questions'] as $index=> $question){
-                    $this->answers[$index] = BookingCustomizeData::where(['booking_id' => $this->booking_id, 'customize_id' => $question['id']])
+                    $this->answers[$index] = BookingCustomizeData::where(['booking_id' => $this->bookingId, 'customize_id' => $question['id']])
                                         ->select('id','booking_log_id','booking_log_bbid','quote_id','provider_application_id','booking_id',
                                         'service_id','customize_id',  'field_title',  'data_value', 'customize_data','added_by')
                                         ->first();
@@ -34,7 +34,7 @@ class CustomFormDisplay extends Component
                     if($this->answers[$index]==null){ //create new
                         $this->answers[$index]['customize_id']= $question['id'];
                         $this->answers[$index]['field_title'] = $question['field_name'];
-                        $this->answers[$index]['booking_id'] = $this->booking_id;
+                        $this->answers[$index]['booking_id'] = $this->bookingId;
                     }else{
                     //fetch existing
                     $this->answers[$index] =$this->answers[$index]->toArray();
