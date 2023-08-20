@@ -1,4 +1,6 @@
-<div>
+<div x-data="{ isUploading: false, progress: 0 }" x-on:livewire-upload-start="isUploading = true"
+    x-on:livewire-upload-finish="isUploading = false" x-on:livewire-upload-error="isUploading = false"
+    x-on:livewire-upload-progress="progress = $event.detail.progress">
     <div class="row">
         <div class="row">
 
@@ -95,6 +97,16 @@
                             </div>
 
                         </div>
+                        <div class="col-lg-12">
+                            <div x-show="isUploading">
+                                <progress max="100" x-bind:value="progress"></progress>
+                            </div>
+                            <div class="">
+                                @if ($file)
+                                    {{ $this->file->getClientOriginalName() }}
+                                @endif
+                            </div>
+                        </div>
                         @error('file')
                             <span class="d-inline-block invalid-feedback mt-2">
                                 {{ $message }}
@@ -184,81 +196,82 @@
                 <h3>Request from User</h3>
             </label>
 
-       
-        <div class="row {{ $request_from_user ? '' : 'hidden' }}">
-            <div class="col-lg-12 mb-3 ">
 
-                <label class="form-label">Who would you like to request this information from?</label>
-                <div class="col-lg-8">
-                    <select class="form-select">
-                        <option>Select</option>
-                    </select>
-                </div>
+            <div class="row {{ $request_from_user ? '' : 'hidden' }}">
+                <div class="col-lg-12 mb-3 ">
 
-            </div>
-            <div class="col-lg-12">
-                <label class="form-label">When should they first be notified?</label>
-                <div class="col-lg-8 d-flex">
-                    <div class="col-lg-2 d-flex gap-1">
-                        <a href="">
-                            <input class="form-check-input" type="checkbox" value="">
-                        </a>
-                        <p>Now</p>
-                    </div>
-                    <div class="col-lg-2 d-flex gap-1">
-                        <a href="">
-                            <input class="form-check-input" type="checkbox" value="">
-                        </a>
-                        <p>Later</p>
+                    <label class="form-label">Who would you like to request this information from?</label>
+                    <div class="col-lg-8">
+                        <select class="form-select">
+                            <option>Select</option>
+                        </select>
                     </div>
 
                 </div>
-                <p>Notify before the service start-time</p>
-                <div class="col-lg-2 d-flex gap-1 mb-5 ">
-                    <input class="form-control text-center" type="text" placeholder="2">
-                    <p class="mt-3">Day(s)</p>
-                </div>
-            </div>
-            <div class="d-md-flex align-items-center mb-4 gap-3 gap-md-0">
-                <div class="form-check form-switch form-switch-column mb-lg-0">
-                    <input class="form-check-input" wire:model="notification.repeat_notification" type="checkbox"
-                        role="switch" id="">
-                </div>
-                <h6 class="mb-lg-0">Repeat Notification</h6>
-            </div>
-            <div class="{{ $notification['repeat_notification'] ? '' : 'hidden' }}">
                 <div class="col-lg-12">
                     <label class="form-label">When should they first be notified?</label>
-                    <div class="col-lg-8 d-flex gap-4">
-                        <div class="col-lg-2 d-flex gap-2">
+                    <div class="col-lg-8 d-flex">
+                        <div class="col-lg-2 d-flex gap-1">
                             <a href="">
-                                <input class="form-check-input" type="radio" value="">
+                                <input class="form-check-input" type="checkbox" value="">
                             </a>
-                            <p>Time(s)</p>
+                            <p>Now</p>
                         </div>
-                        <div class="col-lg-2 d-flex gap-2">
+                        <div class="col-lg-2 d-flex gap-1">
                             <a href="">
-                                <input class="form-check-input" type="radio" value="">
+                                <input class="form-check-input" type="checkbox" value="">
                             </a>
-                            <p>Day(s)</p>
+                            <p>Later</p>
                         </div>
+
+                    </div>
+                    <p>Notify before the service start-time</p>
+                    <div class="col-lg-2 d-flex gap-1 mb-5 ">
+                        <input class="form-control text-center" type="text" placeholder="2">
+                        <p class="mt-3">Day(s)</p>
                     </div>
                 </div>
+                <div class="d-md-flex align-items-center mb-4 gap-3 gap-md-0">
+                    <div class="form-check form-switch form-switch-column mb-lg-0">
+                        <input class="form-check-input" wire:model="notification.repeat_notification" type="checkbox"
+                            role="switch" id="">
+                    </div>
+                    <h6 class="mb-lg-0">Repeat Notification</h6>
+                </div>
+                <div class="{{ $notification['repeat_notification'] ? '' : 'hidden' }}">
+                    <div class="col-lg-12">
+                        <label class="form-label">When should they first be notified?</label>
+                        <div class="col-lg-8 d-flex gap-4">
+                            <div class="col-lg-2 d-flex gap-2">
+                                <a href="">
+                                    <input class="form-check-input" type="radio" value="">
+                                </a>
+                                <p>Time(s)</p>
+                            </div>
+                            <div class="col-lg-2 d-flex gap-2">
+                                <a href="">
+                                    <input class="form-check-input" type="radio" value="">
+                                </a>
+                                <p>Day(s)</p>
+                            </div>
+                        </div>
+                    </div>
 
 
-                <div class="col-lg-2 gap-1 mb-4">
-                    <input class="form-control text-center" type="text" id="before-service-start-time"
-                        placeholder="10">
-                    <label class="form-label form-label-sm text-sm" for="before-service-start-time">Before the service
-                        start-time</label>
+                    <div class="col-lg-2 gap-1 mb-4">
+                        <input class="form-control text-center" type="text" id="before-service-start-time"
+                            placeholder="10">
+                        <label class="form-label form-label-sm text-sm" for="before-service-start-time">Before the
+                            service
+                            start-time</label>
+                    </div>
+                </div>
+                <div class="col-lg-12 gap-1">
+                    <label class="form-label" for="message-to-requestee">Message to Requestee</label>
+                    <textarea class="form-control" cols="30" rows="5" id="message-to-requestee"></textarea>
                 </div>
             </div>
-            <div class="col-lg-12 gap-1">
-                <label class="form-label" for="message-to-requestee">Message to Requestee</label>
-                <textarea class="form-control" cols="30" rows="5" id="message-to-requestee"></textarea>
-            </div>
         </div>
-         </div>
         {{-- notes --}}
         <div class="col-md-8 col-12">
             <div class="mb-4">
@@ -276,12 +289,12 @@
     </div>
     <div class="row">
         <div class="col-12 form-actions mb-2">
-            <div class="col-lg-3">
+            <div class="col-md-1 col-12">
                 <button type="button" wire:click="initFields" class="btn rounded w-100 btn-outline-dark"
                     x-on:click="addDocuments = !addDocuments">Cancel</button>
             </div>
-            <div class="col-lg-3">
-                <button wire:click.prevent="save" type="button"
+            <div class="col-md-1 col-12">
+                <button wire:click.prevent="save" type="button" wire:loading.attr="disabled" wire:target="file"
                     x-on:close-add-documents.window="addDocuments = !addDocuments"class="btn rounded w-100 btn-primary">Add</button>
             </div>
         </div>
