@@ -1,6 +1,6 @@
 <div class="col-lg-12 between-section-segment-spacing">
     <div class="mb-3 position-relative">
-        <button href="#" @click="addDocuments = true" class="btn btn-primary d-block"></a>
+        <button @click.prevent="addDocuments = true" class="btn btn-primary d-block"></a>
             Add Documents</button>
     </div>
     <div class="row mb-4">

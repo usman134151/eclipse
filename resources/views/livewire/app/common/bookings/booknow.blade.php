@@ -1,4 +1,4 @@
-<div>
+<div  x-data="{addDocuments: false, assignProvider: false }" >
 <div id="loader-section" class="loader-section" wire:loading>
         <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
             <div class="spinner-border" role="status" aria-live="polite">
@@ -75,9 +75,7 @@
                     <div class="tab-pane fade {{ $component == 'requester-info' ? 'active show' : '' }}"
                         id="requester-info" role="tabpanel" aria-labelledby="requester-info-tab" tabindex="0">
                        
-                        <form class="form">
-                            @csrf
-
+     
                             <h2>Requester Information</h2>
                             <div class="mb-4">
                                 <label class="form-label form-label-highlighted">Permitted Scheduling Frequencies <i
@@ -133,7 +131,7 @@
                                 </div>
                               
                                 <div class="col-lg-6 mb-4 ps-lg-5">
-                                    <label class="form-label">Department <span class="mandatory">*</span></label>
+                                    <label class="form-label">Department</label>
                                     <div>
                                         <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup"
                                             data-bs-toggle="modal" data-bs-target="#departmentModal" aria-label="Department">
@@ -253,8 +251,7 @@
                                     </div>
                                     <div class="row switch-toggle-content" x-show="open">
                                         <div class="col-lg-6 mb-4 pe-lg-5">
-                                            <label class="form-label" for="supervisor">Supervisor <span
-                                                    class="mandatory">*</span></label>
+                                            <label class="form-label" for="supervisor">Supervisor</label>
                                             <select class="form-select select2" id="supervisor" name="supervisor" wire:model.defer='booking.supervisor'>
                                             <option value="0">Select User</option>
                                                 @foreach($supervisors as $supervisor)
@@ -894,7 +891,7 @@
                                 </div>
                             </div>
                            
-                        </form>
+                       
                      
                     </div>
                     
@@ -1362,30 +1359,11 @@
                                         </div>
                                     </div>
                                     <!-- Add Document -->
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-5 mb-4">
-                                            <a href="#" class="btn btn-primary rounded btn-has-icon w-100"
-                                                data-bs-toggle="modal" data-bs-target="#addDocument">
-                                                <svg aria-label="Add Document" width="20" height="20"
-                                                    viewBox="0 0 20 20">
-                                                    <use xlink:href="/css/common-icons.svg#plus">
-                                                    </use>
-                                                </svg>
-                                                Add Document
-                                            </a>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-6 col-md-3 col-lg-2">
-                                                <img src="/tenant-resources/images/img-placeholder-document.jpg"
-                                                    alt="img-placeholder-document" class="w-100">
-                                                <p class="font-family-secondary"><small>File Name</small></p>
-                                            </div>
-                                            <div class="col-6 col-md-3 col-lg-2">
-                                                <img src="/tenant-resources/images/img-placeholder-document.jpg"
-                                                    alt="img-placeholder-document" class="w-100">
-                                                <p class="font-family-secondary"><small>File Name</small></p>
-                                            </div>
-                                        </div>
+                                    @if(!is_null($booking->id))
+                                    <div>@livewire('app.common.bookings.booking-attachments', ['booking_id' => $booking->id])
+                                  
+                                        
+                                    @endif 
                                     </div>
                                     <!-- /Add Document -->
                                 </div>
@@ -1397,15 +1375,14 @@
                                 <button type="submit" class="btn btn-primary rounded">Save as Draft</button>
                                 <button type="button" class="btn btn-primary rounded" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('booking-summary')">Booking Summary</button>
                             </div>
-                        </form>
+                     
                       
                     </div>
                     @elseif($component == 'booking-summary')
                     <div class="tab-pane fade {{ $component == 'booking-summary' ? 'active show' : '' }}"
                         id="booking-summary" role="tabpanel" aria-labelledby="booking-summary-tab" tabindex="0">
                         
-                        <form class="form">
-                            @csrf
+                        
 
                             <!-- Scheduling Details -->
                             <div class="mb-5">
@@ -1901,7 +1878,7 @@
                                 </div>
                             </div>
                             <!-- /Service Request -->
-                        </form>
+                 
                         
 
                     </div>
@@ -1914,11 +1891,11 @@
 @include('modals.common.add-address')
 @include('modals.common.add-industry')
 @include('modals.common.add-department')
-@include('modals.common.add-document')
+  
 @include('modals.common.add-new-customer')
 @include('modals.common.assign-admin-staff')
 @include('modals.common.assign-admin-staff-team')
-</div>
+
 
 <!-- Modal Request from User -->
 <div class="modal fade" id="RequestfromUserModal" tabindex="-1" aria-labelledby="RequestfromUserModalLabel"
@@ -2040,7 +2017,10 @@
 </div>
 
 <!-- /Modal Request from User -->
+@if(!is_null($booking->id))
 
+    @include('panels.common.add-documents', ['booking_id' => $booking->id])
+@endif
 
 @push('scripts')
 

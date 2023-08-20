@@ -9,7 +9,7 @@
                 <div class="col-md-6 col-12">
                     <div class="mb-4">
                         <label class="form-label" for="first-name-column">
-                            Document Title</label>
+                        Document Title</label>
                         <input wire:model.defer="document.document_title" type="text" id="first-name-column"
                             class="form-control" placeholder="Document Title" name="document-column" />
                         @error('document.document_title')

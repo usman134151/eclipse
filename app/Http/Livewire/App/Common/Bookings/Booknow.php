@@ -23,7 +23,7 @@ class Booknow extends Component
 {
     public $component = 'requester-info';
     
-    public $showForm,$booking,$requesters =[],$bManagers=[],$supervisors=[],$consumers=[],$participants=[], $step=1,$userAddresses=[], $timezone, $schedule, $timezones, $formIds ;
+    public $booking_id,$showForm,$booking,$requesters =[],$bManagers=[],$supervisors=[],$consumers=[],$participants=[], $step=1,$userAddresses=[], $timezone, $schedule, $timezones, $formIds ;
     protected $listeners = ['showList' => 'resetForm','updateVal', 'updateCompany',
         'updateSelectedIndustries' => 'selectIndustries',
         'updateSelectedDepartments',
@@ -135,7 +135,7 @@ class Booknow extends Component
               
                 if($this->dates[$index])
                     $this->updateDurations($index);
-
+                $this->booking_id=$this->booking->id;
 
             }
 
@@ -209,6 +209,7 @@ class Booknow extends Component
             {
                 //update booking
             }
+            $this->booking_id=$this->booking->id;
             $this->getForms();
             
 
@@ -569,7 +570,10 @@ class Booknow extends Component
     public function getForms(){
         $this->formIds=[];
         foreach($this->selectedIndustries as $industry){ //getting industry forms
-            $this->formIds[]=CustomizeForms::where('industry_id',$industry)->select('id')->first()->id;
+
+            $industryForm=CustomizeForms::where('industry_id',$industry)->select('id')->first();
+            if(!is_null($industryForm))
+              $this->formIds[]=$industryForm->id;
             
         }
         foreach($this->accommodations as &$accommodation){
