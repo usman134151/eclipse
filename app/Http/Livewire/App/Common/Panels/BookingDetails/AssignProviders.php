@@ -24,8 +24,11 @@ class AssignProviders extends Component
     public $showForm;
     public $allproviders;
     public $tags;
+    public $service_id=null,$booking_id=null;
     protected $listeners = ['showList' => 'resetForm','refreshFilters'];
 
+
+    
     public function render()
     {
         // dd($this->providers);
@@ -113,6 +116,7 @@ class AssignProviders extends Component
         return view('livewire.app.common.panels.booking-details.assign-providers',[
             'providers'=>$query->get()
         ]);
+        
     }
 
 	public function refreshFilters($name,$value){
