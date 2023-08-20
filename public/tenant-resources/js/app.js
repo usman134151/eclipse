@@ -17,28 +17,7 @@
 
 
 $(function() {
-    if ($('.js-single-date').val() == "")
-        setDefaultDate = true; 
-    else
-        setDefaultDate = false; //field has some value
- 
-        // Single date start
-    $('.js-single-date').daterangepicker({
-        singleDatePicker: true,
-        showDropdowns: true,
-        autoApply: true
-    });
-
-    if(setDefaultDate)
-        $('.js-single-date').val('');
-    $('.js-single-date').attr("placeholder","MM/DD/YYYY");
-    $('.js-single-date').on('apply.daterangepicker', function(ev, picker) {
-        //console.log($(this).val());
-        updateVal($(this).attr('id'),  $(this).val());
-
-    });
-    // Single date end
-
+  
     // Select day start
     $('.js-select-day').daterangepicker({
         singleDatePicker: true,
