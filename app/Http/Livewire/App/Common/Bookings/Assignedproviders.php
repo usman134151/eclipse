@@ -10,7 +10,7 @@ use Livewire\WithPagination;
 class Assignedproviders extends Component
 {
     use WithPagination;
-    public $booking_id;
+    public $booking_id, $service_id=null, $index=1;
     public $limit;
 
     protected $assignedProviders;
@@ -28,9 +28,12 @@ class Assignedproviders extends Component
 
     private function loadAssignedProviders()
     {
-        $this->assignedProviders = BookingProvider::where('booking_id', $this->booking_id)
+        // add this/appropriate condition to the query once bookng_providers are associated with booking_services
+        // 'services'=>$this->service_id
+        $this->assignedProviders = BookingProvider::where(['booking_id'=> $this->booking_id])
             ->join('users', 'booking_providers.provider_id', '=', 'users.id')
             ->paginate(5);
+        
     }
     
 }

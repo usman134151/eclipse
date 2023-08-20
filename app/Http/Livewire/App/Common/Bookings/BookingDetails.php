@@ -37,7 +37,7 @@ class BookingDetails extends Component
 	public function mount()
 	{
 		
-		$this->booking = Booking::where('id',$this->booking_id)->first();
+		$this->booking = Booking::where('id',$this->booking_id)->with('services')->first();
 		$this->getServiceDetails();
 	
 		if(!$this->booking)
@@ -53,7 +53,7 @@ class BookingDetails extends Component
 			'booking_services.meeting_link', 'service_categories.name as service_name', 
 			'accommodations.name as accommodation_name'])
 		->toArray();
-		
+		// dd($this->booking->services->first()->name);
 
 	}
 	//so a fuction which can then be used for editing the fields aswell.
