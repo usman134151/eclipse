@@ -103,8 +103,8 @@ class Booknow extends Component
          // dd($this->booking);
             $this->updateCompany();
             $this->services=$this->booking->booking_services_new_layout->toArray();
-            $this->selectedIndustries=$this->booking->industries->pluck('industy_id');
-           //dd($this->booking->industries);
+            $this->selectedIndustries=$this->booking->industries->pluck('id')->toArray();
+          // dd( $this->selectedIndustries);
             $this->industryNames = $this->booking->industries->pluck('name');
             $this->dates=[];
             foreach($this->services as  $index => &$service){
@@ -208,12 +208,16 @@ class Booknow extends Component
             else
             {
                 //update booking
+                $this->booking->save();
             }
             $this->booking_id=$this->booking->id;
             $this->getForms();
             
 
 
+        }
+        else{
+            $this->booking->save();
         }
         
         if ($redirect) {
@@ -522,6 +526,11 @@ class Booknow extends Component
             'booking.recurring_end_at'=>'nullable',
             'booking.booking_title'=>'nullable',
             'selectedIndustries' => 'required|array|min:1',
+            'booking.private_notes'=>'nullable',
+            'booking.provider_notes'=>'nullable',
+            'booking.customer_notes'=>'nullable',
+            'booking.billing_notes'=>'nullable',
+            'booking.payment_notes'=>'nullable',
 
         ];
 
@@ -569,6 +578,7 @@ class Booknow extends Component
 
     public function getForms(){
         $this->formIds=[];
+       // dd($this->selectedIndustries);
         foreach($this->selectedIndustries as $industry){ //getting industry forms
 
             $industryForm=CustomizeForms::where('industry_id',$industry)->select('id')->first();

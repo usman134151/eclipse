@@ -1192,7 +1192,7 @@
                                         <label class="form-label" for="billing-notes">
                                             Billing Notes
                                         </label>
-                                        <textarea class="form-control" rows="5" cols="5" id="billing-notes"></textarea>
+                                        <textarea class="form-control" rows="5" cols="5" id="billing-notes" wire:model.defer="booking.billing_notes"></textarea>
                                     </div>
                                     <!-- /Billing Notes -->
                                     <!-- Payment Notes -->
@@ -1200,7 +1200,7 @@
                                         <label class="form-label" for="payment-notes">
                                             Payment Notes
                                         </label>
-                                        <textarea class="form-control" rows="5" cols="5" id="payment-notes"></textarea>
+                                        <textarea class="form-control" rows="5" cols="5" id="payment-notes" wire:model.defer="booking.payment_notes"></textarea>
                                     </div>
                                     <!-- /Payment Notes -->
                                 </div>
@@ -1289,7 +1289,7 @@
                                                 <label class="form-label" for="provider_notes">
                                                     Provider Notes
                                                 </label>
-                                                <textarea class="form-control" rows="4" cols="4" id="provider_notes"></textarea>
+                                                <textarea class="form-control" rows="4" cols="4" id="provider_notes" wire:model.defer="booking.provider_notes"></textarea>
                                             </div>
                                             <!-- /Provider Notes -->
                                         </div>
@@ -1299,7 +1299,7 @@
                                                 <label class="form-label" for="customer-notes">
                                                     Customer Notes
                                                 </label>
-                                                <textarea class="form-control" rows="4" cols="4" id="customer-notes"></textarea>
+                                                <textarea class="form-control" rows="4" cols="4" id="customer-notes" wire:model.defer="booking.customer_notes"></textarea>
                                             </div>
                                             <!-- /Customer Notes -->
                                         </div>
@@ -1309,7 +1309,7 @@
                                                 <label class="form-label" for="private-notes">
                                                     Private Notes
                                                 </label>
-                                                <textarea class="form-control" rows="4" cols="4" id="private-notes"></textarea>
+                                                <textarea class="form-control" rows="4" cols="4" id="private-notes" wire:model.defer="booking.private_notes"></textarea>
                                             </div>
                                             <!-- /Private Notes -->
                                         </div>
@@ -1372,7 +1372,7 @@
                                 class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                                 <button type="button" class="btn btn-outline-dark rounded"
                                    x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('request-details')">Back</button>
-                                <button type="submit" class="btn btn-primary rounded">Save as Draft</button>
+                                <button type="button" class="btn btn-primary rounded" wire:click.prevent="save(1,1,3)" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">Save as Draft</button>
                                 <button type="button" class="btn btn-primary rounded" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('booking-summary')">Booking Summary</button>
                             </div>
                      
