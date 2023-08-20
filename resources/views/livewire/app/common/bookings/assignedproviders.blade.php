@@ -4,7 +4,7 @@
                 <div class="d-lg-flex align-items-center justify-content-between header-row">
                     <h2 class="mb-lg-0">Service {{$index}} Assigned Providers </h2>
                     <div class="d-flex flex-md-row flex-column gap-3">
-                        <a class="btn btn-has-icon btn-outline-dark rounded"
+                        <a class="btn btn-has-icon btn-outline-dark rounded" wire:click="openAssignProvidersPanel"
                             @click="assignProvider = true" href="javascript:refreshSelectsEvent()">
                             {{-- Updated by Shanila to Add
                             svg icon --}}
@@ -15,7 +15,7 @@
                             </svg>
                             {{-- End of update by Shanila
                             --}}
-                            Assign Providers
+                            Assign Providers 
                         </a>
                         <a href="#" class="btn btn-has-icon btn-primary rounded">
                             {{-- Updated by Shanila to Add
@@ -787,11 +787,6 @@
                                     </nav>
                                 </div>
         </div><!-- /Service 2 Assigned Providers --> --}}
-        <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
-                            <button type="" class="btn btn-outline-dark rounded"
-                                x-on:click="$wire.switch('booking-details')">Back</button>
-                            <button type="" class="btn btn-primary rounded"
-                                x-on:click="$wire.switch('attachments')">Next</button>
-                        </div>
+        
 </div>
               

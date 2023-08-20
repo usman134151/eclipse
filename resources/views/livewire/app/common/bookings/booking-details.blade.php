@@ -1213,8 +1213,14 @@
                         id="assigned-providers" role="tabpanel" aria-labelledby="assigned-providers-tab"
                         tabindex="0">
                         @foreach($booking->services as $index=> $service)
-                            @livewire('app.common.bookings.assignedproviders', ['index'=>$index+1,'service_id'=>$service->id,'booking_id' => $booking_id])
+                            @livewire('app.common.bookings.assignedproviders', ['index'=>$index+1,'service_id'=>$service->id,'booking_id' => $booking_id], , key(time()))
                         @endforeach  
+                        <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
+                            <button type="" class="btn btn-outline-dark rounded"
+                                x-on:click="$wire.switch('booking-details')">Back</button>
+                            <button type="" class="btn btn-primary rounded"
+                                x-on:click="$wire.switch('attachments')">Next</button>
+                        </div>
                     </div><!-- END: assigned-providers-tab -->
                     <div class="tab-pane fade {{ $component == 'attachments' ? 'active show' : '' }}"
                         id="attachments" role="tabpanel" aria-labelledby="attachments-tab" tabindex="0">
@@ -1567,6 +1573,6 @@
     {{-- End of update by Sohail Asghar --}}
     @include('panels.booking-details.reschedule-booking')
     @include('panels.common.add-documents', ['booking_id' => $booking_id])
-    @include('panels.booking-details.assign-providers')
+    @include('panels.booking-details.assign-providers',['currentServiceId'=>$currentServiceId,'booking_id'=>$booking_id])
 @endif
 </div>

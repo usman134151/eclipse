@@ -16,9 +16,14 @@ class BookingDetails extends Component
     public $ethnicity, $booking_id=0;
 
 	public $component = 'booking-details';
-	protected $listeners = ['showConfirmation'];
+	protected $listeners = ['showConfirmation', 'assignServiceProviders'];
 	public $booking;
 	public $serviceDetails;
+
+
+	//panel
+	public $currentServiceId = null, $counter=0;
+
 
 	protected $rules = [
         'booking.provider_notes' =>'nullable|string',
@@ -28,6 +33,22 @@ class BookingDetails extends Component
         'booking.payment_notes' => 'nullable|string'
     ];
 
+
+	public function assignServiceProviders($service_id)
+	{
+
+		if ($this->counter == 0) {
+			$this->currentServiceId = 0;
+			$this->dispatchBrowserEvent('assign-service-users', ['service_id' => $service_id, ]);
+			$this->counter = 1;
+
+		} else {
+			$this->currentServiceId = $service_id;
+			$this->counter = 0;
+
+		}
+
+	}
 
 	public function render()
 	{	
@@ -53,7 +74,6 @@ class BookingDetails extends Component
 			'booking_services.meeting_link', 'service_categories.name as service_name', 
 			'accommodations.name as accommodation_name'])
 		->toArray();
-		// dd($this->booking->services->first()->name);
 
 	}
 	//so a fuction which can then be used for editing the fields aswell.

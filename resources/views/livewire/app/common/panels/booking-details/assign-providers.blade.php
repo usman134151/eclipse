@@ -18,7 +18,7 @@
                             </linearGradient>
                         </defs>
                     </svg>
-                    Filters
+                    Filters 
                 </button>
             </h2>
             <div id="collapseFilters" class="accordion-collapse collapse" aria-labelledby="headingFilters"
