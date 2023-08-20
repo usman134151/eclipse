@@ -24,10 +24,7 @@ class Booking extends Model
         return $this->belongsTo(Company::class, 'company_id');
     }
 
-    public function accommodations()
-    {
-        return $this->belongsTo(Accommodation::class, 'accommodation_id');
-    }
+
     public function services()
     {
         return $this->belongsToMany(ServiceCategory::class, 'booking_services','booking_id','services')->withPivot(['service_types']);
@@ -39,7 +36,7 @@ class Booking extends Model
 
     public function industries()
     {
-        return $this->belongsToMany(Industry::class, 'booking_industries');
+        return $this->belongsToMany(Industry::class, 'booking_industries')->withPivot(['industries.name']);
     }
 
 
@@ -92,10 +89,7 @@ class Booking extends Model
         return $this->hasOne(Accommodation::class, 'id', 'accommodation_id');
     }
 
-    public function accommodation_data()
-    {
-        return $this->belongsTo(Accommodation::class, 'accommodation_id', 'id');
-    }
+
 
     public function setAdditionalChargeAttribute($value)
     {
@@ -112,10 +106,7 @@ class Booking extends Model
         return $this->hasMany(ProviderPayment::class, 'booking_id', 'id');
     }
 
-    public function service_data()
-    {
-        return $this->belongsTo(ServiceCategory::class, 'service_category', 'id');
-    }
+
 
     public function booking_services_layout()
     {
