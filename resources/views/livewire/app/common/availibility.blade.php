@@ -7,9 +7,7 @@
             <svg aria-label="Input Calendar" class="icon-date md cursor-pointer" width="20" height="20" viewBox="0 0 20 20">
             <use  xlink:href="/css/common-icons.svg#input-calender"></use>
              </svg>
-             <input type="text" class="form-control form-control-md form-control-date js-single-date"
-                placeholder="MM/DD/YYYY" name="selectDate" aria-label="Select Date"
-                 wire:change="updatedSelectedDate($event.target.value)">
+             <input type="" class="form-control form-control-md form-control-date js-single-date" placeholder="MM/DD/YYYY" name="selectDate" aria-label="Select Date" value="2023-08-21 08:41:58">
             <!-- End : it will be replaced with livewire module -->
         </div>
         <div class="col-lg mb-4 mb-lg-0">
@@ -114,7 +112,13 @@
         $('.team').on('change', function (e) {
             @this.ChangeFilter(e.target.value,'Team'); // Trigger the Livewire method
         });
-      
+        $('.js-single-date').on('apply.daterangepicker', function(ev, picker) {
+            @this.updateVa('hh',  $(this).val());
+         console.log("he");
+
+        });
+
+   
        
         
     });

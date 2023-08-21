@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\User;
 use App\Models\Tenant\Team;
+use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\TeamProviders;
 use Carbon\Carbon;
 
@@ -23,6 +24,7 @@ class Availibility extends Component
     public $Filter= 'CurrentDate';
     public $ID; // Make sure this property is defined
     public $providerList;
+    public $selcteddate;
 
 
     
@@ -31,6 +33,7 @@ class Availibility extends Component
     {
         return view('livewire.app.common.availibility');
     }
+    
     public function updatedSelectedDate($value)
     {  $this->currentDate=$value;
         $this->Filter="changedate";
@@ -66,9 +69,11 @@ class Availibility extends Component
 
     private function getBookingData()
     {
+        $this->currentDate = Carbon::now();
         if($this->Filter=="CurrentDate")
         return Booking::whereDate('booking_start_at', $this->currentDate->format('Y-m-d'))
-            ->join('users', 'bookings.user_id', '=', 'users.id')
+            ->join('booking_providers','bookings.id','=','booking_providers.booking_id')
+            ->join('users', 'users.id', '=', 'booking_providers.provider_id')
             ->join('booking_services', 'bookings.id', '=', 'booking_services.booking_id')
             ->join('service_categories', 'booking_services.services', '=', 'service_categories.id')
             ->select(
@@ -86,7 +91,8 @@ class Availibility extends Component
             if($this->Filter=="Booking")
             return Booking::whereDate('booking_start_at', $this->currentDate->format('Y-m-d'))
             ->where('bookings.id',$this->ID)
-            ->join('users', 'bookings.user_id', '=', 'users.id')
+            ->join('booking_providers','bookings.id','=','booking_providers.booking_id')
+            ->join('users', 'users.id', '=', 'booking_providers.provider_id')
             ->join('booking_services', 'bookings.id', '=', 'booking_services.booking_id')
             ->join('service_categories', 'booking_services.services', '=', 'service_categories.id')
             ->select(
@@ -102,9 +108,10 @@ class Availibility extends Component
             ->toArray();
 
             if($this->Filter=="Provider")
-            return Booking::whereDate('booking_start_at', $this->currentDate->format('Y-m-d'))
-            ->where('users.id',$this->ID)
-            ->join('users', 'bookings.user_id', '=', 'users.id')
+            return BookingProvider::where("provider_id",$this->ID)
+            ->join("bookings",'bookings.id','=','booking_providers.booking_id')
+            ->whereDate('bookings.booking_start_at', $this->currentDate->format('Y-m-d'))
+            ->join('users', 'booking_providers.provider_id', '=', 'users.id')
             ->join('booking_services', 'bookings.id', '=', 'booking_services.booking_id')
             ->join('service_categories', 'booking_services.services', '=', 'service_categories.id')
             ->select(
@@ -119,9 +126,30 @@ class Availibility extends Component
             ->get()
             ->toArray();
 
-            if($this->Filter=="Team")
-            $team = Team::find($this->ID);
+            if($this->Filter=="changedate")
+            {
+                return Booking::whereDate('booking_start_at', date("y-m,d", strtotime($this->selcteddate)))
+                ->join('booking_providers','bookings.id','=','booking_providers.booking_id')
+                ->join('users', 'users.id', '=', 'booking_providers.provider_id')
+                ->join('booking_services', 'bookings.id', '=', 'booking_services.booking_id')
+                ->join('service_categories', 'booking_services.services', '=', 'service_categories.id')
+                ->select(
+                    'users.id as usersid',
+                    'bookings.id',
+                    'users.name as Provider',
+                    'service_categories.name as Title',
+                    'booking_services.start_time',
+                    'booking_services.end_time'
+                )
+                ->orderByDesc('booking_services.start_time')
+                ->get()
+                ->toArray();
+            }
 
+
+            if($this->Filter=="Team")
+            {
+            $team = Team::find($this->ID);
             if ($team) {
                 $userIds =TeamProviders::where("team_id",$this->ID)
                     ->pluck('provider_id')
@@ -129,10 +157,10 @@ class Availibility extends Component
             } else {
                 $userIds = []; // Default empty array if the team is not found
             }
-            
-            return Booking::whereDate('booking_start_at', $this->currentDate->format('Y-m-d'))
-                ->whereIn('users.id', $userIds)
-                ->join('users', 'bookings.user_id', '=', 'users.id')
+            return BookingProvider::whereIn("provider_id",$userIds)
+                ->join("bookings",'bookings.id','=','booking_providers.booking_id')
+                ->whereDate('bookings.booking_start_at', $this->currentDate->format('Y-m-d'))
+                ->join('users', 'booking_providers.provider_id', '=', 'users.id')
                 ->join('booking_services', 'bookings.id', '=', 'booking_services.booking_id')
                 ->join('service_categories', 'booking_services.services', '=', 'service_categories.id')
                 ->select(
@@ -146,23 +174,8 @@ class Availibility extends Component
                 ->orderByDesc('booking_services.start_time')
                 ->get()
                 ->toArray();
-                if($this->Filter=="changedate")
-                return Booking::whereDate('booking_start_at', $this->currentDate->format('Y-m-d'))
-                ->where('users.id',$this->ID)
-                ->join('users', 'bookings.user_id', '=', 'users.id')
-                ->join('booking_services', 'bookings.id', '=', 'booking_services.booking_id')
-                ->join('service_categories', 'booking_services.services', '=', 'service_categories.id')
-                ->select(
-                    'users.id as usersid',
-                    'bookings.id',
-                    'users.name as Provider',
-                    'service_categories.name as Title',
-                    'booking_services.start_time',
-                    'booking_services.end_time'
-                )
-                ->orderByDesc('booking_services.start_time')
-                ->get()
-                ->toArray();
+            }
+                
             
 
     }
@@ -248,9 +261,7 @@ class Availibility extends Component
     }
     
     public function ChangeFilter($ID,$Filter)
-        {
-    
-           
+        { 
             $this->Filter=$Filter;
             $this->ID=$ID;
             $bookingData = $this->getBookingData();
@@ -268,5 +279,16 @@ class Availibility extends Component
     {
         $this->showForm = false;
     }
+    public function updateVa($attrName, $val)
+	{
+
+		   $this->selcteddate= $val;
+           $this->Filter="changedate";
+           $bookingData = $this->getBookingData();
+           $this->schedule = $this->transformBookingData($bookingData);
+
+
+
+	}
 
 }
