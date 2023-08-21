@@ -5,6 +5,7 @@ namespace App\Http\Livewire\App\Common\Panels\BookingDetails;
 use App\Models\Tenant\Tag;
 use App\Models\Tenant\User;
 use Livewire\Component;
+use App\Models\Tenant\BookingProvider;
 use Livewire\WithPagination;
 
 class AssignProviders extends Component
@@ -174,5 +175,35 @@ class AssignProviders extends Component
     {
         $this->showForm=false;
     }
+    public function saveProvidersData()
+    {
+        foreach ($this->allproviders as $provider) {
+            BookingProvider::create([
+                'booking_id' => $this->booking_id,
+                'provider_id' => $provider->id,
+            ]);
+        }
+    }
+    public function Assign($provider_id)
+    {
+       
+        $assignedProvider =  BookingProvider::updateOrCreate(
+            ['provider_id' => $provider_id,'booking_id'=>$this->booking_id]
+        );
+        $this->showConfirmation('Provider Assigned!');
+        $this->emit('dataUpdated');
+    }
+    public function showConfirmation($message = '')
+	{
+		
+		if ($message) {
+			// Emit an event to display a success message using the SweetAlert package
+			$this->dispatchBrowserEvent('swal:modal', [
+				'type' => 'success',
+				'title' => 'Success',
+				'text' => $message,
+			]);
+		}
+	}
 
 }

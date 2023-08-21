@@ -7,8 +7,9 @@
             <svg aria-label="Input Calendar" class="icon-date md cursor-pointer" width="20" height="20" viewBox="0 0 20 20">
             <use  xlink:href="/css/common-icons.svg#input-calender"></use>
              </svg>
-            <input type="" class="form-control form-control-md form-control-date"
-                placeholder="MM/DD/YYYY" name="selectDate" aria-label="Select Date"value="{{$currentDate}}">
+             <input type="text" class="form-control form-control-md form-control-date js-single-date"
+                placeholder="MM/DD/YYYY" name="selectDate" aria-label="Select Date"
+                 wire:change="updatedSelectedDate($event.target.value)">
             <!-- End : it will be replaced with livewire module -->
         </div>
         <div class="col-lg mb-4 mb-lg-0">
@@ -31,7 +32,7 @@
         </select>
        </div>
 
-      <!-- <div class="col-lg mb-4 mb-lg-0">
+       <div class="col-lg mb-4 mb-lg-0">
         <label class="form-label" for="steam">Filter By Provider Team</label>
         <select class="form-select select2 team" id="steam" name="steam" wire:click="ChangeFilter($event.target.value,'Team')" >
         <option value="0">Select Provider Team</option>   
@@ -39,7 +40,7 @@
                     <option value="{{$list->id}}">{{$list->name}}</option>   
                 @endforeach 
         </select>
-       </div>-->
+       </div>
     </div>
     <!-- /Filters -->
     <!-- BEGIN: Availability -->
@@ -113,6 +114,9 @@
         $('.team').on('change', function (e) {
             @this.ChangeFilter(e.target.value,'Team'); // Trigger the Livewire method
         });
+      
+       
+        
     });
 </script>
 @endpush

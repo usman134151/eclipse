@@ -223,7 +223,7 @@
                                      </div>
                                  </div>
                                  <div class="mx-3 mt-4">
-                                     <a href="#" class="btn btn-sm btn-outline-dark rounded mb-2">Assign</a>
+                                     <button class="btn btn-sm btn-outline-dark rounded mb-2" wire:click="Assign({{$provider->id}})">Assign</button>
                                      <div class="form-check">
                                          <input class="form-check-input" id="assignPartialCoverage" name=""
                                              type="checkbox" tabindex="">
