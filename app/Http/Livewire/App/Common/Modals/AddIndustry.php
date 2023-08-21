@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\App\Common\Modals;
 
 use App\Models\Tenant\Industry;
+use App\Models\Tenant\BookingIndustry;
 use App\Models\Tenant\User;
 use App\Models\Tenant\Company;
 use Illuminate\Support\Facades\Auth;
@@ -34,6 +35,8 @@ class AddIndustry extends Component
         $this->industries = Industry::where('status', 1)->get();
         if ($this->user)
             $this->setIndustries();
+        elseif(!is_null(request()->bookingID))
+           $this->setBookingIndustries(request()->bookingID);
     }
 
     public function setUser(User $user)
@@ -45,6 +48,10 @@ class AddIndustry extends Component
         $this->selectedIndustries = $this->user->industries()->allRelatedIds()->toArray();
         if (!is_null($this->user->userdetail))
             $this->defaultIndustry = $this->user->userdetail->industry;
+    }
+
+    public function setBookingIndustries($bookingID){
+        $this->selectedIndustries = BookingIndustry::where('booking_id',$bookingID)->select('industry_id')->get()->pluck('industry_id')->toArray();
     }
 
     public function updateCompany($companyId)
