@@ -102,11 +102,7 @@
         </div>
       </div>
     </div>
-    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script> --}}
 
-      {{-- <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyAANwmAq3UQc8j5GkJgzF9AglzF7XLfPxI&libraries=places&language=en-AU"></script> --}}
-
-{{-- </script> --}}
     
     </div>
 

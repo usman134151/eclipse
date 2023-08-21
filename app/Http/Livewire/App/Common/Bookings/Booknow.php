@@ -27,7 +27,7 @@ class Booknow extends Component
     protected $listeners = ['showList' => 'resetForm','updateVal', 'updateCompany',
         'updateSelectedIndustries' => 'selectIndustries',
         'updateSelectedDepartments',
-        'saveCustomFormData'=>'save' ,'switch'];
+        'saveCustomFormData'=>'save' ,'switch','updateAddress' => 'addAddress'];
 
     public $dates=[[
             'start_date'=>'',
@@ -107,6 +107,7 @@ class Booknow extends Component
           // dd( $this->selectedIndustries);
             $this->industryNames = $this->booking->industries->pluck('name');
             $this->dates=[];
+            $this->refreshAddresses();
             foreach($this->services as  $index => &$service){
                
                 $service['meetings']=json_decode($service['meetings'], true);
@@ -569,6 +570,14 @@ class Booknow extends Component
          }
         
     }
+	public function addAddress($addressArr)
+	{
+
+		if (isset($addressArr['index'])) { //update existing
+			$this->userAddresses[$addressArr['index']] = $addressArr;
+		} else
+			$this->userAddresses[] = $addressArr;
+	}
 
     public function editAddress($index, $type)
 	{
