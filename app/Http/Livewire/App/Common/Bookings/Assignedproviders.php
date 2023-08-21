@@ -15,7 +15,16 @@ class Assignedproviders extends Component
     public $limit;
 
     protected $assignedProviders=[];
+    protected $listeners = ['dataUpdated' => 'refreshComponent'];
 
+
+    
+    public function refreshComponent()
+    {
+        // Trigger a Livewire render to refresh the component
+        $this->render();
+    }
+    
     public function mount($booking_id)
     {
         $this->booking_id = $booking_id;
@@ -31,6 +40,7 @@ class Assignedproviders extends Component
     }
     public function render()
     {
+        $this->loadAssignedProviders();
         return view('livewire.app.common.bookings.assignedproviders', ['assignedProviders' => $this->assignedProviders]);
     }
 
