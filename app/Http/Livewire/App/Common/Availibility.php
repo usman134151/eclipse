@@ -155,39 +155,41 @@ class Availibility extends Component
     }
     
     private function populateTimeSlot(&$timeSlots, $booking)
-    {
-        $startTime = Carbon::parse($booking['start_time']);
-        $endTime = Carbon::parse($booking['end_time']);
-        $durationHours = $startTime->diffInHours($endTime);
-        
-        // Find the appropriate time slot for the booking
+{
+    $startTime = Carbon::parse($booking['start_time']);
+    $endTime = Carbon::parse($booking['end_time']);
+    $durationHours = $startTime->diffInHours($endTime);
+    
+    // Truncate the title to 10 characters at most
+    $title = strlen($booking['Title']) > 10 ? substr($booking['Title'], 0, 10) . '...' : $booking['Title'];
+
+    // Find the appropriate time slot for the booking
+    $hourSlot = $startTime->format('H');
+    $formattedHourSlot = sprintf('%02d', $hourSlot);
+    
+    if (isset($timeSlots[$formattedHourSlot . ':00'])) {
+        $slots = [
+            'title' => $title, // Use the truncated title
+            'col' => '',
+            'class' => 'bg-purple event-box',
+        ];
+        array_push($timeSlots[$formattedHourSlot . ':00'], $slots);
+    } else {
         $hourSlot = $startTime->format('H');
+        $hourSlot = $hourSlot - 1;
         $formattedHourSlot = sprintf('%02d', $hourSlot);
-        
+
         if (isset($timeSlots[$formattedHourSlot . ':00'])) {
-            $slots=[
-            'title' => $booking['Title'],
-            'col' => '' ,
-            'class'=>'bg-purple event-box',
-            ]; // Set the default duration to 2 hours]
+            $slots = [
+                'title' => $title, // Use the truncated title
+                'col' => '',
+                'class' => 'bg-lighter event-box',
+            ];
             array_push($timeSlots[$formattedHourSlot . ':00'], $slots);
         }
-        else{
-            $hourSlot = $startTime->format('H');
-            $hourSlot=$hourSlot-1;
-            $formattedHourSlot = sprintf('%02d', $hourSlot);
-
-            if (isset($timeSlots[$formattedHourSlot . ':00'])) {
-                $slots=[
-                'title' => $booking['Title'],
-                'col' => '' ,
-                'class'=>'bg-lighter event-box',
-                ]; // Set the default duration to 2 hours]
-                array_push($timeSlots[$formattedHourSlot . ':00'], $slots);
-            }
-
-        }
     }
+}
+
     
     // This is for the th
     function generateTimeHeaders() {
