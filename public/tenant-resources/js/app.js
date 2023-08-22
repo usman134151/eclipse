@@ -173,11 +173,16 @@ $('.js-form-check-input-manual-entry').change(function(){
 
 // For Highlighting Address Table Row
 
-$('.js-selected-row').click(function(){
-    $(this).addClass("selected");
+function highlightRow(row){
+    $(row).addClass("selected");
+    $(row).find("td").css("background-color", "#213969");
+    $(row).find("td").css("color", "#fff");
+
     $('.js-tick').removeClass("d-none");
-    $(this).siblings().removeClass("selected");
-});
+    $(row).siblings().removeClass("selected");
+    $(row).siblings().find("td").css("background-color", "");
+    $(row).siblings().find("td").css("color", "");
+};
 
 // Initialize Tooltip
 

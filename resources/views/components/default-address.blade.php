@@ -16,40 +16,66 @@
         <tbody>
             @foreach($userAddresses as $address)
                 @if($address['address_type']==$type)
-            <tr class="odd js-selected-row">
-                <td>{{ $loop->index+1 }}</td>
-                <td class="position-relative ">
-                    <div class="d-flex">
-                        <p class="align-content-start">
-                        <a target="_blank" href="https://www.google.com/maps/search/?api=1&query={{ str_replace(" ","+",$address['address_line1'].' '.$address['address_line2'].' '.$address['city'].' '.$address['state'].' '.$address['country']) }}">
-                        {{$address['address_name']}}:  {{ $address['address_line1'].', '.$address['address_line2'].','.$address['city'].', '.$address['state'].', '.$address['country'] }}
-                        </a>
-                            </p>
-                        <div class="align-center align-content-end">
-                            <button  type="button"  wire:click.prevent="editAddress({{ $loop->index }},{{$type}})" title='Edit Address' aria-label='Edit Address'  class='btn btn-sm btn-secondary rounded btn-hs-icon position-absolute top-0 end-0' style="top:10px !important;right: 15px !important;" name="editIcon">
-                                <svg aria-label='Edit' class='fill' width='20' height='28' viewBox='0 0 20 28'fill='none' xmlns='http://www.w3.org/2000/svg'>       
-                                    <use xlink:href='/css/sprite.svg#edit-icon'></use>
+                    @if(!isset($booking))    
+                        <tr class="odd js-selected-row">
+                    @else
+                        @if($booking->physical_address_id==$address['id'])
+                        <tr class="odd js-selected-row selected" onclick="highlightRow($(this))" wire:click="setBookingAddress({{$address['id']}})">
+                        @else
+                        <tr class="odd js-selected-row" onclick="highlightRow($(this))" wire:click="setBookingAddress({{$address['id']}})">
+                        @endif
+                    @endif
+                            <td>{{ $loop->index+1 }}</td>
+                        
+                                <td class="position-relative"  >
+                        
+                                <div class="d-flex">
+                                    <p class="align-content-start">
+                                    @if(!isset($booking))     
+                                    <a target="_blank" href="https://www.google.com/maps/search/?api=1&query={{ str_replace(" ","+",$address['address_line1'].' '.$address['address_line2'].' '.$address['city'].' '.$address['state'].' '.$address['country']) }}">
+                                    @endif    
+                                    {{$address['address_name']}}:  {{ $address['address_line1'].', '.$address['address_line2'].','.$address['city'].', '.$address['state'].', '.$address['country'] }}
+                                    @if(!isset($booking)) 
+                                    </a>
+                                    @endif
+                                        </p>
+                                    @if(!isset($booking))    
+                                    <div class="align-center align-content-end">
+                                        <button  type="button"  wire:click.prevent="editAddress({{ $loop->index }},{{$type}})" title='Edit Address' aria-label='Edit Address'  class='btn btn-sm btn-secondary rounded btn-hs-icon position-absolute top-0 end-0' style="top:10px !important;right: 15px !important;" name="editIcon">
+                                            <svg aria-label='Edit' class='fill' width='20' height='28' viewBox='0 0 20 28'fill='none' xmlns='http://www.w3.org/2000/svg'>       
+                                                <use xlink:href='/css/sprite.svg#edit-icon'></use>
+                                            </svg>
+                                        </button>
+                                        <a href="#" title="Delete" aria-label="Delete" wire:click.prevent="deleteAddress({{ $loop->index }})" class="btn btn-sm btn-secondary rounded btn-hs-icon position-absolute top-0 end-0"  style="top:10px !important;right: -15px !important;" name="deleteIcon" onclick="$(this).parent().slideUp();">
+                                            <svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    @endif
+                                </div>
+                                                                    
+                                
+                            
+                            </td>
+                            <td class="align-middle">
+                            @if(isset($booking))    
+                                @if($booking->physical_address_id==$address['id'])
+                                <span >
+                                <svg class="js-tick" width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
-                            </button>
-                            <a href="#" title="Delete" aria-label="Delete" wire:click.prevent="deleteAddress({{ $loop->index }})" class="btn btn-sm btn-secondary rounded btn-hs-icon position-absolute top-0 end-0"  style="top:10px !important;right: -15px !important;" name="deleteIcon" onclick="$(this).parent().slideUp();">
-                                <svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                </span> 
+                                @else
+                                <span >
+                                <svg class="js-tick d-none " width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
-                            </a>
-                        </div>
-                    </div>
-                                                          
-                     
-                
-                </td>
-                <td class="align-middle">
-                    {{-- <span >
-                    <svg class="d-none js-tick" width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    </span> --}}
-                </td>
-            </tr>
+                                </span> 
+                                @endif
+                            @endif    
+                            </td>
+                    </tr>
             @endif
             @endforeach
         </tbody>
