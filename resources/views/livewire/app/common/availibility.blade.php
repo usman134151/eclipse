@@ -1,19 +1,30 @@
 <div>
     <h3>Availability</h3>
     <!-- Filters -->
+    <div class="col-sm">
+    <button class="btn btn-secondary btn-sm reset-button" wire:click="resetDate">Reset</button>
+    </div>
     <div class="row mb-4">
+        
         <div class="col-lg-3 mb-4 mb-lg-0 position-relative align-self-end">
             <!-- Begin : it will be replaced with livewire module-->
+            
             <svg aria-label="Input Calendar" class="icon-date md cursor-pointer" width="20" height="20" viewBox="0 0 20 20">
             <use  xlink:href="/css/common-icons.svg#input-calender"></use>
              </svg>
              <input type="" class="form-control form-control-md form-control-date js-single-date" placeholder="MM/DD/YYYY" name="selectDate" aria-label="Select Date" value="2023-08-21 08:41:58">
+            
             <!-- End : it will be replaced with livewire module -->
         </div>
         <div class="col-lg mb-4 mb-lg-0">
             <label class="form-label" for="supervisor">Bookings</label>
             <select class="form-select select2 booking" id="BookingID" name="BookingID"  wire:click="ChangeFilter($event.target.value,'Booking')">
-                <option value="0">Select Booking</option>
+            @if(!empty($selectedBookingNumber))
+            <option>{{$selectedBookingNumber}}</option>
+            @else
+            <option value="0">Select Booking</option>
+            @endif
+              
                 @foreach($bookingList as $list)
                     <option value="{{$list->id}}">{{$list->booking_number}}</option>   
                 @endforeach
@@ -23,7 +34,12 @@
        <div class="col-lg mb-4 mb-lg-0">
         <label class="form-label" for="ProviderId">Filter By Provider</label>
         <select class="form-select select2 provider" id="ProviderId" name="ProviderId" wire:click="ChangeFilter($event.target.value,'Provider')">
-        <option value="0">Select provider</option>
+        @if(!empty($selectedProvider))
+            <option>{{$selectedProvider}}</option>
+            @else
+            <option value="0">Select provider</option>
+            @endif
+      
         @foreach($providerList as $list)
                     <option value="{{$list->id}}">{{$list->name}}</option>   
                 @endforeach
@@ -33,7 +49,12 @@
        <div class="col-lg mb-4 mb-lg-0">
         <label class="form-label" for="steam">Filter By Provider Team</label>
         <select class="form-select select2 team" id="steam" name="steam" wire:click="ChangeFilter($event.target.value,'Team')" >
-        <option value="0">Select Provider Team</option>   
+        @if(!empty($selectedTeam))
+            <option>{{$selectedTeam}}</option>
+            @else
+            <option value="0">Select Provider Team</option> 
+            @endif
+          
         @foreach($teamList as $list)
                     <option value="{{$list->id}}">{{$list->name}}</option>   
                 @endforeach 
@@ -42,7 +63,9 @@
     </div>
     <!-- /Filters -->
     <!-- BEGIN: Availability -->
+    
     <div class="availability card border-0 table-responsive">
+    
         <table class="table-availability">
             <thead>
                 <tr class="row-day-time">
@@ -58,29 +81,37 @@
             </thead>
             <tbody>
                
-            @foreach ($schedule as $index)
-            <tr class="even">
-                <td>
-                    <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" alt="Image" class="img-user">
-                    <div class="mt-2 text-sm">{{ $index['Name'] }}</div>
-                </td>
+            @if (count($schedule) > 0)
+                @foreach ($schedule as $index)
+                    <tr class="even">
+                        <td>
+                            <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" alt="Image" class="img-user">
+                            <div class="mt-2 text-sm">{{ $index['Name'] }}</div>
+                        </td>
 
-                @for ($hour = 0; $hour < 24; $hour++)
-                @php
-                    $formattedHour = sprintf('%02d', $hour);
-                    $slotKey = "$formattedHour:00";
-                    $classKey = "$formattedHour-class";
-                    $colKey = "$formattedHour-col";
-                    $booking = $index['bookings'][$slotKey];
-                @endphp
-                <td colspan="{{ $booking['col'] }}">
-                    <div class="{{ $index['bookings'][$classKey] }}">
-                        {{ $booking['title'] }}
-                    </div>
-                </td>
-            @endfor
-            </tr>
-            @endforeach
+                        @for ($hour = 0; $hour < 24; $hour += 2)
+                            @php
+                                $formattedHour = sprintf('%02d', $hour);
+                                $slotKey = "$formattedHour:00";
+                                $classKey = "$formattedHour-class";
+                                $colKey = "$formattedHour-col";
+                                $booking = $index['bookings'][$slotKey];
+                            @endphp
+                            <td colspan="">
+                                @foreach($booking as $book)
+                                <div class="{{$book['class'] }}">
+                                    {{ $book['title'] }}
+                                </div>
+                                @endforeach
+                            </td>
+                        @endfor
+                    </tr>
+                @endforeach
+            @else
+                <tr>
+                    <td colspan="13">No records available</td>
+                </tr>
+            @endif
 
 
              
@@ -113,8 +144,8 @@
             @this.ChangeFilter(e.target.value,'Team'); // Trigger the Livewire method
         });
         $('.js-single-date').on('apply.daterangepicker', function(ev, picker) {
-            @this.updateVa('hh',  $(this).val());
-         console.log("he");
+            @this.updateVa('changedate',  $(this).val());
+        
 
         });
 
