@@ -179,6 +179,21 @@
                                                                     </svg>
 
                                                                 </a>
+                                                                  <a href="javascript:void(0)" title="Running Late"
+                                                                        aria-label="Running Late" wire:click="'$emit('openRunningLateModal',{{$booking['id']}}, {{$booking['service_id']}})'"
+                                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#runningLateModal">
+                                                                        <svg aria-label="Running Late" width="23"
+                                                                            height="22" viewBox="0 0 23 22"
+                                                                            fill="none"
+                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                            <use
+                                                                                xlink:href="/css/provider.svg#running-late">
+                                                                            </use>
+                                                                        </svg>
+                                                                    </a>
+
 
                                                                 @if ($booking['status'] == 'On Time' && $bookingType != 'Unassigned' && $bookingType != 'Invitations')
                                                                     <a href="javascript:void(0)" title="Running Late"
