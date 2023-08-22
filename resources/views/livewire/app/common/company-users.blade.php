@@ -75,7 +75,7 @@
                           <td class="text-center">
                             <div class="form-check mb-0">
                                 <input class="form-check-input" type="checkbox"  id="requester"
-                                    wire:model.defer="rolesArr.{{$user->id}}.7">
+                                    wire:model.defer="rolesArr.{{$user->id}}.6">
                             </div>
                         </td>
                           <td class="text-center">

@@ -41,6 +41,12 @@ class CompanyUsers extends Component
         // dd($this->users);
     }
     public function save(){
+        // dd($this->rolesArr);
+        $service = new UserService();
+
+        foreach($this->rolesArr as $user_id => $roles){
+            $service->storeCustomerRoles($roles,$user_id);
+        }
         $this->dispatchBrowserEvent('close-company-users');
         $this->emit('showList', 'Permissions saved successfully');
     }
