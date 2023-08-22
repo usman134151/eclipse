@@ -212,16 +212,22 @@ class Availibility extends Component
             case "Booking":
                 $selectedBooking = Booking::where("id", $ID)->select('booking_number')->first();
                 $this->selectedBookingNumber = $selectedBooking ? $selectedBooking->booking_number : '';
+                $this->selectedTeam=null;
+                $this->selectedProvider=null;
                 break;
             
             case "Provider":
                 $selectedProvider = User::where("id", $ID)->select('name')->first();
                 $this->selectedProvider = $selectedProvider ? $selectedProvider->name : '';
+                $this->selectedBookingNumber=null;
+                $this->selectedTeam=null;
                 break;
     
             case "Team":
                 $selectedTeam = Team::where("id", $ID)->select('name')->first();
                 $this->selectedTeam = $selectedTeam ? $selectedTeam->name : '';
+                $this->selectedBookingNumber=null;
+                $this->selectedProvider=null;
                 break;
         }
     
@@ -251,9 +257,9 @@ class Availibility extends Component
     public function resetDate()
     {
         $this->selecteddate = null; // Reset the selected date
-        $this->selectedbooking=null;
-        $this->selectedprovider=null;
-        $this->selectedteam=null;
+        $this->selectedBookingNumber=null;
+       $this->selectedTeam=null;
+       $this->selectedProvider=null;
         $this->Filter = 'CurrentDate'; // Reset the filter
         $bookingData = $this->getBookingData();
         $this->schedule = $this->transformBookingData($bookingData);
