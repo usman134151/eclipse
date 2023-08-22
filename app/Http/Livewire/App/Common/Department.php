@@ -8,25 +8,26 @@ use Livewire\Component;
 
 class Department extends Component
 {
-	public $showForm, $confirmationMessage, $isSupervisor=false;
-	public $showProfile, $status, $companyId=0,$company, $department;
+	public $showForm, $confirmationMessage, $isSupervisor = false;
+	public $showProfile, $status, $companyId = 0, $company, $department;
 	public $du_counter = 0, $du_departmentId, $du_departmentLabel,  $du_departmentDetails = false; //for company users
 
-	protected $listeners = ['showList' => 'resetForm', 'showDepartmentProfile'=>'showProfile', 'refreshDepartmentUsers'];
+	protected $listeners = ['showList' => 'resetForm', 'showDepartmentProfile' => 'showProfile', 'refreshDepartmentUsers'];
 
 	function showForm()
 	{
-		$this->showForm=true;
+		$this->showForm = true;
 	}
 
-	public function resetForm($message='',$companyId=0)
+	public function resetForm($message = '', $companyId = 0)
 	{
-		if($companyId){
-		$this->company = Company::find($companyId);
-		$this->companyId = $companyId;}
+		if ($companyId) {
+			$this->company = Company::find($companyId);
+			$this->companyId = $companyId;
+		}
 
 
-		$this->showForm=false;
+		$this->showForm = false;
 		$this->showProfile = false;
 		if ($message) {
 			$this->confirmationMessage = $message;
@@ -37,7 +38,7 @@ class Department extends Component
 				'text' => $message,
 			]);
 		}
-		$this->dispatchBrowserEvent('update-url', ['url' => '/admin/department/'.$this->companyId]);
+		$this->dispatchBrowserEvent('update-url', ['url' => '/admin/department/' . $this->companyId]);
 	}
 
 
@@ -67,7 +68,7 @@ class Department extends Component
 	public function mount()
 	{
 		if (request()->companyID != null) {
-			$this->companyId= request()->companyID;
+			$this->companyId = request()->companyID;
 		}
 		$this->company = Company::find($this->companyId);
 
@@ -77,11 +78,8 @@ class Department extends Component
 			$this->showProfile($this->department);
 		}
 
-		if(session('isCustomer')&&(in_array(5,session('customerRoles'))))
-			$this->isSupervisor=true;
-
-		
-
+		if (session('isCustomer') && in_array(5, session('customerRoles')) && !(in_array(10, session('customerRoles'))))
+			$this->isSupervisor = true;
 	}
 
 	public function render()
