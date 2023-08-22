@@ -34,6 +34,11 @@ class RunningLate extends Component
         $this->mins = $mins;
     }
 
+    // booking_providers => check_in_status  (0= on time, 1= checked in, 2= running late)
+    public function save(){
+        $this->emit('closeRunningLateModal');
+    }
+
     public function mount()
     {
         $this->hours=00;

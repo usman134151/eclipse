@@ -28,6 +28,6 @@
     </div>
     <div class="modal-footer d-flex justify-content-center gap-2">
       <button type="button" class="btn rounded btn-outline-dark" data-bs-dismiss="modal">Cancel</button>
-      <button type="button" class="btn rounded btn-primary" data-bs-dismiss="modal">Notify</button>
+      <button type="button" wire:click="save" class="btn rounded btn-primary" >Notify</button>
     </div>
   </div>
