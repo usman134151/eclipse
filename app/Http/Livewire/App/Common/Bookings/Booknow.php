@@ -23,11 +23,11 @@ class Booknow extends Component
 {
     public $component = 'requester-info';
     
-    public $showForm,$booking,$requesters =[],$bManagers=[],$supervisors=[],$consumers=[],$participants=[], $step=1,$userAddresses=[], $timezone, $schedule, $timezones, $formIds ;
+    public $booking_id,$showForm,$booking,$requesters =[],$bManagers=[],$supervisors=[],$consumers=[],$participants=[], $step=1,$userAddresses=[], $timezone, $schedule, $timezones, $formIds ;
     protected $listeners = ['showList' => 'resetForm','updateVal', 'updateCompany',
         'updateSelectedIndustries' => 'selectIndustries',
         'updateSelectedDepartments',
-        'saveCustomFormData'=>'save' ,'switch'];
+        'saveCustomFormData'=>'save' ,'switch','updateAddress' => 'addAddress'];
 
     public $dates=[[
             'start_date'=>'',
@@ -69,7 +69,7 @@ class Booknow extends Component
             'is_manual_consumer' =>0,
             'is_manual_attendees' =>0,
             'service_consumer' => '',
-            'attendees' => '',
+            'attendees' => [],
             'provider_count'=>'',
             'specialization' =>[],
             'day_rate' =>'',
@@ -103,10 +103,11 @@ class Booknow extends Component
          // dd($this->booking);
             $this->updateCompany();
             $this->services=$this->booking->booking_services_new_layout->toArray();
-            $this->selectedIndustries=$this->booking->industries->pluck('industy_id');
-           //dd($this->booking->industries);
+            $this->selectedIndustries=$this->booking->industries->pluck('id')->toArray();
+          // dd( $this->selectedIndustries);
             $this->industryNames = $this->booking->industries->pluck('name');
             $this->dates=[];
+            $this->refreshAddresses();
             foreach($this->services as  $index => &$service){
                
                 $service['meetings']=json_decode($service['meetings'], true);
@@ -135,7 +136,7 @@ class Booknow extends Component
               
                 if($this->dates[$index])
                     $this->updateDurations($index);
-
+                $this->booking_id=$this->booking->id;
 
             }
 
@@ -208,11 +209,16 @@ class Booknow extends Component
             else
             {
                 //update booking
+                $this->booking->save();
             }
+            $this->booking_id=$this->booking->id;
             $this->getForms();
             
 
 
+        }
+        else{
+            $this->booking->save();
         }
         
         if ($redirect) {
@@ -352,7 +358,7 @@ class Booknow extends Component
         'is_manual_consumer' =>0,
         'is_manual_attendees' =>0,
         'service_consumer' => '',
-        'attendees' => '',
+        'attendees' => [],
         'provider_count'=>'',
         'specialization' =>[],
         'day_rate' =>'',
@@ -521,6 +527,11 @@ class Booknow extends Component
             'booking.recurring_end_at'=>'nullable',
             'booking.booking_title'=>'nullable',
             'selectedIndustries' => 'required|array|min:1',
+            'booking.private_notes'=>'nullable',
+            'booking.provider_notes'=>'nullable',
+            'booking.customer_notes'=>'nullable',
+            'booking.billing_notes'=>'nullable',
+            'booking.payment_notes'=>'nullable',
 
         ];
 
@@ -559,6 +570,14 @@ class Booknow extends Component
          }
         
     }
+	public function addAddress($addressArr)
+	{
+
+		if (isset($addressArr['index'])) { //update existing
+			$this->userAddresses[$addressArr['index']] = $addressArr;
+		} else
+			$this->userAddresses[] = $addressArr;
+	}
 
     public function editAddress($index, $type)
 	{
@@ -568,8 +587,12 @@ class Booknow extends Component
 
     public function getForms(){
         $this->formIds=[];
+       // dd($this->selectedIndustries);
         foreach($this->selectedIndustries as $industry){ //getting industry forms
-            $this->formIds[]=CustomizeForms::where('industry_id',$industry)->select('id')->first()->id;
+
+            $industryForm=CustomizeForms::where('industry_id',$industry)->select('id')->first();
+            if(!is_null($industryForm))
+              $this->formIds[]=$industryForm->id;
             
         }
         foreach($this->accommodations as &$accommodation){

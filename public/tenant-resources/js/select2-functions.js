@@ -153,3 +153,8 @@ $('.js-single-date').daterangepicker({
   showDropdowns: true,
   autoApply: true
 });
+$('.js-single-date').on('apply.daterangepicker', function(ev, picker) {
+  console.log($(this).val());
+  updateVal($(this).attr('id'),  $(this).val());
+
+});

@@ -7,26 +7,38 @@
             <svg aria-label="Input Calendar" class="icon-date md cursor-pointer" width="20" height="20" viewBox="0 0 20 20">
             <use  xlink:href="/css/common-icons.svg#input-calender"></use>
              </svg>
-            <input type="" class="form-control form-control-md form-control-date js-single-date"
-                placeholder="MM/DD/YYYY" name="selectDate" aria-label="Select Date">
+             <input type="" class="form-control form-control-md form-control-date js-single-date" placeholder="MM/DD/YYYY" name="selectDate" aria-label="Select Date" value="2023-08-21 08:41:58">
             <!-- End : it will be replaced with livewire module -->
         </div>
         <div class="col-lg mb-4 mb-lg-0">
-            <label class="form-label-sm" for="booking-no">Booking No</label>
-            <input type="" name="" class="form-control form-control-md" placeholder="Search" id="booking-no">
-        </div>
-        <div class="col-lg mb-4 mb-lg-0">
-            <label class="form-label-sm">Filter By Provider</label>
-            <select class="form-select form-select-md" aria-label="Select Provider" id="show_status">
-                <option>Select Provider</option>
+            <label class="form-label" for="supervisor">Bookings</label>
+            <select class="form-select select2 booking" id="BookingID" name="BookingID"  wire:click="ChangeFilter($event.target.value,'Booking')">
+                <option value="0">Select Booking</option>
+                @foreach($bookingList as $list)
+                    <option value="{{$list->id}}">{{$list->booking_number}}</option>   
+                @endforeach
             </select>
         </div>
-        <div class="col-lg mb-4 mb-lg-0">
-            <label class="form-label-sm">Filter By Provider Team</label>
-            <select class="form-select form-select-md" aria-label="Select Provider" id="show_status">
-                <option>Select Provider Team</option>
-            </select>
-        </div>
+
+       <div class="col-lg mb-4 mb-lg-0">
+        <label class="form-label" for="ProviderId">Filter By Provider</label>
+        <select class="form-select select2 provider" id="ProviderId" name="ProviderId" wire:click="ChangeFilter($event.target.value,'Provider')">
+        <option value="0">Select provider</option>
+        @foreach($providerList as $list)
+                    <option value="{{$list->id}}">{{$list->name}}</option>   
+                @endforeach
+        </select>
+       </div>
+
+       <div class="col-lg mb-4 mb-lg-0">
+        <label class="form-label" for="steam">Filter By Provider Team</label>
+        <select class="form-select select2 team" id="steam" name="steam" wire:click="ChangeFilter($event.target.value,'Team')" >
+        <option value="0">Select Provider Team</option>   
+        @foreach($teamList as $list)
+                    <option value="{{$list->id}}">{{$list->name}}</option>   
+                @endforeach 
+        </select>
+       </div>
     </div>
     <!-- /Filters -->
     <!-- BEGIN: Availability -->
@@ -35,191 +47,80 @@
             <thead>
                 <tr class="row-day-time">
                     <th class="day">
-                        Th 05
+                   {{ $dayPlusDate}}
                     </th>
+                    @foreach($tableHeaders as $index)
                     <th class="time">
-                        09:00 AM
+                        {{$index}}
                     </th>
-                    <th class="time">
-                        10:00 AM
-                    </th>
-                    <th class="time">
-                        11:00 AM
-                    </th>
-                    <th class="time">
-                        12:00 PM
-                    </th>
-                    <th class="time">
-                        01:00 PM
-                    </th>
-                    <th class="time">
-                        02:00 PM
-                    </th>
-                    <th class="time">
-                        03:00 PM
-                    </th>
-                    <th class="time">
-                        04:00 PM
-                    </th>
-                    <th class="time">
-                        05:00 PM
-                    </th>
-                    <th class="time">
-                        06:00 PM
-                    </th>
-                    <th class="time">
-                        07:00 PM
-                    </th>
+                    @endforeach
                 </tr>
             </thead>
             <tbody>
-                <tr class="even">
-                    <td>
-                        <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" alt="Image" class="img-user">
-                        <div class="mt-2 text-sm">
-                            Charles
-                        </div>
-                    </td>
-                    <td></td>
-                    <td colspan="2">
-                        <div class="bg-light event-box" data-bs-toggle="tooltip" data-bs-html="true"
-                            data-bs-title="<div><b>Lorem ipsum</b></div> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor sit amet</p>">
-                            Inperson Dayrate (new)</div>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td colspan="3">
-                        <div class="bg-lighter event-box">&nbsp;</div>
-                    </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr class="odd">
-                    <td>
-                        <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" alt="Image" class="img-user">
-                        <div class="mt-2 text-sm">
-                            Thomas
-                        </div>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td colspan="2">
-                        <div class="bg-purple event-box">English to Arabic Sign Language</div>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td colspan="2">
-                        <div class="bg-lighter event-box">English to German Interpreting</div>
-                    </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr class="even">
-                    <td>
-                        <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" alt="Image" class="img-user">
-                        <div class="mt-2 text-sm">
-                            Charles
-                        </div>
-                    </td>
-                    <td></td>
-                    <td colspan="2">
-                        <div class="bg-sky-blue event-box">English to French Interpreting</div>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td colspan="3">
-                        <div class="bg-lighter event-box">&nbsp;</div>
-                    </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr class="even">
-                    <td>
-                        <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" alt="Image" class="img-user">
-                        <div class="mt-2 text-sm">
-                            Charles
-                        </div>
-                    </td>
-                    <td></td>
-                    <td colspan="2">
-                        <div class="bg-light event-box">Inperson Dayrate (new)</div>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td colspan="3">
-                        <div class="bg-lighter event-box">&nbsp;</div>
-                    </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr class="odd">
-                    <td>
-                        <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" alt="Image" class="img-user">
-                        <div class="mt-2 text-sm">
-                            Thomas
-                        </div>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td colspan="2">
-                        <div class="bg-purple event-box">English to Arabic Sign Language</div>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td colspan="2">
-                        <div class="bg-lighter event-box">English to German Interpreting</div>
-                    </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr class="even">
-                    <td>
-                        <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" alt="Image" class="img-user">
-                        <div class="mt-2 text-sm">
-                            Charles
-                        </div>
-                    </td>
-                    <td></td>
-                    <td colspan="2">
-                        <div class="bg-sky-blue event-box">English to French Interpreting</div>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td colspan="3">
-                        <div class="bg-lighter event-box">&nbsp;</div>
-                    </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr class="odd">
-                    <td>
-                        <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" alt="Image" class="img-user">
-                        <div class="mt-2 text-sm">
-                            Thomas
-                        </div>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td colspan="2">
-                        <div class="bg-purple event-box">English to Arabic Sign Language</div>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td colspan="2">
-                        <div class="bg-lighter event-box">English to German Interpreting</div>
-                    </td>
-                    <td></td>
-                    <td></td>
-                </tr>
+               
+            @foreach ($schedule as $index)
+            <tr class="even">
+                <td>
+                    <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" alt="Image" class="img-user">
+                    <div class="mt-2 text-sm">{{ $index['Name'] }}</div>
+                </td>
+
+                @for ($hour = 0; $hour < 24; $hour++)
+                @php
+                    $formattedHour = sprintf('%02d', $hour);
+                    $slotKey = "$formattedHour:00";
+                    $classKey = "$formattedHour-class";
+                    $colKey = "$formattedHour-col";
+                    $booking = $index['bookings'][$slotKey];
+                @endphp
+                <td colspan="{{ $booking['col'] }}">
+                    <div class="{{ $index['bookings'][$classKey] }}">
+                        {{ $booking['title'] }}
+                    </div>
+                </td>
+            @endfor
+            </tr>
+            @endforeach
+
+
+             
             </tbody>
         </table>
     </div>
     <!-- EMD: Availability -->
 </div>
+@push('scripts')
+<script>
+    $(document).ready(function () {
+        // Initialize Select2 on the select element
+        $('.booking').select2();
+
+        // Listen for changes in the Select2 element
+        $('.booking').on('change', function (e) {
+            @this.ChangeFilter(e.target.value,'Booking'); // Trigger the Livewire method
+        });
+        $('.provider').select2();
+
+        // Listen for changes in the Select2 element
+        $('.provider').on('change', function (e) {
+            @this.ChangeFilter(e.target.value,'Provider'); // Trigger the Livewire method
+        });
+
+        $('.team').select2();
+
+        // Listen for changes in the Select2 element
+        $('.team').on('change', function (e) {
+            @this.ChangeFilter(e.target.value,'Team'); // Trigger the Livewire method
+        });
+        $('.js-single-date').on('apply.daterangepicker', function(ev, picker) {
+            @this.updateVa('hh',  $(this).val());
+         console.log("he");
+
+        });
+
+   
+       
+        
+    });
+</script>
+@endpush
