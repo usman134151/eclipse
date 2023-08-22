@@ -24,7 +24,10 @@ class Availibility extends Component
     public $Filter= 'CurrentDate';
     public $ID; // Make sure this property is defined
     public $providerList;
-    public $selcteddate;
+    public $selecteddate;
+    public $selectedBookingNumber;
+    public $selectedTeam;
+    public $selectedProvider;
 
 
     
@@ -69,117 +72,47 @@ class Availibility extends Component
 
     private function getBookingData()
     {
+        $query = Booking::join('booking_providers', 'bookings.id', '=', 'booking_providers.booking_id')
+            ->join('users', 'users.id', '=', 'booking_providers.provider_id')
+            ->join('booking_services', 'bookings.id', '=', 'booking_services.booking_id')
+            ->join('service_categories', 'booking_services.services', '=', 'service_categories.id')
+            ->select(
+                'users.id as usersid',
+                'bookings.id',
+                'users.name as Provider',
+                'service_categories.name as Title',
+                'booking_services.start_time',
+                'booking_services.end_time'
+            )
+            ->orderByDesc('booking_services.start_time');
+    
         $this->currentDate = Carbon::now();
-        if($this->Filter=="CurrentDate")
-        return Booking::whereDate('booking_start_at', $this->currentDate->format('Y-m-d'))
-            ->join('booking_providers','bookings.id','=','booking_providers.booking_id')
-            ->join('users', 'users.id', '=', 'booking_providers.provider_id')
-            ->join('booking_services', 'bookings.id', '=', 'booking_services.booking_id')
-            ->join('service_categories', 'booking_services.services', '=', 'service_categories.id')
-            ->select(
-                'users.id as usersid',
-                'bookings.id',
-                'users.name as Provider',
-                'service_categories.name as Title',
-                'booking_services.start_time',
-                'booking_services.end_time'
-            )
-            ->orderByDesc('booking_services.start_time')
-            ->get()
-            ->toArray();
-
-            if($this->Filter=="Booking")
-            return Booking::whereDate('booking_start_at', $this->currentDate->format('Y-m-d'))
-            ->where('bookings.id',$this->ID)
-            ->join('booking_providers','bookings.id','=','booking_providers.booking_id')
-            ->join('users', 'users.id', '=', 'booking_providers.provider_id')
-            ->join('booking_services', 'bookings.id', '=', 'booking_services.booking_id')
-            ->join('service_categories', 'booking_services.services', '=', 'service_categories.id')
-            ->select(
-                'users.id as usersid',
-                'bookings.id',
-                'users.name as Provider',
-                'service_categories.name as Title',
-                'booking_services.start_time',
-                'booking_services.end_time'
-            )
-            ->orderByDesc('booking_services.start_time')
-            ->get()
-            ->toArray();
-
-            if($this->Filter=="Provider")
-            return BookingProvider::where("provider_id",$this->ID)
-            ->join("bookings",'bookings.id','=','booking_providers.booking_id')
-            ->whereDate('bookings.booking_start_at', $this->currentDate->format('Y-m-d'))
-            ->join('users', 'booking_providers.provider_id', '=', 'users.id')
-            ->join('booking_services', 'bookings.id', '=', 'booking_services.booking_id')
-            ->join('service_categories', 'booking_services.services', '=', 'service_categories.id')
-            ->select(
-                'users.id as usersid',
-                'bookings.id',
-                'users.name as Provider',
-                'service_categories.name as Title',
-                'booking_services.start_time',
-                'booking_services.end_time'
-            )
-            ->orderByDesc('booking_services.start_time')
-            ->get()
-            ->toArray();
-
-            if($this->Filter=="changedate")
-            {
-                return Booking::whereDate('booking_start_at', date("y-m,d", strtotime($this->selcteddate)))
-                ->join('booking_providers','bookings.id','=','booking_providers.booking_id')
-                ->join('users', 'users.id', '=', 'booking_providers.provider_id')
-                ->join('booking_services', 'bookings.id', '=', 'booking_services.booking_id')
-                ->join('service_categories', 'booking_services.services', '=', 'service_categories.id')
-                ->select(
-                    'users.id as usersid',
-                    'bookings.id',
-                    'users.name as Provider',
-                    'service_categories.name as Title',
-                    'booking_services.start_time',
-                    'booking_services.end_time'
-                )
-                ->orderByDesc('booking_services.start_time')
-                ->get()
-                ->toArray();
-            }
-
-
-            if($this->Filter=="Team")
-            {
+        if ($this->Filter == "CurrentDate") {
+            $query->whereDate('booking_start_at', $this->currentDate->format('Y-m-d'));
+        } elseif ($this->Filter == "Booking") {
+            $query->whereDate('booking_start_at', $this->currentDate->format('Y-m-d'))
+                ->where('bookings.id', $this->ID);
+        } elseif ($this->Filter == "Provider") {
+            $query->where("provider_id", $this->ID)
+                ->whereDate('bookings.booking_start_at', $this->currentDate->format('Y-m-d'));
+        } elseif ($this->Filter == "changedate") {
+            $query->whereDate('booking_start_at', date("Y-m-d", strtotime($this->selecteddate)));
+        } elseif ($this->Filter == "Team") {
             $team = Team::find($this->ID);
             if ($team) {
-                $userIds =TeamProviders::where("team_id",$this->ID)
+                $userIds = TeamProviders::where("team_id", $this->ID)
                     ->pluck('provider_id')
                     ->toArray();
+                $query->whereIn("provider_id", $userIds);
             } else {
-                $userIds = []; // Default empty array if the team is not found
+                $query->where('users.id', null); // Empty result
             }
-            return BookingProvider::whereIn("provider_id",$userIds)
-                ->join("bookings",'bookings.id','=','booking_providers.booking_id')
-                ->whereDate('bookings.booking_start_at', $this->currentDate->format('Y-m-d'))
-                ->join('users', 'booking_providers.provider_id', '=', 'users.id')
-                ->join('booking_services', 'bookings.id', '=', 'booking_services.booking_id')
-                ->join('service_categories', 'booking_services.services', '=', 'service_categories.id')
-                ->select(
-                    'users.id as usersid',
-                    'bookings.id',
-                    'users.name as Provider',
-                    'service_categories.name as Title',
-                    'booking_services.start_time',
-                    'booking_services.end_time'
-                )
-                ->orderByDesc('booking_services.start_time')
-                ->get()
-                ->toArray();
-            }
-                
-            
-
+            $query->whereDate('bookings.booking_start_at', $this->currentDate->format('Y-m-d'));
+        }
+    
+        return $query->get()->toArray();
     }
-
+    
     private function transformBookingData($bookingData)
     {
         $groupedData = [];
@@ -202,73 +135,99 @@ class Availibility extends Component
         return array_values($groupedData);
     }
 
-        private function initializeTimeSlots()
+    private function initializeTimeSlots()
     {
         $timeSlots = [];
-
-        for ($hour = $this->startBTime; $hour <= $this->endBTime; $hour++) {
+        
+        // Create time slots with 2-hour intervals
+        for ($hour = $this->startBTime; $hour <= $this->endBTime - 2; $hour += 2) {
             $timeSlot = [
-                'title' => '',
-                'class' => '',
-                'col' => ''
+                
             ];
-
+            
             $formattedHour = sprintf('%02d', $hour); // Format as two digits, e.g., 02 instead of 2
+           
+            
             $timeSlots[$formattedHour . ':00'] = $timeSlot;
-            $timeSlots[$formattedHour . '-class'] = &$timeSlots[$formattedHour . ':00']['class'];
-            $timeSlots[$formattedHour . '-col'] = &$timeSlots[$formattedHour . ':00']['col'];
         }
-
+        
         return $timeSlots;
     }
-
-
+    
     private function populateTimeSlot(&$timeSlots, $booking)
     {
         $startTime = Carbon::parse($booking['start_time']);
         $endTime = Carbon::parse($booking['end_time']);
         $durationHours = $startTime->diffInHours($endTime);
-    
-        $hourSlot = $startTime->format('H') . ':00';
-    
-        if (isset($timeSlots[$hourSlot])) {
-            $timeSlots[$hourSlot]['title'] = $booking['Title'];
-            $timeSlots[$hourSlot]['col'] = $durationHours;
-    
-            // Initialize or increment the alternating counter
-            if (!isset($this->alternatingCounter)) {
-                $this->alternatingCounter = 0;
-            } else {
-                $this->alternatingCounter++;
+        
+        // Find the appropriate time slot for the booking
+        $hourSlot = $startTime->format('H');
+        $formattedHourSlot = sprintf('%02d', $hourSlot);
+        
+        if (isset($timeSlots[$formattedHourSlot . ':00'])) {
+            $slots=[
+            'title' => $booking['Title'],
+            'col' => '' ,
+            'class'=>'bg-purple event-box',
+            ]; // Set the default duration to 2 hours]
+            array_push($timeSlots[$formattedHourSlot . ':00'], $slots);
+        }
+        else{
+            $hourSlot = $startTime->format('H');
+            $hourSlot=$hourSlot-1;
+            $formattedHourSlot = sprintf('%02d', $hourSlot);
+
+            if (isset($timeSlots[$formattedHourSlot . ':00'])) {
+                $slots=[
+                'title' => $booking['Title'],
+                'col' => '' ,
+                'class'=>'bg-lighter event-box',
+                ]; // Set the default duration to 2 hours]
+                array_push($timeSlots[$formattedHourSlot . ':00'], $slots);
             }
-    
-            // Determine the class based on the alternating counter
-            $nextClass = ($this->alternatingCounter % 2 === 0) ? 'bg-lighter event-box' : 'bg-purple event-box';
-    
-            $timeSlots[$hourSlot]['class'] = $nextClass;
+
         }
     }
-    //this is for the th 
+    
+    // This is for the th
     function generateTimeHeaders() {
         $timeHeaders = [];
-    
-        for ($hour = 0; $hour <= 24; $hour++) {
+        
+        for ($hour = 0; $hour < 24; $hour += 2) {
             $formattedHour = sprintf('%02d', $hour);
-            $timeHeaders[] = $formattedHour . ':00';
+            $timeHeaders[] = $formattedHour . ':00-' . sprintf('%02d', $hour + 2) . ':00';
         }
-    
+        
         return $timeHeaders;
     }
     
-    public function ChangeFilter($ID,$Filter)
-        { 
-            $this->Filter=$Filter;
-            $this->ID=$ID;
-            $bookingData = $this->getBookingData();
-            $this->schedule = $this->transformBookingData($bookingData);
-           
+    
+    public function ChangeFilter($ID, $Filter)
+    {
+        $this->Filter = $Filter;
+        $this->ID = $ID;
+        $bookingData = $this->getBookingData();
+    
+        switch ($Filter) {
+            case "Booking":
+                $selectedBooking = Booking::where("id", $ID)->select('booking_number')->first();
+                $this->selectedBookingNumber = $selectedBooking ? $selectedBooking->booking_number : '';
+                break;
+            
+            case "Provider":
+                $selectedProvider = User::where("id", $ID)->select('name')->first();
+                $this->selectedProvider = $selectedProvider ? $selectedProvider->name : '';
+                break;
+    
+            case "Team":
+                $selectedTeam = Team::where("id", $ID)->select('name')->first();
+                $this->selectedTeam = $selectedTeam ? $selectedTeam->name : '';
+                break;
         }
-
+    
+        $this->schedule = $this->transformBookingData($bookingData);
+    }
+    
 
     public function showForm()
     {
@@ -282,13 +241,28 @@ class Availibility extends Component
     public function updateVa($attrName, $val)
 	{
 
-		   $this->selcteddate= $val;
+		   $this->selecteddate= $val;
            $this->Filter="changedate";
            $bookingData = $this->getBookingData();
            $this->schedule = $this->transformBookingData($bookingData);
 
-
-
 	}
+
+    public function resetDate()
+    {
+        $this->selecteddate = null; // Reset the selected date
+        $this->selectedbooking=null;
+        $this->selectedprovider=null;
+        $this->selectedteam=null;
+        $this->Filter = 'CurrentDate'; // Reset the filter
+        $bookingData = $this->getBookingData();
+        $this->schedule = $this->transformBookingData($bookingData);
+    }
+
+
+
+
+
+
 
 }
