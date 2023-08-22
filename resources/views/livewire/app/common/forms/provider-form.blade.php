@@ -107,7 +107,7 @@
                                         :class="{ 'active': tab === 'schedule' }" @click.prevent="tab = 'schedule'"
                                         id="schedule-tab" role="tab"
                                         wire:click.prevent="setStep(4,'scheduleActive','schedule');
-                               
+
                                 aria-controls="schedule"
                                         aria-selected="true">
 
@@ -150,8 +150,8 @@
                                                         <img src="https://production-qa.eclipsescheduling.com/images/camera_icon.png"
                                                             alt="">
                                                     </span>
-                                                    <label for="cropfile" class="form-label visually-hidden">Input
-                                                        File</label>
+                                                    <label for="cropfile" class="form-label visually-hidden">
+                                                        Upload Profile Picture</label>
                                                     <input wire:model="image" class="form-control inputFile"
                                                         accept="image/*" id="cropfile" name="image"
                                                         type="file" aria-invalid="false">
@@ -280,12 +280,12 @@
                                                 </label>
                                                 <a @click="addNew = true" href="#" class="fw-bold">
                                                     <small>
-                                                        {{-- 
+                                                        {{--
                                                                 <svg aria-label="Add New" class="me-1" width="20" height="21"
                                                                     viewBox="0 0 20 21">
                                                                     <use xlink:href="/css/common-icons.svg#add-new"></use>
                                                                 </svg>
-                                                            
+
                                                                 Add New --}}
                                                     </small>
                                                 </a>
@@ -551,7 +551,7 @@
                                                                         height="21" viewBox="0 0 20 21">
                                                                         <use xlink:href="/css/common-icons.svg#add-new"></use>
                                                                     </svg>
-                                                                
+
                                                                     Add New  --}}
                                                         </small>
                                                     </a>
@@ -583,7 +583,7 @@
                                                         <input class="form-check-input"
                                                             wire:model.defer="provider_details.show_as_certified"
                                                             type="checkbox" id="show_as_certified">
-                                                        <label class="form-check-label" for="display-provider">
+                                                        <label class="form-check-label" for="show_as_certified">
                                                             Display Provider as Certified
                                                         </label>
                                                     </div>
@@ -592,7 +592,7 @@
                                         </div>
                                         <div class="col-lg-6 mb-4 pe-lg-5">
                                             <div class="d-flex justify-content-between align-items-center">
-                                                <label class="form-label" for="experience">
+                                                <label class="form-label" for="user_experience">
                                                     Experience
                                                 </label>
                                                 <a @click="addDocument = true" href="#" class="fw-bold">
@@ -987,6 +987,7 @@
                                                                                         </div>
                                                                                         <div class="col-4">
                                                                                             <select
+                                                                                                aria-label="Select Distance Unit"
                                                                                                 id="travel_rate_unit"
                                                                                                 class="form-select"
                                                                                                 wire:model.defer="provider_details.travel_rate_unit">
@@ -1040,7 +1041,7 @@
                                                                                             type="checkbox"
                                                                                             id="same_as_service_rate">
                                                                                         <label class="form-check-label"
-                                                                                            for="service-rate">
+                                                                                            for="same_as_service_rate">
                                                                                             Same as Service Rate
                                                                                         </label>
                                                                                     </div>

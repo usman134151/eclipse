@@ -23,7 +23,7 @@ class Booknow extends Component
 {
     public $component = 'requester-info';
     
-    public $booking_id,$showForm,$booking,$requesters =[],$bManagers=[],$supervisors=[],$consumers=[],$participants=[], $step=1,$userAddresses=[], $timezone, $schedule, $timezones, $formIds ;
+    public $booking_id,$showForm,$booking,$requesters =[],$bManagers=[],$supervisors=[],$consumers=[],$participants=[], $step=1,$userAddresses=[], $timezone, $schedule, $timezones, $formIds,$selectedAddressId ;
     protected $listeners = ['showList' => 'resetForm','updateVal', 'updateCompany',
         'updateSelectedIndustries' => 'selectIndustries',
         'updateSelectedDepartments',
@@ -211,6 +211,7 @@ class Booknow extends Component
                 //update booking
                 $this->booking->save();
             }
+           // dd($this->booking->physical_address_id);
             $this->booking_id=$this->booking->id;
             $this->getForms();
             
@@ -532,6 +533,7 @@ class Booknow extends Component
             'booking.customer_notes'=>'nullable',
             'booking.billing_notes'=>'nullable',
             'booking.payment_notes'=>'nullable',
+            'booking.physical_address_id'=>'nullable',
 
         ];
 
@@ -569,6 +571,13 @@ class Booknow extends Component
         $this->userAddresses[]=$address->toArray();
          }
         
+    }
+
+    public function setBookingAddress($addressId)
+    {
+        $this->booking->physical_address_id=$addressId;
+        $this->selectedAddressId = $addressId; 
+       
     }
 	public function addAddress($addressArr)
 	{
