@@ -481,7 +481,7 @@
     @endif
     @include('panels.provider.check-in')
     @include('panels.provider.check-out')
-    {{-- @include('panels.common.assignment-details') --}}
+    @include('panels.common.assignment-details')
     @include('panels.provider.add-reimbursement')
     @include('modals.common.assignment-invitation')
     @include('modals.common.confirm-invitation')
