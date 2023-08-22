@@ -40,8 +40,8 @@ class RunningLate extends Component
     public function rules()
     {
         return [
-            'hours' => 'nullable|numeric|gt:0',
-            'mins' => 'nullable|numeric|gt:0',
+            'hours' => 'nullable|numeric',
+            'mins' => 'nullable|numeric',
 
         ];
     }
@@ -57,7 +57,10 @@ class RunningLate extends Component
             $bookingProviderService->check_in_status = 2;
             $bookingProviderService->save();
         }
+
         $this->emit('closeRunningLateModal');
+        $this->emit('showConfirmation','Booking status updated successfully');
+
     }
 
     public function mount()
