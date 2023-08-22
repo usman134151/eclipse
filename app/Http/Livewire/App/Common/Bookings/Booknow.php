@@ -13,7 +13,7 @@ use App\Models\Tenant\Schedule;
 use App\Models\Tenant\Company;
 use App\Services\App\BookingOperationsService;
 use App\Models\Tenant\CustomizeForms;
-
+use App\Services\App\AddressService;
 use Illuminate\Support\Collection;
 use Carbon\Carbon;
 use DateTime;
@@ -566,10 +566,14 @@ class Booknow extends Component
     public function refreshAddresses(){
        //query to fetch addresses
        $this->userAddresses=[];
-      $addresses=UserAddress::where(['address_type'=>1,'user_id'=>$this->booking['customer_id']])->orderBy('id','desc')->limit('4')->get();
-      foreach($addresses as $address){
-        $this->userAddresses[]=$address->toArray();
-         }
+       $ids=[$this->booking['customer_id'],$this->booking['company_id']];
+       for($i=0;$i<count($ids);$i++){
+        $addresses=UserAddress::where(['address_type'=>1,'user_id'=>$ids[$i]])->orderBy('id','desc')->get();
+        foreach($addresses as $address){
+          $this->userAddresses[]=$address->toArray();
+           }
+       }
+
         
     }
 
@@ -584,8 +588,14 @@ class Booknow extends Component
 
 		if (isset($addressArr['index'])) { //update existing
 			$this->userAddresses[$addressArr['index']] = $addressArr;
-		} else
-			$this->userAddresses[] = $addressArr;
+		} else{
+            //saving address for user first
+            $addressService = new AddressService();
+            $addressService->saveAddresses($this->booking['customer_id'],1,[$addressArr]);
+            $this->refreshAddresses();
+            $this->setBookingAddress($this->userAddresses[0]['id']);
+        }
+			
 	}
 
     public function editAddress($index, $type)
