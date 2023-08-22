@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class RunningLate extends Component
 {
-    public $showForm , $service;
+    public $showForm , $service , $hours,$mins, $customSet=false;
     protected $listeners = ['showList' => 'resetForm', 'openRunningLateModal' => 'setDetails'];
 
     public function setDetails($booking_id, $service_id=null)
@@ -28,8 +28,16 @@ class RunningLate extends Component
         return view('livewire.app.common.modals.running-late');
     }
 
+    public function fastSet($mins){
+        // $this->customSet=false;
+        $this->hours =00;
+        $this->mins = $mins;
+    }
+
     public function mount()
     {
+        $this->hours=00;
+        $this->mins=00;
     }
 
     function showForm()
