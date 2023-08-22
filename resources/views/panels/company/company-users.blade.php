@@ -1,5 +1,5 @@
 {{-- Company Users Off Canvas - Start --}}
-<x-off-canvas show="companyUsers" >
+<x-off-canvas show="companyUsers"  :allowBackdrop="false" size="fullscreen" >
 	<x-slot name="title">{{$cu_companyLabel}} Users</x-slot>
         @if($cu_companyId>0)
 
