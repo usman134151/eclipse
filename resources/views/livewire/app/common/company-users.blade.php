@@ -51,37 +51,37 @@
                         <td class="">
                             <div class=" form-check mb-0">
                                 <input class="form-check-input" type="checkbox" id="CompanyAdmin"
-                                    wire:model.defer="rolesArr.10">
+                                    wire:model.defer="rolesArr.{{$user->id}}.10">
                             </div>
                         </td>
                         <td class="text-center">
                             <div class="form-check mb-0">
                                 <input class="form-check-input" type="checkbox"  id="supervisor"
-                                    wire:model.defer="rolesArr.5">
+                                    wire:model.defer="rolesArr.{{$user->id}}.5">
                             </div>
                         </td>
                         <td class="text-center">
                             <div class="form-check mb-0">
                                 <input class="form-check-input" type="checkbox"  id="billingManager"
-                                    wire:model.defer="rolesArr.9">
+                                    wire:model.defer="rolesArr.{{$user->id}}.9">
                             </div>
                         </td>
                           <td class="text-center">
                             <div class="form-check mb-0">
                                 <input class="form-check-input" type="checkbox"  id="serviceConsumer"
-                                    wire:model.defer="rolesArr.7">
+                                    wire:model.defer="rolesArr.{{$user->id}}.7">
                             </div>
                         </td>
                           <td class="text-center">
                             <div class="form-check mb-0">
                                 <input class="form-check-input" type="checkbox"  id="requester"
-                                    wire:model.defer="rolesArr.7">
+                                    wire:model.defer="rolesArr.{{$user->id}}.7">
                             </div>
                         </td>
                           <td class="text-center">
                             <div class="form-check mb-0">
                                 <input class="form-check-input" type="checkbox"  id="participant"
-                                    wire:model.defer="rolesArr.8">
+                                    wire:model.defer="rolesArr.{{$user->id}}.8">
                             </div>
                         </td>
 

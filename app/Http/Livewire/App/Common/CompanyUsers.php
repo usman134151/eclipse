@@ -4,6 +4,7 @@ namespace App\Http\Livewire\App\Common;
 
 use App\Models\Tenant\Company;
 use App\Models\Tenant\User;
+use App\Services\App\UserService;
 use Livewire\Component;
 
 class CompanyUsers extends Component
@@ -31,6 +32,13 @@ class CompanyUsers extends Component
             ->where('companies.id', '=', $this->companyId)
             ->select('users.id', 'users.name', 'email', 'phone', 'user_position as position', 'profile_pic')
             ->get();
+        $service = new UserService();
+
+        foreach($this->users as $user){
+            $this->rolesArr[$user->id] =  $service->getCustomerRoles($user->id);
+            // array_keys($service->getCustomerRoles($user->id));
+        }
+        // dd($this->users);
     }
     public function save(){
         $this->dispatchBrowserEvent('close-company-users');
