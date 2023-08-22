@@ -5,7 +5,7 @@
     </div>
     <div class="modal-body">
       <div class="d-flex justify-content-center flex-column align-items-center">
-        <p class="mb-4">How much time running late for “English to American Sign Language”</p>
+        <p class="mb-4">How much time running late for “{{isset($service->name) ? $service->name : ''}}”</p>
         <div class="d-flex gap-3 align-items-center mb-4">
           <a href="#" class="btn btn-outline-dark btn-sm rounded">15 mins</a>
           <a href="#" class="btn btn-outline-dark btn-sm rounded">30 mins</a>

@@ -55,9 +55,11 @@ class BookingList extends Component
 		}
 		if ($this->provider_id) {	//from provider panel
 			//limit bookings to this providers
-			$query->whereHas('booking_provider', function ($join) {
+			$query->join('booking_providers', function ($join) {
 				$join->where('provider_id', $this->provider_id);
+				$join->on('booking_id', 'bookings.id');
 			});
+			$query->select(['booking_providers.service_id','bookings.*']);
 			$base = "provider-";
 		}
 		// $a = $query->get();
