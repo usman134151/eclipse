@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class CompanyUsers extends Component
 {
-    public $showForm,$companyLabel,$companyId,$users;
+    public $showForm,$companyLabel,$companyId,$users, $rolesArr=[];
     protected $listeners = ['showList' => 'resetForm'];
 
     public function render()
