@@ -155,39 +155,41 @@ class Availibility extends Component
     }
     
     private function populateTimeSlot(&$timeSlots, $booking)
-    {
-        $startTime = Carbon::parse($booking['start_time']);
-        $endTime = Carbon::parse($booking['end_time']);
-        $durationHours = $startTime->diffInHours($endTime);
-        
-        // Find the appropriate time slot for the booking
+{
+    $startTime = Carbon::parse($booking['start_time']);
+    $endTime = Carbon::parse($booking['end_time']);
+    $durationHours = $startTime->diffInHours($endTime);
+    
+    // Truncate the title to 10 characters at most
+    $title = strlen($booking['Title']) > 10 ? substr($booking['Title'], 0, 10) . '...' : $booking['Title'];
+
+    // Find the appropriate time slot for the booking
+    $hourSlot = $startTime->format('H');
+    $formattedHourSlot = sprintf('%02d', $hourSlot);
+    
+    if (isset($timeSlots[$formattedHourSlot . ':00'])) {
+        $slots = [
+            'title' => $title, // Use the truncated title
+            'col' => '',
+            'class' => 'bg-purple event-box',
+        ];
+        array_push($timeSlots[$formattedHourSlot . ':00'], $slots);
+    } else {
         $hourSlot = $startTime->format('H');
+        $hourSlot = $hourSlot - 1;
         $formattedHourSlot = sprintf('%02d', $hourSlot);
-        
+
         if (isset($timeSlots[$formattedHourSlot . ':00'])) {
-            $slots=[
-            'title' => $booking['Title'],
-            'col' => '' ,
-            'class'=>'bg-purple event-box',
-            ]; // Set the default duration to 2 hours]
+            $slots = [
+                'title' => $title, // Use the truncated title
+                'col' => '',
+                'class' => 'bg-lighter event-box',
+            ];
             array_push($timeSlots[$formattedHourSlot . ':00'], $slots);
         }
-        else{
-            $hourSlot = $startTime->format('H');
-            $hourSlot=$hourSlot-1;
-            $formattedHourSlot = sprintf('%02d', $hourSlot);
-
-            if (isset($timeSlots[$formattedHourSlot . ':00'])) {
-                $slots=[
-                'title' => $booking['Title'],
-                'col' => '' ,
-                'class'=>'bg-lighter event-box',
-                ]; // Set the default duration to 2 hours]
-                array_push($timeSlots[$formattedHourSlot . ':00'], $slots);
-            }
-
-        }
     }
+}
+
     
     // This is for the th
     function generateTimeHeaders() {
@@ -212,16 +214,22 @@ class Availibility extends Component
             case "Booking":
                 $selectedBooking = Booking::where("id", $ID)->select('booking_number')->first();
                 $this->selectedBookingNumber = $selectedBooking ? $selectedBooking->booking_number : '';
+                $this->selectedTeam=null;
+                $this->selectedProvider=null;
                 break;
             
             case "Provider":
                 $selectedProvider = User::where("id", $ID)->select('name')->first();
                 $this->selectedProvider = $selectedProvider ? $selectedProvider->name : '';
+                $this->selectedBookingNumber=null;
+                $this->selectedTeam=null;
                 break;
     
             case "Team":
                 $selectedTeam = Team::where("id", $ID)->select('name')->first();
                 $this->selectedTeam = $selectedTeam ? $selectedTeam->name : '';
+                $this->selectedBookingNumber=null;
+                $this->selectedProvider=null;
                 break;
         }
     
@@ -251,9 +259,9 @@ class Availibility extends Component
     public function resetDate()
     {
         $this->selecteddate = null; // Reset the selected date
-        $this->selectedbooking=null;
-        $this->selectedprovider=null;
-        $this->selectedteam=null;
+        $this->selectedBookingNumber=null;
+       $this->selectedTeam=null;
+       $this->selectedProvider=null;
         $this->Filter = 'CurrentDate'; // Reset the filter
         $bookingData = $this->getBookingData();
         $this->schedule = $this->transformBookingData($bookingData);

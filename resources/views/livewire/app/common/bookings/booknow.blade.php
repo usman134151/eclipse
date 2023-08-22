@@ -83,8 +83,10 @@
                                         data-bs-toggle="tooltip" data-bs-placement="top" title=""></i></label>
                                 <div class="d-flex gap-3 flex-column flex-lg-row mb-0">
                                     @foreach($frequencies as $frequency)
-                                        <input class="form-check-input" type="radio" wire:model="booking.frequency_id" id="frequency_id-{{$frequency['id']}}" name="frequency_id" value="{{$loop->index+1}}">
-                                        <label class="form-check-label" for="frequency_id-{{$frequency['id']}}">{{$frequency['setup_value_label']}}</label>
+                                        <div class="form-check form-check-highlighted">
+                                            <input class="form-check-input" type="radio" wire:model="booking.frequency_id" id="frequency_id-{{$frequency['id']}}" name="frequency_id" value="{{$loop->index+1}}">
+                                            <label class="form-check-label" for="frequency_id-{{$frequency['id']}}">{{$frequency['setup_value_label']}}</label>
+                                        </div>    
                                     @endforeach
                                     @error('booking.frequency_id')
                                                 <span class="d-inline-block invalid-feedback mt-2">
@@ -842,6 +844,7 @@
 
                                                     <div class="col-lg-12">
                                                         <div class="row between-section-segment-spacing">
+                                                        <input type="hidden" wire:model="booking.physical_address_id" id="addressId">
                                                         @include('components.default-address', ['type' => 1, 'userAddresses' => $userAddresses, 'title'=>'Physical'])
                                                         </div>
                                                     </div>    
@@ -2047,6 +2050,11 @@
 				var clickEvent = new Event("click");
 				elem.dispatchEvent(clickEvent);
             });
+
+    function setAddressAndBooking(addressId) {
+        $('#addressId').val(addressId);
+        @this.setBookingAddress(addressId);
+    }
 
     </script>
     @endpush
