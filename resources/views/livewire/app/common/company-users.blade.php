@@ -1,4 +1,5 @@
 <div>
+    @if($users->count())
     <div class="">
         <table id="unassigned_data" class="table table-hover" aria-label="Company Users Table">
             <thead>
@@ -118,4 +119,9 @@
              <button wire:click.prevent="$emit('savePermissions')" x-on:close-company-users.window="companyUsers = !companyUsers" class="btn btn-primary rounded">Update Permissions</button>
          </div>
      </x-slot>
+     @else
+     <div class="text-center">
+        <small>No users associated with this company</small>
+     </div>
+    @endif
 </div>
