@@ -772,7 +772,7 @@
 
     <div class="tab-pane fade" id="users-tab-pane" role="tabpanel" aria-labelledby="users-tab-tab" tabindex="0">
         <div class="row mb-3">
-            <h2>Department Users</h2>
+            <h2>Company Users</h2>
         </div>
         <div class="d-flex justify-content-end mt-4 mb-3"></div>
 
