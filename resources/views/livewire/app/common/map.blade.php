@@ -14,16 +14,14 @@
 <h3>Map</h3>
 		<!-- Filters -->
 
-    <div class="col-sm">
-    <button class="btn btn-secondary btn-sm reset-button" wire:click="resetDate">Reset</button>
-    </div>
+    
 		<div class="row mb-4">
 		  <div class="col-lg-3 mb-4 mb-lg-0 position-relative align-self-end">
 			<!-- Begin : it will be replaced with livewire module-->
 			<svg aria-label="Date" class="icon-date md cursor-pointer" width="20" height="20" viewBox="0 0 20 20" fill="none"
                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#date-field"></use>
             </svg>
-            <input type="" class="form-control form-control-md form-control-date js-single-date" placeholder="MM/DD/YYYY" name="selectDate" aria-label="Select Date" id="selecteddate">
+            <input type="" class="form-control form-control-md form-control-date js-single-date" placeholder="" name="selectDate" aria-label="Select Date" id="selecteddate" wire:model="selectedDate" >
 			<!-- End : it will be replaced with livewire module -->
 
 			<!-- End : it will be replaced with livewire module -->
@@ -78,7 +76,9 @@
 			</div>
 		  </div>
 		</div>
-    
+    <div class="col-sm">
+    <div wire:click="resetDate">Reset</div>
+</div>
 		<!-- /Filters -->
 		<div id="map"  wire:ignore></div>
 
