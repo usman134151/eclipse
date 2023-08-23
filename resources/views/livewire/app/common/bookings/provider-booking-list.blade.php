@@ -85,7 +85,7 @@
                                                             </div>
                                                             {{-- <div>Shelby Sign Language</div> --}}
                                                                 <div>Service:
-                                                                    {{ isset($booking->service_name) ? $booking->service_name : ""  }}
+                                                                    {{ isset($booking->service_name) ? $booking->service_name : "N/A"  }}
                                                                 </div>
                                                         </td>
                                                         <td>
