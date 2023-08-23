@@ -67,8 +67,8 @@
                                                             <a
                                                                 href="#">{{ $booking['booking_number'] ? $booking['booking_number'] : '' }}</a>
                                                             <div>
-                                                                @if ($booking->services->isNotEmpty())
-                                                                    {{ $serviceTypes[$booking->services->first()->pivot->service_types]['title'] }}
+                                                                @if ($booking->service_type)
+                                                                    {{ $serviceTypes[$booking->service_type]['title'] }}
                                                                 @endif
                                                                 Assignment
                                                             </div>
@@ -80,14 +80,13 @@
                                                         </td>
                                                         <td>
                                                             <div>
-                                                                {{ $booking['accommodations'] ? $booking['accommodations']['name'] : '' }}
+                                                                    {{ isset($booking->accommodation_name) ? $booking->accommodation_name : ""  }}
+
                                                             </div>
                                                             {{-- <div>Shelby Sign Language</div> --}}
-                                                            @if ($booking->services->isNotEmpty())
                                                                 <div>Service:
-                                                                    {{ $booking->services->first()->name }}
+                                                                    {{ isset($booking->service_name) ? $booking->service_name : ""  }}
                                                                 </div>
-                                                            @endif
                                                         </td>
                                                         <td>
                                                             <div>{!! $booking['address'] !!}</div>
@@ -102,8 +101,8 @@
                                                         </td>
                                                         <td>
                                                             <div class="d-flex actions">
-                                                                @if ($booking->services->isNotEmpty())
-                                                                    @if ($booking->services->first()->pivot->service_types == 1)
+                                                                @if ($booking->service_type)
+                                                                    @if ($booking->service_type == 1)
                                                                         {{-- In - Person --}}
                                                                         <div class="d-flex gap-2 align-items-center">
                                                                             <a href="#" title="View"
@@ -169,7 +168,8 @@
                                                                 </a>
 
 
-                                                                @if ($booking['check_in_status'] == 0 && $bookingType != 'Unassigned' && $bookingType != 'Invitations')
+                                                                @if ($booking['check_in_status'] == 0  && $bookingType != 'Unassigned' && $bookingType != 'Invitations')
+                                                                    @if( $booking['display_running_late'])
                                                                     <a href="javascript:void(0)" title="Running Late"
                                                                         aria-label="Running Late"
                                                                         wire:click="$emit('openRunningLateModal',{{ $booking['id'] }}, {{ $booking['service_id'] }})"
@@ -184,10 +184,12 @@
                                                                             </use>
                                                                         </svg>
                                                                     </a>
+                                                                    @endif
+                                                                    @if($booking['display_check_in'])
 
                                                                     <a href="javascript:void(0)"
                                                                         @click="offcanvasOpenCheckIn = true"
-                                                                        wire:click="showCheckInPanel('{{ $booking['id'] }}','{{ $booking['booking_number'] }}')"
+                                                                        wire:click="showCheckInPanel('{{$booking['id']}}','{{ $booking['booking_service_id'] }}','{{ $booking['booking_number'] }}')"
                                                                         title="Check In" aria-label="Check In"
                                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                         <svg aria-label="Check In" width="22"
@@ -199,6 +201,7 @@
                                                                             </use>
                                                                         </svg>
                                                                     </a>
+                                                                    @endif
                                                                 @elseif($booking['status'] == 'Active' && $bookingType != 'Unassigned' && $bookingType != 'Invitations')
                                                                     <a href="#"
                                                                         @click="offcanvasOpenCheckOut = true"

@@ -50,17 +50,18 @@ class RunningLate extends Component
     public function save()
     {
         $this->validate();
-        if ($this->hours > 0 || $this->mins > 0) {
-            $bookingProviderService = BookingProvider::where(['booking_id' => $this->booking_id, 'provider_id' => Auth::id()])->first();
-            $bookingProviderService->running_late_hour = $this->hours;
-            $bookingProviderService->running_late_min = $this->mins;
-            $bookingProviderService->check_in_status = 2;
-            $bookingProviderService->save();
+        if (($this->service)) {
+            if ($this->hours > 0 || $this->mins > 0) {
+                $bookingProviderService = BookingProvider::where(['booking_id' => $this->booking_id, 'provider_id' => Auth::id()])->first();
+                $bookingProviderService->running_late_hour = $this->hours;
+                $bookingProviderService->running_late_min = $this->mins;
+                $bookingProviderService->check_in_status = 2;
+                $bookingProviderService->save();
+            }
+
+            $this->emit('showConfirmation', 'Booking status updated successfully');
         }
-
         $this->emit('closeRunningLateModal');
-        $this->emit('showConfirmation','Booking status updated successfully');
-
     }
 
     public function mount()
