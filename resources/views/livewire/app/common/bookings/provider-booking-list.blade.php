@@ -168,7 +168,7 @@
                                                                 </a>
 
 
-                                                                @if ($booking['check_in_status'] == 0 && $bookingType != 'Unassigned' && $bookingType != 'Invitations')
+                                                                @if ($booking['check_in_status'] == 0 && $booking['running_late'] && $bookingType != 'Unassigned' && $bookingType != 'Invitations')
                                                                     <a href="javascript:void(0)" title="Running Late"
                                                                         aria-label="Running Late"
                                                                         wire:click="$emit('openRunningLateModal',{{ $booking['id'] }}, {{ $booking['service_id'] }})"
