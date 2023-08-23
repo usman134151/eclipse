@@ -182,23 +182,21 @@
                                                             </td>
                                                             <td>
                                                                 <div>
-                                                                    {{ $booking['accommodations'] ? $booking['accommodations']['name'] : '' }}
+                                                                    {{ isset($booking->accommodation_name) ? $booking->accommodation_name : ""  }}
                                                                 </div>
                                                                 {{-- <div>Shelby Sign Language</div> --}}
-                                                                @if ($booking->services->isNotEmpty())
                                                                     <div>Service:
-                                                                        {{ $booking->services->first()->name }}
+                                                                    {{ isset($booking->service_name) ? $booking->service_name : "N/A"  }}
                                                                     </div>
-                                                                @endif
                                                             </td>
                                                             <td>
-                                                            @if ($booking->services->isNotEmpty()) 
+                                                            @if ($booking->service_type) 
                                                                 <div class="badge bg-warning mb-1">
                                                                    
-                                                                        {{$serviceTypes[$booking->services->first()->pivot->service_types]['title']}}
+                                                                    {{ $serviceTypes[$booking->service_type]['title'] }}
                                                                    
                                                                 </div> 
-                                                                @if($booking->services->first()->pivot->service_types==1)
+                                                                @if($booking->service_type==1)
                                                                     <div>Address</div>
                                                                 @else
                                                                     <div>Meeting link</div>
