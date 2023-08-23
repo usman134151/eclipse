@@ -22,7 +22,7 @@ class BookingList extends Component
 
 
 
-	protected $listeners = ['showList' => 'resetForm', 'updateVal'];
+	protected $listeners = ['showList' => 'resetForm', 'updateVal', 'showConfirmation'];
 	public $serviceTypes = [
 		'1' => ['class' => 'inperson-rate', 'postfix' => '', 'title' => 'In-Person'],
 		'2' => ['class' => 'virtual-rate', 'postfix' => '_v', 'title' => 'Virtual'],
@@ -55,9 +55,11 @@ class BookingList extends Component
 		}
 		if ($this->provider_id) {	//from provider panel
 			//limit bookings to this providers
-			$query->whereHas('booking_provider', function ($join) {
+			$query->join('booking_providers', function ($join) {
 				$join->where('provider_id', $this->provider_id);
+				$join->on('booking_id', 'bookings.id');
 			});
+			$query->select(['booking_providers.service_id', 'booking_providers.check_in_status','bookings.*']);
 			$base = "provider-";
 		}
 		// $a = $query->get();
@@ -115,5 +117,16 @@ class BookingList extends Component
 		$this->emit('setCheckoutBookingId', $booking_id);
 	}
 
-	
+	public function showConfirmation($message = "")
+	{
+		if ($message) {
+			// Emit an event to display a success message using the SweetAlert package
+			$this->dispatchBrowserEvent('swal:modal', [
+				'type' => 'success',
+				'title' => 'Success',
+				'text' => $message,
+			]);
+		}
+	}
+
 }
