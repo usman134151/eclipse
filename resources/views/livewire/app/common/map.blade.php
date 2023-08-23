@@ -11,7 +11,7 @@
         font-size: 14px;
     }
 </style>
-<h3>Mapl</h3>
+<h3>Map</h3>
 		<!-- Filters -->
 		<div class="row mb-4">
 		  <div class="col-lg-3 mb-4 mb-lg-0 position-relative align-self-end">
