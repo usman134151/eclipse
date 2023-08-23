@@ -573,6 +573,7 @@
                                                                             </div>
                                                                             <div class="col-lg-4">
                                                                                 <select id="measurement_type"
+                                                                                    aria-label="Select Unit"
                                                                                     class="form-select"
                                                                                     wire:model.defer="configuration.measurement_providers">
                                                                                     <option value="km">KM</option>
