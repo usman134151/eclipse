@@ -18,7 +18,7 @@ class BookingList extends Component
 	public $bookingSection;
 	public  $limit = 10;
 	public  $booking_id = 0, $provider_id = null;
-	public $bookingNumber='';
+	public $bookingNumber = '';
 
 
 
@@ -55,19 +55,62 @@ class BookingList extends Component
 		}
 		if ($this->provider_id) {	//from provider panel
 			//limit bookings to this providers
+
 			$query->join('booking_providers', function ($join) {
 				$join->where('provider_id', $this->provider_id);
 				$join->on('booking_id', 'bookings.id');
 			});
-			$query->select(['booking_providers.service_id', 'booking_providers.check_in_status','bookings.*']);
+			$query->leftJoin('booking_services', function ($join) {
+				$join->on('booking_services.booking_id', 'bookings.id');
+				$join->on('booking_providers.booking_service_id', 'booking_services.id');
+			});
+			$query->select([
+				'booking_providers.check_in_status', 'booking_services.services as service_id', 'booking_services.id as booking_service_id',
+				'booking_services.service_types as service_type', 'bookings.*'
+			]);
 			$base = "provider-";
 		}
-		// $a = $query->get();
-		// foreach ($a as $row) {
-		// 	dd($row->services);
-		// }
-		// dd($query->get());
-		return view('livewire.app.common.bookings.' . $base . 'booking-list', ['booking_assignments' => $query->paginate($this->limit)]);
+		$data = $query->paginate($this->limit);
+
+		// setting values for booking and its services
+		foreach ($data as $row) {
+			if ($row->service_id == null) {
+				// prev system compatability
+				$booking_service = count($row->booking_services) ? $row->booking_services->first() : null;
+				$row->service_id = $booking_service ? $booking_service->services : null;
+				$row->service_type = $booking_service ? $booking_service->service_types : null;
+				$row->accommodation_name = $booking_service ? $booking_service->accommodation->name : null;
+				$row->service_name = $booking_service ? $booking_service->service->name : null;
+				$row->booking_service_id = $booking_service ? $booking_service->id : null;
+
+			} else {
+				$booking_service = $row->booking_services ? $row->booking_services->where('id', $row->booking_service_id)->first() : null;
+				$row->accommodation_name = $booking_service ? $booking_service->accommodation->name : null;
+				$row->service_name = $booking_service ? $booking_service->service->name : null;
+			}
+			$row->display_running_late = false;
+			$row->display_check_in = false;
+
+			if ($booking_service) {
+				$val = json_decode($booking_service->service->running_late_procedure, true);
+				if ($val) {
+					if (isset($val['enable_button']) && ($val['enable_button']))
+						$row->display_running_late = true;
+				}
+				$val = json_decode($booking_service->service->check_in_procedure, true);
+				if ($val) {
+					if (isset($val['enable_button']) && ($val['enable_button']))
+					$row->display_check_in = true;
+				}
+			}
+		}
+
+		// UC -1
+		// booking -> booking services -> booking providers_ booking_services_id
+
+		// UC - 2
+		// booking -> booking_services -> booking_providers ( map to booking_id)
+		return view('livewire.app.common.bookings.' . $base . 'booking-list', ['booking_assignments' => $data]);
 	}
 
 
@@ -105,10 +148,11 @@ class BookingList extends Component
 
 	// provider panel functions
 
-	public function showCheckInPanel($booking_id, $bookingNumber){
+	public function showCheckInPanel($booking_id,$booking_service_id, $bookingNumber)
+	{
 		$this->booking_id = $booking_id;
 		$this->bookingNumber = $bookingNumber;
-		$this->emit('setCheckInBookingId', $booking_id);
+		$this->emit('setCheckInBookingId', $booking_id,$booking_service_id);
 	}
 	public function showCheckOutPanel($booking_id, $bookingNumber)
 	{
@@ -128,5 +172,4 @@ class BookingList extends Component
 			]);
 		}
 	}
-
 }

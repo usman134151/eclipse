@@ -78,6 +78,10 @@ class Booking extends Model
     {
         return $this->hasMany(BookingProvider::class, 'booking_id', 'id');
     }
+    public function booking_services()
+    {
+        return $this->hasMany(BookingServices::class, 'booking_id', 'id');
+    }
 
     public function ServiceCategory()
     {
