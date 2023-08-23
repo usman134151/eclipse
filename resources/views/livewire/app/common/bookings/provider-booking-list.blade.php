@@ -95,7 +95,7 @@
                                                         <td>{{ $booking['provider_count'] }}</td>
                                                         <td>
                                                             @if ($bookingType != 'Unassigned' && $bookingType != 'Invitations')
-                                                                {{ $booking['status'] }}
+                                                                {{ $booking['check_in_status'] == 0 ? 'On Time' : ($booking['check_in_status'] == 1 ? 'Checked In' : 'Running Late') }}
                                                             @else
                                                                 Unassigned
                                                             @endif
@@ -153,19 +153,7 @@
                                                                     @endif
                                                                 @endif
                                                                 {{-- remove this after activation --}}
-                                                                <a href="javascript:void(0)"
-                                                                    @click="offcanvasOpenCheckIn = true"
-                                                                    wire:click="showCheckInPanel('{{ $booking['id'] }}','{{ $booking['booking_number'] }}')"
-                                                                    title="Check In" aria-label="Check In"
-                                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                    <svg aria-label="Check In" width="22"
-                                                                        height="22" viewBox="0 0 22 22"
-                                                                        fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <use xlink:href="/css/provider.svg#check-in">
-                                                                        </use>
-                                                                    </svg>
-                                                                </a>
+
                                                                 <a href="#" @click="offcanvasOpenCheckOut = true"
                                                                     wire:click="showCheckOutPanel('{{ $booking['id'] }}','{{ $booking['booking_number'] }}')"
                                                                     title="Check Out" aria-label="Check Out"
@@ -180,12 +168,13 @@
 
                                                                 </a>
 
-                                                                @if ($booking['status'] == 'On Time' && $bookingType != 'Unassigned' && $bookingType != 'Invitations')
+
+                                                                @if ($booking['check_in_status'] == 0 && $bookingType != 'Unassigned' && $bookingType != 'Invitations')
                                                                     <a href="javascript:void(0)" title="Running Late"
                                                                         aria-label="Running Late"
+                                                                        wire:click="$emit('openRunningLateModal',{{ $booking['id'] }}, {{ $booking['service_id'] }})"
                                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#runningLateModal">
+                                                                        data-bs-toggle="modal">
                                                                         <svg aria-label="Running Late" width="23"
                                                                             height="22" viewBox="0 0 23 22"
                                                                             fill="none"
@@ -198,6 +187,7 @@
 
                                                                     <a href="javascript:void(0)"
                                                                         @click="offcanvasOpenCheckIn = true"
+                                                                        wire:click="showCheckInPanel('{{ $booking['id'] }}','{{ $booking['booking_number'] }}')"
                                                                         title="Check In" aria-label="Check In"
                                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                         <svg aria-label="Check In" width="22"
@@ -481,10 +471,27 @@
     @endif
     @include('panels.provider.check-in')
     @include('panels.provider.check-out')
-    {{-- @include('panels.common.assignment-details') --}}
+    @include('panels.common.assignment-details')
     @include('panels.provider.add-reimbursement')
     @include('modals.common.assignment-invitation')
     @include('modals.common.confirm-invitation')
     @include('modals.common.running-late')
     @include('modals.return-assignment')
 </div>
+@push('scripts')
+    <script>
+        function updateVal(attrName, val) {
+
+            Livewire.emit('updateVal', attrName, val);
+
+        }
+
+        Livewire.on('openRunningLateModal', (type) => {
+            $('#runningLateModal').modal('show');
+        });
+        Livewire.on('closeRunningLateModal', () => {
+            $('#runningLateModal').modal('hide');
+
+        });
+    </script>
+@endpush

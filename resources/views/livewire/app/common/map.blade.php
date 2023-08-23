@@ -64,11 +64,9 @@
             document.addEventListener("livewire:load", function() {
                 var locations = @json($locations);
                 var map = new google.maps.Map(document.getElementById("map"), {
-                    zoom: 12,
-                    center: {
-                        lat: 0,
-                        lng: 0
-                    }, // Set a default center
+                    zoom:3,
+                    center: { lat: 37.7749, lng: -122.4194 }, // Set a default center
+                 
                 });
 
                 var geocoder = new google.maps.Geocoder();
@@ -95,14 +93,14 @@
                         color: '#0000FF',
                     }
                 });
-
+               
               //  var content = '<div class="marker-label"><strong>' + location.address + '</strong><br>' + location.detail +
                  //   '</div>';
                 var infoWindow = new google.maps.InfoWindow({
                     content: content
                 });
-
-                infoWindow.open(map, marker);
+               
+               
             }
 		
             function geocodeAndCreateMarker(geocoder, map, location) {
@@ -120,6 +118,7 @@
                                 color: 'black', // Text color
                             }
                         });
+                        
 
                        // var content = '<a href="https://www.google.com/maps/place/'+location.address+'">View on Google Maps</a>';
 					   var content = '<div class="marker-label"><p><strong>Assignment Number: ' + location.title + '</strong></p><p>' + location.service + '</p><p>Address: ' + location.address + '</p><a href="https://www.google.com/maps/place/' + encodeURIComponent(location.address)+'" target="_blank">Get Directions</a>&nbsp;&nbsp;&nbsp; <a  style="float:right;"href="#">Booking Details</a></div>';
@@ -128,10 +127,15 @@
                         var infoWindow = new google.maps.InfoWindow({
                             content: content
                         });
-                        infoWindow.open(map, marker);
+                        marker.addListener("click", function() {
+                            infoWindow.open(map, marker);
+                        });
+                       
                     } else {
                         console.error("Geocode was not successful for the following reason: " + status);
                     }
+                 
+
                 });
             }
         </script>
