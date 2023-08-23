@@ -47,10 +47,24 @@ class AccommodationForm extends Component
 
 	public function save() {
 		$this->validate();
+		if(!is_null($this->accommodation->id)){
+			$type = 'update';
+		}
+		else{
+			$type = 'create';
+		}
 		$this->accommodation->added_by = 1;
 		// $this->accommodation->status = 1;
 		$this->accommodation->save();
 		$this->showList("Accommodation saved successfully");
+		addLogs([
+			'action_by' => \Auth::id(),
+			'action_to' => $this->accommodation->id,
+			'item_type' => 'accommodation',
+			'type' => $type,
+			'message' => 'Accommodation '. $type .'d by '. \Auth::user()->name,
+			'ip_address' => \request()->ip(),
+		]);
 		$this->accommodation = new Accommodation;
 	}
 
