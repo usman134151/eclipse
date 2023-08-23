@@ -55,19 +55,45 @@ class BookingList extends Component
 		}
 		if ($this->provider_id) {	//from provider panel
 			//limit bookings to this providers
+			
 			$query->join('booking_providers', function ($join) {
 				$join->where('provider_id', $this->provider_id);
 				$join->on('booking_id', 'bookings.id');
 			});
-			$query->select(['booking_providers.service_id', 'booking_providers.check_in_status','bookings.*']);
+			$query->leftJoin('booking_services', function ($join) {
+				$join->on('booking_services.booking_id', 'bookings.id');
+				$join->on('booking_providers.booking_service_id', 'booking_services.id');
+
+			});
+			$query->select([
+				'booking_providers.check_in_status', 'booking_services.services as service_id', 'booking_services.id as booking_service_id', 
+				'booking_services.service_types as service_type','bookings.*']);
 			$base = "provider-";
 		}
-		// $a = $query->get();
-		// foreach ($a as $row) {
-		// 	dd($row->services);
-		// }
-		// dd($query->get());
-		return view('livewire.app.common.bookings.' . $base . 'booking-list', ['booking_assignments' => $query->paginate($this->limit)]);
+		$data= $query->paginate($this->limit);
+		foreach ($data as $row) {
+			if($row->service_id==null){
+				// prev system compatability
+					$row->service_id = count($row->booking_services) ? $row->booking_services->first()->services : null;
+
+					$row->service_type = count($row->booking_services) ? $row->booking_services->first()->service_types : null;
+				$row->accommodation_name = count($row->booking_services) ? $row->booking_services->first()->accommodation->name : null;
+				$row->service_name = count($row->booking_services) ? $row->booking_services->first()->service->name : null;
+
+			}
+			else{
+				$row->accommodation_name = $row->booking_services->where('id', $row->booking_service_id)->first()->accommodation->name;
+				$row->service_name = $row->booking_services->where('id', $row->booking_service_id)->first()->service->name;
+			}
+		}
+		// dd();
+
+		// UC -1
+		// booking -> booking services -> booking providers_ booking_services_id
+
+		// UC - 2
+		// booking -> booking_services -> booking_providers ( map to booking_id)
+		return view('livewire.app.common.bookings.' . $base . 'booking-list', ['booking_assignments' => $data]);
 	}
 
 

@@ -19,8 +19,4 @@ class BookingProvider extends Model
         'service_id','running_late_hour','running_late_min'
     ];
 
-    public function service()
-    {
-        return $this->hasOne(ServiceCategory::class, 'id', 'service_id');
-    }
 }
