@@ -15,6 +15,7 @@ use Auth;
 class AddService extends Component
 {
     public $service;public $label= "Add";
+    public $log_type = 'create';
     public $component = 'basic-service-setup';
     public $step = 1;
     public $providerReturn = ['1'=>[['hour'=>'0','minute'=>'0','exclude_holidays'=>false,'by_request'=>false,'exclude_after_hours'=>false]],
@@ -108,7 +109,7 @@ class AddService extends Component
     ]] */
 
     public function mount(ServiceCategory $service){
-       
+
         $this->service=$service;
         if(is_null($this->service->rate_status)){
             $this->service->rate_status=1;
@@ -124,8 +125,10 @@ class AddService extends Component
             $this->service->request_no_of_providers=1;
             $this->service->request_service_consumer=1;
             $this->service->request_participants=1;
+            
 
         }
+        
        
 		$this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
         $this->setupCheckboxes['service_types']=['rendered'=>''];
@@ -304,8 +307,9 @@ class AddService extends Component
          $this->service->service_status = 1;
         $categoryService = new ServiceCatagoryService;
         $specializationRecords=[];
+        
         // $s = $service_category['accommodations_id']='';
-       
+        
             $this->service->frequency_id=implode(',',$this->service->frequency_id);
             $this->service->service_type=implode(',',$this->service->service_type);
             
@@ -464,14 +468,23 @@ class AddService extends Component
         }
       
     //    dd( $this->service->payment_increment);
-      
-       
+        
+        
         $this->service = $categoryService->createService($this->service,$specializationRecords);
        
-      
+        
         
         if($redirect){
+            
 			$this->showList("Service has been saved successfully");
+            addLogs([
+                'action_by' => \Auth::id(),
+                'action_to' => $this->service->id,
+                'item_type' => 'service',
+                'type' => $this->log_type,
+                'message' => 'Service '. $this->log_type .'d by '. \Auth::user()->name,
+                'ip_address' => \request()->ip(), 
+            ]);
 			$this->service = new ServiceCategory;
 		}
         else{  //reconvert values 
@@ -512,7 +525,7 @@ class AddService extends Component
         
         $this->service=$service;
         $this->label= "Edit";
-
+        $this->log_type = 'update';
         $this->service->specializaition=ServiceSpecialization::where('service_id',$this->service->id)->get()->toArray();
         //mapping to serviceSpecialization array
 
