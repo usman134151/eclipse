@@ -71,6 +71,8 @@ class BookingList extends Component
 			$base = "provider-";
 		}
 		$data = $query->paginate($this->limit);
+
+		// setting values for booking and its services
 		foreach ($data as $row) {
 			if ($row->service_id == null) {
 				// prev system compatability
