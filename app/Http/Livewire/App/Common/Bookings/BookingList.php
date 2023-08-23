@@ -80,7 +80,7 @@ class BookingList extends Component
 				$row->service_id = $booking_service ? $booking_service->services : null;
 				$row->service_type = $booking_service ? $booking_service->service_types : null;
 				$row->accommodation_name = $booking_service ? $booking_service->accommodation->name : null;
-				$row->service_name = $booking_service ? $booking_service->service->name : null;
+				$row->service_name = $booking_service ? ($booking_service->service ? $booking_service->service->name : null) : null;
 				$row->booking_service_id = $booking_service ? $booking_service->id : null;
 
 			} else {
@@ -91,7 +91,7 @@ class BookingList extends Component
 			$row->display_running_late = false;
 			$row->display_check_in = false;
 
-			if ($booking_service) {
+			if ($booking_service && $booking_service->service) {
 				$val = json_decode($booking_service->service->running_late_procedure, true);
 				if ($val) {
 					if (isset($val['enable_button']) && ($val['enable_button']))
