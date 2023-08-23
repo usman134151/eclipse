@@ -24,9 +24,7 @@
                                 Service:
                             </div>
                             <div class="col-lg-7 py-2 text-sm">
-                                @if ($assignment->services->isNotEmpty())
-                                    {{ $assignment->services->first()->name }}
-                                @endif
+                                {{ $booking_service ? $booking_service->service->name : '' }}
 
                             </div>
                             <div class="col-lg-3 py-2 fw-semibold text-sm">
@@ -69,8 +67,8 @@
             </div>
             <div>
                 <div class="form-check form-switch mb-0">
-                    <input class="form-check-input" type="checkbox" role="switch" id="checkin" checked
-                        aria-label="Check-in permission toggle">
+                    <input wire:model.defer="checkIn" class="form-check-input" type="checkbox" role="switch"
+                        id="checkin" aria-label="Check-in permission toggle">
                     <label class="form-check-label" for="checkin">No</label>
                     <label class="form-check-label" for="checkin">Yes</label>
                 </div>
@@ -106,14 +104,23 @@
                         <div class="col-lg-4 align-self-center">
                             <div class="d-flex gap-2">
                                 <div class="time d-flex align-items-center gap-2">
-                                    <div class="hours">09</div>
+                                    <div>
+                                        <input class="form-control form-control-sm text-center hours" id="hour"
+                                            aria-label="Start Time" name="hour" placeholder="00" type=""
+                                            tabindex="" wire:model.defer="hours" maxlength="2">
+                                    </div>
                                     <svg width="5" height="19" viewBox="0 0 5 19" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
                                             d="M0.652588 16.6132C0.652588 16.1098 0.807878 15.6868 1.11846 15.3441C1.43975 14.9907 1.90026 14.814 2.5 14.814C3.09974 14.814 3.5549 14.9907 3.86548 15.3441C4.18677 15.6868 4.34741 16.1098 4.34741 16.6132C4.34741 17.1058 4.18677 17.5235 3.86548 17.8662C3.5549 18.2089 3.09974 18.3803 2.5 18.3803C1.90026 18.3803 1.43975 18.2089 1.11846 17.8662C0.807878 17.5235 0.652588 17.1058 0.652588 16.6132ZM0.668652 2.42827C0.668652 1.92492 0.823942 1.50189 1.13452 1.15918C1.45581 0.805761 1.91632 0.629052 2.51606 0.629052C3.1158 0.629052 3.57096 0.805761 3.88154 1.15918C4.20283 1.50189 4.36348 1.92492 4.36348 2.42827C4.36348 2.92091 4.20283 3.33859 3.88154 3.6813C3.57096 4.02401 3.1158 4.19536 2.51606 4.19536C1.91632 4.19536 1.45581 4.02401 1.13452 3.6813C0.823942 3.33859 0.668652 2.92091 0.668652 2.42827Z"
-                                            fill="black"></path>
+                                            fill="black" />
                                     </svg>
-                                    <div class="mins">20</div>
+                                    <div>
+                                        <input class="form-control form-control-sm text-center  mins"
+                                            aria-label="Start Minutes" id="mins" name="DisplayToProviders"
+                                            placeholder="00" type="" tabindex="" wire:model.defer="mins"
+                                            maxlength="2">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -122,33 +129,36 @@
             </div>
         </div>
     </div>
-    <div class="mb-4">
-        <h3 class="text-primary">Check-In Form</h3>
-        <div class="row">
-            <div class="col-lg-6 mb-4">
-                <label class="form-label-sm" for="companyName">Company Name</label>
-                <input type="" name="" class="form-control" placeholder="Enter Company Name"
-                    id="companyName">
-            </div>
-            <div class="col-lg-6 mb-4">
-                <label class="form-label-sm" for="typesOfAppointment">Type Of Appointment</label>
-                <input type="" name="" class="form-control" placeholder="Type Of Appointment"
-                    id="typesOfAppointment">
-            </div>
-            <div class="col-lg-6 mb-4">
-                <label class="form-label-sm" for="CovidRegularation">Covid-19 Regulation</label>
-                <input type="" name="" class="form-control" placeholder="Enter Covid-19 Regulation"
-                    id="CovidRegularation">
-            </div>
-            <div class="col-lg-6 mb-4">
-                <label class="form-label-sm" for="newPatient">Is this a new patient</label>
-                <select class="form-select" id="newPatient">
-                    <option>Yes</option>
-                </select>
-            </div>
-            <div class="col-lg-6 mb-4">
-                <label class="form-label-sm" for="Entry-notes">Entry Notes</label>
-                <textarea class="form-control" rows="5" cols="5" id="Entry-notes"></textarea>
+    <div class="mb-4 ">
+        <div
+            class="{{ isset($booking_service->checkin_details['customize_form']) && $booking_service->checkin_details['customize_form'] ? '' : 'hidden' }} ">
+            <h3 class="text-primary">Check-In Form</h3>
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <label class="form-label-sm" for="companyName">Company Name</label>
+                    <input type="" name="" class="form-control" placeholder="Enter Company Name"
+                        id="companyName">
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <label class="form-label-sm" for="typesOfAppointment">Type Of Appointment</label>
+                    <input type="" name="" class="form-control" placeholder="Type Of Appointment"
+                        id="typesOfAppointment">
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <label class="form-label-sm" for="CovidRegularation">Covid-19 Regulation</label>
+                    <input type="" name="" class="form-control"
+                        placeholder="Enter Covid-19 Regulation" id="CovidRegularation">
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <label class="form-label-sm" for="newPatient">Is this a new patient</label>
+                    <select class="form-select" id="newPatient">
+                        <option>Yes</option>
+                    </select>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <label class="form-label-sm" for="Entry-notes">Entry Notes</label>
+                    <textarea class="form-control" rows="5" cols="5" id="Entry-notes"></textarea>
+                </div>
             </div>
         </div>
         <div
@@ -165,7 +175,28 @@
                     </div>
                     <div class="align-self-end fw-semibold leading-none">Provider Signature</div>
                 </div>
-                <button class="btn btn-primary rounded">Click to Sign</button>
+
+                <div class="btn btn-primary rounded">
+                    <label for="provider_signature">Click to Sign
+
+                    </label>
+                </div>
+                <input style=" opacity: 0; z-index: -1; position: absolute;" id="provider_signature" class=""
+                    wire:model="provider_signature" type="file">
+                <div wire:loading wire:target='provider_signature'>
+                    Uploading...
+                </div>
+
+                <div class="">
+                    @if ($provider_signature)
+                        {{ $provider_signature->getClientOriginalName() }}
+                    @endif
+                </div>
+                @error('provider_signature')
+                    <span class="d-inline-block invalid-feedback mt-2">
+                        {{ $message }}
+                    </span>
+                @enderror
             </div>
             <div class="col-lg-4 mb-4">
                 <div class="mb-2 d-flex align-items-center gap-2">
@@ -179,7 +210,26 @@
                     </div>
                     <div class="align-self-end fw-semibold leading-none">Customer Signature</div>
                 </div>
-                <button class="btn btn-primary rounded">Click to Sign</button>
+                <div class="btn btn-primary rounded">
+                    <label for="customer_signature">Click to Sign
+
+                    </label>
+                </div>
+                <input style=" opacity: 0; z-index: -1; position: absolute;" id="customer_signature" class=""
+                    wire:model="customer_signature" type="file">
+                <div wire:loading wire:target='customer_signature'>
+                    Uploading...
+                </div>
+                <div class="">
+                    @if ($customer_signature)
+                        {{ $customer_signature->getClientOriginalName() }}
+                    @endif
+                </div>
+                @error('customer_signature')
+                    <span class="d-inline-block invalid-feedback mt-2">
+                        {{ $message }}
+                    </span>
+                @enderror
             </div>
         </div>
         <hr>
@@ -197,13 +247,15 @@
                     </linearGradient>
                 </defs>
             </svg>
-            <label class="form-label-sm mb-0 text-primary">Verified Location</label>
+            <label class="form-label-sm mb-0 text-primary">Verified Location
+                <small>(coming soon)</small>
+            </label>
         </div>
         <div class="form-actions d-flex gap-3 justify-content-center mt-5">
             <button type="button" class="btn btn-outline-dark rounded"
                 x-on:click="offcanvasOpenCheckIn = !offcanvasOpenCheckIn">Back</button>
-            <button type="submit" class="btn btn-primary rounded"
-                x-on:click="offcanvasOpenCheckIn = !offcanvasOpenCheckIn">Submit</button>
+            <button type="submit" class="btn btn-primary rounded" wire:click="save" wire:loading.attr="disabled"
+                x-on:close-check-in-panel.window="offcanvasOpenCheckIn = !offcanvasOpenCheckIn">Submit</button>
         </div>
     </div>
 </div>
