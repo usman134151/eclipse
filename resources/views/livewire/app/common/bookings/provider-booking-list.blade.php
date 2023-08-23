@@ -168,7 +168,8 @@
                                                                 </a>
 
 
-                                                                @if ($booking['check_in_status'] == 0 && $booking['running_late'] && $bookingType != 'Unassigned' && $bookingType != 'Invitations')
+                                                                @if ($booking['check_in_status'] == 0  && $bookingType != 'Unassigned' && $bookingType != 'Invitations')
+                                                                    @if( $booking['display_running_late'])
                                                                     <a href="javascript:void(0)" title="Running Late"
                                                                         aria-label="Running Late"
                                                                         wire:click="$emit('openRunningLateModal',{{ $booking['id'] }}, {{ $booking['service_id'] }})"
@@ -183,6 +184,8 @@
                                                                             </use>
                                                                         </svg>
                                                                     </a>
+                                                                    @endif
+                                                                    @if($booking['display_check_in'])
 
                                                                     <a href="javascript:void(0)"
                                                                         @click="offcanvasOpenCheckIn = true"
@@ -198,6 +201,7 @@
                                                                             </use>
                                                                         </svg>
                                                                     </a>
+                                                                    @endif
                                                                 @elseif($booking['status'] == 'Active' && $bookingType != 'Unassigned' && $bookingType != 'Invitations')
                                                                     <a href="#"
                                                                         @click="offcanvasOpenCheckOut = true"

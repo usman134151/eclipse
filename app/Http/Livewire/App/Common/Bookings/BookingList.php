@@ -86,19 +86,19 @@ class BookingList extends Component
 				$row->accommodation_name = $booking_service ? $booking_service->accommodation->name : null;
 				$row->service_name = $booking_service ? $booking_service->service->name : null;
 			}
-			$row->running_late = false;
-			$row->check_in = false;
+			$row->display_running_late = false;
+			$row->display_check_in = false;
 
 			if ($booking_service) {
 				$val = json_decode($booking_service->service->running_late_procedure, true);
 				if ($val) {
 					if (isset($val['enable_button']) && ($val['enable_button']))
-						$row->running_late = true;
+						$row->display_running_late = true;
 				}
 				$val = json_decode($booking_service->service->check_in_procedure, true);
 				if ($val) {
 					if (isset($val['enable_button']) && ($val['enable_button']))
-					$row->running_late = true;
+					$row->display_check_in = true;
 				}
 			}
 		}
