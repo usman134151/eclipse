@@ -137,6 +137,7 @@ class Booking extends Model
     {
         return $this->hasMany(BookingServices::class, 'booking_id', 'id');
     }
+
     public function booking_request_information()
     {
         return $this->hasMany(BookingRequestNotification::class, 'booking_id', 'id');

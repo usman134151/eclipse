@@ -890,7 +890,7 @@
                                     <button type="button" class="btn btn-outline-dark rounded">Cancel</button>
                                     <button type="button" class="btn btn-primary rounded" wire:click="save(1,1)" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">Save as Draft</button>
                                     <button type="button" class="btn btn-primary rounded"
-                                    wire:click="save(1,1)" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('request-details')">Proceed to Request Details</button>
+                                    wire:click="save(1,1)" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('request-details')" wire:click="getBookingInfo()">Proceed to Request Details</button>
                                 </div>
                             </div>
                            
@@ -910,9 +910,8 @@
                     @elseif($component == 'payment-info')
                     <div class="tab-pane fade {{ $component == 'payment-info' ? 'active show' : '' }}" id="payment-info"
                         role="tabpanel" aria-labelledby="payment-info-tab" tabindex="0">
-                      
-                        <form class="form">
-                            @csrf
+                        <table>{!! $bookingDetails['html'] !!}</table>
+
                             <h2>Payment Summary</h2>
                             <div class="row">
                                 <div class="col-lg-6 mb-4 pe-lg-5 pt-5">

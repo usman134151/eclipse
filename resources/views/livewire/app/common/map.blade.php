@@ -11,20 +11,24 @@
         font-size: 14px;
     }
 </style>
-<h3>Map</h3>
+<h3>Map View</h3>
 		<!-- Filters -->
 
     
-		<div class="row mb-4">
-		  <div class="col-lg-3 mb-4 mb-lg-0 position-relative align-self-end">
-			<!-- Begin : it will be replaced with livewire module-->
-			<svg aria-label="Date" class="icon-date md cursor-pointer" width="20" height="20" viewBox="0 0 20 20" fill="none"
-               xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#date-field"></use>
-            </svg>
-            <input type="" class="form-control form-control-md form-control-date js-single-date" placeholder="" name="selectDate" aria-label="Select Date" id="selecteddate" wire:model="selectedDate" >
-			<!-- End : it will be replaced with livewire module -->
+		<div class="row mb-1">
 
-			<!-- End : it will be replaced with livewire module -->
+		  <div class="col-lg-3 mb-4 mb-lg-1 ">
+            <div><label class="form-label" for="supervisor">Filter by Date</label></div>
+            <div class="position-relative align-self-end">
+                    <!-- Begin : it will be replaced with livewire module-->
+                    <svg aria-label="Date" class="icon-date md cursor-pointer" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                    xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#date-field" style="padding:0.6rem"></use>
+                    </svg>
+                    <input type="" style="padding:0.6rem 0.75rem;min-height:3.125rem" class="form-control form-control-md form-control-date js-single-date" placeholder="" name="selectDate" aria-label="Select Date" id="selecteddate" wire:model="selectedDate" >
+                    <!-- End : it will be replaced with livewire module -->
+
+                    <!-- End : it will be replaced with livewire module -->
+            </div>
 		  </div>
       <div class="col-lg mb-4 mb-lg-0">
             <label class="form-label" for="supervisor">Address</label>
@@ -54,30 +58,30 @@
             </select>
         </div>
 		  <div class="col-lg mb-4 mb-lg-0">
-			<div class="d-flex flex-column -mt-5">
+			<div class="d-flex flex-column mt-1">
 			  <div class="form-check">
 				<input class="form-check-input" type="radio" name="MapView" id="LiveView">
 				<label class="form-check-label" for="LiveView">
-				  Live View
+				  Live View (coming soon)
 				</label>
 			  </div>
 			  <div class="form-check">
 				<input class="form-check-input" type="radio" name="MapView" id="TodayView">
 				<label class="form-check-label" for="TodayView">
-				  Today View
+				  Today View (coming soon)
 				</label>
 			  </div>
 			  <div class="form-check mb-0">
 				<input class="form-check-input" type="radio" name="MapView" id="TomorrowView">
 				<label class="form-check-label" for="TomorrowView">
-				  Tomorrow View
+				  Tomorrow View (coming soon)
 				</label>
 			  </div>
 			</div>
 		  </div>
 		</div>
-    <div class="col-sm">
-    <div wire:click="resetDate">Reset</div>
+    <div class="col-sm mb-4">
+    <a href="#" wire:click.prevent="resetDate">Reset Filters</a>
 </div>
 		<!-- /Filters -->
 		<div id="map"  wire:ignore></div>

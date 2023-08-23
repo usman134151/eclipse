@@ -23,7 +23,7 @@ class Booknow extends Component
 {
     public $component = 'requester-info';
     
-    public $booking_id,$showForm,$booking,$requesters =[],$bManagers=[],$supervisors=[],$consumers=[],$participants=[], $step=1,$userAddresses=[], $timezone, $schedule, $timezones, $formIds,$selectedAddressId ;
+    public $booking_id,$showForm,$booking,$requesters =[],$bManagers=[],$supervisors=[],$consumers=[],$participants=[], $step=1,$userAddresses=[], $timezone, $schedule, $timezones, $formIds,$selectedAddressId, $bookingDetails ;
     protected $listeners = ['showList' => 'resetForm','updateVal', 'updateCompany',
         'updateSelectedIndustries' => 'selectIndustries',
         'updateSelectedDepartments',
@@ -311,6 +311,8 @@ class Booknow extends Component
     public function switch($component)
 	{
 		$this->component = $component;
+        if($component=="payment-info")
+            $this->getBookingInfo();         
         $this->dispatchBrowserEvent('refreshSelects');
 
 	}
@@ -629,6 +631,11 @@ class Booknow extends Component
                 }
             }
         }   
+       
+    }
+
+    public function getBookingInfo(){
+        $this->bookingDetails=BookingOperationsService::getBookingInfoNewLayout($this->booking);
        
     }
 

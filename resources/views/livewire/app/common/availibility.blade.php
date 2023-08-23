@@ -1,23 +1,24 @@
 <div>
     <h3>Availability</h3>
     <!-- Filters -->
-    <div class="col-sm">
-    <button class="btn btn-secondary btn-sm reset-button" wire:click="resetDate">Reset</button>
-    </div>
-    <div class="row mb-4">
+
+    <div class="row mb-1">
         
-        <div class="col-lg-3 mb-4 mb-lg-0 position-relative align-self-end">
-            <!-- Begin : it will be replaced with livewire module-->
-            
-            <svg aria-label="Input Calendar" class="icon-date md cursor-pointer" width="20" height="20" viewBox="0 0 20 20">
-            <use  xlink:href="/css/common-icons.svg#input-calender"></use>
-             </svg>
-             <input type="" class="form-control form-control-md form-control-date js-single-date" placeholder="MM/DD/YYYY" name="selectDate" aria-label="Select Date" value="2023-08-21 08:41:58">
-            
-            <!-- End : it will be replaced with livewire module -->
-        </div>
+    <div class="col-lg-3 mb-4 mb-lg-1 ">
+            <div><label class="form-label" for="supervisor">Filter by Date</label></div>
+            <div class="position-relative align-self-end">
+                    <!-- Begin : it will be replaced with livewire module-->
+                    <svg aria-label="Date" class="icon-date md cursor-pointer" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                    xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#date-field" style="padding:0.6rem"></use>
+                    </svg>
+                    <input type="" style="padding:0.6rem 0.75rem;min-height:3.125rem" class="form-control form-control-md form-control-date js-single-date" placeholder="" name="selectDate" aria-label="Select Date" id="selecteddate">
+                    <!-- End : it will be replaced with livewire module -->
+
+                    <!-- End : it will be replaced with livewire module -->
+            </div>
+		  </div>
         <div class="col-lg mb-4 mb-lg-0">
-            <label class="form-label" for="supervisor">Bookings</label>
+            <label class="form-label" for="supervisor">Filter by Booking</label>
             <select class="form-select select2 booking" id="BookingID" name="BookingID"  wire:click="ChangeFilter($event.target.value,'Booking')">
             @if(!empty($selectedBookingNumber))
             <option>{{$selectedBookingNumber}}</option>
@@ -31,7 +32,7 @@
             </select>
         </div>
 
-       <div class="col-lg mb-4 mb-lg-0">
+       <div class="col-lg mb-1 mb-lg-0">
         <label class="form-label" for="ProviderId">Filter By Provider</label>
         <select class="form-select select2 provider" id="ProviderId" name="ProviderId" wire:click="ChangeFilter($event.target.value,'Provider')">
         @if(!empty($selectedProvider))
@@ -60,6 +61,9 @@
                 @endforeach 
         </select>
        </div>
+    </div>
+    <div class="col-sm mb-4">
+    <a href="#" wire:click.prevent="resetDate">Reset Filters</a>
     </div>
     <!-- /Filters -->
     <!-- BEGIN: Availability -->
@@ -118,6 +122,7 @@
             </tbody>
         </table>
     </div>
+    
     <!-- EMD: Availability -->
 </div>
 @push('scripts')

@@ -30,7 +30,7 @@ class Map extends Component
 
     public function mount()
     {
-        $this->bookingList=Booking::select('id','booking_number')->get();
+        $this->bookingList=Booking::select('id','booking_number')->whereNotNull('physical_address_id')->get();
          $this->addressList = UserAddress::select([
             DB::raw("CONCAT(address_line1,', ', city, ', ', state, ', ', country) as full_address")
             ])->get();

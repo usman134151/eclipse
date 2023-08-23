@@ -22,6 +22,11 @@ class BookingServices extends Model
     {
         return $this->hasOne(ServiceCategory::class, 'id', 'services');
     }
+    public function services_data()
+    {
+        return $this->hasOne(ServiceCategory::class, 'id', 'services');
+    }
+    
     public function accommodation()
     {
         return $this->hasOne(Accommodation::class, 'id', 'accommodation_id');
