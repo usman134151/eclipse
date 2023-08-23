@@ -175,7 +175,28 @@
                     </div>
                     <div class="align-self-end fw-semibold leading-none">Provider Signature</div>
                 </div>
-                <button class="btn btn-primary rounded">Click to Sign</button>
+
+                <div class="btn btn-primary rounded">
+                    <label for="provider_signature">Click to Sign
+
+                    </label>
+                </div>
+                <input style=" opacity: 0; z-index: -1; position: absolute;" id="provider_signature" class=""
+                    wire:model="provider_signature" type="file">
+                <div wire:loading wire:target='provider_signature'>
+                    Uploading...
+                </div>
+
+                <div class="">
+                    @if ($provider_signature)
+                        {{ $provider_signature->getClientOriginalName() }}
+                    @endif
+                </div>
+                @error('provider_signature')
+                    <span class="d-inline-block invalid-feedback mt-2">
+                        {{ $message }}
+                    </span>
+                @enderror
             </div>
             <div class="col-lg-4 mb-4">
                 <div class="mb-2 d-flex align-items-center gap-2">
@@ -189,7 +210,26 @@
                     </div>
                     <div class="align-self-end fw-semibold leading-none">Customer Signature</div>
                 </div>
-                <button class="btn btn-primary rounded">Click to Sign</button>
+                <div class="btn btn-primary rounded">
+                    <label for="customer_signature">Click to Sign
+
+                    </label>
+                </div>
+                <input style=" opacity: 0; z-index: -1; position: absolute;" id="customer_signature" class=""
+                    wire:model="customer_signature" type="file">
+                <div wire:loading wire:target='customer_signature'>
+                    Uploading...
+                </div>
+                <div class="">
+                    @if ($customer_signature)
+                        {{ $customer_signature->getClientOriginalName() }}
+                    @endif
+                </div>
+                @error('customer_signature')
+                    <span class="d-inline-block invalid-feedback mt-2">
+                        {{ $message }}
+                    </span>
+                @enderror
             </div>
         </div>
         <hr>
@@ -208,13 +248,13 @@
                 </defs>
             </svg>
             <label class="form-label-sm mb-0 text-primary">Verified Location
-            <small>(coming soon)</small>
+                <small>(coming soon)</small>
             </label>
         </div>
         <div class="form-actions d-flex gap-3 justify-content-center mt-5">
             <button type="button" class="btn btn-outline-dark rounded"
                 x-on:click="offcanvasOpenCheckIn = !offcanvasOpenCheckIn">Back</button>
-            <button type="submit" class="btn btn-primary rounded" wire:click="save"
+            <button type="submit" class="btn btn-primary rounded" wire:click="save" wire:loading.attr="disabled"
                 x-on:close-check-in-panel.window="offcanvasOpenCheckIn = !offcanvasOpenCheckIn">Submit</button>
         </div>
     </div>
