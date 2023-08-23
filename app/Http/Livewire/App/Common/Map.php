@@ -134,6 +134,9 @@ class Map extends Component
         $this->selectedDate =null;
         $this->selectedBookingNo=null;
         $this->applyFilters();
+        $this->addressList = UserAddress::select([
+            DB::raw("CONCAT(address_line1,', ', city, ', ', state, ', ', country) as full_address")
+            ])->get();
       
     }
 
