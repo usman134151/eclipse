@@ -91,11 +91,11 @@
                                                       viewBox="0 0 27 27">
                                                      <use xlink:href="/css/common-icons.svg#admin-person-icon"></use>
                                                     </svg>
-														
+
 													<span class="mx-1 text-sm">Admin</span>
 												</button>
 												<button wire:click="$set('selectedRoleId', 2)" type="submit" class="btn btn-primary rounded btn-sm">
-													<svg aria-label="Admin"  width="24" height="27"
+													<svg aria-label="Provider"  width="24" height="27"
                                                       viewBox="0 0 24 27">
                                                      <use xlink:href="/css/common-icons.svg#provider-person-icon"></use>
                                                     </svg>
@@ -114,29 +114,29 @@
 													<span>Supervisor</span>
 												</button>
 												<button type="submit" wire:click="$set('selectedRoleId', 9)" class="btn btn-primary rounded btn-sm">
-													<svg aria-label="Admin"  width="23" height="26"
+													<svg aria-label="Billing Manger"  width="23" height="26"
                                                        viewBox="0 0 23 26">
                                                     <use xlink:href="/css/common-icons.svg#admin-icon"></use>
                                                 	</svg>
 													<span class="mx-1 text-sm">Billing Manger</span>
 												</button>
 												<button type="submit" wire:click="$set('selectedRoleId', 6)" class="btn btn-primary rounded btn-sm">
-													<svg aria-label="Admin"  width="23" height="26"
+													<svg aria-label="Requester"  width="23" height="26"
                                                        viewBox="0 0 23 26">
                                                     <use xlink:href="/css/common-icons.svg#person-icon"></use>
 													</svg>
 													<span class="mx-1 text-sm">Requester</span>
 												</button>
 												<button type="submit" wire:click="$set('selectedRoleId', 7)" class="btn btn-primary rounded btn-sm">
-													<svg aria-label="Consumer"  width="23" height="26"
+													<svg aria-label="Service Consumer"  width="23" height="26"
                                                        viewBox="0 0 23 26">
                                                        <use xlink:href="/css/common-icons.svg#comsumer-person-icon"></use>
                                                      </svg>
 													<span class="mx-1 text-sm">Service Consumer</span>
 												</button>
-										
+
                                                 <button type="submit" wire:click="$set('selectedRoleId', 8)" class="btn btn-primary rounded btn-sm">
-													<svg  aria-label="Staff" width="36" height="26"
+													<svg  aria-label="Participants" width="36" height="26"
                                                         viewBox="0 0 36 26">
                                                         <use xlink:href="/css/common-icons.svg#two-person-icon"></use>
                                                     </svg>

@@ -51,9 +51,23 @@ class SpecializationForm extends Component
 
     public function save(){
         $this->validate();
+        if(!is_null($this->specialization->id)){
+            $type = "update";
+        }
+        else{
+            $type = "create";
+        }
         $this->specialization->added_by=1;
         $this->specialization->save();
         $this->showList("Record saved successfully");
+        addLogs([
+            'action_by' => \Auth::id(),
+            'action_to' => $this->specialization->id,
+            'item_type' => 'specialization',
+            'type' => $type,
+            'message' => 'Specialization '. $type .'d by '. \Auth::user()->name,
+            'ip_address' => \request()->ip(), 
+        ]);
         $this->specialization=new Specialization;
     }
 

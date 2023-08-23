@@ -45,10 +45,10 @@ class IndustriesForm extends Component
     public function save(){
         $this->validate();
         if(!is_null($this->industry->id)){
-            $type = 'updated';
+            $type = 'update';
         }
         else{
-            $type = "created";
+            $type = "create";
         }
         $this->industry->added_by=1;
         $this->industry->save();
@@ -58,7 +58,7 @@ class IndustriesForm extends Component
             'action_to' => $this->industry->id,
             'item_type' => 'industry',
             'type' => $type,
-            'message' => 'Industry '. $type . ' by '. \Auth::user()->name,
+            'message' => 'Industry '. $type . 'd by '. \Auth::user()->name,
             'ip_address' => \request()->ip(),
         ]);
         $this->industry=new Industry;
