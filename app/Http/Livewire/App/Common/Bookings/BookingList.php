@@ -81,6 +81,8 @@ class BookingList extends Component
 				$row->service_type = $booking_service ? $booking_service->service_types : null;
 				$row->accommodation_name = $booking_service ? $booking_service->accommodation->name : null;
 				$row->service_name = $booking_service ? $booking_service->service->name : null;
+				$row->booking_service_id = $booking_service ? $booking_service->id : null;
+
 			} else {
 				$booking_service = $row->booking_services ? $row->booking_services->where('id', $row->booking_service_id)->first() : null;
 				$row->accommodation_name = $booking_service ? $booking_service->accommodation->name : null;
@@ -146,11 +148,11 @@ class BookingList extends Component
 
 	// provider panel functions
 
-	public function showCheckInPanel($booking_id, $bookingNumber)
+	public function showCheckInPanel($booking_id,$booking_service_id, $bookingNumber)
 	{
 		$this->booking_id = $booking_id;
 		$this->bookingNumber = $bookingNumber;
-		$this->emit('setCheckInBookingId', $booking_id);
+		$this->emit('setCheckInBookingId', $booking_id,$booking_service_id);
 	}
 	public function showCheckOutPanel($booking_id, $bookingNumber)
 	{

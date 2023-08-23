@@ -189,7 +189,7 @@
 
                                                                     <a href="javascript:void(0)"
                                                                         @click="offcanvasOpenCheckIn = true"
-                                                                        wire:click="showCheckInPanel('{{ $booking['id'] }}','{{ $booking['booking_number'] }}')"
+                                                                        wire:click="showCheckInPanel('{{$booking['id']}}','{{ $booking['booking_service_id'] }}','{{ $booking['booking_number'] }}')"
                                                                         title="Check In" aria-label="Check In"
                                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                         <svg aria-label="Check In" width="22"
