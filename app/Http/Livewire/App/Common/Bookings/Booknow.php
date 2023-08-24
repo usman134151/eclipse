@@ -26,7 +26,7 @@ class Booknow extends Component
     public $booking_id,$showForm,$booking,$requesters =[],$bManagers=[],$supervisors=[],$consumers=[],$participants=[], $step=1,$userAddresses=[], $timezone, $schedule, $timezones, $formIds,$selectedAddressId, $bookingDetails ;
     protected $listeners = ['showList' => 'resetForm','updateVal', 'updateCompany',
         'updateSelectedIndustries' => 'selectIndustries',
-        'updateSelectedDepartments',
+        'updateSelectedDepartments','confirmation',
         'saveCustomFormData'=>'save' ,'switch','updateAddress' => 'addAddress'];
 
     public $dates=[[

@@ -88,7 +88,7 @@
                             </div>
                             {{-- Admin Staff End --}}
 
-                            {{-- System Permissions Start 
+                            {{-- System Permissions Start
                             <div class="tab-pane fade" :class="{ 'active show': tab === 'system-permissions' }"
                                 id="system-permissions" role="tabpanel" aria-labelledby="system-permissions-tab"
                                 tabindex="0" x-show="tab === 'system-permissions'">
@@ -156,7 +156,7 @@
                 <button type="button"
                     class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2"
                     wire:click="showForm">
-                    <svg aria-label="add provider" width="20" height="20" viewBox="0 0 20 20">
+                    <svg aria-label="Add Admin Staff Team" width="20" height="20" viewBox="0 0 20 20">
                         <use xlink:href="/css/common-icons.svg#plus"></use>
                     </svg>
                     <span class="fw-normal">Add Admin Staff Team</span>
