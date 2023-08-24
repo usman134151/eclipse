@@ -913,7 +913,7 @@
                     @elseif($component == 'payment-info')
                     <div class="tab-pane fade {{ $component == 'payment-info' ? 'active show' : '' }}" id="payment-info"
                         role="tabpanel" aria-labelledby="payment-info-tab" tabindex="0">
-                        <table>{!! $bookingDetails['html'] !!}</table>
+                      
 
                             <h2>Payment Summary</h2>
                             <div class="row">
