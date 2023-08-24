@@ -46,7 +46,7 @@
                 </div>
                 <div class="d-flex justify-content-between mb-2">
                     <div class="d-inline-flex align-items-center gap-4">
-                        <div class="d-inline-flex align-items-center gap-4">
+                        {{-- <div class="d-inline-flex align-items-center gap-4">
                             <label for="show_records" class="form-label-sm mb-0">Show</label>
                             <select class="form-select form-select-sm" id="show_records">
                                 <option>10</option>
@@ -54,7 +54,7 @@
                                 <option>20</option>
                                 <option>25</option>
                             </select>
-                        </div>
+                        </div> --}}
                         <div class="d-flex gap-4 align-items-center">
                             <div class="form-check form-switch mb-lg-0">
                                 <input class="form-check-input" type="checkbox" role="switch"
@@ -190,7 +190,9 @@
                     </div>
                 </div>
                 <!-- Hoverable rows end -->
-                <div class="d-flex justify-content-between">
+                {{ $assignedProviders->links() }}
+
+                {{-- <div class="d-flex justify-content-between">
                     <div>
                         <p class="fw-semibold mb-lg-0 text-sm font-family-secondary">Showing 1 to 5 of 100
                             entries</p>
@@ -214,7 +216,7 @@
                             </li>
                         </ul>
                     </nav>
-                </div>
+                </div> --}}
         </div><!-- /Service 1 Assigned Providers -->
         <!-- Service 2 Assigned Providers -->
         {{-- <div class="between-section-segment-spacing">
