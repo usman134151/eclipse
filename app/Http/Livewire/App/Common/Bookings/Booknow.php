@@ -9,6 +9,7 @@ use App\Models\Tenant\Booking;
 use App\Models\Tenant\SetupValue;
 use App\Models\Tenant\Accommodation;
 use App\Models\Tenant\UserAddress;
+use App\Models\Tenant\RoleUserDetail;
 use App\Models\Tenant\Schedule;
 use App\Models\Tenant\Company;
 use App\Services\App\BookingOperationsService;
@@ -384,7 +385,7 @@ class Booknow extends Component
     public function updateVal($attrName, $val)
     {
         
-       
+      
         if ($attrName == "company_id") {
 
                 $this->booking['company_id'] = $val;
@@ -445,9 +446,11 @@ class Booknow extends Component
             }  
             elseif($attrName=='customer_id'){
                 $this->booking['customer_id']=$val;
+                $this->getUserRoleDetails($this->booking['customer_id']);
                 $this->refreshAddresses();
                
              }
+             
 
         else
         $this->booking[$attrName] = $val;
@@ -455,6 +458,36 @@ class Booknow extends Component
 
          //extra checks to call additional functions
 
+
+    }
+
+    public function getUserRoleDetails($customerId){
+        //getting role billing manager and supervisor
+        $userRoles=RoleUserDetail::where('associated_user',$customerId)
+        ->where(function ($query) {
+            $query->where('role_id', 5)
+                ->orWhere('role_id', 9);
+        })->orderBy('role_id')->orderBy('is_default','desc')->select('role_id','user_id')->get();
+
+        if(!is_null($userRoles)){
+           $supervisorSet=0;
+           $bManagerSet=0;
+           $this->booking->supervisor='';
+           $this->booking->billing_manager_id='';
+           foreach($userRoles as $userRole)
+           {
+             if($userRole['role_id']==5 && $supervisorSet==0){
+                $this->booking->supervisor=$userRole['user_id'];
+                $supervisorSet=1;
+             }
+             elseif($userRole['role_id']==9 && $bManagerSet==0){
+                $this->booking->billing_manager_id=$userRole['user_id'];
+                $bManagerSet=1;
+             }
+
+
+           }
+        }
 
     }
 
