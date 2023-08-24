@@ -75,7 +75,7 @@
                                      <div></div>
                                  </div>
                              </div>
-                             <div class="">
+                             <div class="" style="width:300px">
                                  @foreach ($provider->services as $key => $service)
                                      <a href="#">{{ $service->name }}</a>
                                      @if ($key != $provider->services->count() - 1)
