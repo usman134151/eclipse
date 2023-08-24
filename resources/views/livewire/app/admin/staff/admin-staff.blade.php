@@ -42,7 +42,7 @@
 	<div class="content-body">
 		<div class="d-flex justify-content-end mt-4 mb-3">
 			<button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2" wire:click="showForm">
-				<svg class="mx-2" aria-label="Add Reimbursement" width="20" height="20" viewBox="0 0 20 20">
+				<svg class="mx-2" aria-label="Add Admin Staff" width="20" height="20" viewBox="0 0 20 20">
 					<use xlink:href="/css/common-icons.svg#plus"></use>
 				</svg>
 				<span class="fw-normal">Add Admin Staff</span>
@@ -75,7 +75,7 @@
     </div>
     <div class="d-flex gap-2 align-items-center">
         <a href="#" title="View Team" aria-label="view Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-			<svg class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+			<svg aria-label="View staff" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
 			xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
 		  </svg>
         </a>
@@ -95,7 +95,7 @@
 
 
         }
-		
+
     </script>
 
 </div>
