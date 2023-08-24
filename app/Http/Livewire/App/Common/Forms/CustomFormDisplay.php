@@ -10,7 +10,7 @@ use Livewire\Component;
 
 class CustomFormDisplay extends Component
 {
-    public $showForm, $formId ,$questions=[],$formInfo=[], $answers=[],$bookingId;
+    public $showForm, $formId ,$questions=[],$formInfo=[], $answers=[],$bookingId,$lastForm;
     
     protected $listeners = ['showList' => 'resetForm', 'updateVal'];
 
