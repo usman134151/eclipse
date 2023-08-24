@@ -13,13 +13,13 @@ class Map extends Component
     public $showForm;
     protected $listeners = ['showList' => 'resetForm','apply'=> 'applyFilters'];
     public $locations=[];
-    public $selectedDate;
+    public $selectDate;
     public $selectedBookingNo;
     public $selectedAddress;
     public $bookingList;
     public $addressList;
     public $selectedBooking;
-  
+
 
     public function render()
     {
@@ -34,19 +34,19 @@ class Map extends Component
          $this->addressList = UserAddress::select([
             DB::raw("CONCAT(address_line1,', ', city, ', ', state, ', ', country) as full_address")
             ])->get();
-      
+
            $this->applyFilters();
     }
 
    // seprate function for implementing the filters
     public function applyFilters()
     {
-       
+
         $locations = Booking::join('user_addresses', 'bookings.physical_address_id', '=', 'user_addresses.id')
             ->join('booking_services', 'bookings.id', '=', 'booking_id')
             ->join('service_categories', 'booking_services.services', '=', 'service_categories.id')
-            ->when($this->selectedDate, function ($query, $selectedDate) {
-                return $query->whereDate('bookings.booking_start_at', date("Y-m-d", strtotime($this->selectedDate)));
+            ->when($this->selectDate, function ($query, $selectDate) {
+                return $query->whereDate('bookings.booking_start_at', date("Y-m-d", strtotime($this->selectDate)));
             })
             ->when($this->selectedAddress, function ($query, $selectedAddress) {
                 return $query->whereRaw("CONCAT(address_line1, ', ', city, ', ', state, ', ', country) LIKE ?", ['%' . $selectedAddress . '%']);
@@ -69,7 +69,7 @@ class Map extends Component
             ])->get();
 
             $locationsArray = [];
-    
+
             foreach ($locations as $location) {
                 $locationData = [
                     'title' => $location->booking_number,
@@ -78,17 +78,17 @@ class Map extends Component
                     'lat' => $location->latitude,
                     'long' => $location->longitude
                 ];
-        
+
                 $locationsArray[] = $locationData;
             }
-        
+
             $this->locations = $locationsArray;
-           
+
             $this->dispatchBrowserEvent('livewire:map',[
                 'locations'=>$this->locations
                  ]);
-          
-    
+
+
 
     }
     //this is for filters
@@ -102,14 +102,14 @@ class Map extends Component
                 $this->selectedBookingNo=$inputValue;
 
                 break;
-            
+
             case "Address":
                  $this->selectedAddress=$inputValue;
                 break;
-    
-            case "selecteddate":
-                $this->selectedDate = $inputValue;
-               
+
+            case "selectdate":
+                $this->selectDate = $inputValue;
+
                 break;
         }
         // Trigger the filter action after updating the property
@@ -118,9 +118,9 @@ class Map extends Component
             DB::raw("CONCAT(address_line1,', ', city, ', ', state, ', ', country) as full_address")
             ])->get();
     }
-    
+
     function showForm()
-    {     
+    {
        $this->showForm=true;
     }
     public function resetForm()
@@ -131,13 +131,13 @@ class Map extends Component
     {
         $this->selectedBooking = null; // Reset the selected date and bookingid etc
         $this->selectedAddress=null;
-        $this->selectedDate =null;
+        $this->selectDate =null;
         $this->selectedBookingNo=null;
         $this->applyFilters();
         $this->addressList = UserAddress::select([
             DB::raw("CONCAT(address_line1,', ', city, ', ', state, ', ', country) as full_address")
             ])->get();
-      
+
     }
 
 }
