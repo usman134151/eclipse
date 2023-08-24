@@ -902,8 +902,11 @@
                     @elseif($component == 'request-details')
                     <div class="tab-pane fade {{ $component == 'request-details' ? 'active show' : '' }}"
                         id="request-details" role="tabpanel" aria-labelledby="request-details-tab" tabindex="0">
-                        @foreach($formIds as $formId)
-                             @livewire('app.common.forms.custom-form-display',['showForm'=>true,'formId'=> $formId  ,'bookingId'=>$booking->id])
+                        @foreach($formIds as $formIndex => $formId)
+                            @php
+                            $lastForm = ($formIndex ===  count($formIds) - 1) ? true : false;
+                            @endphp
+                            @livewire('app.common.forms.custom-form-display',['showForm'=>true,'formId'=> $formId  ,'bookingId'=>$booking->id,'lastForm' => $lastForm])
                         @endforeach     
                                               
                     </div>
