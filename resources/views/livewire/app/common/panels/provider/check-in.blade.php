@@ -131,7 +131,7 @@
     </div>
     <div class="mb-4 ">
         <div
-            class="{{ isset($booking_service->checkin_details['customize_form']) && $booking_service->checkin_details['customize_form'] ? '' : 'hidden' }} ">
+            class="{{ isset($checkin_details['customize_form']) && $checkin_details['customize_form'] ? '' : 'hidden' }} ">
             <h3 class="text-primary">Check-In Form</h3>
             <div class="row">
                 <div class="col-lg-6 mb-4">
@@ -162,7 +162,7 @@
             </div>
         </div>
         <div
-            class="row {{ isset($booking_service->checkin_details['enable_digital_signature']) && $booking_service->checkin_details['enable_digital_signature'] ? '' : 'hidden' }}">
+            class="row {{ isset($checkin_details['enable_digital_signature']) && $checkin_details['enable_digital_signature'] ? '' : 'hidden' }}">
             <div class="col-lg-4 mb-4">
                 <div class="mb-2 d-flex align-items-center gap-2">
                     <div>
@@ -183,11 +183,11 @@
                 </div>
                 <input style=" opacity: 0; z-index: -1; position: absolute;" id="provider_signature" class=""
                     wire:model="provider_signature" type="file">
-                <div wire:loading wire:target='provider_signature'>
+                <div class="text-muted" wire:loading wire:target='provider_signature'>
                     Uploading...
                 </div>
 
-                <div class="">
+                <div class="text-muted my-1 mx-2">
                     @if ($provider_signature)
                         {{ $provider_signature->getClientOriginalName() }}
                     @endif
@@ -217,10 +217,10 @@
                 </div>
                 <input style=" opacity: 0; z-index: -1; position: absolute;" id="customer_signature" class=""
                     wire:model="customer_signature" type="file">
-                <div wire:loading wire:target='customer_signature'>
+                <div class="text-muted" wire:loading wire:target='customer_signature'>
                     Uploading...
                 </div>
-                <div class="">
+                <div class="text-muted my-1 mx-2">
                     @if ($customer_signature)
                         {{ $customer_signature->getClientOriginalName() }}
                     @endif

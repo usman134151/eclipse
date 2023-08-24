@@ -16,19 +16,36 @@ class BookingList extends Component
 	public $bookingType = 'past';
 	public $showBookingDetails;
 	public $bookingSection;
-	public  $limit = 10;
+	public  $limit = 10, $counter,$currentServiceId;
 	public  $booking_id = 0, $provider_id = null;
 	public $bookingNumber = '';
 
 
 
-	protected $listeners = ['showList' => 'resetForm', 'updateVal', 'showConfirmation'];
+	protected $listeners = ['showList' => 'resetForm', 'updateVal', 'showConfirmation', 'assignServiceProviders'];
 	public $serviceTypes = [
 		'1' => ['class' => 'inperson-rate', 'postfix' => '', 'title' => 'In-Person'],
 		'2' => ['class' => 'virtual-rate', 'postfix' => '_v', 'title' => 'Virtual'],
 		'4' => ['class' => 'phone-rate', 'postfix' => '_p', 'title' => 'Phone'],
 		'5' => ['class' => 'teleconference-rate', 'postfix' => '_t', 'title' => 'Teleconference'],
 	];
+	public function openAssignProvidersPanel($booking_id,$service_id){
+		$this->booking_id=$booking_id;
+		$this->assignServiceProviders($service_id);
+	}
+
+	public function assignServiceProviders($service_id)
+	{
+
+		if ($this->counter == 0) {
+			$this->currentServiceId = 0;
+			$this->dispatchBrowserEvent('assign-service-users', ['service_id' => $service_id,]);
+			$this->counter = 1;
+		} else {
+			$this->currentServiceId = $service_id;
+			$this->counter = 0;
+		}
+	}
 
 	public function render()
 	{
@@ -76,10 +93,11 @@ class BookingList extends Component
 		foreach ($data as $row) {
 			if ($row->service_id == null) {
 				// prev system compatability
+
 				$booking_service = count($row->booking_services) ? $row->booking_services->first() : null;
 				$row->service_id = $booking_service ? $booking_service->services : null;
 				$row->service_type = $booking_service ? $booking_service->service_types : null;
-				$row->accommodation_name = $booking_service ? $booking_service->accommodation->name : null;
+				$row->accommodation_name = $booking_service ? ($booking_service->service ? $booking_service->service->accommodation->name : null) : null;
 				$row->service_name = $booking_service ? ($booking_service->service ? $booking_service->service->name : null) : null;
 				$row->booking_service_id = $booking_service ? $booking_service->id : null;
 

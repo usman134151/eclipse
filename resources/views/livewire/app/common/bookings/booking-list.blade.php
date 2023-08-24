@@ -1,4 +1,4 @@
-<div x-data="{ rescheduleBooking: false }">
+<div x-data="{ rescheduleBooking: false ,assignProviders:false}">
     <div id="loader-section" class="loader-section" wire:loading>
         <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
             <div class="spinner-border" role="status" aria-live="polite">
@@ -40,9 +40,8 @@
                 </div>
             </div>
         </div>
-       
-            @livewire('app.common.bookings.booking-details', ['booking_id' => $booking_id])
-       
+
+        @livewire('app.common.bookings.booking-details', ['booking_id' => $booking_id])
     @else
         {{-- BEGIN: Content --}}
         @if ($bookingSection != 'customer')
@@ -182,26 +181,26 @@
                                                             </td>
                                                             <td>
                                                                 <div>
-                                                                    {{ isset($booking->accommodation_name) ? $booking->accommodation_name : ""  }}
+                                                                    {{ isset($booking->accommodation_name) ? $booking->accommodation_name : '' }}
                                                                 </div>
                                                                 {{-- <div>Shelby Sign Language</div> --}}
-                                                                    <div>Service:
-                                                                    {{ isset($booking->service_name) ? $booking->service_name : "N/A"  }}
-                                                                    </div>
+                                                                <div>Service:
+                                                                    {{ isset($booking->service_name) ? $booking->service_name : 'N/A' }}
+                                                                </div>
                                                             </td>
                                                             <td>
-                                                            @if ($booking->service_type) 
-                                                                <div class="badge bg-warning mb-1">
-                                                                   
-                                                                    {{ $serviceTypes[$booking->service_type]['title'] }}
-                                                                   
-                                                                </div> 
-                                                                @if($booking->service_type==1)
-                                                                    <div>Address</div>
-                                                                @else
-                                                                    <div>Meeting link</div>
+                                                                @if ($booking->service_type)
+                                                                    <div class="badge bg-warning mb-1">
+
+                                                                        {{ $serviceTypes[$booking->service_type]['title'] }}
+
+                                                                    </div>
+                                                                    @if ($booking->service_type == 1)
+                                                                        <div>Address</div>
+                                                                    @else
+                                                                        <div>Meeting link</div>
+                                                                    @endif
                                                                 @endif
-                                                                @endif   
                                                             </td>
                                                             <td>
                                                                 <div>
@@ -228,8 +227,8 @@
                                                             <td>
                                                                 <div class="d-flex actions">
 
-                                                                    <a href="{{route('tenant.booking-edit', ['bookingID' => encrypt($booking->id)])}}" title="Edit"
-                                                                        aria-label="Edit Booking"
+                                                                    <a href="{{ route('tenant.booking-edit', ['bookingID' => encrypt($booking->id)]) }}"
+                                                                        title="Edit" aria-label="Edit Booking"
                                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                         <svg aria-label="Edit" class="fill"
                                                                             width="20" height="28"
@@ -258,9 +257,8 @@
                                                                         <a href="#" title="Assign Provider"
                                                                             aria-label="Assign Provider"
                                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                                            data-bs-toggle="modal"
-                                                                            data-bs-target="#AssignproviderTeamModal">
-                                                                            <svg aria-label="Assign Provider"
+                                                                       wire:click="openAssignProvidersPanel({{$booking->id}},{{$booking->service_id}})"
+                            @click="assignProvider = true"     ><svg aria-label="Assign Provider"
                                                                                 width="20" height="20"
                                                                                 viewBox="0 0 20 20" fill="none"
                                                                                 xmlns="http://www.w3.org/2000/svg">
@@ -411,6 +409,8 @@
                 </div>
             </div>
         </div>
+    @include('panels.booking-details.assign-providers')
+
     @endif
     @include('panels.booking-details.reschedule-booking')
     @include('modals.common.confirm-completion')
@@ -421,6 +421,7 @@
     @include('modals.unassign')
     @include('modals.common.review-feedback')
     @include('modals.common.available-timeslot')
+
 </div>
 {{-- End: Content --}}
 @push('scripts')

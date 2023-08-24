@@ -75,7 +75,7 @@
                                      <div></div>
                                  </div>
                              </div>
-                             <div class="">
+                             <div class="" style="width:300px">
                                  @foreach ($provider->services as $key => $service)
                                      <a href="#">{{ $service->name }}</a>
                                      @if ($key != $provider->services->count() - 1)
@@ -223,7 +223,7 @@
                                      </div>
                                  </div>
                                  <div class="mx-3 mt-4">
-                                     <button class="btn btn-sm btn-outline-dark rounded mb-2" wire:click="Assign({{$provider->id}})">Assign</button>
+                                     <button class="btn btn-sm btn-outline-dark rounded mb-2" wire:click="{{in_array($provider->id,$assignedProviders) ? 'remove' : 'add'}}({{$provider->id}})">{{in_array($provider->id,$assignedProviders) ? 'Unassign' : 'Assign'}}</button>
                                      <div class="form-check">
                                          <input class="form-check-input" id="assignPartialCoverage" name=""
                                              type="checkbox" tabindex="">
@@ -246,8 +246,8 @@
 
      <x-slot name="outsideBody">
          <div class="col-12 justify-content-center form-actions d-flex gap-3">
-             <button type="" class="btn btn-outline-dark rounded">Cancel</button>
-             <button type="" class="btn btn-primary rounded">Save</button>
+             <button type="" class="btn btn-outline-dark rounded" x-on:click="assignProvider = !assignProvider">Cancel</button>
+             <button type=""  x-on:close-assign-providers.window="assignProvider = !assignProvider" wire:click="$emit('saveAssignedProviders')"  class="btn btn-primary rounded">Save</button>
          </div>
      </x-slot>
  </div>
