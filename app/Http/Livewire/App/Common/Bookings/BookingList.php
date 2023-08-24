@@ -76,10 +76,11 @@ class BookingList extends Component
 		foreach ($data as $row) {
 			if ($row->service_id == null) {
 				// prev system compatability
+
 				$booking_service = count($row->booking_services) ? $row->booking_services->first() : null;
 				$row->service_id = $booking_service ? $booking_service->services : null;
 				$row->service_type = $booking_service ? $booking_service->service_types : null;
-				$row->accommodation_name = $booking_service ? $booking_service->accommodation->name : null;
+				$row->accommodation_name = $booking_service ? $booking_service->service->accommodation->name : null;
 				$row->service_name = $booking_service ? ($booking_service->service ? $booking_service->service->name : null) : null;
 				$row->booking_service_id = $booking_service ? $booking_service->id : null;
 

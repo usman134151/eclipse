@@ -1233,8 +1233,8 @@
                         <div class="tab-pane fade {{ $component == 'assigned-providers' ? 'active show' : '' }}"
                             id="assigned-providers" role="tabpanel" aria-labelledby="assigned-providers-tab"
                             tabindex="0">
-                            @foreach ($booking->services as $index => $service)
-                                @livewire('app.common.bookings.assignedproviders', ['index'=>$index+1,'service_id'=>$service->id,'booking_id' => $booking_id], , key(time()))
+                            @foreach ($booking['services'] as $index => $service)
+                                @livewire('app.common.bookings.assignedproviders', ['index'=>$index+1,'service_id'=>$service['service_id'],'booking_id' => $booking_id],  key(time()))
                             @endforeach
                             <div
                                 class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">

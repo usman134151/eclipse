@@ -64,14 +64,14 @@ class BookingDetails extends Component
 		if(!$this->booking)
 			$booking = new Booking;	
 		// new booking fields 
-		$booking['services'] = Booking::where('bookings.id',$this->booking_id)->join('booking_services', 'booking_services.booking_id','bookings.id')
+		$this->booking['services'] = Booking::where('bookings.id',$this->booking_id)->join('booking_services', 'booking_services.booking_id','bookings.id')
 		->join('service_categories', 'booking_services.services', 'service_categories.id')->join('accommodations', 'accommodations.id', 'service_categories.accommodations_id')
 		->get(['booking_services.id', 'booking_services.service_types',
 		//  'booking_services.meeting_name',
 		 'booking_services.meeting_link',
 			'booking_services.attendees', 'booking_services.service_consumer', 'booking_services.specialization', 'booking_services.meeting_phone',
 			'booking_services.meeting_passcode', 'booking_services.provider_count', 'booking_services.created_at',
-			'booking_services.meeting_link', 'service_categories.name as service_name', 
+			'booking_services.meeting_link', 'service_categories.name as service_name', 'service_categories.id as service_id', 
 			'accommodations.name as accommodation_name'])
 		->toArray();
 

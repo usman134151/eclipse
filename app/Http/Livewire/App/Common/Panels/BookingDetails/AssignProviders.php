@@ -179,14 +179,14 @@ class AssignProviders extends Component
     public function save()
     {
         $booking = Booking::where('id', $this->booking_id)->first();
-        $booking_service_id = $booking->booking_services->where('services', $this->service_id)->first();
+        $booking_service= $booking->booking_services->where('services', $this->service_id)->first();
         // delete existing records
-        BookingProvider::where(['booking_id' => $this->booking_id, 'booking_service_id' => $booking_service_id])->delete();
+        BookingProvider::where(['booking_id' => $this->booking_id, 'booking_service_id' => $booking_service->id])->delete();
         $data = null;
         foreach ($this->assignedProviders as $provider) {
             $data['provider_id'] = $provider;
             $data['booking_id'] = $this->booking_id;
-            $data['booking_service_id'] = $booking_service_id;
+            $data['booking_service_id'] = $booking_service ? $booking_service->id : null;
             BookingProvider::create($data);
         }
 
