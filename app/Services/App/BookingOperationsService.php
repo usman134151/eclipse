@@ -506,37 +506,44 @@ class BookingOperationsService{
                       
                         if ($oneTimeCharge) {
                             $oneTimeCharge=json_decode($oneTimeCharge);
-                          
-                            foreach ($oneTimeCharge as $onetime) {
-                               if($onetime[0]->price>0){
-                                if ($onetime[0]->charge_customer == "true") {
-                                    $customerCharges += $onetime[0]->price * $service->provider_count;
-                                    $serviceOneTimeCharge += $onetime[0]->price * $service->provider_count;
-                                    $servicePaymentsHtml .= '<tr><td class="sub-lable3">' . $onetime[0]->label. '<em>:</em></td><td>' . formatPayment($onetime[0]->price * $service->provider_count) . '<span class="hint" title="charge to the customer">CTC</span></td></tr>';
-                                } else {
-                                    $providerCharges += $onetime[0]->price;
-                                    $serviceOneTimeCharge += $onetime[0]->price;
-                                    $servicePaymentsHtml .= '<tr><td class="sub-lable3">' . $onetime[0]->label. '<em>:</em></td><td>' .formatPayment($onetime[0]->price) . '</td></tr>';
-                                }
-                               }
-
+                            if(!is_null($oneTimeCharge)){
+                                foreach ($oneTimeCharge as $onetime) {
+                                    if($onetime[0]->price>0){
+                                    if(!isset($onetime[0]->label)){
+                                        $onetime[0]->label='One-time';
+                                    }
+                                     if ($onetime[0]->charge_customer == "true") {
+                                         $customerCharges += $onetime[0]->price * $service->provider_count;
+                                         $serviceOneTimeCharge += $onetime[0]->price * $service->provider_count;
+                                         $servicePaymentsHtml .= '<tr><td class="sub-lable3">' . $onetime[0]->label. '<em>:</em></td><td>' . formatPayment($onetime[0]->price * $service->provider_count) . '<span class="hint" title="charge to the customer">CTC</span></td></tr>';
+                                     } else {
+                                         $providerCharges += $onetime[0]->price;
+                                         $serviceOneTimeCharge += $onetime[0]->price;
+                                         $servicePaymentsHtml .= '<tr><td class="sub-lable3">' . $onetime[0]->label. '<em>:</em></td><td>' .formatPayment($onetime[0]->price) . '</td></tr>';
+                                     }
+                                    }
+     
+                                 }
                             }
+
                         }
                        
 //                            dd($customerCharges,$providerCharges ,  $servicePaymentsHtml);
                         $serviceChargesHtml = '';
                         $ServiceChargenew = 0;
                         $allcharges=json_decode($allcharges);
-                       
-                        foreach ($allcharges as $k => $subArray) {
-                            if ($subArray[0]->multiply_providers == "true") {
-                                $ServiceChargenew += $subArray[0]->price * $service->provider_count;
-                                $serviceChargesHtml .= '<tr><td class="sub-lable3">' . $subArray[0]->label. '<em>:</em></td><td>' . formatPayment($subArray[0]->price * $service->provider_count) . '</td></tr>';
-                            } else {
-                                $ServiceChargenew += $subArray[0]->price;
-                                $serviceChargesHtml .= '<tr><td class="sub-lable3">' . $subArray[0]->label. '<em>:</em></td><td>' . formatPayment($subArray[0]->price) . '</td></tr>';
+                        if(!is_null($allcharges)){
+                            foreach ($allcharges as $k => $subArray) {
+                                if ($subArray[0]->multiply_providers == "true") {
+                                    $ServiceChargenew += $subArray[0]->price * $service->provider_count;
+                                    $serviceChargesHtml .= '<tr><td class="sub-lable3">' . $subArray[0]->label. '<em>:</em></td><td>' . formatPayment($subArray[0]->price * $service->provider_count) . '</td></tr>';
+                                } else {
+                                    $ServiceChargenew += $subArray[0]->price;
+                                    $serviceChargesHtml .= '<tr><td class="sub-lable3">' . $subArray[0]->label. '<em>:</em></td><td>' . formatPayment($subArray[0]->price) . '</td></tr>';
+                                }
                             }
                         }
+
                        
                         $bookingTotal = SELF::bookingCalculationwithService($bookingDetail, $service);
                         // calculate booking duration start
@@ -714,32 +721,37 @@ public static function excludeWeekends($datetime1,$datetime2)
         if($serviceCharges)
         {
             $serviceCharges=json_decode($serviceCharges);
-
-            foreach ($serviceCharges as $charges)
-            {
-                if($charges[0]->multiply_providers == "true")
+            if(!is_null($serviceCharges )){
+                foreach ($serviceCharges as $charges)
                 {
-                    $final_serviceCharges += $charges[0]->price * $bookingTotalProviders;
+                    if($charges[0]->multiply_providers == "true")
+                    {
+                        $final_serviceCharges += $charges[0]->price * $bookingTotalProviders;
+                    }
+                    else
+                        $final_serviceCharges += $charges[0]->price;
                 }
-                else
-                    $final_serviceCharges += $charges[0]->price;
             }
+
         }
 
         /*Add OneTime Charges to booking*/
         if($oneTimeCharges)
         {
             $oneTimeCharges=json_decode($oneTimeCharges);
-            foreach ($oneTimeCharges as $onetime)
-            {
-
-                if($onetime[0]->charge_customer == "true")
+            if(!is_null($oneTimeCharges)){
+                foreach ($oneTimeCharges as $onetime)
                 {
-                    $final_oneTimeCharges += $onetime[0]->price * $bookingTotalProviders;
+    
+                    if($onetime[0]->charge_customer == "true")
+                    {
+                        $final_oneTimeCharges += $onetime[0]->price * $bookingTotalProviders;
+                    }
+                    else
+                        $final_oneTimeCharges += 0;
                 }
-                else
-                    $final_oneTimeCharges += 0;
             }
+
         }
         return [
             'serviceCharges' => $final_serviceCharges,
@@ -755,11 +767,13 @@ public static function excludeWeekends($datetime1,$datetime2)
             if($emergencyHours && !$isBookingPast)
             {
                 $emergencyHours=json_decode($emergencyHours);
-              
+               if(!is_null($emergencyHours)){
                 foreach ($emergencyHours as $key=>$emergency)
                 {
                     $booking_ememrgency_array[$key] = Carbon::parse($booking_start_at)->subHours($emergency[0]->hour);
                 }
+               }
+
             }
         
             if(count($booking_ememrgency_array) && $current_time->gt($booking_ememrgency_array[0]))
@@ -1220,82 +1234,84 @@ public static function excludeWeekends($datetime1,$datetime2)
         if($newservices->specialization)
         {
             $specializationArr = json_decode($newservices->specialization);
-
-            foreach ($specializationArr as $key => $specializationId) {
-                $specialization = ServiceSpecialization::where(['specialization_id' => $specializationId, 'service_id' => $newservices->services])->first();
-                if ($newservices->service_types == "1")  // In person
-                {
-                    if($specialization->specialization_price[0]->price_type == "%")
+            if(!is_null( $specializationArr )){
+                foreach ($specializationArr as $key => $specializationId) {
+                    $specialization = ServiceSpecialization::where(['specialization_id' => $specializationId, 'service_id' => $newservices->services])->first();
+                    if ($newservices->service_types == "1")  // In person
                     {
-                        if($service_total_charge > 0) $specialization_total_charge += ($specialization->specialization_price[0]->price / 100) * $service_total_charge;
-                    }
-                    else
-                    {
-                        if($specialization->specialization_price[0]->multiply_provider || $specialization->specialization_price[0]->multiply_service_duration)
+                        if($specialization->specialization_price[0]->price_type == "%")
                         {
-                            $durationMultiply = 0;
-                            $providersMultiply = 0;
-                            if($specialization->specialization_price[0]->multiply_provider)
+                            if($service_total_charge > 0) $specialization_total_charge += ($specialization->specialization_price[0]->price / 100) * $service_total_charge;
+                        }
+                        else
+                        {
+                            if($specialization->specialization_price[0]->multiply_provider || $specialization->specialization_price[0]->multiply_service_duration)
                             {
-                                $providersMultiply = $specialization->specialization_price[0]->price * $newservices->provider_count;
-
+                                $durationMultiply = 0;
+                                $providersMultiply = 0;
+                                if($specialization->specialization_price[0]->multiply_provider)
+                                {
+                                    $providersMultiply = $specialization->specialization_price[0]->price * $newservices->provider_count;
+    
+                                }
+                                if($specialization->specialization_price[0]->multiply_service_duration)
+                                {
+                                    if($booking_nature == 'hourly') {
+                                        $final_time_duration = explode(':', $final_duration);
+                                        $durationMultiply = $final_time_duration[0] * $specialization->specialization_price[0]->price + $final_time_duration[1] / 60 * $specialization->specialization_price[0]->price;
+                                    }elseif($booking_nature == 'daily'){
+                                        $durationMultiply = $specialization->specialization_price[0]->price * $bookingDays;
+                                    }
+                                }
+                                $specialization_total_charge += $providersMultiply + $durationMultiply;
                             }
-                            if($specialization->specialization_price[0]->multiply_service_duration)
+                            else
                             {
-                                if($booking_nature == 'hourly') {
+                                $specialization_total_charge += $specialization->specialization_price[0]->price;
+                            }
+                        }
+                    }
+                    elseif ($newservices->service_types == "2")
+                    {
+    
+                        if($specialization->specialization_price_v[0]->price_type == "%")
+                        {
+                            if($service_total_charge > 0) $specialization_total_charge +=($specialization->specialization_price_v[0]->price / 100) * $service_total_charge;
+                        }
+                        else
+                        {
+                            if($specialization->specialization_price_v[0]->multiply_provider || $specialization->specialization_price_v[0]->multiply_service_duration)
+                            {
+                                $durationMultiply = 0;
+                                $providersMultiply = 0;
+                                if($specialization->specialization_price_v[0]->multiply_provider)
+                                {
+                                    $providersMultiply = $specialization->specialization_price_v[0]->price * $newservices->provider_count;
+                                }
+                                if($specialization->specialization_price_v[0]->multiply_service_duration)
+                                {
+                                    if($booking_nature == 'hourly')
+                                    {
                                     $final_time_duration = explode(':', $final_duration);
-                                    $durationMultiply = $final_time_duration[0] * $specialization->specialization_price[0]->price + $final_time_duration[1] / 60 * $specialization->specialization_price[0]->price;
-                                }elseif($booking_nature == 'daily'){
-                                    $durationMultiply = $specialization->specialization_price[0]->price * $bookingDays;
+                                    $durationMultiply = $final_time_duration[0] * $specialization->specialization_price_v[0]->price + $final_time_duration[1] / 60 * $specialization->specialization_price_v[0]->price;
+                                    }
+                                    elseif($booking_nature == 'daily')
+                                    {
+                                        $durationMultiply = $specialization->specialization_price_v[0]->price * $bookingDays;
+                                    }
                                 }
+                                $specialization_total_charge += $providersMultiply + $durationMultiply;
                             }
-                            $specialization_total_charge += $providersMultiply + $durationMultiply;
-                        }
-                        else
-                        {
-                            $specialization_total_charge += $specialization->specialization_price[0]->price;
-                        }
-                    }
-                }
-                elseif ($newservices->service_types == "2")
-                {
-
-                    if($specialization->specialization_price_v[0]->price_type == "%")
-                    {
-                        if($service_total_charge > 0) $specialization_total_charge +=($specialization->specialization_price_v[0]->price / 100) * $service_total_charge;
-                    }
-                    else
-                    {
-                        if($specialization->specialization_price_v[0]->multiply_provider || $specialization->specialization_price_v[0]->multiply_service_duration)
-                        {
-                            $durationMultiply = 0;
-                            $providersMultiply = 0;
-                            if($specialization->specialization_price_v[0]->multiply_provider)
+                            else
                             {
-                                $providersMultiply = $specialization->specialization_price_v[0]->price * $newservices->provider_count;
+                                $specialization_total_charge += $specialization->specialization_price_v[0]->price;
                             }
-                            if($specialization->specialization_price_v[0]->multiply_service_duration)
-                            {
-                                if($booking_nature == 'hourly')
-                                {
-                                $final_time_duration = explode(':', $final_duration);
-                                $durationMultiply = $final_time_duration[0] * $specialization->specialization_price_v[0]->price + $final_time_duration[1] / 60 * $specialization->specialization_price_v[0]->price;
-                                }
-                                elseif($booking_nature == 'daily')
-                                {
-                                    $durationMultiply = $specialization->specialization_price_v[0]->price * $bookingDays;
-                                }
-                            }
-                            $specialization_total_charge += $providersMultiply + $durationMultiply;
                         }
-                        else
-                        {
-                            $specialization_total_charge += $specialization->specialization_price_v[0]->price;
-                        }
+    
                     }
-
                 }
             }
+
         }
         return $specialization_total_charge;
     }
