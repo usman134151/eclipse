@@ -1598,8 +1598,6 @@
         {{-- End of update by Sohail Asghar --}}
         @include('panels.booking-details.reschedule-booking')
         @include('panels.common.add-documents', ['booking_id' => $booking_id])
-        @include('panels.booking-details.assign-providers', [
-            'booking_id' => $booking_id,
-        ])
+        @include('panels.booking-details.assign-providers')
     @endif
 </div>
