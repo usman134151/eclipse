@@ -14,7 +14,7 @@
 <h3>Map View</h3>
 		<!-- Filters -->
 
-    
+
 		<div class="row mb-1">
 
 		  <div class="col-lg-3 mb-4 mb-lg-1 ">
@@ -24,7 +24,7 @@
                     <svg aria-label="Date" class="icon-date md cursor-pointer" width="20" height="20" viewBox="0 0 20 20" fill="none"
                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#date-field" style="padding:0.6rem"></use>
                     </svg>
-                    <input type="" style="padding:0.6rem 0.75rem;min-height:3.125rem" class="form-control form-control-md form-control-date js-single-date" placeholder="" name="selectDate" aria-label="Select Date" id="selecteddate" wire:model="selectedDate" >
+                    <input type="" style="padding:0.6rem 0.75rem;min-height:3.125rem" class="form-control form-control-md form-control-date js-single-date" placeholder="" name="selectDate" aria-label="Select Date" id="selecteddate" wire:model="selectDate" >
                     <!-- End : it will be replaced with livewire module -->
 
                     <!-- End : it will be replaced with livewire module -->
@@ -39,7 +39,7 @@
             <option value="0">Address</option>
             @endif
             @foreach($addressList as $address)
-                    <option value="{{$address->full_address }}">{{$address->full_address}}</option>   
+                    <option value="{{$address->full_address }}">{{$address->full_address}}</option>
                 @endforeach
             </select>
         </div>
@@ -51,9 +51,9 @@
             @else
             <option value="0">Select Booking</option>
             @endif
-              
+
                 @foreach($bookingList as $list)
-                    <option value="{{$list->id}}">{{$list->booking_number}}</option>   
+                    <option value="{{$list->id}}">{{$list->booking_number}}</option>
                 @endforeach
             </select>
         </div>
@@ -88,13 +88,13 @@
 
 </div>
 
-<script type="text/javascript"> 
+<script type="text/javascript">
 
-       
+
                document.addEventListener('livewire:load', function () {
-               
+
                 var locations = @json($locations);
-               
+
                 var map = new google.maps.Map(document.getElementById("map"), {
                     zoom: 3,
                     center: { lat: 37.7749, lng: -122.4194 }, // Set a default center
@@ -108,10 +108,10 @@
                     } else {
                         geocodeAndCreateMarker(geocoder, map, locations[i]);
                     }
-                } 
+                }
             });
             document.addEventListener('livewire:map', function (e) {
-              
+
               var locations = e.detail.locations;
               var center;
 
@@ -121,7 +121,7 @@
                   center = { lat: 0, lng: 0 };
               }
 
-            
+
                var map = new google.maps.Map(document.getElementById("map"), {
                    zoom: 2,
                    center:center, // Set a default center
@@ -150,16 +150,16 @@
                         color: '#0000FF',
                     }
                 });
-               
+
               //  var content = '<div class="marker-label"><strong>' + location.address + '</strong><br>' + location.detail +
                  //   '</div>';
                 var infoWindow = new google.maps.InfoWindow({
                     content: content
                 });
-               
-               
+
+
             }
-		
+
             function geocodeAndCreateMarker(geocoder, map, location) {
                 geocoder.geocode({
                     address: location.address
@@ -175,7 +175,7 @@
                                 color: 'black', // Text color
                             }
                         });
-                        
+
                        // var content = '<a href="https://www.google.com/maps/place/'+location.address+'">View on Google Maps</a>';
 					          var content = '<div class="marker-label"><p><strong>Assignment Number: ' + location.title + '</strong></p><p>' + location.service + '</p><p>Address: ' + location.address + '</p><a href="https://www.google.com/maps/place/' + encodeURIComponent(location.address)+'" target="_blank">Get Directions</a>&nbsp;&nbsp;&nbsp; <a  style="float:right;"href="#">Booking Details</a></div>';
 
@@ -186,11 +186,11 @@
                         marker.addListener("click", function() {
                             infoWindow.open(map, marker);
                         });
-                       
+
                     } else {
                         console.error("Geocode was not successful for the following reason: " + status);
                     }
-                 
+
 
                 });
 
@@ -209,6 +209,6 @@
                         @this.call('updateVal', inputId, inputValue);
                     });
             }
-        </script> 
+        </script>
 
 
