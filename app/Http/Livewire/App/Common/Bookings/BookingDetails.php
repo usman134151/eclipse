@@ -62,7 +62,7 @@ class BookingDetails extends Component
 		$this->getServiceDetails();
 	
 		if(!$this->booking)
-			$booking = new Booking;	
+			$this->booking = new Booking;	
 		// new booking fields 
 		$this->booking['services'] = Booking::where('bookings.id',$this->booking_id)->join('booking_services', 'booking_services.booking_id','bookings.id')
 		->join('service_categories', 'booking_services.services', 'service_categories.id')->join('accommodations', 'accommodations.id', 'service_categories.accommodations_id')
