@@ -1599,7 +1599,6 @@
         @include('panels.booking-details.reschedule-booking')
         @include('panels.common.add-documents', ['booking_id' => $booking_id])
         @include('panels.booking-details.assign-providers', [
-            'currentServiceId' => $currentServiceId,
             'booking_id' => $booking_id,
         ])
     @endif

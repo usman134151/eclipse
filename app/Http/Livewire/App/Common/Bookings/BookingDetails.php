@@ -22,7 +22,7 @@ class BookingDetails extends Component
 
 
 	//panel
-	public $currentServiceId = null, $counter=0;
+	public $currentServiceId = 0, $counter;
 
 
 	protected $rules = [

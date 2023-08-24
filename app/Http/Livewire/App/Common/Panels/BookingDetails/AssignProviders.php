@@ -116,6 +116,14 @@ class AssignProviders extends Component
                 }
             });
         }
+        // $booking = Booking::where('id', $this->booking_id)->first();
+        // $booking_service = $booking->booking_services->where('services', $this->service_id)->first();
+        // $this->assignedProviders = BookingProvider::where(['booking_id' => $this->booking_id, 'booking_service_id' => $booking_service->id])
+        //     ->get()->pluck('provider_id')->toArray();
+        // if (count($this->assignedProviders)==0)
+        //     BookingProvider::where(['booking_id' => $this->booking_id, 'booking_service_id' => null])->get()->pluck('provider_id')->toArray();
+
+
         return view('livewire.app.common.panels.booking-details.assign-providers', [
             'providers' => $query->get()
         ]);
@@ -158,7 +166,7 @@ class AssignProviders extends Component
         $this->certifications = [];
         $this->dispatchBrowserEvent('refreshSelects2');
     }
-    public function mount()
+    public function mount($service_id = null)
     {
 
         $this->allproviders = User::where('status', 1)
@@ -179,9 +187,9 @@ class AssignProviders extends Component
     public function save()
     {
         $booking = Booking::where('id', $this->booking_id)->first();
-        $booking_service= $booking->booking_services->where('services', $this->service_id)->first();
+        $booking_service = $booking->booking_services->where('services', $this->service_id)->first();
         // delete existing records
-        BookingProvider::where(['booking_id' => $this->booking_id, 'booking_service_id' => $booking_service->id])->delete();
+        BookingProvider::where(['booking_id' => $this->booking_id, 'booking_service_id' => null])->orWhere(['booking_service_id' => $booking_service->id])->delete();
         $data = null;
         foreach ($this->assignedProviders as $provider) {
             $data['provider_id'] = $provider;

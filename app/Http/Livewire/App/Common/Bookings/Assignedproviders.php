@@ -39,7 +39,7 @@ class Assignedproviders extends Component
     }
     public function render()
     {
-        $booking_service = BookingServices::where(['booking_id' => $this->booking_id, 'services' => $this->service_id])->first();
+        // $booking_service = BookingServices::where(['booking_id' => $this->booking_id, 'services' => $this->service_id])->first();
 
         // add this/appropriate condition to the query once bookng_providers are associated with booking_services
         // 'services'=>$this->service_id
