@@ -16,19 +16,36 @@ class BookingList extends Component
 	public $bookingType = 'past';
 	public $showBookingDetails;
 	public $bookingSection;
-	public  $limit = 10;
+	public  $limit = 10, $counter,$currentServiceId;
 	public  $booking_id = 0, $provider_id = null;
 	public $bookingNumber = '';
 
 
 
-	protected $listeners = ['showList' => 'resetForm', 'updateVal', 'showConfirmation'];
+	protected $listeners = ['showList' => 'resetForm', 'updateVal', 'showConfirmation', 'assignServiceProviders'];
 	public $serviceTypes = [
 		'1' => ['class' => 'inperson-rate', 'postfix' => '', 'title' => 'In-Person'],
 		'2' => ['class' => 'virtual-rate', 'postfix' => '_v', 'title' => 'Virtual'],
 		'4' => ['class' => 'phone-rate', 'postfix' => '_p', 'title' => 'Phone'],
 		'5' => ['class' => 'teleconference-rate', 'postfix' => '_t', 'title' => 'Teleconference'],
 	];
+	public function openAssignProvidersPanel($booking_id,$service_id){
+		$this->booking_id=$booking_id;
+		$this->assignServiceProviders($service_id);
+	}
+
+	public function assignServiceProviders($service_id)
+	{
+
+		if ($this->counter == 0) {
+			$this->currentServiceId = 0;
+			$this->dispatchBrowserEvent('assign-service-users', ['service_id' => $service_id,]);
+			$this->counter = 1;
+		} else {
+			$this->currentServiceId = $service_id;
+			$this->counter = 0;
+		}
+	}
 
 	public function render()
 	{
