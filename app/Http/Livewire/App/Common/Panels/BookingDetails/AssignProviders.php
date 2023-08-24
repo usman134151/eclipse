@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\App\Common\Panels\BookingDetails;
 
+use App\Models\Tenant\Booking;
 use App\Models\Tenant\Tag;
 use App\Models\Tenant\User;
 use Livewire\Component;
@@ -26,7 +27,7 @@ class AssignProviders extends Component
     public $allproviders;
     public $tags;
     public $service_id = null, $booking_id = null;
-    protected $listeners = ['showList' => 'resetForm', 'refreshFilters', 'saveAssignedProviders'=>'save'];
+    protected $listeners = ['showList' => 'resetForm', 'refreshFilters', 'saveAssignedProviders' => 'save'];
     public $assignedProviders = [];
 
 
@@ -177,10 +178,20 @@ class AssignProviders extends Component
     }
     public function save()
     {
-        
+        $booking = Booking::where('id', $this->booking_id)->first();
+        $booking_service_id = $booking->booking_services->where('services', $this->service_id)->first();
+        // delete existing records
+        BookingProvider::where(['booking_id' => $this->booking_id, 'booking_service_id' => $booking_service_id])->delete();
+        $data = null;
+        foreach ($this->assignedProviders as $provider) {
+            $data['provider_id'] = $provider;
+            $data['booking_id'] = $this->booking_id;
+            $data['booking_service_id'] = $booking_service_id;
+            BookingProvider::create($data);
+        }
 
         $this->dispatchBrowserEvent('close-assign-providers');
-        $this->emit('showConfirmation','Providers have been assigned successfully');
+        $this->emit('showConfirmation', 'Providers have been assigned successfully');
     }
 
     //add provider to list
