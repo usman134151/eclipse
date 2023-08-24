@@ -19,7 +19,7 @@ class CredentialManager extends Component
 
     use WithFileUploads;
 
-    public $showForm;
+    public $showForm;public $log_type;
     protected $listeners = [
                 'showList' => 'resetForm',
                 'editRecord' => 'edit', 'updateVal'
@@ -172,7 +172,12 @@ class CredentialManager extends Component
         $this->validate();
         // $this->credential->added_by=1;
         // dd($this->credential);
-        
+        if(!is_null($this->credential->id)){
+            $this->log_type = 'update';
+        }
+        else{
+            $this->log_type = 'create';
+        }
         $this-> credential->specializations = json_encode($this->credential->specializations);
 
         $this->credential->save();
@@ -222,6 +227,14 @@ class CredentialManager extends Component
             $documents = CredentialDocument::insert($document_array);
         }
         $this->showList("Record saved successfully");
+        addLogs([
+            'action_by' => \Auth::id(),
+            'action_to' => $this->credential->id,
+            'item_type' => 'credential',
+            'item' => $this->log_type,
+            'message' => 'Credential '. $this->log_type . 'd by '. \Auth::user()->name,
+            'ip_address' => \request()->ip(),
+        ]);
         $this->credential=new Credential;
     }
 
