@@ -71,7 +71,9 @@ class CustomFormDisplay extends Component
             }else
                 BookingCustomizeData::create($answer);
         }
-        $this->emitToParent($redirect);
+        $this->emit('confirmation', (isset($this->formInfo['request_form_name']) ? $this->formInfo['request_form_name'] :'') ." Form Data saved successfully!");
+
+        // $this->emitToParent($redirect);
     }
 
     public function emitToParent($redirect=1){
