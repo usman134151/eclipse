@@ -131,10 +131,12 @@ class Booknow extends Component
         
                 ];
 
-                if(is_null($this->dates[$index]['time_zone']))
+                if(is_null($this->dates[$index]['time_zone'])){
                     if($this->schedule)
                         $this->dates[$index]['time_zone']=$this->schedule->timezone_id;
-              
+                }
+
+             
                 if($this->dates[$index])
                     $this->updateDurations($index);
                 $this->booking_id=$this->booking->id;
@@ -211,6 +213,7 @@ class Booknow extends Component
             {
                 //update booking
                 $this->booking->save();
+                BookingOperationsService::saveDetails($this->services,$this->dates,$this->selectedIndustries,$this->booking);
             }
            // dd($this->booking->physical_address_id);
             $this->booking_id=$this->booking->id;
@@ -434,7 +437,17 @@ class Booknow extends Component
                     $this->updateDurations($index);
                 }
               
-            }              
+            }        
+            elseif (preg_match('/timezone_(\d+)/', $attrName, $matches)) {
+                $index = intval($matches[1]);
+               
+        
+                if (isset($this->dates[$index])) {
+                    $this->dates[$index]['time_zone'] = $val;
+                    $this->updateDurations($index);
+                }
+              
+            }         
             elseif (preg_match('/end_date_(\d+)/', $attrName, $matches)) {
                 $index = intval($matches[1]);
                
