@@ -40,7 +40,7 @@
         @livewire('app.common.lists.admin-staff',['status' => 0])
 
 		{{-- Hoverable rows start --}}
-	
+
 </div> {{-- icon legend bar start --}}
 <div class="d-flex actions gap-3 justify-content-end mb-2">
     <div class="d-flex gap-2 align-items-center">
@@ -63,7 +63,7 @@
     </div>
     <div class="d-flex gap-2 align-items-center">
         <a href="#" title="View Team" aria-label="view Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-			<svg class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+			<svg aria-label="View staff" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
 			xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
 		  </svg>
         </a>
