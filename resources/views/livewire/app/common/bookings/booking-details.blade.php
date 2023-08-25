@@ -507,7 +507,7 @@
                                     </div>
                                 </div>
                                 <!-- /Requester Detail -->
-                                @foreach ($booking['services'] as $index => $service)
+                                @foreach ($booking_services as $index => $service)
                                     <!-- Service 1 -->
                                     <div class="row between-section-segment-spacing">
                                         <div class="col-lg-12">
@@ -1233,7 +1233,7 @@
                         <div class="tab-pane fade {{ $component == 'assigned-providers' ? 'active show' : '' }}"
                             id="assigned-providers" role="tabpanel" aria-labelledby="assigned-providers-tab"
                             tabindex="0">
-                            @foreach ($booking['services'] as $index => $service)
+                            @foreach ($booking_services as $index => $service)
                                 @livewire('app.common.bookings.assignedproviders', ['index'=>$index+1,'service_id'=>$service['service_id'],'booking_id' => $booking_id],  key(time()))
                             @endforeach
                             <div

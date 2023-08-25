@@ -15,21 +15,19 @@ class Assignedproviders extends Component
     public $limit;
 
     protected $assignedProviders = [];
-    protected $listeners = ['dataUpdated' => 'refreshComponent'];
+    protected $listeners = [];
 
 
 
-    public function refreshComponent()
-    {
-        // Trigger a Livewire render to refresh the component
-        $this->render();
-    }
+ 
 
-    public function mount($booking_id)
+    public function mount($booking_id, $service_id)
     {
         $this->booking_id = $booking_id;
-        if ($this->service_id == null)
+        if ($service_id == null)
             $this->service_id = BookingServices::where('booking_id', $this->booking_id)->first()->pluck('services');
+        else 
+        $this->service_id = $service_id;
     }
 
     

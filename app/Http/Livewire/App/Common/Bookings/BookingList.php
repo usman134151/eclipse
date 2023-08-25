@@ -39,7 +39,7 @@ class BookingList extends Component
 
 		if ($this->counter == 0) {
 			$this->currentServiceId = 0;
-			$this->dispatchBrowserEvent('assign-service-users', ['service_id' => $service_id,]);
+			$this->dispatchBrowserEvent('assign-service-users', ['service_id' => $service_id]);
 			$this->counter = 1;
 		} else {
 			$this->currentServiceId = $service_id;
