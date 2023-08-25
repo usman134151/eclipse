@@ -40,22 +40,32 @@ class BookingOperationsService{
 
     $booking->save();
     //end of data mapping for main booking table
+    SELF::saveDetails($services,$dates,$selectedIndustries,$booking);
+
+    return $booking;
+    
+  }
+
+  public static function saveDetails($services,$dates,$selectedIndustries,$booking)
+   {
+    BookingServices::where('booking_id', $booking->id)->delete();
     foreach($services as $service){
         $service['booking_id']=$booking->id;
         $service['booking_log_id']=0;
         $service['meetings']= json_encode($service['meetings']);
         $service['specialization']=json_encode($service['specialization']);
-        $service['attendees']=implode(',',$service['attendees']);
+        if(is_array($service['attendees']))
+            $service['attendees']=implode(',',$service['attendees']);
         $service['status']='1';
         $service['start_time'] =  Carbon::parse($dates[0]['start_date'].' '.$dates[0]['start_hour'].':'.$dates[0]['start_min'].':00')->format('Y-m-d H:i:s');
         $service['end_time'] =  Carbon::parse($dates[0]['end_date'].' '.$dates[0]['end_hour'].':'.$dates[0]['end_min'].':00')->format('Y-m-d H:i:s');
         $service['time_zone'] =  $dates[0]['time_zone'];
     
-       // dd($service);
+       
         BookingServices::create($service);
     }
     //store services
-
+    BookingIndustry::where('booking_id', $booking->id)->delete();
     //saving industries
     foreach($selectedIndustries as $industry){
       BookingIndustry::updateOrInsert( [
@@ -63,11 +73,7 @@ class BookingOperationsService{
         'industry_id' => $industry,
       ], []);
     }
-
-    return $booking;
-    
-  }
-
+}
 
   private static function generateBookingNumber()
   {

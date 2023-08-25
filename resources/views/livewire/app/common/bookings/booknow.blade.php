@@ -643,7 +643,7 @@
                                             <div class="col-lg-3 col-md-6 pe-md-2 pe-lg-0 mb-4">
                                                 <label class="form-label-sm" for="set_time_zone">Set Time Zone <span
                                                         class="mandatory">*</span></label>
-                                               <select class="form-select select2 mb-2" wire:model.defer='dates.{{ $index }}.timezone'  id="timezone_{{$index}}" name="timezone_{{$index}}">
+                                               <select class="form-select select2 mb-2" wire:model.defer='dates.{{ $index }}.time_zone'  id="timezone_{{$index}}" name="timezone_{{$index}}">
                                                  @foreach($timezones as $zone)
                                                   <option value="{{$zone['id']}}">{{$zone['setup_value_label']}}</option>
                                                  @endforeach
