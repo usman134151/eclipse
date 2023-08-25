@@ -177,7 +177,7 @@
                         });
 
                        // var content = '<a href="https://www.google.com/maps/place/'+location.address+'">View on Google Maps</a>';
-					          var content = '<div class="marker-label"><p><strong>Assignment Number: ' + location.title + '</strong></p><p>' + location.service + '</p><p>Address: ' + location.address + '</p><a href="https://www.google.com/maps/place/' + encodeURIComponent(location.address)+'" target="_blank">Get Directions</a>&nbsp;&nbsp;&nbsp; <a  style="float:right;"href="#">Booking Details</a></div>';
+					          var content = '<div class="marker-label"><p><strong>Assignment Number: ' + location.title + '</strong></p><p>' + location.service + '</p><p>Address: ' + location.address + '</p><a href="https://www.google.com/maps/place/' + encodeURIComponent(location.address)+'" target="_blank">Get Directions</a>&nbsp;&nbsp;&nbsp; <a  style="float:right;" target="_blank" href="/admin/bookings/view-booking/'+location.booking_id+'">Booking Details</a></div>';
 
 
                         var infoWindow = new google.maps.InfoWindow({
