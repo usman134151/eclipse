@@ -117,7 +117,7 @@ class AssignProviders extends Component
                 }
             });
         }
-        
+
 
         return view('livewire.app.common.panels.booking-details.assign-providers', [
             'providers' => $query->get()
@@ -172,9 +172,9 @@ class AssignProviders extends Component
         $booking = Booking::where('id', $this->booking_id)->first();
 
         $booking_service = $booking->booking_services->where('services', $this->service_id)->first();
-
-        $this->assignedProviders = BookingProvider::where(['booking_id' => $this->booking_id, 'booking_service_id' => $booking_service->id])
-            ->get()->pluck('provider_id')->toArray();
+        if ($booking_service)
+            $this->assignedProviders = BookingProvider::where(['booking_id' => $this->booking_id, 'booking_service_id' => $booking_service->id])
+                ->get()->pluck('provider_id')->toArray();
         //     $this->assignedProviders= BookingProvider::where(['booking_id' => $this->booking_id, 'booking_service_id' => null])->get()->pluck('provider_id')->toArray();
 
     }
@@ -190,7 +190,7 @@ class AssignProviders extends Component
     public function save()
     {
         // $booking = Booking::where('id', $this->booking_id)->first();
-        $booking_service = BookingServices::where(['services'=> $this->service_id,'booking_id'=>$this->booking_id])->first();
+        $booking_service = BookingServices::where(['services' => $this->service_id, 'booking_id' => $this->booking_id])->first();
         // delete existing records
         BookingProvider::where(['booking_id' => $this->booking_id, 'booking_service_id' => null])->orWhere(['booking_service_id' => $booking_service->id])->delete();
         $data = null;
@@ -198,7 +198,7 @@ class AssignProviders extends Component
             $data['provider_id'] = $provider;
             $data['booking_id'] = $this->booking_id;
             $data['booking_service_id'] = $booking_service ? $booking_service->id : null;
-        
+
 
             BookingProvider::create($data);
         }
