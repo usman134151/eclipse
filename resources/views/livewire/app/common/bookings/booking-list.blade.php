@@ -169,10 +169,9 @@
                                                                     <input class="form-check-input" type="checkbox"
                                                                         value="" aria-label="Select Booking">
                                                                 </td>
-                                                                <td
-                                                                    wire:click="showBookingDetails({{ $booking['id'] }})">
+                                                                <td>
                                                                     <a
-                                                                        href="#">{{ $booking['booking_number'] ? $booking['booking_number'] : '' }}</a>
+                                                                        href="{{route('tenant.booking-view',['bookingID'=>encrypt($booking['id'])])}}">{{ $booking['booking_number'] ? $booking['booking_number'] : '' }}
                                                                     <div>
                                                                         <div class="time-date">
                                                                             {{ date_format(date_create($booking['booking_start_at']), 'm/d/Y') }}
@@ -183,6 +182,7 @@
                                                                             {{ $booking['booking_end_at'] ? date_format(date_create($booking['booking_end_at']), 'h:i A') : '' }}
                                                                         </div>
                                                                     </div>
+                                                                    </a>
                                                                 </td>
                                                                 <td>
                                                                     <div>

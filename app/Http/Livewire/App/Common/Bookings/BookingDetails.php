@@ -46,6 +46,9 @@ class BookingDetails extends Component
 	public function mount()
 	{
 
+		if (request()->bookingID != null) {
+			$this->booking_id = request()->bookingID;
+		}
 		$this->booking = Booking::where('id', $this->booking_id)->first();
 		$this->getServiceDetails();	//fetching custom form data
 
