@@ -32,11 +32,7 @@ class Assignedproviders extends Component
             $this->service_id = BookingServices::where('booking_id', $this->booking_id)->first()->pluck('services');
     }
 
-    public function openAssignProvidersPanel()
-    {
-
-        $this->emit('assignServiceProviders', $this->service_id);
-    }
+    
     public function render()
     {
         // $booking_service = BookingServices::where(['booking_id' => $this->booking_id, 'services' => $this->service_id])->first();

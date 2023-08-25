@@ -244,10 +244,5 @@
      </div>
      <!-- END: Filter Table -->
 
-     <x-slot name="outsideBody">
-         <div class="col-12 justify-content-center form-actions d-flex gap-3">
-             <button type="" class="btn btn-outline-dark rounded" x-on:click="assignProvider = !assignProvider">Cancel</button>
-             <button type=""  x-on:close-assign-providers.window="assignProvider = !assignProvider" wire:click="$emit('saveAssignedProviders')"  class="btn btn-primary rounded">Save</button>
-         </div>
-     </x-slot>
+   
  </div>

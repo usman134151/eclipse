@@ -1,4 +1,4 @@
-<div x-data="{ rescheduleBooking: false, addDocuments: false, assignProvider: false }">
+<div x-data="{ rescheduleBooking: false, addDocuments: false}">
     <div id="loader-section" class="loader-section" wire:loading>
         <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
             <div class="spinner-border" role="status" aria-live="polite">
@@ -1598,6 +1598,6 @@
         {{-- End of update by Sohail Asghar --}}
         @include('panels.booking-details.reschedule-booking')
         @include('panels.common.add-documents', ['booking_id' => $booking_id])
-        @include('panels.booking-details.assign-providers')
+        {{-- @include('panels.booking-details.assign-providers') --}}
     @endif
 </div>

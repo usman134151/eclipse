@@ -22,7 +22,7 @@ class BookingList extends Component
 
 
 
-	protected $listeners = ['showList' => 'resetForm', 'updateVal', 'showConfirmation', 'assignServiceProviders'];
+	protected $listeners = ['showList' => 'resetForm', 'updateVal', 'showConfirmation', 'openAssignProvidersPanel','assignServiceProviders'];
 	public $serviceTypes = [
 		'1' => ['class' => 'inperson-rate', 'postfix' => '', 'title' => 'In-Person'],
 		'2' => ['class' => 'virtual-rate', 'postfix' => '_v', 'title' => 'Virtual'],

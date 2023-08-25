@@ -16,7 +16,8 @@ class BookingDetails extends Component
     public $ethnicity, $booking_id=0;
 
 	public $component = 'booking-details';
-	protected $listeners = ['showConfirmation', 'assignServiceProviders'];
+	protected $listeners = ['showConfirmation', 
+];
 	public $booking;
 	public $serviceDetails;
 
@@ -34,21 +35,6 @@ class BookingDetails extends Component
     ];
 
 
-	public function assignServiceProviders($service_id)
-	{
-
-		if ($this->counter == 0) {
-			$this->currentServiceId = 0;
-			$this->dispatchBrowserEvent('assign-service-users', ['service_id' => $service_id, ]);
-			$this->counter = 1;
-
-		} else {
-			$this->currentServiceId = $service_id;
-			$this->counter = 0;
-
-		}
-
-	}
 
 	public function render()
 	{	
