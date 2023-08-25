@@ -100,7 +100,7 @@
                                                   <div class="pt-2">
                                                       <div class="font-family-secondary leading-none">
                                                           {{ $provider['name'] }}</div>
-                                                      <a href="#" class="font-family-secondary"><small>
+                                                      <a target="_blank" href="{{ route('tenant.provider-profile', ['providerID' => $provider['id']])}}" class="font-family-secondary"><small>
                                                               {{ $provider['email'] }}</small></a>
                                                   </div>
                                               </div>
@@ -125,7 +125,7 @@
                                                           </use>
                                                       </svg>
                                                   </a>
-                                                  <a href="#" title="View" aria-label="View"
+                                                  <a href="{{ route('tenant.provider-profile', ['providerID' => $provider['id']])}}" target="_blank" title="View" aria-label="View"
                                                       class="btn btn-sm btn-secondary rounded btn-hs-icon">
 
                                                       <svg aria-label="View" width="20" height="20"
