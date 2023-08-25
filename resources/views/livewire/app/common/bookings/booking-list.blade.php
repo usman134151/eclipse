@@ -425,7 +425,6 @@
         </div>
 
     @endif
-    @include('panels.booking-details.assign-providers')
 
     @include('panels.booking-details.reschedule-booking')
     @include('modals.common.confirm-completion')
@@ -436,6 +435,8 @@
     @include('modals.unassign')
     @include('modals.common.review-feedback')
     @include('modals.common.available-timeslot')
+    @include('panels.booking-details.assign-providers')
+
 
 </div>
 {{-- End: Content --}}
