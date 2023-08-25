@@ -16,21 +16,22 @@ class BookingList extends Component
 	public $bookingType = 'past';
 	public $showBookingDetails;
 	public $bookingSection;
-	public  $limit = 10, $counter,$currentServiceId;
+	public  $limit = 10, $counter, $currentServiceId;
 	public  $booking_id = 0, $provider_id = null;
 	public $bookingNumber = '';
 
 
 
-	protected $listeners = ['showList' => 'resetForm', 'updateVal', 'showConfirmation', 'assignServiceProviders'];
+	protected $listeners = ['showList' => 'resetForm', 'updateVal', 'showConfirmation', 'openAssignProvidersPanel', 'assignServiceProviders'];
 	public $serviceTypes = [
 		'1' => ['class' => 'inperson-rate', 'postfix' => '', 'title' => 'In-Person'],
 		'2' => ['class' => 'virtual-rate', 'postfix' => '_v', 'title' => 'Virtual'],
 		'4' => ['class' => 'phone-rate', 'postfix' => '_p', 'title' => 'Phone'],
 		'5' => ['class' => 'teleconference-rate', 'postfix' => '_t', 'title' => 'Teleconference'],
 	];
-	public function openAssignProvidersPanel($booking_id,$service_id){
-		$this->booking_id=$booking_id;
+	public function openAssignProvidersPanel($booking_id, $service_id)
+	{
+		$this->booking_id = $booking_id;
 		$this->assignServiceProviders($service_id);
 	}
 
@@ -39,7 +40,7 @@ class BookingList extends Component
 
 		if ($this->counter == 0) {
 			$this->currentServiceId = 0;
-			$this->dispatchBrowserEvent('assign-service-users', ['service_id' => $service_id,]);
+			$this->dispatchBrowserEvent('assign-service-users', ['service_id' => $service_id]);
 			$this->counter = 1;
 		} else {
 			$this->currentServiceId = $service_id;
@@ -100,7 +101,6 @@ class BookingList extends Component
 				$row->accommodation_name = $booking_service ? ($booking_service->service ? $booking_service->service->accommodation->name : null) : null;
 				$row->service_name = $booking_service ? ($booking_service->service ? $booking_service->service->name : null) : null;
 				$row->booking_service_id = $booking_service ? $booking_service->id : null;
-
 			} else {
 				$booking_service = $row->booking_services ? $row->booking_services->where('id', $row->booking_service_id)->first() : null;
 				$row->accommodation_name = $booking_service ? $booking_service->accommodation->name : null;
@@ -118,7 +118,7 @@ class BookingList extends Component
 				$val = json_decode($booking_service->service->check_in_procedure, true);
 				if ($val) {
 					if (isset($val['enable_button']) && ($val['enable_button']))
-					$row->display_check_in = true;
+						$row->display_check_in = true;
 				}
 			}
 		}
@@ -134,7 +134,7 @@ class BookingList extends Component
 
 	public function mount()
 	{
-
+		
 		if (session('isProvider'))
 			$this->provider_id = Auth::id();
 
@@ -143,6 +143,9 @@ class BookingList extends Component
 			if ($j == 3)
 				$j = 4;
 			$this->serviceTypes[$j]['title'] = $serviceTypeLabels[$i];
+		}
+		if (request()->bookingID != null) {
+			$this->showBookingDetails(request()->bookingID);
 		}
 	}
 
@@ -166,11 +169,11 @@ class BookingList extends Component
 
 	// provider panel functions
 
-	public function showCheckInPanel($booking_id,$booking_service_id, $bookingNumber)
+	public function showCheckInPanel($booking_id, $booking_service_id, $bookingNumber)
 	{
 		$this->booking_id = $booking_id;
 		$this->bookingNumber = $bookingNumber;
-		$this->emit('setCheckInBookingId', $booking_id,$booking_service_id);
+		$this->emit('setCheckInBookingId', $booking_id, $booking_service_id);
 	}
 	public function showCheckOutPanel($booking_id, $bookingNumber)
 	{

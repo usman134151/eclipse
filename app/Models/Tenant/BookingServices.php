@@ -32,4 +32,9 @@ class BookingServices extends Model
         return $this->hasOne(Accommodation::class, 'id', 'accommodation_id');
     }
 
+    public function serviceConsumerUser()
+    {
+        return $this->belongsTo(User::class, 'service_consumer');
+    }
+
 }

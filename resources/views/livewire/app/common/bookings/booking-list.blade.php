@@ -1,4 +1,4 @@
-<div x-data="{ rescheduleBooking: false }">
+<div x-data="{ rescheduleBooking: false, assignProvider: false }">
     <div id="loader-section" class="loader-section" wire:loading>
         <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
             <div class="spinner-border" role="status" aria-live="polite">
@@ -43,7 +43,7 @@
 
         @livewire('app.common.bookings.booking-details', ['booking_id' => $booking_id])
     @else
-        <div x-data="{assignProvider: false }">
+        <div>
 
             {{-- BEGIN: Content --}}
             @if ($bookingSection != 'customer')
@@ -169,10 +169,9 @@
                                                                     <input class="form-check-input" type="checkbox"
                                                                         value="" aria-label="Select Booking">
                                                                 </td>
-                                                                <td
-                                                                    wire:click="showBookingDetails({{ $booking['id'] }})">
+                                                                <td>
                                                                     <a
-                                                                        href="#">{{ $booking['booking_number'] ? $booking['booking_number'] : '' }}</a>
+                                                                        href="{{route('tenant.booking-view',['bookingID'=>encrypt($booking['id'])])}}">{{ $booking['booking_number'] ? $booking['booking_number'] : '' }}
                                                                     <div>
                                                                         <div class="time-date">
                                                                             {{ date_format(date_create($booking['booking_start_at']), 'm/d/Y') }}
@@ -183,6 +182,7 @@
                                                                             {{ $booking['booking_end_at'] ? date_format(date_create($booking['booking_end_at']), 'h:i A') : '' }}
                                                                         </div>
                                                                     </div>
+                                                                    </a>
                                                                 </td>
                                                                 <td>
                                                                     <div>
@@ -422,10 +422,10 @@
                     </div>
                 </div>
             </div>
-            @include('panels.booking-details.assign-providers')
         </div>
 
     @endif
+
     @include('panels.booking-details.reschedule-booking')
     @include('modals.common.confirm-completion')
     @include('modals.admin-staff')
@@ -435,6 +435,8 @@
     @include('modals.unassign')
     @include('modals.common.review-feedback')
     @include('modals.common.available-timeslot')
+    @include('panels.booking-details.assign-providers')
+
 
 </div>
 {{-- End: Content --}}

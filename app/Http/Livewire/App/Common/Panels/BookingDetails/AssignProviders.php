@@ -29,7 +29,7 @@ class AssignProviders extends Component
     public $tags;
     public $service_id = null, $booking_id = null;
     protected $listeners = ['showList' => 'resetForm', 'refreshFilters', 'saveAssignedProviders' => 'save'];
-    public $assignedProviders = [];
+    public $assignedProviders = [], $limit = null;
 
 
 
@@ -172,11 +172,11 @@ class AssignProviders extends Component
         $booking = Booking::where('id', $this->booking_id)->first();
 
         $booking_service = $booking->booking_services->where('services', $this->service_id)->first();
-        if ($booking_service)
+        if ($booking_service) {
+            $this->limit = $booking_service->provider_count;
             $this->assignedProviders = BookingProvider::where(['booking_id' => $this->booking_id, 'booking_service_id' => $booking_service->id])
                 ->get()->pluck('provider_id')->toArray();
-        //     $this->assignedProviders= BookingProvider::where(['booking_id' => $this->booking_id, 'booking_service_id' => null])->get()->pluck('provider_id')->toArray();
-
+        }
     }
 
     function showForm()
@@ -189,22 +189,24 @@ class AssignProviders extends Component
     }
     public function save()
     {
-        // $booking = Booking::where('id', $this->booking_id)->first();
-        $booking_service = BookingServices::where(['services' => $this->service_id, 'booking_id' => $this->booking_id])->first();
-        // delete existing records
-        BookingProvider::where(['booking_id' => $this->booking_id, 'booking_service_id' => null])->orWhere(['booking_service_id' => $booking_service->id])->delete();
-        $data = null;
-        foreach ($this->assignedProviders as $provider) {
-            $data['provider_id'] = $provider;
-            $data['booking_id'] = $this->booking_id;
-            $data['booking_service_id'] = $booking_service ? $booking_service->id : null;
+        if ($this->limit && count($this->assignedProviders) <= $this->limit) {
+            // $booking = Booking::where('id', $this->booking_id)->first();
+            $booking_service = BookingServices::where(['services' => $this->service_id, 'booking_id' => $this->booking_id])->first();
+            // delete existing records
+            BookingProvider::where(['booking_id' => $this->booking_id, 'booking_service_id' => null])->orWhere(['booking_service_id' => $booking_service->id])->delete();
+            $data = null;
+            foreach ($this->assignedProviders as $provider) {
+                $data['provider_id'] = $provider;
+                $data['booking_id'] = $this->booking_id;
+                $data['booking_service_id'] = $booking_service ? $booking_service->id : null;
 
 
-            BookingProvider::create($data);
+                BookingProvider::create($data);
+            }
+
+            $this->dispatchBrowserEvent('close-assign-providers');
+            $this->emit('showConfirmation', 'Providers have been assigned successfully');
         }
-
-        $this->dispatchBrowserEvent('close-assign-providers');
-        $this->emit('showConfirmation', 'Providers have been assigned successfully');
     }
 
     //add provider to list

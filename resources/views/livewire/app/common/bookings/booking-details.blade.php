@@ -1,4 +1,4 @@
-<div x-data="{ rescheduleBooking: false, addDocuments: false, assignProvider: false }">
+<div x-data="{ rescheduleBooking: false, addDocuments: false }">
     <div id="loader-section" class="loader-section" wire:loading>
         <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
             <div class="spinner-border" role="status" aria-live="polite">
@@ -111,13 +111,13 @@
                                     </div>
                                     <div class="col-lg col-12 mb-4">
                                         <div class="mb-4">
-                                            <label class="form-label text-primary">Providers</label>
+                                            <label class="form-label text-primary">Total Provider Count</label>
                                             <div class="d-flex flex-column gap-1">
                                                 <div class="font-family-tertiary value">
-                                                    Total Assigned: 03
+                                                    Total Assigned: {{ number_format($data['assigned_providers']) }}
                                                 </div>
                                                 <div class="font-family-tertiary value">
-                                                    Total Requested: 07
+                                                    Total Requested: {{ number_format($data['total_providers']) }}
                                                 </div>
                                             </div>
                                         </div>
@@ -507,7 +507,7 @@
                                     </div>
                                 </div>
                                 <!-- /Requester Detail -->
-                                @foreach ($booking['services'] as $index => $service)
+                                @foreach ($booking_services as $index => $service)
                                     <!-- Service 1 -->
                                     <div class="row between-section-segment-spacing">
                                         <div class="col-lg-12">
@@ -591,10 +591,8 @@
                                                         </div>
                                                         <div class="col-lg-7 align-self-center">
                                                             <div class="font-family-tertiary">
-                                                                <a href="#">Thomas Charles</a> , <a
-                                                                    href="#">Richard Payne</a> ,
-                                                                <a href="#">Jennifer Summers</a> , <a
-                                                                    href="#">Lori Wells</a>
+                                                                <a target="_blank"
+                                                                    href="{{ $service['service_consumer_user'] ? route('tenant.customer-profile', ['customerID' => encrypt($service['service_consumer_user']['id'])]) : '' }}">{{ $service['service_consumer_user'] ? $service['service_consumer_user']['name'] : 'N/A' }}</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -633,25 +631,25 @@
                                                             <div class="col-lg-4">
                                                                 <label class="col-form-label">Location:</label>
                                                             </div>
+
                                                             <div class="col-lg-7 align-self-center">
                                                                 <div class="d-flex gap-2">
                                                                     <div class="font-family-tertiary">
-                                                                        Mrs Smith 98 Shirley Street Appartment No. 45
-                                                                        PIMPAMA QLD
-                                                                        4209 AUSTRALIA
+                                                                        @if ($booking->physicalAddress)
+                                                                            {{ $booking->physicalAddress->address_name }}:{{ $booking->physicalAddress->address_line1 . ', ' . $booking->physicalAddress->address_line2 }}
+                                                                        @else
+                                                                            N/A
+                                                                        @endif
                                                                     </div>
                                                                     <a href="#"
                                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                        {{-- Updated by Shanila to Add
-                                                            svg icon --}}
                                                                         <svg aria-label="Edit" width="20"
                                                                             height="20" viewBox="0 0 20 20">
                                                                             <use
                                                                                 xlink:href="/css/common-icons.svg#pencil">
                                                                             </use>
                                                                         </svg>
-                                                                        {{-- End of update by Shanila
-                                                            --}}
+
                                                                     </a>
                                                                 </div>
                                                             </div>
@@ -663,7 +661,13 @@
                                                                 <label class="col-form-label">City:</label>
                                                             </div>
                                                             <div class="col-lg-7 align-self-center">
-                                                                <div class="font-family-tertiary">City Name</div>
+                                                                <div class="font-family-tertiary">
+                                                                    @if ($booking->physicalAddress)
+                                                                        {{ $booking->physicalAddress->city }}
+                                                                    @else
+                                                                        N/A
+                                                                    @endif
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -673,7 +677,13 @@
                                                                 <label class="col-form-label">State:</label>
                                                             </div>
                                                             <div class="col-lg-7 align-self-center">
-                                                                <div class="font-family-tertiary">State Name</div>
+                                                                <div class="font-family-tertiary">
+                                                                    @if ($booking->physicalAddress)
+                                                                        {{ $booking->physicalAddress->state }}
+                                                                    @else
+                                                                        N/A
+                                                                    @endif
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -683,7 +693,13 @@
                                                                 <label class="col-form-label">Zip Code:</label>
                                                             </div>
                                                             <div class="col-lg-7 align-self-center">
-                                                                <div class="font-family-tertiary">129839</div>
+                                                                <div class="font-family-tertiary">
+                                                                    @if ($booking->physicalAddress)
+                                                                        {{ $booking->physicalAddress->zip }}
+                                                                    @else
+                                                                        N/A
+                                                                    @endif
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -698,14 +714,20 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- Map -->
+                                                {{-- pb=!1m14!1m8!1m3!1d96779.59535015929!2d-74.00126600000002!3d40.710039!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1676478925644!5m2!1sen!2sus" --}}
+
+                                                {{-- <!-- Map --><div style="height:100%; width: 100%;" wire:ignore> 
+    <div id="map-canvas"></div>
+  </div> --}}
+                                                {{-- {{ str_replace(' ', '+', $booking->physicalAddress->address_line1 . ' ' . $booking->physicalAddress->address_line2 . ' ' . $booking->physicalAddress->city . ' ' . $booking->physicalAddress->state . ' ' . $booking->physicalAddress->country) }} --}}
                                                 <iframe
                                                     src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d96779.59535015929!2d-74.00126600000002!3d40.710039!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1676478925644!5m2!1sen!2sus"
                                                     width="304" height="228" style="border:0;"
                                                     allowfullscreen="" loading="lazy"
                                                     referrerpolicy="no-referrer-when-downgrade"
                                                     class="map"></iframe>
-                                                <!-- /Map -->
+
+
                                             </div>
                                         </div>
                                         <!-- /In-Person Meeting Detail -->
@@ -1233,8 +1255,8 @@
                         <div class="tab-pane fade {{ $component == 'assigned-providers' ? 'active show' : '' }}"
                             id="assigned-providers" role="tabpanel" aria-labelledby="assigned-providers-tab"
                             tabindex="0">
-                            @foreach ($booking['services'] as $index => $service)
-                                @livewire('app.common.bookings.assignedproviders', ['index'=>$index+1,'service_id'=>$service['service_id'],'booking_id' => $booking_id],  key(time()))
+                            @foreach ($booking_services as $index => $service)
+                                @livewire('app.common.bookings.assignedproviders', ['index' => $index + 1, 'service_id' => $service['service_id'], 'booking_id' => $booking_id], key(time()))
                             @endforeach
                             <div
                                 class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
@@ -1598,6 +1620,49 @@
         {{-- End of update by Sohail Asghar --}}
         @include('panels.booking-details.reschedule-booking')
         @include('panels.common.add-documents', ['booking_id' => $booking_id])
-        @include('panels.booking-details.assign-providers')
+        {{-- @include('panels.booking-details.assign-providers') --}}
     @endif
 </div>
+{{-- @if ($booking->physicalAddress)
+    @push('scripts')
+        <script>
+            var geocoder;
+            var map;
+
+            function initialize() {
+                geocoder = new google.maps.Geocoder();
+                var latlng = new google.maps.LatLng(50.804400, -1.147250);
+                var mapOptions = {
+                    zoom: 6,
+                    center: latlng
+                }
+                map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+                console.log('initialize');
+            }
+
+            function codeAddress(address) {
+                var address = address;
+                console.log(address);
+                geocoder.geocode({
+                    'address': address
+                }, function(results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+
+                        console.log('returned', results[0].geometry.location.lat());
+
+                        map.setCenter(results[0].geometry.location);
+
+                    } else {
+                        alert('Geocode was not successful for the following reason: ' + status);
+                    }
+                });
+            }
+
+
+            initialize();
+            var address =
+                "{{ $booking->physicalAddress->address_line1 . ', ' . $booking->physicalAddress->address_line2 . ', ' . $booking->physicalAddress->city . ', ' . $booking->physicalAddress->state . ', ' . $booking->physicalAddress->country }}";
+            codeAddress(address);
+        </script>
+    @endpush
+@endif --}}
