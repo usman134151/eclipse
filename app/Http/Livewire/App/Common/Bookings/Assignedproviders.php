@@ -33,7 +33,7 @@ class Assignedproviders extends Component
     
     public function render()
     {
-        // $booking_service = BookingServices::where(['booking_id' => $this->booking_id, 'services' => $this->service_id])->first();
+        $booking_service = BookingServices::where(['booking_id' => $this->booking_id, 'services' => $this->service_id])->first();
 
         // add this/appropriate condition to the query once bookng_providers are associated with booking_services
         // 'services'=>$this->service_id
@@ -41,8 +41,8 @@ class Assignedproviders extends Component
         $query = BookingProvider::query();
         $query->where(['booking_id' => $this->booking_id]);
         $query->join('users', 'booking_providers.provider_id', '=', 'users.id');
-        // if ($booking_service)
-        //     $query->where('booking_service_id', $booking_service->id);
+        if ($booking_service)
+            $query->where('booking_service_id', $booking_service->id);
 
         return view('livewire.app.common.bookings.assignedproviders', ['assignedProviders' => $query->paginate(10)]);
     }
