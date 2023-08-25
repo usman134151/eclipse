@@ -15,31 +15,30 @@ class Assignedproviders extends Component
     public $limit;
 
     protected $assignedProviders = [];
-    protected $listeners = ['dataUpdated' => 'refreshComponent'];
+    protected $listeners = [];
 
 
 
-    public function refreshComponent()
-    {
-        // Trigger a Livewire render to refresh the component
-        $this->render();
+    public function removeProviderAssignment($booking_service_id=null, $provider_id, $booking_id){
+            // dd($booking_service_id,$provider_id,$booking_id);
+            BookingProvider::where(['booking_service_id'=>$booking_service_id,'provider_id'=>$provider_id,'booking_id'=>$booking_id])->delete();
+        $this->emit('showConfirmation', 'Provider Assignment has been revoked successfully');
+
     }
 
-    public function mount($booking_id)
+    public function mount($booking_id, $service_id)
     {
         $this->booking_id = $booking_id;
-        if ($this->service_id == null)
+        if ($service_id == null)
             $this->service_id = BookingServices::where('booking_id', $this->booking_id)->first()->pluck('services');
+        else 
+        $this->service_id = $service_id;
     }
 
-    public function openAssignProvidersPanel()
-    {
-
-        $this->emit('assignServiceProviders', $this->service_id);
-    }
+    
     public function render()
     {
-        // $booking_service = BookingServices::where(['booking_id' => $this->booking_id, 'services' => $this->service_id])->first();
+        $booking_service = BookingServices::where(['booking_id' => $this->booking_id, 'services' => $this->service_id])->first();
 
         // add this/appropriate condition to the query once bookng_providers are associated with booking_services
         // 'services'=>$this->service_id
@@ -47,8 +46,8 @@ class Assignedproviders extends Component
         $query = BookingProvider::query();
         $query->where(['booking_id' => $this->booking_id]);
         $query->join('users', 'booking_providers.provider_id', '=', 'users.id');
-        // if ($booking_service)
-        //     $query->where('booking_service_id', $booking_service->id);
+        if ($booking_service)
+            $query->where('booking_service_id', $booking_service->id);
 
         return view('livewire.app.common.bookings.assignedproviders', ['assignedProviders' => $query->paginate(10)]);
     }
