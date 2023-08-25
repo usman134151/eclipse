@@ -111,13 +111,13 @@
                                     </div>
                                     <div class="col-lg col-12 mb-4">
                                         <div class="mb-4">
-                                            <label class="form-label text-primary">Providers</label>
+                                            <label class="form-label text-primary">Total Provider Count</label>
                                             <div class="d-flex flex-column gap-1">
                                                 <div class="font-family-tertiary value">
-                                                    Total Assigned: 03
+                                                    Total Assigned:  {{number_format($data['assigned_providers'])}}
                                                 </div>
                                                 <div class="font-family-tertiary value">
-                                                    Total Requested: 07
+                                                    Total Requested: {{number_format($data['total_providers'])}}
                                                 </div>
                                             </div>
                                         </div>

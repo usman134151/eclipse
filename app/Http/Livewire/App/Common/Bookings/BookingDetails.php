@@ -13,7 +13,7 @@ use App\Models\Tenant\CustomizeFormFields;
 class BookingDetails extends Component
 {
 	public $gender;
-	public $ethnicity, $booking_id = 0, $booking_services;
+	public $ethnicity, $booking_id = 0, $booking_services, $data;
 
 	public $component = 'booking-details';
 	protected $listeners = [
@@ -65,6 +65,9 @@ class BookingDetails extends Component
 				'accommodations.name as accommodation_name'
 			])
 			->toArray();
+			$this->data['total_providers'] = Booking::where('bookings.id', $this->booking_id)
+			->join('booking_services', 'booking_services.booking_id', 'bookings.id')->sum('booking_services.provider_count');
+		$this->data['assigned_providers'] = Booking::where('bookings.id', $this->booking_id)->first()->booking_provider->count();
 	}
 	//so a fuction which can then be used for editing the fields aswell.
 	public function getServiceDetails()
