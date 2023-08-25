@@ -19,7 +19,12 @@ class Assignedproviders extends Component
 
 
 
- 
+    public function removeProviderAssignment($booking_service_id=null, $provider_id, $booking_id){
+            // dd($booking_service_id,$provider_id,$booking_id);
+            BookingProvider::where(['booking_service_id'=>$booking_service_id,'provider_id'=>$provider_id,'booking_id'=>$booking_id])->delete();
+        $this->emit('showConfirmation', 'Provider Assignment has been revoked successfully');
+
+    }
 
     public function mount($booking_id, $service_id)
     {
