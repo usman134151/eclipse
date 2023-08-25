@@ -716,57 +716,17 @@
                                                 </div>
                                                 {{-- pb=!1m14!1m8!1m3!1d96779.59535015929!2d-74.00126600000002!3d40.710039!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1676478925644!5m2!1sen!2sus" --}}
 
-                                                <!-- Map -->
+                                                {{-- <!-- Map --><div style="height:100%; width: 100%;" wire:ignore> 
+    <div id="map-canvas"></div>
+  </div> --}}
+                                                {{-- {{ str_replace(' ', '+', $booking->physicalAddress->address_line1 . ' ' . $booking->physicalAddress->address_line2 . ' ' . $booking->physicalAddress->city . ' ' . $booking->physicalAddress->state . ' ' . $booking->physicalAddress->country) }} --}}
+                                                <iframe
+                                                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d96779.59535015929!2d-74.00126600000002!3d40.710039!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1676478925644!5m2!1sen!2sus"
+                                                    width="304" height="228" style="border:0;"
+                                                    allowfullscreen="" loading="lazy"
+                                                    referrerpolicy="no-referrer-when-downgrade"
+                                                    class="map"></iframe>
 
-                                                @if ($booking->physicalAddress)
-                                                    {{-- {{ str_replace(' ', '+', $booking->physicalAddress->address_line1 . ' ' . $booking->physicalAddress->address_line2 . ' ' . $booking->physicalAddress->city . ' ' . $booking->physicalAddress->state . ' ' . $booking->physicalAddress->country) }} --}}
-                                                    <iframe
-                                                        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAANwmAq3UQc8j5GkJgzF9AglzF7XLfPxI&q={{ str_replace(' ', '+', $booking->physicalAddress->address_line1 . ' ' . $booking->physicalAddress->address_line2 . ' ' . $booking->physicalAddress->city . ' ' . $booking->physicalAddress->state . ' ' . $booking->physicalAddress->country) }}"
-                                                        width="304" height="228" style="border:0;"
-                                                        allowfullscreen="" loading="lazy"
-                                                        referrerpolicy="no-referrer-when-downgrade" class="map"
-                                                        id="map"></iframe>
-                                                    {{-- <script>
-                                                        var geocoder;
-                                                        var map;
-
-                                                        function initialize() {
-                                                            geocoder = new google.maps.Geocoder();
-                                                            var latlng = new google.maps.LatLng(50.804400, -1.147250);
-                                                            var mapOptions = {
-                                                                zoom: 6,
-                                                                center: latlng
-                                                            }
-                                                            map = new google.maps.Map(document.getElementById('map-canvas12'), mapOptions);
-                                                            console.log('initialize');
-                                                        }
-
-                                                        function codeAddress(address) {
-                                                            var address = address;
-                                                            console.log(address);
-                                                            geocoder.geocode({
-                                                                'address': address
-                                                            }, function(results, status) {
-                                                                if (status == google.maps.GeocoderStatus.OK) {
-                                                                    console.log('returned', results[0].geometry.location);
-
-                                                                    map.setCenter(results[0].geometry.location);
-
-                                                                } else {
-                                                                    alert('Geocode was not successful for the following reason: ' + status);
-                                                                }
-                                                            });
-                                                        }
-
-
-                                                        initialize();
-                                                        var address =
-                                                            "{{ $booking->physicalAddress->address_line1 . ', ' . $booking->physicalAddress->address_line2 . ', ' . $booking->physicalAddress->city . ', ' . $booking->physicalAddress->state . ', ' . $booking->physicalAddress->country }}";
-                                                        codeAddress(address);
-                                                    </script> --}}
-                                                    {{-- <div id="map-canvas12"></div> --}}
-
-                                                @endif
 
                                             </div>
                                         </div>
@@ -1663,3 +1623,46 @@
         {{-- @include('panels.booking-details.assign-providers') --}}
     @endif
 </div>
+{{-- @if ($booking->physicalAddress)
+    @push('scripts')
+        <script>
+            var geocoder;
+            var map;
+
+            function initialize() {
+                geocoder = new google.maps.Geocoder();
+                var latlng = new google.maps.LatLng(50.804400, -1.147250);
+                var mapOptions = {
+                    zoom: 6,
+                    center: latlng
+                }
+                map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+                console.log('initialize');
+            }
+
+            function codeAddress(address) {
+                var address = address;
+                console.log(address);
+                geocoder.geocode({
+                    'address': address
+                }, function(results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+
+                        console.log('returned', results[0].geometry.location.lat());
+
+                        map.setCenter(results[0].geometry.location);
+
+                    } else {
+                        alert('Geocode was not successful for the following reason: ' + status);
+                    }
+                });
+            }
+
+
+            initialize();
+            var address =
+                "{{ $booking->physicalAddress->address_line1 . ', ' . $booking->physicalAddress->address_line2 . ', ' . $booking->physicalAddress->city . ', ' . $booking->physicalAddress->state . ', ' . $booking->physicalAddress->country }}";
+            codeAddress(address);
+        </script>
+    @endpush
+@endif --}}
