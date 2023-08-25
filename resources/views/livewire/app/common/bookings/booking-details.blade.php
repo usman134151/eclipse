@@ -591,11 +591,8 @@
                                                         </div>
                                                         <div class="col-lg-7 align-self-center">
                                                             <div class="font-family-tertiary">
-                                                                <a href="#">Thomas Charles</a> , <a
-                                                                    href="#">Richard Payne</a> ,
-                                                                <a href="#">Jennifer Summers</a> , <a
-                                                                    href="#">Lori Wells</a>
-                                                            </div>
+                                                                <a target="_blank" href="{{$service['service_consumer_user'] ? route('tenant.customer-profile',['customerID'=>encrypt($service['service_consumer_user']['id'])]) : ''}}">{{$service['service_consumer_user'] ? $service['service_consumer_user']['name'] : 'N/A' }}</a>
+                                                                </div>
                                                         </div>
                                                     </div>
                                                 </div>

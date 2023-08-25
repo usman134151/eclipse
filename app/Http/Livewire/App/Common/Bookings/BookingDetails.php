@@ -8,6 +8,7 @@ use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\ServiceCategory;
 use Livewire\Component;
 use App\Models\Tenant\BookingCustomizeData;
+use App\Models\Tenant\BookingServices;
 use App\Models\Tenant\CustomizeFormFields;
 
 class BookingDetails extends Component
@@ -51,13 +52,13 @@ class BookingDetails extends Component
 		if (!$this->booking)
 			$this->booking = new Booking;
 		// new booking fields 
-		$this->booking_services = Booking::where('bookings.id', $this->booking_id)
-			->join('booking_services', 'booking_services.booking_id', 'bookings.id')
+		$this->booking_services = BookingServices::where('booking_id', $this->booking_id)
 			->join('service_categories', 'booking_services.services', 'service_categories.id')
 			->join('accommodations', 'accommodations.id', 'service_categories.accommodations_id')
+			->with('serviceConsumerUser')
 			->get([
 				'booking_services.id', 'booking_services.service_types',
-				//  'booking_services.meeting_name',
+				 'booking_services.service_consumer',
 				'booking_services.meeting_link',
 				'booking_services.attendees', 'booking_services.service_consumer', 'booking_services.specialization', 'booking_services.meeting_phone',
 				'booking_services.meeting_passcode', 'booking_services.provider_count', 'booking_services.created_at',
@@ -65,6 +66,7 @@ class BookingDetails extends Component
 				'accommodations.name as accommodation_name'
 			])
 			->toArray();
+			// dd($this->booking_services);
 			$this->data['total_providers'] = Booking::where('bookings.id', $this->booking_id)
 			->join('booking_services', 'booking_services.booking_id', 'bookings.id')->sum('booking_services.provider_count');
 		$this->data['assigned_providers'] = Booking::where('bookings.id', $this->booking_id)->first()->booking_provider->count();
