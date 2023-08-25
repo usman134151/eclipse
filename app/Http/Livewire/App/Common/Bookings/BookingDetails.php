@@ -46,19 +46,20 @@ class BookingDetails extends Component
 	public function mount()
 	{
 
-		$this->booking = Booking::where('id', $this->booking_id)->with('services')->first();
-		$this->getServiceDetails();
+		$this->booking = Booking::where('id', $this->booking_id)->first();
+		$this->getServiceDetails();	//fetching custom form data
 
-		if (!$this->booking)
+		if (!$this->booking)	//null check
 			$this->booking = new Booking;
-		// new booking fields 
+
+		// fetch all services for booking 
 		$this->booking_services = BookingServices::where('booking_id', $this->booking_id)
 			->join('service_categories', 'booking_services.services', 'service_categories.id')
 			->join('accommodations', 'accommodations.id', 'service_categories.accommodations_id')
 			->with('serviceConsumerUser')
 			->get([
 				'booking_services.id', 'booking_services.service_types',
-				 'booking_services.service_consumer',
+				'booking_services.service_consumer',
 				'booking_services.meeting_link',
 				'booking_services.attendees', 'booking_services.service_consumer', 'booking_services.specialization', 'booking_services.meeting_phone',
 				'booking_services.meeting_passcode', 'booking_services.provider_count', 'booking_services.created_at',
@@ -66,10 +67,9 @@ class BookingDetails extends Component
 				'accommodations.name as accommodation_name'
 			])
 			->toArray();
-			// dd($this->booking_services);
-			$this->data['total_providers'] = Booking::where('bookings.id', $this->booking_id)
+		$this->data['total_providers'] = Booking::where('bookings.id', $this->booking_id)
 			->join('booking_services', 'booking_services.booking_id', 'bookings.id')->sum('booking_services.provider_count');
-		$this->data['assigned_providers'] = Booking::where('bookings.id', $this->booking_id)->first()->booking_provider->count();
+		$this->data['assigned_providers'] = $this->booking->booking_provider->count();
 	}
 	//so a fuction which can then be used for editing the fields aswell.
 	public function getServiceDetails()
@@ -111,6 +111,5 @@ class BookingDetails extends Component
 
 
 		$this->showConfirmation('Booking notes updated');
-		//	$this->getServiceDetails();
 	}
 }
