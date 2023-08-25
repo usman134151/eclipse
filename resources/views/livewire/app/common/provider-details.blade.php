@@ -977,18 +977,18 @@
                                                                                         </div>
                                                                                     </div>
                                                                                     <div class="mx-4 col-4">
-                                                                                        @if ($param[0]['exclude_holidays'] == true)
+                                                                                        @if (isset($param[0]['exclude_holidays']) && $param[0]['exclude_holidays'] == true)
                                                                                             Exclude After Hours <br>
                                                                                         @endif
-                                                                                        @if ($param[0]['multiply_duration'] == true)
+                                                                                        @if (isset($param[0]['multiply_duration']) && $param[0]['multiply_duration'] == true)
                                                                                             Multiply by service duration
                                                                                             <br>
                                                                                         @endif
-                                                                                        @if ($param[0]['multiply_providers'] == true)
+                                                                                        @if (isset($param[0]['multiply_providers']) && $param[0]['multiply_providers'] == true)
                                                                                             Multiply by no. of Providers
                                                                                             <br>
                                                                                         @endif
-                                                                                        @if ($param[0]['exclude_after_hour'] == true)
+                                                                                        @if (isset($param[0]['exclude_after_hour']) && $param[0]['exclude_after_hour'] == true)
                                                                                             Exclude Closed Hours <br>
                                                                                         @endif
                                                                                     </div>
