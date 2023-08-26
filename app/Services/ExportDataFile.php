@@ -5,6 +5,9 @@ namespace App\Services;
 use App\Models\SetupValue;
 use App\Models\Tenant\Industry;
 use App\Models\Tenant\Company;
+use App\Models\Tenant\NotificationTemplateRoles;
+use App\Models\Tenant\NotificationTemplates;
+use App\Models\Tenant\TriggerType;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
@@ -469,6 +472,86 @@ foreach($excelRows as $key=>$valueArr){
     return $fileResponse;
 
 
+    }
+    
+    public function generateExcelTemplateNotifications($notificationType)
+    {
+        $notifications=NotificationTemplates::where('notification_type',$notificationType)->get();
+        if($notifications && count($notifications)){
+            // dd("records found",$notifications);
+            $headers = [
+                'Trigger',
+                'Admin',
+                'Subject',
+                'Provider',
+                'Subject',
+                'Customer',
+                'Subject',
+            ];
+            $rows = [$headers];
+
+            $triggerTypes=TriggerType::all();
+            foreach($triggerTypes as $triggerType){
+
+                $triggerTypeNotifications=$notifications->where('trigger_type_id',$triggerType->id);
+                if($triggerTypeNotifications && count($triggerTypeNotifications)){
+                    $row=[
+                        $triggerType->name,
+                        $triggerType->name,
+                        $triggerType->name,
+                        $triggerType->name,
+                        $triggerType->name,
+                        $triggerType->name,
+                        $triggerType->name,
+                    ];
+                    $rows[]=$row;
+                    foreach($triggerTypeNotifications as $triggerTypeNotification){
+                        $row=['--','--','--','--','--','--','--'];
+                        $row[0]=$triggerTypeNotification->trigger;
+                        $NotificationTemplateRoles=NotificationTemplateRoles::where('notification_id',$triggerTypeNotification->id)->get();
+                        foreach($NotificationTemplateRoles as $NotificationTemplateRole){
+                            if($NotificationTemplateRole->role_id==1){
+                                $row[1]=$NotificationTemplateRole->notification_text;
+                                $row[2]=$NotificationTemplateRole->notification_subject;
+                            }else if($NotificationTemplateRole->role_id==2){
+                                $row[3]=$NotificationTemplateRole->notification_text;
+                                $row[4]=$NotificationTemplateRole->notification_subject;
+                            }else if($NotificationTemplateRole->role_id==4){
+                                $row[5]=$NotificationTemplateRole->notification_text;
+                                $row[6]=$NotificationTemplateRole->notification_subject;
+                            }
+                        }
+                        $rows[]=$row;
+                    }
+                }
+            }
+            // dd($rows);
+            $fileName = 'email-notifications-import.xlsx';
+            $filePath = Storage::disk('local')->path($fileName);
+    
+            $spreadsheet = new Spreadsheet();
+            $sheet = $spreadsheet->getActiveSheet();
+            $sheet->fromArray($rows);
+
+            $writer = new Xlsx($spreadsheet);
+            $writer->save($filePath);
+            
+            $fileResponse = response()->file($filePath, [
+                'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
+            ])->deleteFileAfterSend(true);
+        
+            return $fileResponse;
+        }else if($notificationType==1){
+            
+            $fileName = 'sample-email-notifications-import.xlsx';
+            $filePath = public_path('sample-notification-files/'.$fileName);
+
+            $fileResponse = response()->file($filePath, [
+                'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
+            ])->deleteFileAfterSend(false);
+        
+            return $fileResponse;
+        }
     }
 }
 
