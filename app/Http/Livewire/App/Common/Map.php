@@ -11,8 +11,8 @@ use DB;
 class Map extends Component
 {
     public $showForm;
-    protected $listeners = ['showList' => 'resetForm','apply'=> 'applyFilters'];
-    public $locations=[];
+    protected $listeners = ['showList' => 'resetForm', 'apply' => 'applyFilters'];
+    public $locations = [];
     public $selectDate;
     public $selectedBookingNo;
     public $selectedAddress;
@@ -30,15 +30,15 @@ class Map extends Component
 
     public function mount()
     {
-        $this->bookingList=Booking::select('id','booking_number')->whereNotNull('physical_address_id')->get();
-         $this->addressList = UserAddress::select([
+        $this->bookingList = Booking::select('id', 'booking_number')->whereNotNull('physical_address_id')->get();
+        $this->addressList = UserAddress::select([
             DB::raw("CONCAT(address_line1,', ', city, ', ', state, ', ', country) as full_address")
-            ])->get();
+        ])->get();
 
-           $this->applyFilters();
+        $this->applyFilters();
     }
 
-   // seprate function for implementing the filters
+    // seprate function for implementing the filters
     public function applyFilters()
     {
 
@@ -50,12 +50,12 @@ class Map extends Component
             })
             ->when($this->selectedAddress, function ($query, $selectedAddress) {
                 return $query->whereRaw("CONCAT(address_line1, ', ', city, ', ', state, ', ', country) LIKE ?", ['%' . $selectedAddress . '%']);
-
             })
             ->when($this->selectedBookingNo, function ($query, $selectedBookingNo) {
-                return $query->where('bookings.id',$selectedBookingNo);
+                return $query->where('bookings.id', $selectedBookingNo);
             })
             ->select([
+                'bookings.id',
                 'bookings.booking_number',
                 'service_categories.name as service_name',
                 'user_addresses.address_name',
@@ -68,28 +68,26 @@ class Map extends Component
                 'user_addresses.zip',
             ])->get();
 
-            $locationsArray = [];
+        $locationsArray = [];
 
-            foreach ($locations as $location) {
-                $locationData = [
-                    'title' => $location->booking_number,
-                    'service' => $location->service_name,
-                    'address' => $location->address_line1 . ', ' . $location->city . ', ' . $location->state . ', ' . $location->country . ', ' . $location->zip,
-                    'lat' => $location->latitude,
-                    'long' => $location->longitude
-                ];
+        foreach ($locations as $location) {
+            $locationData = [
+                'booking_id' => encrypt($location->id),
+                'title' => $location->booking_number,
+                'service' => $location->service_name,
+                'address' => $location->address_line1 . ', ' . $location->city . ', ' . $location->state . ', ' . $location->country . ', ' . $location->zip,
+                'lat' => $location->latitude,
+                'long' => $location->longitude
+            ];
 
-                $locationsArray[] = $locationData;
-            }
+            $locationsArray[] = $locationData;
+        }
 
-            $this->locations = $locationsArray;
+        $this->locations = $locationsArray;
 
-            $this->dispatchBrowserEvent('livewire:map',[
-                'locations'=>$this->locations
-                 ]);
-
-
-
+        $this->dispatchBrowserEvent('livewire:map', [
+            'locations' => $this->locations
+        ]);
     }
     //this is for filters
     public function updateVal($inputId, $inputValue)
@@ -97,14 +95,14 @@ class Map extends Component
         switch ($inputId) {
             case "Booking":
 
-                $selectedBooking=Booking::where('id',$inputValue)->select('Booking_number')->first();
-                $this->selectedBooking=$selectedBooking->Booking_number;
-                $this->selectedBookingNo=$inputValue;
+                $selectedBooking = Booking::where('id', $inputValue)->select('Booking_number')->first();
+                $this->selectedBooking = $selectedBooking->Booking_number;
+                $this->selectedBookingNo = $inputValue;
 
                 break;
 
             case "Address":
-                 $this->selectedAddress=$inputValue;
+                $this->selectedAddress = $inputValue;
                 break;
 
             case "selectdate":
@@ -116,28 +114,26 @@ class Map extends Component
         $this->applyFilters();
         $this->addressList = UserAddress::select([
             DB::raw("CONCAT(address_line1,', ', city, ', ', state, ', ', country) as full_address")
-            ])->get();
+        ])->get();
     }
 
     function showForm()
     {
-       $this->showForm=true;
+        $this->showForm = true;
     }
     public function resetForm()
     {
-        $this->showForm=false;
+        $this->showForm = false;
     }
     public function resetDate()
     {
         $this->selectedBooking = null; // Reset the selected date and bookingid etc
-        $this->selectedAddress=null;
-        $this->selectDate =null;
-        $this->selectedBookingNo=null;
+        $this->selectedAddress = null;
+        $this->selectDate = null;
+        $this->selectedBookingNo = null;
         $this->applyFilters();
         $this->addressList = UserAddress::select([
             DB::raw("CONCAT(address_line1,', ', city, ', ', state, ', ', country) as full_address")
-            ])->get();
-
+        ])->get();
     }
-
 }

@@ -30,6 +30,18 @@
          </div>
      </div><!-- END: Filters -->
      <!-- BEGIN: Filter Table -->
+     @if ($limit)
+         <div class="">
+             <span> Required Providers : {{ $limit }} </span>
+             <span class="d-inline-block  mt-2"
+                 style="{{ count($assignedProviders) <= $limit ? '' : 'color:#b02a37' }}">
+                 Assigned Providers : {{ count($assignedProviders) }} </span>
+             @if (count($assignedProviders) > $limit)
+                 <span class="d-inline-block invalid-feedback mt-2"> Max Limit exceeded - Please unassign
+                     provider</span>
+             @endif
+         </div>
+     @endif
      <div class="d-lg-flex justify-content-between align-items-end mb-3">
          <div>
              <a href="#" class="btn btn-primary rounded">Providers</a>
@@ -81,7 +93,7 @@
                                      @if ($key != $provider->services->count() - 1)
                                          <span>,</span>
                                      @endif
-                                @endforeach
+                                 @endforeach
                              </div>
                          </td>
                          <td>
@@ -195,7 +207,8 @@
                                          <input class="form-check-input" id="reimburse-travel-time" name=""
                                              type="checkbox" tabindex="" checked>
                                          <label class="form-check-label text-nowrap"
-                                             for="reimburse-travel-time"><small>Reimburse Travel Time</small></label>
+                                             for="reimburse-travel-time"><small>Reimburse Travel
+                                                 Time</small></label>
                                      </div>
                                      <div class="d-inline-flex">
                                          <input type="" name=""
@@ -223,7 +236,8 @@
                                      </div>
                                  </div>
                                  <div class="mx-3 mt-4">
-                                     <button class="btn btn-sm btn-outline-dark rounded mb-2" wire:click="{{in_array($provider->id,$assignedProviders) ? 'remove' : 'add'}}({{$provider->id}})">{{in_array($provider->id,$assignedProviders) ? 'Unassign' : 'Assign'}}</button>
+                                     <button class="btn btn-sm btn-outline-dark rounded mb-2"
+                                         wire:click="{{ in_array($provider->id, $assignedProviders) ? 'remove' : 'add' }}({{ $provider->id }})">{{ in_array($provider->id, $assignedProviders) ? 'Unassign' : 'Assign' }}</button>
                                      <div class="form-check">
                                          <input class="form-check-input" id="assignPartialCoverage" name=""
                                              type="checkbox" tabindex="">
@@ -244,10 +258,5 @@
      </div>
      <!-- END: Filter Table -->
 
-     <x-slot name="outsideBody">
-         <div class="col-12 justify-content-center form-actions d-flex gap-3">
-             <button type="" class="btn btn-outline-dark rounded" x-on:click="assignProvider = !assignProvider">Cancel</button>
-             <button type=""  x-on:close-assign-providers.window="assignProvider = !assignProvider" wire:click="$emit('saveAssignedProviders')"  class="btn btn-primary rounded">Save</button>
-         </div>
-     </x-slot>
+     
  </div>
