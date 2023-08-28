@@ -211,7 +211,7 @@ class AssignProviders extends Component
                 ->get()->pluck('provider_id')->toArray();
         }
 
-        $this->dispatchBrowserEvent('refreshSelects2');
+
     }
 
     function showForm()
