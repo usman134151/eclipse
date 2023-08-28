@@ -24,7 +24,7 @@ class Booknow extends Component
 {
     public $component = 'requester-info';
     
-    public $booking_id,$showForm,$booking,$requesters =[],$bManagers=[],$supervisors=[],$consumers=[],$participants=[], $step=1,$userAddresses=[], $timezone, $schedule, $timezones, $formIds,$selectedAddressId, $bookingDetails ;
+    public $booking_id,$showForm,$booking,$requesters =[],$bManagers=[],$supervisors=[],$consumers=[],$participants=[], $step=1,$userAddresses=[], $timezone, $schedule, $timezones, $formIds,$selectedAddressId, $bookingDetails,$selectedServices=[];
     protected $listeners = ['showList' => 'resetForm','updateVal', 'updateCompany',
         'updateSelectedIndustries' => 'selectIndustries',
         'updateSelectedDepartments','confirmation',
@@ -98,6 +98,17 @@ class Booknow extends Component
     {
         $this->booking=$booking;
         $this->schedule=Schedule::where('model_id',1)->where('model_type',1)->get()->first();
+        $this->timezones=SetupValue::where('setup_id',4)->select('id','setup_value_label')->get()->toArray();
+        $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
+        $this->frequencies=SetupValue::where('setup_id',6)->select('id','setup_value_label')->get()->toArray();
+        $this->accommodations=Accommodation::with('services.specializations')->where('status',1)->get()->toArray();
+        $serviceTypeLabels=SetupValue::where('setup_id',5)->pluck('setup_value_label')->toArray();
+        for($i=0,$j=1;$i<4;$i++,$j++){
+            if($j==3)
+               $j=4;
+            $this->serviceTypes[$j]['title']=$serviceTypeLabels[$i];
+        }
+
         if (request()->bookingID != null) {
             $id=request()->bookingID;
             $this->booking=Booking::with('company','accommodation','booking_services_new_layout','industries','customer',)->find($id);
@@ -159,17 +170,7 @@ class Booknow extends Component
            
         }
         $accommodationsCollection = collect($this->accommodations);
-        $this->timezones=SetupValue::where('setup_id',4)->select('id','setup_value_label')->get()->toArray();
-        $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
-        $this->frequencies=SetupValue::where('setup_id',6)->select('id','setup_value_label')->get()->toArray();
-        $this->accommodations=Accommodation::with('services.specializations')->where('status',1)->get()->toArray();
-        $serviceTypeLabels=SetupValue::where('setup_id',5)->pluck('setup_value_label')->toArray();
-        for($i=0,$j=1;$i<4;$i++,$j++){
-            if($j==3)
-               $j=4;
-            $this->serviceTypes[$j]['title']=$serviceTypeLabels[$i];
-        }
-
+       
         //loop to implode service type for services arrays
 
         foreach($this->accommodations as &$accommodation){
@@ -534,11 +535,11 @@ class Booknow extends Component
                
                 if($this->dates[$index]['time_zone'])
                     $timezoneLabel = $this->timezones[$this->dates[$index]['time_zone']]['setup_value_label'];
-             
+                    
             $startDateTime = Carbon::create($this->dates[$index]['start_date'].$this->dates[$index]['start_hour'].':'.$this->dates[$index]['start_min'].':00');
     
             $endDateTime =  Carbon::create($this->dates[$index]['end_date'].$this->dates[$index]['end_hour'].':'.$this->dates[$index]['end_min'].':00');
-           
+         
             if ($endDateTime >= $startDateTime) {
                 $diff = $endDateTime->diff($startDateTime);
     
@@ -551,13 +552,14 @@ class Booknow extends Component
                 $this->dates[$index]['duration_minute']=$minutes;
                
             } else {
+
                 // Return an error message or handle the case where end date/time is not greater than start date/time.
                // return ['error' => 'End date/time must be greater than start date/time.'];
             }
         }
     } catch (\Exception $e) {
         // Handle the exception, log the error, or debug further
-        //dd($e->getMessage());
+        dd($e->getMessage());
     }
     
         return null; // Return null if the required fields are not set.
@@ -681,8 +683,26 @@ class Booknow extends Component
     }
 
     public function getBookingInfo(){
-        $this->bookingDetails=BookingOperationsService::getBookingInfoNewLayout($this->booking);
+        $this->selectedServices=[];
+        foreach($this->services as $service){
+            foreach($this->accommodations as $accommodation){
+                if($accommodation['id'] == $service['accommodation_id']){
+                    foreach($accommodation['services'] as $accommodationService)
+                    {
+                        if($service['services'] == $accommodationService['id']){
+                            $this->selectedServices[]=['name'=>$accommodationService['name'],'serviceTotal'=>BookingOperationsService::calculateServiceTotal($accommodationService,$service)];
+                        }
+                           
+                    }
+                }
+            }
+        }
+      
+        $this->bookingCharges=BookingOperationsService::calculateCharges($this->booking,$this->services,$this->dates);
+       // $this->bookingDetails=BookingOperationsService::getBookingInfoNewLayout($this->booking);
        
     }
+
+   
 
 }

@@ -385,7 +385,7 @@
                                                 <label class="form-label" >Specializations</label>
                                                 <div class="" >
                                                   @foreach($foundService['specializations'] as $specialization)
-                                                  <div class="form-check"><input class="form-check-input" type="checkbox" id="service_specializations-{{$index}}-{{$specialization['id']}}" name="service_specializations" value="{{$specialization['id']}}" tabindex="1" wire.model.defer="services.{{$index}}.specialization"><label class="form-check-label" for="service_specializations-{{$index}}-{{$specialization['id']}}">{{$specialization['name']}}</label></div>
+                                                  <div class="form-check"><input class="form-check-input" type="checkbox" id="service_specializations-{{$index}}-{{$specialization['id']}}" name="service_specializations" value="{{$specialization['id']}}" tabindex="1" wire:model.defer="services.{{$index}}.specialization"><label class="form-check-label" for="service_specializations-{{$index}}-{{$specialization['id']}}">{{$specialization['name']}}</label></div>
                                                   @endforeach
                                                 </div>
                                             </div>
@@ -913,15 +913,17 @@
                     @elseif($component == 'payment-info')
                     <div class="tab-pane fade {{ $component == 'payment-info' ? 'active show' : '' }}" id="payment-info"
                         role="tabpanel" aria-labelledby="payment-info-tab" tabindex="0">
-                        <table>{!! $bookingDetails['html'] !!}</table>
+                        
 
                             <h2>Payment Summary</h2>
                             <div class="row">
                                 <div class="col-lg-6 mb-4 pe-lg-5 pt-5">
                                     <div class="col-lg-10 mb-5">
                                         <div class="d-flex flex-column gap-5">
+                                            @foreach($selectedServices as $index=>$service)
                                             <div class="row">
-                                                <label class="form-label mb-2 col-lg-6">Service 1 Total Rate:</label>
+                                                <h3>Service {{$index+1}} : {{$service['name']}}</h3>
+                                                <label class="form-label mb-2 col-lg-6">Total Rate:</label>
                                                 <label
                                                     class="form-label-sm mb-0 col-lg-3 col-6 align-self-center">$00.00</label>
                                                 <div class="col-lg-3 col-6">
@@ -930,16 +932,7 @@
                                                         placeholder="$00.00" aria-label="Service 1 Total Rate">
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <label class="form-label mb-2 col-lg-6">Service 2 Total Rate:</label>
-                                                <label
-                                                    class="form-label-sm mb-0 col-lg-3 col-md-6 align-self-center">$00.00</label>
-                                                <div class="col-lg-3 col-md-6">
-                                                    <input type="" name=""
-                                                        class="form-control form-control-md text-center"
-                                                        placeholder="$00.00" aria-label="Service 2 Total Rate">
-                                                </div>
-                                            </div>
+                                            @endforeach                    
                                             <div class="row">
                                                 <label class="form-label mb-2 col-lg-6">Additional Charges:</label>
                                                 <label
