@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Tenant\UserAddress;
+use App\Models\Tenant\UserDetail;
 use App\Services\App\AddressService;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -27,6 +28,16 @@ class LatLngForExisitngAddressSeeder extends Seeder
                 $address->longitude = $data['lng'];
             }
             $address->save();
+        }
+        $users= UserDetail::all();
+        foreach ($users as $user) {
+            $addressline =  $user['address_line1'] . ', ' . $user['address_line2'] . ',' . $user['city'] . ', ' . $user['state'] . ', ' . $user['country'];
+            $data = $service->getGeocode($addressline);
+            if (count($data)) {
+                $user->latitude = $data['lat'];
+                $user->longitude = $data['lng'];
+            }
+            $user->save();
         }
     }
 }

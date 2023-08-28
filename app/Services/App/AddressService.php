@@ -4,6 +4,7 @@ namespace app\Services\App;
 
 
 use App\Models\Tenant\UserAddress;
+use Exception;
 use GuzzleHttp\Client;
 
 class AddressService
@@ -59,12 +60,18 @@ class AddressService
         $data = [];
         //Converts address into Lat and Lng
         $client = new Client(); //GuzzleHttp\Client
-        $result = (string) $client->post(
-            "https://maps.googleapis.com/maps/api/geocode/json?address=" . urlencode($address) . "&key=AIzaSyAANwmAq3UQc8j5GkJgzF9AglzF7XLfPxI"
-        )->getBody();
-        $json = json_decode($result);
-        $data['lat'] = $json->results[0]->geometry->location->lat;
-        $data['lng'] = $json->results[0]->geometry->location->lng;
+        try {
+            $result = (string) $client->post(
+                "https://maps.googleapis.com/maps/api/geocode/json?address=" . urlencode($address) . "&key=AIzaSyAANwmAq3UQc8j5GkJgzF9AglzF7XLfPxI"
+            )->getBody();
+            $json = json_decode($result);
+            if ($json->status == 'OK') {
+                $data['lat'] = $json->results[0]->geometry->location->lat;
+                $data['lng'] = $json->results[0]->geometry->location->lng;
+            }
+        } catch (Exception $e) {
+            echo 'Uh oh! ' . $e->getMessage();
+        }
         return $data;
     }
 }
