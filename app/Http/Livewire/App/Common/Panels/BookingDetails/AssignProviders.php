@@ -210,7 +210,8 @@ class AssignProviders extends Component
             $this->assignedProviders = BookingProvider::where(['booking_id' => $this->booking_id, 'booking_service_id' => $booking_service->id])
                 ->get()->pluck('provider_id')->toArray();
         }
-        $this->resetFilters();
+
+        $this->dispatchBrowserEvent('refreshSelects2');
     }
 
     function showForm()

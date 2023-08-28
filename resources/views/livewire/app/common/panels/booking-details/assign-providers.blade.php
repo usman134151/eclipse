@@ -23,7 +23,7 @@
              </h2>
              <div  id="collapseFilters" class="accordion-collapse collapse" aria-labelledby="headingFilters"
                  data-bs-parent="#accordionFilters">
-                 <div wire:ignore.self class="accordion-body">
+                 <div wire:ignore class="accordion-body">
                      <x-advanceproviderfilters type="assignProvider" :providers="$providers" :tags="$tags" />
                  </div>
              </div>
