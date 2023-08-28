@@ -8,7 +8,7 @@
         <div class="col-lg-6 mb-4">
             <label class="form-label">Accommodation</label>
             {!! App\Helpers\SetupHelper::createDropDown('Accommodation', 'id',
-            'name', 'status', 1, 'name', true, '',
+            'name', 'status', 1, 'name', true, 'accommodations',
             '','accommodation_filter') !!}
         </div>
     @endif
@@ -195,8 +195,11 @@
                             </svg>
                         </div>
                     </div>
-                    <select class="form-select">
-                        <option>Select Certification</option>
+                    <select data-placeholder="Select Distance" class="select2 form-select"  wire:model.defer='distance' id="distance_filter" >
+                        <option value='1'>1</option>
+                        <option value='2'>2</option>
+                        <option value='5'>5</option>
+                        <option value='10'>10</option>
                     </select>
                     <div class="mt-2 d-flex gap-2">
                         <div class="form-check">

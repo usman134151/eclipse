@@ -8,6 +8,8 @@ use App\Models\Tenant\User;
 use Livewire\Component;
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\BookingServices;
+use App\Models\Tenant\UserDetail;
+use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
 
 class AssignProviders extends Component
@@ -23,11 +25,13 @@ class AssignProviders extends Component
     public $gender;
     public $ethnicity;
     public $certifications = [];
+    public $accommodations = [];
+    public $distance;
 
     public $showForm;
     public $tags;
     public $service_id = null, $booking_id = null;
-    protected $listeners = ['showList' => 'resetForm', 'refreshFilters', 'saveAssignedProviders' => 'save','updateVal'];
+    protected $listeners = ['showList' => 'resetForm', 'refreshFilters', 'saveAssignedProviders' => 'save', 'updateVal'];
     public $assignedProviders = [], $limit = null;
 
     public function updateVal($attrName, $val)
@@ -63,6 +67,16 @@ class AssignProviders extends Component
                 foreach ($services as $service) {
                     $query->whereHas('services', function ($query) use ($service) {
                         $query->where('provider_accommodation_services.status', '=', 1)->where('service_id', $service);
+                    });
+                }
+            });
+        }
+        if (count($this->accommodations)) {
+            $accommodations = $this->accommodations;
+            $query->where(function ($query) use ($accommodations) {
+                foreach ($accommodations as $accommodation) {
+                    $query->whereHas('accommodations', function ($query) use ($accommodation) {
+                        $query->where('provider_accommodation_services.status', '=', 1)->where('accommodation_id', $accommodation);
                     });
                 }
             });
@@ -120,6 +134,14 @@ class AssignProviders extends Component
             });
         }
 
+        if ($this->distance) {
+            $miles  = $this->distance;
+            if ($this->booking->physicalAddress) {
+                $distanceIDS = UserDetail::select(DB::raw("(((acos(sin((" . $this->booking->physicalAddress->latitude . "*pi()/180))  sin((latitude*pi()/180)) + cos((" . $this->booking->physicalAddress->latitude . "*pi()/180)) \ cos((latitude*pi()/180)) \ cos(((" . $this->booking->physicalAddress->longitude . "- longitude)*pi()/180)))) \ 180/pi())  60  1.1515) as distance, user_id"))->havingRaw('distance <= ' . $miles)->pluck('user_id')->toArray();
+                $query->wherein('id', $distanceIDS);
+            }
+        }
+
 
         return view('livewire.app.common.panels.booking-details.assign-providers', [
             'providers' => $query->get()
@@ -147,11 +169,18 @@ class AssignProviders extends Component
             $this->ethnicity = $value;
         } else if ($name == "certifications") {
             $this->certifications = $value;
+        } else if ($name == "accommodation_filter") {
+            $this->accommodations = $value;
+        } else if ($name == "distance_filter") {
+            $this->distance = $value;
         }
+
+
         $this->dispatchBrowserEvent('refreshSelects2');
     }
     public function resetFilters()
     {
+        dd('here');
         $this->provider_ids = [];
         $this->preferred_provider_ids = [];
         $this->tag_names = [];
@@ -161,21 +190,23 @@ class AssignProviders extends Component
         $this->gender = null;
         $this->ethnicity = null;
         $this->certifications = [];
+        $this->accommodations = [];
         $this->dispatchBrowserEvent('refreshSelects2');
     }
     public function mount($service_id = null)
     {
 
-       
-        $this->tags = Tag::all();
-        $booking = Booking::where('id', $this->booking_id)->first();
 
-        $booking_service = $booking->booking_services->where('services', $this->service_id)->first();
+        $this->tags = Tag::all();
+        $this->booking = Booking::where('id', $this->booking_id)->first();
+
+        $booking_service = $this->booking->booking_services->where('services', $this->service_id)->first();
         if ($booking_service) {
             $this->limit = $booking_service->provider_count;
             $this->assignedProviders = BookingProvider::where(['booking_id' => $this->booking_id, 'booking_service_id' => $booking_service->id])
                 ->get()->pluck('provider_id')->toArray();
         }
+        $this->resetFilters();
     }
 
     function showForm()
