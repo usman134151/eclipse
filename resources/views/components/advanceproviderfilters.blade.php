@@ -8,7 +8,7 @@
         <div class="col-lg-6 mb-4">
             <label class="form-label">Accommodation</label>
             {!! App\Helpers\SetupHelper::createDropDown('Accommodation', 'id',
-            'name', 'status', 1, 'name', true, '',
+            'name', 'status', 1, 'name', true, 'accommodations',
             '','accommodation_filter') !!}
         </div>
     @endif
@@ -186,7 +186,7 @@
                     <div class="d-lg-flex justify-content-between align-items-center mb-2">
                         <label class="form-label mb-lg-0">Distance</label>
                         <div>
-                            KM
+                            MILES
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -195,8 +195,20 @@
                             </svg>
                         </div>
                     </div>
-                    <select class="form-select">
-                        <option>Select Certification</option>
+                    <select data-placeholder="Select Distance" class="select2 form-select"  wire:model.defer='distance' id="distance_filter" >
+                        <option ></option>
+                        <option value='5'>5</option>
+                        <option value='15'>15</option>
+                        <option value='25'>25</option>
+                        <option value='35'>35</option>
+                        <option value='45'>45</option>
+                        <option value='55'>55</option>
+                        <option value='65'>65</option>
+                        <option value='75'>75</option>
+                        <option value='85'>85</option>
+                        <option value='95'>95</option>
+                        <option value='100'>100</option>
+
                     </select>
                     <div class="mt-2 d-flex gap-2">
                         <div class="form-check">
@@ -216,7 +228,7 @@
                 </div>
                 <div class="col-lg-4 mb-4">
                     <label class="form-label">Search</label>
-                    <input class="form-control" type="" name="" placeholder="Name Search">
+                    <input class="form-control" wire:model="search" id="search"  placeholder="Name Search">
                 </div>
                 <div class="col-lg-4 mb-4">
                     <div class="mt-5 d-flex gap-1">

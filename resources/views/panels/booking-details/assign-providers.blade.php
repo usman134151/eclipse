@@ -20,10 +20,8 @@
 <script>
     window.addEventListener('assign-service-users', function(event) {
         var service_id = event.detail.service_id;
-        {{-- Livewire.emit('assignServiceProviders', service_id);  --}}
+        Livewire.emit('assignServiceProviders', service_id); 
 
-        @this.set('currentServiceId', service_id)
-        @this.set('counter', 0)
 
     });
 </script>

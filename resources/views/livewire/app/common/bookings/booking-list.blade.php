@@ -451,7 +451,7 @@
                 attrName == "providers_selected" ||
                 attrName == "preferred_provider_ids" ||
                 attrName == "gender" ||
-                attrName == "ethnicity" ||
+                attrName == "ethnicity" || attrName == "distance_filter" ||attrName == "accommodation_filter" ||
                 attrName == "certifications") {
                 Livewire.emit('refreshFilters', attrName, val);
             } else {

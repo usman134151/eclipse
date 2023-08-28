@@ -15,7 +15,8 @@ class AdvanceProviderFilters extends Component
     }
 
     public function render()
-    {         
+    {
+
         return view('components.advanceproviderfilters');
     }
 }
