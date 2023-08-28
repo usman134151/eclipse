@@ -2,19 +2,16 @@
 
 namespace app\Services\App;
 
-use App\Models\Tenant\Department;
 use App\Models\Tenant\User;
 use App\Models\Tenant\UserDetail;
-use App\Models\Tenant\UserIndustry;
 use App\Models\Tenant\RoleUser;
 use App\Models\Tenant\SystemRoleUser;
-use App\Models\Tenant\Phone;
 use App\Models\Tenant\RoleUserDetail;
 use App\Models\Tenant\Team;
 use App\Models\Tenant\TeamProviders;
-use App\Models\Tenant\UserAddress;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use App\Services\App\AddressService;
 
 
 class UserService
@@ -34,7 +31,7 @@ class UserService
 
     if (!is_null($user->id)) {
       $userId = $user->id;
-      $type="update";
+      $type = "update";
     } elseif ($isAdd && !(User::where('email', $user->email)->exists())) {
 
       $user->security_token = Str::random(32);
@@ -43,20 +40,29 @@ class UserService
 
       $userId = $user->id;
       $type = "create";
-
     } else {
 
       //if user is in database, attach id
       $existingUser = User::where('email', $user->email)->first();
       $userId = $existingUser->id;
       $type = "update";
-
     }
 
     RoleUser::updateOrCreate(['user_id' => $userId, 'role_id' => $role]);
     $user->save();
 
     $userdetail['user_id'] = $userId;
+    //get lat lng for address
+    if ($userdetail['address_line1'] || $userdetail['address_line2'] || $userdetail['city'] || $userdetail['state'] || $userdetail['country']) {
+      $address =  $userdetail['address_line1'] . ', ' . $userdetail['address_line2'] . ',' . $userdetail['city'] . ', ' . $userdetail['state'] . ', ' . $userdetail['country'];
+      
+      $addressService = new AddressService();
+      $data = $addressService->getGeocode($address);
+      if (count($data)) {
+        $userdetail['latitude'] = $data['lat'];
+        $userdetail['longitude'] = $data['lng'];
+      }
+    }
 
     $userDetailModel = UserDetail::updateOrCreate(['user_id' => $userId], $userdetail);
 
@@ -84,7 +90,7 @@ class UserService
       'message'         => "User " . $type . "d by " . \Auth::user()->name,
       'ip_address'     => \request()->ip(),
     ]);
-        
+
 
     return $user;
   }
@@ -106,7 +112,7 @@ class UserService
     return User::with('phones')->find($id);
   }
 
-  
+
   public function getUserAddresses($id)
   {
   }
@@ -124,80 +130,79 @@ class UserService
 
   public function getCustomerRoles($userId)
   {
-    $rolesArr=[];
-    $roleUsers=RoleUser::where('user_id', $userId)->where('role_id', '>', 4)->get()->pluck('role_id');
+    $rolesArr = [];
+    $roleUsers = RoleUser::where('user_id', $userId)->where('role_id', '>', 4)->get()->pluck('role_id');
     foreach ($roleUsers as $ru) {
-      $rolesArr[$ru]=true;
+      $rolesArr[$ru] = true;
     }
     return $rolesArr;
   }
 
-  public function storeUserRolesDetails($customer_id,$arr,$role_id,$typeofRelation,$default=0){
-    
-    $values=[];
-    if($role_id==3){
+  public function storeUserRolesDetails($customer_id, $arr, $role_id, $typeofRelation, $default = 0)
+  {
+
+    $values = [];
+    if ($role_id == 3) {
 
       //set admin staff
       RoleUserDetail::where(['associated_user' => $customer_id, 'role_id' => $role_id])->delete(); // delete existing records
       foreach ($arr as $admin) {
-        if(array_key_exists('id',$admin)){ //checking for unchecked rows
-          
-          if(array_key_exists('permission_type',$admin)&& $admin['permission_type']==true) //setting permission
+        if (array_key_exists('id', $admin)) { //checking for unchecked rows
+
+          if (array_key_exists('permission_type', $admin) && $admin['permission_type'] == true) //setting permission
             $pt = 'manage';
           else
-            $pt= 'visible';
-          
-            $values = ['user_id' => $admin['id'], 'associated_user' => $customer_id, 'role_id' => $role_id, 'permission_type'=>$pt];
-          
+            $pt = 'visible';
+
+          $values = ['user_id' => $admin['id'], 'associated_user' => $customer_id, 'role_id' => $role_id, 'permission_type' => $pt];
+
           RoleUserDetail::create($values);
         }
       }
-    }else{
-      if($typeofRelation == 0){
+    } else {
+      if ($typeofRelation == 0) {
         // user_id has master relation with $arr_user
         RoleUserDetail::where(['user_id' => $customer_id, 'role_id' => $role_id])->delete(); // delete existing records
 
         foreach ($arr as $user_id) {
-          $values = ['user_id' => $customer_id , 'associated_user' => $user_id, 'role_id' => $role_id];
+          $values = ['user_id' => $customer_id, 'associated_user' => $user_id, 'role_id' => $role_id];
           RoleUserDetail::create($values);
         }
-      }
-      else{
+      } else {
         // arr_users have master relation with user_id
         RoleUserDetail::where(['associated_user' => $customer_id, 'role_id' => $role_id])->delete(); // delete existing records
 
-        foreach($arr as $user_id){
-          $values= ['user_id' => $user_id, 'associated_user' => $customer_id,'role_id'=>$role_id];
-          if($default == $user_id)
-            $values['is_default']=true;
+        foreach ($arr as $user_id) {
+          $values = ['user_id' => $user_id, 'associated_user' => $customer_id, 'role_id' => $role_id];
+          if ($default == $user_id)
+            $values['is_default'] = true;
           RoleUserDetail::create($values);
-
         }
-
       }
     }
   }
 
-    public function getUserRolesDetails($customer_id,$role_id,$typeofRelation){
-      if($typeofRelation == 1)
-        $details=RoleUserDetail::where(['associated_user' => $customer_id, 'role_id' => $role_id])->get();
-      else
-        // master
-        $details = RoleUserDetail::where(['user_id' => $customer_id, 'role_id' => $role_id])->get();
-        return $details;
-    }
+  public function getUserRolesDetails($customer_id, $role_id, $typeofRelation)
+  {
+    if ($typeofRelation == 1)
+      $details = RoleUserDetail::where(['associated_user' => $customer_id, 'role_id' => $role_id])->get();
+    else
+      // master
+      $details = RoleUserDetail::where(['user_id' => $customer_id, 'role_id' => $role_id])->get();
+    return $details;
+  }
 
-  public function storeAdminRoles($rolesArr, $userId,$user_type=1)
+  public function storeAdminRoles($rolesArr, $userId, $user_type = 1)
   {
     // user_type = 1  (staff)
     // user_type = 2  (team)
 
-    SystemRoleUser::where(['user_id'=> $userId,'system_user_type'=>$user_type])->delete();
+    SystemRoleUser::where(['user_id' => $userId, 'system_user_type' => $user_type])->delete();
 
     foreach ($rolesArr as $roleId) {
 
       if ($roleId)
-        SystemRoleUser::create(['user_id' => $userId, 'system_role_id' => $roleId,'system_user_type'=>$user_type]);
+        SystemRoleUser::create(['user_id' => $userId, 'system_role_id' => $roleId, 'system_user_type' => $user_type]);
     }
   }
 }

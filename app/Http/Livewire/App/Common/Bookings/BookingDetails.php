@@ -55,6 +55,10 @@ class BookingDetails extends Component
 		if (!$this->booking)	//null check
 			$this->booking = new Booking;
 
+		$this->fetchData();
+	}
+
+	function fetchData(){
 		// fetch all services for booking 
 		$this->booking_services = BookingServices::where('booking_id', $this->booking_id)
 			->join('service_categories', 'booking_services.services', 'service_categories.id')
@@ -94,6 +98,8 @@ class BookingDetails extends Component
 				'text' => $message,
 			]);
 		}
+		$this->fetchData();
+
 	}
 	public function showList()
 	{

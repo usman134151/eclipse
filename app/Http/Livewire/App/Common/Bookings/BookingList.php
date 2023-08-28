@@ -45,6 +45,8 @@ class BookingList extends Component
 		} else {
 			$this->currentServiceId = $service_id;
 			$this->counter = 0;
+			$this->dispatchBrowserEvent('refreshSelects2');
+
 		}
 	}
 
