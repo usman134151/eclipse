@@ -25,13 +25,15 @@ class AssignProviders extends Component
     public $certifications = [];
 
     public $showForm;
-    public $allproviders;
     public $tags;
     public $service_id = null, $booking_id = null;
-    protected $listeners = ['showList' => 'resetForm', 'refreshFilters', 'saveAssignedProviders' => 'save'];
+    protected $listeners = ['showList' => 'resetForm', 'refreshFilters', 'saveAssignedProviders' => 'save','updateVal'];
     public $assignedProviders = [], $limit = null;
 
-
+    public function updateVal($attrName, $val)
+    {
+        $this->$attrName = $val;
+    }
 
     public function render()
     {
@@ -164,10 +166,7 @@ class AssignProviders extends Component
     public function mount($service_id = null)
     {
 
-        $this->allproviders = User::where('status', 1)
-            ->whereHas('roles', function ($query) {
-                $query->wherein('role_id', [2]);
-            })->get();
+       
         $this->tags = Tag::all();
         $booking = Booking::where('id', $this->booking_id)->first();
 

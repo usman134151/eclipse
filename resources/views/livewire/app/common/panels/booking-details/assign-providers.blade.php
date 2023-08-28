@@ -21,10 +21,10 @@
                      Filters
                  </button>
              </h2>
-             <div id="collapseFilters" class="accordion-collapse collapse" aria-labelledby="headingFilters"
+             <div  id="collapseFilters" class="accordion-collapse collapse" aria-labelledby="headingFilters"
                  data-bs-parent="#accordionFilters">
-                 <div class="accordion-body">
-                     <x-advanceproviderfilters type="assignProvider" :providers="$allproviders" :tags="$tags" />
+                 <div wire:ignore.self class="accordion-body">
+                     <x-advanceproviderfilters type="assignProvider" :providers="$providers" :tags="$tags" />
                  </div>
              </div>
          </div>
@@ -258,5 +258,5 @@
      </div>
      <!-- END: Filter Table -->
 
-     
+
  </div>
