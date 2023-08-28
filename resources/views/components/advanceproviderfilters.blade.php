@@ -196,6 +196,7 @@
                         </div>
                     </div>
                     <select data-placeholder="Select Distance" class="select2 form-select"  wire:model.defer='distance' id="distance_filter" >
+                        <option ></option>
                         <option value='5'>5</option>
                         <option value='15'>15</option>
                         <option value='25'>25</option>

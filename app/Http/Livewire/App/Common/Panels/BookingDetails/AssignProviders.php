@@ -140,7 +140,7 @@ class AssignProviders extends Component
                 $distanceIDS = UserDetail::select(DB::raw("(((acos(sin((" . $this->booking->physicalAddress->latitude . "*pi()/180)) * sin((`latitude`*pi()/180)) + cos((" . $this->booking->physicalAddress->latitude . "*pi()/180)) * cos((`latitude`*pi()/180)) * cos(((" . $this->booking->physicalAddress->longitude . "- `longitude`)*pi()/180)))) * 180/pi()) * 60 * 1.1515) as distance, user_id"))->havingRaw('distance <= ' . $miles)->pluck('user_id')->toArray();
 
                 // $distanceIDS = UserDetail::select(DB::raw("(((acos(sin((" . $this->booking->physicalAddress->latitude . "*pi()/180))  sin((latitude*pi()/180)) + cos((" . $this->booking->physicalAddress->latitude . "*pi()/180)) \ cos((latitude*pi()/180)) \ cos(((" . $this->booking->physicalAddress->longitude . "- longitude)*pi()/180)))) \ 180/pi())  60  1.1515) as distance, user_id"))->havingRaw('distance <= ' . $miles)->pluck('user_id')->toArray();
-                $query->wherein('id', $distanceIDS);
+                $query->wherein('users.id', $distanceIDS);
             }
         }
 
