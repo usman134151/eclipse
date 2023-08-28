@@ -5,9 +5,13 @@ namespace App\Http\Livewire\App\Admin;
 use Livewire\Component;
 use App\Models\Tenant\NotificationTemplates;
 use App\Models\Tenant\TriggerType;
+use App\Services\ExportDataFile;
 
 class NotificationConfiguration extends Component
 {
+	public $importFile;
+	protected $exportDataFile;
+
     public $showForm;
     public $title;
     public $type;
@@ -24,6 +28,16 @@ class NotificationConfiguration extends Component
         'updateRecordId' => 'updateRecordId', // update the ID of the record being edited/deleted
     ];
 
+    public function __construct()
+    {
+        $this->exportDataFile = new ExportDataFile;
+    }
+
+    public function downloadExportFile()
+    {
+        return $this->exportDataFile->generateExcelTemplateNotifications($this->type);
+    }
+
     function showForm($notification = null)
     {
         if ($notification) {
@@ -35,6 +49,9 @@ class NotificationConfiguration extends Component
        $this->dispatchBrowserEvent('refreshSelects');
     }
 
+	public function importFile(){
+		$this->importFile=true;
+	}
     public function resetForm($message)
     {
 
@@ -50,6 +67,7 @@ class NotificationConfiguration extends Component
 
         // set the showForm property to false to hide the form
         $this->showForm = false;
+		$this->importFile=false;
         $this->dispatchBrowserEvent('update-url', ['url' => '/admin/settings']);
     }
 

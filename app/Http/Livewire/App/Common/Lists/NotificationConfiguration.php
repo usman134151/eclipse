@@ -151,7 +151,7 @@ class NotificationConfiguration extends PowerGridComponent
         // Returns an array of columns for the PowerGrid component
         return [
             Column::make('Type', 'trigger_type', ''),
-            Column::make('Name', 'name', '')->searchable()->makeinputtext()->sortable()->editOnClick(),
+            Column::make('Name', 'name', 'notification_templates.name')->searchable()->makeinputtext()->sortable()->editOnClick(),
             Column::make('TRIGGER', 'trigger', ''),
             // Column::make('TRIGGER DESCRIPTION', 'slug', '')->editOnClick(),
             // Column::make('Subject', 'body', '')->editOnClick(),

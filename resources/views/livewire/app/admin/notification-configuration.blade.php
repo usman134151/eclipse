@@ -3,8 +3,12 @@
         <div class="content-header-left col-md-9 col-12 mb-2">
           <div class="row breadcrumbs-top">
             <div class="col-12">
-              <h1 class="content-header-title float-start mb-0">{{$title}}</h1>
-              <div class="breadcrumb-wrapper">
+			@if($importFile)
+			  <h1 class="content-header-title float-start mb-0">Import Notifications</h1>
+            @else
+			  <h1 class="content-header-title float-start mb-0">{{$title}}</h1>
+            @endif
+			  <div class="breadcrumb-wrapper">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item">
                     <a href="http://127.0.0.1:8000" title="Go to Dashboard" aria-label="Go to Dashboard">
@@ -40,7 +44,9 @@
 		</div>
 	</div>
 	@if($showForm)
-	@livewire('app.admin.forms.notification-configuration-form', ['type' => $type]) {{-- Show Add / Edit Form --}}
+		@livewire('app.admin.forms.notification-configuration-form', ['type' => $type]) {{-- Show Add / Edit Form --}}
+	@elseif($importFile)
+		@livewire('app.common.import.notification', ['notification_type' => $type])
 	@else
 	<section id="multiple-column-form">
 		<div class="row">
@@ -52,12 +58,28 @@
 								<!-- ....Select Trigger Option.... -->
 								<div class="mb-4">
 									<div class="row w-100">
-										<div class="col-md-6 mb-md-2">
+										<div class="col-md-4 mb-md-2">
 											<label class="form-label" for="company-column">
 												Select Trigger Type
 											</label>
 										</div>
-										<div class="col-md-6 text-end">
+										<div class="col-md-8 text-end">
+											<button type="button" wire:click.prevent="downloadExportFile()" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
+												{{-- Updated by Shanila to Add svg icon--}}
+												<svg aria-label="Download Import File" width="20" height="20" viewBox="0 0 20 20">
+													<use xlink:href="/css/common-icons.svg#import-file"></use>
+												</svg>
+												{{-- End of update by Shanila --}}
+												<span>Download Import File</span>
+											</button>
+											<button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2" wire:click="importFile">
+												{{-- Updated by Shanila to Add svg icon--}}
+												<svg aria-label="Import Customer" width="20" height="20" viewBox="0 0 20 20">
+													<use xlink:href="/css/common-icons.svg#import-file"></use>
+												</svg>
+												{{-- End of update by Shanila --}}
+												<span>Import Notification</span>
+											</button>
 											<button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2" wire:click="showForm">
 												<svg aria-label="Add Notification"  width="20" height="21" viewBox="0 0 20 21">
 													<use xlink:href="/css/common-icons.svg#plus"></use>
