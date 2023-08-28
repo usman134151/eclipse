@@ -29,10 +29,10 @@ class AssignProviders extends Component
     public $distance;
 
     public $showForm;
-    public $tags;
+    public $tags, $search;
     public $service_id = null, $booking_id = null;
     protected $listeners = ['showList' => 'resetForm', 'refreshFilters', 'saveAssignedProviders' => 'save', 'updateVal'];
-    public $assignedProviders = [], $limit = null,$booking;
+    public $assignedProviders = [], $limit = null, $booking;
 
     public function updateVal($attrName, $val)
     {
@@ -54,7 +54,9 @@ class AssignProviders extends Component
                 'user_details.phone', 'user_details.profile_pic', 'user_details.tags',
                 'status'
             ]);
-
+        if ($this->search) {
+            $query->where('users.name', 'LIKE', "%".$this->search."%");
+        }
         if (count($this->tag_names)) {
             $query->whereJsonContains('tags', $this->tag_names);
         }
@@ -138,8 +140,6 @@ class AssignProviders extends Component
             $miles  = $this->distance;
             if ($this->booking->physicalAddress) {
                 $distanceIDS = UserDetail::select(DB::raw("(((acos(sin((" . $this->booking->physicalAddress->latitude . "*pi()/180)) * sin((`latitude`*pi()/180)) + cos((" . $this->booking->physicalAddress->latitude . "*pi()/180)) * cos((`latitude`*pi()/180)) * cos(((" . $this->booking->physicalAddress->longitude . "- `longitude`)*pi()/180)))) * 180/pi()) * 60 * 1.1515) as distance, user_id"))->havingRaw('distance <= ' . $miles)->pluck('user_id')->toArray();
-
-                // $distanceIDS = UserDetail::select(DB::raw("(((acos(sin((" . $this->booking->physicalAddress->latitude . "*pi()/180))  sin((latitude*pi()/180)) + cos((" . $this->booking->physicalAddress->latitude . "*pi()/180)) \ cos((latitude*pi()/180)) \ cos(((" . $this->booking->physicalAddress->longitude . "- longitude)*pi()/180)))) \ 180/pi())  60  1.1515) as distance, user_id"))->havingRaw('distance <= ' . $miles)->pluck('user_id')->toArray();
                 $query->wherein('users.id', $distanceIDS);
             }
         }
@@ -177,7 +177,6 @@ class AssignProviders extends Component
             $this->distance = $value;
         }
 
-
         $this->dispatchBrowserEvent('refreshSelects2');
     }
     public function resetFilters()
@@ -192,8 +191,13 @@ class AssignProviders extends Component
         $this->ethnicity = null;
         $this->certifications = [];
         $this->accommodations = [];
+        $this->distance = null;
+        $this->search = null;
+
         $this->dispatchBrowserEvent('refreshSelects2');
     }
+
+
     public function mount($service_id = null)
     {
 

@@ -228,7 +228,7 @@
                 </div>
                 <div class="col-lg-4 mb-4">
                     <label class="form-label">Search</label>
-                    <input class="form-control" type="" name="" placeholder="Name Search">
+                    <input class="form-control" wire:model="search" id="search"  placeholder="Name Search">
                 </div>
                 <div class="col-lg-4 mb-4">
                     <div class="mt-5 d-flex gap-1">
