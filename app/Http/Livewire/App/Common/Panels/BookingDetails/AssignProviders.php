@@ -32,7 +32,7 @@ class AssignProviders extends Component
     public $tags;
     public $service_id = null, $booking_id = null;
     protected $listeners = ['showList' => 'resetForm', 'refreshFilters', 'saveAssignedProviders' => 'save', 'updateVal'];
-    public $assignedProviders = [], $limit = null;
+    public $assignedProviders = [], $limit = null,$booking;
 
     public function updateVal($attrName, $val)
     {
@@ -137,7 +137,9 @@ class AssignProviders extends Component
         if ($this->distance) {
             $miles  = $this->distance;
             if ($this->booking->physicalAddress) {
-                $distanceIDS = UserDetail::select(DB::raw("(((acos(sin((" . $this->booking->physicalAddress->latitude . "*pi()/180))  sin((latitude*pi()/180)) + cos((" . $this->booking->physicalAddress->latitude . "*pi()/180)) \ cos((latitude*pi()/180)) \ cos(((" . $this->booking->physicalAddress->longitude . "- longitude)*pi()/180)))) \ 180/pi())  60  1.1515) as distance, user_id"))->havingRaw('distance <= ' . $miles)->pluck('user_id')->toArray();
+                $distanceIDS = UserDetail::select(DB::raw("(((acos(sin((" . $this->booking->physicalAddress->latitude . "*pi()/180)) * sin((`latitude`*pi()/180)) + cos((" . $this->booking->physicalAddress->latitude . "*pi()/180)) * cos((`latitude`*pi()/180)) * cos(((" . $this->booking->physicalAddress->longitude . "- `longitude`)*pi()/180)))) * 180/pi()) * 60 * 1.1515) as distance, user_id"))->havingRaw('distance <= ' . $miles)->pluck('user_id')->toArray();
+
+                // $distanceIDS = UserDetail::select(DB::raw("(((acos(sin((" . $this->booking->physicalAddress->latitude . "*pi()/180))  sin((latitude*pi()/180)) + cos((" . $this->booking->physicalAddress->latitude . "*pi()/180)) \ cos((latitude*pi()/180)) \ cos(((" . $this->booking->physicalAddress->longitude . "- longitude)*pi()/180)))) \ 180/pi())  60  1.1515) as distance, user_id"))->havingRaw('distance <= ' . $miles)->pluck('user_id')->toArray();
                 $query->wherein('id', $distanceIDS);
             }
         }
@@ -180,7 +182,6 @@ class AssignProviders extends Component
     }
     public function resetFilters()
     {
-        dd('here');
         $this->provider_ids = [];
         $this->preferred_provider_ids = [];
         $this->tag_names = [];
@@ -199,7 +200,6 @@ class AssignProviders extends Component
 
         $this->tags = Tag::all();
         $this->booking = Booking::where('id', $this->booking_id)->first();
-
         $booking_service = $this->booking->booking_services->where('services', $this->service_id)->first();
         if ($booking_service) {
             $this->limit = $booking_service->provider_count;
