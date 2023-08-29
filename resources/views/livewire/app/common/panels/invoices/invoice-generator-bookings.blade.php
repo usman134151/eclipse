@@ -55,8 +55,8 @@
                     <thead>
                         <tr role="row">
                             <th scope="col" class="text-center">
-                                <input class="form-check-input" type="checkbox" wire:model.defer="selectAll" wire:click="updateSelectAll"
-                                    aria-label="Select All Booking">
+                                <input class="form-check-input" type="checkbox" wire:model.defer="selectAll"
+                                    wire:click="updateSelectAll" aria-label="Select All Booking">
                             </th>
                             <th scope="col" width="12%" class="">Booking ID</th>
                             <th scope="col">Accommodation</th>
@@ -429,152 +429,165 @@
                                 </div>
                             </td>
                         </tr> --}}
-                        @foreach($bookings as $booking)
-                          <tr role="row" class="odd">
-                              <td class="text-center">
-                                  <input class="form-check-input" type="checkbox" value="{{$booking->id}}"  wire:key='{{$loop->index}}' wire:model.defer="selectedBookings"
-                                      aria-label="Select Booking">
-                              </td>
-                              <td>
-                                  <div class="fw-semibold" data-bs-toggle="tooltip" data-bs-html="true"
-                                      data-bs-title="<div><b>Billing Notes</b></div> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor sit amet</p>">
-                                      {{$booking->booking_number}}</div>
-                                  <div>
-                                      <div> {{ $booking->booking_start_at ? date_format(date_create($booking->booking_start_at), 'd/m/Y') : '' }}</div>
-                                      <div> {{ $booking->booking_start_at ? date_format(date_create($booking->booking_start_at), 'h:i A ') : '' }} to 
-                                      {{ $booking->booking_start_at ? date_format(date_create($booking->booking_end_at), 'h:i A') : '' }}</div>
-                                      
-                                      </div>
-                                      
-                                  </div>
-                              </td>
-                              <td>
-                                  <div class="text-sm">
-                                      {{ $booking->services->count() ? $booking->services->first()->accommodation->name : '' }}
+                        @foreach ($bookings as $booking)
+                            <tr role="row" class="odd">
+                                <td class="text-center">
+                                    <input class="form-check-input" type="checkbox" value="{{ $booking->id }}"
+                                        wire:key='{{ $loop->index }}' wire:model.defer="selectedBookings"
+                                        aria-label="Select Booking">
+                                </td>
+                                <td>
+                                    <div class="fw-semibold" data-bs-toggle="tooltip" data-bs-html="true"
+                                        data-bs-title="<div><b>Billing Notes</b></div> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor sit amet</p>">
+                                        {{ $booking->booking_number }}</div>
+                                    <div>
+                                        <div>
+                                            {{ $booking->booking_start_at ? date_format(date_create($booking->booking_start_at), 'd/m/Y') : '' }}
+                                        </div>
+                                        <div>
+                                            {{ $booking->booking_start_at ? date_format(date_create($booking->booking_start_at), 'h:i A ') : '' }}
+                                            to
+                                            {{ $booking->booking_start_at ? date_format(date_create($booking->booking_end_at), 'h:i A') : '' }}
+                                        </div>
 
-                                  </div>
-                                  <div class="text-sm">
-                                      Service:  {{ $booking->services->count() ? $booking->services->first()->name : 'N/A' }}
-                                  </div>
-                                  <div class="text-sm">
-                                      Specialization: Closed-Captioning
-                                  </div>
-                              </td>
-                              <td>{{$booking->booking_providers ? $booking->booking_providers->count() : 'N/A'}}</td>
-                              <td class="position-relative">
-                                  <a href="#" title="Edit" aria-label="Edit"
-                                      class="btn btn-sm btn-secondary rounded btn-hs-icon icon-edit position-absolute">
-                                      <svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20"
-                                          fill="none" xmlns="http://www.w3.org/2000/svg">
-                                          <path
-                                              d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z"
-                                              fill="black"></path>
-                                      </svg>
-                                  </a>
-                                  <div class="">$50.00</div>
-                                  <div class="text-primary"><small>Additional Charges:</small></div>
-                                  <div>Fuel Charges: $20 <i class="fa fa-check-circle" data-bs-toggle="tooltip"
-                                          data-bs-placement="top" title=""></i></div>
-                                  <div>Food: $15</div>
-                              </td>
-                              <td class="position-relative">
-                                  <div class="d-flex align-items-center gap-2 mb-2">
-                                      <label class="form-label-sm mb-0">Duration:</label>
-                                      <div> 
-                                                            {{ $booking['duration_hours'] }} h,
-                                                            </div>
-                                      <div>{{ $booking['duration_minute'] }} m</div>
-                                      <a href="#" title="Edit" aria-label="Edit"
-                                          class="btn btn-sm btn-secondary rounded btn-hs-icon icon-edit position-absolute">
-                                          <svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20"
-                                              fill="none" xmlns="http://www.w3.org/2000/svg">
-                                              <path
-                                                  d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z"
-                                                  fill="black"></path>
-                                          </svg>
-                                      </a>
-                                  </div>
-                                  <div class="row g-0 mb-2">
-                                      <div class="col-4"><label class="form-label-sm mb-0">Avg Rate:</label></div>
-                                      <div class="col-8 d-flex align-items-center gap-2">$10</div>
-                                  </div>
-                                  <div class="row g-0 mb-2">
-                                      <div class="col-4"><label class="form-label-sm mb-0">Total Rate:</label></div>
-                                      <div class="col-8 d-flex align-items-center gap-2">$100</div>
-                                  </div>
-                                  <div>
-                                      <a href="#" class="btn btn-primary btn-xxs rounded btn-has-icon">
-                                          <svg width="14" height="14" viewBox="0 0 20 20" fill="none"
-                                              xmlns="http://www.w3.org/2000/svg">
-                                              <path fill-rule="evenodd" clip-rule="evenodd"
-                                                  d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z"
-                                                  fill="white"></path>
-                                          </svg>
-                                          Add Discount
-                                      </a>
-                                  </div>
-                                  <hr class="my-2">
-                                  <div class="grand-total">
-                                      Grand Total: $120.00
-                                  </div>
-                              </td>
-                              <td>
-                                  <div class="d-flex align-items-center gap-1">
-                                      $155.00
-                                  </div>
-                              </td>
-                              <td>
-                                  <div class="d-flex actions justify-content-center">
-                                      <a href="#" title="Cancel Assignment" aria-label="Cancel Assignment"
-                                          class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                          <svg aria-label="Cancel Assignment" class="fill-stroke" width="17"
-                                              height="18" viewBox="0 0 17 18" fill="none"
-                                              xmlns="http://www.w3.org/2000/svg">
-                                              <path
-                                                  d="M8.3125 16.8125H1.4375V1.1875H14.5625V9.3125M15.8125 12.4375L11.4375 16.8125M5.1875 8.6875H10.8125M5.1875 12.4375H7.0625M5.1875 4.9375H10.8125M11.4375 12.4375L15.8125 16.8125"
-                                                  stroke="black" stroke-width="1.5" stroke-linecap="round"
-                                                  stroke-linejoin="round" />
-                                          </svg>
-                                      </a>
-                                      <a href="#" title="Record Payment" aria-label="Record Payment"
-                                          class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                          <svg aria-label="Record Payment" width="19" height="20"
-                                              viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                              <path
-                                                  d="M0 0V18.5714H11.6923V17.1429H1.46154V1.42857H8.76923V5.71429H13.1538V7.14286H14.6154V4.71429L14.3962 4.5L10.0115 0.214286L9.79231 0H0ZM10.2308 2.42857L12.1308 4.28571H10.2308V2.42857ZM2.92308 7.14286V8.57143H11.6923V7.14286H2.92308ZM15.3462 8.57143V10C14.1038 10.2143 13.1538 11.2143 13.1538 12.5C13.1538 13.9286 14.25 15 15.7115 15H16.4423C17.0269 15 17.5385 15.5 17.5385 16.0714C17.5385 16.6429 17.0269 17.1429 16.4423 17.1429H13.8846V18.5714H15.3462V20H16.8077V18.5714C18.05 18.3571 19 17.3571 19 16.0714C19 14.6429 17.9038 13.5714 16.4423 13.5714H15.7115C15.1269 13.5714 14.6154 13.0714 14.6154 12.5C14.6154 11.9286 15.1269 11.4286 15.7115 11.4286H18.2692V10H16.8077V8.57143H15.3462ZM2.92308 10.7143V12.1429H8.03846V10.7143H2.92308ZM9.5 10.7143V12.1429H11.6923V10.7143H9.5ZM2.92308 13.5714V15H8.03846V13.5714H2.92308ZM9.5 13.5714V15H11.6923V13.5714H9.5Z" />
-                                          </svg>
-                                      </a>
-                                  </div>
-                              </td>
-                          </tr>
-                        @endforeach
-                        {{-- end updated by shanila --}}
-                    </tbody>
-                </table>
+                                    </div>
+
             </div>
-        </div>
-    </div>
-    <!-- Total -->
-    <div class="bg-muted py-2 mb-4">
-        <div class="row justify-content-center">
-            <div class="col-lg-4">
-                <div class="d-flex justify-content-between">
-                    <div class="fw-bold text-sm">Total</div>
-                    <div class="fw-bold text-sm text-lg-end">$675</div>
+            </td>
+            <td>
+                <div class="text-sm">
+                    {{ $booking->services->count() ? $booking->services->first()->accommodation->name : '' }}
+
                 </div>
+                <div class="text-sm">
+                    Service: {{ $booking->services->count() ? $booking->services->first()->name : 'N/A' }}
+                </div>
+                <div class="text-sm">
+                    Specialization: Closed-Captioning
+                </div>
+            </td>
+            <td>{{ $booking->booking_providers ? $booking->booking_providers->count() : 'N/A' }}</td>
+            <td class="position-relative">
+                <a href="#" title="Edit" aria-label="Edit"
+                    class="btn btn-sm btn-secondary rounded btn-hs-icon icon-edit position-absolute">
+                    <svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z"
+                            fill="black"></path>
+                    </svg>
+                </a>
+                <div class="">$50.00</div>
+                <div class="text-primary"><small>Additional Charges:</small></div>
+                <div>Fuel Charges: $20 <i class="fa fa-check-circle" data-bs-toggle="tooltip" data-bs-placement="top"
+                        title=""></i></div>
+                <div>Food: $15</div>
+            </td>
+            <td class="position-relative">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <label class="form-label-sm mb-0">Duration:</label>
+                    <div>
+                        {{ $booking['duration_hours'] }} h,
+                    </div>
+                    <div>{{ $booking['duration_minute'] }} m</div>
+                    <a href="#" title="Edit" aria-label="Edit"
+                        class="btn btn-sm btn-secondary rounded btn-hs-icon icon-edit position-absolute">
+                        <svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z"
+                                fill="black"></path>
+                        </svg>
+                    </a>
+                </div>
+                <div class="row g-0 mb-2">
+                    <div class="col-4"><label class="form-label-sm mb-0">Avg Rate:</label></div>
+                    <div class="col-8 d-flex align-items-center gap-2">$10</div>
+                </div>
+                <div class="row g-0 mb-2">
+                    <div class="col-4"><label class="form-label-sm mb-0">Total Rate:</label></div>
+                    <div class="col-8 d-flex align-items-center gap-2">$100</div>
+                </div>
+                <div>
+                    <a href="#" class="btn btn-primary btn-xxs rounded btn-has-icon">
+                        <svg width="14" height="14" viewBox="0 0 20 20" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z"
+                                fill="white"></path>
+                        </svg>
+                        Add Discount
+                    </a>
+                </div>
+                <hr class="my-2">
+                <div class="grand-total">
+                    Grand Total: $120.00
+                </div>
+            </td>
+            <td>
+                <div class="d-flex align-items-center gap-1">
+                    $155.00
+                </div>
+            </td>
+            <td>
+                <div class="d-flex actions justify-content-center">
+                    <a href="#" title="Cancel Assignment" aria-label="Cancel Assignment"
+                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                        <svg aria-label="Cancel Assignment" class="fill-stroke" width="17" height="18"
+                            viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M8.3125 16.8125H1.4375V1.1875H14.5625V9.3125M15.8125 12.4375L11.4375 16.8125M5.1875 8.6875H10.8125M5.1875 12.4375H7.0625M5.1875 4.9375H10.8125M11.4375 12.4375L15.8125 16.8125"
+                                stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </a>
+                    <a href="#" title="Record Payment" aria-label="Record Payment"
+                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                        <svg aria-label="Record Payment" width="19" height="20" viewBox="0 0 19 20"
+                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M0 0V18.5714H11.6923V17.1429H1.46154V1.42857H8.76923V5.71429H13.1538V7.14286H14.6154V4.71429L14.3962 4.5L10.0115 0.214286L9.79231 0H0ZM10.2308 2.42857L12.1308 4.28571H10.2308V2.42857ZM2.92308 7.14286V8.57143H11.6923V7.14286H2.92308ZM15.3462 8.57143V10C14.1038 10.2143 13.1538 11.2143 13.1538 12.5C13.1538 13.9286 14.25 15 15.7115 15H16.4423C17.0269 15 17.5385 15.5 17.5385 16.0714C17.5385 16.6429 17.0269 17.1429 16.4423 17.1429H13.8846V18.5714H15.3462V20H16.8077V18.5714C18.05 18.3571 19 17.3571 19 16.0714C19 14.6429 17.9038 13.5714 16.4423 13.5714H15.7115C15.1269 13.5714 14.6154 13.0714 14.6154 12.5C14.6154 11.9286 15.1269 11.4286 15.7115 11.4286H18.2692V10H16.8077V8.57143H15.3462ZM2.92308 10.7143V12.1429H8.03846V10.7143H2.92308ZM9.5 10.7143V12.1429H11.6923V10.7143H9.5ZM2.92308 13.5714V15H8.03846V13.5714H2.92308ZM9.5 13.5714V15H11.6923V13.5714H9.5Z" />
+                        </svg>
+                    </a>
+                </div>
+            </td>
+            </tr>
+            @endforeach
+            {{-- end updated by shanila --}}
+            </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Total -->
+<div class="bg-muted py-2 mb-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-4">
+            <div class="d-flex justify-content-between">
+                <div class="fw-bold text-sm">Total</div>
+                <div class="fw-bold text-sm text-lg-end">$675</div>
             </div>
         </div>
     </div>
-    <!-- /Total -->
-    <div class="justify-content-center d-flex mb-2">
-        <div class="form-check mx-auto">
-            <input class="form-check-input" type="checkbox" value="" id="ExcludeNotification">
-            <label class="form-check-label" for="ExcludeNotification">
-                Exclude Notification
-            </label>
-        </div>
+</div>
+<!-- /Total -->
+<div class="justify-content-center d-flex mb-2">
+    <div class="form-check mx-auto">
+        <input class="form-check-input" type="checkbox" value="" id="ExcludeNotification">
+        <label class="form-check-label" for="ExcludeNotification">
+            Exclude Notification
+        </label>
     </div>
-    <div class="justify-content-center d-flex mb-4">
-        <a @click="createInvoices = true" wire:click="openInvoicePanel" href="#" class="btn btn-primary rounded">Create invoice</a>
-    </div>
+</div>
+<div class="text-center">
+
+    @if ($showError)
+        <span class="d-inline-block invalid-feedback my-1">No Bookings are selected.</span>
+    @endif
+</div>
+<div class="justify-content-center d-flex mb-4">
+
+
+    <a x-on:open-invoice-panel.window="createInvoices = true" wire:click="openInvoicePanel" href="#"
+        class="btn btn-primary rounded">Create invoice</a>
+</div>
 </div>

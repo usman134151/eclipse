@@ -10,7 +10,7 @@ use Livewire\Component;
 
 class InvoiceGeneratorBookings extends Component
 {
-    public $showForm, $company, $bookings, $selectedBookings=[], $selectAll=false;
+    public $showForm, $company, $bookings, $selectedBookings = [], $selectAll = false, $showError=false;
     protected $listeners = ['showList' => 'resetForm'];
 
     public function render()
@@ -32,7 +32,7 @@ class InvoiceGeneratorBookings extends Component
             ->leftJoin('payments', 'bookings.id', '=', 'payments.booking_id')
             ->select(['bookings.*'])
             ->get();
-            // dd($this->bookings);
+        // dd($this->bookings);
     }
 
     public function updateSelectAll()
@@ -41,12 +41,18 @@ class InvoiceGeneratorBookings extends Component
             $this->selectedBookings = $this->bookings->pluck('id')->toArray();
         else
             $this->selectedBookings = [];
-
     }
 
 
-    public function openInvoicePanel(){
-        $this->emit('openCreateInvoice', $this->selectedBookings);
+    public function openInvoicePanel()
+    {
+        if (count($this->selectedBookings)) {
+            $this->showError = false;
+
+            $this->dispatchBrowserEvent('open-invoice-panel');
+            $this->emit('openCreateInvoice', $this->selectedBookings);
+        }else 
+        $this->showError = true;
     }
 
     function showForm()
