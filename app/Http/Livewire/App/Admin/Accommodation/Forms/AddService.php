@@ -7,6 +7,7 @@ use App\Models\Tenant\ServiceCategory;
 use App\Models\Tenant\ServiceSpecialization;
 use App\Models\Tenant\Specialization;
 use App\Models\Tenant\SetupValue;
+use App\Models\Tenant\CustomizeForms;
 use App\Helpers\SetupHelper;
 use App\Services\App\ServiceCatagoryService;
 use Illuminate\Auth\Events\Validated;
@@ -14,7 +15,7 @@ use Illuminate\Validation\Rule;
 use Auth;
 class AddService extends Component
 {
-    public $service;public $label= "Add";
+    public $service;public $label= "Add", $customForms=[], $companyUsers=[];
     public $log_type = 'create';
     public $component = 'basic-service-setup';
     public $step = 1;
@@ -140,6 +141,19 @@ class AddService extends Component
                $j=4;
             $this->serviceTypes[$j]['title']=$serviceTypeLabels[$i];
         }
+        // 'customerForms' => ['parameters' => ['CustomizeForms', 'id', 'request_form_name', 'form_name_id', '37', 'request_form_name', false, 'service.request_form_id','','request_form_id',1]]
+
+        $this->customForms =CustomizeForms::where(['form_name_id'=>37,'status'=>1])->select('request_form_name','id')->get()->toArray();
+        $this->companyUsers =[
+            0 => ['id'=>10, 'name'=>'Company Admin'],
+            1 => ['id' => 9, 'name' => 'Billing Manager'],
+            2 => ['id' => 8, 'name' => 'Participant'],
+            3 => ['id' => 7, 'name' => 'Service Consumer'],
+            4 => ['id' => 6, 'name' => 'Requester'],
+            5 => ['id' => 5, 'name' => 'Supervisor'],
+
+        ];
+       
         $this->dispatchBrowserEvent('refreshSelects');
 
 
