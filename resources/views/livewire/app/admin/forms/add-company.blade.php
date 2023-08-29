@@ -48,7 +48,7 @@
                 <div x-data="{ tab: @entangle('component') }" id="tab_wrapper">
                     {{-- NavTabs --}}
                     <ul class="nav nav-tabs nav-steps" id="myTab" role="tablist">
-                        
+
                         <li class="nav-item" role="presentation">
                             <a href="javascript:void(0)" class="nav-link {{$companyActive}}" :class="{ 'active': tab === 'company-info' }"
                                 @click.prevent="tab = 'company-info'" id="company-info-tab" role="tab"
@@ -63,16 +63,16 @@
                                 @click.prevent="tab = 'schedule'" id="schedule-tab" role="tab"
                                 wire:click.prevent="save(0)"
                                 aria-controls="schedule" aria-selected="true" >
-                            
+
                                 <span class="number">2</span>
                                 Company Schedule
                             </a>
                             @else
                             <div class="nav-link" title="Please fill step 1 to proceed">
-                            
+
                                 <span class="number">2</span>
                                 Company Schedule
-                            </div>                            
+                            </div>
                             @endif
                         </li>
                         <li class="nav-item" role="presentation">
@@ -83,12 +83,12 @@
                                 <span class="number">3</span>
                                 Service Catalog
                             </a>
-                        @else    
+                        @else
                             <div class="nav-link" title="Please fill step 1 to proceed">
-                            
+
                             <span class="number">3</span>
                             Service Catalog
-                            </div>                            
+                            </div>
                         @endif
                         </li>
                         <li class="nav-item" role="presentation">
@@ -101,17 +101,17 @@
                             </a>
                             @else
                             <div class="nav-link" title="Please fill step 1 to proceed">
-                            
+
                             <span class="number">4</span>
                             Drive Documents
-                            </div>                            
+                            </div>
                         @endif
-                          
+
                         </li>
                     </ul>
 
                     {{-- Tab Panes --}}
-                    
+
                     <div class="tab-content">
                         @if($step==1)
                         {{-- BEGIN: Customer Info --}}
@@ -131,7 +131,7 @@
                                                         @if ($image!=null)
                                                             <img class="user_img cropfile" src="{{ '/tenant'.tenant('id').'/app/livewire-tmp/'.$image->getFilename() }}">
                                                         @else
-                                                            <img class="user_img cropfile" src="{{$company->company_logo == null ? '/tenant-resources/images/img-placeholder-document.jpg' : url($company->company_logo) }}">
+                                                            <img class="user_img cropfile" aria-label="Upload Company Profile Image" src="{{$company->company_logo == null ? '/tenant-resources/images/img-placeholder-document.jpg' : url($company->company_logo) }}">
                                                         @endif
                                                         <div class="input--file">
                                                             <span>
@@ -164,7 +164,7 @@
                                                         </label>
                                                         <input type="text" id="company-name" class="form-control"
                                                             name="company-name" placeholder="Enter Company Name"
-                                                            required aria-required="true" 
+                                                            required aria-required="true"
                                                             wire:model.defer="company.name"
 												/>
 												@error('company.name')
@@ -204,7 +204,7 @@
                                             </div>
                                             <div class="row">
                                                 {{-- Department Website --}}
-                                               
+
                                                     <div class="col-lg-6 pe-lg-5 col-12">
                                                         <label class="form-label" for="company-website">
                                                             Company Website
@@ -226,7 +226,7 @@
                                                         {!! $setupValues['languages']['rendered'] !!}
                                                     </div>
                                                 </div>
-                                               
+
 
 
 
@@ -240,10 +240,10 @@
                                                     <div class="d-flex align-items-center w-100">
                                                         <div class="position-relative flex-grow-1">
                                                             <input type="text" class="form-control js-single-date"
-                                                                placeholder="MM/DD/YYYY" aria-label=""
+                                                                placeholder="MM/DD/YYYY"
                                                                 aria-describedby="" id="service-start-date-column" wire:model="company.company_service_start_date">
                                                             {{-- Updated by Shanila to Add svg icon--}}
-                                                            <svg aria-label="Date" class="icon-date" width="20"
+                                                            <svg aria-label="Service Start Date" class="icon-date" width="20"
                                                                 height="21" viewBox="0 0 20 21">
                                                                 <use xlink:href="/css/common-icons.svg#datefield-icon">
                                                                 </use>
@@ -267,10 +267,10 @@
                                                     <div class="d-flex align-items-center w-100">
                                                         <div class="position-relative flex-grow-1">
                                                             <input type="text" class="form-control js-single-date"
-                                                                placeholder="MM/DD/YYYY" aria-label=""
+                                                                placeholder="MM/DD/YYYY"
                                                                 aria-describedby="" id="service-end-date-column"  wire:model="company.company_service_end_date">
                                                             {{-- Updated by Shanila to Add svg icon--}}
-                                                            <svg aria-label="Date" class="icon-date" width="20"
+                                                            <svg aria-label="Service End Date" class="icon-date" width="20"
                                                                 height="21" viewBox="0 0 20 21">
                                                                 <use xlink:href="/css/common-icons.svg#datefield-icon">
                                                                 </use>
@@ -279,7 +279,7 @@
 												            <span class="d-inline-block invalid-feedback mt-2">
 													        {{ $message }}
 												            </span>
-												            @enderror                                                           
+												            @enderror
                                                             {{-- End of update by Shanila --}}
                                                         </div>
                                                     </div>
@@ -291,10 +291,10 @@
                                                 <div class="col-lg-6 pe-lg-5 col-12">
                                                     <div class="mb-4">
                                                         <label class="form-label" for="company-manager">
-                                                            Company Admin(s) 
+                                                            Company Admin(s)
                                                         </label>
                                                         <select data-placeholder="" multiple
-                                                            class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="admins" 
+                                                            class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="admins"
                                                             aria-label="Select Company Admin" wire:model.defer="admins">
                                                             {{-- <option value=""></option> --}}
                                                             {{-- @if(count($companyUser)>0 ) --}}
@@ -310,14 +310,14 @@
 
                                                 <div class="col-lg-6 ps-lg-5 col-12">
                                                                 <label class="form-label" for="tags">Tags</label>
-                                                                <select data-placeholder="" multiple 
+                                                                <select data-placeholder="" multiple
                                                                     class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="tags-select" aria-label="Select Tags">
                                                                     @foreach($allTags as $tag)
                                                                         <option {{in_array($tag,$tags) ? 'selected' : ''}} value="{{$tag}}">{{$tag}}</option>
                                                                     @endforeach
                                                                 </select>
                                                                 <input type="hidden" name="tags-holder" id="tags-holder" wire:model.defer="tags">
-                                                           
+
                                                 </div>
 
                                                 {{-- Preferred Providers --}}
@@ -327,7 +327,7 @@
                                                             Preferred Providers
                                                         </label>
                                                         <select data-placeholder="" multiple
-                                                            class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="favored_providers" 
+                                                            class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="favored_providers"
                                                             aria-label="Select Preferred Providers" wire:model.defer="fv_providers">
                                                             {{-- <option value="">Select Preferred Providers</option> --}}
                                                                 @foreach($providers as $p)
@@ -344,7 +344,7 @@
                                                             Disfavored Providers
                                                         </label>
                                                          <select data-placeholder="" multiple
-                                                            class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="unfavored_providers" 
+                                                            class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="unfavored_providers"
                                                             aria-label="Select Disfavored Providers" wire:model.defer="unfv_providers">
                                                             {{-- <option value=""></option> --}}
                                                                 @foreach($providers as $p)
@@ -398,7 +398,6 @@
                                                                 </option>
                                                             </select>
                                                         </div>
-                                                        
                                                     </div>
                                                 </div>
 
@@ -454,7 +453,7 @@
                                                                                     Title
                                                                                 </label>
                                                                                 <input type="text" name="title"
-                                                                                    class="form-control" 
+                                                                                    class="form-control"
                                                                                     placeholder="Enter Title" />
                                                                             </div>
                                                                             <div class="col-lg-5 col-md-4 mb-4 mb-md-0">
@@ -462,7 +461,7 @@
                                                                                     Phone Number
                                                                                 </label>
                                                                                 <input type="text" name="phone-number"
-                                                                                    class="form-control" 
+                                                                                    class="form-control"
                                                                                     placeholder="Enter Phone Number"/>
                                                                             </div>
                                                                             <div class="col-lg-2 col-md-4">
@@ -524,14 +523,14 @@
                             </section>
                         </div>
                         {{-- End Customer Info --}}
-                      
+
                         {{-- BEGIN: Service Catalog --}}
                         @elseif($step==2)
                         <div class="tab-pane fade" :class="{ 'active show': tab === 'schedule' }"
                             id="schedule" role="tabpanel" aria-labelledby="schedule-tab" tabindex="0"
                             x-show="tab === 'schedule'">
                             <section id="multiple-column-form">
-                                
+
                               @livewire('app.common.setup.business-hours-setup', ['model_id' => $company->id, 'model_type' => '2'])
                               <div
                                                     class="col-12 form-actions">
@@ -552,7 +551,7 @@
                         </div>
                         {{-- BEGIN: Service Catalog --}}
                         @endif
-                       
+
                         <div class="tab-pane fade" :class="{ 'active show': tab === 'service-catalog' }"
                             id="service-catalog" role="tabpanel" aria-labelledby="service-catalog-tab" tabindex="0"
                             x-show="tab === 'service-catalog'">
@@ -579,7 +578,7 @@
                                                                                                             </use>
                                                                                                         </svg>
                                                                                                     </a>
-                             @if($step==3)                                                                       
+                             @if($step==3)
                                 @livewire('app.admin.customer.service-catelog',['showButtons'=>false,'modelId'=>$company->id,'modelType'=>'company'])
                              @endif
                              <div class="col-12 form-actions">
@@ -597,17 +596,17 @@
                                                     </button>
                                 </div>
                             </section>
-                            
+
                         </div>
-                     
+
                         {{-- End: Service Catalog --}}
-                       
-                        
+
+
                         {{-- BEGIN: Drive Documents Pane --}}
                         <div class="tab-pane fade"  :class="{ 'active show': tab === 'drive-documents' }">
                             <div>@livewire('app.common.forms.drive-uploads',['showForm'=>true,'showSearch'=>false,'record_id'=> $company->id ,'record_type'=>1], key($company->id))</div>
                             <section id="multiple-column-form">
-                            
+
                                 <div class="col-12 form-actions">
                                                     <button type="button" class="btn btn-outline-dark rounded px-4 py-2"
                                                         wire:click.prevent="setStep(3,'serviceActive','service-catalog')" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-catalog')">
@@ -616,24 +615,24 @@
                                                     <button type="submit" class="btn btn-primary rounded px-4 py-2" wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">
                                                         Save & Exit
                                                     </button>
-                                </div>                    
+                                </div>
 
                             </section>
                         </div>
-                       
+
                         {{-- BEGIN: Drive Documents Pane --}}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-   
-   
+
+
     @include('modals.common.add-address')
     @include('panels.services.associate-customers')
     @include('panels.services.associate-department')
-    @include('panels.services.associated-service') 
-    
+    @include('panels.services.associated-service')
+
 </div>
 
 
