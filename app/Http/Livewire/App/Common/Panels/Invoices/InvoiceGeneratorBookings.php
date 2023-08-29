@@ -2,11 +2,15 @@
 
 namespace App\Http\Livewire\App\Common\Panels\Invoices;
 
+use App\Models\Tenant\Booking;
+use App\Models\Tenant\BookingProvider;
+use App\Models\Tenant\Company;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class InvoiceGeneratorBookings extends Component
 {
-    public $showForm;
+    public $showForm, $company, $bookings, $selectedBookings = [], $selectAll = false, $showError=false;
     protected $listeners = ['showList' => 'resetForm'];
 
     public function render()
@@ -14,19 +18,49 @@ class InvoiceGeneratorBookings extends Component
         return view('livewire.app.common.panels.invoices.invoice-generator-bookings');
     }
 
-    public function mount()
+    public function mount($company_id)
     {
-       
-       
+        $this->company = Company::where('id', $company_id)->first();
+        if ($this->company->addresses->count())
+            $this->company->address = $this->company->addresses->first()->toArray();
+        $this->bookings =
+            Booking::where('bookings.company_id', '=', $company_id)
+            ->where('bookings.type', '=', 1)
+            ->where('bookings.booking_status', '=', '1')
+            ->where('bookings.status', '!=', '3')
+            ->where('bookings.invoice_status', '=', '0')
+            ->leftJoin('payments', 'bookings.id', '=', 'payments.booking_id')
+            ->select(['bookings.*'])
+            ->get();
+        // dd($this->bookings);
+    }
+
+    public function updateSelectAll()
+    {
+        if ($this->selectAll == true)
+            $this->selectedBookings = $this->bookings->pluck('id')->toArray();
+        else
+            $this->selectedBookings = [];
+    }
+
+
+    public function openInvoicePanel()
+    {
+        if (count($this->selectedBookings)) {
+            $this->showError = false;
+
+            $this->dispatchBrowserEvent('open-invoice-panel');
+            $this->emit('openCreateInvoice', $this->selectedBookings);
+        }else 
+        $this->showError = true;
     }
 
     function showForm()
-    {     
-       $this->showForm=true;
+    {
+        $this->showForm = true;
     }
     public function resetForm()
     {
-        $this->showForm=false;
+        $this->showForm = false;
     }
-
 }
