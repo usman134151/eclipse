@@ -118,7 +118,7 @@ class NotificationConfiguration extends PowerGridComponent
                 return ($model->trigger_type);
             })
             ->addColumn('role_id', function (NotificationTemplates $model) {
-                return ($model->notificationTemplateRoles->pluck('role.name')->implode(', '));
+                return ($model->notificationTemplateRoles->pluck('role.display_name')->implode(', '));
             })
             ->addColumn('name')
             ->addColumn('trigger')
@@ -155,7 +155,7 @@ class NotificationConfiguration extends PowerGridComponent
             Column::make('TRIGGER', 'trigger', ''),
             // Column::make('TRIGGER DESCRIPTION', 'slug', '')->editOnClick(),
             // Column::make('Subject', 'body', '')->editOnClick(),
-            Column::make('USER ROLES', 'role_id', 'Roles.name')->searchable(),
+            Column::make('USER ROLES', 'role_id', 'roles.display_name')->searchable(),
             Column::make('Status', 'status', '')->makeBooleanFilter('status', 'Activated', 'Deactivated')
             ->toggleable(1, 'Activated', 'Dectivated'),
             Column::make('Actions', 'edit')->visibleInExport(false),
