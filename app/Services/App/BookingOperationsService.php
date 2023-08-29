@@ -98,7 +98,7 @@ class BookingOperationsService{
     //checknig type of service 
     //if fixed rate then return rate.
 
-    //getting total duration
+    //else get business data 
     
   }
 
