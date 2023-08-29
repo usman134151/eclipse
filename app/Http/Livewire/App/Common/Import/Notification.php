@@ -176,11 +176,25 @@ class Notification extends Component
             foreach($notification['notificationTemplateRoles'] as $notificationTemplateRole){
                 $role=new NotificationTemplateRoles([
                     'notification_id'  => $notificationTemplate->id,
-                    'role_id' => $notificationTemplateRole['role_id'], //admin
+                    'role_id' => $notificationTemplateRole['role_id'], //
                     'notification_subject' => Str::limit($notificationTemplateRole['notification_subject'], 250),
                     'notification_text'   => $notificationTemplateRole['notification_text'],
                 ]);
                 $role->save();
+                if($notificationTemplateRole['role_id']==4){//Customer
+                    $rolesToAssociate=Role::where('role_type','=',2)->get();
+                    if($rolesToAssociate && count($rolesToAssociate)){
+                        foreach($rolesToAssociate as $roleTo){
+                            $role=new NotificationTemplateRoles([
+                                'notification_id'  => $notificationTemplate->id,
+                                'role_id' => $roleTo->id, //
+                                'notification_subject' => Str::limit($notificationTemplateRole['notification_subject'], 250),
+                                'notification_text'   => $notificationTemplateRole['notification_text'],
+                            ]);
+                            $role->save();
+                        }
+                    }
+                }
             }
 
         }
