@@ -56,9 +56,11 @@ class BookingDetails extends Component
 			$this->booking = new Booking;
 
 		$this->fetchData();
+		// dd($this->booking,$this->data);
 	}
 
-	function fetchData(){
+	function fetchData()
+	{
 		// fetch all services for booking 
 		$this->booking_services = BookingServices::where('booking_id', $this->booking_id)
 			->join('service_categories', 'booking_services.services', 'service_categories.id')
@@ -76,7 +78,7 @@ class BookingDetails extends Component
 			->toArray();
 		$this->data['total_providers'] = Booking::where('bookings.id', $this->booking_id)
 			->join('booking_services', 'booking_services.booking_id', 'bookings.id')->sum('booking_services.provider_count');
-		$this->data['assigned_providers'] = $this->booking->booking_provider->count();
+		$this->data['assigned_providers'] = BookingProvider::where(['booking_id' => $this->booking_id])->join('users', 'booking_providers.provider_id', '=', 'users.id')->count();
 	}
 	//so a fuction which can then be used for editing the fields aswell.
 	public function getServiceDetails()
@@ -99,7 +101,6 @@ class BookingDetails extends Component
 			]);
 		}
 		$this->fetchData();
-
 	}
 	public function showList()
 	{
