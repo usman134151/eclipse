@@ -533,8 +533,17 @@ class Booknow extends Component
             isset($this->dates[$index]['start_hour']) && isset($this->dates[$index]['start_min']) &&
             isset($this->dates[$index]['end_hour']) && isset($this->dates[$index]['end_min'])) {
                
-                if($this->dates[$index]['time_zone'])
-                    $timezoneLabel = $this->timezones[$this->dates[$index]['time_zone']]['setup_value_label'];
+                if($this->dates[$index]['time_zone']){
+                  
+
+                    $timeZoneIds = array_column($this->timezones, 'id'); // Assuming 'id' is the key that holds the ID
+                    $timeZoneIndex = array_search($this->dates[$index]['time_zone'], $timeZoneIds);
+                    
+                    if ($timeZoneIndex !== false) {
+                        $timezoneLabel = $this->timezones[$timeZoneIndex]['setup_value_label'];
+                    }
+                }
+                   
                     
             $startDateTime = Carbon::create($this->dates[$index]['start_date'].$this->dates[$index]['start_hour'].':'.$this->dates[$index]['start_min'].':00');
     
