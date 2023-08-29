@@ -189,13 +189,13 @@ class Booknow extends Component
        
 
     
-        $this->dispatchBrowserEvent('refreshSelects');
+       
 
     }
 
     public function render()
     {
-       
+        $this->dispatchBrowserEvent('refreshSelects');
         return view('livewire.app.common.bookings.booknow');
     }
 
@@ -350,6 +350,7 @@ class Booknow extends Component
             'time_zone' => ''
 
     ];
+    $this->dispatchBrowserEvent('refreshSelects');
     }
     public function removeDate($index)
     {
@@ -377,12 +378,13 @@ class Booknow extends Component
         'end_time'=>'',
         'status'=>0
     ];
-
+    $this->dispatchBrowserEvent('refreshSelects');
     }
     public function removeServices($index)
     {
         unset($this->services[$index]);
         $this->services = array_values($this->services);
+        $this->dispatchBrowserEvent('refreshSelects');
     }
 
 
