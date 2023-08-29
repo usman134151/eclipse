@@ -4,6 +4,7 @@ namespace App\Http\Livewire\App\Common\Lists;
 
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\Company;
+use App\Models\Tenant\Payment;
 use App\Models\Tenant\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
@@ -115,26 +116,34 @@ final class DraftInvoices extends PowerGridComponent
 						</div>';
 			})
 			->addColumn('pending', function (Company $modal) {
-				$now          = Carbon::now();
-				$company_customer_ids=$modal->user()->where('status',1)->pluck('id')->toArray();
-				$bookings=Booking::where(['type' => 1,'booking_status' => '1','invoice_status'=>'0'])->whereIn('customer_id',$company_customer_ids)
-                    ->where("status","!=","3")
-                    ->whereRaw("booking_end_at < '$now'")
-                    ->get();
-				$total_price=0;
-				foreach($bookings as $booking){
-					$total_price+=$booking->getInvoicePrice();
-				}
-				return '$'.$total_price;
+					$query = Company::join('bookings', 'companies.id', '=', 'bookings.company_id')
+					->leftJoin('payments', 'bookings.id', '=', 'payments.booking_id')
+					->where('companies.status', 1)
+					->where('bookings.type', 1)
+					->where('bookings.booking_status', '1')
+					->where('bookings.invoice_status', '0')
+					->where('bookings.status', '!=', '3')
+					->selectRaw("
+						CASE
+							WHEN bookings.status = 4 THEN payments.cancellation_charges
+							ELSE payments.total_amount + payments.modification_fee + payments.reschedule_booking_charges
+						END AS invoiceTotal")
+					
+					->having('invoiceTotal', '>', 0)->get();
+				return '$'.$query;
 			})->addColumn('bookings', function (Company $modal) {
-				$now          = Carbon::now();
-				$company_customer_ids=$modal->user()->where('status',1)->pluck('id')->toArray();
-				$bookings=Booking::where(['type' => 1,'booking_status' => '1','invoice_status'=>'0'])->whereIn('customer_id',$company_customer_ids)
-                    ->where("status","!=","3")
-                    ->whereRaw("booking_end_at < '$now'")
-                    ->count();
-
-				return $bookings;
+				$query = Company::join('bookings', 'bookings.company_id', '=', 'companies.id')
+				->where('companies.status', 1)
+				->where('bookings.type', 1)
+				->where('bookings.booking_status', '1')
+				->where('bookings.invoice_status', '0')
+				->where('bookings.status', '!=', '3')
+				->select('bookings.*')
+				->select('companies.name')
+				->selectRaw('COUNT(bookings.id) AS bookingsTotal')
+				->groupBy('companies.name')->pluck('bookingsTotal');
+				return $query[0];
+					
 			})->addColumn('method', function () {
 				return 'Direct Deposit';
 			})
