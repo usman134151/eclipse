@@ -159,6 +159,9 @@
                 var infoWindow = new google.maps.InfoWindow({
                     content: content
                 });
+                marker.addListener("click", function() {
+                            infoWindow.open(map, marker);
+                        });
 
 
             }
