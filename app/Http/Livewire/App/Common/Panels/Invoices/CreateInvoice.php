@@ -17,11 +17,11 @@ class CreateInvoice extends Component
         return view('livewire.app.common.panels.invoices.create-invoice');
     }
 
-    public function mount($selectedBookingsIds=[])
+    public function mount($selectedBookingsIds)
     {
         $bookings = Booking::whereIn('id',$selectedBookingsIds)->get();
-        $this->managers = User::whereIn('id',$bookings->pluck('billing_manager_id')->toArray())->get();
-        $this->addresses = UserAddress::where(['user_id'=>$this->bookings->first()->company_id, 'user_address_type'=>2,'address_type'=>2])->get()->toArray();
+        $this->managers = User::whereIn('id',$bookings->pluck('billing_manager_id')->toArray())->with('userdetail')->get();
+        $this->addresses = UserAddress::where(['user_id'=>$bookings->first()->company_id, 'user_address_type'=>2,'address_type'=>2])->get()->toArray();
        
     }
 

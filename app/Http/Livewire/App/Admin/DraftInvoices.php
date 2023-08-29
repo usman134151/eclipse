@@ -17,7 +17,7 @@ class DraftInvoices extends Component
     public function openCreateInvoice($selectedBookingsIds){
 
         if ($this->inv_counter == 0) {
-            $this->selectedBookingsIds = $selectedBookingsIds;
+            $this->selectedBookingsIds = [];
             $this->dispatchBrowserEvent('refresh-create-invoice', ['ids' => $selectedBookingsIds]);
             $this->inv_counter = 1;
         } else {
