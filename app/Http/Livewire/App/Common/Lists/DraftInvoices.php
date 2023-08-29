@@ -11,6 +11,7 @@ use Illuminate\Support\Carbon;
 use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Header, PowerGrid, PowerGridComponent, PowerGridEloquent};
+use DB;
 
 final class DraftInvoices extends PowerGridComponent
 {
@@ -59,8 +60,34 @@ final class DraftInvoices extends PowerGridComponent
 	public function datasource(): Builder
 	{
 
-		$query = Company::where('status','=',1);
-		return $query;
+		$subQuery = DB::table('companies')
+		->leftJoin('bookings', function($join) {
+			$join->on('companies.id', '=', 'bookings.company_id')
+				 ->where('bookings.type', '=', 1)
+				 ->where('bookings.booking_status', '=', '1')
+				 ->where('bookings.status', '!=', '3');
+		})
+		->leftJoin('payments', 'bookings.id', '=', 'payments.booking_id')
+		->where('companies.status', '=', 1)
+		->select('companies.id', 'companies.name')
+		->selectRaw('
+			COUNT(bookings.id) AS booking_total,
+			SUM(CASE WHEN bookings.invoice_status = "0" THEN 1 ELSE 0 END) AS pending_invoices,
+			SUM(
+				CASE
+					WHEN bookings.status = 4 THEN payments.cancellation_charges
+					ELSE payments.total_amount + payments.modification_fee + payments.reschedule_booking_charges
+				END
+			) AS invoiceTotal
+		')
+		->groupBy('companies.id', 'companies.name')  // <-- Add companies.name here
+		->having('pending_invoices', '>', 0);
+		
+		return Company::fromSub($subQuery, 'sub')
+        ->select(['sub.*']);
+	
+
+		
 	}
 
 
@@ -116,33 +143,9 @@ final class DraftInvoices extends PowerGridComponent
 						</div>';
 			})
 			->addColumn('pending', function (Company $modal) {
-					$query = Company::join('bookings', 'companies.id', '=', 'bookings.company_id')
-					->leftJoin('payments', 'bookings.id', '=', 'payments.booking_id')
-					->where('companies.status', 1)
-					->where('bookings.type', 1)
-					->where('bookings.booking_status', '1')
-					->where('bookings.invoice_status', '0')
-					->where('bookings.status', '!=', '3')
-					->selectRaw("
-						CASE
-							WHEN bookings.status = 4 THEN payments.cancellation_charges
-							ELSE payments.total_amount + payments.modification_fee + payments.reschedule_booking_charges
-						END AS invoiceTotal")
-					
-					->having('invoiceTotal', '>', 0)->get();
-				return '$'.$query;
+					return $model->pending_invoices;
 			})->addColumn('bookings', function (Company $modal) {
-				$query = Company::join('bookings', 'bookings.company_id', '=', 'companies.id')
-				->where('companies.status', 1)
-				->where('bookings.type', 1)
-				->where('bookings.booking_status', '1')
-				->where('bookings.invoice_status', '0')
-				->where('bookings.status', '!=', '3')
-				->select('bookings.*')
-				->select('companies.name')
-				->selectRaw('COUNT(bookings.id) AS bookingsTotal')
-				->groupBy('companies.name')->pluck('bookingsTotal');
-				return $query[0];
+				return $model->booking_total;
 					
 			})->addColumn('method', function () {
 				return 'Direct Deposit';
