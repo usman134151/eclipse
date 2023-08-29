@@ -3,7 +3,7 @@
         <div class="col-lg-4 mb-4 mb-lg-0">
           <div class="row">
           <div class="col-lg-4 mb-4 mb-lg-0">
-            <img src="/tenant-resources/images/portrait/small/image.png" width="130" height="130" class="rounded-circle" alt="Company Image">
+            <img src="{{$company->company_logo? $company->company_logo : '/tenant-resources/images/portrait/small/image.png' }}" width="130" height="130" class="rounded-circle" alt="Company Image">
           </div>
           <div class="col-lg-8 align-self-center">
             <div class="mb-2">
@@ -20,11 +20,18 @@
         <div class="col-lg-4 mb-4 mb-lg-0 align-self-center">
           <div class="mb-2">
           <label class="form-label mb-0">Phone Number:</label>
-          <div class="text-xs"><small>(176) 361-8176</small></div>
+          <div class="text-xs"><small>{{$company->phones->count() ? $company->phones->first()->phone_number : 'N/A'}}</small></div>
           </div>
           <div>
           <label class="form-label mb-0">Address:</label>
-          <div><a class="text-xs text-dark"><small>Velit aut dicta min Utah</small></a></div>
+          <div><a class="text-xs text-dark"><small>
+            @if(isset($company->address))
+                                   {{ $company->address['address_line1'].', '.$company->address['address_line2'].','.$company->address['city'].', '.$company->address['state'].', '.$company->address['country'] }}
+            
+            @else
+            N/A
+            @endif
+          </small></a></div>
           </div>
         </div>
         <div class="col-lg-4 mb-4 mb-lg-0 align-self-center">

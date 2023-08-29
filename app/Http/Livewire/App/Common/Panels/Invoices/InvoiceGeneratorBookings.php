@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class InvoiceGeneratorBookings extends Component
 {
-    public $showForm, $company;
+    public $showForm, $company, $bookings;
     protected $listeners = ['showList' => 'resetForm'];
 
     public function render()
@@ -17,8 +17,9 @@ class InvoiceGeneratorBookings extends Component
 
     public function mount($company_id)
     {
-     $this->company = Company::where('id',$company_id)->first();  
-       
+     $this->company = Company::where('id',$company_id)->first();
+     if($this->company->addresses->count())  
+        $this->company->address= $this->company->addresses->first()->toArray();
     }
 
     function showForm()

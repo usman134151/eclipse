@@ -69,7 +69,7 @@ final class DraftInvoices extends PowerGridComponent
 			})
 			->leftJoin('payments', 'bookings.id', '=', 'payments.booking_id')
 			->where('companies.status', '=', 1)
-			->select('companies.id', 'companies.name')
+			->select('companies.id', 'companies.name', 'companies.company_logo')
 			->selectRaw('
 			COUNT(bookings.id) AS booking_total,
 			SUM(CASE WHEN bookings.invoice_status = "0" THEN 1 ELSE 0 END) AS pending_invoices,
@@ -80,7 +80,7 @@ final class DraftInvoices extends PowerGridComponent
 				END
 			) AS invoiceTotal
 		')
-			->groupBy('companies.id', 'companies.name')  // <-- Add companies.name here
+			->groupBy('companies.id', 'companies.name', 'companies.company_logo')  // <-- Add companies.name here
 			->having('pending_invoices', '>', 0);
 
 		return Company::fromSub($subQuery, 'sub')
