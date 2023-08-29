@@ -61,16 +61,16 @@ final class DraftInvoices extends PowerGridComponent
 	{
 
 		$subQuery = DB::table('companies')
-		->leftJoin('bookings', function($join) {
-			$join->on('companies.id', '=', 'bookings.company_id')
-				 ->where('bookings.type', '=', 1)
-				 ->where('bookings.booking_status', '=', '1')
-				 ->where('bookings.status', '!=', '3');
-		})
-		->leftJoin('payments', 'bookings.id', '=', 'payments.booking_id')
-		->where('companies.status', '=', 1)
-		->select('companies.id', 'companies.name')
-		->selectRaw('
+			->leftJoin('bookings', function ($join) {
+				$join->on('companies.id', '=', 'bookings.company_id')
+					->where('bookings.type', '=', 1)
+					->where('bookings.booking_status', '=', '1')
+					->where('bookings.status', '!=', '3');
+			})
+			->leftJoin('payments', 'bookings.id', '=', 'payments.booking_id')
+			->where('companies.status', '=', 1)
+			->select('companies.id', 'companies.name')
+			->selectRaw('
 			COUNT(bookings.id) AS booking_total,
 			SUM(CASE WHEN bookings.invoice_status = "0" THEN 1 ELSE 0 END) AS pending_invoices,
 			SUM(
@@ -80,14 +80,11 @@ final class DraftInvoices extends PowerGridComponent
 				END
 			) AS invoiceTotal
 		')
-		->groupBy('companies.id', 'companies.name')  // <-- Add companies.name here
-		->having('pending_invoices', '>', 0);
-		
-		return Company::fromSub($subQuery, 'sub')
-        ->select(['sub.*']);
-	
+			->groupBy('companies.id', 'companies.name')  // <-- Add companies.name here
+			->having('pending_invoices', '>', 0);
 
-		
+		return Company::fromSub($subQuery, 'sub')
+			->select(['sub.*']);
 	}
 
 
@@ -125,14 +122,14 @@ final class DraftInvoices extends PowerGridComponent
 		return PowerGrid::eloquent()
 
 			->addColumn('name', function (Company $modal) {
-				$logo=$modal->company_logo !=null ? $modal->company_logo : '/tenant-resources/images/portrait/small/image.png';
+				$logo = $modal->company_logo != null ? $modal->company_logo : '/tenant-resources/images/portrait/small/image.png';
 				return '<div class="d-flex gap-2 align-items-center">
 							<div>
-								<img width="50" height="50" src="'.$logo.'" class="rounded-circle" alt="Company Profile Image">
+								<img width="50" height="50" src="' . $logo . '" class="rounded-circle" alt="Company Profile Image">
 							</div>
 							<div class="pt-2">
 								<div class="font-family-secondary leading-none">
-									'.$modal->name.'
+									' . $modal->name . '
 								</div>
 								<a href="#" class="font-family-secondary">
 									<small>
@@ -143,10 +140,9 @@ final class DraftInvoices extends PowerGridComponent
 						</div>';
 			})
 			->addColumn('pending', function (Company $modal) {
-					return $model->pending_invoices;
+				return $modal->pending_invoices;
 			})->addColumn('bookings', function (Company $modal) {
-				return $model->booking_total;
-					
+				return $modal->booking_total;
 			})->addColumn('method', function () {
 				return 'Direct Deposit';
 			})
@@ -161,16 +157,21 @@ final class DraftInvoices extends PowerGridComponent
 					</a>
 				</div>';
 			})
-			->addColumn('next', function () {
+			->addColumn('next', function (Company $modal) {
 				return '
 				<div class="d-flex actions justify-content-center">
-					<a @click="invoiceGeneratorbookings = true" href="#" title="Booking" aria-label="Booking" class="btn btn-hs-icon p-0">
+					<a @click="invoiceGeneratorbookings = true" wire:click="openCompanyBookingsPanel(' . $modal->id . ')" title="Booking" aria-label="Booking" class="btn btn-hs-icon p-0">
 						<svg aria-label="Bookings" class="fill-stroke" width="12" height="15" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<use xlink:href="/css/common-icons.svg#bookings"></use>
 						</svg>
 					</a>
 				</div>';
 			});
+	}
+
+	public function openCompanyBookingsPanel($company_id)
+	{
+		$this->emit('openCompanyPendingBookings',$company_id);
 	}
 	// function edit($id)
 	// {

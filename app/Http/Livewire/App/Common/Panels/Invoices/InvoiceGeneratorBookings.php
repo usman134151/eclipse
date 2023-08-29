@@ -2,11 +2,12 @@
 
 namespace App\Http\Livewire\App\Common\Panels\Invoices;
 
+use App\Models\Tenant\Company;
 use Livewire\Component;
 
 class InvoiceGeneratorBookings extends Component
 {
-    public $showForm;
+    public $showForm, $company;
     protected $listeners = ['showList' => 'resetForm'];
 
     public function render()
@@ -14,9 +15,9 @@ class InvoiceGeneratorBookings extends Component
         return view('livewire.app.common.panels.invoices.invoice-generator-bookings');
     }
 
-    public function mount()
+    public function mount($company_id)
     {
-       
+     $this->company = Company::where('id',$company_id)->first();  
        
     }
 

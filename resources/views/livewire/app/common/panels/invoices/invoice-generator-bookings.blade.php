@@ -8,7 +8,7 @@
           <div class="col-lg-8 align-self-center">
             <div class="mb-2">
             <label class="form-label mb-0">Company Name:</label>
-            <div class="text-xs"><small>Example Company</small></div>
+            <div class="text-xs"><small>{{$company->name}}</small></div>
             </div>
             <div>
             <label class="form-label mb-0">Email:</label>
