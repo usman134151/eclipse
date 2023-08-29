@@ -106,14 +106,14 @@
                     <div>
                         <h3>Address</h3>
                     </div>
-                    <div class="mb-2">
+                    {{-- <div class="mb-2">
                         <button type="button" class="btn btn-primary rounded gap-2" data-bs-toggle="modal" data-bs-target="#addAddressModal">
                             <svg  width="20" height="21" viewBox="0 0 20 21">
                                 <use xlink:href="/css/common-icons.svg#plus"></use>
                             </svg>
                             <span>Add New Address</span>
                         </button>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="col-lg-12 mb-4">
                     <table class="table table-hover border">
@@ -123,11 +123,12 @@
                             <th></th>
                         </thead>
                         <tbody>
-                            <tr class="odd">
-                                <td>1</td>
+                            @foreach($addresses as $index=> $address)
+                            <tr class="odd selected">
+                                <td>{{$index+1}}</td>
                                 <td>
                                     <p>
-                                        Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA
+                                    {{$address['address_name']}}:  {{ $address['address_line1'].', '.$address['address_line2'].','.$address['city'].', '.$address['state'].', '.$address['country'] }}
                                     </p>
                                 </td>
                                 <td class="align-middle">
@@ -136,7 +137,8 @@
                                     </svg>
                                 </td>
                             </tr>
-                            <tr class="even selected">
+                            @endforeach
+                            {{-- <tr class="even selected">
                                 <td>2</td>
                                 <td>
                                     <p>
@@ -161,7 +163,7 @@
                                         <path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
                                 </td>
-                            </tr>
+                            </tr> --}}
                         </tbody>
                     </table>
                 </div>
