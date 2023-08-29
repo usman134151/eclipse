@@ -138,6 +138,7 @@
                }
            });
             function createMarkerWithDetail(map, location) {
+             //   alert(location);
                 var latLng = new google.maps.LatLng(location.lat, location.long);
 
                 var marker = new google.maps.Marker({
@@ -153,6 +154,8 @@
 
               //  var content = '<div class="marker-label"><strong>' + location.address + '</strong><br>' + location.detail +
                  //   '</div>';
+                 var content = '<div class="marker-label"><p><strong>Assignment Number: ' + location.title + '</strong></p><p>' + location.service + '</p><p>Address: ' + location.address + '</p><a href="https://www.google.com/maps/place/' + encodeURIComponent(location.address)+'" target="_blank">Get Directions</a>&nbsp;&nbsp;&nbsp; <a  style="float:right;" target="_blank" href="/admin/bookings/view-booking/'+location.booking_id+'">Booking Details</a></div>';
+
                 var infoWindow = new google.maps.InfoWindow({
                     content: content
                 });
