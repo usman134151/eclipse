@@ -36,7 +36,7 @@ class Company extends Model
 	}
 	public function addresses()
 	{
-    	return $this->hasMany(UserAddress::class,'user_id');
+    	return $this->hasMany(UserAddress::class,'user_id')->where('user_address_type',2);
 	}
 	public function associateServices()
     {
