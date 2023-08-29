@@ -908,6 +908,21 @@
                             @endphp
                             @livewire('app.common.forms.custom-form-display',['showForm'=>true,'formId'=> $formId  ,'bookingId'=>$booking->id,'lastForm' => $lastForm])
                         @endforeach     
+
+                        @if(count($formIds)==0)
+                            <div class="row between-section-segment-spacing">
+                                <div class="col-12 justify-content-center  d-flex flex-column flex-md-row gap-2">
+                                    <h4>No form attached with industry / service(s)</h4>
+                                </div>
+                                <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
+                                    
+                                            <button type="button" class="btn btn-outline-dark rounded" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });" wire:click="$emit('switch','requester-info')">Back</button> 
+                                            <button type="button" class="btn btn-primary rounded"
+                                            x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });"  wire:click="$emit('switch','payment-info')">Proceed to  Payment Info</button>
+                                    
+                                </div>
+                            </div>
+                        @endif
                                               
                     </div>
                     @elseif($component == 'payment-info')

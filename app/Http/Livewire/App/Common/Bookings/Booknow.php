@@ -337,11 +337,11 @@ class Booknow extends Component
     public function addDate(){
         $this->dates[] =[
             'start_date'=>'',
-            'start_hour' => '',
-            'start_min'=>'',
+            'start_hour' => '00',
+            'start_min'=>'00',
             'end_date'=>'',
-            'end_hour' => '',
-            'end_min'=>'',
+            'end_hour' => '00',
+            'end_min'=>'00',
             'start_am'=>'',
             'end_am'=>'',
             'duration_day' => '',
