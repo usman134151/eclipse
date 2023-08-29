@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class CreateInvoice extends Component
 {
-    public $showForm;
+    public $showForm, $selectedBookingsIds=[];
     protected $listeners = ['showList' => 'resetForm'];
 
     public function render()
@@ -14,9 +14,9 @@ class CreateInvoice extends Component
         return view('livewire.app.common.panels.invoices.create-invoice');
     }
 
-    public function mount()
+    public function mount($selectedBookingsIds)
     {
-       
+    //    dd($selectedBookingsIds, 'in create invoice mount');
        
     }
 

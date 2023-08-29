@@ -6,14 +6,25 @@ use Livewire\Component;
 
 class DraftInvoices extends Component
 {
-    public $showForm, $company_id,$counter=0;
-    protected $listeners = ['showList' => 'resetForm', 'openCompanyPendingBookings'];
+    public $showForm, $company_id,$counter=0, $selectedBookingsIds=[],$inv_counter=0;
+    protected $listeners = ['showList' => 'resetForm', 'openCompanyPendingBookings', 'openCreateInvoice'];
 
     public function render()
     {
         return view('livewire.app.admin.draft-invoices');
     }
 
+    public function openCreateInvoice($selectedBookingsIds){
+
+        if ($this->inv_counter == 0) {
+            $this->selectedBookingsIds = $selectedBookingsIds;
+            $this->dispatchBrowserEvent('refresh-create-invoice', ['ids' => $selectedBookingsIds]);
+            $this->inv_counter = 1;
+        } else {
+            $this->selectedBookingsIds = $selectedBookingsIds;
+            $this->inv_counter = 0;
+        }
+    }
     public function openCompanyPendingBookings($company_id)
     {
         if ($this->counter == 0) {
