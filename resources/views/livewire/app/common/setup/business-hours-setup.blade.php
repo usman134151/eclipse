@@ -259,7 +259,7 @@
                                                                 <input type="" id="select-days" wire:model="holidayDate"
                                                                     class="form-control w-auto js-single-date "
                                                                     placeholder="MM/DD/YYYY" name="selectHolidays">
-                                                                <svg class="icon-date cursor-pointer" width="20"
+                                                                <svg class="icon-date cursor-pointer" width="20" aria-label="Select Days / Holidays"
                                                                     height="20" viewBox="0 0 20 20" fill="none"
                                                                     xmlns="http://www.w3.org/2000/svg">
                                                                     <path
