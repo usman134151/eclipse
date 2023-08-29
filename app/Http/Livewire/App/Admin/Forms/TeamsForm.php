@@ -12,6 +12,7 @@ use Livewire\Component;
 class TeamsForm extends Component
 {
     public $showForm;
+    public $log_type;
 	public $component = 'Team';
     public $specializations=[], $accommodations=[], $services = [], $selected_providers=[];
     public $label,$team,$providers;
@@ -59,6 +60,12 @@ class TeamsForm extends Component
 
     public function save(){
         $this->validate();
+        if(!is_null($this->team->id)){
+            $this->log_type = 'update';
+        }
+        else{
+            $this->log_type = 'create';
+        }
         $this->team->provider_count = count($this->selected_providers);
         $this->team->save();
 
@@ -69,6 +76,14 @@ class TeamsForm extends Component
         $this->team->services()->sync($this->services);
 
         $this->showList("Record saved successfully");
+        addLogs([
+            'action_by' => \Auth::id(),
+            'action_to' => $this->team->id,
+            'item_type' => 'provider-team',
+            'type' => $this->log_type,
+            'message' => 'Provider-team '. $this->log_type . 'd by '. \Auth::user()->name,
+            'ip_address' => \request()->ip(),
+        ]);
         $this->team=new Team;
     }
 
