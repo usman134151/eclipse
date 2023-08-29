@@ -21,13 +21,13 @@
         <div class="col-lg-4 mb-4 mb-lg-0 align-self-center">
             <div class="mb-2">
                 <label class="form-label mb-0">Phone Number:</label>
-                <div class="text-xs">
+                <div wire:ignore class="text-xs">
                     <small>{{ $company->phones->count() ? $company->phones->first()->phone_number : 'N/A' }}</small>
                 </div>
             </div>
             <div>
                 <label class="form-label mb-0">Address:</label>
-                <div><a class="text-xs text-dark"><small>
+                <div wire:ignore><a class="text-xs text-dark"><small>
                             @if (isset($company->address))
                                 {{ $company->address['address_line1'] . ', ' . $company->address['address_line2'] . ',' . $company->address['city'] . ', ' . $company->address['state'] . ', ' . $company->address['country'] }}
                             @else
@@ -55,7 +55,7 @@
                     <thead>
                         <tr role="row">
                             <th scope="col" class="text-center">
-                                <input class="form-check-input" type="checkbox" value=""
+                                <input class="form-check-input" type="checkbox" wire:model.defer="selectAll" wire:click="updateSelectAll"
                                     aria-label="Select All Booking">
                             </th>
                             <th scope="col" width="12%" class="">Booking ID</th>
@@ -432,7 +432,7 @@
                         @foreach($bookings as $booking)
                           <tr role="row" class="odd">
                               <td class="text-center">
-                                  <input class="form-check-input" type="checkbox" value="{{$booking->booking_id}}"  wire:key='{{$loop->index}}' wire:model.defer="selectedBookings"
+                                  <input class="form-check-input" type="checkbox" value="{{$booking->id}}"  wire:key='{{$loop->index}}' wire:model.defer="selectedBookings"
                                       aria-label="Select Booking">
                               </td>
                               <td>
