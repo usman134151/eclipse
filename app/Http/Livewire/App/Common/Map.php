@@ -6,7 +6,7 @@ use Livewire\Component;
 use App\Models\Tenant\User;
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\UserAddress;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class Map extends Component
 {
@@ -15,7 +15,7 @@ class Map extends Component
     public $locations = [];
     public $selectDate;
     public $selectedBookingNo;
-    public $selectedAddress;
+    public $address;
     public $bookingList;
     public $addressList;
     public $selectedBooking;
@@ -31,10 +31,8 @@ class Map extends Component
     public function mount()
     {
         $this->bookingList = Booking::select('id', 'booking_number')->whereNotNull('physical_address_id')->get();
-        $this->addressList = UserAddress::select([
-            DB::raw("CONCAT(address_line1,', ', city, ', ', state, ', ', country) as full_address")
-        ])->get();
-
+        
+       
         $this->applyFilters();
     }
 
@@ -48,8 +46,8 @@ class Map extends Component
             ->when($this->selectDate, function ($query, $selectDate) {
                 return $query->whereDate('bookings.booking_start_at', date("Y-m-d", strtotime($this->selectDate)));
             })
-            ->when($this->selectedAddress, function ($query, $selectedAddress) {
-                return $query->whereRaw("CONCAT(address_line1, ', ', city, ', ', state, ', ', country) LIKE ?", ['%' . $selectedAddress . '%']);
+            ->when($this->address, function ($query, $address) {
+                return $query->where('user_addresses.city',"LIKE",'%' . $this->address . '%')->orWhere('user_addresses.country',"LIKE",'%' . $this->address . '%')->orWhere('user_addresses.state',"LIKE",'%' . $this->address . '%')->orWhere('user_addresses.zip',"LIKE",'%' . $this->address . '%')->orWhere('user_addresses.address_line1',"LIKE",'%' . $this->address . '%')->orWhere('user_addresses.address_line2',"LIKE",'%' . $this->address . '%')->orWhere('user_addresses.longitude',"LIKE",'%' . $this->address . '%')->orWhere('user_addresses.latitude',"LIKE",'%' . $this->address . '%');
             })
             ->when($this->selectedBookingNo, function ($query, $selectedBookingNo) {
                 return $query->where('bookings.id', $selectedBookingNo);
@@ -75,7 +73,7 @@ class Map extends Component
                 'booking_id' => encrypt($location->id),
                 'title' => $location->booking_number,
                 'service' => $location->service_name,
-                'address' => $location->address_line1 . ', ' . $location->city . ', ' . $location->state . ', ' . $location->country . ', ' . $location->zip,
+                'address' => $location->address_line1.', '.$location->city.', '. $location->state . ', '. $location->country. ', '.$location->zip,
                 'lat' => $location->latitude,
                 'long' => $location->longitude
             ];
@@ -102,7 +100,7 @@ class Map extends Component
                 break;
 
             case "Address":
-                $this->selectedAddress = $inputValue;
+                $this->address = $inputValue;
                 break;
 
             case "selectdate":
@@ -112,9 +110,7 @@ class Map extends Component
         }
         // Trigger the filter action after updating the property
         $this->applyFilters();
-        $this->addressList = UserAddress::select([
-            DB::raw("CONCAT(address_line1,', ', city, ', ', state, ', ', country) as full_address")
-        ])->get();
+        
     }
 
     function showForm()
@@ -128,12 +124,9 @@ class Map extends Component
     public function resetDate()
     {
         $this->selectedBooking = null; // Reset the selected date and bookingid etc
-        $this->selectedAddress = null;
+        $this->address = null;
         $this->selectDate = null;
         $this->selectedBookingNo = null;
         $this->applyFilters();
-        $this->addressList = UserAddress::select([
-            DB::raw("CONCAT(address_line1,', ', city, ', ', state, ', ', country) as full_address")
-        ])->get();
     }
 }
