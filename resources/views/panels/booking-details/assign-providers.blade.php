@@ -1,8 +1,8 @@
 {{-- BEGIN: Assign Provider Off Canvas --}}
 <x-off-canvas show="assignProvider" size="fullscreen">
-    <x-slot name="title">Assign Provider</x-slot>
+    <x-slot name="title">{{$panelType==1 ? 'Assign' : 'Invite'}} Providers</x-slot>
     @if ($currentServiceId > 0)
-        @livewire('app.common.panels.booking-details.assign-providers', ['service_id' => $currentServiceId, 'booking_id' => $booking_id])
+        @livewire('app.common.panels.booking-details.assign-providers', ['service_id' => $currentServiceId, 'booking_id' => $booking_id, 'panelType'=>$panelType])
         <x-slot name="outsideBody">
 
             <div class="col-12 justify-content-center form-actions d-flex gap-3">

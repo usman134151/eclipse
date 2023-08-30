@@ -28,7 +28,7 @@ class AssignProviders extends Component
     public $accommodations = [];
     public $distance;
 
-    public $showForm;
+    public $showForm, $panelType=1;
     public $tags, $search;
     public $service_id = null, $booking_id = null;
     protected $listeners = ['showList' => 'resetForm', 'refreshFilters', 'saveAssignedProviders' => 'save', 'updateVal'];
@@ -198,9 +198,9 @@ class AssignProviders extends Component
     }
 
 
-    public function mount($service_id = null)
-    {
-
+    public function mount($service_id = null ,$panelType=1)
+    {   
+        $this->panelType= $panelType;
 
         $this->tags = Tag::all();
         $this->booking = Booking::where('id', $this->booking_id)->first();

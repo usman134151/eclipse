@@ -171,17 +171,17 @@
                                                                 </td>
                                                                 <td>
                                                                     <a
-                                                                        href="{{route('tenant.booking-view',['bookingID'=>encrypt($booking['id'])])}}">{{ $booking['booking_number'] ? $booking['booking_number'] : '' }}
-                                                                    <div>
-                                                                        <div class="time-date">
-                                                                            {{ date_format(date_create($booking['booking_start_at']), 'm/d/Y') }}
+                                                                        href="{{ route('tenant.booking-view', ['bookingID' => encrypt($booking['id'])]) }}">{{ $booking['booking_number'] ? $booking['booking_number'] : '' }}
+                                                                        <div>
+                                                                            <div class="time-date">
+                                                                                {{ date_format(date_create($booking['booking_start_at']), 'm/d/Y') }}
+                                                                            </div>
+                                                                            <div class="time-date">
+                                                                                {{ $booking['booking_start_at'] ? date_format(date_create($booking['booking_start_at']), 'h:i A') : '' }}
+                                                                                to
+                                                                                {{ $booking['booking_end_at'] ? date_format(date_create($booking['booking_end_at']), 'h:i A') : '' }}
+                                                                            </div>
                                                                         </div>
-                                                                        <div class="time-date">
-                                                                            {{ $booking['booking_start_at'] ? date_format(date_create($booking['booking_start_at']), 'h:i A') : '' }}
-                                                                            to
-                                                                            {{ $booking['booking_end_at'] ? date_format(date_create($booking['booking_end_at']), 'h:i A') : '' }}
-                                                                        </div>
-                                                                    </div>
                                                                     </a>
                                                                 </td>
                                                                 <td>
@@ -219,7 +219,7 @@
                                                                 <td>
                                                                     <div class="d-flex align-items-center gap-1">
                                                                         {{-- Updated by Shanila to Add svg icon --}}
-                                                                        <svg aria-label="{{$statusValues[$booking['status']]['title']}}"
+                                                                        <svg aria-label="{{ $statusValues[$booking['status']]['title'] }}"
                                                                             class="fill-warning" width="12"
                                                                             height="12" viewBox="0 0 512 512">
                                                                             <use
@@ -227,7 +227,7 @@
                                                                             </use>
                                                                         </svg>
                                                                         {{-- End of update by Shanila --}}
-                                                                        {{$statusValues[$booking['status']]['title']}}
+                                                                        {{ $statusValues[$booking['status']]['title'] }}
                                                                     </div>
                                                                 </td>
                                                                 <td>
@@ -312,10 +312,24 @@
                                                                                 <a title="Manage Assigned Providers"
                                                                                     aria-label="Manage Assigned Providers"
                                                                                     class="dropdown-item"
+                                                                                    wire:click="openAssignProvidersPanel({{ $booking->id }},{{ $booking->service_id }})"
+                                                                                    @click="assignProvider = true"
                                                                                     href="javascript:void(0)">
                                                                                     <i class="fa fa-user-plus"></i>
-                                                                                    Manage Assigned Providers
+                                                                                    {{ $bookingType == 'Unassigned' ? 'Assign Providers' : 'Manage Assigned Providers ' }}
                                                                                 </a>
+                                                                                @if ($bookingType == 'Unassigned')
+                                                                                    <a href="javascript:void(0)"
+                                                                                        aria-label="Invite Providers"
+                                                                                        title="Invite Providers"
+                                                                                        class="dropdown-item"
+                                                                                        wire:click="openAssignProvidersPanel({{ $booking->id }},{{ $booking->service_id }}, 2)"
+                                                                                        @click="assignProvider = true">
+                                                                                        <i
+                                                                                            class="fa fa-envelope-o"></i>
+                                                                                        Invite Providers
+                                                                                    </a>
+                                                                                @endif
                                                                                 <a title="Message Customer"
                                                                                     aria-label="Message Customer"
                                                                                     class="dropdown-item"
@@ -451,7 +465,7 @@
                 attrName == "providers_selected" ||
                 attrName == "preferred_provider_ids" ||
                 attrName == "gender" ||
-                attrName == "ethnicity" || attrName == "distance_filter" ||attrName == "accommodation_filter" ||
+                attrName == "ethnicity" || attrName == "distance_filter" || attrName == "accommodation_filter" ||
                 attrName == "certifications") {
                 Livewire.emit('refreshFilters', attrName, val);
             } else {
