@@ -657,7 +657,7 @@
                                                     <input type="" name=""
                                                         class="form-control form-control-md js-single-date" 
                                                         placeholder="MM/DD/YYYY" id="start_date_{{$index}}" value="{{$dates[0]['start_date']}}"
-                                                        aria-label="Set Start Date" wire:model.defer="dates.{{$index}}.start_date" style="width:200px">
+                                                        aria-label="Set Start Date" wire:model="dates.{{$index}}.start_date" style="width:200px">
                                                    
                                                     <svg aria-label="Date" class="icon-date md" width="20" height="20"
                                                         viewBox="0 0 20 20">
@@ -699,7 +699,7 @@
                                                         </div>
                                                         <div class="form-check form-switch form-switch-column mb-0">
                                                             <input checked="" class="form-check-input" type="checkbox"
-                                                                role="switch" id="startTimeAMPM" aria-label="AM PM Toggle button" wire:key="starttime-{{ $index }}" wire:model.defer="dates.{{$index}}.start_time">
+                                                                role="switch" id="startTimeAMPM" aria-label="AM PM Toggle button" wire:key="starttime-{{ $index }}" wire:model="dates.{{$index}}.start_time">
                                                             <label class="form-check-label"
                                                                 for="startTimeAMPM">AM</label>
                                                             <label class="form-check-label"
@@ -715,7 +715,7 @@
                                                     <input type="" name=""
                                                         class="form-control form-control-md js-single-date"
                                                         placeholder="MM/DD/YYYY" id="end_date_{{$index}}"
-                                                        aria-label="Set End Date" wire:key="endtime-{{ $index }}" wire:model.lazy="dates.{{$index}}.end_date"  style="width:200px">
+                                                        aria-label="Set End Date" wire:key="endtime-{{ $index }}" wire:model="dates.{{$index}}.end_date"  style="width:200px">
                                                    
                                                     <svg aria-label="Date" class="icon-date md" width="20" height="20"
                                                         viewBox="0 0 20 20">

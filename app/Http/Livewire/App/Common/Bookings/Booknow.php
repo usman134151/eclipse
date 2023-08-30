@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Helpers\SetupHelper;
 use App\Models\Tenant\User;
 use App\Models\Tenant\Booking;
+use App\Models\Tenant\BookingServices;
 use App\Models\Tenant\SetupValue;
 use App\Models\Tenant\Accommodation;
 use App\Models\Tenant\UserAddress;
@@ -187,7 +188,7 @@ class Booknow extends Component
         }
       
        
-
+        $this->dispatchBrowserEvent('refreshSelects');
     
        
 
@@ -196,7 +197,7 @@ class Booknow extends Component
     public function render()
     {
       //  dd($this->services);
-        $this->dispatchBrowserEvent('refreshSelects');
+       // $this->dispatchBrowserEvent('refreshSelects');
         return view('livewire.app.common.bookings.booknow');
     }
 
@@ -439,6 +440,7 @@ class Booknow extends Component
                 if (isset($this->dates[$index])) {
                     $this->dates[$index]['start_date'] = $val;
                     $this->updateDurations($index);
+                  
                 }
               
             }        
@@ -449,17 +451,19 @@ class Booknow extends Component
                 if (isset($this->dates[$index])) {
                     $this->dates[$index]['time_zone'] = $val;
                     $this->updateDurations($index);
+                  
                 }
               
             }         
             elseif (preg_match('/end_date_(\d+)/', $attrName, $matches)) {
                 $index = intval($matches[1]);
                
-        
+       
                 if (isset($this->dates[$index])) {
                     $this->dates[$index]['end_date'] = $val;
                     $this->updateDurations($index);
                 }
+              //  dd( $this->dates[$index]['end_date']);
             }  
             elseif($attrName=='customer_id'){
                 $this->booking['customer_id']=$val;
@@ -472,7 +476,7 @@ class Booknow extends Component
         else
         $this->booking[$attrName] = $val;
 
-
+        
          //extra checks to call additional functions
 
 
@@ -696,7 +700,8 @@ class Booknow extends Component
 
     public function getBookingInfo(){
         $this->selectedServices=[];
-        foreach($this->services as $service){
+        $bookingServices=BookingServices::where('booking_id',$this->booking->id)->get()->toArray();
+        foreach($bookingServices as $service){
             foreach($this->accommodations as $accommodation){
                 if($accommodation['id'] == $service['accommodation_id']){
                     foreach($accommodation['services'] as $accommodationService)

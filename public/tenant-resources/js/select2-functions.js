@@ -32,13 +32,8 @@ window.addEventListener('update-url', function(event) {
       }
 
       function initDates(){
-        if ($('.js-single-date').val() == "")
-        setDefaultDate = true;
-      else
-        setDefaultDate = false; //field has some value
-      
-        if (setDefaultDate)
-          $('.js-single-date').val('');
+        
+
           $('.js-single-date').daterangepicker({
             singleDatePicker: true,
             showDropdowns: true,

@@ -16,46 +16,7 @@
 
 
 
-$(function() {
-  
-    // Select day start
-    $('.js-select-day').daterangepicker({
-        singleDatePicker: true,
-        showDropdowns: true,
-        autoApply: true
-    });
-    $('.js-select-day').val('');
-    $('.js-select-day').attr("placeholder","Select Day");
-    // Select day end
 
-    // Time picker start time
-    $('.js-timepciker-start-time').daterangepicker({
-        timePicker: true,
-        singleDatePicker:true,
-        locale: {
-            format: 'hh:mm A'
-        }
-    }).on('show.daterangepicker', function (ev, picker) {
-        picker.container.find(".calendar-table").hide();
-    });
-    $('.js-timepciker-start-time').val('');
-    $('.js-timepciker-start-time').attr("placeholder","Select Start Time");
-    // Time picker start time end
-
-    // Time picker end time start
-    $('.js-timepciker-end-time').daterangepicker({
-        timePicker: true,
-        singleDatePicker:true,
-        locale: {
-            format: 'hh:mm A'
-        }
-    }).on('show.daterangepicker', function (ev, picker) {
-        picker.container.find(".calendar-table").hide();
-    });
-    $('.js-timepciker-end-time').val('');
-    $('.js-timepciker-end-time').attr("placeholder","Select End Time");
-    // Time picker end time
-});
 
 document.addEventListener('alpine:init', () => {
     Alpine.data('slider', () => ({

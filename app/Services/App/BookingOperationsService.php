@@ -284,7 +284,7 @@ class BookingOperationsService{
 //                        }
 
                         $serviceRates = SELF::getServicePrices($service , $serviceData,$postFix);
-                       
+                      
                         $hours_price = $serviceRates['hourRate'];
                         $after_hours_price =$serviceRates['afterHourRate'];
                         $dayRate = $serviceRates['dayRate'];
@@ -345,10 +345,12 @@ class BookingOperationsService{
                                     $emrg_hours_total_charge = $emergency_price_without_rate + ($final_emerg_hours * $serviceRateForEmergency + $final_emerg_minutes / 60 * $serviceRateForEmergency);
                             }
                         }
+                      
                             $sesArray['booking_service_id'] = $serviceData['id'];
                             $sesArray['emergency_hour_duration'] = $emergency_duration;
                             $sesArray['emergency_hour_price'] = $emrg_hours_total_charge;
                         }
+
                       
                         // If standard rate provider checked then * by providers
 //                        $emrg_hours_total_charge = $emrg_hours_total_charge * $rateProviders;
@@ -820,7 +822,7 @@ public static function excludeWeekends($datetime1,$datetime2)
         $current_time = Carbon::now();
         $emergencyIndex=0;
         $isExclude = false;
-        
+        dd($emergencyHours);
         try{
 
             if($emergencyHours && !$isBookingPast)
@@ -1265,6 +1267,7 @@ public static function excludeWeekends($datetime1,$datetime2)
     }
     public static function calSpecialization($serviceData , $service_total_charge , $final_duration , $bookingDays , $booking_nature,$postFix)  {
         $specialization_total_charge = 0;
+       
         if($serviceData['specialization'])
         {
             $specializationArr = json_decode($serviceData['specialization'],true);
