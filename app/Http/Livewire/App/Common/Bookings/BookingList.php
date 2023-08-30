@@ -124,7 +124,9 @@ class BookingList extends Component
 				break;
 			case ('Invitations'):
 				$query = Booking::whereDate('booking_start_at', '>', Carbon::now())->where(['bookings.status' => 1, 'type' => 1, 'booking_status' => '1'])->orderBy('booking_start_at', 'ASC');
-
+				if (!$this->provider_id) {
+					$query->join('booking_invitation_providers', 'booking_invitation_providers.booking_id', 'bookings.id');
+				}
 				break;
 			default:
 				$query = Booking::where('booking_end_at', '<>', null)->whereDate('booking_end_at', '<', Carbon::today())->orderBy('booking_start_at', 'DESC');
@@ -142,8 +144,7 @@ class BookingList extends Component
 				$query->whereNotIn('bookings.id', $assignedBookings)
 					->join('booking_invitation_providers', function ($join) {
 						$join->on('booking_invitation_providers.booking_id', '=', 'bookings.id');
-					$join->where('booking_invitation_providers.provider_id', '=', Auth::id());
-
+						$join->where('booking_invitation_providers.provider_id', '=', Auth::id());
 					});
 			} else {
 				//limit bookings to this providers
