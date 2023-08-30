@@ -182,7 +182,7 @@ class BookingList extends Component
 				'booking_services.service_types as service_type', 'bookings.*', 'bookings.status as status'
 			]);
 		}
-
+		// $query->groupBy('bookings.id','bookings.booking_number', 'booking_title');
 		$data = $query->paginate($this->limit);
 
 		// setting values for booking and its services
