@@ -8,7 +8,7 @@
             <div class="col-12 justify-content-center form-actions d-flex gap-3">
                 <button type="" class="btn btn-outline-dark rounded"
                     x-on:click="assignProvider = !assignProvider">Cancel</button>
-                @if ($panelType == 1)
+                @if ($panelType == 1 || $panelType ==3)
                     <button type="" x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });"
                         x-on:close-assign-providers.window="assignProvider = !assignProvider"
                         wire:click="$emit('saveAssignedProviders')" class="btn btn-primary rounded">Save</button>

@@ -30,7 +30,7 @@
          </div>
      </div><!-- END: Filters -->
      <!-- BEGIN: Filter Table -->
-     @if ($limit && ($panelType ==1))
+     @if ($limit && ($panelType ==1 || $panelType ==3))
          <div class="">
              <span> Required Providers : {{ $limit }} </span>
              <span class="d-inline-block  mt-2"
@@ -66,10 +66,15 @@
                          <th scope="col"></th>
                      @endif
                      <th scope="col">Provider</th>
-                     @if ($panelType == 1)
+                     @if ($panelType == 1 )
                          <th scope="col" width="20%">Additional Provider Payment</th>
                          <th scope="col" class="text-center">Service Payment</th>
                          <th scope="col">Total</th>
+                     @endif
+                      @if ($panelType == 3 )
+                         <th scope="col" ></th>
+                         <th scope="col" ></th>
+                         <th scope="col"></th>
                      @endif
                  </tr>
              </thead>
@@ -110,7 +115,7 @@
                                      <div></div>
                                  </div>
                              </div>
-                             <div class="" style="{{$panelType == 1 ? 'width:300px' : ''}}">
+                             <div class="" style="{{($panelType == 1 || $panelType == 3  ) ? 'width:300px' : ''}}">
                                  @foreach ($provider->services as $key => $service)
                                      <a href="#">{{ $service->name }}</a>
                                      @if ($key != $provider->services->count() - 1)
@@ -119,7 +124,11 @@
                                  @endforeach
                              </div>
                          </td>
-                         @if ($panelType == 1)
+                         
+                         @if(($panelType ==3 && $provider->invitation_response($booking_id) ==0))
+                         <td colSpan=4> Pending</td>
+                         @endif
+                         @if ($panelType == 1 || ($panelType ==3 && $provider->invitation_response($booking_id) ==1) )
                              <td>
                                  <div class="d-grid grid-cols-2 gap-3 mb-3">
                                      <div>
@@ -277,6 +286,9 @@
                                      </div>
                                  </div>
                              </td>
+                         @endif
+                         @if(($panelType ==3 && $provider->invitation_response($booking_id) ==2))
+                         <td colSpan=4 > Declined</td>
                          @endif
                      </tr>
                  @endforeach

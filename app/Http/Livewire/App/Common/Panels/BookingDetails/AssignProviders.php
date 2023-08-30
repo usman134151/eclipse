@@ -43,19 +43,27 @@ class AssignProviders extends Component
 
     public function render()
     {
-        // dd($this->providers);
-        $query = User::where('status', 1)
+        $query = User::where('users.status', 1)
             ->whereHas('roles', function ($query) {
                 $query->wherein('role_id', [2]);
             })->join('user_details', function ($userdetails) {
                 $userdetails->on('user_details.user_id', '=', 'users.id');
-            })->select([
-                'users.id',
-                'users.name',
-                'users.email',
-                'user_details.phone', 'user_details.profile_pic', 'user_details.tags',
-                'status'
-            ]);
+            });
+        if ($this->panelType == 3) {
+            $query->whereIn('users.id', function ($q)  {
+                $q->from('booking_invitation_providers')
+                ->where('booking_id', $this->booking_id)
+                ->select('provider_id');
+            });
+        }
+        $query->select([
+            'users.id',
+            'users.name',
+            'users.email',
+            'user_details.phone', 'user_details.profile_pic', 'user_details.tags',
+            'users.status'
+        ]);
+
         if ($this->search) {
             $query->where('users.name', 'LIKE', "%" . $this->search . "%");
         }
@@ -207,7 +215,7 @@ class AssignProviders extends Component
         $this->tags = Tag::all();
         $this->booking = Booking::where('id', $this->booking_id)->first();
         if ($panelType == 2) {
-             $this->assignedProviders  = BookingInvitationProvider::where('booking_id',$this->booking_id)->get()->pluck('provider_id')->toArray();
+            $this->assignedProviders  = BookingInvitationProvider::where('booking_id', $this->booking_id)->get()->pluck('provider_id')->toArray();
         } else {
             $booking_service = $this->booking->booking_services->where('services', $this->service_id)->first();
 
@@ -243,6 +251,9 @@ class AssignProviders extends Component
 
                 BookingProvider::create($data);
             }
+
+            if($this->limit == count($this->assignedProviders))
+                Booking::where('id',$this->booking_id)->update(['status'=>2]);
 
             $this->dispatchBrowserEvent('close-assign-providers');
             $this->emit('showConfirmation', 'Providers have been assigned successfully');
