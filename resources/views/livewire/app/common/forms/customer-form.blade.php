@@ -155,7 +155,7 @@
                                                                     <img class="user_img cropfile"
                                                                         src="{{ '/tenant' . tenant('id') . '/app/livewire-tmp/' . $image->getFilename() }}">
                                                                 @else
-                                                                    <img class="user_img cropfile"
+                                                                    <img class="user_img cropfile" aria-label="Upload Profile Picture"
                                                                         src="{{ $userdetail['profile_pic'] == null ? '/tenant-resources/images/img-placeholder-document.jpg' : url($userdetail['profile_pic']) }}">
                                                                 @endif
                                                                 <div class="input--file">
@@ -357,10 +357,10 @@
                                                                     <input type="text"
                                                                         class="form-control js-single-date"
                                                                         placeholder="Select Date of Birth"
-                                                                        aria-label="" aria-describedby=""
+                                                                        aria-label="Date of Birth" aria-describedby=""
                                                                         wire:model.defer="user.user_dob"
                                                                         name="user_dob" id="user_dob">
-                                                                    <svg aria-label="Select Date" class="icon-date"
+                                                                    <svg aria-label="Select Date of Birth" class="icon-date"
                                                                         width="20" height="21"
                                                                         viewBox="0 0 20 21" fill="none"
                                                                         xmlns="http://www.w3.org/2000/svg">
@@ -621,7 +621,7 @@
                                                                         value="1" id="email_invitation"
                                                                         wire:model.defer="email_invitation">
                                                                     <label class="form-check-label"
-                                                                        for="SendInvitationEmailtotheCustomer">
+                                                                        for="email_invitation">
                                                                         Send Invitation Email to the Customer
                                                                     </label>
                                                                 </div>
@@ -844,7 +844,7 @@
                                                                 data-bs-toggle="modal"
                                                                 data-bs-target="#assignedBillingManagerModal">
                                                                 {{-- Updated by Shanila to Add svg icon --}}
-                                                                <svg aria-label="Supervising" width="25"
+                                                                <svg aria-label="Assigned Billing Manager" width="25"
                                                                     height="18" viewBox="0 0 25 18">
                                                                     <use
                                                                         xlink:href="/css/common-icons.svg#right-color-arrow">
