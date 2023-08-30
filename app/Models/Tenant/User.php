@@ -79,6 +79,11 @@ class User extends Authenticatable
 	{
 		return $this->hasOne(UserDetail::class, 'user_id');
 	}	
+	public function invitation_response($booking_id) 
+	{
+		$val= BookingInvitationProvider::where(['booking_id'=>$booking_id,'provider_id'=>$this->id])->pluck('status')->first();
+		return $val;
+	}
 	public function phones()
 	{
 		return $this->morphMany(Phone::class, 'model', 'model_type', 'model_id')
