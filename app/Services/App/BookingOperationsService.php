@@ -1216,7 +1216,7 @@ public static function excludeWeekends($datetime1,$datetime2)
                     $after_hours_price = $service['after_hours_price'.$postFix];
                     break;
                 case '2': // day
-                    if ($service->standard_rate_virtual_multiply_provider == 'true') $providers = $userService['provider_count'];
+                    if ($service[$key] == 'true') $providers = $userService['provider_count'];
                     $dayRate = $service['day_rate_price'.$postFix];
                     break;
                 case '3': // both day and hour
