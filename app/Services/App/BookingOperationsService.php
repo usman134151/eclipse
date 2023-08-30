@@ -822,10 +822,10 @@ public static function excludeWeekends($datetime1,$datetime2)
         $current_time = Carbon::now();
         $emergencyIndex=0;
         $isExclude = false;
-        dd($emergencyHours);
+      
         try{
 
-            if($emergencyHours && !$isBookingPast)
+            if($emergencyHours && count($emergencyHours) && !$isBookingPast)
             {
                 $emergencyHours=json_decode($emergencyHours);
                if(!is_null($emergencyHours)){
