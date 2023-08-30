@@ -42,6 +42,10 @@
              @endif
          </div>
      @endif
+     @if($showError)
+        <span class="d-inline-block invalid-feedback my-1">No providers are selected.</span>
+
+     @endif
      <div class="d-lg-flex justify-content-between align-items-end mb-3">
          <div>
              <a href="#" class="btn btn-primary rounded">Providers</a>
