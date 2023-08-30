@@ -142,7 +142,7 @@
                                                     <img class="user_img cropfile"
                                                         src="{{ '/tenant' . tenant('id') . '/app/livewire-tmp/' . $image->getFilename() }}">
                                                 @else
-                                                    <img class="user_img cropfile"
+                                                    <img class="user_img cropfile" aria-label="Upload Profile Picture"
                                                         src="{{ $userdetail['profile_pic'] == null ? '/tenant-resources/images/img-placeholder-document.jpg' : url($userdetail['profile_pic']) }}">
                                                 @endif
                                                 <div class="input--file">
@@ -227,7 +227,7 @@
                                                         name="user_dob" id="user_dob">
                                                     <!-- Begin : it will be replaced with livewire module-->
                                                     {{-- Updated by Shanila to Add svg icon --}}
-                                                    <svg aria-label="Date" class="icon-date" width="20"
+                                                    <svg aria-label="Date of Birth" class="icon-date" width="20"
                                                         height="21" viewBox="0 0 20 21">
                                                         <use xlink:href="/css/common-icons.svg#datefield-icon">
                                                         </use>
@@ -479,10 +479,10 @@
                                             <div class="d-flex align-items-center w-100">
                                                 <div class="position-relative flex-grow-1">
                                                     <input type="text" class="form-control js-single-date"
-                                                        placeholder="Select Date" aria-label="" aria-describedby=""
+                                                        placeholder="Select Date" aria-label="Start Date" aria-describedby=""
                                                         id="start_date">
                                                     {{-- Updated by Shanila to Add svg icon --}}
-                                                    <svg aria-label="Date" class="icon-date" width="20"
+                                                    <svg aria-label="Start Date" class="icon-date" width="20"
                                                         height="21" viewBox="0 0 20 21">
                                                         <use xlink:href="/css/common-icons.svg#datefield-icon">
                                                         </use>
@@ -501,7 +501,7 @@
                                                         placeholder="Select Date" aria-label="End Date"
                                                         aria-describedby="" id="end-date-">
                                                     {{-- Updated by Shanila to Add svg icon --}}
-                                                    <svg aria-label="Date" class="icon-date" width="20"
+                                                    <svg aria-label="End Date" class="icon-date" width="20"
                                                         height="21" viewBox="0 0 20 21">
                                                         <use xlink:href="/css/common-icons.svg#datefield-icon">
                                                         </use>
@@ -880,7 +880,7 @@
 
                                                                                             <div class="col-3">
                                                                                                 <select
-                                                                                                    id="staff_provider_rate_type"
+                                                                                                    id="staff_provider_rate_type" aria-label="Payout Details"
                                                                                                     class="form-select"
                                                                                                     wire:model.defer="provider_details.staff_provider_rate_type">
                                                                                                     <option
@@ -903,7 +903,7 @@
                                                                                     <div class="d-flex">
                                                                                         <div class="form-check">
                                                                                             <input
-                                                                                                class="form-check-input"
+                                                                                                class="form-check-input" aria-label="yes"
                                                                                                 wire:model="provider_details.set_rate"
                                                                                                 type="radio"
                                                                                                 name="set_rate"
@@ -918,7 +918,7 @@
                                                                                         </div>
                                                                                         <div class="form-check ms-4">
                                                                                             <input
-                                                                                                class="form-check-input"
+                                                                                                class="form-check-input" aria-label="no"
                                                                                                 type="radio"
                                                                                                 name="set_rate"
                                                                                                 wire:model="provider_details.set_rate"

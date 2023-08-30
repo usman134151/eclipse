@@ -107,7 +107,7 @@
                                                                                                 <p>{{$service['name']}}</p>
                                                                                             </td>
                                                                                             @if($modelType=='provider')
-                                                                                                <td><input style="width: 60px;padding: 0.5rem;" type="text" size="2" class="form-control" maxlength="3" wire:model.lazy="services.{{$index}}.provider_priority"  wire:blur="updatePriority({{ $index }})"></td>
+                                                                                                <td><input aria-label="priority" style="width: 60px;padding: 0.5rem;" type="text" size="2" class="form-control" maxlength="3" wire:model.lazy="services.{{$index}}.provider_priority"  wire:blur="updatePriority({{ $index }})"></td>
                                                                                             @endif
                                                                                             <td>
                                                                                                 <div
