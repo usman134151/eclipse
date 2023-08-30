@@ -146,6 +146,13 @@ class BookingList extends Component
 						$join->on('booking_invitation_providers.booking_id', '=', 'bookings.id');
 						$join->where('booking_invitation_providers.provider_id', '=', Auth::id());
 					});
+				$query->leftJoin('booking_services', function ($join) {
+					$join->on('booking_services.booking_id', 'bookings.id');
+				});
+				$query->select([
+					'booking_services.services as service_id', 'booking_services.id as booking_service_id',
+					'booking_services.service_types as service_type', 'bookings.*', 'bookings.status as status','invitation_id','booking_invitation_providers.status as invite_status'
+				]);
 			} else {
 				//limit bookings to this providers
 
@@ -258,6 +265,8 @@ class BookingList extends Component
 		$this->bookingNumber = $bookingNumber;
 		$this->emit('setCheckoutBookingId', $booking_id);
 	}
+
+	
 
 	public function showConfirmation($message = "")
 	{
