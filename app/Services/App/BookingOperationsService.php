@@ -828,6 +828,7 @@ public static function excludeWeekends($datetime1,$datetime2)
             if($emergencyHours && count($emergencyHours) && !$isBookingPast)
             {
                 $emergencyHours=json_decode($emergencyHours);
+                dd($emergencyHours);
                if(!is_null($emergencyHours)){
                 foreach ($emergencyHours as $key=>$emergency)
                 {
