@@ -221,50 +221,60 @@
                                                                         </svg>
                                                                     </a>
                                                                 @elseif($bookingType == 'Invitations')
-                                                                    <a href="#" title="Confirm Invitation"
-                                                                        aria-label="Confirm Invitation"
-                                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#confirmInvitation">
-                                                                        <svg aria-label="Confirm Invitation"
-                                                                            width="19" height="19"
-                                                                            viewBox="0 0 19 19" fill="none"
-                                                                            xmlns="http://www.w3.org/2000/svg">
-                                                                            <use
-                                                                                xlink:href="/css/provider.svg#confirm-invitation">
-                                                                            </use>
-                                                                        </svg>
-                                                                    </a>
+                                                                    <div class="d-flex align-items-center">
+                                                                        <a href="#" title="Confirm Invitation"
+                                                                            aria-label="Confirm Invitation"
+                                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon"
+                                                                            wire:click="$emit('openProviderInvitationResponseModal','{{ $booking['id'] }}','{{ $booking['invitation_id'] }}')"
+                                                                            data-bs-toggle="modal"
+                                                                            data-bs-target="#confirmInvitation">
+                                                                            <svg aria-label="Confirm Invitation"
+                                                                                width="19" height="19"
+                                                                                viewBox="0 0 19 19" fill="none"
+                                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                                <use
+                                                                                    xlink:href="/css/provider.svg#confirm-invitation">
+                                                                                </use>
+                                                                            </svg>
+                                                                        </a>
+                                                                        @if($booking['invite_status']==1)
+                                                                        Accepted
+                                                                        @elseif($booking['invite_status']==2)
+                                                                        Declined
+                                                                        @endif
+                                                                      </div>
                                                                 @endif
-                                                                <div class="dropdown ac-cstm">
-                                                                    <a aria-label="Action Dropdown"
-                                                                        href="javascript:void(0)"
-                                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle"
-                                                                        data-bs-toggle="dropdown"
-                                                                        data-bs-auto-close="outside"
-                                                                        data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-                                                                        <svg aria-label="Action Dropdown"
-                                                                            width="20" height="20"
-                                                                            viewBox="0 0 20 20" fill="none"
-                                                                            xmlns="http://www.w3.org/2000/svg">
-                                                                            <path
-                                                                                d="M10 4.0625C10.5178 4.0625 10.9375 3.64277 10.9375 3.125C10.9375 2.60723 10.5178 2.1875 10 2.1875C9.48223 2.1875 9.0625 2.60723 9.0625 3.125C9.0625 3.64277 9.48223 4.0625 10 4.0625Z"
-                                                                                stroke="black" stroke-width="1.5"
-                                                                                stroke-linecap="round"
-                                                                                stroke-linejoin="round"></path>
-                                                                            <path
-                                                                                d="M10 10.9375C10.5178 10.9375 10.9375 10.5178 10.9375 10C10.9375 9.48223 10.5178 9.0625 10 9.0625C9.48223 9.0625 9.0625 9.48223 9.0625 10C9.0625 10.5178 9.48223 10.9375 10 10.9375Z"
-                                                                                stroke="black" stroke-width="1.5"
-                                                                                stroke-linecap="round"
-                                                                                stroke-linejoin="round"></path>
-                                                                            <path
-                                                                                d="M10 17.8125C10.5178 17.8125 10.9375 17.3928 10.9375 16.875C10.9375 16.3572 10.5178 15.9375 10 15.9375C9.48223 15.9375 9.0625 16.3572 9.0625 16.875C9.0625 17.3928 9.48223 17.8125 10 17.8125Z"
-                                                                                stroke="black" stroke-width="1.5"
-                                                                                stroke-linecap="round"
-                                                                                stroke-linejoin="round"></path>
-                                                                        </svg>
-                                                                    </a>
-                                                                </div>
+                                                                @if ($bookingType != 'Invitations')
+                                                                    <div class="dropdown ac-cstm">
+                                                                        <a aria-label="Action Dropdown"
+                                                                            href="javascript:void(0)"
+                                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle"
+                                                                            data-bs-toggle="dropdown"
+                                                                            data-bs-auto-close="outside"
+                                                                            data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
+                                                                            <svg aria-label="Action Dropdown"
+                                                                                width="20" height="20"
+                                                                                viewBox="0 0 20 20" fill="none"
+                                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                                <path
+                                                                                    d="M10 4.0625C10.5178 4.0625 10.9375 3.64277 10.9375 3.125C10.9375 2.60723 10.5178 2.1875 10 2.1875C9.48223 2.1875 9.0625 2.60723 9.0625 3.125C9.0625 3.64277 9.48223 4.0625 10 4.0625Z"
+                                                                                    stroke="black" stroke-width="1.5"
+                                                                                    stroke-linecap="round"
+                                                                                    stroke-linejoin="round"></path>
+                                                                                <path
+                                                                                    d="M10 10.9375C10.5178 10.9375 10.9375 10.5178 10.9375 10C10.9375 9.48223 10.5178 9.0625 10 9.0625C9.48223 9.0625 9.0625 9.48223 9.0625 10C9.0625 10.5178 9.48223 10.9375 10 10.9375Z"
+                                                                                    stroke="black" stroke-width="1.5"
+                                                                                    stroke-linecap="round"
+                                                                                    stroke-linejoin="round"></path>
+                                                                                <path
+                                                                                    d="M10 17.8125C10.5178 17.8125 10.9375 17.3928 10.9375 16.875C10.9375 16.3572 10.5178 15.9375 10 15.9375C9.48223 15.9375 9.0625 16.3572 9.0625 16.875C9.0625 17.3928 9.48223 17.8125 10 17.8125Z"
+                                                                                    stroke="black" stroke-width="1.5"
+                                                                                    stroke-linecap="round"
+                                                                                    stroke-linejoin="round"></path>
+                                                                            </svg>
+                                                                        </a>
+                                                                    </div>
+                                                                @endif
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -482,6 +492,10 @@
         });
         Livewire.on('closeRunningLateModal', () => {
             $('#runningLateModal').modal('hide');
+
+        });
+        Livewire.on('closeConfirmInvitationModal', () => {
+            $('#confirmInvitation').modal('hide');
 
         });
     </script>

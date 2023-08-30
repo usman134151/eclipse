@@ -17,4 +17,18 @@ class BookingInvitation extends Model
     protected $fillable = [
         'booking_id' , 'deleted_at'
     ];
+    public function booking()
+    {
+        return $this->belongsTo(Booking::class, 'booking_id', 'id');
+    }
+
+    public function invitation_providers()
+    {
+        return $this->hasMany(BookingInvitationProvider::class, 'invitation_id', 'id');
+    }
+
+    public function invitation_responses()
+    {
+        return $this->hasMany(BookingInvitationProvider::class, 'invitation_id', 'id')->where('booking_invitation_providers.status','>',0);
+    }
 }

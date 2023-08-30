@@ -3,6 +3,8 @@
 namespace App\Http\Livewire\App\Common\Panels\BookingDetails;
 
 use App\Models\Tenant\Booking;
+use App\Models\Tenant\BookingInvitation;
+use App\Models\Tenant\BookingInvitationProvider;
 use App\Models\Tenant\Tag;
 use App\Models\Tenant\User;
 use Livewire\Component;
@@ -28,11 +30,11 @@ class AssignProviders extends Component
     public $accommodations = [];
     public $distance;
 
-    public $showForm;
+    public $showForm, $panelType = 1;
     public $tags, $search;
     public $service_id = null, $booking_id = null;
-    protected $listeners = ['showList' => 'resetForm', 'refreshFilters', 'saveAssignedProviders' => 'save', 'updateVal'];
-    public $assignedProviders = [], $limit = null, $booking;
+    protected $listeners = ['showList' => 'resetForm', 'refreshFilters', 'saveAssignedProviders' => 'save', 'updateVal', 'inviteProviders'];
+    public $assignedProviders = [], $limit = null, $booking, $showError = false;
 
     public function updateVal($attrName, $val)
     {
@@ -41,21 +43,29 @@ class AssignProviders extends Component
 
     public function render()
     {
-        // dd($this->providers);
-        $query = User::where('status', 1)
+        $query = User::where('users.status', 1)
             ->whereHas('roles', function ($query) {
                 $query->wherein('role_id', [2]);
             })->join('user_details', function ($userdetails) {
                 $userdetails->on('user_details.user_id', '=', 'users.id');
-            })->select([
-                'users.id',
-                'users.name',
-                'users.email',
-                'user_details.phone', 'user_details.profile_pic', 'user_details.tags',
-                'status'
-            ]);
+            });
+        if ($this->panelType == 3) {
+            $query->whereIn('users.id', function ($q)  {
+                $q->from('booking_invitation_providers')
+                ->where('booking_id', $this->booking_id)
+                ->select('provider_id');
+            });
+        }
+        $query->select([
+            'users.id',
+            'users.name',
+            'users.email',
+            'user_details.phone', 'user_details.profile_pic', 'user_details.tags',
+            'users.status'
+        ]);
+
         if ($this->search) {
-            $query->where('users.name', 'LIKE', "%".$this->search."%");
+            $query->where('users.name', 'LIKE', "%" . $this->search . "%");
         }
         if (count($this->tag_names)) {
             $query->whereJsonContains('tags', $this->tag_names);
@@ -198,20 +208,23 @@ class AssignProviders extends Component
     }
 
 
-    public function mount($service_id = null)
+    public function mount($service_id = null, $panelType = 1)
     {
-
+        $this->panelType = $panelType;
 
         $this->tags = Tag::all();
         $this->booking = Booking::where('id', $this->booking_id)->first();
-        $booking_service = $this->booking->booking_services->where('services', $this->service_id)->first();
-        if ($booking_service) {
-            $this->limit = $booking_service->provider_count;
-            $this->assignedProviders = BookingProvider::where(['booking_id' => $this->booking_id, 'booking_service_id' => $booking_service->id])
-                ->get()->pluck('provider_id')->toArray();
+        if ($panelType == 2) {
+            $this->assignedProviders  = BookingInvitationProvider::where('booking_id', $this->booking_id)->get()->pluck('provider_id')->toArray();
+        } else {
+            $booking_service = $this->booking->booking_services->where('services', $this->service_id)->first();
+
+            if ($booking_service) {
+                $this->limit = $booking_service->provider_count;
+                $this->assignedProviders = BookingProvider::where(['booking_id' => $this->booking_id, 'booking_service_id' => $booking_service->id])
+                    ->get()->pluck('provider_id')->toArray();
+            }
         }
-
-
     }
 
     function showForm()
@@ -239,9 +252,67 @@ class AssignProviders extends Component
                 BookingProvider::create($data);
             }
 
+            if($this->limit == count($this->assignedProviders))
+                Booking::where('id',$this->booking_id)->update(['status'=>2]);
+
             $this->dispatchBrowserEvent('close-assign-providers');
             $this->emit('showConfirmation', 'Providers have been assigned successfully');
         }
+    }
+
+    public function inviteProviders()
+    {
+        if (count($this->assignedProviders) > 0) {
+            $this->showError = false;
+            $bookingInv  = BookingInvitation::updateOrCreate(['booking_id' => $this->booking_id], ['booking_id' => $this->booking_id]);
+            foreach ($this->assignedProviders as $provider_id) {
+                $invData           = ['booking_id'   => $this->booking_id, 'deleted_at'   => null];
+                $existed  = BookingInvitationProvider::where(['booking_id' => $this->booking_id, 'provider_id' => $provider_id, 'invitation_id' => $bookingInv->id]);
+                if ($existed->count() == 0) {   //invitation doesnt exist 
+
+                    $user          = User::find($provider_id);
+                    if (!empty($user)) {
+                        // $permission = $bookingData->bookingNotificationCheck("provider");
+                        // if (!$permission) {
+                        //     $user_role_id =  $this->role->getProviderId();
+                        //     $templateId = Helper::getTemplate('direct-assignment-request-invitation', $user_role_id, 'email_template');
+                        //     $sms_templateId = Helper::getTemplate('direct-assignment-request-invitation', $user_role_id, 'sms_template');
+                        //     $notification_templateId = Helper::getTemplate('direct-assignment-request-invitation', $user_role_id, 'notification_template');
+
+                        //     $params = [
+                        //         'email'       =>  $user->email, //Provider Assignment invite
+                        //         'user'        =>  $user->name,
+                        //         'user_id'     =>  $user->id,
+                        //         'sms_template' =>  $sms_templateId,
+                        //         'templateId'  =>  $templateId,
+                        //         'item_id'     =>  $booking_id,
+                        //         'mail_type'   => 'booking',
+                        //         'provider_id' => $user->id,
+                        //         'phone'       =>  isset($user->users_detail) ? clean($user->users_detail->phone) : "",
+
+                        //     ];
+                        //     Helper::sendTemplatemail($params);
+
+                        //     $noti = [
+                        //         'user_id'     =>  $user->id,
+                        //         'templateId'  =>  $notification_templateId,
+                        //         'item_id'     => $booking_id,
+                        //         'item_type'   => 'booking',
+                        //         // 'provider_id' =>  auth()->user()->id,
+                        //         // 'provider'    =>  auth()->user()->name,
+                        //     ];
+                        //     Helper::save_notification($noti);
+                        // }
+                        $invData['provider_id']     = $provider_id;
+                        $invData['invitation_id']   = $bookingInv->id;
+                        BookingInvitationProvider::updateOrCreate($invData, $invData);
+                    }
+                }
+            }
+            $this->dispatchBrowserEvent('close-assign-providers');
+            $this->emit('showConfirmation', 'Providers have been invited successfully');
+        } else
+            $this->showError = true;
     }
 
     //add provider to list
