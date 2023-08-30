@@ -96,9 +96,10 @@ class BookingOperationsService{
 
   }
   
-  public static function calculateServiceTotal($serviceData,$selectedService,$serviceTypes){
+  public static function calculateServiceTotal($serviceData,$selectedService,$serviceTypes,$booking){
 
-
+  
+   // dd(SELF::bookingCalculationwithService($booking,$selectedService,$selectedService));
     
     $postFix=$serviceTypes[$selectedService['service_types']]['postfix'];
     
@@ -140,7 +141,7 @@ class BookingOperationsService{
     }
   }
 
-  public static function bookingCalculationwithService($bookingDetail, $newservices=null)
+  public static function bookingCalculationwithService($bookingDetail, $serviceData,$selectedService)
     {
         try {
             $result = [];
@@ -157,14 +158,14 @@ class BookingOperationsService{
             $after_hours_duration = 0;
             if ($bookingDetail) {
                
-                $service = $newservices->services_data;
-                if ($service) {
-                  
+              
+                if ($serviceData) {
+                
                     $business_setup = BusinessSetup::first();
                     if ($business_setup) {
-                        $booking_start_at = Carbon::parse($newservices->start_time); // booking start date/time In Carbon
-                        $booking_start_f = Carbon::parse($newservices->start_time); // booking start date/time In Carbon
-                        $booking_end_at = Carbon::parse($newservices->end_time);
+                        $booking_start_at = Carbon::parse($serviceData['start_time']); // booking start date/time In Carbon
+                        $booking_start_f = Carbon::parse($serviceData['start_time']); // booking start date/time In Carbon
+                        $booking_end_at = Carbon::parse($serviceData['end_time']);
                         $earlier = new DateTime($booking_start_at->format('Y-m-d'));  // formated booking start date/time
                         $later = new DateTime($booking_end_at->format('Y-m-d'));
 
@@ -188,52 +189,21 @@ class BookingOperationsService{
                         $emergencyHours = 0;
                         $minimum_assistance_time = '';
                         $serviceHours = 0;
-                        $bookingTotalProviders = $newservices->provider_count;
+                        $bookingTotalProviders = $serviceData['provider_count'];
 
                         $booking_type = '';
                         $booking_nature = '';
+                   
 
-                        if ($newservices->service_types == "1") $booking_type = "inP";
-                        elseif ($newservices->service_types == "2") $booking_type = "inV";
-                        switch ($service->rate_status)
-                        {
-                            case '1':
-                                $booking_nature = 'hourly';
-                                break;
-                            case '2': // day
-                                $booking_nature = 'daily';
-                                break;
-                            case '3': // both day and hour
-                                if($newservices->day_rate != 1) $booking_nature = 'hourly';
-                                else $booking_nature = 'daily';
-                                break;
-                            case '4':  // fixed
-                                $booking_nature = 'fixed';
-                                break;
-                        }
-                       
-                        //for in person
-                        if ($booking_type == "inP")
-                        {
-                            $serviceCharges = $service->service_charge; // object
-                            $oneTimeCharges = $service->one_time_payment; // object
-                            $emergencyHours = $service->emergency_hour; // object
-                            $minimum_assistance_time = $service->minimum_assistance_hours . ':' . $service->minimum_assistance_min;
-                            $serviceHours = $service->minimum_assistance_hours + $service->minimum_assistance_min/60;
-                            $hourPricedb = $service->hour_price;
-                            $fterhourspricedb = $service->after_hours_price;
-                        }
-                        //for Virtual
-                        elseif ($booking_type == "inV")
-                        {
-                            $serviceCharges = $service->service_charge_v;   // object
-                            $oneTimeCharges = $service->one_time_payment_v; // object
-                            $emergencyHours = $service->emergency_hour_v; // object
-                            $minimum_assistance_time = $service->minimum_assistance_hours_v . ':' . $service->minimum_assistance_min_v;
-                            $serviceHours = $service->minimum_assistance_hours_v + $service->minimum_assistance_min_v/60;
+                      
+                            $serviceCharges = $service->service_charge.$postFix;   // object
+                            $oneTimeCharges = $service->one_time_payment.$postFix; // object
+                            $emergencyHours = $service->emergency_hour.$postFix; // object
+                            $minimum_assistance_time = $service->minimum_assistance_hours.$postFix . ':' . $service->minimum_assistance_min.$postFix;
+                            $serviceHours = $service->minimum_assistance_hours.$postFix+ $service->minimum_assistance_min_v/60;
                             $hourPricedb = $service->hour_price_v;
                             $fterhourspricedb = $service->after_hours_price_v;
-                        }
+                      
                        
                         $finalDiffCharges = SELF::getFinalDifferentialsCharges($serviceCharges , $oneTimeCharges , $bookingTotalProviders);
                         
@@ -264,7 +234,7 @@ class BookingOperationsService{
                         $sesArray['virtual_rate'] = 0.00;
 
                         $isBookingPast = $bookingDetail->past ? $bookingDetail->past : 0;
-                        $emergencyPricesAndHours = SELF::getEmergencyHours($newservices->start_time , $emergencyHours , $isBookingPast);
+                        $emergencyPricesAndHours = SELF::getEmergencyHours($serviceData['start_time'] , $emergencyHours , $isBookingPast);
                         
                         $emergency_hour = $emergencyPricesAndHours['emergency_hours'];
                         $isEmergencyExcludeWeekend = $emergencyPricesAndHours['isEmergencyExcludeWeekend'];
@@ -276,7 +246,7 @@ class BookingOperationsService{
                         
 
                            
-                        if ($newservices->service_types == "1" || $newservices->service_types == "2") {
+                        if ($serviceData['service_types'] == "1" || $serviceData['service_types'] == "2") {
                             // calculate booking duration end
                             // calculate hour price start
                             // compare current time with booking start time + emergency hour
@@ -371,7 +341,7 @@ class BookingOperationsService{
                                     $emrg_hours_total_charge = $emergency_price_without_rate + ($final_emerg_hours * $serviceRateForEmergency + $final_emerg_minutes / 60 * $serviceRateForEmergency);
                             }
                         }
-                            $sesArray['booking_service_id'] = $newservices->id;
+                            $sesArray['booking_service_id'] = $serviceData['id'];
                             $sesArray['emergency_hour_duration'] = $emergency_duration;
                             $sesArray['emergency_hour_price'] = $emrg_hours_total_charge;
                         }
@@ -386,7 +356,7 @@ class BookingOperationsService{
                             $final_business_minutes = ($during_business_hours_duration % 60);
                             if ($final_business_hours || $final_business_minutes)
                                 $business_hours_total_charge = $final_business_hours * $hours_price + $final_business_minutes / 60 * $hours_price;
-                            $sesArray['booking_service_id'] = $newservices->id;
+                            $sesArray['booking_service_id'] = $serviceData['id'];
                             $sesArray['business_hour_duration'] = $during_business_hours_duration;
                             $sesArray['business_hour_price'] = $business_hours_total_charge;
                         }
@@ -400,7 +370,7 @@ class BookingOperationsService{
 
                             if ($final_after_hours || $final_after_minutes)
                                 $after_hours_total_charge = $final_after_hours * $after_hours_price + $final_after_minutes / 60 * $after_hours_price;
-                            $sesArray['booking_service_id'] = $newservices->id;
+                            $sesArray['booking_service_id'] = $serviceData['id'];
                             $sesArray['after_hour_duration'] = $after_hours_duration;
                             $sesArray['after_hour_price'] = $after_hours_total_charge;
 
@@ -1316,15 +1286,15 @@ public static function excludeWeekends($datetime1,$datetime2)
     }
     public static function calSpecialization($newservices , $service_total_charge , $final_duration , $bookingDays , $booking_nature)  {
         $specialization_total_charge = 0;
-        if($newservices->specialization)
+        if($serviceData['specialization'])
         {
-            $specializationArr = json_decode($newservices->specialization,true);
+            $specializationArr = json_decode($serviceData['specialization'],true);
          //   dd($specializationArr );
             if(!is_null( $specializationArr )){
                 foreach ($specializationArr as $key => $specializationId) {
-                    $specialization = ServiceSpecialization::where(['specialization_id' => $specializationId, 'service_id' => $newservices->services])->first();
+                    $specialization = ServiceSpecialization::where(['specialization_id' => $specializationId, 'service_id' => $selectedService['id']]);
                   
-                    if ($newservices->service_types == "1")  // In person
+                    if ($serviceData['service_types'] == "1")  // In person
                     {
                         $specialization->specialization_price=json_decode($specialization->specialization_price);
                         if($specialization->specialization_price[0]->price_type == "%")
@@ -1340,7 +1310,7 @@ public static function excludeWeekends($datetime1,$datetime2)
                                 $providersMultiply = 0;
                                 if($specialization->specialization_price[0]->multiply_provider)
                                 {
-                                    $providersMultiply = $specialization->specialization_price[0]->price * $newservices->provider_count;
+                                    $providersMultiply = $specialization->specialization_price[0]->price * $serviceData['provider_count'];
     
                                 }
                                 if($specialization->specialization_price[0]->multiply_service_duration)
@@ -1360,7 +1330,7 @@ public static function excludeWeekends($datetime1,$datetime2)
                             }
                         }
                     }
-                    elseif ($newservices->service_types == "2")
+                    elseif ($serviceData['service_types'] == "2")
                     {
     
                         if($specialization->specialization_price_v[0]->price_type == "%")
@@ -1375,7 +1345,7 @@ public static function excludeWeekends($datetime1,$datetime2)
                                 $providersMultiply = 0;
                                 if($specialization->specialization_price_v[0]->multiply_provider)
                                 {
-                                    $providersMultiply = $specialization->specialization_price_v[0]->price * $newservices->provider_count;
+                                    $providersMultiply = $specialization->specialization_price_v[0]->price * $serviceData['provider_count'];
                                 }
                                 if($specialization->specialization_price_v[0]->multiply_service_duration)
                                 {
