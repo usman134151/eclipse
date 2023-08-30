@@ -236,6 +236,7 @@
                                                                         </svg>
                                                                     </a>
                                                                 @endif
+                                                                @if($bookingType != 'Invitations')
                                                                 <div class="dropdown ac-cstm">
                                                                     <a aria-label="Action Dropdown"
                                                                         href="javascript:void(0)"
@@ -265,6 +266,7 @@
                                                                         </svg>
                                                                     </a>
                                                                 </div>
+                                                                @endif
                                                             </div>
                                                         </td>
                                                     </tr>
