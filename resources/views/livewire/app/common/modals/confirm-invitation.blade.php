@@ -11,13 +11,13 @@
             <div class="mb-2">
                                         <label class="form-label">Confirm Invitation</label>
                                         <div class="form-check">
-                                          <input class="form-check-input" type="radio" name="availability" id="availability" checked>
+                                          <input class="form-check-input" type="radio" wire:model.defer="data.status" value="1" id="availability" name="status">
                                           <label class="form-check-label" for="available">
                                            Accept
                                           </label>
                                         </div>
                                         <div class="form-check">
-                                          <input class="form-check-input" type="radio" name="availability" id="availability">
+                                          <input class="form-check-input"  type="radio" wire:model.defer="data.status" value="2"  name="status" id="no-available">
                                           <label class="form-check-label" for="no-available">
                                            Decline
                                           </label>
@@ -25,14 +25,14 @@
                                     </div>
             </div>
 
-            <div class="col-lg-8">
+            <div class="col-lg-12">
                 <label class="form-label" for="notes-column">
                     Message
                     <svg aria-label="" width="15" height="16" viewBox="0 0 15 16" fill="none"
                      xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#fill-question"></use>
                     </svg> 
                 </label>
-                <textarea class="form-control" rows="3" placeholder="" name="notesColumn" id="notes-column"></textarea>
+                <textarea wire:model.defer="data.notes" class="form-control" rows="3" placeholder="" name="notesColumn" id="notes-column"></textarea>
             </div>
         </div>
     </div>
@@ -43,7 +43,7 @@
                     data-bs-dismiss="modal">Cancel</button>
             </div>
             <div class="col-lg-3">
-                <button type="button" class="btn rounded w-100 btn-primary"  data-bs-dismiss="modal">Submit</button>
+                <button type="button"  wire:click="save" class="btn rounded w-100 btn-primary" >Submit</button>
             </div>
         </div>
     </div>
