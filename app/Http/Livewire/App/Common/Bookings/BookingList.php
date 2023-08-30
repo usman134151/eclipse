@@ -124,16 +124,15 @@ class BookingList extends Component
 				break;
 			case ('Invitations'):
 				$query = Booking::whereDate('booking_start_at', '>', Carbon::now())->where(['bookings.status' => 1, 'type' => 1, 'booking_status' => '1'])->orderBy('booking_start_at', 'ASC');
-				if (!$this->provider_id) {
-					$query->join('booking_invitation_providers', 'booking_invitation_providers.booking_id', 'bookings.id');
-				}
+				$query->whereHas('invitation');
+
 				break;
 			default:
 				$query = Booking::where('booking_end_at', '<>', null)->whereDate('booking_end_at', '<', Carbon::today())->orderBy('booking_start_at', 'DESC');
 				break;
 		}
 
-	
+
 		// check to ensure all bookings are for active customer 
 		// $query->whereHas('customer', function ($q) {
 		// 	$q->where('status', '1');
@@ -153,7 +152,7 @@ class BookingList extends Component
 				});
 				$query->select([
 					'booking_services.services as service_id', 'booking_services.id as booking_service_id',
-					'booking_services.service_types as service_type', 'bookings.*', 'bookings.status as status','invitation_id',
+					'booking_services.service_types as service_type', 'bookings.*', 'bookings.status as status', 'invitation_id',
 					'booking_invitation_providers.status as invite_status'
 				]);
 			} else {
@@ -173,7 +172,7 @@ class BookingList extends Component
 				]);
 			}
 			$base = "provider-";
-		}else{
+		} else {
 			$query->leftJoin('booking_services', function ($join) {
 				$join->on('booking_services.booking_id', 'bookings.id');
 			});
@@ -277,7 +276,7 @@ class BookingList extends Component
 		$this->emit('setCheckoutBookingId', $booking_id);
 	}
 
-	
+
 
 	public function showConfirmation($message = "")
 	{
