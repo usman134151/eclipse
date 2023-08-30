@@ -828,8 +828,8 @@ public static function excludeWeekends($datetime1,$datetime2)
             if($emergencyHours && !$isBookingPast)
             {
                 $emergencyHours=json_decode($emergencyHours);
-                dd($emergencyHours);
-               if(!is_null($emergencyHours)){
+               
+               if(!is_null($emergencyHours) && count($emergencyHours)){
                 foreach ($emergencyHours as $key=>$emergency)
                 {
                     $booking_ememrgency_array[$key] = Carbon::parse($booking_start_at)->subHours($emergency[0]->hour);
