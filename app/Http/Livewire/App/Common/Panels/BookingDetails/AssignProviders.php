@@ -31,8 +31,8 @@ class AssignProviders extends Component
     public $showForm, $panelType=1;
     public $tags, $search;
     public $service_id = null, $booking_id = null;
-    protected $listeners = ['showList' => 'resetForm', 'refreshFilters', 'saveAssignedProviders' => 'save', 'updateVal'];
-    public $assignedProviders = [], $limit = null, $booking;
+    protected $listeners = ['showList' => 'resetForm', 'refreshFilters', 'saveAssignedProviders' => 'save', 'updateVal', 'inviteProviders'];
+    public $assignedProviders = [], $limit = null, $booking ;
 
     public function updateVal($attrName, $val)
     {
@@ -242,6 +242,10 @@ class AssignProviders extends Component
             $this->dispatchBrowserEvent('close-assign-providers');
             $this->emit('showConfirmation', 'Providers have been assigned successfully');
         }
+    }
+
+    public function inviteProviders(){
+        dd($this->assignedProviders);
     }
 
     //add provider to list
