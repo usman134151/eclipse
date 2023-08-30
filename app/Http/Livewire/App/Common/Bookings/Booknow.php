@@ -701,7 +701,7 @@ class Booknow extends Component
                     foreach($accommodation['services'] as $accommodationService)
                     {
                         if($service['services'] == $accommodationService['id']){
-                            $this->selectedServices[]=['name'=>$accommodationService['name'],'serviceTotal'=>BookingOperationsService::calculateServiceTotal($accommodationService,$service)];
+                            $this->selectedServices[]=['name'=>$accommodationService['name'],'service_total'=>BookingOperationsService::calculateServiceTotal($accommodationService,$service,$this->serviceTypes)];
                         }
                            
                     }

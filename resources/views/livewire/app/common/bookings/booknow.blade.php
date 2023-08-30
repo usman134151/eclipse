@@ -940,7 +940,7 @@
                                                 <h3>Service {{$index+1}} : {{$service['name']}}</h3>
                                                 <label class="form-label mb-2 col-lg-6">Total Rate:</label>
                                                 <label
-                                                    class="form-label-sm mb-0 col-lg-3 col-6 align-self-center">$00.00</label>
+                                                    class="form-label-sm mb-0 col-lg-3 col-6 align-self-center">{{$service['service_total']}}</label>
                                                 <div class="col-lg-3 col-6">
                                                     <input type="" name=""
                                                         class="form-control form-control-md text-center"
