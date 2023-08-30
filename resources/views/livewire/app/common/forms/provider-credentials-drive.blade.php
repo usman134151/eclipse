@@ -35,12 +35,12 @@
 
 										<div class="col-md-3 col-12">
 											<div>
-												<label class="form-label" for="set_set_date">
+												<label class="form-label" for="dateRange">
 													Expiry Date
 												</label>
 												<div class="position-relative">
-													<input wire:model.lazy='dateRange' id="dateRange" class="form-control js-single-date" placeholder="MM/DD/YYYY">
-													<svg class="icon-date" width="20" height="20" viewBox="0 0 20 20" fill="none"
+													<input wire:model.lazy='dateRange' id="dateRange"  class="form-control js-single-date" placeholder="MM/DD/YYYY">
+													<svg class="icon-date" aria-label="Expiry Date" width="20" height="20" viewBox="0 0 20 20" fill="none"
 														xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#date-field"></use>
 													</svg>
 												</div>
