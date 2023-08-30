@@ -11,7 +11,7 @@ use DB;
 class Map extends Component
 {
     public $showForm;
-    protected $listeners = ['showList' => 'resetForm', 'apply' => 'applyFilters'];
+    protected $listeners = ['showList' => 'resetForm', 'apply' => 'applyFilters','updateVal'];
     public $locations = [];
     public $selectDate;
     public $selectedBookingNo;
@@ -34,7 +34,7 @@ class Map extends Component
         $this->addressList = UserAddress::select([
             DB::raw("CONCAT(address_line1,', ', city, ', ', state, ', ', country) as full_address")
         ])->get();
-
+        $this->dispatchBrowserEvent('refreshSelects');
         $this->applyFilters();
     }
 
@@ -92,6 +92,7 @@ class Map extends Component
     //this is for filters
     public function updateVal($inputId, $inputValue)
     {
+      
         switch ($inputId) {
             case "Booking":
 
