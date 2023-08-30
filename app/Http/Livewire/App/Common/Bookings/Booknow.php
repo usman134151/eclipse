@@ -195,6 +195,7 @@ class Booknow extends Component
 
     public function render()
     {
+      //  dd($this->services);
         $this->dispatchBrowserEvent('refreshSelects');
         return view('livewire.app.common.bookings.booknow');
     }
@@ -701,14 +702,16 @@ class Booknow extends Component
                     foreach($accommodation['services'] as $accommodationService)
                     {
                         if($service['services'] == $accommodationService['id']){
-                            $this->selectedServices[]=['name'=>$accommodationService['name'],'service_total'=>BookingOperationsService::calculateServiceTotal($accommodationService,$service,$this->serviceTypes,$this->booking)];
+                            $this->selectedServices[]=['name'=>$accommodationService['name'],'service_charges'=>BookingOperationsService::calculateServiceTotal($accommodationService,$service,$this->serviceTypes,$this->booking)];
+                            
                         }
                            
                     }
                 }
             }
+          
         }
-      
+       // dd( $this->selectedServices);
         $this->bookingCharges=BookingOperationsService::calculateCharges($this->booking,$this->services,$this->dates);
        // $this->bookingDetails=BookingOperationsService::getBookingInfoNewLayout($this->booking);
        

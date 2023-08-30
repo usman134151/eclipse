@@ -98,21 +98,11 @@ class BookingOperationsService{
   
   public static function calculateServiceTotal($serviceData,$selectedService,$serviceTypes,$booking){
 
-  
-   // dd(SELF::bookingCalculationwithService($booking,$selectedService,$selectedService));
-    
     $postFix=$serviceTypes[$selectedService['service_types']]['postfix'];
+    return(SELF::bookingCalculationwithService($booking,$selectedService,$serviceData,$postFix));
     
+   
     
-        //checknig type of service 
-    if($serviceData['rate_status']==4){ //if fixed rate then return rate.
-           return $serviceData['fixed_rate'.$postFix]; //fixed rate return
-    }
-    else{ //hourly or day rate
-        $duration=SELF::calculateDuration($selectedService['start_time'],$selectedService['end_time'],false);
-        return ($serviceData['hours_price'.$postFix]*$duration['hours'])+(($serviceData['hours_price'.$postFix]/60)*$duration['mins']);
-      
-    }
     
     
   }
@@ -141,7 +131,7 @@ class BookingOperationsService{
     }
   }
 
-  public static function bookingCalculationwithService($bookingDetail, $serviceData,$selectedService)
+  public static function bookingCalculationwithService($bookingDetail, $serviceData,$service,$postFix)
     {
         try {
             $result = [];
@@ -193,20 +183,33 @@ class BookingOperationsService{
 
                         $booking_type = '';
                         $booking_nature = '';
+                        switch ($service['rate_status'])
+                        {
+                            case '1':
+                                $booking_nature = 'hourly';
+                                break;
+                            case '2': // day
+                                $booking_nature = 'daily';
+                                break;
+                          
+                            case '4':  // fixed
+                                $booking_nature = 'fixed';
+                                break;
+                        }
                    
-
-                      
-                            $serviceCharges = $service->service_charge.$postFix;   // object
-                            $oneTimeCharges = $service->one_time_payment.$postFix; // object
-                            $emergencyHours = $service->emergency_hour.$postFix; // object
-                            $minimum_assistance_time = $service->minimum_assistance_hours.$postFix . ':' . $service->minimum_assistance_min.$postFix;
-                            $serviceHours = $service->minimum_assistance_hours.$postFix+ $service->minimum_assistance_min_v/60;
-                            $hourPricedb = $service->hour_price_v;
-                            $fterhourspricedb = $service->after_hours_price_v;
-                      
+                        
+                      //dd($service);
+                            $serviceCharges = $service['service_charge'.$postFix];   // object
+                            $oneTimeCharges = $service['one_time_payment'.$postFix]; // object
+                            $emergencyHours = $service['emergency_hour'.$postFix]; // object
+                            $minimum_assistance_time = $service['minimum_assistance_hours'.$postFix] . ':' . $service['minimum_assistance_min'.$postFix];
+                            $serviceHours = $service['minimum_assistance_hours'.$postFix]+ $service['minimum_assistance_min'.$postFix]/60;
+                            $hourPricedb = $service['hours_price'.$postFix];
+                            $fterhourspricedb = $service['after_hours_price'.$postFix];
+                       
                        
                         $finalDiffCharges = SELF::getFinalDifferentialsCharges($serviceCharges , $oneTimeCharges , $bookingTotalProviders);
-                        
+                      
                         $final_serviceCharges = $finalDiffCharges['serviceCharges'];
                         $final_oneTimeCharges = $finalDiffCharges['oneTimeCharges'];
 
@@ -230,12 +233,12 @@ class BookingOperationsService{
                         $sesArray['service_rate'] = $final_serviceCharges+$final_oneTimeCharges;
                         $sesArray['business_hour_rate'] = $hourPricedb;
                         $sesArray['after_hour_rate'] = $fterhourspricedb;
-                        $sesArray['emergency_hour_rate'] = $service->emergency_price;
+                        $sesArray['emergency_hour_rate'] = $service['emergency_price'];
                         $sesArray['virtual_rate'] = 0.00;
 
                         $isBookingPast = $bookingDetail->past ? $bookingDetail->past : 0;
                         $emergencyPricesAndHours = SELF::getEmergencyHours($serviceData['start_time'] , $emergencyHours , $isBookingPast);
-                        
+                       
                         $emergency_hour = $emergencyPricesAndHours['emergency_hours'];
                         $isEmergencyExcludeWeekend = $emergencyPricesAndHours['isEmergencyExcludeWeekend'];
                         $selectedIndex = $emergencyPricesAndHours['selectedIndex'];
@@ -244,7 +247,7 @@ class BookingOperationsService{
                        if(!is_null($emergencyHours))
                             $firstEmergencyPram = $emergencyHours[0][0]->price;
                         
-
+                           
                            
                         if ($serviceData['service_types'] == "1" || $serviceData['service_types'] == "2") {
                             // calculate booking duration end
@@ -280,7 +283,8 @@ class BookingOperationsService{
                             }
 //                        }
 
-                        $serviceRates = SELF::getServicePrices($service , $newservices);
+                        $serviceRates = SELF::getServicePrices($service , $serviceData,$postFix);
+                       
                         $hours_price = $serviceRates['hourRate'];
                         $after_hours_price =$serviceRates['afterHourRate'];
                         $dayRate = $serviceRates['dayRate'];
@@ -312,7 +316,7 @@ class BookingOperationsService{
 
                         // calcculate final emergency duration price
                         $emrg_hours_total_charge = 0;
-                       
+                                      
                         if ($emergency_duration) {
                             $final_emerg_hours = floor($emergency_duration / 60);
                             $final_emerg_minutes = ($emergency_duration % 60);
@@ -348,7 +352,7 @@ class BookingOperationsService{
                       
                         // If standard rate provider checked then * by providers
 //                        $emrg_hours_total_charge = $emrg_hours_total_charge * $rateProviders;
-
+                      
                         // calculate final business duration price
                         $business_hours_total_charge = 0;
                         if ($during_business_hours_duration) {
@@ -376,7 +380,7 @@ class BookingOperationsService{
 
                         }
                         $service_total_rate = 0.00;
-                        
+                      
                         switch ($booking_nature)
                         {
                             case 'hourly':
@@ -401,10 +405,10 @@ class BookingOperationsService{
                       
                         Log::info('$during_business_hours_duration Charges' . $business_hours_total_charge);
                         Log::info('$after_hours_duration Charges' . $after_hours_total_charge);
-
-                        // calculate specialization price
-                        $specialization_total_charge  = SELF::calSpecialization($newservices , $service_total_rate , $final_duration , $hours_to_days_duration , $booking_nature);
-                    
+                        
+                        // ddcalculate specialization price
+                        $specialization_total_charge  = SELF::calSpecialization($serviceData , $service_total_rate , $final_duration , $hours_to_days_duration , $booking_nature,$postFix);
+                        
                         // overall total service rates + diffrentials
                         $total_price = $service_total_rate + $emrg_hours_total_charge + $final_serviceCharges + $specialization_total_charge + $final_oneTimeCharges;
 //                        $total_price = $total_price * $Providers;
@@ -1189,70 +1193,45 @@ public static function excludeWeekends($datetime1,$datetime2)
             'emergency_duration' => $emergency_duration,
         ];
     }
-    public static function getServicePrices($service , $userService) : array
+    public static function getServicePrices($service , $userService,$postFix) : array
     {
         $hours_price =0;
         $after_hours_price =0;
         $dayRate = 0;
         $fixRate = 0;
         $providers = 1;
-        if ($userService->service_types == "1")
-        {
-            switch ($service->rate_status) {
+        
+        if($userService['service_types']==2){
+        $key='standard_rate_virtual_multiply_provider';
+        }
+        else 
+        $key='standard_in_person_multiply_provider'.$postFix;
+            switch ($service['rate_status']) {
                 case '1':   // hour
-                    if ($service->standard_in_person_multiply_provider == 'true') $providers = $userService->provider_count;
-                    $hours_price = $service->hours_price;
-                    $after_hours_price = $service->after_hours_price;
+                    if ($service[$key] == 'true') $providers = $userService['provider_count'];
+                    $hours_price = $service['hours_price'.$postFix];
+                    $after_hours_price = $service['after_hours_price'.$postFix];
                     break;
                 case '2': // day
-                    if ($service->standard_in_person_multiply_provider == 'true') $providers = $userService->provider_count;
-                    $dayRate = $service->day_rate_price;
+                    if ($service->standard_rate_virtual_multiply_provider == 'true') $providers = $userService['provider_count'];
+                    $dayRate = $service['day_rate_price'.$postFix];
                     break;
                 case '3': // both day and hour
-                    if ($userService->day_rate != 1) {
-                        if ($service->standard_in_person_multiply_provider == 'true') $providers = $userService->provider_count;
-                        $hours_price = $service->hours_price;
-                        $after_hours_price = $service->after_hours_price;
+                    if ($userService['day_rate'] != 1) {
+                        if ($service[$key] == 'true') $providers = $userService['provider_count'];
+                        $hours_price = $service['hours_price'.$postFix];
+                        $after_hours_price = $service['after_hours_price'.$postFix];
                     } else {
-                        if ($service->standard_in_person_multiply_provider == 'true') $providers = $userService->provider_count;
-                        $dayRate = $service->day_rate_price;
+                        if ($service[$key] == 'true') $providers = $userService['provider_count'];
+                        $dayRate = $service['day_rate_price'.$postFix];
                     }
                     break;
                 case '4':  // fixed
-                    if ($service->fixed_rate_multiply_provider == 'true') $providers = $userService->provider_count;
-                    $fixRate = $service->fixed_rate;
+                    if ($service['fixed_rate_multiply_provider'] == 'true') $providers = $userService['provider_count'];
+                    $fixRate = $service['fixed_rate'.$postFix];
                     break;
             }
-
-        }
-        else
-        {
-            switch ($service->rate_status) {
-                case '1':   // hour
-                    if ($service->standard_rate_virtual_multiply_provider == 'true') $providers = $userService->provider_count;
-                    $hours_price = $service->hours_price_v;
-                    $after_hours_price = $service->after_hours_price_v;
-                    break;
-                case '2': // day
-                    if ($service->standard_rate_virtual_multiply_provider == 'true') $providers = $userService->provider_count;
-                    $dayRate = $service->day_rate_price_v;
-                    break;
-                case '3': // both day and hour
-                    if ($userService->day_rate != 1) {
-                        if ($service->standard_rate_virtual_multiply_provider == 'true') $providers = $userService->provider_count;
-                        $hours_price = $service->hours_price_v;
-                        $after_hours_price = $service->after_hours_price_v;
-                    } else {
-                        if ($service->standard_rate_virtual_multiply_provider == 'true') $providers = $userService->provider_count;
-                        $dayRate = $service->day_rate_price_v;
-                    }
-                    break;
-                case '4':  // fixed
-                    if ($service->fixed_rate_multiply_provider == 'true') $providers = $userService->provider_count;
-                    $fixRate = $service->fixed_rate_v;
-                    break;
-            }
-        }
+        
         return [
             'hourRate' => $hours_price * $providers,
             'afterHourRate' => $after_hours_price * $providers,
@@ -1284,94 +1263,64 @@ public static function excludeWeekends($datetime1,$datetime2)
 
         return ['withRate' => $finalPrice , 'withoutRate' => $emergencyPrice];
     }
-    public static function calSpecialization($newservices , $service_total_charge , $final_duration , $bookingDays , $booking_nature)  {
+    public static function calSpecialization($serviceData , $service_total_charge , $final_duration , $bookingDays , $booking_nature,$postFix)  {
         $specialization_total_charge = 0;
         if($serviceData['specialization'])
         {
             $specializationArr = json_decode($serviceData['specialization'],true);
-         //   dd($specializationArr );
-            if(!is_null( $specializationArr )){
+            
+            if(!is_null( $specializationArr ) && count($specializationArr)>0){
                 foreach ($specializationArr as $key => $specializationId) {
-                    $specialization = ServiceSpecialization::where(['specialization_id' => $specializationId, 'service_id' => $selectedService['id']]);
-                  
-                    if ($serviceData['service_types'] == "1")  // In person
-                    {
-                        $specialization->specialization_price=json_decode($specialization->specialization_price);
-                        if($specialization->specialization_price[0]->price_type == "%")
-                        {
+
+                    $specialization = ServiceSpecialization::where(['specialization_id' => str_replace(['"','[',']','\\'],'',$specializationId), 'service_id' => $serviceData['services']])->first();
+                    if($specialization){
+
+                            $sp_price=json_decode($specialization->specialization_price.$postFix,true);
                            
-                            if($service_total_charge > 0) $specialization_total_charge += ($specialization->specialization_price[0]->price / 100) * $service_total_charge;
-                        }
-                        else
-                        {
-                            if($specialization->specialization_price[0]->multiply_provider || $specialization->specialization_price[0]->multiply_service_duration)
+
+                            if($sp_price[0]['price_type'] == "%")
                             {
-                                $durationMultiply = 0;
-                                $providersMultiply = 0;
-                                if($specialization->specialization_price[0]->multiply_provider)
+                                if($service_total_charge > 0) $specialization_total_charge +=($sp_price[0]['price'] / 100) * $service_total_charge;
+                            }
+                            else
+                            {  
+                                if($sp_price[0]['multiply_provider'] || $sp_price[0]['multiply_service_duration'])
                                 {
-                                    $providersMultiply = $specialization->specialization_price[0]->price * $serviceData['provider_count'];
-    
-                                }
-                                if($specialization->specialization_price[0]->multiply_service_duration)
-                                {
-                                    if($booking_nature == 'hourly') {
+                                    $durationMultiply = 0;
+                                    $providersMultiply = 0;
+                                    if($sp_price[0]['multiply_provider'])
+                                    {
+                                        $providersMultiply = $sp_price[0]['price'] * $serviceData['provider_count'];
+                                    }
+                                    if($sp_price[0]['multiply_service_duration'])
+                                    {
+                                        if($booking_nature == 'hourly')
+                                        {
                                         $final_time_duration = explode(':', $final_duration);
-                                        $durationMultiply = $final_time_duration[0] * $specialization->specialization_price[0]->price + $final_time_duration[1] / 60 * $specialization->specialization_price[0]->price;
-                                    }elseif($booking_nature == 'daily'){
-                                        $durationMultiply = $specialization->specialization_price[0]->price * $bookingDays;
+                                        $durationMultiply = $final_time_duration[0] * $sp_price[0]['price'] + $final_time_duration[1] / 60 * $sp_price[0]['price'];
+                                        }
+                                        elseif($booking_nature == 'daily')
+                                        {
+                                            $durationMultiply = $sp_price[0]['price'] * $bookingDays;
+                                        }
                                     }
+                                    $specialization_total_charge += $providersMultiply + $durationMultiply;
                                 }
-                                $specialization_total_charge += $providersMultiply + $durationMultiply;
-                            }
-                            else
-                            {
-                                $specialization_total_charge += $specialization->specialization_price[0]->price;
-                            }
-                        }
-                    }
-                    elseif ($serviceData['service_types'] == "2")
-                    {
-    
-                        if($specialization->specialization_price_v[0]->price_type == "%")
-                        {
-                            if($service_total_charge > 0) $specialization_total_charge +=($specialization->specialization_price_v[0]->price / 100) * $service_total_charge;
-                        }
-                        else
-                        {
-                            if($specialization->specialization_price_v[0]->multiply_provider || $specialization->specialization_price_v[0]->multiply_service_duration)
-                            {
-                                $durationMultiply = 0;
-                                $providersMultiply = 0;
-                                if($specialization->specialization_price_v[0]->multiply_provider)
+                                else
                                 {
-                                    $providersMultiply = $specialization->specialization_price_v[0]->price * $serviceData['provider_count'];
+                                    $specialization_total_charge += $sp_price[0]['price'];
                                 }
-                                if($specialization->specialization_price_v[0]->multiply_service_duration)
-                                {
-                                    if($booking_nature == 'hourly')
-                                    {
-                                    $final_time_duration = explode(':', $final_duration);
-                                    $durationMultiply = $final_time_duration[0] * $specialization->specialization_price_v[0]->price + $final_time_duration[1] / 60 * $specialization->specialization_price_v[0]->price;
-                                    }
-                                    elseif($booking_nature == 'daily')
-                                    {
-                                        $durationMultiply = $specialization->specialization_price_v[0]->price * $bookingDays;
-                                    }
-                                }
-                                $specialization_total_charge += $providersMultiply + $durationMultiply;
                             }
-                            else
-                            {
-                                $specialization_total_charge += $specialization->specialization_price_v[0]->price;
-                            }
-                        }
-    
+        
+                        
                     }
+                  
+
                 }
             }
 
         }
+      
         return $specialization_total_charge;
     }
 

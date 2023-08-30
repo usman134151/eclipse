@@ -365,7 +365,7 @@
                                                         @if(in_array($key,$foundService['service_type']))
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio"
-                                                                name="serviceType" id="serviceType-{{$serviceType['title']}}-{{$index}}" wire:model="services.{{$index}}.service_types" value="{{$key}}">
+                                                                name="serviceType-{{$serviceType['title']}}-{{$index}}" id="serviceType-{{$serviceType['title']}}-{{$index}}" wire:model="services.{{$index}}.service_types" value="{{$key}}">
                                                             <label class="form-check-label" for="serviceType-{{$serviceType['title']}}-{{$index}}">
                                                                 {{$serviceType['title']}}
                                                             </label>
@@ -937,14 +937,35 @@
                                         <div class="d-flex flex-column gap-5">
                                             @foreach($selectedServices as $index=>$service)
                                             <div class="row">
+                                                <h3>Total Duration: {{$service['service_charges']['FinalDuration']}}</h3>
                                                 <h3>Service {{$index+1}} : {{$service['name']}}</h3>
+                                                <strong>Rate Breakdown</strong>
+                                                <label class="form-label mb-2 col-lg-6">Service Rate:</label>
+                                                <label
+                                                    class="form-label-sm mb-0 col-lg-3 col-6 align-self-center">{{formatPayment($service['service_charges']['ServiceCharge']['service_rate'])}}</label>
+                                                    <label class="form-label mb-2 col-lg-6">Business Hour Rate:</label>
+                                                <label
+                                                    class="form-label-sm mb-0 col-lg-3 col-6 align-self-center">{{formatPayment($service['service_charges']['ServiceCharge']['business_hour_rate'])}}</label>
+                                                    <label class="form-label mb-2 col-lg-6">After Hour Rate:</label>
+                                                <label
+                                                    class="form-label-sm mb-0 col-lg-3 col-6 align-self-center">{{formatPayment($service['service_charges']['ServiceCharge']['after_hour_rate'])}}</label>
+
+                                                    <label class="form-label mb-2 col-lg-6">Standard Rate:</label>
+                                                <label
+                                                    class="form-label-sm mb-0 col-lg-3 col-6 align-self-center">{{formatPayment($service['service_charges']['StandardRate'])}}</label>
+
+                                                    <label class="form-label mb-2 col-lg-6">Specialization Total:</label>
+                                                <label
+                                                    class="form-label-sm mb-0 col-lg-3 col-6 align-self-center">{{formatPayment($service['service_charges']['specialization_total'])}}</label>
+
+
                                                 <label class="form-label mb-2 col-lg-6">Total Rate:</label>
                                                 <label
-                                                    class="form-label-sm mb-0 col-lg-3 col-6 align-self-center">{{formatPayment($service['service_total'])}}</label>
+                                                    class="form-label-sm mb-0 col-lg-3 col-6 align-self-center">{{formatPayment($service['service_charges']['total'])}}</label>
                                                 <div class="col-lg-3 col-6">
                                                     <input type="" name=""
                                                         class="form-control form-control-md text-center"
-                                                        placeholder="$00.00" aria-label="Service 1 Total Rate" value="{{$service['service_total']}}">
+                                                        placeholder="$00.00" aria-label="Service 1 Total Rate" value="{{$service['service_charges']['total']}}">
                                                 </div>
                                             </div>
                                             @endforeach                    
