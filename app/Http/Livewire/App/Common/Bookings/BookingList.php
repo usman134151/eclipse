@@ -29,6 +29,14 @@ class BookingList extends Component
 		'4' => ['class' => 'phone-rate', 'postfix' => '_p', 'title' => 'Phone'],
 		'5' => ['class' => 'teleconference-rate', 'postfix' => '_t', 'title' => 'Teleconference'],
 	];
+	public $statusValues =[
+		''=>['title'=>''],
+		'1'=>['title' => 'Unassigned'],
+		'2'=>['title' => 'Assigned'],
+		'3'=>['title' => 'Cancelled-UnBillable'],
+		'4'=> ['title' => 'Cancelled-Billable']
+		
+	];
 	public function openAssignProvidersPanel($booking_id, $service_id)
 	{
 		$this->booking_id = $booking_id;
@@ -46,28 +54,83 @@ class BookingList extends Component
 			$this->currentServiceId = $service_id;
 			$this->counter = 0;
 			$this->dispatchBrowserEvent('refreshSelects2');
-
 		}
 	}
 
 	public function render()
 	{
 		$base = '';
+		$yesterday    = Carbon::now()->subDays(1)->toDateString();
+		$today          = Carbon::now()->toDateString();
+
 		switch ($this->bookingType) {
 			case ('Past'):
-				$query = Booking::where('booking_end_at', '<>', null)->whereDate('booking_end_at', '<', Carbon::today())->orderBy('booking_start_at', 'DESC');
+				$query = Booking::where(['type' => 1, 'booking_status' => '1'])
+					->whereHas('customer', function ($q) {
+						$q->where('status', '1');
+					})
+					// ->when($addressCheck, function ($query) {
+					// 	$query->where('isCompleted', 0);
+					// })
+					->whereIn('status', [3, 4])
+					->Orwhere(function ($ca) use ($today) {
+						$ca->whereRaw("DATE(booking_start_at) < '$today'")
+							->whereIn('status', [1, 2]);
+						// ->when($addressCheck, function ($query) {
+						// 	$query->where('isCompleted', 0);
+						// });
+					})
+					->orderBy('booking_start_at', 'DESC');
 				break;
 			case ("Today's"):
-				$query = Booking::whereDate('booking_start_at', Carbon::today())->orderBy('booking_start_at', 'ASC');
+				$query = Booking::where(['status' => 2, 'type' => 1, 'booking_status' => '1'])
+					->whereHas('customer', function ($q) {
+						$q->where('status', '1');
+					})
+					// ->when($addressCheck, function ($query) {
+					// 	$query->where('isCompleted', 0);
+					// })
+					->whereRaw("'$today'  Between  DATE(booking_start_at) AND DATE(booking_end_at)")
+					->orderBy('booking_start_at', 'ASC');
 				break;
 			case ('Upcoming'):
-				$query = Booking::whereDate('booking_start_at', '>', Carbon::today())->orderBy('booking_start_at', 'ASC');
+
+				$query = Booking::whereDate('booking_start_at', '>', Carbon::today())
+					->where(['status' => 2, 'type' => 1, 'booking_status' => '1'])
+					// ->whereHas('customer', function ($q) {
+					// 	$q->where('status', '1');
+					// })
+					// ->when($addressCheck, function ($query) {
+					// 	$query->where('isCompleted', 0);
+					// })
+					->whereRaw("DATE(booking_start_at) > '$today'")
+					->orderBy('booking_start_at', 'ASC');
 				break;
 			case ('Pending Approval'):
 				$query = Booking::where('booking_status', 0)->orderBy('booking_start_at', 'DESC');
 				break;
 			case ('Draft'):
-				$query = Booking::where('type', 2)->orderBy('booking_start_at', 'DESC');
+				$query = Booking::where(['type' => 2])
+					->whereHas('customer', function ($q) {
+						$q->where('status', '1');
+					})
+					// ->when($addressCheck, function ($query) {
+					// 	$query->where('isCompleted', 0);
+					// })
+					->orderBy('booking_start_at', 'DESC');
+				break;
+			case ('Unassigned'):
+
+				$query = Booking::where(['status' => 1, 'type' => 1, 'booking_status' => '1'])
+					// ->whereHas('customer', function ($q) {
+					// 	$q->where('status', '1');
+					// })
+					->whereRaw("DATE(booking_start_at) > '$yesterday'")
+					->orderBy('booking_start_at', 'ASC');
+				break;
+			case ('Invitations'):
+
+				$query = Booking::whereDate('booking_start_at', '>', Carbon::today())->where(['status' => 1, 'type' => 1, 'booking_status' => '1'])->orderBy('booking_start_at', 'ASC');
 				break;
 			default:
 				$query = Booking::where('booking_end_at', '<>', null)->whereDate('booking_end_at', '<', Carbon::today())->orderBy('booking_start_at', 'DESC');
@@ -136,7 +199,7 @@ class BookingList extends Component
 
 	public function mount()
 	{
-		
+
 		if (session('isProvider'))
 			$this->provider_id = Auth::id();
 

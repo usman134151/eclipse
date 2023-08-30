@@ -219,7 +219,7 @@
                                                                 <td>
                                                                     <div class="d-flex align-items-center gap-1">
                                                                         {{-- Updated by Shanila to Add svg icon --}}
-                                                                        <svg aria-label="Unassigned"
+                                                                        <svg aria-label="{{$statusValues[$booking['status']]['title']}}"
                                                                             class="fill-warning" width="12"
                                                                             height="12" viewBox="0 0 512 512">
                                                                             <use
@@ -227,7 +227,7 @@
                                                                             </use>
                                                                         </svg>
                                                                         {{-- End of update by Shanila --}}
-                                                                        Unassigned
+                                                                        {{$statusValues[$booking['status']]['title']}}
                                                                     </div>
                                                                 </td>
                                                                 <td>
