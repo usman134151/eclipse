@@ -189,13 +189,13 @@ class Booknow extends Component
        
 
     
-        $this->dispatchBrowserEvent('refreshSelects');
+       
 
     }
 
     public function render()
     {
-       
+        $this->dispatchBrowserEvent('refreshSelects');
         return view('livewire.app.common.bookings.booknow');
     }
 
@@ -337,11 +337,11 @@ class Booknow extends Component
     public function addDate(){
         $this->dates[] =[
             'start_date'=>'',
-            'start_hour' => '',
-            'start_min'=>'',
+            'start_hour' => '00',
+            'start_min'=>'00',
             'end_date'=>'',
-            'end_hour' => '',
-            'end_min'=>'',
+            'end_hour' => '00',
+            'end_min'=>'00',
             'start_am'=>'',
             'end_am'=>'',
             'duration_day' => '',
@@ -350,6 +350,7 @@ class Booknow extends Component
             'time_zone' => ''
 
     ];
+    $this->dispatchBrowserEvent('refreshSelects');
     }
     public function removeDate($index)
     {
@@ -377,12 +378,13 @@ class Booknow extends Component
         'end_time'=>'',
         'status'=>0
     ];
-
+    $this->dispatchBrowserEvent('refreshSelects');
     }
     public function removeServices($index)
     {
         unset($this->services[$index]);
         $this->services = array_values($this->services);
+        $this->dispatchBrowserEvent('refreshSelects');
     }
 
 
@@ -699,7 +701,7 @@ class Booknow extends Component
                     foreach($accommodation['services'] as $accommodationService)
                     {
                         if($service['services'] == $accommodationService['id']){
-                            $this->selectedServices[]=['name'=>$accommodationService['name'],'serviceTotal'=>BookingOperationsService::calculateServiceTotal($accommodationService,$service)];
+                            $this->selectedServices[]=['name'=>$accommodationService['name'],'service_total'=>BookingOperationsService::calculateServiceTotal($accommodationService,$service,$this->serviceTypes)];
                         }
                            
                     }

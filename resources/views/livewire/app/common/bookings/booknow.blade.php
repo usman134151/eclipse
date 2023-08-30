@@ -908,6 +908,21 @@
                             @endphp
                             @livewire('app.common.forms.custom-form-display',['showForm'=>true,'formId'=> $formId  ,'bookingId'=>$booking->id,'lastForm' => $lastForm])
                         @endforeach     
+
+                        @if(count($formIds)==0)
+                            <div class="row between-section-segment-spacing">
+                                <div class="col-12 justify-content-center  d-flex flex-column flex-md-row gap-2">
+                                    <h4>No form attached with industry / service(s)</h4>
+                                </div>
+                                <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
+                                    
+                                            <button type="button" class="btn btn-outline-dark rounded" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });" wire:click="$emit('switch','requester-info')">Back</button> 
+                                            <button type="button" class="btn btn-primary rounded"
+                                            x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });"  wire:click="$emit('switch','payment-info')">Proceed to  Payment Info</button>
+                                    
+                                </div>
+                            </div>
+                        @endif
                                               
                     </div>
                     @elseif($component == 'payment-info')
@@ -925,7 +940,7 @@
                                                 <h3>Service {{$index+1}} : {{$service['name']}}</h3>
                                                 <label class="form-label mb-2 col-lg-6">Total Rate:</label>
                                                 <label
-                                                    class="form-label-sm mb-0 col-lg-3 col-6 align-self-center">$00.00</label>
+                                                    class="form-label-sm mb-0 col-lg-3 col-6 align-self-center">{{$service['service_total']}}</label>
                                                 <div class="col-lg-3 col-6">
                                                     <input type="" name=""
                                                         class="form-control form-control-md text-center"

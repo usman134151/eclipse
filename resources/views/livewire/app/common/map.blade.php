@@ -32,16 +32,8 @@
 		  </div>
       <div class="col-lg mb-4 mb-lg-0">
             <label class="form-label" for="supervisor">Address</label>
-            <select class="form-select select2 address">
-            @if(!empty($selectedAddress))
-            <option>{{$selectedAddress}}</option>
-            @else
-            <option value="0">Address</option>
-            @endif
-            @foreach($addressList as $address)
-                    <option value="{{$address->full_address }}">{{$address->full_address}}</option>
-                @endforeach
-            </select>
+            <input type="text" name="address" id="address" class="form-control" wire:model = "address" wire:keyup = "applyFilters">
+            
         </div>
       <div class="col-lg mb-4 mb-lg-0">
             <label class="form-label" for="supervisor">Bookings</label>
@@ -148,7 +140,7 @@
                         text: location.title,
                         fontWeight: 'bold',
                         fontSize: '14px',
-                        color: '#0000FF',
+                        color: 'black', // Text color
                     }
                 });
 

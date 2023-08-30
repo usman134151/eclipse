@@ -2,12 +2,13 @@ window.addEventListener('update-url', function(event) {
     pushStateToUrl(event.detail.url);
   });
   document.addEventListener('refreshSelects', function(event) {
-      
+     
       let el = $('.select2')
-      initSelect()
-      
+      initSelect();
+      initDates();
       Livewire.hook('message.processed', (message, component) => {
-          initSelect()
+          initSelect();
+          initDates();
       })
 
 
@@ -30,33 +31,45 @@ window.addEventListener('update-url', function(event) {
           });
       }
 
-    if ($('.js-single-date').val() == "")
-      setDefaultDate = true;
-    else
-      setDefaultDate = false; //field has some value
-
-
-      if (setDefaultDate)
-        $('.js-single-date').val('');
-
-      $('.js-single-date').attr("placeholder","MM/DD/YYYY");
-      $('.js-single-date').on('apply.daterangepicker', function(ev, picker) {
-      console.log($(this).val());
-      updateVal($(this).attr('id'),  $(this).val());
-
-  });
+      function initDates(){
+        if ($('.js-single-date').val() == "")
+        setDefaultDate = true;
+      else
+        setDefaultDate = false; //field has some value
+      
+        if (setDefaultDate)
+          $('.js-single-date').val('');
+          $('.js-single-date').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoApply: true
+        });
+        $('.js-single-date').attr("placeholder","MM/DD/YYYY");
+        $('.js-single-date').on('apply.daterangepicker', function(ev, picker) {
+        console.log($(this).val());
+        updateVal($(this).attr('id'),  $(this).val());
+  
+    });
+    setTimeout(function() {
+      
+  
       $('.js-select-day').daterangepicker({
-          singleDatePicker: true,
-          showDropdowns: true,
-          autoApply: true
-      });
-      $('.js-select-day').val('');
-      $('.js-select-day').attr("placeholder","Select Day");
+              singleDatePicker: true,
+              showDropdowns: true,
+              autoApply: true
+          });
+          $('.js-select-day').val('');
+          $('.js-select-day').attr("placeholder", "Select Day");
+    
+  }, 500); // 500 milliseconds
+        $('.js-select-day').val('');
+        $('.js-select-day').attr("placeholder","Select Day");
+      }
 
           
   });
   function pushStateToUrl(url) {
-history.pushState(null, null, url);
+  history.pushState(null, null, url);
 }
      
 

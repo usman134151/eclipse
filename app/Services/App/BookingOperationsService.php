@@ -19,6 +19,8 @@ use Log;
 
 class BookingOperationsService{
 
+ 
+
   public static function createBooking($booking, $services, $dates,$selectedIndustries){
     $booking->booking_number=self::generateBookingNumber();
     $booking->user_id=Auth::user()->id;
@@ -94,12 +96,48 @@ class BookingOperationsService{
 
   }
   
-  public static function calculateServiceTotal($serviceData,$selectedService){
-    //checknig type of service 
-    //if fixed rate then return rate.
+  public static function calculateServiceTotal($serviceData,$selectedService,$serviceTypes){
 
-    //else get business data 
+
     
+    $postFix=$serviceTypes[$selectedService['service_types']]['postfix'];
+    
+    
+        //checknig type of service 
+    if($serviceData['rate_status']==4){ //if fixed rate then return rate.
+           return $serviceData['fixed_rate'.$postFix]; //fixed rate return
+    }
+    else{ //hourly or day rate
+        $duration=SELF::calculateDuration($selectedService['start_time'],$selectedService['end_time'],false);
+        return ($serviceData['hours_price'.$postFix]*$duration['hours'])+(($serviceData['hours_price'.$postFix]/60)*$duration['mins']);
+      
+    }
+    
+    
+  }
+
+  public static function calculateDuration($startTime,$endTime,$dayRate=false){
+    $startDateTime = Carbon::create($startTime);
+    
+    $endDateTime =  Carbon::create($endTime);
+ 
+    if ($endDateTime >= $startDateTime) {
+        $diff = $endDateTime->diff($startDateTime);
+        $days=null;
+        if($dayRate){
+            $days = $diff->days;
+            $hours = $diff->h;
+            $minutes = $diff->i;
+        }
+        else{
+          
+            $hours =  $endDateTime->diffInHours($startDateTime);
+            $minutes = $diff->i; 
+        }
+
+      
+        return ['days'=>$days,'hours'=>$hours,'mins'=>$minutes];
+    }
   }
 
   public static function bookingCalculationwithService($bookingDetail, $newservices=null)
