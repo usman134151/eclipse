@@ -132,6 +132,8 @@ class BookingList extends Component
 				$query = Booking::where('booking_end_at', '<>', null)->whereDate('booking_end_at', '<', Carbon::today())->orderBy('booking_start_at', 'DESC');
 				break;
 		}
+
+	
 		// check to ensure all bookings are for active customer 
 		// $query->whereHas('customer', function ($q) {
 		// 	$q->where('status', '1');
@@ -151,7 +153,8 @@ class BookingList extends Component
 				});
 				$query->select([
 					'booking_services.services as service_id', 'booking_services.id as booking_service_id',
-					'booking_services.service_types as service_type', 'bookings.*', 'bookings.status as status','invitation_id','booking_invitation_providers.status as invite_status'
+					'booking_services.service_types as service_type', 'bookings.*', 'bookings.status as status','invitation_id',
+					'booking_invitation_providers.status as invite_status'
 				]);
 			} else {
 				//limit bookings to this providers
@@ -170,6 +173,14 @@ class BookingList extends Component
 				]);
 			}
 			$base = "provider-";
+		}else{
+			$query->leftJoin('booking_services', function ($join) {
+				$join->on('booking_services.booking_id', 'bookings.id');
+			});
+			$query->select([
+				'booking_services.services as service_id', 'booking_services.id as booking_service_id',
+				'booking_services.service_types as service_type', 'bookings.*', 'bookings.status as status'
+			]);
 		}
 
 		$data = $query->paginate($this->limit);
@@ -188,7 +199,7 @@ class BookingList extends Component
 			} else {
 				$booking_service = $row->booking_services ? $row->booking_services->where('id', $row->booking_service_id)->first() : null;
 				$row->accommodation_name = $booking_service ? $booking_service->accommodation->name : null;
-				$row->service_name = $booking_service ? $booking_service->service->name : null;
+				$row->service_name = $booking_service ?  ($booking_service->service ? $booking_service->service->name : null) : null;
 			}
 			$row->display_running_late = false;
 			$row->display_check_in = false;
