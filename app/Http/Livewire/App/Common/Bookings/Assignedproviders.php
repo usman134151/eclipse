@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\App\Common\Bookings;
 
+use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingInvitation;
 use Livewire\Component;
 use App\Models\Tenant\BookingProvider;
@@ -25,7 +26,7 @@ class Assignedproviders extends Component
     {
         // dd($booking_service_id,$provider_id,$booking_id);
         BookingProvider::where(['booking_service_id' => $booking_service_id, 'provider_id' => $provider_id, 'booking_id' => $booking_id])->delete();
-
+        Booking::where(['booking_id' => $booking_id])->update(['booking_status'=>1]);
         //add check for booking_status update
         $this->emit('showConfirmation', 'Provider Assignment has been revoked successfully');
     }
