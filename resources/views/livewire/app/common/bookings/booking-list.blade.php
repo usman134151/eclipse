@@ -332,7 +332,7 @@
                                                                                         View Response
                                                                                     </a>
                                                                                 @endif
-                                                                                @if ($bookingType == 'Unassigned' || $bookingType == 'Invitations')
+                                                                                @if ($bookingType == 'Unassigned' || $bookingType == 'Invitations' || $bookingType == 'Draft')
                                                                                     <a href="javascript:void(0)"
                                                                                         aria-label="Invite Providers"
                                                                                         title="Invite Providers"
