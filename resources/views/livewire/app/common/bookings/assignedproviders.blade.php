@@ -20,17 +20,27 @@
                       </svg>
                       Manage Providers
                   </a> --}}
-                  <a href="#" class="btn btn-has-icon btn-primary rounded"
-                      wire:click="$emit('openAssignProvidersPanel',{{ $booking_id }},{{ $service_id }},2)"
-                      @click="assignProvider = true" href="javascript:refreshSelectsEvent()">
-                      {{-- Updated by Shanila to Add svg icon --}}
-                      <svg aria-label="Invite Providers" width="18" height="18" viewBox="0 0 18 18"
-                          fill="none">
-                          <use xlink:href="/css/common-icons.svg#invite-icon"></use>
-                      </svg>
-                      {{-- End of update by Shanila --}}
-                      Invite Providers
-                  </a>
+                  @if (!$limitReached)
+                      <a href="#" class="btn btn-has-icon btn-primary rounded"
+                          wire:click="$emit('openAssignProvidersPanel',{{ $booking_id }},{{ $service_id }},2)"
+                          @click="assignProvider = true" href="javascript:refreshSelectsEvent()">
+                          {{-- Updated by Shanila to Add svg icon --}}
+                          <svg aria-label="Invite Providers" width="18" height="18" viewBox="0 0 18 18"
+                              fill="none">
+                              <use xlink:href="/css/common-icons.svg#invite-icon"></use>
+                          </svg>
+                          {{-- End of update by Shanila --}}
+                          Invite Providers
+                      </a>
+                      @if ($inv_exists)
+                          <a href="#" class="btn btn-has-icon btn-primary rounded"
+                              wire:click="$emit('openAssignProvidersPanel',{{ $booking_id }},{{ $service_id }},3)"
+                              @click="assignProvider = true" href="javascript:refreshSelectsEvent()">
+                              <i class="fa fa-envelope-open-o"></i>
+                              View Response
+                          </a>
+                      @endif
+                  @endif
                   <a href="#" class="btn btn-has-icon btn-primary rounded">
                       <svg aria-label="Team Chat" width="20" height="20" viewBox="0 0 20 20" fill="none">
                           <use xlink:href="/css/common-icons.svg#message-icon">
