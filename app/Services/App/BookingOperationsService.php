@@ -96,9 +96,9 @@ class BookingOperationsService{
 
   }
   
-  public static function calculateServiceTotal($serviceData,$selectedService,$serviceTypes,$booking){
+  public static function calculateServiceTotal($serviceData,$selectedService,$postFix,$booking){
 
-    $postFix=$serviceTypes[$selectedService['service_types']]['postfix'];
+   
     return(SELF::bookingCalculationwithService($booking,$selectedService,$serviceData,$postFix));
     
    
@@ -438,7 +438,7 @@ class BookingOperationsService{
         }
     }
 
-    public static function getBookingInfoNewLayout($bookingDetail)
+    public static function getBookingInfoNewLayout($bookingDetail,$allservices)
 {
    
     try {
@@ -453,7 +453,7 @@ class BookingOperationsService{
             $current_time = Carbon::now();
             if ($bookingDetail)
             {
-                $allservices = BookingServices::with('services_data')->where('booking_id',$bookingDetail->id)->get();
+               // $allservices = BookingServices::with('services_data')->where('booking_id',$bookingDetail->id)->get();
               
 //                    if($bookingDetail->frequency_id != '1')
 //                    {
@@ -501,21 +501,23 @@ class BookingOperationsService{
                     if($bookingDetail->frequency_id != 1) $result['frequency_end_date'] =Carbon::parse($bookingDetail->recurring_end_at)->format('m/d/Y');
                     $result['services'] = [];
                     $allDateTimes = array();
+                    $bookingInfo['total_price']=0;
                     foreach($allservices as $service)
                     {
-                    
-                        $billStatus = $service->services_data->bill_status;
+                     
+                        $billStatus = $service['services_data']['bill_status'];
+                        $postFix=$service['postFix'];
+                        $service_type=$service['service_type'];
                         $result['byReq'][] =($billStatus == '1') ? true : false ;
                      
-                        $booking_start_at = $service->start_time;
-                        $booking_end_at = $service->end_time;
-                        if(!in_array($service->start_time.'-'.$service->end_time,$allDateTimes))
+                        $booking_start_at = $service['start_time'];
+                        $booking_end_at = $service['end_time'];
+                        if(!in_array($service['start_time'].'-'.$service['end_time'],$allDateTimes))
                         {
-                            $allDateTimes[] = $service->start_time.'-'.$service->end_time;
+                            $allDateTimes[] = $service['start_time'].'-'.$service['end_time'];
                             $result['services'][] .= '<span>(' . Carbon::parse($booking_start_at)->format('m/d/Y H:i') . ' - ' . Carbon::parse($booking_end_at)->format('m/d/Y H:i') . ')<br></span>';
-
                         }
-                        $payment_deduct_hour = $service->services_data->payment_deduct_hour;
+                        $payment_deduct_hour = $service['services_data']['payment_deduct_hour'];
                         if ($payment_deduct_hour)
                             $final_payment_deduct_hour = Carbon::parse($booking_start_at)->subHours($payment_deduct_hour);
 
@@ -538,16 +540,11 @@ class BookingOperationsService{
                         }
                         // date
                         $specializationCharges = 0;
-                        if ($service->service_types == '1') {
-                            $allcharges = $service->services_data->service_charge;
-                            $oneTimeCharge = $service->services_data->one_time_payment;
-                            $service_type = 'In person';
 
-                        } else {
-                            $allcharges = $service->services_data->service_charge_v;
-                            $oneTimeCharge = $service->services_data->one_time_payment_v;
-                            $service_type = 'Virtual';
-                        }
+                        $allcharges = $service['services_data']['service_charge'.$postFix];
+                        $oneTimeCharge = $service['services_data']['one_time_payment'.$postFix];
+                      
+                        
                       
                         $result['servicePayments'] = [];
                         $serviceOneTimeCharge = 0;
@@ -562,13 +559,13 @@ class BookingOperationsService{
                                         $onetime[0]->label='One-time';
                                     }
                                      if ($onetime[0]->charge_customer == "true") {
-                                         $customerCharges += $onetime[0]->price * $service->provider_count;
-                                         $serviceOneTimeCharge += $onetime[0]->price * $service->provider_count;
-                                         $result['servicePayments'][]= ['label'=>$onetime[0]->label,'price'=>formatPayment($onetime[0]->price * $service->provider_count),'CTC'=>true];
+                                         $customerCharges += $onetime[0]->price * $service['provider_count'];
+                                         $serviceOneTimeCharge += $onetime[0]->price * $service['provider_count'];
+                                         $result['servicePayments'][]= ['label'=>$onetime[0]->label,'price'=>formatPayment($onetime[0]->price * $service['provider_count']),'CTC'=>true];
                                      } else {
                                          $providerCharges += $onetime[0]->price;
                                          $serviceOneTimeCharge += $onetime[0]->price;
-                                         $result['servicePayments'][]= ['label'=>$onetime[0]->label,'price'=>formatPayment($onetime[0]->price * $service->provider_count),'CTC'=>false];
+                                         $result['servicePayments'][]= ['label'=>$onetime[0]->label,'price'=>formatPayment($onetime[0]->price * $service['provider_count']),'CTC'=>false];
                                      }
                                     }
      
@@ -580,18 +577,18 @@ class BookingOperationsService{
                        
                         $result['serviceCharges'] = [];
                         $ServiceChargenew = 0;
-                        $allcharges=json_decode($allcharges);
-                      
+                        $allcharges=json_decode($allcharges,true);
+                     
                         if(!is_null($allcharges)){
                            
                             foreach ($allcharges as $k => $subArray) {
-                              
-                                if ($subArray[0]->multiply_providers == "true") {
-                                    $ServiceChargenew += $subArray[0]->price * $service->provider_count;
-                                    $result['serviceCharges'][]= ["label"=>$subArray[0]->label, "price"=>formatPayment($subArray[0]->price * $service->provider_count)];
+                           
+                                if ($subArray[0]['multiply_providers'] == "true") {
+                                    $ServiceChargenew += $subArray[0]->price * $service['provider_count'];
+                                    $result['serviceCharges'][]= ["label"=>$subArray[0]['label'], "price"=>formatPayment($subArray[0]['price'] * $service['provider_count'])];
                                 } else {
-                                    $ServiceChargenew += $subArray[0]->price;
-                                    $result['serviceCharges'][]= ["label"=>$subArray[0]->label, "price"=>formatPayment($subArray[0]->price)];
+                                    $ServiceChargenew += $subArray[0]['price'];
+                                    $result['serviceCharges'][]= ["label"=>$subArray[0]['label'], "price"=>formatPayment($subArray[0]['price'])];
                                 }
                             }
 
@@ -600,9 +597,9 @@ class BookingOperationsService{
                         $result['serviceChargeTotal']= $ServiceChargenew;
                       
                         
-                        $bookingTotal = SELF::bookingCalculationwithService($bookingDetail, $service);
+                        $bookingTotal = $service['service_charges'];
                         $result['bookingTotal']=$bookingTotal;
-                      
+                  
                         // calculate booking duration start
                         $booking_start_at = Carbon::parse($booking_start_at);
                         $booking_end_at = Carbon::parse($booking_end_at);
@@ -619,20 +616,20 @@ class BookingOperationsService{
                         $booking_hours = $duration_explode[0];
                         $booking_minutes = $duration_explode[1];
                         $rate_status = null;
-                        if ($service->services_data->rate_status == '2' || $service->day_rate == '1' && $service->services_data->rate_status == '3') {
+                        if ($service['services_data']['rate_status'] == '2' || $service['day_rate'] == '1' && $service['services_data']['rate_status'] == '3') {
                             $total_billable_time = $bookingDays . ' Day(s)';
                         } else
                             $total_billable_time = $booking_hours .' '. 'hour(s) ' . $booking_minutes .' '. ' minute(s)';
                         $bookingTotalPrice = $bookingTotal['total'];
                         $result['allServices'][] = array([
                             "time" => Carbon::parse($booking_start_at)->format('m/d/Y H:i') . ' - ' . Carbon::parse($booking_end_at)->format('m/d/Y H:i'),
-                            "services" => $service->services_data->name,
+                            "services" => $service['services_data']['name'],
                             "service_type" => $service_type,
                             "service_charges" => $ServiceChargenew,
-                            "specializations" => getSpecializationsNameNew($service->specialization),
-                            "accommodation" => $service->accommodation->name,
-                            "providers" => $service->provider_count,
-                            "daye_rate" => $service->services_data->rate_status,
+                            "specializations" => getSpecializationsNameNew($service['specialization']),
+                            "accommodation" => $service['accommodation']['name'],
+                            "providers" => $service['provider_count'],
+                            "daye_rate" => $service['services_data']['rate_status'],
                             "rate_status" => $rate_status,
                             "additionalCustomerCharges" => $customerCharges,
                             "total_billable_time" => $total_billable_time,
@@ -645,91 +642,97 @@ class BookingOperationsService{
                         $bookingTotalCancellation = 0;
                         $bookingTotalSpec =  $bookingTotal['specialization_total'];
                         $bookingTotalStandardRate =  $bookingTotal['StandardRate'];
-                      dd($result); //formatted till here -
-                        $result['html_heading2_content'] = '<tr><td colspan="2" class="topHeading">Service Request (' . Carbon::parse($booking_start_at)->format('m/d/Y H:i') . ' - ' . Carbon::parse($booking_end_at)->format('m/d/Y H:i') . ')</td></tr>';
-                        $result['html_heading2_content'] .= '<tr><td class="lable">Accomodation<em>:</em></td><td>' . $service->accommodation->name . '</td></tr>';
-                        $result['html_heading2_content'] .= '<tr><td class="lable">Service<em>:</em></td><td>' . $service->services_data->name . '</td></tr>';
-                        if($bookingTotalSpec != 0.00)$result['html_heading2_content'] .= '<tr><td class="lable">Specialization<em>:</em></td><td>' . getSpecializationsNameNew($service->specialization) . '</td></tr>';
-                        $result['html_heading2_content'] .= '<tr><td class="lable">Service Type<em>:</em></td><td>' . $service_type . '</td></tr>';
-                        $result['html_heading2_content'] .= '<tr><td class="lable">Number of Providers<em>:</em></td><td>' . $service->provider_count . '</td></tr>';
-                        $user=USER::with('roles')->where('id',Auth::user()->id)->first();
+                        
+                        
+                        
+                        $result['formatted_duration'] = Carbon::parse($booking_start_at)->format('m/d/Y H:i') . ' - ' . Carbon::parse($booking_end_at)->format('m/d/Y H:i');
+                        $result['accommodation'] = $service['accommodation']['name'];
+                        $result['service_name'] = $service['services_data']['name'];
+                        if($bookingTotalSpec != 0.00)$result['specialization_name'] .=  getSpecializationsNameNew($service['specialization']);
+                        $result['service_type'] = $service_type;
+                         $user=USER::with('roles')->where('id',Auth::user()->id)->first();
                      
                         if($user->roles()->first()->name == 'admin' || $user->roles()->first()->name == 'supervisor')
                         {
-                            $result['html_heading2_content'] .= '<tr><td class="lable">Total Billable Time<em>:</em></td><td>' . $total_billable_time . '</td></tr>';
+                            $result['total_billable_time'] = $total_billable_time;
                         }
-                        $result['html_heading3_content'] = '<tr><td colspan="2" class="heading">Service Billing</td></tr>';
-                        $result['html_heading3_content'] .= '<tr><td class="lable">Total Service Rate<em>:</em></td><td>' . formatPayment($bookingTotalStandardRate) . '</td></tr>';
+                       
+                        $result['total_service_rate'] =formatPayment($bookingTotalStandardRate);
 
                         $diff =  $bookingTotalExpedited + $bookingTotalModification + $bookingTotalReschedule + $bookingTotalCancellation + $bookingTotalSpec;
 
                         if ($diff) {
-                        $result['html_heading3_content'] .= '<tr><td class="lable">Differentials<em>:</em></td><td>' . formatPayment($diff). '</td></tr>';
-                        if($bookingTotalSpec != 0.00)$result['html_heading3_content'] .= '<tr><td class="sub-lable">Specializations<em>:</em></td><td>' . formatPayment($bookingTotalSpec) . '</td></tr>';
-                        if($bookingTotalExpedited != 0.00)$result['html_heading3_content'] .= '<tr><td class="sub-lable">Expedited Services<em>:</em></td><td>'. formatPayment($bookingTotalExpedited).'</td></tr>';
-                        if($bookingTotalModification != 0.00)$result['html_heading3_content'] .= '<tr><td class="sub-lable">Modification Fee<em>:</em></td><td>'. formatPayment($bookingTotalModification).'</td></tr>';
-                        if($bookingTotalReschedule != 0.00)$result['html_heading3_content'] .= '<tr><td class="sub-lable">Reschedule Fee<em>:</em></td><td>'.  formatPayment($bookingTotalReschedule) .'</td></tr>';
-                        if($bookingTotalCancellation != 0.00)$result['html_heading3_content'] .= '<tr><td class="sub-lable">Cancellation Fee<em>:</em></td><td>'. formatPayment($bookingTotalCancellation).'</td></tr>';
+                            $result['diff'] = formatPayment($diff);
+                        if($bookingTotalSpec != 0.00)$result['specialization_charges'] = formatPayment($bookingTotalSpec);
+                        if($bookingTotalExpedited != 0.00)$result['expedited_services'] = formatPayment($bookingTotalExpedited);
+                        if($bookingTotalModification != 0.00)$result['modification_fee'] = formatPayment($bookingTotalModification);
+                        if($bookingTotalReschedule != 0.00)$result['reschedule_fee'] = formatPayment($bookingTotalReschedule);
+                        if($bookingTotalCancellation != 0.00)$result['cancellation_fee'] = formatPayment($bookingTotalCancellation);
                         }
                         if (($ServiceChargenew + $customerCharges) != 0.00) {
-                            $result['html_heading3_content'] .= '<tr><td class="lable">Total Service Charges<em>:</em></td><td>' . formatPayment($ServiceChargenew + $serviceOneTimeCharge) . '</td></tr>';
+                            $result['total_service_charges'] = formatPayment($ServiceChargenew + $serviceOneTimeCharge);
                            if ($ServiceChargenew){
-                            $result['html_heading3_content'] .= '<tr><td class="sub-lable">Total Service Charges<em>:</em></td><td>' . formatPayment($ServiceChargenew) . '</td></tr>';
-                            $result['html_heading3_content'] .= $serviceChargesHtml;
+                            $result['total_service_charges'] = formatPayment($ServiceChargenew);
+                           
                            }
                            if ($customerCharges ){
-                            $result['html_heading3_content'] .= '<tr><td class="sub-lable">Total Service Payments<em>:</em></td><td>' . formatPayment($customerCharges) . '</td></tr>';
-                            $result['html_heading3_content'] .= $servicePaymentsHtml;
+                            $result['customer_charges'] .= formatPayment($customerCharges);
+                           
                            }
+                          $bookingInfo['services'][]=$result; 
                         }
 
-                        $result['html_heading3_content'] .= '<tr><td class="lable bold">Service Total<em>:</em></td><td>' . formatPayment($bookingTotalPrice) . '</td></tr>';
+                        $result['service_total'] =formatPayment($bookingTotalPrice);
 
-                        $result['html_service'] .= $result['html_heading2_content'];
+                       
                         if($user->roles()->first()->name == 'admin' || $user->roles()->first()->name == 'supervisor')
                         {
-                            $result['html_service'] .= $result['html_heading3_content'];
-                        }
 
-                        $result['total_price'] += $bookingTotalPrice;
+                          //  $result['html_service'] .= $result['html_heading3_content'];
+                        }
+                       
+
+
+
+                        $bookingInfo['total_price'] += $bookingTotalPrice;
                         $result['providerCharges'] = $providerCharges;
                         $result['customerCharges'] = $customerCharges;
                         $allServiceRates += $bookingTotal['StandardRate'];
                         $allDifferentials += $diff;
                         $allServiceCharges += $ServiceChargenew + $serviceOneTimeCharge;
 
-                        $result['EncryptedID'] = encrypt($bookingDetail->id);
+                        $bookingInfo['EncryptedID'] = encrypt($bookingDetail->id);
+                        $bookingInfo['services'][]=$result; //formatted till here 
 
                     }
+                  
+                    $bookingInfo['gross_total']= formatPayment($bookingInfo['total_price']);
+                    $bookingInfo['discount']= '$0.00';
+                    $bookingInfo['net_total']= formatPayment($bookingInfo['total_price']);
+                   
+                    $bookingInfo['total_service_rates'] = formatPayment($allServiceRates);
+                    $bookingInfo['total_differentials'] = formatPayment($allDifferentials);
+                    $bookingInfo['total_service_charges'] = formatPayment($allServiceCharges);
+                    $bookingInfo['total_acc'] =formatPayment(0);
 
-                    $result['html_datetime'] = '<tr><td class="lable">Date & Time<em>:</em></td><td>'.$servicesDateTimes.'</td></tr>';
-                    $result['html_gross_total']= '<tr class="total_summary_new"><td>Gross Total<em>:</em></td><td class="gross_total" data-total="'.$result['total_price'].'">'.formatPayment($result['total_price']).'</td></tr>';
-                    $result['html_discount']= '<tr class="total_summary_new"><td>Discount<em>:</em></td><td class="coupon_amount">$0.00</td></tr>';
-                    $result['html_net_total']= '<tr class="total_summary_new"><td>Net Total<em>:</em></td><td class="total_price_cls_new">'.formatPayment($result['total_price']).'</td></tr>';
-                    $result['html_booking_total']= '<tr><td colspan="2" class="topHeading">Booking Total</td></tr>';
-                    $result['html_total_service_rates'] = '<tr><td  class="lable">Total Service Rates<em>:</em></td><td>'.formatPayment($allServiceRates).'</td></tr>';
-                    $result['html_total_differentials'] = '<tr><td class="lable">Total Differentials<em>:</em></td><td>'.formatPayment($allDifferentials).'</td></tr>';
-                    $result['html_total_service_charges'] = '<tr><td  class="lable">Total Service Charges<em>:</em></td><td>'.formatPayment($allServiceCharges).'</td></tr>';
-                    $result['html_total_acc'] = '<tr><td  class="lable">Additional Customer Charges<em>:</em></td><td class="summary_acc">'.formatPayment(0).'</td></tr>';
+                    //$bookingInfo['html'] = $bookingInfo['heading1'];
+                    //$bookingInfo['html'] .= $result['datetime'];
+                    //$bookingInfo['html'] .= $result['freq'];
+                   // $bookingInfo['html'] .= $result['rec'];
+                   // $bookingInfo['html'] .= $bookingInfo['service'];
+                   $bookingInfo['html']='';
+                   // if($user->roles()->first()->name == 'admin' || $user->roles()->first()->name == 'supervisor')$bookingInfo['html'] .= $bookingInfo['booking_total'];
+                    if($user->roles()->first()->name == 'admin' || $user->roles()->first()->name == 'supervisor')$bookingInfo['html'] .= $bookingInfo['total_service_rates'];
+                    if($user->roles()->first()->name == 'admin' || $user->roles()->first()->name == 'supervisor')$bookingInfo['html'] .= $bookingInfo['total_differentials'];
+                    if($user->roles()->first()->name == 'admin' || $user->roles()->first()->name == 'supervisor')$bookingInfo['html'] .= $bookingInfo['total_service_charges'];
+                    if($user->roles()->first()->name == 'admin' || $user->roles()->first()->name == 'supervisor')$bookingInfo['html'] .= $bookingInfo['total_acc'];
+                    if($user->roles()->first()->name == 'admin' || $user->roles()->first()->name == 'supervisor')$bookingInfo['html'] .= $bookingInfo['gross_total'];
+                    if($user->roles()->first()->name == 'admin' || $user->roles()->first()->name == 'supervisor')$bookingInfo['html'] .= $bookingInfo['discount'];
+                    if($user->roles()->first()->name == 'admin' || $user->roles()->first()->name == 'supervisor')$bookingInfo['html'] .= $bookingInfo['net_total'];
 
-                    $result['html'] = $result['html_heading1'];
-                    $result['html'] .= $result['html_datetime'];
-                    $result['html'] .= $result['html_freq'];
-                    $result['html'] .= $result['html_rec'];
-                    $result['html'] .= $result['html_service'];
-
-                    if($user->roles()->first()->name == 'admin' || $user->roles()->first()->name == 'supervisor')$result['html'] .= $result['html_booking_total'];
-                    if($user->roles()->first()->name == 'admin' || $user->roles()->first()->name == 'supervisor')$result['html'] .= $result['html_total_service_rates'];
-                    if($user->roles()->first()->name == 'admin' || $user->roles()->first()->name == 'supervisor')$result['html'] .= $result['html_total_differentials'];
-                    if($user->roles()->first()->name == 'admin' || $user->roles()->first()->name == 'supervisor')$result['html'] .= $result['html_total_service_charges'];
-                    if($user->roles()->first()->name == 'admin' || $user->roles()->first()->name == 'supervisor')$result['html'] .= $result['html_total_acc'];
-                    if($user->roles()->first()->name == 'admin' || $user->roles()->first()->name == 'supervisor')$result['html'] .= $result['html_gross_total'];
-                    if($user->roles()->first()->name == 'admin' || $user->roles()->first()->name == 'supervisor')$result['html'] .= $result['html_discount'];
-                    if($user->roles()->first()->name == 'admin' || $user->roles()->first()->name == 'supervisor')$result['html'] .= $result['html_net_total'];
-
-                    $result['layout'] = '1';
-                    $result['role'] = $user->roles()->first()->name;
-                    return $result;
+                    $bookingInfo['layout'] = '1';
+                    $bookingInfo['role'] = $user->roles()->first()->name;
+                    return $bookingInfo;
                 }
             }
     } catch (\Exception $e) {
@@ -926,6 +929,7 @@ public static function excludeWeekends($datetime1,$datetime2)
             Log::info('$after_business_start_time '. $after_business_start_time);
             Log::info('$after_business_end_time '. $after_business_end_time);
             Log::info('$after_business_start_dtime '. $after_business_start_dtime);
+           
             $booking_date_end_time = Carbon::parse($booking_start_at)->addDays($i)->toDateString();
             if ($current_time->gt($booking_start_with_emrgency_time)) {
                 // if current time are within emergency hour then applied emergency price
@@ -1088,6 +1092,7 @@ public static function excludeWeekends($datetime1,$datetime2)
         $booking_start_with_emrgency_time = Carbon::parse($booking_start_at)->subHours($emergency_hour);
         if ($isBookingPast) $current_time = $booking_start_with_emrgency_time;
         else $current_time = Carbon::now();
+        dd($business_setup);
         // for 1 day in emergency
         $business_start_time = Carbon::parse($booking_start_at)->toDateString() . ' ' . $business_setup->business_start_time;
         $business_end_time = Carbon::parse($booking_start_at)->toDateString() . ' ' . $business_setup->business_end_time;

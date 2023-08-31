@@ -935,39 +935,14 @@
                                 <div class="col-lg-6 mb-4 pe-lg-5 pt-5">
                                     <div class="col-lg-10 mb-5">
                                         <div class="d-flex flex-column gap-5">
-                                            @foreach($selectedServices as $index=>$service)
-                                            <div class="row">
-                                                <h3>Total Duration: {{$service['service_charges']['FinalDuration']}}</h3>
-                                                <h3>Service {{$index+1}} : {{$service['name']}}</h3>
-                                                <strong>Rate Breakdown</strong>
-                                                <label class="form-label mb-2 col-lg-6">Service Rate:</label>
-                                                <label
-                                                    class="form-label-sm mb-0 col-lg-3 col-6 align-self-center">{{formatPayment($service['service_charges']['ServiceCharge']['service_rate'])}}</label>
-                                                    <label class="form-label mb-2 col-lg-6">Business Hour Rate:</label>
-                                                <label
-                                                    class="form-label-sm mb-0 col-lg-3 col-6 align-self-center">{{formatPayment($service['service_charges']['ServiceCharge']['business_hour_rate'])}}</label>
-                                                    <label class="form-label mb-2 col-lg-6">After Hour Rate:</label>
-                                                <label
-                                                    class="form-label-sm mb-0 col-lg-3 col-6 align-self-center">{{formatPayment($service['service_charges']['ServiceCharge']['after_hour_rate'])}}</label>
-
-                                                    <label class="form-label mb-2 col-lg-6">Standard Rate:</label>
-                                                <label
-                                                    class="form-label-sm mb-0 col-lg-3 col-6 align-self-center">{{formatPayment($service['service_charges']['StandardRate'])}}</label>
-
-                                                    <label class="form-label mb-2 col-lg-6">Specialization Total:</label>
-                                                <label
-                                                    class="form-label-sm mb-0 col-lg-3 col-6 align-self-center">{{formatPayment($service['service_charges']['specialization_total'])}}</label>
-
-
-                                                <label class="form-label mb-2 col-lg-6">Total Rate:</label>
-                                                <label
-                                                    class="form-label-sm mb-0 col-lg-3 col-6 align-self-center">{{formatPayment($service['service_charges']['total'])}}</label>
-                                                <div class="col-lg-3 col-6">
-                                                    <input type="" name=""
-                                                        class="form-control form-control-md text-center"
-                                                        placeholder="$00.00" aria-label="Service 1 Total Rate" value="{{$service['service_charges']['total']}}">
-                                                </div>
-                                            </div>
+                                            @foreach($bookingCharges['services'] as $index=>$service)
+                                                        {{$service['accommodation']}}
+                                                  {{$service['allServices']['services']}}  
+                                                  {{$service['allServices']['time']}}   
+                                                  {{$service['allServices']['total_billable_time']}} 
+                                                  Service Rate: {{$service['bookingTotal']['StandardRate']}}    
+                                                  Business Hours Rate: {{$service['bookingTotal']['ServiceCharge']['after_hour_price']}}
+                                                    After Hours Rate: {{$service['bookingTotal']['StandardRate']}}
                                             @endforeach                    
                                             <div class="row">
                                                 <label class="form-label mb-2 col-lg-6">Additional Charges:</label>

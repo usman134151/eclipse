@@ -701,13 +701,19 @@ class Booknow extends Component
     public function getBookingInfo(){
         $this->selectedServices=[];
         $bookingServices=BookingServices::where('booking_id',$this->booking->id)->get()->toArray();
-        foreach($bookingServices as $service){
+        foreach($bookingServices as &$service){
             foreach($this->accommodations as $accommodation){
                 if($accommodation['id'] == $service['accommodation_id']){
                     foreach($accommodation['services'] as $accommodationService)
                     {
                         if($service['services'] == $accommodationService['id']){
-                            $this->selectedServices[]=['name'=>$accommodationService['name'],'service_charges'=>BookingOperationsService::calculateServiceTotal($accommodationService,$service,$this->serviceTypes,$this->booking)];
+                            $postFix=$this->serviceTypes[$service['service_types']]['postfix'];
+                            $serviceType=$this->serviceTypes[$service['service_types']]['title'];
+                            $service['services_data']=$accommodationService;
+                            $service['postFix']=$postFix;
+                            $service["service_type"]=$serviceType;
+                            $service['accommodation']=$accommodation;
+                            $service["service_charges"]=BookingOperationsService::calculateServiceTotal($accommodationService,$service,$postFix,$this->booking);
                             
                         }
                            
@@ -716,8 +722,9 @@ class Booknow extends Component
             }
           
         }
-       // dd( $this->selectedServices);
-        $this->bookingCharges=BookingOperationsService::calculateCharges($this->booking,$this->services,$this->dates);
+       
+        $this->bookingCharges=BookingOperationsService::getBookingInfoNewLayout($this->booking,$bookingServices);
+        dd($this->bookingCharges);
        // $this->bookingDetails=BookingOperationsService::getBookingInfoNewLayout($this->booking);
        
     }
