@@ -33,7 +33,7 @@
                                     <use xlink:href="/css/common-icons.svg#gray-user"></use>
                                 </svg>
                                 {{-- End of update by Shanila --}}
-                                <span>Assigned Providers</span>
+                                <span>Booking Providers</span>
                             </button>
                         </li>
                         <li class="nav-item" role="presentation">
@@ -188,26 +188,6 @@
                                                 </svg>
                                                 {{-- End of update by Shanila --}}
                                                 Message Providers
-                                            </a>
-                                            <a href="#" class="btn btn-has-icon btn-primary rounded"
-                                                data-bs-toggle="modal" data-bs-target="#AssignproviderTeamModal">
-                                                {{-- Updated by Shanila to Add svg icon --}}
-                                                <svg aria-label=" Manage Providers" width="18" height="18"
-                                                    viewBox="0 0 18 18">
-                                                    <use xlink:href="/css/common-icons.svg#manage-icon"></use>
-                                                </svg>
-                                                {{-- End of update by Shanila --}}
-                                                Manage Providers
-                                            </a>
-                                            <a href="#" class="btn btn-has-icon btn-primary rounded"
-                                                data-bs-toggle="modal" data-bs-target="#AssignproviderTeamModal">
-                                                {{-- Updated by Shanila to Add svg icon --}}
-                                                <svg aria-label="Invite Providers" width="18" height="18"
-                                                    viewBox="0 0 18 18" fill="none">
-                                                    <use xlink:href="/css/common-icons.svg#invite-icon"></use>
-                                                </svg>
-                                                {{-- End of update by Shanila --}}
-                                                Invite Providers
                                             </a>
                                             <a href="#" class="btn btn-has-icon btn-primary rounded"
                                                 data-bs-toggle="modal" data-bs-target="#adminStaffModal">
