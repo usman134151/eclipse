@@ -332,7 +332,7 @@
                                                                                         View Response
                                                                                     </a>
                                                                                 @endif
-                                                                                @if ($bookingType == 'Unassigned' || $bookingType == 'Invitations')
+                                                                                @if ($bookingType == 'Unassigned' || $bookingType == 'Invitations' || $bookingType == 'Draft')
                                                                                     <a href="javascript:void(0)"
                                                                                         aria-label="Invite Providers"
                                                                                         title="Invite Providers"
@@ -463,7 +463,6 @@
     @include('modals.assign-provider-team')
     @include('modals.meeting-links')
     @include('modals.provider-message')
-    @include('modals.unassign')
     @include('modals.common.review-feedback')
     @include('modals.common.available-timeslot')
     @include('panels.booking-details.assign-providers')
