@@ -85,20 +85,27 @@
                                                 {{ $booking['booking_title'] ? $booking['booking_title'] : 'N/A' }}
                                             </div>
                                         </div>
+                                        <small>(coming soon)</small>
+
                                         <div>
                                             <label class="form-label text-primary">Days Pending</label>
                                             <div class="font-family-tertiary value">05 Days</div>
                                         </div>
                                     </div>
                                     <div class="col-lg col-12 mb-4">
+                                        <small>(coming soon)</small>
+
                                         <div class="mb-4">
                                             <label class="form-label text-primary">Days Until Service</label>
                                             <div class="font-family-tertiary value">10 Days</div>
                                         </div>
+                                        <small>(coming soon)</small>
+
                                         <div class="d-flex gap-3 align-items-center">
                                             <label class="col-form-label text-primary mb-lg-0" for="status-column">
                                                 Status:
                                             </label>
+                                            
                                             <div>
                                                 <select class="form-select form-select-sm" id="status-column">
                                                     <option>Pending</option>
@@ -107,6 +114,7 @@
 
                                                 </select>
                                             </div>
+                                            
                                         </div>
                                     </div>
                                     <div class="col-lg col-12 mb-4">
@@ -124,8 +132,11 @@
                                     </div>
                                     <div class="col-lg col-12 mb-4">
                                         <div class="mb-4">
-                                            <label class="form-label text-primary">Pending Details</label>
+                                        <small>(coming soon)</small>
+                                            <label class="form-label text-primary">Pending Details
+                                            </label>
                                             <div class="d-flex flex-column gap-1">
+                                            
                                                 <div class="font-family-tertiary value">
                                                     Requests from Users
                                                 </div>
@@ -524,7 +535,9 @@
                                                             <label class="col-form-label">Specialization:</label>
                                                         </div>
                                                         <div class="col-lg-7 align-self-center">
-                                                            <div class="font-family-tertiary">Legal</div>
+                                                            <div class="font-family-tertiary">Legal
+                                                            <small>(coming soon)</small>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -585,10 +598,15 @@
                                                         </div>
                                                         <div class="col-lg-7 align-self-center">
                                                             <div class="font-family-tertiary">
-                                                                <a href="#">Thomas Charles</a> , <a
-                                                                    href="#">Richard Payne</a> ,
-                                                                <a href="#">Jennifer Summers</a> , <a
-                                                                    href="#">Lori Wells</a>
+                                                            @if(isset($service['participants']))
+                                                                @foreach($service['participants'] as $key=> $user)
+                                                             <a target="_blank"
+                                                                    href="{{ route('tenant.customer-profile', ['customerID' => encrypt($user['id']) ]) }}">{{ $user['name'] }}</a>
+                                                                      @if ($key != count($service['participants']) - 1)
+                                                                            ,
+                                                                        @endif
+                                                                @endforeach
+                                                            @else N/A @endif
                                                             </div>
                                                         </div>
                                                     </div>
@@ -688,7 +706,13 @@
                                                                 <label class="col-form-label">Arrival Notes::</label>
                                                             </div>
                                                             <div class="col-lg-7 align-self-center">
-                                                                <div class="font-family-tertiary">Active</div>
+                                                                <div class="font-family-tertiary">
+                                                                @if ($booking->physicalAddress)
+                                                                        {{ $booking->physicalAddress->notes }}
+                                                                    @else
+                                                                        N/A
+                                                                    @endif
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -700,11 +724,15 @@
   </div> --}}
                                                 {{-- {{ str_replace(' ', '+', $booking->physicalAddress->address_line1 . ' ' . $booking->physicalAddress->address_line2 . ' ' . $booking->physicalAddress->city . ' ' . $booking->physicalAddress->state . ' ' . $booking->physicalAddress->country) }} --}}
                                                 <iframe
+                                                    {{-- src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d96779.59535015929!2d-74.00126600000002!3d40.710039!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1676478925644!5m2!1sen!2sus" --}}
                                                     src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d96779.59535015929!2d-74.00126600000002!3d40.710039!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1676478925644!5m2!1sen!2sus"
+                                                   
                                                     width="304" height="228" style="border:0;"
                                                     allowfullscreen="" loading="lazy"
                                                     referrerpolicy="no-referrer-when-downgrade"
-                                                    class="map"></iframe>
+                                                    class="map">
+                                                    </iframe>
+                                                    
 
 
                                             </div>
@@ -954,8 +982,9 @@
                                             <div class="col-lg-6 mb-4">
                                                 <!-- Tags -->
                                                 <div class="">
+                                                
                                                     <label class="form-label">
-                                                        Tags
+                                                        Tags 
                                                     </label>
                                                     <select x-cloak="" id="select">
                                                         <option value="1">Option 1</option>
@@ -964,6 +993,7 @@
                                                         <option value="4">Option 4</option>
                                                         <option value="5">Option 5</option>
                                                     </select>
+                                                    <small>(coming soon)</small>
 
                                                     <!-- Error needed to be fixed, commented out for now
                                                 <div x-data="dropdown()" x-init="loadOptions()"
