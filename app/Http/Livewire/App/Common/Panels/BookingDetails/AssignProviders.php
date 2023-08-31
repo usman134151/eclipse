@@ -211,11 +211,17 @@ class AssignProviders extends Component
     public function mount($service_id = null, $panelType = 1)
     {
         $this->panelType = $panelType;
-
+        $this->service_id = $service_id;
         $this->tags = Tag::all();
         $this->booking = Booking::where('id', $this->booking_id)->first();
         if ($panelType == 2) {
-            $this->assignedProviders  = BookingInvitationProvider::where('booking_id', $this->booking_id)->get()->pluck('provider_id')->toArray();
+            $this->assignedProviders  = BookingInvitationProvider::where('invitation_id',function($query){
+                $query->from('booking_invitations')
+                ->where(['booking_id'=>$this->booking_id,'service_id'=>$this->service_id])
+                ->select('id');
+            })
+            
+            ->get()->pluck('provider_id')->toArray();
         } else {
             $booking_service = $this->booking->booking_services->where('services', $this->service_id)->first();
 
@@ -264,7 +270,8 @@ class AssignProviders extends Component
     {
         if (count($this->assignedProviders) > 0) {
             $this->showError = false;
-            $bookingInv  = BookingInvitation::updateOrCreate(['booking_id' => $this->booking_id], ['booking_id' => $this->booking_id]);
+            
+            $bookingInv  = BookingInvitation::firstOrCreate(['booking_id' => $this->booking_id, 'service_id' => $this->service_id]);
             foreach ($this->assignedProviders as $provider_id) {
                 $invData           = ['booking_id'   => $this->booking_id, 'deleted_at'   => null];
                 $existed  = BookingInvitationProvider::where(['booking_id' => $this->booking_id, 'provider_id' => $provider_id, 'invitation_id' => $bookingInv->id]);
