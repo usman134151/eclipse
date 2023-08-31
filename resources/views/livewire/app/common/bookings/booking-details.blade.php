@@ -255,8 +255,7 @@
                                                 {{-- End of update by Shanila --}}
                                                 Reschedule
                                             </a>
-                                            <a href="#" class="btn btn-has-icon btn-primary rounded"
-                                                data-bs-toggle="modal" data-bs-target="#UnassignModal">
+                                            <a href="{{route('tenant.booking-edit',['bookingID'=>encrypt($booking['id'])])}}" class="btn btn-has-icon btn-primary rounded">
                                                 {{-- Updated by Shanila to Add
                                             svg icon --}}
                                                 <svg aria-label="Edit" width="20" height="20"
