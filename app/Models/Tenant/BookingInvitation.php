@@ -15,7 +15,7 @@ class BookingInvitation extends Model
      * @var array
      */
     protected $fillable = [
-        'booking_id' , 'deleted_at'
+        'booking_id' , 'deleted_at', 'service_id'
     ];
     public function booking()
     {
