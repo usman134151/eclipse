@@ -463,7 +463,6 @@
     @include('modals.assign-provider-team')
     @include('modals.meeting-links')
     @include('modals.provider-message')
-    @include('modals.unassign')
     @include('modals.common.review-feedback')
     @include('modals.common.available-timeslot')
     @include('panels.booking-details.assign-providers')
