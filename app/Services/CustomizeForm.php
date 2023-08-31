@@ -255,7 +255,7 @@ class CustomizeForm
 
         foreach ($values as $value) {
             $selected = ($selectedValue == $value['value']) ? 'selected' : '';
-            $html .= '<option value="' . $value['value'] . '" ' . $selected . '>' . $value['label'] . '</option>';
+            $html .= '<option value="' . $value['label'] . '" ' . $selected . '>' . $value['label'] . '</option>';
         }
 
         $html .= '</select>';
@@ -278,7 +278,7 @@ class CustomizeForm
         foreach ($values as $key=>$value) {
 
             if ($wireVariable) {
-                $wireAttribute = 'wire:model.defer="' . $wireVariable.'.'.$value['value'].'"';
+                $wireAttribute = 'wire:model.defer="' . $wireVariable.'.'.$value['label'].'"';
                 // .$wireVariable;
             }
             // $cValue = count($checkValues) == 0 ? $value->{$valueCol} : $checkValues[$loop];
@@ -315,7 +315,7 @@ class CustomizeForm
 
 
             $html .= '<div class=" form-check form-check-inline">';
-            $html .= '<input class="form-check-input" type="radio" name="' . $radioName . '" value="' . $value['value'] . '" ' . $checked . '' . $isRequired . ' tabindex=' . $tabIndex ." " . $wireAttribute. '>';
+            $html .= '<input class="form-check-input" type="radio" name="' . $radioName . '" value="' . $value['label'] . '" ' . $checked . '' . $isRequired . ' tabindex=' . $tabIndex ." " . $wireAttribute. '>';
             $html .= '<label class="form-check-label"  for="' . $value['label'] . '">' . $value['label'] . '</label>';
             $html .= '</div>';
         }
