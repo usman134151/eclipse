@@ -84,7 +84,7 @@ class BookingDetails extends Component
 	public function getServiceDetails()
 	{
 		$this->serviceDetails = BookingCustomizeData::where("booking_id", $this->booking_id)
-			->join('customize_form_fields', 'booking_customize_data.customize_id', '=', 'customize_form_fields.customize_form_id')
+			->join('customize_form_fields', 'booking_customize_data.customize_id', '=', 'customize_form_fields.id')
 			->whereNotNull('customize_form_fields.field_name')
 			->get(['customize_form_fields.field_name', 'booking_customize_data.data_value'])->toArray();
 	}
