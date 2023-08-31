@@ -835,9 +835,10 @@
                                 <div class="row between-section-segment-spacing">
                                     <div class="col-lg-12">
                                         <div class="d-lg-flex justify-content-between align-items-center">
-                                            <h2 class="">Service Form Detail (Needs to be updated)</h2>
+                                            <h2 class="">Service Form Detail </h2>
                                         </div>
                                         <div class="row">
+                                            @if(count($serviceDetails))
                                             @foreach ($serviceDetails as $index => $serviceDetail)
                                                 <div class="col-lg-8 mb-3">
                                                     <div class="row">
@@ -868,6 +869,10 @@
                                                     </div>
                                                 </div>
                                             @endforeach
+                                            @else
+                                            <small>No Data Available</small>
+                                            @endif
+
                                         </div>
                                     </div>
                                 </div>
@@ -876,7 +881,7 @@
                                 <div class="row between-section-segment-spacing">
                                     <div class="col-lg-12">
                                         <div class="d-lg-flex justify-content-between align-items-center">
-                                            <h2 class="">Industry Form Detail (needs to be updated)</h2>
+                                            <h2 class="">Industry Form Detail <small>(coming soon)</small> </h2>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-8 mb-3">
