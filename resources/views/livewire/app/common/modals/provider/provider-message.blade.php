@@ -2,6 +2,7 @@
     <div class="modal-header">
         <h2 class="modal-title fs-5" id="ProviderMessageModalLabel">
             Provider Message
+            <small>(coming soon)</small>
         </h2>
         <button
             type="button"

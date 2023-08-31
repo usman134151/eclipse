@@ -41,13 +41,16 @@
                           </a>
                       @endif
                   @endif
+                  
                   <a href="#" class="btn btn-has-icon btn-primary rounded">
                       <svg aria-label="Team Chat" width="20" height="20" viewBox="0 0 20 20" fill="none">
                           <use xlink:href="/css/common-icons.svg#message-icon">
                           </use>
                       </svg>
                       Team Chat
+                      
                   </a>
+                  
               </div>
           </div>
           <div class="mb-4">
