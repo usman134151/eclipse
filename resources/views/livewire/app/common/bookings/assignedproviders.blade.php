@@ -3,7 +3,8 @@
           <div class="d-lg-flex align-items-center justify-content-between header-row">
               <h2 class="mb-lg-0">Service {{ $index }} Assigned Providers </h2>
               <div class="d-flex flex-md-row flex-column gap-3">
-                  <a class="btn btn-has-icon btn-outline-dark rounded" wire:click="$emit('openAssignProvidersPanel',{{ $booking_id }},{{ $service_id }})"
+                  <a class="btn btn-has-icon btn-outline-dark rounded"
+                      wire:click="$emit('openAssignProvidersPanel',{{ $booking_id }},{{ $service_id }})"
                       @click="assignProvider = true" href="javascript:refreshSelectsEvent()">
                       <svg aria-label="Assign Providers" vwidth="20" height="20" viewBox="0 0 20 20">
                           <use xlink:href="/css/common-icons.svg#assign-providers">
@@ -11,6 +12,35 @@
                       </svg>
                       Assign Providers
                   </a>
+
+                  {{-- <a href="#" class="btn btn-has-icon btn-primary rounded" data-bs-toggle="modal"
+                      data-bs-target="#AssignproviderTeamModal">
+                      <svg aria-label=" Manage Providers" width="18" height="18" viewBox="0 0 18 18">
+                          <use xlink:href="/css/common-icons.svg#manage-icon"></use>
+                      </svg>
+                      Manage Providers
+                  </a> --}}
+                  @if (!$limitReached)
+                      <a href="#" class="btn btn-has-icon btn-primary rounded"
+                          wire:click="$emit('openAssignProvidersPanel',{{ $booking_id }},{{ $service_id }},2)"
+                          @click="assignProvider = true" href="javascript:refreshSelectsEvent()">
+                          {{-- Updated by Shanila to Add svg icon --}}
+                          <svg aria-label="Invite Providers" width="18" height="18" viewBox="0 0 18 18"
+                              fill="none">
+                              <use xlink:href="/css/common-icons.svg#invite-icon"></use>
+                          </svg>
+                          {{-- End of update by Shanila --}}
+                          Invite Providers
+                      </a>
+                      @if ($inv_exists)
+                          <a href="#" class="btn btn-has-icon btn-primary rounded"
+                              wire:click="$emit('openAssignProvidersPanel',{{ $booking_id }},{{ $service_id }},3)"
+                              @click="assignProvider = true" href="javascript:refreshSelectsEvent()">
+                              <i class="fa fa-envelope-open-o"></i>
+                              View Response
+                          </a>
+                      @endif
+                  @endif
                   <a href="#" class="btn btn-has-icon btn-primary rounded">
                       <svg aria-label="Team Chat" width="20" height="20" viewBox="0 0 20 20" fill="none">
                           <use xlink:href="/css/common-icons.svg#message-icon">
@@ -100,7 +130,9 @@
                                                   <div class="pt-2">
                                                       <div class="font-family-secondary leading-none">
                                                           {{ $provider['name'] }}</div>
-                                                      <a target="_blank" href="{{ route('tenant.provider-profile', ['providerID' => $provider['id']])}}" class="font-family-secondary"><small>
+                                                      <a target="_blank"
+                                                          href="{{ route('tenant.provider-profile', ['providerID' => $provider['id']]) }}"
+                                                          class="font-family-secondary"><small>
                                                               {{ $provider['email'] }}</small></a>
                                                   </div>
                                               </div>
@@ -117,7 +149,8 @@
                                           <td class="text-center align-middle">{{ $provider['paid_amount'] }}</td>
                                           <td class="align-middle">
                                               <div class="d-flex actions justify-content-center">
-                                                  <a href="#" title="Revoke" aria-label="Revoke" wire:click="removeProviderAssignment({{$provider['booking_service_id'] ? $provider['booking_service_id'] :'null'}}, {{$provider['id']}},{{$provider['booking_id']}})"
+                                                  <a href="#" title="Revoke" aria-label="Revoke"
+                                                      wire:click="removeProviderAssignment({{ $provider['booking_service_id'] ? $provider['booking_service_id'] : 'null' }}, {{ $provider['id'] }},{{ $provider['booking_id'] }})"
                                                       class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                       <svg aria-label="Revoke" width="19" height="20"
                                                           viewBox="0 0 19 20">
@@ -125,7 +158,8 @@
                                                           </use>
                                                       </svg>
                                                   </a>
-                                                  <a href="{{ route('tenant.provider-profile', ['providerID' => $provider['id']])}}" target="_blank" title="View" aria-label="View"
+                                                  <a href="{{ route('tenant.provider-profile', ['providerID' => $provider['id']]) }}"
+                                                      target="_blank" title="View" aria-label="View"
                                                       class="btn btn-sm btn-secondary rounded btn-hs-icon">
 
                                                       <svg aria-label="View" width="20" height="20"
