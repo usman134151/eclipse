@@ -142,7 +142,7 @@ class BookingList extends Component
 		// 	$q->where('status', '1');
 		// });
 
-		if ($this->provider_id && $this->bookingType != "Unassigned") {	//from provider panel
+		if ($this->provider_id) {	//from provider panel
 			if ($this->bookingType == "Invitations") {
 				// update this with subquery
 				$assignedBookings =  BookingProvider::where('provider_id', Auth::id())->pluck('booking_id');
