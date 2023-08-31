@@ -25,6 +25,8 @@ class Assignedproviders extends Component
     {
         // dd($booking_service_id,$provider_id,$booking_id);
         BookingProvider::where(['booking_service_id' => $booking_service_id, 'provider_id' => $provider_id, 'booking_id' => $booking_id])->delete();
+
+        //add check for booking_status update
         $this->emit('showConfirmation', 'Provider Assignment has been revoked successfully');
     }
 

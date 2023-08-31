@@ -53,7 +53,6 @@ class CustomFormDisplay extends Component
     }
 
     public function save($redirect = 1){
-        // dd($this->answers);
         foreach($this->answers as $answer){
             if(isset($answer['data_value']))
                 if(is_array($answer['data_value'])){
