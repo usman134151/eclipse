@@ -466,6 +466,8 @@
     @include('modals.common.review-feedback')
     @include('modals.common.available-timeslot')
     @include('panels.booking-details.assign-providers')
+    @include('modals.unassign')
+
 
 
 </div>

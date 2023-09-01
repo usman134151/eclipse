@@ -152,14 +152,16 @@
                                           <td class="text-center align-middle">{{ $provider['paid_amount'] }}</td>
                                           <td class="align-middle">
                                               <div class="d-flex actions justify-content-center">
-                                                  <a href="#" title="Revoke" aria-label="Revoke"
-                                                      wire:click="removeProviderAssignment({{ $provider['booking_service_id'] ? $provider['booking_service_id'] : 'null' }}, {{ $provider['id'] }},{{ $provider['booking_id'] }})"
+                                                  <a href="#" title="Revoke" aria-label="Revoke" 
+                                                      data-bs-toggle="modal" data-bs-target="#UnassignModal"
+                                                      {{-- wire:click="removeProviderAssignment({{ $provider['booking_service_id'] ? $provider['booking_service_id'] : 'null' }}, {{ $provider['id'] }},{{ $provider['booking_id'] }})" --}}
                                                       class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                       <svg aria-label="Revoke" width="19" height="20"
                                                           viewBox="0 0 19 20">
                                                           <use xlink:href="/css/common-icons.svg#unassign">
                                                           </use>
                                                       </svg>
+                                                                                  
                                                   </a>
                                                   <a href="{{ route('tenant.provider-profile', ['providerID' => $provider['id']]) }}"
                                                       target="_blank" title="View" aria-label="View"

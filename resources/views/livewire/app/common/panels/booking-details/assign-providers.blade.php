@@ -67,9 +67,11 @@
                      @endif
                      <th scope="col">Provider</th>
                      @if ($panelType == 1 )
-                         <th scope="col" width="20%">Additional Provider Payment</th>
-                         <th scope="col" class="text-center">Service Payment</th>
-                         <th scope="col">Total</th>
+                         <th scope="col" width="20%">Additional Provider Payment
+                         <small>(coming soon)</small>
+                         </th>
+                         <th scope="col" class="text-center">Service Payment <small>(coming soon)</small></th>
+                         <th scope="col">Total <small>(coming soon)</small></th>
                      @endif
                       @if ($panelType == 3 )
                          <th scope="col" ></th>

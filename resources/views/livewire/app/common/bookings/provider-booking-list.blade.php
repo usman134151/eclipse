@@ -252,7 +252,6 @@
                                                                         @endif
                                                                     </div>
                                                                 @endif
-                                                                @if ($bookingType != 'Invitations')
                                                                     <div class="dropdown ac-cstm">
                                                                         <a aria-label="Action Dropdown"
                                                                             href="javascript:void(0)"
@@ -268,7 +267,7 @@
                                                                                     </use>
                                                                                 </svg>
                                                                         </a>
-                                                                        <div class="tablediv dropdown-menu fadeIn">
+                                                                        {{-- <div class="tablediv dropdown-menu fadeIn">
                                                                                     <a title="Unassign"
                                                                                         aria-label="Unassign"
                                                                                         href="#" data-bs-toggle="modal" data-bs-target="#UnassignModal"
@@ -276,9 +275,8 @@
                                                                                         <i class="fa fa-clone"></i>
                                                                                         Unassign 
                                                                                     </a>
-                                                                            </div>
+                                                                            </div> --}}
                                                                     </div>
-                                                                @endif
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -482,7 +480,6 @@
     @include('modals.common.confirm-invitation')
     @include('modals.common.running-late')
     @include('modals.return-assignment')
-    @include('modals.unassign')
 
 </div>
 @push('scripts')

@@ -1,5 +1,5 @@
 <?php
-use App\User;
+use app\Models\Tenant\User;
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -142,7 +142,7 @@ a.btn.btn-primary.pull-right {
                         <tbody>
                           <tr>
                             <td style="background:#fff;text-align:center;padding:15px;">
-                                <img src="{{ Helper::getAdminLogo() }}" style="height:110px; width:auto;" />
+                                <img src="" style="height:110px; width:auto;" />
                             </td>
                           </tr>
                           <tr>
@@ -155,16 +155,16 @@ a.btn.btn-primary.pull-right {
                                 <tbody>
                                   <tr style="background-color: #0a1e46;color: white;height:47px;">
                                     <td style="color:#FFFFFF;font-family:&quot;Roboto&quot;,OpenSans,&quot;OpenSans&quot;,Arial,sans-serif;font-size:25px;font-weight:bold;line-height:28px;margin:0;padding:0 24px 0 25px;" align="center">
-                                    {{$templateName ?? 'New Email'}}</td>
+                                    {{$data['templateName'] ?? 'New Email'}}</td>
                                   </tr>
                                   <tr>
                                     <td style="color:#757575;font-family:&quot;Roboto&quot;,OpenSans,&quot;OpenSans&quot;,Arial,sans-serif;font-size:15px;font-weight:300;line-height:normal;margin:0;padding:15px 15px 15px 15px;color:#000000;">
                                     <?php
-                                    $admin			= User::find(1);
+                                    $admin			= $data['admin'];
 
-                                    if(!empty($templateBody)){
+                                    if(!empty($data['templateBody'])){
 
-                                        echo $templateBody;
+                                        echo $data['templateBody'];
 
                                     }else{ ?>
                                       <strong>This is Default Template for email</strong></td>
@@ -191,10 +191,10 @@ a.btn.btn-primary.pull-right {
                                     </td>
                                   </tr>
                                   @endif
-                                  @if($admin->users_detail->address_line1)
+                                  @if($admin->userdetail->address_line1)
                                   <tr style="background-color: #0a1e46;color: white;height:20px;">
                                     <td style="color:#FFFFFF;font-family:&quot;Roboto&quot;,OpenSans,&quot;OpenSans&quot;,Arial,sans-serif;font-size:12px;font-weight:bold;line-height:20px;margin:0;padding:0 24px 0 25px;" align="center">
-                                    {{$admin->users_detail->address_line1}}
+                                    {{$admin->userdetail->address_line1}}
                                     </td>
                                   </tr>
                                   @endif
@@ -205,10 +205,10 @@ a.btn.btn-primary.pull-right {
                                     </td>
                                   </tr>
                                   @endif
-                                  @if($admin->users_detail->phone)
+                                  @if($admin->userdetail->phone)
                                   <tr style="background-color: #0a1e46;color: white;height:20px;">
                                     <td style="color:#FFFFFF;font-family:&quot;Roboto&quot;,OpenSans,&quot;OpenSans&quot;,Arial,sans-serif;font-size:12px;font-weight:bold;line-height:20px;margin:0;padding:0 24px 0 25px;" align="center">
-                                    {{$admin->users_detail->phone}}
+                                    {{$admin->userdetail->phone}}
                                     </td>
                                   </tr>
                                   @endif
@@ -220,7 +220,7 @@ a.btn.btn-primary.pull-right {
                                   </tr>
                                   @endif
                                   <tr>
-                                    <td style="background:#fbfbfb;color:#000;font-family:&quot;Roboto&quot;,OpenSans,&quot;OpenSans&quot;,Arial,sans-serif;font-size:12px;line-height:20px;margin:0;padding:0 6px 0 6px;text-align:center" valign="middle" align="center">Need Help? Email us at <a href="mailto:{!! Helper::getAdmin()->email; !!}">{!! Helper::getAdmin()->email; !!}</a></td>
+                                    <td style="background:#fbfbfb;color:#000;font-family:&quot;Roboto&quot;,OpenSans,&quot;OpenSans&quot;,Arial,sans-serif;font-size:12px;line-height:20px;margin:0;padding:0 6px 0 6px;text-align:center" valign="middle" align="center">Need Help? Email us at <a href="mailto:{!! getAdmin()->email; !!}">{!! getAdmin()->email; !!}</a></td>
                                   </tr>
                                   <tr>
                                     <td style="background:#fbfbfb;" height="19" bgcolor="#3A3F51"><br></td>
