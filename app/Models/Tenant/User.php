@@ -145,7 +145,6 @@ class User extends Authenticatable
 		return $this->hasMany(Logs::class, 'action_to')
 		->where('item_type', 'user');
 	}
-
 	
 }
 
