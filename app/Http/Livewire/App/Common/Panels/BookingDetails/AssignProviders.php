@@ -279,40 +279,42 @@ class AssignProviders extends Component
 
                     $user          = User::find($provider_id);
                     if (!empty($user)) {
-                        // $permission = $bookingData->bookingNotificationCheck("provider");
+                        // $permission = $this->booking->bookingNotificationCheck("provider");
                         // if (!$permission) {
-                        //     $user_role_id =  $this->role->getProviderId();
-                        //     $templateId = Helper::getTemplate('direct-assignment-request-invitation', $user_role_id, 'email_template');
-                        //     $sms_templateId = Helper::getTemplate('direct-assignment-request-invitation', $user_role_id, 'sms_template');
-                        //     $notification_templateId = Helper::getTemplate('direct-assignment-request-invitation', $user_role_id, 'notification_template');
+                            $user_role_id =  2;
+                            $templateId = getTemplate('direct-assignment-request-invitation', $user_role_id, 'email_template');
+                            $sms_templateId = getTemplate('direct-assignment-request-invitation', $user_role_id, 'sms_template');
+                            $notification_templateId = getTemplate('direct-assignment-request-invitation', $user_role_id, 'notification_template');
 
-                        //     $params = [
-                        //         'email'       =>  $user->email, //Provider Assignment invite
-                        //         'user'        =>  $user->name,
-                        //         'user_id'     =>  $user->id,
-                        //         'sms_template' =>  $sms_templateId,
-                        //         'templateId'  =>  $templateId,
-                        //         'item_id'     =>  $booking_id,
-                        //         'mail_type'   => 'booking',
-                        //         'provider_id' => $user->id,
-                        //         'phone'       =>  isset($user->users_detail) ? clean($user->users_detail->phone) : "",
+                            $params = [
+                                'email'       =>  $user->email, //Provider Assignment invite
+                                'user'        =>  $user->name,
+                                'user_id'     =>  $user->id,
+                                'sms_template' =>  isset($sms_templateId) ? $sms_templateId : '',
+                                'templateId'  =>  $templateId,
+                                'item_id'     =>  $this->booking_id,
+                                'mail_type'   => 'booking',
+                                'provider_id' => $user->id,
+                                'phone'       =>  isset($user->users_detail) ? clean($user->users_detail->phone) : "",
 
-                        //     ];
-                        //     Helper::sendTemplatemail($params);
+                            ];
+                            sendTemplatemail($params);
 
-                        //     $noti = [
-                        //         'user_id'     =>  $user->id,
-                        //         'templateId'  =>  $notification_templateId,
-                        //         'item_id'     => $booking_id,
-                        //         'item_type'   => 'booking',
-                        //         // 'provider_id' =>  auth()->user()->id,
-                        //         // 'provider'    =>  auth()->user()->name,
-                        //     ];
-                        //     Helper::save_notification($noti);
+                        //     // $noti = [
+                        //     //     'user_id'     =>  $user->id,
+                        //     //     'templateId'  =>  $notification_templateId,
+                        //     //     'item_id'     => $this->booking_id,
+                        //     //     'item_type'   => 'booking',
+                        //     //     // 'provider_id' =>  auth()->user()->id,
+                        //     //     // 'provider'    =>  auth()->user()->name,
+                        //     // ];
+                        //     // Helper::save_notification($noti);
                         // }
                         $invData['provider_id']     = $provider_id;
                         $invData['invitation_id']   = $bookingInv->id;
+
                         BookingInvitationProvider::updateOrCreate($invData, $invData);
+
                     }
                 }
             }
