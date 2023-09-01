@@ -11,6 +11,7 @@ use Livewire\Component;
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\BookingServices;
 use App\Models\Tenant\UserDetail;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
 
@@ -50,10 +51,10 @@ class AssignProviders extends Component
                 $userdetails->on('user_details.user_id', '=', 'users.id');
             });
         if ($this->panelType == 3) {
-            $query->whereIn('users.id', function ($q)  {
+            $query->whereIn('users.id', function ($q) {
                 $q->from('booking_invitation_providers')
-                ->where('booking_id', $this->booking_id)
-                ->select('provider_id');
+                    ->where('booking_id', $this->booking_id)
+                    ->select('provider_id');
             });
         }
         $query->select([
@@ -215,13 +216,13 @@ class AssignProviders extends Component
         $this->tags = Tag::all();
         $this->booking = Booking::where('id', $this->booking_id)->first();
         if ($panelType == 2) {
-            $this->assignedProviders  = BookingInvitationProvider::where('invitation_id',function($query){
+            $this->assignedProviders  = BookingInvitationProvider::where('invitation_id', function ($query) {
                 $query->from('booking_invitations')
-                ->where(['booking_id'=>$this->booking_id,'service_id'=>$this->service_id])
-                ->select('id');
+                    ->where(['booking_id' => $this->booking_id, 'service_id' => $this->service_id])
+                    ->select('id');
             })
-            
-            ->get()->pluck('provider_id')->toArray();
+
+                ->get()->pluck('provider_id')->toArray();
         } else {
             $booking_service = $this->booking->booking_services->where('services', $this->service_id)->first();
 
@@ -247,9 +248,42 @@ class AssignProviders extends Component
             // $booking = Booking::where('id', $this->booking_id)->first();
             $booking_service = BookingServices::where(['services' => $this->service_id, 'booking_id' => $this->booking_id])->first();
             // delete existing records
-            BookingProvider::where(['booking_id' => $this->booking_id, 'booking_service_id' => null])->orWhere(['booking_service_id' => $booking_service->id])->delete();
+            $prev = BookingProvider::where(['booking_id' => $this->booking_id, 'booking_service_id' => null])->orWhere(['booking_service_id' => $booking_service->id]);
+            if ($prev->count()) {
+                $previousAssigned = $prev->get()->pluck('provider_id')->toArray();
+                $prev->delete();
+
+            }else
+            $previousAssigned =[];
+
             $data = null;
             foreach ($this->assignedProviders as $provider) {
+                $user          = User::find($provider);
+
+                if (!empty($user)) {
+
+                    $user_role_id =  2;
+                    $templateId = getTemplate('assignment-scheduled', $user_role_id, 'email_template');
+                    $params = [
+                        'email'       => $user->email,
+                        'user'        =>  ucwords($user->first_name . ' ' . $user->last_name),
+                        'templateName' => 'New Assignment',
+                        'bookingData' => $this->booking,
+                    ];
+                    if (!in_array($provider, $previousAssigned)) {
+                        $params = [
+                            'email'       =>  $user->email, //
+                            'user'        =>  $user->name,
+                            'user_id'     =>  $user->id,
+                            'templateId'  =>  $templateId,
+                            'item_id'     => $this->booking_id,
+                            'mail_type'   => 'booking',
+                        ];
+
+                        sendTemplatemail($params);
+                    }
+
+                }
                 $data['provider_id'] = $provider;
                 $data['booking_id'] = $this->booking_id;
                 $data['booking_service_id'] = $booking_service ? $booking_service->id : null;
@@ -258,8 +292,8 @@ class AssignProviders extends Component
                 BookingProvider::create($data);
             }
 
-            if($this->limit == count($this->assignedProviders))
-                Booking::where('id',$this->booking_id)->update(['status'=>2]);
+            if ($this->limit == count($this->assignedProviders))
+                Booking::where('id', $this->booking_id)->update(['status' => 2]);
 
             $this->dispatchBrowserEvent('close-assign-providers');
             $this->emit('showConfirmation', 'Providers have been assigned successfully');
@@ -270,7 +304,7 @@ class AssignProviders extends Component
     {
         if (count($this->assignedProviders) > 0) {
             $this->showError = false;
-            
+
             $bookingInv  = BookingInvitation::firstOrCreate(['booking_id' => $this->booking_id, 'service_id' => $this->service_id]);
             foreach ($this->assignedProviders as $provider_id) {
                 $invData           = ['booking_id'   => $this->booking_id, 'deleted_at'   => null];
@@ -279,43 +313,53 @@ class AssignProviders extends Component
 
                     $user          = User::find($provider_id);
                     if (!empty($user)) {
-                        // $permission = $bookingData->bookingNotificationCheck("provider");
+                        // $permission = $this->booking->bookingNotificationCheck("provider");
                         // if (!$permission) {
-                        //     $user_role_id =  $this->role->getProviderId();
-                        //     $templateId = Helper::getTemplate('direct-assignment-request-invitation', $user_role_id, 'email_template');
-                        //     $sms_templateId = Helper::getTemplate('direct-assignment-request-invitation', $user_role_id, 'sms_template');
-                        //     $notification_templateId = Helper::getTemplate('direct-assignment-request-invitation', $user_role_id, 'notification_template');
+                        $user_role_id =  2;
+                        $templateId = getTemplate('direct-assignment-request-invitation', $user_role_id, 'email_template');
+                        $sms_templateId = getTemplate('direct-assignment-request-invitation', $user_role_id, 'sms_template');
+                        $notification_templateId = getTemplate('direct-assignment-request-invitation', $user_role_id, 'notification_template');
 
-                        //     $params = [
-                        //         'email'       =>  $user->email, //Provider Assignment invite
-                        //         'user'        =>  $user->name,
-                        //         'user_id'     =>  $user->id,
-                        //         'sms_template' =>  $sms_templateId,
-                        //         'templateId'  =>  $templateId,
-                        //         'item_id'     =>  $booking_id,
-                        //         'mail_type'   => 'booking',
-                        //         'provider_id' => $user->id,
-                        //         'phone'       =>  isset($user->users_detail) ? clean($user->users_detail->phone) : "",
+                        $params = [
+                            'email'       =>  $user->email, //Provider Assignment invite
+                            'user'        =>  $user->name,
+                            'user_id'     =>  $user->id,
+                            'sms_template' =>  isset($sms_templateId) ? $sms_templateId : '',
+                            'templateId'  =>  $templateId,
+                            'item_id'     =>  $this->booking_id,
+                            'mail_type'   => 'booking',
+                            'provider_id' => $user->id,
+                            'phone'       =>  isset($user->users_detail) ? clean($user->users_detail->phone) : "",
 
-                        //     ];
-                        //     Helper::sendTemplatemail($params);
+                        ];
+                        sendTemplatemail($params);
 
-                        //     $noti = [
-                        //         'user_id'     =>  $user->id,
-                        //         'templateId'  =>  $notification_templateId,
-                        //         'item_id'     => $booking_id,
-                        //         'item_type'   => 'booking',
-                        //         // 'provider_id' =>  auth()->user()->id,
-                        //         // 'provider'    =>  auth()->user()->name,
-                        //     ];
-                        //     Helper::save_notification($noti);
+                        //     // $noti = [
+                        //     //     'user_id'     =>  $user->id,
+                        //     //     'templateId'  =>  $notification_templateId,
+                        //     //     'item_id'     => $this->booking_id,
+                        //     //     'item_type'   => 'booking',
+                        //     //     // 'provider_id' =>  auth()->user()->id,
+                        //     //     // 'provider'    =>  auth()->user()->name,
+                        //     // ];
+                        //     // Helper::save_notification($noti);
                         // }
                         $invData['provider_id']     = $provider_id;
                         $invData['invitation_id']   = $bookingInv->id;
-                        BookingInvitationProvider::updateOrCreate($invData, $invData);
                     }
                 }
             }
+            BookingInvitationProvider::updateOrCreate($invData, $invData);
+            $message = "Booking Invitations sent by" . Auth::user()->name;
+            $logs = array(
+                'action_by' => Auth::user()->id,
+                'action_to' => $this->booking_id,
+                'item_type' => 'Booking',
+                'message' => $message,
+                'type' => 'Assignment Invitation',
+                'request_to' => '',
+            );
+            addLogs($logs);
             $this->dispatchBrowserEvent('close-assign-providers');
             $this->emit('showConfirmation', 'Providers have been invited successfully');
         } else

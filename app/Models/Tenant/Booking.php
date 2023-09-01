@@ -265,5 +265,39 @@ class Booking extends Model
             return $invoiceTotal;
     }
 
+
+    public function bookingNotificationCheck($userType)
+    {
+
+        $defaultNofiy = array([
+            "exclude_requester_notification" => false,
+            "exclude_service_consumer_notification" => false,
+            "exclude_participant_notification" => false,
+            "exclude_provider_notification" => false,
+            "exclude_admin_notification" => false,
+        ]);
+        $defaulNotification = json_encode($defaultNofiy);
+        $booking_notification = is_null($this->booking_notify) ? json_decode($defaulNotification)[0] : json_decode($this->booking_notify)[0];
+        $permission = true;
+        switch ($userType) {
+            case 'admin':
+                $permission = $booking_notification->exclude_admin_notification;
+                break;
+            case 'consumer':
+                $permission = $booking_notification->exclude_requester_notification;
+                break;
+            case 'participant':
+                $permission = $booking_notification->exclude_participant_notification;
+                break;
+            case 'service_consumer':
+                $permission = $booking_notification->exclude_service_consumer_notification;
+                break;
+            case 'provider':
+                $permission = $booking_notification->exclude_provider_notification;
+                break;
+        }
+
+        return $permission;
+    }
     
 }

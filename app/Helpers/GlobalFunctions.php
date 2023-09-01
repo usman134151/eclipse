@@ -196,13 +196,22 @@ const DECLINED = '2';
         }
 
     }
+    			function getMutiWhereSingleSelect($table,$select,$where)
+			{
+				$data = DB::table($table)->select($select)->where($where)->first();
+				if(isset($data->$select))
+				return ucfirst($data->$select);
+				else
+				return false;
+			}
+
 
     function getCombineLocation($id=null)
     {
       $address  = UserAddress::find($id);
       if($address)
       {
-        $state = Helper::getMutiWhereSingleSelect('states','name',array('id'=>$address->state));
+        $state = getMutiWhereSingleSelect('states','name',array('id'=>$address->state));
         $location[]  = explode(", ",$address->address_line1);
         $location[]  = explode(", ",$address->address_line2);
         $location[] = array($address->city,$state);

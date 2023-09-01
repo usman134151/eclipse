@@ -1,7 +1,7 @@
 <div class="modal-content">
     <div class="modal-header">
         <h2 class="modal-title fs-5" id="UnassignModalLabel">
-            Unassign
+            Unassign (coming soon)
         </h2>
         <button
             type="button"

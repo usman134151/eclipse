@@ -132,7 +132,7 @@
     <div class="mb-4 ">
         <div
             class="{{ isset($checkin_details['customize_form']) && $checkin_details['customize_form'] ? '' : 'hidden' }} ">
-            <h3 class="text-primary">Check-In Form</h3>
+            <h3 class="text-primary">Check-In Form <small>(coming soon)</small> </h3>
             <div class="row">
                 <div class="col-lg-6 mb-4">
                     <label class="form-label-sm" for="companyName">Company Name</label>
