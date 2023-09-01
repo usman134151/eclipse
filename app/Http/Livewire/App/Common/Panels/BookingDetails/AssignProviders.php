@@ -11,6 +11,7 @@ use Livewire\Component;
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\BookingServices;
 use App\Models\Tenant\UserDetail;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
 
@@ -313,11 +314,21 @@ class AssignProviders extends Component
                         $invData['provider_id']     = $provider_id;
                         $invData['invitation_id']   = $bookingInv->id;
 
-                        BookingInvitationProvider::updateOrCreate($invData, $invData);
-
+                        
                     }
                 }
             }
+            BookingInvitationProvider::updateOrCreate($invData, $invData);
+            $message = "Booking Invitations sent by" . Auth::user()->name;
+            $logs = array(
+                'action_by' => Auth::user()->id,
+                'action_to' => $this->booking_id,
+                'item_type' => 'Booking',
+                'message' => $message,
+                'type' => 'Assignment Invitation',
+                'request_to' => '',
+            );
+            addLogs($logs);
             $this->dispatchBrowserEvent('close-assign-providers');
             $this->emit('showConfirmation', 'Providers have been invited successfully');
         } else

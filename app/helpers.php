@@ -2,11 +2,12 @@
 
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\Logs;
-use App\Mail\sendEmailNotification;
 use App\Models\Tenant\NotificationTemplates;
 use App\Models\Tenant\SmsTemplate;
 use App\Models\Tenant\SystemRoleUser;
 use App\Models\Tenant\Template;
+use App\Http\Controllers\Tenant\Mails\createEmail;
+
 use App\Models\Tenant\User;
 use App\PloiManager;
 use Illuminate\Support\Facades\Session;
@@ -525,7 +526,8 @@ if (!function_exists('sendTemplatemail')) {
                     $accommodationArray[] = $service->accommodation ? $service->accommodation->name : '';
                     $serviceArray[] = $service->ServiceCategory ? $service->ServiceCategory->name : '';
                     $serviceTypes[] = $service->service_types == 1 ? "In Person" : "Virtual";
-                    $serviceSpecialization[] = getSpecializationsNameNew($service->specialization);
+                    $serviceSpecialization[] = '';
+                    // getSpecializationsNameNew($service->specialization);
                     $serviceConsumer[] = $service->service_consumer;
                     $serviceParticipant[] = $service->attendees;
                 }
@@ -671,21 +673,9 @@ if (!function_exists('sendTemplatemail')) {
 
                     // BulkEmail::dispatch($data)->onConnection('database')->onQueue('default');
                 }
-                // dd($data);
-                // $from     = env('MAIL_FROM_ADDRESS');
-                // $fromName = env('MAIL_FROM_NAME');
-                $subject = preg_replace('/\r|\n/', '', $data['templateSubject']) ?? "Inclusive Notification Service";
-                // $this->from($from, $fromName)
-                //     ->subject($subject)
-                //     ->view('emails.templates')->with($this->data);
                 $data['admin']=$admin;
-                // $email = new sendEmailNotification($subject, $data['templateBody'],);
-                Mail::to($data['email'])->send(new sendEmailNotification($data));
-
-                // Mail::send('email.templates', [], function ($message) use ($data) {
-                //     $message->to($data['email'], $data['name'])
-                //         ->subject($subject);
-                // });
+                sendMail($data['email'], $data['templateSubject'],  $data, 'emails.templates', [], 'dispatch');
+                // Mail::to('abc@email.com')->send(new createEmail($data['templateSubject'],$data,'emails.templates',[]));
             }
 
             // SEND SMS

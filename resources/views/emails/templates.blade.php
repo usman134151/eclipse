@@ -155,16 +155,16 @@ a.btn.btn-primary.pull-right {
                                 <tbody>
                                   <tr style="background-color: #0a1e46;color: white;height:47px;">
                                     <td style="color:#FFFFFF;font-family:&quot;Roboto&quot;,OpenSans,&quot;OpenSans&quot;,Arial,sans-serif;font-size:25px;font-weight:bold;line-height:28px;margin:0;padding:0 24px 0 25px;" align="center">
-                                    {{$templateName ?? 'New Email'}}</td>
+                                    {{$data['templateName'] ?? 'New Email'}}</td>
                                   </tr>
                                   <tr>
                                     <td style="color:#757575;font-family:&quot;Roboto&quot;,OpenSans,&quot;OpenSans&quot;,Arial,sans-serif;font-size:15px;font-weight:300;line-height:normal;margin:0;padding:15px 15px 15px 15px;color:#000000;">
                                     <?php
-                                    $admin			= User::find(1);
+                                    $admin			= $data['admin'];
 
-                                    if(!empty($templateBody)){
+                                    if(!empty($data['templateBody'])){
 
-                                        echo $templateBody;
+                                        echo $data['templateBody'];
 
                                     }else{ ?>
                                       <strong>This is Default Template for email</strong></td>
