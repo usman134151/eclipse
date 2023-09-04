@@ -70,7 +70,9 @@ class AddressService
                 $data['lng'] = $json->results[0]->geometry->location->lng;
             }
         } catch (Exception $e) {
-            echo 'Uh oh! ' . $e->getMessage();
+            return $data;
+
+            // echo 'Uh oh! ' . $e->getMessage();
         }
         return $data;
     }

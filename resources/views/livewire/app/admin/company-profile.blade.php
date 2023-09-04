@@ -243,7 +243,8 @@
                                             <button class="nav-link" id="settings-tab" data-bs-toggle="tab"
                                                 data-bs-target="#settings-tab-pane" type="button" role="tab"
                                                 aria-controls="settings-tab-panel" aria-selected="false"
-                                                wire:click="$emit('getRecord', {{ $this->schedule->id }}, true)">
+                                                wire:click="$emit('getRecord', {{ $this->schedule->id }}, true)"
+                                                >
                                                 <svg aria-label="settings" width="26" height="27"
                                                     viewBox="0 0 26 27">
                                                     <use xlink:href="/css/common-icons.svg#gray-cog"></use>
@@ -4138,4 +4139,11 @@
     @include('modals.mark-as-paid')
     @endif
     @endif
+    <script>
+     document.addEventListener("livewire:load", () => {
+
+               window.livewire.emit('getRecord', {{ $this->schedule->id }}, true);
+
+        })
+    </script>
     </div>
