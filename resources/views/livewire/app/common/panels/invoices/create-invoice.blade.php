@@ -34,9 +34,15 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <p>
-                                        Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA
+                                    @if(count($manager->billing_addresses))
+                                        @foreach($manager->billing_addresses as $address)
+
+                                    <p class="my-2">
+                                     {{ $address['address_name'] }}:
+                                            {{ $address['address_line1'] . ', ' . $address['address_line2'] . ',' . $address['city'] . ', ' . $address['state'] . ', ' . $address['country'] }}
                                     </p>
+                                    @endforeach
+                                    @endif
                                 </td>
                                 <td class="align-middle">
                                     <svg class="d-none" width="24" height="19" viewBox="0 0 24 19" fill="none"
