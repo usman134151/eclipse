@@ -229,6 +229,7 @@ class AddCompany extends Component
 
 		$this->updateTags();
 
+		// dd($this->userAddresses);
 		$this->company = $companyService->createCompany($this->company, $this->phoneNumbers, $this->userAddresses);
 		if (count($this->admins))
 			foreach ($this->admins as $admin_id) {
