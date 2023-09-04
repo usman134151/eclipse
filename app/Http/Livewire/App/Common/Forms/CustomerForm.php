@@ -154,7 +154,7 @@ class CustomerForm extends Component
 
 
 		if ($redirect) {
-			 if ($this->isCustomer) {	//return to team members page 
+			if ($this->isCustomer) {	//return to team members page 
 				return redirect('/customer/team-members');
 			}
 
@@ -432,6 +432,10 @@ class CustomerForm extends Component
 		$tabs = ['serviceActive', 'driveActive', 'permissionActive', 'customerActive'];
 		foreach ($tabs as $key)
 			$this->$key = '';
+		
+		if ($this->step == 2) // check if existing step was 2 then save permissions
+			$this->permissionConfiguration(0);
+
 		$this->step = $step;
 		$this->$tabName = "active";
 		$this->switch($component);

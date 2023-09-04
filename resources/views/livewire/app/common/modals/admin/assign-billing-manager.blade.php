@@ -40,7 +40,7 @@
                   <td class="text-center align-middle">
                     <input class="form-check-input" type="checkbox" value="{{$bm->id}}" wire:model.defer="selectedBManagers"  aria-label="Select Team">
                   </td>
-                  <td class="align-middle">
+                  <td wire:ignore class="align-middle">
                     <div class="d-flex gap-2 align-items-center">
                       <div>
                         <img width="50" height="50" src="{{$bm->profile_pic!=null? $bm->profile_pic : '/tenant-resources/images/portrait/small/avatar-s-20.jpg'}}" class="rounded-circle" alt="Image">
@@ -51,7 +51,7 @@
                       </div>
                     </div>
                   </td>
-                  <td class="align-middle">{{$bm->phone}}</td>
+                  <td wire:ignore class="align-middle">{{$bm->phone}}</td>
                   <td class="align-middle text-center">
                     <div class="form-check d-inline-block mx-auto">
                       <input class="form-check-input" type="radio" name="AssignedBillingManager" value="{{$bm->id}}" wire:model="isDefault" id="AssignedBillingManager1">

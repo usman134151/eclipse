@@ -1248,7 +1248,7 @@
                                                             <button type="button"
                                                                 class="btn btn-outline-dark rounded"
                                                                 onclick=" window.scrollTo({ top: 0, behavior: 'smooth' })"
-                                                                wire:click.prevent="setStep(2,'serviceActive','service-catalog')">
+                                                                wire:click.prevent="setStep(3,'serviceActive','service-catalog')">
                                                                 Back
                                                             </button>
                                                             <a href="/admin/customer">
