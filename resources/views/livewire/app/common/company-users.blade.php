@@ -88,7 +88,7 @@
 
                         <td class="text-center">
                             <div class="d-flex actions">
-                                <a href="{{ route('tenant.customer-profile', ['customerID' => $user->id]) }}"
+                                <a href="{{ route('tenant.customer-profile', ['customerID' => encrypt($user->id)]) }}"
                                     title="View " aria-label="View"
                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                     <svg aria-label="View" class="fill" width="20" height="20"
