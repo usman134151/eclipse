@@ -575,7 +575,7 @@
                 </div>
             </div>
         </div>
-        <!-- /Total -->
+        {{-- <!-- /Total --> --}}
         <div class="justify-content-center d-flex mb-2">
             <div class="form-check mx-auto">
                 <input class="form-check-input" type="checkbox" value="" id="ExcludeNotification">
