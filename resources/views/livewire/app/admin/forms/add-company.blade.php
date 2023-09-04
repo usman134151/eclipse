@@ -234,14 +234,14 @@
 
                                                 {{-- Service Start Date --}}
                                                 <div class="col-lg-6 mb-4 pe-lg-5">
-                                                    <label class="form-label" for="service-start-date-column">
+                                                    <label class="form-label" for="company_service_start_date">
                                                         Service Start Date
                                                     </label>
                                                     <div class="d-flex align-items-center w-100">
                                                         <div class="position-relative flex-grow-1">
                                                             <input type="text" class="form-control js-single-date"
                                                                 placeholder="MM/DD/YYYY"
-                                                                aria-describedby="" id="service-start-date-column" wire:model="company.company_service_start_date">
+                                                                aria-describedby="" id="company_service_start_date" wire:model="company.company_service_start_date">
                                                             {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="Service Start Date" class="icon-date" width="20"
                                                                 height="21" viewBox="0 0 20 21">
@@ -261,14 +261,14 @@
 
                                                 {{-- Service End Date --}}
                                                 <div class="col-lg-6 mb-4 ps-lg-5">
-                                                    <label class="form-label" for="service-end-date-column">
+                                                    <label class="form-label" for="company_service_end_date">
                                                         Service End Date
                                                     </label>
                                                     <div class="d-flex align-items-center w-100">
                                                         <div class="position-relative flex-grow-1">
                                                             <input type="text" class="form-control js-single-date"
                                                                 placeholder="MM/DD/YYYY"
-                                                                aria-describedby="" id="service-end-date-column"  wire:model="company.company_service_end_date">
+                                                                aria-describedby="" id="company_service_end_date"  wire:model="company.company_service_end_date">
                                                             {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="Service End Date" class="icon-date" width="20"
                                                                 height="21" viewBox="0 0 20 21">
