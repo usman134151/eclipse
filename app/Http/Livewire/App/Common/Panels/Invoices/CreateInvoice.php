@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class CreateInvoice extends Component
 {
-    public $showForm, $selectedBookingsIds=[], $managers,$addresses;
+    public $showForm, $selectedBookingsIds=[], $managers,$addresses, $invoice=[];
     protected $listeners = ['showList' => 'resetForm'];
 
     public function render()
@@ -20,6 +20,7 @@ class CreateInvoice extends Component
     public function mount($selectedBookingsIds)
     {
         $bookings = Booking::whereIn('id',$selectedBookingsIds)->get();
+        $this->invoice['invoice_number'] = genetrateInvoiceNumber($bookings->first()->company);
         $this->managers = User::whereIn('id',$bookings->pluck('billing_manager_id')->toArray())->with('userdetail')->get();
         $this->addresses = UserAddress::where(['user_id'=>$bookings->first()->company_id, 'user_address_type'=>2,'address_type'=>2])->get()->toArray();
        

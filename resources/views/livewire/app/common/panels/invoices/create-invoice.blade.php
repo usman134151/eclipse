@@ -139,7 +139,7 @@
             <label class="form-label" for="invoice-number">
                 Invoice Number
             </label>
-            <input type="text" id="invoice-number" class="form-control" name="invoice-number"
+            <input type="text" id="invoice-number" wire:model.defer="invoice.invoice_number" class="form-control" name="invoice-number"
                 placeholder="DOR22-003" />
         </div>
     </div>
@@ -167,7 +167,7 @@
             </label>
             <div class="d-flex align-items-center w-100 mb-2">
                 <div class="position-relative flex-grow-1">
-                    <input type="text" id="due-date" class="form-control js-single-date"
+                    <input type="text" id="invoice_due_date" class="form-control js-single-date" wire:model.defer="invoice.invoice_due_date"
                         placeholder="Select Due Date" aria-describedby="">
                     <svg aria-label="date" class="icon-date" width="20" height="21" viewBox="0 0 20 21"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
