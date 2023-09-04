@@ -154,7 +154,7 @@
                     </div>
                     @livewire('app.common.lists.draft-invoices', [], key(Str::random(10)))
 
-                {{-- <div class="row" id="table-hover-row"> 
+                    {{-- <div class="row" id="table-hover-row"> 
 						<div class="col-12">
 						<div class="table-responsive border mb-4">
 							<table id="" class="table table-fs-md table-hover" aria-label="">
@@ -267,48 +267,47 @@
 						</ul>
 						</nav>
 						</div> --}}
-                {{-- Icon Legend Bar - Start --}}
-                <div class="d-flex actions gap-3 justify-content-end mb-2">
-                    <div class="d-flex gap-2 align-items-center">
-                        <a href="#" title="Bookings" aria-label="Bookings"
-                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                            <svg aria-label="Bookings" class="fill-stroke" width="12" height="15"
-                                viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <use xlink:href="/css/common-icons.svg#bookings"></use>
-                            </svg>
-                        </a>
-                        <span class="text-sm">
-                            Booking
-                        </span>
+                    {{-- Icon Legend Bar - Start --}}
+                    <div class="d-flex actions gap-3 justify-content-end mb-2">
+                        <div class="d-flex gap-2 align-items-center">
+                            <a href="#" title="Bookings" aria-label="Bookings"
+                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                <svg aria-label="Bookings" class="fill-stroke" width="12" height="15"
+                                    viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <use xlink:href="/css/common-icons.svg#bookings"></use>
+                                </svg>
+                            </a>
+                            <span class="text-sm">
+                                Booking
+                            </span>
+                        </div>
                     </div>
-                </div>
-                {{-- Icon Legend Bar - End --}}
-                <div class="bg-muted py-2 mb-4">
-                    <div class="row justify-content-start">
-                        <div class="col-lg-4">
-                            <div class="d-flex justify-content-start">
-                                <div class="fw-bold text-sm mx-5">
-                                    Selected Remittance Total
-                                </div>
-                                <div class="fw-bold text-sm text-lg-end mx-3">
-                                    $675
+                    {{-- Icon Legend Bar - End --}}
+                    <div class="bg-muted py-2 mb-4">
+                        <div class="row justify-content-start">
+                            <div class="col-lg-4">
+                                <div class="d-flex justify-content-start">
+                                    <div class="fw-bold text-sm mx-5">
+                                        Selected Remittance Total
+                                    </div>
+                                    <div class="fw-bold text-sm text-lg-end mx-3">
+                                        $675
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+        </section>
     </div>
-    </section>
-{{-- </div> --}}
-@include('panels.invoices.create-invoice')
-@include('panels.invoices.invoice-generator-bookings')
+
+    @include('panels.invoices.create-invoice')
+    @include('panels.invoices.invoice-generator-bookings')
+    <script>
+        function updateVal(attrName, val) {
+
+            Livewire.emit('updateVal', attrName, val);
+
+        }
+    </script>
 </div>
-
-<script>
-    function updateVal(attrName, val) {
-
-        Livewire.emit('updateVal', attrName, val);
-
-    }
-</script>

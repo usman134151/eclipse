@@ -15,7 +15,8 @@
                     </thead>
                     <tbody>
                         @foreach ($managers as $index => $manager)
-                            <tr class="odd {{$manager->id == $invoice['billing_manager_id'] ? 'selected' : '' }}" wire:click="$set('invoice.billing_manager_id',{{$manager->id}})">
+                            <tr class="odd {{ $manager->id == $invoice['billing_manager_id'] ? 'selected' : '' }}"
+                                wire:click="$set('invoice.billing_manager_id',{{ $manager->id }})">
                                 <td>{{ $index + 1 }}</td>
                                 <td>
                                     <div class="row g-2">
@@ -34,18 +35,18 @@
                                     </div>
                                 </td>
                                 <td>
-                                    @if(count($manager->billing_addresses))
-                                        @foreach($manager->billing_addresses as $address)
-
-                                    <p class="my-2">
-                                     {{ $address['address_name'] }}:
-                                            {{ $address['address_line1'] . ', ' . $address['address_line2'] . ',' . $address['city'] . ', ' . $address['state'] . ', ' . $address['country'] }}
-                                    </p>
-                                    @endforeach
+                                    @if (count($manager->billing_addresses))
+                                        @foreach ($manager->billing_addresses as $address)
+                                            <p class="my-2">
+                                                {{ $address['address_name'] }}:
+                                                {{ $address['address_line1'] . ', ' . $address['address_line2'] . ',' . $address['city'] . ', ' . $address['state'] . ', ' . $address['country'] }}
+                                            </p>
+                                        @endforeach
                                     @endif
                                 </td>
                                 <td class="align-middle">
-                                    <svg class="{{$manager->id == $invoice['billing_manager_id'] ? '' : 'd-none' }}" width="24" height="19" viewBox="0 0 24 19" fill="none"
+                                    <svg class="{{ $manager->id == $invoice['billing_manager_id'] ? '' : 'd-none' }}"
+                                        width="24" height="19" viewBox="0 0 24 19" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3"
                                             stroke-linecap="round" stroke-linejoin="round" />
@@ -88,7 +89,8 @@
                         </thead>
                         <tbody>
                             @foreach ($addresses as $index => $address)
-                                <tr class="odd {{$address['id'] == $invoice['billing_address_id'] ? 'selected' : '' }}" wire:click="$set('invoice.billing_address_id',{{$address['id']}})">
+                                <tr class="odd {{ $address['id'] == $invoice['billing_address_id'] ? 'selected' : '' }}"
+                                    wire:click="$set('invoice.billing_address_id',{{ $address['id'] }})">
                                     <td>{{ $index + 1 }}</td>
                                     <td>
                                         <p>
@@ -97,8 +99,9 @@
                                         </p>
                                     </td>
                                     <td class="align-middle">
-                                        <svg class="{{$address['id'] == $invoice['billing_address_id'] ? '' : 'd-none' }}" width="24" height="19" viewBox="0 0 24 19"
-                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <svg class="{{ $address['id'] == $invoice['billing_address_id'] ? '' : 'd-none' }}"
+                                            width="24" height="19" viewBox="0 0 24 19" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
                                             <path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white"
                                                 stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
                                         </svg>
@@ -145,8 +148,8 @@
             <label class="form-label" for="invoice-number">
                 Invoice Number
             </label>
-            <input type="text" id="invoice-number" wire:model.defer="invoice.invoice_number" class="form-control" name="invoice-number"
-                placeholder="DOR22-003" />
+            <input type="text" id="invoice-number" wire:model.defer="invoice.invoice_number" class="form-control"
+                name="invoice-number" placeholder="DOR22-003" />
         </div>
     </div>
 
@@ -161,7 +164,7 @@
                     id="apply-to-future-invoices">
                 <label class="form-check-label" for="apply-to-future-invoices">
                     Apply to Future Invoices
-                <small>(coming soon)</small>
+                    <small>(coming soon)</small>
 
                 </label>
             </div>
@@ -175,8 +178,8 @@
             </label>
             <div class="d-flex align-items-center w-100 mb-2">
                 <div class="position-relative flex-grow-1">
-                    <input type="text" id="invoice_due_date" class="form-control js-single-date" wire:model.defer="invoice.invoice_due_date"
-                        placeholder="MM/DD/YYYY" aria-describedby="">
+                    <input type="text" id="invoice_due_date" class="form-control js-single-date"
+                        wire:model.defer="invoice.invoice_due_date" placeholder="MM/DD/YYYY" aria-describedby="">
                     <svg aria-label="date" class="icon-date" width="20" height="21" viewBox="0 0 20 21"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -185,7 +188,7 @@
                     </svg>
                 </div>
             </div>
-                <small>(coming soon)</small>
+            <small>(coming soon)</small>
 
             <div class="col-12 d-flex flex-column flex-md-row gap-2">
 
@@ -206,10 +209,10 @@
     </div>
 
     <div class="row mb-3">
-                <small>(coming soon)</small>
+        <small>(coming soon)</small>
 
         <div class="col-md-3">
-        
+
             <label class="form-label" for="upload-file">
                 Attach Document
             </label>
@@ -234,15 +237,16 @@
                     id="reimbursement-records">
                 <label class="form-check-label form-label" for="reimbursement-records">
                     Reimbursement Records
-                <small>(coming soon)</small>
+                    <small>(coming soon)</small>
 
                 </label>
             </div>
             <div class="mt-2">
-                <input disabled class="form-check-input" type="checkbox" value="provider-timesheet" id="provider-timesheet">
+                <input disabled class="form-check-input" type="checkbox" value="provider-timesheet"
+                    id="provider-timesheet">
                 <label class="form-check-label form-label" for="provider-timesheet">
                     Provider Timesheet(s)
-                <small>(coming soon)</small>
+                    <small>(coming soon)</small>
 
                 </label>
             </div>
