@@ -348,6 +348,22 @@ class AddCompany extends Component
 		$this->$tabName = "active";
 		$this->switch($component);
 
+		if($this->step == 1)
+		{
+			if (count($this->company->phones)) {
+				$this->phoneNumbers = [];
+				foreach ($this->company->phones as $phone) {
+					$this->phoneNumbers[] = ['phone_number' => $phone->phone_number, 'phone_title' => $phone->phone_title, 'id' => $phone->id];
+				}
+			}
+			if (count($this->company->addresses)) {
+				$this->userAddresses = [];
+				foreach ($this->company->addresses as $address) {
+					$this->userAddresses[] = $address->toArray();
+				}
+			}
+
+		}
 		// loading schedule on back button
 		if ($this->step == 2)
 			$this->getCompanySchedule();
