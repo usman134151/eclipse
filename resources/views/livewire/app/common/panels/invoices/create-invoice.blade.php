@@ -139,7 +139,7 @@
             <label class="form-label" for="invoice-number">
                 Invoice Number
             </label>
-            <input type="text" id="invoice-number" class="form-control" name="invoice-number"
+            <input type="text" id="invoice-number" wire:model.defer="invoice.invoice_number" class="form-control" name="invoice-number"
                 placeholder="DOR22-003" />
         </div>
     </div>
@@ -151,10 +151,12 @@
             </label>
             <input type="text" id="po-number" class="form-control" name="po-number" placeholder="Enter PO Number" />
             <div class="mt-2">
-                <input class="form-check-input" type="checkbox" value="apply-to-future-invoices"
+                <input class="form-check-input" disabled type="checkbox" value="apply-to-future-invoices"
                     id="apply-to-future-invoices">
                 <label class="form-check-label" for="apply-to-future-invoices">
                     Apply to Future Invoices
+                <small>(coming soon)</small>
+
                 </label>
             </div>
         </div>
@@ -167,8 +169,8 @@
             </label>
             <div class="d-flex align-items-center w-100 mb-2">
                 <div class="position-relative flex-grow-1">
-                    <input type="text" id="due-date" class="form-control js-single-date"
-                        placeholder="Select Due Date" aria-describedby="">
+                    <input type="text" id="invoice_due_date" class="form-control js-single-date" wire:model.defer="invoice.invoice_due_date"
+                        placeholder="MM/DD/YYYY" aria-describedby="">
                     <svg aria-label="date" class="icon-date" width="20" height="21" viewBox="0 0 20 21"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -177,7 +179,10 @@
                     </svg>
                 </div>
             </div>
+                <small>(coming soon)</small>
+
             <div class="col-12 d-flex flex-column flex-md-row gap-2">
+
                 <button type="btn" class="btn btn-sm btn-outline-primary mx-2">
                     Net 15
                 </button>
@@ -195,11 +200,14 @@
     </div>
 
     <div class="row mb-3">
+                <small>(coming soon)</small>
+
         <div class="col-md-3">
+        
             <label class="form-label" for="upload-file">
                 Attach Document
             </label>
-            <input class="form-control" type="file" id="upload-file">
+            <input disabled class="form-control" type="file" id="upload-file">
         </div>
     </div>
     <div class="col-12 d-flex flex-column flex-md-row gap-2 mb-4">
@@ -216,22 +224,26 @@
     <div>
         <div class="row between-section-segment-spacing">
             <div class="mt-2">
-                <input class="form-check-input" type="checkbox" value="reimbursement-records"
+                <input disabled class="form-check-input" type="checkbox" value="reimbursement-records"
                     id="reimbursement-records">
                 <label class="form-check-label form-label" for="reimbursement-records">
                     Reimbursement Records
+                <small>(coming soon)</small>
+
                 </label>
             </div>
             <div class="mt-2">
-                <input class="form-check-input" type="checkbox" value="provider-timesheet" id="provider-timesheet">
+                <input disabled class="form-check-input" type="checkbox" value="provider-timesheet" id="provider-timesheet">
                 <label class="form-check-label form-label" for="provider-timesheet">
                     Provider Timesheet(s)
+                <small>(coming soon)</small>
+
                 </label>
             </div>
         </div>
         <div class="justify-content-center d-flex mb-2">
             <div class="form-check mx-auto">
-                <input class="form-check-input" type="checkbox" value="" id="Exclude-Notification">
+                <input disabled class="form-check-input" type="checkbox" value="" id="Exclude-Notification">
                 <label class="form-check-label" for="Exclude-Notification">
                     Exclude Notification
                 </label>
@@ -249,5 +261,6 @@
             </button>
         </div>
     </div>
-    @include('modals.common.add-address')
+    {{-- removed for current phase
+    @include('modals.common.add-address') --}}
 </div>

@@ -229,6 +229,7 @@ class AddCompany extends Component
 
 		$this->updateTags();
 
+		// dd($this->userAddresses);
 		$this->company = $companyService->createCompany($this->company, $this->phoneNumbers, $this->userAddresses);
 		if (count($this->admins))
 			foreach ($this->admins as $admin_id) {
@@ -245,11 +246,23 @@ class AddCompany extends Component
 		} else {
 			$this->getCompanySchedule();
 
-
+			//setting company details for next steps
 			if ($this->company->company_service_end_date)
 				$this->company->company_service_end_date = Carbon::parse($this->company->company_service_end_date)->format('m/d/Y');
 			if ($this->company->company_service_start_date)
 				$this->company->company_service_start_date = Carbon::parse($this->company->company_service_start_date)->format('m/d/Y');
+			if (count($this->company->phones)) {
+				$this->phoneNumbers = [];
+				foreach ($this->company->phones as $phone) {
+					$this->phoneNumbers[] = ['phone_number' => $phone->phone_number, 'phone_title' => $phone->phone_title, 'id' => $phone->id];
+				}
+			}
+			if (count($this->company->addresses)) {
+				$this->userAddresses = [];
+				foreach ($this->company->addresses as $address) {
+					$this->userAddresses[] = $address->toArray();
+				}
+			}
 
 			$this->setStep(2, 'scheduleActive', 'schedule');
 		}

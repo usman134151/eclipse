@@ -8,6 +8,7 @@ use App\Models\Tenant\StandardRate;
 use App\Models\Tenant\Allappdetail;
 use App\Models\Tenant\User;
 use App\Models\Tenant\Booking;
+use App\Models\Tenant\Invoice;
 use App\Models\Tenant\UserAddress;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -426,5 +427,26 @@ if (!function_exists('convertDecimalToDigits')) {
         return formatAmount($amount/100, $currency);
     }
 }
+if (!function_exists('genetrateInvoiceNumber')) {
 
+			function genetrateInvoiceNumber($comp)
+			{
+				try {
+					if($comp)
+					{
+						$latestBooking = Invoice::where('company_id',$comp->id)->count();
+						if($latestBooking != 0)
+						$bookingNum = $latestBooking;
+						else
+						$bookingNum = 0;
+
+						$compName = strtoupper(substr($comp->name,0,3)).date('y');
+						$bookId = $compName.'-'.str_pad($bookingNum + 1, 3, "0", STR_PAD_LEFT);
+						return $bookId;
+					}
+				} catch (\Exception $e) {
+					dd($e->getMessage());
+				}
+			}
+    }
 ?>
