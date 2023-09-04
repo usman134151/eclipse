@@ -50,7 +50,7 @@
                       </div>
                     </div>
                   </td>
-                  <td class="align-middle">{{$user->phone}}</td>
+                  <td wire:ignore class="align-middle">{{$user->phone}}</td>
                 </tr>
                 @endforeach
               </tbody>
