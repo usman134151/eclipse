@@ -15,7 +15,7 @@
                     </thead>
                     <tbody>
                         @foreach ($managers as $index => $manager)
-                            <tr class="odd">
+                            <tr class="odd {{$manager->id == $invoice['billing_manager_id'] ? 'selected' : '' }}" wire:click="$set('invoice.billing_manager_id',{{$manager->id}})">
                                 <td>{{ $index + 1 }}</td>
                                 <td>
                                     <div class="row g-2">
@@ -45,7 +45,7 @@
                                     @endif
                                 </td>
                                 <td class="align-middle">
-                                    <svg class="d-none" width="24" height="19" viewBox="0 0 24 19" fill="none"
+                                    <svg class="{{$manager->id == $invoice['billing_manager_id'] ? '' : 'd-none' }}" width="24" height="19" viewBox="0 0 24 19" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3"
                                             stroke-linecap="round" stroke-linejoin="round" />
@@ -88,7 +88,7 @@
                         </thead>
                         <tbody>
                             @foreach ($addresses as $index => $address)
-                                <tr class="odd selected">
+                                <tr class="odd {{$address['id'] == $invoice['billing_address_id'] ? 'selected' : '' }}" wire:click="$set('invoice.billing_address_id',{{$address['id']}})">
                                     <td>{{ $index + 1 }}</td>
                                     <td>
                                         <p>
@@ -97,7 +97,7 @@
                                         </p>
                                     </td>
                                     <td class="align-middle">
-                                        <svg class="d-none" width="24" height="19" viewBox="0 0 24 19"
+                                        <svg class="{{$address['id'] == $invoice['billing_address_id'] ? '' : 'd-none' }}" width="24" height="19" viewBox="0 0 24 19"
                                             fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white"
                                                 stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
