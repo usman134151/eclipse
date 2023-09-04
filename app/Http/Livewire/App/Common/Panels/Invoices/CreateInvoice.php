@@ -23,7 +23,7 @@ class CreateInvoice extends Component
         $this->invoice['invoice_number'] = genetrateInvoiceNumber($bookings->first()->company);
         $this->managers = User::whereIn('id',$bookings->pluck('billing_manager_id')->toArray())->with('userdetail')->get();
         $this->addresses = UserAddress::where(['user_id'=>$bookings->first()->company_id, 'user_address_type'=>2,'address_type'=>2])->get()->toArray();
-       
+       $this->dispatchBrowserEvent('refreshSelects');
     }
 
     function showForm()
