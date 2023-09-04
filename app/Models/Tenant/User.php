@@ -91,7 +91,11 @@ class User extends Authenticatable
 	}
 	public function addresses()
 	{
-    	return $this->hasMany(UserAddress::class,'user_id');
+    	return $this->hasMany(UserAddress::class,'user_id')->where('user_address_type',1);
+	}
+	public function billing_addresses()
+	{
+		return $this->hasMany(UserAddress::class, 'user_id')->where(['user_address_type'=>1,'address_type'=>2]);
 	}
 
 	public function industries(): BelongsToMany
