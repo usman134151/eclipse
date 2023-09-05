@@ -192,8 +192,9 @@ class BookingList extends Component
 		// 	]);
 		// }
 		// $query->groupBy('bookings.id','bookings.booking_number', 'booking_title');
-		$data = $query->paginate($this->limit);
 
+		$data = $query->paginate($this->limit);
+		// dd($data);
 		// setting values for booking and its services
 		foreach ($data as $row) {
 			if ($row->service_id == null) {
@@ -210,6 +211,9 @@ class BookingList extends Component
 				$row->accommodation_name = $booking_service ? $booking_service->accommodation->name : null;
 				$row->service_name = $booking_service ?  ($booking_service->service ? $booking_service->service->name : null) : null;
 			}
+			$row->meeting_link =$booking_service ? $booking_service->meeting_link : null;
+			$row->meeting_phone = $booking_service ? $booking_service->meeting_phone : null;
+
 			$row->display_running_late = false;
 			$row->display_check_in = false;
 
