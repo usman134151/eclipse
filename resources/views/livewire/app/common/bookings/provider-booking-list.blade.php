@@ -63,7 +63,8 @@
                                                                 </div>
                                                             </div>
                                                         </td>
-                                                        <td @click="assignmentDetails = true" wire:click="setAssignmentDetails({{$booking['id']}},{{$booking['booking_number']}})">
+                                                        <td @click="assignmentDetails = true"
+                                                            wire:click="setAssignmentDetails({{ $booking['id'] }},{{ $booking['booking_number'] }})">
                                                             <a
                                                                 href="#">{{ $booking['booking_number'] ? $booking['booking_number'] : '' }}</a>
                                                             <div>
@@ -89,7 +90,20 @@
                                                             </div>
                                                         </td>
                                                         <td>
-                                                            <div>{!! $booking['address'] !!}</div>
+                                                            <div>
+                                                                @if ($booking->service_type == 1)
+                                                                    @if ($booking->physicalAddress)
+                                                                        <a target="_blank"
+                                                                            href="https://www.google.com/maps/search/?api=1&query={{ str_replace(' ', '+', $booking->physicalAddress->address_line1 . ' ' . $booking->physicalAddress->address_line2 . ', ' . $booking->physicalAddress->city . ' ' . $booking->physicalAddress->state . ' ' . $booking->physicalAddress->country) }}">
+                                                                            {{ $booking->physicalAddress->address_line1 . ', ' . $booking->physicalAddress->address_line2 . ', ' . $booking->physicalAddress->city . ', ' . $booking->physicalAddress->country }}
+                                                                        </a>
+                                                                    @else
+                                                                        N/A
+                                                                    @endif
+                                                                @else
+                                                                    N/A
+                                                                @endif
+                                                            </div>
                                                         </td>
                                                         <td>{{ $booking['provider_count'] }}</td>
                                                         <td>
@@ -101,32 +115,41 @@
                                                         </td>
                                                         <td>
                                                             <div class="d-flex actions">
-                                                                @if ($booking['check_in_status'] == 0 && $bookingType != 'Unassigned' && $bookingType != 'Invitations' && $bookingType != 'Cancelled')
+                                                                @if (
+                                                                    $booking['check_in_status'] == 0 &&
+                                                                        $bookingType != 'Unassigned' &&
+                                                                        $bookingType != 'Invitations' &&
+                                                                        $bookingType != 'Cancelled')
                                                                     @if ($booking->service_type)
                                                                         @if ($booking->service_type == 1)
                                                                             {{-- In - Person --}}
                                                                             <div
                                                                                 class="d-flex gap-2 align-items-center">
-                                                                                <a href="#" title="View"
-                                                                                    aria-label="View"
-                                                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                                    <svg aria-label="In-Person"
-                                                                                        width="16" height="20"
-                                                                                        viewBox="0 0 16 20"
-                                                                                        fill="none"
-                                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                                        <path
-                                                                                            d="M8 10.1911C8.55 10.1911 9.021 9.99134 9.413 9.59185C9.80433 9.19304 10 8.71338 10 8.15287C10 7.59236 9.80433 7.11236 9.413 6.71287C9.021 6.31406 8.55 6.11465 8 6.11465C7.45 6.11465 6.97933 6.31406 6.588 6.71287C6.196 7.11236 6 7.59236 6 8.15287C6 8.71338 6.196 9.19304 6.588 9.59185C6.97933 9.99134 7.45 10.1911 8 10.1911ZM8 17.6815C10.0333 15.7792 11.5417 14.0508 12.525 12.4963C13.5083 10.9425 14 9.56263 14 8.35669C14 6.50531 13.4207 4.98921 12.262 3.80841C11.104 2.62828 9.68333 2.03822 8 2.03822C6.31667 2.03822 4.89567 2.62828 3.737 3.80841C2.579 4.98921 2 6.50531 2 8.35669C2 9.56263 2.49167 10.9425 3.475 12.4963C4.45833 14.0508 5.96667 15.7792 8 17.6815ZM8 20C7.86667 20 7.73333 19.9745 7.6 19.9236C7.46667 19.8726 7.35 19.8047 7.25 19.7197C4.81667 17.5287 3 15.4949 1.8 13.6183C0.6 11.7411 0 9.98726 0 8.35669C0 5.80892 0.804334 3.77919 2.413 2.26752C4.021 0.755839 5.88333 0 8 0C10.1167 0 11.979 0.755839 13.587 2.26752C15.1957 3.77919 16 5.80892 16 8.35669C16 9.98726 15.4 11.7411 14.2 13.6183C13 15.4949 11.1833 17.5287 8.75 19.7197C8.65 19.8047 8.53333 19.8726 8.4 19.9236C8.26667 19.9745 8.13333 20 8 20Z"
-                                                                                            fill="black" />
-                                                                                    </svg>
-                                                                                </a>
+                                                                                @if ($booking->physicalAddress)
+                                                                                    <a target="_blank"
+                                                                                        href="https://www.google.com/maps/search/?api=1&query={{ str_replace(' ', '+', $booking->physicalAddress->address_line1 . ' ' . $booking->physicalAddress->address_line2 . ', ' . $booking->physicalAddress->city . ' ' . $booking->physicalAddress->state . ' ' . $booking->physicalAddress->country) }}"
+                                                                                        title="View" aria-label="View"
+                                                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                                        <svg aria-label="In-Person"
+                                                                                            width="16"
+                                                                                            height="20"
+                                                                                            viewBox="0 0 16 20"
+                                                                                            fill="none"
+                                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                                            <path
+                                                                                                d="M8 10.1911C8.55 10.1911 9.021 9.99134 9.413 9.59185C9.80433 9.19304 10 8.71338 10 8.15287C10 7.59236 9.80433 7.11236 9.413 6.71287C9.021 6.31406 8.55 6.11465 8 6.11465C7.45 6.11465 6.97933 6.31406 6.588 6.71287C6.196 7.11236 6 7.59236 6 8.15287C6 8.71338 6.196 9.19304 6.588 9.59185C6.97933 9.99134 7.45 10.1911 8 10.1911ZM8 17.6815C10.0333 15.7792 11.5417 14.0508 12.525 12.4963C13.5083 10.9425 14 9.56263 14 8.35669C14 6.50531 13.4207 4.98921 12.262 3.80841C11.104 2.62828 9.68333 2.03822 8 2.03822C6.31667 2.03822 4.89567 2.62828 3.737 3.80841C2.579 4.98921 2 6.50531 2 8.35669C2 9.56263 2.49167 10.9425 3.475 12.4963C4.45833 14.0508 5.96667 15.7792 8 17.6815ZM8 20C7.86667 20 7.73333 19.9745 7.6 19.9236C7.46667 19.8726 7.35 19.8047 7.25 19.7197C4.81667 17.5287 3 15.4949 1.8 13.6183C0.6 11.7411 0 9.98726 0 8.35669C0 5.80892 0.804334 3.77919 2.413 2.26752C4.021 0.755839 5.88333 0 8 0C10.1167 0 11.979 0.755839 13.587 2.26752C15.1957 3.77919 16 5.80892 16 8.35669C16 9.98726 15.4 11.7411 14.2 13.6183C13 15.4949 11.1833 17.5287 8.75 19.7197C8.65 19.8047 8.53333 19.8726 8.4 19.9236C8.26667 19.9745 8.13333 20 8 20Z"
+                                                                                                fill="black" />
+                                                                                        </svg>
+                                                                                    </a>
+                                                                                @endif
+
                                                                             </div>
                                                                         @else
                                                                             {{-- Virtual --}}
                                                                             <div
                                                                                 class="d-flex gap-2 align-items-center">
-                                                                                <a href="#" title="Accept"
-                                                                                    aria-label="Accept"
+                                                                                <a href="{{$booking['meeting_link'] ? $booking['meeting_link'] : '#'}}" title="Meeting Link"
+                                                                                    aria-label="Meeting Link"
                                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                                     <svg aria-label="Virtual"
                                                                                         width="22" height="15"
@@ -197,7 +220,11 @@
                                                                             </svg>
                                                                         </a>
                                                                     @endif
-                                                                @elseif($booking['check_in_status'] > 0 && $bookingType != 'Unassigned' && $bookingType != 'Invitations' && $bookingType != 'Cancelled' )
+                                                                @elseif(
+                                                                    $booking['check_in_status'] > 0 &&
+                                                                        $bookingType != 'Unassigned' &&
+                                                                        $bookingType != 'Invitations' &&
+                                                                        $bookingType != 'Cancelled')
                                                                     <a href="#"
                                                                         @click="offcanvasOpenCheckOut = true"
                                                                         wire:click="showCheckOutPanel('{{ $booking['id'] }}','{{ $booking['booking_number'] }}')"
@@ -252,6 +279,7 @@
                                                                         @endif
                                                                     </div>
                                                                 @endif
+                                                                @if ($bookingType == "Today's")
                                                                     <div class="dropdown ac-cstm">
                                                                         <a aria-label="Action Dropdown"
                                                                             href="javascript:void(0)"
@@ -259,13 +287,13 @@
                                                                             data-bs-toggle="dropdown"
                                                                             data-bs-auto-close="outside"
                                                                             data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-                                                                                <svg aria-label="More Options"
-                                                                                    width="20" height="20"
-                                                                                    viewBox="0 0 20 20">
-                                                                                    <use
-                                                                                        xlink:href="/css/common-icons.svg#dropdown">
-                                                                                    </use>
-                                                                                </svg>
+                                                                            <svg aria-label="More Options"
+                                                                                width="20" height="20"
+                                                                                viewBox="0 0 20 20">
+                                                                                <use
+                                                                                    xlink:href="/css/common-icons.svg#dropdown">
+                                                                                </use>
+                                                                            </svg>
                                                                         </a>
                                                                         {{-- <div class="tablediv dropdown-menu fadeIn">
                                                                                     <a title="Unassign"
@@ -277,6 +305,7 @@
                                                                                     </a>
                                                                             </div> --}}
                                                                     </div>
+                                                                @endif
                                                             </div>
                                                         </td>
                                                     </tr>
