@@ -57,6 +57,18 @@ class AssignmentDetails extends Component
             ->get(['customize_form_fields.field_name', 'booking_customize_data.data_value'])->toArray();
     }
 
+    protected $rules = [
+        'booking.provider_notes' => 'nullable|string',
+    ];
+
+
+    public function updateNotes()
+    {
+
+        $this->validate();
+        $this->booking->save();
+        $this->emit('showConfirmation', 'Booking notes updated');
+    }
 
     function showForm()
     {
