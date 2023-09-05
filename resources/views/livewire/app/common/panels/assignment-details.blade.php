@@ -733,7 +733,9 @@
             <div class="row my-4">
                 <div class="col-lg-12">
                     <div class="d-lg-flex justify-content-between align-items-center mb-5">
-                        <h2 class="mb-lg-0">Payment Detail </h2>
+                        <h2 class="mb-lg-0">Payment Detail 
+                        <small>(coming soon)</small>
+                        </h2>
                     </div>
                     <div class="row">
                         <div class="col-lg-12 mb-3">
