@@ -289,7 +289,12 @@ class BookingList extends Component
 		$this->bookingNumber = $bookingNumber;
 		$this->emit('setCheckoutBookingId', $booking_id);
 	}
-
+	public function setAssignmentDetails($booking_id,$bookingNumber)
+	{
+		$this->booking_id = $booking_id;
+		$this->bookingNumber = $bookingNumber;
+		$this->emit('setDetailsBookingId', $booking_id);
+	}
 
 
 	public function showConfirmation($message = "")
