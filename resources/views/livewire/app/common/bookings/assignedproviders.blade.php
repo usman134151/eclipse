@@ -3,15 +3,17 @@
           <div class="d-lg-flex align-items-center justify-content-between header-row">
               <h2 class="mb-lg-0">Service {{ $index }} Assigned Providers </h2>
               <div class="d-flex flex-md-row flex-column gap-3">
-                  <a class="btn btn-has-icon btn-outline-dark rounded"
-                      wire:click="$emit('openAssignProvidersPanel',{{ $booking_id }},{{ $service_id }})"
-                      @click="assignProvider = true" href="javascript:refreshSelectsEvent()">
-                      <svg aria-label="Assign Providers" vwidth="20" height="20" viewBox="0 0 20 20">
-                          <use xlink:href="/css/common-icons.svg#assign-providers">
-                          </use>
-                      </svg>
-                      Assign Providers
-                  </a>
+                  @if (!$isProviderPanel)
+                      <a class="btn btn-has-icon btn-outline-dark rounded"
+                          wire:click="$emit('openAssignProvidersPanel',{{ $booking_id }},{{ $service_id }})"
+                          @click="assignProvider = true" href="javascript:refreshSelectsEvent()">
+                          <svg aria-label="Assign Providers" vwidth="20" height="20" viewBox="0 0 20 20">
+                              <use xlink:href="/css/common-icons.svg#assign-providers">
+                              </use>
+                          </svg>
+                          Assign Providers
+                      </a>
+                  @endif
 
                   {{-- <a href="#" class="btn btn-has-icon btn-primary rounded" data-bs-toggle="modal"
                       data-bs-target="#AssignproviderTeamModal">
@@ -20,7 +22,7 @@
                       </svg>
                       Manage Providers
                   </a> --}}
-                  @if (!$limitReached)
+                  @if (!$limitReached && !$isProviderPanel)
                       <a href="#" class="btn btn-has-icon btn-primary rounded"
                           wire:click="$emit('openAssignProvidersPanel',{{ $booking_id }},{{ $service_id }},2)"
                           @click="assignProvider = true" href="javascript:refreshSelectsEvent()">
@@ -41,19 +43,19 @@
                           </a>
                       @endif
                   @endif
-                  
+
                   <a href="#" class="btn btn-has-icon btn-primary rounded">
                       <svg aria-label="Team Chat" width="20" height="20" viewBox="0 0 20 20" fill="none">
                           <use xlink:href="/css/common-icons.svg#message-icon">
                           </use>
                       </svg>
                       Team Chat
-                      
+
                   </a>
-                  
+
               </div>
           </div>
-          <div class="mb-4">
+          <div class="mb-4 {{ $isProviderPanel ? 'hidden' : '' }}">
               <button class="btn btn-outline-primary btn-has-icon btn-sm dropdown-toggle h-100" type="button"
                   data-bs-toggle="dropdown" aria-expanded="false">
                   <span>
@@ -66,7 +68,7 @@
                   </span>
               </button>
           </div>
-          <div class="d-flex justify-content-between mb-2">
+          <div class="d-flex justify-content-between mb-2 {{ $isProviderPanel ? 'hidden' : '' }}">
               <div class="d-inline-flex align-items-center gap-4">
                   {{-- <div class="d-inline-flex align-items-center gap-4">
                             <label for="show_records" class="form-label-sm mb-0">Show</label>
@@ -109,96 +111,114 @@
                                               aria-label="Select All Teams">
                                       </th>
                                       <th scope="col">Provider</th>
-                                      <th scope="col">Additional Pay</th>
-                                      <th scope="col" class="text-center">Additional Pay</th>
-                                      <th scope="col" class="text-center">Time Paid</th>
-                                      <th scope="col" class="text-center">Total Payment</th>
+                                      @if (!$isProviderPanel)
+                                          <th scope="col">Additional Pay</th>
+                                          <th scope="col" class="text-center">Additional Pay</th>
+                                          <th scope="col" class="text-center">Time Paid</th>
+                                          <th scope="col" class="text-center">Total Payment</th>
+                                      @endif
                                       <th class="text-center">Action</th>
                                   </tr>
                               </thead>
                               <tbody>
-                                  @foreach ($assignedProviders as $index => $provider)
-                                      <tr role="row" class="odd">
-                                          <td class="text-center align-middle">
-                                              <input class="form-check-input" type="checkbox" value=""
-                                                  aria-label="Select Team">
-                                          </td>
-                                          <td class="align-middle">
-                                              <div class="d-flex gap-2 align-items-center">
-                                                  <div>
-                                                      <img width="50" height="50"
-                                                          src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                                          class="rounded-circle" alt="Provider Profile Image">
+                                  @if (count($assignedProviders))
+                                      @foreach ($assignedProviders as $index => $provider)
+                                          <tr role="row" class="odd">
+                                              <td class="text-center align-middle">
+                                                  <input class="form-check-input" type="checkbox" value=""
+                                                      aria-label="Select Team">
+                                              </td>
+                                              <td class="align-middle">
+                                                  <div class="d-flex gap-2 align-items-center">
+                                                      <div>
+                                                          <img width="50" height="50"
+                                                              src="{{ $provider['profile_pic'] ? $provider['profile_pic'] : '/tenant-resources/images/portrait/small/avatar-s-20.jpg' }}"
+                                                              class="rounded-circle" alt="Provider Profile Image">
+                                                      </div>
+                                                      <div class="pt-2">
+                                                          <div class="font-family-secondary leading-none">
+                                                              {{ $provider['name'] }}</div>
+                                                          <a target="_blank"
+                                                              href="{{ route('tenant.provider-profile', ['providerID' => $provider['id']]) }}"
+                                                              class="font-family-secondary"><small>
+                                                                  {{ $provider['email'] }}</small></a>
+                                                      </div>
                                                   </div>
-                                                  <div class="pt-2">
-                                                      <div class="font-family-secondary leading-none">
-                                                          {{ $provider['name'] }}</div>
-                                                      <a target="_blank"
-                                                          href="{{ route('tenant.provider-profile', ['providerID' => $provider['id']]) }}"
-                                                          class="font-family-secondary"><small>
-                                                              {{ $provider['email'] }}</small></a>
+                                              </td>
+                                              @if (!$isProviderPanel)
+                                                  <td class="align-middle">
+                                                      Additional Pay Label
+                                                  </td>
+                                                  <td class="text-center align-middle">
+                                                      $00:00
+                                                  </td>
+                                                  <td class="text-center align-middle">
+                                                      {{ $provider['paid_at'] }}
+                                                  </td>
+                                                  <td class="text-center align-middle">{{ $provider['paid_amount'] }}
+                                                  </td>
+                                              @endif
+                                              <td class="align-middle">
+                                                  <div class="d-flex actions justify-content-center">
+                                                      @if (!$isProviderPanel)
+                                                          <a href="#" title="Revoke" aria-label="Revoke"
+                                                              data-bs-toggle="modal" data-bs-target="#UnassignModal"
+                                                              {{-- wire:click="removeProviderAssignment({{ $provider['booking_service_id'] ? $provider['booking_service_id'] : 'null' }}, {{ $provider['id'] }},{{ $provider['booking_id'] }})" --}}
+                                                              class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                              <svg aria-label="Revoke" width="19" height="20"
+                                                                  viewBox="0 0 19 20">
+                                                                  <use xlink:href="/css/common-icons.svg#unassign">
+                                                                  </use>
+                                                              </svg>
+
+                                                          </a>
+                                                          <a href="{{ route('tenant.provider-profile', ['providerID' => $provider['id']]) }}"
+                                                              target="_blank" title="View" aria-label="View"
+                                                              class="btn btn-sm btn-secondary rounded btn-hs-icon">
+
+                                                              <svg aria-label="View" width="20" height="20"
+                                                                  viewBox="0 0 20 20">
+                                                                  <use xlink:href="/css/common-icons.svg#view">
+                                                                  </use>
+                                                              </svg>
+
+                                                          </a>
+                                                      @endif
+                                                      <a href="#" title="Chat" aria-label="Chat"
+                                                          class="btn btn-sm btn-secondary rounded btn-hs-icon">
+
+                                                          <svg aria-label="Chat" width="18" height="18"
+                                                              viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                                                              <use xlink:href="/css/common-icons.svg#chat-icon">
+                                                              </use>
+                                                          </svg>
+
+                                                      </a>
+                                                      @if (!$isProviderPanel)
+                                                          <a href="#" title="Feedback" aria-label="Feedback"
+                                                              class="btn btn-sm btn-secondary rounded btn-hs-icon">
+
+                                                              <svg aria-label="Rating" width="22" height="22"
+                                                                  viewBox="0 0 22 22" fill="none">
+                                                                  <use xlink:href="/css/common-icons.svg#rating-icon">
+                                                                  </use>
+                                                              </svg>
+
+                                                          </a>
+                                                      @endif
                                                   </div>
-                                              </div>
-                                          </td>
-                                          <td class="align-middle">
-                                              Additional Pay Label
-                                          </td>
-                                          <td class="text-center align-middle">
-                                              $00:00
-                                          </td>
-                                          <td class="text-center align-middle">
-                                              {{ $provider['paid_at'] }}
-                                          </td>
-                                          <td class="text-center align-middle">{{ $provider['paid_amount'] }}</td>
-                                          <td class="align-middle">
-                                              <div class="d-flex actions justify-content-center">
-                                                  <a href="#" title="Revoke" aria-label="Revoke" 
-                                                      data-bs-toggle="modal" data-bs-target="#UnassignModal"
-                                                      {{-- wire:click="removeProviderAssignment({{ $provider['booking_service_id'] ? $provider['booking_service_id'] : 'null' }}, {{ $provider['id'] }},{{ $provider['booking_id'] }})" --}}
-                                                      class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                      <svg aria-label="Revoke" width="19" height="20"
-                                                          viewBox="0 0 19 20">
-                                                          <use xlink:href="/css/common-icons.svg#unassign">
-                                                          </use>
-                                                      </svg>
-                                                                                  
-                                                  </a>
-                                                  <a href="{{ route('tenant.provider-profile', ['providerID' => $provider['id']]) }}"
-                                                      target="_blank" title="View" aria-label="View"
-                                                      class="btn btn-sm btn-secondary rounded btn-hs-icon">
-
-                                                      <svg aria-label="View" width="20" height="20"
-                                                          viewBox="0 0 20 20">
-                                                          <use xlink:href="/css/common-icons.svg#view">
-                                                          </use>
-                                                      </svg>
-
-                                                  </a>
-                                                  <a href="#" title="Chat" aria-label="Chat"
-                                                      class="btn btn-sm btn-secondary rounded btn-hs-icon">
-
-                                                      <svg aria-label="Chat" width="18" height="18"
-                                                          viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
-                                                          <use xlink:href="/css/common-icons.svg#chat-icon">
-                                                          </use>
-                                                      </svg>
-
-                                                  </a>
-                                                  <a href="#" title="Feedback" aria-label="Feedback"
-                                                      class="btn btn-sm btn-secondary rounded btn-hs-icon">
-
-                                                      <svg aria-label="Rating" width="22" height="22"
-                                                          viewBox="0 0 22 22" fill="none">
-                                                          <use xlink:href="/css/common-icons.svg#rating-icon">
-                                                          </use>
-                                                      </svg>
-
-                                                  </a>
-                                              </div>
+                                              </td>
+                                          </tr>
+                                      @endforeach
+                                  @else
+                                      <tr>
+                                          <td colSpan="{{$isProviderPanel ? '3' : '7'}}">
+                                              <small>
+                                                  No providers assigned to this service.
+                                              </small>
                                           </td>
                                       </tr>
-                                  @endforeach
-
+                                    @endif
                               </tbody>
                           </table>
                       </div>

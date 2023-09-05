@@ -14,17 +14,19 @@ class AddDocuments extends Component
 {
     use WithFileUploads;
 
-    public $showForm,$booking_id=0, $document =[], $file=null, $request_from_user=false,$permissions=[], $notification=[], $selectAll=false;
+    public $showForm, $booking_id = 0, $document = [], $file = null, $request_from_user = false, $permissions = [], $notification = [], $selectAll = false, $isProviderPanel = false;
     protected $listeners = ['showList' => 'resetForm', 'setBookingId'];
 
     public function render()
     {
         return view('livewire.app.common.panels.add-documents');
     }
-    public function setBookingId($booking_id){
+    public function setBookingId($booking_id)
+    {
         $this->booking_id = $booking_id;
-        $this->initFields(); 
-
+        $this->initFields();
+        if (session('isProvider'))
+            $this->isProviderPanel = true;
     }
 
     public function rules()
@@ -41,76 +43,82 @@ class AddDocuments extends Component
         ];
     }
 
-    public function save(){
+    public function save()
+    {
         $this->validate();
         if ($this->file != null) {
             $fileService = new UploadFileService();
-            $this->document['document_name'] = $fileService->saveFile('bookings/' . $this->booking_id , $this->file);
-            $this->document['document_type']= $this->file->getClientOriginalExtension();
+            $this->document['document_name'] = $fileService->saveFile('bookings/' . $this->booking_id, $this->file);
+            $this->document['document_type'] = $this->file->getClientOriginalExtension();
         }
+        if ($this->isProviderPanel) {
+            $this->document['permissions']['attach_to_provider_confirmation'] = true;
+            $this->document['permissions']['attach_to_customer_confirmation'] = true;
+            $this->document['permissions']['customer_permissions'] = ['2', '4', '5', '6', '7', '8', '9'];
+        } else
+            $this->document['permissions']['customer_permissions'] = $this->permissions;
 
-        $this->document['permissions']=json_encode($this->permissions);
-        $this->document['booking_id']=$this->booking_id;
+        $this->document['permissions'] = json_encode($this->document['permissions']);
+        $this->document['booking_id'] = $this->booking_id;
         BookingDocument::create($this->document);
-        
+
         $this->dispatchBrowserEvent('close-add-documents');
-        $this->emit('showConfirmation','Document added successfully');
+        $this->emit('showConfirmation', 'Document added successfully');
         $this->initFields();
     }
 
-    public function selectAllUsers(){
-        if($this->selectAll)
-            $this->permissions=['2','4','5','6','7','8','9'];
+    public function selectAllUsers()
+    {
+        if ($this->selectAll)
+            $this->permissions = ['2', '4', '5', '6', '7', '8', '9'];
         else
-            $this->permissions=[];
+            $this->permissions = [];
     }
 
-	
 
-    public function initFields(){
-        $this->document=[
-            'booking_id'=>$this->booking_id,
-            'document_title'=>null,
-            'document_name'=>null,
-            'document_type'=>null,
-            'description'=>null,
-            'shared'=>0,
-            'added_by'=>Auth::id(),
-            'request_from_user'=>false,
-            'permissions'=>[
-                'attach_to_customer_confirmation'=>false,
+
+    public function initFields()
+    {
+        $this->document = [
+            'booking_id' => $this->booking_id,
+            'document_title' => null,
+            'document_name' => null,
+            'document_type' => null,
+            'description' => null,
+            'shared' => 0,
+            'added_by' => Auth::id(),
+            'request_from_user' => false,
+            'permissions' => [
+                'attach_to_customer_confirmation' => false,
                 'attach_to_provider_confirmation' => false
-                ]
+            ]
         ];
-        $this->permissions=[];
+        $this->permissions = [];
         $this->request_from_user = false;
-        $this->notification =[
-            'requestee_id'=>null,
-            'notify'=>'now',
-            'notify_before'=>null,
-            'repeat_notification'=>false,
-            'repeat_notify_type'=>'time',
-            'repeat_notify_value'=>null,
-            'message_to_requestee'=>null
+        $this->notification = [
+            'requestee_id' => null,
+            'notify' => 'now',
+            'notify_before' => null,
+            'repeat_notification' => false,
+            'repeat_notify_type' => 'time',
+            'repeat_notify_value' => null,
+            'message_to_requestee' => null
         ];
-        $this->file=null;
+        $this->file = null;
         $this->selectAll = false;
-
     }
 
     public function mount()
     {
-        $this->initFields(); 
-
+        $this->initFields();
     }
 
     function showForm()
-    {     
-       $this->showForm=true;
+    {
+        $this->showForm = true;
     }
     public function resetForm()
     {
-        $this->showForm=false;
+        $this->showForm = false;
     }
-
 }

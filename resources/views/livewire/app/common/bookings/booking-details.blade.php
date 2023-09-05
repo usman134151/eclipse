@@ -349,7 +349,7 @@
                                                     </div>
                                                     <div class="col-lg-7 align-self-center">
                                                         <div class="font-family-tertiary">
-                                                            {{ $booking['booking_start_at'] ? date_format(date_create($booking['booking_start_at']), 'd/m/Y h:i A') : '' }}
+                                                            {{ $booking['booking_start_at'] ? date_format(date_create($booking['booking_start_at']), 'm/d/Y h:i A') : '' }}
 
                                                         </div>
                                                     </div>
@@ -362,7 +362,7 @@
                                                     </div>
                                                     <div class="col-lg-7 align-self-center">
                                                         <div class="font-family-tertiary">
-                                                            {{ $booking['booking_end_at'] ? date_format(date_create($booking['booking_end_at']), 'd/m/Y h:i A') : '' }}
+                                                            {{ $booking['booking_end_at'] ? date_format(date_create($booking['booking_end_at']), 'm/d/Y h:i A') : '' }}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -720,8 +720,8 @@
                                                 {{-- pb=!1m14!1m8!1m3!1d96779.59535015929!2d-74.00126600000002!3d40.710039!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1676478925644!5m2!1sen!2sus" --}}
 
                                                 {{-- <!-- Map --><div style="height:100%; width: 100%;" wire:ignore> 
-    <div id="map-canvas"></div>
-  </div> --}}
+                                                <div id="map-canvas"></div>
+                                                </div> --}}
                                                 {{-- {{ str_replace(' ', '+', $booking->physicalAddress->address_line1 . ' ' . $booking->physicalAddress->address_line2 . ' ' . $booking->physicalAddress->city . ' ' . $booking->physicalAddress->state . ' ' . $booking->physicalAddress->country) }} --}}
                                                 <iframe
                                                     {{-- src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d96779.59535015929!2d-74.00126600000002!3d40.710039!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1676478925644!5m2!1sen!2sus" --}}

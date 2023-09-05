@@ -47,6 +47,8 @@ class CheckIn extends Component
 
             $this->hours =      date_format(date_create($this->assignment->booking_start_at), 'H');
             $this->mins =      date_format(date_create($this->assignment->booking_start_at), 'i');
+            // if(isset($this->checkin_details['customize_form_id'])
+            //     $form =
             // dd($this->booking_service->service);
         }
     }

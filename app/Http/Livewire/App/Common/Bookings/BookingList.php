@@ -18,13 +18,13 @@ class BookingList extends Component
 	public $bookingType = 'past';
 	public $showBookingDetails;
 	public $bookingSection;
-	public  $limit = 10, $counter, $currentServiceId, $panelType = 1;
+	public  $limit = 10, $counter, $ad_counter =0, $currentServiceId, $panelType = 1;
 	public  $booking_id = 0, $provider_id = null;
 	public $bookingNumber = '';
 
 
 
-	protected $listeners = ['showList' => 'resetForm', 'updateVal', 'showConfirmation', 'openAssignProvidersPanel', 'assignServiceProviders'];
+	protected $listeners = ['showList' => 'resetForm', 'updateVal', 'showConfirmation', 'openAssignProvidersPanel', 'assignServiceProviders', 'setAssignmentDetails'];
 	public $serviceTypes = [
 		'1' => ['class' => 'inperson-rate', 'postfix' => '', 'title' => 'In-Person'],
 		'2' => ['class' => 'virtual-rate', 'postfix' => '_v', 'title' => 'Virtual'],
@@ -192,13 +192,16 @@ class BookingList extends Component
 		// 	]);
 		// }
 		// $query->groupBy('bookings.id','bookings.booking_number', 'booking_title');
-		$data = $query->paginate($this->limit);
 
+		$data = $query->paginate($this->limit);
+		// dd($data);
 		// setting values for booking and its services
 		foreach ($data as $row) {
 			if ($row->service_id == null) {
 				// prev system compatability
 
+				// UC - 1
+				// booking -> booking_services -> booking_providers ( both mapped to booking_id)
 				$booking_service = count($row->booking_services) ? $row->booking_services->first() : null;
 				$row->service_id = $booking_service ? $booking_service->services : null;
 				$row->service_type = $booking_service ? $booking_service->service_types : null;
@@ -206,10 +209,16 @@ class BookingList extends Component
 				$row->service_name = $booking_service ? ($booking_service->service ? $booking_service->service->name : null) : null;
 				$row->booking_service_id = $booking_service ? $booking_service->id : null;
 			} else {
+				// UC -2 ( current system )
+				// booking -> booking services -> booking providers (mapped to)=>  booking_services_id
+
 				$booking_service = $row->booking_services ? $row->booking_services->where('id', $row->booking_service_id)->first() : null;
 				$row->accommodation_name = $booking_service ? $booking_service->accommodation->name : null;
 				$row->service_name = $booking_service ?  ($booking_service->service ? $booking_service->service->name : null) : null;
 			}
+			$row->meeting_link = $booking_service ? $booking_service->meeting_link : null;
+			$row->meeting_phone = $booking_service ? $booking_service->meeting_phone : null;
+
 			$row->display_running_late = false;
 			$row->display_check_in = false;
 
@@ -227,11 +236,7 @@ class BookingList extends Component
 			}
 		}
 
-		// UC -1
-		// booking -> booking services -> booking providers_ booking_services_id
 
-		// UC - 2
-		// booking -> booking_services -> booking_providers ( map to booking_id)
 		return view('livewire.app.common.bookings.' . $base . 'booking-list', ['booking_assignments' => $data]);
 	}
 
@@ -285,7 +290,22 @@ class BookingList extends Component
 		$this->bookingNumber = $bookingNumber;
 		$this->emit('setCheckoutBookingId', $booking_id);
 	}
+	public function setAssignmentDetails($booking_id, $bookingNumber = null)
+	{
+		if ($bookingNumber)
+			$this->bookingNumber = $bookingNumber;
+		// $this->emit('setAssignmentDetails', $booking_id);
+		if ($this->ad_counter == 0) {
+			$this->booking_id = 0;
+			$this->dispatchBrowserEvent('open-assignment-details', ['booking_id' => $booking_id]);
+			$this->ad_counter = 1;
+		} else {
+			$this->booking_id = $booking_id;
+			$this->emit('setBookingId', $booking_id);
 
+			$this->ad_counter = 0;
+		}
+	}
 
 
 	public function showConfirmation($message = "")

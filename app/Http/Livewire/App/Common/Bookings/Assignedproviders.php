@@ -13,7 +13,7 @@ use Livewire\WithPagination;
 class Assignedproviders extends Component
 {
     use WithPagination;
-    public $booking_id, $service_id = null, $index = 1;
+    public $booking_id, $service_id = null, $index = 1, $isProviderPanel=false;
     public $limitReached = true, $inv_exists = false;
 
 
@@ -56,6 +56,8 @@ class Assignedproviders extends Component
         $query = BookingProvider::query();
         $query->where(['booking_id' => $this->booking_id]);
         $query->join('users', 'booking_providers.provider_id', '=', 'users.id');
+        $query->join('user_details', 'user_details.user_id', '=', 'users.id');
+        $query->select(['booking_providers.*','users.name','users.email','user_details.profile_pic']);
         if ($booking_service)
             $query->where('booking_service_id', $booking_service->id);
 
