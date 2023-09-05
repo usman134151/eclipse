@@ -1,4 +1,4 @@
-<div x-data="{ offcanvasOpenCheckIn: false, offcanvasOpenCheckOut: false, assignmentDetails: false, addReimbursement: false, step: 1 }">
+<div x-data="{addDocuments: false, offcanvasOpenCheckIn: false, offcanvasOpenCheckOut: false, assignmentDetails: false, addReimbursement: false, step: 1 }">
     <div id="loader-section" class="loader-section" wire:loading>
         <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
             <div class="spinner-border" role="status" aria-live="polite">
@@ -6,9 +6,6 @@
             </div>
         </div>
     </div>
-    @if ($showBookingDetails)
-        @livewire('app.common.bookings.booking-details')
-    @else
         <div class="card">
             <div class="card-body">
 
@@ -500,15 +497,17 @@
             </div>
         </div>
 
-    @endif
     @include('panels.provider.check-in')
     @include('panels.provider.check-out')
     @include('panels.common.assignment-details')
+    @include('panels.common.add-documents', ['booking_id' => $booking_id])
+
     @include('panels.provider.add-reimbursement')
     @include('modals.common.assignment-invitation')
     @include('modals.common.confirm-invitation')
     @include('modals.common.running-late')
     @include('modals.return-assignment')
+
 
 </div>
 @push('scripts')

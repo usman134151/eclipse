@@ -301,6 +301,8 @@ class BookingList extends Component
 			$this->ad_counter = 1;
 		} else {
 			$this->booking_id = $booking_id;
+			$this->emit('setBookingId', $booking_id);
+
 			$this->ad_counter = 0;
 		}
 	}
