@@ -9,7 +9,7 @@
                 <div class="col-md-6 col-12">
                     <div class="mb-4">
                         <label class="form-label" for="first-name-column">
-                        Document Title</label>
+                            Document Title</label>
                         <input wire:model.defer="document.document_title" type="text" id="first-name-column"
                             class="form-control" placeholder="Document Title" name="document-column" />
                         @error('document.document_title')
@@ -123,14 +123,14 @@
 
                 <input wire:model.defer="document.permissions.attach_to_provider_confirmation" class="form-check-input"
                     type="checkbox">
-                <p>Attach to Provider Confirmation</p>
+                <p>Attach to Provider</p>
 
             </div>
             <div class="col-lg-8 gap-2 d-flex form-check">
 
                 <input class="form-check-input" type="checkbox"
                     wire:model.defer="document.permissions.attach_to_customer_confirmation">
-                <p>Attach to Customer Confirmation</p>
+                <p>Attach to Customer</p>
 
             </div>
             <div class="col-lg-8 d-flex">
@@ -190,14 +190,16 @@
         </div>
         <div class="col-lg-8 gap-2 d-flex form-check">
 
-
+            
             <input class="form-check-input" wire:model.defe="request_from_user" type="checkbox">
             <label class="form-label">
                 <h3>Request from User</h3>
             </label>
+        </div>
 
+        <div class="col-md-8 col-12  {{ $request_from_user ? '' : 'hidden' }}">
 
-            <div class="row {{ $request_from_user ? '' : 'hidden' }}">
+            <div class="row">
                 <div class="col-lg-12 mb-3 ">
 
                     <label class="form-label">Who would you like to request this information from?</label>
