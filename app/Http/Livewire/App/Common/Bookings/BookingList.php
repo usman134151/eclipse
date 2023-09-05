@@ -18,13 +18,13 @@ class BookingList extends Component
 	public $bookingType = 'past';
 	public $showBookingDetails;
 	public $bookingSection;
-	public  $limit = 10, $counter, $currentServiceId, $panelType = 1;
+	public  $limit = 10, $counter,$ad_counter, $currentServiceId, $panelType = 1;
 	public  $booking_id = 0, $provider_id = null;
 	public $bookingNumber = '';
 
 
 
-	protected $listeners = ['showList' => 'resetForm', 'updateVal', 'showConfirmation', 'openAssignProvidersPanel', 'assignServiceProviders'];
+	protected $listeners = ['showList' => 'resetForm', 'updateVal', 'showConfirmation', 'openAssignProvidersPanel', 'assignServiceProviders', 'setAssignmentDetails'];
 	public $serviceTypes = [
 		'1' => ['class' => 'inperson-rate', 'postfix' => '', 'title' => 'In-Person'],
 		'2' => ['class' => 'virtual-rate', 'postfix' => '_v', 'title' => 'Virtual'],
@@ -289,11 +289,19 @@ class BookingList extends Component
 		$this->bookingNumber = $bookingNumber;
 		$this->emit('setCheckoutBookingId', $booking_id);
 	}
-	public function setAssignmentDetails($booking_id,$bookingNumber)
+	public function setAssignmentDetails($booking_id,$bookingNumber=null)
 	{
-		$this->booking_id = $booking_id;
+		if($bookingNumber)
 		$this->bookingNumber = $bookingNumber;
-		$this->emit('setDetailsBookingId', $booking_id);
+		// $this->emit('setAssignmentDetails', $booking_id);
+		if ($this->ad_counter == 0) {
+			$this->booking_id = 0;
+			$this->dispatchBrowserEvent('open-assignment-details', ['booking_id' => $booking_id]);
+			$this->ad_counter = 1;
+		} else {
+			$this->booking_id = $booking_id;
+			$this->ad_counter = 0;
+		}
 	}
 
 

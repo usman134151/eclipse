@@ -84,7 +84,7 @@
                             <label class="col-form-label">Assignment No:</label>
                         </div>
                         <div class="col-lg-7 align-self-center text-end">
-                            <div>101929</div>
+                            <div>{{$booking->booking_number}}</div>
                         </div>
                     </div>
                 </div>
