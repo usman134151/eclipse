@@ -18,7 +18,7 @@ class BookingList extends Component
 	public $bookingType = 'past';
 	public $showBookingDetails;
 	public $bookingSection;
-	public  $limit = 10, $counter, $ad_counter, $currentServiceId, $panelType = 1;
+	public  $limit = 10, $counter, $ad_counter =0, $currentServiceId, $panelType = 1;
 	public  $booking_id = 0, $provider_id = null;
 	public $bookingNumber = '';
 

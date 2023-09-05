@@ -64,7 +64,7 @@
                                                             </div>
                                                         </td>
                                                         <td @click="assignmentDetails = true"
-                                                            wire:click="setAssignmentDetails({{ $booking['id'] }},{{ $booking['booking_number'] }})">
+                                                            wire:click="setAssignmentDetails({{ $booking['id'] }},'{{ $booking['booking_number'] }}')">
                                                             <a
                                                                 href="#">{{ $booking['booking_number'] ? $booking['booking_number'] : '' }}</a>
                                                             <div>

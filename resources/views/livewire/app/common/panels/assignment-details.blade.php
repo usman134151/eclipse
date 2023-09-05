@@ -68,7 +68,10 @@
                         </button>
                         <button type="button"
                             class="btn btn-primary rounded text-sm d-inline-flex gap-1 align-items-center px-3"
-                            data-bs-toggle="modal" data-bs-target="#runningLateModal">
+                            data-bs-toggle="modal" data-bs-target="#runningLateModal"
+                                wire:click="$emit('openRunningLateModal',{{ $booking['id'] }}, {{ $booking['service_id'] }})"
+                            
+                            >
                             <svg aria-label="Running Late" width="25" height="25" viewBox="0 0 25 25"
                                 fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0.833008 6.63281H1.66668V7.46183H0.833008V6.63281Z" fill="white" />
