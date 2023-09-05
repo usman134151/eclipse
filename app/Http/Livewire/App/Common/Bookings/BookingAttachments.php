@@ -8,21 +8,24 @@ use Livewire\Component;
 
 class BookingAttachments extends Component
 {
-    public $showForm, $booking_id=0, $documents=[];
-    protected $listeners = ['showList' => 'resetForm', 'showConfirmation'=>'render'];
+    public $showForm, $booking_id = 0, $documents = [], $isProviderPanel = false;
+    protected $listeners = ['showList' => 'resetForm', 'showConfirmation' => 'render'];
 
     public function render()
     {
         if ($this->booking_id) {
-            $this->documents = BookingDocument::where('booking_id', $this->booking_id)->get();
+            $query = BookingDocument::query();
+            $query->where('booking_id', $this->booking_id);
+            // if ($this->isProviderPanel)
+            //     $query->whereJsonContains('permission', $this->tag_names);
+
+            $this->documents = $query->get();
         }
         return view('livewire.app.common.bookings.booking-attachments');
     }
 
     public function mount()
     {
-       
-       
     }
 
     public function isImage($extension)
@@ -40,17 +43,16 @@ class BookingAttachments extends Component
         $fileService = new UploadFileService();
         $fileService->deleteFile($path);
         BookingDocument::where('id', $file_record_id)->delete();
-        $this->emit('showConfirmation','Document has been successfully deleted');
+        $this->emit('showConfirmation', 'Document has been successfully deleted');
     }
 
 
     function showForm()
-    {     
-       $this->showForm=true;
+    {
+        $this->showForm = true;
     }
     public function resetForm()
     {
-        $this->showForm=false;
+        $this->showForm = false;
     }
-
 }

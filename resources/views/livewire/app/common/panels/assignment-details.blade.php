@@ -803,7 +803,8 @@
                             <span>Add Reimbursement</span>
                         </button>
                     </div>
-                    <div class="row">
+                    @livewire('app.common.bookings.booking-attachments',['booking_id' => $booking->id, 'isProviderPanel'=>true])
+                    {{-- <div class="row">
                         <div class="col-lg-12 mb-3">
                             <div class="row">
                                 <div class="col-lg-12">
@@ -839,7 +840,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="row">

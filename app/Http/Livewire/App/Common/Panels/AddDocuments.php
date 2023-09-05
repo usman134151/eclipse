@@ -48,8 +48,8 @@ class AddDocuments extends Component
             $this->document['document_name'] = $fileService->saveFile('bookings/' . $this->booking_id , $this->file);
             $this->document['document_type']= $this->file->getClientOriginalExtension();
         }
-
-        $this->document['permissions']=json_encode($this->permissions);
+        $this->document['permissions']['customer_permissions'] = $this->permissions; 
+        $this->document['permissions']=json_encode($this->document['permissions']);
         $this->document['booking_id']=$this->booking_id;
         BookingDocument::create($this->document);
         
