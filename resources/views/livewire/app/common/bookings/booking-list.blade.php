@@ -201,9 +201,33 @@
 
                                                                         </div>
                                                                         @if ($booking->service_type == 1)
-                                                                            <div>Address</div>
-                                                                        @else
-                                                                            <div>Meeting link</div>
+                                                                            <div>
+                                                                                @if ($booking->physicalAddress)
+                                                                                    <a target="_blank"
+                                                                                        href="https://www.google.com/maps/search/?api=1&query={{ str_replace(' ', '+', $booking->physicalAddress->address_line1 . ' ' . $booking->physicalAddress->address_line2 . ', ' . $booking->physicalAddress->city . ' ' . $booking->physicalAddress->state . ' ' . $booking->physicalAddress->country) }}">
+                                                                                        {{ $booking->physicalAddress->address_line1 . ', ' . $booking->physicalAddress->address_line2 . ', ' . $booking->physicalAddress->city . ', ' . $booking->physicalAddress->country }}
+                                                                                    </a>
+                                                                                @else
+                                                                                    N/A
+                                                                                @endif
+                                                                            </div>
+                                                                        @elseif ($booking->service_type == 2 || $booking->service_type == 5)
+                                                                            <div>
+                                                                                @if ($booking['meeting_link'])
+                                                                                    {{$booking['meeting_link']}}
+                                                                                @else
+                                                                                    N/A
+                                                                                @endif
+                                                                            </div>
+                                                                        @elseif ($booking->service_type == 4)
+                                                                            <div>
+                                                                                @if ($booking['meeting_phone'])
+                                                                                    {{$booking['meeting_phone']}}
+                                                                                @else
+                                                                                    N/A
+                                                                                @endif
+                                                                            </div>
+                                                                        
                                                                         @endif
                                                                     @endif
                                                                 </td>
@@ -320,7 +344,7 @@
                                                                                         {{ $bookingType == 'Unassigned' ? 'Assign Providers' : 'Manage Assigned Providers ' }}
                                                                                     </a>
                                                                                 @endif
-                                                                                 @if ( $bookingType == 'Invitations')
+                                                                                @if ($bookingType == 'Invitations')
                                                                                     <a href="javascript:void(0)"
                                                                                         aria-label="Invite Providers"
                                                                                         title="Invite Providers"

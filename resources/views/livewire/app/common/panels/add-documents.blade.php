@@ -6,10 +6,10 @@
 
             <div class="col-lg-12 d-flex gap-2">
 
-                <div class="col-md-6 col-12">
+                <div class="col-md-8 col-12">
                     <div class="mb-4">
                         <label class="form-label" for="first-name-column">
-                        Document Title</label>
+                            Document Title</label>
                         <input wire:model.defer="document.document_title" type="text" id="first-name-column"
                             class="form-control" placeholder="Document Title" name="document-column" />
                         @error('document.document_title')
@@ -118,162 +118,168 @@
 
 
             </div>
+            <div class="{{ $isProviderPanel ? 'hidden' : '' }}">
+                <div class="col-lg-8 gap-2 d-flex form-check">
 
-            <div class="col-lg-8 gap-2 d-flex form-check">
-
-                <input wire:model.defer="document.permissions.attach_to_provider_confirmation" class="form-check-input"
-                    type="checkbox">
-                <p>Attach to Provider Confirmation</p>
-
-            </div>
-            <div class="col-lg-8 gap-2 d-flex form-check">
-
-                <input class="form-check-input" type="checkbox"
-                    wire:model.defer="document.permissions.attach_to_customer_confirmation">
-                <p>Attach to Customer Confirmation</p>
-
-            </div>
-            <div class="col-lg-8 d-flex">
-
-                <h3>Permissions </h3>
-                <p>(who can see that uploaded documents)</p>
-
-            </div>
-            <div class="row px-5">
-
-                <div class="col-lg-3 gap-2 d-flex form-check">
-
-                    <input wire:click="selectAllUsers" class="form-check-input" type="checkbox"
-                        wire:model.defer="selectAll">
-
-                    <p>All Users</p>
+                    <input wire:model.defer="document.permissions.attach_to_provider_confirmation"
+                        class="form-check-input" type="checkbox">
+                    <p>Attach to Provider</p>
 
                 </div>
-                <div class="col-lg-3 gap-2 d-flex form-check">
+                <div class="col-lg-8 gap-2 d-flex form-check">
 
-                    <input class="form-check-input" type="checkbox" wire:model.defer="permissions" value="2">
-
-                    <p>Service Providers</p>
-
-                </div>
-                <div class="col-lg-3 gap-2 d-flex form-check">
-                    <input class="form-check-input" type="checkbox" wire:model.defer="permissions" value="4">
-
-                    <p>Customers</p>
-                </div>
-                <div class="col-lg-3 gap-2 d-flex px-4 form-check">
-                    <input class="form-check-input" type="checkbox" wire:model.defer="permissions" value="6">
-
-                    <p>Requester</p>
-                </div>
-                <div class="col-lg-3 gap-2 d-flex px-4 form-check">
-                    <input class="form-check-input" type="checkbox" wire:model.defer="permissions" value="5">
-
-                    <p>Supervisor</p>
-                </div>
-                <div class="col-lg-3 gap-2 d-flex px-4 form-check">
-                    <input class="form-check-input" type="checkbox" wire:model.defer="permissions" value="9">
-
-                    <p>Billing Manager</p>
-                </div>
-                <div class="col-lg-3 gap-2 d-flex px-4 form-check">
-                    <input class="form-check-input" type="checkbox" wire:model.defer="permissions" value="7">
-
-                    <p>Service Consumers</p>
-                </div>
-                <div class="col-lg-3 gap-2 d-flex px-4 form-check">
-                    <input class="form-check-input" type="checkbox" wire:model.defer="permissions" value="8">
-
-                    <p>Participants</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-8 gap-2 d-flex form-check">
-
-
-            <input class="form-check-input" wire:model.defe="request_from_user" type="checkbox">
-            <label class="form-label">
-                <h3>Request from User</h3>
-            </label>
-
-
-            <div class="row {{ $request_from_user ? '' : 'hidden' }}">
-                <div class="col-lg-12 mb-3 ">
-
-                    <label class="form-label">Who would you like to request this information from?</label>
-                    <div class="col-lg-8">
-                        <select class="form-select">
-                            <option>Select</option>
-                        </select>
-                    </div>
+                    <input class="form-check-input" type="checkbox"
+                        wire:model.defer="document.permissions.attach_to_customer_confirmation">
+                    <p>Attach to Customer</p>
 
                 </div>
-                <div class="col-lg-12">
-                    <label class="form-label">When should they first be notified?</label>
-                    <div class="col-lg-8 d-flex">
-                        <div class="col-lg-2 d-flex gap-1">
-                            <a href="">
-                                <input class="form-check-input" type="checkbox" value="">
-                            </a>
-                            <p>Now</p>
-                        </div>
-                        <div class="col-lg-2 d-flex gap-1">
-                            <a href="">
-                                <input class="form-check-input" type="checkbox" value="">
-                            </a>
-                            <p>Later</p>
-                        </div>
+                <div class="col-lg-8 d-flex">
+
+                    <h3>Permissions </h3>
+                    <p>(who can see that uploaded documents)</p>
+
+                </div>
+                <div class="row px-5">
+
+                    <div class="col-lg-3 gap-2 d-flex form-check">
+
+                        <input wire:click="selectAllUsers" class="form-check-input" type="checkbox"
+                            wire:model.defer="selectAll">
+
+                        <p>All Users</p>
 
                     </div>
-                    <p>Notify before the service start-time</p>
-                    <div class="col-lg-2 d-flex gap-1 mb-5 ">
-                        <input class="form-control text-center" type="text" placeholder="2">
-                        <p class="mt-3">Day(s)</p>
+                    <div class="col-lg-3 gap-2 d-flex form-check">
+
+                        <input class="form-check-input" type="checkbox" wire:model.defer="permissions" value="2">
+
+                        <p>Service Providers</p>
+
+                    </div>
+                    <div class="col-lg-3 gap-2 d-flex form-check">
+                        <input class="form-check-input" type="checkbox" wire:model.defer="permissions" value="4">
+
+                        <p>Customers</p>
+                    </div>
+                    <div class="col-lg-3 gap-2 d-flex px-4 form-check">
+                        <input class="form-check-input" type="checkbox" wire:model.defer="permissions" value="6">
+
+                        <p>Requester</p>
+                    </div>
+                    <div class="col-lg-3 gap-2 d-flex px-4 form-check">
+                        <input class="form-check-input" type="checkbox" wire:model.defer="permissions" value="5">
+
+                        <p>Supervisor</p>
+                    </div>
+                    <div class="col-lg-3 gap-2 d-flex px-4 form-check">
+                        <input class="form-check-input" type="checkbox" wire:model.defer="permissions" value="9">
+
+                        <p>Billing Manager</p>
+                    </div>
+                    <div class="col-lg-3 gap-2 d-flex px-4 form-check">
+                        <input class="form-check-input" type="checkbox" wire:model.defer="permissions" value="7">
+
+                        <p>Service Consumers</p>
+                    </div>
+                    <div class="col-lg-3 gap-2 d-flex px-4 form-check">
+                        <input class="form-check-input" type="checkbox" wire:model.defer="permissions"
+                            value="8">
+
+                        <p>Participants</p>
                     </div>
                 </div>
-                <div class="d-md-flex align-items-center mb-4 gap-3 gap-md-0">
-                    <div class="form-check form-switch form-switch-column mb-lg-0">
-                        <input class="form-check-input" wire:model="notification.repeat_notification" type="checkbox"
-                            role="switch" id="">
-                    </div>
-                    <h6 class="mb-lg-0">Repeat Notification</h6>
+                <div class="col-lg-8 gap-2 d-flex form-check">
+
+
+                    <input class="form-check-input" wire:model.defe="request_from_user" type="checkbox">
+                    <label class="form-label">
+                        <h3>Request from User</h3>
+                    </label>
                 </div>
-                <div class="{{ $notification['repeat_notification'] ? '' : 'hidden' }}">
-                    <div class="col-lg-12">
-                        <label class="form-label">When should they first be notified?</label>
-                        <div class="col-lg-8 d-flex gap-4">
-                            <div class="col-lg-2 d-flex gap-2">
-                                <a href="">
-                                    <input class="form-check-input" type="radio" value="">
-                                </a>
-                                <p>Time(s)</p>
+
+                <div class="col-md-8 col-12  {{ $request_from_user ? '' : 'hidden' }}">
+
+                    <div class="row">
+                        <div class="col-lg-12 mb-3 ">
+
+                            <label class="form-label">Who would you like to request this information from?</label>
+                            <div class="col-lg-8">
+                                <select class="form-select">
+                                    <option>Select</option>
+                                </select>
                             </div>
-                            <div class="col-lg-2 d-flex gap-2">
-                                <a href="">
-                                    <input class="form-check-input" type="radio" value="">
-                                </a>
-                                <p>Day(s)</p>
+
+                        </div>
+                        <div class="col-lg-12">
+                            <label class="form-label">When should they first be notified?</label>
+                            <div class="col-lg-8 d-flex">
+                                <div class="col-lg-2 d-flex gap-1">
+                                    <a href="">
+                                        <input class="form-check-input" type="checkbox" value="">
+                                    </a>
+                                    <p>Now</p>
+                                </div>
+                                <div class="col-lg-2 d-flex gap-1">
+                                    <a href="">
+                                        <input class="form-check-input" type="checkbox" value="">
+                                    </a>
+                                    <p>Later</p>
+                                </div>
+
+                            </div>
+                            <p>Notify before the service start-time</p>
+                            <div class="col-lg-2 d-flex gap-1 mb-5 ">
+                                <input class="form-control text-center" type="text" placeholder="2">
+                                <p class="mt-3">Day(s)</p>
                             </div>
                         </div>
-                    </div>
+                        <div class="d-md-flex align-items-center mb-4 gap-3 gap-md-0">
+                            <div class="form-check form-switch form-switch-column mb-lg-0">
+                                <input class="form-check-input" wire:model="notification.repeat_notification"
+                                    type="checkbox" role="switch" id="">
+                            </div>
+                            <h6 class="mb-lg-0">Repeat Notification</h6>
+                        </div>
+                        <div class="{{ $notification['repeat_notification'] ? '' : 'hidden' }}">
+                            <div class="col-lg-12">
+                                <label class="form-label">When should they first be notified?</label>
+                                <div class="col-lg-8 d-flex gap-4">
+                                    <div class="col-lg-2 d-flex gap-2">
+                                        <a href="">
+                                            <input class="form-check-input" type="radio" value="">
+                                        </a>
+                                        <p>Time(s)</p>
+                                    </div>
+                                    <div class="col-lg-2 d-flex gap-2">
+                                        <a href="">
+                                            <input class="form-check-input" type="radio" value="">
+                                        </a>
+                                        <p>Day(s)</p>
+                                    </div>
+                                </div>
+                            </div>
 
 
-                    <div class="col-lg-2 gap-1 mb-4">
-                        <input class="form-control text-center" type="text" id="before-service-start-time"
-                            placeholder="10">
-                        <label class="form-label form-label-sm text-sm" for="before-service-start-time">Before the
-                            service
-                            start-time</label>
+                            <div class="col-lg-2 gap-1 mb-4">
+                                <input class="form-control text-center" type="text" id="before-service-start-time"
+                                    placeholder="10">
+                                <label class="form-label form-label-sm text-sm" for="before-service-start-time">Before
+                                    the
+                                    service
+                                    start-time</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 gap-1">
+                            <label class="form-label" for="message-to-requestee">Message to Requestee</label>
+                            <textarea class="form-control" cols="30" rows="5" id="message-to-requestee"></textarea>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-12 gap-1">
-                    <label class="form-label" for="message-to-requestee">Message to Requestee</label>
-                    <textarea class="form-control" cols="30" rows="5" id="message-to-requestee"></textarea>
                 </div>
             </div>
+
         </div>
         {{-- notes --}}
-        <div class="col-md-8 col-12">
+        <div class="col-md-10 col-12">
             <div class="mb-4">
                 <label class="form-label" for="first-name-column">Notes</label>
                 <textarea wire:model.defer="document.description" class="form-control" name="" id="" cols="35"
