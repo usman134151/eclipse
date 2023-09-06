@@ -47,7 +47,12 @@ class AssignmentDetails extends Component
         foreach ($this->data['booking_services'] as $key => $service) {
             if ($service['attendees'])
                 $this->data['booking_services'][$key]['participants']
-                    = User::whereIn('id', explode(',', $service['attendees']))->get('name', 'id');;
+                    = User::whereIn('id', explode(',', $service['attendees']))->get('name', 'id');
+            if ($service['meetings']) {
+
+                $this->data['booking_services'][$key]['meeting_details'] = json_decode($service['meetings'], true)[0];
+            }
+
         }
 
 

@@ -69,9 +69,7 @@
                         <button type="button"
                             class="btn btn-primary rounded text-sm d-inline-flex gap-1 align-items-center px-3"
                             data-bs-toggle="modal" data-bs-target="#runningLateModal"
-                                wire:click="$emit('openRunningLateModal',{{ $booking['id'] }}, {{ $booking['service_id'] }})"
-                            
-                            >
+                            wire:click="$emit('openRunningLateModal',{{ $booking['id'] }}, {{ $booking['service_id'] }})">
                             <svg aria-label="Running Late" width="25" height="25" viewBox="0 0 25 25"
                                 fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0.833008 6.63281H1.66668V7.46183H0.833008V6.63281Z" fill="white" />
@@ -527,7 +525,11 @@
                                         <div class="col-lg-7 align-self-center">
                                             <div class="d-flex align-items-center gap-2">
                                                 <div class="font-family-tertiary">
-                                                    {{-- Spoken Language Interpreting Services --}}
+                                                    @if (isset($service['meeting_details']))
+                                                        {{ $service['meeting_details']['meeting_name'] ? $service['meeting_details']['meeting_name'] : 'N/A' }}
+                                                    @else
+                                                        N/A
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
@@ -541,7 +543,11 @@
                                         <div class="col-lg-7 align-self-center">
                                             <div class="d-flex align-items-center gap-2">
                                                 <div class="font-family-tertiary text-primary">
-                                                    {{ $service['meeting_link'] ? $service['meeting_link'] : 'N/A' }}
+                                                    @if (isset($service['meeting_details']))
+                                                        N/A
+                                                    @else
+                                                        {{ $service['meeting_link'] ? $service['meeting_link'] : 'N/A' }}
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
@@ -556,8 +562,11 @@
                                         </div>
                                         <div class="col-lg-7 align-self-center">
                                             <div class="font-family-tertiary">
-                                                {{ $service['meeting_phone'] }}
-
+                                                @if (isset($service['meeting_details']))
+                                                    {{ $service['meeting_details']['phone_number'] ? $service['meeting_details']['phone_number'] : 'N/A' }}
+                                                @else
+                                                    {{ $service['meeting_phone'] ? $service['meeting_phone'] : 'N/A' }}
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -570,7 +579,13 @@
                                             </label>
                                         </div>
                                         <div class="col-lg-7 align-self-center">
-                                            <div class="font-family-tertiary">{{ $service['meeting_passcode'] }}</div>
+                                            <div class="font-family-tertiary">
+                                                @if (isset($service['meeting_details']))
+                                                    {{ $service['meeting_details']['access_code'] ? $service['meeting_details']['access_code'] : 'N/A' }}
+                                                @else
+                                                    {{ $service['access_code'] ? $service['access_code'] : 'N/A' }}
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -826,7 +841,7 @@
             aria-labelledby="provider-details-tab" :class="{ 'active show': step == 4 }" x-show="step == 4">
             @foreach ($data['booking_services'] as $index => $service)
                 <div class="mb-5">
-                    @livewire('app.common.bookings.assignedproviders', ['index' => $index + 1, 'service_id' => $service['service_id'], 'booking_id' => $booking->id, 'isProviderPanel'=>true], key(time()))
+                    @livewire('app.common.bookings.assignedproviders', ['index' => $index + 1, 'service_id' => $service['service_id'], 'booking_id' => $booking->id, 'isProviderPanel' => true], key(time()))
 
                 </div>
             @endforeach
