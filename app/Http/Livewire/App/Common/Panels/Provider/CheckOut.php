@@ -8,8 +8,8 @@ use Livewire\Component;
 class CheckOut extends Component
 {
     public $showForm;
-    protected $listeners = ['showList' => 'resetForm','setCheckoutBookingId'=>'setBookingId'];
-    public $booking_id = 0, $assignment = null;
+    protected $listeners = ['showList' => 'resetForm'];
+    public $booking_id = 0, $assignment = null,$step=1;
 
 
     public function render()
@@ -17,13 +17,8 @@ class CheckOut extends Component
         return view('livewire.app.common.panels.provider.check-out');
     }
 
-    //set booking id when ever panel is opened
-    public function setBookingId($booking_id)
-    {
-        $this->booking_id = $booking_id;
-
-        if ($booking_id)
-            $this->assignment = Booking::where('id', $this->booking_id)->first();
+    public function save(){
+        $this->dispatchBrowserEvent('close-check-out');
     }
 
     public function mount()
@@ -31,6 +26,12 @@ class CheckOut extends Component
         if ($this->booking_id)
             $this->assignment = Booking::where('id', $this->booking_id)->first();
     
+    }
+
+    public function setStep($step){
+        // dd($this->step, $step);
+
+        $this->step=$step;
     }
 
     function showForm()

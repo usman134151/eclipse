@@ -26,7 +26,8 @@ class BookingList extends Component
 
 	protected $listeners = [
 		'showList' => 'resetForm', 'updateVal', 'showConfirmation',
-		'openAssignProvidersPanel', 'assignServiceProviders', 'setAssignmentDetails', 'showCheckInPanel'
+		'openAssignProvidersPanel', 'assignServiceProviders', 'setAssignmentDetails', 'showCheckInPanel',
+		'showCheckOutPanel'
 	];
 	public $serviceTypes = [
 		'1' => ['class' => 'inperson-rate', 'postfix' => '', 'title' => 'In-Person'],
@@ -301,11 +302,18 @@ class BookingList extends Component
 			$this->ci_counter = 0;
 		}
 	}
-	public function showCheckOutPanel($booking_id, $bookingNumber)
+	public function showCheckOutPanel($booking_id, $bookingNumber=null)
 	{
-		$this->booking_id = $booking_id;
-		$this->bookingNumber = $bookingNumber;
-		$this->emit('setCheckoutBookingId', $booking_id);
+		if ($bookingNumber)
+			$this->bookingNumber = $bookingNumber;
+		if ($this->co_counter == 0) {
+			$this->booking_id = 0;
+			$this->dispatchBrowserEvent('open-check-out', ['booking_id' => $booking_id]);
+			$this->co_counter = 1;
+		} else {
+			$this->booking_id = $booking_id;
+			$this->co_counter = 0;
+		}
 	}
 	public function setAssignmentDetails($booking_id, $bookingNumber = null)
 	{
