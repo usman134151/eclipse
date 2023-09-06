@@ -46,6 +46,7 @@ class CheckIn extends Component
     public function save()
     {
         $this->validate();
+        $this->emit('saveCustomForm');
         $fileService = new UploadFileService();
         if ($this->provider_signature)
             $p_sign = $fileService->saveFile('bookings/' . $this->booking_id, $this->provider_signature);
