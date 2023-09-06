@@ -170,7 +170,6 @@ const DECLINED = '2';
 
     function getSpecializationsNameNew($ids = array())
     {
-        $idd = json_decode($ids);
 
         $specialization = Specialization::select(DB::raw('GROUP_CONCAT(concat(name) SEPARATOR ", ") as combinename'))
             ->wherein('id', $idd)

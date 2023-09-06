@@ -937,9 +937,9 @@
                                         <div class="d-flex flex-column gap-5">
                                             @foreach($bookingCharges['services'] as $index=>$service)
                                                         {{$service['accommodation']}}
-                                                  {{$service['allServices']['services']}}  
-                                                  {{$service['allServices']['time']}}   
-                                                  {{$service['allServices']['total_billable_time']}} 
+                                                  {{$service['allServices'][0]['services']}}  
+                                                  {{$service['allServices'][0]['time']}}   
+                                                  {{$service['allServices'][0]['total_billable_time']}} 
                                                   Service Rate: {{$service['bookingTotal']['StandardRate']}}    
                                                   Business Hours Rate: {{$service['bookingTotal']['ServiceCharge']['after_hour_price']}}
                                                     After Hours Rate: {{$service['bookingTotal']['StandardRate']}}
