@@ -121,16 +121,16 @@
             <div class="{{ $isProviderPanel ? 'hidden' : '' }}">
                 <div class="col-lg-8 gap-2 d-flex form-check">
 
-                    <input wire:model.defer="document.permissions.attach_to_provider_confirmation"
+                    <input wire:model.defer="document.permissions.attach_to_provider_confirmation" disabled
                         class="form-check-input" type="checkbox">
-                    <p>Attach to Provider</p>
+                    <p>Attach to Provider Confirmation <small>(coming soon)</small> </p>
 
                 </div>
                 <div class="col-lg-8 gap-2 d-flex form-check">
 
-                    <input class="form-check-input" type="checkbox"
+                    <input class="form-check-input" type="checkbox" disabled
                         wire:model.defer="document.permissions.attach_to_customer_confirmation">
-                    <p>Attach to Customer</p>
+                    <p>Attach to Customer Confirmation <small>(coming soon)</small></p>
 
                 </div>
                 <div class="col-lg-8 d-flex">

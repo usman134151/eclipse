@@ -36,7 +36,7 @@ class AssignmentDetails extends Component
             ->get([
                 'booking_services.id', 'booking_services.service_types', 'booking_services.attendees',
                 'booking_services.service_consumer',
-                'booking_services.meeting_link',
+                'booking_services.meeting_link', 'booking_services.meetings',
                 'booking_services.attendees', 'booking_services.service_consumer', 'booking_services.specialization', 'booking_services.meeting_phone',
                 'booking_services.meeting_passcode', 'booking_services.provider_count', 'booking_services.created_at',
                 'booking_services.meeting_link', 'service_categories.name as service_name', 'service_categories.id as service_id',
@@ -48,7 +48,7 @@ class AssignmentDetails extends Component
             if ($service['attendees'])
                 $this->data['booking_services'][$key]['participants']
                     = User::whereIn('id', explode(',', $service['attendees']))->get('name', 'id');
-            if ($service['meetings']) {
+            if ($service['meetings']!=null) {
 
                 $this->data['booking_services'][$key]['meeting_details'] = json_decode($service['meetings'], true)[0];
             }
