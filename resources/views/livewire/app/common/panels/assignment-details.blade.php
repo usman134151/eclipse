@@ -839,6 +839,7 @@
 
         <div class="tab-pane fade" id="provider-details-tab-pane" role="tabpanel"
             aria-labelledby="provider-details-tab" :class="{ 'active show': step == 4 }" x-show="step == 4">
+            @if(count($data['booking_services']))
             @foreach ($data['booking_services'] as $index => $service)
                 <div class="mb-5">
                     @livewire('app.common.bookings.assignedproviders', ['index' => $index + 1, 'service_id' => $service['service_id'], 'booking_id' => $booking->id, 'isProviderPanel' => true], key(time()))
@@ -846,130 +847,9 @@
                 </div>
             @endforeach
 
-            {{-- <div class="mb-5">
-                <div class="d-lg-flex align-items-center justify-content-between mb-4">
-                    <h2 class="mb-lg-0">Service 2 Assigned Providers</h2>
-                    <div class="d-flex">
-                        <a href="#" class="btn btn-has-icon border-2 btn-outline-primary text-primary rounded">
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M3 16V19.766L4.515 18.857L9.277 16H14C15.103 16 16 15.103 16 14V6C16 4.897 15.103 4 14 4H2C0.897 4 0 4.897 0 6V14C0 15.103 0.897 16 2 16H3ZM2 6H14V14H8.723L5 16.234V14H2V6Z"
-                                    fill="url(#paint0_linear_10513_5925)"></path>
-                                <path
-                                    d="M18 0H6C4.897 0 4 0.897 4 2H16C17.103 2 18 2.897 18 4V12C19.103 12 20 11.103 20 10V2C20 0.897 19.103 0 18 0Z"
-                                    fill="url(#paint1_linear_10513_5925)"></path>
-                                <defs>
-                                    <linearGradient id="paint0_linear_10513_5925" x1="8" y1="4"
-                                        x2="14.4192" y2="4" gradientUnits="userSpaceOnUse">
-                                        <stop stop-color="#213969"></stop>
-                                        <stop offset="0.994792" stop-color="#013191"></stop>
-                                    </linearGradient>
-                                    <linearGradient id="paint1_linear_10513_5925" x1="12" y1="0"
-                                        x2="18.4192" y2="0" gradientUnits="userSpaceOnUse">
-                                        <stop stop-color="#213969"></stop>
-                                        <stop offset="0.994792" stop-color="#013191"></stop>
-                                    </linearGradient>
-                                </defs>
-                            </svg>
-                            <span>Team Chat</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="mb-4">
-                    <button class="btn btn-outline-primary btn-has-icon btn-sm dropdown-toggle h-100" type="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        <span>
-                            <svg width="23" height="26" viewBox="0 0 23 26" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M10.001 0.5V8.625C10.001 9.12228 10.1985 9.5992 10.5501 9.95083C10.9018 10.3025 11.3787 10.5 11.876 10.5H20.001V17.6963L18.3847 16.08C18.2686 15.9639 18.1307 15.8719 17.979 15.8091C17.8273 15.7463 17.6647 15.7141 17.5005 15.7141C17.3363 15.7142 17.1738 15.7466 17.0221 15.8095C16.8705 15.8723 16.7327 15.9645 16.6166 16.0806C16.5005 16.1968 16.4085 16.3346 16.3457 16.4863C16.2829 16.638 16.2507 16.8006 16.2507 16.9648C16.2508 17.129 16.2832 17.2916 16.3461 17.4432C16.4089 17.5949 16.5011 17.7327 16.6172 17.8488L18.0185 19.25H12.501C12.1695 19.25 11.8515 19.3817 11.6171 19.6161C11.3827 19.8505 11.251 20.1685 11.251 20.5C11.251 20.8315 11.3827 21.1495 11.6171 21.3839C11.8515 21.6183 12.1695 21.75 12.501 21.75H18.0185L16.6172 23.1513C16.3827 23.3856 16.2508 23.7036 16.2507 24.0352C16.2506 24.3668 16.3822 24.6848 16.6166 24.9194C16.851 25.1539 17.1689 25.2858 17.5005 25.2859C17.8321 25.286 18.1502 25.1544 18.3847 24.92L19.9797 23.3238C19.9011 23.9256 19.6063 24.4783 19.1502 24.8787C18.6941 25.2791 18.1079 25.5 17.501 25.5H2.50098C1.83794 25.5 1.20205 25.2366 0.733209 24.7678C0.264369 24.2989 0.000976563 23.663 0.000976562 23V3C0.000976562 2.33696 0.264369 1.70107 0.733209 1.23223C1.20205 0.763392 1.83794 0.5 2.50098 0.5H10.001ZM20.001 17.6963L21.9197 19.6163C22.1541 19.8507 22.2857 20.1685 22.2857 20.5C22.2857 20.8315 22.1541 21.1493 21.9197 21.3838L20.001 23.3038V17.6963ZM12.501 0.55375C12.9746 0.654194 13.4088 0.889989 13.751 1.2325L19.2685 6.75C19.611 7.09216 19.8468 7.5264 19.9472 8H12.501V0.55375Z">
-                                </path>
-                            </svg>
-                        </span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="#" class="dropdown-item d-block rounded">
-                                Action
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="dropdown-item d-block rounded">
-                                Another action
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="dropdown-item d-block rounded">
-                                Something else here
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="row" id="table-hover-row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="table-responsive text-nowrap">
-                                <table id="unassigned_data" class="table table-fs-md table-hover" aria-label="">
-                                    <thead>
-                                        <tr role="row">
-                                            <th scope="col" class="text-center">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    aria-label="Select All Providers">
-                                            </th>
-                                            <th scope="col">Provider</th>
-                                            <th class="text-center">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @for ($i = 1; $i <= 5; $i++)
-                                            <tr role="row" class="{{ $i % 2 == 0 ? 'even' : 'odd' }}">
-                                                <td class="text-center align-middle">
-                                                    <input class="form-check-input" type="checkbox" value=""
-                                                        aria-label="Select Provider">
-                                                </td>
-                                                <td class="align-middle">
-                                                    <div class="d-flex gap-2 align-items-center">
-                                                        <div>
-                                                            <img width="50" height="50"
-                                                                src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                                                class="rounded-circle" alt="Image">
-                                                        </div>
-                                                        <div class="pt-2">
-                                                            <div class="font-family-secondary leading-none">
-                                                                Dori Griffiths
-                                                            </div>
-                                                            <a href="#" class="font-family-secondary">
-                                                                <small>dorigriffit@gmail.com</small>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="align-middle">
-                                                    <div class="d-flex actions justify-content-center">
-                                                        <a href="#" title="Chat" aria-label="Chat"
-                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                            <svg width="20" height="20" viewBox="0 0 20 20"
-                                                                fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <path
-                                                                    d="M3 16V19.766L4.515 18.857L9.277 16H14C15.103 16 16 15.103 16 14V6C16 4.897 15.103 4 14 4H2C0.897 4 0 4.897 0 6V14C0 15.103 0.897 16 2 16H3ZM2 6H14V14H8.723L5 16.234V14H2V6Z"
-                                                                    fill="black" />
-                                                                <path
-                                                                    d="M18 0H6C4.897 0 4 0.897 4 2H16C17.103 2 18 2.897 18 4V12C19.103 12 20 11.103 20 10V2C20 0.897 19.103 0 18 0Z"
-                                                                    fill="black" />
-                                                            </svg>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @endfor
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
+            @else
+                <small>No services available that correspond with you</small>
+            @endif
             <div class="row">
                 <div class="col-12 d-flex form-actions">
                     <button type="button" class="btn btn-outline-dark rounded" x-on:click="step--">

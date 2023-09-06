@@ -12,9 +12,9 @@ class CheckIn extends Component
 {
     use WithFileUploads;
 
-    public $showForm, $checkIn = true, $hours = null, $mins = null, $provider_signature = null, $customer_signature = null,$form_id=null;
+    public $showForm, $checkIn = true, $hours = null, $mins = null, $provider_signature = null, $customer_signature = null, $form_id = null;
     protected $listeners = ['showList' => 'resetForm', 'setCheckInBookingId' => 'setBookingId'];
-    public $booking_id = 0, $assignment = null, $booking_service = null, $checkin_details=[];
+    public $booking_id = 0, $assignment = null, $booking_service = null, $checkin_details = [];
 
     public function render()
     {
@@ -22,20 +22,21 @@ class CheckIn extends Component
         return view('livewire.app.common.panels.provider.check-in');
     }
 
-    public function clear(){
-        $this->checkIn=true;
-        $this->hours= null;
+    public function clear()
+    {
+        $this->checkIn = true;
+        $this->hours = null;
         $this->mins = null;
-        $this->provider_signature=null;
-        $this->customer_signature =null;
-        $this->booking_id=0;
-        $this->assignment=null;
-        $this->booking_service=null;
-        $this->checkin_details=[];
-        $this->form_id=null;
+        $this->provider_signature = null;
+        $this->customer_signature = null;
+        $this->booking_id = 0;
+        $this->assignment = null;
+        $this->booking_service = null;
+        $this->checkin_details = [];
+        $this->form_id = null;
     }
 
-    
+
     public function rules()
     {
         return [
@@ -72,15 +73,16 @@ class CheckIn extends Component
 
         if ($this->booking_id)
             $this->assignment = Booking::where('id', $this->booking_id)->first();
-            $this->assignment = Booking::where('id', $this->booking_id)->first();
-            $this->booking_service = BookingServices::where('id', $booking_service_id)->first();
+        $this->assignment = Booking::where('id', $this->booking_id)->first();
+        $this->booking_service = BookingServices::where('id', $booking_service_id)->first();
+        if ($this->booking_service)
             $this->checkin_details = json_decode($this->booking_service->service->check_in_procedure, true);
 
-            $this->hours =      date_format(date_create($this->assignment->booking_start_at), 'H');
-            $this->mins =      date_format(date_create($this->assignment->booking_start_at), 'i');
-            if (isset($this->checkin_details['customize_form_id']))
+        $this->hours =      date_format(date_create($this->assignment->booking_start_at), 'H');
+        $this->mins =      date_format(date_create($this->assignment->booking_start_at), 'i');
+        if (isset($this->checkin_details['customize_form_id']))
             $this->form_id = $this->checkin_details['customize_form_id'];
-        }
+    }
 
     function showForm()
     {
