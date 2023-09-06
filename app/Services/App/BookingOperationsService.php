@@ -41,6 +41,11 @@ class BookingOperationsService{
     $booking->provider_response='';
     $booking->admin_response='';
 
+    if(is_null($booking->supervisor) || $booking->supervisor==''){
+        $booking->supervisor=0;
+
+    }
+
     $booking->save();
     //end of data mapping for main booking table
     SELF::saveDetails($services,$dates,$selectedIndustries,$booking);
@@ -1301,7 +1306,7 @@ public static function excludeWeekends($datetime1,$datetime2)
                                     $providersMultiply = 0;
                                     if($sp_price[0]['multiply_provider'])
                                     {
-                                        $providersMultiply = $sp_price[0]['price'] * $serviceData['provider_count'];
+                                        $providersMultiply = $sp_price[0]['price'] * $serviceData['provider_count']; //fix this error coming
                                     }
                                     if($sp_price[0]['multiply_service_duration'])
                                     {
