@@ -56,7 +56,7 @@ class AddDocuments extends Component
             $this->document['permissions']['attach_to_customer_confirmation'] = true;
             $this->document['permissions']['customer_permissions'] = ['2', '4', '5', '6', '7', '8', '9'];
         } else
-            $this->document['permissions']['customer_permissions'] = $this->permissions;
+            $this->document['permissions']['customer_permissions'] = ($this->permissions);
 
         $this->document['permissions'] = json_encode($this->document['permissions']);
         $this->document['booking_id'] = $this->booking_id;
