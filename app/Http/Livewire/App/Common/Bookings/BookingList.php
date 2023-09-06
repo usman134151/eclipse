@@ -18,7 +18,7 @@ class BookingList extends Component
 	public $bookingType = 'past';
 	public $showBookingDetails;
 	public $bookingSection;
-	public  $limit = 10, $counter, $ad_counter =0, $currentServiceId, $panelType = 1;
+	public  $limit = 10, $counter, $ad_counter = 0, $currentServiceId, $panelType = 1;
 	public  $booking_id = 0, $provider_id = null;
 	public $bookingNumber = '';
 
@@ -216,9 +216,16 @@ class BookingList extends Component
 				$row->accommodation_name = $booking_service ? $booking_service->accommodation->name : null;
 				$row->service_name = $booking_service ?  ($booking_service->service ? $booking_service->service->name : null) : null;
 			}
-			$row->meeting_link = $booking_service ? $booking_service->meeting_link : null;
-			$row->meeting_phone = $booking_service ? $booking_service->meeting_phone : null;
+			if ((isset($booking_service)) && ($booking_service->meetings != null)) {
+				$meeting = json_decode($booking_service->meetings, true)[0];
 
+				$row->meeting_link = isset($meeting['meeting_name']) ? $meeting['meeting_name'] : null;
+				$row->meeting_phone = isset($meeting['phone_number']) ? $meeting['phone_number'] : null;
+
+			} else {
+				$row->meeting_link = $booking_service ? $booking_service->meeting_link : null;
+				$row->meeting_phone = $booking_service ? $booking_service->meeting_phone : null;
+			}
 			$row->display_running_late = false;
 			$row->display_check_in = false;
 

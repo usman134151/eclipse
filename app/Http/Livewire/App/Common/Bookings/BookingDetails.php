@@ -71,17 +71,22 @@ class BookingDetails extends Component
 				'booking_services.id', 'booking_services.service_types', 'booking_services.attendees',
 				'booking_services.service_consumer',
 				'booking_services.meeting_link',
+				'booking_services.meetings',
+
 				'booking_services.attendees', 'booking_services.service_consumer', 'booking_services.specialization', 'booking_services.meeting_phone',
 				'booking_services.meeting_passcode', 'booking_services.provider_count', 'booking_services.created_at',
-				'booking_services.meeting_link', 'service_categories.name as service_name', 'service_categories.id as service_id',
+				'service_categories.name as service_name', 'service_categories.id as service_id',
 				'accommodations.name as accommodation_name'
 			])
 			->toArray();
-		foreach($this->booking_services as $key=> $service){
-			if($service['attendees'])
-			$this->booking_services[$key]['participants']
-			= User::whereIn('id', explode(',', $service['attendees']))->get('name', 'id');; 
-		}
+		foreach ($this->booking_services as $key => $service) {
+			if ($service['attendees'])
+				$this->booking_services[$key]['participants'] = User::whereIn('id', explode(',', $service['attendees']))->get('name', 'id');
+			if($service['meetings']){
+
+				$this->booking_services[$key]['meeting_details']= json_decode($service['meetings'], true)[0];
+			}
+			}
 		$this->data['total_providers'] = Booking::where('bookings.id', $this->booking_id)
 			->join('booking_services', 'booking_services.booking_id', 'bookings.id')->sum('booking_services.provider_count');
 		$this->data['assigned_providers'] = BookingProvider::where(['booking_id' => $this->booking_id])->join('users', 'booking_providers.provider_id', '=', 'users.id')->count();
