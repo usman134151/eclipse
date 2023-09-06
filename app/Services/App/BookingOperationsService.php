@@ -45,6 +45,7 @@ class BookingOperationsService{
         $booking->supervisor=0;
 
     }
+    
 
     $booking->save();
     //end of data mapping for main booking table

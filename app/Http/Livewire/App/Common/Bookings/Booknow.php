@@ -113,6 +113,11 @@ class Booknow extends Component
         if (request()->bookingID != null) {
             $id=request()->bookingID;
             $this->booking=Booking::with('company','accommodation','booking_services_new_layout','industries','customer',)->find($id);
+            if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
+                
+                $this->booking->recurring_end_at =  Carbon::createFromFormat('Y-m-d', $this->booking->recurring_end_at)->format('m/d/Y');
+                
+            }
          // dd($this->booking);
             $this->updateCompany();
             $this->services=$this->booking->booking_services_new_layout->toArray();
@@ -209,6 +214,11 @@ class Booknow extends Component
 
         if($step==1){
             $this->validate();
+            if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
+                
+                $this->booking->recurring_end_at =  Carbon::createFromFormat('m/d/Y', $this->booking->recurring_end_at)->toDateString();
+                
+            }
             //calling booking service passing required data
             if(is_null($this->booking->id))
                 $this->booking=BookingOperationsService::createBooking($this->booking,$this->services,$this->dates,$this->selectedIndustries);
@@ -219,6 +229,11 @@ class Booknow extends Component
                 BookingOperationsService::saveDetails($this->services,$this->dates,$this->selectedIndustries,$this->booking);
             }
            // dd($this->booking->physical_address_id);
+           if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
+                
+            $this->booking->recurring_end_at =  Carbon::createFromFormat('Y-m-d', $this->booking->recurring_end_at)->format('m/d/Y');
+            
+            }
             $this->booking_id=$this->booking->id;
             $this->getForms();
             
