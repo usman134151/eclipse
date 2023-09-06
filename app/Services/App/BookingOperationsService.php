@@ -616,17 +616,19 @@ class BookingOperationsService{
                         $booking_hours = $duration_explode[0];
                         $booking_minutes = $duration_explode[1];
                         $rate_status = null;
+                        
                         if ($service['services_data']['rate_status'] == '2' || $service['day_rate'] == '1' && $service['services_data']['rate_status'] == '3') {
                             $total_billable_time = $bookingDays . ' Day(s)';
                         } else
                             $total_billable_time = $booking_hours .' '. 'hour(s) ' . $booking_minutes .' '. ' minute(s)';
+                            
                         $bookingTotalPrice = $bookingTotal['total'];
-                        $result['allServices'][] = array([
+                        $result['allServices'][] = [
                             "time" => Carbon::parse($booking_start_at)->format('m/d/Y H:i') . ' - ' . Carbon::parse($booking_end_at)->format('m/d/Y H:i'),
                             "services" => $service['services_data']['name'],
                             "service_type" => $service_type,
                             "service_charges" => $ServiceChargenew,
-                            "specializations" => getSpecializationsNameNew($service['specialization']),
+                            "specializations" => $service['specialization'],
                             "accommodation" => $service['accommodation']['name'],
                             "providers" => $service['provider_count'],
                             "daye_rate" => $service['services_data']['rate_status'],
@@ -634,8 +636,8 @@ class BookingOperationsService{
                             "additionalCustomerCharges" => $customerCharges,
                             "total_billable_time" => $total_billable_time,
                             "total" => $bookingTotalPrice,
-                        ]);
-                      
+                        ];
+                     
                         $bookingTotalExpedited = $bookingTotal['expedited'];
                         $bookingTotalModification = isset($bookingDetail->payment) ? $bookingDetail->payment->modification_fee : 0;
                         $bookingTotalReschedule = isset($bookingDetail->payment) ? $bookingDetail->payment->reschedule_booking_charges : 0;
@@ -648,7 +650,7 @@ class BookingOperationsService{
                         $result['formatted_duration'] = Carbon::parse($booking_start_at)->format('m/d/Y H:i') . ' - ' . Carbon::parse($booking_end_at)->format('m/d/Y H:i');
                         $result['accommodation'] = $service['accommodation']['name'];
                         $result['service_name'] = $service['services_data']['name'];
-                        if($bookingTotalSpec != 0.00)$result['specialization_name'] .=  getSpecializationsNameNew($service['specialization']);
+                        if($bookingTotalSpec != 0.00)$result['specialization_name'] =  $service['specialization'];
                         $result['service_type'] = $service_type;
                          $user=USER::with('roles')->where('id',Auth::user()->id)->first();
                      
