@@ -3,7 +3,6 @@
     <div class="col-md-12 mb-md-2">
         <h2 class="text-primary">
             {{ isset($formInfo['request_form_name']) ? $formInfo['request_form_name'] : 'No Form Available' }} </h2>
-            {{$service_id}}
         <!-- Industry Form Begin -->
         <div class="row between-section-segment-spacing">
             @if (count($questions))
