@@ -234,16 +234,16 @@ class CustomizeForm
     public static function createDropDown(array $values,  string $wireVariable = null, $selectedValue = '', string $selectName = '', bool $required = false, int $tabIndex = 0,): string
     {
         $attributes = [
-            'name' => str_replace(' ', '_', strtolower($selectName)) ,
+            'name' => str_replace(' ', '_', strtolower($selectName)),
             'id' => $tabIndex,
             'class' => 'select2 form-select',
-            
+
         ];
 
         if ($wireVariable) {
             $attributes['wire:model'] = $wireVariable;
         }
-        if ($required) 
+        if ($required)
             $attributes['required'] = 'true';
 
         if ($tabIndex) {
