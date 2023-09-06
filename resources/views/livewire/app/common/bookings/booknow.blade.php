@@ -291,6 +291,7 @@
                                         <div class="d-flex justify-content-between">
                                         <h3 class="text-primary">Services {{ $loop->index + 1 }}</h3>
                                         <div class="align-items-center gap-4">
+                                        @if($index>1)
                                             <a wire:click.prevent="removeServices({{$index}})" href="#" title="Delete" aria-label="Delete"
                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                 <svg class="delete-icon" width="20" height="20"
@@ -299,6 +300,7 @@
                                                     <use xlink:href="/css/sprite.svg#delete-icon"></use>
                                                 </svg>
                                             </a>
+                                            @endif
                                         </div>
                                     </div>
                                         <div class="row mb-5">
@@ -629,6 +631,7 @@
                                         <div class="d-flex justify-content-between">
                                         <h3 class="text-primary">Date & Time {{ $loop->index + 1 }}</h3>
                                         <div class="align-items-center gap-2">
+                                            @if($index>1)
                                             <a wire:click.prevent="removeDate({{$index}})" href="#" title="Delete" aria-label="Delete"
                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                 <svg class="delete-icon" width="20" height="20"
@@ -637,6 +640,7 @@
                                                     <use xlink:href="/css/sprite.svg#delete-icon"></use>
                                                 </svg>
                                             </a>
+                                            @endif
                                         </div>
                                     </div>
                                         <div class="d-md-flex flex-md-wrap justify-content-between">
