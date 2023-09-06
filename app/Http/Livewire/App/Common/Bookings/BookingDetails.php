@@ -81,7 +81,7 @@ class BookingDetails extends Component
 			->toArray();
 		foreach ($this->booking_services as $key => $service) {
 			if ($service['attendees'])
-				$this->booking_services[$key]['participants'] = User::whereIn('id', explode(',', $service['attendees']))->get('name', 'id');
+				$this->booking_services[$key]['participants'] = User::whereIn('id', explode(',', $service['attendees']))->select('name', 'id')->get();
 			if($service['meetings']){
 
 				$this->booking_services[$key]['meeting_details']= json_decode($service['meetings'], true)[0];
