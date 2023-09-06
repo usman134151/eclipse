@@ -18,6 +18,29 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <hr>
+
+    </div>
+
+    <div class="{{ $step == 1 ? '' : 'hidden' }}">
+        {{-- <label class="form-label mb-0">Check-in Time 10:25AM</label>
+        <hr> --}}
+        <div class="between-segment-spacing">
+            {{-- <div class="d-flex justify-content-between gap-3 align-items-center mb-3">
+                <div>
+                    <label class="form-label mb-0">Check-out</label>
+                    <div class="text-sm">22/11/2022 04:00PM</div>
+                </div>
+                <div>
+                    <div class="form-check form-switch mb-0">
+                        <input class="form-check-input" type="checkbox" role="switch" id="checkOut" checked
+                            aria-label="Check-out Permission Toggle button">
+                        <label class="form-check-label" for="checkOut">No</label>
+                        <label class="form-check-label" for="checkOut">Yes</label>
+                    </div>
+                </div>
+            </div> --}}
             <div class="row">
                 <div class="col-lg-11 inner-section-segment-spacing">
                     <h3 class="text-primary">Step 1:</h3>
@@ -230,17 +253,17 @@
             <div class="form-actions d-flex gap-3 justify-content-center ">
                 <button type="button" class="btn btn-outline-dark rounded"
                     x-on:click="offcanvasOpenCheckOut = !offcanvasOpenCheckOut">Back</button>
-                <button type="submit" class="btn btn-primary rounded js-checkout-go-step-2">Next</button>
+                <button type="submit" class="btn btn-primary rounded" wire:click="setStep(2)">Next</button>
             </div>
         </div>
     </div>
     <!-- END: Step 1 -->
     <!-- BEGIN: Step 2 -->
-    <div class="hidden js-checkout-step-2-content">
-        <label class="form-label mb-0">Check-in Time 10:25AM</label>
-        <hr>
+    <div class="{{ $step == 2 ? '' : 'hidden' }}">
+        {{-- <label class="form-label mb-0">Check-in Time 10:25AM</label>
+        <hr> --}}
         <div class="mb-4">
-            <div class="d-flex justify-content-between gap-3 align-items-center mb-3">
+            {{-- <div class="d-flex justify-content-between gap-3 align-items-center mb-3">
                 <div>
                     <label class="form-label mb-0">Check-out</label>
                     <div class="text-sm">22/11/2022 04:00PM</div>
@@ -253,7 +276,7 @@
                         <label class="form-check-label" for="checkin">Yes</label>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="row inner-section-segment-spacing">
                 <div class="col-lg-12">
                     <h3 class="text-primary">Step 2:</h3>
@@ -291,20 +314,21 @@
         <hr>
         <div class="mb-4">
             <div class="form-actions d-flex gap-3 justify-content-center mt-5">
-                <button type="submit" class="btn btn-primary rounded"
-                    x-on:click="offcanvasOpenCheckOut = !offcanvasOpenCheckOut">Back</button>
-                <button type="button" class="btn btn-outline-dark rounded">Cancel</button>
-                <button type="submit" class="btn btn-primary rounded js-checkout-go-step-3">Next</button>
+                <button type="submit" class="btn btn-primary rounded" wire:click="setStep(1)">Back</button>
+                <button type="button" x-on:click="offcanvasOpenCheckOut = !offcanvasOpenCheckOut"
+                    class="btn btn-outline-dark rounded">Cancel</button>
+                <button type="submit" class="btn btn-primary rounded js-checkout-go-step-3"
+                    wire:click="setStep(3)">Next</button>
             </div>
         </div>
     </div>
     <!-- END: Step 2 -->
     <!-- BEGIN: Step 3 -->
-    <div class="hidden js-checkout-step-3-content">
-        <label class="form-label mb-0">Check-in Time 10:25AM</label>
-        <hr>
+    <div class="{{ $step == 3 ? '' : 'hidden' }}">
+        {{-- <label class="form-label mb-0">Check-in Time 10:25AM</label>
+        <hr> --}}
         <div class="between-section-segment-spacing">
-            <div class="d-flex justify-content-between gap-3 align-items-center mb-3">
+            {{-- <div class="d-flex justify-content-between gap-3 align-items-center mb-3">
                 <div>
                     <label class="form-label mb-0">Check-out</label>
                     <div class="text-sm">22/11/2022 04:00PM</div>
@@ -317,7 +341,7 @@
                         <label class="form-check-label" for="checkin">Yes</label>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="row">
                 <div class="col-lg-12">
                     <h3 class="text-primary">Step 3:</h3>
@@ -339,20 +363,21 @@
 
         <div class="mb-4">
             <div class="form-actions d-flex gap-3 justify-content-center mt-5">
-                <button type="submit" class="btn btn-primary rounded"
-                    x-on:click="offcanvasOpenCheckOut = !offcanvasOpenCheckOut">Back</button>
-                <button type="button" class="btn btn-outline-dark rounded">Cancel</button>
-                <button type="submit" class="btn btn-primary rounded js-checkout-go-step-4">Next</button>
+                <button type="submit" class="btn btn-primary rounded" wire:click="setStep(2)">Back</button>
+                <button x-on:click="offcanvasOpenCheckOut = !offcanvasOpenCheckOut" type="button"
+                    class="btn btn-outline-dark rounded">Cancel</button>
+                <button type="submit" wire:click="setStep(4)"
+                    class="btn btn-primary rounded js-checkout-go-step-4">Next</button>
             </div>
         </div>
     </div>
     <!-- END: Step 3 -->
     <!-- BEGIN: Step 4 -->
-    <div class="hidden js-checkout-step-4-content">
-        <label class="form-label mb-0">Check-in Time 10:25AM</label>
-        <hr>
+    <div class="{{ $step == 4 ? '' : 'hidden' }}">
+        {{-- <label class="form-label mb-0">Check-in Time 10:25AM</label>
+        <hr> --}}
         <div class="mb-4">
-            <div class="d-flex justify-content-between gap-3 align-items-center mb-3">
+            {{-- <div class="d-flex justify-content-between gap-3 align-items-center mb-3">
                 <div>
                     <label class="form-label mb-0">Check-out</label>
                     <div class="text-sm">22/11/2022 04:00PM</div>
@@ -365,7 +390,7 @@
                         <label class="form-check-label" for="checkin">Yes</label>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="row">
                 <div class="col-lg-12">
                     <h3 class="text-primary">Step 4:</h3>
@@ -443,11 +468,11 @@
         <hr>
         <div class="mb-4">
             <div class="form-actions d-flex gap-3 justify-content-center mt-5">
-                <button type="submit" class="btn btn-primary rounded"
-                    x-on:click="offcanvasOpenCheckOut = !offcanvasOpenCheckOut">Back</button>
-                <button type="button" class="btn btn-outline-dark rounded">Cancel</button>
-                <button type="submit" class="btn btn-primary rounded"
-                    x-on:click="offcanvasOpenCheckOut = !offcanvasOpenCheckOut">Submit</button>
+                <button type="submit" class="btn btn-primary rounded" wire:click="setStep(3)">Back</button>
+                <button x-on:click="offcanvasOpenCheckOut = !offcanvasOpenCheckOut" type="button"
+                    class="btn btn-outline-dark rounded">Cancel</button>
+                <button type="submit" class="btn btn-primary rounded" wire:click="save"
+                    x-on:close-check-out.window="offcanvasOpenCheckOut = !offcanvasOpenCheckOut">Submit</button>
             </div>
         </div>
     </div>
