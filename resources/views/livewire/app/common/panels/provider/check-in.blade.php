@@ -37,19 +37,19 @@
                                 Service Location:
                             </div>
                             <div class="col-lg-7 py-2 text-sm text-primary">
-                                Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA
-                            </div>
-                            <div class="col-lg-3 py-2 fw-semibold text-sm">
-                                Country:
-                            </div>
-                            <div class="col-lg-7 py-2 text-sm">
-                                Australia
+                               {{$assignment->physicalAddress ?  $assignment->physicalAddress->address_line1 . ', ' . $assignment->physicalAddress->address_line2   : "N/A"}}
                             </div>
                             <div class="col-lg-3 py-2 fw-semibold text-sm">
                                 City, Province:
                             </div>
                             <div class="col-lg-7 py-2 text-sm">
-                                Australia
+                               {{$assignment->physicalAddress ?  $assignment->physicalAddress->city .', '.$assignment->physicalAddress->state : "N/A"}}
+                            </div>
+                            <div class="col-lg-3 py-2 fw-semibold text-sm">
+                            Country
+                            </div>
+                            <div class="col-lg-7 py-2 text-sm">
+                               {{$assignment->physicalAddress ?  $assignment->physicalAddress->country : "N/A"}}
                             </div>
                         </div>
                     </div>

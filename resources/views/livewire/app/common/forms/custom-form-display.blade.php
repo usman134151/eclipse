@@ -6,7 +6,7 @@
                                 <div class="row between-section-segment-spacing">
                                     @if(count($questions))
                                         @foreach($questions as $question)
-                                            <div class="row mb-4">
+                                            <div class="col-md-6 col-12 mb-4">
                                                 <div class="d-flex justify-content-between align-items-center mb-1">
                                                     <label class="form-label" for="ethnicity-column">
                                                         {{$question['set']['title']}}

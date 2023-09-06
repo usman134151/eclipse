@@ -12,7 +12,7 @@ class CheckIn extends Component
 {
     use WithFileUploads;
 
-    public $showForm, $checkIn = true, $hours = null, $mins = null, $provider_signature = null, $customer_signature = null;
+    public $showForm, $checkIn = true, $hours = null, $mins = null, $provider_signature = null, $customer_signature = null,$form_id=null;
     protected $listeners = ['showList' => 'resetForm', 'setCheckInBookingId' => 'setBookingId'];
     public $booking_id = 0, $assignment = null, $booking_service = null, $checkin_details=[];
 
@@ -32,6 +32,7 @@ class CheckIn extends Component
         $this->assignment=null;
         $this->booking_service=null;
         $this->checkin_details=[];
+        $this->form_id=null;
     }
 
     //set booking id when ever panel is opened
@@ -47,8 +48,8 @@ class CheckIn extends Component
 
             $this->hours =      date_format(date_create($this->assignment->booking_start_at), 'H');
             $this->mins =      date_format(date_create($this->assignment->booking_start_at), 'i');
-            // if(isset($this->checkin_details['customize_form_id'])
-            //     $form =
+            if(isset($this->checkin_details['customize_form_id']))
+                $this->form_id = $this->checkin_details['customize_form_id'];
             // dd($this->booking_service->service);
         }
     }
