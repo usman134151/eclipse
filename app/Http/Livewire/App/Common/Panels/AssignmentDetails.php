@@ -4,9 +4,11 @@ namespace App\Http\Livewire\App\Common\Panels;
 
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingCustomizeData;
+use App\Models\Tenant\BookingInvitationProvider;
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\BookingServices;
 use App\Models\Tenant\User;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class AssignmentDetails extends Component
@@ -28,8 +30,16 @@ class AssignmentDetails extends Component
 
     function fetchData()
     {
+        // show services for which the provider has either been invited or assigned
+        $invited = BookingInvitationProvider::where(['booking_invitation_providers.booking_id'=>$this->booking->id,'provider_id'=>Auth::id()])
+        ->join('booking_invitations','invitation_id', 'booking_invitations.id')->select('service_id')->get()->toArray();
+
+        $assigned = BookingProvider::where(['booking_providers.booking_id' => $this->booking->id, 'provider_id' => Auth::id()])
+        ->join('booking_services', 'booking_services.id', 'booking_service_id')->select('services')->get()->toArray();
+
         // fetch all services for booking 
         $this->data['booking_services'] = BookingServices::where('booking_id', $this->booking->id)
+            ->whereIn('services', array_merge($invited,$assigned))
             ->join('service_categories', 'booking_services.services', 'service_categories.id')
             ->join('accommodations', 'accommodations.id', 'service_categories.accommodations_id')
             ->with('serviceConsumerUser')

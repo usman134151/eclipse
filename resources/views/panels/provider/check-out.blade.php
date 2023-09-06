@@ -4,3 +4,11 @@
         @livewire('app.common.panels.provider.check-out', ['booking_id' => $booking_id])
     @endif
 </x-off-canvas>
+<script>
+  window.addEventListener('open-check-out', function(event) {
+    var booking_id = event.detail.booking_id;
+
+    Livewire.emit('showCheckOutPanel', booking_id); 
+  });
+
+</script>
