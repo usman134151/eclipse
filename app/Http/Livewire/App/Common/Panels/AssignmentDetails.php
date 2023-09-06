@@ -52,7 +52,6 @@ class AssignmentDetails extends Component
 
                 $this->data['booking_services'][$key]['meeting_details'] = json_decode($service['meetings'], true)[0];
             }
-
         }
 
 

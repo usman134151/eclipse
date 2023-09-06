@@ -25,6 +25,7 @@ class BookingCustomizeData extends Model
         'field_title',  //custom_form_field_title
         'data_value',   //user response for custom field
         'customize_data', 
-        'added_by'
+        'added_by',
+        'form_type'
     ];
 }

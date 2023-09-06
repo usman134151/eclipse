@@ -35,24 +35,7 @@ class CheckIn extends Component
         $this->form_id=null;
     }
 
-    //set booking id when ever panel is opened
-    public function setBookingId($booking_id, $booking_service_id)
-    {
-        $this->clear();
-        $this->booking_id = $booking_id;
-
-        if ($booking_id) {
-            $this->assignment = Booking::where('id', $this->booking_id)->first();
-            $this->booking_service = BookingServices::where('id', $booking_service_id)->first();
-            $this->checkin_details = json_decode($this->booking_service->service->check_in_procedure, true);
-
-            $this->hours =      date_format(date_create($this->assignment->booking_start_at), 'H');
-            $this->mins =      date_format(date_create($this->assignment->booking_start_at), 'i');
-            if(isset($this->checkin_details['customize_form_id']))
-                $this->form_id = $this->checkin_details['customize_form_id'];
-            // dd($this->booking_service->service);
-        }
-    }
+    
     public function rules()
     {
         return [
@@ -63,6 +46,7 @@ class CheckIn extends Component
     public function save()
     {
         $this->validate();
+        $this->emit('saveCustomForm');
         $fileService = new UploadFileService();
         if ($this->provider_signature)
             $p_sign = $fileService->saveFile('bookings/' . $this->booking_id, $this->provider_signature);
@@ -83,11 +67,20 @@ class CheckIn extends Component
         $this->emit('showConfirmation', 'Checked in successfully');
     }
 
-    public function mount()
+    public function mount($booking_service_id)
     {
+
         if ($this->booking_id)
             $this->assignment = Booking::where('id', $this->booking_id)->first();
-    }
+            $this->assignment = Booking::where('id', $this->booking_id)->first();
+            $this->booking_service = BookingServices::where('id', $booking_service_id)->first();
+            $this->checkin_details = json_decode($this->booking_service->service->check_in_procedure, true);
+
+            $this->hours =      date_format(date_create($this->assignment->booking_start_at), 'H');
+            $this->mins =      date_format(date_create($this->assignment->booking_start_at), 'i');
+            if (isset($this->checkin_details['customize_form_id']))
+            $this->form_id = $this->checkin_details['customize_form_id'];
+        }
 
     function showForm()
     {
