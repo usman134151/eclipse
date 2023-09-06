@@ -134,7 +134,7 @@
             <div>
                 {{-- <h3 class="text-primary">Check-In Form <small>(coming soon)</small> </h3> --}}
                 <div class="row">
-                    @livewire('app.common.forms.custom-form-display', ['showForm' => true, 'formId' => $form_id, 'bookingId' => $assignment->id, 'lastForm' => false,'formType'=>2])
+                    @livewire('app.common.forms.custom-form-display', ['showForm' => true, 'formId' => $form_id, 'bookingId' => $assignment->id, 'lastForm' => false,'formType'=>2, 'service_id'=>$booking_service->services])
 
                 </div>
             </div>

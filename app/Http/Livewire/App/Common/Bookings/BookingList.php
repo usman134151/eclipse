@@ -18,13 +18,16 @@ class BookingList extends Component
 	public $bookingType = 'past';
 	public $showBookingDetails;
 	public $bookingSection;
-	public  $limit = 10, $counter, $ad_counter = 0, $currentServiceId, $panelType = 1;
-	public  $booking_id = 0, $provider_id = null;
+	public  $limit = 10, $counter, $ad_counter = 0, $ci_counter = 0, $co_counter = 0, $currentServiceId, $panelType = 1;
+	public  $booking_id = 0, $provider_id = null, $booking_service_id = 0;
 	public $bookingNumber = '';
 
 
 
-	protected $listeners = ['showList' => 'resetForm', 'updateVal', 'showConfirmation', 'openAssignProvidersPanel', 'assignServiceProviders', 'setAssignmentDetails'];
+	protected $listeners = [
+		'showList' => 'resetForm', 'updateVal', 'showConfirmation',
+		'openAssignProvidersPanel', 'assignServiceProviders', 'setAssignmentDetails', 'showCheckInPanel'
+	];
 	public $serviceTypes = [
 		'1' => ['class' => 'inperson-rate', 'postfix' => '', 'title' => 'In-Person'],
 		'2' => ['class' => 'virtual-rate', 'postfix' => '_v', 'title' => 'Virtual'],
@@ -221,7 +224,6 @@ class BookingList extends Component
 
 				$row->meeting_link = isset($meeting['meeting_name']) ? $meeting['meeting_name'] : null;
 				$row->meeting_phone = isset($meeting['phone_number']) ? $meeting['phone_number'] : null;
-
 			} else {
 				$row->meeting_link = $booking_service ? $booking_service->meeting_link : null;
 				$row->meeting_phone = $booking_service ? $booking_service->meeting_phone : null;
@@ -285,11 +287,19 @@ class BookingList extends Component
 
 	// provider panel functions
 
-	public function showCheckInPanel($booking_id, $booking_service_id, $bookingNumber)
+	public function showCheckInPanel($booking_id, $booking_service_id, $bookingNumber = null)
 	{
-		$this->booking_id = $booking_id;
-		$this->bookingNumber = $bookingNumber;
-		$this->emit('setCheckInBookingId', $booking_id, $booking_service_id);
+		if ($bookingNumber)
+			$this->bookingNumber = $bookingNumber;
+		if ($this->ci_counter == 0) {
+			$this->booking_id = 0;
+			$this->dispatchBrowserEvent('open-check-in', ['booking_id' => $booking_id, 'booking_service_id' => $booking_service_id]);
+			$this->ci_counter = 1;
+		} else {
+			$this->booking_id = $booking_id;
+			$this->booking_service_id = $booking_service_id;
+			$this->ci_counter = 0;
+		}
 	}
 	public function showCheckOutPanel($booking_id, $bookingNumber)
 	{

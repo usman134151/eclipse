@@ -10,9 +10,9 @@ use Livewire\Component;
 
 class CustomFormDisplay extends Component
 {
-    public $showForm, $formId ,$questions=[],$formInfo=[], $answers=[],$bookingId,$lastForm=false, $formType = 1;
-    
-    protected $listeners = ['showList' => 'resetForm', 'updateVal', 'saveCustomForm'=>'save'];
+    public $showForm, $formId, $questions = [], $formInfo = [], $answers = [], $bookingId, $lastForm = false, $formType = 1;
+    public $service_id = null;
+    protected $listeners = ['showList' => 'resetForm', 'updateVal', 'saveCustomForm' => 'save'];
 
     public function render()
     {
@@ -21,62 +21,79 @@ class CustomFormDisplay extends Component
 
     public function mount()
     {
-       $formService = new CustomizeForm();
-       $formData = $formService->getFormDetails($this->formId);
-       if(count($formData)){
+        $formService = new CustomizeForm();
+        $formData = $formService->getFormDetails($this->formId);
+        if (count($formData)) {
             $this->formInfo = $formData['custom_form_details'];
-            foreach($formData['questions'] as $index=> $question){
-                    $this->answers[$index] = BookingCustomizeData::where(['booking_id' => $this->bookingId, 'customize_id' => $question['id']])
-                                        ->select('id','booking_log_id','booking_log_bbid','quote_id','provider_application_id','booking_id',
-                                        'service_id','customize_id',  'field_title',  'data_value', 'customize_data','added_by')
-                                        ->first();
-                    
-                    if($this->answers[$index]==null){ //create new
-                        $this->answers[$index]['customize_id']= $question['id'];
-                        $this->answers[$index]['field_title'] = $question['field_name'];
-                        $this->answers[$index]['booking_id'] = $this->bookingId;
-                    }else{
-                    //fetch existing
-                    $this->answers[$index] =$this->answers[$index]->toArray();
-                        if($question['field_type']==4){
-                            $values=explode(',',$this->answers[$index]['data_value']);
-                            foreach($values  as $val){
-                                $d[$val]=true;
-                            }
-                            $this->answers[$index]['data_value']=$d;
-                        }
-                    }
+            foreach ($formData['questions'] as $index => $question) {
+                $this->answers[$index] = BookingCustomizeData::where(['booking_id' => $this->bookingId, 'customize_id' => $question['id']])
+                    ->select(
+                        'id',
+                        'booking_log_id',
+                        'booking_log_bbid',
+                        'quote_id',
+                        'provider_application_id',
+                        'booking_id',
+                        'service_id',
+                        'customize_id',
+                        'field_title',
+                        'data_value',
+                        'customize_data',
+                        'added_by'
+                    )
+                    ->first();
 
-                    $this->questions[]=$formService->getformfield($question, 'answers.'.$index.'.data_value', $index);
+                if ($this->answers[$index] == null) { //create new
+                    $this->answers[$index]['customize_id'] = $question['id'];
+                    $this->answers[$index]['field_title'] = $question['field_name'];
+                    $this->answers[$index]['booking_id'] = $this->bookingId;
+                } else {
+                    //fetch existing
+                    $this->answers[$index] = $this->answers[$index]->toArray();
+                    if ($question['field_type'] == 4) {
+                        $values = explode(',', $this->answers[$index]['data_value']);
+                        foreach ($values  as $val) {
+                            $d[$val] = true;
+                        }
+                        $this->answers[$index]['data_value'] = $d;
+                    }
+                }
+
+                $this->questions[] = $formService->getformfield($question, 'answers.' . $index . '.data_value', $index);
             }
         }
     }
 
-    public function save($redirect = 1){
-        foreach($this->answers as $answer){
-            if(isset($answer['data_value']))
-                if(is_array($answer['data_value'])){
-                    $filtered= array_keys(array_filter($answer['data_value']));
+    public function save($redirect = 1)
+    {
+        foreach ($this->answers as $answer) {
+            if (isset($answer['data_value']))
+                if (is_array($answer['data_value'])) {
+                    $filtered = array_keys(array_filter($answer['data_value']));
                     $answer['data_value'] = implode(',', $filtered);
-
                 }
             $answer['added_by'] = Auth::id();
+            $answer['form_type'] = $this->formType;
+            $answer['service_id'] = $this->service_id;
 
-            if (isset($answer['id'])){  //update existing
+
+            if (isset($answer['id'])) {  //update existing
                 $id = $answer['id'];
                 unset($answer['id']);
 
-                $updated =BookingCustomizeData::where('id',$id)->update($answer);
-            }else
+                $updated = BookingCustomizeData::where('id', $id)->update($answer);
+            } else
                 BookingCustomizeData::create($answer);
         }
-        $this->emit('confirmation', (isset($this->formInfo['request_form_name']) ? $this->formInfo['request_form_name'] :'') ." Form Data saved successfully!");
+        if ($this->formType == 1)
+            $this->emit('confirmation', (isset($this->formInfo['request_form_name']) ? $this->formInfo['request_form_name'] : '') . " Form Data saved successfully!");
 
         // $this->emitToParent($redirect);
     }
 
-    public function emitToParent($redirect=1){
-        $this->emit('saveCustomFormData',$redirect);
+    public function emitToParent($redirect = 1)
+    {
+        $this->emit('saveCustomFormData', $redirect);
         // $this->emit('setStep', $redirect);
 
     }
@@ -104,18 +121,16 @@ class CustomFormDisplay extends Component
 
 
     function showForm()
-    {     
-       $this->showForm=true;
+    {
+        $this->showForm = true;
     }
     public function resetForm()
     {
-        $this->showForm=false;
+        $this->showForm = false;
     }
 
     public function updateVal($attrName, $val)
     {
         $this->answers[$attrName]['data_value'] = $val;
     }
-
-
 }
