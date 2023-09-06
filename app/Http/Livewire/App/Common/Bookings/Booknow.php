@@ -722,6 +722,7 @@ class Booknow extends Component
     public function getBookingInfo(){
         $this->selectedServices=[];
         $bookingServices=BookingServices::where('booking_id',$this->booking->id)->get()->toArray();
+       
         foreach($bookingServices as &$service){
             foreach($this->accommodations as $accommodation){
                 if($accommodation['id'] == $service['accommodation_id']){
@@ -734,7 +735,7 @@ class Booknow extends Component
                             $service['postFix']=$postFix;
                             $service["service_type"]=$serviceType;
                             $service['accommodation']=$accommodation;
-                            $service["service_charges"]=BookingOperationsService::calculateServiceTotal($accommodationService,$service,$postFix,$this->booking);
+                           
                             
                         }
                            
@@ -743,8 +744,8 @@ class Booknow extends Component
             }
           
         }
-       
-        $this->bookingCharges=BookingOperationsService::getBookingInfoNewLayout($this->booking,$bookingServices);
+      
+        $this->bookingCharges=BookingOperationsService::getBookingCharges($this->booking,$bookingServices,$this->dates);
        // dd($this->bookingCharges);
        // $this->bookingDetails=BookingOperationsService::getBookingInfoNewLayout($this->booking);
        
