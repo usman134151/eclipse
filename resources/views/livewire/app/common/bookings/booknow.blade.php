@@ -936,10 +936,28 @@
                                     <div class="col-lg-10 mb-5">
                                         <div class="d-flex flex-column gap-5">
                                             @foreach($bookingCharges['services'] as $index=>$service)
-                                                        {{$service['accommodation']}}
-                                                  {{$service['allServices'][0]['services']}}  
-                                                  {{$service['allServices'][0]['time']}}   
-                                                  {{$service['allServices'][0]['total_billable_time']}} 
+                                           
+                                            <div class="row">
+                                                <label class="form-label mb-2 col-lg-5">Accomodation:</label>
+                                                <label class="mb-0 col-lg-7 col-md-6"> {{$service['accommodation']}}</div>
+                                             
+                                            </div>   
+                                            <div class="row">
+                                                <div class="form-label mb-2 col-lg-5">Service:</div>
+                                                <div class="mb-0 col-lg-7 col-md-6">{{$service['allServices'][0]['services']}}  </div>
+                                             
+                                            </div>   
+                                            <div class="row">
+                                                <div class="form-label mb-2 col-lg-5">Time:</div>
+                                                <div class="mb-0 col-lg-7 col-md-6"> {{$service['allServices'][0]['time']}}  </div>
+                                             
+                                            </div>       
+                                            <div class="row">
+                                                <div class="form-label mb-2 col-lg-5">Billable Time:</div>
+                                                <div class="mb-0 col-lg-7 col-md-6">  {{$service['allServices'][0]['total_billable_time']}} </div>
+                                             
+                                            </div>                                                   
+                                                 
                                                   Service Rate: {{$service['bookingTotal']['StandardRate']}}    
                                                   Business Hours Rate: {{$service['bookingTotal']['ServiceCharge']['after_hour_price']}}
                                                     After Hours Rate: {{$service['bookingTotal']['StandardRate']}}
