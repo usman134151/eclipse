@@ -37,19 +37,19 @@
                                 Service Location:
                             </div>
                             <div class="col-lg-7 py-2 text-sm text-primary">
-                                Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA
-                            </div>
-                            <div class="col-lg-3 py-2 fw-semibold text-sm">
-                                Country:
-                            </div>
-                            <div class="col-lg-7 py-2 text-sm">
-                                Australia
+                                {{ $assignment->physicalAddress ? $assignment->physicalAddress->address_line1 . ', ' . $assignment->physicalAddress->address_line2 : 'N/A' }}
                             </div>
                             <div class="col-lg-3 py-2 fw-semibold text-sm">
                                 City, Province:
                             </div>
                             <div class="col-lg-7 py-2 text-sm">
-                                Australia
+                                {{ $assignment->physicalAddress ? $assignment->physicalAddress->city . ', ' . $assignment->physicalAddress->state : 'N/A' }}
+                            </div>
+                            <div class="col-lg-3 py-2 fw-semibold text-sm">
+                                Country
+                            </div>
+                            <div class="col-lg-7 py-2 text-sm">
+                                {{ $assignment->physicalAddress ? $assignment->physicalAddress->country : 'N/A' }}
                             </div>
                         </div>
                     </div>
@@ -130,37 +130,15 @@
         </div>
     </div>
     <div class="mb-4 ">
-        <div
-            class="{{ isset($checkin_details['customize_form']) && $checkin_details['customize_form'] ? '' : 'hidden' }} ">
-            <h3 class="text-primary">Check-In Form <small>(coming soon)</small> </h3>
-            <div class="row">
-                <div class="col-lg-6 mb-4">
-                    <label class="form-label-sm" for="companyName">Company Name</label>
-                    <input type="" name="" class="form-control" placeholder="Enter Company Name"
-                        id="companyName">
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <label class="form-label-sm" for="typesOfAppointment">Type Of Appointment</label>
-                    <input type="" name="" class="form-control" placeholder="Type Of Appointment"
-                        id="typesOfAppointment">
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <label class="form-label-sm" for="CovidRegularation">Covid-19 Regulation</label>
-                    <input type="" name="" class="form-control"
-                        placeholder="Enter Covid-19 Regulation" id="CovidRegularation">
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <label class="form-label-sm" for="newPatient">Is this a new patient</label>
-                    <select class="form-select" id="newPatient">
-                        <option>Yes</option>
-                    </select>
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <label class="form-label-sm" for="Entry-notes">Entry Notes</label>
-                    <textarea class="form-control" rows="5" cols="5" id="Entry-notes"></textarea>
+        @if ($form_id)
+            <div>
+                {{-- <h3 class="text-primary">Check-In Form <small>(coming soon)</small> </h3> --}}
+                <div class="row">
+                    @livewire('app.common.forms.custom-form-display', ['showForm' => true, 'formId' => $form_id, 'bookingId' => $assignment->id, 'lastForm' => false,'formType'=>2])
+
                 </div>
             </div>
-        </div>
+        @endif
         <div
             class="row {{ isset($checkin_details['enable_digital_signature']) && $checkin_details['enable_digital_signature'] ? '' : 'hidden' }}">
             <div class="col-lg-4 mb-4">

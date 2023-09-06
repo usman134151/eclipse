@@ -234,16 +234,16 @@ class CustomizeForm
     public static function createDropDown(array $values,  string $wireVariable = null, $selectedValue = '', string $selectName = '', bool $required = false, int $tabIndex = 0,): string
     {
         $attributes = [
-            'name' => str_replace(' ', '_', strtolower($selectName)) ,
+            'name' => str_replace(' ', '_', strtolower($selectName)),
             'id' => $tabIndex,
             'class' => 'select2 form-select',
-            
+
         ];
 
         if ($wireVariable) {
             $attributes['wire:model'] = $wireVariable;
         }
-        if ($required) 
+        if ($required)
             $attributes['required'] = 'true';
 
         if ($tabIndex) {
@@ -286,8 +286,8 @@ class CustomizeForm
             // $isChecked = in_array($cValue, $selectedValues) ? 'checked' : '';
             $isChecked ='';
             $html .= '<div class="form-check form-check-inline">';
-            $html .= '<input class="form-check-input" type="checkbox" wire:key="'. $key.'" ' . $isChecked . ' ' . $isRequired  . ' ' . $wireAttribute . ' >';
-            $html .= '<label class="form-check-label"  for="' . $value['label'] . '">' . $value['label'] . '</label>';
+            $html .= '<input class="form-check-input" type="checkbox" id="' . $value['value'] . '" wire:key="'. $key.'" ' . $isChecked . ' ' . $isRequired  . ' ' . $wireAttribute . ' >';
+            $html .= '<label class="form-check-label"  for="' . $value['value'] . '">' . $value['label'] . '</label>';
             $html .= '</div>';
             $loop++;
         }
@@ -315,8 +315,8 @@ class CustomizeForm
 
 
             $html .= '<div class=" form-check form-check-inline">';
-            $html .= '<input class="form-check-input" type="radio" name="' . $radioName . '" value="' . $value['label'] . '" ' . $checked . '' . $isRequired . ' tabindex=' . $tabIndex ." " . $wireAttribute. '>';
-            $html .= '<label class="form-check-label"  for="' . $value['label'] . '">' . $value['label'] . '</label>';
+            $html .= '<input class="form-check-input" type="radio" name="' . $radioName . '" id="' . $value['value'] . '" value="' . $value['label'] . '" ' . $checked . '' . $isRequired . ' tabindex=' . $tabIndex ." " . $wireAttribute. '>';
+            $html .= '<label class="form-check-label"  for="' . $value['value'] . '">' . $value['label'] . '</label>';
             $html .= '</div>';
         }
 

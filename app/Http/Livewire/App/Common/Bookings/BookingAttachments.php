@@ -17,7 +17,7 @@ class BookingAttachments extends Component
             $query = BookingDocument::query();
             $query->where('booking_id', $this->booking_id);
             if ($this->isProviderPanel)
-                $query->whereJsonContains('permissions->attach_to_provider_confirmation',true);
+                $query->whereJsonContains('permissions', ['customer_permissions'=>'2']);
 
             $this->documents = $query->get();
         }

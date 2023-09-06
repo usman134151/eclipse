@@ -139,7 +139,7 @@
                                                           <div class="font-family-secondary leading-none">
                                                               {{ $provider['name'] }}</div>
                                                           <a target="_blank"
-                                                              href="{{ route('tenant.provider-profile', ['providerID' => $provider['id']]) }}"
+                                                              href="{{ route('tenant.provider-profile', ['providerID' => $provider['provider_id']]) }}"
                                                               class="font-family-secondary"><small>
                                                                   {{ $provider['email'] }}</small></a>
                                                       </div>
@@ -172,7 +172,7 @@
                                                               </svg>
 
                                                           </a>
-                                                          <a href="{{ route('tenant.provider-profile', ['providerID' => $provider['id']]) }}"
+                                                          <a href="{{ route('tenant.provider-profile', ['providerID' => $provider['provider_id']]) }}"
                                                               target="_blank" title="View" aria-label="View"
                                                               class="btn btn-sm btn-secondary rounded btn-hs-icon">
 
