@@ -102,7 +102,13 @@ class Booknow extends Component
         $this->timezones=SetupValue::where('setup_id',4)->select('id','setup_value_label')->get()->toArray();
         $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
         $this->frequencies=SetupValue::where('setup_id',6)->select('id','setup_value_label')->get()->toArray();
-        $this->accommodations=Accommodation::with('services.specializations')->where('status',1)->get()->toArray();
+        $this->accommodations = Accommodation::with(['services' => function ($query) {
+            $query->where('status', 1)->with(['specializations' => function ($query) {
+                $query->where('status', 1);
+            }]);
+        }])->where('status', 1)->get()->toArray();
+        
+        
         $serviceTypeLabels=SetupValue::where('setup_id',5)->pluck('setup_value_label')->toArray();
         for($i=0,$j=1;$i<4;$i++,$j++){
             if($j==3)
