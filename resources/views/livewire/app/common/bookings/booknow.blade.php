@@ -950,6 +950,31 @@
                                                         <div class="font-family-tertiary ">{{$service['accommodation']['name']}}</div>
                                                     </div>
                                                 </div>
+                                                <div class="mt-3"><h3 style="color:#023DB0">Standard Rate </h3></div>
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <label class="col-form-label">Business Hour:</label>
+                                                    </div>
+                                                    <div class="col-lg-8 align-self-center">
+                                                        <div class="font-family-tertiary">$56.00</div>
+                                                    </div>
+                                                </div> 
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <label class="col-form-label">After Hours</label>
+                                                    </div>
+                                                    <div class="col-lg-8 align-self-center">
+                                                        <div class="font-family-tertiary">$16.00</div>
+                                                    </div>
+                                                </div>  
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <label class="col-form-label">Total:</label>
+                                                    </div>
+                                                    <div class="col-lg-8 align-self-center">
+                                                        <div class="font-family-tertiary">$112.00</div>
+                                                    </div>
+                                                </div> 
                                                 <div class="row">
                                                     <div class="col-lg-4">
                                                         <label class="col-form-label">Service:</label>
@@ -965,7 +990,109 @@
                                                     <div class="col-lg-8 align-self-center">
                                                         <div class="font-family-tertiary">{{$service['total_duration']['hours']}} hours {{$service['total_duration']['mins']}} minutes</div>
                                                     </div>
-                                                </div>                      
+                                                </div>     
+                                                <div class="mt-3"><h3 style="color:#023DB0">Additional Charges </h3></div>
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <label class="col-form-label">Label of charge 1:</label>
+                                                    </div>
+                                                    <div class="col-lg-8 align-self-center">
+                                                        <div class="font-family-tertiary">$56.00</div>
+                                                    </div>
+                                                </div> 
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <label class="col-form-label">Label of charge 2:</label>
+                                                    </div>
+                                                    <div class="col-lg-8 align-self-center">
+                                                        <div class="font-family-tertiary">$56.00</div>
+                                                    </div>
+                                                </div>  
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <label class="col-form-label">Total:</label>
+                                                    </div>
+                                                    <div class="col-lg-8 align-self-center">
+                                                        <div class="font-family-tertiary">$112.00</div>
+                                                    </div>
+                                                </div> 
+                                                <div class="mt-3"><h3 style="color:#023DB0">Additional Payment </h3></div>
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <label class="col-form-label">Label 1:</label>
+                                                    </div>
+                                                    <div class="col-lg-8 align-self-center">
+                                                        <div class="font-family-tertiary">$56.00</div>
+                                                    </div>
+                                                </div> 
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <label class="col-form-label">Label 2:</label>
+                                                    </div>
+                                                    <div class="col-lg-8 align-self-center">
+                                                        <div class="font-family-tertiary">$56.00</div>
+                                                    </div>
+                                                </div>  
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <label class="col-form-label">Total:</label>
+                                                    </div>
+                                                    <div class="col-lg-8 align-self-center">
+                                                        <div class="font-family-tertiary">$112.00</div>
+                                                    </div>
+                                                </div> 
+                                                <div class="mt-3"><h3 style="color:#023DB0">Specializations </h3></div>
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <label class="col-form-label">Specialization 1:</label>
+                                                    </div>
+                                                    <div class="col-lg-8 align-self-center">
+                                                        <div class="font-family-tertiary">$56.00</div>
+                                                    </div>
+                                                </div>  
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <label class="col-form-label">Specialization 2:</label>
+                                                    </div>
+                                                    <div class="col-lg-8 align-self-center">
+                                                        <div class="font-family-tertiary">$56.00</div>
+                                                    </div>
+                                                </div>  
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <label class="col-form-label">Total:</label>
+                                                    </div>
+                                                    <div class="col-lg-8 align-self-center">
+                                                        <div class="font-family-tertiary">$112.00</div>
+                                                    </div>
+                                                </div> 
+                                                <div class="mt-3"><h3 style="color:#023DB0">Expedited Services Charges </h3></div>
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <label class="col-form-label">2 Hour:</label>
+                                                    </div>
+                                                    <div class="col-lg-8 align-self-center">
+                                                        <div class="font-family-tertiary">$56.00</div>
+                                                    </div>
+                                                </div>                                                 
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <label class="col-form-label">Total:</label>
+                                                    </div>
+                                                    <div class="col-lg-8 align-self-center">
+                                                        <div class="font-family-tertiary">$56.00</div>
+                                                    </div>
+                                                </div> 
+                                                <div class="mt-3"><h2 style="color:#023DB0">Booking Total </h2></div>
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <label class="col-form-label">Total:</label>
+                                                    </div>
+                                                    <div class="col-lg-8 align-self-center">
+                                                        <div class="font-family-tertiary">$464.00</div>
+                                                    </div>
+                                                </div>  
+                  
                                             </div>
                                         </div>              
                                       @endforeach
