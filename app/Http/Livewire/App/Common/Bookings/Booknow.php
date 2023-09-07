@@ -102,7 +102,13 @@ class Booknow extends Component
         $this->timezones=SetupValue::where('setup_id',4)->select('id','setup_value_label')->get()->toArray();
         $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
         $this->frequencies=SetupValue::where('setup_id',6)->select('id','setup_value_label')->get()->toArray();
-        $this->accommodations=Accommodation::with('services.specializations')->where('status',1)->get()->toArray();
+        $this->accommodations = Accommodation::with(['services' => function ($query) {
+            $query->where('status', 1)->with(['specializations' => function ($query) {
+                $query->where('status', 1);
+            }]);
+        }])->where('status', 1)->get()->toArray();
+        
+        
         $serviceTypeLabels=SetupValue::where('setup_id',5)->pluck('setup_value_label')->toArray();
         for($i=0,$j=1;$i<4;$i++,$j++){
             if($j==3)
@@ -113,6 +119,11 @@ class Booknow extends Component
         if (request()->bookingID != null) {
             $id=request()->bookingID;
             $this->booking=Booking::with('company','accommodation','booking_services_new_layout','industries','customer',)->find($id);
+            if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
+                
+                $this->booking->recurring_end_at =  Carbon::createFromFormat('Y-m-d', $this->booking->recurring_end_at)->format('m/d/Y');
+                
+            }
          // dd($this->booking);
             $this->updateCompany();
             $this->services=$this->booking->booking_services_new_layout->toArray();
@@ -209,6 +220,11 @@ class Booknow extends Component
 
         if($step==1){
             $this->validate();
+            if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
+                
+                $this->booking->recurring_end_at =  Carbon::createFromFormat('m/d/Y', $this->booking->recurring_end_at)->toDateString();
+                
+            }
             //calling booking service passing required data
             if(is_null($this->booking->id))
                 $this->booking=BookingOperationsService::createBooking($this->booking,$this->services,$this->dates,$this->selectedIndustries);
@@ -219,6 +235,11 @@ class Booknow extends Component
                 BookingOperationsService::saveDetails($this->services,$this->dates,$this->selectedIndustries,$this->booking);
             }
            // dd($this->booking->physical_address_id);
+           if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
+                
+            $this->booking->recurring_end_at =  Carbon::createFromFormat('Y-m-d', $this->booking->recurring_end_at)->format('m/d/Y');
+            
+            }
             $this->booking_id=$this->booking->id;
             $this->getForms();
             
@@ -701,6 +722,7 @@ class Booknow extends Component
     public function getBookingInfo(){
         $this->selectedServices=[];
         $bookingServices=BookingServices::where('booking_id',$this->booking->id)->get()->toArray();
+       
         foreach($bookingServices as &$service){
             foreach($this->accommodations as $accommodation){
                 if($accommodation['id'] == $service['accommodation_id']){
@@ -713,7 +735,7 @@ class Booknow extends Component
                             $service['postFix']=$postFix;
                             $service["service_type"]=$serviceType;
                             $service['accommodation']=$accommodation;
-                            $service["service_charges"]=BookingOperationsService::calculateServiceTotal($accommodationService,$service,$postFix,$this->booking);
+                           
                             
                         }
                            
@@ -722,8 +744,8 @@ class Booknow extends Component
             }
           
         }
-       
-        $this->bookingCharges=BookingOperationsService::getBookingInfoNewLayout($this->booking,$bookingServices);
+      
+        $this->bookingCharges=BookingOperationsService::getBookingCharges($this->booking,$bookingServices,$this->dates);
        // dd($this->bookingCharges);
        // $this->bookingDetails=BookingOperationsService::getBookingInfoNewLayout($this->booking);
        

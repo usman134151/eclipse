@@ -291,6 +291,7 @@
                                         <div class="d-flex justify-content-between">
                                         <h3 class="text-primary">Services {{ $loop->index + 1 }}</h3>
                                         <div class="align-items-center gap-4">
+                                        @if($index>1)
                                             <a wire:click.prevent="removeServices({{$index}})" href="#" title="Delete" aria-label="Delete"
                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                 <svg class="delete-icon" width="20" height="20"
@@ -299,6 +300,7 @@
                                                     <use xlink:href="/css/sprite.svg#delete-icon"></use>
                                                 </svg>
                                             </a>
+                                            @endif
                                         </div>
                                     </div>
                                         <div class="row mb-5">
@@ -629,6 +631,7 @@
                                         <div class="d-flex justify-content-between">
                                         <h3 class="text-primary">Date & Time {{ $loop->index + 1 }}</h3>
                                         <div class="align-items-center gap-2">
+                                            @if($index>1)
                                             <a wire:click.prevent="removeDate({{$index}})" href="#" title="Delete" aria-label="Delete"
                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                 <svg class="delete-icon" width="20" height="20"
@@ -637,6 +640,7 @@
                                                     <use xlink:href="/css/sprite.svg#delete-icon"></use>
                                                 </svg>
                                             </a>
+                                            @endif
                                         </div>
                                     </div>
                                         <div class="d-md-flex flex-md-wrap justify-content-between">
@@ -934,45 +938,7 @@
                             <div class="row">
                                 <div class="col-lg-6 mb-4 pe-lg-5 pt-5">
                                     <div class="col-lg-10 mb-5">
-                                        <div class="d-flex flex-column gap-5">
-                                            @foreach($bookingCharges['services'] as $index=>$service)
-                                           
-                                            <div class="row">
-                                                <label class="form-label mb-2 col-lg-5">Accomodation:</label>
-                                                <label class="mb-0 col-lg-7 col-md-6"> {{$service['accommodation']}}</div>
-                                             
-                                            </div>   
-                                            <div class="row">
-                                                <div class="form-label mb-2 col-lg-5">Service:</div>
-                                                <div class="mb-0 col-lg-7 col-md-6">{{$service['allServices'][0]['services']}}  </div>
-                                             
-                                            </div>   
-                                            <div class="row">
-                                                <div class="form-label mb-2 col-lg-5">Time:</div>
-                                                <div class="mb-0 col-lg-7 col-md-6"> {{$service['allServices'][0]['time']}}  </div>
-                                             
-                                            </div>       
-                                            <div class="row">
-                                                <div class="form-label mb-2 col-lg-5">Billable Time:</div>
-                                                <div class="mb-0 col-lg-7 col-md-6">  {{$service['allServices'][0]['total_billable_time']}} </div>
-                                             
-                                            </div>                                                   
-                                                 
-                                                  Service Rate: {{$service['bookingTotal']['StandardRate']}}    
-                                                  Business Hours Rate: {{$service['bookingTotal']['ServiceCharge']['after_hour_price']}}
-                                                    After Hours Rate: {{$service['bookingTotal']['StandardRate']}}
-                                            @endforeach                    
-                                            <div class="row">
-                                                <label class="form-label mb-2 col-lg-6">Additional Charges:</label>
-                                                <label
-                                                    class="form-label-sm mb-0 col-lg-3 col-md-6 align-self-center">$00.00</label>
-                                                <div class="col-lg-3 col-md-6">
-                                                    <input type="" name=""
-                                                        class="form-control form-control-md text-center"
-                                                        placeholder="$00.00" aria-label="Additional Charges">
-                                                </div>
-                                            </div>
-                                        </div>
+
                                     </div>
                                     <div class="col-lg-10 mb-5">
                                         <h2>Discounts</h2>
