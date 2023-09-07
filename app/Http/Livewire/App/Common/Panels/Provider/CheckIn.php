@@ -53,6 +53,7 @@ class CheckIn extends Component
             $p_sign = $fileService->saveFile('bookings/' . $this->booking_id, $this->provider_signature);
         if ($this->customer_signature)
             $c_sign = $fileService->saveFile('bookings/' . $this->booking_id, $this->customer_signature);
+
         $bookingProvider = $this->assignment->booking_provider->where('booking_service_id', $this->booking_service->id)->first();
         if (!$bookingProvider)   //prev version compatability
             $bookingProvider = $this->assignment->booking_provider->where('booking_id', $this->booking_id)->first();

@@ -583,7 +583,7 @@
                                                 @if (isset($service['meeting_details']))
                                                     {{ $service['meeting_details']['access_code'] ? $service['meeting_details']['access_code'] : 'N/A' }}
                                                 @else
-                                                    {{ $service['access_code'] ? $service['access_code'] : 'N/A' }}
+                                                    {{ $service['meeting_passcode'] ? $service['meeting_passcode'] : 'N/A' }}
                                                 @endif
                                             </div>
                                         </div>
