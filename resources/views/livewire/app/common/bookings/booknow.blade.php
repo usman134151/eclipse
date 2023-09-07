@@ -963,7 +963,7 @@
                                                         <label class="col-form-label">Duration:</label>
                                                     </div>
                                                     <div class="col-lg-8 align-self-center">
-                                                        <div class="font-family-tertiary">{{$service['service_data']['name']}}</div>
+                                                        <div class="font-family-tertiary">{{$service['total_duration']['hours']}} hours {{$service['total_duration']['mins']}} minutes</div>
                                                     </div>
                                                 </div>                      
                                             </div>

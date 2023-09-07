@@ -746,7 +746,6 @@ class Booknow extends Component
         }
       
         $this->services=BookingOperationsService::getBookingCharges($this->booking,$bookingServices,$this->dates);
-      //  dd($this->services);
        // dd($this->bookingCharges);
        // $this->bookingDetails=BookingOperationsService::getBookingInfoNewLayout($this->booking);
        
