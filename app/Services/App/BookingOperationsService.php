@@ -112,7 +112,7 @@ class BookingOperationsService{
    //step 1 : get business and after business hours
     $service=SELF::getBillableDuration($service,$schedule);
     if($service['service_types']==2){
-        $multipleProviderCol='standard_virtual_multiply_provider';
+        $multipleProviderCol='standard_rate_virtual_multiply_provider';
     }
     else{
         $multipleProviderCol='standard_in_person_multiply_provider'.$service['postFix'];
@@ -174,11 +174,12 @@ class BookingOperationsService{
 
    if(!is_null($service['service_data']['service_payment'.$service['postFix']])) {
         $servicePayments=json_decode($service['service_data']['service_payment'.$service['postFix']],true);
+       // dd($servicePayments);
         foreach($servicePayments as $servicePayment){
-          
-            if($servicePayment[0]['charge_customer']){
+        // 
+            if(array_key_exists('charge_customer',$servicePayment[0]) && $servicePayment[0]['charge_customer']){
                 $charges=$servicePayment[0]['price'];
-                if($servicePayment[0]['multiply_providers'])
+                if(array_key_exists('multiply_providers',$servicePayment[0]) && $servicePayment[0]['multiply_providers'])
                   $charges*=$service['provider_count'];
                 $service['additional_payments'][]=['label'=>$servicePayment[0]['label'],'charges'=>$charges];
                 $service['service_payment_total']+=$charges;
