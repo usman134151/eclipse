@@ -327,9 +327,9 @@ class BookingList extends Component
 		} else {
 			$this->booking_id = $booking_id;
 			$this->booking_service_id = $booking_service_id;
-
 			$this->co_counter = 0;
 			$this->providerPanelType = 2;
+			$this->dispatchBrowserEvent('refreshSelects');
 		}
 	}
 	public function setAssignmentDetails($booking_id, $bookingNumber = null)

@@ -1,14 +1,19 @@
 <div class="js-ps-container-check-out">
     <!-- BEGIN: Step 1 -->
     <div class="js-checkout-step-1-content">
-        <label class="form-label mb-0">Check-in Time 10:25AM</label>
-        <hr>
+        @if (isset($checked_in_details['checkin_time']))
+            <label class="form-label mb-0">Check-in Time
+                {{ $checked_in_details['checkin_time'] ? date_format(date_create($checked_in_details['checkin_time']), 'h:i A') : '' }}</label>
+            <hr>
+        @endif
         <div class="between-segment-spacing">
             <div class="d-flex justify-content-between gap-3 align-items-center mb-3">
                 <div>
                     <label class="form-label mb-0">Check-out</label>
 
-                    <div class="text-sm">{{ $checkout['timestamp'] ? date_format(date_create($checkout['timestamp']), 'm/d/Y h:i A') : '' }}</div>
+                    <div class="text-sm">
+                        {{ $checkout['timestamp'] ? date_format(date_create($checkout['timestamp']), 'm/d/Y h:i A') : '' }}
+                    </div>
                 </div>
                 <div>
                     <div class="form-check form-switch mb-0">
@@ -37,7 +42,10 @@
                                     <label class="form-label-sm fw-semibold mb-lg-0">Start Date:</label>
                                 </div>
                                 <div class="col-lg-3 align-self-center">
-                                    <div class="text-sm">11 November 2022</div>
+                                    <div class="text-sm">
+                                        {{ date_format(date_create($assignment->booking_start_at), 'd F Y') }}
+
+                                    </div>
                                 </div>
                                 <div class="col-lg-3 align-self-center">
                                     <label class="form-label-sm fw-semibold mb-lg-0">Actual Start Date:</label>
@@ -61,7 +69,10 @@
                                     <label class="form-label-sm fw-semibold mb-lg-0">End Date:</label>
                                 </div>
                                 <div class="col-lg-3 align-self-center">
-                                    <div class="text-sm">11 November 2022</div>
+                                    <div class="text-sm">
+                                        {{ date_format(date_create($assignment->booking_end_at), 'd F Y') }}
+
+                                    </div>
                                 </div>
                                 <div class="col-lg-3 align-self-center">
                                     <label class="form-label-sm fw-semibold mb-lg-0">Actual End Date:</label>
@@ -85,7 +96,9 @@
                                     <label class="form-label-sm fw-semibold mb-lg-0">Start Time:</label>
                                 </div>
                                 <div class="col-lg-3 align-self-center">
-                                    <div class="text-sm">02:00 PM</div>
+                                    <div class="text-sm">
+                                        {{ date_format(date_create($assignment->booking_start_at), 'h:i A') }}
+                                    </div>
                                 </div>
                                 <div class="col-lg-3 align-self-center">
                                     <label class="form-label-sm fw-semibold mb-lg-0">Actual Start Time:</label>
@@ -93,14 +106,24 @@
                                 <div class="col-lg-4 align-self-center">
                                     <div class="d-flex gap-2">
                                         <div class="time d-flex align-items-center gap-2">
-                                            <div class="hours">09</div>
+                                            <div>
+                                                <input class="form-control form-control-sm text-center hours"
+                                                    id="actual_start_hour" aria-label="Start Time" name="actual_start_hour"
+                                                    placeholder="00" type="number" tabindex=""
+                                                    wire:model.defer="checked_in_details.actual_start_hour" maxlength="2">
+                                            </div>
                                             <svg width="5" height="19" viewBox="0 0 5 19" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
                                                     d="M0.652588 16.6132C0.652588 16.1098 0.807878 15.6868 1.11846 15.3441C1.43975 14.9907 1.90026 14.814 2.5 14.814C3.09974 14.814 3.5549 14.9907 3.86548 15.3441C4.18677 15.6868 4.34741 16.1098 4.34741 16.6132C4.34741 17.1058 4.18677 17.5235 3.86548 17.8662C3.5549 18.2089 3.09974 18.3803 2.5 18.3803C1.90026 18.3803 1.43975 18.2089 1.11846 17.8662C0.807878 17.5235 0.652588 17.1058 0.652588 16.6132ZM0.668652 2.42827C0.668652 1.92492 0.823942 1.50189 1.13452 1.15918C1.45581 0.805761 1.91632 0.629052 2.51606 0.629052C3.1158 0.629052 3.57096 0.805761 3.88154 1.15918C4.20283 1.50189 4.36348 1.92492 4.36348 2.42827C4.36348 2.92091 4.20283 3.33859 3.88154 3.6813C3.57096 4.02401 3.1158 4.19536 2.51606 4.19536C1.91632 4.19536 1.45581 4.02401 1.13452 3.6813C0.823942 3.33859 0.668652 2.92091 0.668652 2.42827Z"
-                                                    fill="black"></path>
+                                                    fill="black" />
                                             </svg>
-                                            <div class="mins">20</div>
+                                            <div>
+                                                <input class="form-control form-control-sm text-center  mins"
+                                                    aria-label="Start Minutes" id="actual_start_min" name="actual_start_min"
+                                                    placeholder="00" type="number" tabindex=""
+                                                    wire:model.defer="checked_in_details.actual_start_min" maxlength="2">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -112,7 +135,10 @@
                                     <label class="form-label-sm fw-semibold mb-lg-0">End Time:</label>
                                 </div>
                                 <div class="col-lg-3 align-self-center">
-                                    <div class="text-sm">09:00 PM</div>
+                                    <div class="text-sm">
+                                        {{ date_format(date_create($assignment->booking_end_at), 'h:i A') }}
+
+                                    </div>
                                 </div>
                                 <div class="col-lg-3 align-self-center">
                                     <label class="form-label-sm fw-semibold mb-lg-0">Actual End Time:</label>
@@ -120,14 +146,24 @@
                                 <div class="col-lg-4 align-self-center">
                                     <div class="d-flex gap-2">
                                         <div class="time d-flex align-items-center gap-2">
-                                            <div class="hours">09</div>
+                                            <div>
+                                                <input class="form-control form-control-sm text-center hours"
+                                                    id="actual_end_hour" aria-label="Start Time" name="actual_end_hour"
+                                                    placeholder="00" type="number" tabindex=""
+                                                    wire:model.defer="checkout.actual_end_hour" maxlength="2">
+                                            </div>
                                             <svg width="5" height="19" viewBox="0 0 5 19" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
                                                     d="M0.652588 16.6132C0.652588 16.1098 0.807878 15.6868 1.11846 15.3441C1.43975 14.9907 1.90026 14.814 2.5 14.814C3.09974 14.814 3.5549 14.9907 3.86548 15.3441C4.18677 15.6868 4.34741 16.1098 4.34741 16.6132C4.34741 17.1058 4.18677 17.5235 3.86548 17.8662C3.5549 18.2089 3.09974 18.3803 2.5 18.3803C1.90026 18.3803 1.43975 18.2089 1.11846 17.8662C0.807878 17.5235 0.652588 17.1058 0.652588 16.6132ZM0.668652 2.42827C0.668652 1.92492 0.823942 1.50189 1.13452 1.15918C1.45581 0.805761 1.91632 0.629052 2.51606 0.629052C3.1158 0.629052 3.57096 0.805761 3.88154 1.15918C4.20283 1.50189 4.36348 1.92492 4.36348 2.42827C4.36348 2.92091 4.20283 3.33859 3.88154 3.6813C3.57096 4.02401 3.1158 4.19536 2.51606 4.19536C1.91632 4.19536 1.45581 4.02401 1.13452 3.6813C0.823942 3.33859 0.668652 2.92091 0.668652 2.42827Z"
-                                                    fill="black"></path>
+                                                    fill="black" />
                                             </svg>
-                                            <div class="mins">20</div>
+                                            <div>
+                                                <input class="form-control form-control-sm text-center  mins"
+                                                    aria-label="Start Minutes" id="actual_end_min"
+                                                    name="actual_end_min" placeholder="00" type="number"
+                                                    tabindex="" wire:model.defer="checkout.actual_end_min" maxlength="2">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -136,12 +172,12 @@
                     </div>
                     <div class="col-lg-8">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="Print&SignDigitalSignature"
-                                id="Print&SignDigitalSignature1">
-                            <label class="form-check-label" for="Print&SignDigitalSignature1">
+                            <input class="form-check-input" type="radio"  name="checkout_confirmation_upload_type" wire:model="checkout.confirmation_upload_type"
+                                id="print_sign" value="print_and_sign">
+                            <label class="form-check-label" for="print_sign">
                                 Print & Sign
                             </label>
-                            <div class="py-4">
+                            <div class="py-4  {{$checkout['confirmation_upload_type']=='print_and_sign' ? '' : 'hidden'}}">
                                 <div class="d-flex gap-5 align-items-center mb-4">
                                     <div class="d-flex align-items-center gap-3">
                                         1 <button type="" class="btn btn-sm rounded btn-outline-dark">Download
@@ -158,13 +194,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="Print&SignDigitalSignature"
-                                id="Print&SignDigitalSignature2" checked aria-label="Digital Signature">
-                            <label class="form-check-label" for="flexRadioDefault2">
+                        <div class="form-check {{$checkout_details['enable_digital_signature'] == true ? '' : 'hidden'}}">
+                            <input class="form-check-input" type="radio" name="checkout_confirmation_upload_type" wire:model="checkout.confirmation_upload_type" 
+                                id="digital_signature" aria-label="Digital Signature" value="digital_signature">
+                            <label class="form-check-label" for="digital_signature">
                                 Digital Signature
                             </label>
-                            <div class="py-4">
+                            <div class="py-4 {{$checkout['confirmation_upload_type']=='digital_signature' ? '' : 'hidden'}}">
                                 <div class="mb-4">
                                     <label class="form-label d-block">Select who sign from customer</label>
                                     <div class="form-check form-check-inline">
