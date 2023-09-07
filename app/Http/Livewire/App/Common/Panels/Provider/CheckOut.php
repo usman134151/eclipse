@@ -73,23 +73,27 @@ class CheckOut extends Component
             // dd($this->checked_in_details['actual_start_timestamp']);
             $this->checkout['actual_end_hour'] =      date_format(date_create($this->assignment->booking_end_at), 'H');
             $this->checkout['actual_end_min'] =      date_format(date_create($this->assignment->booking_end_at), 'i');
-            if (isset($this->checkout_details['customize_form_id']))
-                $this->checkout['form_id'] = $this->checkout_details['customize_form_id'];
         }
     }
 
+    public function rules()
+    {
+        $rules = [
+            'checkout.actual_end_date' => 'required|date|after:checked_in_details.actual_start_date',
 
-    protected $rules = [
-        'checkout.actual_end_date' => 'required|date|after:checked_in_details.actual_start_date',
-        'upload_timesheet' => 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv',
-        'upload_signature' => 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv',
-
-    ];
+        ];
+        if ($this->checkout['confirmation_upload_type'] == "print_and_sign")
+            $rules['upload_timesheet'] = 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv';
+        if ($this->checkout['confirmation_upload_type'] == "digital_signature")
+            $rules['upload_signature'] = 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv';
+        return $rules;
+    }
 
     public function saveStepOne()
     {
 
         $this->validate();
+        // dd($this->upload_timesheet, $this->upload_signature)
         $this->checkout['actual_start_date'] = $this->checked_in_details['actual_start_date'];
         $this->checkout['actual_start_hour'] = $this->checked_in_details['actual_start_hour'];
         $this->checkout['actual_start_min'] = $this->checked_in_details['actual_start_min'];
@@ -100,11 +104,19 @@ class CheckOut extends Component
         $this->checkout['actual_end_timestamp'] = Carbon::createFromFormat('d/m/Y H:i:s', $this->checkout['actual_end_date'] . ' ' . $this->checkout['actual_end_hour'] . ':' . $this->checkout['actual_end_min'] . ':00');
 
         $fileService = new UploadFileService();
-        if ($this->upload_timesheet && $this->checkout['confirmation_upload_type'] == "print_and_sign")
-            $this->checkout['uploaded_timesheet'] = $fileService->saveFile('bookings/' . $this->booking_id, $this->upload_timesheet);
-        if ($this->upload_signature && $this->checkout['confirmation_upload_type'] == "digital_signature")
-            $this->checkout['customer_signature'] = $fileService->saveFile('bookings/' . $this->booking_id, $this->upload_signature);
+        if ($this->checkout['confirmation_upload_type'] == "print_and_sign") {
+            unset($this->checkout['digital_signature']);
+            $this->upload_signature = null;
+            if ($this->upload_timesheet)
+                $this->checkout['uploaded_timesheet'] = $fileService->saveFile('bookings/' . $this->booking_id, $this->upload_timesheet);
+        }
+        if ($this->upload_signature && $this->checkout['confirmation_upload_type'] == "digital_signature") {
+            if (isset($this->checkout['upload_timesheet']))
+                unset($this->checkout['upload_timesheet']);
+            $this->upload_timesheet = null;
 
+            $this->checkout['digital_signature']['customer_signature'] = $fileService->saveFile('bookings/' . $this->booking_id, $this->upload_signature);
+        }
 
         $booking_provider = BookingProvider::where(['booking_service_id' => $this->booking_service->id, 'provider_id' => Auth::id()])->first();
         $booking_provider->check_out_procedure_values = json_encode($this->checkout);
@@ -113,6 +125,11 @@ class CheckOut extends Component
 
         $this->setStep(2);
     }
+    public function saveStepTwo()
+    {
+        $this->emit('saveCustomForm');
+    }
+
 
     public function setStep($step)
     {

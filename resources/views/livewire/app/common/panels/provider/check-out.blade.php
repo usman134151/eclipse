@@ -222,19 +222,27 @@
                                     </div>
 
                                 </div>
+                                @error('upload_timesheet')
+                                    <span class="d-inline-block invalid-feedback mt-2">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
                                 <div class="text-muted" wire:loading wire:target='upload_timesheet'>
                                     Uploading...
                                 </div>
                                 @if ($upload_timesheet != null)
-                                    <div class="text-center" style="width:190px;height:250px">
 
-                                        @if ($this->isImage($upload_timesheet))
+                                    @if ($this->isImage($upload_timesheet))
+                                        <div class="text-center" style="width:190px;height:250px">
+
                                             <img alt="Timesheet Upload" style="width:100%;height:100%"
                                                 src="{{ '/tenant' . tenant('id') . '/app/livewire-tmp/' . $upload_timesheet->getFilename() }}">
-                                        @else
+                                        </div>
+                                    @else
+                                        <div class="">
                                             {{ $upload_timesheet->getClientOriginalName() }}
-                                        @endif
-                                    </div>
+                                        </div>
+                                    @endif
 
                                 @endif
                             </div>
@@ -297,18 +305,26 @@
                                     <div class="col-lg-6">
                                         <label class="form-label" for="signer-name">Signer’s Name</label>
                                         <input type="" name="" class="form-control"
+                                            wire:model="checkout.digital_signature.signer_name"
                                             placeholder="Enter Name" id="signer-name">
                                     </div>
                                     <div class="col-lg-6">
                                         <label class="form-label" for="position">Position</label>
                                         <input type="" name="" class="form-control"
+                                            wire:model="checkout.digital_signature.signer_position"
                                             placeholder="Enter Position" id="position">
                                     </div>
                                 </div>
                                 <div class="d-flex gap-5 align-items-center mb-4">
                                     <div class="d-flex align-items-center gap-3">
-                                        <button type="" class="btn btn-sm rounded btn-outline-dark">Upload
-                                            Signature</button>
+                                        <label for="upload_signature">
+                                            <div class="btn btn-sm rounded btn-outline-dark">Upload
+                                                Signature</div>
+                                        </label>
+                                        <input style=" opacity: 0; z-index: -1; position: absolute;"
+                                            id="upload_signature" wire:model="upload_signature" type="file">
+
+
                                     </div>
 
                                     <div class="d-flex align-items-center gap-3">
@@ -323,10 +339,30 @@
                                         </button>
                                     </div>
                                 </div>
-                                <div class="text-center">
-                                    <img src="/tenant-resources/images/portrait/small/img-timesheet.jpg"
-                                        alt="Timesheet Image">
+                                @error('upload_signature')
+                                    <span class="d-inline-block invalid-feedback mt-2">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                                <div class="text-muted" wire:loading wire:target='upload_signature'>
+                                    Uploading...
                                 </div>
+                                @if ($upload_signature != null)
+
+                                    @if ($this->isImage($upload_signature))
+                                        <div class="text-center" style="width:190px;height:250px">
+
+                                            <img alt="Signature Upload" style="width:100%;height:100%"
+                                                src="{{ '/tenant' . tenant('id') . '/app/livewire-tmp/' . $upload_signature->getFilename() }}">
+
+                                        </div>
+                                    @else
+                                        <div class="">
+                                            {{ $upload_signature->getClientOriginalName() }}
+                                        </div>
+                                    @endif
+
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -336,8 +372,10 @@
             <div class="mb-4">
                 <div class="form-actions d-flex gap-3 justify-content-center ">
                     <button type="button" class="btn btn-outline-dark rounded"
-                        x-on:click="offcanvasOpenCheckOut = !offcanvasOpenCheckOut">Back</button>
-                    <button type="submit" class="btn btn-primary rounded" wire:click="saveStepOne">Next</button>
+                        x-on:click="offcanvasOpenCheckOut = !offcanvasOpenCheckOut"
+                        wire:loading.attr="disabled">Back</button>
+                    <button type="submit" class="btn btn-primary rounded" wire:loading.attr="disabled"
+                        wire:click="saveStepOne">Next</button>
                 </div>
             </div>
         </div>
@@ -348,34 +386,11 @@
                 <div class="row inner-section-segment-spacing">
                     <div class="col-lg-12">
                         <h3 class="text-primary">Step 2:</h3>
-                        <h3 class="text-primary">Check-Out Form</h3>
-                        <div class="row">
-                            <div class="col-lg-6 mb-4">
-                                <label class="form-label-sm" for="company-name">Company Name</label>
-                                <input type="" name="" class="form-control"
-                                    placeholder="Enter Company Name" id="company-name">
-                            </div>
-                            <div class="col-lg-6 mb-4">
-                                <label class="form-label-sm" for="type-of-appointment">Type Of Appointment</label>
-                                <input type="" name="" class="form-control"
-                                    placeholder="Type Of Appointment" id="type-of-appointment">
-                            </div>
-                            <div class="col-lg-6 mb-4">
-                                <label class="form-label-sm" for="covid-regulation">Covid-19 Regulation</label>
-                                <input type="" name="" class="form-control" id="covid-regulation"
-                                    placeholder="Enter Covid-19 Regulation">
-                            </div>
-                            <div class="col-lg-6 mb-4">
-                                <label class="form-label-sm" for="new-patient">Is this a new patient</label>
-                                <select class="form-select" id="new-patient">
-                                    <option>Yes</option>
-                                </select>
-                            </div>
-                            <div class="col-lg-6 mb-4">
-                                <label class="form-label-sm" for="entry-Notes">Entry Notes</label>
-                                <textarea class="form-control" rows="5" cols="5" id="entry-Notes"></textarea>
-                            </div>
-                        </div>
+                        @if (isset($this->checkout_details['customize_form_id']))
+                            @livewire('app.common.forms.custom-form-display', ['showForm' => true, 'formId' => $this->checkout_details['customize_form_id'], 'bookingId' => $assignment->id, 'lastForm' => false, 'formType' => 3, 'service_id' => $booking_service->services])
+                        @else
+                            <small>No check-out form has been allocated for this service</small>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -396,7 +411,7 @@
             <div class="between-section-segment-spacing">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h3 class="text-primary">Step 3:</h3>
+                        <h3 class="text-primary">Step 3: (InActive)</h3>
                         <div class="row">
                             <div class="col-lg-6 mb-4">
                                 <label class="form-label-sm" for="entry-notes">Entry Notes</label>
@@ -429,7 +444,7 @@
             <div class="mb-4">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h3 class="text-primary">Step 4:</h3>
+                        <h3 class="text-primary">Step 4: (InActive)</h3>
                         <div class="mb-4">
                             <label class="form-label d-block">Check-Out Status</label>
                             <div class="form-check form-check-inline">
