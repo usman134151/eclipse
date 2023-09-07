@@ -5,16 +5,19 @@ namespace App\Http\Livewire\App\Common\Panels\Provider;
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\BookingServices;
+use App\Services\App\UploadFileService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class CheckOut extends Component
 {
+    use WithFileUploads;
     public $showForm, $checkout = [];
     protected $listeners = ['showList' => 'resetForm', 'updateVal'];
     public $booking_id = 0, $assignment = null, $step = 1, $booking_service = null, $checkout_details = null, $checked_in_details = null;
-
+    public $upload_timesheet = null, $upload_signature = null;
     public function setCheckout()
     {
         if ($this->checkout['status'])
@@ -78,16 +81,10 @@ class CheckOut extends Component
 
     protected $rules = [
         'checkout.actual_end_date' => 'required|date|after:checked_in_details.actual_start_date',
-    ];
-    // public function rules()
-    // {
-    //     return [
-    //         // 'checked_in_details.actual_start_date'=>'required|date',
+        'upload_timesheet' => 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv',
+        'upload_signature' => 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv',
 
-    //         // 'provider_signature' => 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv',
-    //         // 'customer_signature' => 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv',
-    //     ];
-    // }
+    ];
 
     public function saveStepOne()
     {
@@ -102,6 +99,12 @@ class CheckOut extends Component
             $this->checkout['actual_start_timestamp'] = Carbon::createFromFormat('d/m/Y H:i:s', $this->checked_in_details['actual_start_date'] . ' ' . $this->checked_in_details['actual_start_hour'] . ':' . $this->checked_in_details['actual_start_min'] . ':00');
         $this->checkout['actual_end_timestamp'] = Carbon::createFromFormat('d/m/Y H:i:s', $this->checkout['actual_end_date'] . ' ' . $this->checkout['actual_end_hour'] . ':' . $this->checkout['actual_end_min'] . ':00');
 
+        $fileService = new UploadFileService();
+        if ($this->upload_timesheet && $this->checkout['confirmation_upload_type'] == "print_and_sign")
+            $this->checkout['uploaded_timesheet'] = $fileService->saveFile('bookings/' . $this->booking_id, $this->upload_timesheet);
+        if ($this->upload_signature && $this->checkout['confirmation_upload_type'] == "digital_signature")
+            $this->checkout['customer_signature'] = $fileService->saveFile('bookings/' . $this->booking_id, $this->upload_signature);
+
 
         $booking_provider = BookingProvider::where(['booking_service_id' => $this->booking_service->id, 'provider_id' => Auth::id()])->first();
         $booking_provider->check_out_procedure_values = json_encode($this->checkout);
@@ -113,8 +116,6 @@ class CheckOut extends Component
 
     public function setStep($step)
     {
-        // dd($this->step, $step);
-
         $this->step = $step;
     }
 
@@ -134,5 +135,16 @@ class CheckOut extends Component
             $this->checkout['actual_end_date'] = $val;
         // dd($this->checkout);
         // $this->$attrName = $val;
+    }
+
+
+    public function isImage($file)
+    {
+        $extension = $file->getClientOriginalExtension();
+        $imgExtArr = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg'];
+        if (in_array($extension, $imgExtArr)) {
+            return true;
+        }
+        return false;
     }
 }

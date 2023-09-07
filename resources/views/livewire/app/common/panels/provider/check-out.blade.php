@@ -56,16 +56,17 @@
                                             {{ $checked_in_details['actual_start_timestamp'] ? date_format(date_create($checked_in_details['actual_start_timestamp']), 'd F Y') : '' }}</label>
                                         </div>
                                     @else
-                                    <div class="position-relative">
-                                        <svg aria-label="Date" class="icon-date md cursor-pointer" width="20"
-                                            height="20" viewBox="0 0 20 20">
-                                            <use xlink:href="/css/common-icons.svg#datefield-icon">
-                                            </use>
-                                        </svg>
-                                        <input class="form-control form-control-md js-single-date"
-                                            wire:model="checked_in_details.actual_start_date" id="actual_start_date"
-                                            placeholder="MM/DD/YYYY" name="actual_start_date" aria-label="Select Date">
-                                    </div>
+                                        <div class="position-relative">
+                                            <svg aria-label="Date" class="icon-date md cursor-pointer" width="20"
+                                                height="20" viewBox="0 0 20 20">
+                                                <use xlink:href="/css/common-icons.svg#datefield-icon">
+                                                </use>
+                                            </svg>
+                                            <input class="form-control form-control-md js-single-date"
+                                                wire:model="checked_in_details.actual_start_date" id="actual_start_date"
+                                                placeholder="MM/DD/YYYY" name="actual_start_date"
+                                                aria-label="Select Date">
+                                        </div>
                                     @endif
                                 </div>
                             </div>
@@ -122,32 +123,32 @@
                                             {{ $checked_in_details['actual_start_timestamp'] ? date_format(date_create($checked_in_details['actual_start_timestamp']), 'h:i A') : '' }}</label>
                                         </div>
                                     @else
-                                    <div class="d-flex gap-2">
-                                        <div class="time d-flex align-items-center gap-2">
-                                            <div>
-                                                <input class="form-control form-control-sm text-center hours"
-                                                    id="actual_start_hour" aria-label="Start Time"
-                                                    name="actual_start_hour" placeholder="00" type="number"
-                                                    tabindex=""
-                                                    wire:model.defer="checked_in_details.actual_start_hour"
-                                                    maxlength="2">
-                                            </div>
-                                            <svg width="5" height="19" viewBox="0 0 5 19" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M0.652588 16.6132C0.652588 16.1098 0.807878 15.6868 1.11846 15.3441C1.43975 14.9907 1.90026 14.814 2.5 14.814C3.09974 14.814 3.5549 14.9907 3.86548 15.3441C4.18677 15.6868 4.34741 16.1098 4.34741 16.6132C4.34741 17.1058 4.18677 17.5235 3.86548 17.8662C3.5549 18.2089 3.09974 18.3803 2.5 18.3803C1.90026 18.3803 1.43975 18.2089 1.11846 17.8662C0.807878 17.5235 0.652588 17.1058 0.652588 16.6132ZM0.668652 2.42827C0.668652 1.92492 0.823942 1.50189 1.13452 1.15918C1.45581 0.805761 1.91632 0.629052 2.51606 0.629052C3.1158 0.629052 3.57096 0.805761 3.88154 1.15918C4.20283 1.50189 4.36348 1.92492 4.36348 2.42827C4.36348 2.92091 4.20283 3.33859 3.88154 3.6813C3.57096 4.02401 3.1158 4.19536 2.51606 4.19536C1.91632 4.19536 1.45581 4.02401 1.13452 3.6813C0.823942 3.33859 0.668652 2.92091 0.668652 2.42827Z"
-                                                    fill="black" />
-                                            </svg>
-                                            <div>
-                                                <input class="form-control form-control-sm text-center  mins"
-                                                    aria-label="Start Minutes" id="actual_start_min"
-                                                    name="actual_start_min" placeholder="00" type="number"
-                                                    tabindex=""
-                                                    wire:model.defer="checked_in_details.actual_start_min"
-                                                    maxlength="2">
+                                        <div class="d-flex gap-2">
+                                            <div class="time d-flex align-items-center gap-2">
+                                                <div>
+                                                    <input class="form-control form-control-sm text-center hours"
+                                                        id="actual_start_hour" aria-label="Start Time"
+                                                        name="actual_start_hour" placeholder="00" type="number"
+                                                        tabindex=""
+                                                        wire:model.defer="checked_in_details.actual_start_hour"
+                                                        maxlength="2">
+                                                </div>
+                                                <svg width="5" height="19" viewBox="0 0 5 19" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M0.652588 16.6132C0.652588 16.1098 0.807878 15.6868 1.11846 15.3441C1.43975 14.9907 1.90026 14.814 2.5 14.814C3.09974 14.814 3.5549 14.9907 3.86548 15.3441C4.18677 15.6868 4.34741 16.1098 4.34741 16.6132C4.34741 17.1058 4.18677 17.5235 3.86548 17.8662C3.5549 18.2089 3.09974 18.3803 2.5 18.3803C1.90026 18.3803 1.43975 18.2089 1.11846 17.8662C0.807878 17.5235 0.652588 17.1058 0.652588 16.6132ZM0.668652 2.42827C0.668652 1.92492 0.823942 1.50189 1.13452 1.15918C1.45581 0.805761 1.91632 0.629052 2.51606 0.629052C3.1158 0.629052 3.57096 0.805761 3.88154 1.15918C4.20283 1.50189 4.36348 1.92492 4.36348 2.42827C4.36348 2.92091 4.20283 3.33859 3.88154 3.6813C3.57096 4.02401 3.1158 4.19536 2.51606 4.19536C1.91632 4.19536 1.45581 4.02401 1.13452 3.6813C0.823942 3.33859 0.668652 2.92091 0.668652 2.42827Z"
+                                                        fill="black" />
+                                                </svg>
+                                                <div>
+                                                    <input class="form-control form-control-sm text-center  mins"
+                                                        aria-label="Start Minutes" id="actual_start_min"
+                                                        name="actual_start_min" placeholder="00" type="number"
+                                                        tabindex=""
+                                                        wire:model.defer="checked_in_details.actual_start_min"
+                                                        maxlength="2">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
                                     @endif
                                 </div>
                             </div>
@@ -211,14 +212,31 @@
                                             Timesheet</button>
                                     </div>
                                     <div class="d-flex align-items-center gap-3">
-                                        2 <button type="" class="btn btn-sm rounded btn-outline-dark">Upload
-                                            Timesheet</button>
+                                        <label for="upload_timesheet">
+                                            2 <div type="" class="btn btn-sm rounded btn-outline-dark">Upload
+                                                Timesheet</div></label>
+                                        <input style=" opacity: 0; z-index: -1; position: absolute;"
+                                            id="upload_timesheet" wire:model="upload_timesheet" type="file">
+
+
                                     </div>
+
                                 </div>
-                                <div class="text-center">
-                                    <img src="/tenant-resources/images/portrait/small/img-timesheet.jpg"
-                                        alt="Timesheet Image">
+                                <div class="text-muted" wire:loading wire:target='upload_timesheet'>
+                                    Uploading...
                                 </div>
+                                @if ($upload_timesheet != null)
+                                    <div class="text-center" style="width:190px;height:250px">
+
+                                        @if ($this->isImage($upload_timesheet))
+                                            <img alt="Timesheet Upload" style="width:100%;height:100%"
+                                                src="{{ '/tenant' . tenant('id') . '/app/livewire-tmp/' . $upload_timesheet->getFilename() }}">
+                                        @else
+                                            {{ $upload_timesheet->getClientOriginalName() }}
+                                        @endif
+                                    </div>
+
+                                @endif
                             </div>
                         </div>
                         <div
@@ -234,8 +252,9 @@
                                 <div class="mb-4">
                                     <label class="form-label d-block">Select who sign from customer</label>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" value="requester" wire:model="checkout.digital_signature.customer_type"
-                                            name="Print&SignDigitalSignature" id="Print&SignDigitalSignature2" 
+                                        <input class="form-check-input" type="radio" value="requester"
+                                            wire:model="checkout.digital_signature.customer_type"
+                                            name="Print&SignDigitalSignature" id="Print&SignDigitalSignature2"
                                             aria-label="Requester">
                                         <label class="form-check-label" for="flexRadioDefault2">
                                             <small>
@@ -244,9 +263,9 @@
                                         </label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" aria-label="Supervisor" value="supervisor" wire:model="checkout.digital_signature.customer_type"
-                                            name="Print&SignDigitalSignature" id="Print&SignDigitalSignature2"
-                                            >
+                                        <input class="form-check-input" type="radio" aria-label="Supervisor"
+                                            value="supervisor" wire:model="checkout.digital_signature.customer_type"
+                                            name="Print&SignDigitalSignature" id="Print&SignDigitalSignature2">
                                         <label class="form-check-label" for="flexRadioDefault2">
                                             <small>
                                                 Supervisor
@@ -254,9 +273,9 @@
                                         </label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" aria-label="Service Consumer" value="consumer" wire:model="checkout.digital_signature.customer_type"
-                                            name="Print&SignDigitalSignature" id="Print&SignDigitalSignature2"
-                                            >
+                                        <input class="form-check-input" type="radio" aria-label="Service Consumer"
+                                            value="consumer" wire:model="checkout.digital_signature.customer_type"
+                                            name="Print&SignDigitalSignature" id="Print&SignDigitalSignature2">
                                         <label class="form-check-label" for="flexRadioDefault2">
                                             <small>
                                                 Service Consumer
@@ -264,7 +283,8 @@
                                         </label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" aria-label="Other" value="other" wire:model="checkout.digital_signature.customer_type"
+                                        <input class="form-check-input" type="radio" aria-label="Other"
+                                            value="other" wire:model="checkout.digital_signature.customer_type"
                                             name="Print&SignDigitalSignature" id="Print&SignDigitalSignature2">
                                         <label class="form-check-label" for="flexRadioDefault2">
                                             <small>
@@ -290,17 +310,17 @@
                                         <button type="" class="btn btn-sm rounded btn-outline-dark">Upload
                                             Signature</button>
                                     </div>
-                                    
+
                                     <div class="d-flex align-items-center gap-3">
-                                    
+
                                         <button type="" class="btn btn-sm rounded btn-outline-dark">Create
                                             Signature
                                             <span>
-                                        <small> (coming soon)</small>
-                                            
+                                                <small> (coming soon)</small>
+
                                             </span>
-                                            
-                                            </button>
+
+                                        </button>
                                     </div>
                                 </div>
                                 <div class="text-center">
@@ -414,7 +434,7 @@
                             <label class="form-label d-block">Check-Out Status</label>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="Print&SignDigitalSignature"
-                                    id="complete" >
+                                    id="complete">
                                 <label class="form-check-label" for="complete">
                                     <small>
                                         Complete
@@ -423,7 +443,7 @@
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="Print&SignDigitalSignature"
-                                    id="no-show" >
+                                    id="no-show">
                                 <label class="form-check-label" for="no-show">
                                     <small>
                                         No Show
@@ -432,7 +452,7 @@
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="Print&SignDigitalSignature"
-                                    id="cancelled" >
+                                    id="cancelled">
                                 <label class="form-check-label" for="cancelled">
                                     <small>
                                         Cancelled
