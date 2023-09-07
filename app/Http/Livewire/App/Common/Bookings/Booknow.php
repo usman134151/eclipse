@@ -731,7 +731,7 @@ class Booknow extends Component
                         if($service['services'] == $accommodationService['id']){
                             $postFix=$this->serviceTypes[$service['service_types']]['postfix'];
                             $serviceType=$this->serviceTypes[$service['service_types']]['title'];
-                            $service['services_data']=$accommodationService;
+                            $service['service_data']=$accommodationService;
                             $service['postFix']=$postFix;
                             $service["service_type"]=$serviceType;
                             $service['accommodation']=$accommodation;
@@ -745,7 +745,7 @@ class Booknow extends Component
           
         }
       
-        $this->bookingCharges=BookingOperationsService::getBookingCharges($this->booking,$bookingServices,$this->dates);
+        $this->services=BookingOperationsService::getBookingCharges($this->booking,$bookingServices,$this->dates);
        // dd($this->bookingCharges);
        // $this->bookingDetails=BookingOperationsService::getBookingInfoNewLayout($this->booking);
        
