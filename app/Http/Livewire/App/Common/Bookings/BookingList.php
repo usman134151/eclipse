@@ -20,6 +20,7 @@ class BookingList extends Component
 	public $bookingSection;
 	public  $limit = 10, $counter, $ad_counter = 0, $ci_counter = 0, $co_counter = 0, $currentServiceId, $panelType = 1;
 	public  $booking_id = 0, $provider_id = null, $booking_service_id = 0;
+	public $providerPanelType=0; //to ensure only clicked panel loads in provider-panel 
 	public $bookingNumber = '';
 
 
@@ -289,7 +290,7 @@ class BookingList extends Component
 		$this->emit('setBookingId', $booking_id);
 	}
 
-	// provider panel functions
+	// START : provider panel functions
 
 	public function showCheckInPanel($booking_id, $booking_service_id, $bookingNumber = null)
 	{
@@ -303,6 +304,7 @@ class BookingList extends Component
 			$this->booking_id = $booking_id;
 			$this->booking_service_id = $booking_service_id;
 			$this->ci_counter = 0;
+			$this->providerPanelType= 1;
 		}
 	}
 	public function showCheckOutPanel($booking_id, $bookingNumber=null)
@@ -316,6 +318,8 @@ class BookingList extends Component
 		} else {
 			$this->booking_id = $booking_id;
 			$this->co_counter = 0;
+			$this->providerPanelType = 2;
+
 		}
 	}
 	public function setAssignmentDetails($booking_id, $bookingNumber = null)
@@ -330,11 +334,13 @@ class BookingList extends Component
 		} else {
 			$this->booking_id = $booking_id;
 			$this->emit('setBookingId', $booking_id);
-
 			$this->ad_counter = 0;
+			$this->providerPanelType = 3;
+
 		}
 	}
 
+	// END : provider panel functions
 
 	public function showConfirmation($message = "")
 	{

@@ -1,7 +1,7 @@
 <x-off-canvas show="offcanvasOpenCheckOut">
     <x-slot name="title">Check-Out # {{ $bookingNumber }} <small>(coming soon)</small></x-slot>
-    @if ($booking_id)
-        @livewire('app.common.panels.provider.check-out', ['booking_id' => $booking_id])
+    @if ($booking_id &&$providerPanelType==2)
+        @livewire('app.common.panels.provider.check-out', ['booking_id' => $booking_id,'booking_service_id'=>$booking_service_id])
     @endif
 </x-off-canvas>
 <script>
