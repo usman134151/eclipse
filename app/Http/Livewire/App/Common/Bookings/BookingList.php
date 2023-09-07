@@ -20,6 +20,7 @@ class BookingList extends Component
 	public $bookingSection;
 	public  $limit = 10, $counter, $ad_counter = 0, $ci_counter = 0, $co_counter = 0, $currentServiceId, $panelType = 1;
 	public  $booking_id = 0, $provider_id = null, $booking_service_id = 0;
+	public $providerPanelType = 0; //to ensure only clicked panel loads in provider-panel 
 	public $bookingNumber = '';
 
 
@@ -74,7 +75,7 @@ class BookingList extends Component
 		switch ($this->bookingType) {
 			case ('Past'):
 				$query = Booking::
-				// where(['type' => 1, 'booking_status' => '1'])
+					// where(['type' => 1, 'booking_status' => '1'])
 
 					// ->when($addressCheck, function ($query) {
 					// 	$query->where('isCompleted', 0);
@@ -92,7 +93,7 @@ class BookingList extends Component
 				break;
 			case ("Today's"):
 				$query = Booking::
-				// where(['bookings.status' => 2, 'type' => 1, 'booking_status' => '1'])
+					// where(['bookings.status' => 2, 'type' => 1, 'booking_status' => '1'])
 
 					// ->when($addressCheck, function ($query) {
 					// 	$query->where('isCompleted', 0);
@@ -232,19 +233,28 @@ class BookingList extends Component
 				$row->meeting_link = $booking_service ? $booking_service->meeting_link : null;
 				$row->meeting_phone = $booking_service ? $booking_service->meeting_phone : null;
 			}
-			$row->display_running_late = false;
-			$row->display_check_in = false;
+			if ($this->provider_id) {
+				$row->display_running_late = false;
+				$row->display_check_in = false;
+				$row->display_check_out = false;
 
-			if ($booking_service && $booking_service->service) {
-				$val = json_decode($booking_service->service->running_late_procedure, true);
-				if ($val) {
-					if (isset($val['enable_button']) && ($val['enable_button']))
-						$row->display_running_late = true;
-				}
-				$val = json_decode($booking_service->service->check_in_procedure, true);
-				if ($val) {
-					if (isset($val['enable_button']) && ($val['enable_button']))
-						$row->display_check_in = true;
+
+				if ($booking_service && $booking_service->service) {
+					$val = json_decode($booking_service->service->running_late_procedure, true);
+					if ($val) {
+						if (isset($val['enable_button']) && ($val['enable_button']))
+							$row->display_running_late = true;
+					}
+					$val = json_decode($booking_service->service->check_in_procedure, true);
+					if ($val) {
+						if (isset($val['enable_button']) && ($val['enable_button']))
+							$row->display_check_in = true;
+					}
+					$val = json_decode($booking_service->service->close_out_procedure, true);
+					if ($val) {
+						if (isset($val['enable_button_provider']) && ($val['enable_button_provider']))
+							$row->display_check_out = true;
+					}
 				}
 			}
 		}
@@ -289,7 +299,7 @@ class BookingList extends Component
 		$this->emit('setBookingId', $booking_id);
 	}
 
-	// provider panel functions
+	// START : provider panel functions
 
 	public function showCheckInPanel($booking_id, $booking_service_id, $bookingNumber = null)
 	{
@@ -303,19 +313,23 @@ class BookingList extends Component
 			$this->booking_id = $booking_id;
 			$this->booking_service_id = $booking_service_id;
 			$this->ci_counter = 0;
+			$this->providerPanelType = 1;
 		}
 	}
-	public function showCheckOutPanel($booking_id, $bookingNumber=null)
+	public function showCheckOutPanel($booking_id, $booking_service_id, $bookingNumber = null)
 	{
 		if ($bookingNumber)
 			$this->bookingNumber = $bookingNumber;
 		if ($this->co_counter == 0) {
 			$this->booking_id = 0;
-			$this->dispatchBrowserEvent('open-check-out', ['booking_id' => $booking_id]);
+			$this->dispatchBrowserEvent('open-check-out', ['booking_id' => $booking_id, 'booking_service_id' => $booking_service_id]);
 			$this->co_counter = 1;
 		} else {
 			$this->booking_id = $booking_id;
+			$this->booking_service_id = $booking_service_id;
 			$this->co_counter = 0;
+			$this->providerPanelType = 2;
+			$this->dispatchBrowserEvent('refreshSelects');
 		}
 	}
 	public function setAssignmentDetails($booking_id, $bookingNumber = null)
@@ -330,11 +344,12 @@ class BookingList extends Component
 		} else {
 			$this->booking_id = $booking_id;
 			$this->emit('setBookingId', $booking_id);
-
 			$this->ad_counter = 0;
+			$this->providerPanelType = 3;
 		}
 	}
 
+	// END : provider panel functions
 
 	public function showConfirmation($message = "")
 	{
