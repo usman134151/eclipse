@@ -224,7 +224,7 @@ class BookingList extends Component
 				$row->service_name = $booking_service ?  ($booking_service->service ? $booking_service->service->name : null) : null;
 			}
 			if ((isset($booking_service)) && ($booking_service->meetings != null)) {
-				$meeting = json_decode($booking_service->meetings, true)[0];
+				$meeting = json_decode($booking_service->meetings, true) ? json_decode($booking_service->meetings, true)[0] : null;
 
 				$row->meeting_link = isset($meeting['meeting_name']) ? $meeting['meeting_name'] : null;
 				$row->meeting_phone = isset($meeting['phone_number']) ? $meeting['phone_number'] : null;
