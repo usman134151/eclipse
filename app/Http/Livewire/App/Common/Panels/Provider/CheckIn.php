@@ -5,6 +5,7 @@ namespace App\Http\Livewire\App\Common\Panels\Provider;
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingServices;
 use App\Services\App\UploadFileService;
+use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -53,6 +54,7 @@ class CheckIn extends Component
             $p_sign = $fileService->saveFile('bookings/' . $this->booking_id, $this->provider_signature);
         if ($this->customer_signature)
             $c_sign = $fileService->saveFile('bookings/' . $this->booking_id, $this->customer_signature);
+
         $bookingProvider = $this->assignment->booking_provider->where('booking_service_id', $this->booking_service->id)->first();
         if (!$bookingProvider)   //prev version compatability
             $bookingProvider = $this->assignment->booking_provider->where('booking_id', $this->booking_id)->first();
@@ -62,6 +64,8 @@ class CheckIn extends Component
             'actual_start_min' => $this->mins,
             'provider_signature_path' => isset($p_sign) ? $p_sign : null,
             'customer_signature_path' => isset($c_sign) ? $c_sign : null,
+            'actual_start_timestamp' => Carbon::createFromTime($this->hours, $this->mins)
+
         ];
         $bookingProvider->update(['check_in_status' => 1, 'check_in_procedure_values' => json_encode($values)]);
         $this->dispatchBrowserEvent('close-check-in-panel');
@@ -71,17 +75,17 @@ class CheckIn extends Component
     public function mount($booking_service_id)
     {
 
-        if ($this->booking_id)
+        if ($this->booking_id) {
             $this->assignment = Booking::where('id', $this->booking_id)->first();
-        $this->assignment = Booking::where('id', $this->booking_id)->first();
-        $this->booking_service = BookingServices::where('id', $booking_service_id)->first();
-        if ($this->booking_service)
-            $this->checkin_details = json_decode($this->booking_service->service->check_in_procedure, true);
+            $this->booking_service = BookingServices::where('id', $booking_service_id)->first();
+            if ($this->booking_service)
+                $this->checkin_details = json_decode($this->booking_service->service->check_in_procedure, true);
 
-        $this->hours =      date_format(date_create($this->assignment->booking_start_at), 'H');
-        $this->mins =      date_format(date_create($this->assignment->booking_start_at), 'i');
-        if (isset($this->checkin_details['customize_form_id']))
-            $this->form_id = $this->checkin_details['customize_form_id'];
+            $this->hours =      date_format(date_create($this->assignment->booking_start_at), 'H');
+            $this->mins =      date_format(date_create($this->assignment->booking_start_at), 'i');
+            if (isset($this->checkin_details['customize_form_id']))
+                $this->form_id = $this->checkin_details['customize_form_id'];
+        }
     }
 
     function showForm()

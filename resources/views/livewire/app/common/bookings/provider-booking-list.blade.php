@@ -112,11 +112,7 @@
                                                         </td>
                                                         <td>
                                                             <div class="d-flex actions">
-                                                                @if (
-                                                                    $booking['check_in_status'] == 0 &&
-                                                                        $bookingType != 'Unassigned' &&
-                                                                        $bookingType != 'Invitations' &&
-                                                                        $bookingType != 'Cancelled')
+                                                                @if ($booking['check_in_status'] == 0 && $bookingType != 'Unassigned' && $bookingType != 'Invitations' &&$bookingType != 'Cancelled')
                                                                     @if ($booking->service_type)
                                                                         @if ($booking->service_type == 1)
                                                                             {{-- In - Person --}}
@@ -217,14 +213,10 @@
                                                                             </svg>
                                                                         </a>
                                                                     @endif
-                                                                @elseif(
-                                                                    $booking['check_in_status'] > 0 &&
-                                                                        $bookingType != 'Unassigned' &&
-                                                                        $bookingType != 'Invitations' &&
-                                                                        $bookingType != 'Cancelled')
+                                                                @elseif( $booking['check_in_status'] > 0 && $booking['display_check_out'] && $bookingType != 'Unassigned' && $bookingType != 'Invitations' && $bookingType != 'Cancelled'  ) 
                                                                     <a href="#"
                                                                         @click="offcanvasOpenCheckOut = true"
-                                                                        wire:click="showCheckOutPanel('{{ $booking['id'] }}','{{ $booking['booking_number'] }}')"
+                                                                        wire:click="showCheckOutPanel('{{ $booking['id'] }}','{{ $booking['booking_service_id'] }}','{{ $booking['booking_number'] }}')"
                                                                         title="Check Out" aria-label="Check Out"
                                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                         <svg aria-label="Check Out" width="23"

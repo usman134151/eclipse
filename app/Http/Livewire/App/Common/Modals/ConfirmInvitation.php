@@ -11,10 +11,17 @@ use Livewire\Component;
 
 class ConfirmInvitation extends Component
 {
-    public $showForm, $data = [];
+    public $showForm, $data = [
+
+    ];
     public  $booking_id, $invitation_id;
     protected $listeners = ['showList' => 'resetForm', 'openProviderInvitationResponseModal' => 'setBooking'];
 
+    public function mount(){
+        $this->data = [
+            'status' => 1, 'notes' => ''
+        ];
+    }
     public function render()
     {
         return view('livewire.app.common.modals.confirm-invitation');
