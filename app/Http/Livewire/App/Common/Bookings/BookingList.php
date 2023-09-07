@@ -73,13 +73,15 @@ class BookingList extends Component
 
 		switch ($this->bookingType) {
 			case ('Past'):
-				$query = Booking::where(['type' => 1, 'booking_status' => '1'])
+				$query = Booking::
+				// where(['type' => 1, 'booking_status' => '1'])
 
 					// ->when($addressCheck, function ($query) {
 					// 	$query->where('isCompleted', 0);
 					// })
-					->whereIn('bookings.status', [3, 4])
-					->Orwhere(function ($ca) use ($today) {
+					// ->whereIn('bookings.status', [3, 4])
+					// Or
+					where(function ($ca) use ($today) {
 						$ca->whereRaw("DATE(booking_start_at) < '$today'")
 							->whereIn('bookings.status', [1, 2]);
 						// ->when($addressCheck, function ($query) {
@@ -89,18 +91,19 @@ class BookingList extends Component
 					->orderBy('booking_start_at', 'DESC');
 				break;
 			case ("Today's"):
-				$query = Booking::where(['bookings.status' => 2, 'type' => 1, 'booking_status' => '1'])
+				$query = Booking::
+				// where(['bookings.status' => 2, 'type' => 1, 'booking_status' => '1'])
 
 					// ->when($addressCheck, function ($query) {
 					// 	$query->where('isCompleted', 0);
 					// })
-					->whereRaw("'$today'  Between  DATE(booking_start_at) AND DATE(booking_end_at)")
+					whereRaw("'$today'  Between  DATE(booking_start_at) AND DATE(booking_end_at)")
 					->orderBy('booking_start_at', 'ASC');
 				break;
 			case ('Upcoming'):
 
 				$query = Booking::whereDate('booking_start_at', '>', Carbon::today())
-					->where(['bookings.status' => 2, 'type' => 1, 'booking_status' => '1'])
+					// ->where(['bookings.status' => 2, 'type' => 1, 'booking_status' => '1'])
 
 					// ->when($addressCheck, function ($query) {
 					// 	$query->where('isCompleted', 0);
