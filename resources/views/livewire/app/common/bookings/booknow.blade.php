@@ -936,9 +936,39 @@
 
                             <h2>Payment Summary</h2>
                             <div class="row">
-                                <div class="col-lg-6 mb-4 pe-lg-5 pt-5">
-                                    <div class="col-lg-10 mb-5">
-
+                                <div class="col-lg-6 mb-4">
+                                    <div class="col-lg-12 mb-5">
+                                      @foreach($services as $index=>$service)
+                                      <div>
+                                        <h2>Services {{$index+1}}</h2>
+                                            <div class="d-flex flex-column gap-1">
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <label class="col-form-label">Accommodation:</label>
+                                                    </div>
+                                                    <div class="col-lg-8 align-self-center">
+                                                        <div class="font-family-tertiary ">{{$service['accommodation']['name']}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <label class="col-form-label">Service:</label>
+                                                    </div>
+                                                    <div class="col-lg-8 align-self-center">
+                                                        <div class="font-family-tertiary">{{$service['service_data']['name']}}</div>
+                                                    </div>
+                                                </div>   
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <label class="col-form-label">Duration:</label>
+                                                    </div>
+                                                    <div class="col-lg-8 align-self-center">
+                                                        <div class="font-family-tertiary">{{$service['service_data']['name']}}</div>
+                                                    </div>
+                                                </div>                      
+                                            </div>
+                                        </div>              
+                                      @endforeach
                                     </div>
                                     <div class="col-lg-10 mb-5">
                                         <h2>Discounts</h2>
