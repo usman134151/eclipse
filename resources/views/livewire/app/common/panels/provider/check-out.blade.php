@@ -12,7 +12,7 @@
                     <label class="form-label mb-0">Check-out</label>
 
                     <div class="text-sm">
-                        {{ $checkout['timestamp'] ? date_format(date_create($checkout['timestamp']), 'm/d/Y h:i A') : '' }}
+                        {{ isset($checkout['actual_end_timestamp']) ? date_format(date_create($checkout['actual_end_timestamp']), 'm/d/Y h:i A') : '' }}
                     </div>
                 </div>
                 <div>
@@ -51,15 +51,22 @@
                                     <label class="form-label-sm fw-semibold mb-lg-0">Actual Start Date:</label>
                                 </div>
                                 <div class="col-lg-4 align-self-center">
+                                    @if ($this->checked_in_details != null && isset($this->checked_in_details['actual_start_timestamp']))
+                                        <div class="text-sm">
+                                            {{ $checked_in_details['actual_start_timestamp'] ? date_format(date_create($checked_in_details['actual_start_timestamp']), 'd F Y') : '' }}</label>
+                                        </div>
+                                    @else
                                     <div class="position-relative">
                                         <svg aria-label="Date" class="icon-date md cursor-pointer" width="20"
                                             height="20" viewBox="0 0 20 20">
                                             <use xlink:href="/css/common-icons.svg#datefield-icon">
                                             </use>
                                         </svg>
-                                        <input type="" class="form-control form-control-md js-single-date"
-                                            placeholder="MM/DD/YYYY" name="selectDate" aria-label="Select Date">
+                                        <input class="form-control form-control-md js-single-date"
+                                            wire:model="checked_in_details.actual_start_date" id="actual_start_date"
+                                            placeholder="MM/DD/YYYY" name="actual_start_date" aria-label="Select Date">
                                     </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -84,8 +91,14 @@
                                             <use xlink:href="/css/common-icons.svg#datefield-icon">
                                             </use>
                                         </svg>
-                                        <input type="" class="form-control form-control-md js-single-date"
-                                            placeholder="MM/DD/YYYY" name="selectDate" aria-label="Select Date">
+                                        <input class="form-control form-control-md js-single-date"
+                                            wire:model="checkout.actual_end_date" placeholder="MM/DD/YYYY"
+                                            name="actual_end_date" aria-label="Select Date" id="actual_end_date">
+                                        @error('checkout.actual_end_date')
+                                            <span class="d-inline-block invalid-feedback mt-2">
+                                                {{ $message }}
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -104,13 +117,20 @@
                                     <label class="form-label-sm fw-semibold mb-lg-0">Actual Start Time:</label>
                                 </div>
                                 <div class="col-lg-4 align-self-center">
+                                    @if ($this->checked_in_details != null && isset($this->checked_in_details['actual_start_timestamp']))
+                                        <div class="text-sm">
+                                            {{ $checked_in_details['actual_start_timestamp'] ? date_format(date_create($checked_in_details['actual_start_timestamp']), 'h:i A') : '' }}</label>
+                                        </div>
+                                    @else
                                     <div class="d-flex gap-2">
                                         <div class="time d-flex align-items-center gap-2">
                                             <div>
                                                 <input class="form-control form-control-sm text-center hours"
-                                                    id="actual_start_hour" aria-label="Start Time" name="actual_start_hour"
-                                                    placeholder="00" type="number" tabindex=""
-                                                    wire:model.defer="checked_in_details.actual_start_hour" maxlength="2">
+                                                    id="actual_start_hour" aria-label="Start Time"
+                                                    name="actual_start_hour" placeholder="00" type="number"
+                                                    tabindex=""
+                                                    wire:model.defer="checked_in_details.actual_start_hour"
+                                                    maxlength="2">
                                             </div>
                                             <svg width="5" height="19" viewBox="0 0 5 19" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -120,12 +140,15 @@
                                             </svg>
                                             <div>
                                                 <input class="form-control form-control-sm text-center  mins"
-                                                    aria-label="Start Minutes" id="actual_start_min" name="actual_start_min"
-                                                    placeholder="00" type="number" tabindex=""
-                                                    wire:model.defer="checked_in_details.actual_start_min" maxlength="2">
+                                                    aria-label="Start Minutes" id="actual_start_min"
+                                                    name="actual_start_min" placeholder="00" type="number"
+                                                    tabindex=""
+                                                    wire:model.defer="checked_in_details.actual_start_min"
+                                                    maxlength="2">
                                             </div>
                                         </div>
                                     </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -148,9 +171,10 @@
                                         <div class="time d-flex align-items-center gap-2">
                                             <div>
                                                 <input class="form-control form-control-sm text-center hours"
-                                                    id="actual_end_hour" aria-label="Start Time" name="actual_end_hour"
-                                                    placeholder="00" type="number" tabindex=""
-                                                    wire:model.defer="checkout.actual_end_hour" maxlength="2">
+                                                    id="actual_end_hour" aria-label="Start Time"
+                                                    name="actual_end_hour" placeholder="00" type="number"
+                                                    tabindex="" wire:model.defer="checkout.actual_end_hour"
+                                                    maxlength="2">
                                             </div>
                                             <svg width="5" height="19" viewBox="0 0 5 19" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -162,7 +186,8 @@
                                                 <input class="form-control form-control-sm text-center  mins"
                                                     aria-label="Start Minutes" id="actual_end_min"
                                                     name="actual_end_min" placeholder="00" type="number"
-                                                    tabindex="" wire:model.defer="checkout.actual_end_min" maxlength="2">
+                                                    tabindex="" wire:model.defer="checkout.actual_end_min"
+                                                    maxlength="2">
                                             </div>
                                         </div>
                                     </div>
@@ -172,12 +197,14 @@
                     </div>
                     <div class="col-lg-8">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio"  name="checkout_confirmation_upload_type" wire:model="checkout.confirmation_upload_type"
-                                id="print_sign" value="print_and_sign">
+                            <input class="form-check-input" type="radio" name="checkout_confirmation_upload_type"
+                                wire:model="checkout.confirmation_upload_type" id="print_sign"
+                                value="print_and_sign">
                             <label class="form-check-label" for="print_sign">
                                 Print & Sign
                             </label>
-                            <div class="py-4  {{$checkout['confirmation_upload_type']=='print_and_sign' ? '' : 'hidden'}}">
+                            <div
+                                class="py-4  {{ $checkout['confirmation_upload_type'] == 'print_and_sign' ? '' : 'hidden' }}">
                                 <div class="d-flex gap-5 align-items-center mb-4">
                                     <div class="d-flex align-items-center gap-3">
                                         1 <button type="" class="btn btn-sm rounded btn-outline-dark">Download
@@ -194,18 +221,21 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-check {{$checkout_details['enable_digital_signature'] == true ? '' : 'hidden'}}">
-                            <input class="form-check-input" type="radio" name="checkout_confirmation_upload_type" wire:model="checkout.confirmation_upload_type" 
-                                id="digital_signature" aria-label="Digital Signature" value="digital_signature">
+                        <div
+                            class="form-check {{ $checkout_details['enable_digital_signature'] == true ? '' : 'hidden' }}">
+                            <input class="form-check-input" type="radio" name="checkout_confirmation_upload_type"
+                                wire:model="checkout.confirmation_upload_type" id="digital_signature"
+                                aria-label="Digital Signature" value="digital_signature">
                             <label class="form-check-label" for="digital_signature">
                                 Digital Signature
                             </label>
-                            <div class="py-4 {{$checkout['confirmation_upload_type']=='digital_signature' ? '' : 'hidden'}}">
+                            <div
+                                class="py-4 {{ $checkout['confirmation_upload_type'] == 'digital_signature' ? '' : 'hidden' }}">
                                 <div class="mb-4">
                                     <label class="form-label d-block">Select who sign from customer</label>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio"
-                                            name="Print&SignDigitalSignature" id="Print&SignDigitalSignature2" checked
+                                        <input class="form-check-input" type="radio" value="requester" wire:model="checkout.digital_signature.customer_type"
+                                            name="Print&SignDigitalSignature" id="Print&SignDigitalSignature2" 
                                             aria-label="Requester">
                                         <label class="form-check-label" for="flexRadioDefault2">
                                             <small>
@@ -214,9 +244,9 @@
                                         </label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" aria-label="Supervisor"
+                                        <input class="form-check-input" type="radio" aria-label="Supervisor" value="supervisor" wire:model="checkout.digital_signature.customer_type"
                                             name="Print&SignDigitalSignature" id="Print&SignDigitalSignature2"
-                                            checked>
+                                            >
                                         <label class="form-check-label" for="flexRadioDefault2">
                                             <small>
                                                 Supervisor
@@ -224,9 +254,9 @@
                                         </label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" aria-label="Service Consumer"
+                                        <input class="form-check-input" type="radio" aria-label="Service Consumer" value="consumer" wire:model="checkout.digital_signature.customer_type"
                                             name="Print&SignDigitalSignature" id="Print&SignDigitalSignature2"
-                                            checked>
+                                            >
                                         <label class="form-check-label" for="flexRadioDefault2">
                                             <small>
                                                 Service Consumer
@@ -234,9 +264,8 @@
                                         </label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" aria-label="Other"
-                                            name="Print&SignDigitalSignature" id="Print&SignDigitalSignature2"
-                                            checked>
+                                        <input class="form-check-input" type="radio" aria-label="Other" value="other" wire:model="checkout.digital_signature.customer_type"
+                                            name="Print&SignDigitalSignature" id="Print&SignDigitalSignature2">
                                         <label class="form-check-label" for="flexRadioDefault2">
                                             <small>
                                                 Other
@@ -261,9 +290,17 @@
                                         <button type="" class="btn btn-sm rounded btn-outline-dark">Upload
                                             Signature</button>
                                     </div>
+                                    
                                     <div class="d-flex align-items-center gap-3">
+                                    
                                         <button type="" class="btn btn-sm rounded btn-outline-dark">Create
-                                            Signature</button>
+                                            Signature
+                                            <span>
+                                        <small> (coming soon)</small>
+                                            
+                                            </span>
+                                            
+                                            </button>
                                     </div>
                                 </div>
                                 <div class="text-center">
@@ -280,7 +317,7 @@
                 <div class="form-actions d-flex gap-3 justify-content-center ">
                     <button type="button" class="btn btn-outline-dark rounded"
                         x-on:click="offcanvasOpenCheckOut = !offcanvasOpenCheckOut">Back</button>
-                    <button type="submit" class="btn btn-primary rounded" wire:click="setStep(2)">Next</button>
+                    <button type="submit" class="btn btn-primary rounded" wire:click="saveStepOne">Next</button>
                 </div>
             </div>
         </div>
@@ -377,7 +414,7 @@
                             <label class="form-label d-block">Check-Out Status</label>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="Print&SignDigitalSignature"
-                                    id="complete" checked>
+                                    id="complete" >
                                 <label class="form-check-label" for="complete">
                                     <small>
                                         Complete
@@ -386,7 +423,7 @@
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="Print&SignDigitalSignature"
-                                    id="no-show" checked>
+                                    id="no-show" >
                                 <label class="form-check-label" for="no-show">
                                     <small>
                                         No Show
@@ -395,7 +432,7 @@
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="Print&SignDigitalSignature"
-                                    id="cancelled" checked>
+                                    id="cancelled" >
                                 <label class="form-check-label" for="cancelled">
                                     <small>
                                         Cancelled
