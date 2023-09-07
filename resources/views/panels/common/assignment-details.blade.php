@@ -1,6 +1,6 @@
 <x-off-canvas show="assignmentDetails" style="z-index: 1056;">
     <x-slot name="title">Assignment Detail ({{ $bookingNumber }}) </x-slot>
-    @if ($booking_id>0)
+    @if ($booking_id>0 &&$providerPanelType==3)
         @livewire('app.common.panels.assignment-details',['booking_id'=>$booking_id])
     @endif
 </x-off-canvas>
