@@ -7,8 +7,10 @@
 <script>
   window.addEventListener('open-check-out', function(event) {
     var booking_id = event.detail.booking_id;
+    var booking_service_id = event.detail.booking_service_id;
 
-    Livewire.emit('showCheckOutPanel', booking_id); 
+
+    Livewire.emit('showCheckOutPanel', booking_id,booking_service_id); 
   });
 
 </script>

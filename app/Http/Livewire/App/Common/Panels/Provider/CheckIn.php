@@ -72,17 +72,17 @@ class CheckIn extends Component
     public function mount($booking_service_id)
     {
 
-        if ($this->booking_id)
+        if ($this->booking_id) {
             $this->assignment = Booking::where('id', $this->booking_id)->first();
-        $this->assignment = Booking::where('id', $this->booking_id)->first();
-        $this->booking_service = BookingServices::where('id', $booking_service_id)->first();
-        if ($this->booking_service)
-            $this->checkin_details = json_decode($this->booking_service->service->check_in_procedure, true);
+            $this->booking_service = BookingServices::where('id', $booking_service_id)->first();
+            if ($this->booking_service)
+                $this->checkin_details = json_decode($this->booking_service->service->check_in_procedure, true);
 
-        $this->hours =      date_format(date_create($this->assignment->booking_start_at), 'H');
-        $this->mins =      date_format(date_create($this->assignment->booking_start_at), 'i');
-        if (isset($this->checkin_details['customize_form_id']))
-            $this->form_id = $this->checkin_details['customize_form_id'];
+            $this->hours =      date_format(date_create($this->assignment->booking_start_at), 'H');
+            $this->mins =      date_format(date_create($this->assignment->booking_start_at), 'i');
+            if (isset($this->checkin_details['customize_form_id']))
+                $this->form_id = $this->checkin_details['customize_form_id'];
+        }
     }
 
     function showForm()
