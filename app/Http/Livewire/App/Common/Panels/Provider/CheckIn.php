@@ -5,6 +5,7 @@ namespace App\Http\Livewire\App\Common\Panels\Provider;
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingServices;
 use App\Services\App\UploadFileService;
+use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -63,6 +64,8 @@ class CheckIn extends Component
             'actual_start_min' => $this->mins,
             'provider_signature_path' => isset($p_sign) ? $p_sign : null,
             'customer_signature_path' => isset($c_sign) ? $c_sign : null,
+            'actual_start_timestamp' => Carbon::createFromTime($this->hours, $this->mins)
+
         ];
         $bookingProvider->update(['check_in_status' => 1, 'check_in_procedure_values' => json_encode($values)]);
         $this->dispatchBrowserEvent('close-check-in-panel');

@@ -1,9 +1,9 @@
 <div class="js-ps-container-check-out">
     <!-- BEGIN: Step 1 -->
     <div class="js-checkout-step-1-content">
-        @if (isset($checked_in_details['checkin_time']))
+        @if (isset($checked_in_details['actual_start_timestamp']))
             <label class="form-label mb-0">Check-in Time
-                {{ $checked_in_details['checkin_time'] ? date_format(date_create($checked_in_details['checkin_time']), 'h:i A') : '' }}</label>
+                {{ $checked_in_details['actual_start_timestamp'] ? date_format(date_create($checked_in_details['actual_start_timestamp']), 'h:i A') : '' }}</label>
             <hr>
         @endif
         <div class="between-segment-spacing">

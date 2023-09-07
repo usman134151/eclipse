@@ -37,16 +37,16 @@ class CheckOut extends Component
     {
 
         $this->checkout = [
-            'status' => false,
+            'status' => true,
             'timestamp' => null,
-            'confirmation_upload_type'=> 'print_and_sign'
+            'confirmation_upload_type' => 'print_and_sign'
         ];
         if ($this->booking_id) {
             $this->assignment = Booking::where('id', $this->booking_id)->first();
             $this->booking_service = BookingServices::where('id', $booking_service_id)->first();
             // {"enable_button_provider":"true","customize_form_id":"25","customize_form":"true"
-                // ,"customers":"8","enable_button_customer":"true","time_extension":"true",
-                // "customer_invoice":"true","enable_digital_signature":"true"}
+            // ,"customers":"8","enable_button_customer":"true","time_extension":"true",
+            // "customer_invoice":"true","enable_digital_signature":"true"}
 
             if ($this->booking_service) {
                 $this->checkout_details = json_decode($this->booking_service->service->close_out_procedure, true);
@@ -58,7 +58,8 @@ class CheckOut extends Component
 
                         $booking_provider = BookingProvider::where(['booking_service_id' => $booking_service_id, 'provider_id' => Auth::id()])->first();
                         $this->checked_in_details = json_decode($booking_provider->check_in_procedure_values, true);
-                        $this->checked_in_details['checkin_time'] = Carbon::createFromTime($this->checked_in_details['actual_start_hour'], $this->checked_in_details['actual_start_min']);
+                        if (!isset($this->checked_in_details['actual_start_timestamp']))
+                            $this->checked_in_details['actual_start_timestamp'] = Carbon::createFromTime($this->checked_in_details['actual_start_hour'], $this->checked_in_details['actual_start_min']);
                     }
                 }
             }
