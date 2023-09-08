@@ -936,12 +936,12 @@
 
                             <h2>Payment Summary</h2>
                             <div class="row">
-                                <div class="col-lg-6 mb-4">
-                                    <div class="col-lg-12 mb-5">
+                               
+                                 
                                       @foreach($services as $index=>$service)
-                                      <div>
-                                        <h2>Services {{$index+1}}</h2>
-                                            <div class="d-flex flex-column gap-1">
+                                      <div class="row">
+                                        <h3>Services {{$index+1}} - {{$service['service_data']['name']}}</h3>
+                                            <div class="col-lg-6">
                                                 <div class="row">
                                                     <div class="col-lg-4">
                                                         <label class="col-form-label">Accommodation:</label>
@@ -950,39 +950,6 @@
                                                         <div class="font-family-tertiary ">{{$service['accommodation']['name']}}</div>
                                                     </div>
                                                 </div>
-                                                <div class="mt-3"><h3 style="color:#023DB0">Standard Rate </h3></div>
-                                                <div class="row">
-                                                    <div class="col-lg-4">
-                                                        <label class="col-form-label">Business Hour:</label>
-                                                    </div>
-                                                    <div class="col-lg-8 align-self-center">
-                                                        <div class="font-family-tertiary">$56.00</div>
-                                                    </div>
-                                                </div> 
-                                                <div class="row">
-                                                    <div class="col-lg-4">
-                                                        <label class="col-form-label">After Hours</label>
-                                                    </div>
-                                                    <div class="col-lg-8 align-self-center">
-                                                        <div class="font-family-tertiary">$16.00</div>
-                                                    </div>
-                                                </div>  
-                                                <div class="row">
-                                                    <div class="col-lg-4">
-                                                        <label class="col-form-label">Total:</label>
-                                                    </div>
-                                                    <div class="col-lg-8 align-self-center">
-                                                        <div class="font-family-tertiary">$112.00</div>
-                                                    </div>
-                                                </div> 
-                                                <div class="row">
-                                                    <div class="col-lg-4">
-                                                        <label class="col-form-label">Service:</label>
-                                                    </div>
-                                                    <div class="col-lg-8 align-self-center">
-                                                        <div class="font-family-tertiary">{{$service['service_data']['name']}}</div>
-                                                    </div>
-                                                </div>   
                                                 <div class="row">
                                                     <div class="col-lg-4">
                                                         <label class="col-form-label">Duration:</label>
@@ -990,7 +957,34 @@
                                                     <div class="col-lg-8 align-self-center">
                                                         <div class="font-family-tertiary">{{$service['total_duration']['hours']}} hours {{$service['total_duration']['mins']}} minutes</div>
                                                     </div>
-                                                </div>     
+                                                </div> 
+                                                <div class="mt-3"><h3 style="color:#023DB0">Standard Rate </h3></div>
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <label class="col-form-label">Business Hours:</label>
+                                                    </div>
+                                                    <div class="col-lg-8 align-self-center">
+                                                        <div class="font-family-tertiary">{{formatPayment($service['business_hour_charges'])}} for {{$service['business_hours']}} hours {{$service['business_minutes']}} minutes</div>
+                                                    </div>
+                                                </div> 
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <label class="col-form-label">After Hours</label>
+                                                    </div>
+                                                    <div class="col-lg-8 align-self-center">
+                                                        <div class="font-family-tertiary">{{formatPayment($service['after_business_hour_charges'])}} for {{$service['after_business_hours']}} hours {{$service['after_business_minutes']}} minutes</div>
+                                                    </div>
+                                                </div>  
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <label class="col-form-label">Total:</label>
+                                                    </div>
+                                                    <div class="col-lg-8 align-self-center">
+                                                        <div class="font-family-tertiary">{{formatPayment($service['business_hour_charges']+$service['after_business_hour_charges'])}}</div>
+                                                    </div>
+                                                </div> 
+ 
+    
                                                 <div class="mt-3"><h3 style="color:#023DB0">Additional Charges </h3></div>
                                                 <div class="row">
                                                     <div class="col-lg-4">
@@ -1041,7 +1035,11 @@
                                                         <div class="font-family-tertiary">$112.00</div>
                                                     </div>
                                                 </div> 
-                                                <div class="mt-3"><h3 style="color:#023DB0">Specializations </h3></div>
+
+                  
+                                            </div>
+                                            <div class="col-lg-6">
+                                            <div class="mt-3"><h3 style="color:#023DB0">Specializations </h3></div>
                                                 <div class="row">
                                                     <div class="col-lg-4">
                                                         <label class="col-form-label">Specialization 1:</label>
@@ -1083,30 +1081,23 @@
                                                         <div class="font-family-tertiary">$56.00</div>
                                                     </div>
                                                 </div> 
-                                                <div class="mt-3"><h2 style="color:#023DB0">Booking Total </h2></div>
-                                                <div class="row">
-                                                    <div class="col-lg-4">
-                                                        <label class="col-form-label">Total:</label>
-                                                    </div>
-                                                    <div class="col-lg-8 align-self-center">
-                                                        <div class="font-family-tertiary">$464.00</div>
-                                                    </div>
-                                                </div>  
-                  
-                                            </div>
+                                              </div>
                                         </div>              
                                       @endforeach
-                                    </div>
-                                    <div class="col-lg-10 mb-5">
-                                        <h2>Discounts</h2>
+                                   
+
+
+                               
+
+                            </div><!--end of services loop-->
+                            <h2 class="mt-5">Booking Totals </h2>
+                            <div class="row">
+                                <!--start of addtional charges and discount-->
+                                <div class="col-lg-6">
+                                    <div class="mt-2">
+                                    <h3>Discounts</h3>
                                         <div class="d-flex gap-3 flex-column flex-md-row mb-4">
-                                            {{--
-                                            <div class="form-check mb-0">
-                                                <input class="form-check-input" id="Coupon-radio-btn" name="discounts"
-                                                    type="radio" tabindex="" checked="">
-                                                <label class="form-check-label" for="Coupon-radio-btn">Coupon</label>
-                                            </div>
-                                            --}}
+
                                             <div class="form-check mb-0">
                                                 <input class="form-check-input" id="$Amount" name="discounts"
                                                     type="radio" tabindex="">
@@ -1118,7 +1109,7 @@
                                                 <label class="form-check-label" for="%Amount">% Amount</label>
                                             </div>
                                         </div>
-                                        {{--
+                                        
                                         <div class="row mb-4">
                                             <label class="form-label mb-md-0 col-lg-5 col-md-3 align-self-center" for="coupon-code">Coupon
                                                 Code</label>
@@ -1130,10 +1121,10 @@
                                                 <a href="#" class="btn btn-primary btn-sm rounded w-100">Apply</a>
                                             </div>
                                         </div>
-                                         --}}
+                                       
                                     </div>
-                                    <div class="col-lg-10 mb-5">
-                                        <h2>Additional Customer Charge</h2>
+                                    <div class="mt-5">
+                                        <h3>Additional Customer Charge</h3>
                                         <div class="input-group">
                                             <input type="" name="" class="form-control form-control-md"
                                                 placeholder="Enter Charge Label" aria-label="Enter Charge Label">
@@ -1154,8 +1145,8 @@
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="col-lg-10 mb-5">
-                                        <h2>Additional Provider Payment</h2>
+                                    <div class="mt-5">
+                                        <h3>Additional Provider Payment</h3>
                                         <div class="input-group mb-2">
                                             <input type="" name="" class="form-control form-control-md"
                                                 placeholder="Enter Charge Label" aria-label="Enter Charge Label">
@@ -1182,163 +1173,49 @@
                                                 </small>
                                             </a>
                                         </div>
-                                    </div>
+                                    </div>              
+                                    <div class="row between-section-segment-spacing">
+                                        <div class="col-lg-12">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="d-flex gap-3 p-2">
+                                                        <label class="form-label mb-0">Discount:</label>
+                                                        <div class="align-self-center text-black">$00.00</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-4">
+                                                <div class="col-lg-12">
+                                                    <div class="d-flex gap-3 bg-gray p-2">
+                                                        <label class="form-label mb-0">Total Price:</label>
+                                                        <div class="align-self-center text-black">$00.00</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="row">
+                                                        <label class="form-label mb-lg-0 col-lg-6 align-self-center" for="enter-override-amount">Enter
+                                                            Override
+                                                            Amount:</label>
+                                                        <div class="col-md-3 mb-3 mb-md-0">
+                                                            <input type="" name=""
+                                                                class="form-control form-control-md text-center"
+                                                                placeholder="$00.00" id="enter-override-amount">
+                                                        </div>
+                                                        <div class="col-md-3 align-self-center">
+                                                            <a href="#" class="btn btn-primary btn-sm rounded w-100">Apply</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                            </div>
                                 </div>
-                                <div class="col-lg-6 ps-lg-5 d-md-flex flex-md-wrap" style="">
-                                    <!-- Booking Schedule -->
-                                    <div class="col-md-12 border p-3 tabular-nums mb-lg-5 mb-4">
-                                        <div class="text-center">
-                                            <h3 class="text-primary">Booking Schedule</h3>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6 mb-3 mb-lg-0">
-                                                <div class="title">Service 1 Bookings</div>
-                                                <div class="d-flex flex-column gap-3">
-                                                    <div class="row">
-                                                        <div class="col-6">
-                                                            <div class="label">Booking 1:</div>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <div class="date">01/12/2022</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <hr class="border-separate-sm">
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-6">
-                                                            <div class="label">Booking 2:</div>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <div class="date">01/12/2022</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <hr class="border-separate-sm">
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-6">
-                                                            <div class="label">Booking 3:</div>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <div class="date">01/12/2022</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <hr class="border-separate-sm">
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-6">
-                                                            <div class="label">Booking 4:</div>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <div class="date">01/12/2022</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <hr class="border-separate-sm">
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-6">
-                                                            <div class="label">Booking 5:</div>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <div class="date">01/12/2022</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="title">Service 2 Bookings</div>
-                                                <div class="d-flex flex-column gap-3">
-                                                    <div class="row">
-                                                        <div class="col-6">
-                                                            <div class="label">Booking 1:</div>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <div class="date">01/12/2022</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <hr class="border-separate-sm">
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-6">
-                                                            <div class="label">Booking 2:</div>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <div class="date">01/12/2022</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <hr class="border-separate-sm">
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-6">
-                                                            <div class="label">Booking 3:</div>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <div class="date">01/12/2022</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <hr class="border-separate-sm">
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-6">
-                                                            <div class="label">Booking 4:</div>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <div class="date">01/12/2022</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <hr class="border-separate-sm">
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-6">
-                                                            <div class="label">Booking 5:</div>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <div class="date">01/12/2022</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <hr class="border-separate-sm">
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-6">
-                                                            <div class="label">Booking 5:</div>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <div class="date">01/12/2022</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /Booking Schedule -->
+                                <!--end of addtional charges and discount-->
+                                <div class="col-lg-6 mt-2 ps-5">
                                     <!-- Billing Notes -->
-                                    <div class="mb-lg-5 mb-4 col-lg-12 col-md-6 pe-md-3 pe-lg-0">
+                                    <div class="mb-lg-5 mb-4 col-lg-12 col-md-6 pe-md-3 pe-lg-2">
                                         <label class="form-label" for="billing-notes">
                                             Billing Notes
                                         </label>
@@ -1354,44 +1231,9 @@
                                     </div>
                                     <!-- /Payment Notes -->
                                 </div>
-                            </div>
-                            <div class="row between-section-segment-spacing">
-                                <div class="col-lg-12">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="d-flex gap-3 p-2">
-                                                <label class="form-label mb-0">Discount:</label>
-                                                <div class="align-self-center text-black">$00.00</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-4">
-                                        <div class="col-lg-12">
-                                            <div class="d-flex gap-3 bg-gray p-2">
-                                                <label class="form-label mb-0">Total Price:</label>
-                                                <div class="align-self-center text-black">$00.00</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="row">
-                                                <label class="form-label mb-lg-0 col-lg-6 align-self-center" for="enter-override-amount">Enter
-                                                    Override
-                                                    Amount:</label>
-                                                <div class="col-md-3 mb-3 mb-md-0">
-                                                    <input type="" name=""
-                                                        class="form-control form-control-md text-center"
-                                                        placeholder="$00.00" id="enter-override-amount">
-                                                </div>
-                                                <div class="col-md-3 align-self-center">
-                                                    <a href="#" class="btn btn-primary btn-sm rounded w-100">Apply</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                <!--end of notes-->
+                            </div>  
+
                             <div class="row">
                                 <div class="col-lg-6">
                                     <!-- Payment Preference -->
@@ -1430,6 +1272,7 @@
                                     <!-- /Payment Preference -->
                                 </div>
                             </div>
+                            <h2 class="mt-5">Booking Notes </h2>
                             <div class="row">
                                 <div class="col-lg-11">
                                     <div class="row between-section-segment-spacing">
@@ -1510,6 +1353,7 @@
                                     </div>
                                     <!-- Add Document -->
                                     @if(!is_null($booking->id))
+                                   
                                     <div>@livewire('app.common.bookings.booking-attachments', ['booking_id' => $booking->id])
                                   
                                         
