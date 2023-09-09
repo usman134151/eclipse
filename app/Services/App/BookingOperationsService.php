@@ -161,9 +161,9 @@ class BookingOperationsService{
     foreach($serviceCharges as $serviceCharge){
      
             $charges=$serviceCharge[0]['price'];
-            if($serviceCharge[0]['multiply_providers'])
+            if(array_key_exists('multiply_providers',$serviceCharge[0]) && $serviceCharge[0]['multiply_providers'])
               $charges*=$service['provider_count'];
-            if($serviceCharge[0]['multiply_duration'])
+            if(array_key_exists('multiply_duration',$serviceCharge[0]) && $serviceCharge[0]['multiply_duration'])
               $charges*=$service['total_duration']['hours']+($service['total_duration']['mins']/60);
               
             $service['additional_charges'][]=['label'=>$serviceCharge[0]['label'],'charges'=>$charges];

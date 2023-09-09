@@ -291,7 +291,7 @@
                                         <div class="d-flex justify-content-between">
                                         <h3 class="text-primary">Services {{ $loop->index + 1 }}</h3>
                                         <div class="align-items-center gap-4">
-                                        @if($index>1)
+                                        @if($index>=1)
                                             <a wire:click.prevent="removeServices({{$index}})" href="#" title="Delete" aria-label="Delete"
                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                 <svg class="delete-icon" width="20" height="20"
@@ -631,7 +631,7 @@
                                         <div class="d-flex justify-content-between">
                                         <h3 class="text-primary">Date & Time {{ $loop->index + 1 }}</h3>
                                         <div class="align-items-center gap-2">
-                                            @if($index>1)
+                                            @if($index>=1)
                                             <a wire:click.prevent="removeDate({{$index}})" href="#" title="Delete" aria-label="Delete"
                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                 <svg class="delete-icon" width="20" height="20"
@@ -939,9 +939,9 @@
                                
                                  
                                       @foreach($services as $index=>$service)
-                                      <div class="row border-bottom pb-4">
+                                      <div class="row border-bottom pb-4 mt-3">
                                         <h3>Services {{$index+1}} - {{$service['service_data']['name']}}</h3>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-6 pe-4">
                                                 <div class="row">
                                                     <div class="col-lg-4">
                                                         <label class="col-form-label">Accommodation:</label>
@@ -975,7 +975,7 @@
                                                         <div class="font-family-tertiary">{{formatPayment($service['after_business_hour_charges'])}} for {{$service['after_business_hours']}} hours {{$service['after_business_minutes']}} minutes</div>
                                                     </div>
                                                 </div>  
-                                                <div class="row">
+                                                <div class="row border-top">
                                                     <div class="col-lg-4">
                                                         <label class="col-form-label">Total:</label>
                                                     </div>
@@ -986,53 +986,42 @@
  
     
                                                 <div class="mt-3"><h3 style="color:#023DB0">Additional Charges </h3></div>
+                                                @foreach($service['additional_charges'] as $charge)
                                                 <div class="row">
                                                     <div class="col-lg-4">
-                                                        <label class="col-form-label">Label of charge 1:</label>
+                                                        <label class="col-form-label">{{$charge['label']}}</label>
                                                     </div>
                                                     <div class="col-lg-8 align-self-center">
-                                                        <div class="font-family-tertiary">$56.00</div>
+                                                        <div class="font-family-tertiary">{{formatPayment($charge['charges'])}}</div>
                                                     </div>
                                                 </div> 
-                                                <div class="row">
-                                                    <div class="col-lg-4">
-                                                        <label class="col-form-label">Label of charge 2:</label>
-                                                    </div>
-                                                    <div class="col-lg-8 align-self-center">
-                                                        <div class="font-family-tertiary">$56.00</div>
-                                                    </div>
-                                                </div>  
-                                                <div class="row">
+                                                @endforeach
+
+                                                <div class="row border-top">
                                                     <div class="col-lg-4">
                                                         <label class="col-form-label">Total:</label>
                                                     </div>
                                                     <div class="col-lg-8 align-self-center">
-                                                        <div class="font-family-tertiary">$112.00</div>
+                                                        <div class="font-family-tertiary">{{formatPayment($service['service_charge_total'])}}</div>
                                                     </div>
                                                 </div> 
                                                 <div class="mt-3"><h3 style="color:#023DB0">Additional Payment </h3></div>
+                                                @foreach($service['additional_payments'] as $payment)
                                                 <div class="row">
                                                     <div class="col-lg-4">
-                                                        <label class="col-form-label">Label 1:</label>
+                                                        <label class="col-form-label">{{$payment['label']}}</label>
                                                     </div>
                                                     <div class="col-lg-8 align-self-center">
-                                                        <div class="font-family-tertiary">$56.00</div>
+                                                        <div class="font-family-tertiary">{{formatPayment($payment['label'])}}</div>
                                                     </div>
                                                 </div> 
-                                                <div class="row">
-                                                    <div class="col-lg-4">
-                                                        <label class="col-form-label">Label 2:</label>
-                                                    </div>
-                                                    <div class="col-lg-8 align-self-center">
-                                                        <div class="font-family-tertiary">$56.00</div>
-                                                    </div>
-                                                </div>  
-                                                <div class="row">
+                                               @endforeach
+                                                <div class="row border-top">
                                                     <div class="col-lg-4">
                                                         <label class="col-form-label">Total:</label>
                                                     </div>
                                                     <div class="col-lg-8 align-self-center">
-                                                        <div class="font-family-tertiary">$112.00</div>
+                                                        <div class="font-family-tertiary">{{formatPayment($service['service_payment_total'])}}</div>
                                                     </div>
                                                 </div> 
 
