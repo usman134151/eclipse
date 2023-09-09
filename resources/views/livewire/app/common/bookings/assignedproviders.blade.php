@@ -163,7 +163,7 @@
                                                       @if (!$isProviderPanel)
                                                           <a href="#" title="Revoke" aria-label="Revoke"
                                                               data-bs-toggle="modal" data-bs-target="#UnassignModal"
-                                                              {{-- wire:click="removeProviderAssignment({{ $provider['booking_service_id'] ? $provider['booking_service_id'] : 'null' }}, {{ $provider['id'] }},{{ $provider['booking_id'] }})" --}}
+                                                              wire:click="$emit('openUnassignModal','{{ $provider['booking_service_id'] ? $provider['booking_service_id'] : 'null' }}',{{ $provider['provider_id'] }},{{ $provider['booking_id'] }})"
                                                               class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                               <svg aria-label="Revoke" width="19" height="20"
                                                                   viewBox="0 0 19 20">

@@ -26,7 +26,10 @@ class CustomFormDisplay extends Component
         if (count($formData)) {
             $this->formInfo = $formData['custom_form_details'];
             foreach ($formData['questions'] as $index => $question) {
-                $this->answers[$index] = BookingCustomizeData::where(['booking_id' => $this->bookingId, 'customize_id' => $question['id']])
+                $query = BookingCustomizeData::where(['booking_id' => $this->bookingId, 'customize_id' => $question['id'], 'form_type' => $this->formType]);
+                if($this->formType >1)
+                $query->where(['added_by'=>Auth::id(),'service_id'=>$this->service_id]);
+                $this->answers[$index] = $query
                     ->select(
                         'id',
                         'booking_log_id',

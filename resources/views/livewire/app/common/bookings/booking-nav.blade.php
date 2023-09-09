@@ -35,7 +35,7 @@
                                 <nav aria-label="Page Navigation">
                                     <ul class="pagination justify-content-start justify-content-lg-end ">
                                         <li class="page-item {{ ($paginator->currentPage() == 1) ? ' disabled' : '' }}" >
-                                            <a class="page-link"  href="{{ $paginator->previousPageUrl() }}" wire:click="previousPage" aria-label="Previous">
+                                            <a class="page-link"   wire:click="previousPage" aria-label="Previous">
                                                 <span aria-hidden="true">&laquo;</span>
                                             </a>
                                         </li>

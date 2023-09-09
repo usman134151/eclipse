@@ -22,15 +22,6 @@ class Assignedproviders extends Component
 
 
 
-    public function removeProviderAssignment($booking_service_id = null, $provider_id, $booking_id)
-    {
-        // dd($booking_service_id,$provider_id,$booking_id);
-        BookingProvider::where(['booking_service_id' => $booking_service_id, 'provider_id' => $provider_id, 'booking_id' => $booking_id])->delete();
-        Booking::where(['booking_id' => $booking_id])->update(['booking_status'=>1]);
-        //add check for booking_status update
-        $this->emit('showConfirmation', 'Provider Assignment has been revoked successfully');
-    }
-
     public function mount($booking_id, $service_id)
     {
         $this->booking_id = $booking_id;
@@ -43,6 +34,8 @@ class Assignedproviders extends Component
         // $count = BookingProvider::where(['booking_id'=>$this->booking_id,'booking_service_id'=> $booking_service->id])->count();
         // if($count < $booking_service->provider_count )
         //     $this->limitReached= false;
+        $this->dispatchBrowserEvent('refreshSelects');
+
     }
 
 

@@ -1,9 +1,9 @@
 <div class="js-ps-container-check-out">
     <!-- BEGIN: Step 1 -->
     <div class="js-checkout-step-1-content">
-        @if (isset($checked_in_details['actual_start_timestamp']))
+        @if (isset($checkout['actual_start_timestamp']))
             <label class="form-label mb-0">Check-in Time
-                {{ $checked_in_details['actual_start_timestamp'] ? date_format(date_create($checked_in_details['actual_start_timestamp']), 'h:i A') : '' }}</label>
+                {{ $checkout['actual_start_timestamp'] ? date_format(date_create($checkout['actual_start_timestamp']), 'h:i A') : '' }}</label>
             <hr>
         @endif
         <div class="between-segment-spacing">
@@ -51,9 +51,9 @@
                                     <label class="form-label-sm fw-semibold mb-lg-0">Actual Start Date:</label>
                                 </div>
                                 <div class="col-lg-4 align-self-center">
-                                    @if ($this->checked_in_details != null && isset($this->checked_in_details['actual_start_timestamp']))
+                                    @if (isset($this->checkout['actual_start_timestamp']))
                                         <div class="text-sm">
-                                            {{ $checked_in_details['actual_start_timestamp'] ? date_format(date_create($checked_in_details['actual_start_timestamp']), 'd F Y') : '' }}</label>
+                                            {{ $checkout['actual_start_timestamp'] ? date_format(date_create($checkout['actual_start_timestamp']), 'd F Y') : '' }}</label>
                                         </div>
                                     @else
                                         <div class="position-relative">
@@ -63,7 +63,7 @@
                                                 </use>
                                             </svg>
                                             <input class="form-control form-control-md js-single-date"
-                                                wire:model="checked_in_details.actual_start_date" id="actual_start_date"
+                                                wire:model="checkout.actual_start_date" id="actual_start_date"
                                                 placeholder="MM/DD/YYYY" name="actual_start_date"
                                                 aria-label="Select Date">
                                         </div>
@@ -118,9 +118,9 @@
                                     <label class="form-label-sm fw-semibold mb-lg-0">Actual Start Time:</label>
                                 </div>
                                 <div class="col-lg-4 align-self-center">
-                                    @if ($this->checked_in_details != null && isset($this->checked_in_details['actual_start_timestamp']))
+                                    @if (isset($this->checkout['actual_start_timestamp']))
                                         <div class="text-sm">
-                                            {{ $checked_in_details['actual_start_timestamp'] ? date_format(date_create($checked_in_details['actual_start_timestamp']), 'h:i A') : '' }}</label>
+                                            {{ $checkout['actual_start_timestamp'] ? date_format(date_create($checkout['actual_start_timestamp']), 'h:i A') : '' }}</label>
                                         </div>
                                     @else
                                         <div class="d-flex gap-2">
@@ -129,8 +129,7 @@
                                                     <input class="form-control form-control-sm text-center hours"
                                                         id="actual_start_hour" aria-label="Start Time"
                                                         name="actual_start_hour" placeholder="00" type="number"
-                                                        tabindex=""
-                                                        wire:model.defer="checked_in_details.actual_start_hour"
+                                                        tabindex="" wire:model.defer="checkout.actual_start_hour"
                                                         maxlength="2">
                                                 </div>
                                                 <svg width="5" height="19" viewBox="0 0 5 19" fill="none"
@@ -143,8 +142,7 @@
                                                     <input class="form-control form-control-sm text-center  mins"
                                                         aria-label="Start Minutes" id="actual_start_min"
                                                         name="actual_start_min" placeholder="00" type="number"
-                                                        tabindex=""
-                                                        wire:model.defer="checked_in_details.actual_start_min"
+                                                        tabindex="" wire:model.defer="checkout.actual_start_min"
                                                         maxlength="2">
                                                 </div>
                                             </div>
@@ -241,6 +239,18 @@
                                     @else
                                         <div class="">
                                             {{ $upload_timesheet->getClientOriginalName() }}
+                                        </div>
+                                    @endif
+                                @elseif(isset($checkout['uploaded_timesheet']) && $checkout['uploaded_timesheet'])
+                                    @if ($this->isImage($checkout['uploaded_timesheet'], true))
+                                        <div class="text-center" style="width:190px;height:250px">
+
+                                            <img alt="Timesheet Upload" style="width:100%;height:100%"
+                                                src="{{ $checkout['uploaded_timesheet'] }}">
+                                        </div>
+                                    @else
+                                        <div class="">
+                                            {{ basename($checkout['uploaded_timesheet']) }}
                                         </div>
                                     @endif
 
@@ -361,6 +371,18 @@
                                             {{ $upload_signature->getClientOriginalName() }}
                                         </div>
                                     @endif
+                                @elseif(isset($checkout['digital_signature']['customer_signature']) && $checkout['digital_signature']['customer_signature'])
+                                    @if ($this->isImage($checkout['digital_signature']['customer_signature'], true))
+                                        <div class="text-center" style="width:190px;height:250px">
+
+                                            <img alt="Timesheet Upload" style="width:100%;height:100%"
+                                                src="{{ $checkout['digital_signature']['customer_signature'] }}">
+                                        </div>
+                                    @else
+                                        <div class="">
+                                            {{ basename($checkout['digital_signature']['customer_signature']) }}
+                                        </div>
+                                    @endif
 
                                 @endif
                             </div>
@@ -386,7 +408,9 @@
                 <div class="row inner-section-segment-spacing">
                     <div class="col-lg-12">
                         <h3 class="text-primary">Step 2:</h3>
-                        @if (isset($this->checkout_details['customize_form_id']))
+                        @if (isset($this->checkout_details['customize_form']) &&
+                                $this->checkout_details['customize_form'] == true &&
+                                isset($this->checkout_details['customize_form_id']))
                             @livewire('app.common.forms.custom-form-display', ['showForm' => true, 'formId' => $this->checkout_details['customize_form_id'], 'bookingId' => $assignment->id, 'lastForm' => false, 'formType' => 3, 'service_id' => $booking_service->services])
                         @else
                             <small>No check-out form has been allocated for this service</small>
@@ -401,7 +425,7 @@
                     <button type="button" x-on:click="offcanvasOpenCheckOut = !offcanvasOpenCheckOut"
                         class="btn btn-outline-dark rounded">Cancel</button>
                     <button type="submit" class="btn btn-primary rounded js-checkout-go-step-3"
-                        wire:click="setStep(3)">Next</button>
+                        wire:click="saveStepTwo">Next</button>
                 </div>
             </div>
         </div>
@@ -411,11 +435,12 @@
             <div class="between-section-segment-spacing">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h3 class="text-primary">Step 3: (InActive)</h3>
+                        <h3 class="text-primary">Step 3:</h3>
                         <div class="row">
                             <div class="col-lg-6 mb-4">
                                 <label class="form-label-sm" for="entry-notes">Entry Notes</label>
-                                <textarea class="form-control" rows="5" cols="5" id="entry-notes"></textarea>
+                                <textarea wire:model.defer="checkout.entry_notes" class="form-control" rows="5" cols="5"
+                                    id="entry-notes"></textarea>
                             </div>
                         </div>
                         <div class="row">
@@ -423,6 +448,7 @@
                                 <a href="#" class="btn btn-sm btn-outline-dark rounded">Add Reimbursement</a>
                             </div>
                         </div>
+                        <small>(coming soon)</small>
                     </div>
                 </div>
                 <hr>
@@ -433,7 +459,7 @@
                     <button type="submit" class="btn btn-primary rounded" wire:click="setStep(2)">Back</button>
                     <button x-on:click="offcanvasOpenCheckOut = !offcanvasOpenCheckOut" type="button"
                         class="btn btn-outline-dark rounded">Cancel</button>
-                    <button type="submit" wire:click="setStep(4)"
+                    <button type="submit" wire:click="saveStepThree"
                         class="btn btn-primary rounded js-checkout-go-step-4">Next</button>
                 </div>
             </div>
@@ -444,51 +470,69 @@
             <div class="mb-4">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h3 class="text-primary">Step 4: (InActive)</h3>
-                        <div class="mb-4">
-                            <label class="form-label d-block">Check-Out Status</label>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Print&SignDigitalSignature"
-                                    id="complete">
-                                <label class="form-check-label" for="complete">
-                                    <small>
-                                        Complete
-                                    </small>
-                                </label>
+                        <h3 class="text-primary">Step 4:</h3>
+                        @if (isset($checkout_details['statuses']) && $checkout_details['statuses'] == true)
+                            <div class="mb-4">
+                                <label class="form-label d-block">Check-Out Status</label>
+                                @if (isset($checkout_details['status_types']) &&
+                                        isset($checkout_details['status_types']['complete']) &&
+                                        $checkout_details['status_types']['complete'] == true)
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="booking_status"
+                                            wire:model='checkout.checkout_status' value="complete" id="complete">
+                                        <label class="form-check-label" for="complete">
+                                            <small>
+                                                Complete
+                                            </small>
+                                        </label>
+                                    </div>
+                                @endif
+                                @if (isset($checkout_details['status_types']) &&
+                                        isset($checkout_details['status_types']['noshow']) &&
+                                        $checkout_details['status_types']['noshow'] == true)
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="booking_status"
+                                            wire:model='checkout.checkout_status' id="no-show" value="noshow">
+                                        <label class="form-check-label" for="no-show">
+                                            <small>
+                                                No Show
+                                            </small>
+                                        </label>
+                                    </div>
+                                @endif
+                                @if (isset($checkout_details['status_types']) &&
+                                        isset($checkout_details['status_types']['cancelled']) &&
+                                        $checkout_details['status_types']['cancelled'] == true)
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="booking_status"
+                                            wire:model='checkout.checkout_status' id="cancelled" value="cancelled">
+                                        <label class="form-check-label" for="cancelled">
+                                            <small>
+                                                Cancelled
+                                            </small>
+                                        </label>
+                                    </div>
+                                @endif
+
                             </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Print&SignDigitalSignature"
-                                    id="no-show">
-                                <label class="form-check-label" for="no-show">
-                                    <small>
-                                        No Show
-                                    </small>
-                                </label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Print&SignDigitalSignature"
-                                    id="cancelled">
-                                <label class="form-check-label" for="cancelled">
-                                    <small>
-                                        Cancelled
-                                    </small>
-                                </label>
-                            </div>
-                        </div>
+                        @endif
                         <div class="d-lg-flex gap-5 align-items-center mb-4">
                             <div class="d-flex align-items-center gap-3">
                                 <label class="form-label mb-lg-0">Company:</label>
-                                <div>Microsoft</div>
+                                <div> {{ $assignment->customer ? $assignment->customer->company->name : 'N/A' }}
+                                </div>
                             </div>
                             <div class="d-flex align-items-center gap-3">
                                 <label class="form-label mb-lg-0">Consumer:</label>
-                                <div>Adam Henry</div>
+                                <div>{{ $assignment->customer ? $assignment->customer->name : 'N/A' }}</div>
                             </div>
                         </div>
                         <div class="mb-4">
                             <div class="text-sm">Share your experience working with This consumer</div>
                             <hr>
-                            <label class="form-label d-block mb-0">Rating</label>
+                            <label class="form-label d-block mb-0">Rating
+                                <small>(coming soon)</small>
+                            </label>
                             <i class="fa fa-star fa-2x text-warning"></i>
                             <i class="fa fa-star fa-2x text-warning"></i>
                             <i class="fa fa-star fa-2x text-warning"></i>
@@ -497,16 +541,19 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-6 mb-4">
-                                <label class="form-label-sm" for="EntryNotes">Entry Notes</label>
+                                <label class="form-label-sm" for="EntryNotes">Entry Notes
+                                <small>(coming soon)</small>
+                                </label>
                                 <textarea class="form-control" rows="5" cols="5" id="EntryNotes"></textarea>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-check mb-0">
-                                    <input class="form-check-input" type="checkbox" value=""
-                                        id="PendingServiceAddressLink">
-                                    <label class="form-check-label" for="PendingServiceAddressLink">
+                                    <input class="form-check-input" type="checkbox"
+                                        wire:model="checkout.provider_agreement_confirmation"
+                                        id="provider_agreement_confirmation">
+                                    <label class="form-check-label" for="provider_agreement_confirmation">
                                         I agree that the information I have provided is complete, accurate, and
                                         truthful. I
                                         understand that I am responsible for ensuring the information I provide is
