@@ -129,8 +129,7 @@
                                                     <input class="form-control form-control-sm text-center hours"
                                                         id="actual_start_hour" aria-label="Start Time"
                                                         name="actual_start_hour" placeholder="00" type="number"
-                                                        tabindex=""
-                                                        wire:model.defer="checkout.actual_start_hour"
+                                                        tabindex="" wire:model.defer="checkout.actual_start_hour"
                                                         maxlength="2">
                                                 </div>
                                                 <svg width="5" height="19" viewBox="0 0 5 19" fill="none"
@@ -143,8 +142,7 @@
                                                     <input class="form-control form-control-sm text-center  mins"
                                                         aria-label="Start Minutes" id="actual_start_min"
                                                         name="actual_start_min" placeholder="00" type="number"
-                                                        tabindex=""
-                                                        wire:model.defer="checkout.actual_start_min"
+                                                        tabindex="" wire:model.defer="checkout.actual_start_min"
                                                         maxlength="2">
                                                 </div>
                                             </div>
@@ -244,7 +242,7 @@
                                         </div>
                                     @endif
                                 @elseif(isset($checkout['uploaded_timesheet']) && $checkout['uploaded_timesheet'])
-                               @if ($this->isImage($checkout['uploaded_timesheet'], true))
+                                    @if ($this->isImage($checkout['uploaded_timesheet'], true))
                                         <div class="text-center" style="width:190px;height:250px">
 
                                             <img alt="Timesheet Upload" style="width:100%;height:100%"
@@ -252,7 +250,7 @@
                                         </div>
                                     @else
                                         <div class="">
-                                            {{ basename($checkout['uploaded_timesheet'])}}
+                                            {{ basename($checkout['uploaded_timesheet']) }}
                                         </div>
                                     @endif
 
@@ -373,6 +371,18 @@
                                             {{ $upload_signature->getClientOriginalName() }}
                                         </div>
                                     @endif
+                                @elseif(isset($checkout['digital_signature']['customer_signature']) && $checkout['digital_signature']['customer_signature'])
+                                    @if ($this->isImage($checkout['digital_signature']['customer_signature'], true))
+                                        <div class="text-center" style="width:190px;height:250px">
+
+                                            <img alt="Timesheet Upload" style="width:100%;height:100%"
+                                                src="{{ $checkout['digital_signature']['customer_signature'] }}">
+                                        </div>
+                                    @else
+                                        <div class="">
+                                            {{ basename($checkout['digital_signature']['customer_signature']) }}
+                                        </div>
+                                    @endif
 
                                 @endif
                             </div>
@@ -398,7 +408,7 @@
                 <div class="row inner-section-segment-spacing">
                     <div class="col-lg-12">
                         <h3 class="text-primary">Step 2:</h3>
-                        @if (isset($this->checkout_details['customize_form_id']))
+                        @if ((isset($this->checkout_details['customize_form']) && ($this->checkout_details['customize_form'] == true)) &&isset($this->checkout_details['customize_form_id']))
                             @livewire('app.common.forms.custom-form-display', ['showForm' => true, 'formId' => $this->checkout_details['customize_form_id'], 'bookingId' => $assignment->id, 'lastForm' => false, 'formType' => 3, 'service_id' => $booking_service->services])
                         @else
                             <small>No check-out form has been allocated for this service</small>
