@@ -408,7 +408,9 @@
                 <div class="row inner-section-segment-spacing">
                     <div class="col-lg-12">
                         <h3 class="text-primary">Step 2:</h3>
-                        @if ((isset($this->checkout_details['customize_form']) && ($this->checkout_details['customize_form'] == true)) &&isset($this->checkout_details['customize_form_id']))
+                        @if (isset($this->checkout_details['customize_form']) &&
+                                $this->checkout_details['customize_form'] == true &&
+                                isset($this->checkout_details['customize_form_id']))
                             @livewire('app.common.forms.custom-form-display', ['showForm' => true, 'formId' => $this->checkout_details['customize_form_id'], 'bookingId' => $assignment->id, 'lastForm' => false, 'formType' => 3, 'service_id' => $booking_service->services])
                         @else
                             <small>No check-out form has been allocated for this service</small>
@@ -437,7 +439,8 @@
                         <div class="row">
                             <div class="col-lg-6 mb-4">
                                 <label class="form-label-sm" for="entry-notes">Entry Notes</label>
-                                <textarea wire:model.defer="checkout.entry_notes" class="form-control" rows="5" cols="5" id="entry-notes"></textarea>
+                                <textarea wire:model.defer="checkout.entry_notes" class="form-control" rows="5" cols="5"
+                                    id="entry-notes"></textarea>
                             </div>
                         </div>
                         <div class="row">
@@ -467,51 +470,69 @@
             <div class="mb-4">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h3 class="text-primary">Step 4: (InActive)</h3>
-                        <div class="mb-4">
-                            <label class="form-label d-block">Check-Out Status</label>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Print&SignDigitalSignature"
-                                    id="complete">
-                                <label class="form-check-label" for="complete">
-                                    <small>
-                                        Complete
-                                    </small>
-                                </label>
+                        <h3 class="text-primary">Step 4:</h3>
+                        @if (isset($checkout_details['statuses']) && $checkout_details['statuses'] == true)
+                            <div class="mb-4">
+                                <label class="form-label d-block">Check-Out Status</label>
+                                @if (isset($checkout_details['status_types']) &&
+                                        isset($checkout_details['status_types']['complete']) &&
+                                        $checkout_details['status_types']['complete'] == true)
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="booking_status"
+                                            wire:model='checkout.status' value="complete" id="complete">
+                                        <label class="form-check-label" for="complete">
+                                            <small>
+                                                Complete
+                                            </small>
+                                        </label>
+                                    </div>
+                                @endif
+                                @if (isset($checkout_details['status_types']) &&
+                                        isset($checkout_details['status_types']['noshow']) &&
+                                        $checkout_details['status_types']['noshow'] == true)
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="booking_status"
+                                            wire:model='checkout.status' id="no-show" value="noshow">
+                                        <label class="form-check-label" for="no-show">
+                                            <small>
+                                                No Show
+                                            </small>
+                                        </label>
+                                    </div>
+                                @endif
+                                @if (isset($checkout_details['status_types']) &&
+                                        isset($checkout_details['status_types']['cancelled']) &&
+                                        $checkout_details['status_types']['cancelled'] == true)
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="booking_status"
+                                            wire:model='checkout.status' id="cancelled" value="cancelled">
+                                        <label class="form-check-label" for="cancelled">
+                                            <small>
+                                                Cancelled
+                                            </small>
+                                        </label>
+                                    </div>
+                                @endif
+
                             </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Print&SignDigitalSignature"
-                                    id="no-show">
-                                <label class="form-check-label" for="no-show">
-                                    <small>
-                                        No Show
-                                    </small>
-                                </label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Print&SignDigitalSignature"
-                                    id="cancelled">
-                                <label class="form-check-label" for="cancelled">
-                                    <small>
-                                        Cancelled
-                                    </small>
-                                </label>
-                            </div>
-                        </div>
+                        @endif
                         <div class="d-lg-flex gap-5 align-items-center mb-4">
                             <div class="d-flex align-items-center gap-3">
                                 <label class="form-label mb-lg-0">Company:</label>
-                                <div>Microsoft</div>
+                                <div> {{ $assignment->customer ? $assignment->customer->company->name : 'N/A' }}
+                                </div>
                             </div>
                             <div class="d-flex align-items-center gap-3">
                                 <label class="form-label mb-lg-0">Consumer:</label>
-                                <div>Adam Henry</div>
+                                <div>{{ $assignment->customer ? $assignment->customer->name : 'N/A' }}</div>
                             </div>
                         </div>
                         <div class="mb-4">
                             <div class="text-sm">Share your experience working with This consumer</div>
                             <hr>
-                            <label class="form-label d-block mb-0">Rating</label>
+                            <label class="form-label d-block mb-0">Rating
+                                <small>(coming soon)</small>
+                            </label>
                             <i class="fa fa-star fa-2x text-warning"></i>
                             <i class="fa fa-star fa-2x text-warning"></i>
                             <i class="fa fa-star fa-2x text-warning"></i>
@@ -520,16 +541,19 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-6 mb-4">
-                                <label class="form-label-sm" for="EntryNotes">Entry Notes</label>
+                                <label class="form-label-sm" for="EntryNotes">Entry Notes
+                                <small>(coming soon)</small>
+                                </label>
                                 <textarea class="form-control" rows="5" cols="5" id="EntryNotes"></textarea>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-check mb-0">
-                                    <input class="form-check-input" type="checkbox" value=""
-                                        id="PendingServiceAddressLink">
-                                    <label class="form-check-label" for="PendingServiceAddressLink">
+                                    <input class="form-check-input" type="checkbox"
+                                        wire:model="checkout.provider_agreement_confirmation"
+                                        id="provider_agreement_confirmation">
+                                    <label class="form-check-label" for="provider_agreement_confirmation">
                                         I agree that the information I have provided is complete, accurate, and
                                         truthful. I
                                         understand that I am responsible for ensuring the information I provide is

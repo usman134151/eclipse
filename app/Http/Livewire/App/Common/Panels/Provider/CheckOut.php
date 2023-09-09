@@ -33,6 +33,8 @@ class CheckOut extends Component
 
     public function save()
     {
+        $this->booking_provider->check_out_procedure_values = json_encode($this->checkout);
+        $this->booking_provider->save();
         $this->dispatchBrowserEvent('close-check-out');
     }
 
@@ -40,7 +42,7 @@ class CheckOut extends Component
     {
 
         $this->checkout = [
-            'status' => true,
+            'status' => 'pending',
             'confirmation_upload_type' => 'print_and_sign'
 
         ];
