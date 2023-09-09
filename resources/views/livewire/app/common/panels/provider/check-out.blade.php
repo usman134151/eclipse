@@ -1,9 +1,9 @@
 <div class="js-ps-container-check-out">
     <!-- BEGIN: Step 1 -->
     <div class="js-checkout-step-1-content">
-        @if (isset($checked_in_details['actual_start_timestamp']))
+        @if (isset($checkout['actual_start_timestamp']))
             <label class="form-label mb-0">Check-in Time
-                {{ $checked_in_details['actual_start_timestamp'] ? date_format(date_create($checked_in_details['actual_start_timestamp']), 'h:i A') : '' }}</label>
+                {{ $checkout['actual_start_timestamp'] ? date_format(date_create($checkout['actual_start_timestamp']), 'h:i A') : '' }}</label>
             <hr>
         @endif
         <div class="between-segment-spacing">
@@ -51,9 +51,9 @@
                                     <label class="form-label-sm fw-semibold mb-lg-0">Actual Start Date:</label>
                                 </div>
                                 <div class="col-lg-4 align-self-center">
-                                    @if ($this->checked_in_details != null && isset($this->checked_in_details['actual_start_timestamp']))
+                                    @if (isset($this->checkout['actual_start_timestamp']))
                                         <div class="text-sm">
-                                            {{ $checked_in_details['actual_start_timestamp'] ? date_format(date_create($checked_in_details['actual_start_timestamp']), 'd F Y') : '' }}</label>
+                                            {{ $checkout['actual_start_timestamp'] ? date_format(date_create($checkout['actual_start_timestamp']), 'd F Y') : '' }}</label>
                                         </div>
                                     @else
                                         <div class="position-relative">
@@ -63,7 +63,7 @@
                                                 </use>
                                             </svg>
                                             <input class="form-control form-control-md js-single-date"
-                                                wire:model="checked_in_details.actual_start_date" id="actual_start_date"
+                                                wire:model="checkout.actual_start_date" id="actual_start_date"
                                                 placeholder="MM/DD/YYYY" name="actual_start_date"
                                                 aria-label="Select Date">
                                         </div>
@@ -118,9 +118,9 @@
                                     <label class="form-label-sm fw-semibold mb-lg-0">Actual Start Time:</label>
                                 </div>
                                 <div class="col-lg-4 align-self-center">
-                                    @if ($this->checked_in_details != null && isset($this->checked_in_details['actual_start_timestamp']))
+                                    @if (isset($this->checkout['actual_start_timestamp']))
                                         <div class="text-sm">
-                                            {{ $checked_in_details['actual_start_timestamp'] ? date_format(date_create($checked_in_details['actual_start_timestamp']), 'h:i A') : '' }}</label>
+                                            {{ $checkout['actual_start_timestamp'] ? date_format(date_create($checkout['actual_start_timestamp']), 'h:i A') : '' }}</label>
                                         </div>
                                     @else
                                         <div class="d-flex gap-2">
@@ -130,7 +130,7 @@
                                                         id="actual_start_hour" aria-label="Start Time"
                                                         name="actual_start_hour" placeholder="00" type="number"
                                                         tabindex=""
-                                                        wire:model.defer="checked_in_details.actual_start_hour"
+                                                        wire:model.defer="checkout.actual_start_hour"
                                                         maxlength="2">
                                                 </div>
                                                 <svg width="5" height="19" viewBox="0 0 5 19" fill="none"
@@ -144,7 +144,7 @@
                                                         aria-label="Start Minutes" id="actual_start_min"
                                                         name="actual_start_min" placeholder="00" type="number"
                                                         tabindex=""
-                                                        wire:model.defer="checked_in_details.actual_start_min"
+                                                        wire:model.defer="checkout.actual_start_min"
                                                         maxlength="2">
                                                 </div>
                                             </div>
@@ -241,6 +241,18 @@
                                     @else
                                         <div class="">
                                             {{ $upload_timesheet->getClientOriginalName() }}
+                                        </div>
+                                    @endif
+                                @elseif(isset($checkout['uploaded_timesheet']) && $checkout['uploaded_timesheet'])
+                               @if ($this->isImage($checkout['uploaded_timesheet'], true))
+                                        <div class="text-center" style="width:190px;height:250px">
+
+                                            <img alt="Timesheet Upload" style="width:100%;height:100%"
+                                                src="{{ $checkout['uploaded_timesheet'] }}">
+                                        </div>
+                                    @else
+                                        <div class="">
+                                            {{ basename($checkout['uploaded_timesheet'])}}
                                         </div>
                                     @endif
 
@@ -401,7 +413,7 @@
                     <button type="button" x-on:click="offcanvasOpenCheckOut = !offcanvasOpenCheckOut"
                         class="btn btn-outline-dark rounded">Cancel</button>
                     <button type="submit" class="btn btn-primary rounded js-checkout-go-step-3"
-                        wire:click="setStep(3)">Next</button>
+                        wire:click="saveStepTwo">Next</button>
                 </div>
             </div>
         </div>
