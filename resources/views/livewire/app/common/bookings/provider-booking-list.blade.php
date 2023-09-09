@@ -105,7 +105,16 @@
                                                         <td>{{ $booking['provider_count'] }}</td>
                                                         <td>
                                                             @if ($bookingType != 'Unassigned' && $bookingType != 'Invitations')
-                                                                {{ $booking['check_in_status'] == 0 ? 'On Time' : ($booking['check_in_status'] == 1 ? 'Checked In' : 'Running Late') }}
+                                                                @if($booking['check_in_status'] == 0)
+                                                                    On Time
+                                                                @elseif($booking['check_in_status'] == 1)
+                                                                    Checked In
+                                                                @elseif($booking['check_in_status'] == 2)
+                                                                    Running Late
+                                                                @elseif($booking['check_in_status'] == 3)
+                                                                    Pending
+                                                                @endif
+
                                                             @else
                                                                 Unassigned
                                                             @endif
@@ -213,7 +222,7 @@
                                                                             </svg>
                                                                         </a>
                                                                     @endif
-                                                                @elseif( $booking['check_in_status'] > 0 && $booking['display_check_out'] && $bookingType != 'Unassigned' && $bookingType != 'Invitations' && $bookingType != 'Cancelled'  ) 
+                                                                @elseif( $booking['check_in_status'] > 0  && $booking['check_in_status'] < 3 && $booking['display_check_out'] && $bookingType != 'Unassigned' && $bookingType != 'Invitations' && $bookingType != 'Cancelled'  ) 
                                                                     <a href="#"
                                                                         @click="offcanvasOpenCheckOut = true"
                                                                         wire:click="showCheckOutPanel('{{ $booking['id'] }}','{{ $booking['booking_service_id'] }}','{{ $booking['booking_number'] }}')"
@@ -233,6 +242,7 @@
                                                                     <a href="#" title="Submit Availability"
                                                                         aria-label="Submit Availability"
                                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon"
+                                                                            wire:click="$emit('openSubmitAvailabilityModal','{{ $booking['id'] }}')"
                                                                         data-bs-toggle="modal"
                                                                         data-bs-target="#submitAvailability">
                                                                         <svg aria-label="Submit Availability"
@@ -244,6 +254,12 @@
                                                                             </use>
                                                                         </svg>
                                                                     </a>
+                                                                    
+                                                                        @if ($booking['avail_status'] == 1)
+                                                                            Available
+                                                                        @elseif($booking['avail_status'] == 2)
+                                                                            Not Available   
+                                                                        @endif
                                                                 @elseif($bookingType == 'Invitations')
                                                                     <div class="d-flex align-items-center">
                                                                         <a href="#" title="Confirm Invitation"
@@ -519,6 +535,11 @@
         });
         Livewire.on('closeConfirmInvitationModal', () => {
             $('#confirmInvitation').modal('hide');
+
+        });
+        
+        Livewire.on('closeAssignmentInvitationModal', () => {
+            $('#submitAvailability').modal('hide');
 
         });
     </script>

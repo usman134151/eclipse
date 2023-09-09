@@ -529,5 +529,10 @@
                 updateVal(attrName, $(this).select2("val"));
             });
         }
+
+         Livewire.on('closeUnassignModel', () => {
+            $('#UnassignModal').modal('hide');
+
+        });
     </script>
 @endpush

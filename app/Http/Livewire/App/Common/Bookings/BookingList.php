@@ -150,7 +150,18 @@ class BookingList extends Component
 		// 	$q->where('status', '1');
 		// });
 
-		if ($this->provider_id && $this->bookingType != "Unassigned") {	//from provider panel
+		if ($this->provider_id && $this->bookingType == "Unassigned") {	//from provider panel
+			$query->leftJoin('booking_available_providers', function ($join) {
+				$join->on('booking_available_providers.booking_id', 'bookings.id');
+				$join->where('booking_available_providers.provider_id', $this->provider_id);
+
+			});
+
+			$query->select([
+				'bookings.*', 'bookings.status as status',
+				'booking_available_providers.status as avail_status'
+			]);
+		} elseif ($this->provider_id && $this->bookingType != "Unassigned") {
 			if ($this->bookingType == "Invitations") {
 				// update this with subquery
 				$assignedBookings =  BookingProvider::where('provider_id', Auth::id())->pluck('booking_id');
@@ -202,7 +213,7 @@ class BookingList extends Component
 		// $query->groupBy('bookings.id','bookings.booking_number', 'booking_title');
 
 		$data = $query->paginate($this->limit);
-		// dd($data);
+		// dd($query->get()->toArray());
 		// setting values for booking and its services
 		foreach ($data as $row) {
 			if ($row->service_id == null) {
