@@ -242,6 +242,7 @@
                                                                     <a href="#" title="Submit Availability"
                                                                         aria-label="Submit Availability"
                                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon"
+                                                                            wire:click="$emit('openSubmitAvailabilityModal','{{ $booking['id'] }}')"
                                                                         data-bs-toggle="modal"
                                                                         data-bs-target="#submitAvailability">
                                                                         <svg aria-label="Submit Availability"
@@ -528,6 +529,11 @@
         });
         Livewire.on('closeConfirmInvitationModal', () => {
             $('#confirmInvitation').modal('hide');
+
+        });
+        
+        Livewire.on('closeAssignmentInvitationModal', () => {
+            $('#submitAvailability').modal('hide');
 
         });
     </script>

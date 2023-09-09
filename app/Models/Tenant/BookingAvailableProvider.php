@@ -15,6 +15,6 @@ class BookingAvailableProvider extends Model
      * @var array
      */
     protected $fillable = [
-        'message', 'title', 'base_code'
+        'booking_id', 'provider_id', 'status', 'notes'
     ];
 }
