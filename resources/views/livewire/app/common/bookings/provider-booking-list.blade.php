@@ -105,7 +105,16 @@
                                                         <td>{{ $booking['provider_count'] }}</td>
                                                         <td>
                                                             @if ($bookingType != 'Unassigned' && $bookingType != 'Invitations')
-                                                                {{ $booking['check_in_status'] == 0 ? 'On Time' : ($booking['check_in_status'] == 1 ? 'Checked In' : 'Running Late') }}
+                                                                @if($booking['check_in_status'] == 0)
+                                                                    On Time
+                                                                @elseif($booking['check_in_status'] == 1)
+                                                                    Checked In
+                                                                @elseif($booking['check_in_status'] == 2)
+                                                                    Running Late
+                                                                @elseif($booking['check_in_status'] == 3)
+                                                                    Pending
+                                                                @endif
+
                                                             @else
                                                                 Unassigned
                                                             @endif
@@ -213,7 +222,7 @@
                                                                             </svg>
                                                                         </a>
                                                                     @endif
-                                                                @elseif( $booking['check_in_status'] > 0 && $booking['display_check_out'] && $bookingType != 'Unassigned' && $bookingType != 'Invitations' && $bookingType != 'Cancelled'  ) 
+                                                                @elseif( $booking['check_in_status'] > 0  && $booking['check_in_status'] < 3 && $booking['display_check_out'] && $bookingType != 'Unassigned' && $bookingType != 'Invitations' && $bookingType != 'Cancelled'  ) 
                                                                     <a href="#"
                                                                         @click="offcanvasOpenCheckOut = true"
                                                                         wire:click="showCheckOutPanel('{{ $booking['id'] }}','{{ $booking['booking_service_id'] }}','{{ $booking['booking_number'] }}')"

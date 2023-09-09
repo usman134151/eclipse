@@ -479,7 +479,7 @@
                                         $checkout_details['status_types']['complete'] == true)
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="booking_status"
-                                            wire:model='checkout.status' value="complete" id="complete">
+                                            wire:model='checkout.checkout_status' value="complete" id="complete">
                                         <label class="form-check-label" for="complete">
                                             <small>
                                                 Complete
@@ -492,7 +492,7 @@
                                         $checkout_details['status_types']['noshow'] == true)
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="booking_status"
-                                            wire:model='checkout.status' id="no-show" value="noshow">
+                                            wire:model='checkout.checkout_status' id="no-show" value="noshow">
                                         <label class="form-check-label" for="no-show">
                                             <small>
                                                 No Show
@@ -505,7 +505,7 @@
                                         $checkout_details['status_types']['cancelled'] == true)
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="booking_status"
-                                            wire:model='checkout.status' id="cancelled" value="cancelled">
+                                            wire:model='checkout.checkout_status' id="cancelled" value="cancelled">
                                         <label class="form-check-label" for="cancelled">
                                             <small>
                                                 Cancelled

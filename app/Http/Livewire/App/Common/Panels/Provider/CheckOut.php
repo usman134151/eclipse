@@ -34,15 +34,18 @@ class CheckOut extends Component
     public function save()
     {
         $this->booking_provider->check_out_procedure_values = json_encode($this->checkout);
+        $this->booking_provider->check_in_status = 3;
+
         $this->booking_provider->save();
         $this->dispatchBrowserEvent('close-check-out');
+        $this->emit('showConfirmation', 'Successfull Checkout at : ' .  date_format(date_create($this->checkout['actual_end_timestamp']), 'm/d/Y h:i A') );
     }
 
     public function mount($booking_service_id)
     {
 
         $this->checkout = [
-            'status' => 'pending',
+            'status' => false,
             'confirmation_upload_type' => 'print_and_sign'
 
         ];
