@@ -254,6 +254,12 @@
                                                                             </use>
                                                                         </svg>
                                                                     </a>
+                                                                    
+                                                                        @if ($booking['avail_status'] == 1)
+                                                                            Available
+                                                                        @elseif($booking['avail_status'] == 2)
+                                                                            Not Available   
+                                                                        @endif
                                                                 @elseif($bookingType == 'Invitations')
                                                                     <div class="d-flex align-items-center">
                                                                         <a href="#" title="Confirm Invitation"
