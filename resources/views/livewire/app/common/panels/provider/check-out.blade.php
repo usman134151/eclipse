@@ -433,11 +433,11 @@
             <div class="between-section-segment-spacing">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h3 class="text-primary">Step 3: (InActive)</h3>
+                        <h3 class="text-primary">Step 3:</h3>
                         <div class="row">
                             <div class="col-lg-6 mb-4">
                                 <label class="form-label-sm" for="entry-notes">Entry Notes</label>
-                                <textarea class="form-control" rows="5" cols="5" id="entry-notes"></textarea>
+                                <textarea wire:model.defer="checkout.entry_notes" class="form-control" rows="5" cols="5" id="entry-notes"></textarea>
                             </div>
                         </div>
                         <div class="row">
@@ -445,6 +445,7 @@
                                 <a href="#" class="btn btn-sm btn-outline-dark rounded">Add Reimbursement</a>
                             </div>
                         </div>
+                        <small>(coming soon)</small>
                     </div>
                 </div>
                 <hr>
@@ -455,7 +456,7 @@
                     <button type="submit" class="btn btn-primary rounded" wire:click="setStep(2)">Back</button>
                     <button x-on:click="offcanvasOpenCheckOut = !offcanvasOpenCheckOut" type="button"
                         class="btn btn-outline-dark rounded">Cancel</button>
-                    <button type="submit" wire:click="setStep(4)"
+                    <button type="submit" wire:click="saveStepThree"
                         class="btn btn-primary rounded js-checkout-go-step-4">Next</button>
                 </div>
             </div>
