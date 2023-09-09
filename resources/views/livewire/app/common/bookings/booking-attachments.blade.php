@@ -6,9 +6,9 @@
     <div class="row mb-4">
         @if(count($documents))
             @foreach ($documents as $document)
-                <div class="col-lg-2 position-relative" style="width:190px;height:250px"  >
+                <div class="col-lg-2 position-relative me-2" style="width:190px"  >
                     <img src="{{ $this->isImage($document['document_type']) ? $document['document_name'] : '/tenant-resources/images/img-placeholder-document.jpg' }}"
-                        alt="img-placeholder-document" class="w-100 h-100">
+                        alt="img-placeholder-document" class="w-100">
                     <p class="font-family-secondary"><small> {{ $document['document_title'] }} </small></p>
                 
                     <div class="position-absolute top-0 end-0 {{$isProviderPanel ? "hidden" : ''}}">
