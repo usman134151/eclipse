@@ -1003,7 +1003,7 @@
                                                         <label class="col-form-label">Total:</label>
                                                     </div>
                                                     <div class="col-lg-8 align-self-center">
-                                                        <div class="font-family-tertiary">{{formatPayment($service['service_charge_total'])}}</div>
+                                                        <div class="font-family-tertiary">{{formatPayment($service['additional_charges_total'])}}</div>
                                                     </div>
                                                 </div> 
                                                 <div class="mt-3"><h3 style="color:#023DB0">Additional Payment </h3></div>
@@ -1030,28 +1030,22 @@
                                             </div>
                                             <div class="col-lg-6">
                                             <div class="mt-3"><h3 style="color:#023DB0">Specializations </h3></div>
+                                            @foreach($service['specialization_charges'] as $charge)
                                                 <div class="row">
                                                     <div class="col-lg-4">
-                                                        <label class="col-form-label">Specialization 1:</label>
+                                                        <label class="col-form-label">{{$charge['label']}}:</label>
                                                     </div>
                                                     <div class="col-lg-8 align-self-center">
-                                                        <div class="font-family-tertiary">$56.00</div>
+                                                        <div class="font-family-tertiary">{{formatPayment($charge['charges'])}}</div>
                                                     </div>
                                                 </div>  
-                                                <div class="row">
-                                                    <div class="col-lg-4">
-                                                        <label class="col-form-label">Specialization 2:</label>
-                                                    </div>
-                                                    <div class="col-lg-8 align-self-center">
-                                                        <div class="font-family-tertiary">$56.00</div>
-                                                    </div>
-                                                </div>  
-                                                <div class="row">
+                                                @endforeach
+                                                <div class="row border-top">
                                                     <div class="col-lg-4">
                                                         <label class="col-form-label">Total:</label>
                                                     </div>
                                                     <div class="col-lg-8 align-self-center">
-                                                        <div class="font-family-tertiary">$112.00</div>
+                                                        <div class="font-family-tertiary">{{formatPayment($service['specialization_total'])}}</div>
                                                     </div>
                                                 </div> 
                                                 <div class="mt-3"><h3 style="color:#023DB0">Expedited Services Charges </h3></div>

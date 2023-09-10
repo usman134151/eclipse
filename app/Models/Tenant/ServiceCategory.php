@@ -20,7 +20,7 @@ class ServiceCategory extends Model
 
     public function specializations()
     {
-        return $this->belongsToMany(Specialization::class, 'service_specializations', 'service_id', 'specialization_id');
+        return $this->belongsToMany(Specialization::class, 'service_specializations', 'service_id', 'specialization_id')->withPivot('specialization_price', 'specialization_price_v','specialization_price_t','specialization_price_p'); ;
     }
 
     public function accommodation()
