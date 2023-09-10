@@ -232,6 +232,8 @@ class BookingOperationsService{
     
     //step 5: check for expedited service charges and add 
    
+    $service['expedited_charges']=SELF::getExpeditedCharge($service['start_time'],$service['service_data']['emergency_hour'.$service['postFix']]);
+   
    return $service;
     
    
@@ -239,6 +241,35 @@ class BookingOperationsService{
     
     
   }
+
+  static function getExpeditedCharge($bookingStartTime, $expeditedDataJson) {
+    // Step 1: Parse JSON data to PHP arrays
+    $expeditedData = json_decode($expeditedDataJson, true);
+
+    // Step 2: Sort arrays based on the 'hour' parameter
+    usort($expeditedData, function($a, $b) {
+        return $b[0]['hour'] - $a[0]['hour']; // Sort in descending order to check the larger hours first
+    });
+
+    // Step 3: Get the time difference in hours
+    $currentDateTime = new DateTime();
+    $bookingStartDateTime = new DateTime($bookingStartTime); // Assuming $bookingStartTime is in a format supported by DateTime
+    $interval = $currentDateTime->diff($bookingStartDateTime);
+    $hoursDifference = $interval->h + ($interval->days * 24); // Convert days to hours and add to hour difference
+
+    // Step 4: Check if the hoursDifference matches with any 'hour' value and add respective charges
+    foreach ($expeditedData as $expeditedItemArray) {
+        foreach ($expeditedItemArray as $expeditedItem) {
+        
+            if ($hoursDifference <= intval($expeditedItem['hour'])) {
+                return ['charges'=>floatval($expeditedItem['price']),'hour'=>$expeditedItem['hour']]; // Returning the price to be added as expedited charges
+            }
+        }
+    }
+
+    return []; // No expedited charges applicable
+}
+
 
   public static function getBillableDuration($service,$schedule){
     //for single date 

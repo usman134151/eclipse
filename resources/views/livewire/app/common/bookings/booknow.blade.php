@@ -1048,23 +1048,17 @@
                                                         <div class="font-family-tertiary">{{formatPayment($service['specialization_total'])}}</div>
                                                     </div>
                                                 </div> 
+                                                @if(count($service['expedited_charges']))
                                                 <div class="mt-3"><h3 style="color:#023DB0">Expedited Services Charges </h3></div>
                                                 <div class="row">
                                                     <div class="col-lg-4">
-                                                        <label class="col-form-label">2 Hour:</label>
+                                                        <label class="col-form-label">{{ $service['expedited_charges']['hour']}} Hour:</label>
                                                     </div>
                                                     <div class="col-lg-8 align-self-center">
-                                                        <div class="font-family-tertiary">$56.00</div>
+                                                        <div class="font-family-tertiary">{{ formatPayment($service['expedited_charges']['charges'])}}</div>
                                                     </div>
                                                 </div>                                                 
-                                                <div class="row">
-                                                    <div class="col-lg-4">
-                                                        <label class="col-form-label">Total:</label>
-                                                    </div>
-                                                    <div class="col-lg-8 align-self-center">
-                                                        <div class="font-family-tertiary">$56.00</div>
-                                                    </div>
-                                                </div> 
+                                               @endif         
                                               </div>
                                         </div>              
                                       @endforeach
