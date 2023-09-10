@@ -127,6 +127,11 @@ class Booknow extends Component
          // dd($this->booking);
             $this->updateCompany();
             $this->services=$this->booking->booking_services_new_layout->toArray();
+            foreach($this->services as &$service)
+            {
+                $service['specialization']=json_decode($service['specialization'],true);
+            }
+          
             $this->selectedIndustries=$this->booking->industries->pluck('id')->toArray();
           // dd( $this->selectedIndustries);
             $this->industryNames = $this->booking->industries->pluck('name');
@@ -233,6 +238,7 @@ class Booknow extends Component
                 //update booking
                 $this->booking->save();
                 BookingOperationsService::saveDetails($this->services,$this->dates,$this->selectedIndustries,$this->booking);
+              
             }
            // dd($this->booking->physical_address_id);
            if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
@@ -249,7 +255,7 @@ class Booknow extends Component
         else{
             $this->booking->save();
         }
-        
+       
         if ($redirect) {
             $this->confirmation("Assignment Data has been saved successfully");
         } else {
@@ -746,7 +752,7 @@ class Booknow extends Component
         }
    //   dd($bookingServices);
         $this->services=BookingOperationsService::getBookingCharges($this->booking,$bookingServices,$this->dates);
-     //   dd($this->services);
+   dd($this->services);
        // dd($this->bookingCharges);
        // $this->bookingDetails=BookingOperationsService::getBookingInfoNewLayout($this->booking);
        

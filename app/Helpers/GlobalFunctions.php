@@ -42,6 +42,8 @@ const DECLINED = '2';
 
     function formatPayment($amount=0)
     {
+      if(!is_numeric($amount))
+        return $amount.'is not number';
       if($amount < 0){
         return   '-$'.str_replace("-","",number_format($amount,2));
       }

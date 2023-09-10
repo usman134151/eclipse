@@ -57,14 +57,14 @@ class BookingOperationsService{
 
   public static function saveDetails($services,$dates,$selectedIndustries,$booking)
    {
-    BookingServices::where('booking_id', $booking->id)->delete();
+   // BookingServices::where('booking_id', $booking->id)->delete();
    // dd($services);
     foreach($services as $service){
         $service['booking_id']=$booking->id;
         $service['booking_log_id']=0;
         $service['meetings']= json_encode($service['meetings']);
-        $service['specialization'] = json_encode([$service['specialization']]);
-       // dd($service['specialization']);
+        $service['specialization'] = json_encode($service['specialization']);
+       
         if(is_array($service['attendees']))
             $service['attendees']=implode(',',$service['attendees']);
         $service['status']='1';
@@ -73,7 +73,10 @@ class BookingOperationsService{
         $service['time_zone'] =  $dates[0]['time_zone'];
     
        
-        BookingServices::create($service);
+        BookingServices::updateOrCreate(
+          ['booking_id' => $booking->id, 'services' => $service['services']], 
+          $service
+      );
     }
     //store services
     BookingIndustry::where('booking_id', $booking->id)->delete();

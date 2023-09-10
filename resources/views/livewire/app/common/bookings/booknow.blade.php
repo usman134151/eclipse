@@ -387,6 +387,7 @@
                                                 <label class="form-label" >Specializations</label>
                                                 <div class="" >
                                                   @foreach($foundService['specializations'] as $specialization)
+                                                 
                                                   <div class="form-check"><input class="form-check-input" type="checkbox" id="service_specializations-{{$index}}-{{$specialization['id']}}" name="service_specializations" value="{{$specialization['id']}}" tabindex="1" wire:model.defer="services.{{$index}}.specialization"><label class="form-check-label" for="service_specializations-{{$index}}-{{$specialization['id']}}">{{$specialization['name']}}</label></div>
                                                   @endforeach
                                                 </div>
@@ -1012,7 +1013,7 @@
                                                         <label class="col-form-label">{{$payment['label']}}</label>
                                                     </div>
                                                     <div class="col-lg-8 align-self-center">
-                                                        <div class="font-family-tertiary">{{formatPayment($payment['label'])}}</div>
+                                                        <div class="font-family-tertiary">{{formatPayment($payment['charges'])}}</div>
                                                     </div>
                                                 </div> 
                                                @endforeach
