@@ -23,7 +23,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-12">
                     <div class="d-lg-flex justify-content-between align-items-center mb-5">
-                        <h2 class="mb-lg-0">Check In
+                        <h2 class="mb-lg-0">Check In Form  {{$booking_id}} {{$provider_id}}
                         </h2>
                     </div>
 
@@ -39,7 +39,7 @@
             <div class="row my-4">
                 <div class="col-lg-12">
                     <div class="d-lg-flex justify-content-between align-items-center mb-5">
-                        <h2 class="mb-lg-0">Close Out
+                        <h2 class="mb-lg-0">Close Out Form
                         </h2>
                     </div>
 

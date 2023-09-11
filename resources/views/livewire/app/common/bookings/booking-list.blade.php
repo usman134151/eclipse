@@ -492,7 +492,6 @@
     @include('panels.booking-details.assign-providers')
     @include('modals.unassign')
 
-        @include('panels.booking-details.provider-saved-forms')
 
 
 </div>

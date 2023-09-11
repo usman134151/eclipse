@@ -14,12 +14,12 @@ use App\Models\Tenant\User;
 
 class BookingDetails extends Component
 {
-	public $gender;
+	public $gender, $service_id=0, $provider_id=0;
 	public $ethnicity, $booking_id = 0, $booking_services, $data;
 
 	public $component = 'booking-details';
 	protected $listeners = [
-		'showConfirmation',
+		'showConfirmation', 'openCustomSavedFroms'
 	];
 	public $booking;
 	public $serviceDetails;
@@ -133,5 +133,18 @@ class BookingDetails extends Component
 
 
 		$this->showConfirmation('Booking notes updated');
+	}
+
+	public function openCustomSavedFroms($booking_id, $provider_id, $service_id){
+		if ($this->counter == 0) {
+			$this->booking_id = 0;
+			$this->dispatchBrowserEvent('open-provider-saved-forms', ['booking_id' => $booking_id, 'service_id' => $service_id,'provider_id'=>$provider_id]);
+			$this->counter = 1;
+		} else {
+			$this->booking_id = $booking_id;
+			$this->service_id = $service_id;
+			$this->provider_id = $provider_id;
+			$this->counter = 0;
+		}
 	}
 }

@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class ProviderSavedForms extends Component
 {
-    public $showForm;
+    public $showForm, $booking_id, $service_id=null, $provider_id=0;
     protected $listeners = ['showList' => 'resetForm'];
 
     public function render()
