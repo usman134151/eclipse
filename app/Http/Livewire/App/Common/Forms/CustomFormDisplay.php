@@ -21,6 +21,7 @@ class CustomFormDisplay extends Component
 
     public function mount()
     {
+        // dd($this->bookingId,$this->service_id,$this->formId,$this->formType);
         $formService = new CustomizeForm();
         $formData = $formService->getFormDetails($this->formId);
         if (count($formData)) {

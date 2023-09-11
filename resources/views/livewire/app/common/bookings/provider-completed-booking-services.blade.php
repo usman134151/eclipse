@@ -69,15 +69,18 @@
                                                 04 hours 3 mins
                                             </td>
                                             <td>
-                                                <a href="#" title="Check In Form" aria-label="Check In Form" 
-                                                 @click="providerSavedForms = true" wire:click="$emit('openCustomSavedFroms','{{$booking_id}}', '{{$service_id}}','{{$provider->user->id}}')"
-                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <svg width="18" height="18" viewBox="0 0 18 18"
-                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <use xlink:href="/css/admin-menu.svg#saved-form">
-                                                        </use>
-                                                    </svg>
-                                                </a>
+                                               
+                                                    <a href="#" title="Check In Form" aria-label="Check In Form"
+                                                        @click="providerSavedForms = true"
+                                                        wire:click="openSavedFormsPanel({{ $provider->user->id }})"
+                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                        <svg width="18" height="18" viewBox="0 0 18 18"
+                                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <use xlink:href="/css/admin-menu.svg#saved-form">
+                                                            </use>
+                                                        </svg>
+                                                    </a>
+                                              
                                             </td>
 
                                             <td>

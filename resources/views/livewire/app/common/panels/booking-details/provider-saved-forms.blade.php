@@ -1,4 +1,4 @@
-<div x-data="{step: 1}">
+<div x-data="{ step: 1 }">
     <ul class="nav nav-tabs border-0 mt-4" id="provider-saved-form-tab" role="tablist">
         <li class="nav-item" role="presentation">
             <button class="nav-link active btn rounded p-3" :class="(step == 1) ? 'active' : 'btn-secondary border-0'"
@@ -22,9 +22,13 @@
             :class="{ 'active show': step == 1 }" x-show="step == 1">
             <div class="row align-items-center">
                 <div class="col-lg-12">
-                    <div class="d-lg-flex justify-content-between align-items-center mb-5">
-                        <h2 class="mb-lg-0">Check In Form  {{$booking_id}} {{$provider_id}}
-                        </h2>
+
+                    <div class="row">
+                        @if ($form_id['checkin_form_id'])
+                            @livewire('app.common.forms.custom-form-display', ['showForm' => true, 'formId' => $form_id['checkin_form_id'], 'bookingId' => $booking_id, 'lastForm' => false, 'formType' => 2, 'service_id' => $service_id])
+                        @else
+                            <small>No form available</small>
+                        @endif
                     </div>
 
                 </div>
@@ -38,11 +42,15 @@
             :class="{ 'active show': step == 2 }" x-show="step == 2">
             <div class="row my-4">
                 <div class="col-lg-12">
-                    <div class="d-lg-flex justify-content-between align-items-center mb-5">
+                    {{-- <div class="d-lg-flex justify-content-between align-items-center mb-5">
                         <h2 class="mb-lg-0">Close Out Form
                         </h2>
-                    </div>
-
+                    </div> --}}
+                    @if ($form_id['checkout_form_id'])
+                        @livewire('app.common.forms.custom-form-display', ['showForm' => true, 'formId' => $form_id['checkout_form_id'], 'bookingId' => $booking_id, 'lastForm' => false, 'formType' => 3, 'service_id' => $service_id])
+                    @else
+                        <small>No form available</small>
+                    @endif
                 </div>
             </div>
 
