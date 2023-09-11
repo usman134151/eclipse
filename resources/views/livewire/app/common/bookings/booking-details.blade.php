@@ -840,11 +840,11 @@
                                                             <div class="col-lg-7 align-self-center">
                                                                 <div class="font-family-tertiary">
                                                                     @if (isset($service['meeting_details']))
-                                                                            {{ $service['meeting_details']['access_code'] ? $service['meeting_details']['access_code'] : 'N/A' }}
-                                                                        @else
-                                                                            {{ $service['meeting_passcode'] ? $service['meeting_passcode'] : 'N/A' }}
-                                                                        @endif
-                                                                    </div>
+                                                                        {{ $service['meeting_details']['access_code'] ? $service['meeting_details']['access_code'] : 'N/A' }}
+                                                                    @else
+                                                                        {{ $service['meeting_passcode'] ? $service['meeting_passcode'] : 'N/A' }}
+                                                                    @endif
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1290,18 +1290,24 @@
                             @foreach ($booking_services as $index => $service)
                                 @livewire('app.common.bookings.assignedproviders', ['index' => $index + 1, 'service_id' => $service['service_id'], 'booking_id' => $booking_id], key(time()))
                             @endforeach
-                            {{-- <div
-                                class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
-                                <button type="" class="btn btn-outline-dark rounded"
-                                    x-on:click="$wire.switch('booking-details')">Back</button>
-                                <button type="" class="btn btn-primary rounded"
-                                    x-on:click="$wire.switch('attachments')">Next</button>
-                            </div> --}}
-                        </div><!-- END: assigned-providers-tab -->
+
+                        </div>
+                        <!-- END: assigned-providers-tab -->
                         <div class="tab-pane fade {{ $component == 'attachments' ? 'active show' : '' }}"
                             id="attachments" role="tabpanel" aria-labelledby="attachments-tab" tabindex="0">
-                            <h2>Attachments</h2>
-                            @livewire('app.common.bookings.booking-attachments', ['booking_id' => $booking_id])
+                            <div class="col-12">
+                                <h2>Attachments</h2>
+                                @livewire('app.common.bookings.booking-attachments', ['booking_id' => $booking_id])
+                            </div>
+
+                            <div class="col-12">
+                             @foreach ($booking_services as $index => $service)
+                                <h2>Check-In and Close-Out for Service - {{$service['service_name']}}</h2>
+
+                                @livewire('app.common.bookings.provider-completed-booking-services', ['service_id' => $service['service_id'], 'booking_id' => $booking_id], key(time()))
+                            @endforeach
+                                
+                            </div>
                             <!-- <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                             <button type="" class="btn btn-outline-dark rounded"
                                 x-on:click="$wire.switch('assigned-providers')">Back</button>
@@ -1587,6 +1593,8 @@
     </div> --}}
         @include('panels.booking-details.reschedule-booking')
         @include('panels.common.add-documents', ['booking_id' => $booking_id])
+        @include('panels.booking-details.provider-saved-forms')
+
         {{-- @include('panels.booking-details.assign-providers') --}}
     @endif
 </div>

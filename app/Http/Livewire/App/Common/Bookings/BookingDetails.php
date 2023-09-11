@@ -14,12 +14,12 @@ use App\Models\Tenant\User;
 
 class BookingDetails extends Component
 {
-	public $gender;
+	public $gender, $service_id=0, $provider_id=0, $form_id=0;
 	public $ethnicity, $booking_id = 0, $booking_services, $data;
 
 	public $component = 'booking-details';
 	protected $listeners = [
-		'showConfirmation',
+		'showConfirmation', 'openCustomSavedFroms'
 	];
 	public $booking;
 	public $serviceDetails;
@@ -89,7 +89,8 @@ class BookingDetails extends Component
 			}
 		$this->data['total_providers'] = Booking::where('bookings.id', $this->booking_id)
 			->join('booking_services', 'booking_services.booking_id', 'bookings.id')->sum('booking_services.provider_count');
-		$this->data['assigned_providers'] = BookingProvider::where(['booking_id' => $this->booking_id])->join('users', 'booking_providers.provider_id', '=', 'users.id')->count();
+		$this->data['assigned_providers'] = BookingProvider::where(['booking_id' => $this->booking_id])
+			->join('users', 'booking_providers.provider_id', '=', 'users.id')->count();
 	}
 	//so a fuction which can then be used for editing the fields aswell.
 	public function getServiceDetails()
@@ -132,5 +133,18 @@ class BookingDetails extends Component
 
 
 		$this->showConfirmation('Booking notes updated');
+	}
+
+	public function openCustomSavedFroms($form_id, $provider_id, $service_id){
+		if ($this->counter == 0) {
+			$this->form_id = 0;
+			$this->dispatchBrowserEvent('open-provider-saved-forms', ['form_id' => $form_id, 'service_id' => $service_id,'provider_id'=>$provider_id]);
+			$this->counter = 1;
+		} else {
+			$this->form_id = $form_id;
+			$this->service_id = $service_id;
+			$this->provider_id = $provider_id;
+			$this->counter = 0;
+		}
 	}
 }

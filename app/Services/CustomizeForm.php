@@ -236,7 +236,7 @@ class CustomizeForm
         $attributes = [
             'name' => str_replace(' ', '_', strtolower($selectName)),
             'id' => $tabIndex,
-            'class' => 'select2 form-select',
+            'class' => 'form-select',
 
         ];
 
@@ -286,7 +286,7 @@ class CustomizeForm
             // $isChecked = in_array($cValue, $selectedValues) ? 'checked' : '';
             $isChecked ='';
             $html .= '<div class="form-check form-check-inline">';
-            $html .= '<input class="form-check-input" type="checkbox" id="' . $value['value'] . '" wire:key="'. $key.'" ' . $isChecked . ' ' . $isRequired  . ' ' . $wireAttribute . ' >';
+            $html .= '<input class="form-check-input" type="checkbox" id="' . $value['value'] . '" wire:key="'. $key.'" ' . $isChecked . ' ' . $wireAttribute . ' >';
             $html .= '<label class="form-check-label"  for="' . $value['value'] . '">' . $value['label'] . '</label>';
             $html .= '</div>';
             $loop++;
