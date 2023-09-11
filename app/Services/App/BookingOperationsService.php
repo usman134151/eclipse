@@ -233,7 +233,11 @@ class BookingOperationsService{
     //step 5: check for expedited service charges and add 
    
     $service['expedited_charges']=SELF::getExpeditedCharge($service['start_time'],$service['service_data']['emergency_hour'.$service['postFix']]);
-   
+    $service['total_charges']=$service['expedited_charges']['charges']+$service['specialization_total']+ $service['service_payment_total']+ $service['additional_charges_total']+$service['service_charges'];
+    if(is_null($service['billed_total']) || $service['billed_total']==0){
+      $service['billed_total']=$service['total_charges'];
+    }
+    
    return $service;
     
    

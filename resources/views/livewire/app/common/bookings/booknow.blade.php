@@ -1058,7 +1058,27 @@
                                                         <div class="font-family-tertiary">{{ formatPayment($service['expedited_charges']['charges'])}}</div>
                                                     </div>
                                                 </div>                                                 
-                                               @endif         
+                                               @endif  
+                                               <div class="mt-5 ps-3 border border-dark rounded bg-lighter mt-1">
+                                                <div class="mt-3"><h3 style="color:#023DB0">Total Service Charges </h3></div>
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <label class="col-form-label">Calculated Total</label>
+                                                        </div>
+                                                        <div class="col-lg-8 align-self-center">
+                                                            <div class="font-family-tertiary">{{ formatPayment($service['total_charges'])}}</div>
+                                                        </div>
+                                                    </div>    
+                                                    <div class="row mb-5">
+                                                        <label class="form-label mb-lg-0 col-lg-4 align-self-center" for="enter-override-amount">Override</label>
+                                                        <div class="col-md-3 mb-3 mb-md-0">
+                                                            <input type="" name="" class="form-control form-control-md text-center" placeholder="$00.00" id="enter-override-amount" wire:model="services.{{$index}}.billed_total">
+                                                        </div>
+                                                        <div class="col-md-3 align-self-center">
+                                                            <a href="#" class="btn btn-primary btn-sm rounded w-100" wire:click="updateTotals">Apply</a>
+                                                        </div>
+                                                    </div> 
+                                                </div>    
                                               </div>
                                         </div>              
                                       @endforeach
