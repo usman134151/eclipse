@@ -1290,7 +1290,7 @@
                             @foreach ($booking_services as $index => $service)
                                 @livewire('app.common.bookings.assignedproviders', ['index' => $index + 1, 'service_id' => $service['service_id'], 'booking_id' => $booking_id], key(time()))
                             @endforeach
-                           
+
                         </div>
                         <!-- END: assigned-providers-tab -->
                         <div class="tab-pane fade {{ $component == 'attachments' ? 'active show' : '' }}"
@@ -1324,9 +1324,13 @@
                                                                     <th scope="col" class="text-center">
                                                                         Duration</th>
                                                                     <th scope="col" class="text-center">Form</th>
-                                                                    <th scope="col" class="text-center">Punctuality</th>
+                                                                    <th scope="col" class="text-center">Punctuality
+                                                                    </th>
+                                                                    <th scope="col" class="text-center">Notes</th>
+
                                                                     <th scope="col" class="text-center">Status</th>
-                                                                    <th scope="col" class="text-center">Feedback</th>
+                                                                    <th scope="col" class="text-center">Feedback
+                                                                    </th>
 
 
                                                                     <th class="text-center">Action</th>
@@ -1363,16 +1367,152 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </td>
-                                                                         
                                                                             <td class="align-middle">
-                                                                                
+                                                                                <div class="time-date">
+                                                                                    {{ $provider->check_in_procedure_values ? date_format(date_create($provider->check_in_procedure_values['actual_start_timestamp']), 'm/d/y h:i A') : 'N/A' }}
+                                                                                    to
+                                                                                </div>
+                                                                                <div class="time-date">
+                                                                                    {{ $provider->check_out_procedure_values ? date_format(date_create($provider->check_out_procedure_values['actual_end_timestamp']), 'm/d/y h:i A') : 'N/A' }}
+                                                                                </div>
+                                                                            </td>
+                                                                            <td class="align-middle">
+                                                                                04 hours 3 mins
+                                                                            </td>
+                                                                            <td>
+                                                                                <a href="#"
+                                                                                    title="Check In Form"
+                                                                                    aria-label="Check In Form"
+                                                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                                    <svg width="18" height="18"
+                                                                                        viewBox="0 0 18 18"
+                                                                                        fill="none"
+                                                                                        xmlns="http://www.w3.org/2000/svg">
+                                                                                        <use
+                                                                                            xlink:href="/css/admin-menu.svg#saved-form">
+                                                                                        </use>
+                                                                                    </svg>
+                                                                                </a>
+                                                                            </td>
+
+                                                                            <td>
+                                                                                <a href="#" title="Punctuality"
+                                                                                    aria-label="Punctuality"
+                                                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
+
+                                                                                    {{-- <i class="fa-regular fa-triangle-exclamation"
+                                                                                        style="color: #e2dc22;"></i> --}}
+                                                                                </a>
+
+                                                                            </td>
+                                                                            <td>
+                                                                                <a href="#" title="Feedback"
+                                                                                    aria-label="Feedback"
+                                                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
+
+                                                                                    {{-- notepad icon --}}
+                                                                                    <svg aria-label="Notes"
+                                                                                        width="28" height="29"
+                                                                                        viewBox="0 0 28 29"
+                                                                                        fill="none"
+                                                                                        xmlns="http://www.w3.org/2000/svg">
+                                                                                        <use
+                                                                                            xlink:href="/css/sprite.svg#gray-notes">
+                                                                                        </use>
+                                                                                    </svg>
+                                                                                </a>
+                                                                            </td>
+                                                                            <td class="align-middle">
+                                                                                No Change
+                                                                            </td>
+                                                                            <td>
+                                                                                <a href="#" title="Feedback"
+                                                                                    aria-label="Feedback"
+                                                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
+
+                                                                                    <svg aria-label="Rating"
+                                                                                        width="22" height="22"
+                                                                                        viewBox="0 0 22 22"
+                                                                                        fill="none">
+                                                                                        <use
+                                                                                            xlink:href="/css/common-icons.svg#rating-icon">
+                                                                                        </use>
+                                                                                    </svg>
+
+                                                                                </a>
+                                                                            </td>
+                                                                            <td>
+
+                                                                                <div class="dropdown ac-cstm">
+                                                                                    <a href="javascript:void(0)"
+                                                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle"
+                                                                                        data-bs-toggle="dropdown"
+                                                                                        data-bs-auto-close="outside"
+                                                                                        aria-label="Action dropdown"
+                                                                                        data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
+                                                                                        {{-- Updated by Shanila to Add svg icon --}}
+                                                                                        <svg aria-label="More Options"
+                                                                                            width="20"
+                                                                                            height="20"
+                                                                                            viewBox="0 0 20 20">
+                                                                                            <use
+                                                                                                xlink:href="/css/common-icons.svg#dropdown">
+                                                                                            </use>
+                                                                                        </svg>
+                                                                                        {{-- End of update by Shanila --}}
+                                                                                    </a>
+                                                                                    <div
+                                                                                        class="tablediv dropdown-menu fadeIn">
+
+                                                                                        <a title="Edit Close Out"
+                                                                                            aria-label="Edit Close Out"
+                                                                                            href="#"
+                                                                                            class="dropdown-item">
+                                                                                            {{-- <i class="fa fa-clone"></i> --}}
+                                                                                            Edit Close Out
+                                                                                        </a>
+                                                                                        <a title="Timesheet"
+                                                                                            aria-label="Timesheet"
+                                                                                            href="#"
+                                                                                            class="dropdown-item">
+                                                                                            {{-- <i class="fa fa-clone"></i> --}}
+                                                                                            Download Timesheet
+                                                                                        </a>
+
+                                                                                        <a title="Download Forms"
+                                                                                            aria-label="Download Forms"
+                                                                                            href="#"
+                                                                                            class="dropdown-item">
+                                                                                            {{-- <i class="fa fa-clone"></i> --}}
+                                                                                            Download Forms
+                                                                                        </a>
+                                                                                        <a title="Approve Time Extension"
+                                                                                            aria-label="Approve Time Extension"
+                                                                                            href="#"
+                                                                                            class="dropdown-item">
+                                                                                            {{-- <i class="fa fa-clone"></i> --}}
+                                                                                            Approve Time Extension
+                                                                                        </a>
+
+                                                                                        <a title="Deny Time Extension"
+                                                                                            aria-label="Deny Time Extension"
+                                                                                            href="#"
+                                                                                            class="dropdown-item">
+                                                                                            {{-- <i class="fa fa-clone"></i> --}}
+                                                                                            Deny Time Extension
+                                                                                        </a>
+
+
+                                                                                    </div>
+
+                                                                                </div>
+
                                                                             </td>
                                                                         </tr>
                                                                     @endforeach
                                                                 @else
                                                                     <tr>
-                                                                        <td
-                                                                            colSpan="3">
+                                                                        <td colSpan="3">
                                                                             <small>
                                                                                 No providers assigned to this service.
                                                                             </small>

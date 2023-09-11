@@ -69,7 +69,7 @@ class CheckIn extends Component
 
 
         ];
-        $bookingProvider->update(['check_in_status' => 1, 'check_in_procedure_values' => json_encode($values)]);
+        $bookingProvider->update(['check_in_status' => 1, 'check_in_procedure_values' => $values]);
         $this->dispatchBrowserEvent('close-check-in-panel');
         $this->emit('showConfirmation', 'Checked in successfully');
     }

@@ -92,7 +92,7 @@ class BookingDetails extends Component
 		$this->data['attendingProviders'] = BookingProvider::where(['booking_id' => $this->booking_id])
 				->whereHas('user')
 				->get();
-			// dd($this->data['attendingProviders']->first()->check_in_procedure_values);
+			// dd($this->data['attendingProviders']->first()->check_out_procedure_values);
 			$this->data['assigned_providers'] = BookingProvider::where(['booking_id' => $this->booking_id])
 			->join('users', 'booking_providers.provider_id', '=', 'users.id')->count();
 	}

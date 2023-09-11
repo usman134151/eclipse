@@ -25,9 +25,8 @@ class BookingProvider extends Model
     }
 
     protected $casts = [
-        'check_in_procedure_values' => 'array',
-        'check_out_procedure_values' => 'array'
-
+        'check_out_procedure_values' => 'array',
+        'check_in_procedure_values' => 'array'
     ];
 
 }
