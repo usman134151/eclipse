@@ -62,12 +62,12 @@
                             role="tab" aria-controls="payment-info" aria-selected="false"><span class="number">3</span>
                             Payment Info</button>
                     </li>
-                    <li class="nav-item" role="presentation">
+                   <!-- <li class="nav-item" role="presentation">
                         <button class="nav-link {{ $component == 'booking-summary' ? 'active' : '' }}" wire:click="switch('booking-summary')"
                             id="booking-summary-tab" data-bs-toggle="tab" data-bs-target="#booking-summary"
                             type="button" role="tab" aria-controls="booking-summary" aria-selected="false"><span
                                 class="number">4</span> Booking Summary</button>
-                    </li>
+                    </li> -->
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
@@ -291,7 +291,7 @@
                                         <div class="d-flex justify-content-between">
                                         <h3 class="text-primary">Services {{ $loop->index + 1 }}</h3>
                                         <div class="align-items-center gap-4">
-                                        @if($index>1)
+                                        @if($index>=1)
                                             <a wire:click.prevent="removeServices({{$index}})" href="#" title="Delete" aria-label="Delete"
                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                 <svg class="delete-icon" width="20" height="20"
@@ -387,6 +387,7 @@
                                                 <label class="form-label" >Specializations</label>
                                                 <div class="" >
                                                   @foreach($foundService['specializations'] as $specialization)
+                                                 
                                                   <div class="form-check"><input class="form-check-input" type="checkbox" id="service_specializations-{{$index}}-{{$specialization['id']}}" name="service_specializations" value="{{$specialization['id']}}" tabindex="1" wire:model.defer="services.{{$index}}.specialization"><label class="form-check-label" for="service_specializations-{{$index}}-{{$specialization['id']}}">{{$specialization['name']}}</label></div>
                                                   @endforeach
                                                 </div>
@@ -631,7 +632,7 @@
                                         <div class="d-flex justify-content-between">
                                         <h3 class="text-primary">Date & Time {{ $loop->index + 1 }}</h3>
                                         <div class="align-items-center gap-2">
-                                            @if($index>1)
+                                            @if($index>=1)
                                             <a wire:click.prevent="removeDate({{$index}})" href="#" title="Delete" aria-label="Delete"
                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                 <svg class="delete-icon" width="20" height="20"
@@ -934,14 +935,14 @@
                         role="tabpanel" aria-labelledby="payment-info-tab" tabindex="0">
                         
 
-                            <h2>Payment Summary</h2>
-                            <div class="row">
+                            <h2>Booking Services</h2>
+                            <div class="row mb-5">
                                
                                  
                                       @foreach($services as $index=>$service)
-                                      <div class="row">
+                                      <div class="row border-bottom pb-4 mt-3">
                                         <h3>Services {{$index+1}} - {{$service['service_data']['name']}}</h3>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-6 pe-4">
                                                 <div class="row">
                                                     <div class="col-lg-4">
                                                         <label class="col-form-label">Accommodation:</label>
@@ -975,7 +976,7 @@
                                                         <div class="font-family-tertiary">{{formatPayment($service['after_business_hour_charges'])}} for {{$service['after_business_hours']}} hours {{$service['after_business_minutes']}} minutes</div>
                                                     </div>
                                                 </div>  
-                                                <div class="row">
+                                                <div class="row border-top">
                                                     <div class="col-lg-4">
                                                         <label class="col-form-label">Total:</label>
                                                     </div>
@@ -986,53 +987,42 @@
  
     
                                                 <div class="mt-3"><h3 style="color:#023DB0">Additional Charges </h3></div>
+                                                @foreach($service['additional_charges'] as $charge)
                                                 <div class="row">
                                                     <div class="col-lg-4">
-                                                        <label class="col-form-label">Label of charge 1:</label>
+                                                        <label class="col-form-label">{{$charge['label']}}</label>
                                                     </div>
                                                     <div class="col-lg-8 align-self-center">
-                                                        <div class="font-family-tertiary">$56.00</div>
+                                                        <div class="font-family-tertiary">{{formatPayment($charge['charges'])}}</div>
                                                     </div>
                                                 </div> 
-                                                <div class="row">
-                                                    <div class="col-lg-4">
-                                                        <label class="col-form-label">Label of charge 2:</label>
-                                                    </div>
-                                                    <div class="col-lg-8 align-self-center">
-                                                        <div class="font-family-tertiary">$56.00</div>
-                                                    </div>
-                                                </div>  
-                                                <div class="row">
+                                                @endforeach
+
+                                                <div class="row border-top">
                                                     <div class="col-lg-4">
                                                         <label class="col-form-label">Total:</label>
                                                     </div>
                                                     <div class="col-lg-8 align-self-center">
-                                                        <div class="font-family-tertiary">$112.00</div>
+                                                        <div class="font-family-tertiary">{{formatPayment($service['additional_charges_total'])}}</div>
                                                     </div>
                                                 </div> 
                                                 <div class="mt-3"><h3 style="color:#023DB0">Additional Payment </h3></div>
+                                                @foreach($service['additional_payments'] as $payment)
                                                 <div class="row">
                                                     <div class="col-lg-4">
-                                                        <label class="col-form-label">Label 1:</label>
+                                                        <label class="col-form-label">{{$payment['label']}}</label>
                                                     </div>
                                                     <div class="col-lg-8 align-self-center">
-                                                        <div class="font-family-tertiary">$56.00</div>
+                                                        <div class="font-family-tertiary">{{formatPayment($payment['charges'])}}</div>
                                                     </div>
                                                 </div> 
-                                                <div class="row">
-                                                    <div class="col-lg-4">
-                                                        <label class="col-form-label">Label 2:</label>
-                                                    </div>
-                                                    <div class="col-lg-8 align-self-center">
-                                                        <div class="font-family-tertiary">$56.00</div>
-                                                    </div>
-                                                </div>  
-                                                <div class="row">
+                                               @endforeach
+                                                <div class="row border-top">
                                                     <div class="col-lg-4">
                                                         <label class="col-form-label">Total:</label>
                                                     </div>
                                                     <div class="col-lg-8 align-self-center">
-                                                        <div class="font-family-tertiary">$112.00</div>
+                                                        <div class="font-family-tertiary">{{formatPayment($service['service_payment_total'])}}</div>
                                                     </div>
                                                 </div> 
 
@@ -1040,47 +1030,55 @@
                                             </div>
                                             <div class="col-lg-6">
                                             <div class="mt-3"><h3 style="color:#023DB0">Specializations </h3></div>
+                                            @foreach($service['specialization_charges'] as $charge)
                                                 <div class="row">
                                                     <div class="col-lg-4">
-                                                        <label class="col-form-label">Specialization 1:</label>
+                                                        <label class="col-form-label">{{$charge['label']}}:</label>
                                                     </div>
                                                     <div class="col-lg-8 align-self-center">
-                                                        <div class="font-family-tertiary">$56.00</div>
+                                                        <div class="font-family-tertiary">{{formatPayment($charge['charges'])}}</div>
                                                     </div>
                                                 </div>  
-                                                <div class="row">
-                                                    <div class="col-lg-4">
-                                                        <label class="col-form-label">Specialization 2:</label>
-                                                    </div>
-                                                    <div class="col-lg-8 align-self-center">
-                                                        <div class="font-family-tertiary">$56.00</div>
-                                                    </div>
-                                                </div>  
-                                                <div class="row">
+                                                @endforeach
+                                                <div class="row border-top">
                                                     <div class="col-lg-4">
                                                         <label class="col-form-label">Total:</label>
                                                     </div>
                                                     <div class="col-lg-8 align-self-center">
-                                                        <div class="font-family-tertiary">$112.00</div>
+                                                        <div class="font-family-tertiary">{{formatPayment($service['specialization_total'])}}</div>
                                                     </div>
                                                 </div> 
+                                                @if(count($service['expedited_charges']))
                                                 <div class="mt-3"><h3 style="color:#023DB0">Expedited Services Charges </h3></div>
                                                 <div class="row">
                                                     <div class="col-lg-4">
-                                                        <label class="col-form-label">2 Hour:</label>
+                                                        <label class="col-form-label">{{ $service['expedited_charges']['hour']}} Hour:</label>
                                                     </div>
                                                     <div class="col-lg-8 align-self-center">
-                                                        <div class="font-family-tertiary">$56.00</div>
+                                                        <div class="font-family-tertiary">{{ formatPayment($service['expedited_charges']['charges'])}}</div>
                                                     </div>
                                                 </div>                                                 
-                                                <div class="row">
-                                                    <div class="col-lg-4">
-                                                        <label class="col-form-label">Total:</label>
-                                                    </div>
-                                                    <div class="col-lg-8 align-self-center">
-                                                        <div class="font-family-tertiary">$56.00</div>
-                                                    </div>
-                                                </div> 
+                                               @endif  
+                                               <div class="mt-5 ps-3 border border-dark rounded bg-lighter mt-1">
+                                                <div class="mt-3"><h3 style="color:#023DB0">Total Service Charges </h3></div>
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <label class="col-form-label">Calculated Total</label>
+                                                        </div>
+                                                        <div class="col-lg-8 align-self-center">
+                                                            <div class="font-family-tertiary">{{ formatPayment($service['total_charges'])}}</div>
+                                                        </div>
+                                                    </div>    
+                                                    <div class="row mb-5">
+                                                        <label class="form-label mb-lg-0 col-lg-4 align-self-center" for="enter-override-amount">Override</label>
+                                                        <div class="col-md-3 mb-3 mb-md-0">
+                                                            <input type="" name="" class="form-control form-control-md text-center" placeholder="$00.00" id="enter-override-amount" wire:model="services.{{$index}}.billed_total">
+                                                        </div>
+                                                        <div class="col-md-3 align-self-center">
+                                                            <a href="#" class="btn btn-primary btn-sm rounded w-100" wire:click="updateTotals">Apply</a>
+                                                        </div>
+                                                    </div> 
+                                                </div>    
                                               </div>
                                         </div>              
                                       @endforeach
@@ -1090,10 +1088,11 @@
                                
 
                             </div><!--end of services loop-->
-                            <h2 class="mt-5">Booking Totals </h2>
-                            <div class="row">
+                         
+                            <div class="row ">
                                 <!--start of addtional charges and discount-->
-                                <div class="col-lg-6">
+                                <div class="col-lg-7 pe-5">
+                                <h2 class="pt-1 ">Booking Totals </h2>
                                     <div class="mt-2">
                                     <h3>Discounts</h3>
                                         <div class="d-flex gap-3 flex-column flex-md-row mb-4">
@@ -1211,30 +1210,7 @@
                                             </div>
                                         </div>
                             </div>
-                                </div>
-                                <!--end of addtional charges and discount-->
-                                <div class="col-lg-6 mt-2 ps-5">
-                                    <!-- Billing Notes -->
-                                    <div class="mb-lg-5 mb-4 col-lg-12 col-md-6 pe-md-3 pe-lg-2">
-                                        <label class="form-label" for="billing-notes">
-                                            Billing Notes
-                                        </label>
-                                        <textarea class="form-control" rows="5" cols="5" id="billing-notes" wire:model.defer="booking.billing_notes"></textarea>
-                                    </div>
-                                    <!-- /Billing Notes -->
-                                    <!-- Payment Notes -->
-                                    <div class="mb-lg-5 mb-4 col-lg-12 col-md-6 ps-md-3 ps-lg-0">
-                                        <label class="form-label" for="payment-notes">
-                                            Payment Notes
-                                        </label>
-                                        <textarea class="form-control" rows="5" cols="5" id="payment-notes" wire:model.defer="booking.payment_notes"></textarea>
-                                    </div>
-                                    <!-- /Payment Notes -->
-                                </div>
-                                <!--end of notes-->
-                            </div>  
-
-                            <div class="row">
+                            <div class="row border-top pt-5">
                                 <div class="col-lg-6">
                                     <!-- Payment Preference -->
                                     <div class="row mb-5">
@@ -1272,42 +1248,57 @@
                                     <!-- /Payment Preference -->
                                 </div>
                             </div>
-                            <h2 class="mt-5">Booking Notes </h2>
-                            <div class="row">
-                                <div class="col-lg-11">
-                                    <div class="row between-section-segment-spacing">
-                                        <div class="col-lg-6 mb-4">
-                                            <!-- Provider Notes -->
-                                            <div class="my-lg-5">
+                         
+                            <div class="row border-top pt-5 ">
+                            <h2 class="mt-3">Booking Documents </h2>
+                                <div class="col-lg-12">
+                                  
+                                    <!-- Add Document -->
+                                    @if(!is_null($booking->id))
+                                   
+                                    <div>@livewire('app.common.bookings.booking-attachments', ['booking_id' => $booking->id])</div>
+                                    @endif 
+                                    <!-- /Add Document -->
+                                </div>
+                            </div>
+                                </div>
+                              
+                                <!--end of addtional charges and discount-->
+                                <div class="col-lg-5 mt-2 ps-3 border border-dark rounded bg-lighter mt-1">
+                                <h2 class="mt-3">Booking Notes </h2>
+                                    <!-- Billing Notes -->
+                                    <div class="mb-lg-5 mb-4 col-lg-12 col-md-6 pe-md-3 pe-lg-2">
+                                        <label class="form-label" for="billing-notes">
+                                            Billing Notes
+                                        </label>
+                                        <textarea class="form-control" rows="3" cols="5" id="billing-notes" wire:model.defer="booking.billing_notes"></textarea>
+                                    </div>
+                                    <!-- /Billing Notes -->
+                                    <!-- Payment Notes -->
+                                    <div class="mb-lg-5 mb-4 col-lg-12 col-md-6 ps-md-3 ps-lg-0">
+                                        <label class="form-label" for="payment-notes">
+                                            Payment Notes
+                                        </label>
+                                        <textarea class="form-control" rows="3" cols="3" id="payment-notes" wire:model.defer="booking.payment_notes"></textarea>
+                                    </div>
+                                    <div class="my-lg-5">
                                                 <label class="form-label" for="provider_notes">
                                                     Provider Notes
                                                 </label>
-                                                <textarea class="form-control" rows="4" cols="4" id="provider_notes" wire:model.defer="booking.provider_notes"></textarea>
-                                            </div>
-                                            <!-- /Provider Notes -->
-                                        </div>
-                                        <div class="col-lg-6 mb-4">
-                                            <!-- Customer Notes -->
-                                            <div class="my-lg-5">
+                                                <textarea class="form-control" rows="3" cols="4" id="provider_notes" wire:model.defer="booking.provider_notes"></textarea>
+                                   </div>
+                                   <div class="my-lg-5">
                                                 <label class="form-label" for="customer-notes">
                                                     Customer Notes
                                                 </label>
-                                                <textarea class="form-control" rows="4" cols="4" id="customer-notes" wire:model.defer="booking.customer_notes"></textarea>
-                                            </div>
-                                            <!-- /Customer Notes -->
-                                        </div>
-                                        <div class="col-lg-6 mb-4">
-                                            <!-- Private Notes -->
-                                            <div class="my-lg-5">
+                                                <textarea class="form-control" rows="3" cols="4" id="customer-notes" wire:model.defer="booking.customer_notes"></textarea>
+                                    </div>
+                                    <div class="my-lg-5">
                                                 <label class="form-label" for="private-notes">
                                                     Private Notes
                                                 </label>
-                                                <textarea class="form-control" rows="4" cols="4" id="private-notes" wire:model.defer="booking.private_notes"></textarea>
+                                                <textarea class="form-control" rows="3" cols="4" id="private-notes" wire:model.defer="booking.private_notes"></textarea>
                                             </div>
-                                            <!-- /Private Notes -->
-                                        </div>
-                                        <div class="col-lg-6 mb-4">
-                                            <!-- Tags -->
                                             <div class="my-lg-5">
                                                 <label class="form-label" for="tags">
                                                     Tags
@@ -1347,28 +1338,30 @@
                                                             for="Participants">Participant(s)</label>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <!-- /Tags -->
-                                        </div>
-                                    </div>
-                                    <!-- Add Document -->
-                                    @if(!is_null($booking->id))
-                                   
-                                    <div>@livewire('app.common.bookings.booking-attachments', ['booking_id' => $booking->id])
-                                  
-                                        
-                                    @endif 
-                                    </div>
-                                    <!-- /Add Document -->
+                                            </div>        
+                                    <!-- /Payment Notes -->
                                 </div>
-                            </div>
+                                <!--end of notes-->
+                            </div>  
+
+
+
                             <div
                                 class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                                 <button type="button" class="btn btn-outline-dark rounded"
                                    x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('request-details')">Back</button>
                                 <button type="button" class="btn btn-primary rounded" wire:click.prevent="save(1,1,3)" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">Save as Draft</button>
-                                <button type="button" class="btn btn-primary rounded" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('booking-summary')">Booking Summary</button>
-                            </div>
+                                <div class="dropdown">
+                                        <button type="" class="btn btn-primary rounded dropdown-toggle w-100 h-100"
+                                            type="button" data-bs-toggle="dropdown"
+                                            aria-expanded="false">Confirm Booking</button>
+                                        <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Confirm Only</a></li>
+                                            <li><a class="dropdown-item" href="#">Confirm + Invite</a></li>
+                                            <li><a class="dropdown-item" href="#">Confirm + Assign</a></li>
+                                        </ul>
+                                    </div>
+                            </div> 
                      
                       
                     </div>

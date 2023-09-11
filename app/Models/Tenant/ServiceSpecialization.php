@@ -15,7 +15,7 @@ class ServiceSpecialization extends Model
      * @var array
      */
     protected $fillable = [
-        'service_id', 'specialization_id', 'specialization_price', 'specialization_price_v', 'added_by'
+        'service_id', 'specialization_id', 'specialization_price', 'specialization_price_v','specialization_price_t','specialization_price_p', 'added_by'
     ];
     public function specialization()
     {
