@@ -33,7 +33,7 @@ class CheckOut extends Component
 
     public function save()
     {
-        $this->booking_provider->check_out_procedure_values = json_encode($this->checkout);
+        $this->booking_provider->check_out_procedure_values = $this->checkout;
         $this->booking_provider->check_in_status = 3;
 
         $this->booking_provider->save();
@@ -58,7 +58,7 @@ class CheckOut extends Component
             $this->checkout_details = json_decode($this->booking_service->service->close_out_procedure, true);  //getting service's close-out-procedure
             $this->booking_provider = BookingProvider::where(['booking_service_id' => $booking_service_id, 'provider_id' => Auth::id()])->first();
             if ($this->booking_provider && ($this->booking_provider->check_out_procedure_values != null)) {
-                $this->checkout = json_decode($this->booking_provider->check_out_procedure_values, true);
+                $this->checkout = $this->booking_provider->check_out_procedure_values;
             } else {
                 //check if booking-service has check-in procedure enabled
                 $check_in_procedure = json_decode($this->booking_service->service->check_in_procedure, true);
@@ -66,7 +66,7 @@ class CheckOut extends Component
                     if (isset($check_in_procedure['enable_button']) && ($check_in_procedure['enable_button'])) {    //check-in procedure enabled
 
                         if ($this->booking_provider) {
-                            $checked_in_details = json_decode($this->booking_provider->check_in_procedure_values, true);
+                            $checked_in_details = $this->booking_provider->check_in_procedure_values;
                             if (isset($checked_in_details['actual_start_timestamp'])) {
                                 $this->checkout['actual_start_timestamp'] = $checked_in_details['actual_start_timestamp'];
                                 $this->checkout['actual_start_date'] = Carbon::parse($checked_in_details['actual_start_timestamp'])->format('d/m/Y');
@@ -114,7 +114,18 @@ class CheckOut extends Component
                 $this->checkout['digital_signature']['customer_signature'] = $fileService->saveFile('bookings/' . $this->booking_id, $this->upload_signature, $this->checkout['digital_signature']['customer_signature'] ?? null, $this->assignment->booking_number . '_' . time() . '_checkout_customer_signature');
         }
 
-        $this->booking_provider->check_out_procedure_values = json_encode($this->checkout);
+        $this->booking_provider->check_out_procedure_values = $this->checkout;
+        if($this->booking_provider->check_in_procedure_values ==null){
+            $values = [
+                'actual_start_hour' => $this->checkout['actual_start_hour'],
+                'actual_start_min' => $this->checkout['actual_start_min'],
+                'provider_signature_path' => null,
+                'customer_signature_path' => null,
+                'actual_start_timestamp' => Carbon::createFromFormat('d/m/Y H:i:s', $this->checkout['actual_start_date'] . ' ' . $this->checkout['actual_start_hour'] . ':' . $this->checkout['actual_start_min'] . ':00'),
+                'added_at'=>'checkout'
+            ];
+            $this->booking_provider->check_in_procedure_values = $values;
+        }
         $this->booking_provider->save();
         // dd($this->checkout); 
 
@@ -128,7 +139,7 @@ class CheckOut extends Component
 
     public function saveStepThree()
     {
-        $this->booking_provider->check_out_procedure_values = json_encode($this->checkout);
+        $this->booking_provider->check_out_procedure_values = $this->checkout;
         $this->booking_provider->save();
         $this->setStep(4);
     }
