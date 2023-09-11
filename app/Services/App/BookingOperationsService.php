@@ -113,6 +113,10 @@ class BookingOperationsService{
   
   public static function calculateServiceTotal($service,$schedule){
    //step 1 : get business and after business hours
+    $service['business_hours']=0;
+    $service['after_business_hours']=0;
+    $service['business_minutes']=0;
+    $service['after_business_minutes']=0;
     $service=SELF::getBillableDuration($service,$schedule);
    
     if($service['service_types']==2){
@@ -271,7 +275,7 @@ class BookingOperationsService{
         }
     }
 
-    return []; // No expedited charges applicable
+    return ['charges'=>0,'hour'=>'n/a']; // No expedited charges applicable
 }
 
 
@@ -284,19 +288,20 @@ class BookingOperationsService{
     $endTime= Carbon::parse($service['end_time'])->format('H:i:s');
     $starttime = Carbon::createFromTimeString($startTime);
     $endtime = Carbon::createFromTimeString($endTime);
+    $service['business_hours'] = 0;
+    $service['business_minutes'] = 0;
+
+    $service['business_start_time'] = '';
+    $service['business_end_time'] = '';
+
+    $service['after_business_hours'] = 0;
+    $service['after_business_minutes'] = 0;
+
+    $service['after_business_start_time'] ='';
+    $service['after_business_end_time'] = '';
     if($duration['days']==null || $duration['days']==0){
         //single day booking 
-        $service['business_hours'] = 0;
-        $service['business_minutes'] = 0;
-    
-        $service['business_start_time'] = '';
-        $service['business_end_time'] = '';
 
-        $service['after_business_hours'] = 0;
-        $service['after_business_minutes'] = 0;
-
-        $service['after_business_start_time'] ='';
-        $service['after_business_end_time'] = '';
         foreach($schedule->timeslots as $timeSlot){
 
             if($timeSlot->timeslot_day == $startDayOfWeek && $timeSlot->timeslot_type == 1){
