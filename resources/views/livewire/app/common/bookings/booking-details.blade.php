@@ -840,11 +840,11 @@
                                                             <div class="col-lg-7 align-self-center">
                                                                 <div class="font-family-tertiary">
                                                                     @if (isset($service['meeting_details']))
-                                                                            {{ $service['meeting_details']['access_code'] ? $service['meeting_details']['access_code'] : 'N/A' }}
-                                                                        @else
-                                                                            {{ $service['meeting_passcode'] ? $service['meeting_passcode'] : 'N/A' }}
-                                                                        @endif
-                                                                    </div>
+                                                                        {{ $service['meeting_details']['access_code'] ? $service['meeting_details']['access_code'] : 'N/A' }}
+                                                                    @else
+                                                                        {{ $service['meeting_passcode'] ? $service['meeting_passcode'] : 'N/A' }}
+                                                                    @endif
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1290,18 +1290,107 @@
                             @foreach ($booking_services as $index => $service)
                                 @livewire('app.common.bookings.assignedproviders', ['index' => $index + 1, 'service_id' => $service['service_id'], 'booking_id' => $booking_id], key(time()))
                             @endforeach
-                            {{-- <div
-                                class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
-                                <button type="" class="btn btn-outline-dark rounded"
-                                    x-on:click="$wire.switch('booking-details')">Back</button>
-                                <button type="" class="btn btn-primary rounded"
-                                    x-on:click="$wire.switch('attachments')">Next</button>
-                            </div> --}}
-                        </div><!-- END: assigned-providers-tab -->
+                           
+                        </div>
+                        <!-- END: assigned-providers-tab -->
                         <div class="tab-pane fade {{ $component == 'attachments' ? 'active show' : '' }}"
                             id="attachments" role="tabpanel" aria-labelledby="attachments-tab" tabindex="0">
-                            <h2>Attachments</h2>
-                            @livewire('app.common.bookings.booking-attachments', ['booking_id' => $booking_id])
+                            <div class="col-12">
+                                <h2>Attachments</h2>
+                                @livewire('app.common.bookings.booking-attachments', ['booking_id' => $booking_id])
+                            </div>
+
+                            <div class="col-12">
+                                <h2>Check-In and Close-Out</h2>
+                                <div>
+                                    <div class="between-section-segment-spacing">
+
+                                        <!-- Hoverable rows start -->
+                                        <div class="row" id="table-hover-row">
+                                            <div class="col-12">
+                                                <div class="card">
+                                                    <div class="table-responsive">
+                                                        <table id="unassigned_data"
+                                                            class="table table-fs-md table-hover" aria-label="">
+                                                            <thead>
+                                                                <tr role="row">
+                                                                    <th scope="col" class="text-center">
+                                                                        <input class="form-check-input"
+                                                                            type="checkbox" value=""
+                                                                            aria-label="Select All Teams">
+                                                                    </th>
+                                                                    <th scope="col">Provider</th>
+                                                                    <th scope="col">Check-In</th>
+                                                                    <th scope="col" class="text-center">
+                                                                        Duration</th>
+                                                                    <th scope="col" class="text-center">Form</th>
+                                                                    <th scope="col" class="text-center">Punctuality</th>
+                                                                    <th scope="col" class="text-center">Status</th>
+                                                                    <th scope="col" class="text-center">Feedback</th>
+
+
+                                                                    <th class="text-center">Action</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @if (count($data['attendingProviders']))
+                                                                    @foreach ($data['attendingProviders'] as $index => $provider)
+                                                                        <tr role="row" class="odd">
+                                                                            <td class="text-center align-middle">
+                                                                                <input class="form-check-input"
+                                                                                    type="checkbox" value=""
+                                                                                    aria-label="Select Team">
+                                                                            </td>
+                                                                            <td class="align-middle">
+                                                                                <div
+                                                                                    class="d-flex gap-2 align-items-center">
+                                                                                    <div>
+                                                                                        <img width="50"
+                                                                                            height="50"
+                                                                                            src="{{ $provider->user->userdetail->profile_pic ? $provider->user->userdetail->profile_pic : '/tenant-resources/images/portrait/small/avatar-s-20.jpg' }}"
+                                                                                            class="rounded-circle"
+                                                                                            alt="Provider Profile Image">
+                                                                                    </div>
+                                                                                    <div class="pt-2">
+                                                                                        <div
+                                                                                            class="font-family-secondary leading-none">
+                                                                                            {{ $provider->user->name }}
+                                                                                        </div>
+                                                                                        <a target="_blank"
+                                                                                            href="{{ route('tenant.provider-profile', ['providerID' => $provider['provider_id']]) }}"
+                                                                                            class="font-family-secondary"><small>
+                                                                                                {{ $provider->user->email }}</small></a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </td>
+                                                                         
+                                                                            <td class="align-middle">
+                                                                                
+                                                                            </td>
+                                                                        </tr>
+                                                                    @endforeach
+                                                                @else
+                                                                    <tr>
+                                                                        <td
+                                                                            colSpan="3">
+                                                                            <small>
+                                                                                No providers assigned to this service.
+                                                                            </small>
+                                                                        </td>
+                                                                    </tr>
+                                                                @endif
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Hoverable rows end -->
+                                        {{-- {{ $data['attendingProviders']->links() }} --}}
+
+                                    </div>
+                                </div>
+                            </div>
                             <!-- <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                             <button type="" class="btn btn-outline-dark rounded"
                                 x-on:click="$wire.switch('assigned-providers')">Back</button>

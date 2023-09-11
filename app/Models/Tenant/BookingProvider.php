@@ -19,4 +19,13 @@ class BookingProvider extends Model
         'booking_service_id','running_late_hour','running_late_min', 'check_in_procedure_values', 'check_out_procedure_values'
     ];
 
+    public function user()
+    {
+        return $this->hasOne(User::class,'id','provider_id');
+    }
+
+    protected $casts = [
+        'check_in_procedure_values' => 'array'
+    ];
+
 }
