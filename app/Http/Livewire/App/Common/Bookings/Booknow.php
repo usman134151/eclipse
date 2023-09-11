@@ -15,6 +15,7 @@ use App\Models\Tenant\Schedule;
 use App\Models\Tenant\Company;
 use App\Services\App\BookingOperationsService;
 use App\Models\Tenant\CustomizeForms;
+use App\Models\Tenant\Payment;
 use App\Services\App\AddressService;
 use Illuminate\Support\Collection;
 use Carbon\Carbon;
@@ -46,7 +47,7 @@ class Booknow extends Component
             'time_zone' => ''
 
     ]];
-
+    public $payment;
     
     
     public $setupValues = [
@@ -98,6 +99,7 @@ class Booknow extends Component
     public function mount(Booking $booking)
     {
         $this->booking=$booking;
+        $this->payment=new Payment;
         $this->schedule=Schedule::where('model_id',1)->where('model_type',1)->get()->first();
         $this->timezones=SetupValue::where('setup_id',4)->select('id','setup_value_label')->get()->toArray();
         $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
@@ -118,7 +120,10 @@ class Booknow extends Component
 
         if (request()->bookingID != null) {
             $id=request()->bookingID;
-            $this->booking=Booking::with('company','accommodation','booking_services_new_layout','industries','customer',)->find($id);
+            $this->booking=Booking::with('company','accommodation','booking_services_new_layout','industries','customer','payment')->find($id);
+
+            if(!is_null($this->booking->payment))
+               $this->payment=$this->booking->payment;
             if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
                 
                 $this->booking->recurring_end_at =  Carbon::createFromFormat('Y-m-d', $this->booking->recurring_end_at)->format('m/d/Y');
@@ -177,7 +182,7 @@ class Booknow extends Component
         if(!$this->booking->id){ //init data in case of new booking
             $this->booking->requester_information='0';
             $this->booking->frequency_id=1;
-
+           
            
 
            
@@ -627,6 +632,13 @@ class Booknow extends Component
             'booking.billing_notes'=>'nullable',
             'booking.payment_notes'=>'nullable',
             'booking.physical_address_id'=>'nullable',
+            'payment.coupon_type'=>'nullable',
+            'payment.override_amount'=>'nullable',
+            'payment.coupon_discount_amount'=>'nullable',
+            'payment.additional_label'=>'nullable',
+            'payment.additional_charge'=>'nullable',
+            'payment.additional_label_provider'=>'nullable',
+            'payment.additional_charge_provider'=>'nullable'
 
         ];
 
@@ -752,12 +764,22 @@ class Booknow extends Component
         }
    //   dd($bookingServices);
         $this->services=BookingOperationsService::getBookingCharges($this->booking,$bookingServices,$this->dates);
-  
+        foreach($this->services as $service)
+            $this->booking->total_amount+=$service['total_charges'];
+       // dd($this->booking->total_amount);
        // dd($this->bookingCharges);
        // $this->bookingDetails=BookingOperationsService::getBookingInfoNewLayout($this->booking);
        
     }
     public function updateTotals(){
+        foreach($this->services as $service)
+        $this->booking->total_amount+=$service['billed_total'];
+
+        //discounts
+
+
+        //addtional payments and charges
+
 
     }
    
