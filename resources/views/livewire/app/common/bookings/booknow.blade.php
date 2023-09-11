@@ -959,7 +959,18 @@
                                                         <div class="font-family-tertiary">{{$service['total_duration']['hours']}} hours {{$service['total_duration']['mins']}} minutes</div>
                                                     </div>
                                                 </div> 
-                                                <div class="mt-3"><h3 style="color:#023DB0">Standard Rate </h3></div>
+                                                @if($service['service_data']['rate_status']==4)
+                                                <div class="mt-3"><h3 style="color:#023DB0">Fixed Rate  </h3></div>
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <label class="col-form-label">Service Rate</label>
+                                                    </div>
+                                                    <div class="col-lg-8 align-self-center">
+                                                        <div class="font-family-tertiary">{{formatPayment($service['service_charges'])}}</div>
+                                                    </div>
+                                                </div> 
+                                                @else
+                                                <div class="mt-3"><h3 style="color:#023DB0">Standard Hourly Rate  </h3></div>
                                                 <div class="row">
                                                     <div class="col-lg-4">
                                                         <label class="col-form-label">Business Hours:</label>
@@ -984,6 +995,7 @@
                                                         <div class="font-family-tertiary">{{formatPayment($service['business_hour_charges']+$service['after_business_hour_charges'])}}</div>
                                                     </div>
                                                 </div> 
+                                                @endif
  
     
                                                 <div class="mt-3"><h3 style="color:#023DB0">Additional Charges </h3></div>
