@@ -64,7 +64,9 @@ class CheckIn extends Component
             'actual_start_min' => $this->mins,
             'provider_signature_path' => isset($p_sign) ? $p_sign : null,
             'customer_signature_path' => isset($c_sign) ? $c_sign : null,
-            'actual_start_timestamp' => Carbon::createFromTime($this->hours, $this->mins)
+            'actual_start_timestamp' => Carbon::createFromTime($this->hours, $this->mins),
+            'added_at' => 'checkin'
+
 
         ];
         $bookingProvider->update(['check_in_status' => 1, 'check_in_procedure_values' => json_encode($values)]);

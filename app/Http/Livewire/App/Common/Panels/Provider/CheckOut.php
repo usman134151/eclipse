@@ -115,6 +115,17 @@ class CheckOut extends Component
         }
 
         $this->booking_provider->check_out_procedure_values = json_encode($this->checkout);
+        if($this->booking_provider->check_in_procedure_values ==null){
+            $values = [
+                'actual_start_hour' => $this->checkout['actual_start_hour'],
+                'actual_start_min' => $this->checkout['actual_start_min'],
+                'provider_signature_path' => null,
+                'customer_signature_path' => null,
+                'actual_start_timestamp' => Carbon::createFromFormat('d/m/Y H:i:s', $this->checkout['actual_start_date'] . ' ' . $this->checkout['actual_start_hour'] . ':' . $this->checkout['actual_start_min'] . ':00'),
+                'added_at'=>'checkout'
+            ];
+            $this->booking_provider->check_in_procedure_values = json_encode($values);
+        }
         $this->booking_provider->save();
         // dd($this->checkout); 
 
