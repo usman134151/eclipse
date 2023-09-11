@@ -89,11 +89,7 @@ class BookingDetails extends Component
 			}
 		$this->data['total_providers'] = Booking::where('bookings.id', $this->booking_id)
 			->join('booking_services', 'booking_services.booking_id', 'bookings.id')->sum('booking_services.provider_count');
-		$this->data['attendingProviders'] = BookingProvider::where(['booking_id' => $this->booking_id])
-				->whereHas('user')
-				->get();
-			// dd($this->data['attendingProviders']->first()->check_out_procedure_values);
-			$this->data['assigned_providers'] = BookingProvider::where(['booking_id' => $this->booking_id])
+		$this->data['assigned_providers'] = BookingProvider::where(['booking_id' => $this->booking_id])
 			->join('users', 'booking_providers.provider_id', '=', 'users.id')->count();
 	}
 	//so a fuction which can then be used for editing the fields aswell.
