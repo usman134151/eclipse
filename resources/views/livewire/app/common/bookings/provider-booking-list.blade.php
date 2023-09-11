@@ -112,7 +112,7 @@
                                                                 @elseif($booking['check_in_status'] == 2)
                                                                     Running Late
                                                                 @elseif($booking['check_in_status'] == 3)
-                                                                    Pending
+                                                                    Checked Out 
                                                                 @endif
 
                                                             @else
@@ -222,7 +222,7 @@
                                                                             </svg>
                                                                         </a>
                                                                     @endif
-                                                                @elseif( $booking['check_in_status'] > 0  && $booking['check_in_status'] < 3 && $booking['display_check_out'] && $bookingType != 'Unassigned' && $bookingType != 'Invitations' && $bookingType != 'Cancelled'  ) 
+                                                                @elseif( $booking['check_in_status'] > 0   && $booking['display_check_out'] && $bookingType != 'Unassigned' && $bookingType != 'Invitations' && $bookingType != 'Cancelled'  ) 
                                                                     <a href="#"
                                                                         @click="offcanvasOpenCheckOut = true"
                                                                         wire:click="showCheckOutPanel('{{ $booking['id'] }}','{{ $booking['booking_service_id'] }}','{{ $booking['booking_number'] }}')"
