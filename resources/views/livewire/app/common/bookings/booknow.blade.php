@@ -1229,28 +1229,28 @@
                                         <div class="mb-4">
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" id="PayLater" name="PaymentPreference"
-                                                    type="radio" tabindex="" />
+                                                    type="radio" tabindex="" wire.model.defer="payment.payment_method" value="2" checked/>
                                                 <label class="form-check-label" for="PayLater"> Pay Later</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" id="PayNow" name="PaymentPreference"
-                                                    type="radio" tabindex="" />
+                                                    type="radio" tabindex="" disabled />
                                                 <label class="form-check-label" for="PayNow"> Pay Now</label>
                                             </div>
                                         </div>
                                         <div class="input-group mb-3">
                                             <input type="" name="" class="form-control form-control-md"
-                                                placeholder="Enter Card number" aria-label="Enter Card number">
+                                                placeholder="Enter Card number" aria-label="Enter Card number" disabled>
                                             <input type="" name="" class="form-control form-control-md text-center"
-                                                placeholder="MM/YY" aria-label="Enter Month/Year">
+                                                placeholder="MM/YY" aria-label="Enter Month/Year" disabled>
                                             <input type="" name="" class="form-control form-control-md text-center"
-                                                placeholder="CVC" aria-label="Enter CVC">
+                                                placeholder="CVC" aria-label="Enter CVC" disabled>
                                         </div>
                                         <div class="text-lg-end">
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" id="SaveforFuturePayments"
                                                     name="PaymentPreference" type="checkbox" tabindex="" />
-                                                <label class="form-check-label" for="SaveforFuturePayments"> Save for
+                                                <label class="form-check-label" for="SaveforFuturePayments" disabled> Save for
                                                     Future
                                                     Payments</label>
                                             </div>
@@ -1367,7 +1367,7 @@
                                             type="button" data-bs-toggle="dropdown"
                                             aria-expanded="false">Confirm Booking</button>
                                         <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Confirm Only</a></li>
+                                        <li><a class="dropdown-item" href="#" wire:click.prevent="save(1,1,3)">Confirm Only</a></li>
                                             <li><a class="dropdown-item" href="#">Confirm + Invite</a></li>
                                             <li><a class="dropdown-item" href="#">Confirm + Assign</a></li>
                                         </ul>

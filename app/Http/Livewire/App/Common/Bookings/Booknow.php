@@ -20,6 +20,7 @@ use App\Services\App\AddressService;
 use Illuminate\Support\Collection;
 use Carbon\Carbon;
 use DateTime;
+use Auth;
 
 
 class Booknow extends Component
@@ -101,6 +102,7 @@ class Booknow extends Component
         $this->booking=$booking;
         $this->payment=new Payment;
         $this->payment['discounted_amount']=0;
+        $this->payment['payment_method']=2;
         $this->schedule=Schedule::where('model_id',1)->where('model_type',1)->get()->first();
         $this->timezones=SetupValue::where('setup_id',4)->select('id','setup_value_label')->get()->toArray();
         $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
@@ -126,6 +128,7 @@ class Booknow extends Component
             if(!is_null($this->booking->payment)){
                 $this->payment=$this->booking->payment;
                 $this->payment['discounted_amount']=0;
+                $this->payment['payment_method']=2;
             }
               
             if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
@@ -231,14 +234,14 @@ class Booknow extends Component
     public function save($redirect = 1,$draft=0,$step=1)
     {
         //booking basic info
-
+        if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
+                
+            $this->booking->recurring_end_at =  Carbon::createFromFormat('m/d/Y', $this->booking->recurring_end_at)->toDateString();
+            
+        }
         if($step==1){
             $this->validate();
-            if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
-                
-                $this->booking->recurring_end_at =  Carbon::createFromFormat('m/d/Y', $this->booking->recurring_end_at)->toDateString();
-                
-            }
+           
             //calling booking service passing required data
             if(is_null($this->booking->id))
                 $this->booking=BookingOperationsService::createBooking($this->booking,$this->services,$this->dates,$this->selectedIndustries);
@@ -262,11 +265,21 @@ class Booknow extends Component
 
         }
         else{
+            $this->booking->type=1;
+            $this->booking->status=1;
+            $this->booking->booking_status=1; //will change it later for consumers or other company users, need to check rights
             $this->booking->save();
+            $this->updateTotals();
+            $this->payment['booking_id']=$this->booking->id;
+            $this->payment['payment_method_type']='Other';
+            $this->payment['payment_by']=Auth::user()->id;
+            $this->payment->save();
+            return redirect()->to('/admin/bookings/unassigned');
         }
        
         if ($redirect) {
             $this->confirmation("Assignment Data has been saved successfully");
+            
         } else {
             $this->switch('payment-info');
       
@@ -643,7 +656,8 @@ class Booknow extends Component
             'payment.additional_charge'=>'nullable',
             'payment.additional_label_provider'=>'nullable',
             'payment.additional_charge_provider'=>'nullable',
-            'payment.discounted_amount'=>'nullable'
+            'payment.discounted_amount'=>'nullable',
+            'payment.payment_method'=>'sometimes|numeric'
 
         ];
 
