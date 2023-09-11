@@ -959,7 +959,18 @@
                                                         <div class="font-family-tertiary">{{$service['total_duration']['hours']}} hours {{$service['total_duration']['mins']}} minutes</div>
                                                     </div>
                                                 </div> 
-                                                <div class="mt-3"><h3 style="color:#023DB0">Standard Rate </h3></div>
+                                                @if($service['service_data']['rate_status']==4)
+                                                <div class="mt-3"><h3 style="color:#023DB0">Fixed Rate  </h3></div>
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <label class="col-form-label">Service Rate</label>
+                                                    </div>
+                                                    <div class="col-lg-8 align-self-center">
+                                                        <div class="font-family-tertiary">{{formatPayment($service['service_charges'])}}</div>
+                                                    </div>
+                                                </div> 
+                                                @else
+                                                <div class="mt-3"><h3 style="color:#023DB0">Standard Hourly Rate  </h3></div>
                                                 <div class="row">
                                                     <div class="col-lg-4">
                                                         <label class="col-form-label">Business Hours:</label>
@@ -984,6 +995,7 @@
                                                         <div class="font-family-tertiary">{{formatPayment($service['business_hour_charges']+$service['after_business_hour_charges'])}}</div>
                                                     </div>
                                                 </div> 
+                                                @endif
  
     
                                                 <div class="mt-3"><h3 style="color:#023DB0">Additional Charges </h3></div>
@@ -1048,7 +1060,7 @@
                                                         <div class="font-family-tertiary">{{formatPayment($service['specialization_total'])}}</div>
                                                     </div>
                                                 </div> 
-                                                @if(count($service['expedited_charges']))
+                                                @if(count($service['expedited_charges']) && $service['expedited_charges']['charges']>0)
                                                 <div class="mt-3"><h3 style="color:#023DB0">Expedited Services Charges </h3></div>
                                                 <div class="row">
                                                     <div class="col-lg-4">
@@ -1099,25 +1111,24 @@
 
                                             <div class="form-check mb-0">
                                                 <input class="form-check-input" id="$Amount" name="discounts"
-                                                    type="radio" tabindex="">
+                                                    type="radio" tabindex="" wire:model="payment.coupon_type" value="2">
                                                 <label class="form-check-label" for="$Amount">$ Amount</label>
                                             </div>
                                             <div class="form-check mb-0">
                                                 <input class="form-check-input" id="%Amount" name="discounts"
-                                                    type="radio" tabindex="">
+                                                    type="radio" tabindex="" wire:model="payment.coupon_type" value="3">
                                                 <label class="form-check-label" for="%Amount">% Amount</label>
                                             </div>
                                         </div>
                                         
                                         <div class="row mb-4">
-                                            <label class="form-label mb-md-0 col-lg-5 col-md-3 align-self-center" for="coupon-code">Coupon
-                                                Code</label>
+                                            <label class="form-label mb-md-0 col-lg-3 col-md-3 align-self-center" for="coupon-code">Enter Value</label>
                                             <div class="col-lg-4 col-md-3 mb-3 mb-md-0">
                                                 <input type="" name="" class="form-control form-control-md"
-                                                    placeholder="Enter Code" id="coupon-code">
+                                                    placeholder="Enter Value" id="coupon-code" wire:model="payment.coupon_discount_amount">
                                             </div>
                                             <div class="col-md-3 align-self-center">
-                                                <a href="#" class="btn btn-primary btn-sm rounded w-100">Apply</a>
+                                                <a href="#" class="btn btn-primary btn-sm rounded w-100" wire:click="updateTotals">Apply</a>
                                             </div>
                                         </div>
                                        
@@ -1126,12 +1137,12 @@
                                         <h3>Additional Customer Charge</h3>
                                         <div class="input-group">
                                             <input type="" name="" class="form-control form-control-md"
-                                                placeholder="Enter Charge Label" aria-label="Enter Charge Label">
+                                                placeholder="Enter Charge Label" aria-label="Enter Charge Label" wire:model="payment.additional_label">
                                             <input type="" name="" class="form-control form-control-md text-center"
-                                                placeholder="$00.00" aria-label="Additional Customer Charges in dollars">
+                                                placeholder="$00.00" aria-label="Additional Customer Charges in dollars" wire:model="payment.additional_charge" wire:blur="updateTotals">
                                         </div>
                                         <div class="text-lg-end">
-                                            <a href="#" class="fw-bold">
+                                           <!--  <a href="#" class="fw-bold">
                                                 <small>
                                                     Add Additional Charges
                                                    
@@ -1141,25 +1152,25 @@
                                                     </svg>
                                                     
                                                 </small>
-                                            </a>
+                                            </a> -->
                                         </div>
                                     </div>
                                     <div class="mt-5">
                                         <h3>Additional Provider Payment</h3>
                                         <div class="input-group mb-2">
                                             <input type="" name="" class="form-control form-control-md"
-                                                placeholder="Enter Charge Label" aria-label="Enter Charge Label">
+                                                placeholder="Enter Charge Label" aria-label="Enter Charge Label" wire:model="payment.provider_additional_payment_label" >
                                             <input type="" name="" class="form-control form-control-md text-center"
-                                                placeholder="$00.00" aria-label="Additional Provider Payment">
+                                                placeholder="$00.00" aria-label="Additional Provider Payment" wire:model="payment.provider_additional_payment_charge" wire:blur="updateTotals">
                                         </div>
-                                        <div
+                                       <!--  <div
                                             class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-1 gap-md-0">
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" id="ChargetoCustomer" name=""
                                                     type="checkbox" tabindex="">
                                                 <label class="form-check-label" for="ChargetoCustomer"><small>Charge to
                                                         Customer</small></label>
-                                            </div>
+                                            </div> 
                                             <a href="#" class="fw-bold">
                                                 <small>
                                                     Add Additional Charges
@@ -1171,7 +1182,7 @@
                                                     
                                                 </small>
                                             </a>
-                                        </div>
+                                        </div> -->
                                     </div>              
                                     <div class="row between-section-segment-spacing">
                                         <div class="col-lg-12">
@@ -1187,7 +1198,7 @@
                                                 <div class="col-lg-12">
                                                     <div class="d-flex gap-3 bg-gray p-2">
                                                         <label class="form-label mb-0">Total Price:</label>
-                                                        <div class="align-self-center text-black">$00.00</div>
+                                                        <div class="align-self-center text-black">{{formatPayment($booking['total_amount'])}}</div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1200,10 +1211,10 @@
                                                         <div class="col-md-3 mb-3 mb-md-0">
                                                             <input type="" name=""
                                                                 class="form-control form-control-md text-center"
-                                                                placeholder="$00.00" id="enter-override-amount">
+                                                                placeholder="$00.00" id="enter-override-amount" wire:model="payment.override_amount">
                                                         </div>
                                                         <div class="col-md-3 align-self-center">
-                                                            <a href="#" class="btn btn-primary btn-sm rounded w-100">Apply</a>
+                                                            <a href="#" class="btn btn-primary btn-sm rounded w-100" wire:click="overridePayment">Apply</a>
                                                         </div>
                                                     </div>
                                                 </div>
