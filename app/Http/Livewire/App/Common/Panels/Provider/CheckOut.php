@@ -5,6 +5,7 @@ namespace App\Http\Livewire\App\Common\Panels\Provider;
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\BookingServices;
+use App\Models\Tenant\FeedbackRating;
 use App\Models\Tenant\User;
 use App\Services\App\UploadFileService;
 use Carbon\Carbon;
@@ -15,11 +16,11 @@ use Livewire\WithFileUploads;
 class CheckOut extends Component
 {
     use WithFileUploads;
-    
+
     public $showForm, $checkout = [];
     protected $listeners = ['showList' => 'resetForm', 'updateVal'];
     public $booking_id = 0, $assignment = null, $step = 1, $booking_service = null, $checkout_details = null, $checked_in_details = null;
-    public $upload_timesheet = null, $upload_signature = null, $booking_provider = null, $provider_id=null;
+    public $upload_timesheet = null, $upload_signature = null, $booking_provider = null, $provider_id = null;
 
 
 
@@ -28,8 +29,9 @@ class CheckOut extends Component
         return view('livewire.app.common.panels.provider.check-out');
     }
 
-    public function setRating($val){
-        $this->checkout['rating']=$val;
+    public function setRating($val)
+    {
+        $this->checkout['rating'] = $val;
     }
     // last step 
     public function save()
@@ -40,10 +42,19 @@ class CheckOut extends Component
         $this->booking_provider->save();
 
         //check if all other providers have checked out
-        if($this->assignment->booking_provider->count() == $this->assignment->checked_out_providers->count()){
+        if ($this->assignment->booking_provider->count() == $this->assignment->checked_out_providers->count()) {
             $this->assignment->is_closed = true;
             $this->assignment->save();
         }
+
+        FeedBackRating::updateOrCreate([
+            'feedback_to' => $this->assignment->customer_id,
+            'feedback_from' => $this->provider_id,
+            'booking_service_id' => $this->booking_service->id
+        ], [
+            'rating' => $this->checkout['rating'],
+            'comments' => $this->checkout['feedback_comments'],
+        ]);
 
         addLogs([
             'action_by'     => $this->provider_id,
@@ -53,25 +64,25 @@ class CheckOut extends Component
             'message'         => "Booking checkout details updated by " . User::find($this->provider_id)->name,
             'ip_address'     => \request()->ip(),
         ]);
-       
+
         $this->dispatchBrowserEvent('close-check-out');
         $this->emit('showConfirmation', 'Successfull Checkout at : ' .  date_format(date_create($this->checkout['actual_end_timestamp']), 'm/d/Y h:i A'));
     }
 
-    public function mount($booking_service_id, $provider_id=null)
+    public function mount($booking_service_id, $provider_id = null)
     {
 
-        if($provider_id==null)  //pass provider id when called from admin, else use auth::id
+        if ($provider_id == null)  //pass provider id when called from admin, else use auth::id
             $this->provider_id = Auth::id();
-            
+
         else
-        $this->provider_id =  $provider_id;
-        
+            $this->provider_id =  $provider_id;
+
 
 
         $this->checkout = [
             'confirmation_upload_type' => 'print_and_sign',
-            'rating'=>0 
+            'rating' => 0
 
         ];
         $this->assignment = Booking::where('id', $this->booking_id)->first();
@@ -107,8 +118,8 @@ class CheckOut extends Component
                 $this->checkout['actual_end_min'] =      date_format(date_create($this->assignment->booking_end_at), 'i');
             }
         }
-        if(!isset($this->checkout['rating']))
-        $this->checkout['rating'] = 0;
+        if (!isset($this->checkout['rating']))
+            $this->checkout['rating'] = 0;
     }
 
     public function rules()

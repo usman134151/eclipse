@@ -561,7 +561,7 @@
                         <div class="col-lg-6 mb-4">
                             <label class="form-label-sm" for="EntryNotes">Feedback Notes
                             </label>
-                            <textarea class="form-control" rows="5" wire:model.defer="checkout.feedback_notes" cols="5" id="EntryNotes"></textarea>
+                            <textarea class="form-control" rows="5" wire:model.defer="checkout.feedback_comments" cols="5" id="EntryNotes"></textarea>
                         </div>
                     </div>
                     <div class="row">
