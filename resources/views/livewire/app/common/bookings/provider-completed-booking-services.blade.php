@@ -1,4 +1,4 @@
-<div>
+<div >
     <div class="between-section-segment-spacing">
 
         <!-- Hoverable rows start -->
@@ -145,7 +145,7 @@
                                                             <a title="Edit Close Out" aria-label="Edit Close Out"
                                                                 href="#" class="dropdown-item"
                                                                   @click="offcanvasOpenCheckOut = true"
-                                                                        wire:click="showCheckOutPanel('{{ $booking_id }}','{{ $provider->booking_service_id }}','{{ $provider->booking->booking_number }}')"
+                                                                        wire:click="$emit('showCheckOutPanel','{{ $booking_id }}','{{ $provider->booking_service_id }}','{{ $provider->booking->booking_number }}')"
                                                                       >
                                                                 {{-- <i class="fa fa-clone"></i> --}}
                                                                 
@@ -203,4 +203,5 @@
         {{-- {{ $data['attendingProviders']->links() }} --}}
 
     </div>
+
 </div>
