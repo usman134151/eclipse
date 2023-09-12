@@ -18,13 +18,7 @@ class CheckOut extends Component
     protected $listeners = ['showList' => 'resetForm', 'updateVal'];
     public $booking_id = 0, $assignment = null, $step = 1, $booking_service = null, $checkout_details = null, $checked_in_details = null;
     public $upload_timesheet = null, $upload_signature = null, $booking_provider=null;
-    public function setCheckout()
-    {
-        if ($this->checkout['status'])
-            $this->checkout['timestamp'] = Carbon::now();
-        else
-            $this->checkout['timestamp'] = null;
-    }
+    
 
     public function render()
     {
@@ -45,7 +39,6 @@ class CheckOut extends Component
     {
 
         $this->checkout = [
-            'status' => false,
             'confirmation_upload_type' => 'print_and_sign'
 
         ];
