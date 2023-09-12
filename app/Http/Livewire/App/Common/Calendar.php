@@ -60,7 +60,7 @@ class Calendar extends Component
 				$join->where('booking_providers.provider_id',$this->user_id);
 				$join->on('booking_providers.booking_id', 'bookings.id');
 			});
-		$events = $query->select('booking_number', 'booking_title', 'booking_start_at', 'booking_end_at')
+		$events = $query->select('id','booking_number', 'booking_title', 'booking_start_at', 'booking_end_at')
 			->get()
 			->toArray();
 		// $keys = ['title', 'start', 'end'];
@@ -78,6 +78,8 @@ class Calendar extends Component
 
 			$newEvents[$key]['start'] = $booking_start_at;
 			$newEvents[$key]['end'] = $booking_end_at;
+			$newEvents[$key]['url'] = '/admin/bookings/view-booking/'. encrypt($id);
+			
 			// End of update by Sohail Asghar
 
 			// $newEvent = collect($event);
