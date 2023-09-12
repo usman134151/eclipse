@@ -17,8 +17,8 @@ class CheckOut extends Component
     public $showForm, $checkout = [];
     protected $listeners = ['showList' => 'resetForm', 'updateVal'];
     public $booking_id = 0, $assignment = null, $step = 1, $booking_service = null, $checkout_details = null, $checked_in_details = null;
-    public $upload_timesheet = null, $upload_signature = null, $booking_provider=null;
-    
+    public $upload_timesheet = null, $upload_signature = null, $booking_provider = null;
+
 
     public function render()
     {
@@ -32,7 +32,7 @@ class CheckOut extends Component
 
         $this->booking_provider->save();
         $this->dispatchBrowserEvent('close-check-out');
-        $this->emit('showConfirmation', 'Successfull Checkout at : ' .  date_format(date_create($this->checkout['actual_end_timestamp']), 'm/d/Y h:i A') );
+        $this->emit('showConfirmation', 'Successfull Checkout at : ' .  date_format(date_create($this->checkout['actual_end_timestamp']), 'm/d/Y h:i A'));
     }
 
     public function mount($booking_service_id)
@@ -108,21 +108,23 @@ class CheckOut extends Component
         }
 
         $this->booking_provider->check_out_procedure_values = $this->checkout;
-        if($this->booking_provider->check_in_procedure_values ==null){
+        if ($this->booking_provider->check_in_procedure_values == null) {
             $values = [
                 'actual_start_hour' => $this->checkout['actual_start_hour'],
                 'actual_start_min' => $this->checkout['actual_start_min'],
                 'provider_signature_path' => null,
                 'customer_signature_path' => null,
                 'actual_start_timestamp' => Carbon::createFromFormat('d/m/Y H:i:s', $this->checkout['actual_start_date'] . ' ' . $this->checkout['actual_start_hour'] . ':' . $this->checkout['actual_start_min'] . ':00'),
-                'added_at'=>'checkout'
+                'added_at' => 'checkout'
             ];
             $this->booking_provider->check_in_procedure_values = $values;
         }
         $this->booking_provider->save();
         // dd($this->checkout); 
-
-        $this->setStep(2);
+        if (isset($this->checkout_details['customize_form']) && $this->checkout_details['customize_form'] == true && isset($this->checkout_details['customize_form_id']))
+            $this->setStep(2);
+        else
+            $this->setStep(3);
     }
     public function saveStepTwo()
     {

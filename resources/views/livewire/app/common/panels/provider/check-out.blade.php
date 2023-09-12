@@ -253,7 +253,7 @@
                         </div>
                     </div>
                     <div
-                        class="form-check {{ $checkout_details['enable_digital_signature'] == true ? '' : 'hidden' }}">
+                        class="form-check {{ isset($checkout_details['enable_digital_signature']) && $checkout_details['enable_digital_signature'] == true ? '' : 'hidden' }}">
                         <input class="form-check-input" type="radio" name="checkout_confirmation_upload_type"
                             wire:model="checkout.confirmation_upload_type" id="digital_signature"
                             aria-label="Digital Signature" value="digital_signature">
@@ -398,39 +398,43 @@
     </div>
     <!-- END: Step 1 -->
     <!-- BEGIN: Step 2 -->
-    <div class="{{ $step == 2 ? '' : 'hidden' }}">
-        <div class="mb-4">
-            <div class="row inner-section-segment-spacing">
-                <div class="col-lg-12">
-                    <h3 class="text-primary">Step 2:</h3>
-                    @if (isset($this->checkout_details['customize_form']) &&
-                            $this->checkout_details['customize_form'] == true &&
-                            isset($this->checkout_details['customize_form_id']))
+    @if (isset($this->checkout_details['customize_form']) &&
+            $this->checkout_details['customize_form'] == true &&
+            isset($this->checkout_details['customize_form_id']))
+        <div class="{{ $step == 2 ? '' : 'hidden' }}">
+            <div class="mb-4">
+                <div class="row inner-section-segment-spacing">
+                    <div class="col-lg-12">
+                        <h3 class="text-primary">Step 2:</h3>
                         @livewire('app.common.forms.custom-form-display', ['showForm' => true, 'formId' => $this->checkout_details['customize_form_id'], 'bookingId' => $assignment->id, 'lastForm' => false, 'formType' => 3, 'service_id' => $booking_service->services])
-                    @else
-                        <small>No check-out form has been allocated for this service</small>
-                    @endif
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="mb-4">
+                <div class="form-actions d-flex gap-3 justify-content-center mt-5">
+                    <button type="submit" class="btn btn-primary rounded" wire:click="setStep(1)">Back</button>
+                    <button type="button" x-on:click="offcanvasOpenCheckOut = !offcanvasOpenCheckOut"
+                        class="btn btn-outline-dark rounded">Cancel</button>
+                    <button type="submit" class="btn btn-primary rounded js-checkout-go-step-3"
+                        wire:click="saveStepTwo">Next</button>
                 </div>
             </div>
         </div>
-        <hr>
-        <div class="mb-4">
-            <div class="form-actions d-flex gap-3 justify-content-center mt-5">
-                <button type="submit" class="btn btn-primary rounded" wire:click="setStep(1)">Back</button>
-                <button type="button" x-on:click="offcanvasOpenCheckOut = !offcanvasOpenCheckOut"
-                    class="btn btn-outline-dark rounded">Cancel</button>
-                <button type="submit" class="btn btn-primary rounded js-checkout-go-step-3"
-                    wire:click="saveStepTwo">Next</button>
-            </div>
-        </div>
-    </div>
+    @endif
+
     <!-- END: Step 2 -->
     <!-- BEGIN: Step 3 -->
     <div class="{{ $step == 3 ? '' : 'hidden' }}">
         <div class="between-section-segment-spacing">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="text-primary">Step 3:</h3>
+                    <h3 class="text-primary">Step 
+                    {{isset($this->checkout_details['customize_form']) &&
+                        $this->checkout_details['customize_form'] == true &&
+                        isset($this->checkout_details['customize_form_id']) ? '3' : '2'}}
+                
+                    :</h3>
                     <div class="row">
                         <div class="col-lg-6 mb-4">
                             <label class="form-label-sm" for="entry-notes">Entry Notes</label>
@@ -451,7 +455,13 @@
 
         <div class="mb-4">
             <div class="form-actions d-flex gap-3 justify-content-center mt-5">
-                <button type="submit" class="btn btn-primary rounded" wire:click="setStep(2)">Back</button>
+                @if (isset($this->checkout_details['customize_form']) &&
+                        $this->checkout_details['customize_form'] == true &&
+                        isset($this->checkout_details['customize_form_id']))
+                    <button type="submit" class="btn btn-primary rounded" wire:click="setStep(2)">Back</button>
+                @else
+                    <button type="submit" class="btn btn-primary rounded" wire:click="setStep(1)">Back</button>
+                @endif
                 <button x-on:click="offcanvasOpenCheckOut = !offcanvasOpenCheckOut" type="button"
                     class="btn btn-outline-dark rounded">Cancel</button>
                 <button type="submit" wire:click="saveStepThree"
@@ -465,7 +475,12 @@
         <div class="mb-4">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="text-primary">Step 4:</h3>
+                    <h3 class="text-primary">Step 
+                    {{isset($this->checkout_details['customize_form']) &&
+                        $this->checkout_details['customize_form'] == true &&
+                        isset($this->checkout_details['customize_form_id']) ? '4' : '3'}}
+                
+                    :</h3>
                     @if (isset($checkout_details['statuses']) && $checkout_details['statuses'] == true)
                         <div class="mb-4">
                             <label class="form-label d-block">Check-Out Status</label>
