@@ -221,7 +221,7 @@ class BookingOperationsService{
                   
                   
                  }
-                 dd($charges);
+              
                  if(array_key_exists('multiply_provider',$spCharges) && $spCharges['multiply_provider']){
 
                   $charges=$charges*$service['provider_count'];
