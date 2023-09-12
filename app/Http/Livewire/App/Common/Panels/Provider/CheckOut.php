@@ -46,6 +46,9 @@ class CheckOut extends Component
         $this->booking_service = BookingServices::where('id', $booking_service_id)->first();
 
         $this->checkout['actual_start_date'] = Carbon::parse($this->assignment->booking_start_at)->format('d/m/Y');
+        $this->checkout['actual_start_hour'] = date_format(date_create($this->assignment->booking_start_at), 'H');
+        $this->checkout['actual_start_min'] = date_format(date_create($this->assignment->booking_start_at), 'i');
+
 
         if ($this->booking_service) {
             $this->checkout_details = json_decode($this->booking_service->service->close_out_procedure, true);  //getting service's close-out-procedure
