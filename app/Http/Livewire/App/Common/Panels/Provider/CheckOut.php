@@ -5,6 +5,7 @@ namespace App\Http\Livewire\App\Common\Panels\Provider;
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\BookingServices;
+use App\Models\Tenant\User;
 use App\Services\App\UploadFileService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -39,6 +40,15 @@ class CheckOut extends Component
             $this->assignment->save();
         }
 
+        addLogs([
+            'action_by'     => $this->provider_id,
+            'action_to'     => $this->assignment->id,
+            'item_type'     => 'booking',
+            'type'          => 'update',
+            'message'         => "Booking checkout details updated by " . User::find($this->provider_id)->name,
+            'ip_address'     => \request()->ip(),
+        ]);
+       
         $this->dispatchBrowserEvent('close-check-out');
         $this->emit('showConfirmation', 'Successfull Checkout at : ' .  date_format(date_create($this->checkout['actual_end_timestamp']), 'm/d/Y h:i A'));
     }
@@ -48,8 +58,10 @@ class CheckOut extends Component
 
         if($provider_id==null)  //pass provider id when called from admin, else use auth::id
             $this->provider_id = Auth::id();
+            
         else
         $this->provider_id =  $provider_id;
+        
 
 
         $this->checkout = [
