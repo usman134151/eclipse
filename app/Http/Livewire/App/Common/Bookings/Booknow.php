@@ -20,6 +20,7 @@ use App\Services\App\AddressService;
 use Illuminate\Support\Collection;
 use Carbon\Carbon;
 use DateTime;
+use Auth;
 
 
 class Booknow extends Component
@@ -47,7 +48,7 @@ class Booknow extends Component
             'time_zone' => ''
 
     ]];
-    public $payment;
+    public $payment,$discountedAmount=0,$totalAmount=0;
     
     
     public $setupValues = [
@@ -100,6 +101,8 @@ class Booknow extends Component
     {
         $this->booking=$booking;
         $this->payment=new Payment;
+        $this->payment['discounted_amount']=0;
+        $this->payment['payment_method']=2;
         $this->schedule=Schedule::where('model_id',1)->where('model_type',1)->get()->first();
         $this->timezones=SetupValue::where('setup_id',4)->select('id','setup_value_label')->get()->toArray();
         $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
@@ -122,8 +125,12 @@ class Booknow extends Component
             $id=request()->bookingID;
             $this->booking=Booking::with('company','accommodation','booking_services_new_layout','industries','customer','payment')->find($id);
 
-            if(!is_null($this->booking->payment))
-               $this->payment=$this->booking->payment;
+            if(!is_null($this->booking->payment)){
+                $this->payment=$this->booking->payment;
+                $this->payment['discounted_amount']=0;
+                $this->payment['payment_method']=2;
+            }
+              
             if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
                 
                 $this->booking->recurring_end_at =  Carbon::createFromFormat('Y-m-d', $this->booking->recurring_end_at)->format('m/d/Y');
@@ -227,14 +234,14 @@ class Booknow extends Component
     public function save($redirect = 1,$draft=0,$step=1)
     {
         //booking basic info
-
+        if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
+                
+            $this->booking->recurring_end_at =  Carbon::createFromFormat('m/d/Y', $this->booking->recurring_end_at)->toDateString();
+            
+        }
         if($step==1){
             $this->validate();
-            if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
-                
-                $this->booking->recurring_end_at =  Carbon::createFromFormat('m/d/Y', $this->booking->recurring_end_at)->toDateString();
-                
-            }
+           
             //calling booking service passing required data
             if(is_null($this->booking->id))
                 $this->booking=BookingOperationsService::createBooking($this->booking,$this->services,$this->dates,$this->selectedIndustries);
@@ -258,11 +265,21 @@ class Booknow extends Component
 
         }
         else{
+            $this->booking->type=1;
+            $this->booking->status=1;
+            $this->booking->booking_status=1; //will change it later for consumers or other company users, need to check rights
             $this->booking->save();
+            $this->updateTotals();
+            $this->payment['booking_id']=$this->booking->id;
+            $this->payment['payment_method_type']='Other';
+            $this->payment['payment_by']=Auth::user()->id;
+            $this->payment->save();
+            return redirect()->to('/admin/bookings/unassigned');
         }
        
         if ($redirect) {
             $this->confirmation("Assignment Data has been saved successfully");
+            
         } else {
             $this->switch('payment-info');
       
@@ -638,7 +655,9 @@ class Booknow extends Component
             'payment.additional_label'=>'nullable',
             'payment.additional_charge'=>'nullable',
             'payment.additional_label_provider'=>'nullable',
-            'payment.additional_charge_provider'=>'nullable'
+            'payment.additional_charge_provider'=>'nullable',
+            'payment.discounted_amount'=>'nullable',
+            'payment.payment_method'=>'sometimes|numeric'
 
         ];
 
@@ -764,8 +783,7 @@ class Booknow extends Component
         }
    //   dd($bookingServices);
         $this->services=BookingOperationsService::getBookingCharges($this->booking,$bookingServices,$this->dates);
-        foreach($this->services as $service)
-            $this->booking->total_amount+=$service['total_charges'];
+        $this->updateTotals();
        // dd($this->booking->total_amount);
        // dd($this->bookingCharges);
        // $this->bookingDetails=BookingOperationsService::getBookingInfoNewLayout($this->booking);
@@ -773,10 +791,44 @@ class Booknow extends Component
     }
     public function updateTotals(){
         foreach($this->services as $service)
-        $this->booking->total_amount+=$service['billed_total'];
-
+        {
+            if($service['billed_total'])
+                $this->payment['sub_total']+=$service['billed_total'];
+            else
+            $this->payment['sub_total']+=$service['total_charges'];    
+        }
+        
+//
         //discounts
+        if($this->payment['coupon_type']==3 && !is_null($this->payment['coupon_discount_amount'])){
+            //percentage of booking total discount
+            $this->discountedAmount=$this->payment['discounted_amount']=($this->booking->total_amount*$this->payment['coupon_discount_amount'])/100;
+            $this->payment['sub_total']-= $this->payment['discounted_amount'];
+            
+        }
+        elseif($this->payment['coupon_type']==2 && !is_null($this->payment['coupon_discount_amount'])){
+            $this->discountedAmount= $this->payment['discounted_amount']=$this->payment['coupon_discount_amount'];
+            $this->payment['sub_total']-=$this->payment['coupon_discount_amount'];
+        }
+        else{
+            $this->payment['discounted_amount']=0;
+        }
 
+        if($this->payment['additional_charge']){
+            $this->payment['sub_total']+=$this->payment['additional_charge'];
+        }
+        if($this->payment['additional_charge']){
+            $this->payment['sub_total']+=$this->payment['additional_charge'];
+        }
+
+        if($this->payment['override_amount']){
+            $this->payment['total_amount']=$this->payment['override_amount'];
+        }
+        else{
+            $this->payment['total_amount']=$this->payment['sub_total'];
+        }
+        $this->totalAmount= $this->payment['total_amount'];
+       // dd($this->payment);
 
         //addtional payments and charges
 

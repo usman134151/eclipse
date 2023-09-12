@@ -1111,12 +1111,12 @@
 
                                             <div class="form-check mb-0">
                                                 <input class="form-check-input" id="$Amount" name="discounts"
-                                                    type="radio" tabindex="" wire:model="payment.coupon_type" value="2">
+                                                    type="radio" tabindex="" wire:model="payment.coupon_type" value="2" wire:click="updateTotals">
                                                 <label class="form-check-label" for="$Amount">$ Amount</label>
                                             </div>
                                             <div class="form-check mb-0">
                                                 <input class="form-check-input" id="%Amount" name="discounts"
-                                                    type="radio" tabindex="" wire:model="payment.coupon_type" value="3">
+                                                    type="radio" tabindex="" wire:model="payment.coupon_type" value="3" wire:click="updateTotals">
                                                 <label class="form-check-label" for="%Amount">% Amount</label>
                                             </div>
                                         </div>
@@ -1125,7 +1125,7 @@
                                             <label class="form-label mb-md-0 col-lg-3 col-md-3 align-self-center" for="coupon-code">Enter Value</label>
                                             <div class="col-lg-4 col-md-3 mb-3 mb-md-0">
                                                 <input type="" name="" class="form-control form-control-md"
-                                                    placeholder="Enter Value" id="coupon-code" wire:model="payment.coupon_discount_amount">
+                                                    placeholder="Enter Value" id="coupon-code" wire:model.defer="payment.coupon_discount_amount">
                                             </div>
                                             <div class="col-md-3 align-self-center">
                                                 <a href="#" class="btn btn-primary btn-sm rounded w-100" wire:click="updateTotals">Apply</a>
@@ -1137,9 +1137,9 @@
                                         <h3>Additional Customer Charge</h3>
                                         <div class="input-group">
                                             <input type="" name="" class="form-control form-control-md"
-                                                placeholder="Enter Charge Label" aria-label="Enter Charge Label" wire:model="payment.additional_label">
+                                                placeholder="Enter Charge Label" aria-label="Enter Charge Label" wire:model.defer="payment.additional_label">
                                             <input type="" name="" class="form-control form-control-md text-center"
-                                                placeholder="$00.00" aria-label="Additional Customer Charges in dollars" wire:model="payment.additional_charge" wire:blur="updateTotals">
+                                                placeholder="$00.00" aria-label="Additional Customer Charges in dollars" wire:model.defer="payment.additional_charge" wire:blur="updateTotals">
                                         </div>
                                         <div class="text-lg-end">
                                            <!--  <a href="#" class="fw-bold">
@@ -1159,9 +1159,9 @@
                                         <h3>Additional Provider Payment</h3>
                                         <div class="input-group mb-2">
                                             <input type="" name="" class="form-control form-control-md"
-                                                placeholder="Enter Charge Label" aria-label="Enter Charge Label" wire:model="payment.provider_additional_payment_label" >
+                                                placeholder="Enter Charge Label" aria-label="Enter Charge Label" wire:model.defer="payment.additional_label_provider" >
                                             <input type="" name="" class="form-control form-control-md text-center"
-                                                placeholder="$00.00" aria-label="Additional Provider Payment" wire:model="payment.provider_additional_payment_charge" wire:blur="updateTotals">
+                                                placeholder="$00.00" aria-label="Additional Provider Payment" wire:model.defer="payment.additional_charge_provider" wire:blur="updateTotals">
                                         </div>
                                        <!--  <div
                                             class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-1 gap-md-0">
@@ -1186,36 +1186,36 @@
                                     </div>              
                                     <div class="row between-section-segment-spacing">
                                         <div class="col-lg-12">
-                                            <div class="row">
+                                            <div class="row mt-2">
                                                 <div class="col-lg-12">
                                                     <div class="d-flex gap-3 p-2">
-                                                        <label class="form-label mb-0">Discount:</label>
-                                                        <div class="align-self-center text-black">$00.00</div>
+                                                        <label class="form-label mb-0">Calculated Discount:</label>
+                                                        <div class="align-self-center text-black">{{formatPayment($discountedAmount)}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mt-2">
+                                                <div class="col-lg-12 ">
+                                                    <div class="row p-2">
+                                                        <label class="form-label mb-lg-0 col-lg-4 align-self-center" for="enter-override-amount">                                                           Override
+                                                            Amount:</label>
+                                                        <div class="col-md-3 mb-3 mb-md-0">
+                                                            <input type="" name=""
+                                                                class="form-control form-control-md text-center"
+                                                                placeholder="$00.00" id="enter-override-amount" wire:model.defer="payment.override_amount">
+                                                        </div>
+                                                        <div class="col-md-3 align-self-center">
+                                                            <a href="#" class="btn btn-primary btn-sm rounded w-100" wire:click="updateTotals">Apply</a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row mb-4">
                                                 <div class="col-lg-12">
                                                     <div class="d-flex gap-3 bg-gray p-2">
-                                                        <label class="form-label mb-0">Total Price:</label>
-                                                        <div class="align-self-center text-black">{{formatPayment($booking['total_amount'])}}</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="row">
-                                                        <label class="form-label mb-lg-0 col-lg-6 align-self-center" for="enter-override-amount">Enter
-                                                            Override
-                                                            Amount:</label>
-                                                        <div class="col-md-3 mb-3 mb-md-0">
-                                                            <input type="" name=""
-                                                                class="form-control form-control-md text-center"
-                                                                placeholder="$00.00" id="enter-override-amount" wire:model="payment.override_amount">
-                                                        </div>
-                                                        <div class="col-md-3 align-self-center">
-                                                            <a href="#" class="btn btn-primary btn-sm rounded w-100" wire:click="overridePayment">Apply</a>
-                                                        </div>
+                                                        <label class="form-label mb-0">Booking Total:</label>
+                                                        <div class="align-self-center text-black">{{formatPayment($totalAmount)}}</div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1229,28 +1229,28 @@
                                         <div class="mb-4">
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" id="PayLater" name="PaymentPreference"
-                                                    type="radio" tabindex="" />
+                                                    type="radio" tabindex="" wire.model.defer="payment.payment_method" value="2" checked/>
                                                 <label class="form-check-label" for="PayLater"> Pay Later</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" id="PayNow" name="PaymentPreference"
-                                                    type="radio" tabindex="" />
+                                                    type="radio" tabindex="" disabled />
                                                 <label class="form-check-label" for="PayNow"> Pay Now</label>
                                             </div>
                                         </div>
                                         <div class="input-group mb-3">
                                             <input type="" name="" class="form-control form-control-md"
-                                                placeholder="Enter Card number" aria-label="Enter Card number">
+                                                placeholder="Enter Card number" aria-label="Enter Card number" disabled>
                                             <input type="" name="" class="form-control form-control-md text-center"
-                                                placeholder="MM/YY" aria-label="Enter Month/Year">
+                                                placeholder="MM/YY" aria-label="Enter Month/Year" disabled>
                                             <input type="" name="" class="form-control form-control-md text-center"
-                                                placeholder="CVC" aria-label="Enter CVC">
+                                                placeholder="CVC" aria-label="Enter CVC" disabled>
                                         </div>
                                         <div class="text-lg-end">
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" id="SaveforFuturePayments"
                                                     name="PaymentPreference" type="checkbox" tabindex="" />
-                                                <label class="form-check-label" for="SaveforFuturePayments"> Save for
+                                                <label class="form-check-label" for="SaveforFuturePayments" disabled> Save for
                                                     Future
                                                     Payments</label>
                                             </div>
@@ -1367,7 +1367,7 @@
                                             type="button" data-bs-toggle="dropdown"
                                             aria-expanded="false">Confirm Booking</button>
                                         <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Confirm Only</a></li>
+                                        <li><a class="dropdown-item" href="#" wire:click.prevent="save(1,1,3)">Confirm Only</a></li>
                                             <li><a class="dropdown-item" href="#">Confirm + Invite</a></li>
                                             <li><a class="dropdown-item" href="#">Confirm + Assign</a></li>
                                         </ul>

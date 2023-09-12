@@ -251,9 +251,12 @@ class BookingOperationsService{
   }
 
   static function getExpeditedCharge($bookingStartTime, $expeditedDataJson) {
+    if(is_null($expeditedDataJson)){
+      return ['charges'=>0,'hour'=>'n/a'];
+    }
     // Step 1: Parse JSON data to PHP arrays
     $expeditedData = json_decode($expeditedDataJson, true);
-
+    
     // Step 2: Sort arrays based on the 'hour' parameter
     usort($expeditedData, function($a, $b) {
         return $b[0]['hour'] - $a[0]['hour']; // Sort in descending order to check the larger hours first
