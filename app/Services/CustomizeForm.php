@@ -150,11 +150,11 @@ class CustomizeForm
             $field['rendered'] = self::createTextAreaField($fieldArr['field_name'], $fieldArr['placeholder'], $field['set']['required'], $wireVariable, "",  $tabIndex);
         elseif ($fieldArr['field_type'] == 3) {  //dropdown
             $options = self::addFieldOption($fieldArr['options']);
-            $field['rendered'] = self::createDropDown($options, $wireVariable, "", $fieldArr['field_name'], $field['set']['required'], $tabIndex);
+            $field['rendered'] = self::createDropDown($options ?? [], $wireVariable, "", $fieldArr['field_name'], $field['set']['required'], $tabIndex);
         } elseif ($fieldArr['field_type'] == 4)  //checkbox
-            $field['rendered'] = self::createCheckboxes($options, $wireVariable, $fieldArr['field_name'], $field['set']['required'], [], $tabIndex);
+            $field['rendered'] = self::createCheckboxes($options ?? [], $wireVariable, $fieldArr['field_name'], $field['set']['required'], [], $tabIndex);
         elseif ($fieldArr['field_type'] == 5)  //radio 
-            $field['rendered'] = self::createRadio($options, $wireVariable, $fieldArr['field_name'], $field['set']['required'], [], $tabIndex);
+            $field['rendered'] = self::createRadio($options ?? [], $wireVariable, $fieldArr['field_name'], $field['set']['required'], [], $tabIndex);
         elseif ($fieldArr['field_type'] == 6)  //file 
             $field['rendered'] = '';
 
@@ -231,7 +231,7 @@ class CustomizeForm
         return $html;
     }
 
-    public static function createDropDown(array $values,  string $wireVariable = null, $selectedValue = '', string $selectName = '', bool $required = false, int $tabIndex = 0,): string
+    public static function createDropDown(array $values =[],  string $wireVariable = null, $selectedValue = '', string $selectName = '', bool $required = false, int $tabIndex = 0,): string
     {
         $attributes = [
             'name' => str_replace(' ', '_', strtolower($selectName)),
