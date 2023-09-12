@@ -37,7 +37,12 @@
                                 Service Location:
                             </div>
                             <div class="col-lg-7 py-2 text-sm text-primary">
-                                {{ $assignment->physicalAddress ? $assignment->physicalAddress->address_line1 . ', ' . $assignment->physicalAddress->address_line2 : 'N/A' }}
+                                <a class=""
+                                    target="_blank"
+                                    href="https://www.google.com/maps/search/?api=1&query={{$assignment->physicalAddress ?  str_replace(' ', '+', $assignment->physicalAddress->address_line1 . ' ' .  $assignment->physicalAddress->address_line2 . ' ' . $assignment->physicalAddress->city . ' ' . $assignment->physicalAddress->state . ' ' .  $assignment->physicalAddress->country) : '' }}">
+
+                                    {{ $assignment->physicalAddress ? $assignment->physicalAddress->address_line1 . ', ' . $assignment->physicalAddress->address_line2 : 'N/A' }}
+                                </a>
                             </div>
                             <div class="col-lg-3 py-2 fw-semibold text-sm">
                                 City, Province:
@@ -134,7 +139,7 @@
             <div>
                 {{-- <h3 class="text-primary">Check-In Form <small>(coming soon)</small> </h3> --}}
                 <div class="row">
-                    @livewire('app.common.forms.custom-form-display', ['showForm' => true, 'formId' => $form_id, 'bookingId' => $assignment->id, 'lastForm' => false,'formType'=>2, 'service_id'=>$booking_service->services])
+                    @livewire('app.common.forms.custom-form-display', ['showForm' => true, 'formId' => $form_id, 'bookingId' => $assignment->id, 'lastForm' => false, 'formType' => 2, 'service_id' => $booking_service->services])
 
                 </div>
             </div>
