@@ -13,4 +13,15 @@ class FeedbackRating extends Model
         'feedback_from',
         'rating', 'comments', 'booking_service_id',
     ];
+
+    public function to()
+    {
+        return $this->hasOne(User::class, 'id', 'feedback_to');
+    }
+
+
+    public function from()
+    {
+        return $this->hasOne(User::class, 'id', 'feedback_from');
+    }
 }

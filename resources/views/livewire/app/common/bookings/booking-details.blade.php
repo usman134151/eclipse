@@ -1301,12 +1301,12 @@
                             </div>
 
                             <div class="col-12">
-                             @foreach ($booking_services as $index => $service)
-                                <h2>Check-In and Close-Out for Service - {{$service['service_name']}}</h2>
+                                @foreach ($booking_services as $index => $service)
+                                    <h2>Check-In and Close-Out for Service - {{ $service['service_name'] }}</h2>
 
-                                @livewire('app.common.bookings.provider-completed-booking-services', ['service_id' => $service['service_id'], 'booking_id' => $booking_id], key(time()))
-                            @endforeach
-                                
+                                    @livewire('app.common.bookings.provider-completed-booking-services', ['service_id' => $service['service_id'], 'booking_id' => $booking_id], key(time()))
+                                @endforeach
+
                             </div>
                             <!-- <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                             <button type="" class="btn btn-outline-dark rounded"
@@ -1598,6 +1598,17 @@
         {{-- @include('panels.booking-details.assign-providers') --}}
     @endif
 </div>
+@push('scripts')
+    <script>
+        Livewire.on('openFeedBackModal', (type) => {
+            $('#reviewFeedbackModal').modal('show');
+        });
+        Livewire.on('closeFeedbackModal', () => {
+            $('#reviewFeedbackModal').modal('hide');
+
+        });
+    </script>
+@endpush
 {{-- @if ($booking->physicalAddress)
     @push('scripts')
         <script>
