@@ -14,12 +14,15 @@ class ProviderCompletedBookingServices extends Component
     public function render()
     {
         $this->data['attendingProviders'] = BookingProvider::where(['booking_providers.booking_id' => $this->booking_id])
+            ->where('check_in_status', '>', 0)
             ->join('booking_services', function ($join) {
                 $join->on('booking_services.id', 'booking_providers.booking_service_id');
                 $join->where(['booking_services.services' => $this->service_id, 'booking_services.booking_id' => $this->booking_id]);
             })
             ->whereHas('user')
+            ->with('booking')
             ->get();
+
 
 
         return view('livewire.app.common.bookings.provider-completed-booking-services');
@@ -27,6 +30,16 @@ class ProviderCompletedBookingServices extends Component
 
     public function mount()
     {
+        $this->data['checkin_form_enabled'] = false;
+        $this->data['checkout_form_enabled'] = false;
+
+        $service = ServiceCategory::where('id', $this->service_id)->first();
+        $in = $service->check_in_procedure ? json_decode($service->check_in_procedure, true) : null;
+        $out = $service->check_out_procedure ? json_decode($service->check_out_procedure, true) : null;
+        if (isset($in['customize_form']) && $in['customize_form'] == true && isset($in['customize_form_id']))
+            $this->data['checkin_form_enabled'] = true;
+        if (isset($out['customize_form']) && $out['customize_form'] == true && isset($out['customize_form_id']))
+            $this->data['checkout_form_enabled'] = true;
     }
 
     public function openSavedFormsPanel($user_id)
