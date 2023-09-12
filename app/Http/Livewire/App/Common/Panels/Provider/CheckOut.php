@@ -15,10 +15,12 @@ use Livewire\WithFileUploads;
 class CheckOut extends Component
 {
     use WithFileUploads;
+    
     public $showForm, $checkout = [];
     protected $listeners = ['showList' => 'resetForm', 'updateVal'];
     public $booking_id = 0, $assignment = null, $step = 1, $booking_service = null, $checkout_details = null, $checked_in_details = null;
     public $upload_timesheet = null, $upload_signature = null, $booking_provider = null, $provider_id=null;
+
 
 
     public function render()
@@ -26,6 +28,9 @@ class CheckOut extends Component
         return view('livewire.app.common.panels.provider.check-out');
     }
 
+    public function setRating($val){
+        $this->checkout['rating']=$val;
+    }
     // last step 
     public function save()
     {
@@ -65,7 +70,8 @@ class CheckOut extends Component
 
 
         $this->checkout = [
-            'confirmation_upload_type' => 'print_and_sign'
+            'confirmation_upload_type' => 'print_and_sign',
+            'rating'=>0 
 
         ];
         $this->assignment = Booking::where('id', $this->booking_id)->first();
@@ -101,6 +107,8 @@ class CheckOut extends Component
                 $this->checkout['actual_end_min'] =      date_format(date_create($this->assignment->booking_end_at), 'i');
             }
         }
+        if(!isset($this->checkout['rating']))
+        $this->checkout['rating'] = 0;
     }
 
     public function rules()

@@ -406,7 +406,7 @@
                 <div class="row inner-section-segment-spacing">
                     <div class="col-lg-12">
                         <h3 class="text-primary">Step 2:</h3>
-                        @livewire('app.common.forms.custom-form-display', ['showForm' => true, 'formId' => $this->checkout_details['customize_form_id'], 'bookingId' => $assignment->id, 'lastForm' => false, 'formType' => 3, 'service_id' => $booking_service->services, 'added_by_id'=>$provider_id])
+                        @livewire('app.common.forms.custom-form-display', ['showForm' => true, 'formId' => $this->checkout_details['customize_form_id'], 'bookingId' => $assignment->id, 'lastForm' => false, 'formType' => 3, 'service_id' => $booking_service->services, 'added_by_id' => $provider_id])
                     </div>
                 </div>
             </div>
@@ -429,12 +429,14 @@
         <div class="between-section-segment-spacing">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="text-primary">Step 
-                    {{isset($this->checkout_details['customize_form']) &&
+                    <h3 class="text-primary">Step
+                        {{ isset($this->checkout_details['customize_form']) &&
                         $this->checkout_details['customize_form'] == true &&
-                        isset($this->checkout_details['customize_form_id']) ? '3' : '2'}}
-                
-                    :</h3>
+                        isset($this->checkout_details['customize_form_id'])
+                            ? '3'
+                            : '2' }}
+
+                        :</h3>
                     <div class="row">
                         <div class="col-lg-6 mb-4">
                             <label class="form-label-sm" for="entry-notes">Entry Notes</label>
@@ -475,12 +477,14 @@
         <div class="mb-4">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="text-primary">Step 
-                    {{isset($this->checkout_details['customize_form']) &&
+                    <h3 class="text-primary">Step
+                        {{ isset($this->checkout_details['customize_form']) &&
                         $this->checkout_details['customize_form'] == true &&
-                        isset($this->checkout_details['customize_form_id']) ? '4' : '3'}}
-                
-                    :</h3>
+                        isset($this->checkout_details['customize_form_id'])
+                            ? '4'
+                            : '3' }}
+
+                        :</h3>
                     @if (isset($checkout_details['statuses']) && $checkout_details['statuses'] == true)
                         <div class="mb-4">
                             <label class="form-label d-block">Check-Out Status</label>
@@ -541,20 +545,23 @@
                         <div class="text-sm">Share your experience working with This consumer</div>
                         <hr>
                         <label class="form-label d-block mb-0">Rating
-                            <small>(coming soon)</small>
                         </label>
-                        <i class="fa fa-star fa-2x text-warning"></i>
-                        <i class="fa fa-star fa-2x text-warning"></i>
-                        <i class="fa fa-star fa-2x text-warning"></i>
-                        <i class="fa fa-star-o fa-2x text-warning"></i>
-                        <i class="fa fa-star-o fa-2x text-warning"></i>
+                        @if (isset($checkout['rating']))
+                            @for ($i = 0; $i < $checkout['rating']; $i++)
+                                <i class="fa fa-star fa-2x text-warning"
+                                    wire:click="setRating({{ $i+1 }})"></i>
+                            @endfor
+                            @for ($i = $checkout['rating']; $i < 5; $i++)
+                                <i class="fa fa-star-o fa-2x text-warning"
+                                    wire:click="setRating({{ $i+1 }})"></i>
+                            @endfor
+                        @endif
                     </div>
                     <div class="row">
                         <div class="col-lg-6 mb-4">
-                            <label class="form-label-sm" for="EntryNotes">Entry Notes
-                                <small>(coming soon)</small>
+                            <label class="form-label-sm" for="EntryNotes">Feedback Notes
                             </label>
-                            <textarea class="form-control" rows="5" cols="5" id="EntryNotes"></textarea>
+                            <textarea class="form-control" rows="5" wire:model.defer="checkout.feedback_notes" cols="5" id="EntryNotes"></textarea>
                         </div>
                     </div>
                     <div class="row">
