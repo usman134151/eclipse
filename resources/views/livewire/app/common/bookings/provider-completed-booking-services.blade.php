@@ -97,9 +97,9 @@
                                             </td>
                                             <td>
                                                 <a href="#" title="Feedback" aria-label="Feedback"
-                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon"
+                                                    >
 
-                                                    {{-- notepad icon --}}
                                                     <svg aria-label="Notes" width="28" height="29"
                                                         viewBox="0 0 28 29" fill="none"
                                                         xmlns="http://www.w3.org/2000/svg">
@@ -113,7 +113,8 @@
                                             </td>
                                             <td>
                                                 <a href="#" title="Feedback" aria-label="Feedback"
-                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon"
+                                                     wire:click="$emit('openFeedBackModal', '{{$provider->booking_service_id}}','{{$provider->user->id}}')">
 
                                                     <svg aria-label="Rating" width="22" height="22"
                                                         viewBox="0 0 22 22" fill="none">
