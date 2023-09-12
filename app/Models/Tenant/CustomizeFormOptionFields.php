@@ -16,6 +16,6 @@ class CustomizeFormOptionFields extends Model
      */
 
     protected $fillable = [
-        'form_id', 'form_field_id', 'field_type_id', 'option_field_name', 'added_by'
+       'id', 'form_id', 'form_field_id', 'field_type_id', 'option_field_name', 'added_by'
     ];
 }

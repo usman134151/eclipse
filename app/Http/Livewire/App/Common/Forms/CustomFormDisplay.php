@@ -11,7 +11,7 @@ use Livewire\Component;
 class CustomFormDisplay extends Component
 {
     public $showForm, $formId, $questions = [], $formInfo = [], $answers = [], $bookingId, $lastForm = false, $formType = 1;
-    public $service_id = null;
+    public $service_id = null, $added_by_id=null;
     protected $listeners = ['showList' => 'resetForm', 'updateVal', 'saveCustomForm' => 'save'];
 
     public function render()
@@ -21,15 +21,17 @@ class CustomFormDisplay extends Component
 
     public function mount()
     {
-        // dd($this->bookingId,$this->service_id,$this->formId,$this->formType);
+        // dd($this->bookingId,$this->service_id,$this->formId,$this->formType, $this->added_by_id);
         $formService = new CustomizeForm();
         $formData = $formService->getFormDetails($this->formId);
+        if($this->added_by_id==null)
+            $this->added_by_id = Auth::id();
         if (count($formData)) {
             $this->formInfo = $formData['custom_form_details'];
             foreach ($formData['questions'] as $index => $question) {
                 $query = BookingCustomizeData::where(['booking_id' => $this->bookingId, 'customize_id' => $question['id'], 'form_type' => $this->formType]);
                 if($this->formType >1)
-                $query->where(['added_by'=>Auth::id(),'service_id'=>$this->service_id]);
+                $query->where(['added_by'=>$this->added_by_id,'service_id'=>$this->service_id]);
                 $this->answers[$index] = $query
                     ->select(
                         'id',
@@ -46,7 +48,6 @@ class CustomFormDisplay extends Component
                         'added_by'
                     )
                     ->first();
-
                 if ($this->answers[$index] == null) { //create new
                     $this->answers[$index]['customize_id'] = $question['id'];
                     $this->answers[$index]['field_title'] = $question['field_name'];
