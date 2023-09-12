@@ -69,7 +69,7 @@
                                                 04 hours 3 mins
                                             </td>
                                             <td>
-                                               
+                                                @if ($data['checkin_form_enabled'] || $data['checkout_form_enabled'])
                                                     <a href="#" title="Check In Form" aria-label="Check In Form"
                                                         @click="providerSavedForms = true"
                                                         wire:click="openSavedFormsPanel({{ $provider->user->id }})"
@@ -80,7 +80,10 @@
                                                             </use>
                                                         </svg>
                                                     </a>
-                                              
+                                                @else
+                                                    N/A
+                                                @endif
+
                                             </td>
 
                                             <td>
@@ -180,7 +183,7 @@
                                     <tr>
                                         <td colSpan="3">
                                             <small>
-                                                No providers assigned to this service.
+                                                No Providers have checked in to this service yet.
                                             </small>
                                         </td>
                                     </tr>
