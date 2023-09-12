@@ -25,12 +25,20 @@ class CheckOut extends Component
         return view('livewire.app.common.panels.provider.check-out');
     }
 
+    // last step 
     public function save()
     {
         $this->booking_provider->check_out_procedure_values = $this->checkout;
         $this->booking_provider->check_in_status = 3;
 
         $this->booking_provider->save();
+
+        //check if all other providers have checked out
+        if($this->assignment->booking_providers->count() == $this->assignment->checked_out_providers){
+            $this->assignment->is_completed = true;
+            $this->assignment->save();
+        }
+
         $this->dispatchBrowserEvent('close-check-out');
         $this->emit('showConfirmation', 'Successfull Checkout at : ' .  date_format(date_create($this->checkout['actual_end_timestamp']), 'm/d/Y h:i A'));
     }
