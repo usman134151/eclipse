@@ -145,7 +145,7 @@
                                                             <a title="Edit Close Out" aria-label="Edit Close Out"
                                                                 href="#" class="dropdown-item"
                                                                   @click="offcanvasOpenCheckOut = true"
-                                                                        wire:click="$emit('showCheckOutPanel','{{ $booking_id }}','{{ $provider->booking_service_id }}','{{ $provider->booking->booking_number }}')"
+                                                                        wire:click="$emit('showCheckOutPanel','{{ $booking_id }}','{{ $provider->booking_service_id }}','{{ $provider->booking->booking_number }}','{{$provider->user->id}}')"
                                                                       >
                                                                 {{-- <i class="fa fa-clone"></i> --}}
                                                                 

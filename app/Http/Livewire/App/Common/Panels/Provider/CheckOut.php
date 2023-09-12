@@ -17,7 +17,7 @@ class CheckOut extends Component
     public $showForm, $checkout = [];
     protected $listeners = ['showList' => 'resetForm', 'updateVal'];
     public $booking_id = 0, $assignment = null, $step = 1, $booking_service = null, $checkout_details = null, $checked_in_details = null;
-    public $upload_timesheet = null, $upload_signature = null, $booking_provider = null;
+    public $upload_timesheet = null, $upload_signature = null, $booking_provider = null, $provider_id=null;
 
 
     public function render()
@@ -43,9 +43,13 @@ class CheckOut extends Component
         $this->emit('showConfirmation', 'Successfull Checkout at : ' .  date_format(date_create($this->checkout['actual_end_timestamp']), 'm/d/Y h:i A'));
     }
 
-    public function mount($booking_service_id)
+    public function mount($booking_service_id, $provider_id=null)
     {
 
+        if($provider_id==null)  //pass provider id when called from admin, else use auth::id
+            $this->provider_id = Auth::id();
+        else
+        $this->provider_id =  $provider_id;
         $this->checkout = [
             'confirmation_upload_type' => 'print_and_sign'
 
@@ -60,7 +64,7 @@ class CheckOut extends Component
 
         if ($this->booking_service) {
             $this->checkout_details = json_decode($this->booking_service->service->close_out_procedure, true);  //getting service's close-out-procedure
-            $this->booking_provider = BookingProvider::where(['booking_service_id' => $booking_service_id, 'provider_id' => Auth::id()])->first();
+            $this->booking_provider = BookingProvider::where(['booking_service_id' => $booking_service_id, 'provider_id' => $provider_id])->first();
             if ($this->booking_provider && ($this->booking_provider->check_out_procedure_values != null)) {
                 $this->checkout = $this->booking_provider->check_out_procedure_values;
             } else {

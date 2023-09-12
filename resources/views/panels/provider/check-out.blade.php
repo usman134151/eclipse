@@ -2,7 +2,7 @@
 
     <x-slot name="title">Check-Out # {{ $bookingNumber }}</x-slot>
     @if ($booking_id &&$providerPanelType==2)
-        @livewire('app.common.panels.provider.check-out', ['booking_id' => $booking_id,'booking_service_id'=>$booking_service_id])
+        @livewire('app.common.panels.provider.check-out', ['booking_id' => $booking_id,'booking_service_id'=>$booking_service_id,'provider_id'=>$selectedProvider])
     @endif
 </x-off-canvas>
 <script>

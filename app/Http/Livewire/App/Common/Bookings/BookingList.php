@@ -21,7 +21,7 @@ class BookingList extends Component
 	public  $limit = 10, $counter, $ad_counter = 0, $ci_counter = 0, $co_counter = 0, $currentServiceId, $panelType = 1;
 	public  $booking_id = 0, $provider_id = null, $booking_service_id = 0;
 	public $providerPanelType = 0; //to ensure only clicked panel loads in provider-panel 
-	public $bookingNumber = '';
+	public $bookingNumber = '', $selectedProvider = 0;
 
 
 
@@ -151,7 +151,7 @@ class BookingList extends Component
 		// });
 
 		if ($this->provider_id) { //from provider panel
-			if ($this->bookingType == "Unassigned") {	
+			if ($this->bookingType == "Unassigned") {
 				$query->leftJoin('booking_available_providers', function ($join) {
 					$join->on('booking_available_providers.booking_id', 'bookings.id');
 					$join->where('booking_available_providers.provider_id', $this->provider_id);
@@ -180,7 +180,7 @@ class BookingList extends Component
 					'booking_services.service_types as service_type', 'bookings.*', 'bookings.status as status', 'invitation_id',
 					'booking_invitation_providers.status as invite_status'
 				]);
-				}else {
+			} else {
 				//limit bookings to this providers
 
 				$query->join('booking_providers', function ($join) {
@@ -196,7 +196,7 @@ class BookingList extends Component
 					'booking_services.service_types as service_type', 'bookings.*', 'bookings.status as status'
 				]);
 			}
-			if ($this->bookingType == "Active") 
+			if ($this->bookingType == "Active")
 				$query->where('booking_providers.check_in_status', '=', 1);
 
 			$base = "provider-";
@@ -301,8 +301,9 @@ class BookingList extends Component
 
 	// START : provider panel functions
 
-	public function showCheckInPanel($booking_id, $booking_service_id, $bookingNumber = null)
+	public function showCheckInPanel($booking_id, $booking_service_id, $bookingNumber = null, )
 	{
+
 		if ($bookingNumber)
 			$this->bookingNumber = $bookingNumber;
 		if ($this->ci_counter == 0) {
@@ -316,10 +317,13 @@ class BookingList extends Component
 			$this->providerPanelType = 1;
 		}
 	}
-	public function showCheckOutPanel($booking_id, $booking_service_id, $bookingNumber = null)
+	public function showCheckOutPanel($booking_id, $booking_service_id, $bookingNumber = null, $selectedProvider = null)
 	{
 		if ($bookingNumber)
 			$this->bookingNumber = $bookingNumber;
+
+		if ($selectedProvider)
+			$this->selectedProvider = $selectedProvider;
 		if ($this->co_counter == 0) {
 			$this->booking_id = 0;
 			$this->dispatchBrowserEvent('open-check-out', ['booking_id' => $booking_id, 'booking_service_id' => $booking_service_id]);
