@@ -1,4 +1,4 @@
-<div >
+<div>
     <div class="between-section-segment-spacing">
 
         <!-- Hoverable rows start -->
@@ -141,16 +141,16 @@
                                                             {{-- End of update by Shanila --}}
                                                         </a>
                                                         <div class="tablediv dropdown-menu fadeIn">
+                                                            @if ($provider->check_in_status == 3)
+                                                                <a title="Edit Close Out" aria-label="Edit Close Out"
+                                                                    href="#" class="dropdown-item"
+                                                                    @click="offcanvasOpenCheckOut = true"
+                                                                    wire:click="$emit('showCheckOutPanel','{{ $booking_id }}','{{ $provider->booking_service_id }}','{{ $provider->booking->booking_number }}','{{ $provider->user->id }}')">
+                                                                    {{-- <i class="fa fa-clone"></i> --}}
 
-                                                            <a title="Edit Close Out" aria-label="Edit Close Out"
-                                                                href="#" class="dropdown-item"
-                                                                  @click="offcanvasOpenCheckOut = true"
-                                                                        wire:click="$emit('showCheckOutPanel','{{ $booking_id }}','{{ $provider->booking_service_id }}','{{ $provider->booking->booking_number }}','{{$provider->user->id}}')"
-                                                                      >
-                                                                {{-- <i class="fa fa-clone"></i> --}}
-                                                                
-                                                                Edit Close Out
-                                                            </a>
+                                                                    Edit Close Out
+                                                                </a>
+                                                            @endif
                                                             <a title="Timesheet" aria-label="Timesheet"
                                                                 href="#" class="dropdown-item">
                                                                 {{-- <i class="fa fa-clone"></i> --}}
