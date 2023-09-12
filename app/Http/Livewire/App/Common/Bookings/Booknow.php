@@ -48,6 +48,7 @@ class Booknow extends Component
             'time_zone' => ''
 
     ]];
+    public $foundService=['default_providers'=>2];
     public $payment,$discountedAmount=0,$totalAmount=0;
     
     
@@ -82,7 +83,9 @@ class Booknow extends Component
             'duration_minutue'=>'',
             'start_time'=>'',
             'end_time'=>'',
-            'status'=>0
+            'status'=>0,
+            'auto_assign'=>false,
+            'auto_notify'=>false
             
             
         ]
@@ -95,6 +98,8 @@ class Booknow extends Component
     '4'=>['class'=>'phone-rate','postfix'=>'_p','title'=>'Phone'],
     '5'=>['class'=>'teleconference-rate','postfix'=>'_t','title'=>'Teleconference'],
   ];
+
+    public $assignedSupervisor="checked";
 
 
     public function mount(Booking $booking)
@@ -187,7 +192,7 @@ class Booknow extends Component
 
         }
         if(!$this->booking->id){ //init data in case of new booking
-            $this->booking->requester_information='0';
+            $this->booking->requester_information='';
             $this->booking->frequency_id=1;
            
            
@@ -241,7 +246,8 @@ class Booknow extends Component
         }
         if($step==1){
             $this->validate();
-           
+            if($this->booking->requester_information=='')
+                $this->booking->requester_information=0;
             //calling booking service passing required data
             if(is_null($this->booking->id))
                 $this->booking=BookingOperationsService::createBooking($this->booking,$this->services,$this->dates,$this->selectedIndustries);
@@ -427,7 +433,9 @@ class Booknow extends Component
         'duration_minutue'=>'',
         'start_time'=>'',
         'end_time'=>'',
-        'status'=>0
+        'status'=>0,
+        'auto_assign'=>false,
+        'auto_notify'=>false
     ];
     $this->dispatchBrowserEvent('refreshSelects');
     }
@@ -456,6 +464,7 @@ class Booknow extends Component
         
                 if (isset($this->services[$index])) {
                     $this->services[$index]['accommodation_id'] = $val;
+                    $this->updateServiceDefaults($index);
                 }
             }
             elseif (preg_match('/services_(\d+)/', $attrName, $matches)) {
@@ -464,6 +473,7 @@ class Booknow extends Component
         
                 if (isset($this->services[$index])) {
                     $this->services[$index]['services'] = $val;
+                   
                 }
             }
             elseif (preg_match('/service_consumer_(\d+)/', $attrName, $matches)) {
@@ -531,6 +541,45 @@ class Booknow extends Component
 
     }
 
+    public function updateServiceDefaults($index,$key=0){
+        //updating defaults
+             $accommodationsCollection = collect($this->accommodations);
+
+            // Perform the search using the filter method
+        
+            $serviceIdToFind = $this->services[$index]['services'];
+            $foundService = $accommodationsCollection
+                     ->flatMap(fn($item) => $item['services'])
+                     ->firstWhere('id', $serviceIdToFind);
+        //auto-notify and auto-assign
+        
+        //provider and consumer
+
+        //start date and end date
+        //start time and end time
+        //show or hide day rate?
+
+
+        if($key>0){
+            $postfix=$this->serviceTypes[$key]['postfix'];
+            $this->services[$index]['provider_count']=$foundService['default_providers'.$postfix];   
+            $settings=json_decode($foundService['notification_settings'.$postfix],true);
+          
+            if(count($settings) && key_exists('auto_assign',$settings[0])){
+                $this->services[$index]['auto_assign']=$settings[0]['auto_assign'];
+            } 
+            if(count($settings) &&  key_exists('broadcast',$settings[0])){
+                $this->services[$index]['auto_notify']=$settings[0]['broadcast'];
+            }   
+           
+        }
+         
+
+             
+        
+
+    }
+
     public function getUserRoleDetails($customerId){
         //getting role billing manager and supervisor
         $userRoles=RoleUserDetail::where('associated_user',$customerId)
@@ -538,7 +587,7 @@ class Booknow extends Component
             $query->where('role_id', 5)
                 ->orWhere('role_id', 9);
         })->orderBy('role_id')->orderBy('is_default','desc')->select('role_id','user_id')->get();
-
+        $this->assignedSupervisor='checked';
         if(!is_null($userRoles)){
            $supervisorSet=0;
            $bManagerSet=0;
@@ -549,6 +598,7 @@ class Booknow extends Component
              if($userRole['role_id']==5 && $supervisorSet==0){
                 $this->booking->supervisor=$userRole['user_id'];
                 $supervisorSet=1;
+
              }
              elseif($userRole['role_id']==9 && $bManagerSet==0){
                 $this->booking->billing_manager_id=$userRole['user_id'];
@@ -557,6 +607,8 @@ class Booknow extends Component
 
 
            }
+           if($supervisorSet==0 || $bManagerSet==0)
+                $this->assignedSupervisor='';
         }
 
     }
