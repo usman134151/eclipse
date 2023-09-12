@@ -77,7 +77,7 @@ class CustomFormDisplay extends Component
                     $filtered = array_keys(array_filter($answer['data_value']));
                     $answer['data_value'] = implode(',', $filtered);
                 }
-            $answer['added_by'] = Auth::id();
+            $answer['added_by'] = $this->added_by_id;
             $answer['form_type'] = $this->formType;
             $answer['service_id'] = $this->service_id;
 

@@ -50,6 +50,8 @@ class CheckOut extends Component
             $this->provider_id = Auth::id();
         else
         $this->provider_id =  $provider_id;
+
+
         $this->checkout = [
             'confirmation_upload_type' => 'print_and_sign'
 
@@ -64,7 +66,7 @@ class CheckOut extends Component
 
         if ($this->booking_service) {
             $this->checkout_details = json_decode($this->booking_service->service->close_out_procedure, true);  //getting service's close-out-procedure
-            $this->booking_provider = BookingProvider::where(['booking_service_id' => $booking_service_id, 'provider_id' => $provider_id])->first();
+            $this->booking_provider = BookingProvider::where(['booking_service_id' => $booking_service_id, 'provider_id' => $this->provider_id])->first();
             if ($this->booking_provider && ($this->booking_provider->check_out_procedure_values != null)) {
                 $this->checkout = $this->booking_provider->check_out_procedure_values;
             } else {
