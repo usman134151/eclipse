@@ -5,6 +5,7 @@ namespace App\Http\Livewire\App\Common\Panels\Provider;
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\BookingServices;
+use App\Models\Tenant\User;
 use App\Services\App\UploadFileService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -17,35 +18,53 @@ class CheckOut extends Component
     public $showForm, $checkout = [];
     protected $listeners = ['showList' => 'resetForm', 'updateVal'];
     public $booking_id = 0, $assignment = null, $step = 1, $booking_service = null, $checkout_details = null, $checked_in_details = null;
-    public $upload_timesheet = null, $upload_signature = null, $booking_provider=null;
-    public function setCheckout()
-    {
-        if ($this->checkout['status'])
-            $this->checkout['timestamp'] = Carbon::now();
-        else
-            $this->checkout['timestamp'] = null;
-    }
+    public $upload_timesheet = null, $upload_signature = null, $booking_provider = null, $provider_id=null;
+
 
     public function render()
     {
         return view('livewire.app.common.panels.provider.check-out');
     }
 
+    // last step 
     public function save()
     {
         $this->booking_provider->check_out_procedure_values = $this->checkout;
         $this->booking_provider->check_in_status = 3;
 
         $this->booking_provider->save();
+
+        //check if all other providers have checked out
+        if($this->assignment->booking_provider->count() == $this->assignment->checked_out_providers->count()){
+            $this->assignment->is_closed = true;
+            $this->assignment->save();
+        }
+
+        addLogs([
+            'action_by'     => $this->provider_id,
+            'action_to'     => $this->assignment->id,
+            'item_type'     => 'booking',
+            'type'          => 'update',
+            'message'         => "Booking checkout details updated by " . User::find($this->provider_id)->name,
+            'ip_address'     => \request()->ip(),
+        ]);
+       
         $this->dispatchBrowserEvent('close-check-out');
-        $this->emit('showConfirmation', 'Successfull Checkout at : ' .  date_format(date_create($this->checkout['actual_end_timestamp']), 'm/d/Y h:i A') );
+        $this->emit('showConfirmation', 'Successfull Checkout at : ' .  date_format(date_create($this->checkout['actual_end_timestamp']), 'm/d/Y h:i A'));
     }
 
-    public function mount($booking_service_id)
+    public function mount($booking_service_id, $provider_id=null)
     {
 
+        if($provider_id==null)  //pass provider id when called from admin, else use auth::id
+            $this->provider_id = Auth::id();
+            
+        else
+        $this->provider_id =  $provider_id;
+        
+
+
         $this->checkout = [
-            'status' => false,
             'confirmation_upload_type' => 'print_and_sign'
 
         ];
@@ -53,10 +72,13 @@ class CheckOut extends Component
         $this->booking_service = BookingServices::where('id', $booking_service_id)->first();
 
         $this->checkout['actual_start_date'] = Carbon::parse($this->assignment->booking_start_at)->format('d/m/Y');
+        $this->checkout['actual_start_hour'] = date_format(date_create($this->assignment->booking_start_at), 'H');
+        $this->checkout['actual_start_min'] = date_format(date_create($this->assignment->booking_start_at), 'i');
+
 
         if ($this->booking_service) {
             $this->checkout_details = json_decode($this->booking_service->service->close_out_procedure, true);  //getting service's close-out-procedure
-            $this->booking_provider = BookingProvider::where(['booking_service_id' => $booking_service_id, 'provider_id' => Auth::id()])->first();
+            $this->booking_provider = BookingProvider::where(['booking_service_id' => $booking_service_id, 'provider_id' => $this->provider_id])->first();
             if ($this->booking_provider && ($this->booking_provider->check_out_procedure_values != null)) {
                 $this->checkout = $this->booking_provider->check_out_procedure_values;
             } else {
@@ -115,21 +137,23 @@ class CheckOut extends Component
         }
 
         $this->booking_provider->check_out_procedure_values = $this->checkout;
-        if($this->booking_provider->check_in_procedure_values ==null){
+        if ($this->booking_provider->check_in_procedure_values == null) {
             $values = [
                 'actual_start_hour' => $this->checkout['actual_start_hour'],
                 'actual_start_min' => $this->checkout['actual_start_min'],
                 'provider_signature_path' => null,
                 'customer_signature_path' => null,
                 'actual_start_timestamp' => Carbon::createFromFormat('d/m/Y H:i:s', $this->checkout['actual_start_date'] . ' ' . $this->checkout['actual_start_hour'] . ':' . $this->checkout['actual_start_min'] . ':00'),
-                'added_at'=>'checkout'
+                'added_at' => 'checkout'
             ];
             $this->booking_provider->check_in_procedure_values = $values;
         }
         $this->booking_provider->save();
         // dd($this->checkout); 
-
-        $this->setStep(2);
+        if (isset($this->checkout_details['customize_form']) && $this->checkout_details['customize_form'] == true && isset($this->checkout_details['customize_form_id']))
+            $this->setStep(2);
+        else
+            $this->setStep(3);
     }
     public function saveStepTwo()
     {

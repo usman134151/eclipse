@@ -25,7 +25,7 @@
 
                     <div class="row">
                         @if ($form_id['checkin_form_id'])
-                            @livewire('app.common.forms.custom-form-display', ['showForm' => true, 'formId' => $form_id['checkin_form_id'], 'bookingId' => $booking_id, 'lastForm' => false, 'formType' => 2, 'service_id' => $service_id])
+                            @livewire('app.common.forms.custom-form-display', ['showForm' => true, 'formId' => $form_id['checkin_form_id'], 'bookingId' => $booking_id, 'lastForm' => false, 'formType' => 2, 'service_id' => $service_id, 'added_by_id' => $provider_id])
                         @else
                             <small>No form available</small>
                         @endif
@@ -47,7 +47,7 @@
                         </h2>
                     </div> --}}
                     @if ($form_id['checkout_form_id'])
-                        @livewire('app.common.forms.custom-form-display', ['showForm' => true, 'formId' => $form_id['checkout_form_id'], 'bookingId' => $booking_id, 'lastForm' => false, 'formType' => 3, 'service_id' => $service_id])
+                        @livewire('app.common.forms.custom-form-display', ['showForm' => true, 'formId' => $form_id['checkout_form_id'], 'bookingId' => $booking_id, 'lastForm' => false, 'formType' => 3, 'service_id' => $service_id, 'added_by_id' => $provider_id])
                     @else
                         <small>No form available</small>
                     @endif

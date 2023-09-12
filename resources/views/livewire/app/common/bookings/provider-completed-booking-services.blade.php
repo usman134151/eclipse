@@ -69,7 +69,7 @@
                                                 04 hours 3 mins
                                             </td>
                                             <td>
-                                               
+                                                @if ($data['checkin_form_enabled'] || $data['checkout_form_enabled'])
                                                     <a href="#" title="Check In Form" aria-label="Check In Form"
                                                         @click="providerSavedForms = true"
                                                         wire:click="openSavedFormsPanel({{ $provider->user->id }})"
@@ -80,7 +80,10 @@
                                                             </use>
                                                         </svg>
                                                     </a>
-                                              
+                                                @else
+                                                    N/A
+                                                @endif
+
                                             </td>
 
                                             <td>
@@ -121,58 +124,63 @@
                                                 </a>
                                             </td>
                                             <td>
+                                                <div class="d-flex actions">
 
-                                                <div class="dropdown ac-cstm">
-                                                    <a href="javascript:void(0)"
-                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle"
-                                                        data-bs-toggle="dropdown" data-bs-auto-close="outside"
-                                                        aria-label="Action dropdown"
-                                                        data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-                                                        {{-- Updated by Shanila to Add svg icon --}}
-                                                        <svg aria-label="More Options" width="20" height="20"
-                                                            viewBox="0 0 20 20">
-                                                            <use xlink:href="/css/common-icons.svg#dropdown">
-                                                            </use>
-                                                        </svg>
-                                                        {{-- End of update by Shanila --}}
-                                                    </a>
-                                                    <div class="tablediv dropdown-menu fadeIn">
+                                                    <div class="dropdown ac-cstm">
+                                                        <a href="javascript:void(0)"
+                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle"
+                                                            data-bs-toggle="dropdown" data-bs-auto-close="outside"
+                                                            aria-label="Action dropdown"
+                                                            data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
+                                                            {{-- Updated by Shanila to Add svg icon --}}
+                                                            <svg aria-label="More Options" width="20"
+                                                                height="20" viewBox="0 0 20 20">
+                                                                <use xlink:href="/css/common-icons.svg#dropdown">
+                                                                </use>
+                                                            </svg>
+                                                            {{-- End of update by Shanila --}}
+                                                        </a>
+                                                        <div class="tablediv dropdown-menu fadeIn">
+                                                            @if ($provider->check_in_status == 3)
+                                                                <a title="Edit Close Out" aria-label="Edit Close Out"
+                                                                    href="#" class="dropdown-item"
+                                                                    @click="offcanvasOpenCheckOut = true"
+                                                                    wire:click="$emit('showCheckOutPanel','{{ $booking_id }}','{{ $provider->booking_service_id }}','{{ $provider->booking->booking_number }}','{{ $provider->user->id }}')">
+                                                                    {{-- <i class="fa fa-clone"></i> --}}
 
-                                                        <a title="Edit Close Out" aria-label="Edit Close Out"
-                                                            href="#" class="dropdown-item">
-                                                            {{-- <i class="fa fa-clone"></i> --}}
-                                                            Edit Close Out
-                                                        </a>
-                                                        <a title="Timesheet" aria-label="Timesheet" href="#"
-                                                            class="dropdown-item">
-                                                            {{-- <i class="fa fa-clone"></i> --}}
-                                                            Download Timesheet
-                                                        </a>
+                                                                    Edit Close Out
+                                                                </a>
+                                                            @endif
+                                                            <a title="Timesheet" aria-label="Timesheet"
+                                                                href="#" class="dropdown-item">
+                                                                {{-- <i class="fa fa-clone"></i> --}}
+                                                                Download Timesheet
+                                                            </a>
 
-                                                        <a title="Download Forms" aria-label="Download Forms"
-                                                            href="#" class="dropdown-item">
-                                                            {{-- <i class="fa fa-clone"></i> --}}
-                                                            Download Forms
-                                                        </a>
-                                                        <a title="Approve Time Extension"
-                                                            aria-label="Approve Time Extension" href="#"
-                                                            class="dropdown-item">
-                                                            {{-- <i class="fa fa-clone"></i> --}}
-                                                            Approve Time Extension
-                                                        </a>
+                                                            <a title="Download Forms" aria-label="Download Forms"
+                                                                href="#" class="dropdown-item">
+                                                                {{-- <i class="fa fa-clone"></i> --}}
+                                                                Download Forms
+                                                            </a>
+                                                            <a title="Approve Time Extension"
+                                                                aria-label="Approve Time Extension" href="#"
+                                                                class="dropdown-item">
+                                                                {{-- <i class="fa fa-clone"></i> --}}
+                                                                Approve Time Extension
+                                                            </a>
 
-                                                        <a title="Deny Time Extension"
-                                                            aria-label="Deny Time Extension" href="#"
-                                                            class="dropdown-item">
-                                                            {{-- <i class="fa fa-clone"></i> --}}
-                                                            Deny Time Extension
-                                                        </a>
+                                                            <a title="Deny Time Extension"
+                                                                aria-label="Deny Time Extension" href="#"
+                                                                class="dropdown-item">
+                                                                {{-- <i class="fa fa-clone"></i> --}}
+                                                                Deny Time Extension
+                                                            </a>
 
+
+                                                        </div>
 
                                                     </div>
-
                                                 </div>
-
                                             </td>
                                         </tr>
                                     @endforeach
@@ -180,7 +188,7 @@
                                     <tr>
                                         <td colSpan="3">
                                             <small>
-                                                No providers assigned to this service.
+                                                No Providers have checked in to this service yet.
                                             </small>
                                         </td>
                                     </tr>
@@ -195,4 +203,5 @@
         {{-- {{ $data['attendingProviders']->links() }} --}}
 
     </div>
+
 </div>
