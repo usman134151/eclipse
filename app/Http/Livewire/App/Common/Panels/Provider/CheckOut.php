@@ -34,8 +34,8 @@ class CheckOut extends Component
         $this->booking_provider->save();
 
         //check if all other providers have checked out
-        if($this->assignment->booking_providers->count() == $this->assignment->checked_out_providers){
-            $this->assignment->is_completed = true;
+        if($this->assignment->booking_provider->count() == $this->assignment->checked_out_providers->count()){
+            $this->assignment->is_closed = true;
             $this->assignment->save();
         }
 
