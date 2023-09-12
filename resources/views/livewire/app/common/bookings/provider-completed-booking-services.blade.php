@@ -143,8 +143,12 @@
                                                         <div class="tablediv dropdown-menu fadeIn">
 
                                                             <a title="Edit Close Out" aria-label="Edit Close Out"
-                                                                href="#" class="dropdown-item">
+                                                                href="#" class="dropdown-item"
+                                                                  @click="offcanvasOpenCheckOut = true"
+                                                                        wire:click="showCheckOutPanel('{{ $booking_id }}','{{ $provider->booking_service_id }}','{{ $provider->booking->booking_number }}')"
+                                                                      >
                                                                 {{-- <i class="fa fa-clone"></i> --}}
+                                                                
                                                                 Edit Close Out
                                                             </a>
                                                             <a title="Timesheet" aria-label="Timesheet"

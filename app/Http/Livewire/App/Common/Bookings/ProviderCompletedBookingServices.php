@@ -20,6 +20,7 @@ class ProviderCompletedBookingServices extends Component
                 $join->where(['booking_services.services' => $this->service_id, 'booking_services.booking_id' => $this->booking_id]);
             })
             ->whereHas('user')
+            ->with('booking')
             ->get();
 
 
