@@ -287,7 +287,9 @@ class BookingOperationsService{
 
   public static function getBillableDuration($service,$schedule){
     //for single date 
+   
     $duration=SELF::calculateDuration($service['start_time'],$service['end_time'],$dayRate=false);
+   
     $startDayOfWeek = Carbon::parse($service['start_time'])->format('l');
     $endDayOfWeek = Carbon::parse($service['end_time'])->format('l');
     $startTime = Carbon::parse($service['start_time'])->format('H:i:s');
@@ -311,7 +313,7 @@ class BookingOperationsService{
         foreach($schedule->timeslots as $timeSlot){
 
             if($timeSlot->timeslot_day == $startDayOfWeek && $timeSlot->timeslot_type == 1){
-              
+             
                 // Check if the duration falls between business hours
                 $slotStart = Carbon::parse($timeSlot['timeslot_start_time'])->format('H:i:s');
                 $slotEnd = Carbon::parse($timeSlot['timeslot_end_time'])->format('H:i:s');
@@ -321,25 +323,33 @@ class BookingOperationsService{
             
                 $starttime = Carbon::createFromTimeString($startTime);
                 $endtime = Carbon::createFromTimeString($endTime);
+                 // Calculate total duration in minutes
+                 $totalDurationInMinutes = $endtime->diffInMinutes($starttime);
             
-                // Find the overlapping period
-                $overlapStart = $timeslotStart->greaterThan($starttime) ? $timeslotStart : $starttime;
-                $overlapEnd = $timeslotEnd->lessThan($endtime) ? $timeslotEnd : $endtime;
-            
+                 // Calculate overlapping duration in minutes
+                 $overlapDurationInMinutes = 0;
+                           // Find the overlapping period
+                           $overlapStart = $timeslotStart->greaterThan($starttime) ? $timeslotStart : $starttime;
+                           $overlapEnd = $timeslotEnd->lessThan($endtime) ? $timeslotEnd : $endtime; 
+
+               if($overlapEnd>$overlapStart){
+
+                
                 // Calculate the duration of the overlapping period in hours and minutes
                 $overlapInterval = $overlapEnd->diff($overlapStart);
-              
                 $service['business_hours'] = $overlapInterval->h;
                 $service['business_minutes'] = $overlapInterval->i;
             
                 $service['business_start_time'] = $overlapStart->format('Y-m-d H:i:s');
                 $service['business_end_time'] = $overlapEnd->format('Y-m-d H:i:s');
-        
-                // Calculate total duration in minutes
-                $totalDurationInMinutes = $endtime->diffInMinutes($starttime);
+                             
             
-                // Calculate overlapping duration in minutes
-                $overlapDurationInMinutes = $overlapInterval->h * 60 + $overlapInterval->i;
+                                // Calculate overlapping duration in minutes
+                                $overlapDurationInMinutes = $overlapInterval->h * 60 + $overlapInterval->i;
+               }
+             
+        
+
             
                 if($overlapDurationInMinutes < $totalDurationInMinutes){
                     $afterBusinessDurationInMinutes = $totalDurationInMinutes - $overlapDurationInMinutes;
@@ -364,7 +374,7 @@ class BookingOperationsService{
         //multiple day booking
     }
     $service['total_duration']=$duration;
-   
+  
     return $service;
 
   }
