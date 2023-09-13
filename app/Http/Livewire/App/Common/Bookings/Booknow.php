@@ -816,6 +816,8 @@ class Booknow extends Component
         if(count($this->formIds)==0){
             $this->switch('payment-info');
         }
+        else
+        $this->switch('request-details');
        
     }
 
