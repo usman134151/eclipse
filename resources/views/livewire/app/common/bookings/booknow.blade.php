@@ -189,7 +189,7 @@
                                         <option value="{{$requester->id}}">{{$requester->name}}</option>
                                         @endforeach
                                     </select>
-                                    <div class="form-check form-check-inline">
+                                    <div class="form-check form-check-inline mt-1">
                                         <input class="form-check-input" id="hide_request_from_providers" wire:model="booking.requester_information"
                                             name="hide_request_from_providers" type="checkbox" tabindex="" value="1" />
                                         <label class="form-check-label" for="HideRequesterInfofromProviders" value="1"><small>Hide
@@ -243,15 +243,23 @@
                                 @endif
                             </div>
                             <div class="row between-section-segment-spacing">
+                                @if($assignedSupervisor=="checked")
+                                <div class="col-lg-12" x-data="{ open: false }">
+                                @else
                                 <div class="col-lg-12" x-data="{ open: true }">
+                                @endif    
                                     <div class="d-md-flex align-items-center mb-4 gap-3 gap-md-0">
                                         <div class="form-check form-switch form-switch-column mb-lg-0">
                                             <input class="form-check-input" type="checkbox" role="switch" id=""
-                                                @click="open = !open" x-text="open==true  ? 'hide' : 'show'" checked>
+                                                @click="open = !open" x-text="open==false  ? 'hide' : 'show'" {{$assignedSupervisor}} wire:model="assignedSupervisor">
                                         </div>
                                         <h3 class="mb-lg-0">Assigned Supervisor & Billing Manager</h3>
                                     </div>
-                                    <div class="row switch-toggle-content" x-show="open">
+                                    @if($assignedSupervisor=="checked" )
+                                    <div class="row switch-toggle-content" style="display:none">
+                                    @else
+                                     <div class="row switch-toggle-content">
+                                    @endif    
                                         <div class="col-lg-6 mb-4 pe-lg-5">
                                             <label class="form-label" for="supervisor">Supervisor</label>
                                             <select class="form-select select2" id="supervisor" name="supervisor" wire:model.defer='booking.supervisor'>
@@ -367,7 +375,7 @@
                                                         @if(in_array($key,$foundService['service_type']))
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio"
-                                                                name="serviceType-{{$serviceType['title']}}-{{$index}}" id="serviceType-{{$serviceType['title']}}-{{$index}}" wire:model="services.{{$index}}.service_types" value="{{$key}}">
+                                                                name="serviceType-{{$serviceType['title']}}-{{$index}}" id="serviceType-{{$serviceType['title']}}-{{$index}}" wire:model="services.{{$index}}.service_types" value="{{$key}}" wire:click="updateServiceDefaults({{$index}},{{$key}})">
                                                             <label class="form-check-label" for="serviceType-{{$serviceType['title']}}-{{$index}}">
                                                                 {{$serviceType['title']}}
                                                             </label>
@@ -413,7 +421,7 @@
                                                             </label>
                                                             <div class="form-check form-switch form-switch-column">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    role="switch" id="AutoNotifyBroadcast" checked aria-label="Auto-notify Broadcast" >
+                                                                    role="switch" id="AutoNotifyBroadcast" checked aria-label="Auto-notify Broadcast" value="true" wire:model.defer="services.{{$index}}.auto_notify" >
                                                                 <label class="form-check-label"
                                                                     for="AutoNotifyBroadcast">Auto-notify</label>
                                                                 <label class="form-check-label"
@@ -428,11 +436,11 @@
                                                             </label>
                                                             <div class="form-check form-switch form-switch-column">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    role="switch" id="ManualAssignAssign" checked aria-label="Manual Assign">
+                                                                    role="switch" id="ManualAssignAssign" checked aria-label="Auto assign" value="true" wire:model.defer="services.{{$index}}.auto_assign">
                                                                 <label class="form-check-label"
                                                                     for="ManualAssignAssign">Manual-assign</label>
                                                                 <label class="form-check-label"
-                                                                    for="ManualAssignAssign">Manual-assign</label>
+                                                                    for="ManualAssignAssign">Auto-assign</label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -461,6 +469,9 @@
 
                                                                 </div>
                                                                 <div class="js-wrapper-manual-entry">
+
+                                                                    @if($services[$index]['is_manual_consumer'])
+                                                                    <div class="hidden">
                                                                     <select id="service_consumer_{{$index}}" name="service_consumer_{{$index}}"
                                                                         class="form-select select2 select2-container js-form-select-manual-entry"
                                                                         aria-label="Select Service Consumer(s)" wire:model="services.{{$index}}.service_consumer">
@@ -469,17 +480,31 @@
                                                                         <option value="{{$consumer['id']}}">{{$consumer['name']}}</option>
                                                                         @endforeach
                                                                     </select>
+                                                </div>
                                                                     <input type="" name=""
-                                                                        class="form-control mb-2 hidden js-form-input-manual-entry"
+                                                                        class="form-control mb-2  js-form-input-manual-entry mt-2"
+                                                                        placeholder="Enter Service Consumer(s)" wire:model="services.{{$index}}.service_consumer">
+                                                                    @else
+                                                                    <select id="service_consumer_{{$index}}" name="service_consumer_{{$index}}"
+                                                                        class="hidden form-select select2 select2-container js-form-select-manual-entry"
+                                                                        aria-label="Select Service Consumer(s)" wire:model="services.{{$index}}.service_consumer">
+                                                                        <option>Select Service Consumer(s)</option>
+                                                                        @foreach($consumers as $consumer)
+                                                                        <option value="{{$consumer['name']}}">{{$consumer['name']}}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                    <input type="" name=""
+                                                                        class="form-control mb-2 hidden js-form-input-manual-entry mt-2"
                                                                         placeholder="Enter Service Consumer(s)">
-                                                                    <div class="form-check">
+                                                                    @endif    
+                                                                    <div class="form-check mt-2">
+                                                                      
                                                                         <input
                                                                             class="form-check-input js-form-check-input-manual-entry"
                                                                             id="ManualEntryServiceConsumer" name=""
-                                                                            type="checkbox" tabindex="" wire:key="manual-{{ $index }}" wire:model.defer="services.{{$index}}.is_manual_consumer">
+                                                                            type="checkbox" tabindex="" wire:key="manual-{{ $index }}" wire:model="services.{{$index}}.is_manual_consumer">
                                                                         <label class="form-check-label"
-                                                                            for="ManualEntryServiceConsumer"><small>Manual
-                                                                                Entry</small></label>
+                                                                            for="ManualEntryServiceConsumer"><small>Manual Entry</small></label>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -495,17 +520,33 @@
                                                                     </div>
                                                                 
                                                                 <div class="js-wrapper-manual-entry">
+                                                                    @if($services[$index]['is_manual_attendees'])
+                                                                    <div class="hidden">
                                                                     <select
                                                                         class="form-select select2 select2-container js-form-select-manual-entry"  multiple id="attendees_{{$index}}" name="attendees_{{$index}}"
                                                                         aria-label="Select Participant(s)" wire:model.defer="services.{{$index}}.attendees">
                                                                        
                                                                         @foreach($participants as $participant)
-                                                                        <option value="{{$participant['id']}}">{{$participant['name']}}</option>
+                                                                        <option value="{{$participant['name']}}">{{$participant['name']}}</option>
+                                                                        @endforeach
+                                                                    </select></div>
+                                                                    <input type="" name=""
+                                                                        class="form-control mb-2  js-form-input-manual-entry"
+                                                                        placeholder="Enter Participant(s)" wire:model="services.{{$index}}.attendees">
+                                                                    @else
+                                                                  
+                                                                    <select
+                                                                        class="form-select select2 select2-container js-form-select-manual-entry"  multiple id="attendees_{{$index}}" name="attendees_{{$index}}"
+                                                                        aria-label="Select Participant(s)" wire:model.defer="services.{{$index}}.attendees">
+                                                                       
+                                                                        @foreach($participants as $participant)
+                                                                        <option value="{{$participant['name']}}">{{$participant['name']}}</option>
                                                                         @endforeach
                                                                     </select>
                                                                     <input type="" name=""
                                                                         class="form-control mb-2 hidden js-form-input-manual-entry"
                                                                         placeholder="Enter Participant(s)">
+                                                                    @endif    
                                                                     <div class="form-check">
                                                                         <input
                                                                             class="form-check-input js-form-check-input-manual-entry"

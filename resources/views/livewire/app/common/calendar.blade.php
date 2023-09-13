@@ -16,8 +16,7 @@
         </div>
     </template>
     {{-- End of update by Sohail Asghar --}}
-</div>
-@push('scripts')
+    @push('scripts')
     <script src="/tenant-resources/js/index.global.min.js"></script>
     <script src="/tenant-resources/js/bs-index.global.min.js"></script>
     @if (!$providerProfile)
@@ -46,6 +45,12 @@
                     // weekNumbers: true, // shows weeknumber
                     dayMaxEvents: true, // allow "more" link when too many events
                     events: JSON.parse(data),
+                    eventClick: function(event, jsEvent, view) {
+                if (event.url) {
+                    window.location.href = event.url;
+                    return false;
+                }
+            },
                     eventDisplay: 'block',
                     eventDidMount: function(info) {
 
@@ -208,3 +213,5 @@
         </script>
     @endif
 @endpush
+</div>
+

@@ -210,18 +210,20 @@ class BookingOperationsService{
               /*need to clearify     "price_type" => "$"
                 "hide_from_customers" => true
                  "hide_from_providers" => true and disable*/
-              
-                 if(array_key_exists('price_type',$spCharges) && $spCharges['price_type']=="$"){
+                $charges=0;
+                 if(array_key_exists('price_type',$spCharges) && $spCharges['price_type']=="$" && array_key_exists('price',$spCharges)){
                    $charges=$spCharges['price'];
                   
                  }
-                 elseif(array_key_exists('price_type',$spCharges) && $spCharges['price_type']=="%"){
+                 elseif(array_key_exists('price_type',$spCharges) && $spCharges['price_type']=="%" && array_key_exists('price',$spCharges)){
                 
                    $charges= $service['service_charges']*($spCharges['price']/100);
                   
                   
                  }
+              
                  if(array_key_exists('multiply_provider',$spCharges) && $spCharges['multiply_provider']){
+
                   $charges=$charges*$service['provider_count'];
                  }
                  if(array_key_exists('multiply_service_duration',$spCharges) &&  $spCharges['multiply_service_duration']){
