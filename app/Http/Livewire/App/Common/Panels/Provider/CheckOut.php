@@ -82,7 +82,8 @@ class CheckOut extends Component
 
         $this->checkout = [
             'confirmation_upload_type' => 'print_and_sign',
-            'rating' => 0
+            'rating' => 0,
+            'feedback_comments'=>'',
 
         ];
         $this->assignment = Booking::where('id', $this->booking_id)->first();

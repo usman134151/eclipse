@@ -271,8 +271,11 @@
                                             --}}
                                                 Cancel
                                             </a>
-                                            <a href="#" class="btn btn-has-icon btn-primary rounded"
-                                                data-bs-toggle="modal" data-bs-target="#reviewFeedbackModal">
+                                            <a href="" class="btn btn-has-icon btn-primary rounded"
+                                                data-bs-toggle="modal" data-bs-target="#reviewFeedbackModal"
+                                                     wire:click="$emit('openAllFeedBackModal', '{{$booking_id}}')">
+
+                                                
                                                 {{-- Updated by Shanila to Add
                                             svg icon --}}
                                                 <svg aria-label="Review Feedback" width="20" height="20"
