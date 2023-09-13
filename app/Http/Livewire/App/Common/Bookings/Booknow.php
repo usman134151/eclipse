@@ -378,7 +378,7 @@ class Booknow extends Component
         $this->dispatchBrowserEvent('refreshSelects');
 
 	}
-    
+
     public function refreshSelects(){
         $this->dispatchBrowserEvent('refreshSelects');
     }
@@ -858,7 +858,7 @@ class Booknow extends Component
         //discounts
         if($this->payment['coupon_type']==3 && !is_null($this->payment['coupon_discount_amount'])){
             //percentage of booking total discount
-            $this->discountedAmount=$this->payment['discounted_amount']=($this->booking->total_amount*$this->payment['coupon_discount_amount'])/100;
+            $this->discountedAmount=$this->payment['discounted_amount']=($this->payment['sub_total']*$this->payment['coupon_discount_amount'])/100;
             $this->payment['sub_total']-= $this->payment['discounted_amount'];
             
         }
