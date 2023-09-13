@@ -68,7 +68,7 @@
                                             <td class="align-middle">
                                                 04 hours 3 mins
                                             </td>
-                                            <td>
+                                            <td class="align-middle">
                                                 @if ($data['checkin_form_enabled'] || $data['checkout_form_enabled'])
                                                     <a href="#" title="Check In Form" aria-label="Check In Form"
                                                         @click="providerSavedForms = true"
@@ -81,12 +81,13 @@
                                                         </svg>
                                                     </a>
                                                 @else
-                                                    N/A
+                                                    <div >
+                                                    N/A</div>
                                                 @endif
 
                                             </td>
 
-                                            <td>
+                                            <td class="align-middle">
                                                 <a href="#" title="Punctuality" aria-label="Punctuality"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
 
@@ -95,8 +96,8 @@
                                                 </a>
 
                                             </td>
-                                            <td>
-                                                <a href="#" title="Feedback" aria-label="Feedback"
+                                            <td class="align-middle">
+                                                <a href="#" title="Notes" aria-label="Notes"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon"
                                                     >
 
@@ -111,7 +112,7 @@
                                             <td class="align-middle">
                                                 No Change
                                             </td>
-                                            <td>
+                                            <td class="align-middle">
                                                 <a href="#" title="Feedback" aria-label="Feedback"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon"
                                                      wire:click="$emit('openFeedBackModal', '{{$provider->booking_service_id}}','{{$provider->user->id}}')">
@@ -124,7 +125,7 @@
 
                                                 </a>
                                             </td>
-                                            <td>
+                                            <td class="align-middle">
                                                 <div class="d-flex actions">
 
                                                     <div class="dropdown ac-cstm">
