@@ -47,7 +47,7 @@ class CustomFormDisplay extends Component
                         'customize_id',
                         'field_title',
                         'data_value',
-                        'field_type',
+                        /*'field_type',*/
                         'added_by'
                     )
                     ->first();
