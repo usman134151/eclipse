@@ -62,6 +62,7 @@
             </div>
         </div>
     </div>
+    <form wire:submit.prevent="save">
     <div class="between-section-segment-spacing">
         <div class="d-flex justify-content-between gap-3 align-items-center mb-3">
             <div>
@@ -237,8 +238,9 @@
         <div class="form-actions d-flex gap-3 justify-content-center mt-5">
             <button type="button" class="btn btn-outline-dark rounded"
                 x-on:click="offcanvasOpenCheckIn = !offcanvasOpenCheckIn">Back</button>
-            <button type="submit" class="btn btn-primary rounded" wire:click="save" wire:loading.attr="disabled"
+            <button type="submit" class="btn btn-primary rounded"  wire:loading.attr="disabled"
                 x-on:close-check-in-panel.window="offcanvasOpenCheckIn = !offcanvasOpenCheckIn">Submit</button>
         </div>
     </div>
+    </form>
 </div>

@@ -78,7 +78,7 @@ class CheckOut extends Component
         else
             $this->provider_id =  $provider_id;
 
-
+        // dd($this->booking_id,$booking_service_id, $this->provider_id);
 
         $this->checkout = [
             'confirmation_upload_type' => 'print_and_sign',
@@ -87,8 +87,8 @@ class CheckOut extends Component
         ];
         $this->assignment = Booking::where('id', $this->booking_id)->first();
         $this->booking_service = BookingServices::where('id', $booking_service_id)->first();
-
-        $this->checkout['actual_start_date'] = Carbon::parse($this->assignment->booking_start_at)->format('d/m/Y');
+        $this->checkout['actual_start_timestamp'] = Carbon::parse($this->assignment->booking_start_at);
+        $this->checkout['actual_start_date'] = Carbon::parse($this->assignment->booking_start_at)->format('m/d/Y');
         $this->checkout['actual_start_hour'] = date_format(date_create($this->assignment->booking_start_at), 'H');
         $this->checkout['actual_start_min'] = date_format(date_create($this->assignment->booking_start_at), 'i');
 
@@ -108,18 +108,22 @@ class CheckOut extends Component
                             $checked_in_details = $this->booking_provider->check_in_procedure_values;
                             if (isset($checked_in_details['actual_start_timestamp'])) {
                                 $this->checkout['actual_start_timestamp'] = $checked_in_details['actual_start_timestamp'];
-                                $this->checkout['actual_start_date'] = Carbon::parse($checked_in_details['actual_start_timestamp'])->format('d/m/Y');
+                                $this->checkout['actual_start_date'] = Carbon::parse($checked_in_details['actual_start_timestamp'])->format('m/d/Y');
+                                $this->checkout['actual_start_hour'] = $checked_in_details['actual_start_hour'];
+                                $this->checkout['actual_start_min'] = $checked_in_details['actual_start_min'];
+
                             }
                         }
                     }
                 }
-                $this->checkout['actual_end_date'] = Carbon::now()->format('d/m/Y');
+                $this->checkout['actual_end_date'] = Carbon::now()->format('m/d/Y');
                 $this->checkout['actual_end_hour'] =      date_format(date_create($this->assignment->booking_end_at), 'H');
                 $this->checkout['actual_end_min'] =      date_format(date_create($this->assignment->booking_end_at), 'i');
             }
         }
         if (!isset($this->checkout['rating']))
             $this->checkout['rating'] = 0;
+        
     }
 
     public function rules()
@@ -204,6 +208,7 @@ class CheckOut extends Component
     }
     public function updateVal($attrName, $val)
     {
+
         if ($attrName == 'actual_start_date')
             $this->checked_in_details['actual_start_date'] = $val;
         if ($attrName == 'actual_end_date')
