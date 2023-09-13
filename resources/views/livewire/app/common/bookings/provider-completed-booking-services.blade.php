@@ -58,11 +58,11 @@
                                             </td>
                                             <td class="align-middle">
                                                 <div class="time-date">
-                                                    {{ $provider->check_in_procedure_values ? date_format(date_create($provider->check_in_procedure_values['actual_start_timestamp']), 'm/d/y h:i A') : 'N/A' }}
+                                                    {{ $provider->check_in_procedure_values && isset($provider->check_in_procedure_values['actual_start_timestamp']) ? date_format(date_create($provider->check_in_procedure_values['actual_start_timestamp']), 'm/d/y h:i A') : 'N/A' }}
                                                     to
                                                 </div>
                                                 <div class="time-date">
-                                                    {{ $provider->check_out_procedure_values ? date_format(date_create($provider->check_out_procedure_values['actual_end_timestamp']), 'm/d/y h:i A') : 'N/A' }}
+                                                    {{ $provider->check_out_procedure_values && isset($provider->check_out_procedure_values['actual_end_timestamp']) ? date_format(date_create($provider->check_out_procedure_values['actual_end_timestamp']), 'm/d/y h:i A') : 'N/A' }}
                                                 </div>
                                             </td>
                                             <td class="align-middle">

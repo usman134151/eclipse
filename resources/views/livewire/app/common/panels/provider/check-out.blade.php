@@ -402,6 +402,7 @@
             $this->checkout_details['customize_form'] == true &&
             isset($this->checkout_details['customize_form_id']))
         <div class="{{ $step == 2 ? '' : 'hidden' }}">
+            <form  wire:submit.prevent="saveStepTwo">
             <div class="mb-4">
                 <div class="row inner-section-segment-spacing">
                     <div class="col-lg-12">
@@ -413,13 +414,13 @@
             <hr>
             <div class="mb-4">
                 <div class="form-actions d-flex gap-3 justify-content-center mt-5">
-                    <button type="submit" class="btn btn-primary rounded" wire:click="setStep(1)">Back</button>
+                    <button type="button" class="btn btn-primary rounded" wire:click="setStep(1)">Back</button>
                     <button type="button" x-on:click="offcanvasOpenCheckOut = !offcanvasOpenCheckOut"
                         class="btn btn-outline-dark rounded">Cancel</button>
-                    <button type="submit" class="btn btn-primary rounded js-checkout-go-step-3"
-                        wire:click="saveStepTwo">Next</button>
+                    <button type="submit" class="btn btn-primary rounded js-checkout-go-step-3">Next</button>
                 </div>
             </div>
+            </form>
         </div>
     @endif
 

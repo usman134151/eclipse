@@ -140,7 +140,7 @@ class BookingList extends Component
 
 				break;
 			default:
-				$query = Booking::where('booking_end_at', '<>', null)->whereDate('booking_end_at', '<', Carbon::today())->orderBy('booking_start_at', 'DESC');
+				$query = Booking::where('booking_end_at', '<>', null)->orderBy('booking_start_at', 'DESC');
 				break;
 		}
 

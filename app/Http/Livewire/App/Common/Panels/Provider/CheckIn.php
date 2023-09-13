@@ -3,9 +3,11 @@
 namespace App\Http\Livewire\App\Common\Panels\Provider;
 
 use App\Models\Tenant\Booking;
+use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\BookingServices;
 use App\Services\App\UploadFileService;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -55,7 +57,7 @@ class CheckIn extends Component
         if ($this->customer_signature)
             $c_sign = $fileService->saveFile('bookings/' . $this->booking_id, $this->customer_signature);
 
-        $bookingProvider = $this->assignment->booking_provider->where('booking_service_id', $this->booking_service->id)->first();
+        $bookingProvider = BookingProvider::where(['booking_service_id'=> $this->booking_service->id,'provider_id'=>Auth::id()])->first();
         if (!$bookingProvider)   //prev version compatability
             $bookingProvider = $this->assignment->booking_provider->where('booking_id', $this->booking_id)->first();
 
@@ -69,7 +71,11 @@ class CheckIn extends Component
 
 
         ];
-        $bookingProvider->update(['check_in_status' => 1, 'check_in_procedure_values' => $values]);
+        $bookingProvider->check_in_status = 1;
+        $bookingProvider->check_in_procedure_values = $values;
+        $bookingProvider->save();
+        // dd($bookingProvider);
+        
         $this->dispatchBrowserEvent('close-check-in-panel');
         $this->emit('showConfirmation', 'Checked in successfully');
     }

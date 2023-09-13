@@ -14,7 +14,7 @@ use App\Models\Tenant\User;
 
 class BookingDetails extends Component
 {
-	public $gender, $service_id=0, $provider_id=0, $form_id=0;
+	public $gender, $service_id = 0, $provider_id = 0, $form_id = 0;
 	public $ethnicity, $booking_id = 0, $booking_services, $data;
 
 	public $component = 'booking-details';
@@ -81,12 +81,12 @@ class BookingDetails extends Component
 			->toArray();
 		foreach ($this->booking_services as $key => $service) {
 			if ($service['attendees'])
-			$this->data['booking_services'][$key]['participants'] = User::whereIn('id', explode(',', $service['attendees']))->select('name', 'id')->get();
-			if($service['meetings']){
+				$this->data['booking_services'][$key]['participants'] = User::whereIn('id', explode(',', $service['attendees']))->select('name', 'id')->get();
+			if ($service['meetings']) {
 
-				$this->booking_services[$key]['meeting_details']= json_decode($service['meetings'], true)[0];
+				$this->booking_services[$key]['meeting_details'] = json_decode($service['meetings'], true) ? json_decode($service['meetings'], true)[0] : null;
 			}
-			}
+		}
 		$this->data['total_providers'] = Booking::where('bookings.id', $this->booking_id)
 			->join('booking_services', 'booking_services.booking_id', 'bookings.id')->sum('booking_services.provider_count');
 		$this->data['assigned_providers'] = BookingProvider::where(['booking_id' => $this->booking_id])
@@ -135,10 +135,11 @@ class BookingDetails extends Component
 		$this->showConfirmation('Booking notes updated');
 	}
 
-	public function openCustomSavedFroms($form_id, $provider_id, $service_id){
+	public function openCustomSavedFroms($form_id, $provider_id, $service_id)
+	{
 		if ($this->counter == 0) {
 			$this->form_id = 0;
-			$this->dispatchBrowserEvent('open-provider-saved-forms', ['form_id' => $form_id, 'service_id' => $service_id,'provider_id'=>$provider_id]);
+			$this->dispatchBrowserEvent('open-provider-saved-forms', ['form_id' => $form_id, 'service_id' => $service_id, 'provider_id' => $provider_id]);
 			$this->counter = 1;
 		} else {
 			$this->form_id = $form_id;
