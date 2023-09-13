@@ -372,13 +372,14 @@ class Booknow extends Component
     }
     public function switch($component)
 	{
+      
 		$this->component = $component;
         if($component=="payment-info")
             $this->getBookingInfo();         
         $this->dispatchBrowserEvent('refreshSelects');
 
 	}
-    
+
     public function refreshSelects(){
         $this->dispatchBrowserEvent('refreshSelects');
     }
@@ -705,6 +706,8 @@ class Booknow extends Component
             'booking.billing_notes'=>'nullable',
             'booking.payment_notes'=>'nullable',
             'booking.physical_address_id'=>'nullable',
+            'booking.contact_point'=>'nullable',
+            'booking.poc_phone'=>'nullable',
             'payment.coupon_type'=>'nullable',
             'payment.override_amount'=>'nullable',
             'payment.coupon_discount_amount'=>'nullable',
@@ -808,7 +811,11 @@ class Booknow extends Component
                            
                 }
             }
-        }   
+        } 
+        
+        if(count($this->formIds)==0){
+            $this->switch('payment-info');
+        }
        
     }
 
@@ -858,7 +865,7 @@ class Booknow extends Component
         //discounts
         if($this->payment['coupon_type']==3 && !is_null($this->payment['coupon_discount_amount'])){
             //percentage of booking total discount
-            $this->discountedAmount=$this->payment['discounted_amount']=($this->booking->total_amount*$this->payment['coupon_discount_amount'])/100;
+            $this->discountedAmount=$this->payment['discounted_amount']=($this->payment['sub_total']*$this->payment['coupon_discount_amount'])/100;
             $this->payment['sub_total']-= $this->payment['discounted_amount'];
             
         }
