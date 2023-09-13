@@ -68,7 +68,7 @@ class CustomFormDisplay extends Component
                 }
                 $this->answers[$index]['field_type'] = $question['field_type'];
 
-                if ($question['field_type']==6)
+                if ($question['field_type'] == 6)
                     $this->rules['answers.' . $index . '.data_value'] = 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv';
                 $this->questions[] = $formService->getformfield($question, 'answers.' . $index . '.data_value', $index);
             }
@@ -78,7 +78,8 @@ class CustomFormDisplay extends Component
 
     public function saveAllForms()
     {
-        $this->validate($this->rules);
+        if (count($this->rules))
+            $this->validate($this->rules);
 
         $this->emit('saveCustomForm');
         $this->emit('confirmation',  "All Form Data saved successfully!");
