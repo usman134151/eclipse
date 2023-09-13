@@ -1,6 +1,6 @@
 <div>
 
-    <form wire:submit.prevent="{{$formType == 1 ? 'saveAllForms' : 'save'}}">
+    <form wire:submit.prevent="{{ $formType == 1 ? 'saveAllForms' : 'save' }}">
 
         <div class="col-md-12 mb-md-2">
             <h2 class="text-primary">
@@ -25,6 +25,24 @@
                             <div class="">
                                 {!! $question['rendered'] !!}
                             </div>
+                            @if ($question['set']['type'] == 6 && isset($answers[$index]['data_value']))
+                                <div class="">
+                                    @if(is_string($answers[$index]['data_value']))
+                                    <a href="{{ $answers[$index]['data_value'] }}" target="_blank"
+                                        aria-label="file">
+
+                                        {{ basename($answers[$index]['data_value']) }}
+                                    </a>
+                                    @else
+                                    <a href="{{ '/tenant' . tenant('id') . '/app/livewire-tmp/' . $answers[$index]['data_value']->getFilename() }}" target="_blank"
+                                        aria-label="file">
+
+                                        {{ $answers[$index]['data_value']->getClientOriginalName() }}
+                                    </a>
+                                    @endif
+
+                                </div>
+                            @endif
                         </div>
                     @endforeach
                 @else
@@ -36,15 +54,15 @@
         @if ($formType == 1)
             <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                 @if ($lastForm)
-                    <button type="button" class="btn btn-outline-dark rounded"
+                    <button wire:loading.attr="disabled" type="button" class="btn btn-outline-dark rounded"
                         x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });"
                         wire:click="$emit('switch','requester-info')">Back</button>
                 @endif
-                <button type="submit" class="btn btn-primary rounded" >Save
+                <button wire:loading.attr="disabled" type="submit" class="btn btn-primary rounded">Save
                     Information</button>
-                <button type="submit" class="btn btn-primary rounded">Request from User</button>
+                <button type="button" wire:loading.attr="disabled" class="btn btn-primary rounded">Request from User</button>
                 @if ($lastForm)
-                    <button type="submit" class="btn btn-primary rounded"
+                    <button type="submit" class="btn btn-primary rounded" wire:loading.attr="disabled"
                         x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });"
                         wire:click="$set('next',1)">Proceed to Payment Info</button>
                 @endif

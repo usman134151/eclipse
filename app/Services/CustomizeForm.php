@@ -156,7 +156,7 @@ class CustomizeForm
         elseif ($fieldArr['field_type'] == 5)  //radio 
             $field['rendered'] = self::createRadio($options ?? [], $wireVariable, $fieldArr['field_name'], $field['set']['required'], [], $tabIndex);
         elseif ($fieldArr['field_type'] == 6)  //file 
-            $field['rendered'] = '';
+            $field['rendered'] = self::createFileField($fieldArr['field_name'], $fieldArr['placeholder'], $field['set']['required'], $wireVariable, "",  $tabIndex);
 
         return $field;
     }
@@ -231,7 +231,7 @@ class CustomizeForm
         return $html;
     }
 
-    public static function createDropDown(array $values =[],  string $wireVariable = null, $selectedValue = '', string $selectName = '', bool $required = false, int $tabIndex = 0,): string
+    public static function createDropDown(array $values = [],  string $wireVariable = null, $selectedValue = '', string $selectName = '', bool $required = false, int $tabIndex = 0,): string
     {
         $attributes = [
             'name' => str_replace(' ', '_', strtolower($selectName)),
@@ -319,6 +319,25 @@ class CustomizeForm
             $html .= '<label class="form-check-label"  for="' . $value['value'] . '">' . $value['label'] . '</label>';
             $html .= '</div>';
         }
+
+        return $html;
+    }
+
+    protected static function createFileField(string $fieldName = '', string $placeHolder = '', bool $required = false, string $wireVariable = '', string $value = '', int $tabIndex = 0)
+    {
+        $attributes = [
+            'name' => str_replace(' ', '_', strtolower($fieldName)),
+            'id' => $tabIndex,
+            'class' => 'form-control', 'type' => 'file',
+            'placeholder' => $placeHolder,
+        ];
+        if ($wireVariable) {
+            $attributes['wire:model.defer'] = $wireVariable;
+        }
+        if ($required) {
+            $attributes['required'] = 'true';
+        }
+        $html = '<input ' . self::getHtmlAttributes($attributes) .  ' "/>';
 
         return $html;
     }
