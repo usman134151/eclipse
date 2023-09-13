@@ -11,7 +11,7 @@ use Livewire\Component;
 class CustomFormDisplay extends Component
 {
     public $showForm, $formId, $questions = [], $formInfo = [], $answers = [], $bookingId, $lastForm = false, $formType = 1;
-    public $service_id = null, $added_by_id=null;
+    public $service_id = null, $added_by_id=null,$next=0;
     protected $listeners = ['showList' => 'resetForm', 'updateVal', 'saveCustomForm' => 'save'];
 
     public function render()
@@ -69,6 +69,14 @@ class CustomFormDisplay extends Component
         }
     }
 
+    public function saveAllForms(){
+        $this->emit('saveCustomForm');
+        $this->emit('confirmation',  "All Form Data saved successfully!");
+        if($this->next)
+        $this->emit('switch', 'payment-info');
+
+    }
+
     public function save($redirect = 1)
     {
         foreach ($this->answers as $answer) {
@@ -90,8 +98,8 @@ class CustomFormDisplay extends Component
             } else
                 BookingCustomizeData::create($answer);
         }
-        if ($this->formType == 1)
-            $this->emit('confirmation', (isset($this->formInfo['request_form_name']) ? $this->formInfo['request_form_name'] : '') . " Form Data saved successfully!");
+        // if ($this->formType == 1)
+        //     $this->emit('confirmation', (isset($this->formInfo['request_form_name']) ? $this->formInfo['request_form_name'] : '') . " Form Data saved successfully!");
 
         // $this->emitToParent($redirect);
     }

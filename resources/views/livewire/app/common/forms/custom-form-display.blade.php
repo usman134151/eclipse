@@ -1,6 +1,6 @@
 <div>
 
-    <form wire:submit.prevent="save">
+    <form wire:submit.prevent="{{$formType == 1 ? 'saveAllForms' : 'save'}}">
 
         <div class="col-md-12 mb-md-2">
             <h2 class="text-primary">
@@ -44,9 +44,9 @@
                     Information</button>
                 <button type="submit" class="btn btn-primary rounded">Request from User</button>
                 @if ($lastForm)
-                    <button type="button" class="btn btn-primary rounded"
+                    <button type="submit" class="btn btn-primary rounded"
                         x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });"
-                        wire:click="$emit('switch','payment-info')">Proceed to Payment Info</button>
+                        wire:click="$set('next',1)">Proceed to Payment Info</button>
                 @endif
             </div>
         @endif
