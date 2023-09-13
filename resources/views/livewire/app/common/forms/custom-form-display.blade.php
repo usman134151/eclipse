@@ -25,20 +25,25 @@
                             <div class="">
                                 {!! $question['rendered'] !!}
                             </div>
+                            @error('answers.'.$index .'.data_value')
+                                <span class="d-inline-block invalid-feedback mt-2">
+                                    {{ $message }}
+                                </span>
+                            @enderror
                             @if ($question['set']['type'] == 6 && isset($answers[$index]['data_value']))
                                 <div class="">
-                                    @if(is_string($answers[$index]['data_value']))
-                                    <a href="{{ $answers[$index]['data_value'] }}" target="_blank"
-                                        aria-label="file">
+                                    @if (is_string($answers[$index]['data_value']))
+                                        <a href="{{ $answers[$index]['data_value'] }}" target="_blank"
+                                            aria-label="file">
 
-                                        {{ basename($answers[$index]['data_value']) }}
-                                    </a>
+                                            {{ basename($answers[$index]['data_value']) }}
+                                        </a>
                                     @else
-                                    <a href="{{ '/tenant' . tenant('id') . '/app/livewire-tmp/' . $answers[$index]['data_value']->getFilename() }}" target="_blank"
-                                        aria-label="file">
+                                        <a href="{{ '/tenant' . tenant('id') . '/app/livewire-tmp/' . $answers[$index]['data_value']->getFilename() }}"
+                                            target="_blank" aria-label="file">
 
-                                        {{ $answers[$index]['data_value']->getClientOriginalName() }}
-                                    </a>
+                                            {{ $answers[$index]['data_value']->getClientOriginalName() }}
+                                        </a>
                                     @endif
 
                                 </div>
@@ -60,7 +65,8 @@
                 @endif
                 <button wire:loading.attr="disabled" type="submit" class="btn btn-primary rounded">Save
                     Information</button>
-                <button type="button" wire:loading.attr="disabled" class="btn btn-primary rounded">Request from User</button>
+                <button type="button" wire:loading.attr="disabled" class="btn btn-primary rounded">Request from
+                    User</button>
                 @if ($lastForm)
                     <button type="submit" class="btn btn-primary rounded" wire:loading.attr="disabled"
                         x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });"

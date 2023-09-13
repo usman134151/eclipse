@@ -20,6 +20,7 @@ class CustomFormDisplay extends Component
     {
         return view('livewire.app.common.forms.custom-form-display');
     }
+    public $rules = [];
 
     public function mount()
     {
@@ -67,26 +68,29 @@ class CustomFormDisplay extends Component
                 }
                 $this->answers[$index]['field_type'] = $question['field_type'];
 
-
+                if ($question['field_type']==6)
+                    $this->rules['answers.' . $index . '.data_value'] = 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv';
                 $this->questions[] = $formService->getformfield($question, 'answers.' . $index . '.data_value', $index);
             }
         }
     }
 
+
     public function saveAllForms()
     {
+        $this->validate($this->rules);
+
         $this->emit('saveCustomForm');
         $this->emit('confirmation',  "All Form Data saved successfully!");
-        if($this->next)
-        $this->emit('switch', 'payment-info');
-
+        if ($this->next)
+            $this->emit('switch', 'payment-info');
     }
 
     public function save($redirect = 1)
     {
         $fileService = new UploadFileService();
 
-        foreach ($this->answers as $answer) {
+        foreach ($this->answers as $index => $answer) {
             if (isset($answer['data_value']))
                 if (is_array($answer['data_value'])) {
                     $filtered = array_keys(array_filter($answer['data_value']));
@@ -94,6 +98,7 @@ class CustomFormDisplay extends Component
                 }
             if ($answer['field_type'] == 6) {
                 // run validation
+
                 if ($answer['data_value'] != null && !is_string($answer['data_value'])) {
                     $answer['data_value'] = $fileService->saveFile('booking_custom_form', $answer['data_value']);
                 }
