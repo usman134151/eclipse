@@ -250,8 +250,8 @@
                                 @endif    
                                     <div class="d-md-flex align-items-center mb-4 gap-3 gap-md-0">
                                         <div class="form-check form-switch form-switch-column mb-lg-0">
-                                            <input class="form-check-input" type="checkbox" role="switch" id=""
-                                                @click="open = !open" x-text="open==false  ? 'hide' : 'show'" {{$assignedSupervisor}} wire:model="assignedSupervisor">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="assignedSupervisor" name="assignedSupervisor"
+                                               {{$assignedSupervisor}} wire:model="assignedSupervisor" wire:click="refreshSelects()" value="checked">
                                         </div>
                                         <h3 class="mb-lg-0">Assigned Supervisor & Billing Manager</h3>
                                     </div>
@@ -474,7 +474,7 @@
                                                                     <div class="hidden">
                                                                     <select id="service_consumer_{{$index}}" name="service_consumer_{{$index}}"
                                                                         class="form-select select2 select2-container js-form-select-manual-entry"
-                                                                        aria-label="Select Service Consumer(s)" wire:model="services.{{$index}}.service_consumer">
+                                                                        aria-label="Select Service Consumer(s)" wire:model="services.{{$index}}.service_consumer" multiple>
                                                                         <option>Select Service Consumer(s)</option>
                                                                         @foreach($consumers as $consumer)
                                                                         <option value="{{$consumer['id']}}">{{$consumer['name']}}</option>
@@ -487,7 +487,7 @@
                                                                     @else
                                                                     <select id="service_consumer_{{$index}}" name="service_consumer_{{$index}}"
                                                                         class="hidden form-select select2 select2-container js-form-select-manual-entry"
-                                                                        aria-label="Select Service Consumer(s)" wire:model="services.{{$index}}.service_consumer">
+                                                                        aria-label="Select Service Consumer(s)" wire:model="services.{{$index}}.service_consumer" multiple>
                                                                         <option>Select Service Consumer(s)</option>
                                                                         @foreach($consumers as $consumer)
                                                                         <option value="{{$consumer['name']}}">{{$consumer['name']}}</option>
