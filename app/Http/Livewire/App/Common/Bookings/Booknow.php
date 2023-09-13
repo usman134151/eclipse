@@ -570,10 +570,10 @@ class Booknow extends Component
             $this->services[$index]['provider_count']=$foundService['default_providers'.$postfix];   
             $settings=json_decode($foundService['notification_settings'.$postfix],true);
           
-            if(count($settings) && key_exists('auto_assign',$settings[0])){
+            if(!is_null($settings) && count($settings) && key_exists('auto_assign',$settings[0])){
                 $this->services[$index]['auto_assign']=$settings[0]['auto_assign'];
             } 
-            if(count($settings) &&  key_exists('broadcast',$settings[0])){
+            if(!is_null($settings) &&  count($settings) &&  key_exists('broadcast',$settings[0])){
                 $this->services[$index]['auto_notify']=$settings[0]['broadcast'];
             }   
            
