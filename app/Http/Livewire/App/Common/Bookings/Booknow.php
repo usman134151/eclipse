@@ -378,6 +378,10 @@ class Booknow extends Component
         $this->dispatchBrowserEvent('refreshSelects');
 
 	}
+    
+    public function refreshSelects(){
+        $this->dispatchBrowserEvent('refreshSelects');
+    }
     public function addMeeting($serviceIndex)
     {
         $this->services[$serviceIndex]['meetings'][] = [
