@@ -9,8 +9,11 @@ class Dashboard extends Component
     public $tabNumber=1;
     public function render()
     {
-        return view('livewire.app.common.dashboard');
         $this->dispatchBrowserEvent('refreshSelects');
+        $this->dispatchBrowserEvent('refreshSelects2');
+
+        return view('livewire.app.common.dashboard');
+
     }
     public function selectTab($tabNumber){
      

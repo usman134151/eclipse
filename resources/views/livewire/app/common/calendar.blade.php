@@ -1,8 +1,12 @@
-<div x-data="{ bookingDetails: false }"> {{-- Updated by Sohail Asghar to link bookings detail panel --}}
+<div x-data="{ bookingDetails: false, providerSavedForms: false }">
+    @if (!$providerProfile)
+        <div class="" wire:ignore>
+            <x-advancefilters type="" :bookings="$events" :providerProfile=true />
+        </div>
+    @endif
     <div wire:ignore id='calendar-container' class="w-100">
         <div id='{{ $providerProfile ? 'avail_calendar' : 'calendar' }}'></div>
     </div>
-    {{-- Updated by Sohail Asghar to link bookings detail panel --}}
     @include('panels.booking-details.admin-booking-details')
     <template x-if="bookingDetails">
         <div>
@@ -16,7 +20,6 @@
         </div>
     </template>
     {{-- End of update by Sohail Asghar --}}
-    @push('scripts')
     <script src="/tenant-resources/js/index.global.min.js"></script>
     <script src="/tenant-resources/js/bs-index.global.min.js"></script>
     @if (!$providerProfile)
@@ -46,11 +49,11 @@
                     dayMaxEvents: true, // allow "more" link when too many events
                     events: JSON.parse(data),
                     eventClick: function(event, jsEvent, view) {
-                if (event.url) {
-                    window.location.href = event.url;
-                    return false;
-                }
-            },
+                        if (event.url) {
+                            window.location.href = event.url;
+                            return false;
+                        }
+                    },
                     eventDisplay: 'block',
                     eventDidMount: function(info) {
 
@@ -83,17 +86,6 @@
                             info.draggedEl.parentNode.removeChild(info.draggedEl);
                         }
                     },
-                    // eventDrop: info => @this.eventDrop(info.event, info.oldEvent),
-                    loading: function(isLoading) {
-                        //	if (!isLoading) {
-                        // 	// Reset custom events
-                        // 	this.getEvents().forEach(function(e) {
-                        // 		if (e.source === null) {
-                        // 			e.remove();
-                        // 		}
-                        // 	});
-                        // }
-                    },
 
                 });
 
@@ -104,8 +96,16 @@
                     window.dispatchEvent(new Event('resize'))
                 }, 0)
 
-                
-              
+                window.addEventListener('updateScheduleCalendar', function(event) {
+                    calendar.removeAllEvents();
+                    calendar.removeAllEventSources();
+
+                    var data = JSON.parse(event.detail.events);
+                    calendar.addEventSource(data);
+
+                })
+
+
 
 
             });
@@ -147,15 +147,6 @@
                         startDate = moment(event.start).format('MMMM DD, YYYY');
                         let curr_date_moment = moment(event.start).format('YYYY-MM-DD');
                         $(info.el).attr('data-date', curr_date_moment);
-                        // var tooltip = new bootstrap.Popover(info.el, {
-                        // 	title: startDate,
-                        // 	content: info.event.extendedProps.description,
-                        // 	placement: 'right',
-                        // 	trigger: 'hover',
-                        // 	container: 'body',
-                        // 	html: true,
-                        // 	// delay: {"show":0, "hide":1000}
-                        // });
                     },
                     //editable: true,
                     //selectable: true,
@@ -168,18 +159,6 @@
                             info.draggedEl.parentNode.removeChild(info.draggedEl);
                         }
                     },
-                    // eventDrop: info => @this.eventDrop(info.event, info.oldEvent),
-                    loading: function(isLoading) {
-                        //	if (!isLoading) {
-                        // 	// Reset custom events
-                        // 	this.getEvents().forEach(function(e) {
-                        // 		if (e.source === null) {
-                        // 			e.remove();
-                        // 		}
-                        // 	});
-                        // }
-                    },
-
                 });
 
                 avail_calendar.render();
@@ -189,7 +168,7 @@
                     window.dispatchEvent(new Event('resize'))
                 }, 0)
 
-                   avail_calendar.on('dateClick', function(info) {
+                avail_calendar.on('dateClick', function(info) {
                     // You can handle date clicks here if needed
                 });
 
@@ -212,6 +191,5 @@
             });
         </script>
     @endif
-@endpush
-</div>
 
+</div>
