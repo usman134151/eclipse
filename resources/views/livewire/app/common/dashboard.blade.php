@@ -143,7 +143,6 @@
         </div>
         /Filters -->
 		
-		<x-advancefilters/>
 		@livewire('app.common.calendar')
 	
 	  </div>
@@ -167,19 +166,19 @@
         </div>
         <div class="row g-0">
           <div class="mb-2 mb-lg-0 col-lg-auto col-12 px-1">
-            <button type="button" class="btn btn-xs w-100 btn-inactive rounded">Today</button>
+            <a href="/admin/bookings/today" class="btn btn-xs w-100 btn-inactive rounded">Today</a>
           </div>
           <div class="mb-2 mb-lg-0 col-lg-auto col-6 px-1">
-            <button type="button" class="btn btn-xs w-100 btn-inactive rounded">Upcoming</button>
+            <button type="button" class="btn btn-xs w-100 btn-inactive active rounded">Upcoming</button>
           </div>
           <div class="mb-2 mb-lg-0 col-lg-auto col-6 px-1">
-            <button type="button" class="btn btn-xs w-100 btn-inactive active rounded">Unassigned</button>
+            <a href="/admin/bookings/unassigned" class="btn btn-xs w-100 btn-inactive  rounded">Unassigned</a>
           </div>
           <div class="mb-2 mb-lg-0 col-lg-auto col-6 px-1">
-            <button type="button" class="btn btn-xs w-100 btn-inactive rounded">Previous</button>
+            <a href="/admin/bookings/past" class="btn btn-xs w-100 btn-inactive rounded">Previous</a>
           </div>
           <div class="mb-2 mb-lg-0 col-lg-auto col-6 px-1">
-            <button type="button" class="btn btn-xs w-100 btn-inactive rounded">Cancelled</button>
+            <a href="/admin/bookings/drafts" class="btn btn-xs w-100 btn-inactive rounded">Draft</a>
           </div>
         </div>
       
@@ -187,7 +186,7 @@
 	 
       <!-- END: Filters -->
 
-		@livewire('app.common.bookings.booking-list')
+		@livewire('app.common.bookings.booking-list',['bookingType'=>'Upcoming'])
 		
 	</div>
 	  <div class="tab-pane fade" id="availability-tab-pane" role="tabpanel" aria-labelledby="availability-tab" tabindex="0">
@@ -209,11 +208,31 @@
     display: contents !important;
 }
 
-</style>
-<script>
-	function updateVal(attrName,val){
-	
-		Livewire.emit('updateVal', attrName, val);
+</style>@push('scripts')
+    <script>
+        function updateVal(attrName, val) {
 
-	}
-</script>
+                Livewire.emit('updateVal', attrName, val);
+        }
+        document.addEventListener('refreshSelects2', function(event) {
+            $('.select2').select2();
+            $('.select2').off('change').on('change', function(e) {
+                let attrName = $(this).attr('id');
+                updateVal(attrName, $(this).select2("val"));
+            });
+        });
+
+        function refreshSelectsEvent() {
+            $('.select2').select2();
+            $('.select2').off('change').on('change', function(e) {
+                let attrName = $(this).attr('id');
+                updateVal(attrName, $(this).select2("val"));
+            });
+        }
+
+         Livewire.on('closeUnassignModel', () => {
+            $('#UnassignModal').modal('hide');
+
+        });
+    </script>
+@endpush

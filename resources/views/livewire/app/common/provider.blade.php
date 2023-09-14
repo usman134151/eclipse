@@ -185,7 +185,14 @@ Livewire.on('openActiveCredentialModal', (type) => {
             $('#viewButtonModal').modal('hide');
                
             });
-			
+			  document.addEventListener('refreshSelects2', function(event) {
+            $('.select2').select2();
+            $('.select2').off('change').on('change', function(e) {
+                let attrName = $(this).attr('id');
+                updateVal(attrName, $(this).select2("val"));
+            });
+        });
+
 
 </script>
 <script src="/tenant-resources/js/form-functions.js"></script>
