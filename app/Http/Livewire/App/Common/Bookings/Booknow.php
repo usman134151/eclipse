@@ -437,7 +437,12 @@ class Booknow extends Component
         return $timeZoneCity;
     }
 
+    
+
     public function addDate($givenHour=1){
+    
+        if(is_null($givenHour)|| $givenHour==0 || $givenHour=='')
+          $givenHour=1;
         if($this->schedule && $this->schedule['timezone_id'])
         $timeZone=$this->schedule->timezone_id;
         else 
@@ -454,16 +459,17 @@ class Booknow extends Component
 
        
         
-
+        $startDate= $currentDate->format('m/d/Y');    
         
         $currentHour = $currentDate->format('H');
         $currentMinute = $currentDate->format('i');
-        
+      
+        //dd($currentDate->addHours($givenHour));
         $endHour = $currentDate->addHours($givenHour)->format('H');
         $endTime = $currentDate->format('i');
 
         $this->dates[] =[
-            'start_date' => $currentDate->format('m/d/Y'),
+            'start_date' =>$startDate,
             'start_hour' => $currentHour,
             'start_min' => $currentMinute,
             'end_date' => $currentDate->format('m/d/Y'), // Adjust if necessary, if the end date might be different
@@ -643,7 +649,10 @@ class Booknow extends Component
             } 
             if(!is_null($settings) &&  count($settings) &&  key_exists('broadcast',$settings[0])){
                 $this->services[$index]['auto_notify']=$settings[0]['broadcast'];
-            }   
+            } 
+          
+            $this->dates=[];
+            $this->addDate($foundService['minimum_assistance_hours'.$postfix]);  
            
         }
          
