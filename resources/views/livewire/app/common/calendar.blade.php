@@ -1,7 +1,9 @@
 <div x-data="{ bookingDetails: false, providerSavedForms: false }">
-    <div class="" wire:ignore>
-        <x-advancefilters type="" :bookings="$events" />
-    </div>
+    @if (!$providerProfile)
+        <div class="" wire:ignore>
+            <x-advancefilters type="" :bookings="$events" :providerProfile=true />
+        </div>
+    @endif
     <div wire:ignore id='calendar-container' class="w-100">
         <div id='{{ $providerProfile ? 'avail_calendar' : 'calendar' }}'></div>
     </div>
@@ -94,7 +96,7 @@
                     window.dispatchEvent(new Event('resize'))
                 }, 0)
 
-                window.addEventListener('updateCalendar', function(event) {
+                window.addEventListener('updateScheduleCalendar', function(event) {
                     calendar.removeAllEvents();
                     calendar.removeAllEventSources();
 

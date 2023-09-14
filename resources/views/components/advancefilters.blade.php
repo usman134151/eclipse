@@ -1,4 +1,4 @@
-@props(['type' => ''])
+@props(['type' => '', 'providerProfile'=>false])
 <div class="row">
     @if ($type == 'invoice-filters')
         <div class="col-lg-5 pe-lg-3 mb-5">
@@ -156,7 +156,7 @@
                     <option selected>Individual User</option>
                 </select>
             </div>
-            <div class="col-lg-5 ps-lg-3 mb-5">
+            <div class="col-lg-5 ps-lg-3 mb-5 {{$providerProfile ? 'hidden' : ''}}">
                 <label class="form-label" for="provider_ids">Provider</label>
                 <select wire:model.defer="provider_ids" name="provider_ids" id="provider_ids"
                     data-placeholder="Select Provider" multiple class="select2 form-select" tabindex="">

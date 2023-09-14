@@ -16,8 +16,8 @@ class Calendar extends Component
 	public $holidays = [], $specific = [], $user_id = null;
 
 	//adv filter variables
-	public $accommodation_search_filter = [], $booking_service_filter = [], $booking_specialization_search_filter = [], $provider_ids=[],
-		$service_type_search_filter = [], $tag_names = [], $industry_filter=[], $booking_status_filter=null, $booking_number_filter=null;
+	public $accommodation_search_filter = [], $booking_service_filter = [], $booking_specialization_search_filter = [], $provider_ids = [],
+		$service_type_search_filter = [], $tag_names = [], $industry_filter = [], $booking_status_filter = null, $booking_number_filter = null;
 	public $tags;
 
 	protected $listeners = ['refreshCalendar' => 'refreshEvents', 'updateVal'];
@@ -36,18 +36,17 @@ class Calendar extends Component
 			$this->events = $this->getEventsForMonth();
 		else
 			$this->events = $this->getCalendarEvents();
+		$this->provider_ids=[$this->user_id];
 	}
 
-	
+
 	public function updateVal($attrName, $val)
 	{
 
 		$this->$attrName = $val;
-		if ($this->providerProfile)
-			$this->events = $this->getEventsForMonth();
-		else
-			$this->events = $this->getCalendarEvents();
-		$this->dispatchBrowserEvent('updateCalendar', ['events' => $this->events]);
+
+		$this->events = $this->getCalendarEvents();
+		$this->dispatchBrowserEvent('updateScheduleCalendar', ['events' => $this->events]);
 
 
 		$this->dispatchBrowserEvent('refreshSelects2');
@@ -78,9 +77,8 @@ class Calendar extends Component
 		if (count($this->booking_service_filter)) {
 			$services = $this->booking_service_filter;
 			$query->whereHas('services', function ($query) use ($services) {
-						$query->whereIn('service_categories.id', $services);
-					});
-			
+				$query->whereIn('service_categories.id', $services);
+			});
 		}
 		if (count($this->accommodation_search_filter)) {
 			$accommodations = $this->accommodation_search_filter;
@@ -110,10 +108,10 @@ class Calendar extends Component
 		if (count($this->booking_specialization_search_filter)) {
 			$specializations = $this->booking_specialization_search_filter;
 			// dd($specializations);
-			foreach($specializations as $specilization)
-			$query->whereHas('booking_services', function ($query) use ($specilization) {
-						$query->whereJsonContains('specialization', [0=>$specilization]);
-			});
+			foreach ($specializations as $specilization)
+				$query->whereHas('booking_services', function ($query) use ($specilization) {
+					$query->whereJsonContains('specialization', [0 => $specilization]);
+				});
 		}
 
 		return $query;
@@ -132,6 +130,10 @@ class Calendar extends Component
 		$this->booking_service_filter = [];
 		$this->booking_number_filter = null;
 		$this->booking_status_filter = null;
+
+
+		$this->events = $this->getCalendarEvents();
+		$this->dispatchBrowserEvent('updateScheduleCalendar', ['events' => $this->events]);
 
 		$this->dispatchBrowserEvent('refreshSelects2');
 	}
@@ -160,7 +162,7 @@ class Calendar extends Component
 		// ];
 
 		$query = Booking::query();
-		if ($this->user_id)
+		if ($this->user_id && $this->providerProfile==false)
 			$query->join('booking_providers', function ($join) {
 				$join->where('booking_providers.provider_id', $this->user_id);
 				$join->on('booking_providers.booking_id', 'bookings.id');
