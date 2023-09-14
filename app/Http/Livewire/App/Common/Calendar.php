@@ -6,29 +6,138 @@ use App\Models\Tenant\Booking;
 use App\Models\Tenant\ProviderSpecificSchedule;
 use App\Models\Tenant\ProviderVacation;
 use App\Models\Tenant\Schedule;
+use App\Models\Tenant\Tag;
 use Carbon\Carbon;
 use Livewire\Component;
 
 class Calendar extends Component
 {
-	public $events = [], $model_id = 0, $model_type = 0, $providerProfile = false;
-	public $holidays = [], $specific = [], $user_id=null;
-	protected $listeners = ['refreshCalendar'=> 'refreshEvents'];
+	public $events = [], $model_id = 0, $model_type = 0, $providerProfile = false, $hideProvider = false;
+	public $holidays = [], $specific = [], $user_id = null;
+
+	//adv filter variables
+	public $accommodation_search_filter = [], $booking_service_filter = [], $booking_specialization_search_filter = [], $provider_ids = [],
+		$service_type_search_filter = [], $tag_names = [], $industry_filter = [], $booking_status_filter = null, $booking_number_filter = null;
+	public $tags;
+
+	protected $listeners = ['refreshCalendar' => 'refreshEvents', 'updateVal'];
 
 
 	public function render()
 	{
 
-		if ($this->providerProfile)
-			$this->events = $this->getEventsForMonth();
-		else
-			$this->events = $this->getCalendarEvents();
 
 		return view('livewire.app.common.calendar');
 	}
 
 	public function mount()
 	{
+		if ($this->providerProfile)
+			$this->events = $this->getEventsForMonth();
+		else
+			$this->events = $this->getCalendarEvents();
+
+		if ($this->hideProvider)
+			$this->provider_ids = [$this->user_id];
+	}
+
+
+	public function updateVal($attrName, $val)
+	{
+
+		$this->$attrName = $val;
+
+		$this->events = $this->getCalendarEvents();
+		$this->dispatchBrowserEvent('updateScheduleCalendar', ['events' => $this->events]);
+
+
+		$this->dispatchBrowserEvent('refreshSelects2');
+	}
+	private function applySearchFilter($query)
+	{
+		if ($this->booking_number_filter) {
+			$query->where('bookings.booking_number', 'LIKE', "%" . $this->booking_number_filter . "%");
+		}
+		// if (count($this->tag_names)) {
+		// 	$query->whereJsonContains('tags', $this->tag_names);
+		// }
+		if (count($this->provider_ids)) {
+			$provider_ids = $this->provider_ids;
+			$query->whereHas('booking_provider', function ($query) use ($provider_ids) {
+				$query->whereIn('booking_providers.provider_id', $provider_ids);
+			});
+		}
+		if ($this->booking_status_filter) {
+			$query->where('bookings.booking_status', 'LIKE', "%" . $this->booking_status_filter . "%");
+		}
+		if (count($this->industry_filter)) {
+			$industries = $this->industry_filter;
+			$query->whereHas('industries', function ($query) use ($industries) {
+				$query->whereIn('industries.id', $industries);
+			});
+		}
+		if (count($this->booking_service_filter)) {
+			$services = $this->booking_service_filter;
+			$query->whereHas('services', function ($query) use ($services) {
+				$query->whereIn('service_categories.id', $services);
+			});
+		}
+		if (count($this->accommodation_search_filter)) {
+			$accommodations = $this->accommodation_search_filter;
+			$query->whereHas('accommodations', function ($query) use ($accommodations) {
+				$query->whereIn('accommodations.id', $accommodations);
+			});
+		}
+		if (count($this->service_type_search_filter)) {
+			//as ids are different in dropdown and in table need to replace for filter
+			$replacements = [
+				28 => 1,
+				29 => 2,
+				30 => 4,
+				31 => 5
+			];
+			$filterArray = array_map(function ($item) use ($replacements) {
+				return isset($replacements[$item]) ? $replacements[$item] : $item;
+			}, $this->service_type_search_filter);
+			$query->whereHas('booking_services', function ($query) use ($filterArray) {
+				$query->where(function ($query) use ($filterArray) {
+					foreach ($filterArray as $item) {
+						$query->where('services', 'LIKE', "%$item%");
+					}
+				});
+			});
+		}
+		if (count($this->booking_specialization_search_filter)) {
+			$specializations = $this->booking_specialization_search_filter;
+			// dd($specializations);
+			foreach ($specializations as $specilization)
+				$query->whereHas('booking_services', function ($query) use ($specilization) {
+					$query->whereJsonContains('specialization', [0 => $specilization]);
+				});
+		}
+
+		return $query;
+	}
+
+
+	public function resetFilters()
+	{
+		$this->booking_specialization_search_filter = [];
+		$this->tag_names = [];
+		$this->service_type_search_filter = [];
+		$this->booking_service_filter = [];
+		$this->industry_filter = [];
+		$this->accommodation_search_filter = [];
+		$this->booking_number_filter = null;
+		$this->booking_service_filter = [];
+		$this->booking_number_filter = null;
+		$this->booking_status_filter = null;
+
+
+		$this->events = $this->getCalendarEvents();
+		$this->dispatchBrowserEvent('updateScheduleCalendar', ['events' => $this->events]);
+
+		$this->dispatchBrowserEvent('refreshSelects2');
 	}
 
 	// Updated by Sohail Asghar to get booking events for dashboard calendar
@@ -55,12 +164,13 @@ class Calendar extends Component
 		// ];
 
 		$query = Booking::query();
-		if($this->user_id)
-			$query->join('booking_providers', function($join){
-				$join->where('booking_providers.provider_id',$this->user_id);
+		if ($this->user_id && $this->providerProfile == false)
+			$query->join('booking_providers', function ($join) {
+				$join->where('booking_providers.provider_id', $this->user_id);
 				$join->on('booking_providers.booking_id', 'bookings.id');
 			});
-		$events = $query->select('bookings.id','booking_number', 'booking_title', 'booking_start_at', 'booking_end_at')
+		$query = $this->applySearchFilter($query);
+		$events = $query->select('bookings.id', 'booking_number', 'booking_title', 'booking_start_at', 'booking_end_at')
 			->get()
 			->toArray();
 		// $keys = ['title', 'start', 'end'];
@@ -78,8 +188,8 @@ class Calendar extends Component
 
 			$newEvents[$key]['start'] = $booking_start_at;
 			$newEvents[$key]['end'] = $booking_end_at;
-			$newEvents[$key]['url'] = '/admin/bookings/view-booking/'. encrypt($id);
-			
+			$newEvents[$key]['url'] = '/admin/bookings/view-booking/' . encrypt($id);
+
 			// End of update by Sohail Asghar
 
 			// $newEvent = collect($event);
@@ -111,7 +221,7 @@ class Calendar extends Component
 	}
 	// End of update by Sohail Asghar
 
-	public function refreshEvents($month=null)
+	public function refreshEvents($month = null)
 	{
 		if ($month) {
 			$m = strtotime($month);

@@ -12,7 +12,7 @@ use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Heade
 final class Feedback extends PowerGridComponent
 {
     use ActionButton;
-    public $recievedFeedback = true, $user_id = 0, $deleteRecordId=0;
+    public $recievedFeedback = true, $user_id = 0, $deleteRecordId = 0;
 
     protected $listeners = ['delete'];
 
@@ -67,6 +67,7 @@ final class Feedback extends PowerGridComponent
         $query->select([
             'feedback_ratings.id', 'feedback_ratings.comments',
             'feedback_ratings.rating', 'feedback_ratings.booking_service_id',
+            'feedback_ratings.feedback_to', 'feedback_ratings.feedback_from',
             'users.name',
             'users.email',
             'user_details.phone',
@@ -110,10 +111,21 @@ final class Feedback extends PowerGridComponent
         return PowerGrid::eloquent()
             ->addColumn('name')
             ->addColumn('user', function (FeedbackRating $model) {
-                if ($model->profile_pic == null)
-                    $col = '<div class="row g-2 align-items-center"><div class="col-md-2"><img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Customer Profile Image"></div><div class="col-md-10"><h6 class="fw-semibold"><a href="' . route('tenant.customer-profile', ['customerID' => encrypt($model->feedback_from)]) . '">' . $model->name . '</a></h6><p>' . $model->email . '</p></div></div>';
-                else
-                    $col = '<div class="row g-2 align-items-center"><div class="col-md-2"><img style="width:64px;height:64px;top:1rem"  src="' . $model->profile_pic . '" class="img-fluid rounded-circle" alt="Customer Profile Image"></div><div class="col-md-10"><h6 class="fw-semibold"><a href="' . route('tenant.customer-profile', ['customerID' => encrypt($model->feedback_to)]) . '">' . $model->name . '</a></h6><p>' . $model->email . '</p></div></div>';
+                if (
+                    $this->recievedFeedback
+                ) {
+
+
+                    if ($model->profile_pic == null)
+                        $col = '<div class="row g-2 align-items-center"><div class="col-md-2"><img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="provider Profile Image"></div><div class="col-md-10"><h6 class="fw-semibold"><a href="' . route('tenant.provider-profile', ['providerID' => $model->feedback_from]) . '">' . $model->name . '</a></h6><p>' . $model->email . '</p></div></div>';
+                    else
+                        $col = '<div class="row g-2 align-items-center"><div class="col-md-2"><img style="width:64px;height:64px;top:1rem"  src="' . $model->profile_pic . '" class="img-fluid rounded-circle" alt="provider Profile Image"></div><div class="col-md-10"><h6 class="fw-semibold"><a href="' . route('tenant.provider-profile', ['providerID' => $model->feedback_from]) . '">' . $model->name . '</a></h6><p>' . $model->email . '</p></div></div>';
+                } else {
+                    if ($model->profile_pic == null)
+                        $col = '<div class="row g-2 align-items-center"><div class="col-md-2"><img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="provider Profile Image"></div><div class="col-md-10"><h6 class="fw-semibold"><a href="' . route('tenant.provider-profile', ['providerID' => $model->feedback_to]) . '">' . $model->name . '</a></h6><p>' . $model->email . '</p></div></div>';
+                    else
+                        $col = '<div class="row g-2 align-items-center"><div class="col-md-2"><img style="width:64px;height:64px;top:1rem"  src="' . $model->profile_pic . '" class="img-fluid rounded-circle" alt="provider Profile Image"></div><div class="col-md-10"><h6 class="fw-semibold"><a href="' . route('tenant.provider-profile', ['providerID' => $model->feedback_to]) . '">' . $model->name . '</a></h6><p>' . $model->email . '</p></div></div>';
+                }
                 return $col;
             })
 
@@ -150,7 +162,7 @@ final class Feedback extends PowerGridComponent
                                             <use xlink:href="/css/sprite.svg#edit-icon"></use>
                                         </svg>
                                     </a>
-                                    <a href="javascript:void(0)" title="Delete" aria-label="Delete" wire:click="setDeleteRecord('.$model->id.')"
+                                    <a href="javascript:void(0)" title="Delete" aria-label="Delete" wire:click="setDeleteRecord(' . $model->id . ')"
                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                         <svg aria-label="Delete" class="delete-icon" width="20" height="20"
                                             viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -249,11 +261,9 @@ final class Feedback extends PowerGridComponent
     }
     */
 
-    public function setDeleteRecord($id){
-        FeedbackRating::where('id',$id)->delete();
-        $this->emit('showConfirmation',"Record has been deleted");
+    public function setDeleteRecord($id)
+    {
+        FeedbackRating::where('id', $id)->delete();
+        $this->emit('showConfirmation', "Record has been deleted");
     }
-
-    
-
 }
