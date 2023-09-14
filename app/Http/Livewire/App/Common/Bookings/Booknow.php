@@ -439,7 +439,7 @@ class Booknow extends Component
         if($this->schedule && $this->schedule['timezone_id'])
         $timeZone=$this->schedule->timezone_id;
         else 
-            $timeZone=1;
+            $timeZone=60;
         $timeZoneCity=$this->getTimeZone($timeZone);
     
             // If we were able to extract a city, use it to get the current date and time
