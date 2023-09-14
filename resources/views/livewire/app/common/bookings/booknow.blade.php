@@ -77,6 +77,16 @@
                        
      
                             <h2>Requester Information</h2>
+                            <div>
+    @error('slot')
+        <div class="alert alert-danger p-2">
+            {{ $message }}
+        </div>
+    @enderror
+    
+    <!-- Rest of your component markup -->
+</div>
+
                             <div class="mb-4">
                                 <label class="form-label form-label-highlighted">Permitted Scheduling Frequencies <i
                                         class="fa fa-question-circle text-muted" aria-hidden="true"
