@@ -83,17 +83,6 @@
                             info.draggedEl.parentNode.removeChild(info.draggedEl);
                         }
                     },
-                    // eventDrop: info => @this.eventDrop(info.event, info.oldEvent),
-                    loading: function(isLoading) {
-                        //	if (!isLoading) {
-                        // 	// Reset custom events
-                        // 	this.getEvents().forEach(function(e) {
-                        // 		if (e.source === null) {
-                        // 			e.remove();
-                        // 		}
-                        // 	});
-                        // }
-                    },
 
                 });
 
@@ -155,15 +144,6 @@
                         startDate = moment(event.start).format('MMMM DD, YYYY');
                         let curr_date_moment = moment(event.start).format('YYYY-MM-DD');
                         $(info.el).attr('data-date', curr_date_moment);
-                        // var tooltip = new bootstrap.Popover(info.el, {
-                        // 	title: startDate,
-                        // 	content: info.event.extendedProps.description,
-                        // 	placement: 'right',
-                        // 	trigger: 'hover',
-                        // 	container: 'body',
-                        // 	html: true,
-                        // 	// delay: {"show":0, "hide":1000}
-                        // });
                     },
                     //editable: true,
                     //selectable: true,
@@ -176,18 +156,6 @@
                             info.draggedEl.parentNode.removeChild(info.draggedEl);
                         }
                     },
-                    // eventDrop: info => @this.eventDrop(info.event, info.oldEvent),
-                    loading: function(isLoading) {
-                        //	if (!isLoading) {
-                        // 	// Reset custom events
-                        // 	this.getEvents().forEach(function(e) {
-                        // 		if (e.source === null) {
-                        // 			e.remove();
-                        // 		}
-                        // 	});
-                        // }
-                    },
-
                 });
 
                 avail_calendar.render();

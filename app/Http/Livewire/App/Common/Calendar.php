@@ -141,13 +141,7 @@ class Calendar extends Component
 				$join->where('booking_providers.provider_id', $this->user_id);
 				$join->on('booking_providers.booking_id', 'bookings.id');
 			});
-		if (count($this->accommodation_search_filter)) {
-			$accommodations = $this->accommodation_search_filter;
-			$query->whereHas('accommodations', function ($query) use ($accommodations) {
-				$query->whereIn('accommodations.id', $accommodations);
-			});
-		}
-		// $query = $this->applySearchFilter($query);
+		$query = $this->applySearchFilter($query);
 		$events = $query->select('bookings.id', 'booking_number', 'booking_title', 'booking_start_at', 'booking_end_at')
 			->get()
 			->toArray();
