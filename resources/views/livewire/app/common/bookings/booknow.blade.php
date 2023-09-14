@@ -735,7 +735,7 @@
                                                         <div class="time d-flex align-items-center gap-2">
                                                             <select wire:model.defer="dates.{{$index}}.start_hour"  wire:change="updateDurations({{ $index }})">
                                                                 @for($i=0;$i<24;$i++)
-                                                                 <option value="{{$i}}">{{str_pad($i, 2, '0', STR_PAD_LEFT)}}</option>
+                                                                 <option value="{{str_pad($i, 2, '0', STR_PAD_LEFT)}}">{{str_pad($i, 2, '0', STR_PAD_LEFT)}}</option>
                                                                 @endfor
 
                                                             </select>
@@ -748,7 +748,7 @@
                                                             
                                                             <select wire:model.defer="dates.{{$index}}.start_min"  wire:change="updateDurations({{ $index }})">
                                                                 @for($i=0;$i<59;$i++)
-                                                                 <option value="{{$i}}">{{str_pad($i, 2, '0', STR_PAD_LEFT)}}</option>
+                                                                 <option value="{{str_pad($i, 2, '0', STR_PAD_LEFT)}}">{{str_pad($i, 2, '0', STR_PAD_LEFT)}}</option>
                                                                 @endfor
 
                                                             </select>
@@ -793,7 +793,7 @@
                                                         <div class="time d-flex align-items-center gap-2">
                                                             <select wire:model.defer="dates.{{$index}}.end_hour"  wire:change="updateDurations({{ $index }})">
                                                                 @for($i=0;$i<24;$i++)
-                                                                 <option value="{{$i}}">{{str_pad($i, 2, '0', STR_PAD_LEFT)}}</option>
+                                                                 <option value="{{str_pad($i, 2, '0', STR_PAD_LEFT)}}">{{str_pad($i, 2, '0', STR_PAD_LEFT)}}</option>
                                                                 @endfor
 
                                                             </select>
@@ -806,7 +806,7 @@
                                                             
                                                             <select wire:model.defer="dates.{{$index}}.end_min"  wire:change="updateDurations({{ $index }})">
                                                                 @for($i=0;$i<59;$i++)
-                                                                 <option value="{{$i}}">{{str_pad($i, 2, '0', STR_PAD_LEFT)}}</option>
+                                                                 <option value="{{str_pad($i, 2, '0', STR_PAD_LEFT)}}">{{str_pad($i, 2, '0', STR_PAD_LEFT)}}</option>
                                                                 @endfor
 
                                                             </select>

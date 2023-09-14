@@ -36,21 +36,7 @@ class Booknow extends Component
         'updateSelectedDepartments','confirmation',
         'saveCustomFormData'=>'save' ,'switch','updateAddress' => 'addAddress'];
 
-    public $dates=[[
-            'start_date'=>'',
-            'start_hour' => '00',
-            'start_min'=>'00',
-            'end_date'=>'',
-            'end_hour' => '00',
-            'end_min'=>'00',
-            'start_am'=>'',
-            'end_am'=>'',
-            'duration_day' => '',
-            'duration_hour' => '',
-            'duration_minute' => '',
-            'time_zone' => ''
-
-    ]];
+    public $dates=[];
     public $foundService=['default_providers'=>2];
     public $payment,$discountedAmount=0,$totalAmount=0;
     
@@ -108,6 +94,7 @@ class Booknow extends Component
 
     public function mount(Booking $booking)
     {
+        $this->addDate();
         $this->booking=$booking;
         $this->payment=new Payment;
         $this->payment['discounted_amount']=0;
@@ -423,14 +410,21 @@ class Booknow extends Component
         unset($this->services[$serviceIndex]['meetings'][$index]);
         $this->services[$serviceIndex]['meetings'] = array_values($this->services[$serviceIndex]['meetings']); //updated by Amna Bilal to meeting remove link from service array
     }
-    public function addDate(){
+    public function addDate($givenHour=1){
+        $currentDate = Carbon::now();
+        $currentHour = $currentDate->format('H');
+        $currentMinute = $currentDate->format('i');
+        
+        $endHour = $currentDate->addHours($givenHour)->format('H');
+        $endTime = $currentDate->format('i');
+        
         $this->dates[] =[
-            'start_date'=>'',
-            'start_hour' => '00',
-            'start_min'=>'00',
-            'end_date'=>'',
-            'end_hour' => '00',
-            'end_min'=>'00',
+            'start_date' => $currentDate->format('Y-m-d'),
+            'start_hour' => $currentHour,
+            'start_min' => $currentMinute,
+            'end_date' => $currentDate->format('Y-m-d'), // Adjust if necessary, if the end date might be different
+            'end_hour' => $endHour,
+            'end_min' => $endTime,
             'start_am'=>'',
             'end_am'=>'',
             'duration_day' => '',
