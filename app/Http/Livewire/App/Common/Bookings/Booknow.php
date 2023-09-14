@@ -461,10 +461,10 @@ class Booknow extends Component
         $endTime = $currentDate->format('i');
 
         $this->dates[] =[
-            'start_date' => $currentDate->format('Y-m-d'),
+            'start_date' => $currentDate->format('m/d/Y'),
             'start_hour' => $currentHour,
             'start_min' => $currentMinute,
-            'end_date' => $currentDate->format('Y-m-d'), // Adjust if necessary, if the end date might be different
+            'end_date' => $currentDate->format('m/d/Y'), // Adjust if necessary, if the end date might be different
             'end_hour' => $endHour,
             'end_min' => $endTime,
             'start_am'=>'',
@@ -565,7 +565,7 @@ class Booknow extends Component
             elseif (preg_match('/start_date_(\d+)/', $attrName, $matches)) {
                 $index = intval($matches[1]);
                
-        
+                //dd($val);
                 if (isset($this->dates[$index])) {
                     $this->dates[$index]['start_date'] = $val;
                     $this->updateDurations($index);
@@ -591,6 +591,7 @@ class Booknow extends Component
                 if (isset($this->dates[$index])) {
                     $this->dates[$index]['end_date'] = $val;
                     $this->updateDurations($index);
+                  
                 }
               //  dd( $this->dates[$index]['end_date']);
             }  
@@ -721,19 +722,20 @@ class Booknow extends Component
                         $timezoneLabel = $this->timezones[$timeZoneIndex]['setup_value_label'];
                     }
                 }
-                   
+                   // dd($this->dates[$index]['start_date'] . $this->dates[$index]['start_hour'] . ':' . $this->dates[$index]['start_min'] . ':00');      
                     
                 $startDateTime = Carbon::createFromFormat(
-                    'Y-m-dH:i:s', 
+                    'm/d/YH:i:s', 
                     $this->dates[$index]['start_date'] . $this->dates[$index]['start_hour'] . ':' . $this->dates[$index]['start_min'] . ':00', 
                     new \DateTimeZone($timeZoneCity)
                 );
-                
+              
                 $endDateTime = Carbon::createFromFormat(
-                    'Y-m-dH:i:s', 
+                    'm/d/YH:i:s', 
                     $this->dates[$index]['end_date'] . $this->dates[$index]['end_hour'] . ':' . $this->dates[$index]['end_min'] . ':00', 
                     new \DateTimeZone($timeZoneCity)
-                );        
+                );  
+              
             if ($endDateTime >= $startDateTime) {
                 $diff = $endDateTime->diff($startDateTime);
     
@@ -750,10 +752,11 @@ class Booknow extends Component
                 // Return an error message or handle the case where end date/time is not greater than start date/time.
                // return ['error' => 'End date/time must be greater than start date/time.'];
             }
+          //  dd($this->dates);
         }
     } catch (\Exception $e) {
         // Handle the exception, log the error, or debug further
-      //  dd($e->getMessage());
+        dd($e->getMessage());
     }
     
         return null; // Return null if the required fields are not set.
