@@ -438,7 +438,7 @@
                                                     <div class="col-lg-7 align-self-center">
                                                         <div class="font-family-tertiary">
                                                             <a
-                                                                href="#">{{ $booking['contact_point'] ? $booking['contact_point'] : 'N/A' }}</a>
+                                                                href="#">{{ $booking->customer ? $booking->customer->name : 'N/A' }}</a>
                                                         </div>
                                                     </div>
                                                 </div>

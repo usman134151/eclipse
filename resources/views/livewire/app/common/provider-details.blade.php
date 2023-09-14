@@ -525,7 +525,9 @@
                     <div class="col-md-12 d-flex">
                         <div class="col-md-3 "><label class="col-form-label" for="date">Date:</label></div>
                         <div class="col-md-5 align-self-center">
-                            <div class="font-family-secondary">{{$user['last_login'] ? date_format(date_create( $user['last_login']['created_at']), "d/m/Y") : 'N/A' }}</div>
+                            <div class="font-family-secondary">
+                                {{ $user['last_login'] ? date_format(date_create($user['last_login']['created_at']), 'd/m/Y') : 'N/A' }}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -533,7 +535,9 @@
                     <div class="col-md-12 d-flex">
                         <div class="col-md-3 "><label class="col-form-label" for="time">Time:</label></div>
                         <div class="col-md-5 align-self-center">
-                            <div class="font-family-secondary">{{$user['last_login'] ? date_format(date_create( $user['last_login']['created_at']), "h:i A") : 'N/A' }}</div>
+                            <div class="font-family-secondary">
+                                {{ $user['last_login'] ? date_format(date_create($user['last_login']['created_at']), 'h:i A') : 'N/A' }}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -542,10 +546,10 @@
                         <div class="col-md-3"><label class="col-form-label" for="location">IP Address:</label></div>
                         <div class="col-md-10 align-self-center mx-3">
                             {{-- <div class="font-family-secondary text-sm mx-2 mt-2"> --}}
-                            {{$user['last_login'] ? $user['last_login']['ip_address'] : 'N/A' }}
+                            {{ $user['last_login'] ? $user['last_login']['ip_address'] : 'N/A' }}
                             {{-- Mrs Smith 98 Shirley Street PIMPAMA QLD 4209
                                 AUSTRALIA --}}
-                                {{-- </div> --}}
+                            {{-- </div> --}}
                         </div>
                     </div>
                 </div>
@@ -682,7 +686,7 @@
         tabindex="0">
         <div class="row mb-3">
             <h3>Schedule <small>(coming soon)</small> </h3>
-        {{-- <div class="d-flex justify-content-between mb-2">
+            {{-- <div class="d-flex justify-content-between mb-2">
             <div class="d-inline-flex align-items-center gap-4">
                 <div class="mb-4 mb-lg-0">
                     <select class="form-select form-select-sm rounded bg-secondary text-white rounded"
@@ -725,10 +729,10 @@
                 </div>
             </div>
         </div> --}}
-        <div class="w-100">
-            <x-advancefilters />
-            @livewire('app.common.calendar', ['profileProvider' => false,'user_id'=>$userid])
-        </div>
+            <div class="w-100">
+                <x-advancefilters />
+                @livewire('app.common.calendar', ['profileProvider' => false, 'user_id' => $userid])
+            </div>
         </div>
 
     </div>
@@ -1286,7 +1290,7 @@
                                                                                         <div class="mx-1 mt-1"><span
                                                                                                 class="fw-semibold">In-Person:
                                                                                             </span><span
-                                                                                                class="mx-1">{{ $row['sp'] ? '$'.number_format($row['sp'], 2) : 'N/A' }}</span>
+                                                                                                class="mx-1">{{ $row['sp'] ? '$' . number_format($row['sp'], 2) : 'N/A' }}</span>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -1306,7 +1310,7 @@
                                                                                         </div>
                                                                                         <div class="mx-1 mt-1"><span
                                                                                                 class="fw-semibold">Virtual:</span><span
-                                                                                                class="mx-1">{{$row['sp_v'] ?  '$'.number_format($row['sp_v'], 2) :'N/A' }}</span>
+                                                                                                class="mx-1">{{ $row['sp_v'] ? '$' . number_format($row['sp_v'], 2) : 'N/A' }}</span>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -1326,7 +1330,7 @@
                                                                                         </div>
                                                                                         <div class="mx-1 mt-1"><span
                                                                                                 class="fw-semibold">Phone:</span><span
-                                                                                                class="mx-1">{{$row['sp_p'] ? '$'.number_format($row['sp_p'], 2) : 'N/A' }}</span>
+                                                                                                class="mx-1">{{ $row['sp_p'] ? '$' . number_format($row['sp_p'], 2) : 'N/A' }}</span>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -1346,7 +1350,7 @@
                                                                                         </div>
                                                                                         <div class="mx-1 mt-1"><span
                                                                                                 class="fw-semibold">Teleconferencing:</span><span
-                                                                                                class="mx-1">{{ $row['sp_t'] ? '$'.number_format($row['sp_t'], 2) : 'N/A' }}</span>
+                                                                                                class="mx-1">{{ $row['sp_t'] ? '$' . number_format($row['sp_t'], 2) : 'N/A' }}</span>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -1401,7 +1405,7 @@
     <div class="tab-pane fade" id="provider-feedback-tab-pane" role="tabpanel" aria-labelledby="provider-feedback-tab"
         tabindex="0">
         <div class="row mb-4">
-            <h3>Feedback <small>(coming soon)</small></h3>
+            <h3>Feedback </h3>
         </div>
         <div class="col-md-12 d-flex col-12 gap-4 mb-4">
             {{-- Search --}}
@@ -1443,531 +1447,23 @@
         </div>
 
         <div class="col-md-6 mb-4">
-            <button class="btn btn-primary rounded">
+            <button class="btn btn-{{$feedbackType==false ? 'primary' : 'inactive' }} rounded" wire:click="$set('feedbackType',false)">
                 Feedback Given
             </button>
-            <button class="btn btn-inactive rounded mx-4">
+            <button class="btn btn-{{$feedbackType ? 'primary' : 'inactive' }} rounded mx-4" wire:click="$set('feedbackType',true)">
                 Feedback Received
             </button>
         </div>
-        <div class="row mb-4 mb-5">
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle btn-outline-primary" type="button"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    <svg aria-label="Export" class="fill" width="23" height="26"
-                        viewBox="0 0 23 26"fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <use xlink:href="/css/common-icons.svg#export-dropdown"></use>
-                    </svg>
-                </button>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            Action
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            Another action
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            Something else here
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="d-flex justify-content-between mb-2">
-            <div class="d-inline-flex align-items-center gap-4">
-                <label for="showRecordsNumber" class="form-label">
-                    Show
-                </label>
-                <select class="form-select" id="showRecordsNumber">
-                    <option>10</option>
-                    <option>15</option>
-                    <option>20</option>
-                    <option>25</option>
-                </select>
-            </div>
-            <div class="d-inline-flex align-items-center gap-4">
-                <label for="searchRecord" class="form-label fw-semibold">
-                    Search
-                </label>
-                <input type="search" class="form-control" id="searchRecord" name="search" placeholder="Search here"
-                    autocomplete="on" />
-            </div>
-        </div>
-        <div class="card">
-            <div class="table-responsive">
-                <table id="unassigned_data" class="table table-hover" aria-label="Department Table">
-                    <thead>
-                        <tr role="row">
-                            <th scope="col" class="text-center">
-                                <input class="form-check-input" type="checkbox" value=""
-                                    aria-label="Select All Customers">
-                            </th>
-                            <th scope="col">Customer</th>
-                            <th scope="col">Feedback</th>
-                            <th scope="col">Stars</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr role="row" class="odd">
-                            <td class="text-center">
-                                <input class="form-check-input" type="checkbox" value=""
-                                    aria-label="Select Customer">
-                            </td>
-                            <td>
-                                <div class="row g-2">
-                                    <div class="col-md-2">
-                                        <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                            class="img-fluid rounded-circle" alt="Customer Image">
-                                    </div>
-                                    <div class="col-md-10">
-                                        <h6 class="fw-semibold">
-                                            Medical
-                                        </h6>
-                                        <p>dorigriffit@gmail.com</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                The way you gave that presentation today really good. I'm so impressed by your dedication to
-                                learning.
-                            </td>
-                            <td>
-                                <div class="row mt-4">
-                                    <div class="col-md-12 d-flex">
-                                        <svg width="18" height="16" viewBox="0 0 18 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#filled-star"></use>
-                                        </svg>
-                                        <svg width="18" height="16" viewBox="0 0 18 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#filled-star"></use>
-                                        </svg>
-                                        <svg width="18" height="16" viewBox="0 0 18 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#filled-star"></use>
-                                        </svg>
-                                        <svg width="17" height="16" viewBox="0 0 17 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#star"></use>
-                                        </svg>
-                                        <svg width="17" height="16" viewBox="0 0 17 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#star"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="d-flex actions">
-                                    <a href="javascript:void(0)" title="Hide" aria-label="View"
-                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                        <svg aria-label="Hide" width="24" height="19" viewBox="0 0 24 19"
-                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#hide-icon"></use>
-                                        </svg>
-                                    </a>
-                                    <a href="#" title="Edit" aria-label="Edit"
-                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                        <svg aria-label="Edit" class="fill" width="20" height="28"
-                                            viewBox="0 0 20 28"fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#edit-icon"></use>
-                                        </svg>
-                                    </a>
-                                    <a href="javascript:void(0)" title="Delete" aria-label="Delete"
-                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                        <svg aria-label="Delete" class="delete-icon" width="20" height="20"
-                                            viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#delete-icon"></use>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr role="row" class="even">
-                            <td class="text-center">
-                                <input class="form-check-input" type="checkbox" value=""
-                                    aria-label="Select Customer">
-                            </td>
-                            <td>
-                                <div class="row g-2">
-                                    <div class="col-md-2">
-                                        <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                            class="img-fluid rounded-circle" alt="Customer Image">
-                                    </div>
-                                    <div class="col-md-10">
-                                        <h6 class="fw-semibold">
-                                            Medical
-                                        </h6>
-                                        <p>dorigriffit@gmail.com</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                The way you gave that presentation today really good. I'm so impressed by your dedication to
-                                learning.
-                            </td>
-                            <td>
-                                <div class="row mt-4">
-                                    <div class="col-md-12 d-flex">
-                                        <svg width="18" height="16" viewBox="0 0 18 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#filled-star"></use>
-                                        </svg>
-                                        <svg width="18" height="16" viewBox="0 0 18 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#filled-star"></use>
-                                        </svg>
-                                        <svg width="18" height="16" viewBox="0 0 18 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#filled-star"></use>
-                                        </svg>
-                                        <svg width="17" height="16" viewBox="0 0 17 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#star"></use>
-                                        </svg>
-                                        <svg width="17" height="16" viewBox="0 0 17 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#star"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="d-flex actions">
-                                    <a href="javascript:void(0)" title="Hide" aria-label="View"
-                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                        <svg aria-label="Hide" width="24" height="19" viewBox="0 0 24 19"
-                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#hide-icon"></use>
-                                        </svg>
-                                    </a>
-                                    <a href="#" title="Edit" aria-label="Edit"
-                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                        <svg aria-label="Edit" class="fill" width="20" height="28"
-                                            viewBox="0 0 20 28"fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#edit-icon"></use>
-                                        </svg>
-                                    </a>
-                                    <a href="javascript:void(0)" title="Delete" aria-label="Delete"
-                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                        <svg aria-label="Delete" class="delete-icon" width="20" height="20"
-                                            viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#delete-icon"></use>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr role="row" class="odd">
-                            <td class="text-center">
-                                <input class="form-check-input" type="checkbox" value=""
-                                    aria-label="Select Customer">
-                            </td>
-                            <td>
-                                <div class="row g-2">
-                                    <div class="col-md-2">
-                                        <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                            class="img-fluid rounded-circle" alt="Customer Image">
-                                    </div>
-                                    <div class="col-md-10">
-                                        <h6 class="fw-semibold">
-                                            Medical
-                                        </h6>
-                                        <p>dorigriffit@gmail.com</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                The way you gave that presentation today really good. I'm so impressed by your dedication to
-                                learning.
-                            </td>
-                            <td>
-                                <div class="row mt-4">
-                                    <div class="col-md-12 d-flex">
-                                        <svg width="18" height="16" viewBox="0 0 18 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#filled-star"></use>
-                                        </svg>
-                                        <svg width="18" height="16" viewBox="0 0 18 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#filled-star"></use>
-                                        </svg>
-                                        <svg width="18" height="16" viewBox="0 0 18 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#filled-star"></use>
-                                        </svg>
-                                        <svg width="17" height="16" viewBox="0 0 17 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#star"></use>
-                                        </svg>
-                                        <svg width="17" height="16" viewBox="0 0 17 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#star"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="d-flex actions">
-                                    <a href="javascript:void(0)" title="Hide" aria-label="View"
-                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                        <svg aria-label="Hide" width="24" height="19" viewBox="0 0 24 19"
-                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#hide-icon"></use>
-                                        </svg>
-                                    </a>
-                                    <a href="#" title="Edit" aria-label="Edit"
-                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                        <svg aria-label="Edit" class="fill" width="20" height="28"
-                                            viewBox="0 0 20 28"fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#edit-icon"></use>
-                                        </svg>
-                                    </a>
-                                    <a href="javascript:void(0)" title="Delete" aria-label="Delete"
-                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                        <svg aria-label="Delete" class="delete-icon" width="20" height="20"
-                                            viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#delete-icon"></use>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr role="row" class="even">
-                            <td class="text-center">
-                                <input class="form-check-input" type="checkbox" value=""
-                                    aria-label="Select Customer">
-                            </td>
-                            <td>
-                                <div class="row g-2">
-                                    <div class="col-md-2">
-                                        <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                            class="img-fluid rounded-circle" alt="Customer Image">
-                                    </div>
-                                    <div class="col-md-10">
-                                        <h6 class="fw-semibold">
-                                            Medical
-                                        </h6>
-                                        <p>dorigriffit@gmail.com</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                The way you gave that presentation today really good. I'm so impressed by your dedication to
-                                learning.
-                            </td>
-                            <td>
-                                <div class="row mt-4">
-                                    <div class="col-md-12 d-flex">
-                                        <svg width="18" height="16" viewBox="0 0 18 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#filled-star"></use>
-                                        </svg>
-                                        <svg width="18" height="16" viewBox="0 0 18 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#filled-star"></use>
-                                        </svg>
-                                        <svg width="18" height="16" viewBox="0 0 18 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#filled-star"></use>
-                                        </svg>
-                                        <svg width="17" height="16" viewBox="0 0 17 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#star"></use>
-                                        </svg>
-                                        <svg width="17" height="16" viewBox="0 0 17 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#star"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="d-flex actions">
-                                    <a href="javascript:void(0)" title="Hide" aria-label="View"
-                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                        <svg aria-label="Hide" width="24" height="19" viewBox="0 0 24 19"
-                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#hide-icon"></use>
-                                        </svg>
-                                    </a>
-                                    <a href="#" title="Edit" aria-label="Edit"
-                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                        <svg aria-label="Edit" class="fill" width="20" height="28"
-                                            viewBox="0 0 20 28"fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#edit-icon"></use>
-                                        </svg>
-                                    </a>
-                                    <a href="javascript:void(0)" title="Delete" aria-label="Delete"
-                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                        <svg aria-label="Delete" class="delete-icon" width="20" height="20"
-                                            viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#delete-icon"></use>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr role="row" class="odd">
-                            <td class="text-center">
-                                <input class="form-check-input" type="checkbox" value=""
-                                    aria-label="Select Customer">
-                            </td>
-                            <td>
-                                <div class="row g-2">
-                                    <div class="col-md-2">
-                                        <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                            class="img-fluid rounded-circle" alt="Customer Image">
-                                    </div>
-                                    <div class="col-md-10">
-                                        <h6 class="fw-semibold">
-                                            Medical
-                                        </h6>
-                                        <p>dorigriffit@gmail.com</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                The way you gave that presentation today really good. I'm so impressed by your dedication to
-                                learning.
-                            </td>
-                            <td>
-                                <div class="row mt-4">
-                                    <div class="col-md-12 d-flex">
-                                        <svg width="18" height="16" viewBox="0 0 18 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#filled-star"></use>
-                                        </svg>
-                                        <svg width="18" height="16" viewBox="0 0 18 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#filled-star"></use>
-                                        </svg>
-                                        <svg width="18" height="16" viewBox="0 0 18 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#filled-star"></use>
-                                        </svg>
-                                        <svg width="17" height="16" viewBox="0 0 17 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#star"></use>
-                                        </svg>
-                                        <svg width="17" height="16" viewBox="0 0 17 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#star"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="d-flex actions">
-                                    <a href="javascript:void(0)" title="Hide" aria-label="View"
-                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                        <svg aria-label="Hide" width="24" height="19" viewBox="0 0 24 19"
-                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#hide-icon"></use>
-                                        </svg>
-                                    </a>
-                                    <a href="#" title="Edit" aria-label="Edit"
-                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                        <svg aria-label="Edit" class="fill" width="20" height="28"
-                                            viewBox="0 0 20 28"fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#edit-icon"></use>
-                                        </svg>
-                                    </a>
-                                    <a href="javascript:void(0)" title="Delete" aria-label="Delete"
-                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                        <svg aria-label="Delete" class="delete-icon" width="20" height="20"
-                                            viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/sprite.svg#delete-icon"></use>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="d-flex actions gap-3 justify-content-end mb-2">
-                    <div class="d-flex gap-2 align-items-center">
-                        <a href="#" title="View" aria-label="View"
-                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                            <svg aria-label="Hide" width="24" height="19" viewBox="0 0 24 19"
-                                fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <use xlink:href="/css/sprite.svg#hide-icon"></use>
-                            </svg>
-                        </a>
-                        <span class="text-sm">
-                            Hide
-                        </span>
-                    </div>
-                    <div class="d-flex gap-2 align-items-center">
-                        <a href="#" title="Edit" aria-label="Edit"
-                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                            <svg aria-label="Edit" class="fill" width="20" height="28"
-                                viewBox="0 0 20 28"fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <use xlink:href="/css/sprite.svg#edit-icon"></use>
-                            </svg>
-                        </a>
-                        <span class="text-sm">
-                            Edit
-                        </span>
-                    </div>
-                    <div class="d-flex gap-2 align-items-center">
-                        <a href="#" title="Delete" aria-label="Delete"
-                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                            <svg aria-label="Delete" class="delete-icon" width="20" height="20"
-                                viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <use xlink:href="/css/sprite.svg#delete-icon"></use>
-                            </svg>
-                        </a>
-                        <span class="text-sm">
-                            Delete
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="d-flex justify-content-between m-4">
-                <div>
-                    <p class="fw-semibold">
-                        Showing 1 to 5 of 100 entries
-                    </p>
-                </div>
-                <nav aria-label="Page Navigation">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">3</a>
-                        </li>
-                        <li class="page-item active">
-                            <a class="page-link" href="#">4</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+        <div class="">
+            @if ($feedbackType == false)
+                @livewire('app.common.lists.feedback', ['recievedFeedback' => false, 'user_id' => $userid])
+            @else
+                @livewire('app.common.lists.feedback', ['recievedFeedback' => true, 'user_id' => $userid])
+            @endif
         </div>
     </div>
     <!-- Provider Feedback Tab End-->
-    <div class="tab-pane fade" id="my-drive-tab-pane" role="tabpanel" aria-labelledby="my-drive-tab"
-        tabindex="0">
+    <div class="tab-pane fade" id="my-drive-tab-pane" role="tabpanel" aria-labelledby="my-drive-tab" tabindex="0">
         <div class="row">
             <h3>My Drive</h3>
             <p>Here you can manage your professional credentials and required documents. You will receive notifications when
