@@ -5,10 +5,10 @@ window.addEventListener('update-url', function(event) {
      
       let el = $('.select2')
       initSelect();
-      initDates();
+      //initDates();
       Livewire.hook('message.processed', (message, component) => {
           initSelect();
-          initDates();
+          //initDates();
       })
 
 
