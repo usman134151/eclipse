@@ -1,7 +1,7 @@
 <div x-data="{ bookingDetails: false, providerSavedForms: false }">
     @if (!$providerProfile)
         <div class="" wire:ignore>
-            <x-advancefilters type="" :bookings="$events" :providerProfile=true />
+            <x-advancefilters type="" :bookings="$events" :hideProvider=$hideProvider />
         </div>
     @endif
     <div wire:ignore id='calendar-container' class="w-100">

@@ -12,7 +12,7 @@ use Livewire\Component;
 
 class Calendar extends Component
 {
-	public $events = [], $model_id = 0, $model_type = 0, $providerProfile = false , $hideProvider=false;
+	public $events = [], $model_id = 0, $model_type = 0, $providerProfile = false, $hideProvider = false;
 	public $holidays = [], $specific = [], $user_id = null;
 
 	//adv filter variables
@@ -37,8 +37,8 @@ class Calendar extends Component
 		else
 			$this->events = $this->getCalendarEvents();
 
-		if($this->hideProvider)
-		$this->provider_ids=[$this->user_id];
+		if ($this->hideProvider)
+			$this->provider_ids = [$this->user_id];
 	}
 
 
@@ -164,7 +164,7 @@ class Calendar extends Component
 		// ];
 
 		$query = Booking::query();
-		if ($this->user_id && $this->providerProfile==false)
+		if ($this->user_id && $this->providerProfile == false)
 			$query->join('booking_providers', function ($join) {
 				$join->where('booking_providers.provider_id', $this->user_id);
 				$join->on('booking_providers.booking_id', 'bookings.id');
