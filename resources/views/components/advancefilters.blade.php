@@ -32,7 +32,7 @@
                 1,
                 'name',
                 true,
-                '',
+                'accommodation_search_filter',
                 '',
                 'accommodation_search_filter',
             ) !!}
@@ -47,7 +47,7 @@
                 1,
                 'name',
                 true,
-                '',
+                'booking_service_filter',
                 '',
                 'booking_service_filter',
             ) !!}
@@ -111,7 +111,7 @@
                     1,
                     'name',
                     true,
-                    '',
+                    'booking_specialization_search_filter',
                     '',
                     'booking_specialization_search_filter',
                 ) !!}
@@ -129,7 +129,8 @@
                     'id',
                     true,
                     'service_type_search_filter',
-                    'form-check '
+                    'form-check ',
+                    'service_type_search_filter'
                 ) !!}
                 {{-- ended updated --}}
             </div>
@@ -145,7 +146,7 @@
             </div>
             <div class="col-lg-5 ps-lg-3 mb-5">
                 <label class="form-label" for="provider">Provider</label>
-                <select data-placeholder="Select Provider" multiple wire:model='' class="select2 form-select" tabindex=""
+                <select data-placeholder="Select Provider" multiple  class="select2 form-select" tabindex=""
                     id="provider">
                     <option value=""></option>
                     <option selected>Chandler Leach</option>
@@ -157,9 +158,9 @@
 
             <select wire:model.defer="tag_names" data-placeholder="Select Tags" multiple class="select2 form-select" tabindex="" id="tags_selected">
                 <option value=""></option>
-                {{-- @foreach($tags as $tag)
+                @foreach($tags as $tag)
                     <option value="{{$tag->name}}">{{$tag->name}}</option>
-                @endforeach --}}
+                @endforeach
             </select>
             </div>
             <div class="col-lg-5 ps-lg-3 mb-5">
@@ -175,6 +176,7 @@
                     true,
                     'industry_filter',
                     '',
+                    'industry_filter'
                     
                 ) !!}
                 {{-- ended updated --}}

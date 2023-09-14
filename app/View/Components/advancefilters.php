@@ -2,10 +2,12 @@
 
 namespace App\View\Components;
 
+use App\Models\Tenant\Tag;
 use Illuminate\View\Component;
 
 class advancefilters extends Component
 {
+    public $tags;
     /**
      * Create a new component instance.
      *
@@ -13,7 +15,8 @@ class advancefilters extends Component
      */
     public function __construct()
     {
-        //
+		$this->tags = Tag::all();
+        
     }
 
     /**

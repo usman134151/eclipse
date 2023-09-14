@@ -208,11 +208,31 @@
     display: contents !important;
 }
 
-</style>
-<script>
-	function updateVal(attrName,val){
-	
-		Livewire.emit('updateVal', attrName, val);
+</style>@push('scripts')
+    <script>
+        function updateVal(attrName, val) {
 
-	}
-</script>
+                Livewire.emit('updateVal', attrName, val);
+        }
+        document.addEventListener('refreshSelects2', function(event) {
+            $('.select2').select2();
+            $('.select2').off('change').on('change', function(e) {
+                let attrName = $(this).attr('id');
+                updateVal(attrName, $(this).select2("val"));
+            });
+        });
+
+        function refreshSelectsEvent() {
+            $('.select2').select2();
+            $('.select2').off('change').on('change', function(e) {
+                let attrName = $(this).attr('id');
+                updateVal(attrName, $(this).select2("val"));
+            });
+        }
+
+         Livewire.on('closeUnassignModel', () => {
+            $('#UnassignModal').modal('hide');
+
+        });
+    </script>
+@endpush
