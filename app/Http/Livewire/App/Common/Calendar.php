@@ -16,8 +16,8 @@ class Calendar extends Component
 	public $holidays = [], $specific = [], $user_id = null;
 
 	//adv filter variables
-	public $accommodation_search_filter = [], $booking_service_filter = [], $booking_specialization_search_filter = [],
-		$service_type_search_filter = [], $tag_names = [];
+	public $accommodation_search_filter = [], $booking_service_filter = [], $booking_specialization_search_filter = [], $provider_ids=[],
+		$service_type_search_filter = [], $tag_names = [], $industry_filter=[], $booking_status_filter=null, $booking_number_filter=null;
 	public $tags;
 
 	protected $listeners = ['refreshCalendar' => 'refreshEvents', 'updateVal'];
@@ -38,6 +38,7 @@ class Calendar extends Component
 			$this->events = $this->getCalendarEvents();
 	}
 
+	
 	public function updateVal($attrName, $val)
 	{
 
@@ -53,63 +54,86 @@ class Calendar extends Component
 	}
 	private function applySearchFilter($query)
 	{
-		// if ($this->search) {
-		// 	$query->where('users.name', 'LIKE', "%" . $this->search . "%");
-		// }
+		if ($this->booking_number_filter) {
+			$query->where('bookings.booking_number', 'LIKE', "%" . $this->booking_number_filter . "%");
+		}
 		// if (count($this->tag_names)) {
 		// 	$query->whereJsonContains('tags', $this->tag_names);
 		// }
-		// if (count($this->provider_ids)) {
-		// 	$query->whereIn('users.id', $this->provider_ids);
-		// }
-		// if (count($this->services)) {
-		// 	$services = $this->services;
-		// 	$query->where(function ($query) use ($services) {
-		// 		foreach ($services as $service) {
-		// 			$query->whereHas('services', function ($query) use ($service) {
-		// 				$query->where('provider_accommodation_services.status', '=', 1)->where('service_id', $service);
-		// 			});
-		// 		}
-		// 	});
-		// }
+		if (count($this->provider_ids)) {
+			$provider_ids = $this->provider_ids;
+			$query->whereHas('booking_provider', function ($query) use ($provider_ids) {
+				$query->whereIn('booking_providers.provider_id', $provider_ids);
+			});
+		}
+		if ($this->booking_status_filter) {
+			$query->where('bookings.booking_status', 'LIKE', "%" . $this->booking_status_filter . "%");
+		}
+		if (count($this->industry_filter)) {
+			$industries = $this->industry_filter;
+			$query->whereHas('industries', function ($query) use ($industries) {
+				$query->whereIn('industries.id', $industries);
+			});
+		}
+		if (count($this->booking_service_filter)) {
+			$services = $this->booking_service_filter;
+			$query->whereHas('services', function ($query) use ($services) {
+						$query->whereIn('service_categories.id', $services);
+					});
+			
+		}
 		if (count($this->accommodation_search_filter)) {
 			$accommodations = $this->accommodation_search_filter;
 			$query->whereHas('accommodations', function ($query) use ($accommodations) {
 				$query->whereIn('accommodations.id', $accommodations);
 			});
 		}
-		// if (count($this->service_type_ids)) {
-		// 	//as ids are different in dropdown and in table need to replace for filter
-		// 	$replacements = [
-		// 		28 => 1,
-		// 		29 => 2,
-		// 		30 => 4,
-		// 		31 => 5
-		// 	];
-		// 	$filterArray = array_map(function ($item) use ($replacements) {
-		// 		return isset($replacements[$item]) ? $replacements[$item] : $item;
-		// 	}, $this->service_type_ids);
-		// 	$query->whereHas('services', function ($query) use ($filterArray) {
-		// 		$query->where('provider_accommodation_services.status', '=', 1)->where(function ($query) use ($filterArray) {
-		// 			foreach ($filterArray as $item) {
-		// 				// $query->orWhereRaw("FIND_IN_SET($item, service_type)");
-		// 				$query->where('service_type', 'LIKE', "%$item%");
-		// 			}
-		// 		});
-		// 	});
-		// }
-		// if (count($this->specializations)) {
-		// 	$specializations = $this->specializations;
-		// 	// dd($this->services);
-		// 	$query->whereHas('services', function ($query) use ($specializations) {
-		// 		$query->where('provider_accommodation_services.status', '=', 1)
-		// 			->whereHas('specializations', function ($query) use ($specializations) {
-		// 				$query->whereIn('specialization_id', $specializations);
-		// 			}, '=', count($specializations));
-		// 	});
-		// }
+		if (count($this->service_type_search_filter)) {
+			//as ids are different in dropdown and in table need to replace for filter
+			$replacements = [
+				28 => 1,
+				29 => 2,
+				30 => 4,
+				31 => 5
+			];
+			$filterArray = array_map(function ($item) use ($replacements) {
+				return isset($replacements[$item]) ? $replacements[$item] : $item;
+			}, $this->service_type_search_filter);
+			$query->whereHas('booking_services', function ($query) use ($filterArray) {
+				$query->where(function ($query) use ($filterArray) {
+					foreach ($filterArray as $item) {
+						$query->where('services', 'LIKE', "%$item%");
+					}
+				});
+			});
+		}
+		if (count($this->booking_specialization_search_filter)) {
+			$specializations = $this->booking_specialization_search_filter;
+			// dd($specializations);
+			foreach($specializations as $specilization)
+			$query->whereHas('booking_services', function ($query) use ($specilization) {
+						$query->whereJsonContains('specialization', [0=>$specilization]);
+			});
+		}
 
 		return $query;
+	}
+
+
+	public function resetFilters()
+	{
+		$this->booking_specialization_search_filter = [];
+		$this->tag_names = [];
+		$this->service_type_search_filter = [];
+		$this->booking_service_filter = [];
+		$this->industry_filter = [];
+		$this->accommodation_search_filter = [];
+		$this->booking_number_filter = null;
+		$this->booking_service_filter = [];
+		$this->booking_number_filter = null;
+		$this->booking_status_filter = null;
+
+		$this->dispatchBrowserEvent('refreshSelects2');
 	}
 
 	// Updated by Sohail Asghar to get booking events for dashboard calendar

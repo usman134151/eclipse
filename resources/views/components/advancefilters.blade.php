@@ -54,10 +54,20 @@
         </div>
     @endif
     <div class="col-lg-2 d-flex text-nowrap align-items-center align-self-end mb-5">
-        <a class="btn btn-inactive dropdown-toggle rounded" data-bs-toggle="collapse" href="#collapseAdvanceFilter"
-            role="button" aria-expanded="false" aria-controls="collapseAdvanceFilter">
-            <span class="">Advance Filter</span>
-        </a>
+        <div class="row">
+            <div class="col-12">
+                <a class="btn btn-inactive dropdown-toggle rounded" data-bs-toggle="collapse"
+                    href="#collapseAdvanceFilter" role="button" aria-expanded="false"
+                    aria-controls="collapseAdvanceFilter">
+                    <span class="">Advance Filter</span>
+                </a>
+            </div>
+            <div class="col-12 text-start my-1 mb-lg-0">
+                <button wire:click="resetFilters" type="button" class="btn btn-xs btn-outline-dark rounded">
+                    Clear all
+                </button>
+            </div>
+        </div>
     </div>
 </div>
 <div class="collapse" id="collapseAdvanceFilter">
@@ -130,12 +140,14 @@
                     true,
                     'service_type_search_filter',
                     'form-check ',
-                    'service_type_search_filter'
+                    'service_type_search_filter',
                 ) !!}
                 {{-- ended updated --}}
             </div>
             <div class="col-lg-5 pe-lg-3 mb-5">
-                <label class="form-label" for="OrgDeptUser">Organization / Department / User</label>
+                <label class="form-label" for="OrgDeptUser">Organization / Department / User
+                    <small>(coming soon)</small>
+                </label>
                 <select data-placeholder="Select Company" multiple class="select2 form-select" tabindex=""
                     id="OrgDeptUser">
                     <option value=""></option>
@@ -145,23 +157,27 @@
                 </select>
             </div>
             <div class="col-lg-5 ps-lg-3 mb-5">
-                <label class="form-label" for="provider">Provider</label>
-                <select data-placeholder="Select Provider" multiple  class="select2 form-select" tabindex=""
-                    id="provider">
+                <label class="form-label" for="provider_ids">Provider</label>
+                <select wire:model.defer="provider_ids" name="provider_ids" id="provider_ids"
+                    data-placeholder="Select Provider" multiple class="select2 form-select" tabindex="">
                     <option value=""></option>
-                    <option selected>Chandler Leach</option>
-                    <option selected>Giacomo Marsh</option>
+                    @foreach ($providers as $provider)
+                        <option value="{{ $provider->id }}">{{ $provider->name }}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="col-lg-5 pe-lg-3 mb-5">
-                <label class="form-label" for="tags">Tags</label>
+                <label class="form-label" for="tags">Tags
+                    <small>(coming soon)</small>
+                </label>
 
-            <select wire:model.defer="tag_names" data-placeholder="Select Tags" multiple class="select2 form-select" tabindex="" id="tags_selected">
-                <option value=""></option>
-                @foreach($tags as $tag)
-                    <option value="{{$tag->name}}">{{$tag->name}}</option>
-                @endforeach
-            </select>
+                <select disabled wire:model.defer="tag_names" data-placeholder="Select Tags" multiple
+                    class="select2 form-select" tabindex="" id="tags_selected">
+                    <option value=""></option>
+                    @foreach ($tags as $tag)
+                        <option value="{{ $tag->name }}">{{ $tag->name }}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="col-lg-5 ps-lg-3 mb-5">
                 <label class="form-label">Industry</label>
@@ -176,18 +192,27 @@
                     true,
                     'industry_filter',
                     '',
-                    'industry_filter'
-                    
+                    'industry_filter',
                 ) !!}
                 {{-- ended updated --}}
             </div>
             <div class="col-lg-5 ps-lg-3 mb-5">
                 <label class="form-label">Status</label>
-                <select data-placeholder="Select Booking Status" multiple class="select2 form-select" tabindex=""
-                    id="bookingStatus">
+                <select data-placeholder="Select Booking Status" wire:model.defer="booking_status_filter"
+                    class="select2 form-select" tabindex="" id="booking_status_filter"
+                    name="booking_status_filter">
                     <option value=""></option>
-                    <option selected>Booking Status</option>
+                    <option value=1>Approved</option>
+                    <option value=0>Pending</option>
+                    <option selected=2>Declined</option>
+
                 </select>
+            </div>
+
+            <div class="col-lg-5 ps-lg-3 mb-5">
+                <label class="form-label">Booking Number</label>
+                <input type="text" class="form-control" name="booking_number_filter" id="booking_number_filter"
+                    placeholder="Enter Booking Number" wire:change='updateVal("booking_number_filter",$event.target.value)' wire:model="booking_number_filter">
             </div>
         </div>
     </div>

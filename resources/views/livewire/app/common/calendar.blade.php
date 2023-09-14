@@ -1,6 +1,7 @@
 <div x-data="{ bookingDetails: false, providerSavedForms: false }">
-    <x-advancefilters type="" :bookings="$events" />
-
+    <div class="" wire:ignore>
+        <x-advancefilters type="" :bookings="$events" />
+    </div>
     <div wire:ignore id='calendar-container' class="w-100">
         <div id='{{ $providerProfile ? 'avail_calendar' : 'calendar' }}'></div>
     </div>
