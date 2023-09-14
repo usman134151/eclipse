@@ -843,7 +843,8 @@
                 Message Customer
             </span>
         </button>
-        <button type="button" wire:click="resendWelcomeEmail" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
+        <button type="button" wire:click="resendWelcomeEmail"
+            class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
             <span>
                 Resend Welcome Email
             </span>
@@ -874,7 +875,6 @@
     tabindex="0">
     <div class="row mb-2">
         <h3>Feedback
-            <small>(coming soon)</small>
         </h3>
     </div>
     <div class="col-md-12 d-flex col-12 gap-4 mb-4">
@@ -905,581 +905,8 @@
             </div>
         </div>
     </div>
-
-    {{-- 
-                                    <div class="col-md-6 mb-4">
-                                        <button class="btn btn-primary rounded">
-                                            Feedback Given
-                                        </button>
-                                        <button class="btn btn-inactive rounded mx-4">
-                                            Feedback Received
-                                        </button>
-                                    </div>
-                                      --}}
-    <div class="d-flex justify-content-between mb-2">
-        <div class="d-inline-flex align-items-center gap-4">
-            <label for="show_records" class="form-label">
-                Show
-            </label>
-            <select class="form-select" id="show_records">
-                <option>10</option>
-                <option>15</option>
-                <option>20</option>
-                <option>25</option>
-            </select>
-        </div>
-        <div class="d-inline-flex align-items-center gap-4">
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle btn-outline-primary" type="button"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    {{-- Updated by Shanila to Add svg icon --}}
-                    <svg aria-label="Export Button" width="23" height="26" viewBox="0 0 23 26">
-                        <use xlink:href="/css/common-icons.svg#document-dropdown">
-                        </use>
-                    </svg>
-                    {{-- End of update by Shanila --}}
-                </button>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            Action
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            Another action
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            Something else here
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <div class="table-responsive">
-            <table id="unassigned_data" class="table table-hover" aria-label="Department Table">
-                <thead>
-                    <tr role="row">
-                        <th scope="col" class="text-center">
-                            <input class="form-check-input" type="checkbox" value=""
-                                aria-label="Select All Departments">
-                        </th>
-                        <th scope="col">Customer</th>
-                        <th scope="col">Feedback</th>
-                        <th scope="col">Stars</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr role="row" class="odd">
-                        <td class="text-center">
-                            <input class="form-check-input" type="checkbox" value="" aria-label="Select">
-                        </td>
-                        <td>
-                            <div class="row g-2">
-                                <div class="col-md-2">
-                                    <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                        class="img-fluid rounded-circle" alt="Customer Image">
-                                </div>
-                                <div class="col-md-10">
-                                    <h6 class="fw-semibold">
-                                        Medical
-                                    </h6>
-                                    <p>dorigriffit@gmail.com</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            The way you gave that presentation today really good. I'm so
-                            impressed by your dedication to learning.
-                        </td>
-                        <td>
-                            <div class="row mt-4">
-                                <div class="col-md-12 d-flex">
-                                    {{-- Updated by Shanila to Add svg icon --}}
-                                    <svg aria-label="Stars" width="18" height="16" viewBox="0 0 18 16">
-                                        <use xlink:href="/css/common-icons.svg#filled-star">
-                                        </use>
-                                    </svg>
-                                    <svg aria-label="Stars" width="18" height="16" viewBox="0 0 18 16">
-                                        <use xlink:href="/css/common-icons.svg#filled-star">
-                                        </use>
-                                    </svg>
-                                    <svg aria-label="Stars" width="18" height="16" viewBox="0 0 18 16">
-                                        <use xlink:href="/css/common-icons.svg#filled-star">
-                                        </use>
-                                    </svg>
-                                    <svg aria-label="Stars" width="17" height="16" viewBox="0 0 17 16">
-                                        <use xlink:href="/css/common-icons.svg#star">
-                                        </use>
-                                    </svg>
-                                    <svg aria-label="Stars" width="17" height="16" viewBox="0 0 17 16">
-                                        <use xlink:href="/css/common-icons.svg#star">
-                                        </use>
-                                    </svg>
-                                    {{-- End of update by Shanila --}}
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="d-flex actions">
-                                <a href="javascript:void(0)" title="Hide" aria-label="Hide Cutomer"
-                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                    {{-- Updated by Shanila to Add svg icon --}}
-                                    <svg aria-label="Hide Customer" width="24" height="19"
-                                        viewBox="0 0 24 19">
-                                        <use xlink:href="/css/common-icons.svg#hide-icon">
-                                        </use>
-                                    </svg>
-                                    {{-- End of update by Shanila --}}
-                                </a>
-                                <a href="#" title="Edit Customer" aria-label="Edit"
-                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                    {{-- Updated by Shanila to Add svg icon --}}
-                                    <svg aria-label="Edit Customer" width="20" height="20"
-                                        viewBox="0 0 20 20">
-                                        <use xlink:href="/css/common-icons.svg#pencil">
-                                        </use>
-                                    </svg>
-                                    {{-- End of update by Shanila --}}
-                                </a>
-                                <a href="javascript:void(0)" title="Delete" aria-label="Delete Customer"
-                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                    {{-- Updated by Shanila to Add svg icon --}}
-                                    <svg aria-label="Delete Customer" width="21" height="21"
-                                        viewBox="0 0 21 21">
-                                        <use xlink:href="/css/common-icons.svg#recycle-bin">
-                                        </use>
-                                    </svg>
-                                    {{-- End of update by Shanila --}}
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr role="row" class="even">
-                        <td class="text-center">
-                            <input class="form-check-input" type="checkbox" value="" aria-label="Select">
-                        </td>
-                        <td>
-                            <div class="row g-2">
-                                <div class="col-md-2">
-                                    <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                        class="img-fluid rounded-circle" alt="Customer Image">
-                                </div>
-                                <div class="col-md-10">
-                                    <h6 class="fw-semibold">
-                                        Medical
-                                    </h6>
-                                    <p>dorigriffit@gmail.com</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            The way you gave that presentation today really good. I'm so
-                            impressed by your dedication to learning.
-                        </td>
-                        <td>
-                            <div class="row mt-4">
-                                <div class="col-md-12 d-flex">
-                                    {{-- Updated by Shanila to Add svg icon --}}
-                                    <svg aria-label="Stars" width="18" height="16" viewBox="0 0 18 16">
-                                        <use xlink:href="/css/common-icons.svg#filled-star">
-                                        </use>
-                                    </svg>
-                                    <svg aria-label="Stars" width="18" height="16" viewBox="0 0 18 16">
-                                        <use xlink:href="/css/common-icons.svg#filled-star">
-                                        </use>
-                                    </svg>
-                                    <svg aria-label="Stars" width="18" height="16" viewBox="0 0 18 16">
-                                        <use xlink:href="/css/common-icons.svg#filled-star">
-                                        </use>
-                                    </svg>
-                                    <svg aria-label="Stars" width="17" height="16" viewBox="0 0 17 16">
-                                        <use xlink:href="/css/common-icons.svg#star">
-                                        </use>
-                                    </svg>
-                                    <svg aria-label="Stars" width="17" height="16" viewBox="0 0 17 16">
-                                        <use xlink:href="/css/common-icons.svg#star">
-                                        </use>
-                                    </svg>
-                                    {{-- End of update by Shanila --}}
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="d-flex actions">
-                                <a href="javascript:void(0)" title="Hide" aria-label="Hide Cutomer"
-                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                    {{-- Updated by Shanila to Add svg icon --}}
-                                    <svg aria-label="Hide Customer" width="24" height="19"
-                                        viewBox="0 0 24 19">
-                                        <use xlink:href="/css/common-icons.svg#hide-icon">
-                                        </use>
-                                    </svg>
-                                    {{-- End of update by Shanila --}}
-                                </a>
-                                <a href="#" title="Edit Customer" aria-label="Edit"
-                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                    {{-- Updated by Shanila to Add svg icon --}}
-                                    <svg aria-label="Edit Customer" width="20" height="20"
-                                        viewBox="0 0 20 20">
-                                        <use xlink:href="/css/common-icons.svg#pencil">
-                                        </use>
-                                    </svg>
-                                    {{-- End of update by Shanila --}}
-                                </a>
-                                <a href="javascript:void(0)" title="Delete" aria-label="Delete Customer"
-                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                    {{-- Updated by Shanila to Add svg icon --}}
-                                    <svg aria-label="Delete Customer" width="21" height="21"
-                                        viewBox="0 0 21 21">
-                                        <use xlink:href="/css/common-icons.svg#recycle-bin">
-                                        </use>
-                                    </svg>
-                                    {{-- End of update by Shanila --}}
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr role="row" class="odd">
-                        <td class="text-center">
-                            <input class="form-check-input" type="checkbox" value="" aria-label="Select">
-                        </td>
-                        <td>
-                            <div class="row g-2">
-                                <div class="col-md-2">
-                                    <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                        class="img-fluid rounded-circle" alt="Customer Image">
-                                </div>
-                                <div class="col-md-10">
-                                    <h6 class="fw-semibold">
-                                        Medical
-                                    </h6>
-                                    <p>dorigriffit@gmail.com</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            The way you gave that presentation today really good. I'm so
-                            impressed by your dedication to learning.
-                        </td>
-                        <td>
-                            <div class="row mt-4">
-                                <div class="col-md-12 d-flex">
-                                    {{-- Updated by Shanila to Add svg icon --}}
-                                    <svg aria-label="Stars" width="18" height="16" viewBox="0 0 18 16">
-                                        <use xlink:href="/css/common-icons.svg#filled-star">
-                                        </use>
-                                    </svg>
-                                    <svg aria-label="Stars" width="18" height="16" viewBox="0 0 18 16">
-                                        <use xlink:href="/css/common-icons.svg#filled-star">
-                                        </use>
-                                    </svg>
-                                    <svg aria-label="Stars" width="18" height="16" viewBox="0 0 18 16">
-                                        <use xlink:href="/css/common-icons.svg#filled-star">
-                                        </use>
-                                    </svg>
-                                    <svg aria-label="Stars" width="17" height="16" viewBox="0 0 17 16">
-                                        <use xlink:href="/css/common-icons.svg#star">
-                                        </use>
-                                    </svg>
-                                    <svg aria-label="Stars" width="17" height="16" viewBox="0 0 17 16">
-                                        <use xlink:href="/css/common-icons.svg#star">
-                                        </use>
-                                    </svg>
-                                    {{-- End of update by Shanila --}}
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="d-flex actions">
-                                <a href="javascript:void(0)" title="Hide" aria-label="Hide Cutomer"
-                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                    {{-- Updated by Shanila to Add svg icon --}}
-                                    <svg aria-label="Hide Customer" width="24" height="19"
-                                        viewBox="0 0 24 19">
-                                        <use xlink:href="/css/common-icons.svg#hide-icon">
-                                        </use>
-                                    </svg>
-                                    {{-- End of update by Shanila --}}
-                                </a>
-                                <a href="#" title="Edit Customer" aria-label="Edit"
-                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                    {{-- Updated by Shanila to Add svg icon --}}
-                                    <svg aria-label="Edit Customer" width="20" height="20"
-                                        viewBox="0 0 20 20">
-                                        <use xlink:href="/css/common-icons.svg#pencil">
-                                        </use>
-                                    </svg>
-                                    {{-- End of update by Shanila --}}
-                                </a>
-                                <a href="javascript:void(0)" title="Delete" aria-label="Delete Customer"
-                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                    {{-- Updated by Shanila to Add svg icon --}}
-                                    <svg aria-label="Delete Customer" width="21" height="21"
-                                        viewBox="0 0 21 21">
-                                        <use xlink:href="/css/common-icons.svg#recycle-bin">
-                                        </use>
-                                    </svg>
-                                    {{-- End of update by Shanila --}}
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr role="row" class="even">
-                        <td class="text-center">
-                            <input class="form-check-input" type="checkbox" value="" aria-label="Select">
-                        </td>
-                        <td>
-                            <div class="row g-2">
-                                <div class="col-md-2">
-                                    <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                        class="img-fluid rounded-circle" alt="Customer Image">
-                                </div>
-                                <div class="col-md-10">
-                                    <h6 class="fw-semibold">
-                                        Medical
-                                    </h6>
-                                    <p>dorigriffit@gmail.com</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            The way you gave that presentation today really good. I'm so
-                            impressed by your dedication to learning.
-                        </td>
-                        <td>
-                            <div class="row mt-4">
-                                <div class="col-md-12 d-flex">
-                                    {{-- Updated by Shanila to Add svg icon --}}
-                                    <svg aria-label="Stars" width="18" height="16" viewBox="0 0 18 16">
-                                        <use xlink:href="/css/common-icons.svg#filled-star">
-                                        </use>
-                                    </svg>
-                                    <svg aria-label="Stars" width="18" height="16" viewBox="0 0 18 16">
-                                        <use xlink:href="/css/common-icons.svg#filled-star">
-                                        </use>
-                                    </svg>
-                                    <svg aria-label="Stars" width="18" height="16" viewBox="0 0 18 16">
-                                        <use xlink:href="/css/common-icons.svg#filled-star">
-                                        </use>
-                                    </svg>
-                                    <svg aria-label="Stars" width="17" height="16" viewBox="0 0 17 16">
-                                        <use xlink:href="/css/common-icons.svg#star">
-                                        </use>
-                                    </svg>
-                                    <svg aria-label="Stars" width="17" height="16" viewBox="0 0 17 16">
-                                        <use xlink:href="/css/common-icons.svg#star">
-                                        </use>
-                                    </svg>
-                                    {{-- End of update by Shanila --}}
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="d-flex actions">
-                                <a href="javascript:void(0)" title="Hide" aria-label="Hide Cutomer"
-                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                    {{-- Updated by Shanila to Add svg icon --}}
-                                    <svg aria-label="Hide Customer" width="24" height="19"
-                                        viewBox="0 0 24 19">
-                                        <use xlink:href="/css/common-icons.svg#hide-icon">
-                                        </use>
-                                    </svg>
-                                    {{-- End of update by Shanila --}}
-                                </a>
-                                <a href="#" title="Edit Customer" aria-label="Edit"
-                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                    {{-- Updated by Shanila to Add svg icon --}}
-                                    <svg aria-label="Edit Customer" width="20" height="20"
-                                        viewBox="0 0 20 20">
-                                        <use xlink:href="/css/common-icons.svg#pencil">
-                                        </use>
-                                    </svg>
-                                    {{-- End of update by Shanila --}}
-                                </a>
-                                <a href="javascript:void(0)" title="Delete" aria-label="Delete Customer"
-                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                    {{-- Updated by Shanila to Add svg icon --}}
-                                    <svg aria-label="Delete Customer" width="21" height="21"
-                                        viewBox="0 0 21 21">
-                                        <use xlink:href="/css/common-icons.svg#recycle-bin">
-                                        </use>
-                                    </svg>
-                                    {{-- End of update by Shanila --}}
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr role="row" class="odd">
-                        <td class="text-center">
-                            <input class="form-check-input" type="checkbox" value="" aria-label="Select">
-                        </td>
-                        <td>
-                            <div class="row g-2">
-                                <div class="col-md-2">
-                                    <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                        class="img-fluid rounded-circle" alt="Customer Image">
-                                </div>
-                                <div class="col-md-10">
-                                    <h6 class="fw-semibold">
-                                        Medical
-                                    </h6>
-                                    <p>dorigriffit@gmail.com</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            The way you gave that presentation today really good. I'm so
-                            impressed by your dedication to learning.
-                        </td>
-                        <td>
-                            <div class="row mt-4">
-                                <div class="col-md-12 d-flex">
-                                    {{-- Updated by Shanila to Add svg icon --}}
-                                    <svg aria-label="Stars" width="18" height="16" viewBox="0 0 18 16">
-                                        <use xlink:href="/css/common-icons.svg#filled-star">
-                                        </use>
-                                    </svg>
-                                    <svg aria-label="Stars" width="18" height="16" viewBox="0 0 18 16">
-                                        <use xlink:href="/css/common-icons.svg#filled-star">
-                                        </use>
-                                    </svg>
-                                    <svg aria-label="Stars" width="18" height="16" viewBox="0 0 18 16">
-                                        <use xlink:href="/css/common-icons.svg#filled-star">
-                                        </use>
-                                    </svg>
-                                    <svg aria-label="Stars" width="17" height="16" viewBox="0 0 17 16">
-                                        <use xlink:href="/css/common-icons.svg#star">
-                                        </use>
-                                    </svg>
-                                    <svg aria-label="Stars" width="17" height="16" viewBox="0 0 17 16">
-                                        <use xlink:href="/css/common-icons.svg#star">
-                                        </use>
-                                    </svg>
-                                    {{-- End of update by Shanila --}}
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="d-flex actions">
-                                <a href="javascript:void(0)" title="Hide" aria-label="Hide Cutomer"
-                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                    {{-- Updated by Shanila to Add svg icon --}}
-                                    <svg aria-label="Hide Customer" width="24" height="19"
-                                        viewBox="0 0 24 19">
-                                        <use xlink:href="/css/common-icons.svg#hide-icon">
-                                        </use>
-                                    </svg>
-                                    {{-- End of update by Shanila --}}
-                                </a>
-                                <a href="#" title="Edit Customer" aria-label="Edit"
-                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                    {{-- Updated by Shanila to Add svg icon --}}
-                                    <svg aria-label="Edit Customer" width="20" height="20"
-                                        viewBox="0 0 20 20">
-                                        <use xlink:href="/css/common-icons.svg#pencil">
-                                        </use>
-                                    </svg>
-                                    {{-- End of update by Shanila --}}
-                                </a>
-                                <a href="javascript:void(0)" title="Delete" aria-label="Delete Customer"
-                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                    {{-- Updated by Shanila to Add svg icon --}}
-                                    <svg aria-label="Delete Customer" width="21" height="21"
-                                        viewBox="0 0 21 21">
-                                        <use xlink:href="/css/common-icons.svg#recycle-bin">
-                                        </use>
-                                    </svg>
-                                    {{-- End of update by Shanila --}}
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="d-flex justify-content-between m-4">
-            <div>
-                <p class="fw-semibold">
-                    Showing 1 to 5 of 100 entries
-                </p>
-            </div>
-            <nav aria-label="Page Navigation">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">3</a>
-                    </li>
-                    <li class="page-item active">
-                        <a class="page-link" href="#">4</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-        <div class="d-flex actions gap-3 justify-content-end mb-2">
-            <div class="d-flex gap-2 align-items-center">
-                <a href="javascript:void(0)" title="Hide" aria-label="Hide Cutomer"
-                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                    {{-- Updated by Shanila to Add svg icon --}}
-                    <svg aria-label="Hide Customer" width="24" height="19" viewBox="0 0 24 19">
-                        <use xlink:href="/css/common-icons.svg#hide-icon">
-                        </use>
-                    </svg>
-                    {{-- End of update by Shanila --}}
-                </a>
-                <span class="text-sm">
-                    Hide
-                </span>
-            </div>
-            <div class="d-flex gap-2 align-items-center">
-                <a href="#" title="Edit Customer" aria-label="Edit"
-                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                    {{-- Updated by Shanila to Add svg icon --}}
-                    <svg aria-label="Edit Customer" width="20" height="20" viewBox="0 0 20 20">
-                        <use xlink:href="/css/common-icons.svg#pencil">
-                        </use>
-                    </svg>
-                    {{-- End of update by Shanila --}}
-                </a>
-                <span class="text-sm">
-                    Edit
-                </span>
-            </div>
-            <div class="d-flex gap-2 align-items-center">
-                <a href="#" title="Delete" aria-label="Delete"
-                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                    {{-- Updated by Shanila to Add svg icon --}}
-                    <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
-                        <use xlink:href="/css/common-icons.svg#recycle-bin">
-                        </use>
-                    </svg>
-                    {{-- End of update by Shanila --}}
-                </a>
-                <span class="text-sm">
-                    Delete
-                </span>
-            </div>
-        </div>
+    <div class="">
+        @livewire('app.common.lists.feedback', ['toFeedback' => true, 'user_id' => $userid])
     </div>
 </div>
 <div class="tab-pane fade" id="my-drive-tab-pane" role="tabpanel" aria-labelledby="my-drive-tab" tabindex="0">
@@ -1515,8 +942,7 @@
                     <input type="" name="" class="form-control js-single-date"
                         placeholder="Jan 1, 2022 - Oct 1, 2022" id="date-range">
                     {{-- Updated by Shanila to Add svg icon --}}
-                    <svg aria-label="Date" class="icon-date" width="20" height="20"
-                        viewBox="0 0 20 20">
+                    <svg aria-label="Date" class="icon-date" width="20" height="20" viewBox="0 0 20 20">
                         <use xlink:href="/css/common-icons.svg#datefield-icon">
                         </use>
                     </svg>
@@ -1589,8 +1015,8 @@
                 <tr role="row" class="odd">
                     <td>
                         <div class="form-check">
-                            <input class="form-check-input" aria-label="List Checkbox" id=""
-                                name="" type="checkbox" tabindex="">
+                            <input class="form-check-input" aria-label="List Checkbox" id="" name=""
+                                type="checkbox" tabindex="">
                         </div>
                     </td>
                     <td>
@@ -1664,8 +1090,8 @@
                 <tr role="row" class="even">
                     <td>
                         <div class="form-check">
-                            <input class="form-check-input" aria-label="List Checkbox" id=""
-                                name="" type="checkbox" tabindex="">
+                            <input class="form-check-input" aria-label="List Checkbox" id="" name=""
+                                type="checkbox" tabindex="">
                         </div>
                     </td>
                     <td>
@@ -1739,8 +1165,8 @@
                 <tr role="row" class="odd">
                     <td>
                         <div class="form-check">
-                            <input class="form-check-input" aria-label="List Checkbox" id=""
-                                name="" type="checkbox" tabindex="">
+                            <input class="form-check-input" aria-label="List Checkbox" id="" name=""
+                                type="checkbox" tabindex="">
                         </div>
                     </td>
                     <td>
@@ -1814,8 +1240,8 @@
                 <tr role="row" class="even">
                     <td>
                         <div class="form-check">
-                            <input class="form-check-input" aria-label="List Checkbox" id=""
-                                name="" type="checkbox" tabindex="">
+                            <input class="form-check-input" aria-label="List Checkbox" id="" name=""
+                                type="checkbox" tabindex="">
                         </div>
                     </td>
                     <td>
@@ -1889,8 +1315,8 @@
                 <tr role="row" class="odd">
                     <td>
                         <div class="form-check">
-                            <input class="form-check-input" aria-label="List Checkbox" id=""
-                                name="" type="checkbox" tabindex="">
+                            <input class="form-check-input" aria-label="List Checkbox" id="" name=""
+                                type="checkbox" tabindex="">
                         </div>
                     </td>
                     <td>
@@ -1964,8 +1390,8 @@
                 <tr role="row" class="even">
                     <td>
                         <div class="form-check">
-                            <input class="form-check-input" aria-label="List Checkbox" id=""
-                                name="" type="checkbox" tabindex="">
+                            <input class="form-check-input" aria-label="List Checkbox" id="" name=""
+                                type="checkbox" tabindex="">
                         </div>
                     </td>
                     <td>
@@ -2039,8 +1465,8 @@
                 <tr role="row" class="odd">
                     <td>
                         <div class="form-check">
-                            <input class="form-check-input" aria-label="List Checkbox" id=""
-                                name="" type="checkbox" tabindex="">
+                            <input class="form-check-input" aria-label="List Checkbox" id="" name=""
+                                type="checkbox" tabindex="">
                         </div>
                     </td>
                     <td>
