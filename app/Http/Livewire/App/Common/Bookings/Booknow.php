@@ -325,8 +325,10 @@ class Booknow extends Component
       $this->schedule=BookingOperationsService::getSchedule($this->booking->company_id,$this->booking->customer_id);
       
       if($this->schedule && $this->schedule['timezone_id'])
+         {
             $this->dates=[];  
             $this->addDate();
+         }   
 
 
     }
