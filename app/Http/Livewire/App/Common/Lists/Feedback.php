@@ -12,7 +12,9 @@ use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Heade
 final class Feedback extends PowerGridComponent
 {
     use ActionButton;
-    public $recievedFeedback = true, $user_id = 0;
+    public $recievedFeedback = true, $user_id = 0, $deleteRecordId=0;
+
+    protected $listeners = ['delete'];
 
     /*
     |--------------------------------------------------------------------------
@@ -148,7 +150,7 @@ final class Feedback extends PowerGridComponent
                                             <use xlink:href="/css/sprite.svg#edit-icon"></use>
                                         </svg>
                                     </a>
-                                    <a href="javascript:void(0)" title="Delete" aria-label="Delete"
+                                    <a href="javascript:void(0)" title="Delete" aria-label="Delete" wire:click="setDeleteRecord('.$model->id.')"
                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                         <svg aria-label="Delete" class="delete-icon" width="20" height="20"
                                             viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -246,4 +248,12 @@ final class Feedback extends PowerGridComponent
         ];
     }
     */
+
+    public function setDeleteRecord($id){
+        FeedbackRating::where('id',$id)->delete();
+        $this->emit('showConfirmation',"Record has been deleted");
+    }
+
+    
+
 }
