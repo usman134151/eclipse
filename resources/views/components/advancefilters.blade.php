@@ -161,9 +161,11 @@
                 <select wire:model.defer="provider_ids" name="provider_ids" id="provider_ids"
                     data-placeholder="Select Provider" multiple class="select2 form-select" tabindex="">
                     <option value=""></option>
-                    @foreach ($providers as $provider)
-                        <option value="{{ $provider->id }}">{{ $provider->name }}</option>
-                    @endforeach
+                    @if(isset($providers))
+                        @foreach ($providers as $provider)
+                            <option value="{{ $provider->id }}">{{ $provider->name }}</option>
+                        @endforeach
+                    @endif
                 </select>
             </div>
             <div class="col-lg-5 pe-lg-3 mb-5">
@@ -174,9 +176,11 @@
                 <select disabled wire:model.defer="tag_names" data-placeholder="Select Tags" multiple
                     class="select2 form-select" tabindex="" id="tags_selected">
                     <option value=""></option>
-                    @foreach ($tags as $tag)
-                        <option value="{{ $tag->name }}">{{ $tag->name }}</option>
-                    @endforeach
+                    @if(isset($tags))
+                        @foreach ($tags as $tag)
+                            <option value="{{ $tag->name }}">{{ $tag->name }}</option>
+                        @endforeach
+                    @endif
                 </select>
             </div>
             <div class="col-lg-5 ps-lg-3 mb-5">
