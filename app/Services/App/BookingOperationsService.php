@@ -101,8 +101,8 @@ class BookingOperationsService{
       return $bookId;
   }
 
-  public static function getBookingCharges($booking,$services,$dates){
-    $schedule=SELF::getSchedule($booking->company_id,$booking->customer_id);
+  public static function getBookingCharges($booking,$services,$dates,$schedule){
+   
    
     foreach($services as &$service){
         $service=SELF::calculateServiceTotal($service,$schedule);
@@ -313,7 +313,7 @@ class BookingOperationsService{
         foreach($schedule->timeslots as $timeSlot){
 
             if($timeSlot->timeslot_day == $startDayOfWeek && $timeSlot->timeslot_type == 1){
-             
+            
                 // Check if the duration falls between business hours
                 $slotStart = Carbon::parse($timeSlot['timeslot_start_time'])->format('H:i:s');
                 $slotEnd = Carbon::parse($timeSlot['timeslot_end_time'])->format('H:i:s');
@@ -411,7 +411,7 @@ class BookingOperationsService{
             $minutes = $diff->i;
         }
         else{
-          
+         
             $hours =  $endDateTime->diffInHours($startDateTime);
             $minutes = $diff->i; 
         }

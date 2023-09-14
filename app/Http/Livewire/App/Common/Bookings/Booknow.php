@@ -18,9 +18,12 @@ use App\Models\Tenant\CustomizeForms;
 use App\Models\Tenant\Payment;
 use App\Services\App\AddressService;
 use Illuminate\Support\Collection;
+use Illuminate\Validation\ValidationException;
+
 use Carbon\Carbon;
 use DateTime;
 use Auth;
+
 
 
 class Booknow extends Component
@@ -33,21 +36,7 @@ class Booknow extends Component
         'updateSelectedDepartments','confirmation',
         'saveCustomFormData'=>'save' ,'switch','updateAddress' => 'addAddress'];
 
-    public $dates=[[
-            'start_date'=>'',
-            'start_hour' => '00',
-            'start_min'=>'00',
-            'end_date'=>'',
-            'end_hour' => '00',
-            'end_min'=>'00',
-            'start_am'=>'',
-            'end_am'=>'',
-            'duration_day' => '',
-            'duration_hour' => '',
-            'duration_minute' => '',
-            'time_zone' => ''
-
-    ]];
+    public $dates=[];
     public $foundService=['default_providers'=>2];
     public $payment,$discountedAmount=0,$totalAmount=0;
     
@@ -102,8 +91,10 @@ class Booknow extends Component
     public $assignedSupervisor="checked";
 
 
+
     public function mount(Booking $booking)
     {
+        $this->addDate();
         $this->booking=$booking;
         $this->payment=new Payment;
         $this->payment['discounted_amount']=0;
@@ -246,6 +237,27 @@ class Booknow extends Component
         }
         if($step==1){
             $this->validate();
+             //get schedule too
+             $slotNotFound=0;
+            $this->schedule=BookingOperationsService::getSchedule($this->booking->company_id,$this->booking->customer_id);
+            //cross checking schedules
+            $dates=$this->dates;
+            foreach($this->services as $service){
+                $service['start_time'] =  Carbon::parse($dates[0]['start_date'].' '.$dates[0]['start_hour'].':'.$dates[0]['start_min'].':00')->format('Y-m-d H:i:s');
+                $service['end_time'] =  Carbon::parse($dates[0]['end_date'].' '.$dates[0]['end_hour'].':'.$dates[0]['end_min'].':00')->format('Y-m-d H:i:s');
+        
+                $slotCheck=BookingOperationsService::getBillableDuration($service,$this->schedule);
+                if(!$slotCheck['business_hours'] && !$slotCheck['business_minutes'] && !$slotCheck['after_business_hours'] && !$slotCheck['after_business_minutes'])
+                 {$slotNotFound=1;
+                   
+                }
+            }
+            if ($slotNotFound === 1) {
+                throw ValidationException::withMessages([
+                    'slot' => ['The selected service time falls within the business\'s closed hours. Please choose a start and end time during the operating hours to proceed with your booking.'],
+                ]);
+            }
+
             if($this->booking->requester_information=='')
                 $this->booking->requester_information=0;
             //calling booking service passing required data
@@ -321,6 +333,8 @@ class Booknow extends Component
         $this->bManagers = $this->getUsersByRole(9, $departmentIds, 'bManagers');
         $this->consumers = $this->getUsersByRole(7, $departmentIds, 'consumers');
         $this->participants = $this->getUsersByRole(8, $departmentIds, 'bManagers');
+
+       
         
     }
     
@@ -396,14 +410,21 @@ class Booknow extends Component
         unset($this->services[$serviceIndex]['meetings'][$index]);
         $this->services[$serviceIndex]['meetings'] = array_values($this->services[$serviceIndex]['meetings']); //updated by Amna Bilal to meeting remove link from service array
     }
-    public function addDate(){
+    public function addDate($givenHour=1){
+        $currentDate = Carbon::now();
+        $currentHour = $currentDate->format('H');
+        $currentMinute = $currentDate->format('i');
+        
+        $endHour = $currentDate->addHours($givenHour)->format('H');
+        $endTime = $currentDate->format('i');
+        
         $this->dates[] =[
-            'start_date'=>'',
-            'start_hour' => '00',
-            'start_min'=>'00',
-            'end_date'=>'',
-            'end_hour' => '00',
-            'end_min'=>'00',
+            'start_date' => $currentDate->format('Y-m-d'),
+            'start_hour' => $currentHour,
+            'start_min' => $currentMinute,
+            'end_date' => $currentDate->format('Y-m-d'), // Adjust if necessary, if the end date might be different
+            'end_hour' => $endHour,
+            'end_min' => $endTime,
             'start_am'=>'',
             'end_am'=>'',
             'duration_day' => '',
@@ -847,7 +868,7 @@ class Booknow extends Component
           
         }
    //   dd($bookingServices);
-        $this->services=BookingOperationsService::getBookingCharges($this->booking,$bookingServices,$this->dates);
+        $this->services=BookingOperationsService::getBookingCharges($this->booking,$bookingServices,$this->dates,$this->schedule);
         $this->updateTotals();
        // dd($this->booking->total_amount);
        // dd($this->bookingCharges);
