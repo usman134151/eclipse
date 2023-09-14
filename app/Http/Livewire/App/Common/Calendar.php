@@ -6,6 +6,7 @@ use App\Models\Tenant\Booking;
 use App\Models\Tenant\ProviderSpecificSchedule;
 use App\Models\Tenant\ProviderVacation;
 use App\Models\Tenant\Schedule;
+use App\Models\Tenant\Tag;
 use Carbon\Carbon;
 use Livewire\Component;
 
@@ -13,6 +14,11 @@ class Calendar extends Component
 {
 	public $events = [], $model_id = 0, $model_type = 0, $providerProfile = false;
 	public $holidays = [], $specific = [], $user_id=null;
+
+	//adv filter variables
+	public $accommodation_search_filter=null, $booking_service_filter=null, $booking_specialization_search_filter=null, $service_type_search_filter=null,$tag_names=[];
+	public $tags;
+
 	protected $listeners = ['refreshCalendar'=> 'refreshEvents'];
 
 
@@ -29,6 +35,8 @@ class Calendar extends Component
 
 	public function mount()
 	{
+		$this->tags = Tag::all();
+
 	}
 
 	// Updated by Sohail Asghar to get booking events for dashboard calendar

@@ -143,7 +143,6 @@
         </div>
         /Filters -->
 		
-		<x-advancefilters/>
 		@livewire('app.common.calendar')
 	
 	  </div>
