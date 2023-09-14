@@ -94,7 +94,7 @@ class Booknow extends Component
 
     public function mount(Booking $booking)
     {
-        $this->addDate();
+       
         $this->booking=$booking;
         $this->payment=new Payment;
         $this->payment['discounted_amount']=0;
@@ -143,7 +143,7 @@ class Booknow extends Component
             $this->selectedIndustries=$this->booking->industries->pluck('id')->toArray();
           // dd( $this->selectedIndustries);
             $this->industryNames = $this->booking->industries->pluck('name');
-            $this->dates=[];
+           
             $this->refreshAddresses();
             foreach($this->services as  $index => &$service){
                
@@ -185,12 +185,11 @@ class Booknow extends Component
         if(!$this->booking->id){ //init data in case of new booking
             $this->booking->requester_information='';
             $this->booking->frequency_id=1;
-           
+            $this->addDate();
            
 
            
-            if($this->schedule)
-            $this->dates[0]['time_zone']=$this->schedule->timezone_id;
+            
        
            
         }
@@ -210,7 +209,7 @@ class Booknow extends Component
             }
            }
         }
-      
+    
        
         $this->dispatchBrowserEvent('refreshSelects');
     
@@ -322,6 +321,14 @@ class Booknow extends Component
     public function updateCompany(){
        
       $this->updateUsers();
+      $this->dispatchBrowserEvent('refreshSelects');
+      $this->schedule=BookingOperationsService::getSchedule($this->booking->company_id,$this->booking->customer_id);
+      
+      if($this->schedule && $this->schedule['timezone_id'])
+            $this->dates=[];  
+            $this->addDate();
+
+
     }
     
    //refactor code
@@ -334,6 +341,7 @@ class Booknow extends Component
         $this->consumers = $this->getUsersByRole(7, $departmentIds, 'consumers');
         $this->participants = $this->getUsersByRole(8, $departmentIds, 'bManagers');
 
+        
        
         
     }
@@ -410,14 +418,48 @@ class Booknow extends Component
         unset($this->services[$serviceIndex]['meetings'][$index]);
         $this->services[$serviceIndex]['meetings'] = array_values($this->services[$serviceIndex]['meetings']); //updated by Amna Bilal to meeting remove link from service array
     }
+
+    public function getTimeZone($timeZone){
+        $timeZoneCity='';
+
+
+        $selectedTimezone = collect($this->timezones)->firstWhere('id', $timeZone);
+
+        if ($selectedTimezone) {
+            $timezoneString = $selectedTimezone['setup_value_label'];
+
+            // Extracting the timezone city from the string
+            preg_match('/\(([^)]+)\)/', $timezoneString, $matches);
+            $timeZoneCity = isset($matches[1]) ? $matches[1] : null;
+        }    
+        return $timeZoneCity;
+    }
+
     public function addDate($givenHour=1){
-        $currentDate = Carbon::now();
+        if($this->schedule && $this->schedule['timezone_id'])
+        $timeZone=$this->schedule->timezone_id;
+        else 
+            $timeZone=1;
+        $timeZoneCity=$this->getTimeZone($timeZone);
+    
+            // If we were able to extract a city, use it to get the current date and time
+            if ($timeZoneCity) {
+                $currentDate = Carbon::now(new \DateTimeZone($timeZoneCity));
+            } else {
+                // If not, fall back to the default timezone
+                $currentDate = Carbon::now();
+            }
+
+       
+        
+
+        
         $currentHour = $currentDate->format('H');
         $currentMinute = $currentDate->format('i');
         
         $endHour = $currentDate->addHours($givenHour)->format('H');
         $endTime = $currentDate->format('i');
-        
+
         $this->dates[] =[
             'start_date' => $currentDate->format('Y-m-d'),
             'start_hour' => $currentHour,
@@ -430,10 +472,12 @@ class Booknow extends Component
             'duration_day' => '',
             'duration_hour' => '',
             'duration_minute' => '',
-            'time_zone' => ''
+            'time_zone' => $timeZone
 
     ];
+    
     $this->dispatchBrowserEvent('refreshSelects');
+    $this->updateDurations(count($this->dates)-1);
     }
     public function removeDate($index)
     {
@@ -662,7 +706,7 @@ class Booknow extends Component
       
         // Assuming you have the $date array in your Livewire component.
         try {
-           
+            $timeZoneCity=$this->getTimeZone($this->dates[$index]['time_zone']);
         if (isset($this->dates[$index]['start_date']) && isset($this->dates[$index]['end_date']) &&
             isset($this->dates[$index]['start_hour']) && isset($this->dates[$index]['start_min']) &&
             isset($this->dates[$index]['end_hour']) && isset($this->dates[$index]['end_min'])) {
@@ -679,10 +723,17 @@ class Booknow extends Component
                 }
                    
                     
-            $startDateTime = Carbon::create($this->dates[$index]['start_date'].$this->dates[$index]['start_hour'].':'.$this->dates[$index]['start_min'].':00');
-    
-            $endDateTime =  Carbon::create($this->dates[$index]['end_date'].$this->dates[$index]['end_hour'].':'.$this->dates[$index]['end_min'].':00');
-         
+                $startDateTime = Carbon::createFromFormat(
+                    'Y-m-dH:i:s', 
+                    $this->dates[$index]['start_date'] . $this->dates[$index]['start_hour'] . ':' . $this->dates[$index]['start_min'] . ':00', 
+                    new \DateTimeZone($timeZoneCity)
+                );
+                
+                $endDateTime = Carbon::createFromFormat(
+                    'Y-m-dH:i:s', 
+                    $this->dates[$index]['end_date'] . $this->dates[$index]['end_hour'] . ':' . $this->dates[$index]['end_min'] . ':00', 
+                    new \DateTimeZone($timeZoneCity)
+                );        
             if ($endDateTime >= $startDateTime) {
                 $diff = $endDateTime->diff($startDateTime);
     
@@ -702,7 +753,7 @@ class Booknow extends Component
         }
     } catch (\Exception $e) {
         // Handle the exception, log the error, or debug further
-        dd($e->getMessage());
+      //  dd($e->getMessage());
     }
     
         return null; // Return null if the required fields are not set.
