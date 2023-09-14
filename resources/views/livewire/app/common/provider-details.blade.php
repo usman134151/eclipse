@@ -687,7 +687,7 @@
         <div class="row mb-3">
             <h3>Schedule</h3>
             <div class="w-100">
-                @livewire('app.common.calendar', ['profileProvider' => false, 'user_id' => $userid], key(time()))
+                @livewire('app.common.calendar', ['profileProvider' => false, 'user_id' => $userid,'hideProvider'=>true], key(time()))
             </div>
         </div>
 

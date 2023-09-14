@@ -12,7 +12,7 @@ use Livewire\Component;
 
 class Calendar extends Component
 {
-	public $events = [], $model_id = 0, $model_type = 0, $providerProfile = false;
+	public $events = [], $model_id = 0, $model_type = 0, $providerProfile = false , $hideProvider=false;
 	public $holidays = [], $specific = [], $user_id = null;
 
 	//adv filter variables
@@ -36,6 +36,8 @@ class Calendar extends Component
 			$this->events = $this->getEventsForMonth();
 		else
 			$this->events = $this->getCalendarEvents();
+
+		if($this->hideProvider)
 		$this->provider_ids=[$this->user_id];
 	}
 
