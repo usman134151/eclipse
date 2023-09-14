@@ -754,12 +754,12 @@
                                                             </select>
                                                         </div>
                                                         <div class="form-check form-switch form-switch-column mb-0">
-                                                            <input checked="" class="form-check-input" type="checkbox"
+                                                           <!-- <input checked="" class="form-check-input" type="checkbox"
                                                                 role="switch" id="startTimeAMPM" aria-label="AM PM Toggle button" wire:key="starttime-{{ $index }}" wire:model="dates.{{$index}}.start_time">
                                                             <label class="form-check-label"
                                                                 for="startTimeAMPM">AM</label>
                                                             <label class="form-check-label"
-                                                                for="startTimeAMPM">PM</label>
+                                                                for="startTimeAMPM">PM</label> -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -812,12 +812,12 @@
                                                             </select>
                                                         </div>
                                                         <div class="form-check form-switch form-switch-column mb-0">
-                                                            <input checked="" class="form-check-input" type="checkbox"
+                                                          <!--  <input checked="" class="form-check-input" type="checkbox"
                                                                 role="switch" id="startTimeAMPM" aria-label="AM PM Toggle button" wire:key="starttime-{{ $index }}" wire:model.defer="dates.{{$index}}.end_time">
                                                             <label class="form-check-label"
                                                                 for="startTimeAMPM">AM</label>
                                                             <label class="form-check-label"
-                                                                for="startTimeAMPM">PM</label>
+                                                                for="startTimeAMPM">PM</label> -->
                                                         </div>
                                                     </div>
                                                 </div>
