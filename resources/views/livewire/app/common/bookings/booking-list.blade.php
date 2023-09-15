@@ -165,7 +165,7 @@
                                                                 $code = 'none';
                                                                 if ($booking['is_closed'] == 1) {
                                                                     $code = 'Completed Assignment';
-                                                                }elseif ($booking['is_closed'] == 2) {
+                                                                } elseif ($booking['is_closed'] == 2) {
                                                                     $code = 'Completed Assignment';
                                                                 } else {
                                                                     if ($booking['status'] == 2) {
