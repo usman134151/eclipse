@@ -134,13 +134,18 @@ final class SetupDetails extends PowerGridComponent
     {
         $columns = [
             Column::make('Setup Value Label', 'setup_value_label', '')->searchable()->makeinputtext()->sortable()->editOnClick(),
-            Column::make('Status', 'status', '')->makeBooleanFilter('status', 'Deactivated', 'Activated')->toggleable(1, 'Deactivated', 'Activated')
+           
         ];
 
+
+        if (!$this->setupDeleteable){
+            $columns[] = Column::make('', 'setup_value_alt_id', '');// updated by shanila to make column
+        }
+
+        $columns[]= Column::make('Status', 'status', '')->makeBooleanFilter('status', 'Deactivated', 'Activated')->toggleable(1, 'Deactivated', 'Activated');
         if ($this->setupDeleteable) {
             $columns[] = Column::make('Action', 'setup_deleteable', '');// updated by shanila to make column
         }
-
         return $columns;
     }
     // A method to handle the edit button click event
