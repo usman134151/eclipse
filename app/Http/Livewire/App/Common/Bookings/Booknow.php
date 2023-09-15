@@ -228,6 +228,7 @@ class Booknow extends Component
 
     public function save($redirect = 1,$draft=0,$step=1)
     {
+       // dd($this->booking);
         //booking basic info
         if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
                 
