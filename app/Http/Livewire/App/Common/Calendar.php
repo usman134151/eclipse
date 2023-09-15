@@ -140,6 +140,8 @@ class Calendar extends Component
 		$this->booking_service_filter = [];
 		$this->booking_number_filter = null;
 		$this->booking_status_filter = null;
+		if (!$this->hideProvider)
+			$this->provider_ids = [];
 
 
 		$this->events = $this->getCalendarEvents();
