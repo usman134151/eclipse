@@ -17,7 +17,7 @@ class BookingList extends Component
 	use WithPagination;
 
 	public $bookingType = 'past';
-	public $showBookingDetails;
+	public $showBookingDetails, $colorCodes=[];
 	public $bookingSection;
 	public  $limit = 10, $counter, $ad_counter = 0, $ci_counter = 0, $co_counter = 0, $currentServiceId, $panelType = 1;
 	public  $booking_id = 0, $provider_id = null, $booking_service_id = 0;
@@ -309,6 +309,13 @@ class BookingList extends Component
 				'users.name',
 			])->get()->toArray();
 		$this->dispatchBrowserEvent('refreshSelects2');
+
+
+		$colorCodes = SetupValue::where(['setup_id' => 10, 'status' => 1])->select(['setup_value_alt_id as type', 'setup_value_label as code'])->get()->toArray();
+		foreach ($colorCodes as $r) {
+			$this->colorCodes[$r['type']] = $r['code'];
+		}
+		$this->colorCodes['none'] = '';
 
 	}
 
