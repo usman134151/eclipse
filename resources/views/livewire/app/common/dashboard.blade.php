@@ -151,19 +151,20 @@
 			
 			<!-- BEGIN: Filters -->
       <div class="d-flex flex-lg-row flex-column justify-content-start gap-4 mb-5">
-        <div class="row g-0">
+	
+        <!-- <div class="row g-0">
           <div class="position-relative col-12 col-lg-auto px-lg-1 mb-2 mb-lg-0">
-            <!-- Begin : it will be replaced with livewire module-->
+           
             
 			<svg class="icon-date sm cursor-pointer" width="20" height="20" viewBox="0 0 20 20" fill="none"
                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#date-field"></use>
             </svg>
             <div class="col-12 col-lg-auto">
             <input type="" class="form-control form-control-sm js-single-date" placeholder="MM/DD/YYYY" name="selectDate" aria-label="Select Date">
-            <!-- End : it will be replaced with livewire module -->
+         
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="row g-0">
           <div class="mb-2 mb-lg-0 col-lg-auto col-12 px-1">
             <a href="/admin/bookings/today" class="btn btn-xs w-100 btn-inactive rounded">Today</a>
@@ -186,7 +187,7 @@
 	 
       <!-- END: Filters -->
 
-		@livewire('app.common.bookings.booking-list',['bookingType'=>'Upcoming'])
+		@livewire('app.common.bookings.booking-list',['bookingType'=>'Upcoming','showHeader'=>false])
 		
 	</div>
 	  <div class="tab-pane fade" id="availability-tab-pane" role="tabpanel" aria-labelledby="availability-tab" tabindex="0">

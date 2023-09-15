@@ -17,6 +17,7 @@ class BookingList extends Component
 	use WithPagination;
 
 	public $bookingType = 'past';
+	public $showHeader=true;
 	public $showBookingDetails, $colorCodes = [];
 	public $bookingSection;
 	public  $limit = 10, $counter, $ad_counter = 0, $ci_counter = 0, $co_counter = 0, $currentServiceId, $panelType = 1;
