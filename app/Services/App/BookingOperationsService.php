@@ -172,6 +172,7 @@ class BookingOperationsService{
     foreach($serviceCharges as $serviceCharge){
      
             $charges=$serviceCharge[0]['price'];
+          
             if(array_key_exists('multiply_providers',$serviceCharge[0]) && $serviceCharge[0]['multiply_providers'])
               $charges*=$service['provider_count'];
             if(array_key_exists('multiply_duration',$serviceCharge[0]) && $serviceCharge[0]['multiply_duration'])
@@ -389,7 +390,7 @@ class BookingOperationsService{
     ];
     foreach($scheduleChecks as $scheduleData){
         $schedule = Schedule::where('model_id', $scheduleData['model_id'])->where('model_type', $scheduleData['model_type'])->with('timeslots','holidays')->get()->first();
-        if(!is_null($schedule)){
+        if(!is_null($schedule) && count($schedule['timeslots'])){
             return $schedule;
         }
     }

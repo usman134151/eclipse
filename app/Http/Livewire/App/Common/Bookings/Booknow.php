@@ -252,6 +252,7 @@ class Booknow extends Component
                         'slot' => ['Invalid time range selected - Service start time must be less than service end time'],
                     ]);
                 }
+              
                 $slotCheck=BookingOperationsService::getBillableDuration($service,$this->schedule);
                 if(!$slotCheck['business_hours'] && !$slotCheck['business_minutes'] && !$slotCheck['after_business_hours'] && !$slotCheck['after_business_minutes'])
                  {$slotNotFound=1;
