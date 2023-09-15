@@ -15,8 +15,9 @@ class BookingColorCodesSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('setup')->where('setup_value','Booking color codes')->delete();
         $setupRecord = DB::table('setup')->updateOrInsert(
-            ['setup_value' => 'Booking color codes'],
+            ['id'=>10,'setup_value' => 'Booking color codes'],
             ['setup_deleteable' => 0]
         );
         

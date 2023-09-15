@@ -39,6 +39,8 @@ class TenantDatabaseSeeder extends Seeder
       $this->call(RolesCustomerSeeder::class);
       $this->call(NotificationSeeder::class); //added records in setup table by Amna Bilal
       $this->call(NotificationTagsSeeder::class); //added records in setup table by Amna Bilal
+      $this->call(SetupSeederForDocumentTypes::class); //added records in setup table by Amna Bilal
+      
       $this->call(BookingColorCodesSeeder::class); //added records in setup table by Amna Bilal
     }
 
