@@ -17,7 +17,7 @@ class BookingList extends Component
 	use WithPagination;
 
 	public $bookingType = 'past';
-	public $showBookingDetails;
+	public $showBookingDetails, $colorCodes = [];
 	public $bookingSection;
 	public  $limit = 10, $counter, $ad_counter = 0, $ci_counter = 0, $co_counter = 0, $currentServiceId, $panelType = 1;
 	public  $booking_id = 0, $provider_id = null, $booking_service_id = 0;
@@ -28,7 +28,7 @@ class BookingList extends Component
 	//adv filter variables
 	public $accommodation_search_filter = [], $booking_service_filter = [], $booking_specialization_search_filter = [], $provider_ids = [], $name_seacrh_filter = '',
 		$service_type_search_filter = [], $tag_names = [], $industry_filter = [], $booking_status_filter = null, $booking_number_filter = null;
-	public $tags = [], $filterProviders = [], $hideProvider=false;
+	public $tags = [], $filterProviders = [], $hideProvider = false;
 
 
 
@@ -84,7 +84,7 @@ class BookingList extends Component
 
 	public function applyFilters()
 	{
-	$this->render();
+		$this->render();
 	}
 
 	public function fetchData()
@@ -289,7 +289,7 @@ class BookingList extends Component
 		if (session('isProvider')) {
 			$this->provider_id = Auth::id();
 
-			$this->hideProvider=true;
+			$this->hideProvider = true;
 			$this->provider_ids = [$this->provider_id];
 		}
 		$serviceTypeLabels = SetupValue::where('setup_id', 5)->pluck('setup_value_label')->toArray();
@@ -310,6 +310,12 @@ class BookingList extends Component
 			])->get()->toArray();
 		$this->dispatchBrowserEvent('refreshSelects2');
 
+
+		$colorCodes = SetupValue::where(['setup_id' => 10, 'status' => 1])->select(['setup_value_alt_id as type', 'setup_value_label as code'])->get()->toArray();
+		foreach ($colorCodes as $r) {
+			$this->colorCodes[$r['type']] = $r['code'];
+		}
+		$this->colorCodes['none'] = '';
 	}
 
 	private function applySearchFilter($query)
@@ -398,7 +404,7 @@ class BookingList extends Component
 		$this->booking_status_filter = null;
 		$this->name_seacrh_filter = null;
 		if (!$this->hideProvider)
-		$this->provider_ids = [];
+			$this->provider_ids = [];
 
 
 		$this->dispatchBrowserEvent('refreshSelects2');
@@ -408,7 +414,6 @@ class BookingList extends Component
 	{
 		$this->$attrName = $val;
 		$this->dispatchBrowserEvent('refreshSelects2');
-
 	}
 
 	public function resetForm()
