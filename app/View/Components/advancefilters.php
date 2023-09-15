@@ -14,16 +14,10 @@ class advancefilters extends Component
    *
    * @return void
    */
-  public function __construct()
+  public function __construct($providers)
   {
     $this->tags = Tag::all();
-    $this->providers = User::where('status', 1)
-      ->whereHas('roles', function ($query) {
-        $query->whereIn('role_id', [2]);
-      })->select([
-        'users.id',
-        'users.name',
-      ])->get();
+    $this->providers = $providers;
   }
 
   /**
