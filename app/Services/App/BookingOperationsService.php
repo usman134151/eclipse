@@ -140,7 +140,7 @@ class BookingOperationsService{
     else
       $service['service_charges']=$service['service_data']['fixed_rate'.$service['postFix']];
    }
-   elseif($service['service_data']['rate_status']==1){ //for hourly rate
+   elseif($service['service_data']['rate_status']==1 || $service['service_data']['rate_status']==2){ //for hourly rate - temp fix for day rate
    
     if($service['service_data'][$multipleProviderCol]){
      
