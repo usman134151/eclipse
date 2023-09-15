@@ -17,7 +17,7 @@ class Calendar extends Component
 	public $holidays = [], $specific = [], $user_id = null;
 
 	//adv filter variables
-	public $accommodation_search_filter = [], $booking_service_filter = [], $booking_specialization_search_filter = [], $provider_ids = [],
+	public $accommodation_search_filter = [], $booking_service_filter = [], $booking_specialization_search_filter = [], $provider_ids = [], $name_seacrh_filter='',
 		$service_type_search_filter = [], $tag_names = [], $industry_filter = [], $booking_status_filter = null, $booking_number_filter = null;
 	public $tags=[], $filterProviders=[];
 
@@ -65,6 +65,12 @@ class Calendar extends Component
 	{
 		if ($this->booking_number_filter) {
 			$query->where('bookings.booking_number', 'LIKE', "%" . $this->booking_number_filter . "%");
+		}
+		if ($this->name_seacrh_filter) {
+			$name = $this->name_seacrh_filter;
+			$query->whereHas('company', function ($query) use ($name) {
+				$query->where('companies.name','LIKE', "%" . $name . "%");
+			});
 		}
 		// if (count($this->tag_names)) {
 		// 	$query->whereJsonContains('tags', $this->tag_names);
@@ -140,6 +146,7 @@ class Calendar extends Component
 		$this->booking_service_filter = [];
 		$this->booking_number_filter = null;
 		$this->booking_status_filter = null;
+		$this->name_seacrh_filter=null;
 		if (!$this->hideProvider)
 			$this->provider_ids = [];
 
