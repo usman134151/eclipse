@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Tenant\Setup;
 use App\Models\Tenant\SetupValue;
+use DB;
 
 class SetupSeederForDocumentTypes extends Seeder
 {
@@ -17,6 +18,7 @@ class SetupSeederForDocumentTypes extends Seeder
     public function run()
     {
         // Insert record in the setup table
+        DB::table('setup')->where('id',9)->delete();
         $setup = new Setup();
         $setup->id = 9;
         $setup->setup_value = 'Document Types';
@@ -24,6 +26,7 @@ class SetupSeederForDocumentTypes extends Seeder
         $setup->save();
 
         // Insert records in the setup_values table
+        DB::table('setup_values')->where('setup_id',9)->delete();
         $setupId = 9;
         $setupValues = [
             'Resume',
