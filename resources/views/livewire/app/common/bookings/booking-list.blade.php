@@ -159,7 +159,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-
+                                                        @if (count($booking_assignments))
                                                         @foreach ($booking_assignments as $i => $booking)
                                                             @php
                                                                 $code = 'none';
@@ -429,6 +429,15 @@
                                                                 </td>
                                                             </tr>
                                                         @endforeach
+                                                        @else
+                                                            <tr>
+                                                                <td colSpan=8>
+                                                                    <div class="text-center">
+                                                                        <small>No Bookings available</small>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        @endif
                                                     </tbody>
                                                 </table>
                                             </div>

@@ -312,13 +312,13 @@ class BookingList extends Component
 			])->get()->toArray();
 		$this->dispatchBrowserEvent('refreshSelects2');
 
-		$colorCodes = SetupValue::where(['setup_id'=>10,'status'=>1])->select(['setup_value_alt_id as type', 'setup_value_label as code'])->get()->toArray();
-				foreach($colorCodes as $r){
-					$this->colorCodes[$r['type']]= $r['code'];
-				}
+
+		$colorCodes = SetupValue::where(['setup_id' => 10, 'status' => 1])->select(['setup_value_alt_id as type', 'setup_value_label as code'])->get()->toArray();
+		foreach ($colorCodes as $r) {
+			$this->colorCodes[$r['type']] = $r['code'];
+		}
 		$this->colorCodes['none'] = '';
 
-			// dd($this->colorCodes);
 	}
 
 	private function applySearchFilter($query)
