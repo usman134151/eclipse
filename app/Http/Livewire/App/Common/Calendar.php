@@ -19,7 +19,7 @@ class Calendar extends Component
 	//adv filter variables
 	public $accommodation_search_filter = [], $booking_service_filter = [], $booking_specialization_search_filter = [], $provider_ids = [],
 		$service_type_search_filter = [], $tag_names = [], $industry_filter = [], $booking_status_filter = null, $booking_number_filter = null;
-	public $tags=[], $providers=[];
+	public $tags=[], $filterProviders=[];
 
 	protected $listeners = ['refreshCalendar' => 'refreshEvents', 'updateVal'];
 
@@ -33,6 +33,15 @@ class Calendar extends Component
 
 	public function mount()
 	{
+		$this->filterProviders = User::where('status', 1)
+			->whereHas('roles', function ($query) {
+				$query->whereIn('role_id', [2]);
+			})->select([
+				'users.id',
+				'users.name',
+			])->get()->toArray();
+
+			
 		if ($this->providerProfile)
 			$this->events = $this->getEventsForMonth();
 		else
@@ -41,13 +50,6 @@ class Calendar extends Component
 		if ($this->hideProvider)
 			$this->provider_ids = [$this->user_id];
 
-		$this->providers = User::where('status', 1)
-		->whereHas('roles', function ($query) {
-			$query->whereIn('role_id', [2]);
-		})->select([
-			'users.id',
-			'users.name',
-		])->get()->toArray();
 	}
 
 

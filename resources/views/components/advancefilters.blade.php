@@ -161,8 +161,8 @@
                 <select wire:model.defer="provider_ids" name="provider_ids" id="provider_ids"
                     data-placeholder="Select Provider" multiple class="select2 form-select" tabindex="">
                     <option value=""></option>
-                    @if(isset($providers))
-                        @foreach ($providers as $provider)
+                    @if(isset($filterProviders))
+                        @foreach ($filterProviders as $provider)
                             <option value="{{ $provider['id'] }}">{{ $provider['name'] }}</option>
                         @endforeach
                     @endif
