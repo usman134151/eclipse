@@ -163,10 +163,12 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        @if(count($booking_assignments))
                                                         @php
                                                             $status = ['1', '2', '3'];
                                                             $statusCode = ['bg-success', 'bg-gray', 'bg-warning'];
                                                         @endphp
+                                                        
                                                         @foreach ($booking_assignments as $i => $booking)
                                                             <tr role="row"
                                                                 class="{{ $i % 2 == 0 ? 'even' : 'odd' }} {{ $statusCode[array_rand($status)] }}">
@@ -415,6 +417,15 @@
                                                                 </td>
                                                             </tr>
                                                         @endforeach
+                                                        @else 
+                                                        <tr>
+                                                            <td colSpan=8>
+                                                                <div class="text-center">
+                                                                    <small>No Bookings available</small>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        @endif
                                                     </tbody>
                                                 </table>
                                             </div>
