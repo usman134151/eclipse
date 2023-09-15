@@ -69,7 +69,7 @@ class Booknow extends Component
             'day_rate' =>'',
             'duration_day'=>'',
             'duration_hour'=>'',
-            'duration_minutue'=>'',
+            'duration_minute'=>'',
             'start_time'=>'',
             'end_time'=>'',
             'status'=>0,
@@ -242,10 +242,16 @@ class Booknow extends Component
             $this->schedule=BookingOperationsService::getSchedule($this->booking->company_id,$this->booking->customer_id);
             //cross checking schedules
             $dates=$this->dates;
+            
             foreach($this->services as $service){
                 $service['start_time'] =  Carbon::parse($dates[0]['start_date'].' '.$dates[0]['start_hour'].':'.$dates[0]['start_min'].':00')->format('Y-m-d H:i:s');
                 $service['end_time'] =  Carbon::parse($dates[0]['end_date'].' '.$dates[0]['end_hour'].':'.$dates[0]['end_min'].':00')->format('Y-m-d H:i:s');
-        
+           //     dd($service);
+                if($service['start_time']>$service['end_time']){
+                    throw ValidationException::withMessages([
+                        'slot' => ['Invalid time range selected - Service start time must be less than service end time'],
+                    ]);
+                }
                 $slotCheck=BookingOperationsService::getBillableDuration($service,$this->schedule);
                 if(!$slotCheck['business_hours'] && !$slotCheck['business_minutes'] && !$slotCheck['after_business_hours'] && !$slotCheck['after_business_minutes'])
                  {$slotNotFound=1;
@@ -344,7 +350,7 @@ class Booknow extends Component
         $this->consumers = $this->getUsersByRole(7, $departmentIds, 'consumers');
         $this->participants = $this->getUsersByRole(8, $departmentIds, 'bManagers');
 
-        
+      
        
         
     }
@@ -509,7 +515,7 @@ class Booknow extends Component
         'day_rate' =>'',
         'duration_day'=>'',
         'duration_hour'=>'',
-        'duration_minutue'=>'',
+        'duration_minute'=>'',
         'start_time'=>'',
         'end_time'=>'',
         'status'=>0,
@@ -748,7 +754,7 @@ class Booknow extends Component
                     new \DateTimeZone($timeZoneCity)
                 );  
               
-            if ($endDateTime >= $startDateTime) {
+          //  if ($endDateTime >= $startDateTime) {
                 $diff = $endDateTime->diff($startDateTime);
     
                 $days = $diff->days;
@@ -759,12 +765,12 @@ class Booknow extends Component
                 $this->dates[$index]['duration_hour']=$hours;
                 $this->dates[$index]['duration_minute']=$minutes;
                
-            } else {
+            //} else {
 
                 // Return an error message or handle the case where end date/time is not greater than start date/time.
                // return ['error' => 'End date/time must be greater than start date/time.'];
-            }
-          //  dd($this->dates);
+          //  }
+           // dd($this->dates);
         }
     } catch (\Exception $e) {
         // Handle the exception, log the error, or debug further

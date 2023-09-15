@@ -307,7 +307,8 @@ class BookingOperationsService{
 
     $service['after_business_start_time'] ='';
     $service['after_business_end_time'] = '';
-    if($duration['days']==null || $duration['days']==0){
+   
+    if(!is_null($duration) || $duration['days']==0){
         //single day booking 
 
         foreach($schedule->timeslots as $timeSlot){
@@ -399,10 +400,11 @@ class BookingOperationsService{
 
   public static function calculateDuration($startTime,$endTime,$dayRate=false){
     $startDateTime = Carbon::create($startTime);
-    
+    $days=0;$hours=0;$minutes=0;$timeError=true;
     $endDateTime =  Carbon::create($endTime);
  
     if ($endDateTime >= $startDateTime) {
+        $timeError=false;
         $diff = $endDateTime->diff($startDateTime);
         $days=null;
         if($dayRate){
@@ -417,8 +419,9 @@ class BookingOperationsService{
         }
 
       
-        return ['days'=>$days,'hours'=>$hours,'mins'=>$minutes];
+      
     }
+    return ['days'=>$days,'hours'=>$hours,'mins'=>$minutes,'timeError'=>$timeError];
   }
 
 }

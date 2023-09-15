@@ -177,22 +177,23 @@
                                                                         $code = 'Unassigned';
                                                                     }
                                                                 }
+                                                                $cssClass=str_replace([' ','/'],'_',strtolower($code));
                                                             @endphp
                                                             <tr role="row"
                                                                 class="{{ $i % 2 == 0 ? 'even' : 'odd' }} ">
-                                                                <td class="text-center"
+                                                                <td class="text-center {{$cssClass}}"
                                                                     style="background-color:{{ $colorCodes[$code] }}">
                                                                     <input class="form-check-input" type="checkbox"
                                                                         value="" aria-label="Select Booking">
                                                                 </td>
-                                                                <td style="background-color:{{ $colorCodes[$code] }};">
+                                                                <td class="{{$cssClass}}" style="background-color:{{ $colorCodes[$code] }};">
                                                                     <a
-                                                                        href="{{ route('tenant.booking-view', ['bookingID' => encrypt($booking['id'])]) }}">{{ $booking['booking_number'] ? $booking['booking_number'] : '' }}
+                                                                        href="{{ route('tenant.booking-view', ['bookingID' => encrypt($booking['id'])]) }}" class="{{$cssClass}}">{{ $booking['booking_number'] ? $booking['booking_number'] : '' }}
                                                                         <div>
-                                                                            <div class="time-date">
+                                                                            <div class="time-date {{$cssClass}}">
                                                                                 {{ date_format(date_create($booking['booking_start_at']), 'm/d/Y') }}
                                                                             </div>
-                                                                            <div class="time-date">
+                                                                            <div class="time-date {{$cssClass}}">
                                                                                 {{ $booking['booking_start_at'] ? date_format(date_create($booking['booking_start_at']), 'h:i A') : '' }}
                                                                                 to
                                                                                 {{ $booking['booking_end_at'] ? date_format(date_create($booking['booking_end_at']), 'h:i A') : '' }}
@@ -200,7 +201,7 @@
                                                                         </div>
                                                                     </a>
                                                                 </td>
-                                                                <td
+                                                                <td class="{{$cssClass}}"
                                                                     style="background-color:{{ $colorCodes[$code] }};">
                                                                     <div>
                                                                         {{ isset($booking->accommodation_name) ? $booking->accommodation_name : '' }}
@@ -210,10 +211,10 @@
                                                                         {{ isset($booking->service_name) ? $booking->service_name : 'N/A' }}
                                                                     </div>
                                                                 </td>
-                                                                <td
+                                                                <td class="{{$cssClass}}"
                                                                     style="background-color:{{ $colorCodes[$code] }};">
                                                                     @if ($booking->service_type)
-                                                                        <div class="badge bg-warning mb-1">
+                                                                        <div class="badge bg-warning mb-1 {{$cssClass}}">
 
                                                                             {{ $serviceTypes[$booking->service_type]['title'] }}
 
@@ -248,7 +249,7 @@
                                                                         @endif
                                                                     @endif
                                                                 </td>
-                                                                <td
+                                                                <td class="{{$cssClass}}"
                                                                     style="background-color:{{ $colorCodes[$code] }};">
                                                                     <div>
                                                                         {{ $booking['company'] ? $booking['company']['name'] : '' }}
@@ -257,10 +258,10 @@
                                                                         {{ $booking['provider_count'] }}
                                                                     </div>
                                                                 </td>
-                                                                <td
+                                                                <td class="{{$cssClass}}"
                                                                     style="background-color:{{ $colorCodes[$code] }};">
-                                                                    $100</td>
-                                                                <td
+                                                                    {{ $booking['booking_total'] }}</td>
+                                                                <td class="{{$cssClass}}"
                                                                     style="background-color:{{ $colorCodes[$code] }};">
                                                                     <div class="d-flex align-items-center gap-1">
                                                                         {{-- Updated by Shanila to Add svg icon --}}
@@ -275,13 +276,13 @@
                                                                         {{ $statusValues[$booking['status']]['title'] }}
                                                                     </div>
                                                                 </td>
-                                                                <td
+                                                                <td class="{{$cssClass}}"
                                                                     style="background-color:{{ $colorCodes[$code] }};">
                                                                     <div class="d-flex actions">
 
                                                                         <a href="{{ route('tenant.booking-edit', ['bookingID' => encrypt($booking->id)]) }}"
                                                                             title="Edit" aria-label="Edit Booking"
-                                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon {{$cssClass}}">
                                                                             <svg aria-label="Edit" class="fill"
                                                                                 width="20" height="28"
                                                                                 viewBox="0 0 20 28" fill="none"
@@ -295,7 +296,7 @@
                                                                             <a href="#"
                                                                                 title="Confirm Completion"
                                                                                 aria-label="Confirm Completion"
-                                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon"
+                                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon "
                                                                                 data-bs-toggle="modal"
                                                                                 data-bs-target="#confirmCompletion">
                                                                                 <svg width="30" height="30"

@@ -62,18 +62,7 @@
 
 
     </div>
-    <div class="col-lg-4 d-flex mb-5  mt-1">
-     <div class="text-start my-1 mb-lg-0 me-1 ">
-            <button wire:click="applyFilters" type="button" class="btn btn-xs btn-outline-dark rounded">
-                Apply Filters
-            </button>
-        </div>
-        <div class="text-start my-1 mb-lg-0 ">
-            <button wire:click="resetFilters" type="button" class="btn btn-xs btn-outline-dark rounded">
-                Clear all
-            </button>
-        </div>
-    </div>
+
 </div>
 <div class="collapse" id="collapseAdvanceFilter">
     <div class="col-lg-12">
@@ -223,3 +212,15 @@
         </div>
     </div>
 </div>
+<div class="row">    <div class="col-lg-4 d-flex mb-5  mt-1">
+     <div class="text-start my-1 mb-lg-0 me-1 ">
+            <button wire:click="applyFilters" type="button" class="btn btn-xs btn-outline-dark rounded">
+                Apply Filters
+            </button>
+        </div>
+        <div class="text-start my-1 mb-lg-0 ">
+            <button wire:click="resetFilters" type="button" class="btn btn-xs btn-outline-dark rounded">
+                Clear all
+            </button>
+        </div>
+    </div></div>
