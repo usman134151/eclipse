@@ -77,7 +77,7 @@ class BookingList extends Component
 	{
 		$base = '';
 		if ($this->provider_id) //from provider panel
-			$base = '-provider';
+			$base = 'provider-';
 
 		return view('livewire.app.common.bookings.' . $base . 'booking-list', ['booking_assignments' => $this->fetchData()]);
 	}
