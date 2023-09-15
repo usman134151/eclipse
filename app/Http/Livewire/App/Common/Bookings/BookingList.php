@@ -6,6 +6,7 @@ use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingInvitationProvider;
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\SetupValue;
+use App\Models\Tenant\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -22,6 +23,12 @@ class BookingList extends Component
 	public  $booking_id = 0, $provider_id = null, $booking_service_id = 0;
 	public $providerPanelType = 0; //to ensure only clicked panel loads in provider-panel 
 	public $bookingNumber = '', $selectedProvider = 0;
+
+
+	//adv filter variables
+	public $accommodation_search_filter = [], $booking_service_filter = [], $booking_specialization_search_filter = [], $provider_ids = [], $name_seacrh_filter = '',
+		$service_type_search_filter = [], $tag_names = [], $industry_filter = [], $booking_status_filter = null, $booking_number_filter = null;
+	public $tags = [], $filterProviders = [], $hideProvider=false;
 
 
 
@@ -69,6 +76,20 @@ class BookingList extends Component
 	public function render()
 	{
 		$base = '';
+		if ($this->provider_id) //from provider panel
+			$base = 'provider-';
+
+		return view('livewire.app.common.bookings.' . $base . 'booking-list', ['booking_assignments' => $this->fetchData()]);
+	}
+
+	public function applyFilters()
+	{
+	$this->render();
+	}
+
+	public function fetchData()
+	{
+
 		$yesterday    = Carbon::now()->subDays(1)->toDateString();
 		$today          = Carbon::now()->toDateString();
 
@@ -201,6 +222,7 @@ class BookingList extends Component
 
 			$base = "provider-";
 		}
+		$query = $this->applySearchFilter($query);
 		$data = $query->paginate($this->limit);
 		// dd($query->get()->toArray());
 		// setting values for booking and its services
@@ -258,18 +280,18 @@ class BookingList extends Component
 				}
 			}
 		}
-
-
-		return view('livewire.app.common.bookings.' . $base . 'booking-list', ['booking_assignments' => $data]);
+		return $data;
 	}
-
 
 	public function mount()
 	{
 
-		if (session('isProvider'))
+		if (session('isProvider')) {
 			$this->provider_id = Auth::id();
 
+			$this->hideProvider=true;
+			$this->provider_ids = [$this->provider_id];
+		}
 		$serviceTypeLabels = SetupValue::where('setup_id', 5)->pluck('setup_value_label')->toArray();
 		for ($i = 0, $j = 1; $i < 4; $i++, $j++) {
 			if ($j == 3)
@@ -279,11 +301,114 @@ class BookingList extends Component
 		if (request()->bookingID != null) {
 			$this->showBookingDetails(request()->bookingID);
 		}
+		$this->filterProviders = User::where('status', 1)
+			->whereHas('roles', function ($query) {
+				$query->whereIn('role_id', [2]);
+			})->select([
+				'users.id',
+				'users.name',
+			])->get()->toArray();
+		$this->dispatchBrowserEvent('refreshSelects2');
+
+	}
+
+	private function applySearchFilter($query)
+	{
+		if ($this->booking_number_filter) {
+			$query->where('bookings.booking_number', 'LIKE', "%" . $this->booking_number_filter . "%");
+		}
+		if ($this->name_seacrh_filter) {
+			$name = $this->name_seacrh_filter;
+			$query->whereHas('company', function ($query) use ($name) {
+				$query->where('companies.name', 'LIKE', "%" . $name . "%");
+			});
+		}
+		// if (count($this->tag_names)) {
+		// 	$query->whereJsonContains('tags', $this->tag_names);
+		// }
+		if (count($this->provider_ids)) {
+			$provider_ids = $this->provider_ids;
+			$query->whereHas('booking_provider', function ($query) use ($provider_ids) {
+				$query->whereIn('booking_providers.provider_id', $provider_ids);
+			});
+		}
+		if ($this->booking_status_filter) {
+			$query->where('bookings.booking_status', 'LIKE', "%" . $this->booking_status_filter . "%");
+		}
+		if (count($this->industry_filter)) {
+			$industries = $this->industry_filter;
+			$query->whereHas('industries', function ($query) use ($industries) {
+				$query->whereIn('industries.id', $industries);
+			});
+		}
+		if (count($this->booking_service_filter)) {
+			$services = $this->booking_service_filter;
+			$query->whereHas('services', function ($query) use ($services) {
+				$query->whereIn('service_categories.id', $services);
+			});
+		}
+		if (count($this->accommodation_search_filter)) {
+			$accommodations = $this->accommodation_search_filter;
+			$query->whereHas('accommodations', function ($query) use ($accommodations) {
+				$query->whereIn('accommodations.id', $accommodations);
+			});
+		}
+		if (count($this->service_type_search_filter)) {
+			//as ids are different in dropdown and in table need to replace for filter
+			$replacements = [
+				28 => 1,
+				29 => 2,
+				30 => 4,
+				31 => 5
+			];
+			$filterArray = array_map(function ($item) use ($replacements) {
+				return isset($replacements[$item]) ? $replacements[$item] : $item;
+			}, $this->service_type_search_filter);
+			$query->whereHas('booking_services', function ($query) use ($filterArray) {
+				$query->where(function ($query) use ($filterArray) {
+					foreach ($filterArray as $item) {
+						$query->where('services', 'LIKE', "%$item%");
+					}
+				});
+			});
+		}
+		if (count($this->booking_specialization_search_filter)) {
+			$specializations = $this->booking_specialization_search_filter;
+			// dd($specializations);
+			foreach ($specializations as $specilization)
+				$query->whereHas('booking_services', function ($query) use ($specilization) {
+					$query->whereJsonContains('specialization', [0 => $specilization]);
+				});
+		}
+
+		return $query;
+	}
+
+	public function resetFilters()
+	{
+		$this->booking_specialization_search_filter = [];
+		$this->tag_names = [];
+		$this->service_type_search_filter = [];
+		$this->booking_service_filter = [];
+		$this->industry_filter = [];
+		$this->accommodation_search_filter = [];
+		$this->booking_number_filter = null;
+		$this->booking_service_filter = [];
+		$this->booking_number_filter = null;
+		$this->booking_status_filter = null;
+		$this->name_seacrh_filter = null;
+		if (!$this->hideProvider)
+		$this->provider_ids = [];
+
+
+		$this->dispatchBrowserEvent('refreshSelects2');
 	}
 
 	public function updateVal($attrName, $val)
 	{
 		$this->$attrName = $val;
+		$this->dispatchBrowserEvent('refreshSelects2');
+
 	}
 
 	public function resetForm()
@@ -301,7 +426,7 @@ class BookingList extends Component
 
 	// START : provider panel functions
 
-	public function showCheckInPanel($booking_id, $booking_service_id, $bookingNumber = null, )
+	public function showCheckInPanel($booking_id, $booking_service_id, $bookingNumber = null,)
 	{
 
 		if ($bookingNumber)
