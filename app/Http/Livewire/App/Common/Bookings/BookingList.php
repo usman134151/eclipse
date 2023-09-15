@@ -24,6 +24,12 @@ class BookingList extends Component
 	public $bookingNumber = '', $selectedProvider = 0;
 
 
+	//adv filter variables
+	public $accommodation_search_filter = [], $booking_service_filter = [], $booking_specialization_search_filter = [], $provider_ids = [], $name_seacrh_filter = '',
+		$service_type_search_filter = [], $tag_names = [], $industry_filter = [], $booking_status_filter = null, $booking_number_filter = null;
+	public $tags = [], $filterProviders = [];
+
+
 
 	protected $listeners = [
 		'showList' => 'resetForm', 'updateVal', 'showConfirmation',
@@ -69,6 +75,14 @@ class BookingList extends Component
 	public function render()
 	{
 		$base = '';
+		if ($this->provider_id) //from provider panel
+			$base='-provider';
+
+		return view('livewire.app.common.bookings.' . $base . 'booking-list', ['booking_assignments' => $this->fetchData()]);
+	}
+
+	public function fetchData(){
+
 		$yesterday    = Carbon::now()->subDays(1)->toDateString();
 		$today          = Carbon::now()->toDateString();
 
@@ -258,11 +272,8 @@ class BookingList extends Component
 				}
 			}
 		}
-
-
-		return view('livewire.app.common.bookings.' . $base . 'booking-list', ['booking_assignments' => $data]);
+		return $data;
 	}
-
 
 	public function mount()
 	{
