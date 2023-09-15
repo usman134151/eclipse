@@ -8,16 +8,17 @@ use Illuminate\View\Component;
 
 class advancefilters extends Component
 {
-  public $tags = [], $providers = [];
+  public $tags = [], $filterProviders = [], $hideProvider=false;
   /**
    * Create a new component instance.
    *
    * @return void
    */
-  public function __construct($providers)
+  public function __construct($type='' , $filterProviders=[], $hideProvider=false)
   {
     $this->tags = Tag::all();
-    $this->providers = $providers;
+    $this->filterProviders = $filterProviders;
+    $this->hideProvider = $hideProvider;
   }
 
   /**
