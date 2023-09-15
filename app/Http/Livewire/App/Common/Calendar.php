@@ -40,7 +40,6 @@ class Calendar extends Component
 				'users.id',
 				'users.name',
 			])->get()->toArray();
-
 			
 		if ($this->providerProfile)
 			$this->events = $this->getEventsForMonth();
@@ -52,16 +51,14 @@ class Calendar extends Component
 
 	}
 
+	public function applyFilters(){
+		$this->events = $this->getCalendarEvents();
+		$this->dispatchBrowserEvent('updateScheduleCalendar', ['events' => $this->events]);
+	}
 
 	public function updateVal($attrName, $val)
 	{
-
 		$this->$attrName = $val;
-
-		$this->events = $this->getCalendarEvents();
-		$this->dispatchBrowserEvent('updateScheduleCalendar', ['events' => $this->events]);
-
-
 		$this->dispatchBrowserEvent('refreshSelects2');
 	}
 	private function applySearchFilter($query)
