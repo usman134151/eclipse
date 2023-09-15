@@ -186,7 +186,7 @@
 	 
       <!-- END: Filters -->
 
-		@livewire('app.common.bookings.booking-list',['bookingType'=>'Upcoming'])
+		{{-- @livewire('app.common.bookings.booking-list',['bookingType'=>'Upcoming']) --}}
 		
 	</div>
 	  <div class="tab-pane fade" id="availability-tab-pane" role="tabpanel" aria-labelledby="availability-tab" tabindex="0">

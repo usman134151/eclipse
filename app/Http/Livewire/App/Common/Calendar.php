@@ -33,6 +33,15 @@ class Calendar extends Component
 
 	public function mount()
 	{
+		$this->providers = User::where('status', 1)
+			->whereHas('roles', function ($query) {
+				$query->whereIn('role_id', [2]);
+			})->select([
+				'users.id',
+				'users.name',
+			])->get()->toArray();
+
+			
 		if ($this->providerProfile)
 			$this->events = $this->getEventsForMonth();
 		else
@@ -41,13 +50,6 @@ class Calendar extends Component
 		if ($this->hideProvider)
 			$this->provider_ids = [$this->user_id];
 
-		$this->providers = User::where('status', 1)
-		->whereHas('roles', function ($query) {
-			$query->whereIn('role_id', [2]);
-		})->select([
-			'users.id',
-			'users.name',
-		])->get()->toArray();
 	}
 
 
