@@ -93,10 +93,11 @@
                             @if ($bookingSection != 'customer')
                             @endif
                             <div>
-                                <div class="d-flex flex-column flex-md-row justify-content-between mb-2">
                                 <div class="" wire:ignore>
                                     <x-advancefilters type="" :filterProviders="$filterProviders" :hideProvider="false" />
                                 </div>
+                                <div class="d-flex flex-column flex-md-row justify-content-between mb-2">
+                                
                                     <div
                                         class="d-inline-flex flex-column flex-md-row align-items-center gap-lg-4 gap-1 mb-2 mb-md-0">
 
