@@ -150,16 +150,12 @@
                 {{-- ended updated --}}
             </div>
             <div class="col-lg-5 pe-lg-3 mb-5">
-                <label class="form-label" for="OrgDeptUser">Organization / Department / User
-                    <small>(coming soon)</small>
+                <label class="form-label" for="OrgDeptUser">Organization / Department 
+               
                 </label>
-                <select data-placeholder="Select Company" multiple class="select2 form-select" tabindex=""
-                    id="OrgDeptUser">
-                    <option value=""></option>
-                    <option selected>AbmaSoft</option>
-                    <option selected>Dept.</option>
-                    <option selected>Individual User</option>
-                </select>
+                    <input type="text" class="form-control" name="name_seacrh_filter" id="name_seacrh_filter"
+                    placeholder="Enter Company Name / Department Name"
+                    wire:model.defer="name_seacrh_filter">
             </div>
             <div class="col-lg-5 ps-lg-3 mb-5 {{ $hideProvider ? 'hidden' : '' }}">
                 <label class="form-label" for="provider_ids">Provider</label>
@@ -222,8 +218,7 @@
                 <label class="form-label">Booking Number</label>
                 <input type="text" class="form-control" name="booking_number_filter" id="booking_number_filter"
                     placeholder="Enter Booking Number"
-                    wire:change='updateVal("booking_number_filter",$event.target.value)'
-                    wire:model="booking_number_filter">
+                    wire:model.defer="booking_number_filter">
             </div>
         </div>
     </div>
