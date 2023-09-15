@@ -163,7 +163,7 @@
                     <option value=""></option>
                     @if(isset($providers))
                         @foreach ($providers as $provider)
-                            <option value="{{ $provider->id }}">{{ $provider->name }}</option>
+                            <option value="{{ $provider['id'] }}">{{ $provider['name'] }}</option>
                         @endforeach
                     @endif
                 </select>
