@@ -150,7 +150,7 @@
                 {{-- ended updated --}}
             </div>
             <div class="col-lg-5 pe-lg-3 mb-5">
-                <label class="form-label" for="OrgDeptUser">Organization / Department 
+                <label class="form-label" for="OrgDeptUser">Company / Department <span><small>(coming soon)</small></span>
                
                 </label>
                     <input type="text" class="form-control" name="name_seacrh_filter" id="name_seacrh_filter"
