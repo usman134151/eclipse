@@ -1,4 +1,4 @@
-<div x-data="{ rescheduleBooking: false, assignProvider: false, providerSavedForms:false,  offcanvasOpenCheckOut: false, step: 1 }">
+<div x-data="{ rescheduleBooking: false, assignProvider: false, providerSavedForms: false, offcanvasOpenCheckOut: false, step: 1 }">
     <div id="loader-section" class="loader-section" wire:loading>
         <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
             <div class="spinner-border" role="status" aria-live="polite">
@@ -42,8 +42,7 @@
         </div>
 
         @livewire('app.common.bookings.booking-details', ['booking_id' => $booking_id])
-    @include('panels.provider.check-out')
-
+        @include('panels.provider.check-out')
     @else
         <div>
 
@@ -163,22 +162,27 @@
 
                                                         @foreach ($booking_assignments as $i => $booking)
                                                             @php
-                                                            $code ='none';
-                                                                if($booking['isCompleted']==1)
-                                                                    $code ="Completed Assignment";
-                                                                else{
-                                                                if($booking['status']==2)
-                                                                    $code ="Fully assigned";
-                                                                                                                                elseif($booking['status']==1)
-                                                                    $code ="Unassigned";}
+                                                                $code = 'none';
+                                                                if ($booking['is_closed'] == 1) {
+                                                                    $code = 'Completed Assignment';
+                                                                }elseif ($booking['is_closed'] == 2) {
+                                                                    $code = 'Completed Assignment';
+                                                                } else {
+                                                                    if ($booking['status'] == 2) {
+                                                                        $code = 'Fully assigned';
+                                                                    } elseif ($booking['status'] == 1) {
+                                                                        $code = 'Unassigned';
+                                                                    }
+                                                                }
                                                             @endphp
                                                             <tr role="row"
                                                                 class="{{ $i % 2 == 0 ? 'even' : 'odd' }} ">
-                                                                <td class="text-center" style="background-color:{{$colorCodes[$code]}}">
+                                                                <td class="text-center"
+                                                                    style="background-color:{{ $colorCodes[$code] }}">
                                                                     <input class="form-check-input" type="checkbox"
                                                                         value="" aria-label="Select Booking">
                                                                 </td>
-                                                                <td style="background-color:{{$colorCodes[$code]}};">
+                                                                <td style="background-color:{{ $colorCodes[$code] }};">
                                                                     <a
                                                                         href="{{ route('tenant.booking-view', ['bookingID' => encrypt($booking['id'])]) }}">{{ $booking['booking_number'] ? $booking['booking_number'] : '' }}
                                                                         <div>
@@ -193,7 +197,8 @@
                                                                         </div>
                                                                     </a>
                                                                 </td>
-                                                                <td style="background-color:{{$colorCodes[$code]}};">
+                                                                <td
+                                                                    style="background-color:{{ $colorCodes[$code] }};">
                                                                     <div>
                                                                         {{ isset($booking->accommodation_name) ? $booking->accommodation_name : '' }}
                                                                     </div>
@@ -202,7 +207,8 @@
                                                                         {{ isset($booking->service_name) ? $booking->service_name : 'N/A' }}
                                                                     </div>
                                                                 </td>
-                                                                <td style="background-color:{{$colorCodes[$code]}};">
+                                                                <td
+                                                                    style="background-color:{{ $colorCodes[$code] }};">
                                                                     @if ($booking->service_type)
                                                                         <div class="badge bg-warning mb-1">
 
@@ -223,7 +229,7 @@
                                                                         @elseif ($booking->service_type == 2 || $booking->service_type == 5)
                                                                             <div>
                                                                                 @if ($booking['meeting_link'])
-                                                                                    {{$booking['meeting_link']}}
+                                                                                    {{ $booking['meeting_link'] }}
                                                                                 @else
                                                                                     N/A
                                                                                 @endif
@@ -231,16 +237,16 @@
                                                                         @elseif ($booking->service_type == 4)
                                                                             <div>
                                                                                 @if ($booking['meeting_phone'])
-                                                                                    {{$booking['meeting_phone']}}
+                                                                                    {{ $booking['meeting_phone'] }}
                                                                                 @else
                                                                                     N/A
                                                                                 @endif
                                                                             </div>
-                                                                        
                                                                         @endif
                                                                     @endif
                                                                 </td>
-                                                                <td style="background-color:{{$colorCodes[$code]}};">
+                                                                <td
+                                                                    style="background-color:{{ $colorCodes[$code] }};">
                                                                     <div>
                                                                         {{ $booking['company'] ? $booking['company']['name'] : '' }}
                                                                     </div>
@@ -248,8 +254,11 @@
                                                                         {{ $booking['provider_count'] }}
                                                                     </div>
                                                                 </td>
-                                                                <td style="background-color:{{$colorCodes[$code]}};">$100</td>
-                                                                <td style="background-color:{{$colorCodes[$code]}};">
+                                                                <td
+                                                                    style="background-color:{{ $colorCodes[$code] }};">
+                                                                    $100</td>
+                                                                <td
+                                                                    style="background-color:{{ $colorCodes[$code] }};">
                                                                     <div class="d-flex align-items-center gap-1">
                                                                         {{-- Updated by Shanila to Add svg icon --}}
                                                                         <svg aria-label="{{ $statusValues[$booking['status']]['title'] }}"
@@ -263,7 +272,8 @@
                                                                         {{ $statusValues[$booking['status']]['title'] }}
                                                                     </div>
                                                                 </td>
-                                                                <td style="background-color:{{$colorCodes[$code]}};">
+                                                                <td
+                                                                    style="background-color:{{ $colorCodes[$code] }};">
                                                                     <div class="d-flex actions">
 
                                                                         <a href="{{ route('tenant.booking-edit', ['bookingID' => encrypt($booking->id)]) }}"
@@ -539,7 +549,7 @@
             });
         }
 
-         Livewire.on('closeUnassignModel', () => {
+        Livewire.on('closeUnassignModel', () => {
             $('#UnassignModal').modal('hide');
 
         });
