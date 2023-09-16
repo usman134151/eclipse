@@ -4,6 +4,7 @@ use App\Models\Tenant\User;
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingServices;
 use App\Models\Tenant\BookingIndustry;
+use App\Models\Tenant\BookingDepartment;
 use App\Models\Tenant\SetupValue;
 use App\Models\Tenant\Accommodation;
 use App\Models\Tenant\UserAddress;
@@ -21,7 +22,7 @@ class BookingOperationsService{
 
  
 
-  public static function createBooking($booking, $services, $dates,$selectedIndustries){
+  public static function createBooking($booking, $services, $dates,$selectedIndustries,$selectedDepartments){
     $booking->booking_number=self::generateBookingNumber();
     $booking->user_id=Auth::user()->id;
     //data mapping for main booking table
@@ -49,13 +50,13 @@ class BookingOperationsService{
 
     $booking->save();
     //end of data mapping for main booking table
-    SELF::saveDetails($services,$dates,$selectedIndustries,$booking);
+    SELF::saveDetails($services,$dates,$selectedIndustries,$booking,$selectedDepartments);
 
     return $booking;
     
   }
 
-  public static function saveDetails($services,$dates,$selectedIndustries,$booking)
+  public static function saveDetails($services,$dates,$selectedIndustries,$booking,$selectedDepartments)
    {
    // BookingServices::where('booking_id', $booking->id)->delete();
   //  dd($services);
@@ -86,6 +87,16 @@ class BookingOperationsService{
       BookingIndustry::updateOrInsert( [
         'booking_id' => $booking->id,
         'industry_id' => $industry,
+      ], []);
+    }
+
+
+   
+    //saving industries
+    foreach($selectedDepartments as $department){
+      BookingDepartment::updateOrInsert( [
+        'booking_id' => $booking->id,
+        'department_id' => $department['department_id'],
       ], []);
     }
 }

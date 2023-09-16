@@ -9,8 +9,8 @@ use Livewire\Component;
 
 class AddDepartment extends Component
 {
-    public $showForm, $user = null, $departments, $selectedDepartments = [], $svDepartments = [], $defaultDepartment = 0, $companyId = 0;
-    protected $listeners = ['showList' => 'resetForm', 'editRecord' => 'setUser', 'setDepartmentsDetails', 'updateCompany'];
+    public $showForm, $user = null, $departments, $selectedDepartments = [], $svDepartments = [], $defaultDepartment = 0, $companyId = 0,$isBooking=false;
+    protected $listeners = ['showList' => 'resetForm', 'editRecord' => 'setUser', 'setDepartmentsDetails', 'updateCompany','isBooking','setBookingDepartments'];
 
     public function render()
     {
@@ -68,7 +68,14 @@ class AddDepartment extends Component
 
         $this->updateData();
     }
-
+    public function setBookingDepartments($selectedDepartments,$companyId)
+    {
+       
+        
+        $this->updateCompany($companyId);
+        $this->selectedDepartments=$selectedDepartments;
+       
+    }
     // Child Laravel component's updateData function
     public function updateData()
     {
@@ -83,12 +90,17 @@ class AddDepartment extends Component
 
     public function updateCompany($companyId)
     {
-
+      
         $this->companyId = $companyId;
         $this->departments = Department::where('company_id', $companyId)->get();
         //  $this->selectedDepartments = [];
         if ($this->user != null)
             $this->setDepartmentsDetails();
+    }
+
+    public function isBooking(){
+       
+        $this->isBooking=true;
     }
 
 

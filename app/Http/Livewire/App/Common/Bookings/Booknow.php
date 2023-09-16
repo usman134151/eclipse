@@ -119,7 +119,7 @@ class Booknow extends Component
 
         if (request()->bookingID != null) {
             $id=request()->bookingID;
-            $this->booking=Booking::with('company','accommodation','booking_services_new_layout','industries','customer','payment')->find($id);
+            $this->booking=Booking::with('company','accommodation','booking_services_new_layout','industries','customer','payment','departments')->find($id);
 
             if(!is_null($this->booking->payment)){
                 $this->payment=$this->booking->payment;
@@ -141,8 +141,15 @@ class Booknow extends Component
             }
           
             $this->selectedIndustries=$this->booking->industries->pluck('id')->toArray();
-          // dd( $this->selectedIndustries);
             $this->industryNames = $this->booking->industries->pluck('name');
+    
+            $this->selectedDepartments=$this->booking->departments->pluck('pivot')->toArray();
+            
+            $this->departmentNames=$this->booking->departments->pluck('name')->toArray();
+
+          // dd($this->departmentNames);
+          // dd( $this->selectedIndustries);
+           
            
             $this->refreshAddresses();
             foreach($this->services as  $index => &$service){
@@ -269,12 +276,13 @@ class Booknow extends Component
                 $this->booking->requester_information=0;
             //calling booking service passing required data
             if(is_null($this->booking->id))
-                $this->booking=BookingOperationsService::createBooking($this->booking,$this->services,$this->dates,$this->selectedIndustries);
+                $this->booking=BookingOperationsService::createBooking($this->booking,$this->services,$this->dates,$this->selectedIndustries,$this->selectedDepartments);
             else
             {
                 //update booking
                 $this->booking->save();
-                BookingOperationsService::saveDetails($this->services,$this->dates,$this->selectedIndustries,$this->booking);
+               
+                BookingOperationsService::saveDetails($this->services,$this->dates,$this->selectedIndustries,$this->booking,$this->selectedDepartments);
               
             }
            // dd($this->booking->physical_address_id);
@@ -327,7 +335,8 @@ class Booknow extends Component
 
     // update all dropdown values when company is changed
     public function updateCompany(){
-       
+        $this->emit('isBooking');
+        $this->departmentNames = [];
       $this->updateUsers();
       $this->dispatchBrowserEvent('refreshSelects');
       $this->schedule=BookingOperationsService::getSchedule($this->booking->company_id,$this->booking->customer_id);
@@ -543,7 +552,7 @@ class Booknow extends Component
                 
                 // Emit an event with data
                 $this->emit('updateCompany', $val);
-                $this->departmentNames = [];
+              
             } elseif (preg_match('/accommodation_id_(\d+)/', $attrName, $matches)) {
                 $index = intval($matches[1]);
                
@@ -715,6 +724,7 @@ class Booknow extends Component
     {
         //need to pass user to set values
         $this->selectedDepartments = $selectedDepartments;
+       
         // $this->userdetail['department'] = $defaultDepartment;
         $this->departmentNames = $departmentNames;
         $this->updateUsers();

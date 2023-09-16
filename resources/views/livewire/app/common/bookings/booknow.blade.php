@@ -2105,6 +2105,16 @@
     }
 
     </script>
+    @if(!is_null($booking->id))
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+            Livewire.emit('isBooking');
+            Livewire.emit('setBookingDepartments', @json($selectedDepartments),{{$booking->company_id}});
+        }, 1000);
+    });
+</script>
+@endif
     <script src="/tenant-resources/js/form-functions.js"></script>
     @endpush
 </div>

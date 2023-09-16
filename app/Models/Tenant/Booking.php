@@ -304,5 +304,15 @@ class Booking extends Model
 
         return $permission;
     }
+
+    public function bookingDepartments()
+    {
+        return $this->hasMany(BookingDepartment::class, 'booking_id');
+    }
+
+    public function departments()
+    {
+        return $this->belongsToMany(Department::class, 'booking_departments', 'booking_id', 'department_id');
+    }
     
 }
