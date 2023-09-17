@@ -40,19 +40,41 @@
                                         <tbody>
                                             @if (count($booking_assignments))
 
-                                                @php
-                                                    $status = ['1', '2', '3'];
-                                                    $statusCode = ['bg-success', 'bg-gray', 'bg-warning'];
-                                                @endphp
+
                                                 @foreach ($booking_assignments as $i => $booking)
-                                                    <tr role="row"
-                                                        class="{{ $i % 2 == 0 ? 'even' : 'odd' }} {{ $statusCode[array_rand($status)] }}"
+                                                    @php
+                                                        $code = 'none';
+                                                        if ($bookingType == 'Past') {
+                                                            if ($booking['is_closed'] == 1) {
+                                                                $code = 'Completed Assignment';
+                                                            } elseif ($booking['is_closed'] == 2) {
+                                                                $code = 'Completed Assignment';
+                                                            }
+                                                        } elseif ($bookingType == "Today's" || $bookingType == "Active" ) {
+                                                            if ($booking['check_in_status'] == 1) {
+                                                                $code = 'Provider Checked-in';
+                                                            }
+                                                            if ($booking['check_in_status'] == 2) {
+                                                                $code = 'Provider Running Late';
+                                                            }
+                                                        } else {
+                                                            if ($booking['status'] == 2) {
+                                                                $code = 'Fully assigned';
+                                                            } elseif ($booking['status'] == 1) {
+                                                                $code = 'Unassigned';
+                                                            }
+                                                        }
+                                                        $cssClass = str_replace([' ', '/'], '_', strtolower($code));
+                                                    @endphp
+                                                    <tr role="row" class="{{ $i % 2 == 0 ? 'even' : 'odd' }}"
                                                         {{-- @if ($bookingType != 'Unassigned' && $bookingType != 'Invitations') class="{{ $booking['class'] }}" @else class="even" @endif --}}>
-                                                        <td class="text-center">
+                                                        <td class="text-center {{ $cssClass }}"
+                                                            style="background-color:{{ $colorCodes[$code] }}">
                                                             <input class="form-check-input" type="checkbox"
                                                                 value="" aria-label="Select Assignment">
                                                         </td>
-                                                        <td>
+                                                        <td class="{{ $cssClass }}"
+                                                            style="background-color:{{ $colorCodes[$code] }}">
 
                                                             <div>
                                                                 <div class="time-date">
@@ -65,7 +87,9 @@
                                                                 </div>
                                                             </div>
                                                         </td>
-                                                        <td @click="assignmentDetails = true"
+                                                        <td class="{{ $cssClass }}"
+                                                            style="background-color:{{ $colorCodes[$code] }}"
+                                                            @click="assignmentDetails = true"
                                                             wire:click="setAssignmentDetails({{ $booking['id'] }},'{{ $booking['booking_number'] }}')">
                                                             <a
                                                                 href="#">{{ $booking['booking_number'] ? $booking['booking_number'] : '' }}</a>
@@ -76,12 +100,14 @@
                                                                 Assignment
                                                             </div>
                                                         </td>
-                                                        <td>
+                                                        <td class="{{ $cssClass }}"
+                                                            style="background-color:{{ $colorCodes[$code] }}">
                                                             <div>
                                                                 {{ $booking->industry ? $booking->industry->name : 'N/A' }}
                                                             </div>
                                                         </td>
-                                                        <td>
+                                                        <td class="{{ $cssClass }}"
+                                                            style="background-color:{{ $colorCodes[$code] }}">
                                                             <div>
                                                                 {{ isset($booking->accommodation_name) ? $booking->accommodation_name : '' }}
 
@@ -91,7 +117,8 @@
                                                                 {{ isset($booking->service_name) ? $booking->service_name : 'N/A' }}
                                                             </div>
                                                         </td>
-                                                        <td>
+                                                        <td class="{{ $cssClass }}"
+                                                            style="background-color:{{ $colorCodes[$code] }}">
                                                             <div>
                                                                 @if ($booking->service_type == 1)
                                                                     @if ($booking->physicalAddress)
@@ -107,8 +134,11 @@
                                                                 @endif
                                                             </div>
                                                         </td>
-                                                        <td>{{ $booking['provider_count'] }}</td>
-                                                        <td>
+                                                        <td class="{{ $cssClass }}"
+                                                            style="background-color:{{ $colorCodes[$code] }}">
+                                                            {{ $booking['provider_count'] }}</td>
+                                                        <td class="{{ $cssClass }}"
+                                                            style="background-color:{{ $colorCodes[$code] }}">
                                                             @if ($bookingType != 'Unassigned' && $bookingType != 'Invitations')
                                                                 @if ($booking['check_in_status'] == 0)
                                                                     On Time
@@ -123,7 +153,8 @@
                                                                 Unassigned
                                                             @endif
                                                         </td>
-                                                        <td>
+                                                        <td class="{{ $cssClass }}"
+                                                            style="background-color:{{ $colorCodes[$code] }}">
                                                             <div class="d-flex actions">
                                                                 @if (
                                                                     $booking['check_in_status'] == 0 &&
@@ -331,7 +362,7 @@
                                                 @endforeach
                                             @else
                                                 <tr>
-                                                    <td colSpan=8>
+                                                    <td colSpan=9>
                                                         <div class="text-center">
                                                             <small>No Bookings available</small>
                                                         </div>
