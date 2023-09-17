@@ -882,7 +882,7 @@
         <div class="col-md-3 col-12">
             <div class="mb-4">
                 <label class="form-label" for="search-record-column">
-                    Search
+                    Search <small>(coming soon)</small>
                 </label>
                 <input type="text" id="search-record-column" class="form-control" name="search-column"
                     placeholder="Search here" required aria-required="true" />
@@ -891,7 +891,7 @@
         {{-- Date Range --}}
         <div class="col-md-3 col-12">
             <label class="form-label" for="set_date-column">
-                Date Range
+                Date Range <small>(coming soon)</small>
             </label>
             <div class="position-relative">
                 <input type="" name="" class="form-control js-single-date"
