@@ -55,4 +55,9 @@ li.page-item {
 .select2-container--default .select2-search--inline .select2-search__field{
     padding: 0.4rem 0.75rem;
 }
+
+.assigned, .unassigned,.partially_assigned,.fully_assigned,.provider_running_Late,.provider_checked-in,.information_document_request_pending{
+    color:#fff;
+}
+
 /* } */

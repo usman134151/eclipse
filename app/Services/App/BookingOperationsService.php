@@ -4,6 +4,7 @@ use App\Models\Tenant\User;
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingServices;
 use App\Models\Tenant\BookingIndustry;
+use App\Models\Tenant\BookingDepartment;
 use App\Models\Tenant\SetupValue;
 use App\Models\Tenant\Accommodation;
 use App\Models\Tenant\UserAddress;
@@ -21,7 +22,7 @@ class BookingOperationsService{
 
  
 
-  public static function createBooking($booking, $services, $dates,$selectedIndustries){
+  public static function createBooking($booking, $services, $dates,$selectedIndustries,$selectedDepartments){
     $booking->booking_number=self::generateBookingNumber();
     $booking->user_id=Auth::user()->id;
     //data mapping for main booking table
@@ -49,13 +50,13 @@ class BookingOperationsService{
 
     $booking->save();
     //end of data mapping for main booking table
-    SELF::saveDetails($services,$dates,$selectedIndustries,$booking);
+    SELF::saveDetails($services,$dates,$selectedIndustries,$booking,$selectedDepartments);
 
     return $booking;
     
   }
 
-  public static function saveDetails($services,$dates,$selectedIndustries,$booking)
+  public static function saveDetails($services,$dates,$selectedIndustries,$booking,$selectedDepartments)
    {
    // BookingServices::where('booking_id', $booking->id)->delete();
   //  dd($services);
@@ -86,6 +87,16 @@ class BookingOperationsService{
       BookingIndustry::updateOrInsert( [
         'booking_id' => $booking->id,
         'industry_id' => $industry,
+      ], []);
+    }
+
+
+   
+    //saving industries
+    foreach($selectedDepartments as $department){
+      BookingDepartment::updateOrInsert( [
+        'booking_id' => $booking->id,
+        'department_id' => $department['department_id'],
       ], []);
     }
 }
@@ -140,7 +151,7 @@ class BookingOperationsService{
     else
       $service['service_charges']=$service['service_data']['fixed_rate'.$service['postFix']];
    }
-   elseif($service['service_data']['rate_status']==1){ //for hourly rate
+   elseif($service['service_data']['rate_status']==1 || $service['service_data']['rate_status']==2){ //for hourly rate - temp fix for day rate
    
     if($service['service_data'][$multipleProviderCol]){
      
@@ -172,6 +183,7 @@ class BookingOperationsService{
     foreach($serviceCharges as $serviceCharge){
      
             $charges=$serviceCharge[0]['price'];
+          
             if(array_key_exists('multiply_providers',$serviceCharge[0]) && $serviceCharge[0]['multiply_providers'])
               $charges*=$service['provider_count'];
             if(array_key_exists('multiply_duration',$serviceCharge[0]) && $serviceCharge[0]['multiply_duration'])
@@ -307,7 +319,8 @@ class BookingOperationsService{
 
     $service['after_business_start_time'] ='';
     $service['after_business_end_time'] = '';
-    if($duration['days']==null || $duration['days']==0){
+   
+    if(!is_null($duration) || $duration['days']==0){
         //single day booking 
 
         foreach($schedule->timeslots as $timeSlot){
@@ -388,7 +401,7 @@ class BookingOperationsService{
     ];
     foreach($scheduleChecks as $scheduleData){
         $schedule = Schedule::where('model_id', $scheduleData['model_id'])->where('model_type', $scheduleData['model_type'])->with('timeslots','holidays')->get()->first();
-        if(!is_null($schedule)){
+        if(!is_null($schedule) && count($schedule['timeslots'])){
             return $schedule;
         }
     }
@@ -399,10 +412,11 @@ class BookingOperationsService{
 
   public static function calculateDuration($startTime,$endTime,$dayRate=false){
     $startDateTime = Carbon::create($startTime);
-    
+    $days=0;$hours=0;$minutes=0;$timeError=true;
     $endDateTime =  Carbon::create($endTime);
  
     if ($endDateTime >= $startDateTime) {
+        $timeError=false;
         $diff = $endDateTime->diff($startDateTime);
         $days=null;
         if($dayRate){
@@ -417,8 +431,9 @@ class BookingOperationsService{
         }
 
       
-        return ['days'=>$days,'hours'=>$hours,'mins'=>$minutes];
+      
     }
+    return ['days'=>$days,'hours'=>$hours,'mins'=>$minutes,'timeError'=>$timeError];
   }
 
 }

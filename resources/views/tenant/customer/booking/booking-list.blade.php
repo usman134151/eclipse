@@ -77,6 +77,6 @@
   </div>
   <!-- Filters -->
  
-@livewire('app.common.bookings.booking-list', ['bookingType'=>$bookingType,'bookingSection'=>'customer'])
+@livewire('app.common.bookings.booking-list', ['bookingType'=>$bookingType,'bookingSection'=>'customer','showHeader'=>true])
 {{-- End: Content --}}
 @endsection

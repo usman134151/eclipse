@@ -29,7 +29,7 @@ class TenantDatabaseSeeder extends Seeder
       $this->call(PlanPermissionSeeder::class);
       #### Add Custome Seeder For ApiReponse By Sakhawat #####
       $this->call(NotificationResponse::class);
-      $this->call(BookingsSeeder::class); //added records in booking table by Sohail
+     // $this->call(BookingsSeeder::class); //added records in booking table by Sohail
       $this->call(SetupSeeder::class); //added records in setup table by Amna Bilal
       $this->call(SetupValuesSeeder::class); //added records in setup values table by Amna Bilal
       $this->call(NavigatorTableSeeder::class);//added by Amna Bilal for dashboard navigator
@@ -37,6 +37,11 @@ class TenantDatabaseSeeder extends Seeder
       $this->call(SystemSectionsSeeder::class); // Added records in system_sections table by Sohail
       $this->call(TimezoneSeeder::class);
       $this->call(RolesCustomerSeeder::class);
+      $this->call(NotificationSeeder::class); //added records in setup table by Amna Bilal
+      $this->call(NotificationTagsSeeder::class); //added records in setup table by Amna Bilal
+      $this->call(SetupSeederForDocumentTypes::class); //added records in setup table by Amna Bilal
+      
+      $this->call(BookingColorCodesSeeder::class); //added records in setup table by Amna Bilal
     }
 
 }

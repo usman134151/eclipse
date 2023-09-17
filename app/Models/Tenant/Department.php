@@ -55,4 +55,14 @@ class Department extends Model
 	{
 		return $this->belongsTo(Company::class, 'company_id');
 	}
+	
+	public function bookingDepartments()
+    {
+        return $this->hasMany(BookingDepartment::class, 'department_id');
+    }
+
+    public function bookings()
+    {
+        return $this->belongsToMany(Booking::class, 'booking_departments', 'department_id', 'booking_id');
+    }
 }

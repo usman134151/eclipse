@@ -10,6 +10,7 @@
             <div class="col-lg-6 py-2">
               <label class="form-label-sm fw-bold mb-0">Select Department</label>
             </div>
+            @if(!$isBooking)
             <div class="col-lg-3 text-center py-2">
               <label class="form-label-sm fw-bold mb-0">Default <i class="fa fa-question-circle text-muted" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i></label>
             </div>
@@ -17,7 +18,7 @@
             <div class="col-lg-3 text-center py-2">
               <label class="form-label-sm fw-bold mb-0">Supervisor</label>
             </div>
-            
+            @endif
           </div><!-- END: Row Header -->
           @foreach($departments as $department)
 
@@ -30,6 +31,7 @@
                 </label>
               </div>
             </div>
+            @if(!$isBooking)
             <div class="col-lg-3 text-center py-2">
               <div class="form-check mb-0 mx-auto d-inline-block">
                 <input class="form-check-input" type="radio" name="defaultDepartment" wire:model="defaultDepartment" value="{{$department->id}}">
@@ -41,7 +43,7 @@
                 <input class="form-check-input" type="checkbox" id="{{$department->id}}" value="" wire:model="selectedDepartments.{{$department->id}}.is_supervisor" >
               </div>
             </div>
-            
+            @endif
           </div>
           <!-- END: Row Data -->
           @endforeach
