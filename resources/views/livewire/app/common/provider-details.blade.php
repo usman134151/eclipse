@@ -1368,9 +1368,9 @@
             <div class="col-md-3 col-12">
                 <div class="mb-4">
                     <label class="form-label" for="search-record">
-                        Search
+                        Search <small>(coming soon)</small>
                     </label>
-                    <input type="text" id="search-record" class="form-control" name="search-record"
+                    <input disabled type="text" id="search-record" class="form-control" name="search-record"
                         placeholder="Search here" required aria-required="true" />
                 </div>
             </div>
@@ -1378,10 +1378,10 @@
             <div class="col-md-3 col-12">
                 <div>
                     <label class="form-label" for="setDate">
-                        Date Range
+                        Date Range <small>(coming soon)</small>
                     </label>
                     <div class="position-relative">
-                        <input type="" name="" class="form-control js-single-date"
+                        <input disabled type="" name="" class="form-control js-single-date"
                             placeholder="Jan 1, 2022 - Oct 1, 2022" id="">
                         <svg class="icon-date" width="20" height="20" viewBox="0 0 20 20" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -1392,9 +1392,9 @@
             </div>
             <div class="col-md-3 col-12">
                 <label class="form-label" for="stars">
-                    Stars
+                    Stars <small>(coming soon)</small>
                 </label>
-                <select class="select2 form-select" id="stars">
+                <select disabled class="select2 form-select" id="stars">
                     <option value="stars">
                         3 starts
                     </option>

@@ -149,6 +149,18 @@
                             </div>
                         </div>
                     </div>
+                    <div class="d-flex">
+                        @error('checkout.actual_start_hour')
+                            <span class="d-inline-block invalid-feedback mt-2">
+                                {{ $message }}
+                            </span>
+                        @enderror
+                        @error('checkout.actual_start_min')
+                            <span class="d-inline-block invalid-feedback mt-2">
+                                {{ $message }}
+                            </span>
+                        @enderror
+                    </div>
                     <div class="border-bottom border-dark border-start-0 border-end-0 border-top-0 py-3">
                         <div class="row">
                             <div class="col-lg-2 align-self-center">
@@ -189,7 +201,20 @@
                             </div>
                         </div>
                     </div>
+                    <div class="d-flex">
+                        @error('checkout.actual_end_hour')
+                            <span class="d-inline-block invalid-feedback mt-2">
+                                {{ $message }}
+                            </span>
+                        @enderror
+                        @error('checkout.actual_end_min')
+                            <span class="d-inline-block invalid-feedback mt-2">
+                                {{ $message }}
+                            </span>
+                        @enderror
+                    </div>
                 </div>
+
                 <div class="col-lg-8">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="checkout_confirmation_upload_type"
@@ -402,24 +427,24 @@
             $this->checkout_details['customize_form'] == true &&
             isset($this->checkout_details['customize_form_id']))
         <div class="{{ $step == 2 ? '' : 'hidden' }}">
-            <form  wire:submit.prevent="saveStepTwo">
-            <div class="mb-4">
-                <div class="row inner-section-segment-spacing">
-                    <div class="col-lg-12">
-                        <h3 class="text-primary">Step 2:</h3>
-                        @livewire('app.common.forms.custom-form-display', ['showForm' => true, 'formId' => $this->checkout_details['customize_form_id'], 'bookingId' => $assignment->id, 'lastForm' => false, 'formType' => 3, 'service_id' => $booking_service->services, 'added_by_id' => $provider_id])
+            <form wire:submit.prevent="saveStepTwo">
+                <div class="mb-4">
+                    <div class="row inner-section-segment-spacing">
+                        <div class="col-lg-12">
+                            <h3 class="text-primary">Step 2:</h3>
+                            @livewire('app.common.forms.custom-form-display', ['showForm' => true, 'formId' => $this->checkout_details['customize_form_id'], 'bookingId' => $assignment->id, 'lastForm' => false, 'formType' => 3, 'service_id' => $booking_service->services, 'added_by_id' => $provider_id])
+                        </div>
                     </div>
                 </div>
-            </div>
-            <hr>
-            <div class="mb-4">
-                <div class="form-actions d-flex gap-3 justify-content-center mt-5">
-                    <button type="button" class="btn btn-primary rounded" wire:click="setStep(1)">Back</button>
-                    <button type="button" x-on:click="offcanvasOpenCheckOut = !offcanvasOpenCheckOut"
-                        class="btn btn-outline-dark rounded">Cancel</button>
-                    <button type="submit" class="btn btn-primary rounded js-checkout-go-step-3">Next</button>
+                <hr>
+                <div class="mb-4">
+                    <div class="form-actions d-flex gap-3 justify-content-center mt-5">
+                        <button type="button" class="btn btn-primary rounded" wire:click="setStep(1)">Back</button>
+                        <button type="button" x-on:click="offcanvasOpenCheckOut = !offcanvasOpenCheckOut"
+                            class="btn btn-outline-dark rounded">Cancel</button>
+                        <button type="submit" class="btn btn-primary rounded js-checkout-go-step-3">Next</button>
+                    </div>
                 </div>
-            </div>
             </form>
         </div>
     @endif
@@ -550,11 +575,11 @@
                         @if (isset($checkout['rating']))
                             @for ($i = 0; $i < $checkout['rating']; $i++)
                                 <i class="fa fa-star fa-2x text-warning"
-                                    wire:click="setRating({{ $i+1 }})"></i>
+                                    wire:click="setRating({{ $i + 1 }})"></i>
                             @endfor
                             @for ($i = $checkout['rating']; $i < 5; $i++)
                                 <i class="fa fa-star-o fa-2x text-warning"
-                                    wire:click="setRating({{ $i+1 }})"></i>
+                                    wire:click="setRating({{ $i + 1 }})"></i>
                             @endfor
                         @endif
                     </div>
@@ -562,7 +587,8 @@
                         <div class="col-lg-6 mb-4">
                             <label class="form-label-sm" for="EntryNotes">Feedback Notes
                             </label>
-                            <textarea class="form-control" rows="5" wire:model.defer="checkout.feedback_comments" cols="5" id="EntryNotes"></textarea>
+                            <textarea class="form-control" rows="5" wire:model.defer="checkout.feedback_comments" cols="5"
+                                id="EntryNotes"></textarea>
                         </div>
                     </div>
                     <div class="row">

@@ -45,6 +45,9 @@ class CheckIn extends Component
         return [
             'provider_signature' => 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv',
             'customer_signature' => 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv',
+            'hours'=> 'required|integer|between:1,23',
+            'mins' => 'required|integer|between:1,59'
+
         ];
     }
     public function save()
@@ -62,8 +65,8 @@ class CheckIn extends Component
             $bookingProvider = $this->assignment->booking_provider->where('booking_id', $this->booking_id)->first();
 
         $values = [
-            'actual_start_hour' => $this->hours,
-            'actual_start_min' => $this->mins,
+            'actual_start_hour' => $this->hours ?? null ,
+            'actual_start_min' => $this->mins ?? null,
             'provider_signature_path' => isset($p_sign) ? $p_sign : null,
             'customer_signature_path' => isset($c_sign) ? $c_sign : null,
             'actual_start_timestamp' => Carbon::createFromTime($this->hours, $this->mins),
