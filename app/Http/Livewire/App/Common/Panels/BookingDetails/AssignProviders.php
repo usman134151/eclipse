@@ -252,9 +252,8 @@ class AssignProviders extends Component
             if ($prev->count()) {
                 $previousAssigned = $prev->get()->pluck('provider_id')->toArray();
                 $prev->delete();
-
-            }else
-            $previousAssigned =[];
+            } else
+                $previousAssigned = [];
 
             $data = null;
             foreach ($this->assignedProviders as $provider) {
@@ -282,7 +281,6 @@ class AssignProviders extends Component
 
                         sendTemplatemail($params);
                     }
-
                 }
                 $data['provider_id'] = $provider;
                 $data['booking_id'] = $this->booking_id;
@@ -304,8 +302,8 @@ class AssignProviders extends Component
     {
         if (count($this->assignedProviders) > 0) {
             $this->showError = false;
-
             $bookingInv  = BookingInvitation::firstOrCreate(['booking_id' => $this->booking_id, 'service_id' => $this->service_id]);
+
             foreach ($this->assignedProviders as $provider_id) {
                 $invData           = ['booking_id'   => $this->booking_id, 'deleted_at'   => null];
                 $existed  = BookingInvitationProvider::where(['booking_id' => $this->booking_id, 'provider_id' => $provider_id, 'invitation_id' => $bookingInv->id]);
@@ -348,8 +346,9 @@ class AssignProviders extends Component
                         $invData['invitation_id']   = $bookingInv->id;
                     }
                 }
+                BookingInvitationProvider::updateOrCreate($invData, $invData);
             }
-            BookingInvitationProvider::updateOrCreate($invData, $invData);
+
             $message = "Booking Invitations sent by" . Auth::user()->name;
             $logs = array(
                 'action_by' => Auth::user()->id,

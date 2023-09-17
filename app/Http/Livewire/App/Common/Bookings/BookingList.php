@@ -17,7 +17,7 @@ class BookingList extends Component
 	use WithPagination;
 
 	public $bookingType = 'past';
-	public $showHeader=true;
+	public $showHeader = true;
 	public $showBookingDetails, $colorCodes = [];
 	public $bookingSection;
 	public  $limit = 10, $counter, $ad_counter = 0, $ci_counter = 0, $co_counter = 0, $currentServiceId, $panelType = 1;
@@ -96,43 +96,58 @@ class BookingList extends Component
 
 		switch ($this->bookingType) {
 			case ('Past'):
-				$query = Booking::
-					// where(['type' => 1, 'booking_status' => '1'])
+				$query = Booking::where(['type' => 1, 'booking_status' => '1'])
 
 					// ->when($addressCheck, function ($query) {
 					// 	$query->where('isCompleted', 0);
 					// })
 					// ->whereIn('bookings.status', [3, 4])
 					// Or
-					where(function ($ca) use ($today) {
+					->where(function ($ca) use ($today) {
 						$ca->whereRaw("DATE(booking_start_at) < '$today'")
 							->whereIn('bookings.status', [1, 2]);
 						// ->when($addressCheck, function ($query) {
 						// 	$query->where('isCompleted', 0);
 						// });
-					})
-					->orderBy('booking_start_at', 'DESC');
+					});
+
+				$query->orderBy('booking_start_at', 'DESC');
+
 				break;
 			case ("Today's"):
-				$query = Booking::
-					// where(['bookings.status' => 2, 'type' => 1, 'booking_status' => '1'])
+				$query = Booking::where(['bookings.status' => 2, 'type' => 1, 'booking_status' => '1'])
 
 					// ->when($addressCheck, function ($query) {
 					// 	$query->where('isCompleted', 0);
 					// })
-					whereRaw("'$today'  Between  DATE(booking_start_at) AND DATE(booking_end_at)")
+					->whereRaw("'$today'  Between  DATE(booking_start_at) AND DATE(booking_end_at)")
 					->orderBy('booking_start_at', 'ASC');
+				if (!$this->provider_id) {
+					$query->leftJoin('booking_providers', function ($join) {
+						$join->on('booking_providers.booking_id', 'bookings.id');
+					});
+					$query->select('bookings.id', 'bookings.booking_number', 'is_closed', 'bookings.status', 'booking_start_at', 'booking_end_at', 'provider_count');
+
+					$query->selectRaw('
+					SUM(CASE WHEN booking_providers.check_in_status = "1" THEN 1 ELSE 0 END) AS checked_in,
+					SUM(CASE WHEN booking_providers.check_in_status = "2" THEN 1 ELSE 0 END) AS running_late
+				');
+
+					$query->groupBy('bookings.id', 'bookings.booking_number', 'is_closed', 'bookings.status', 'booking_start_at', 'booking_end_at', 'provider_count');
+				}
+
 				break;
 			case ('Upcoming'):
 
 				$query = Booking::whereDate('booking_start_at', '>', Carbon::today())
-					// ->where(['bookings.status' => 2, 'type' => 1, 'booking_status' => '1'])
+					->where(['bookings.status' => 2, 'type' => 1, 'booking_status' => '1'])
 
 					// ->when($addressCheck, function ($query) {
 					// 	$query->where('isCompleted', 0);
 					// })
 					->whereRaw("DATE(booking_start_at) > '$today'")
 					->orderBy('booking_start_at', 'ASC');
+
 				break;
 			case ('Pending Approval'):
 				$query = Booking::where('booking_status', 0)->orderBy('booking_start_at', 'DESC');
@@ -156,8 +171,8 @@ class BookingList extends Component
 				// 
 				$query = Booking::
 					// whereDate('booking_start_at', '>', Carbon::now())
-					// ->where(['bookings.status' => 1, 'type' => 1,'booking_status' => '1'])
-					orderBy('booking_start_at', 'ASC');
+					where(['bookings.status' => 1, 'type' => 1, 'booking_status' => '1'])
+					->orderBy('booking_start_at', 'ASC');
 				$query->whereHas('invitation');
 
 				break;
@@ -168,9 +183,9 @@ class BookingList extends Component
 
 
 		// check to ensure all bookings are for active customer 
-		// $query->whereHas('customer', function ($q) {
-		// 	$q->where('status', '1');
-		// });
+		$query->whereHas('customer', function ($q) {
+			$q->where('status', '1');
+		});
 
 		if ($this->provider_id) { //from provider panel
 			if ($this->bookingType == "Unassigned") {
@@ -184,9 +199,12 @@ class BookingList extends Component
 					'booking_available_providers.status as avail_status'
 				]);
 			} elseif ($this->bookingType == "Invitations") {
-				// update this with subquery
-				$assignedBookings =  BookingProvider::where('provider_id', Auth::id())->pluck('booking_id');
-				$query->whereNotIn('bookings.id', $assignedBookings)
+				//  subquery to remove already assigned bookings
+				$query->whereNotIn('bookings.id', function ($query) {
+					$query->from('booking_providers')
+						->where('provider_id', Auth::id())
+						->select('booking_id');
+				})
 					->join('booking_invitation_providers', function ($join) {
 						$join->on('booking_invitation_providers.booking_id', '=', 'bookings.id');
 						$join->where('booking_invitation_providers.provider_id', '=', Auth::id());
@@ -220,8 +238,6 @@ class BookingList extends Component
 			}
 			if ($this->bookingType == "Active")
 				$query->where('booking_providers.check_in_status', '=', 1);
-
-			$base = "provider-";
 		}
 		$query = $this->applySearchFilter($query);
 		$data = $query->paginate($this->limit);
@@ -291,7 +307,10 @@ class BookingList extends Component
 			$this->provider_id = Auth::id();
 
 			$this->hideProvider = true;
-			$this->provider_ids = [$this->provider_id];
+			if ($this->bookingType == 'Invitations' || $this->bookingType == 'Unassigned')
+				$this->provider_ids = [];
+			else
+				$this->provider_ids = [$this->provider_id];
 		}
 		$serviceTypeLabels = SetupValue::where('setup_id', 5)->pluck('setup_value_label')->toArray();
 		for ($i = 0, $j = 1; $i < 4; $i++, $j++) {
@@ -313,7 +332,7 @@ class BookingList extends Component
 
 
 		$colorCodes = SetupValue::where(['setup_id' => 10])->select(['setup_value_alt_id as type', 'setup_value_label as code'])->get()->toArray();
-		
+
 		foreach ($colorCodes as $r) {
 			$this->colorCodes[$r['type']] = $r['code'];
 		}
