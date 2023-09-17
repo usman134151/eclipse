@@ -183,7 +183,7 @@ class BookingOperationsService{
     foreach($serviceCharges as $serviceCharge){
      
             $charges=$serviceCharge[0]['price'];
-          
+        
             if(array_key_exists('multiply_providers',$serviceCharge[0]) && $serviceCharge[0]['multiply_providers'])
               $charges*=$service['provider_count'];
             if(array_key_exists('multiply_duration',$serviceCharge[0]) && $serviceCharge[0]['multiply_duration'])

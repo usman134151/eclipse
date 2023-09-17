@@ -813,12 +813,12 @@ class Booknow extends Component
             'booking.contact_point'=>'nullable',
             'booking.poc_phone'=>'nullable',
             'payment.coupon_type'=>'nullable',
-            'payment.override_amount'=>'nullable',
-            'payment.coupon_discount_amount'=>'nullable',
+            'payment.override_amount'=>'nullable|numeric',
+            'payment.coupon_discount_amount'=>'nullable|numeric',
             'payment.additional_label'=>'nullable',
-            'payment.additional_charge'=>'nullable',
+            'payment.additional_charge'=>'nullable|numeric',
             'payment.additional_label_provider'=>'nullable',
-            'payment.additional_charge_provider'=>'nullable',
+            'payment.additional_charge_provider'=>'nullable|numeric',
             'payment.discounted_amount'=>'nullable',
             'payment.payment_method'=>'sometimes|numeric'
 
@@ -959,6 +959,14 @@ class Booknow extends Component
        
     }
     public function updateTotals(){
+       
+        $this->validate([
+            'payment.coupon_discount_amount' => 'nullable|numeric',
+            'payment.additional_charge' => 'nullable|numeric',
+            'payment.additional_charge_provider' => 'nullable|numeric',
+            'payment.override_amount' => 'nullable|numeric',
+        ]);
+
         foreach($this->services as $service)
         {
             if($service['billed_total'])

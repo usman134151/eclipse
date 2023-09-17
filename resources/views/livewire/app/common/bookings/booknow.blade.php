@@ -1184,6 +1184,11 @@
                                                 <a href="#" class="btn btn-primary btn-sm rounded w-100" wire:click="updateTotals">Apply</a>
                                             </div>
                                         </div>
+                                        @error('payment.coupon_discount_amount')
+                                        <div class="d-inline-block invalid-feedback mt-2">
+                                               Discount  amount must be a numeric value
+                                        </div>                                   
+                                        @enderror
                                        
                                     </div>
                                     <div class="mt-5">
@@ -1207,6 +1212,11 @@
                                                 </small>
                                             </a> -->
                                         </div>
+                                        @error('payment.additional_charge')
+                                        <div class="d-inline-block invalid-feedback mt-2">
+                                               Charges must be a numeric value
+                                        </div>                                   
+                                        @enderror
                                     </div>
                                     <div class="mt-5">
                                         <h3>Additional Provider Payment</h3>
@@ -1216,6 +1226,11 @@
                                             <input type="" name="" class="form-control form-control-md text-center"
                                                 placeholder="$00.00" aria-label="Additional Provider Payment" wire:model.defer="payment.additional_charge_provider" wire:blur="updateTotals">
                                         </div>
+                                        @error('payment.additional_charge_provider')
+                                        <div class="d-inline-block invalid-feedback mt-2">
+                                               Payment amount must be a numeric value
+                                        </div>                                   
+                                        @enderror    
                                        <!--  <div
                                             class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-1 gap-md-0">
                                             <div class="form-check form-check-inline">
@@ -1236,7 +1251,9 @@
                                                 </small>
                                             </a>
                                         </div> -->
-                                    </div>              
+
+                                    </div>     
+     
                                     <div class="row between-section-segment-spacing">
                                         <div class="col-lg-12">
                                             <div class="row mt-2">
@@ -1264,6 +1281,11 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            @error('payment.override_amount')
+                                        <div class="d-inline-block invalid-feedback mt-2">
+                                               Please add valid numeric value
+                                        </div>                                   
+                                        @enderror
                                             <div class="row mb-4">
                                                 <div class="col-lg-12">
                                                     <div class="d-flex gap-3 bg-gray p-2">
