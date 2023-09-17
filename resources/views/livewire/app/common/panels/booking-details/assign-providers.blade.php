@@ -30,22 +30,7 @@
          </div>
      </div><!-- END: Filters -->
      <!-- BEGIN: Filter Table -->
-     @if ($limit && ($panelType ==1 || $panelType ==3))
-         <div class="">
-             <span> Required Providers : {{ $limit }} </span>
-             <span class="d-inline-block  mt-2"
-                 style="{{ count($assignedProviders) <= $limit ? '' : 'color:#b02a37' }}">
-                 Assigned Providers : {{ count($assignedProviders) }} </span>
-             @if (count($assignedProviders) > $limit)
-                 <span class="d-inline-block invalid-feedback mt-2"> Max Limit exceeded - Please unassign
-                     provider</span>
-             @endif
-         </div>
-     @endif
-     @if($showError)
-        <span class="d-inline-block invalid-feedback my-1">No providers are selected.</span>
 
-     @endif
      <div class="d-lg-flex justify-content-between align-items-end mb-3">
          <div>
              <a href="#" class="btn btn-primary rounded">Providers</a>
@@ -97,7 +82,7 @@
 
                              </td>
                          @endif
-                         <td>
+                         <td class="border-end-2">
                              <div class="d-flex gap-2 align-items-center">
                                  <div>
                                      @if ($provider->profile_pic)
@@ -131,7 +116,7 @@
                          <td colSpan=4> Pending</td>
                          @endif
                          @if ($panelType == 1 || ($panelType ==3 && $provider->invitation_response($booking_id) ==1) )
-                             <td>
+                             <td class="border-end-2" style="min-width:340px">
                                  <div class="d-grid grid-cols-2 gap-3 mb-3">
                                      <div>
                                          <label class="form-label-sm">Label</label>
@@ -199,7 +184,7 @@
                             </div>
                             --}}
                              </td>
-                             <td class="text-center">
+                             <td class="text-center border-end-2">
                                  <div class="d-flex gap-2 justify-content-center mb-3">
                                      <div class="col-md-4">
                                          <label class="form-label-sm">No of Days/Hours</label>

@@ -1018,15 +1018,15 @@
                                                                                         @if ($param[0]['exclude_holidays'] == true)
                                                                                             Exclude After Hours <br>
                                                                                         @endif
-                                                                                        @if ($param[0]['multiply_duration'] == true)
+                                                                                        @if (key_exists('multiply_duration', $param[0]) && $param[0]['multiply_duration'] == true)
                                                                                             Multiply by service duration
                                                                                             <br>
                                                                                         @endif
-                                                                                        @if ($param[0]['multiply_providers'] == true)
+                                                                                        @if (key_exists('multiply_providers', $param[0]) &&  $param[0]['multiply_providers'] == true)
                                                                                             Multiply by no. of Providers
                                                                                             <br>
                                                                                         @endif
-                                                                                        @if ($param[0]['exclude_after_hour'] == true)
+                                                                                        @if (key_exists('exclude_after_hour',$param[0]) && $param[0]['exclude_after_hour'] == true)
                                                                                             Exclude Closed Hours <br>
                                                                                         @endif
                                                                                     </div>
@@ -1097,15 +1097,15 @@
                                                                                         @if ($param[0]['exclude_holidays'] == true)
                                                                                             Exclude After Hours <br>
                                                                                         @endif
-                                                                                        @if ($param[0]['multiply_duration'] == true)
+                                                                                        @if (key_exists('multiply_duration', $param[0]) && $param[0]['multiply_duration'] == true)
                                                                                             Multiply by service duration
                                                                                             <br>
                                                                                         @endif
-                                                                                        @if ($param[0]['multiply_providers'] == true)
+                                                                                        @if (key_exists('multiply_providers', $param[0]) &&  $param[0]['multiply_providers'] == true)
                                                                                             Multiply by no. of Providers
                                                                                             <br>
                                                                                         @endif
-                                                                                        @if ($param[0]['exclude_after_hour'] == true)
+                                                                                        @if (key_exists('exclude_after_hour',$param[0]) &&  $param[0]['exclude_after_hour'] == true)
                                                                                             Exclude Closed Hours <br>
                                                                                         @endif
                                                                                     </div>
@@ -1176,15 +1176,15 @@
                                                                                         @if ($param[0]['exclude_holidays'] == true)
                                                                                             Exclude After Hours <br>
                                                                                         @endif
-                                                                                        @if ($param[0]['multiply_duration'] == true)
+                                                                                        @if ( key_exists('multiply_duration', $param[0]) && $param[0]['multiply_duration'] == true)
                                                                                             Multiply by service duration
                                                                                             <br>
                                                                                         @endif
-                                                                                        @if ($param[0]['multiply_providers'] == true)
+                                                                                        @if (key_exists('multiply_providers', $param[0]) &&  key_exists('multiply_providers', $param[0]) && $param[0]['multiply_providers'] == true)
                                                                                             Multiply by no. of Providers
                                                                                             <br>
                                                                                         @endif
-                                                                                        @if ($param[0]['exclude_after_hour'] == true)
+                                                                                        @if (key_exists('exclude_after_hour',$param[0]) &&  $param[0]['exclude_after_hour'] == true)
                                                                                             Exclude Closed Hours <br>
                                                                                         @endif
                                                                                     </div>
