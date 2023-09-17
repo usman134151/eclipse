@@ -239,8 +239,11 @@ class BookingList extends Component
 			if ($this->bookingType == "Active")
 				$query->where('booking_providers.check_in_status', '=', 1);
 		}
+		$query->with('payment');
+		
 		$query = $this->applySearchFilter($query);
 		$data = $query->paginate($this->limit);
+		
 		// dd($query->get()->toArray());
 		// setting values for booking and its services
 		foreach ($data as $row) {

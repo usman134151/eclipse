@@ -277,7 +277,7 @@
                                                                     </td>
                                                                     <td class="{{ $cssClass }}"
                                                                         style="background-color:{{ $colorCodes[$code] }};">
-                                                                        {{ $booking['booking_total'] }}</td>
+                                                                        @if(!is_null($booking['payment'])){{ formatPayment($booking['payment']['total_amount']) }} @else N/A @endif</td>
                                                                     <td class="{{ $cssClass }}"
                                                                         style="background-color:{{ $colorCodes[$code] }};">
                                                                         <div class="d-flex align-items-center gap-1">
