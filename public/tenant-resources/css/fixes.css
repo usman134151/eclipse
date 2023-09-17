@@ -60,13 +60,8 @@ li.page-item {
     color:#fff;
 }
 
-.btn-outline-dark:hover{
-    border-color: #fff !important;
-    color:#fff !important;
 
-}
-
-.table-hover tbody tr th, .table-hover tbody tr td:hover .btn-outline-dark{
+.table-hover tbody tr td:hover .btn-outline-dark{
 
     border-color: #fff !important;
     color:#fff !important;
