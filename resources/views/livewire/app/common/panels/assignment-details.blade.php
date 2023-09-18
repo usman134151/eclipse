@@ -759,6 +759,15 @@
                             <h2 class="mb-lg-0">Payment Detail
                                 <small>(coming soon)</small>
                             </h2>
+                            <button type="button"
+                                class="btn btn-primary rounded d-inline-flex align-items-center gap-1"
+                                x-on:click="addReimbursement = true">
+                                <svg aria-label="Add Reimbursement" width="20" height="21"
+                                    viewBox="0 0 20 21">
+                                    <use xlink:href="/css/common-icons.svg#plus"></use>
+                                </svg>
+                                <span>Add Reimbursement</span>
+                            </button>
                         </div>
                         <div class="row">
                             <div class="col-lg-12 mb-3">
@@ -818,15 +827,7 @@
                     <div class="col-lg-12">
                         <div class="d-lg-flex align-items-center gap-5 mb-5">
                             <h2 class="mb-lg-0">Attachments</h2>
-                            <button type="button"
-                                class="btn btn-primary rounded d-inline-flex align-items-center gap-1"
-                                x-on:click="addReimbursement = true">
-                                <svg aria-label="Add Reimbursement" width="20" height="21"
-                                    viewBox="0 0 20 21">
-                                    <use xlink:href="/css/common-icons.svg#plus"></use>
-                                </svg>
-                                <span>Add Reimbursement</span>
-                            </button>
+                            
                         </div>
                         @livewire('app.common.bookings.booking-attachments', ['booking_id' => $booking->id, 'isProviderPanel' => true])
 

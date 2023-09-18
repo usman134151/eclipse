@@ -10,19 +10,19 @@ use Livewire\Component;
 
 class RunningLate extends Component
 {
-    public $booking_id, $showForm, $service, $hours, $mins, $customSet = false;
+    public $booking_id, $showForm, $service, $hours, $mins, $customSet = false, $booking=null;
     protected $listeners = ['showList' => 'resetForm', 'openRunningLateModal' => 'setDetails'];
 
     public function setDetails($booking_id, $service_id = null)
     {
         $this->hours = null;
         $this->mins = null;
+        $this->booking = Booking::where('id', $booking_id)->first();
 
         $this->booking_id = $booking_id;
         if (is_null($service_id)) {
             //if booking_providers.service_id not set, fetch first service from booking_services 
-            $booking = Booking::where('id', $booking_id)->first();
-            $this->service = $booking->services->first();
+            $this->service = $this->booking->services->first();
         } else
             $this->service = ServiceCategory::where('id', $service_id)->first();
     }

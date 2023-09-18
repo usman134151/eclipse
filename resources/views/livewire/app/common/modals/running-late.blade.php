@@ -5,7 +5,7 @@
     </div>
     <div class="modal-body">
         <div class="d-flex justify-content-center flex-column align-items-center">
-            <p class="mb-4">How much time running late for “{{ isset($service->name) ? $service->name : '' }}”</p>
+            <p class="mb-4">How late are you running for Booking#{{ isset($booking->booking_number) ? $booking->booking_number : '' }}</p>
             <div class="d-flex gap-3 align-items-center mb-4">
                 <a href="#" wire:click="fastSet(15)" class="btn btn-outline-dark btn-sm rounded">15 mins</a>
                 <a href="#" wire:click="fastSet(30)" class="btn btn-outline-dark btn-sm rounded">30 mins</a>

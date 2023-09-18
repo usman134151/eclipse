@@ -60,7 +60,7 @@ class AssignmentDetails extends Component
 
             if ($service['meetings']!=null) {
 
-                $this->data['booking_services'][$key]['meeting_details'] = json_decode($service['meetings'], true)[0];
+                $this->data['booking_services'][$key]['meeting_details'] = json_decode($service['meetings'], true) ? json_decode($service['meetings'], true)[0] : null;
             }
         }
         $this->data['assigned']=$assigned;
