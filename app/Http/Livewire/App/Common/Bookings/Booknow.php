@@ -88,7 +88,7 @@ class Booknow extends Component
     '5'=>['class'=>'teleconference-rate','postfix'=>'_t','title'=>'Teleconference'],
   ];
 
-    public $assignedSupervisor="checked";
+    public $assignedSupervisor="";
 
 
 
@@ -495,11 +495,13 @@ class Booknow extends Component
             }
 
        
-        
-        $startDate= $currentDate->format('m/d/Y');    
-        
-        $currentHour = $currentDate->format('H');
-        $currentMinute = $currentDate->format('i');
+       
+            $startDate= $currentDate->format('m/d/Y');    
+  
+            $currentHour = $currentDate->format('H');
+            $currentMinute = $currentDate->format('i');
+       
+
       
         //dd($currentDate->addHours($givenHour));
         $endHour = $currentDate->addHours($givenHour)->format('H');
@@ -613,8 +615,12 @@ class Booknow extends Component
                 //dd($val);
                 if (isset($this->dates[$index])) {
                     $this->dates[$index]['start_date'] = $val;
+                   
+                    // Step 1: Parse the date
+                    $date = Carbon::createFromFormat('m/d/Y', $this->dates[$index]['start_date']);
+
+                    $this->dates[$index]['end_date']=$date->addDays($this->dates[$index]['duration_day'])->addHours( $this->dates[$index]['duration_hour'])->addMinutes($this->dates[$index]['duration_minute'])->format('m/d/Y');
                     $this->updateDurations($index);
-                  
                 }
               
             }        
@@ -714,12 +720,12 @@ class Booknow extends Component
            $this->booking->billing_manager_id='';
            foreach($userRoles as $userRole)
            {
-             if($userRole['role_id']==5 && $supervisorSet==0){
+             if($userRole['role_id']==5 ){
                 $this->booking->supervisor=$userRole['user_id'];
                 $supervisorSet=1;
 
              }
-             elseif($userRole['role_id']==9 && $bManagerSet==0){
+             elseif($userRole['role_id']==9){
                 $this->booking->billing_manager_id=$userRole['user_id'];
                 $bManagerSet=1;
              }

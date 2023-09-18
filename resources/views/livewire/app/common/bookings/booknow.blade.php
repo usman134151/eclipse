@@ -253,7 +253,7 @@
                                 @endif
                             </div>
                             <div class="row between-section-segment-spacing">
-                                @if($assignedSupervisor=="checked")
+                                @if($assignedSupervisor!="checked")
                                 <div class="col-lg-12" x-data="{ open: false }">
                                 @else
                                 <div class="col-lg-12" x-data="{ open: true }">
@@ -265,7 +265,7 @@
                                         </div>
                                         <h3 class="mb-lg-0">Assigned Supervisor & Billing Manager</h3>
                                     </div>
-                                    @if($assignedSupervisor=="checked" )
+                                    @if($assignedSupervisor!="checked" )
                                     <div class="row switch-toggle-content" style="display:none">
                                     @else
                                      <div class="row switch-toggle-content">
@@ -596,8 +596,8 @@
                                                                 <a href="#" class="btn btn-primary rounded w-100"
                                                                     data-bs-toggle="modal"
                                                                     data-bs-target="#RequestfromUserModal">
-                                                                    Request from User
-                                                                </a>
+                                                                    Request from User 
+                                                                </a> (Coming Soon)
                                                             </div>
                                                         </div>
                                                     </div>
@@ -891,9 +891,9 @@
                                                 </div>
                                                 <div class="col-md-6 mb-4">
                                                     <a href="#" class="btn btn-primary rounded w-100"
-                                                        data-bs-toggle="modal" data-bs-target="#RequestfromUserModal">
-                                                        Request from User
-                                                    </a>
+                                                        data-bs-toggle="modal" data-bs-target="#RequestfromUserModal" disabled>
+                                                        Request from User 
+                                                    </a> (Coming Soon)
                                                 </div>
                                             </div>
                                         </div>
@@ -1387,10 +1387,10 @@
                                             </div>
                                             <div class="my-lg-5">
                                                 <label class="form-label" for="tags">
-                                                    Tags
+                                                    Tags (Coming Soon)
                                                 </label>
                                                 <div class="mb-3">
-                                                <select data-placeholder="" multiple
+                                                <select disabled data-placeholder="" multiple
                                                                     class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="tags-select" aria-label="Select Tags" wire:model.defer="tags">
                                                                     <option value=""></option>
                                                                     <option selected>Admin staff</option>
