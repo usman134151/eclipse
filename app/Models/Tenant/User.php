@@ -26,7 +26,7 @@ class User extends Authenticatable
 	 * @var array
 	 */
 	protected $fillable = [
-		'first_name','last_name','user_dob', 'email','company_name', 'password','user_dob','status'
+		'first_name', 'last_name', 'user_dob', 'email', 'company_name', 'password', 'user_dob', 'status'
 	];
 
 	/**
@@ -64,48 +64,48 @@ class User extends Authenticatable
 	 *
 	 * @return bool
 	 */
-	
 
-	 public function roles()
-	 {
-		 return $this->belongsToMany(Role::class, 'role_user');
-	 }
+
+	public function roles()
+	{
+		return $this->belongsToMany(Role::class, 'role_user');
+	}
 
 	public function company()
 	{
 		return $this->belongsTo(Company::class, 'company_name');
 	}
-	public function userdetail() : HasOne
+	public function userdetail(): HasOne
 	{
 		return $this->hasOne(UserDetail::class, 'user_id');
-	}	
-	public function invitation_response($booking_id) 
+	}
+	public function invitation_response($booking_id)
 	{
-		$val= BookingInvitationProvider::where(['booking_id'=>$booking_id,'provider_id'=>$this->id])->pluck('status')->first();
+		$val = BookingInvitationProvider::where(['booking_id' => $booking_id, 'provider_id' => $this->id])->pluck('status')->first();
 		return $val;
 	}
 	public function phones()
 	{
 		return $this->morphMany(Phone::class, 'model', 'model_type', 'model_id')
-					->where('model_type', '=', 'App\Models\Tenant\User');
+			->where('model_type', '=', 'App\Models\Tenant\User');
 	}
 	public function addresses()
 	{
-    	return $this->hasMany(UserAddress::class,'user_id')->where('user_address_type',1);
+		return $this->hasMany(UserAddress::class, 'user_id')->where('user_address_type', 1);
 	}
 	public function billing_addresses()
 	{
-		return $this->hasMany(UserAddress::class, 'user_id')->where(['user_address_type'=>1,'address_type'=>2]);
+		return $this->hasMany(UserAddress::class, 'user_id')->where(['user_address_type' => 1, 'address_type' => 2]);
 	}
 
 	public function industries(): BelongsToMany
-    {
-        return $this->belongsToMany(Industry::class, 'user_industries');
-    }
-
-	public function teams() : BelongsToMany
 	{
-		return $this->belongsToMany(Team::class, 'team_providers','provider_id')->withTimestamps();
+		return $this->belongsToMany(Industry::class, 'user_industries');
+	}
+
+	public function teams(): BelongsToMany
+	{
+		return $this->belongsToMany(Team::class, 'team_providers', 'provider_id')->withTimestamps();
 	}
 
 	public function admin_teams(): BelongsToMany
@@ -120,7 +120,7 @@ class User extends Authenticatable
 	public function supervised_departments(): BelongsToMany
 	{
 		return $this->belongsToMany(Department::class, 'user_departments')->withPivot('is_supervisor')->withTimestamps()
-		->where('is_supervisor', true);;
+			->where('is_supervisor', true);;
 	}
 
 	public function notes(): HasMany
@@ -135,20 +135,33 @@ class User extends Authenticatable
 
 	public function services(): BelongsToMany
 	{
-		return $this->belongsToMany(ServiceCategory::class, 'provider_accommodation_services', 'user_id','service_id')->withTimestamps();
+		return $this->belongsToMany(ServiceCategory::class, 'provider_accommodation_services', 'user_id', 'service_id')->withTimestamps();
 	}
 
 	public function accommodations(): BelongsToMany
 	{
 		return $this->belongsToMany(Accommodation::class, 'provider_accommodation_services', 'user_id', 'accommodation_id')->withTimestamps();
 	}
+	public function feedbackRecieved()
+	{
+		return $this->hasMany(FeedbackRating::class, 'feedback_to');
+	}
+
+	public function feedbackGiven()
+	{
+		return $this->hasMany(FeedbackRating::class, 'feedback_from');
+	}
 	
+	public function getAverageRatings()
+	{
+		$total = $this->feedbackRecieved->sum('ratings');
+		dd($total);
+
+	}
 
 	public function logs()
 	{
 		return $this->hasMany(Logs::class, 'action_to')
-		->where('item_type', 'user');
+			->where('item_type', 'user');
 	}
-	
 }
-
