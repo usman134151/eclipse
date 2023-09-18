@@ -76,6 +76,8 @@ class CustomerDetails extends Component
 		$this->service_catalog = $query->distinct('service_id')->get()->groupBy('accommodation_id')->toArray();
 		$this->dispatchBrowserEvent('refreshSelects');
 
+		$this->user['avg_rating'] = round($user1->feedbackRecieved->avg('rating'));
+
 	}
 
 	public function lockAccount()

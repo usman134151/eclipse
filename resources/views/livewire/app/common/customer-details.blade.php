@@ -399,39 +399,23 @@
                                                                 </div>
                                                                 <div class="col-md-6 align-self-center">
                                                                     <div class="font-family-secondary">
-                                                                        {{-- Updated by Shanila to Add svg icon --}}
-                                                                        <svg aria-label="rating" width="18"
-                                                                            height="16" viewBox="0 0 18 16">
-                                                                            <use
-                                                                                xlink:href="/css/common-icons.svg#filled-star">
-                                                                            </use>
-                                                                        </svg>
-                                                                        <svg aria-label="rating" width="18"
-                                                                            height="16" viewBox="0 0 18 16">
-                                                                            <use
-                                                                                xlink:href="/css/common-icons.svg#filled-star">
-                                                                            </use>
-                                                                        </svg>
-                                                                        <svg aria-label="rating" width="18"
-                                                                            height="16" viewBox="0 0 18 16">
-                                                                            <use
-                                                                                xlink:href="/css/common-icons.svg#filled-star">
-                                                                            </use>
-                                                                        </svg>
-                                                                        <svg aria-label="rating" width="17"
-                                                                            height="16" viewBox="0 0 17 16">
-                                                                            <use
-                                                                                xlink:href="/css/common-icons.svg#star">
-                                                                            </use>
-                                                                        </svg>
-                                                                        <svg aria-label="rating" width="17"
-                                                                            height="16" viewBox="0 0 17 16">
-                                                                            <use
-                                                                                xlink:href="/css/common-icons.svg#star">
-                                                                            </use>
-                                                                        </svg>
-                                                                        {{-- End of update by Shanila --}}
-                                                                        <small>(coming soon)</small>
+                                                                        @for ($i = 0; $i < $user['avg_rating']; $i++)
+                                                                            <svg aria-label="rating" width="18"
+                                                                                height="16" viewBox="0 0 18 16">
+                                                                                <use
+                                                                                    xlink:href="/css/common-icons.svg#filled-star">
+                                                                                </use>
+                                                                            </svg>
+                                                                        @endfor
+                                                                        @for ($i = $user['avg_rating']; $i < 5; $i++)
+                                                                            <svg aria-label="rating" width="17"
+                                                                                height="16" viewBox="0 0 17 16">
+                                                                                <use
+                                                                                    xlink:href="/css/common-icons.svg#star">
+                                                                                </use>
+                                                                            </svg>
+                                                                        @endfor
+                                                                       
                                                                     </div>
                                                                 </div>
                                                             </div>
