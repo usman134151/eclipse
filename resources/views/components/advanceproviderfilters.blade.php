@@ -38,12 +38,16 @@
                     </label>
                 </div>
             </div>
-            <select wire:model.defer="tag_names" data-placeholder="Select Tags" multiple class="select2 form-select" tabindex="" id="tags_selected">
-                <option value=""></option>
-                @foreach($tags as $tag)
-                    <option value="{{$tag->name}}">{{$tag->name}}</option>
-                @endforeach
-            </select>
+            <select  wire:model.defer="tag_names" data-placeholder="Select Tags" multiple
+                    class="select2 form-select" tabindex="" id="tags_selected" name="tags-selected">
+                    <option value=""></option>
+                    @if (isset($tags))
+                        @foreach ($tags as $tag)
+                            <option value="{{ $tag->name }}">{{ $tag->name }}</option>
+                        @endforeach
+                    @endif
+                </select>
+           
         </div>
         
         <div class="col-lg-6 d-flex justify-content-start gap-2 mb-4">
@@ -123,6 +127,7 @@
                 </select>
                 @if($type=='assignProvider')
                     <div class="mt-2">
+                    <small>(coming soon)</small>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" id="Requester" name="" type="checkbox"
                                 tabindex="">
@@ -146,7 +151,9 @@
             </div>
             @if($type=='assignProvider')
                 <div class="{{ $type=='assignProvider'?'col-lg-6':'col-lg-5' }} mb-4">
-                    <label class="form-label">Preferred Team Providers</label>
+                    <label class="form-label">Preferred Team Providers
+                    <small>(coming soon)</small>
+                    </label>
                     <select data-placeholder="Select Accommodation" multiple
                         class="select2 form-select" tabindex="8">
                         <option value=""></option>

@@ -76,22 +76,16 @@ class AssignProviders extends Component
         }
         if (count($this->services)) {
             $services = $this->services;
-            $query->where(function ($query) use ($services) {
-                foreach ($services as $service) {
-                    $query->whereHas('services', function ($query) use ($service) {
-                        $query->where('provider_accommodation_services.status', '=', 1)->where('service_id', $service);
-                    });
-                }
+            $query->whereHas('services', function ($query) use ($services) {
+                $query->whereIn('service_categories.id', $services);
+                 $query->where('provider_accommodation_services.status', '=', 1);
             });
         }
         if (count($this->accommodations)) {
             $accommodations = $this->accommodations;
-            $query->where(function ($query) use ($accommodations) {
-                foreach ($accommodations as $accommodation) {
-                    $query->whereHas('accommodations', function ($query) use ($accommodation) {
-                        $query->where('provider_accommodation_services.status', '=', 1)->where('accommodation_id', $accommodation);
-                    });
-                }
+            $query->whereHas('accommodations', function ($query) use ($accommodations) {
+                $query->whereIn('accommodations.id', $accommodations);
+                $query->where('provider_accommodation_services.status', '=', 1);
             });
         }
         if (count($this->service_type_ids)) {
@@ -109,7 +103,7 @@ class AssignProviders extends Component
                 $query->where('provider_accommodation_services.status', '=', 1)->where(function ($query) use ($filterArray) {
                     foreach ($filterArray as $item) {
                         // $query->orWhereRaw("FIND_IN_SET($item, service_type)");
-                        $query->where('service_type', 'LIKE', "%$item%");
+                        $query->where('service_categories.service_type', 'LIKE', "%$item%");
                     }
                 });
             });
@@ -121,7 +115,7 @@ class AssignProviders extends Component
                 $query->where('provider_accommodation_services.status', '=', 1)
                     ->whereHas('specializations', function ($query) use ($specializations) {
                         $query->whereIn('specialization_id', $specializations);
-                    }, '=', count($specializations));
+                    });
             });
         }
         if ($this->gender) {
@@ -232,6 +226,9 @@ class AssignProviders extends Component
                     ->get()->pluck('provider_id')->toArray();
             }
         }
+        $this->dispatchBrowserEvent('refreshSelects');
+        $this->dispatchBrowserEvent('refreshSelects2');
+
     }
 
     function showForm()
