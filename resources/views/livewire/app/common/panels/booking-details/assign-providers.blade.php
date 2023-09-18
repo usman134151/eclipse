@@ -113,12 +113,20 @@
                                          @endif
                                      @endforeach
                                  </div>
+                                 @if(isset($provider->notes) && $provider->notes!=null && $panelType == 3)
+                                   <div class=" mt-3"
+                                     style="{{ $panelType == 1 || $panelType == 3 ? 'width:300px' : '' }}">
+                                     <strong>Invitation Response :</strong>
+                                        {{$provider->notes}}
+                                 </div>
+                                 @endif
                              </td>
 
                              @if ($panelType == 3 && $provider->invitation_response($booking_id) == 0)
                                  <td colSpan=4> Pending</td>
                              @endif
                              @if ($panelType == 1 || ($panelType == 3 && $provider->invitation_response($booking_id) == 1))
+                                
                                  <td class="border-end-2" style="min-width:340px">
                                      <div class="d-grid grid-cols-2 gap-3 mb-3">
                                          <div>

@@ -44,6 +44,13 @@ class AssignProviders extends Component
 
     public function render()
     {
+        $returnCols = [
+            'users.id',
+            'users.name',
+            'users.email',
+            'user_details.phone', 'user_details.profile_pic', 'user_details.tags',
+            'users.status'
+        ];
         $query = User::where('users.status', 1)
             ->whereHas('roles', function ($query) {
                 $query->wherein('role_id', [2]);
@@ -51,19 +58,13 @@ class AssignProviders extends Component
                 $userdetails->on('user_details.user_id', '=', 'users.id');
             });
         if ($this->panelType == 3) {
-            $query->whereIn('users.id', function ($q) {
-                $q->from('booking_invitation_providers')
-                    ->where('booking_id', $this->booking_id)
-                    ->select('provider_id');
+            $query->join('booking_invitation_providers',function($query){
+                $query->where('booking_id', $this->booking_id);
+                $query->on('booking_invitation_providers.provider_id', 'users.id');
             });
+                $returnCols[]='booking_invitation_providers.notes';
         }
-        $query->select([
-            'users.id',
-            'users.name',
-            'users.email',
-            'user_details.phone', 'user_details.profile_pic', 'user_details.tags',
-            'users.status'
-        ]);
+        $query->select($returnCols);
 
         if ($this->search) {
             $query->where('users.name', 'LIKE', "%" . $this->search . "%");

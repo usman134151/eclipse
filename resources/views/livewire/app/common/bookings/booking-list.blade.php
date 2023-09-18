@@ -302,20 +302,35 @@
                                                                     <td class="{{ $cssClass }}"
                                                                         style="background-color:{{ $colorCodes[$code] }};">
                                                                         <div class="d-flex actions">
+                                                                            @if ($bookingType == 'Invitations')
+                                                                                <a href="javascript:void(0)"
+                                                                                    aria-label="View Response"
+                                                                                    title="View Response"
+                                                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon text-center {{ $cssClass }}"
+                                                                                    style="color:#000000;"
+                                                                                    wire:click="openAssignProvidersPanel({{ $booking->id }},{{ $booking->service_id }}, 3)"
+                                                                                    @click="assignProvider = true">
+                                                                                    <i
+                                                                                        class="fa fa-envelope-open-o"></i>
 
-                                                                            <a href="{{ route('tenant.booking-edit', ['bookingID' => encrypt($booking->id)]) }}"
-                                                                                title="Edit"
-                                                                                aria-label="Edit Booking"
-                                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon {{ $cssClass }}">
-                                                                                <svg aria-label="Edit" class="fill"
-                                                                                    width="20" height="28"
-                                                                                    viewBox="0 0 20 28" fill="none"
-                                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                                    <use
-                                                                                        xlink:href="/css/sprite.svg#edit-icon">
-                                                                                    </use>
-                                                                                </svg>
-                                                                            </a>
+                                                                                </a>
+                                                                            @else
+                                                                                <a href="{{ route('tenant.booking-edit', ['bookingID' => encrypt($booking->id)]) }}"
+                                                                                    title="Edit"
+                                                                                    aria-label="Edit Booking"
+                                                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon {{ $cssClass }}">
+                                                                                    <svg aria-label="Edit"
+                                                                                        class="fill" width="20"
+                                                                                        height="28"
+                                                                                        viewBox="0 0 20 28"
+                                                                                        fill="none"
+                                                                                        xmlns="http://www.w3.org/2000/svg">
+                                                                                        <use
+                                                                                            xlink:href="/css/sprite.svg#edit-icon">
+                                                                                        </use>
+                                                                                    </svg>
+                                                                                </a>
+                                                                            @endif
                                                                             @if (($bookingType == "Today's" || $bookingType == 'Past') && $bookingSection == 'customer')
                                                                                 <a href="#"
                                                                                     title="Confirm Completion"
@@ -398,15 +413,22 @@
                                                                                         </a>
                                                                                     @endif
                                                                                     @if ($bookingType == 'Invitations')
-                                                                                        <a href="javascript:void(0)"
-                                                                                            aria-label="Invite Providers"
-                                                                                            title="Invite Providers"
-                                                                                            class="dropdown-item"
-                                                                                            wire:click="openAssignProvidersPanel({{ $booking->id }},{{ $booking->service_id }}, 3)"
-                                                                                            @click="assignProvider = true">
-                                                                                            <i
-                                                                                                class="fa fa-envelope-open-o"></i>
-                                                                                            View Response
+                                                                                        <a href="{{ route('tenant.booking-edit', ['bookingID' => encrypt($booking->id)]) }}"
+                                                                                            title="Edit"
+                                                                                            aria-label="Edit Booking" style="color:#fff"
+                                                                                            class="dropdown-item">
+                                                                                            <svg aria-label="Assign Provider"
+                                                                                                class="fill"
+                                                                                                width="20"
+                                                                                                height="28"
+                                                                                                viewBox="0 0 20 28"
+                                                                                                fill="none"
+                                                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                                                <use
+                                                                                                    xlink:href="/css/sprite.svg#edit-icon">
+                                                                                                </use>
+                                                                                            </svg>
+                                                                                            Edit
                                                                                         </a>
                                                                                     @endif
                                                                                     @if ($bookingType == 'Unassigned' || $bookingType == 'Invitations' || $bookingType == 'Draft')
