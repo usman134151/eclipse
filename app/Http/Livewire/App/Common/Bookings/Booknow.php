@@ -298,6 +298,26 @@ class Booknow extends Component
 
         }
         else{
+            foreach($this->services as $service){
+               
+               $serviceCalculations=[
+                "business_hour_charges" => $service["business_hour_charges"],
+                "after_business_hour_charges" =>  $service["after_business_hour_charges"],
+                "service_charges" => $service["service_charges"],
+                "additional_payments" => $service["additional_payments"],
+                "service_payment_total"=> $service["service_payment_total"],
+                "additional_charges" =>  $service["additional_charges"],
+                "additional_charges_total" => $service["additional_charges_total"],
+                "specialization_total" => $service["specialization_total"],
+                "specialization_charges" => $service["specialization_charges"],
+                "expedited_charges" => $service["expedited_charges"]
+
+               ];
+               $serviceCalculations=json_encode($serviceCalculations);
+             
+                
+                BookingServices::where('id', $service['id'])->update(['billed_total' => $service['billed_total'],'service_total'=>$service['total_charges'],'service_calculations'=>$serviceCalculations]);
+            }
             $this->booking->type=1;
             $this->booking->status=1;
             $this->booking->booking_status=1; //will change it later for consumers or other company users, need to check rights

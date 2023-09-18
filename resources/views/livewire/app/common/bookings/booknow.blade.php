@@ -946,7 +946,7 @@
                                     <button type="button" class="btn btn-outline-dark rounded">Cancel</button>
                                     <button type="button" class="btn btn-primary rounded" wire:click="save(1,1)" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">Save as Draft</button>
                                     <button type="button" class="btn btn-primary rounded"
-                                    wire:click="save(1,1)" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });" wire:click="getBookingInfo()">Proceed to Request Details</button>
+                                    wire:click="save(0,1)" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });" wire:click="getBookingInfo()">Proceed to Request Details</button>
                                 </div>
                             </div>
                            
