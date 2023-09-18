@@ -289,9 +289,11 @@ class AssignProviders extends Component
 
                 BookingProvider::create($data);
             }
+            $status = 1;
 
             if ($this->limit == count($this->assignedProviders))
-                Booking::where('id', $this->booking_id)->update(['status' => 2]);
+                $status = 2;
+                Booking::where('id', $this->booking_id)->update(['status' => $status]);
 
             $this->dispatchBrowserEvent('close-assign-providers');
             $this->emit('showConfirmation', 'Providers have been assigned successfully');
