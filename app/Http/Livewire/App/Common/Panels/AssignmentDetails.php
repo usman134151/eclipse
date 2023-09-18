@@ -63,7 +63,7 @@ class AssignmentDetails extends Component
                 $this->data['booking_services'][$key]['meeting_details'] = json_decode($service['meetings'], true)[0];
             }
         }
-
+        $this->data['assigned']=$assigned;
 
         $this->data['serviceFormDetails'] = BookingCustomizeData::where("booking_id", $this->booking->id)
             ->join('customize_form_fields', 'booking_customize_data.customize_id', '=', 'customize_form_fields.id')
