@@ -331,6 +331,8 @@ class Booknow extends Component
                  $this->payment['additional_charge']=0;
             if($this->payment['additional_charge_provider']=='' || is_null($this->payment['additional_charge_provider']))
                  $this->payment['additional_charge_provider']=0;    
+            if($this->payment['coupon_discount_amount']=='' || is_null($this->payment['coupon_discount_amount']))
+                 $this->payment['coupon_discount_amount']=0;        
                  
             $this->payment->save();
             return redirect()->to('/admin/bookings/unassigned');
