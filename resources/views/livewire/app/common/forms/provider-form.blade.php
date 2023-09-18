@@ -30,19 +30,19 @@
                             </li>
                             <li class="breadcrumb-item">
                                 <a href="javascript:void(0)">
-                                     @if ($isProvider)
-                            Settings
-                        @else
-                            Providers
-                        @endif
+                                    @if ($isProvider)
+                                        Settings
+                                    @else
+                                        Providers
+                                    @endif
                                 </a>
                             </li>
                             <li class="breadcrumb-item">
-                                 @if ($isProvider)
-                            Edit Profile
-                        @else
-                            {{ $label }} Provider
-                        @endif
+                                @if ($isProvider)
+                                    Edit Profile
+                                @else
+                                    {{ $label }} Provider
+                                @endif
                             </li>
                         </ol>
                     </div>
@@ -296,13 +296,14 @@
                                             <label class="form-label" for="providerID-column">
                                                 Provider ID
                                             </label>
-                                            <input type="email" id="providerID-column" class="form-control"
-                                                name="providerID-column" placeholder="Enter Provider ID"
+                                            <input type="text" id="providerID-column" class="form-control"
+                                                {{ $isProvider ? 'disabled' : '' }} name="providerID-column"
+                                                placeholder="Enter Provider ID"
                                                 wire:model.defer="userdetail.user_number" />
                                         </div>
+                                        @if (!$isProvider)
 
-                                        <div class="col-lg-6 mb-4 ps-lg-5">
-                                            @if (!$isProvider)
+                                            <div class="col-lg-6 mb-4 ps-lg-5">
                                                 {{-- hide in provider panel --}}
 
                                                 <label class="form-label mb-3" for="assign-provider-teams">
@@ -335,25 +336,13 @@
                                                         @endforeach
                                                     @endif
                                                 </div>
-                                            @else
-                                                {{-- if provider-panel then display tags here to keep form UI balance --}}
-                                                <label class="form-label" for="tags">Tags</label>
-                                                <select data-placeholder="" multiple
-                                                    class="form-select  select2 form-select select2-hidden-accessible"
-                                                    tabindex="" id="tags-select" aria-label="Select Tags">
-                                                    @foreach ($allTags as $tag)
-                                                        <option {{ in_array($tag, $tags) ? 'selected' : '' }}
-                                                            value="{{ $tag }}">{{ $tag }}</option>
-                                                    @endforeach
-                                                </select>
-                                                <input type="hidden" name="tags-holder" id="tags-holder"
-                                                    wire:model.defer="tags">
 
-                                            @endif
 
-                                        </div>
+                                            </div>
+                                        @endif
 
-                                        <div class="col-lg-6 mb-4 pe-lg-5">
+
+                                        <div class="col-lg-6 mb-4 {{ $isProvider ? 'ps' : 'pe' }}-lg-5">
                                             <label class="form-label" for="email">
                                                 Email
                                                 <span class="mandatory" aria-hidden="true">
@@ -369,7 +358,7 @@
                                                 </span>
                                             @enderror
                                         </div>
-                                        <div class="col-lg-6 mb-4 ps-lg-5">
+                                        <div class="col-lg-6 mb-4 {{ $isProvider ? 'pe' : 'ps' }}-lg-5">
                                             <label class="form-label" for="phone">Phone Number</label>
                                             <input type="text" id="phone" class="form-control" name="phone"
                                                 placeholder="Enter Phone Number"
@@ -381,13 +370,13 @@
                                             @enderror
 
                                         </div>
-                                        <div class="col-lg-6 mb-4 pe-lg-5">
+                                        <div class="col-lg-6 mb-4 {{ $isProvider ? 'ps' : 'pe' }}-lg-5">
                                             <label class="form-label" for="country">
                                                 Country
                                             </label>
                                             {!! $setupValues['countries']['rendered'] !!}
                                         </div>
-                                        <div class="col-lg-6 mb-4 ps-lg-5">
+                                        <div class="col-lg-6 mb-4 {{ $isProvider ? 'pe' : 'ps' }}-lg-5">
                                             <div class="mb-4">
                                                 <label class="form-label" for="state">State / Province</label>
                                                 <input type="text" id="state" class="form-control"
@@ -402,7 +391,7 @@
                                             </div>
 
                                         </div>
-                                        <div class="col-lg-6 mb-4 pe-lg-5">
+                                        <div class="col-lg-6 mb-4 {{ $isProvider ? 'ps' : 'pe' }}-lg-5">
                                             <div class="mb-4">
                                                 <label class="form-label" for="city">City</label>
                                                 <input type="text" id="city" class="form-control"
@@ -416,7 +405,7 @@
 
                                             </div>
                                         </div>
-                                        <div class="col-lg-6 mb-4 ps-lg-5">
+                                        <div class="col-lg-6 mb-4 {{ $isProvider ? 'pe' : 'ps' }}-lg-5">
                                             <label class="form-label" for="zip-code">
                                                 Zip Code
                                             </label>
@@ -429,7 +418,7 @@
                                             @enderror
 
                                         </div>
-                                        <div class="col-lg-6 mb-4 pe-lg-5">
+                                        <div class="col-lg-6 mb-4 {{ $isProvider ? 'ps' : 'pe' }}-lg-5">
 
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <label class="form-label" for="address-line-1">
@@ -458,7 +447,7 @@
 
                                             </div>
                                         </div>
-                                        <div class="col-lg-6 mb-4 ps-lg-5">
+                                        <div class="col-lg-6 mb-4 {{ $isProvider ? 'pe' : 'ps' }}-lg-5">
                                             <label class="form-label" for="address-line-2">
                                                 Address Line 2
                                             </label>
@@ -472,15 +461,15 @@
                                             @enderror
 
                                         </div>
-                                        <div class="col-lg-6 mb-4 pe-lg-5">
+                                        <div class="col-lg-6 mb-4 {{ $isProvider ? 'ps' : 'pe' }}-lg-5">
                                             <label class="form-label" for="start-date-column">
                                                 Start Date
                                             </label>
                                             <div class="d-flex align-items-center w-100">
                                                 <div class="position-relative flex-grow-1">
                                                     <input type="text" class="form-control js-single-date"
-                                                        placeholder="Select Date" aria-label="Start Date" aria-describedby=""
-                                                        id="start_date">
+                                                        {{ $isProvider ? 'disabled' : '' }} placeholder="Select Date"
+                                                        aria-label="Start Date" aria-describedby="" id="start_date">
                                                     {{-- Updated by Shanila to Add svg icon --}}
                                                     <svg aria-label="Start Date" class="icon-date" width="20"
                                                         height="21" viewBox="0 0 20 21">
@@ -491,15 +480,15 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6 mb-4 ps-lg-5">
+                                        <div class="col-lg-6 mb-4 {{ $isProvider ? 'pe' : 'ps' }}-lg-5">
                                             <label class="form-label" for="end-date">
                                                 End Date
                                             </label>
                                             <div class="d-flex align-items-center w-100">
                                                 <div class="position-relative flex-grow-1">
                                                     <input type="text" class="form-control js-single-date"
-                                                        placeholder="Select Date" aria-label="End Date"
-                                                        aria-describedby="" id="end-date-">
+                                                        {{ $isProvider ? 'disabled' : '' }} placeholder="Select Date"
+                                                        aria-label="End Date" aria-describedby="" id="end-date-">
                                                     {{-- Updated by Shanila to Add svg icon --}}
                                                     <svg aria-label="End Date" class="icon-date" width="20"
                                                         height="21" viewBox="0 0 20 21">
@@ -510,12 +499,13 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6 mb-4 pe-lg-5">
+                                        <div class="col-lg-6 mb-4 {{ $isProvider ? 'ps' : 'pe' }}-lg-5">
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <label class="form-label" for="education">
                                                     Education
                                                 </label>
-                                                <a @click="addDocument = true" href="#" class="fw-bold">
+                                                <a @click="addDocument = true" href="#"
+                                                    class="fw-bold {{ $isProvider ? 'hidden' : '' }}">
                                                     <small>
                                                         <svg aria-label="Upload Supporting Documents" class="me-1"
                                                             width="21" height="16" viewBox="0 0 21 16"
@@ -529,7 +519,8 @@
                                                 </a>
                                             </div>
                                             <input type="text" id="education" class="form-control"
-                                                name="education-column" placeholder="Enter Education"
+                                                {{ $isProvider ? 'disabled' : '' }} name="education-column"
+                                                placeholder="Enter Education"
                                                 wire:model.defer="userdetail.education" />
                                             @error('userdetail.education')
                                                 <span class="d-inline-block invalid-feedback mt-2">
@@ -538,7 +529,7 @@
                                             @enderror
 
                                         </div>
-                                        <div class="col-lg-6 mb-4 ps-lg-5">
+                                        <div class="col-lg-6 mb-4 {{ $isProvider ? 'pe' : 'ps' }}-lg-5">
                                             <div class="d-flex justify-content-between align-items-center mb-2">
                                                 <label class="form-label mb-lg-0" for="certification">
                                                     Certification(s)
@@ -555,7 +546,8 @@
                                                                     Add New  --}}
                                                         </small>
                                                     </a>
-                                                    <a @click="addDocument = true" href="#" class="fw-bold">
+                                                    <a @click="addDocument = true" href="#"
+                                                        class="fw-bold {{ $isProvider ? 'hidden' : '' }}">
                                                         <small>
                                                             <svg aria-label="Upload Supporting Documents"
                                                                 class="me-1" width="21" height="16"
@@ -575,6 +567,7 @@
                                                 {!! $setupValues['certifications']['rendered'] !!}
                                                 {{-- ended updated --}}
                                             </div>
+
                                             @if (!$isProvider)
                                                 {{-- hide in provider panel --}}
 
@@ -590,32 +583,35 @@
                                                 </div>
                                             @endif
                                         </div>
-                                        <div class="col-lg-6 mb-4 pe-lg-5">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <label class="form-label" for="user_experience">
-                                                    Experience
-                                                </label>
-                                                <a @click="addDocument = true" href="#" class="fw-bold">
-                                                    <small>
-                                                        <svg aria-label="Upload Supporting Documents" class="me-1"
-                                                            width="21" height="16" viewBox="0 0 21 16"
-                                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path
-                                                                d="M9.54545 16H5.25C3.80227 16 2.5655 15.475 1.53968 14.425C0.513227 13.375 0 12.0917 0 10.575C0 9.275 0.373864 8.11667 1.12159 7.1C1.86932 6.08333 2.84773 5.43333 4.05682 5.15C4.45455 3.61667 5.25 2.375 6.44318 1.425C7.63636 0.475 8.98864 0 10.5 0C12.3614 0 13.9402 0.679 15.2365 2.037C16.5334 3.39567 17.1818 5.05 17.1818 7C18.2795 7.13333 19.1905 7.629 19.9147 8.487C20.6382 9.34567 21 10.35 21 11.5C21 12.75 20.5825 13.8127 19.7476 14.688C18.9121 15.5627 17.8977 16 16.7045 16H11.4545V8.85L12.9818 10.4L14.3182 9L10.5 5L6.68182 9L8.01818 10.4L9.54545 8.85V16Z"
-                                                                fill="#0A1E46" />
-                                                        </svg>
-                                                        Upload Supporting Documents
-                                                    </small>
-                                                </a>
+                                        @if (!$isProvider)
+                                            <div class="col-lg-6 mb-4 pe-lg-5">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <label class="form-label" for="user_experience">
+                                                        Experience
+                                                    </label>
+                                                    <a @click="addDocument = true" href="#" class="fw-bold">
+                                                        <small>
+                                                            <svg aria-label="Upload Supporting Documents"
+                                                                class="me-1" width="21" height="16"
+                                                                viewBox="0 0 21 16" fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                <path
+                                                                    d="M9.54545 16H5.25C3.80227 16 2.5655 15.475 1.53968 14.425C0.513227 13.375 0 12.0917 0 10.575C0 9.275 0.373864 8.11667 1.12159 7.1C1.86932 6.08333 2.84773 5.43333 4.05682 5.15C4.45455 3.61667 5.25 2.375 6.44318 1.425C7.63636 0.475 8.98864 0 10.5 0C12.3614 0 13.9402 0.679 15.2365 2.037C16.5334 3.39567 17.1818 5.05 17.1818 7C18.2795 7.13333 19.1905 7.629 19.9147 8.487C20.6382 9.34567 21 10.35 21 11.5C21 12.75 20.5825 13.8127 19.7476 14.688C18.9121 15.5627 17.8977 16 16.7045 16H11.4545V8.85L12.9818 10.4L14.3182 9L10.5 5L6.68182 9L8.01818 10.4L9.54545 8.85V16Z"
+                                                                    fill="#0A1E46" />
+                                                            </svg>
+                                                            Upload Supporting Documents
+                                                        </small>
+                                                    </a>
+                                                </div>
+                                                <textarea class="form-control" rows="3" cols="3" placeholder="" name="user_experience"
+                                                    id="user_experience" wire:model.defer="userdetail.user_experience"></textarea>
+                                                @error('userdetail.user_experience')
+                                                    <span class="d-inline-block invalid-feedback mt-2">
+                                                        {{ $message }}
+                                                    </span>
+                                                @enderror
                                             </div>
-                                            <textarea class="form-control" rows="3" cols="3" placeholder="" name="user_experience"
-                                                id="user_experience" wire:model.defer="userdetail.user_experience"></textarea>
-                                            @error('userdetail.user_experience')
-                                                <span class="d-inline-block invalid-feedback mt-2">
-                                                    {{ $message }}
-                                                </span>
-                                            @enderror
-                                        </div>
+                                        @endif
                                         <div class="col-lg-6 mb-4 ps-lg-5">
                                             <label class="form-label" for="provider-introduction">
                                                 Provider Introduction
@@ -629,13 +625,7 @@
                                             @enderror
 
                                         </div>
-                                        {{-- <div class="col-lg-6 ps-lg-5">
-                                                    <label class="form-label" for="notes_column">
-                                                        Notes
-                                                    </label>
-                                                    <textarea class="form-control" rows="3" placeholder="" name="notesColumn"
-                                                        id="notes_column" wire:model.defer="userdetail.note"></textarea>
-                                                </div> --}}
+
                                         <div class="col-lg-6 mb-4 pe-lg-5">
                                             <label class="form-label" for="preferred-language-column">
                                                 Preferred Language
@@ -664,37 +654,40 @@
                                                 </p>
                                             @endif
                                         </div>
-                                        <div class="col-lg-6 mb-4 pe-lg-5">
-                                            <label class="form-label" for="preferred-colleagues-column">
-                                                Preferred Colleagues
-                                            </label>
-                                            {{-- {!! $setupValues['favored_users']['rendered'] !!} --}}
-                                            <select name="favored_users" id="favored_users"
-                                                class=" select2 form-select "
-                                                wire:model.defer="userdetail.favored_users" tabindex="6"multiple
-                                                aria-label="Select favored users">
-                                                <option>Select an option</option>
-                                                @foreach ($providers as $provider)
-                                                    <option value="{{ $provider->id }}">{{ $provider->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="col-lg-6 ps-lg-5">
-                                            <label class="form-label" for="disfavored-colleagues-column">
-                                                Disfavored Colleagues
-                                            </label>
-                                            <select name="unfavored_users" id="unfavored_users"
-                                                class=" select2 form-select "
-                                                wire:model.defer="userdetail.unfavored_users" tabindex="7" multiple
-                                                aria-label="Select disfavored users">
-                                                <option>Select an option</option>
-                                                @foreach ($providers as $provider)
-                                                    <option value="{{ $provider->id }}">{{ $provider->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                                        @if (!$isProvider)
+
+                                            <div class="col-lg-6 mb-4 pe-lg-5">
+                                                <label class="form-label" for="preferred-colleagues-column">
+                                                    Preferred Colleagues
+                                                </label>
+                                                {{-- {!! $setupValues['favored_users']['rendered'] !!} --}}
+                                                <select name="favored_users" id="favored_users"
+                                                    class=" select2 form-select "
+                                                    wire:model.defer="userdetail.favored_users" tabindex="6"multiple
+                                                    aria-label="Select favored users">
+                                                    <option>Select an option</option>
+                                                    @foreach ($providers as $provider)
+                                                        <option value="{{ $provider->id }}">{{ $provider->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-6 ps-lg-5">
+                                                <label class="form-label" for="disfavored-colleagues-column">
+                                                    Disfavored Colleagues
+                                                </label>
+                                                <select name="unfavored_users" id="unfavored_users"
+                                                    class=" select2 form-select "
+                                                    wire:model.defer="userdetail.unfavored_users" tabindex="7"
+                                                    multiple aria-label="Select disfavored users">
+                                                    <option>Select an option</option>
+                                                    @foreach ($providers as $provider)
+                                                        <option value="{{ $provider->id }}">{{ $provider->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        @endif
 
                                         <div class="col-lg-6 pe-lg-5">
                                             <label class="form-label" for="set-time-zone-column">
@@ -880,7 +873,8 @@
 
                                                                                             <div class="col-3">
                                                                                                 <select
-                                                                                                    id="staff_provider_rate_type" aria-label="Payout Details"
+                                                                                                    id="staff_provider_rate_type"
+                                                                                                    aria-label="Payout Details"
                                                                                                     class="form-select"
                                                                                                     wire:model.defer="provider_details.staff_provider_rate_type">
                                                                                                     <option
@@ -903,7 +897,8 @@
                                                                                     <div class="d-flex">
                                                                                         <div class="form-check">
                                                                                             <input
-                                                                                                class="form-check-input" aria-label="yes"
+                                                                                                class="form-check-input"
+                                                                                                aria-label="yes"
                                                                                                 wire:model="provider_details.set_rate"
                                                                                                 type="radio"
                                                                                                 name="set_rate"
@@ -918,7 +913,8 @@
                                                                                         </div>
                                                                                         <div class="form-check ms-4">
                                                                                             <input
-                                                                                                class="form-check-input" aria-label="no"
+                                                                                                class="form-check-input"
+                                                                                                aria-label="no"
                                                                                                 type="radio"
                                                                                                 name="set_rate"
                                                                                                 wire:model="provider_details.set_rate"
@@ -1200,3 +1196,10 @@
 
 
 </div>
+@push('scripts')
+    @if ($isProvider)
+        <script>
+            $('#certification').attr('disabled', true);
+        </script>
+    @endif
+@endpush

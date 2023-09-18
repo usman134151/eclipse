@@ -181,6 +181,7 @@ class Calendar extends Component
 		// ];
 
 		$query = Booking::query();
+		$query->where('bookings.type',1);
 		if ($this->user_id && $this->providerProfile == false)
 			$query->join('booking_providers', function ($join) {
 				$join->where('booking_providers.provider_id', $this->user_id);
