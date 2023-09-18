@@ -8,6 +8,8 @@ use App\Models\Tenant\LoginAddress;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Tenant\Jobs\sendSms;
 use App\Http\Controllers\Tenant\Jobs\sendEmail;
+use App\Http\Controllers\Tenant\Mails\createEmail;
+use Illuminate\Support\Facades\Mail;
 
 ##### API Related Helpers #####
 
@@ -60,9 +62,12 @@ if(!function_exists('sendWelcomeMail'))
 {
   function sendWelcomeMail($user)
   {
-    $company = User::find(1);
-    $company = isset($company->users_business)?$company->users_business->company_name:'';
+    $company = isset($user->company)? $user->company->name:'';
     $user->subject = $company.' Portal - Welcome';
+    $user['domain'] = url('/');
+
+    // $email = new createEmail($user->subject, $user, 'tenant.emails.welcome_email');
+    // Mail::to('emos@email.com')->send($email);
     sendMail($user->email, $user->subject, $user, 'tenant.emails.welcome_email', [],'dispatch');
   }
 }

@@ -4,12 +4,12 @@
   <tr>
     @php
     $company = $data->company;
-    $company = isset($company->users_business)?$company->users_business->company_name:'';
+    $company_name = isset($data->company) ? $company->name:'';
 
 
       $desc2 = "To enter the portal, log into your Eclipse account.";
-      $desc3 = "Congratulations! You've successfully signed up for Eclipse! Your customer URL is: ".$data->domain ;
-      $desc = "You've received access to ".$company."'s Eclipse scheduling portal. After a few seconds, you can use the following admin credentials.";
+      $desc3 = "Congratulations! You've successfully signed up for Eclipse! Your customer URL is: ".$data['domain'] ;
+      $desc = "You've received access to ".$company_name."'s Eclipse scheduling portal. After a few seconds, you can use the following admin credentials.";
       $desc1 = "For reference, here's your login information:";
 
     @endphp
@@ -30,7 +30,7 @@
                 </tr>
                   <tr>
                       <td style="color:#757575;font-family:&quot;Roboto&quot;,OpenSans,&quot;OpenSans&quot;,Arial,sans-serif;font-size:15px;font-weight:300;line-height:4px;margin:0;padding:15px 15px 15px 15px;color:#000000;">
-                          <a style="font-family:'-apple-system', BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';color:#fff;text-decoration:none;background-color:#0a1e46;border-bottom:8px solid #0a1e46;border-left:18px solid #0a1e46;border-right:18px solid #0a1e46;border-top:8px solid #0a1e46;" href="{{ $data->domain }}">Log in</a>
+                          <a style="font-family:'-apple-system', BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';color:#fff;text-decoration:none;background-color:#0a1e46;border-bottom:8px solid #0a1e46;border-left:18px solid #0a1e46;border-right:18px solid #0a1e46;border-top:8px solid #0a1e46;" href="{{ $data['domain'] }}">Log in</a>
                       </td>
                   </tr>
                   <tr>
@@ -43,7 +43,12 @@
                 </tr>
                 <tr style="background: #d3d3d338;">
                   <td style="color:#757575;font-family:&quot;Roboto&quot;,OpenSans,&quot;OpenSans&quot;,Arial,sans-serif;font-size:15px;font-weight:300;line-height:4px;margin:0;padding:15px 15px 15px 15px;color:#000000;">
-                    <strong>Password :</strong> {{ $data->password }}
+                    <strong>Password :</strong> 
+                  </td>
+                </tr>
+                 <tr style="background: #d3d3d338;">
+                  <td style="color:#757575;font-family:&quot;Roboto&quot;,OpenSans,&quot;OpenSans&quot;,Arial,sans-serif;font-size:15px;font-weight:300;line-height:4px;margin-top:25px;padding:15px 15px 15px 15px;color:#000000;">
+                     {{ $data->password }}
                   </td>
                 </tr>
                   <tr>
@@ -57,18 +62,18 @@
                   <tr>
                       <td style="color:#757575;font-family:&quot;Roboto&quot;,OpenSans,&quot;OpenSans&quot;,Arial,sans-serif;font-size:15px;font-weight:300;margin:0;padding:15px 15px 15px 15px;color:#000000;">
 
-                          <a href="{{ $data->domain }}">{{ 'https://' . $data->domain }}</a>
+                          <a href="{{ $data['domain'] }}">{{ $data['domain'] }}</a>
                       </td>
                   </tr>
                 <tr>
-                  <td style="color:#757575;font-family:&quot;Roboto&quot;,OpenSans,&quot;OpenSans&quot;,Arial,sans-serif;font-size:15px;font-weight:300;line-height:normal;margin:0;padding:15px 15px 15px 15px;color:#000000;">**Warning: Do not share these credentials with anyone. Report any suspicious account activity to {{$company}}'s immediately.** </td>
+                  <td style="color:#757575;font-family:&quot;Roboto&quot;,OpenSans,&quot;OpenSans&quot;,Arial,sans-serif;font-size:15px;font-weight:300;line-height:normal;margin:0;padding:15px 15px 15px 15px;color:#000000;">**Warning: Do not share these credentials with anyone. Report any suspicious account activity to {{$company_name}}'s immediately.** </td>
                 </tr>
                 <tr>
                   <td style="color:#757575;font-family:&quot;Roboto&quot;,OpenSans,&quot;OpenSans&quot;,Arial,sans-serif;font-size:15px;font-weight:300;line-height:normal;margin:0;padding:15px 15px 15px 15px;color:#000000;">{{$desc2}}</td>
                 </tr>
                 <tr>
                   <td style="color:#757575;font-family:&quot;Roboto&quot;,OpenSans,&quot;OpenSans&quot;,Arial,sans-serif;font-size:15px;font-weight:300;line-height:4px;margin:0;padding:15px 15px 15px 15px;color:#000000;">
-                      <strong>Web Link :</strong> <a href="{{$data->domain}}">{{ 'https://' . $data->domain }}</a>
+                      <strong>Web Link :</strong> <a href="{{$data['domain']}}">{{ $data['domain'] }}</a>
                   </td>
                 </tr>
             <tr>
