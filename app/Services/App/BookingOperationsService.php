@@ -59,7 +59,7 @@ class BookingOperationsService{
   public static function saveDetails($services,$dates,$selectedIndustries,$booking,$selectedDepartments)
    {
    // BookingServices::where('booking_id', $booking->id)->delete();
-  //  dd($services);
+   
     foreach($services as $service){
         $service['booking_id']=$booking->id;
         $service['booking_log_id']=0;
@@ -124,6 +124,7 @@ class BookingOperationsService{
   }
   
   public static function calculateServiceTotal($service,$schedule){
+   
    //step 1 : get business and after business hours
     $service['business_hours']=0;
     $service['after_business_hours']=0;
@@ -183,7 +184,7 @@ class BookingOperationsService{
     foreach($serviceCharges as $serviceCharge){
      
             $charges=$serviceCharge[0]['price'];
-          
+        
             if(array_key_exists('multiply_providers',$serviceCharge[0]) && $serviceCharge[0]['multiply_providers'])
               $charges*=$service['provider_count'];
             if(array_key_exists('multiply_duration',$serviceCharge[0]) && $serviceCharge[0]['multiply_duration'])

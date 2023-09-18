@@ -1332,7 +1332,7 @@
                                                 <label class="form-label mb-md-0">Total Service Rate:</label>
                                             </div>
                                             <div class="col-md-3 align-self-center">
-                                                <div class="font-family-tertiary">$00.00</div>
+                                                <div class="font-family-tertiary">{{formatPayment($data['service_charges'])}}</div>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -1340,12 +1340,14 @@
                                                 <hr class="border-separate-sm">
                                             </div>
                                         </div>
+
+
                                         <div class="row">
                                             <div class="col-md-9">
-                                                <label class="form-label mb-md-0">Override:</label>
+                                                <label class="form-label mb-md-0">Total Specialization Charges:</label>
                                             </div>
                                             <div class="col-md-3 align-self-center">
-                                                <div class="font-family-tertiary">$00.00</div>
+                                                <div class="font-family-tertiary">{{formatPayment($data['specialization_total'])}}</div>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -1353,12 +1355,29 @@
                                                 <hr class="border-separate-sm">
                                             </div>
                                         </div>
+
+
                                         <div class="row">
                                             <div class="col-md-9">
                                                 <label class="form-label mb-md-0">Total Additional Charges:</label>
                                             </div>
                                             <div class="col-md-3 align-self-center">
-                                                <div class="font-family-tertiary">$00.00</div>
+                                                <div class="font-family-tertiary">{{formatPayment($data['service_additional_charges'])}}</div>
+                                            </div>
+                                        </div>
+    
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <hr class="border-separate-sm">
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                <label class="form-label mb-md-0">Service Total:</label>
+                                            </div>
+                                            <div class="col-md-3 align-self-center">
+                                                <div class="font-family-tertiary">{{formatPayment($data['service_total'])}}</div>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -1368,10 +1387,10 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-9">
-                                                <label class="form-label mb-md-0">Service Total:</label>
+                                                <label class="form-label mb-md-0">Service Billed:</label>
                                             </div>
                                             <div class="col-md-3 align-self-center">
-                                                <div class="font-family-tertiary">$00.00</div>
+                                                <div class="font-family-tertiary">{{formatPayment($data['service_billed'])}}</div>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -1384,7 +1403,7 @@
                                                 <label class="form-label mb-md-0">Discount:</label>
                                             </div>
                                             <div class="col-md-3 align-self-center">
-                                                <div class="font-family-tertiary">$00.00</div>
+                                                <div class="font-family-tertiary">@if(!is_null($booking['payment']) && !is_null($booking['payment']['coupon_discount_amount'])){{formatPayment($booking['payment']['discounted_amount'])}}@else $00.00 @endif </div>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -1397,7 +1416,7 @@
                                                 <label class="form-label mb-md-0">Net Total:</label>
                                             </div>
                                             <div class="col-md-3 align-self-center">
-                                                <div class="font-family-tertiary">$00.00</div>
+                                                <div class="font-family-tertiary">@if(!is_null($booking['payment'])){{formatPayment($booking['payment']['total_amount'])}}@else N/A @endif</div>
                                             </div>
                                         </div>
                                         <div class="row">
