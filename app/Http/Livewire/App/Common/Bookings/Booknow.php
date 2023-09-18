@@ -279,6 +279,7 @@ class Booknow extends Component
                 $this->booking=BookingOperationsService::createBooking($this->booking,$this->services,$this->dates,$this->selectedIndustries,$this->selectedDepartments);
             else
             {
+                $this->booking->provider_count=$this->services[0]['provider_count'];
                 //update booking
                 $this->booking->save();
                
@@ -326,6 +327,11 @@ class Booknow extends Component
             $this->payment['booking_id']=$this->booking->id;
             $this->payment['payment_method_type']='Other';
             $this->payment['payment_by']=Auth::user()->id;
+            if($this->payment['additional_charge']=='' || is_null($this->payment['additional_charge']))
+                 $this->payment['additional_charge']=0;
+            if($this->payment['additional_charge_provider']=='' || is_null($this->payment['additional_charge_provider']))
+                 $this->payment['additional_charge_provider']=0;    
+                 
             $this->payment->save();
             return redirect()->to('/admin/bookings/unassigned');
         }
@@ -1003,13 +1009,15 @@ class Booknow extends Component
         
 //
         //discounts
-        if($this->payment['coupon_type']==3 && !is_null($this->payment['coupon_discount_amount'])){
+      
+       
+        if($this->payment['coupon_type']==3 && !is_null($this->payment['coupon_discount_amount']) &&  $this->payment['coupon_discount_amount']!=''){
             //percentage of booking total discount
             $this->discountedAmount=$this->payment['discounted_amount']=($this->payment['sub_total']*$this->payment['coupon_discount_amount'])/100;
             $this->payment['sub_total']-= $this->payment['discounted_amount'];
             
         }
-        elseif($this->payment['coupon_type']==2 && !is_null($this->payment['coupon_discount_amount'])){
+        elseif($this->payment['coupon_type']==2 && !is_null($this->payment['coupon_discount_amount']) &&  $this->payment['coupon_discount_amount']!=''){
             $this->discountedAmount= $this->payment['discounted_amount']=$this->payment['coupon_discount_amount'];
             $this->payment['sub_total']-=$this->payment['coupon_discount_amount'];
         }
