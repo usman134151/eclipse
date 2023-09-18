@@ -296,13 +296,13 @@
                                             <label class="form-label" for="providerID-column">
                                                 Provider ID
                                             </label>
-                                            <input type="email" id="providerID-column" class="form-control"
+                                            <input type="text" id="providerID-column" class="form-control" {{$isProvider ? 'disabled' : ''}}
                                                 name="providerID-column" placeholder="Enter Provider ID"
                                                 wire:model.defer="userdetail.user_number" />
                                         </div>
+                                            @if (!$isProvider)
 
                                         <div class="col-lg-6 mb-4 ps-lg-5">
-                                            @if (!$isProvider)
                                                 {{-- hide in provider panel --}}
 
                                                 <label class="form-label mb-3" for="assign-provider-teams">
@@ -335,25 +335,13 @@
                                                         @endforeach
                                                     @endif
                                                 </div>
-                                            @else
-                                                {{-- if provider-panel then display tags here to keep form UI balance --}}
-                                                <label class="form-label" for="tags">Tags</label>
-                                                <select data-placeholder="" multiple
-                                                    class="form-select  select2 form-select select2-hidden-accessible"
-                                                    tabindex="" id="tags-select" aria-label="Select Tags">
-                                                    @foreach ($allTags as $tag)
-                                                        <option {{ in_array($tag, $tags) ? 'selected' : '' }}
-                                                            value="{{ $tag }}">{{ $tag }}</option>
-                                                    @endforeach
-                                                </select>
-                                                <input type="hidden" name="tags-holder" id="tags-holder"
-                                                    wire:model.defer="tags">
-
-                                            @endif
+                                           
 
                                         </div>
+                                            @endif
 
-                                        <div class="col-lg-6 mb-4 pe-lg-5">
+
+                                        <div class="col-lg-6 mb-4 {{$isProvider? 'ps' : 'pe'}}-lg-5">
                                             <label class="form-label" for="email">
                                                 Email
                                                 <span class="mandatory" aria-hidden="true">
@@ -369,7 +357,7 @@
                                                 </span>
                                             @enderror
                                         </div>
-                                        <div class="col-lg-6 mb-4 ps-lg-5">
+                                        <div class="col-lg-6 mb-4 {{$isProvider? 'pe' : 'ps'}}-lg-5">
                                             <label class="form-label" for="phone">Phone Number</label>
                                             <input type="text" id="phone" class="form-control" name="phone"
                                                 placeholder="Enter Phone Number"
@@ -381,13 +369,13 @@
                                             @enderror
 
                                         </div>
-                                        <div class="col-lg-6 mb-4 pe-lg-5">
+                                        <div class="col-lg-6 mb-4 {{$isProvider? 'ps' : 'pe'}}-lg-5">
                                             <label class="form-label" for="country">
                                                 Country
                                             </label>
                                             {!! $setupValues['countries']['rendered'] !!}
                                         </div>
-                                        <div class="col-lg-6 mb-4 ps-lg-5">
+                                        <div class="col-lg-6 mb-4 {{$isProvider? 'pe' : 'ps'}}-lg-5">
                                             <div class="mb-4">
                                                 <label class="form-label" for="state">State / Province</label>
                                                 <input type="text" id="state" class="form-control"
@@ -402,7 +390,7 @@
                                             </div>
 
                                         </div>
-                                        <div class="col-lg-6 mb-4 pe-lg-5">
+                                        <div class="col-lg-6 mb-4 {{$isProvider? 'ps' : 'pe'}}-lg-5">
                                             <div class="mb-4">
                                                 <label class="form-label" for="city">City</label>
                                                 <input type="text" id="city" class="form-control"
@@ -416,7 +404,7 @@
 
                                             </div>
                                         </div>
-                                        <div class="col-lg-6 mb-4 ps-lg-5">
+                                        <div class="col-lg-6 mb-4 {{$isProvider? 'pe' : 'ps'}}-lg-5">
                                             <label class="form-label" for="zip-code">
                                                 Zip Code
                                             </label>
@@ -429,7 +417,7 @@
                                             @enderror
 
                                         </div>
-                                        <div class="col-lg-6 mb-4 pe-lg-5">
+                                        <div class="col-lg-6 mb-4 {{$isProvider? 'ps' : 'pe'}}-lg-5">
 
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <label class="form-label" for="address-line-1">
@@ -458,7 +446,7 @@
 
                                             </div>
                                         </div>
-                                        <div class="col-lg-6 mb-4 ps-lg-5">
+                                        <div class="col-lg-6 mb-4 {{$isProvider? 'pe' : 'ps'}}-lg-5">
                                             <label class="form-label" for="address-line-2">
                                                 Address Line 2
                                             </label>
@@ -472,13 +460,13 @@
                                             @enderror
 
                                         </div>
-                                        <div class="col-lg-6 mb-4 pe-lg-5">
+                                        <div class="col-lg-6 mb-4 {{$isProvider? 'ps' : 'pe'}}-lg-5">
                                             <label class="form-label" for="start-date-column">
                                                 Start Date
                                             </label>
                                             <div class="d-flex align-items-center w-100">
                                                 <div class="position-relative flex-grow-1">
-                                                    <input type="text" class="form-control js-single-date"
+                                                    <input type="text" class="form-control js-single-date" {{$isProvider ? 'disabled' : ''}}
                                                         placeholder="Select Date" aria-label="Start Date" aria-describedby=""
                                                         id="start_date">
                                                     {{-- Updated by Shanila to Add svg icon --}}
@@ -491,13 +479,13 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6 mb-4 ps-lg-5">
+                                        <div class="col-lg-6 mb-4 {{$isProvider? 'pe' : 'ps'}}-lg-5">
                                             <label class="form-label" for="end-date">
                                                 End Date
                                             </label>
                                             <div class="d-flex align-items-center w-100">
                                                 <div class="position-relative flex-grow-1">
-                                                    <input type="text" class="form-control js-single-date"
+                                                    <input type="text" class="form-control js-single-date" {{$isProvider ? 'disabled' : ''}}
                                                         placeholder="Select Date" aria-label="End Date"
                                                         aria-describedby="" id="end-date-">
                                                     {{-- Updated by Shanila to Add svg icon --}}
@@ -510,12 +498,12 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6 mb-4 pe-lg-5">
+                                        <div class="col-lg-6 mb-4 {{$isProvider? 'ps' : 'pe'}}-lg-5">
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <label class="form-label" for="education">
                                                     Education
                                                 </label>
-                                                <a @click="addDocument = true" href="#" class="fw-bold">
+                                                <a @click="addDocument = true" href="#" class="fw-bold {{$isProvider ? 'hidden':''}}">
                                                     <small>
                                                         <svg aria-label="Upload Supporting Documents" class="me-1"
                                                             width="21" height="16" viewBox="0 0 21 16"
@@ -528,7 +516,7 @@
                                                     </small>
                                                 </a>
                                             </div>
-                                            <input type="text" id="education" class="form-control"
+                                            <input type="text" id="education" class="form-control" {{$isProvider ? 'disabled' : ''}}
                                                 name="education-column" placeholder="Enter Education"
                                                 wire:model.defer="userdetail.education" />
                                             @error('userdetail.education')
@@ -538,7 +526,7 @@
                                             @enderror
 
                                         </div>
-                                        <div class="col-lg-6 mb-4 ps-lg-5">
+                                        <div class="col-lg-6 mb-4 {{$isProvider? 'pe' : 'ps'}}-lg-5">
                                             <div class="d-flex justify-content-between align-items-center mb-2">
                                                 <label class="form-label mb-lg-0" for="certification">
                                                     Certification(s)
@@ -555,7 +543,7 @@
                                                                     Add New  --}}
                                                         </small>
                                                     </a>
-                                                    <a @click="addDocument = true" href="#" class="fw-bold">
+                                                    <a @click="addDocument = true" href="#" class="fw-bold {{$isProvider ? 'hidden':''}}">
                                                         <small>
                                                             <svg aria-label="Upload Supporting Documents"
                                                                 class="me-1" width="21" height="16"
@@ -581,7 +569,7 @@
                                                 <div class="mt-2">
                                                     <div class="form-check">
                                                         <input class="form-check-input"
-                                                            wire:model.defer="provider_details.show_as_certified"
+                                                            wire:model.defer="provider_details.show_as_certified" 
                                                             type="checkbox" id="show_as_certified">
                                                         <label class="form-check-label" for="show_as_certified">
                                                             Display Provider as Certified
@@ -590,6 +578,8 @@
                                                 </div>
                                             @endif
                                         </div>
+                                            @if (!$isProvider)
+
                                         <div class="col-lg-6 mb-4 pe-lg-5">
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <label class="form-label" for="user_experience">
@@ -616,6 +606,7 @@
                                                 </span>
                                             @enderror
                                         </div>
+                                        @endif
                                         <div class="col-lg-6 mb-4 ps-lg-5">
                                             <label class="form-label" for="provider-introduction">
                                                 Provider Introduction
@@ -629,13 +620,7 @@
                                             @enderror
 
                                         </div>
-                                        {{-- <div class="col-lg-6 ps-lg-5">
-                                                    <label class="form-label" for="notes_column">
-                                                        Notes
-                                                    </label>
-                                                    <textarea class="form-control" rows="3" placeholder="" name="notesColumn"
-                                                        id="notes_column" wire:model.defer="userdetail.note"></textarea>
-                                                </div> --}}
+                                        
                                         <div class="col-lg-6 mb-4 pe-lg-5">
                                             <label class="form-label" for="preferred-language-column">
                                                 Preferred Language
@@ -664,6 +649,8 @@
                                                 </p>
                                             @endif
                                         </div>
+                                            @if (!$isProvider)
+
                                         <div class="col-lg-6 mb-4 pe-lg-5">
                                             <label class="form-label" for="preferred-colleagues-column">
                                                 Preferred Colleagues
@@ -695,6 +682,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
+                                        @endif
 
                                         <div class="col-lg-6 pe-lg-5">
                                             <label class="form-label" for="set-time-zone-column">
