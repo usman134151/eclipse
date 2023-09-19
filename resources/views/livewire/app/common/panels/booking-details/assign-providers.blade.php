@@ -30,6 +30,22 @@
          </div>
      </div><!-- END: Filters -->
      <!-- BEGIN: Filter Table -->
+     @if ($limit && ($panelType ==1 || $panelType ==3))
+         <div style="position: fixed;bottom: 24px;right: 44px;text-align: right;z-index:-10000">
+             <span> Required Providers : {{ $limit }} </span> | 
+             <span class="d-inline-block  mt-2"
+                 style="{{ count($assignedProviders) <= $limit ? '' : 'color:#b02a37' }}">
+                 Assigned Providers : {{ count($assignedProviders) }} </span>
+            
+                 <span class="d-inline-block invalid-feedback mt-2"> @if (count($assignedProviders) > $limit) Max Limit exceeded - Please unassign
+                     provider @endif </span>
+            
+         </div>
+     @endif
+     @if($showError)
+        <span class="d-inline-block invalid-feedback my-1">No providers are selected.</span>
+
+     @endif
 
      <div class="d-lg-flex justify-content-between align-items-end mb-3">
          <div>
