@@ -131,7 +131,7 @@ class BookingOperationsService{
     $service['business_minutes']=0;
     $service['after_business_minutes']=0;
     $service=SELF::getBillableDuration($service,$schedule);
-   
+ 
     if($service['service_types']==2){
         $multipleProviderCol='standard_rate_virtual_multiply_provider';
     }
@@ -302,7 +302,7 @@ class BookingOperationsService{
     //for single date 
    
     $duration=SELF::calculateDuration($service['start_time'],$service['end_time'],$dayRate=false);
-   
+  
     $startDayOfWeek = Carbon::parse($service['start_time'])->format('l');
     $endDayOfWeek = Carbon::parse($service['end_time'])->format('l');
     $startTime = Carbon::parse($service['start_time'])->format('H:i:s');
@@ -320,8 +320,8 @@ class BookingOperationsService{
 
     $service['after_business_start_time'] ='';
     $service['after_business_end_time'] = '';
-   
-    if(!is_null($duration) || $duration['days']==0){
+  
+    if(!is_null($duration) && ($duration['days']==0 &&  $duration['hours']<24)){
         //single day booking 
 
         foreach($schedule->timeslots as $timeSlot){
@@ -351,8 +351,8 @@ class BookingOperationsService{
                 
                 // Calculate the duration of the overlapping period in hours and minutes
                 $overlapInterval = $overlapEnd->diff($overlapStart);
-                $service['business_hours'] = $overlapInterval->h;
-                $service['business_minutes'] = $overlapInterval->i;
+                $service['business_hours'] += $overlapInterval->h;
+                $service['business_minutes'] += $overlapInterval->i;
             
                 $service['business_start_time'] = $overlapStart->format('Y-m-d H:i:s');
                 $service['business_end_time'] = $overlapEnd->format('Y-m-d H:i:s');
@@ -368,8 +368,8 @@ class BookingOperationsService{
                 if($overlapDurationInMinutes < $totalDurationInMinutes){
                     $afterBusinessDurationInMinutes = $totalDurationInMinutes - $overlapDurationInMinutes;
                     
-                    $service['after_business_hours'] = (int)($afterBusinessDurationInMinutes / 60);
-                    $service['after_business_minutes'] = $afterBusinessDurationInMinutes % 60;
+                    $service['after_business_hours'] += (int)($afterBusinessDurationInMinutes / 60);
+                    $service['after_business_minutes'] += $afterBusinessDurationInMinutes % 60;
             
                     $service['after_business_start_time'] = $overlapEnd->format('Y-m-d H:i:s');
                     $service['after_business_end_time'] = $endtime->format('Y-m-d H:i:s');
@@ -385,11 +385,120 @@ class BookingOperationsService{
         }
     }
     else{
+
+        $days=SELF::getDaysInBetween($startDayOfWeek,$endDayOfWeek);
         //multiple day booking
+        foreach($days as $index=>$day){
+          foreach($schedule->timeslots as $timeSlot){
+
+            if($timeSlot->timeslot_day == $day && $timeSlot->timeslot_type == 1){
+           
+                // Check if the duration falls between business hours
+                $slotStart = Carbon::parse($timeSlot['timeslot_start_time'])->format('H:i:s');
+                $slotEnd = Carbon::parse($timeSlot['timeslot_end_time'])->format('H:i:s');
+            
+                $timeslotStart = Carbon::createFromTimeString($slotStart);
+                $timeslotEnd = Carbon::createFromTimeString($slotEnd);
+                if($index==0)
+                  $starttime = Carbon::createFromTimeString($startTime);
+                else{
+                  $starttime=$timeslotStart;
+                
+                  $service['after_business_hours'] += $starttime->hour;
+                  $service['after_business_minutes'] += 1;
+                }
+                 
+
+                if($index+1==count($days))
+                  $endtime = Carbon::createFromTimeString($endTime); //last day stop at actual end time
+                else 
+                  $endtime= Carbon::createFromTimeString('23:59:59'); //other day calculate till 12 am
+               
+                // Calculate total duration in minutes
+                $totalDurationInMinutes = $endtime->diffInMinutes($starttime);
+            
+                // Calculate overlapping duration in minutes
+                $overlapDurationInMinutes = 0;
+                          // Find the overlapping period
+                          $overlapStart = $timeslotStart->greaterThan($starttime) ? $timeslotStart : $starttime;
+                          $overlapEnd = $timeslotEnd->lessThan($endtime) ? $timeslotEnd : $endtime; 
+
+              if($overlapEnd>$overlapStart){
+
+                
+                // Calculate the duration of the overlapping period in hours and minutes
+                $overlapInterval = $overlapEnd->diff($overlapStart);
+                $service['business_hours'] += $overlapInterval->h;
+                $service['business_minutes'] += $overlapInterval->i;
+            
+                $service['business_start_time'] = $overlapStart->format('Y-m-d H:i:s');
+                $service['business_end_time'] = $overlapEnd->format('Y-m-d H:i:s');
+                            
+            
+                                // Calculate overlapping duration in minutes
+                                $overlapDurationInMinutes = $overlapInterval->h * 60 + $overlapInterval->i;
+              }
+            
+        
+
+            
+                if($overlapDurationInMinutes < $totalDurationInMinutes){
+                    $afterBusinessDurationInMinutes = $totalDurationInMinutes - $overlapDurationInMinutes;
+                    
+                    $service['after_business_hours'] += (int)($afterBusinessDurationInMinutes / 60);
+                    $service['after_business_minutes'] += $afterBusinessDurationInMinutes % 60;
+            
+                    $service['after_business_start_time'] = $overlapEnd->format('Y-m-d H:i:s');
+                    $service['after_business_end_time'] = $endtime->format('Y-m-d H:i:s');
+                }
+          
+              
+            }
+            
+            
+            
+            
+            
+        }
+        
+        }
+
+        
+    
+        
     }
+    $service['after_business_hours']+=$service['after_business_minutes']/60;
+    $service['after_business_minutes']=$service['after_business_minutes']%60;
     $service['total_duration']=$duration;
   
     return $service;
+
+  }
+
+  public static function getDaysInBetween($startDayOfWeek,$endDayOfWeek){
+    $daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+
+
+$startIndex = array_search($startDayOfWeek, $daysOfWeek);
+$endIndex = array_search($endDayOfWeek, $daysOfWeek);
+
+$daysInBetween = [];
+
+if ($startIndex <= $endIndex) {
+    for ($i = $startIndex; $i <= $endIndex; $i++) {
+        $daysInBetween[] = $daysOfWeek[$i];
+    }
+} else {
+    for ($i = $startIndex; $i < count($daysOfWeek); $i++) {
+        $daysInBetween[] = $daysOfWeek[$i];
+    }
+    for ($i = 0; $i <= $endIndex; $i++) {
+        $daysInBetween[] = $daysOfWeek[$i];
+    }
+}
+
+ return $daysInBetween;
 
   }
 

@@ -1311,13 +1311,13 @@
                                                     type="radio" tabindex="" wire.model.defer="payment.payment_method" value="2" checked/>
                                                 <label class="form-check-label" for="PayLater"> Pay Later</label>
                                             </div>
-                                            <div class="form-check form-check-inline">
+                                           <!-- <div class="form-check form-check-inline">
                                                 <input class="form-check-input" id="PayNow" name="PaymentPreference"
                                                     type="radio" tabindex="" disabled />
                                                 <label class="form-check-label" for="PayNow"> Pay Now</label>
-                                            </div>
+                                            </div> -->
                                         </div>
-                                        <div class="input-group mb-3">
+                                        <!--<div class="input-group mb-3">
                                             <input type="" name="" class="form-control form-control-md"
                                                 placeholder="Enter Card number" aria-label="Enter Card number" disabled>
                                             <input type="" name="" class="form-control form-control-md text-center"
@@ -1333,7 +1333,7 @@
                                                     Future
                                                     Payments</label>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <!-- /Payment Preference -->
                                 </div>
@@ -1391,23 +1391,17 @@
                                             </div>
                                             <div class="my-lg-5">
                                                 <label class="form-label" for="tags">
-                                                    Tags (Coming Soon)
+                                                    Tags 
                                                 </label>
                                                 <div class="mb-3">
-                                                <select disabled data-placeholder="" multiple
+                                                <select data-placeholder="" multiple
                                                                     class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="tags-select" aria-label="Select Tags" wire:model.defer="tags">
                                                                     <option value=""></option>
                                                                     <option selected>Admin staff</option>
                                                                     <option selected>Customers</option>
                                                                 </select>
                                                 </div>
-                                                <div class="d-lg-flex flex-wrap gap-3 mb-3">
-                                                    <div class="tag">@admin_company</div>
-                                                    <div class="tag">@booking_start_at</div>
-                                                    <div class="tag">@consumer</div>
-                                                    <div class="tag">@booking_end_at</div>
-                                                    <div class="tag">@booking_duration</div>
-                                                </div>
+
                                                 <div>
                                                     <div class="form-check form-check-inline">
                                                         <input class="form-check-input" id="Requester" name=""
@@ -1425,7 +1419,13 @@
                                                         <input class="form-check-input" id="Participants" name=""
                                                             type="checkbox" tabindex="" />
                                                         <label class="form-check-label"
-                                                            for="Participants">Participant(s)</label>
+                                                            for="Participants">Company</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" id="Participants" name=""
+                                                            type="checkbox" tabindex="" />
+                                                        <label class="form-check-label"
+                                                            for="Participants">Department</label>
                                                     </div>
                                                 </div>
                                             </div>        
