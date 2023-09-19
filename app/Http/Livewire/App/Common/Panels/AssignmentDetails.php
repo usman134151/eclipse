@@ -8,6 +8,7 @@ use App\Models\Tenant\BookingInvitationProvider;
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\BookingServices;
 use App\Models\Tenant\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -31,21 +32,21 @@ class AssignmentDetails extends Component
     function fetchData()
     {
         // show services for which the provider has either been invited or assigned
-        $invited = BookingInvitationProvider::where(['booking_invitation_providers.booking_id'=>$this->booking->id,'provider_id'=>Auth::id()])
-        ->join('booking_invitations','invitation_id', 'booking_invitations.id')->select('service_id')->get()->toArray();
+        $invited = BookingInvitationProvider::where(['booking_invitation_providers.booking_id' => $this->booking->id, 'provider_id' => Auth::id()])
+            ->join('booking_invitations', 'invitation_id', 'booking_invitations.id')->select('service_id')->get()->toArray();
 
         $assigned = BookingProvider::where(['booking_providers.booking_id' => $this->booking->id, 'provider_id' => Auth::id()])
-        ->join('booking_services', 'booking_services.id', 'booking_service_id')->select('services')->get()->toArray();
+            ->join('booking_services', 'booking_services.id', 'booking_service_id')->select('services')->get()->toArray();
 
         // fetch all services for booking 
         $this->data['booking_services'] = BookingServices::where('booking_id', $this->booking->id)
-            ->whereIn('services', array_merge($invited,$assigned))
+            ->whereIn('services', array_merge($invited, $assigned))
             ->join('service_categories', 'booking_services.services', 'service_categories.id')
             ->join('accommodations', 'accommodations.id', 'service_categories.accommodations_id')
             ->with('serviceConsumerUser')
             ->get([
                 'booking_services.id', 'booking_services.service_types', 'booking_services.attendees',
-                'booking_services.service_consumer',
+                'booking_services.service_consumer', 'booking_services.start_time',
                 'booking_services.meeting_link', 'booking_services.meetings',
                 'booking_services.attendees', 'booking_services.service_consumer', 'booking_services.specialization', 'booking_services.meeting_phone',
                 'booking_services.meeting_passcode', 'booking_services.provider_count', 'booking_services.created_at',
@@ -58,12 +59,16 @@ class AssignmentDetails extends Component
             if ($service['attendees'])
                 $this->data['booking_services'][$key]['participants'] = User::whereIn('id', explode(',', $service['attendees']))->select('name', 'id')->get();
 
-            if ($service['meetings']!=null) {
+            if ($service['meetings'] != null) {
 
                 $this->data['booking_services'][$key]['meeting_details'] = json_decode($service['meetings'], true) ? json_decode($service['meetings'], true)[0] : null;
             }
         }
-        $this->data['assigned']=$assigned;
+        $this->data['assigned'] = $assigned;
+        if (Carbon::parse($this->booking->booking_start_at)->isToday())
+            $this->data['isToday'] = true;
+        else
+            $this->data['isToday'] = false;
 
         $this->data['serviceFormDetails'] = BookingCustomizeData::where("booking_id", $this->booking->id)
             ->join('customize_form_fields', 'booking_customize_data.customize_id', '=', 'customize_form_fields.id')

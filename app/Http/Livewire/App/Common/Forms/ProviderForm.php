@@ -192,6 +192,7 @@ class ProviderForm extends Component
         //edit from provider panel
         if ($this->isProvider) {
             $this->edit($user);
+            $this->dispatchBrowserEvent('hideFields');
         }
         $this->userid = $user->id;
     }
@@ -380,11 +381,14 @@ class ProviderForm extends Component
         $this->userdetail['certification'] = explode(', ', $this->userdetail['certification']);
         $this->userdetail['favored_users'] = explode(', ', $this->userdetail['favored_users']);
         $this->userdetail['unfavored_users'] = explode(', ', $this->userdetail['unfavored_users']);
-
+        if ($this->user->user_dob)
+            $this->user->user_dob = Carbon::createFromFormat('Y-m-d', $this->user->user_dob)->format('m/d/Y');
+      
         if ($redirect) {
-            if ($this->isProvider)
+            if ($this->isProvider) {
                 $this->emit('showConfirmation', 'Profile updated successfully');
-            else {
+                $this->dispatchBrowserEvent('hideFields');
+            } else {
                 $this->showList("Provider has been saved successfully");
                 $this->user = new User;
             }

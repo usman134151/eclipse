@@ -84,7 +84,18 @@
                     </div>
                 </div>
 
+                
                 <div class="d-lg-flex justify-content-end mb-4">
+
+                    <button wire:click.prevent="downloadExportFile()" type="button"
+                        class="d-inline-flex align-items-center btn btn-primary rounded px-3 me-2 gap-2 ">
+                        {{-- Updated by Shanila to Add svg icon --}}
+                        <svg aria-label="Download Import File" width="20" height="20" viewBox="0 0 20 20">
+                            <use xlink:href="/css/common-icons.svg#import-file"></use>
+                        </svg>
+                        {{-- End of update by Shanila --}}
+                        <span>Download Import File</span>
+                    </button>
                     <a href="/admin/booknow/create" class="btn btn-primary rounded btn-sm">
                         Create Assignment
                     </a>
@@ -196,8 +207,8 @@
                                                                     class="{{ $i % 2 == 0 ? 'even' : 'odd' }} ">
                                                                     <td class="text-center {{ $cssClass }}"
                                                                         style="background-color:{{ $colorCodes[$code] }}">
-                                                                        <input class="form-check-input"
-                                                                            type="checkbox" value=""
+                                                                        <input class="form-check-input" wire:model.defer="selectedBookingIds"
+                                                                            type="checkbox" value="{{$booking['id']}}" name="selected_booking_ids"
                                                                             aria-label="Select Booking">
                                                                     </td>
                                                                     <td class="{{ $cssClass }}"
