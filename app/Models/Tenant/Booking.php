@@ -27,7 +27,7 @@ class Booking extends Model
 
     public function services()
     {
-        return $this->belongsToMany(ServiceCategory::class, 'booking_services','booking_id','services')->withPivot(['service_types']);
+        return $this->belongsToMany(ServiceCategory::class, 'booking_services','booking_id','services')->withPivot(['service_types','provider_count','start_time','end_time','time_zone']);
     }
     public function accommodations()
     {

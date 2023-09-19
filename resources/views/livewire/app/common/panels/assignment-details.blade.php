@@ -35,7 +35,7 @@
     <div class="tab-content" id="assignment-details-tab-content">
         <div class="tab-pane fade show active" id="booking-details-tab-pane" role="tabpanel"
             aria-labelledby="booking-details-tab" :class="{ 'active show': step == 1 }" x-show="step == 1">
-            @if (count($data['assigned']))
+            @if (count($data['assigned']) && $data['isToday'])
                 <div class="row align-items-center">
                     <div class="col-auto">
                         <h2 class="font-family-tertiary text-center mb-0">
