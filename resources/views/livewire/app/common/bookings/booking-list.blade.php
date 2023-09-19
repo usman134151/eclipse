@@ -207,8 +207,8 @@
                                                                     class="{{ $i % 2 == 0 ? 'even' : 'odd' }} ">
                                                                     <td class="text-center {{ $cssClass }}"
                                                                         style="background-color:{{ $colorCodes[$code] }}">
-                                                                        <input class="form-check-input"
-                                                                            type="checkbox" value=""
+                                                                        <input class="form-check-input" wire:model.defer="selectedBookingIds"
+                                                                            type="checkbox" value="{{$booking['id']}}" name="selected_booking_ids"
                                                                             aria-label="Select Booking">
                                                                     </td>
                                                                     <td class="{{ $cssClass }}"

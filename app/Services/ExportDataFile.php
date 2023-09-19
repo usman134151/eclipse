@@ -537,17 +537,17 @@ class ExportDataFile
         }
     }
 
-    public function generateExcelTemplateBookings()
+    public function generateExcelTemplateBookings($booking_ids = [])
     {
-        $today = Carbon::now()->toDateString();
-        $bookings = Booking::where(['bookings.status' => 2, 'type' => 1, 'booking_status' => '1'])
-            ->whereRaw("'$today'  Between  DATE(booking_start_at) AND DATE(booking_end_at)")->get();
+        $bookings = Booking::whereIn('id', $booking_ids)->get();
+
         $tz = SetupValue::where('setup_id', 4)->select('id', 'setup_value_label')->get()->toArray();
-        $timezones=[];
-        foreach($tz as $t){
-            $timezones[$t['id']]=$t['setup_value_label'];
+        $timezones = [];
+        foreach ($tz as $t) {
+            $timezones[$t['id']] = $t['setup_value_label'];
         }
-        $serviceType = [1=>'in_person',2=>'virtual',4=>'phone',5=>'tele-conference'];
+        $serviceType = [1 => 'in_person', 2 => 'virtual', 4 => 'phone', 5 => 'tele-conference'];
+
         if ($bookings && count($bookings)) {
             // dd("records found",$notifications);
             $headers = [
@@ -580,42 +580,30 @@ class ExportDataFile
                 $row[5] = $service ? $service->name : '';
                 $row[6] = $service ? ($service->pivot->service_types ? $serviceType[$service->pivot->service_types] : '') : '';
                 $row[7] = $service ? ($service->pivot->provider_count ? $service->pivot->provider_count : '') : '';
-                $row[8] = $service ? ($service->pivot->time_zone ? (isset($timezones[$service->pivot->time_zone])? $timezones[$service->pivot->time_zone] : $service->pivot->time_zone) : '') : '';
+                $row[8] = $service ? ($service->pivot->time_zone ? (isset($timezones[$service->pivot->time_zone]) ? $timezones[$service->pivot->time_zone] : $service->pivot->time_zone) : '') : '';
 
-                $row[9] = $service ? ($service->pivot->start_time ? $service->pivot->start_time : '' ) : $booking->booking_start_at;
+                $row[9] = $service ? ($service->pivot->start_time ? $service->pivot->start_time : '') : $booking->booking_start_at;
                 $row[10] = $service ? ($service->pivot->end_time ? $service->pivot->end_time : '') : $booking->booking_end_at;
 
-                // // $NotificationTemplateRoles = NotificationTemplateRoles::where('notification_id', $triggerTypeNotification->id)->get();
-                // foreach ($NotificationTemplateRoles as $NotificationTemplateRole) {
-                //     if ($NotificationTemplateRole->role_id == 1) {
-                //         $row[1] = $NotificationTemplateRole->notification_text;
-                //         $row[2] = $NotificationTemplateRole->notification_subject;
-                //     } else if ($NotificationTemplateRole->role_id == 2) {
-                //         $row[3] = $NotificationTemplateRole->notification_text;
-                //         $row[4] = $NotificationTemplateRole->notification_subject;
-                //     } else if ($NotificationTemplateRole->role_id == 4) {
-                //         $row[5] = $NotificationTemplateRole->notification_text;
-                //         $row[6] = $NotificationTemplateRole->notification_subject;
-                //     }
-                // }
                 $rows[] = $row;
             }
-        }
-        // dd($rows);
-        $fileName = 'bookings_export.xlsx';
-        $filePath = Storage::disk('local')->path($fileName);
+            // dd($rows);
+            $fileName = 'bookings_export.xlsx';
+            $filePath = Storage::disk('local')->path($fileName);
 
-        $spreadsheet = new Spreadsheet();
-        $sheet = $spreadsheet->getActiveSheet();
-        $sheet->fromArray($rows);
+            $spreadsheet = new Spreadsheet();
+            $sheet = $spreadsheet->getActiveSheet();
+            $sheet->fromArray($rows);
 
-        $writer = new Xlsx($spreadsheet);
-        $writer->save($filePath);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save($filePath);
 
-        $fileResponse = response()->file($filePath, [
-            'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
-        ])->deleteFileAfterSend(true);
+            $fileResponse = response()->file($filePath, [
+                'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
+            ])->deleteFileAfterSend(true);
 
-        return $fileResponse;
+            return $fileResponse;
+        } else
+            return;
     }
 }

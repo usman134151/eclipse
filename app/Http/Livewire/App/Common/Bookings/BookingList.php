@@ -31,6 +31,7 @@ class BookingList extends Component
 	public $accommodation_search_filter = [], $booking_service_filter = [], $booking_specialization_search_filter = [], $provider_ids = [], $name_seacrh_filter = '',
 		$service_type_search_filter = [], $tag_names = [], $industry_filter = [], $booking_status_filter = null, $booking_number_filter = null;
 	public $tags = [], $filterProviders = [], $hideProvider = false;
+	public $selectedBookingIds =[];
 
 
 
@@ -64,7 +65,7 @@ class BookingList extends Component
 	{
 		$this->exportDataFile = new ExportDataFile();
 
-		return $this->exportDataFile->generateExcelTemplateBookings();
+		return $this->exportDataFile->generateExcelTemplateBookings($this->selectedBookingIds);
 
 	}
 
