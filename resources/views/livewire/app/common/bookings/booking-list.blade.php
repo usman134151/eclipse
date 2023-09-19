@@ -131,7 +131,7 @@
                                             <div class="d-inline-flex align-items-center gap-4">
                                                 <div class="d-lg-flex justify-content-end mb-4">
                                                     <div class="dropdown">
-                                                        <button class="btn btn-outline-primary dropdown-toggle"
+                                                        <button wire:click.prevent="downloadExportFile()"  class="btn btn-outline-primary dropdown-toggle"
                                                             type="button" data-bs-toggle="dropdown"
                                                             aria-expanded="false">
                                                             {{-- Updated by Shanila to Add svg icon --}}

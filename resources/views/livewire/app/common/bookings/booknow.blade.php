@@ -825,7 +825,11 @@
                                         </div>
                                         <div class="d-md-flex align-items-center gap-5">
                                             <label class="form-label mb-lg-0">Total Billable Service Duration</label>
+                                            @if($dates[$index]['day_rate'])
                                             <div>
+                                            @else
+                                            <div style="display:none">
+                                            @endif    
                                                 <label class="form-label-sm"
                                                     for="total_billable_service_duration_days">Days</label>
                                                 <input type="" class="form-control form-control-md text-center"

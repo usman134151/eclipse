@@ -109,7 +109,7 @@ class Booknow extends Component
             }]);
         }])->where('status', 1)->get()->toArray();
         
-        
+       
         $serviceTypeLabels=SetupValue::where('setup_id',5)->pluck('setup_value_label')->toArray();
         for($i=0,$j=1;$i<4;$i++,$j++){
             if($j==3)
@@ -119,6 +119,7 @@ class Booknow extends Component
 
         if (request()->bookingID != null) {
             $id=request()->bookingID;
+
             $this->booking=Booking::with('company','accommodation','booking_services_new_layout','industries','customer','payment','departments')->find($id);
 
             if(!is_null($this->booking->payment)){
@@ -138,6 +139,11 @@ class Booknow extends Component
             foreach($this->services as &$service)
             {
                 $service['specialization']=json_decode($service['specialization'],true);
+                $accId=$service['accommodation_id'];
+                $accIndex = collect($this->accommodations)->search(function ($accommodation) use($accId) {
+                    return $accommodation['id'] === $accId;
+                });
+               
             }
           
             $this->selectedIndustries=$this->booking->industries->pluck('id')->toArray();
@@ -149,7 +155,7 @@ class Booknow extends Component
 
           // dd($this->departmentNames);
           // dd( $this->selectedIndustries);
-           
+           $dayRate=false;
            
             $this->refreshAddresses();
             foreach($this->services as  $index => &$service){
@@ -170,7 +176,8 @@ class Booknow extends Component
                     'duration_day' => '',
                     'duration_hour' => '',
                     'duration_minute' => '',
-                    'time_zone' => $service['time_zone']
+                    'time_zone' => $service['time_zone'],
+                    'day_rate'=>$dayRate
         
                 ];
 
@@ -527,7 +534,8 @@ class Booknow extends Component
             'duration_day' => '',
             'duration_hour' => '',
             'duration_minute' => '',
-            'time_zone' => $timeZone
+            'time_zone' => $timeZone,
+            'day_rate'=>false
 
     ];
     
@@ -802,13 +810,23 @@ class Booknow extends Component
           //  if ($endDateTime >= $startDateTime) {
                 $diff = $endDateTime->diff($startDateTime);
     
+ 
+               if($this->dates[$index]['day_rate']){
                 $days = $diff->days;
                 $hours = $diff->h;
+               
+ 
+               }
+               else{
+                $days=0;
+                $hours=(($diff->days * 24 * 60) + ($diff->h * 60) + $diff->i)/60 ;
+               }
                 $minutes = $diff->i;
-              
                 $this->dates[$index]['duration_day']=$days;
                 $this->dates[$index]['duration_hour']=$hours;
+ 
                 $this->dates[$index]['duration_minute']=$minutes;
+               //dd($this->dates);
                
             //} else {
 

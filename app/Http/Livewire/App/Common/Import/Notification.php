@@ -40,6 +40,7 @@ class Notification extends Component
 		$this->triggerTypes=TriggerType::all();
         // dd($this->triggerTypes);
         $this->userTypes=Role::get();
+        
 
      }
 
@@ -48,7 +49,7 @@ class Notification extends Component
         $this->validate([
             'file' => 'required|file|mimetypes:application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
         ]);
-
+       
         $rows = Excel::toArray([], $this->file)[0];
         $this->notifications=[];
         $this->warningMessage='';
@@ -57,7 +58,7 @@ class Notification extends Component
         $i = 0;
         
        $triggerTypeId=2;
-        // dd($rows);
+     
 
         foreach ($rows as $row) {
             if($i>0){
@@ -73,31 +74,59 @@ class Notification extends Component
                         }
                         if(!$triggerTypeFound){
                             $NotificationTemplateRoles=[];
+                            if($this->notification_type==1){
+                                if($row[1] && $row[2] && $row[1]!="--" && $row[2]!="--"){
+                                    $roleAdmin=[
+                                        'role_id' => 1, //Admin
+                                        'notification_subject' => Str::limit($row[2], 250),
+                                        'notification_text'   => $row[1],
+                                    ];
+                                    $NotificationTemplateRoles[]=$roleAdmin;
+                                }
+                                if($row[3] && $row[4] && $row[3]!="--" && $row[4]!="--"){
+                                    $roleProvider=[
+                                        'role_id' => 2, //Provider
+                                        'notification_subject' => Str::limit($row[4], 250),
+                                        'notification_text'   => $row[3],
+                                    ];
+                                    $NotificationTemplateRoles[]=$roleProvider;
+                                }
+                                if($row[5] && $row[6] && $row[5]!="--" && $row[6]!="--"){
+                                    $roleCustomer=[
+                                        'role_id' => 4, //Customer
+                                        'notification_subject' => Str::limit($row[6], 250),
+                                        'notification_text'   => $row[5],
+                                    ];
+                                    $NotificationTemplateRoles[]=$roleCustomer;
+                                }
+                            }
+                            else{
+                                if($row[1] && $row[1]!="--"){
+                                    $roleAdmin=[
+                                        'role_id' => 1, //Admin
+                                        'notification_subject' => Str::limit($row[1], 250),
+                                        'notification_text'   => $row[1],
+                                    ];
+                                    $NotificationTemplateRoles[]=$roleAdmin;
+                                }
+                                if($row[2] && $row[2]!="--"){
+                                    $roleProvider=[
+                                        'role_id' => 2, //Provider
+                                        'notification_subject' => Str::limit($row[2], 250),
+                                        'notification_text'   => $row[2],
+                                    ];
+                                    $NotificationTemplateRoles[]=$roleProvider;
+                                }
+                                if($row[3] && $row[3]!="--"){
+                                    $roleCustomer=[
+                                        'role_id' => 4, //Customer
+                                        'notification_subject' => Str::limit($row[3], 250),
+                                        'notification_text'   => $row[3],
+                                    ];
+                                    $NotificationTemplateRoles[]=$roleCustomer;
+                                }                               
+                            }
 
-                            if($row[1] && $row[2] && $row[1]!="--" && $row[2]!="--"){
-                                $roleAdmin=[
-                                    'role_id' => 1, //Admin
-                                    'notification_subject' => Str::limit($row[2], 250),
-                                    'notification_text'   => $row[1],
-                                ];
-                                $NotificationTemplateRoles[]=$roleAdmin;
-                            }
-                            if($row[3] && $row[4] && $row[3]!="--" && $row[4]!="--"){
-                                $roleProvider=[
-                                    'role_id' => 2, //Provider
-                                    'notification_subject' => Str::limit($row[4], 250),
-                                    'notification_text'   => $row[3],
-                                ];
-                                $NotificationTemplateRoles[]=$roleProvider;
-                            }
-                            if($row[5] && $row[6] && $row[5]!="--" && $row[6]!="--"){
-                                $roleCustomer=[
-                                    'role_id' => 4, //Customer
-                                    'notification_subject' => Str::limit($row[6], 250),
-                                    'notification_text'   => $row[5],
-                                ];
-                                $NotificationTemplateRoles[]=$roleCustomer;
-                            }
 
                             $notification = [
                                 'trigger_type_id'  => $triggerTypeId,
@@ -107,7 +136,7 @@ class Notification extends Component
                                 'notification_type' => $this->notification_type,
                                 'notificationTemplateRoles'=>$NotificationTemplateRoles
                             ];
-
+                            
                             $this->notifications[] = $notification;
                         }
                     }
@@ -160,16 +189,17 @@ class Notification extends Component
             $this->addErrorMessages($e);
             return;
         }
-        
+       
+        NotificationTemplates::where('notification_type',$this->notification_type)->delete();
         foreach ($this->notifications as $notification) {
             $notificationTemplate = NotificationTemplates::updateOrCreate(
-                ['trigger' => $notification['trigger']], // Search criteria
+                ['trigger' => $notification['trigger'], 'notification_type' =>$this->notification_type], // Search criteria
                 [      // Data to update or create
                     'trigger_type_id'  =>$notification['trigger_type_id'],
                     'trigger'  =>$notification['trigger'],
                     'name' =>$notification['name'],
                     'slug' =>$notification['slug'],
-                    'notification_type' =>$this->notification_type,
+                   
                 ]
             );
             NotificationTemplateRoles::where('notification_id',$notificationTemplate->id)->delete();
