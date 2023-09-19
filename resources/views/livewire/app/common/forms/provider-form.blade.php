@@ -1201,7 +1201,6 @@
                 $('#certification').attr('disabled', true);
 
             document.addEventListener('hideFields', () => {
-                console.log('here');
                 $('#certification').attr('disabled', true);
             });
         </script>
