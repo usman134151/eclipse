@@ -3,23 +3,19 @@
 namespace App\Services;
 
 use App\Models\SetupValue;
+use App\Models\Tenant\Accommodation;
+use App\Models\Tenant\Booking;
 use App\Models\Tenant\Industry;
 use App\Models\Tenant\Company;
 use App\Models\Tenant\NotificationTemplateRoles;
 use App\Models\Tenant\NotificationTemplates;
+use App\Models\Tenant\ServiceCategory;
+use Carbon\Carbon;
+
 use App\Models\Tenant\TriggerType;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Http\Response;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Lang;
-use Illuminate\Support\Str;
-use Illuminate\Validation\ValidationException;
-use Maatwebsite\Excel\Excel;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 
 class ExportDataFile
 {
@@ -48,7 +44,7 @@ class ExportDataFile
             'Password'
         ];
 
-       // $languageValues = SetupValue::where('setup_id', 1)->pluck('setup_value_label')->toArray();
+        // $languageValues = SetupValue::where('setup_id', 1)->pluck('setup_value_label')->toArray();
         $languageValues = SetupValue::where('setup_id', 1)->pluck('setup_value_label')->all();
         $genderValues = SetupValue::where('setup_id', 2)->pluck('setup_value_label')->toArray();
         $ethnicityValues = SetupValue::where('setup_id', 3)->pluck('setup_value_label')->toArray();
@@ -85,74 +81,73 @@ class ExportDataFile
         $sheet = $spreadsheet->getActiveSheet();
         //$sheet->fromArray([$headers]);
         $sheet->fromArray([$headers]);
-    // set the DOB column format to date
-    $sheet->getStyle('D:D')->getNumberFormat()->setFormatCode('dd/mmm/yyyy');
+        // set the DOB column format to date
+        $sheet->getStyle('D:D')->getNumberFormat()->setFormatCode('dd/mmm/yyyy');
 
-    // add data validation and date picker to the DOB column
-    $validation = $sheet->getCell('D2')->getDataValidation();
-    $validation->setType(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::TYPE_CUSTOM);
-    $validation->setErrorStyle(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::STYLE_STOP);
-    $validation->setAllowBlank(true);
-    $validation->setShowInputMessage(true);
-    $validation->setShowErrorMessage(true);
-    $validation->setShowDropDown(true);
-    $validation->setErrorTitle('Input error');
-    $validation->setError('Value is not a valid date.For example 10/May/2000');
-    $validation->setPromptTitle('Pick a date');
-    $validation->setPrompt('Please pick a date from the calendar.');
-    $validation->setFormula1('DATE(1900,1,1)');
-    $validation->setFormula2('DATE(9999,12,31)');
-    
-    
-
-    foreach ($rows as $row) {
-        $sheet->fromArray([$row]);
-    }
-
-$excelRows=[
-    'F'=>$languageValues,
-    'G'=> $genderValues,
-    'H'=> $ethnicityValues
-];
-foreach($excelRows as $key=>$valueArr){
-    for($i=2;$i<101;$i++){
-        $validation = $sheet->getCell($key.$i)->getDataValidation();
-        $validation->setType('list');
-        $validation->setErrorStyle('stop');
+        // add data validation and date picker to the DOB column
+        $validation = $sheet->getCell('D2')->getDataValidation();
+        $validation->setType(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::TYPE_CUSTOM);
+        $validation->setErrorStyle(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::STYLE_STOP);
         $validation->setAllowBlank(true);
         $validation->setShowInputMessage(true);
         $validation->setShowErrorMessage(true);
         $validation->setShowDropDown(true);
         $validation->setErrorTitle('Input error');
-        $validation->setError('Value is not in list.');
-        $validation->setPromptTitle('Pick from list');
-        $validation->setPrompt('Please pick a value from the drop-down list.');
-        $validation->setFormula1('"' . implode(',', $valueArr) . '"');
+        $validation->setError('Value is not a valid date.For example 10/May/2000');
+        $validation->setPromptTitle('Pick a date');
+        $validation->setPrompt('Please pick a date from the calendar.');
+        $validation->setFormula1('DATE(1900,1,1)');
+        $validation->setFormula2('DATE(9999,12,31)');
+
+
+
+        foreach ($rows as $row) {
+            $sheet->fromArray([$row]);
+        }
+
+        $excelRows = [
+            'F' => $languageValues,
+            'G' => $genderValues,
+            'H' => $ethnicityValues
+        ];
+        foreach ($excelRows as $key => $valueArr) {
+            for ($i = 2; $i < 101; $i++) {
+                $validation = $sheet->getCell($key . $i)->getDataValidation();
+                $validation->setType('list');
+                $validation->setErrorStyle('stop');
+                $validation->setAllowBlank(true);
+                $validation->setShowInputMessage(true);
+                $validation->setShowErrorMessage(true);
+                $validation->setShowDropDown(true);
+                $validation->setErrorTitle('Input error');
+                $validation->setError('Value is not in list.');
+                $validation->setPromptTitle('Pick from list');
+                $validation->setPrompt('Please pick a value from the drop-down list.');
+                $validation->setFormula1('"' . implode(',', $valueArr) . '"');
                 foreach ($rows as $row) {
                     $sheet->fromArray([$row]);
-                    
                 }
-    }
-}
+            }
+        }
 
 
 
-                        
-        
-                $writer = new Xlsx($spreadsheet);
+
+
+        $writer = new Xlsx($spreadsheet);
         $writer->save($filePath);
-        
-    $fileResponse = response()->file($filePath, [
-        'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
-    ])->deleteFileAfterSend(true);
 
-    return $fileResponse;
+        $fileResponse = response()->file($filePath, [
+            'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
+        ])->deleteFileAfterSend(true);
 
-      //  $fileResponse = response()->download($filePath, $fileName)->deleteFileAfterSend(true);
+        return $fileResponse;
+
+        //  $fileResponse = response()->download($filePath, $fileName)->deleteFileAfterSend(true);
         //$fileResponse->headers->set('Content-Disposition', 'attachment; filename="' . $fileName . '"');
         //return $fileResponse;
-        
-       // $fileResponse = response()->download($filePath, $fileName)->deleteFileAfterSend(true);
+
+        // $fileResponse = response()->download($filePath, $fileName)->deleteFileAfterSend(true);
 
         //return new Response($fileResponse->getContent(), $fileResponse->getStatusCode(), $fileResponse->headers->all());
     }
@@ -187,12 +182,12 @@ foreach($excelRows as $key=>$valueArr){
             'Password'
         ];
 
-       // $languageValues = SetupValue::where('setup_id', 1)->pluck('setup_value_label')->toArray();
+        // $languageValues = SetupValue::where('setup_id', 1)->pluck('setup_value_label')->toArray();
         $languageValues = SetupValue::where('setup_id', 1)->pluck('setup_value_label')->all();
         $genderValues = SetupValue::where('setup_id', 2)->pluck('setup_value_label')->toArray();
         $ethnicityValues = SetupValue::where('setup_id', 3)->pluck('setup_value_label')->toArray();
-        $companies=Company::where('status','1')->orderBy('name')->pluck('name')->toArray();
-     
+        $companies = Company::where('status', '1')->orderBy('name')->pluck('name')->toArray();
+
         $rows = [
             [
                 '',
@@ -230,61 +225,60 @@ foreach($excelRows as $key=>$valueArr){
         $sheet = $spreadsheet->getActiveSheet();
         //$sheet->fromArray([$headers]);
         $sheet->fromArray([$headers]);
-  
-    // set the DOB column format to date
-    $sheet->getStyle('D:D')->getNumberFormat()->setFormatCode('dd/mmm/yyyy');
 
-    // add data validation and date picker to the DOB column
-    $validation = $sheet->getCell('D2')->getDataValidation();
-    $validation->setType(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::TYPE_CUSTOM);
-    $validation->setErrorStyle(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::STYLE_STOP);
-    $validation->setAllowBlank(true);
-    $validation->setShowInputMessage(true);
-    $validation->setShowErrorMessage(true);
-    $validation->setShowDropDown(true);
-    $validation->setErrorTitle('Input error');
-    $validation->setError('Value is not a valid date.For example 10/May/2000');
-    $validation->setPromptTitle('Pick a date');
-    $validation->setPrompt('Please pick a date from the calendar.');
-    $validation->setFormula1('DATE(1900,1,1)');
-    $validation->setFormula2('DATE(9999,12,31)');
+        // set the DOB column format to date
+        $sheet->getStyle('D:D')->getNumberFormat()->setFormatCode('dd/mmm/yyyy');
 
-    foreach ($rows as $row) {
-        $sheet->fromArray([$row]);
-    }
+        // add data validation and date picker to the DOB column
+        $validation = $sheet->getCell('D2')->getDataValidation();
+        $validation->setType(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::TYPE_CUSTOM);
+        $validation->setErrorStyle(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::STYLE_STOP);
+        $validation->setAllowBlank(true);
+        $validation->setShowInputMessage(true);
+        $validation->setShowErrorMessage(true);
+        $validation->setShowDropDown(true);
+        $validation->setErrorTitle('Input error');
+        $validation->setError('Value is not a valid date.For example 10/May/2000');
+        $validation->setPromptTitle('Pick a date');
+        $validation->setPrompt('Please pick a date from the calendar.');
+        $validation->setFormula1('DATE(1900,1,1)');
+        $validation->setFormula2('DATE(9999,12,31)');
 
-
-
-    $excelRows=[
-        'F'=>$languageValues,
-        'G'=> $genderValues,
-        'H'=> $ethnicityValues
-    ];
-    foreach($excelRows as $key=>$valueArr){
-        for($i=2;$i<101;$i++){
-            $validation = $sheet->getCell($key.$i)->getDataValidation();
-            $validation->setType('list');
-            $validation->setErrorStyle('stop');
-            $validation->setAllowBlank(true);
-            $validation->setShowInputMessage(true);
-            $validation->setShowErrorMessage(true);
-            $validation->setShowDropDown(true);
-            $validation->setErrorTitle('Input error');
-            $validation->setError('Value is not in list.');
-            $validation->setPromptTitle('Pick from list');
-            $validation->setPrompt('Please pick a value from the drop-down list.');
-            $validation->setFormula1('"' . implode(',', $valueArr) . '"');
-                    foreach ($rows as $row) {
-                        $sheet->fromArray([$row]);
-                        
-                    }
+        foreach ($rows as $row) {
+            $sheet->fromArray([$row]);
         }
-    }               
-    for($i=2;$i<101;$i++){
+
+
+
+        $excelRows = [
+            'F' => $languageValues,
+            'G' => $genderValues,
+            'H' => $ethnicityValues
+        ];
+        foreach ($excelRows as $key => $valueArr) {
+            for ($i = 2; $i < 101; $i++) {
+                $validation = $sheet->getCell($key . $i)->getDataValidation();
+                $validation->setType('list');
+                $validation->setErrorStyle('stop');
+                $validation->setAllowBlank(true);
+                $validation->setShowInputMessage(true);
+                $validation->setShowErrorMessage(true);
+                $validation->setShowDropDown(true);
+                $validation->setErrorTitle('Input error');
+                $validation->setError('Value is not in list.');
+                $validation->setPromptTitle('Pick from list');
+                $validation->setPrompt('Please pick a value from the drop-down list.');
+                $validation->setFormula1('"' . implode(',', $valueArr) . '"');
+                foreach ($rows as $row) {
+                    $sheet->fromArray([$row]);
+                }
+            }
+        }
+        for ($i = 2; $i < 101; $i++) {
             //yes/no dropdowns
-            $colNumber=['R'.$i,'S'.$i,'T'.$i,'U'.$i,'V'.$i,'W'.$i];
-            $values=['Yes','No'];
-            for($cols=0;$cols<6;$cols++){
+            $colNumber = ['R' . $i, 'S' . $i, 'T' . $i, 'U' . $i, 'V' . $i, 'W' . $i];
+            $values = ['Yes', 'No'];
+            for ($cols = 0; $cols < 6; $cols++) {
                 $validation = $sheet->getCell($colNumber[$cols])->getDataValidation();
                 $validation->setType('list');
                 $validation->setErrorStyle('stop');
@@ -297,30 +291,25 @@ foreach($excelRows as $key=>$valueArr){
                 $validation->setPromptTitle('Pick from list');
                 $validation->setPrompt('Please pick a value from the drop-down list.');
                 $validation->setFormula1('"' . implode(',', $values) . '"');
-                        foreach ($rows as $row) {
-                            $sheet->fromArray([$row]);
-                            
-                        }
-
+                foreach ($rows as $row) {
+                    $sheet->fromArray([$row]);
+                }
             }
-                       
+        }
+        $writer = new Xlsx($spreadsheet);
+        $writer->save($filePath);
 
-  
-                }            
-            $writer = new Xlsx($spreadsheet);
-            $writer->save($filePath);
-        
-            $fileResponse = response()->file($filePath, [
-                'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
-            ])->deleteFileAfterSend(true);
+        $fileResponse = response()->file($filePath, [
+            'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
+        ])->deleteFileAfterSend(true);
 
-            return $fileResponse;
+        return $fileResponse;
 
-      //  $fileResponse = response()->download($filePath, $fileName)->deleteFileAfterSend(true);
+        //  $fileResponse = response()->download($filePath, $fileName)->deleteFileAfterSend(true);
         //$fileResponse->headers->set('Content-Disposition', 'attachment; filename="' . $fileName . '"');
         //return $fileResponse;
-        
-       // $fileResponse = response()->download($filePath, $fileName)->deleteFileAfterSend(true);
+
+        // $fileResponse = response()->download($filePath, $fileName)->deleteFileAfterSend(true);
 
         //return new Response($fileResponse->getContent(), $fileResponse->getStatusCode(), $fileResponse->headers->all());
     }
@@ -333,9 +322,9 @@ foreach($excelRows as $key=>$valueArr){
 
         ];
 
-     
+
         $industryValues = Industry::where('status', 1)->orderBy('name')->pluck('name')->toArray();
-       // dd($industryValues);
+        // dd($industryValues);
 
         $rows = [
             [
@@ -369,50 +358,46 @@ foreach($excelRows as $key=>$valueArr){
         $sheet = $spreadsheet->getActiveSheet();
         //$sheet->fromArray([$headers]);
         $sheet->fromArray([$headers]);
-    
-    
 
 
 
-        for($i=2;$i<101;$i++){
-            $validation = $sheet->getCell('B'.$i)->getDataValidation();
+
+
+        for ($i = 2; $i < 101; $i++) {
+            $validation = $sheet->getCell('B' . $i)->getDataValidation();
             $validation->setType('list');
-           
-            $validation->setShowDropDown(true);
-           // dd(implode(',', $industryValues));
-         //   $validation->setFormula1('"new industry its working worked?,Medical,Textile,Cruise,Administration Industry,Administrative,General,Education K12,FFC,Higher Education,Cricket,Empiric Marketing,MilTeching,Medsnake Media,Technology,Transport,Construction,Manufacturing,Agriculture,Aerospace,Automotive,Basic Metal,Chemical,Computer,Creative,Cultural,Defense,Electric Power,Electronics,Energy,Engineering,Entertainment,Farming,Fashion,Film,Financial Services,Fishery,Food,Forestry,Green,Health Services,Hospitality,Hotels,Robotics,Information,IT,Infrastructure,Insurance,Leisure,Low Technology,Meat,Media,Merchandising,Mining,Music,News Media,Oil and Gas,Pharmaceuticals ,Professional,Publishing,Pulp and Paper,Railway,Real estate,Retail,Scientific,Services,Software,Space,Sport,Steel ,Tobacco,Utility,Video Game,Water,Wholesale,Telecommunications,Wood,Waste Management,Art,Remediation Services,Recreation,Commerce,Shipping,Leather,Natural Resources,Securities,Stock Exchange,Labour,Marketing,Production,Law,Factory,Banking,Investment Banking,Biotechnology,Printing,Research,Trade,Automobile Assembler,Cable Goods,Personal Care Products,Glass and Ceramics,Tanneries,Exploration,Tourism,Mobile Phone"');
-           $validation->setFormula1('"'.implode(',', $industryValues).'"');
-                    foreach ($rows as $row) {
-                        $sheet->fromArray([$row]);
-                        
-                    }
 
+            $validation->setShowDropDown(true);
+            // dd(implode(',', $industryValues));
+            //   $validation->setFormula1('"new industry its working worked?,Medical,Textile,Cruise,Administration Industry,Administrative,General,Education K12,FFC,Higher Education,Cricket,Empiric Marketing,MilTeching,Medsnake Media,Technology,Transport,Construction,Manufacturing,Agriculture,Aerospace,Automotive,Basic Metal,Chemical,Computer,Creative,Cultural,Defense,Electric Power,Electronics,Energy,Engineering,Entertainment,Farming,Fashion,Film,Financial Services,Fishery,Food,Forestry,Green,Health Services,Hospitality,Hotels,Robotics,Information,IT,Infrastructure,Insurance,Leisure,Low Technology,Meat,Media,Merchandising,Mining,Music,News Media,Oil and Gas,Pharmaceuticals ,Professional,Publishing,Pulp and Paper,Railway,Real estate,Retail,Scientific,Services,Software,Space,Sport,Steel ,Tobacco,Utility,Video Game,Water,Wholesale,Telecommunications,Wood,Waste Management,Art,Remediation Services,Recreation,Commerce,Shipping,Leather,Natural Resources,Securities,Stock Exchange,Labour,Marketing,Production,Law,Factory,Banking,Investment Banking,Biotechnology,Printing,Research,Trade,Automobile Assembler,Cable Goods,Personal Care Products,Glass and Ceramics,Tanneries,Exploration,Tourism,Mobile Phone"');
+            $validation->setFormula1('"' . implode(',', $industryValues) . '"');
+            foreach ($rows as $row) {
+                $sheet->fromArray([$row]);
+            }
         }
-        
-                        
-        
+
+
+
         $writer = new Xlsx($spreadsheet);
         $writer->save($filePath);
-        
-    $fileResponse = response()->file($filePath, [
-        'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
-    ])->deleteFileAfterSend(true);
 
-    return $fileResponse;
+        $fileResponse = response()->file($filePath, [
+            'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
+        ])->deleteFileAfterSend(true);
 
-
+        return $fileResponse;
     }
 
     public function generateIndustryExcelTemplate()
     {
         $headers = [
-        
+
             'Industry',
 
         ];
 
-     
-      
+
+
 
         $rows = [
             [
@@ -446,8 +431,8 @@ foreach($excelRows as $key=>$valueArr){
         $sheet = $spreadsheet->getActiveSheet();
         //$sheet->fromArray([$headers]);
         $sheet->fromArray([$headers]);
-    
-    
+
+
 
         foreach ($rows as $row) {
             $sheet->fromArray([$row]);
@@ -456,28 +441,26 @@ foreach($excelRows as $key=>$valueArr){
 
 
 
-     
-        
 
-        
-                        
-        
+
+
+
+
+
         $writer = new Xlsx($spreadsheet);
         $writer->save($filePath);
-        
-    $fileResponse = response()->file($filePath, [
-        'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
-    ])->deleteFileAfterSend(true);
 
-    return $fileResponse;
+        $fileResponse = response()->file($filePath, [
+            'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
+        ])->deleteFileAfterSend(true);
 
-
+        return $fileResponse;
     }
-    
+
     public function generateExcelTemplateNotifications($notificationType)
     {
-        $notifications=NotificationTemplates::where('notification_type',$notificationType)->get();
-        if($notifications && count($notifications)){
+        $notifications = NotificationTemplates::where('notification_type', $notificationType)->get();
+        if ($notifications && count($notifications)) {
             // dd("records found",$notifications);
             $headers = [
                 'Trigger',
@@ -490,12 +473,12 @@ foreach($excelRows as $key=>$valueArr){
             ];
             $rows = [$headers];
 
-            $triggerTypes=TriggerType::all();
-            foreach($triggerTypes as $triggerType){
+            $triggerTypes = TriggerType::all();
+            foreach ($triggerTypes as $triggerType) {
 
-                $triggerTypeNotifications=$notifications->where('trigger_type_id',$triggerType->id);
-                if($triggerTypeNotifications && count($triggerTypeNotifications)){
-                    $row=[
+                $triggerTypeNotifications = $notifications->where('trigger_type_id', $triggerType->id);
+                if ($triggerTypeNotifications && count($triggerTypeNotifications)) {
+                    $row = [
                         $triggerType->name,
                         $triggerType->name,
                         $triggerType->name,
@@ -504,54 +487,135 @@ foreach($excelRows as $key=>$valueArr){
                         $triggerType->name,
                         $triggerType->name,
                     ];
-                    $rows[]=$row;
-                    foreach($triggerTypeNotifications as $triggerTypeNotification){
-                        $row=['--','--','--','--','--','--','--'];
-                        $row[0]=$triggerTypeNotification->trigger;
-                        $NotificationTemplateRoles=NotificationTemplateRoles::where('notification_id',$triggerTypeNotification->id)->get();
-                        foreach($NotificationTemplateRoles as $NotificationTemplateRole){
-                            if($NotificationTemplateRole->role_id==1){
-                                $row[1]=$NotificationTemplateRole->notification_text;
-                                $row[2]=$NotificationTemplateRole->notification_subject;
-                            }else if($NotificationTemplateRole->role_id==2){
-                                $row[3]=$NotificationTemplateRole->notification_text;
-                                $row[4]=$NotificationTemplateRole->notification_subject;
-                            }else if($NotificationTemplateRole->role_id==4){
-                                $row[5]=$NotificationTemplateRole->notification_text;
-                                $row[6]=$NotificationTemplateRole->notification_subject;
+                    $rows[] = $row;
+                    foreach ($triggerTypeNotifications as $triggerTypeNotification) {
+                        $row = ['--', '--', '--', '--', '--', '--', '--'];
+                        $row[0] = $triggerTypeNotification->trigger;
+                        $NotificationTemplateRoles = NotificationTemplateRoles::where('notification_id', $triggerTypeNotification->id)->get();
+                        foreach ($NotificationTemplateRoles as $NotificationTemplateRole) {
+                            if ($NotificationTemplateRole->role_id == 1) {
+                                $row[1] = $NotificationTemplateRole->notification_text;
+                                $row[2] = $NotificationTemplateRole->notification_subject;
+                            } else if ($NotificationTemplateRole->role_id == 2) {
+                                $row[3] = $NotificationTemplateRole->notification_text;
+                                $row[4] = $NotificationTemplateRole->notification_subject;
+                            } else if ($NotificationTemplateRole->role_id == 4) {
+                                $row[5] = $NotificationTemplateRole->notification_text;
+                                $row[6] = $NotificationTemplateRole->notification_subject;
                             }
                         }
-                        $rows[]=$row;
+                        $rows[] = $row;
                     }
                 }
             }
             // dd($rows);
             $fileName = 'email-notifications-import.xlsx';
             $filePath = Storage::disk('local')->path($fileName);
-    
+
             $spreadsheet = new Spreadsheet();
             $sheet = $spreadsheet->getActiveSheet();
             $sheet->fromArray($rows);
 
             $writer = new Xlsx($spreadsheet);
             $writer->save($filePath);
-            
+
             $fileResponse = response()->file($filePath, [
                 'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
             ])->deleteFileAfterSend(true);
-        
+
             return $fileResponse;
-        }else if($notificationType==1){
-            
+        } else if ($notificationType == 1) {
+
             $fileName = 'sample-email-notifications-import.xlsx';
-            $filePath = public_path('sample-notification-files/'.$fileName);
+            $filePath = public_path('sample-notification-files/' . $fileName);
 
             $fileResponse = response()->file($filePath, [
                 'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
             ])->deleteFileAfterSend(false);
-        
+
             return $fileResponse;
         }
     }
-}
 
+    public function generateExcelTemplateBookings()
+    {
+        $today = Carbon::now()->toDateString();
+        $bookings = Booking::where(['bookings.status' => 2, 'type' => 1, 'booking_status' => '1'])
+            ->whereRaw("'$today'  Between  DATE(booking_start_at) AND DATE(booking_end_at)")->get();
+        $tz = SetupValue::where('setup_id', 4)->select('id', 'setup_value_label')->get()->toArray();
+        $timezones=[];
+        foreach($tz as $t){
+            $timezones[$t['id']]=$t['setup_value_label'];
+        }
+        $serviceType = [1=>'in_person',2=>'virtual',4=>'phone',5=>'tele-conference'];
+        if ($bookings && count($bookings)) {
+            // dd("records found",$notifications);
+            $headers = [
+                'Booking Number',
+                'Company',
+                'Requester',
+                'Industry',
+                'Accommodation',
+                'Service',
+                'Service Type ',
+                'Number of Providers',
+                'Time Zone',
+                'Booking Start Date',
+                'Booking End Date',
+            ];
+
+            $rows = [$headers];
+
+            // $triggerTypes = TriggerType::all();
+            foreach ($bookings as $booking) {
+
+                $row = ['--', '--', '--', '--', '--', '--', '--', '--'];
+                $row[0] = $booking->booking_number;
+                $row[1] = $booking->company ? $booking->company->name : '';
+                $row[2] = $booking->customer ? $booking->customer->name : '';
+                $row[3] = $booking->industry ? $booking->industry->name : '';
+
+                $service = $booking->services->first() ? $booking->services->first() : null;
+                $row[4] = $service ? ($service->accommodation ? $service->accommodation->name : '') : '';
+                $row[5] = $service ? $service->name : '';
+                $row[6] = $service ? ($service->pivot->service_types ? $serviceType[$service->pivot->service_types] : '') : '';
+                $row[7] = $service ? ($service->pivot->provider_count ? $service->pivot->provider_count : '') : '';
+                $row[8] = $service ? ($service->pivot->time_zone ? (isset($timezones[$service->pivot->time_zone])? $timezones[$service->pivot->time_zone] : $service->pivot->time_zone) : '') : '';
+
+                $row[9] = $service ? ($service->pivot->start_time ? $service->pivot->start_time : '' ) : $booking->booking_start_at;
+                $row[10] = $service ? ($service->pivot->end_time ? $service->pivot->end_time : '') : $booking->booking_end_at;
+
+                // // $NotificationTemplateRoles = NotificationTemplateRoles::where('notification_id', $triggerTypeNotification->id)->get();
+                // foreach ($NotificationTemplateRoles as $NotificationTemplateRole) {
+                //     if ($NotificationTemplateRole->role_id == 1) {
+                //         $row[1] = $NotificationTemplateRole->notification_text;
+                //         $row[2] = $NotificationTemplateRole->notification_subject;
+                //     } else if ($NotificationTemplateRole->role_id == 2) {
+                //         $row[3] = $NotificationTemplateRole->notification_text;
+                //         $row[4] = $NotificationTemplateRole->notification_subject;
+                //     } else if ($NotificationTemplateRole->role_id == 4) {
+                //         $row[5] = $NotificationTemplateRole->notification_text;
+                //         $row[6] = $NotificationTemplateRole->notification_subject;
+                //     }
+                // }
+                $rows[] = $row;
+            }
+        }
+        // dd($rows);
+        $fileName = 'bookings_export.xlsx';
+        $filePath = Storage::disk('local')->path($fileName);
+
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->fromArray($rows);
+
+        $writer = new Xlsx($spreadsheet);
+        $writer->save($filePath);
+
+        $fileResponse = response()->file($filePath, [
+            'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
+        ])->deleteFileAfterSend(true);
+
+        return $fileResponse;
+    }
+}

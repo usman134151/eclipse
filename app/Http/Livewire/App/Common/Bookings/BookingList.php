@@ -3,18 +3,19 @@
 namespace App\Http\Livewire\App\Common\Bookings;
 
 use App\Models\Tenant\Booking;
-use App\Models\Tenant\BookingInvitationProvider;
-use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\SetupValue;
 use App\Models\Tenant\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
+use App\Services\ExportDataFile;
+
 
 class BookingList extends Component
 {
 	use WithPagination;
+	protected $exportDataFile;
 
 	public $bookingType = 'past';
 	public $showHeader = true;
@@ -57,6 +58,14 @@ class BookingList extends Component
 		$this->booking_id = $booking_id;
 		$this->panelType = $panelType;
 		$this->assignServiceProviders($service_id);
+	}
+
+	public function downloadExportFile()
+	{
+		$this->exportDataFile = new ExportDataFile();
+
+		return $this->exportDataFile->generateExcelTemplateBookings();
+
 	}
 
 	public function assignServiceProviders($service_id)
@@ -240,10 +249,10 @@ class BookingList extends Component
 				$query->where('booking_providers.check_in_status', '=', 1);
 		}
 		$query->with('payment');
-		
+
 		$query = $this->applySearchFilter($query);
 		$data = $query->paginate($this->limit);
-		
+
 		// dd($query->get()->toArray());
 		// setting values for booking and its services
 		foreach ($data as $row) {
@@ -305,6 +314,7 @@ class BookingList extends Component
 
 	public function mount()
 	{
+
 
 		if (session('isProvider')) {
 			$this->provider_id = Auth::id();
