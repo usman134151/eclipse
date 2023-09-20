@@ -549,11 +549,11 @@ class ExportDataFile
             'Service Type ',
             'Number of Providers',
             'Time Zone',
-            'Booking Start Date',
-            'Booking Start Hour',
+            'Booking Start Date (dd/mm/Y)',
+            'Booking Start Hour (24h)',
             'Booking Start Min',
-            'Booking End Date',
-            'Booking End Hour',
+            'Booking End Date (dd/mm/Y)',
+            'Booking End Hour (24h)',
             'Booking End Min',
         ];
 
@@ -565,8 +565,8 @@ class ExportDataFile
 
         $rows = [
             [
-                '','','','','','',
-                '','','','','','','',
+                '', '', '', '', '', '',
+                '', '', '', '', '', '', '',
                 '', '', '', ''
             ]
         ];
@@ -657,7 +657,7 @@ class ExportDataFile
         //         }
         //     }
         // }
-         
+
         $writer = new Xlsx($spreadsheet);
         $writer->save($filePath);
 
@@ -699,11 +699,11 @@ class ExportDataFile
             'Service Type ',
             'Number of Providers',
             'Time Zone',
-            'Booking Start Date',
-            'Booking Start Hour',
+            'Booking Start Date (dd/mm/Y)',
+            'Booking Start Hour (24h)',
             'Booking Start Min',
-            'Booking End Date',
-            'Booking End Hour',
+            'Booking End Date (dd/mm/Y)',
+            'Booking End Hour (24h)',
             'Booking End Min',
 
         ];
@@ -730,7 +730,7 @@ class ExportDataFile
                 $row[10] = $start_time->format('H');
                 $row[11] = $start_time->format('i');
                 $end_time =
-                Carbon::parse($service ? ($service->pivot->end_time ? $service->pivot->end_time : '') : $booking->booking_end_at);
+                    Carbon::parse($service ? ($service->pivot->end_time ? $service->pivot->end_time : '') : $booking->booking_end_at);
                 $row[12] = $end_time->format('m/d/Y');
                 $row[13] = $end_time->format('H');
                 $row[14] = $end_time->format('i');
