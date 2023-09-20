@@ -1013,7 +1013,7 @@
                                                         <label class="col-form-label">Duration:</label>
                                                     </div>
                                                     <div class="col-lg-8 align-self-center">
-                                                        <div class="font-family-tertiary">{{$service['total_duration']['hours']}} hours {{$service['total_duration']['mins']}} minutes</div>
+                                                        <div class="font-family-tertiary"> @if($service['service_data']['rate_status']==2) {{$service['total_duration']['days']}} day(s) @endif {{$service['total_duration']['hours']}} hours {{$service['total_duration']['mins']}} minutes</div>
                                                     </div>
                                                 </div> 
                                                 @if($service['service_data']['rate_status']==4)
@@ -1021,6 +1021,16 @@
                                                 <div class="row">
                                                     <div class="col-lg-4">
                                                         <label class="col-form-label">Service Rate</label>
+                                                    </div>
+                                                    <div class="col-lg-8 align-self-center">
+                                                        <div class="font-family-tertiary">{{formatPayment($service['service_charges'])}}</div>
+                                                    </div>
+                                                </div> 
+                                                @elseif($service['service_data']['rate_status']==2)
+                                                <div class="mt-3"><h3 style="color:#023DB0">Day Rate  </h3></div>
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <label class="col-form-label">Service Day Rate</label>
                                                     </div>
                                                     <div class="col-lg-8 align-self-center">
                                                         <div class="font-family-tertiary">{{formatPayment($service['service_charges'])}}</div>
