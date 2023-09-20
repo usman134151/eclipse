@@ -206,9 +206,10 @@
                                                                         class="form-control form-control-md js-single-date"
                                                                         placeholder="MM/DD/YYYY"
                                                                         id="start_date_{{ $loop->index }}"
-                                                                        {{-- value="{{ $bookings.{{ $loop->index }}.['booking_start_at']}}"
+                                                                        value="{{ $bookings[$loop->index]['booking_start_date'] }}"
                                                                         aria-label="Set Start Date"
-                                                                        wire:model="bookings.{{ $loop->index }}.booking_start_at" --}} style="width:200px">
+                                                                        wire:model="bookings.{{ $loop->index }}.booking_start_date"
+                                                                        style="width:200px">
 
                                                                     <svg aria-label="Date" class="icon-date md"
                                                                         width="20" height="20"
@@ -276,7 +277,7 @@
                                                                         id="end_date_{{ $loop->index }}"
                                                                         aria-label="Set End Date"
                                                                         wire:key="endtime-{{ $loop->index }}"
-                                                                        wire:model="dates.{{ $loop->index }}.end_date"
+                                                                        wire:model="bookings.{{ $loop->index }}.booking_end_date"
                                                                         style="width:200px">
 
                                                                     <svg aria-label="Date" class="icon-date md"

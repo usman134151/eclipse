@@ -550,7 +550,11 @@ class ExportDataFile
             'Number of Providers',
             'Time Zone',
             'Booking Start Date',
+            'Booking Start Hour',
+            'Booking Start Min',
             'Booking End Date',
+            'Booking End Hour',
+            'Booking End Min',
         ];
 
         // $languageValues = SetupValue::where('setup_id', 1)->pluck('setup_value_label')->toArray();
@@ -562,7 +566,8 @@ class ExportDataFile
         $rows = [
             [
                 '','','','','','',
-                '','','','','','',''
+                '','','','','','','',
+                '', '', '', ''
             ]
         ];
 
@@ -695,7 +700,12 @@ class ExportDataFile
             'Number of Providers',
             'Time Zone',
             'Booking Start Date',
+            'Booking Start Hour',
+            'Booking Start Min',
             'Booking End Date',
+            'Booking End Hour',
+            'Booking End Min',
+
         ];
 
         $rows = [$headers];
@@ -703,7 +713,7 @@ class ExportDataFile
 
             foreach ($bookings as $booking) {
 
-                $row = ['--', '--', '--', '--', '--', '--', '--', '--'];
+                $row = ['--', '--', '--', '--', '--', '--', '--', '--', '--', '--', '--', '--'];
                 $row[0] = $booking->booking_number;
                 $row[1] = $booking->company ? $booking->company->name : '';
                 $row[2] = $booking->customer ? $booking->customer->name : '';
@@ -715,10 +725,15 @@ class ExportDataFile
                 $row[6] = $service ? ($service->pivot->service_types ? $serviceType[$service->pivot->service_types] : '') : '';
                 $row[7] = $service ? ($service->pivot->provider_count ? $service->pivot->provider_count : '') : '';
                 $row[8] = $service ? ($service->pivot->time_zone ? (isset($timezones[$service->pivot->time_zone]) ? $timezones[$service->pivot->time_zone] : $service->pivot->time_zone) : '') : '';
-
-                $row[9] = $service ? ($service->pivot->start_time ? $service->pivot->start_time : '') : $booking->booking_start_at;
-                $row[10] = $service ? ($service->pivot->end_time ? $service->pivot->end_time : '') : $booking->booking_end_at;
-
+                $start_time = Carbon::parse($service ? ($service->pivot->start_time ? $service->pivot->start_time : '') : $booking->booking_start_at);
+                $row[9] = $start_time->format('m/d/Y');
+                $row[10] = $start_time->format('H');
+                $row[11] = $start_time->format('i');
+                $end_time =
+                Carbon::parse($service ? ($service->pivot->end_time ? $service->pivot->end_time : '') : $booking->booking_end_at);
+                $row[12] = $end_time->format('m/d/Y');
+                $row[13] = $end_time->format('H');
+                $row[14] = $end_time->format('i');
                 $rows[] = $row;
             }
             $fileName = 'bookings_export.xlsx';

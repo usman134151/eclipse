@@ -112,29 +112,43 @@ class Bookings extends Component
 
                         $booking['timezone'] = SetupHelper::getSetupValueByValue($row[8], 4);
 
-                        // // //dob formating
-                        // // if (is_numeric($row[10])) {
-                        // //     // Convert the timestamp to an Excel serialized date value
-                        // //     //   $excelDate = \PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel($row[3]);
-                        // //     $excelDate = $row[10];
-                        // // } else {
-                        // //     // Convert the string date to an Excel serialized date value
-                        // //     $excelDate = \PhpOffice\PhpSpreadsheet\Shared\Date::stringToExcel($row[10]);
-                        // // }
+                        //dob formating
+                        if (is_numeric($row[9])) {
+                            // Convert the timestamp to an Excel serialized date value
+                            //   $excelDate = \PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel($row[3]);
+                            $excelDate = $row[9];
+                        } else {
+                            // Convert the string date to an Excel serialized date value
+                            $excelDate = \PhpOffice\PhpSpreadsheet\Shared\Date::stringToExcel($row[9]);
+                        }
 
-                        // // Convert the Excel serialized date value to a DateTime object
-                        // $start_dateObject = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[9]);
-
-                        // // Format the DateTime object as 'd/m/Y'
-                        // $booking['booking_start_at'] = $start_dateObject->format('d/m/Y H:i M');
-
-
-                        // $end_dateObject = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[10]);
+                        // Convert the Excel serialized date value to a DateTime object
+                        $start_date_Object = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($excelDate);
 
                         // // Format the DateTime object as 'd/m/Y'
-                        // $booking['booking_end_at'] = $end_dateObject->format('d/m/Y H:i M');
+                        $booking['booking_start_date'] = $start_date_Object->format('m/d/Y');
+                        $booking['start_hour'] = $row[10];
+                        $booking['start_min'] = $row[11];
 
-                        // //end of dob formatting
+
+
+                        //dob formating
+                        if (is_numeric($row[12])) {
+                            // Convert the timestamp to an Excel serialized date value
+                            //   $excelDate = \PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel($row[3]);
+                            $excelDate = $row[12];
+                        } else {
+                            // Convert the string date to an Excel serialized date value
+                            $excelDate = \PhpOffice\PhpSpreadsheet\Shared\Date::stringToExcel($row[12]);
+                        }
+
+                        // Convert the Excel serialized date value to a DateTime object
+                        $end_date_Object = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($excelDate);
+
+                        // // Format the DateTime object as 'd/m/Y'
+                        $booking['booking_end_date'] = $end_date_Object->format('m/d/Y');
+                        $booking['end_hour'] = $row[13];
+                        $booking['end_min'] = $row[14];
 
                         $this->bookings[] = $booking;
                     } catch (\ErrorException $e) {
