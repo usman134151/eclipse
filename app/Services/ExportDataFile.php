@@ -576,8 +576,13 @@ class ExportDataFile
 
         // // set the DOB column format to date
         // $sheet->getStyle('D:D')->getNumberFormat()->setFormatCode('dd/mmm/yyyy');
+        // $sheet->getStyle('K:K')
+        // ->getNumberFormat()
+        // ->setFormatCode(
+        //     \PhpOffice\PhpSpreadsheet\Style\NumberFormat::FORMAT_DATE_DATETIME
+        // );
 
-        // // add data validation and date picker to the DOB column
+        // // // add data validation and date picker to the DOB column
         // $validation = $sheet->getCell('K2')->getDataValidation();
         // $validation->setType(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::TYPE_CUSTOM);
         // $validation->setErrorStyle(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::STYLE_STOP);
@@ -586,11 +591,17 @@ class ExportDataFile
         // $validation->setShowErrorMessage(true);
         // $validation->setShowDropDown(true);
         // $validation->setErrorTitle('Input error');
-        // $validation->setError('Value is not a valid date.For example 10/May/2000');
+        // $validation->setError('Value is not a valid date.For example 10/May/2000 06:30 AM');
         // $validation->setPromptTitle('Pick a date');
         // $validation->setPrompt('Please pick a date from the calendar.');
         // $validation->setFormula1('DATE(1900,1,1)');
         // $validation->setFormula2('DATE(9999,12,31)');
+        // $dateTime = time();
+
+        // $excelDateValue = \PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel(
+        //     $dateTime
+        // );
+        // $sheet->setCellValue('K2', $excelDateValue);
 
         // foreach ($rows as $row) {
         //     $sheet->fromArray([$row]);

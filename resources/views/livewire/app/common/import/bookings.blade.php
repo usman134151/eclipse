@@ -41,6 +41,10 @@
                             <h2>Upload Excel File</h2>
 
                             <input type="file" wire:model="file">
+                            <div class="text-muted" wire:loading>
+                                Uploading...
+                            </div>
+
                             @error('file')
                                 <span class="d-inline-block invalid-feedback mt-2">
                                     {{ $message }}
@@ -50,21 +54,20 @@
                                 <h3 class="mt-4"><span
                                         class='d-inline-block invalid-feedback mt-2'>{{ $warningMessage }}</span></h3>
                             @endif
-                            {{-- @if ($users)
-                                <h2 class="mt-5">Preview Users</h2>
+                            @if ($bookings)
+                                <h2 class="mt-5">Preview bookings</h2>
                                 <div class="table-responsive">
                                     <table id="unassigned_data" class="table" aria-label="Admin Staff Teams Table">
                                         <thead>
                                             <tr role="row">
 
-                                                <th scope="col">Customer</th>
-                                                <th scope="col">Attributes</th>
-                                                <th scope="col">Address</th>
+                                                <th scope="col">Booking</th>
+                                                <th scope="col">Details</th>
 
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($users as $user)
+                                            @foreach ($bookings as $booking)
                                                 <tr role="row" class="odd">
 
                                                     <td width=33%>
@@ -73,264 +76,297 @@
                                                             <div class="col-md-10">
 
                                                                 <div>
-                                                                    <label class="form-label" for="First Name">First
-                                                                        Name</label>
+                                                                    <label class="form-label" for="First Name">Booking
+                                                                        Number</label>
                                                                     <input type="text"
-                                                                        wire:model.defer="users.{{ $loop->index }}.first_name"
+                                                                        wire:model.defer="bookings.{{ $loop->index }}.booking_number"
                                                                         class="form-control" />
-                                                                    @error('users.' . $loop->index . '.first_name')
+                                                                    @error('bookings.' . $loop->index .
+                                                                        '.booking_number')
                                                                         <span
                                                                             class="d-inline-block invalid-feedback mt-2">{{ $message }}</span>
                                                                     @enderror
                                                                 </div>
                                                                 <div>
-                                                                    <label class="form-label" for="Last Name">Last
-                                                                        Name</label>
-                                                                    <input type="text"
-                                                                        wire:model.defer="users.{{ $loop->index }}.last_name"
-                                                                        class="form-control" />
-                                                                    @error('users.' . $loop->index . '.last_name')
+                                                                    <label class="form-label" for="company">
+                                                                        Company
+                                                                    </label>
+
+                                                                    <select class="form-select"
+                                                                        name="bookings.{{ $loop->index }}.company_id"
+                                                                        id="bookings.{{ $loop->index }}.company_id"
+                                                                        wire:model='bookings.{{ $loop->index }}.company_id'>
+                                                                        <option value="0">Select Option</option>
+                                                                        @foreach ($companies as $company)
+                                                                            <option value="{{ $company->id }}">
+                                                                                {{ $company->name }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                    @error('bookings.' . $loop->index . '.company_id')
                                                                         <span
                                                                             class="d-inline-block invalid-feedback mt-2">{{ $message }}</span>
                                                                     @enderror
                                                                 </div>
                                                                 <div>
-                                                                    <label class="form-label"
-                                                                        for="Email">Email</label>
-                                                                    <input type="text"
-                                                                        wire:model.defer="users.{{ $loop->index }}.email"
-                                                                        class="form-control" />
-                                                                    @error('users.' . $loop->index . '.email')
-                                                                        <span
-                                                                            class="d-inline-block invalid-feedback mt-2">{{ $message }}</span>
-                                                                    @enderror
+                                                                    <label class="form-label" for="Language">
+                                                                        Requester
+                                                                    </label>
+                                                                    <select class="form-select"
+                                                                        wire:model='bookings.{{ $loop->index }}.customer_id'>
+                                                                        <option value="0">Select Option</option>
+                                                                        @if (isset($requesters[$bookings[$loop->index]['company_id']]))
+                                                                            @foreach ($requesters[$bookings[$loop->index]['company_id']] as $user)
+                                                                                <option value="{{ $user['id'] }}">
+                                                                                    {{ $user['name'] }}</option>
+                                                                            @endforeach
+                                                                        @endif
+                                                                    </select>
                                                                 </div>
-                                                                <div>
-                                                                    <label class="form-label mt-3"
-                                                                        for="First Name">Password</label>
-                                                                    <input type="text"
-                                                                        wire:model.defer="users.{{ $loop->index }}.password"
-                                                                        class="form-control" />
-                                                                    @error('users.' . $loop->index . '.password')
-                                                                        <span
-                                                                            class="d-inline-block invalid-feedback mt-2">{{ $message }}</span>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
-                                                        </div>
+
+
                                                     </td>
-                                                    <td width=33%>
-                                                        <div>
-                                                            <label class="form-label" for="company">
-                                                                Company
-                                                            </label>
+                                                    <td width=66%>
 
-                                                            <select class="form-select"
-                                                                name="users.{{ $loop->index }}.company_name"
-                                                                id="users.{{ $loop->index }}.company_name"
-                                                                wire:model='users.{{ $loop->index }}.company_name'>
-                                                                <option value="0">Select Option</option>
-                                                                @foreach ($companies as $company)
-                                                                    <option value="{{ $company->id }}">
-                                                                        {{ $company->name }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                            @error('users.' . $loop->index . '.company_name')
-                                                                <span
-                                                                    class="d-inline-block invalid-feedback mt-2">{{ $message }}</span>
-                                                            @enderror
-                                                        </div>
-                                                        <div>
-                                                            <label class="form-label" for="Language">
-                                                                Language
-                                                            </label>
-                                                            <select class="form-select"
-                                                                wire:model='users.{{ $loop->index }}.userDetails.language_id'>
-                                                                <option value="0">Select Option</option>
-                                                                @foreach ($languages as $language)
-                                                                    <option value="{{ $language->id }}">
-                                                                        {{ $language->setup_value_label }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                        <div>
-                                                            <label class="form-label" for="Ethnicity">
-                                                                Ethnicity
-                                                            </label>
-                                                            <select class="form-select "
-                                                                wire:model='users.{{ $loop->index }}.userDetails.ethnicity_id'>
-                                                                <option value="0">Select Option</option>
-                                                                @foreach ($ethnicities as $ethnicity)
-                                                                    <option value="{{ $ethnicity->id }}">
-                                                                        {{ $ethnicity->setup_value_label }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                        <div>
-                                                            <label class="form-label" for="Language">
-                                                                Gender
-                                                            </label>
-                                                            <select class="form-select"
-                                                                wire:model='users.{{ $loop->index }}.userDetails.gender_id'>
-                                                                <option value="0">Select Option</option>
-                                                                @foreach ($genders as $gender)
-                                                                    <option value="{{ $gender->id }}">
-                                                                        {{ $gender->setup_value_label }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                        <div>
-                                                            <label class="form-label" for="Language">
-                                                                Roles
-                                                            </label>
-                                                            <div class="form-check mb-0">
-                                                                <input class="form-check-input" type="checkbox"
-                                                                    value="" id="CompanyAdmin"
-                                                                    wire:model.defer="users.{{ $loop->index }}.userRoles.10">
-                                                                <label class="form-check-label" for="CompanyAdmin">
-                                                                    Company Admin
-                                                                </label>
-                                                            </div>
-                                                            <div class="form-check mb-0">
-                                                                <input class="form-check-input" type="checkbox"
-                                                                    value="" id="CompanySupervisor"
-                                                                    wire:model.defer="users.{{ $loop->index }}.userRoles.5">
-                                                                <label class="form-check-label"
-                                                                    for="CompanySupervisor">
-                                                                    Supervisor
-                                                                </label>
-                                                            </div>
-                                                            <div class="form-check mb-0">
-                                                                <input class="form-check-input" type="checkbox"
-                                                                    value="" id="CompanyRequester"
-                                                                    wire:model.defer="users.{{ $loop->index }}.userRoles.6">
-                                                                <label class="form-check-label"
-                                                                    for="CompanyRequester">
-                                                                    Requester
-                                                                </label>
-                                                            </div>
-                                                            <div class="form-check mb-0">
-                                                                <input class="form-check-input" type="checkbox"
-                                                                    value="" id="CompanyConsumer"
-                                                                    wire:model.defer="users.{{ $loop->index }}.userRoles.7">
-                                                                <label class="form-check-label" for="CompanyConsumer">
-                                                                    Service Consumer
-                                                                </label>
-                                                            </div>
-                                                            <div class="form-check mb-0">
-                                                                <input class="form-check-input" type="checkbox"
-                                                                    value="" id="CompanyParticipant"
-                                                                    wire:model.defer="users.{{ $loop->index }}.userRoles.8">
-                                                                <label class="form-check-label"
-                                                                    for="CompanyParticipant">
-                                                                    Participant
-                                                                </label>
-                                                            </div>
-                                                            <div class="form-check mb-0">
-                                                                <input class="form-check-input" type="checkbox"
-                                                                    value="" id="CompanyBilling"
-                                                                    wire:model.defer="users.{{ $loop->index }}.userRoles.9">
-                                                                <label class="form-check-label" for="CompanyBilling">
-                                                                    Billing Manager
-                                                                </label>
-                                                            </div>
-                                                            </select>
-                                                        </div>
-                                                    </td>
-                                                    <td width=33%>
-                                                        <div class="row g-2">
 
-                                                            <div class="col-md-10">
+                                                        <div class="row">
+                                                            <div class="col-lg-6 col-12">
+                                                                <label class="form-label" for="First Name">Accommodation
+                                                                </label>
+                                                                <select class="form-select"
+                                                                    wire:model='bookings.{{ $loop->index }}.accommodation_id'>
+                                                                    <option value="0">Select Option</option>
+                                                                    @foreach ($accommodations as $accom)
+                                                                        <option value="{{ $accom->id }}">
+                                                                            {{ $accom->name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
 
-                                                                <div>
-                                                                    <label class="form-label" for="First Name">Address
-                                                                        Line 1</label>
-                                                                    <input type="text"
-                                                                        wire:model.defer="users.{{ $loop->index }}.userDetails.address_line1"
-                                                                        class="form-control" />
-                                                                </div>
-                                                                <div>
-                                                                    <label class="form-label" for="First Name">Address
-                                                                        Line 2</label>
-                                                                    <input type="text"
-                                                                        wire:model.defer="users.{{ $loop->index }}.userDetails.address_line2"
-                                                                        class="form-control" />
-                                                                </div>
-                                                                <div>
-                                                                    <label class="form-label"
-                                                                        for="First Name">City</label>
-                                                                    <input type="text"
-                                                                        wire:model.defer="users.{{ $loop->index }}.userDetails.city"
-                                                                        class="form-control" />
-                                                                </div>
-                                                                <div>
-                                                                    <label class="form-label"
-                                                                        for="First Name">State</label>
-                                                                    <input type="text"
-                                                                        wire:model.defer="users.{{ $loop->index }}.userDetails.state"
-                                                                        class="form-control" />
-                                                                </div>
-                                                                <div>
-                                                                    <label class="form-label"
-                                                                        for="First Name">Zip</label>
-                                                                    <input type="text"
-                                                                        wire:model.defer="users.{{ $loop->index }}.userDetails.zip"
-                                                                        class="form-control" />
-                                                                </div>
-                                                                <div>
-                                                                    <label class="form-label"
-                                                                        for="First Name">Country</label>
-                                                                    <input type="text"
-                                                                        wire:model.defer="users.{{ $loop->index }}.userDetails.country"
-                                                                        class="form-control" />
-                                                                </div>
-                                                                <div>
-                                                                    <label class="form-label"
-                                                                        for="First Name">Phone</label>
-                                                                    <input type="text"
-                                                                        wire:model.defer="users.{{ $loop->index }}.userDetails.phone"
-                                                                        class="form-control" />
-                                                                </div>
+
+                                                            <div class="col-lg-6 col-12">
+                                                                <label class="form-label" for="First Name">Service
+                                                                </label>
+                                                                <select class="form-select"
+                                                                    wire:model='bookings.{{ $loop->index }}.service_id'>
+                                                                    <option value="0">Select Option</option>
+                                                                    @if (isset($services[$bookings[$loop->index]['accommodation_id']]))
+                                                                        @foreach ($services[$bookings[$loop->index]['accommodation_id']] as $service)
+                                                                            <option value="{{ $service['id'] }}">
+                                                                                {{ $service['name'] }}</option>
+                                                                        @endforeach
+                                                                    @endif
+                                                                </select>
                                                             </div>
                                                         </div>
-                                                    </td>
+                                                        <div class="row">
+                                                            <div class="col-lg-6 col-12">
+                                                                <label class="form-label" for="First Name">Provider
+                                                                    Count</label>
+                                                                <input type="text"
+                                                                    wire:model.defer="bookings.{{ $loop->index }}.provider_count"
+                                                                    class="form-control" />
+                                                            </div>
+                                                            <div class="col-lg-6 col-12">
+                                                                <label class="form-label" for="First Name">Service
+                                                                    Type</label>
+                                                                <select class="form-select"
+                                                                    wire:model='bookings.{{ $loop->index }}.service_type'>
+                                                                    <option value="0">Select Option</option>
+                                                                    @foreach ($serviceType as $val => $id)
+                                                                        <option value="{{ $id }}">
+                                                                            {{ $val }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
 
-                                                </tr>
-                                            @endforeach
+                                                        </div>
+                                                        <div class="row d-md-flex flex-md-wrap justify-content-between">
+                                                            <div class="col-lg-6 col-md-6 pe-md-2 pe-lg-0 mb-4">
+                                                                <label class="form-label-sm" for="set_time_zone">
+                                                                    Time Zone <span class="mandatory">*</span></label>
+                                                                <select class="form-select select2 mb-2"
+                                                                    wire:model.defer='bookings.{{ $loop->index }}.timezone'
+                                                                    id="timezone_{{ $loop->index }}"
+                                                                    name="timezone_{{ $loop->index }}">
+                                                                    @foreach ($timezones as $zone)
+                                                                        <option value="{{ $zone['id'] }}">
+                                                                            {{ $zone['setup_value_label'] }}</option>
+                                                                    @endforeach
 
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-auto col-md-6 ps-md-2 ps-lg-0 mb-4">
+                                                                <label class="form-label-sm"
+                                                                    for="start_date_{{ $loop->index }}">Start Date
+                                                                    <span class="mandatory">*</span></label>
+                                                                <div class="position-relative">
+                                                                    <input type="" name=""
+                                                                        class="form-control form-control-md js-single-date"
+                                                                        placeholder="MM/DD/YYYY"
+                                                                        id="start_date_{{ $loop->index }}"
+                                                                        {{-- value="{{ $bookings.{{ $loop->index }}.['booking_start_at']}}"
+                                                                        aria-label="Set Start Date"
+                                                                        wire:model="bookings.{{ $loop->index }}.booking_start_at" --}} style="width:200px">
 
+                                                                    <svg aria-label="Date" class="icon-date md"
+                                                                        width="20" height="20"
+                                                                        viewBox="0 0 20 20">
+                                                                        <use
+                                                                            xlink:href="/css/common-icons.svg#datefield-icon">
+                                                                        </use>
+                                                                    </svg>
 
+                                                                </div>
+                                                                @error('bookings.' . $loop->index . '.start_date')
+                                                                    <span class="d-inline-block invalid-feedback mt-2">
+                                                                        Start date is required
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                            <div class="d-flex col-lg-auto mb-4">
+                                                                <div class="d-flex flex-column">
+                                                                    <label class="form-label-sm"
+                                                                        for="set_start_time">Start Time</label>
+                                                                    <div class="d-flex">
+                                                                        <div
+                                                                            class="time d-flex align-items-center gap-2">
+                                                                            <select
+                                                                                wire:model.defer="bookings.{{ $loop->index }}.start_hour">
+                                                                                @for ($i = 0; $i < 24; $i++)
+                                                                                    <option
+                                                                                        value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}">
+                                                                                        {{ str_pad($i, 2, '0', STR_PAD_LEFT) }}
+                                                                                    </option>
+                                                                                @endfor
 
+                                                                            </select>
 
+                                                                            <svg aria-label="colon" width="5"
+                                                                                height="19" viewBox="0 0 5 19">
+                                                                                <use
+                                                                                    xlink:href="/css/common-icons.svg#date-colon">
+                                                                                </use>
+                                                                            </svg>
 
+                                                                            <select
+                                                                                wire:model.defer="bookings.{{ $loop->index }}.start_min">
+                                                                                @for ($i = 0; $i < 59; $i++)
+                                                                                    <option
+                                                                                        value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}">
+                                                                                        {{ str_pad($i, 2, '0', STR_PAD_LEFT) }}
+                                                                                    </option>
+                                                                                @endfor
 
+                                                                            </select>
+                                                                        </div>
 
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-auto mb-4">
+                                                                <label class="form-label-sm"
+                                                                    for="end_date_{{ $loop->index }}">End Date<span
+                                                                        class="mandatory">*</span></label>
+                                                                <div class="position-relative">
+                                                                    <input type="" name=""
+                                                                        class="form-control form-control-md js-single-date"
+                                                                        placeholder="MM/DD/YYYY"
+                                                                        id="end_date_{{ $loop->index }}"
+                                                                        aria-label="Set End Date"
+                                                                        wire:key="endtime-{{ $loop->index }}"
+                                                                        wire:model="dates.{{ $loop->index }}.end_date"
+                                                                        style="width:200px">
 
-                                        </tbody>
-                                    </table>
+                                                                    <svg aria-label="Date" class="icon-date md"
+                                                                        width="20" height="20"
+                                                                        viewBox="0 0 20 20">
+                                                                        <use
+                                                                            xlink:href="/css/common-icons.svg#datefield-icon">
+                                                                        </use>
+                                                                    </svg>
+
+                                                                </div>
+                                                                @error('bookings.' . $loop->index . '.end_date')
+                                                                    <span class="d-inline-block invalid-feedback mt-2">
+                                                                        {{ $message }}
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                            <div class="d-flex col-lg-auto mb-4">
+                                                                <div class="d-flex flex-column">
+                                                                    <label class="form-label-sm"
+                                                                        for="set_start_time">End Time</label>
+                                                                    <div class="d-flex">
+                                                                        <div
+                                                                            class="time d-flex align-items-center gap-2">
+                                                                            <select
+                                                                                wire:model.defer="bookings.{{ $loop->index }}.end_hour">
+                                                                                @for ($i = 0; $i < 24; $i++)
+                                                                                    <option
+                                                                                        value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}">
+                                                                                        {{ str_pad($i, 2, '0', STR_PAD_LEFT) }}
+                                                                                    </option>
+                                                                                @endfor
+
+                                                                            </select>
+
+                                                                            <svg aria-label="colon" width="5"
+                                                                                height="19" viewBox="0 0 5 19">
+                                                                                <use
+                                                                                    xlink:href="/css/common-icons.svg#date-colon">
+                                                                                </use>
+                                                                            </svg>
+
+                                                                            <select
+                                                                                wire:model.defer="bookings.{{ $loop->index }}.end_min">
+                                                                                @for ($i = 0; $i < 59; $i++)
+                                                                                    <option
+                                                                                        value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}">
+                                                                                        {{ str_pad($i, 2, '0', STR_PAD_LEFT) }}
+                                                                                    </option>
+                                                                                @endfor
+
+                                                                            </select>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                 </div>
 
-                                <button wire:click="save"
-                                    class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">Import
-                                    Data</button>
-                                <span class="d-inline-block invalid-feedback mt-2">{{ $errorMessage }}</span>
-                            @endif --}}
+
+                                </td>
+
+                                </tr>
+                            @endforeach
+
+
+
+
+
+
+
+
+
+                            </tbody>
+                            </table>
                         </div>
 
-
-
+                        <button wire:click="save"
+                            class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">Import
+                            Data</button>
+                        <span class="d-inline-block invalid-feedback mt-2">{{ $errorMessage }}</span>
+                        @endif
                     </div>
+
+
+
                 </div>
             </div>
+        </div>
     </section>
 
-    @push('scripts')
-        <script>
-            Livewire.on('updateVal', (attrName, val) => {
-
-                // Call the updateVal function with the attribute name and value
-
-                @this.call('updateVal', attrName, val);
-            });
-        </script>
-    @endpush
+</div>
