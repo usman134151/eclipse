@@ -61,11 +61,11 @@ class BookingList extends Component
 		$this->assignServiceProviders($service_id);
 	}
 
-	public function downloadExportFile()
+	public function downloadExportFile($template=false)
 	{
 		$this->exportDataFile = new ExportDataFile();
 
-		return $this->exportDataFile->generateExcelTemplateBookings($this->selectedBookingIds);
+		return $this->exportDataFile->generateExcelTemplateBookings($this->selectedBookingIds,$template);
 
 	}
 

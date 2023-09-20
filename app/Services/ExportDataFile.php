@@ -537,34 +537,36 @@ class ExportDataFile
         }
     }
 
-    public function generateExcelTemplateBookings($booking_ids = [])
+    public function generateExcelTemplateBookings($booking_ids = [], $template = false)
     {
-        $bookings = Booking::whereIn('id', $booking_ids)->get();
+        $bookings = [];
+        if ($template == false) {
+            $bookings = Booking::whereIn('id', $booking_ids)->get();
 
-        $tz = SetupValue::where('setup_id', 4)->select('id', 'setup_value_label')->get()->toArray();
-        $timezones = [];
-        foreach ($tz as $t) {
-            $timezones[$t['id']] = $t['setup_value_label'];
+            $tz = SetupValue::where('setup_id', 4)->select('id', 'setup_value_label')->get()->toArray();
+            $timezones = [];
+            foreach ($tz as $t) {
+                $timezones[$t['id']] = $t['setup_value_label'];
+            }
+            $serviceType = [1 => 'in_person', 2 => 'virtual', 4 => 'phone', 5 => 'tele-conference'];
         }
-        $serviceType = [1 => 'in_person', 2 => 'virtual', 4 => 'phone', 5 => 'tele-conference'];
+        // dd("records found",$notifications);
+        $headers = [
+            'Booking Number',
+            'Company',
+            'Requester',
+            'Industry',
+            'Accommodation',
+            'Service',
+            'Service Type ',
+            'Number of Providers',
+            'Time Zone',
+            'Booking Start Date',
+            'Booking End Date',
+        ];
 
-        if ($bookings && count($bookings)) {
-            // dd("records found",$notifications);
-            $headers = [
-                'Booking Number',
-                'Company',
-                'Requester',
-                'Industry',
-                'Accommodation',
-                'Service',
-                'Service Type ',
-                'Number of Providers',
-                'Time Zone',
-                'Booking Start Date',
-                'Booking End Date',
-            ];
-
-            $rows = [$headers];
+        $rows = [$headers];
+        if (($bookings && count($bookings) && $template==false) || $template == true) {
 
             // $triggerTypes = TriggerType::all();
             foreach ($bookings as $booking) {
@@ -588,7 +590,10 @@ class ExportDataFile
                 $rows[] = $row;
             }
             // dd($rows);
-            $fileName = 'bookings_export.xlsx';
+            $name = '';
+            if ($template == true)
+                $name = '_template';
+            $fileName = 'bookings_export' . $name . '.xlsx';
             $filePath = Storage::disk('local')->path($fileName);
 
             $spreadsheet = new Spreadsheet();

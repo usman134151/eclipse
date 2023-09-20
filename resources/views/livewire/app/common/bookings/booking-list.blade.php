@@ -87,7 +87,7 @@
                 
                 <div class="d-lg-flex justify-content-end mb-4">
 
-                    <button wire:click.prevent="downloadExportFile()" type="button"
+                    <button wire:click.prevent="downloadExportFile(true)" type="button"
                         class="d-inline-flex align-items-center btn btn-primary rounded px-3 me-2 gap-2 ">
                         {{-- Updated by Shanila to Add svg icon --}}
                         <svg aria-label="Download Import File" width="20" height="20" viewBox="0 0 20 20">
