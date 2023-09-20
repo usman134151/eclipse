@@ -109,7 +109,7 @@ class Booknow extends Component
             }]);
         }])->where('status', 1)->get()->toArray();
         
-        
+       
         $serviceTypeLabels=SetupValue::where('setup_id',5)->pluck('setup_value_label')->toArray();
         for($i=0,$j=1;$i<4;$i++,$j++){
             if($j==3)
@@ -119,6 +119,7 @@ class Booknow extends Component
 
         if (request()->bookingID != null) {
             $id=request()->bookingID;
+
             $this->booking=Booking::with('company','accommodation','booking_services_new_layout','industries','customer','payment','departments')->find($id);
 
             if(!is_null($this->booking->payment)){
@@ -138,6 +139,11 @@ class Booknow extends Component
             foreach($this->services as &$service)
             {
                 $service['specialization']=json_decode($service['specialization'],true);
+                $accId=$service['accommodation_id'];
+                $accIndex = collect($this->accommodations)->search(function ($accommodation) use($accId) {
+                    return $accommodation['id'] === $accId;
+                });
+                
             }
           
             $this->selectedIndustries=$this->booking->industries->pluck('id')->toArray();
@@ -149,11 +155,34 @@ class Booknow extends Component
 
           // dd($this->departmentNames);
           // dd( $this->selectedIndustries);
-           
+
+         
            
             $this->refreshAddresses();
             foreach($this->services as  $index => &$service){
-               
+                $dayRate=false;
+                if(!is_null($service['service_calculations'])){
+                    $serviceCalculations=json_decode($service["service_calculations"],true);
+                    if(key_exists('day_rate',$serviceCalculations)){
+                      $dayRate=$serviceCalculations['day_rate'];
+                    }
+                }
+                else{
+                    $accommodationsCollection = collect($this->accommodations);
+
+                    // Perform the search using the filter method
+
+                    $serviceIdToFind = $service['services'];
+                    $foundService = $accommodationsCollection
+                        ->flatMap(fn($item) => $item['services'])
+                        ->firstWhere('id', $serviceIdToFind);
+
+                    if($foundService['rate_status']==2){
+                        $dayRate=true;
+                    }
+                }
+                 
+
                 $service['meetings']=json_decode($service['meetings'], true);
                 //date time mapping
                 $startDate = new DateTime($service['start_time']);
@@ -170,7 +199,8 @@ class Booknow extends Component
                     'duration_day' => '',
                     'duration_hour' => '',
                     'duration_minute' => '',
-                    'time_zone' => $service['time_zone']
+                    'time_zone' => $service['time_zone'],
+                    'day_rate'=>$dayRate
         
                 ];
 
@@ -311,7 +341,8 @@ class Booknow extends Component
                 "additional_charges_total" => $service["additional_charges_total"],
                 "specialization_total" => $service["specialization_total"],
                 "specialization_charges" => $service["specialization_charges"],
-                "expedited_charges" => $service["expedited_charges"]
+                "expedited_charges" => $service["expedited_charges"],
+                'day_rate'=>$service['day_rate']
 
                ];
                $serviceCalculations=json_encode($serviceCalculations);
@@ -484,7 +515,7 @@ class Booknow extends Component
 
     
 
-    public function addDate($givenHour=1){
+    public function addDate($givenHour=1,$dayRate=false){
     
         if(is_null($givenHour)|| $givenHour==0 || $givenHour=='')
           $givenHour=1;
@@ -527,7 +558,8 @@ class Booknow extends Component
             'duration_day' => '',
             'duration_hour' => '',
             'duration_minute' => '',
-            'time_zone' => $timeZone
+            'time_zone' => $timeZone,
+            'day_rate'=>$dayRate
 
     ];
     
@@ -595,11 +627,30 @@ class Booknow extends Component
             elseif (preg_match('/services_(\d+)/', $attrName, $matches)) {
                 $index = intval($matches[1]);
                
-        
+                //getting selected service to check if its day rate service
                 if (isset($this->services[$index])) {
                     $this->services[$index]['services'] = $val;
+                    $accommodationsCollection = collect($this->accommodations);
+
+                    // Perform the search using the filter method
+
+                    $serviceIdToFind = $this->services[$index]['services'];
+                    $foundService = $accommodationsCollection
+                        ->flatMap(fn($item) => $item['services'])
+                        ->firstWhere('id', $serviceIdToFind);
+
+                    if($foundService['rate_status']==2){
+                        $this->dates[0]['day_rate']=true;
+                        $this->updateDurations(0);
+                    }
+                    else{
+                        $this->dates[0]['day_rate']=false;
+                        $this->updateDurations(0);
+                    }
                    
                 }
+
+
             }
             elseif (preg_match('/service_consumer_(\d+)/', $attrName, $matches)) {
                 $index = intval($matches[1]);
@@ -703,7 +754,12 @@ class Booknow extends Component
             } 
           
             $this->dates=[];
-            $this->addDate($foundService['minimum_assistance_hours'.$postfix]);  
+            if($foundService['rate_status']==2)
+              $dayRate=true;
+            else 
+              $dayRate=false;
+          
+            $this->addDate($foundService['minimum_assistance_hours'.$postfix],$dayRate);  
            
         }
          
@@ -802,13 +858,23 @@ class Booknow extends Component
           //  if ($endDateTime >= $startDateTime) {
                 $diff = $endDateTime->diff($startDateTime);
     
+ 
+               if($this->dates[$index]['day_rate']){
                 $days = $diff->days;
                 $hours = $diff->h;
+               
+ 
+               }
+               else{
+                $days=0;
+                $hours=(($diff->days * 24) + ($diff->h)); //+ $diff->i)/60
+               }
                 $minutes = $diff->i;
-              
                 $this->dates[$index]['duration_day']=$days;
                 $this->dates[$index]['duration_hour']=$hours;
+ 
                 $this->dates[$index]['duration_minute']=$minutes;
+               //dd($this->dates);
                
             //} else {
 
