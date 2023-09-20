@@ -537,8 +537,131 @@ class ExportDataFile
         }
     }
 
-    public function generateExcelTemplateBookings($booking_ids = [])
+    public function generateExcelTemplateBookings()
     {
+        $headers = [
+            'Booking Number',
+            'Company',
+            'Requester',
+            'Industry',
+            'Accommodation',
+            'Service',
+            'Service Type ',
+            'Number of Providers',
+            'Time Zone',
+            'Booking Start Date (dd/mm/Y)',
+            'Booking Start Hour (24h)',
+            'Booking Start Min',
+            'Booking End Date (dd/mm/Y)',
+            'Booking End Hour (24h)',
+            'Booking End Min',
+        ];
+
+        // $languageValues = SetupValue::where('setup_id', 1)->pluck('setup_value_label')->toArray();
+        $timezoneValues = SetupValue::where('setup_id', 4)->pluck('setup_value_label')->all();
+        // $genderValues = SetupValue::where('setup_id', 2)->pluck('setup_value_label')->toArray();
+        // $ethnicityValues = SetupValue::where('setup_id', 3)->pluck('setup_value_label')->toArray();
+        // $companies = Company::where('status', '1')->orderBy('name')->pluck('name')->toArray();
+        $serviceType = ['in_person', 'virtual', 'phone', 'tele-conference'];
+
+        $rows = [
+            [
+                '', '', '', '', '', '',
+                '', '', '', '', '', '', '',
+                '', '', '', ''
+            ]
+        ];
+
+        $fileName = 'booking-import-template.xlsx';
+        $filePath = Storage::disk('local')->path($fileName);
+
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        //$sheet->fromArray([$headers]);
+        $sheet->fromArray([$headers]);
+
+        // set the Date column format to date
+        $sheet->getStyle('K:K')->getNumberFormat()->setFormatCode('dd/mmm/yyyy');
+
+        // add data validation and date picker to the DOB column
+        $validation = $sheet->getCell('K2')->getDataValidation();
+        $validation->setType(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::TYPE_CUSTOM);
+        $validation->setErrorStyle(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::STYLE_STOP);
+        $validation->setAllowBlank(true);
+        $validation->setShowInputMessage(true);
+        $validation->setShowErrorMessage(true);
+        $validation->setShowDropDown(true);
+        $validation->setErrorTitle('Input error');
+        $validation->setError('Value is not a valid date.For example 10/May/2000 06:30 AM');
+        $validation->setPromptTitle('Pick a date');
+        $validation->setPrompt('Please pick a date from the calendar.');
+        $validation->setFormula1('DATE(1900,1,1)');
+        $validation->setFormula2('DATE(9999,12,31)');
+
+        foreach ($rows as $row) {
+            $sheet->fromArray([$row]);
+        }
+
+        // set the Date column format to date
+        $sheet->getStyle('M:M')->getNumberFormat()->setFormatCode('dd/mmm/yyyy');
+
+        // add data validation and date picker to the DOB column
+        $validation = $sheet->getCell('M2')->getDataValidation();
+        $validation->setType(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::TYPE_CUSTOM);
+        $validation->setErrorStyle(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::STYLE_STOP);
+        $validation->setAllowBlank(true);
+        $validation->setShowInputMessage(true);
+        $validation->setShowErrorMessage(true);
+        $validation->setShowDropDown(true);
+        $validation->setErrorTitle('Input error');
+        $validation->setError('Value is not a valid date.For example 10/May/2000 06:30 AM');
+        $validation->setPromptTitle('Pick a date');
+        $validation->setPrompt('Please pick a date from the calendar.');
+        $validation->setFormula1('DATE(1900,1,1)');
+        $validation->setFormula2('DATE(9999,12,31)');
+
+        foreach ($rows as $row) {
+            $sheet->fromArray([$row]);
+        }
+
+
+        $excelRows = [
+            // 'I' => $timezoneValues,
+            'G' => $serviceType,
+        ];
+        foreach ($excelRows as $key => $valueArr) {
+            for ($i = 2; $i < 101; $i++) {
+                $validation = $sheet->getCell($key . $i)->getDataValidation();
+                $validation->setType(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::TYPE_LIST);
+                $validation->setErrorStyle(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::STYLE_INFORMATION);
+                $validation->setAllowBlank(true);
+                $validation->setShowInputMessage(true);
+                $validation->setShowErrorMessage(true);
+                $validation->setShowDropDown(true);
+                $validation->setErrorTitle('Input error');
+                $validation->setError('Value is not in list.');
+                $validation->setPromptTitle('Pick from list');
+                $validation->setPrompt('Please pick a value from the drop-down list.');
+                $validation->setFormula1('"' . implode(',', $valueArr) . '"');
+                foreach ($rows as $row) {
+                    $sheet->fromArray([$row]);
+                }
+            }
+        }
+
+        $writer = new Xlsx($spreadsheet);
+        $writer->save($filePath);
+
+        $fileResponse = response()->file($filePath, [
+            'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
+        ])->deleteFileAfterSend(true);
+
+        return $fileResponse;
+    }
+
+    public function exportExcelBookings($booking_ids = [])
+    {
+        $bookings = [];
         $bookings = Booking::whereIn('id', $booking_ids)->get();
 
         $tz = SetupValue::where('setup_id', 4)->select('id', 'setup_value_label')->get()->toArray();
@@ -547,29 +670,32 @@ class ExportDataFile
             $timezones[$t['id']] = $t['setup_value_label'];
         }
         $serviceType = [1 => 'in_person', 2 => 'virtual', 4 => 'phone', 5 => 'tele-conference'];
+        // dd("records found",$notifications);
+        $headers = [
+            'Booking Number',
+            'Company',
+            'Requester',
+            'Industry',
+            'Accommodation',
+            'Service',
+            'Service Type ',
+            'Number of Providers',
+            'Time Zone',
+            'Booking Start Date (dd/mm/Y)',
+            'Booking Start Hour (24h)',
+            'Booking Start Min',
+            'Booking End Date (dd/mm/Y)',
+            'Booking End Hour (24h)',
+            'Booking End Min',
 
+        ];
+
+        $rows = [$headers];
         if ($bookings && count($bookings)) {
-            // dd("records found",$notifications);
-            $headers = [
-                'Booking Number',
-                'Company',
-                'Requester',
-                'Industry',
-                'Accommodation',
-                'Service',
-                'Service Type ',
-                'Number of Providers',
-                'Time Zone',
-                'Booking Start Date',
-                'Booking End Date',
-            ];
 
-            $rows = [$headers];
-
-            // $triggerTypes = TriggerType::all();
             foreach ($bookings as $booking) {
 
-                $row = ['--', '--', '--', '--', '--', '--', '--', '--'];
+                $row = ['--', '--', '--', '--', '--', '--', '--', '--', '--', '--', '--', '--'];
                 $row[0] = $booking->booking_number;
                 $row[1] = $booking->company ? $booking->company->name : '';
                 $row[2] = $booking->customer ? $booking->customer->name : '';
@@ -581,13 +707,17 @@ class ExportDataFile
                 $row[6] = $service ? ($service->pivot->service_types ? $serviceType[$service->pivot->service_types] : '') : '';
                 $row[7] = $service ? ($service->pivot->provider_count ? $service->pivot->provider_count : '') : '';
                 $row[8] = $service ? ($service->pivot->time_zone ? (isset($timezones[$service->pivot->time_zone]) ? $timezones[$service->pivot->time_zone] : $service->pivot->time_zone) : '') : '';
-
-                $row[9] = $service ? ($service->pivot->start_time ? $service->pivot->start_time : '') : $booking->booking_start_at;
-                $row[10] = $service ? ($service->pivot->end_time ? $service->pivot->end_time : '') : $booking->booking_end_at;
-
+                $start_time = Carbon::parse($service ? ($service->pivot->start_time ? $service->pivot->start_time : '') : $booking->booking_start_at);
+                $row[9] = $start_time->format('m/d/Y');
+                $row[10] = $start_time->format('H');
+                $row[11] = $start_time->format('i');
+                $end_time =
+                    Carbon::parse($service ? ($service->pivot->end_time ? $service->pivot->end_time : '') : $booking->booking_end_at);
+                $row[12] = $end_time->format('m/d/Y');
+                $row[13] = $end_time->format('H');
+                $row[14] = $end_time->format('i');
                 $rows[] = $row;
             }
-            // dd($rows);
             $fileName = 'bookings_export.xlsx';
             $filePath = Storage::disk('local')->path($fileName);
 

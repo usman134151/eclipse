@@ -1197,11 +1197,12 @@
 
 </div>
 @push('scripts')
-        <script>
-                $('#certification').attr('disabled', true);
-
-            document.addEventListener('hideFields', () => {
-                $('#certification').attr('disabled', true);
-            });
-        </script>
+    <script>
+        @if ($isProvider)
+            $('#certification').attr('disabled', true);
+        @endif
+        document.addEventListener('hideFields', () => {
+            $('#certification').attr('disabled', true);
+        });
+    </script>
 @endpush
