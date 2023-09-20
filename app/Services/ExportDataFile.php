@@ -581,10 +581,10 @@ class ExportDataFile
         $sheet->fromArray([$headers]);
 
         // set the Date column format to date
-        $sheet->getStyle('K:K')->getNumberFormat()->setFormatCode('dd/mmm/yyyy');
+        $sheet->getStyle('J:J')->getNumberFormat()->setFormatCode('dd/mmm/yyyy');
 
         // add data validation and date picker to the DOB column
-        $validation = $sheet->getCell('K2')->getDataValidation();
+        $validation = $sheet->getCell('J2')->getDataValidation();
         $validation->setType(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::TYPE_CUSTOM);
         $validation->setErrorStyle(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::STYLE_STOP);
         $validation->setAllowBlank(true);

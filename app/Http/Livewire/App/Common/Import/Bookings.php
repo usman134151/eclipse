@@ -63,18 +63,6 @@ class Bookings extends Component
         // Initialize a counter variable
         $i = 0;
 
-
-        // 'Booking Number',
-        // 'Company',
-        // 'Requester',
-        // 'Industry',
-        // 'Accommodation',
-        // 'Service',
-        // 'Service Type ',
-        // 'Number of Providers',
-        // 'Time Zone',
-        // 'Booking Start Date',
-        // 'Booking End Date',
         foreach ($rows as $row) {
             if ($i > 0) {
                 if ($row[0] != '') {
