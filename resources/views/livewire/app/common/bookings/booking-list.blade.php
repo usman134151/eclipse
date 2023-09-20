@@ -43,6 +43,9 @@
 
         @livewire('app.common.bookings.booking-details', ['booking_id' => $booking_id])
         @include('panels.provider.check-out')
+    @elseif($importFile)
+        @livewire('app.common.import.bookings')
+
     @else
         <div>
 
@@ -84,7 +87,7 @@
                     </div>
                 </div>
 
-                
+
                 <div class="d-lg-flex justify-content-end mb-4">
 
                     <button wire:click.prevent="downloadExportFile(true)" type="button"
@@ -96,6 +99,14 @@
                         {{-- End of update by Shanila --}}
                         <span>Download Import File</span>
                     </button>
+                    <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 me-2 gap-2" wire:click="$set('importFile',true)">
+												{{-- Updated by Shanila to Add svg icon--}}
+												<svg aria-label="Import Customer" width="20" height="20" viewBox="0 0 20 20">
+													<use xlink:href="/css/common-icons.svg#import-file"></use>
+												</svg>
+												{{-- End of update by Shanila --}}
+												<span>Import Bookings</span>
+											</button>
                     <a href="/admin/booknow/create" class="btn btn-primary rounded btn-sm">
                         Create Assignment
                     </a>
@@ -131,7 +142,8 @@
                                             <div class="d-inline-flex align-items-center gap-4">
                                                 <div class="d-lg-flex justify-content-end mb-4">
                                                     <div class="dropdown">
-                                                        <button wire:click.prevent="downloadExportFile()"  class="btn btn-outline-primary dropdown-toggle"
+                                                        <button wire:click.prevent="downloadExportFile()"
+                                                            class="btn btn-outline-primary dropdown-toggle"
                                                             type="button" data-bs-toggle="dropdown"
                                                             aria-expanded="false">
                                                             {{-- Updated by Shanila to Add svg icon --}}
@@ -207,8 +219,11 @@
                                                                     class="{{ $i % 2 == 0 ? 'even' : 'odd' }} ">
                                                                     <td class="text-center {{ $cssClass }}"
                                                                         style="background-color:{{ $colorCodes[$code] }}">
-                                                                        <input class="form-check-input" wire:model.defer="selectedBookingIds"
-                                                                            type="checkbox" value="{{$booking['id']}}" name="selected_booking_ids"
+                                                                        <input class="form-check-input"
+                                                                            wire:model.defer="selectedBookingIds"
+                                                                            type="checkbox"
+                                                                            value="{{ $booking['id'] }}"
+                                                                            name="selected_booking_ids"
                                                                             aria-label="Select Booking">
                                                                     </td>
                                                                     <td class="{{ $cssClass }}"
@@ -426,7 +441,8 @@
                                                                                     @if ($bookingType == 'Invitations')
                                                                                         <a href="{{ route('tenant.booking-edit', ['bookingID' => encrypt($booking->id)]) }}"
                                                                                             title="Edit"
-                                                                                            aria-label="Edit Booking" style="color:#fff"
+                                                                                            aria-label="Edit Booking"
+                                                                                            style="color:#fff"
                                                                                             class="dropdown-item">
                                                                                             <svg aria-label="Assign Provider"
                                                                                                 class="fill"

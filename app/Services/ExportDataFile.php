@@ -537,19 +537,141 @@ class ExportDataFile
         }
     }
 
-    public function generateExcelTemplateBookings($booking_ids = [], $template = false)
+    public function generateExcelTemplateBookings()
+    {
+        $headers = [
+            'Booking Number',
+            'Company',
+            'Requester',
+            'Industry',
+            'Accommodation',
+            'Service',
+            'Service Type ',
+            'Number of Providers',
+            'Time Zone',
+            'Booking Start Date',
+            'Booking End Date',
+        ];
+
+        // $languageValues = SetupValue::where('setup_id', 1)->pluck('setup_value_label')->toArray();
+        $timezoneValues = SetupValue::where('setup_id', 4)->pluck('setup_value_label')->all();
+        // $genderValues = SetupValue::where('setup_id', 2)->pluck('setup_value_label')->toArray();
+        // $ethnicityValues = SetupValue::where('setup_id', 3)->pluck('setup_value_label')->toArray();
+        // $companies = Company::where('status', '1')->orderBy('name')->pluck('name')->toArray();
+
+        $rows = [
+            [
+                '','','','','','',
+                '','','','','','',''
+            ]
+        ];
+
+        $fileName = 'booking-import-template.xlsx';
+        $filePath = Storage::disk('local')->path($fileName);
+
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        //$sheet->fromArray([$headers]);
+        $sheet->fromArray([$headers]);
+
+        // // set the DOB column format to date
+        // $sheet->getStyle('D:D')->getNumberFormat()->setFormatCode('dd/mmm/yyyy');
+
+        // // add data validation and date picker to the DOB column
+        // $validation = $sheet->getCell('K2')->getDataValidation();
+        // $validation->setType(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::TYPE_CUSTOM);
+        // $validation->setErrorStyle(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::STYLE_STOP);
+        // $validation->setAllowBlank(true);
+        // $validation->setShowInputMessage(true);
+        // $validation->setShowErrorMessage(true);
+        // $validation->setShowDropDown(true);
+        // $validation->setErrorTitle('Input error');
+        // $validation->setError('Value is not a valid date.For example 10/May/2000');
+        // $validation->setPromptTitle('Pick a date');
+        // $validation->setPrompt('Please pick a date from the calendar.');
+        // $validation->setFormula1('DATE(1900,1,1)');
+        // $validation->setFormula2('DATE(9999,12,31)');
+
+        // foreach ($rows as $row) {
+        //     $sheet->fromArray([$row]);
+        // }
+
+
+        // $excelRows = [
+        //     'I' => $timezoneValues,
+        // ];
+        // foreach ($excelRows as $key => $valueArr) {
+        //     for ($i = 2; $i < 101; $i++) {
+        //         $validation = $sheet->getCell($key . $i)->getDataValidation();
+        //         $validation->setType('list');
+        //         $validation->setErrorStyle('stop');
+        //         $validation->setAllowBlank(true);
+        //         $validation->setShowInputMessage(true);
+        //         $validation->setShowErrorMessage(true);
+        //         $validation->setShowDropDown(true);
+        //         $validation->setErrorTitle('Input error');
+        //         $validation->setError('Value is not in list.');
+        //         $validation->setPromptTitle('Pick from list');
+        //         $validation->setPrompt('Please pick a value from the drop-down list.');
+        //         $validation->setFormula1('"' . implode(',', $valueArr) . '"');
+        //         foreach ($rows as $row) {
+        //             $sheet->fromArray([$row]);
+        //         }
+        //     }
+        // }
+        // for ($i = 2; $i < 101; $i++) {
+        //     //yes/no dropdowns
+        //     $colNumber = ['R' . $i, 'S' . $i, 'T' . $i, 'U' . $i, 'V' . $i, 'W' . $i];
+        //     $values = ['Yes', 'No'];
+        //     for ($cols = 0; $cols < 6; $cols++) {
+        //         $validation = $sheet->getCell($colNumber[$cols])->getDataValidation();
+        //         $validation->setType('list');
+        //         $validation->setErrorStyle('stop');
+        //         $validation->setAllowBlank(true);
+        //         $validation->setShowInputMessage(true);
+        //         $validation->setShowErrorMessage(true);
+        //         $validation->setShowDropDown(true);
+        //         $validation->setErrorTitle('Input error');
+        //         $validation->setError('Value is not in list.');
+        //         $validation->setPromptTitle('Pick from list');
+        //         $validation->setPrompt('Please pick a value from the drop-down list.');
+        //         $validation->setFormula1('"' . implode(',', $values) . '"');
+        //         foreach ($rows as $row) {
+        //             $sheet->fromArray([$row]);
+        //         }
+        //     }
+        // }
+         
+        $writer = new Xlsx($spreadsheet);
+        $writer->save($filePath);
+
+        $fileResponse = response()->file($filePath, [
+            'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
+        ])->deleteFileAfterSend(true);
+
+        return $fileResponse;
+
+        //  $fileResponse = response()->download($filePath, $fileName)->deleteFileAfterSend(true);
+        //$fileResponse->headers->set('Content-Disposition', 'attachment; filename="' . $fileName . '"');
+        //return $fileResponse;
+
+        // $fileResponse = response()->download($filePath, $fileName)->deleteFileAfterSend(true);
+
+        //return new Response($fileResponse->getContent(), $fileResponse->getStatusCode(), $fileResponse->headers->all());
+
+    }
+
+    public function exportExcelBookings($booking_ids = [])
     {
         $bookings = [];
-        if ($template == false) {
-            $bookings = Booking::whereIn('id', $booking_ids)->get();
+        $bookings = Booking::whereIn('id', $booking_ids)->get();
 
-            $tz = SetupValue::where('setup_id', 4)->select('id', 'setup_value_label')->get()->toArray();
-            $timezones = [];
-            foreach ($tz as $t) {
-                $timezones[$t['id']] = $t['setup_value_label'];
-            }
-            $serviceType = [1 => 'in_person', 2 => 'virtual', 4 => 'phone', 5 => 'tele-conference'];
+        $tz = SetupValue::where('setup_id', 4)->select('id', 'setup_value_label')->get()->toArray();
+        $timezones = [];
+        foreach ($tz as $t) {
+            $timezones[$t['id']] = $t['setup_value_label'];
         }
+        $serviceType = [1 => 'in_person', 2 => 'virtual', 4 => 'phone', 5 => 'tele-conference'];
         // dd("records found",$notifications);
         $headers = [
             'Booking Number',
@@ -566,9 +688,8 @@ class ExportDataFile
         ];
 
         $rows = [$headers];
-        if (($bookings && count($bookings) && $template==false) || $template == true) {
+        if ($bookings && count($bookings)) {
 
-            // $triggerTypes = TriggerType::all();
             foreach ($bookings as $booking) {
 
                 $row = ['--', '--', '--', '--', '--', '--', '--', '--'];
@@ -589,11 +710,7 @@ class ExportDataFile
 
                 $rows[] = $row;
             }
-            // dd($rows);
-            $name = '';
-            if ($template == true)
-                $name = '_template';
-            $fileName = 'bookings_export' . $name . '.xlsx';
+            $fileName = 'bookings_export.xlsx';
             $filePath = Storage::disk('local')->path($fileName);
 
             $spreadsheet = new Spreadsheet();
