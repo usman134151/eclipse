@@ -562,6 +562,7 @@ class ExportDataFile
         // $genderValues = SetupValue::where('setup_id', 2)->pluck('setup_value_label')->toArray();
         // $ethnicityValues = SetupValue::where('setup_id', 3)->pluck('setup_value_label')->toArray();
         // $companies = Company::where('status', '1')->orderBy('name')->pluck('name')->toArray();
+        $serviceType = ['in_person', 'virtual', 'phone', 'tele-conference'];
 
         $rows = [
             [
@@ -579,84 +580,74 @@ class ExportDataFile
         //$sheet->fromArray([$headers]);
         $sheet->fromArray([$headers]);
 
-        // // set the DOB column format to date
-        // $sheet->getStyle('D:D')->getNumberFormat()->setFormatCode('dd/mmm/yyyy');
-        // $sheet->getStyle('K:K')
-        // ->getNumberFormat()
-        // ->setFormatCode(
-        //     \PhpOffice\PhpSpreadsheet\Style\NumberFormat::FORMAT_DATE_DATETIME
-        // );
+        // set the Date column format to date
+        $sheet->getStyle('K:K')->getNumberFormat()->setFormatCode('dd/mmm/yyyy');
 
-        // // // add data validation and date picker to the DOB column
-        // $validation = $sheet->getCell('K2')->getDataValidation();
-        // $validation->setType(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::TYPE_CUSTOM);
-        // $validation->setErrorStyle(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::STYLE_STOP);
-        // $validation->setAllowBlank(true);
-        // $validation->setShowInputMessage(true);
-        // $validation->setShowErrorMessage(true);
-        // $validation->setShowDropDown(true);
-        // $validation->setErrorTitle('Input error');
-        // $validation->setError('Value is not a valid date.For example 10/May/2000 06:30 AM');
-        // $validation->setPromptTitle('Pick a date');
-        // $validation->setPrompt('Please pick a date from the calendar.');
-        // $validation->setFormula1('DATE(1900,1,1)');
-        // $validation->setFormula2('DATE(9999,12,31)');
-        // $dateTime = time();
+        // add data validation and date picker to the DOB column
+        $validation = $sheet->getCell('K2')->getDataValidation();
+        $validation->setType(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::TYPE_CUSTOM);
+        $validation->setErrorStyle(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::STYLE_STOP);
+        $validation->setAllowBlank(true);
+        $validation->setShowInputMessage(true);
+        $validation->setShowErrorMessage(true);
+        $validation->setShowDropDown(true);
+        $validation->setErrorTitle('Input error');
+        $validation->setError('Value is not a valid date.For example 10/May/2000 06:30 AM');
+        $validation->setPromptTitle('Pick a date');
+        $validation->setPrompt('Please pick a date from the calendar.');
+        $validation->setFormula1('DATE(1900,1,1)');
+        $validation->setFormula2('DATE(9999,12,31)');
 
-        // $excelDateValue = \PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel(
-        //     $dateTime
-        // );
-        // $sheet->setCellValue('K2', $excelDateValue);
+        foreach ($rows as $row) {
+            $sheet->fromArray([$row]);
+        }
 
-        // foreach ($rows as $row) {
-        //     $sheet->fromArray([$row]);
-        // }
+        // set the Date column format to date
+        $sheet->getStyle('M:M')->getNumberFormat()->setFormatCode('dd/mmm/yyyy');
+
+        // add data validation and date picker to the DOB column
+        $validation = $sheet->getCell('M2')->getDataValidation();
+        $validation->setType(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::TYPE_CUSTOM);
+        $validation->setErrorStyle(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::STYLE_STOP);
+        $validation->setAllowBlank(true);
+        $validation->setShowInputMessage(true);
+        $validation->setShowErrorMessage(true);
+        $validation->setShowDropDown(true);
+        $validation->setErrorTitle('Input error');
+        $validation->setError('Value is not a valid date.For example 10/May/2000 06:30 AM');
+        $validation->setPromptTitle('Pick a date');
+        $validation->setPrompt('Please pick a date from the calendar.');
+        $validation->setFormula1('DATE(1900,1,1)');
+        $validation->setFormula2('DATE(9999,12,31)');
+
+        foreach ($rows as $row) {
+            $sheet->fromArray([$row]);
+        }
 
 
-        // $excelRows = [
-        //     'I' => $timezoneValues,
-        // ];
-        // foreach ($excelRows as $key => $valueArr) {
-        //     for ($i = 2; $i < 101; $i++) {
-        //         $validation = $sheet->getCell($key . $i)->getDataValidation();
-        //         $validation->setType('list');
-        //         $validation->setErrorStyle('stop');
-        //         $validation->setAllowBlank(true);
-        //         $validation->setShowInputMessage(true);
-        //         $validation->setShowErrorMessage(true);
-        //         $validation->setShowDropDown(true);
-        //         $validation->setErrorTitle('Input error');
-        //         $validation->setError('Value is not in list.');
-        //         $validation->setPromptTitle('Pick from list');
-        //         $validation->setPrompt('Please pick a value from the drop-down list.');
-        //         $validation->setFormula1('"' . implode(',', $valueArr) . '"');
-        //         foreach ($rows as $row) {
-        //             $sheet->fromArray([$row]);
-        //         }
-        //     }
-        // }
-        // for ($i = 2; $i < 101; $i++) {
-        //     //yes/no dropdowns
-        //     $colNumber = ['R' . $i, 'S' . $i, 'T' . $i, 'U' . $i, 'V' . $i, 'W' . $i];
-        //     $values = ['Yes', 'No'];
-        //     for ($cols = 0; $cols < 6; $cols++) {
-        //         $validation = $sheet->getCell($colNumber[$cols])->getDataValidation();
-        //         $validation->setType('list');
-        //         $validation->setErrorStyle('stop');
-        //         $validation->setAllowBlank(true);
-        //         $validation->setShowInputMessage(true);
-        //         $validation->setShowErrorMessage(true);
-        //         $validation->setShowDropDown(true);
-        //         $validation->setErrorTitle('Input error');
-        //         $validation->setError('Value is not in list.');
-        //         $validation->setPromptTitle('Pick from list');
-        //         $validation->setPrompt('Please pick a value from the drop-down list.');
-        //         $validation->setFormula1('"' . implode(',', $values) . '"');
-        //         foreach ($rows as $row) {
-        //             $sheet->fromArray([$row]);
-        //         }
-        //     }
-        // }
+        $excelRows = [
+            // 'I' => $timezoneValues,
+            'G' => $serviceType,
+        ];
+        foreach ($excelRows as $key => $valueArr) {
+            for ($i = 2; $i < 101; $i++) {
+                $validation = $sheet->getCell($key . $i)->getDataValidation();
+                $validation->setType(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::TYPE_LIST);
+                $validation->setErrorStyle(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::STYLE_INFORMATION);
+                $validation->setAllowBlank(true);
+                $validation->setShowInputMessage(true);
+                $validation->setShowErrorMessage(true);
+                $validation->setShowDropDown(true);
+                $validation->setErrorTitle('Input error');
+                $validation->setError('Value is not in list.');
+                $validation->setPromptTitle('Pick from list');
+                $validation->setPrompt('Please pick a value from the drop-down list.');
+                $validation->setFormula1('"' . implode(',', $valueArr) . '"');
+                foreach ($rows as $row) {
+                    $sheet->fromArray([$row]);
+                }
+            }
+        }
 
         $writer = new Xlsx($spreadsheet);
         $writer->save($filePath);
@@ -666,15 +657,6 @@ class ExportDataFile
         ])->deleteFileAfterSend(true);
 
         return $fileResponse;
-
-        //  $fileResponse = response()->download($filePath, $fileName)->deleteFileAfterSend(true);
-        //$fileResponse->headers->set('Content-Disposition', 'attachment; filename="' . $fileName . '"');
-        //return $fileResponse;
-
-        // $fileResponse = response()->download($filePath, $fileName)->deleteFileAfterSend(true);
-
-        //return new Response($fileResponse->getContent(), $fileResponse->getStatusCode(), $fileResponse->headers->all());
-
     }
 
     public function exportExcelBookings($booking_ids = [])
