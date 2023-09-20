@@ -24,6 +24,14 @@ class Company extends Model
 		return $this->hasMany(User::class,'company_name');
 	}
 
+	public function requesters()
+	{
+		return $this->hasMany(User::class, 'company_name')
+		->whereHas('roles', function ($query)  {
+			$query->where('role_id', 6);
+		});
+	}
+
 	public function departments()
 	{
 		return $this->hasMany(Department::class, 'company_id');

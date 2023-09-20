@@ -345,7 +345,6 @@ class ProviderForm extends Component
         $this->validate();
         if ($this->user->user_dob) {
             $this->user->user_dob = Carbon::parse($this->user->user_dob);
-            // Carbon::createFromFormat('d/m/Y', $this->user->user_dob)->format('Y-m-d');
 
         }
         $this->user->name = $this->user->first_name . ' ' . $this->user->last_name;
@@ -382,7 +381,7 @@ class ProviderForm extends Component
         $this->userdetail['favored_users'] = explode(', ', $this->userdetail['favored_users']);
         $this->userdetail['unfavored_users'] = explode(', ', $this->userdetail['unfavored_users']);
         if ($this->user->user_dob)
-            $this->user->user_dob = Carbon::createFromFormat('Y-m-d', $this->user->user_dob)->format('m/d/Y');
+            $this->user->user_dob = Carbon::parse($this->user->user_dob)->format('m/d/Y');
       
         if ($redirect) {
             if ($this->isProvider) {
@@ -421,7 +420,7 @@ class ProviderForm extends Component
         $this->user = $user;
         $this->isAdd = false;
         if ($this->user->user_dob)
-            $this->user->user_dob = Carbon::createFromFormat('Y-m-d', $this->user->user_dob)->format('m/d/Y');
+            $this->user->user_dob = Carbon::parse($this->user->user_dob)->format('m/d/Y');
         //removing edit-user from provider list
         $this->providers = $this->providers->filter(function ($provider, $key) {
             return $provider->id != $this->user->id;
@@ -515,8 +514,9 @@ class ProviderForm extends Component
         } else
             $this->userdetail[$attrName] = $val;
 
-        // $this->dispatchBrowserEvent('refreshSelects');
-
+        if ($this->isProvider) {
+            $this->dispatchBrowserEvent('hideFields');
+        }
     }
     public function addscheduledInPerson()
     {
