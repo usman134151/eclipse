@@ -31,7 +31,7 @@
                       @if($notification->trigger)
                       <div class="col-lg-5 pe-lg-4 mb-4">
                           <label class="form-label" for="trigger-name">Name</label>
-                          <input type="text" id="trigger-name" class="form-control" name="trigger-name"
+                          <input disabled type="text" id="trigger-name" class="form-control" name="trigger-name"
                             placeholder="Enter Name" wire:model.defer="notification.name" />
                             @error('notification.name')
                               <span class="d-inline-block invalid-feedback mt-2">
