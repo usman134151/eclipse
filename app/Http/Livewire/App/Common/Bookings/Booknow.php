@@ -366,6 +366,14 @@ class Booknow extends Component
                  $this->payment['coupon_discount_amount']=0;        
                  
             $this->payment->save();
+
+            if($this->booking->frequency_id>1){
+                //multiple bookings 
+                //check if new booking
+              
+                
+            }
+
             return redirect()->to('/admin/bookings/unassigned');
         }
        

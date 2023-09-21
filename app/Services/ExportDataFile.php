@@ -462,15 +462,27 @@ class ExportDataFile
         $notifications = NotificationTemplates::where('notification_type', $notificationType)->get();
         if ($notifications && count($notifications)) {
             // dd("records found",$notifications);
-            $headers = [
-                'Trigger',
-                'Admin',
-                'Subject',
-                'Provider',
-                'Subject',
-                'Customer',
-                'Subject',
-            ];
+            if($notificationType==1){
+                $headers = [
+                    'Trigger',
+                    'Admin',
+                    'Subject',
+                    'Provider',
+                    'Subject',
+                    'Customer',
+                    'Subject',
+                ];
+            }
+            else{
+                $headers = [
+                    'Trigger',
+                    'Admin',
+                    'Provider',
+                    'Customer',
+                    
+                ];
+            }
+
             $rows = [$headers];
 
             $triggerTypes = TriggerType::all();
@@ -488,28 +500,53 @@ class ExportDataFile
                         $triggerType->name,
                     ];
                     $rows[] = $row;
-                    foreach ($triggerTypeNotifications as $triggerTypeNotification) {
-                        $row = ['--', '--', '--', '--', '--', '--', '--'];
-                        $row[0] = $triggerTypeNotification->trigger;
-                        $NotificationTemplateRoles = NotificationTemplateRoles::where('notification_id', $triggerTypeNotification->id)->get();
-                        foreach ($NotificationTemplateRoles as $NotificationTemplateRole) {
-                            if ($NotificationTemplateRole->role_id == 1) {
-                                $row[1] = $NotificationTemplateRole->notification_text;
-                                $row[2] = $NotificationTemplateRole->notification_subject;
-                            } else if ($NotificationTemplateRole->role_id == 2) {
-                                $row[3] = $NotificationTemplateRole->notification_text;
-                                $row[4] = $NotificationTemplateRole->notification_subject;
-                            } else if ($NotificationTemplateRole->role_id == 4) {
-                                $row[5] = $NotificationTemplateRole->notification_text;
-                                $row[6] = $NotificationTemplateRole->notification_subject;
+                    if($notificationType==1){
+                        foreach ($triggerTypeNotifications as $triggerTypeNotification) {
+                            $row = ['--', '--', '--', '--', '--', '--', '--'];
+                            $row[0] = $triggerTypeNotification->trigger;
+                            $NotificationTemplateRoles = NotificationTemplateRoles::where('notification_id', $triggerTypeNotification->id)->get();
+                            foreach ($NotificationTemplateRoles as $NotificationTemplateRole) {
+                                if ($NotificationTemplateRole->role_id == 1) {
+                                    $row[1] = $NotificationTemplateRole->notification_text;
+                                    $row[2] = $NotificationTemplateRole->notification_subject;
+                                } else if ($NotificationTemplateRole->role_id == 2) {
+                                    $row[3] = $NotificationTemplateRole->notification_text;
+                                    $row[4] = $NotificationTemplateRole->notification_subject;
+                                } else if ($NotificationTemplateRole->role_id == 4) {
+                                    $row[5] = $NotificationTemplateRole->notification_text;
+                                    $row[6] = $NotificationTemplateRole->notification_subject;
+                                }
                             }
+                            $rows[] = $row;
                         }
-                        $rows[] = $row;
+                        $type='email';
                     }
+                    else{
+                        $notificationType==2?$type='System':$type='SMS';
+                        foreach ($triggerTypeNotifications as $triggerTypeNotification) {
+                            $row = ['--', '--', '--', '--'];
+                            $row[0] = $triggerTypeNotification->trigger;
+                            $NotificationTemplateRoles = NotificationTemplateRoles::where('notification_id', $triggerTypeNotification->id)->get();
+                            foreach ($NotificationTemplateRoles as $NotificationTemplateRole) {
+                                if ($NotificationTemplateRole->role_id == 1) {
+                                    $row[1] = $NotificationTemplateRole->notification_text;
+                                   
+                                } else if ($NotificationTemplateRole->role_id == 2) {
+                                    $row[2] = $NotificationTemplateRole->notification_text;
+                                   
+                                } else if ($NotificationTemplateRole->role_id == 4) {
+                                    $row[3] = $NotificationTemplateRole->notification_text;
+                                   
+                                }
+                            }
+                            $rows[] = $row;
+                        }                  
+                    }
+
                 }
             }
             // dd($rows);
-            $fileName = 'email-notifications-import.xlsx';
+            $fileName = $type.'-notifications-import.xlsx';
             $filePath = Storage::disk('local')->path($fileName);
 
             $spreadsheet = new Spreadsheet();
