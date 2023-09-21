@@ -146,15 +146,7 @@ if (!function_exists('sendTemplatemail')) {
             // if (!$sendEmail && !$sendSMS) {
             //     return false;
             // }
-            // dd($sendEmail, $sendSMS);
-            $token = Str::random(64);
-            if ($data['templateName'] == 'Account Created') {
-                DB::table('password_resets')->insert([
-                    'email' => $userData->email,
-                    'token' => $token,
-                    'created_at' => Carbon::now()
-                ]);
-            }
+          
             $admin            = User::find(1);
             $location        = "-";
             $payment_for_provider     = 0;
@@ -166,7 +158,7 @@ if (!function_exists('sendTemplatemail')) {
             $login_button = '<div style="color:#757575;font-family:&quot;Roboto&quot;,OpenSans,&quot;OpenSans&quot;,Arial,sans-serif;font-size:15px;font-weight:300;line-height:4px;margin:0;padding:15px 15px 15px 15px;color:#000000;"><a style="font-family:\'-apple-system\', BlinkMacSystemFont, \'Segoe UI\', Roboto, Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\', \'Segoe UI Symbol\';color:#fff;text-decoration:none;background-color:#0a1e46;border-bottom:8px solid #0a1e46;border-left:18px solid #0a1e46;border-right:18px solid #0a1e46;border-top:8px solid #0a1e46;" href="' . $dashboard_url . '">Log in</a></div>';
 
             if ($data['mail_type'] == 'account') {
-                $reset_password = '<div style="color:#757575;font-family:&quot;Roboto&quot;,OpenSans,&quot;OpenSans&quot;,Arial,sans-serif;font-size:15px;font-weight:300;line-height:4px;margin:0;padding:0 30px 25px 25px;color:#000000;"><a style="font-family:\'-apple-system\', BlinkMacSystemFont, \'Segoe UI\', Roboto, Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\', \'Segoe UI Symbol\';color:#fff;text-decoration:none;background-color:#0a1e46;border-bottom:8px solid #0a1e46;border-left:18px solid #0a1e46;border-right:18px solid #0a1e46;border-top:8px solid #0a1e46;" href="' . str_replace('https://', '', URL::to('/reset-forgot-password/' . $token)) . '">Reset Password</a></div>';
+                $reset_password = '<div style="color:#757575;font-family:&quot;Roboto&quot;,OpenSans,&quot;OpenSans&quot;,Arial,sans-serif;font-size:15px;font-weight:300;line-height:4px;margin:0;padding:0 30px 25px 25px;color:#000000;"><a style="font-family:\'-apple-system\', BlinkMacSystemFont, \'Segoe UI\', Roboto, Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\', \'Segoe UI Symbol\';color:#fff;text-decoration:none;background-color:#0a1e46;border-bottom:8px solid #0a1e46;border-left:18px solid #0a1e46;border-right:18px solid #0a1e46;border-top:8px solid #0a1e46;" href="' . str_replace('https://', '', URL::to('/forgot-password/')) . '">Reset Password</a></div>';
             }
             $replacements[] = array(
                 "@dashboard_url" =>  $dashboard_url,
