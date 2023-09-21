@@ -76,7 +76,7 @@
                                                             <div class="col-md-10">
 
                                                                 <div>
-                                                                    <label class="form-label" for="First Name">Booking
+                                                                    <label class="form-label-sm" for="First Name">Booking
                                                                         Number</label>
                                                                     <input type="text"
                                                                         wire:model.defer="bookings.{{ $loop->index }}.booking_number"
@@ -88,7 +88,7 @@
                                                                     @enderror
                                                                 </div>
                                                                 <div>
-                                                                    <label class="form-label" for="company">
+                                                                    <label class="form-label-sm" for="company">
                                                                         Company
                                                                     </label>
 
@@ -108,7 +108,7 @@
                                                                     @enderror
                                                                 </div>
                                                                 <div>
-                                                                    <label class="form-label" for="Language">
+                                                                    <label class="form-label-sm" for="Language">
                                                                         Requester
                                                                     </label>
                                                                     <select class="form-select"
@@ -122,6 +122,7 @@
                                                                         @endif
                                                                     </select>
                                                                 </div>
+                                                               
 
 
                                                     </td>
@@ -130,7 +131,7 @@
 
                                                         <div class="row">
                                                             <div class="col-lg-6 col-12">
-                                                                <label class="form-label" for="First Name">Accommodation
+                                                                <label class="form-label-sm" for="First Name">Accommodation
                                                                 </label>
                                                                 <select class="form-select"
                                                                     wire:model='bookings.{{ $loop->index }}.accommodation_id'>
@@ -144,7 +145,7 @@
 
 
                                                             <div class="col-lg-6 col-12">
-                                                                <label class="form-label" for="First Name">Service
+                                                                <label class="form-label-sm" for="First Name">Service
                                                                 </label>
                                                                 <select class="form-select"
                                                                     wire:model='bookings.{{ $loop->index }}.service_id'>
@@ -160,14 +161,14 @@
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-lg-6 col-12">
-                                                                <label class="form-label" for="First Name">Provider
+                                                                <label class="form-label-sm" for="First Name">Provider
                                                                     Count</label>
                                                                 <input type="text"
                                                                     wire:model.defer="bookings.{{ $loop->index }}.provider_count"
                                                                     class="form-control" />
                                                             </div>
                                                             <div class="col-lg-6 col-12">
-                                                                <label class="form-label" for="First Name">Service
+                                                                <label class="form-label-sm" for="First Name">Service
                                                                     Type</label>
                                                                 <select class="form-select"
                                                                     wire:model='bookings.{{ $loop->index }}.service_type'>
@@ -180,8 +181,8 @@
                                                             </div>
 
                                                         </div>
-                                                        <div class="row d-md-flex flex-md-wrap justify-content-between">
-                                                            <div class="col-lg-6 col-md-6 pe-md-2 pe-lg-0 mb-4">
+                                                        <div class="row ">
+                                                            <div class="col-lg-6 col-md-6 mb-4">
                                                                 <label class="form-label-sm" for="set_time_zone">
                                                                     Time Zone <span class="mandatory">*</span></label>
                                                                 <select class="form-select select2 mb-2"
@@ -195,9 +196,23 @@
 
                                                                 </select>
                                                             </div>
+                                                              <div class="col-lg-6 col-12">
+                                                                    <label class="form-label-sm" for="status">
+                                                                        Status
+                                                                    </label>
+                                                                    <select class="form-select" id="status"
+                                                                        wire:model='bookings.{{ $loop->index }}.status'>
+                                                                        <option value="0">Select Option</option>
+                                                                            @foreach ($statuses as $status)
+                                                                                <option value="{{ $status }}">
+                                                                                    {{ $status }}</option>
+                                                                            @endforeach
+                                                                     
+                                                                    </select>
+                                                                </div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-auto col-md-6 ps-md-2 ps-lg-0 mb-4">
+                                                            <div class="col-lg-auto col-md-6 mb-4">
                                                                 <label class="form-label-sm"
                                                                     for="start_date_{{ $loop->index }}">Start Date
                                                                     <span class="mandatory">*</span></label>
