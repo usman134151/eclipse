@@ -197,7 +197,7 @@
                                                                         if ($booking['is_closed'] == 1) {
                                                                             $code = 'Completed Assignment';
                                                                         } elseif ($booking['is_closed'] == 2) {
-                                                                            $code = 'Completed Assignment';
+                                                                            $code = 'Cancelled';
                                                                         }
                                                                     } elseif ($bookingType == "Today's") {
                                                                         if ($booking['checked_in'] > 0) {
