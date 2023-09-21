@@ -15,6 +15,9 @@ use App\PloiManager;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+
 use Illuminate\Support\Facades\Mail;
 
 if (!function_exists('ploi')) {
@@ -143,17 +146,26 @@ if (!function_exists('sendTemplatemail')) {
             //     return false;
             // }
             // dd($sendEmail, $sendSMS);
-
+            $token = Str::random(64);
+            if ($data['templateName'] == 'Account Created') {
+                DB::table('password_resets')->insert([
+                    'email' => $userData->email,
+                    'token' => $token,
+                    'created_at' => Carbon::now()
+                ]);
+            }
             $admin            = User::find(1);
             $location        = "-";
             $payment_for_provider     = 0;
             $assignedproviders    = "";
 
-            // $dashboard_url	= url($userData->roles()->first()->name.'/dashboard');
+            $dashboard_url    = url($userData->roles()->first()->name . '/dashboard');
             $dashboard_url    =  str_replace('https://', '', URL::to($userData->roles()->first()->name . '/dashboard'));
-            // $view_booking	= url($userData->roles()->first()->name.'/bookings/'.Crypt::encrypt($data['booking_id']));
             $view_booking    =   str_replace('https://', '', URL::to($userData->roles()->first()->name . '/bookings/' . encrypt($data['booking_id'])));
-
+            if ($data['mail_type'] == 'account') {
+                $login_button = '<div style="color:#757575;font-family:&quot;Roboto&quot;,OpenSans,&quot;OpenSans&quot;,Arial,sans-serif;font-size:15px;font-weight:300;line-height:4px;margin:0;padding:15px 15px 15px 15px;color:#000000;"><a style="font-family:\'-apple-system\', BlinkMacSystemFont, \'Segoe UI\', Roboto, Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\', \'Segoe UI Symbol\';color:#fff;text-decoration:none;background-color:#0a1e46;border-bottom:8px solid #0a1e46;border-left:18px solid #0a1e46;border-right:18px solid #0a1e46;border-top:8px solid #0a1e46;" href="' . $dashboard_url . '">Log in</a></div>';
+                $reset_password = '<div style="color:#757575;font-family:&quot;Roboto&quot;,OpenSans,&quot;OpenSans&quot;,Arial,sans-serif;font-size:15px;font-weight:300;line-height:4px;margin:0;padding:0 30px 25px 25px;color:#000000;"><a style="font-family:\'-apple-system\', BlinkMacSystemFont, \'Segoe UI\', Roboto, Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\', \'Segoe UI Symbol\';color:#fff;text-decoration:none;background-color:#0a1e46;border-bottom:8px solid #0a1e46;border-left:18px solid #0a1e46;border-right:18px solid #0a1e46;border-top:8px solid #0a1e46;" href="' . str_replace('https://', '', URL::to('/reset-forgot-password/' . $token)) . '">Reset Password</a></div>';
+            }
             $replacements[] = array(
                 "@dashboard_url" =>  $dashboard_url,
 
@@ -171,6 +183,8 @@ if (!function_exists('sendTemplatemail')) {
 
                 "@recipient" => $userData->name ?? '',
                 "@email" => $userData->email ?? '',
+                "@button_login_page" => $login_button?? '',
+                "@button_password_setup" => $reset_password??'',
 
             );
 
@@ -279,7 +293,6 @@ if (!function_exists('sendTemplatemail')) {
                     "@email_consumer" => $bookingData->customer->email ?? '',
                     "@assigned_providers" => $assignedproviders ?? '',
                     "@view_booking" =>  str_replace('https://', '', URL::to($userData->roles()->first()->name . '/bookings/' . encrypt($data['booking_id']))) ?? '',
-                    // "@view_booking" =>  url($userData->roles()->first()->name.'/bookings/'.Crypt::encrypt($data['booking_id'])) ?? '',
 
                     "@booking_rescheduled_from" => $bookingData->rescheduled_from ?? '',
                     "@frequency" => $frequency[$bookingData->frequency_id] ?? '',
@@ -371,7 +384,6 @@ if (!function_exists('sendTemplatemail')) {
 
 
             $replacements = call_user_func_array('array_merge', $replacements);
-            // dd($sendEmail,  isset($data['templateId']) , !empty($data['templateId']), $data['templateId']);
             if ($sendEmail && isset($data['templateId']) && !empty($data['templateId'])) {
                 $user_role_id =  $userData->roles->first()->id; //fetch what ever is the first assigned role
                 $template = NotificationTemplateRoles::where(['notification_id' => $data['templateId'], 'role_id' => $user_role_id])->first();
@@ -388,27 +400,19 @@ if (!function_exists('sendTemplatemail')) {
 
                 $templateString    = $dom->saveHTML();
                 $data['replacements'] = $replacements;
-                // $data['templateName'] = $template->name ?? '';
                 if (isset($invoicePdf))
                     $data['invoice_pdf'] = $invoicePdf ?? false;
                 $data['templateSubject'] = str_replace(array_keys($replacements), array_values($replacements), $template->notification_subject ?? '');
                 $data['templateBody'] = str_replace(array_keys($replacements), array_values($replacements), $templateString);
-                // if (isset($data['template'])) {
-                // BulkEmail::dispatch($data)->onConnection('database')->onQueue('default');
-                // $data['templateName'] = $data['templateSubject'];
-                // return $data;
-                // } else {
 
-                // BulkEmail::dispatch($data)->onConnection('database')->onQueue('default');
-                // }
                 $data['admin'] = $admin;
                 if (session()->has('company_logo') && session()->get('company_logo') != null)
-                    $data['company_logo'] = session()->get('company_logo');
+                    $data['company_logo'] = url(session()->get('company_logo'));
                 else
                     $data['company_logo'] = null;
 
-                // sendMail($data['email'], $data['templateSubject'],  $data, 'emails.templates', [], 'dispatch');
-                Mail::to('abc@email.com')->send(new createEmail($data['templateSubject'], $data, 'emails.templates', []));
+                sendMail($data['email'], $data['templateSubject'],  $data, 'emails.templates', [], 'dispatch');
+                // Mail::to('abc@email.com')->send(new createEmail($data['templateSubject'], $data, 'emails.templates', []));
             }
 
             // SEND SMS
