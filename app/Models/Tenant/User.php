@@ -152,13 +152,7 @@ class User extends Authenticatable
 		return $this->hasMany(FeedbackRating::class, 'feedback_from');
 	}
 	
-	public function getAverageRatings()
-	{
-		$total = $this->feedbackRecieved->sum('ratings');
-		dd($total);
-
-	}
-
+	
 	public function logs()
 	{
 		return $this->hasMany(Logs::class, 'action_to')
