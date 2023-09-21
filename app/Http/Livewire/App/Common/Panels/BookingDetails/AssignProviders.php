@@ -259,22 +259,19 @@ class AssignProviders extends Component
 
                 if (!empty($user)) {
 
-                    $user_role_id =  2;
-                    $templateId = getTemplate('assignment-scheduled', $user_role_id, 'email_template');
-                    $params = [
-                        'email'       => $user->email,
-                        'user'        =>  ucwords($user->first_name . ' ' . $user->last_name),
-                        'templateName' => 'New Assignment',
-                        'bookingData' => $this->booking,
-                    ];
+                    $templateId = getTemplate('Booking: Provider Assigned (manual-assign)', 'email_template');
                     if (!in_array($provider, $previousAssigned)) {
                         $params = [
                             'email'       =>  $user->email, //
                             'user'        =>  $user->name,
                             'user_id'     =>  $user->id,
                             'templateId'  =>  $templateId,
-                            'item_id'     => $this->booking_id,
+                            'booking_id'     => $this->booking_id,
                             'mail_type'   => 'booking',
+                            'templateName' => 'New Assignment',
+                            'bookingData' => $this->booking,
+
+
                         ];
 
                         sendTemplatemail($params);
@@ -313,18 +310,16 @@ class AssignProviders extends Component
                     if (!empty($user)) {
                         // $permission = $this->booking->bookingNotificationCheck("provider");
                         // if (!$permission) {
-                        $user_role_id =  2;
-                        $templateId = getTemplate('direct-assignment-request-invitation', $user_role_id, 'email_template');
-                        $sms_templateId = getTemplate('direct-assignment-request-invitation', $user_role_id, 'sms_template');
-                        $notification_templateId = getTemplate('direct-assignment-request-invitation', $user_role_id, 'notification_template');
-
+                        // $user_role_id =  2;
+                        $templateId = getTemplate('Booking: Invitation' , 'email_template');
+                     
                         $params = [
                             'email'       =>  $user->email, //Provider Assignment invite
                             'user'        =>  $user->name,
                             'user_id'     =>  $user->id,
                             'sms_template' =>  isset($sms_templateId) ? $sms_templateId : '',
                             'templateId'  =>  $templateId,
-                            'item_id'     =>  $this->booking_id,
+                            'booking_id'     =>  $this->booking_id,
                             'mail_type'   => 'booking',
                             'provider_id' => $user->id,
                             'phone'       =>  isset($user->users_detail) ? clean($user->users_detail->phone) : "",

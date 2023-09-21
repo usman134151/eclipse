@@ -52,7 +52,7 @@ class ConfirmInvitation extends Component
                 'user'        =>  auth()->user()->name,
                 'user_id'     =>  auth()->user()->id,
                 'templateId'  =>  $templateId,
-                'item_id'     => $booking->id,
+                'booking_id'     => $booking->id,
                 'mail_type'   => 'booking',
                 'sms_template' =>  $sms_templateId,
                 'phone'       =>  isset(auth()->user()->userdetail) ? clean(auth()->user()->userdetail->phone) : "",
