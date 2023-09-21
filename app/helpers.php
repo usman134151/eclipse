@@ -90,6 +90,7 @@ if (!function_exists('getTemplate')) {
 
     function getTemplate($trigger, $type)
     {
+        // $notif_type = 1;
         if ($type == "email_template")
             $notif_type = 1;
 
@@ -162,8 +163,9 @@ if (!function_exists('sendTemplatemail')) {
             $dashboard_url    = url($userData->roles()->first()->name . '/dashboard');
             $dashboard_url    =  str_replace('https://', '', URL::to($userData->roles()->first()->name . '/dashboard'));
             $view_booking    =   str_replace('https://', '', URL::to($userData->roles()->first()->name . '/bookings/' . encrypt($data['booking_id'])));
+            $login_button = '<div style="color:#757575;font-family:&quot;Roboto&quot;,OpenSans,&quot;OpenSans&quot;,Arial,sans-serif;font-size:15px;font-weight:300;line-height:4px;margin:0;padding:15px 15px 15px 15px;color:#000000;"><a style="font-family:\'-apple-system\', BlinkMacSystemFont, \'Segoe UI\', Roboto, Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\', \'Segoe UI Symbol\';color:#fff;text-decoration:none;background-color:#0a1e46;border-bottom:8px solid #0a1e46;border-left:18px solid #0a1e46;border-right:18px solid #0a1e46;border-top:8px solid #0a1e46;" href="' . $dashboard_url . '">Log in</a></div>';
+
             if ($data['mail_type'] == 'account') {
-                $login_button = '<div style="color:#757575;font-family:&quot;Roboto&quot;,OpenSans,&quot;OpenSans&quot;,Arial,sans-serif;font-size:15px;font-weight:300;line-height:4px;margin:0;padding:15px 15px 15px 15px;color:#000000;"><a style="font-family:\'-apple-system\', BlinkMacSystemFont, \'Segoe UI\', Roboto, Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\', \'Segoe UI Symbol\';color:#fff;text-decoration:none;background-color:#0a1e46;border-bottom:8px solid #0a1e46;border-left:18px solid #0a1e46;border-right:18px solid #0a1e46;border-top:8px solid #0a1e46;" href="' . $dashboard_url . '">Log in</a></div>';
                 $reset_password = '<div style="color:#757575;font-family:&quot;Roboto&quot;,OpenSans,&quot;OpenSans&quot;,Arial,sans-serif;font-size:15px;font-weight:300;line-height:4px;margin:0;padding:0 30px 25px 25px;color:#000000;"><a style="font-family:\'-apple-system\', BlinkMacSystemFont, \'Segoe UI\', Roboto, Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\', \'Segoe UI Symbol\';color:#fff;text-decoration:none;background-color:#0a1e46;border-bottom:8px solid #0a1e46;border-left:18px solid #0a1e46;border-right:18px solid #0a1e46;border-top:8px solid #0a1e46;" href="' . str_replace('https://', '', URL::to('/reset-forgot-password/' . $token)) . '">Reset Password</a></div>';
             }
             $replacements[] = array(
@@ -285,8 +287,10 @@ if (!function_exists('sendTemplatemail')) {
                     "@booking_start_at" =>  formatDateTime($bookingData->booking_start_at) ?? '',
                     "@booking_end_at" =>  formatDateTime($bookingData->booking_end_at) ?? '',
                     "@booking_date" =>  formatDate($bookingData->booking_start_at) ?? '',
+                    "@booking_company"=> $bookingData->company ? $bookingData->company->name :"",
                     "@booking_location" =>  $location ?? '',
                     "@booking_number" =>  $bookingData->booking_number ?? '',
+                    "@booking_provider_count" =>  $bookingData->provider_count ?? '',
                     "@booking_duration" =>  Carbon::parse($bookingData->booking_end_at)->diffAsCarbonInterval(Carbon::parse($bookingData->booking_start_at))->forHumans() ?? '',
                     "@payment_for_provider" => formatPayment($payment_for_provider) ?? '',
                     "@email_provider" => $userData->email ?? '',
@@ -328,6 +332,9 @@ if (!function_exists('sendTemplatemail')) {
                     "@private_notes" => $bookingData->private_notes ?? '',
                     "@booking_customer_notes" => $bookingData->customer_notes ?? '',
                     "@provider_notes" => $bookingData->provider_notes ?? '',
+
+                    "@button_login_page" => $login_button ?? '',
+
 
 
 
