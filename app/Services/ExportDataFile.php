@@ -550,25 +550,25 @@ class ExportDataFile
             'Number of Providers',
             'Time Zone',
             'Booking Start Date (dd/mm/Y)',
-            'Booking Start Hour (24h)',
-            'Booking Start Min',
+            'Booking Start Time (23:32)',
             'Booking End Date (dd/mm/Y)',
-            'Booking End Hour (24h)',
-            'Booking End Min',
+            'Booking End Time (23:32)',
+            'Status',
         ];
 
         // $languageValues = SetupValue::where('setup_id', 1)->pluck('setup_value_label')->toArray();
-        $timezoneValues = SetupValue::where('setup_id', 4)->pluck('setup_value_label')->all();
+        // $timezoneValues = SetupValue::where('setup_id', 4)->pluck('setup_value_label')->all();
         // $genderValues = SetupValue::where('setup_id', 2)->pluck('setup_value_label')->toArray();
         // $ethnicityValues = SetupValue::where('setup_id', 3)->pluck('setup_value_label')->toArray();
         // $companies = Company::where('status', '1')->orderBy('name')->pluck('name')->toArray();
         $serviceType = ['in_person', 'virtual', 'phone', 'tele-conference'];
+        $statuses = ["Cancelled", "Completed", "Draft", "Live", "Paid"];
 
         $rows = [
             [
                 '', '', '', '', '', '',
                 '', '', '', '', '', '', '',
-                '', '', '', ''
+                '', '', ''
             ]
         ];
 
@@ -603,10 +603,10 @@ class ExportDataFile
         }
 
         // set the Date column format to date
-        $sheet->getStyle('M:M')->getNumberFormat()->setFormatCode('dd/mmm/yyyy');
+        $sheet->getStyle('L:L')->getNumberFormat()->setFormatCode('dd/mmm/yyyy');
 
         // add data validation and date picker to the DOB column
-        $validation = $sheet->getCell('M2')->getDataValidation();
+        $validation = $sheet->getCell('L2')->getDataValidation();
         $validation->setType(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::TYPE_CUSTOM);
         $validation->setErrorStyle(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::STYLE_STOP);
         $validation->setAllowBlank(true);
@@ -625,9 +625,42 @@ class ExportDataFile
         }
 
 
+        $sheet->getStyle('K2')->getNumberFormat()->setFormatCode('[HH]:MM');
+        // add data validation and date picker to the DOB column
+        $validation = $sheet->getCell('K2')->getDataValidation();
+        $validation->setType(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::TYPE_CUSTOM);
+        $validation->setErrorStyle(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::STYLE_STOP);
+        $validation->setAllowBlank(true);
+        $validation->setShowInputMessage(true);
+        $validation->setShowErrorMessage(true);
+        $validation->setShowDropDown(true);
+        $validation->setErrorTitle('Input error');
+        $validation->setError('Value is not a valid tome.For example 06:30');
+        $validation->setPromptTitle('Pick a Time');
+        $validation->setPrompt('Please set time in 24 hour format.');
+        // $validation->setFormula1('DATE(1900,1,1)');
+        // $validation->setFormula2('DATE(9999,12,31)');
+
+        $sheet->getStyle('M2')->getNumberFormat()->setFormatCode('[HH]:MM');
+        // add data validation and date picker to the DOB column
+        $validation = $sheet->getCell('M2')->getDataValidation();
+        $validation->setType(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::TYPE_TIME);
+        $validation->setErrorStyle(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::STYLE_STOP);
+        $validation->setAllowBlank(true);
+        $validation->setShowInputMessage(true);
+        $validation->setShowErrorMessage(true);
+        $validation->setShowDropDown(true);
+        $validation->setErrorTitle('Input error');
+        $validation->setError('Value is not a valid tome.For example 06:30');
+        $validation->setPromptTitle('Pick a Time');
+        $validation->setPrompt('Please set time in 24 hour format.');
+        // $validation->setFormula1('DATE(1900,1,1)');
+        // $validation->setFormula2('DATE(9999,12,31)');
+
         $excelRows = [
             // 'I' => $timezoneValues,
             'G' => $serviceType,
+            'N' => $statuses
         ];
         foreach ($excelRows as $key => $valueArr) {
             for ($i = 2; $i < 101; $i++) {
@@ -682,11 +715,10 @@ class ExportDataFile
             'Number of Providers',
             'Time Zone',
             'Booking Start Date (dd/mm/Y)',
-            'Booking Start Hour (24h)',
-            'Booking Start Min',
+            'Booking Start Time (15:25)',
             'Booking End Date (dd/mm/Y)',
-            'Booking End Hour (24h)',
-            'Booking End Min',
+            'Booking End Time (15:25)',
+            'Status',
 
         ];
 
@@ -695,7 +727,7 @@ class ExportDataFile
 
             foreach ($bookings as $booking) {
 
-                $row = ['--', '--', '--', '--', '--', '--', '--', '--', '--', '--', '--', '--'];
+                $row = ['--', '--', '--', '--', '--', '--', '--', '--', '--', '--', '--'];
                 $row[0] = $booking->booking_number;
                 $row[1] = $booking->company ? $booking->company->name : '';
                 $row[2] = $booking->customer ? $booking->customer->name : '';
@@ -709,13 +741,27 @@ class ExportDataFile
                 $row[8] = $service ? ($service->pivot->time_zone ? (isset($timezones[$service->pivot->time_zone]) ? $timezones[$service->pivot->time_zone] : $service->pivot->time_zone) : '') : '';
                 $start_time = Carbon::parse($service ? ($service->pivot->start_time ? $service->pivot->start_time : '') : $booking->booking_start_at);
                 $row[9] = $start_time->format('m/d/Y');
-                $row[10] = $start_time->format('H');
-                $row[11] = $start_time->format('i');
+                $row[10] = $start_time->format('H:i');
                 $end_time =
                     Carbon::parse($service ? ($service->pivot->end_time ? $service->pivot->end_time : '') : $booking->booking_end_at);
-                $row[12] = $end_time->format('m/d/Y');
-                $row[13] = $end_time->format('H');
-                $row[14] = $end_time->format('i');
+                $row[11] = $end_time->format('m/d/Y');
+                $row[12] = $end_time->format('H:i');
+                if ($booking->is_closed == 1) {
+                    $code = 'Completed';
+                } elseif ($booking->is_closed == 2) {
+                    $code = 'Cancelled';
+                } elseif ($booking->is_paid == 1) {
+                    $code = 'Paid';
+                } else {
+                    if ($booking->type == 1)
+                        $code = 'Draft';
+                    else
+                        $code = 'Live';
+                }
+
+
+
+                $row[13] = $code;
                 $rows[] = $row;
             }
             $fileName = 'bookings_export.xlsx';
