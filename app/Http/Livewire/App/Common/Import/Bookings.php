@@ -18,7 +18,7 @@ class Bookings extends Component
 {
     use WithFileUploads;
 
-    public $companies, $industries, $accommodations, $services, $bookings, $serviceType = [], $timezones = [], $requesters = [];
+    public $companies, $industries, $accommodations, $services, $bookings, $statuses, $serviceType = [], $timezones = [], $requesters = [];
     public $file = null;
 
     public $warningMessage = '', $errorMessage = '';
@@ -47,6 +47,8 @@ class Bookings extends Component
             ->select('users.id', 'users.name', 'company_name')->get();
         $this->requesters = $req->groupBy('company_name')->toArray();
         $this->services = $services->groupBy('accommodations_id')->toArray();
+        $this->statuses = ["Cancelled", "Completed", "Draft", "Live", "Paid"];
+
     }
 
     public function updatedFile()
@@ -63,18 +65,6 @@ class Bookings extends Component
         // Initialize a counter variable
         $i = 0;
 
-
-        // 'Booking Number',
-        // 'Company',
-        // 'Requester',
-        // 'Industry',
-        // 'Accommodation',
-        // 'Service',
-        // 'Service Type ',
-        // 'Number of Providers',
-        // 'Time Zone',
-        // 'Booking Start Date',
-        // 'Booking End Date',
         foreach ($rows as $row) {
             if ($i > 0) {
                 if ($row[0] != '') {
@@ -125,14 +115,44 @@ class Bookings extends Component
                         // Convert the Excel serialized date value to a DateTime object
                         $start_date_Object = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($excelDate);
 
-                        // // Format the DateTime object as 'd/m/Y'
+                        // Format the DateTime object as 'd/m/Y'
                         $booking['booking_start_date'] = $start_date_Object->format('m/d/Y');
-                        $booking['start_hour'] = $row[10];
-                        $booking['start_min'] = $row[11];
+                        
+                        // formating
+                        if (is_numeric($row[10])) {
+                            // Convert the timestamp to an Excel serialized date value
+                            //   $excelDate = \PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel($row[3]);
+                            $excelDate = $row[10];
+                        } else {
+                            // Convert the string date to an Excel serialized date value
+                            $excelDate = \PhpOffice\PhpSpreadsheet\Shared\Date::stringToExcel($row[10]);
+                        }
+
+                        // Convert the Excel serialized date value to a DateTime object
+                        $start_time_Object = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($excelDate);
+
+                        $booking['start_hour'] = $start_time_Object->format('H');
+                        $booking['start_min'] = $start_time_Object->format('i');
 
 
 
                         //dob formating
+                        if (is_numeric($row[11])) {
+                            // Convert the timestamp to an Excel serialized date value
+                            //   $excelDate = \PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel($row[3]);
+                            $excelDate = $row[11];
+                        } else {
+                            // Convert the string date to an Excel serialized date value
+                            $excelDate = \PhpOffice\PhpSpreadsheet\Shared\Date::stringToExcel($row[11]);
+                        }
+
+                        // Convert the Excel serialized date value to a DateTime object
+                        $end_date_Object = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($excelDate);
+
+                        // Format the DateTime object as 'd/m/Y'
+                        $booking['booking_end_date'] = $end_date_Object->format('m/d/Y');
+
+                        // formating
                         if (is_numeric($row[12])) {
                             // Convert the timestamp to an Excel serialized date value
                             //   $excelDate = \PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel($row[3]);
@@ -143,12 +163,13 @@ class Bookings extends Component
                         }
 
                         // Convert the Excel serialized date value to a DateTime object
-                        $end_date_Object = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($excelDate);
+                        $end_time_Object = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($excelDate);
 
-                        // // Format the DateTime object as 'd/m/Y'
-                        $booking['booking_end_date'] = $end_date_Object->format('m/d/Y');
-                        $booking['end_hour'] = $row[13];
-                        $booking['end_min'] = $row[14];
+                        $booking['end_hour'] = $end_time_Object->format('H');
+                        $booking['end_min'] = $end_time_Object->format('H');
+
+                        $booking['status'] = $row[13];
+
 
                         $this->bookings[] = $booking;
                     } catch (\ErrorException $e) {
