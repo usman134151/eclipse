@@ -88,7 +88,7 @@ if (!function_exists('userHasPermission')) {
 }
 if (!function_exists('getTemplate')) {
 
-    function getTemplate($trigger, $roleId, $type)
+    function getTemplate($trigger, $type)
     {
         if ($type == "email_template")
             $notif_type = 1;

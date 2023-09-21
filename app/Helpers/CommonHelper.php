@@ -61,8 +61,7 @@ if (!function_exists('sendMail')) {
 if (!function_exists('sendWelcomeMail')) {
   function sendWelcomeMail($user)
   {
-    $user_role_id =  $user->roles->first()->id; //fetch what ever is the first assigned role
-    $templateId = getTemplate('Account: Created', $user_role_id, 'email_template');
+    $templateId = getTemplate('Account: Created', 'email_template');
 
     $params = [
       'email'       =>  $user->email, //
