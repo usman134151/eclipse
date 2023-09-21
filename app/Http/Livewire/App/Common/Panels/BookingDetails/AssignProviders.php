@@ -273,7 +273,7 @@ class AssignProviders extends Component
                             'user'        =>  $user->name,
                             'user_id'     =>  $user->id,
                             'templateId'  =>  $templateId,
-                            'item_id'     => $this->booking_id,
+                            'booking_id'     => $this->booking_id,
                             'mail_type'   => 'booking',
                         ];
 
@@ -324,7 +324,7 @@ class AssignProviders extends Component
                             'user_id'     =>  $user->id,
                             'sms_template' =>  isset($sms_templateId) ? $sms_templateId : '',
                             'templateId'  =>  $templateId,
-                            'item_id'     =>  $this->booking_id,
+                            'booking_id'     =>  $this->booking_id,
                             'mail_type'   => 'booking',
                             'provider_id' => $user->id,
                             'phone'       =>  isset($user->users_detail) ? clean($user->users_detail->phone) : "",

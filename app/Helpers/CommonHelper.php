@@ -1,8 +1,10 @@
 <?php
+
 /***
  *  Dev :  Sakhawat Kamran
  *  Date: 21-02-2023
  */
+
 use App\Models\Tenant\User;
 use App\Models\Tenant\LoginAddress;
 use Illuminate\Support\Facades\Log;
@@ -14,14 +16,13 @@ use Illuminate\Support\Facades\Mail;
 ##### API Related Helpers #####
 
 /**
-*  Descrip: This function is used for all api dete in response  
-*/
+ *  Descrip: This function is used for all api dete in response  
+ */
 
-if(!function_exists('api_date_formate'))
-{
-  function api_date_formate( $date  , $formate = null )
+if (!function_exists('api_date_formate')) {
+  function api_date_formate($date, $formate = null)
   {
-    return strtotime($date);      
+    return strtotime($date);
   }
 }
 
@@ -34,42 +35,56 @@ if(!function_exists('api_date_formate'))
  * @return boolean
  */
 
-if(!function_exists('sendMail'))
-{
+if (!function_exists('sendMail')) {
   function sendMail($to, $subject, $data, $mailview, $attachment = [], $dispathType = 'dispatch',  $delaymin = 0)
   {
     try {
-            $response = null;
-            if($dispathType == 'dispatch'){
-                $response = sendEmail::dispatch($to, $subject, $data, $mailview)->onQueue('emails');
-            }else if($dispathType == 'dispatchSync'){
-                $response = sendEmail::dispatchSync($to, $subject, $data, $mailview);
-            }else if($dispathType == 'delay'){
-                $response = sendEmail::dispatch($to, $subject, $data, $mailview)->delay(now()->addMinutes($delaymin))->onQueue('emails');
-            }
-            if ($response) {
-              return true;
-            } else {
-              return false;
-            }
+      $response = null;
+      if ($dispathType == 'dispatch') {
+        $response = sendEmail::dispatch($to, $subject, $data, $mailview)->onQueue('emails');
+      } else if ($dispathType == 'dispatchSync') {
+        $response = sendEmail::dispatchSync($to, $subject, $data, $mailview);
+      } else if ($dispathType == 'delay') {
+        $response = sendEmail::dispatch($to, $subject, $data, $mailview)->delay(now()->addMinutes($delaymin))->onQueue('emails');
+      }
+      if ($response) {
+        return true;
+      } else {
+        return false;
+      }
     } catch (\Exception $e) {
       Log::error($e->getMessage());
     }
   }
 }
 
-if(!function_exists('sendWelcomeMail'))
-{
+if (!function_exists('sendWelcomeMail')) {
   function sendWelcomeMail($user)
   {
-    $company = isset($user->company)? $user->company->name:'';
-    $user->subject = $company.' Portal - Welcome';
-    $user['domain'] = url('/');
+    $user_role_id =  $user->roles->first()->id; //fetch what ever is the first assigned role
+    $templateId = getTemplate('Account: Created', $user_role_id, 'email_template');
 
-    // $email = new createEmail($user->subject, $user, 'tenant.emails.welcome_email');
-    // Mail::to('emos@email.com')->send($email);
-    sendMail($user->email, $user->subject, $user, 'tenant.emails.welcome_email', [],'dispatch');
+    $params = [
+      'email'       =>  $user->email, //
+      'user'        =>  $user->name,
+      'user_id'     =>  $user->id,
+      'templateId'  =>  $templateId,
+      'item_id'     => null,
+      'mail_type'   => 'account',
+      'templateName' => 'Account Created',
+      'bookingData' => [],
+    ];
+
+    sendTemplatemail($params);
   }
+
+  // $company = isset($user->company)? $user->company->name:'';
+  // $user->subject = $company.' Portal - Welcome';
+  // $user['domain'] = url('/');
+
+  // // $email = new createEmail($user->subject, $user, 'tenant.emails.welcome_email');
+  // // Mail::to('emos@email.com')->send($email);
+  // sendMail($user->email, $user->subject, $user, 'tenant.emails.welcome_email', [],'dispatch');
 }
 /**
  * send sms generic method
@@ -78,18 +93,17 @@ if(!function_exists('sendWelcomeMail'))
  * @return boolean
  */
 
-if(!function_exists('sendSms'))
-{
+if (!function_exists('sendSms')) {
   function sendSms($phone, $message, $dispathType,  $delaymin = 0)
   {
     try {
-            $response = null;
-            if($dispathType == 'dispatch'){
-                $response = sendSms::dispatch($phone, $message)->onQueue('sms');
-            }else if($dispathType == 'delay'){
-                $response = sendSms::dispatch($phone, $message)->delay(now()->addMinutes($delaymin))->onQueue('sms');
-            }
-            if ($response) {
+      $response = null;
+      if ($dispathType == 'dispatch') {
+        $response = sendSms::dispatch($phone, $message)->onQueue('sms');
+      } else if ($dispathType == 'delay') {
+        $response = sendSms::dispatch($phone, $message)->delay(now()->addMinutes($delaymin))->onQueue('sms');
+      }
+      if ($response) {
         return true;
       } else {
         return false;
@@ -107,15 +121,14 @@ if(!function_exists('sendSms'))
  * @return boolean
  */
 
-if(!function_exists('checkUserSavedBrowser'))
-{  
+if (!function_exists('checkUserSavedBrowser')) {
   function checkUserSavedBrowser()
   {
     $browser = get_browser_name($_SERVER['HTTP_USER_AGENT']);
     $ipAdd   = get_ip_address();
     $isLogin = LoginAddress::where('user_id', auth()->user()->id)->where(function ($q) use ($browser, $ipAdd) {
       $q->where('browser', $browser)
-      ->where('ip_address', $ipAdd);
+        ->where('ip_address', $ipAdd);
     })->count();
     return $isLogin;
   }
@@ -128,8 +141,7 @@ if(!function_exists('checkUserSavedBrowser'))
  * @return browser name
  */
 
-if(!function_exists('get_browser_name'))
-{   
+if (!function_exists('get_browser_name')) {
   function get_browser_name($user_agent)
   {
     $t = strtolower($user_agent);
@@ -151,8 +163,7 @@ if(!function_exists('get_browser_name'))
  * @return ip_address
  */
 
-if(!function_exists('get_ip_address'))
-{   
+if (!function_exists('get_ip_address')) {
   function get_ip_address()
   {
 
@@ -179,16 +190,13 @@ if(!function_exists('get_ip_address'))
  * @return ip_address
  */
 
- if(!function_exists('getAdmin'))
- {
-   function getAdmin()
-   {
-       try{
-       $user = User::find(1);
-       return $user;
-     } catch (\Exception $e) {
- 
-     }
-   } 
- }  
- 
+if (!function_exists('getAdmin')) {
+  function getAdmin()
+  {
+    try {
+      $user = User::find(1);
+      return $user;
+    } catch (\Exception $e) {
+    }
+  }
+}
