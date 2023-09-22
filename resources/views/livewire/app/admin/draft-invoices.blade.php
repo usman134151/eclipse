@@ -6,131 +6,137 @@
             </div>
         </div>
     </div>
-    <div class="content-header row">
-        <div class="content-header-left col-12 mb-2">
-            <div class="row breadcrumbs-top">
-                <div class="col-12">
-                    <h1 class="content-header-title float-start mb-0">
-                        Invoice Generator
-                    </h1>
-                    <div class="breadcrumb-wrapper">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item">
-                                <a href="/" title="Go to Dashboard" aria-label="Go to Dashboard">
-                                    <svg aria-label="Home" width="22" height="23" viewBox="0 0 22 23">
-                                        <use xlink:href="/css/common-icons.svg#home"></use>
-                                    </svg>
-                                </a>
-                            </li>
-                            <li class="breadcrumb-item">
-                                <a href="#">
-                                    Customers
-                                </a>
-                            </li>
-                            <li class="breadcrumb-item">
-                                Invoice Generator
-                            </li>
-                        </ol>
+    <div class="">
+        <div class="content-header row">
+            <div class="content-header-left col-12 mb-2">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h1 class="content-header-title float-start mb-0">
+                            Invoice Generator
+                        </h1>
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/" title="Go to Dashboard" aria-label="Go to Dashboard">
+                                        <svg aria-label="Home" width="22" height="23" viewBox="0 0 22 23">
+                                            <use xlink:href="/css/common-icons.svg#home"></use>
+                                        </svg>
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="#">
+                                        Customers
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    Invoice Generator
+                                </li>
+                            </ol>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="content-body">
-        <section id="multiple-column-form">
-            <div class="card">
-                <div class="card-body">
-                    <div class="mb-4">
-                        <p>
-                            Here you will manage your Providers' payment based on the assignments they work. Select the
-                            bookings you wish to include on the remittance and when remittances are ready, issue one or
-                            all remittances to the respective Providers. Once issued, you can manage remittance payments
-                            from "Payment Manager."
-                        </p>
-                        <!-- BEGIN: Filters -->
-                        <div class="bg-muted rounded p-4 mb-1">
-                            <div class="d-lg-flex gap-5 align-items-center mb-4">
-                                <div class="mb-4 mb-lg-0">
-                                    <label class="form-label-sm">Search</label>
-                                    <div class="d-flex gap-2 align-items-center">
-                                        <div class="position-relative">
-                                            <input type="text" class="form-control form-control-md is-search"
-                                                id="search-column" aria-label="Search" aria-describedby="search"
-                                                placeholder="Provider Name or Email">
-                                            <svg aria-label="Cancel" class="icon-search position-absolute"
-                                                width="1024" height="1024" viewBox="0 0 1024 1024"fill="none"
+        <div class="content-body">
+            <section id="multiple-column-form">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <p>
+                                Here you will manage your Providers' payment based on the assignments they work. Select
+                                the
+                                bookings you wish to include on the remittance and when remittances are ready, issue one
+                                or
+                                all remittances to the respective Providers. Once issued, you can manage remittance
+                                payments
+                                from "Payment Manager."
+                            </p>
+                            <!-- BEGIN: Filters -->
+                            <div class="bg-muted rounded p-4 mb-1">
+                                <div class="d-lg-flex gap-5 align-items-center mb-4">
+                                    <div class="mb-4 mb-lg-0">
+                                        <label class="form-label-sm">Search</label>
+                                        <div class="d-flex gap-2 align-items-center">
+                                            <div class="position-relative">
+                                                <input type="text" class="form-control form-control-md is-search"
+                                                    id="search-column" aria-label="Search" aria-describedby="search"
+                                                    placeholder="Provider Name or Email">
+                                                <svg aria-label="Cancel" class="icon-search position-absolute"
+                                                    width="1024" height="1024" viewBox="0 0 1024 1024"fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <use xlink:href="/css/common-icons.svg#cancel"></use>
+                                                </svg>
+                                            </div>
+                                            <button aria-label="Search"
+                                                class="btn btn-secondary rounded btn-sm btn-hs-icon">
+                                                <svg aria-label="Search" class="mt-2" width="20" height="28"
+                                                    viewBox="0 0 20 28"fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <use xlink:href="/css/common-icons.svg#search"></use>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="mb-4 mb-lg-0">
+                                        <label class="form-label-sm">Date Range</label>
+                                        <div class="d-md-flex gap-2">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="dateRange"
+                                                    id="issued">
+                                                <label class="form-check-label-sm" for="issued">
+                                                    Issued
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="dateRange"
+                                                    id="scheduledPayment">
+                                                <label class="form-check-label-sm" for="scheduledPayment">
+                                                    Scheduled Payment
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="dateRange"
+                                                    id="piad">
+                                                <label class="form-check-label-sm" for="piad">
+                                                    Paid
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="mb-4 mb-lg-0 position-relative has-date-icon-left-side">
+                                            <svg aria-label="Select Date" class="icon-date md left cursor-pointer"
+                                                width="20" height="20" viewBox="0 0 20 20"fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <use xlink:href="/css/common-icons.svg#cancel"></use>
+                                                <use xlink:href="/css/common-icons.svg#input-calender"></use>
                                             </svg>
-                                        </div>
-                                        <button aria-label="Search"
-                                            class="btn btn-secondary rounded btn-sm btn-hs-icon">
-                                            <svg aria-label="Search" class="mt-2" width="20" height="28"
-                                                viewBox="0 0 20 28"fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <use xlink:href="/css/common-icons.svg#search"></use>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="mb-4 mb-lg-0">
-                                    <label class="form-label-sm">Date Range</label>
-                                    <div class="d-md-flex gap-2">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="dateRange"
-                                                id="issued">
-                                            <label class="form-check-label-sm" for="issued">
-                                                Issued
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="dateRange"
-                                                id="scheduledPayment">
-                                            <label class="form-check-label-sm" for="scheduledPayment">
-                                                Scheduled Payment
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="dateRange"
-                                                id="piad">
-                                            <label class="form-check-label-sm" for="piad">
-                                                Paid
-                                            </label>
+                                            <input type="" class="form-control form-control-md js-single-date"
+                                                placeholder="MM/DD/YYYY" name="selectDate" aria-label="Select Date">
                                         </div>
                                     </div>
-                                    <div class="mb-4 mb-lg-0 position-relative has-date-icon-left-side">
-                                        <svg aria-label="Select Date" class="icon-date md left cursor-pointer"
-                                            width="20" height="20" viewBox="0 0 20 20"fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="/css/common-icons.svg#input-calender"></use>
-                                        </svg>
-                                        <input type="" class="form-control form-control-md js-single-date"
-                                            placeholder="MM/DD/YYYY" name="selectDate" aria-label="Select Date">
+                                    <div class="mb-4 mb-lg-0">
+                                        <label class="form-label-sm" for="payment-status-column">
+                                            Payment Status
+                                        </label>
+                                        <select class="select2 form-select form-select-md" id="payment-status-column">
+                                            <option>Pending</option>
+                                        </select>
                                     </div>
-                                </div>
-                                <div class="mb-4 mb-lg-0">
-                                    <label class="form-label-sm" for="payment-status-column">
-                                        Payment Status
-                                    </label>
-                                    <select class="select2 form-select form-select-md" id="payment-status-column">
-                                        <option>Pending</option>
-                                    </select>
-                                </div>
 
+                                </div>
+                                <x-advancefilters />
                             </div>
-                            <x-advancefilters />
-                        </div>
-                        <!-- END: Filters -->
+                            <!-- END: Filters -->
 
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="SelectAllProviders">
-                            <label class="form-check-label" for="SelectAllProviders">
-                                Select All Providers
-                            </label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value=""
+                                    id="SelectAllProviders">
+                                <label class="form-check-label" for="SelectAllProviders">
+                                    Select All Providers
+                                </label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-2 gap-2">
-                        <div class="d-inline-flex align-items-center gap-4">
-                            {{-- <div class="d-inline-flex align-items-center gap-4">
+                        <div class="d-flex flex-column flex-md-row justify-content-between mb-2 gap-2">
+                            <div class="d-inline-flex align-items-center gap-4">
+                                {{-- <div class="d-inline-flex align-items-center gap-4">
 								<label for="show_records" class="form-label-sm mb-0">
 								Show
 								</label>
@@ -141,20 +147,20 @@
 								<option>25</option>
 								</select>
 							</div>  --}}
+                            </div>
+                            <a @click="createInvoices = true" href="#" aria-label="Create Invoice"
+                                class="btn btn-primary btn-has-icon rounded">
+                                <svg class="mx-2" aria-label="Create Invoice" width="20" height="20"
+                                    viewBox="0 0 20 20">
+                                    <use xlink:href="/css/common-icons.svg#plus">
+                                    </use>
+                                </svg>
+                                <span>Create Invoice</span>
+                            </a>
                         </div>
-                        <a @click="createInvoices = true" href="#" aria-label="Create Invoice"
-                            class="btn btn-primary btn-has-icon rounded">
-                            <svg class="mx-2" aria-label="Create Invoice" width="20" height="20"
-                                viewBox="0 0 20 20">
-                                <use xlink:href="/css/common-icons.svg#plus">
-                                </use>
-                            </svg>
-                            <span>Create Invoice</span>
-                        </a>
-                    </div>
-                    @livewire('app.common.lists.draft-invoices', [], key(Str::random(10)))
+                        @livewire('app.common.lists.draft-invoices', [], key(Str::random(10)))
 
-                    {{-- <div class="row" id="table-hover-row"> 
+                        {{-- <div class="row" id="table-hover-row"> 
 						<div class="col-12">
 						<div class="table-responsive border mb-4">
 							<table id="" class="table table-fs-md table-hover" aria-label="">
@@ -267,42 +273,45 @@
 						</ul>
 						</nav>
 						</div> --}}
-                    {{-- Icon Legend Bar - Start --}}
-                    <div class="d-flex actions gap-3 justify-content-end mb-2">
-                        <div class="d-flex gap-2 align-items-center">
-                            <a href="#" title="Bookings" aria-label="Bookings"
-                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                <svg aria-label="Bookings" class="fill-stroke" width="12" height="15"
-                                    viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <use xlink:href="/css/common-icons.svg#bookings"></use>
-                                </svg>
-                            </a>
-                            <span class="text-sm">
-                                Booking
-                            </span>
+                        {{-- Icon Legend Bar - Start --}}
+                        <div class="d-flex actions gap-3 justify-content-end mb-2">
+                            <div class="d-flex gap-2 align-items-center">
+                                <a href="#" title="Bookings" aria-label="Bookings"
+                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                    <svg aria-label="Bookings" class="fill-stroke" width="12" height="15"
+                                        viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <use xlink:href="/css/common-icons.svg#bookings"></use>
+                                    </svg>
+                                </a>
+                                <span class="text-sm">
+                                    Booking
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                    {{-- Icon Legend Bar - End --}}
-                    <div class="bg-muted py-2 mb-4">
-                        <div class="row justify-content-start">
-                            <div class="col-lg-4">
-                                <div class="d-flex justify-content-start">
-                                    <div class="fw-bold text-sm mx-5">
-                                        Selected Remittance Total
-                                    </div>
-                                    <div class="fw-bold text-sm text-lg-end mx-3">
-                                        $675
+                        {{-- Icon Legend Bar - End --}}
+                        <div class="bg-muted py-2 mb-4">
+                            <div class="row justify-content-start">
+                                <div class="col-lg-4">
+                                    <div class="d-flex justify-content-start">
+                                        <div class="fw-bold text-sm mx-5">
+                                            Selected Remittance Total
+                                        </div>
+                                        <div class="fw-bold text-sm text-lg-end mx-3">
+                                            $675
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-        </section>
-    </div>
+            </section>
+        </div>
 
-    @include('panels.invoices.create-invoice')
-    @include('panels.invoices.invoice-generator-bookings')
+        @include('panels.invoices.create-invoice')
+        @include('panels.invoices.invoice-generator-bookings')
+    </div>
+</div>
+@push('scripts')
     <script>
         function updateVal(attrName, val) {
 
@@ -310,4 +319,4 @@
 
         }
     </script>
-</div>
+@endpush

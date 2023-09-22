@@ -26,6 +26,8 @@ class DraftInvoices extends Component
             $this->exclude_notif = $exclude_notif;
 
             $this->inv_counter = 0;
+            $this->dispatchBrowserEvent('refreshSelects');
+            $this->dispatchBrowserEvent('refreshSelects2');
         }
     }
     public function openCompanyPendingBookings($company_id)

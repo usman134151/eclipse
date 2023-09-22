@@ -61,6 +61,12 @@
             @else
                 <small>No Billing Managers assigned for the selected bookings</small>
             @endif
+            
+                @error('invoice.billing_manager_id')
+                    <span class="d-inline-block invalid-feedback mt-2">
+                        {{ $message }}
+                    </span>
+                @enderror
         </div>
     </div>
     <div class="col-lg-12 mb-4">
@@ -139,6 +145,12 @@
                 @else
                     <small>No billing address available for this company.</small>
                 @endif
+                
+                @error('invoice.billing_address_id')
+                    <span class="d-inline-block invalid-feedback mt-2">
+                        {{ $message }}
+                    </span>
+                @enderror
             </div>
         </div>
     </div>
@@ -150,6 +162,12 @@
             </label>
             <input type="text" id="invoice-number" wire:model.defer="invoice.invoice_number" class="form-control"
                 name="invoice-number" placeholder="DOR22-003" />
+                
+                @error('invoice.invoice_number')
+                    <span class="d-inline-block invalid-feedback mt-2">
+                        {{ $message }}
+                    </span>
+                @enderror
         </div>
     </div>
 
@@ -158,7 +176,8 @@
             <label class="form-label" for="po-number">
                 PO Number
             </label>
-            <input type="text" id="po-number" class="form-control" name="po-number" placeholder="Enter PO Number" />
+            <input type="text" id="po-number" class="form-control" name="po-number"
+                wire:model.defer="invoice.po_number" placeholder="Enter PO Number" />
             <div class="mt-2">
                 <input class="form-check-input" disabled type="checkbox" value="apply-to-future-invoices"
                     id="apply-to-future-invoices">
@@ -168,6 +187,7 @@
 
                 </label>
             </div>
+            
         </div>
     </div>
 
@@ -186,7 +206,13 @@
                             d="M18.75 2.28511L13.7456 2.28513V1.03921C13.7456 0.693815 13.4659 0.414062 13.1206 0.414062C12.7753 0.414062 12.4956 0.693815 12.4956 1.03921V2.28481H7.49563V1.03921C7.49563 0.693815 7.21594 0.414062 6.87063 0.414062C6.52531 0.414062 6.24563 0.693815 6.24563 1.03921V2.28481H1.25C0.559687 2.28481 0 2.84463 0 3.53511V19.1638C0 19.8542 0.559687 20.4141 1.25 20.4141H18.75C19.4403 20.4141 20 19.8542 20 19.1638V3.53511C20 2.84492 19.4403 2.28511 18.75 2.28511ZM18.75 19.1638H1.25V3.53511H6.24563V4.16494C6.24563 4.51032 6.52531 4.79009 6.87063 4.79009C7.21594 4.79009 7.49563 4.51032 7.49563 4.16494V3.53542H12.4956V4.16525C12.4956 4.51065 12.7753 4.7904 13.1206 4.7904C13.4659 4.7904 13.7456 4.51065 13.7456 4.16525V3.53542H18.75V19.1638ZM14.375 10.412H15.625C15.97 10.412 16.25 10.1319 16.25 9.78686V8.53657C16.25 8.19149 15.97 7.91142 15.625 7.91142H14.375C14.03 7.91142 13.75 8.19149 13.75 8.53657V9.78686C13.75 10.1319 14.03 10.412 14.375 10.412ZM14.375 15.4129H15.625C15.97 15.4129 16.25 15.1331 16.25 14.7877V13.5374C16.25 13.1924 15.97 12.9123 15.625 12.9123H14.375C14.03 12.9123 13.75 13.1924 13.75 13.5374V14.7877C13.75 15.1334 14.03 15.4129 14.375 15.4129ZM10.625 12.9123H9.375C9.03 12.9123 8.75 13.1924 8.75 13.5374V14.7877C8.75 15.1331 9.03 15.4129 9.375 15.4129H10.625C10.97 15.4129 11.25 15.1331 11.25 14.7877V13.5374C11.25 13.1927 10.97 12.9123 10.625 12.9123ZM10.625 7.91142H9.375C9.03 7.91142 8.75 8.19149 8.75 8.53657V9.78686C8.75 10.1319 9.03 10.412 9.375 10.412H10.625C10.97 10.412 11.25 10.1319 11.25 9.78686V8.53657C11.25 8.19118 10.97 7.91142 10.625 7.91142ZM5.625 7.91142H4.375C4.03 7.91142 3.75 8.19149 3.75 8.53657V9.78686C3.75 10.1319 4.03 10.412 4.375 10.412H5.625C5.97 10.412 6.25 10.1319 6.25 9.78686V8.53657C6.25 8.19118 5.97 7.91142 5.625 7.91142ZM5.625 12.9123H4.375C4.03 12.9123 3.75 13.1924 3.75 13.5374V14.7877C3.75 15.1331 4.03 15.4129 4.375 15.4129H5.625C5.97 15.4129 6.25 15.1331 6.25 14.7877V13.5374C6.25 13.1927 5.97 12.9123 5.625 12.9123Z"
                             fill="black" />
                     </svg>
+                    @error('invoice.invoice_due_date')
+                    <span class="d-inline-block invalid-feedback mt-2">
+                        {{ $message }}
+                    </span>
+                @enderror
                 </div>
+                
             </div>
             <small>(coming soon)</small>
 
@@ -253,7 +279,8 @@
         </div>
         <div class="justify-content-center d-flex mb-2">
             <div class="form-check mx-auto">
-                <input disabled class="form-check-input" type="checkbox" value="" id="Exclude-Notification">
+                <input class="form-check-input" type="checkbox" wire:model.defer="exclude_notif"
+                    id="Exclude-Notification">
                 <label class="form-check-label" for="Exclude-Notification">
                     Exclude Notification
                 </label>
@@ -266,11 +293,11 @@
             <button type="submit" class="btn btn-primary rounded">
                 Preview Invoice
             </button>
-            <button type="submit" class="btn btn-primary rounded">
+            <button type="submit" class="btn btn-primary rounded" wire:click='createInvoice'>
                 Create
             </button>
         </div>
     </div>
-    {{-- removed for current phase
+    {{-- implement in  phase 2
     @include('modals.common.add-address') --}}
 </div>
