@@ -20,4 +20,9 @@ class Invoice extends Model
           'payment_reference', 'paid_on', 'supervisor_id', 'payment_method', 'supervisor_payment_status',
           'billing_manager_id','billing_address_id'
     ];
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class, 'company_id');
+    }
 }
