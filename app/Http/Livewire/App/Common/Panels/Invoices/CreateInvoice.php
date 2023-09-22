@@ -9,7 +9,8 @@ use Livewire\Component;
 
 class CreateInvoice extends Component
 {
-    public $showForm, $selectedBookingsIds=[], $managers,$addresses, $invoice=['billing_address_id'=>null, 'billing_manager_id'=>null];
+    public $showForm, $selectedBookingsIds=[], $managers,$addresses, $invoice=['billing_address_id'=>null, 'billing_manager_id'=>null],
+        $exclude_notif=false;
     protected $listeners = ['showList' => 'resetForm'];
 
     public function render()

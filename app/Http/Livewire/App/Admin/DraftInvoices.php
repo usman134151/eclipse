@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class DraftInvoices extends Component
 {
-    public $showForm, $company_id,$counter=0, $selectedBookingsIds=[],$inv_counter=0;
+    public $showForm, $company_id,$counter=0, $selectedBookingsIds=[],$inv_counter=0, $exclude_notif=false;
     protected $listeners = ['showList' => 'resetForm', 'openCompanyPendingBookings', 'openCreateInvoice'];
 
     public function render()
@@ -14,14 +14,17 @@ class DraftInvoices extends Component
         return view('livewire.app.admin.draft-invoices');
     }
 
-    public function openCreateInvoice($selectedBookingsIds){
+    public function openCreateInvoice($selectedBookingsIds, $exclude_notif=false){
 
         if ($this->inv_counter == 0) {
             $this->selectedBookingsIds = [];
-            $this->dispatchBrowserEvent('refresh-create-invoice', ['ids' => $selectedBookingsIds]);
+            $this->exclude_notif = $exclude_notif;
+            $this->dispatchBrowserEvent('refresh-create-invoice', ['ids' => $selectedBookingsIds, 'exclude_notif'=>$exclude_notif]);
             $this->inv_counter = 1;
         } else {
             $this->selectedBookingsIds = $selectedBookingsIds;
+            $this->exclude_notif = $exclude_notif;
+
             $this->inv_counter = 0;
         }
     }
