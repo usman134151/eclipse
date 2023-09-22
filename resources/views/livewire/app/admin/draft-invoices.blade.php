@@ -126,13 +126,13 @@
                             </div>
                             <!-- END: Filters -->
 
-                            <div class="form-check">
+                            {{-- <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value=""
                                     id="SelectAllProviders">
                                 <label class="form-check-label" for="SelectAllProviders">
                                     Select All Providers
                                 </label>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="d-flex flex-column flex-md-row justify-content-between mb-2 gap-2">
                             <div class="d-inline-flex align-items-center gap-4">
@@ -148,7 +148,7 @@
 								</select>
 							</div>  --}}
                             </div>
-                            <a @click="createInvoices = true" href="#" aria-label="Create Invoice"
+                            {{-- <a @click="createInvoices = true" href="#" aria-label="Create Invoice"
                                 class="btn btn-primary btn-has-icon rounded">
                                 <svg class="mx-2" aria-label="Create Invoice" width="20" height="20"
                                     viewBox="0 0 20 20">
@@ -156,7 +156,7 @@
                                     </use>
                                 </svg>
                                 <span>Create Invoice</span>
-                            </a>
+                            </a> --}}
                         </div>
                         @livewire('app.common.lists.draft-invoices', [], key(Str::random(10)))
 
