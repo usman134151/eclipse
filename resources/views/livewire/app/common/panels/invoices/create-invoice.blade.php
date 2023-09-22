@@ -287,13 +287,13 @@
             </div>
         </div>
         <div class="col-12 form-actions">
-            <button type="button" class="btn btn-outline-primary rounded">
+            <button type="button"  x-on:click="createInvoices = !createInvoices" class="btn btn-outline-primary rounded">
                 Cancel
             </button>
             <button type="submit" class="btn btn-primary rounded">
-                Preview Invoice
+                Preview Invoices
             </button>
-            <button type="submit" class="btn btn-primary rounded" wire:click='createInvoice'>
+            <button type="submit"  x-on:close-create-invoice.window="createInvoices = !createInvoices;invoiceGeneratorbookings=!invoiceGeneratorbookings" class="btn btn-primary rounded" wire:click='createInvoice'>
                 Create
             </button>
         </div>
