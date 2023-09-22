@@ -1118,6 +1118,7 @@ class Booknow extends Component
         }
 
         if($this->payment['override_amount']){
+            $this->payment['is_override']=1;
             $this->payment['total_amount']=$this->payment['override_amount'];
         }
         else{

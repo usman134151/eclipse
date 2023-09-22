@@ -792,7 +792,7 @@ class ExportDataFile
                 } elseif ($booking->is_paid == 1) {
                     $code = 'Paid';
                 } else {
-                    if ($booking->type == 1)
+                    if ($booking->type == 2)
                         $code = 'Draft';
                     else
                         $code = 'Live';
@@ -801,9 +801,9 @@ class ExportDataFile
 
 
                 $row[13] = $code;
-                if($booking->payment->is_override)
+                if(!is_null($booking->payment) && $booking->payment->is_override)
                     $row[14]=$booking->payment->override_amount;
-                else
+                elseif(!is_null($booking->payment))
                     $row[14]=$booking->payment->total_amount;
                 $rows[] = $row;
             }

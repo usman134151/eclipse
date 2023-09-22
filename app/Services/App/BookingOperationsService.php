@@ -32,10 +32,11 @@ class BookingOperationsService{
     $booking->industry_id=$selectedIndustries[0];
     $booking->provider_count=$services[0]['provider_count'];
     $booking->service_type=$services[0]['service_types'];
-    $booking->booking_status=0;
+    
     if(!$isImport){
       $booking->type=2;
       $booking->status=1;
+      $booking->booking_status=0;
     }
    
     $booking->booking_start_at =  Carbon::parse($dates[0]['start_date'].' '.$dates[0]['start_hour'].':'.$dates[0]['start_min'].':00')->format('Y-m-d H:i:s');;
