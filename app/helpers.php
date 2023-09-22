@@ -434,3 +434,10 @@ if (!function_exists('sendTemplatemail')) {
         }
     }
 }
+if (!function_exists('numberFormat')) {
+
+function numberFormat($foo)
+	{
+		return '$ ' . number_format((float)$foo, 2, '.', ',');
+	}
+}

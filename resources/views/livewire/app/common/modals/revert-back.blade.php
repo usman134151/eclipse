@@ -2,14 +2,14 @@
     <div class="modal-body">
         <div>
             <label class="form-label">
-                REVERT BACK
+                REVERT BACK {{$invoice_id}}
             </label>
             <p>Are you sure you want to revert the status of this remittance?</p>
             <div class="d-flex justify-content-center gap-2">
                 <button type="button" class="btn rounded btn-outline-dark" data-bs-dismiss="modal">
                     Cancel
                 </button>
-                <button type="button" class="btn rounded btn-primary">
+                <button type="button" class="btn rounded btn-primary" wire:click="revert">
                     Yes Revert Invoice
                 </button>
             </div>
