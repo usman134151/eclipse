@@ -14,17 +14,15 @@ class DraftInvoices extends Component
         return view('livewire.app.admin.draft-invoices');
     }
 
-    public function openCreateInvoice($selectedBookingsIds, $exclude_notif = false)
+    public function openCreateInvoice($selectedBookingsIds)
     {
 
         if ($this->inv_counter == 0) {
             $this->selectedBookingsIds = [];
-            $this->exclude_notif = $exclude_notif;
-            $this->dispatchBrowserEvent('refresh-create-invoice', ['ids' => $selectedBookingsIds, 'exclude_notif' => $exclude_notif]);
+            $this->dispatchBrowserEvent('refresh-create-invoice', ['ids' => $selectedBookingsIds]);
             $this->inv_counter = 1;
         } else {
             $this->selectedBookingsIds = $selectedBookingsIds;
-            $this->exclude_notif = $exclude_notif;
 
             $this->inv_counter = 0;
             $this->dispatchBrowserEvent('refreshSelects');
