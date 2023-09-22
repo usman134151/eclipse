@@ -4,6 +4,16 @@
     @if ($company_id > 0)
         @livewire('app.common.panels.invoices.invoice-generator-bookings',['company_id'=>$company_id])
     @endif
+        <x-slot name="outsideBody">
+
+     <div class="justify-content-center d-flex my-4">
+
+
+            <a x-on:open-invoice-panel.window="createInvoices = true" wire:click="$emit('openInvoicePanel')" href="#"
+                class="btn btn-primary rounded">Create invoice</a>
+        </div>
+        </x-slot>
+
 </x-off-canvas>
 <script>
     window.addEventListener('refresh-company-pending-bookings', function(event) {
