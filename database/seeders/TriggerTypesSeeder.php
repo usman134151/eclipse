@@ -13,6 +13,7 @@ class TriggerTypesSeeder extends Seeder
      */
     public function run(): void
     {
+        DB::table('trigger_types')->delete();
         //
         $trigger_types = array(
 			["name"=>"Account Management"],

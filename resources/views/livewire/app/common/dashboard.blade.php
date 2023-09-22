@@ -45,7 +45,7 @@
             </svg>
 		  </div>
 		  <div>
-			<div class="text-center block-number">22</div>
+			<!--<div class="text-center block-number">22</div>-->
 		  </div>
 		</a>
 	  </li>
@@ -58,7 +58,7 @@
             </svg>
 		  </div>
 		  <div>
-			<div class="text-center block-number">150</div>
+		<!--	<div class="text-center block-number">150</div>-->
 		  </div>
 		</a>
 	  </li>
@@ -70,7 +70,7 @@
 	         <use xlink:href="/css/customer.svg#submit-service-icon"></use></svg>
 		</div>
 		  <div>
-			<div class="text-center block-number">10</div>
+		<!--	<div class="text-center block-number">10</div>-->
 		  </div>
 		</a>
 	  </li>
@@ -83,7 +83,7 @@
             </svg>
 		  </div>
 		  <div>
-			<div class="text-center block-number">15</div>
+			<!--<div class="text-center block-number">15</div>-->
 		  </div>
 		</a>
 	  </li>
@@ -96,7 +96,7 @@
             </svg>
 		  </div>
 		  <div>
-			<div class="text-center block-number">50</div>
+			<!--<div class="text-center block-number">50</div>-->
 		  </div>
 		</a>
 	  </li>
@@ -109,7 +109,7 @@
 			   </svg>
 		  </div>
 		  <div>
-			<div class="text-center block-number">10</div>
+			<!--<div class="text-center block-number">10</div> -->
 		  </div>
 		</a>
 	  </li>

@@ -88,7 +88,7 @@ class Booknow extends Component
     '5'=>['class'=>'teleconference-rate','postfix'=>'_t','title'=>'Teleconference'],
   ];
 
-    public $assignedSupervisor="";
+    public $assignedSupervisor="";public $isEdit;
 
 
 
@@ -119,6 +119,7 @@ class Booknow extends Component
 
         if (request()->bookingID != null) {
             $id=request()->bookingID;
+            $this->isEdit=true;
 
             $this->booking=Booking::with('company','accommodation','booking_services_new_layout','industries','customer','payment','departments')->find($id);
 
@@ -368,8 +369,16 @@ class Booknow extends Component
             $this->payment->save();
 
             if($this->booking->frequency_id>1){
+
                 //multiple bookings 
                 //check if new booking
+                if ($this->isEdit) {
+                   
+                }
+                else{
+                    //new booking then replicate
+                    BookingOperationsService::createFrequency($this->booking);
+                }
               
                 
             }

@@ -34,7 +34,7 @@
                                     d="M16.2 0H1.8C0.8073 0 0 0.816816 0 1.82122V12.7485C0 13.7529 0.8073 14.5697 1.8 14.5697H4.5V18L10.1493 14.5697H16.2C17.1927 14.5697 18 13.7529 18 12.7485V1.82122C18 0.816816 17.1927 0 16.2 0ZM16.2 12.7485H9.6507L6.3 14.7819V12.7485H1.8V1.82122H16.2V12.7485Z"
                                     fill="#6E6B7B" />
                             </svg>
-                            <span class="badge rounded-pill bg-danger badge-up">10</span>
+                            <!-- <span class="badge rounded-pill bg-danger badge-up">10</span> -->
                         </a></li>
                     <li class="nav-item d-none d-lg-block"><a href="{{ session('isCustomer')? url('/customer/bookings/today') : ( session('isProvider') ? url('/provider/bookings/today') : url('/admin/bookings/today') )}}"
                             title="Assignments" aria-label="Assignments" class="nav-link" data-bs-toggle="tooltip"
@@ -128,7 +128,7 @@
                             <g mask="url(#mask0_207_5890)">
                                 <rect width="20" height="20" fill="#6E6B7B" />
                             </g>
-                        </svg><span class="badge rounded-pill bg-danger badge-up">21</span>
+                        </svg><!-- <span class="badge rounded-pill bg-danger badge-up">21</span>-->
                     </a>
                     <ul class="dropdown-menu dropdown-menu-media dropdown-menu-end">
                         <li class="dropdown-menu-header">

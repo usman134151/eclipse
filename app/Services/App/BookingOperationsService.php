@@ -56,6 +56,9 @@ class BookingOperationsService{
     
   }
 
+  public static function createFrequency($booking){
+    
+  }
   public static function saveDetails($services,$dates,$selectedIndustries,$booking,$selectedDepartments)
    {
    // BookingServices::where('booking_id', $booking->id)->delete();
@@ -482,6 +485,7 @@ class BookingOperationsService{
     return $service;
 
   }
+
 
   public static function getDaysInBetween($startDayOfWeek,$endDayOfWeek){
     $daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
