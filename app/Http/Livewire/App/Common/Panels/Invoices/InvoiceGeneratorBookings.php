@@ -11,7 +11,7 @@ use Livewire\Component;
 class InvoiceGeneratorBookings extends Component
 {
     public $showForm, $company, $bookings, $selectedBookings = [], $selectAll = false, $showError=false;
-    protected $listeners = ['showList' => 'resetForm'];
+    protected $listeners = ['showList' => 'resetForm', 'openInvoicePanel'];
 
     public function render()
     {
@@ -48,7 +48,6 @@ class InvoiceGeneratorBookings extends Component
     {
         if (count($this->selectedBookings)) {
             $this->showError = false;
-
             $this->dispatchBrowserEvent('open-invoice-panel');
             $this->emit('openCreateInvoice', $this->selectedBookings);
         }else 

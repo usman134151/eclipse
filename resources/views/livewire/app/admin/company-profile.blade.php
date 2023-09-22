@@ -4049,13 +4049,18 @@
         </div>
         <div class="col-lg-12 form-check form-switch">
             <input class="form-check-input" type="checkbox" role="switch" id="TheToggleSwitchNameWillBeHere"
-                checked>
+                >
             <label class="form-check-label" for="TheToggleSwitchNameWillBeHere">
-                Customer Billing
+                Customer Billing 
+            <small>(coming soon)</small>
+
             </label>
             <label class="form-check-label" for="TheToggleSwitchNameWillBeHere">
-                Customer Billing
+                Customer Billing 
+            <small>(coming soon)</small>
+
             </label>
+
         </div>
         <div class="col-lg-12 mb-5">
             <label class="form-label" for="billingSchedule">

@@ -435,6 +435,7 @@ if (!function_exists('genetrateInvoiceNumber')) {
 				try {
 					if($comp)
 					{
+
 						$latestBooking = Invoice::where('company_id',$comp->id)->count();
 						if($latestBooking != 0)
 						$bookingNum = $latestBooking;

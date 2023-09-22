@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class DraftInvoices extends Component
 {
-    public $showForm, $company_id,$counter=0, $selectedBookingsIds=[],$inv_counter=0;
+    public $showForm, $company_id, $counter = 0, $selectedBookingsIds = [], $inv_counter = 0, $exclude_notif = false;
     protected $listeners = ['showList' => 'resetForm', 'openCompanyPendingBookings', 'openCreateInvoice'];
 
     public function render()
@@ -14,7 +14,8 @@ class DraftInvoices extends Component
         return view('livewire.app.admin.draft-invoices');
     }
 
-    public function openCreateInvoice($selectedBookingsIds){
+    public function openCreateInvoice($selectedBookingsIds)
+    {
 
         if ($this->inv_counter == 0) {
             $this->selectedBookingsIds = [];
@@ -22,7 +23,10 @@ class DraftInvoices extends Component
             $this->inv_counter = 1;
         } else {
             $this->selectedBookingsIds = $selectedBookingsIds;
+
             $this->inv_counter = 0;
+            $this->dispatchBrowserEvent('refreshSelects');
+            $this->dispatchBrowserEvent('refreshSelects2');
         }
     }
     public function openCompanyPendingBookings($company_id)
@@ -44,8 +48,16 @@ class DraftInvoices extends Component
     {
         $this->showForm = true;
     }
-    public function resetForm()
+    public function resetForm($message=null)
     {
         $this->showForm = false;
+        if ($message) {
+            // Emit an event to display a success message using the SweetAlert package
+            $this->dispatchBrowserEvent('swal:modal', [
+                'type' => 'success',
+                'title' => 'Success',
+                'text' => $message,
+            ]);
+        }
     }
 }
