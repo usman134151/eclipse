@@ -452,9 +452,22 @@ class BookingList extends Component
 		$this->dispatchBrowserEvent('refreshSelects2');
 	}
 
-	public function resetForm()
+	public function resetForm($message='')
 	{
 		$this->showBookingDetails = false;
+		$this->importFile = false;
+
+        if ($message) {
+            $this->confirmationMessage = $message;
+            // emit an event to display a success message using the SweetAlert package
+            $this->dispatchBrowserEvent('swal:modal', [
+                'type' => 'success',
+                'title' => 'Success',
+                'text' => $message,
+            ]);
+        }
+		$this->dispatchBrowserEvent('refreshSelects2');
+		$this->dispatchBrowserEvent('refreshSelects');
 	}
 
 	public function showBookingDetails($booking_id)

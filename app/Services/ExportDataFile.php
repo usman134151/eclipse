@@ -591,6 +591,7 @@ class ExportDataFile
             'Booking End Date (dd/mm/Y)',
             'Booking End Time (23:32)',
             'Status',
+            'Booking Total'
         ];
 
         // $languageValues = SetupValue::where('setup_id', 1)->pluck('setup_value_label')->toArray();
@@ -605,7 +606,7 @@ class ExportDataFile
             [
                 '', '', '', '', '', '',
                 '', '', '', '', '', '', '',
-                '', '', ''
+                '', '', '',''
             ]
         ];
 
@@ -756,6 +757,7 @@ class ExportDataFile
             'Booking End Date (dd/mm/Y)',
             'Booking End Time (15:25)',
             'Status',
+            'Total'
 
         ];
 
@@ -799,6 +801,10 @@ class ExportDataFile
 
 
                 $row[13] = $code;
+                if($booking->payment->is_override)
+                    $row[14]=$booking->payment->override_amount;
+                else
+                    $row[14]=$booking->payment->total_amount;
                 $rows[] = $row;
             }
             $fileName = 'bookings_export.xlsx';
