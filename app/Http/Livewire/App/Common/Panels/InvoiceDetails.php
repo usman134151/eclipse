@@ -2,11 +2,12 @@
 
 namespace App\Http\Livewire\App\Common\Panels;
 
+use App\Models\Tenant\Invoice;
 use Livewire\Component;
 
 class InvoiceDetails extends Component
 {
-    public $showForm;
+    public $showForm,$invoice,$bookings;
     protected $listeners = ['showList' => 'resetForm'];
 
     public function render()
@@ -14,10 +15,11 @@ class InvoiceDetails extends Component
         return view('livewire.app.common.panels.invoice-details');
     }
 
-    public function mount()
+    public function mount($invoice_id)
     {
-       
-       
+        $this->invoice = Invoice::where('id',$invoice_id)->first();
+
+        
     }
 
     function showForm()

@@ -128,7 +128,7 @@ final class CustomerInvoices extends PowerGridComponent
                                                             <use xlink:href="/css/provider.svg#revert"></use>
                                                         </svg>
                                                     </a>
-                                                    <a href="#" @click="invoiceDetails = true"
+                                                    <a href="#" @click="invoiceDetails = true" wire:click="$emit(\'openInvoiceDetails\','.$model->id.')"
                                                         title="Invoice Details" aria-label="Invoice Details"
                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                         <svg aria-label="Invoice Details" width="19"
