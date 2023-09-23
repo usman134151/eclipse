@@ -153,7 +153,7 @@
          wire:click="$emit('payInvoiceId',{{ $invoice->id }})">Record
             Payment</button>
         <button class="btn btn-primary rounded" wire:click="$emit('revertInvoice',{{ $invoice->id }})"
-            x-on:close-invoice-details.window="invoiceDetailsPanel = !invoiceDetailsPanel" data-bs-toggle="modal"
+            x-on:close-invoice-details.window="invoiceDetailsPanel = false" data-bs-toggle="modal"
             data-bs-target="#revertBackModal">Revert
             Invoice</button>
     </div>
