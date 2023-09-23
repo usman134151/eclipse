@@ -13,10 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('invoices', function (Blueprint $table) {
-            $table->dropColumn('invoice_status');
-            $table->enum('invoice_status', [0, 1, 2, 3, 4])->default(1)->comment('0 for Not issued, 1 for issued,2 for paid, 3 for Overdue, 4 for partial');
-        });
+        DB::statement('ALTER TABLE invoices DROP COLUMN invoice_status');
+        DB::statement("ALTER TABLE invoices ADD invoice_status INT(11) COMMENT '0 for Not issued, 1 for issued, 2 for paid, 3 for Overdue, 4 for partial' DEFAULT 1");
     }
 
     /**

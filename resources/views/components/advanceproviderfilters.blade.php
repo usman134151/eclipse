@@ -38,8 +38,9 @@
                     </label>
                 </div>
             </div>
-            <select  wire:model.defer="tag_names" data-placeholder="Select Tags" multiple
-                    class="select2 form-select" tabindex="" id="tags_selected" name="tags-selected">
+            <select data-placeholder="" multiple
+                    class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="tags_selected{{$type}}"  aria-label="Select Tags">
+                                                                
                     <option value=""></option>
                     @if (isset($tags))
                         @foreach ($tags as $tag)
@@ -53,8 +54,8 @@
         <div class="col-lg-6 d-flex justify-content-start gap-2 mb-4">
             <div class="mb-4 mb-lg-0">
                 <button class="btn btn-xs btn-inactive dropdown-toggle bg-secondary rounded"
-                    data-bs-toggle="collapse" href="#collapseAdvanceFilter" role="button"
-                    aria-expanded="false" aria-controls="collapseAdvanceFilter">
+                    data-bs-toggle="collapse" href="#collapseAdvanceFilter{{$type}}" role="button"
+                    aria-expanded="false" aria-controls="collapseAdvanceFilter{{$type}}">
                     Advance Filter
                 </button>
             </div>
@@ -66,14 +67,14 @@
         </div>
     @else
     <div class="col-lg-2 d-flex text-nowrap align-items-center align-self-end mb-4">
-        <a class="btn btn-inactive dropdown-toggle rounded" data-bs-toggle="collapse" href="#collapseAdvanceFilter"
-            role="button" aria-expanded="false" aria-controls="collapseAdvanceFilter">
+        <a class="btn btn-inactive dropdown-toggle rounded" data-bs-toggle="collapse" href="#collapseAdvanceFilter{{$type}}"
+            role="button" aria-expanded="false" aria-controls="collapseAdvanceFilter{{$type}}">
             <span class="">Advance Filter</span>
         </a>
     </div>
     @endif
 </div>
-<div class="collapse" id="collapseAdvanceFilter" wire:ignore>
+<div class="collapse" id="collapseAdvanceFilter{{$type}}" wire:ignore>
     <div class="col-lg-12">
         <div class="row">
             

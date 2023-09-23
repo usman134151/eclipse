@@ -36,6 +36,8 @@ class AssignProviders extends Component
     public $service_id = null, $booking_id = null;
     protected $listeners = ['showList' => 'resetForm', 'refreshFilters', 'saveAssignedProviders' => 'save', 'updateVal', 'inviteProviders'];
     public $assignedProviders = [], $limit = null, $booking, $showError = false;
+    public $paymentData=["additional_label_provider"=>'', "additional_charge_provider"=>0];
+    public $providers;
 
     public function updateVal($attrName, $val)
     {
@@ -44,6 +46,43 @@ class AssignProviders extends Component
 
     public function render()
     {
+       
+
+        return view('livewire.app.common.panels.booking-details.assign-providers');
+    }
+
+    public function refreshFilters($name, $value)
+    {
+        // dd($name,$value);
+        if ($name == "Service_filter") {
+            $this->services = $value;
+        } else if ($name == "specialization_search_filter") {
+            $this->specializations = $value;
+        } else if ($name == "setup_value_label") {
+            $this->service_type_ids = $value;
+        } else if ($name == "tags_selected-assignProvider") {
+            $this->tag_names = $value;
+        } else if ($name == "providers_selected") {
+            $this->provider_ids = $value;
+        } else if ($name == "preferred_provider_ids") {
+            $this->preferred_provider_ids = $value;
+        } else if ($name == "gender") {
+            $this->gender = $value;
+        } else if ($name == "ethnicity") {
+            $this->ethnicity = $value;
+        } else if ($name == "certifications") {
+            $this->certifications = $value;
+        } else if ($name == "accommodation_filter") {
+            $this->accommodations = $value;
+        } else if ($name == "distance_filter") {
+            $this->distance = $value;
+        }
+
+        $this->providers=$this->refreshProviders();
+
+        $this->dispatchBrowserEvent('refreshSelects2');
+    }
+    public function refreshProviders(){
         $returnCols = [
             'users.id',
             'users.name',
@@ -144,46 +183,13 @@ class AssignProviders extends Component
 
         if ($this->distance) {
             $miles  = $this->distance;
+            
             if ($this->booking->physicalAddress) {
                 $distanceIDS = UserDetail::select(DB::raw("(((acos(sin((" . $this->booking->physicalAddress->latitude . "*pi()/180)) * sin((`latitude`*pi()/180)) + cos((" . $this->booking->physicalAddress->latitude . "*pi()/180)) * cos((`latitude`*pi()/180)) * cos(((" . $this->booking->physicalAddress->longitude . "- `longitude`)*pi()/180)))) * 180/pi()) * 60 * 1.1515) as distance, user_id"))->havingRaw('distance <= ' . $miles)->pluck('user_id')->toArray();
                 $query->wherein('users.id', $distanceIDS);
             }
         }
-
-
-        return view('livewire.app.common.panels.booking-details.assign-providers', [
-            'providers' => $query->get()
-        ]);
-    }
-
-    public function refreshFilters($name, $value)
-    {
-        // dd($name,$value);
-        if ($name == "Service_filter") {
-            $this->services = $value;
-        } else if ($name == "specialization_search_filter") {
-            $this->specializations = $value;
-        } else if ($name == "setup_value_label") {
-            $this->service_type_ids = $value;
-        } else if ($name == "tags_selected") {
-            $this->tag_names = $value;
-        } else if ($name == "providers_selected") {
-            $this->provider_ids = $value;
-        } else if ($name == "preferred_provider_ids") {
-            $this->preferred_provider_ids = $value;
-        } else if ($name == "gender") {
-            $this->gender = $value;
-        } else if ($name == "ethnicity") {
-            $this->ethnicity = $value;
-        } else if ($name == "certifications") {
-            $this->certifications = $value;
-        } else if ($name == "accommodation_filter") {
-            $this->accommodations = $value;
-        } else if ($name == "distance_filter") {
-            $this->distance = $value;
-        }
-
-        $this->dispatchBrowserEvent('refreshSelects2');
+    return $query->get();
     }
     public function resetFilters()
     {
@@ -210,6 +216,11 @@ class AssignProviders extends Component
         $this->service_id = $service_id;
         $this->tags = Tag::all();
         $this->booking = Booking::where('id', $this->booking_id)->first();
+        if(!is_null($this->booking->payment)){
+            $this->paymentData=["additional_label_provider"=>$this->booking->payment->additional_label_provider, "additional_charge_provider"=>$this->booking->payment->additional_charge_provider];
+           
+             
+        }
         if ($panelType == 2) {
             $this->assignedProviders  = BookingInvitationProvider::where('invitation_id', function ($query) {
                 $query->from('booking_invitations')
@@ -227,6 +238,7 @@ class AssignProviders extends Component
                     ->get()->pluck('provider_id')->toArray();
             }
         }
+        $this->providers=$this->refreshProviders();
         $this->dispatchBrowserEvent('refreshSelects');
         $this->dispatchBrowserEvent('refreshSelects2');
 
