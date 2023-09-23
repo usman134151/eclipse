@@ -402,8 +402,8 @@ if (!function_exists('sendTemplatemail')) {
                 $data['replacements'] = $replacements;
                 if (isset($invoicePdf))
                     $data['invoice_pdf'] = $invoicePdf ?? false;
-                $data['templateSubject'] = str_replace(array_keys($replacements), array_values($replacements), $template->notification_subject ?? '');
-                $data['templateBody'] = str_replace(array_keys($replacements), array_values($replacements), $templateString);
+                $data['templateSubject'] = str_ireplace(array_keys($replacements), array_values($replacements), $template->notification_subject ?? '');
+                $data['templateBody'] = str_ireplace(array_keys($replacements), array_values($replacements), $templateString);
 
                 $data['admin'] = $admin;
                 if (session()->has('company_logo') && session()->get('company_logo') != null)
@@ -431,7 +431,7 @@ if (!function_exists('sendTemplatemail')) {
             // Log::info(array('sendtemplateemail' => $e->getMessage() . $e->getFile() . $e->getLine()));
 
             //  Log::info($e->getMessage().$e->getFile().$e->getLine());
-           // dd($e->getMessage() . $e->getFile() . $e->getLine());
+            dd($e->getMessage() . $e->getFile() . $e->getLine());
         }
     }
 }
