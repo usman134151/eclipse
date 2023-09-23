@@ -14,6 +14,7 @@ use App\Models\Tenant\UserDetail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
+use Illuminate\Support\Collection;
 
 class AssignProviders extends Component
 {
@@ -37,8 +38,12 @@ class AssignProviders extends Component
     protected $listeners = ['showList' => 'resetForm', 'refreshFilters', 'saveAssignedProviders' => 'save', 'updateVal', 'inviteProviders'];
     public $assignedProviders = [], $limit = null, $booking, $showError = false;
     public $paymentData=["additional_label_provider"=>'', "additional_charge_provider"=>0];
-    public $providers;
-
+    public $providers,$providersPayment,$bookingService,$durationLabel,$durationTotal=0,$totalAmount;
+    public $setupValues = [
+        'accommodations' => ['parameters' => ['Accommodation', 'id', 'name', 'status', 1, 'name', true, 'accommodations', '', 'accommodations', 2]],
+        'specializations' => ['parameters' => ['Specialization', 'id', 'name', 'status', 1, 'name', true, 'specializations', '', 'specializations', 4]],
+        'services' => ['parameters' => ['ServiceCategory', 'id', 'name', 'status', 1, 'name', true, 'services', '', 'services', 3]]
+    ];
     public function updateVal($attrName, $val)
     {
         $this->$attrName = $val;
@@ -88,7 +93,8 @@ class AssignProviders extends Component
             'users.name',
             'users.email',
             'user_details.phone', 'user_details.profile_pic', 'user_details.tags',
-            'users.status'
+            'users.status',
+            
         ];
         $query = User::where('users.status', 1)
             ->whereHas('roles', function ($query) {
@@ -189,8 +195,73 @@ class AssignProviders extends Component
                 $query->wherein('users.id', $distanceIDS);
             }
         }
-    return $query->get();
+        $providers=$this->providers=$query->get();
+
+        //charges caculations 
+        //end of charges calculations 
+        $this->providersPayment=[];
+        foreach($providers as $index=>&$provider){
+            $providerCharges=$this->getProviderCharges($provider['id']);
+            $this->providersPayment[$index]=[
+            'additional_label_provider'=>$this->paymentData['additional_label_provider'],
+            'additional_charge_provider'=>$this->paymentData['additional_charge_provider'],
+            "is_override_price"=>1,
+            "override_price" => $providerCharges['override_price'],
+            'total_amount'=>$providerCharges['override_price']*$this->durationTotal
+        ];
+
+            foreach($this->assignedProviders as &$aProvider){
+                if($aProvider['provider_id']==$provider['id']){
+                    $this->providersPayment[$index]=$aProvider; //overriding if already assigned
+                  
+                    if($aProvider['total_amount']=="0.00"){
+                       
+                        $aProvider['total_amount']= $this->updateTotal($index);
+                    }
+                     
+                 
+                }
+            }
+            
+        }
+       
+    return $this->providers;
     }
+    public function updateTotal($index){
+        
+        $this->providersPayment[$index]['total_amount']=number_format($this->providersPayment[$index]['override_price']*$this->durationTotal,2,'.', '');
+        $pid=$this->providers[$index]['id'];
+        foreach($this->assignedProviders as &$aProvider){
+            if($aProvider['provider_id']==$pid){
+               
+                    $aProvider['total_amount']=$this->providersPayment[$index]['total_amount'];
+                    $aProvider['override_price']=$this->providersPayment[$index]['override_price'];
+                
+                 
+             
+            }
+        } 
+        return $this->providersPayment[$index]['total_amount'];
+    }
+    public function overrideTotal($index){
+       
+        $pid=$this->providers[$index]['id'];
+        foreach($this->assignedProviders as &$aProvider){
+            if($aProvider['provider_id']==$pid){
+               
+                    $aProvider['total_amount']=$this->providersPayment[$index]['total_amount'];
+                   
+                
+                 
+             
+            }
+        }    
+    }
+    public function getProviderCharges($providerId){
+            //checking if provider is configured for service
+            return ['charges'=>0,'override_price'=>0];
+    }
+
     public function resetFilters()
     {
         $this->provider_ids = [];
@@ -211,16 +282,21 @@ class AssignProviders extends Component
 
 
     public function mount($service_id = null, $panelType = 1)
-    {
+    { 
         $this->panelType = $panelType;
         $this->service_id = $service_id;
         $this->tags = Tag::all();
         $this->booking = Booking::where('id', $this->booking_id)->first();
         if(!is_null($this->booking->payment)){
             $this->paymentData=["additional_label_provider"=>$this->booking->payment->additional_label_provider, "additional_charge_provider"=>$this->booking->payment->additional_charge_provider];
+            $this->totalAmount=formatPayment($this->booking->payment['total_amount']);
            
              
         }
+        else
+        {
+            $this->totalAmount='n/a';
+        }  
         if ($panelType == 2) {
             $this->assignedProviders  = BookingInvitationProvider::where('invitation_id', function ($query) {
                 $query->from('booking_invitations')
@@ -234,8 +310,36 @@ class AssignProviders extends Component
 
             if ($booking_service) {
                 $this->limit = $booking_service->provider_count;
+                $this->bookingService=$booking_service;
+               
                 $this->assignedProviders = BookingProvider::where(['booking_id' => $this->booking_id, 'booking_service_id' => $booking_service->id])
-                    ->get()->pluck('provider_id')->toArray();
+                    ->get()->toArray();
+                    if(!is_null($booking_service['service_calculations'])){
+                        $booking_service['service_calculations']=json_decode($booking_service['service_calculations'],true);
+                    }
+                    else
+                    $booking_service['service_calculations']=[];
+                if($booking_service['day_rate'])
+                   {
+                    $this->durationLabel='day(s)';
+
+                        if(key_exists('total_duration',$booking_service['service_calculations']))
+                        {
+                            $this->durationTotal=number_format($booking_service['service_calculations']['total_duration']['days']+($booking_service['service_calculations']['total_duration']['hours']/24)+($booking_service['service_calculations']['total_duration']['mins']/60/24));
+                        }
+                    }   
+                   
+                else{
+                    $this->durationLabel=' hour(s)';
+                    if(key_exists('total_duration',$booking_service['service_calculations']))
+                        {
+                            $this->durationTotal=number_format(($booking_service['service_calculations']['total_duration']['hours'])+($booking_service['service_calculations']['total_duration']['mins']/60/24),2);
+                        }
+                }
+                  
+
+ 
+                   
             }
         }
         $this->providers=$this->refreshProviders();
@@ -261,19 +365,21 @@ class AssignProviders extends Component
             $prev = BookingProvider::where(['booking_id' => $this->booking_id, 'booking_service_id' => null])->orWhere(['booking_service_id' => $booking_service->id]);
             if ($prev->count()) {
                 $previousAssigned = $prev->get()->pluck('provider_id')->toArray();
-                $prev->delete();
+               // $prev->delete();
             } else
                 $previousAssigned = [];
 
             $data = null;
+          
             foreach ($this->assignedProviders as $provider) {
-                $user          = User::find($provider);
+               
+                $user          = User::find($provider['provider_id']);
 
                 if (!empty($user)) {
 
                     $templateId = getTemplate('Booking: Provider Assigned (manual-assign)', 'email_template');
                  
-                    if (!in_array($provider, $previousAssigned)) {
+                    if (!in_array($provider['provider_id'], $previousAssigned)) {
                         $params = [
                             'email'       =>  $user->email, //
                             'user'        =>  $user->name,
@@ -290,12 +396,19 @@ class AssignProviders extends Component
                         sendTemplatemail($params);
                     }
                 }
-                $data['provider_id'] = $provider;
-                $data['booking_id'] = $this->booking_id;
-                $data['booking_service_id'] = $booking_service ? $booking_service->id : null;
+            
+                $provider['booking_id'] = $this->booking_id;
+                $provider['booking_service_id'] = $booking_service ? $booking_service->id : null;
+                
 
-
-                BookingProvider::create($data);
+                BookingProvider::updateOrCreate(
+                    [
+                        'booking_id' => $provider['booking_id'],
+                        'provider_id' => $provider['provider_id'],
+                        'booking_service_id' => $provider['booking_service_id'],
+                    ],
+                    $provider
+                );
             }
             $status = 1;
 
@@ -374,14 +487,29 @@ class AssignProviders extends Component
     }
 
     //add provider to list
-    public function add($provider_id)
+    public function add($provider_id,$index)
     {
-        $this->assignedProviders[] = $provider_id;
+       
+        $this->assignedProviders[] =[
+            'provider_id'=>$provider_id,
+            'additional_label_provider'=>$this->providersPayment[$index]['additional_label_provider'],
+            'additional_charge_provider'=>$this->providersPayment[$index]['additional_charge_provider'],
+            "is_override_price" => 1,
+            "override_price" => $this->providersPayment[$index]['override_price'],
+            "total_amount"=>$this->providersPayment[$index]['total_amount']
+
+        ] ;
     }
 
     //remove provider from list
-    public function remove($provider_id)
+    public function remove($provider,$index)
     {
-        unset($this->assignedProviders[array_search($provider_id, $this->assignedProviders)]);
+        foreach ($this->assignedProviders as $index => $assignedProvider) {
+            if (isset($assignedProvider['provider_id']) && $assignedProvider['provider_id'] == $provider) {
+                unset($this->assignedProviders[$index]);
+                break; // Exit loop once the provider is found and removed
+            }
+        }
+        
     }
 }

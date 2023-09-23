@@ -292,6 +292,7 @@ class Booknow extends Component
                 }
               
                 $slotCheck=BookingOperationsService::getBillableDuration($service,$this->schedule);
+                
                 if(!$slotCheck['business_hours'] && !$slotCheck['business_minutes'] && !$slotCheck['after_business_hours'] && !$slotCheck['after_business_minutes'])
                  {$slotNotFound=1;
                    
@@ -330,6 +331,7 @@ class Booknow extends Component
 
         }
         else{
+          
             foreach($this->services as $service){
                
                $serviceCalculations=[
@@ -343,13 +345,18 @@ class Booknow extends Component
                 "specialization_total" => $service["specialization_total"],
                 "specialization_charges" => $service["specialization_charges"],
                 "expedited_charges" => $service["expedited_charges"],
-                'day_rate'=>$service['day_rate']
+                "duration_hour"=>$service['business_hours']+$service['after_business_hours'],
+                "duration_minute"=>$service['business_minutes']+$service['after_business_minutes'],
+                "total_duration"=>$service['total_duration'],
+                'day_rate'=>$service['day_rate'],
+                'business_hour_duration'=>($service['business_hours']*60)+($service['business_minutes']),
+                'after_hour_duration'=>($service['after_business_hours']*60)+($service['after_business_minutes']),
 
                ];
                $serviceCalculations=json_encode($serviceCalculations);
              
                 
-                BookingServices::where('id', $service['id'])->update(['billed_total' => $service['billed_total'],'service_total'=>$service['total_charges'],'service_calculations'=>$serviceCalculations]);
+                BookingServices::where('id', $service['id'])->where('booking_id', $this->booking->id)->update(['billed_total' => $service['billed_total'],'service_total'=>$service['total_charges'],'service_calculations'=>$serviceCalculations]);
             }
             $this->booking->type=1;
             $this->booking->status=1;

@@ -90,7 +90,10 @@
              </thead>
              <tbody>
                  @if (count($providers))
-                     @foreach ($providers as $provider)
+                 @php
+                 $assignedProvidersCollection = new \Illuminate\Support\Collection($assignedProviders);
+                 @endphp
+                     @foreach ($providers as $index=>$provider)
                          <tr>
                              @if ($panelType == 2)
                                  <td>
@@ -155,12 +158,12 @@
                                          <div>
                                              <label class="form-label-sm">Label</label>
                                              <input type="" name="" class="form-control form-control-sm"
-                                                 placeholder="Payment Label" aria-label="Payment Label">
+                                                 placeholder="Payment Label" aria-label="Payment Label" wire:model.defer="providersPayment.{{$index}}.additional_label_provider">
                                          </div>
                                          <div>
-                                             <label class="form-label-sm text-nowrap">Additional Payment</label>
+                                             <label class="form-label-sm text-nowrap">Additional Payment</label> 
                                              <input type="" name="" class="form-control form-control-sm"
-                                                 placeholder="$00:00" aria-label="Additional Payment">
+                                                 placeholder="$00:00" aria-label="Additional Payment" wire:model.defer="providersPayment.{{$index}}.additional_charge_provider"> 
                                          </div>
                                         <!--  <div>
                                              <label class="form-label-sm">Label</label>
@@ -221,22 +224,22 @@
                                  <td class="text-center border-end-2">
                                      <div class="d-flex gap-2 justify-content-center mb-3">
                                          <div class="col-md-6">
-                                             <label class="form-label-sm">No of Days/Hours</label>
+                                             <label class="form-label-sm">Duration</label>
                                              <div class="input-group">
-                                                 <input type="" name=""
+                                                 <input type="" name="" value="{{$durationTotal}}"
                                                      class="form-control form-control-sm text-center" placeholder="0"
-                                                     aria-label="Hours">
+                                                     aria-label="Hours" disabled>
                                                  <div class="input-group-text p-0">
-                                                     <select class="form-select form-select-sm" aria-label="Days">
-                                                         <option>/days</option>
+                                                     <select class="form-select form-select-sm" aria-label="Days" disabled>
+                                                         <option>{{ $durationLabel}}</option>
                                                      </select>
                                                  </div>
                                              </div>
-                                         </div>
+                                         </div> 
                                          <div class="col-md-4">
                                              <label for="average-rate" class="form-label-sm">Average Rate</label>
                                              <input type="" id="average-rate" name=""
-                                                 class="form-control form-control-sm w-25%" placeholder="$00:00">
+                                                 class="form-control form-control-sm w-25%" placeholder="$00:00" wire:blur="updateTotal({{$index}})"  wire:model.lazy="providersPayment.{{$index}}.override_price">
                                          </div>
                                      </div>
                                      <div class="d-flex justify-content-center">
@@ -287,18 +290,18 @@
                                                      Service
                                                      Payment</label>
                                                  <input type="" name=""
-                                                     class="form-control form-control-sm" placeholder="$00:00"
+                                                     class="form-control form-control-sm" placeholder="$00:00" wire:blur="overrideTotal({{$index}})" wire:model.lazy="providersPayment.{{$index}}.total_amount"
                                                      id="total-service-payment">
                                              </div>
-                                             <div class="">
+                                           <!--  <div class="">
                                                  <label class="form-label-sm">Total Booking Payment</label>
-                                                 $00:00
-                                             </div>
+                                                 {{$totalAmount}}
+                                             </div> -->
                                          </div>
                                          <div class="mx-3 mt-4">
                                              <button class="btn btn-sm btn-outline-dark rounded mb-2"
-                                                 wire:click="{{ in_array($provider->id, $assignedProviders) ? 'remove' : 'add' }}({{ $provider->id }})">{{ in_array($provider->id, $assignedProviders) ? 'Unassign' : 'Assign' }}</button>
-                                             <div class="form-check">
+                                                 wire:click="{{ $assignedProvidersCollection->contains('provider_id', $provider->id) ? 'remove' : 'add' }}({{ $provider->id }},{{$index}})">{{ $assignedProvidersCollection->contains('provider_id', $provider->id) ? 'Unassign' : 'Assign' }}</button>
+                                             <!--  <div class="form-check">
                                                  <input class="form-check-input" id="assignPartialCoverage"
                                                      name="" type="checkbox" tabindex="">
                                                  <label class="form-check-label text-nowrap"
@@ -309,7 +312,7 @@
                                                  data-bs-toggle="modal" data-bs-target="#availableTimeslotModal">
                                                  Select Booking Range
                                              </a>
-                                         </div> <small>Coming Soon</small>
+                                         </div> <small>Coming Soon</small> -->
                                      </div>
                                  </td>
                              @endif
