@@ -277,6 +277,8 @@ if (!function_exists('sendTemplatemail')) {
                     "@consumer" => $customer ?? '',
                     "@requester" => $customer ?? '',
                     "@booking_start_date" =>  formatDateTime($bookingData->booking_start_at) ?? '',
+                    "@booking_start_time"=>'',
+                    "@booking_end_time"=>"",
                     "@booking_end_date" =>  formatDateTime($bookingData->booking_end_at) ?? '',
                     "@booking_date" =>  formatDate($bookingData->booking_start_at) ?? '',
                     "@booking_company"=> $bookingData->company ? $bookingData->company->name :"",
