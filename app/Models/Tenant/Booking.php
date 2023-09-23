@@ -27,7 +27,7 @@ class Booking extends Model
 
     public function services()
     {
-        return $this->belongsToMany(ServiceCategory::class, 'booking_services','booking_id','services')->withPivot(['service_types','provider_count','start_time','end_time','time_zone']);
+        return $this->belongsToMany(ServiceCategory::class, 'booking_services', 'booking_id', 'services')->withPivot(['service_types', 'provider_count', 'start_time', 'end_time', 'time_zone']);
     }
     public function accommodations()
     {
@@ -85,7 +85,7 @@ class Booking extends Model
 
     public function checked_out_providers()
     {
-        return $this->hasMany(BookingProvider::class, 'booking_id', 'id')->where('check_in_status',3);
+        return $this->hasMany(BookingProvider::class, 'booking_id', 'id')->where('check_in_status', 3);
     }
     public function booking_services()
     {
@@ -123,7 +123,7 @@ class Booking extends Model
 
     public function booking_services_layout()
     {
-       return $this->hasMany(BookingServices::class, 'booking_id', 'id');
+        return $this->hasMany(BookingServices::class, 'booking_id', 'id');
     }
 
     public function booking_services_layout_with_oreder()
@@ -177,22 +177,22 @@ class Booking extends Model
         $serviceTypeArray = array();
         $bookingType = '';
 
-        foreach($this->booking_services_layout as $bookingservice){
+        foreach ($this->booking_services_layout as $bookingservice) {
             $serviceTypeArray[] = $bookingservice->service_types;
         }
-        if (in_array(2,$serviceTypeArray)){
+        if (in_array(2, $serviceTypeArray)) {
             $bookingType = "Virtual";
         }
-        if (in_array(1,$serviceTypeArray)){
+        if (in_array(1, $serviceTypeArray)) {
             $bookingType = "In-person";
         }
-        if (in_array(4,$serviceTypeArray)){
+        if (in_array(4, $serviceTypeArray)) {
             $bookingType = "Phone";
         }
-        if (in_array(5,$serviceTypeArray)){
+        if (in_array(5, $serviceTypeArray)) {
             $bookingType = "Teleconference";
         }
-        if(in_array(1,$serviceTypeArray) && in_array(2,$serviceTypeArray)){
+        if (in_array(1, $serviceTypeArray) && in_array(2, $serviceTypeArray)) {
             $bookingType = "Both";
         }
 
@@ -203,17 +203,16 @@ class Booking extends Model
     public function getVitualAddress()
     {
         $meetingLinks = [];
-        if($this->layout == 1)  {
+        if ($this->layout == 1) {
             $bookingServices = $this->hasMany(BookingServices::class, 'booking_id', 'id')->get();
-            foreach ($bookingServices as $key=>$service){
+            foreach ($bookingServices as $key => $service) {
                 $meetingLinks[$key]['link'] = $service->meeting_link;
                 $meetingLinks[$key]['phone'] = $service->meeting_phone;
                 $meetingLinks[$key]['code'] = $service->meeting_passcode;
             }
-        }
-        else {
-            $bookingServices = $this->hasMany(Booking::class,'id')->get();
-            foreach ($bookingServices as $key=>$service){
+        } else {
+            $bookingServices = $this->hasMany(Booking::class, 'id')->get();
+            foreach ($bookingServices as $key => $service) {
                 $meetingLinks[$key]['link'] = $service->meeting_link;
                 $meetingLinks[$key]['phone'] = $service->meeting_phone;
                 $meetingLinks[$key]['code'] = $service->meeting_passcode;
@@ -224,28 +223,26 @@ class Booking extends Model
     public function isBookingCompleted()
     {
         $bookingStatus = false;
-        if($this->layout == 1)  {
+        if ($this->layout == 1) {
             $bookingServices = $this->hasMany(BookingServices::class, 'booking_id', 'id')->get();
             $totalCount = $bookingServices->count();
             $bookingCount = 0;
 
-            foreach ($bookingServices as $service){
-                if($service->service_types == 1 && $this->physicalAddress) $bookingCount +=1;
-                else if($service->service_types == 2 && ($service->meeting_link || $service->meeting_phone)) $bookingCount +=1;
+            foreach ($bookingServices as $service) {
+                if ($service->service_types == 1 && $this->physicalAddress) $bookingCount += 1;
+                else if ($service->service_types == 2 && ($service->meeting_link || $service->meeting_phone)) $bookingCount += 1;
             }
 
-            if($totalCount == $bookingCount) $bookingStatus = true;
-
-        }
-        else {
-            $bookingServices = $this->hasMany(Booking::class,'id')->get();
+            if ($totalCount == $bookingCount) $bookingStatus = true;
+        } else {
+            $bookingServices = $this->hasMany(Booking::class, 'id')->get();
             $totalCount = $bookingServices->count();
             $bookingCount = 0;
-            foreach ($bookingServices as $service){
-                if($service->service_type == 1 && $this->physicalAddress) $bookingCount +=1;
-                else if($service->service_type == 2 && ($service->meeting_link || $service->meeting_phone)) $bookingCount +=1;
+            foreach ($bookingServices as $service) {
+                if ($service->service_type == 1 && $this->physicalAddress) $bookingCount += 1;
+                else if ($service->service_type == 2 && ($service->meeting_link || $service->meeting_phone)) $bookingCount += 1;
             }
-            if($totalCount == $bookingCount) $bookingStatus = true;
+            if ($totalCount == $bookingCount) $bookingStatus = true;
         }
         return $bookingStatus;
     }
@@ -257,17 +254,21 @@ class Booking extends Model
         return $this->belongsTo(User::class, 'cancelled_by', 'id')->withTrashed();
     }
 
-    public function getInvoicePrice(){
-            $invoiceTotal = 0;
-            $payments =  $this->payment;
-            if($payments){
-                if($this->status == 4){
-                    $invoiceTotal = $payments->cancellation_charges;
-                }else{
+    public function getInvoicePrice()
+    {
+        $invoiceTotal = 0;
+        $payments =  $this->payment;
+        if ($payments) {
+            if ($this->status == 4) {
+                $invoiceTotal = $payments->cancellation_charges;
+            } else {
+                if ($this->payments->is_override)
+                    $invoiceTotal = $payments->override_amount + $payments->modification_fee + $payments->reschedule_booking_charges;
+                else
                     $invoiceTotal = $payments->total_amount + $payments->modification_fee + $payments->reschedule_booking_charges;
-                }
             }
-            return $invoiceTotal;
+        }
+        return $invoiceTotal;
     }
 
 
@@ -314,5 +315,4 @@ class Booking extends Model
     {
         return $this->belongsToMany(Department::class, 'booking_departments', 'booking_id', 'department_id');
     }
-    
 }
