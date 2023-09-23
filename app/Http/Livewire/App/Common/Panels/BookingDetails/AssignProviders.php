@@ -312,21 +312,21 @@ class AssignProviders extends Component
                         // $permission = $this->booking->bookingNotificationCheck("provider");
                         // if (!$permission) {
                         // $user_role_id =  2;
-                        // $templateId = getTemplate('Booking: Invitation' , 'email_template');
+                        $templateId = getTemplate('Booking: Invitation' , 'email_template');
                      
-                        // $params = [
-                        //     'email'       =>  $user->email, //Provider Assignment invite
-                        //     'user'        =>  $user->name,
-                        //     'user_id'     =>  $user->id,
-                        //     'sms_template' =>  isset($sms_templateId) ? $sms_templateId : '',
-                        //     'templateId'  =>  $templateId,
-                        //     'booking_id'     =>  $this->booking_id,
-                        //     'mail_type'   => 'booking',
-                        //     'provider_id' => $user->id,
-                        //     'phone'       =>  isset($user->users_detail) ? clean($user->users_detail->phone) : "",
+                        $params = [
+                            'email'       =>  $user->email, //Provider Assignment invite
+                            'user'        =>  $user->name,
+                            'user_id'     =>  $user->id,
+                            'sms_template' =>  isset($sms_templateId) ? $sms_templateId : '',
+                            'templateId'  =>  $templateId,
+                            'booking_id'     =>  $this->booking_id,
+                            'mail_type'   => 'booking',
+                            'provider_id' => $user->id,
+                            'phone'       =>  isset($user->users_detail) ? clean($user->users_detail->phone) : "",
 
-                        // ];
-                        // sendTemplatemail($params);
+                        ];
+                        sendTemplatemail($params);
 
                         //     // $noti = [
                         //     //     'user_id'     =>  $user->id,
