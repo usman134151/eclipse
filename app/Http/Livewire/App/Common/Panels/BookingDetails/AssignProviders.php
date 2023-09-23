@@ -260,6 +260,7 @@ class AssignProviders extends Component
                 if (!empty($user)) {
 
                     $templateId = getTemplate('Booking: Provider Assigned (manual-assign)', 'email_template');
+                 
                     if (!in_array($provider, $previousAssigned)) {
                         $params = [
                             'email'       =>  $user->email, //
