@@ -84,8 +84,9 @@
                             <div class="row between-section-segment-spacing">
                                 <x-advancefilters type="invoice-filters" />
                             </div>
+                            @if(!$showForm)
                             @livewire('app.common.lists.customer-invoices')
-
+                            @endif
 
                             {{-- icon bar start --}}
                             <div class="d-flex actions gap-3 justify-content-end mb-2 flex-wrap">
