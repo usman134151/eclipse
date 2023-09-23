@@ -88,7 +88,7 @@
                     data-bs-dismiss="modal">Cancel</button>
             </div>
             <div class="col-lg-3">
-                <button type="button" wire:click="payInvoice" class="btn rounded w-100 btn-primary">Submit</button>
+                <button type="submit" wire:click="payInvoice" class="btn rounded w-100 btn-primary">Submit</button>
             </div>
         </div>
     </div>

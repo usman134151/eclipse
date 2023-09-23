@@ -130,10 +130,10 @@
 
 
                             <div class="justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
-                                <button class="btn btn-primary rounded">Resend Invoice</button>
-                                <button class="btn btn-primary rounded" data-bs-toggle="modal"
+                                <button disabled class="btn btn-primary rounded">Resend Invoice</button>
+                                <button  disabled class="btn btn-primary rounded" data-bs-toggle="modal"
                                     data-bs-target="#payInvoice">Record Payment</button>
-                                <button class="btn btn-primary rounded" data-bs-toggle="modal"
+                                <button disabled class="btn btn-primary rounded" data-bs-toggle="modal"
                                     data-bs-target="#revertBackModal">Revert Invoice</button>
                             </div>
                         </div>

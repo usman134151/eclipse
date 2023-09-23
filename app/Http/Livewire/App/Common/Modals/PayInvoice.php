@@ -75,6 +75,9 @@ class PayInvoice extends Component
                         $this->invoice->save();
                         Booking::where('invoice_id', $invoice_id)->update(['invoice_status' => '2']);
                     }
+                    else
+                        $this->invoice->invoice_status = "4";
+
 
 
                     $this->invoice->supervisor_payment_status = "1";
