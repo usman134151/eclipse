@@ -386,7 +386,8 @@ if (!function_exists('sendTemplatemail')) {
             if ($sendEmail && isset($data['templateId']) && !empty($data['templateId'])) {
                 $user_role_id =  $userData->roles->first()->id; //fetch what ever is the first assigned role
                 $template = NotificationTemplateRoles::where(['notification_id' => $data['templateId'], 'role_id' => $user_role_id])->first();
-
+                if(is_null($template))
+                  return;
                 $dom = new DOMDocument();
                 $dom->loadHTML($template->notification_text);
                 $xpath = new DOMXPath($dom);
@@ -430,7 +431,7 @@ if (!function_exists('sendTemplatemail')) {
             // Log::info(array('sendtemplateemail' => $e->getMessage() . $e->getFile() . $e->getLine()));
 
             //  Log::info($e->getMessage().$e->getFile().$e->getLine());
-            dd($e->getMessage() . $e->getFile() . $e->getLine());
+           // dd($e->getMessage() . $e->getFile() . $e->getLine());
         }
     }
 }
