@@ -120,7 +120,7 @@ final class CustomerInvoices extends PowerGridComponent
             ->addColumn('edit', function (Invoice $model) {
                 return '<div class="d-flex actions">
                                                     <a href="#" title="back" aria-label="back"
-                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="$emit(\'revertInvoice\','.$model->id.')"
+                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="$emit(\'revertInvoice\','.$model->id. ')"
                                                         data-bs-toggle="modal" data-bs-target="#revertBackModal">
                                                         <svg aria-label="Revert" class="fill-stroke" width="22"
                                                             height="20" viewBox="0 0 22 20" fill="none"
@@ -128,7 +128,7 @@ final class CustomerInvoices extends PowerGridComponent
                                                             <use xlink:href="/css/provider.svg#revert"></use>
                                                         </svg>
                                                     </a>
-                                                    <a href="#" @click="invoiceDetails = true"
+                                                    <a href="#" @click="invoiceDetailsPanel = true" wire:click="$emit(\'openInvoiceDetails\','.$model->id.')"
                                                         title="Invoice Details" aria-label="Invoice Details"
                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                         <svg aria-label="Invoice Details" width="19"

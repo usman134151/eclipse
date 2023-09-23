@@ -1,6 +1,7 @@
 <div class="modal-content">
     <div class="modal-header">
-        <h2 class="modal-title fs-5 text-center" id="payInvoiceLabel">Pay Invoice $ 342.50</h2>
+        <h2 class="modal-title fs-5 text-center" id="payInvoiceLabel">Pay Invoice
+            {{ $invoice ? numberFormat($invoice->outstanding_amount) : '' }}</h2>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body">
@@ -9,34 +10,61 @@
                 Payment Manager
             </label>
             <div class="col-lg-0 d-flex gap-2 mb-5">
-                <button type="button" class="btn  w-100 btn-primary text-sm">
+                <button type="button"
+                    class="btn  w-100 {{ $payment['payment_method'] == 4 ? 'btn-primary ' : ' btn-outline-dark' }} text-sm"
+                    wire:click="$set('payment.payment_method','4')">
                     <svg class="fill" width="40" height="34" viewBox="0 0 40 34" fill="none"
-                    xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#payment"></use>
+                        xmlns="http://www.w3.org/2000/svg">
+                        <use xlink:href="/css/sprite.svg#payment"></use>
                     </svg>
                     <span class="mx-1">Bank Transfer</span></button>
-                <button type="button" class="btn  w-100 btn-outline-dark text-sm">
-                    <x-icon name="dollar-card"/>
+                <button type="button"
+                    class="btn  w-100 {{ $payment['payment_method'] == 3 ? 'btn-primary ' : ' btn-outline-dark' }} text-sm"
+                    wire:click="$set('payment.payment_method','3')">
+                    <x-icon name="dollar-card" />
                     <span class="mx-2 mt-2">Check</span>
                 </button>
-                <button type="button" class="btn  w-100 btn-outline-dark text-sm">
-                    <x-icon name="dollar-deposit"/>
+                <button type="button"
+                    class="btn  w-100 {{ $payment['payment_method'] == 2 ? 'btn-primary ' : ' btn-outline-dark' }} text-sm"
+                    wire:click="$set('payment.payment_method','2')">
+                    <x-icon name="dollar-deposit" />
                     <span class="mt-2 mx-2">Cash payment</span></button>
             </div>
+
+            @error('payment.payment_method')
+                <span class="d-inline-block invalid-feedback mt-2">
+                    {{ $message }}
+                </span>
+            @enderror
             <div class="col-lg-10 d-flex gap-3 mb-3">
                 <div>
                     <label class="form-label" for="paymentAmount">
                         Payment Amount
                     </label>
                     <input type="text" id="paymentAmount" class="form-control form-control-md" name="paymentAmount"
-                        placeholder="$420" required aria-required="true" />
+                        wire:model.defer="payment.payment_amount" placeholder="$420" required aria-required="true" />
+
+                    @error('payment.payment_amount')
+                        <span class="d-inline-block invalid-feedback mt-2">
+                            {{ $message }}
+                        </span>
+                    @enderror
                 </div>
                 <div>
                     <label class="form-label" for="paymentDate">
                         Payment Date
                     </label>
                     <div class="mb-4 mb-lg-0 position-relative has-date-icon-left-side">
-                        <x-icon name="input-calender"/>
-                        <input type="" id="paymentDate" class="form-control form-control-md js-single-date" placeholder="MM/DD/YYYY" name="paymentDate" aria-label="Payment Date">
+                        <x-icon name="input-calender" />
+                        <input wire:model.defer="payment.payment_date" id="payment_date"
+                            class="form-control form-control-md js-single-date" placeholder="MM/DD/YYYY"
+                            name="payment_date" aria-label="Payment Date">
+
+                        @error('payment.payment_date')
+                            <span class="d-inline-block invalid-feedback mt-2">
+                                {{ $message }}
+                            </span>
+                        @enderror
                     </div>
                 </div>
             </div>
@@ -44,10 +72,12 @@
                 <label class="form-label" for="notes-column">
                     Notes
                     <svg aria-label="" width="15" height="16" viewBox="0 0 15 16" fill="none"
-                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#fill-question"></use>
-                    </svg> 
+                        xmlns="http://www.w3.org/2000/svg">
+                        <use xlink:href="/css/provider.svg#fill-question"></use>
+                    </svg>
                 </label>
-                <textarea class="form-control" rows="3" placeholder="" name="notesColumn" id="notes-column"></textarea>
+                <textarea class="form-control" wire:model.defer="payment.payment_notes" rows="3" placeholder="" name="notesColumn"
+                    id="notes-column"></textarea>
             </div>
         </div>
     </div>
@@ -58,7 +88,7 @@
                     data-bs-dismiss="modal">Cancel</button>
             </div>
             <div class="col-lg-3">
-                <button type="button" class="btn rounded w-100 btn-primary">Submit</button>
+                <button type="submit" wire:click="payInvoice" class="btn rounded w-100 btn-primary">Submit</button>
             </div>
         </div>
     </div>
