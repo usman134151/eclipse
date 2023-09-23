@@ -264,6 +264,7 @@ class Booking extends Model
                 if($this->status == 4){
                     $invoiceTotal = $payments->cancellation_charges;
                 }else{
+                    //overide check include 
                     $invoiceTotal = $payments->total_amount + $payments->modification_fee + $payments->reschedule_booking_charges;
                 }
             }
