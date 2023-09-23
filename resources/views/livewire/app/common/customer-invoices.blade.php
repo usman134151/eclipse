@@ -1,4 +1,11 @@
-<div x-data="{ invoiceDetails: false }">
+<div x-data="{ invoiceDetailsPanel: false }">
+<div id="loader-section" class="loader-section" wire:loading>
+		<div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
+			<div class="spinner-border" role="status" aria-live="polite">
+				<span class="visually-hidden">Loading...</span>
+			</div>
+		</div>
+	</div>
     <div class="content-header row">
         <div class="content-header-left col-md-9 col-12 mb-2">
             <div class="row breadcrumbs-top">
@@ -123,10 +130,10 @@
 
 
                             <div class="justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
-                                <button class="btn btn-primary rounded">Resend Invoice</button>
-                                <button class="btn btn-primary rounded" data-bs-toggle="modal"
+                                <button disabled class="btn btn-primary rounded">Resend Invoice</button>
+                                <button  disabled class="btn btn-primary rounded" data-bs-toggle="modal"
                                     data-bs-target="#payInvoice">Record Payment</button>
-                                <button class="btn btn-primary rounded" data-bs-toggle="modal"
+                                <button disabled class="btn btn-primary rounded" data-bs-toggle="modal"
                                     data-bs-target="#revertBackModal">Revert Invoice</button>
                             </div>
                         </div>
@@ -139,7 +146,7 @@
     </div>
     @include('modals.common.pay-invoice')
     @include('modals.common.revert-back')
-    @include('panels.invoices.invoice-details')
+    @include('panels.common.invoice-details')
 </div>
 @push('scripts')
 <script>
@@ -150,6 +157,10 @@
     }
     Livewire.on('revertModalDismissed', () => {
         $('#revertBackModal').modal('hide');
+
+    });
+        Livewire.on('payInvoiceModalDismissed', () => {
+        $('#payInvoice').modal('hide');
 
     });
 </script>

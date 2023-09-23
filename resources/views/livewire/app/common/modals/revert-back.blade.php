@@ -2,7 +2,7 @@
     <div class="modal-body">
         <div>
             <label class="form-label">
-                REVERT BACK {{$invoice_id}}
+                REVERT BACK 
             </label>
             <p>Are you sure you want to revert the status of this remittance?</p>
             <div class="d-flex justify-content-center gap-2">

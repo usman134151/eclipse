@@ -2,13 +2,11 @@
 
 namespace App\Http\Livewire\App\Common\Panels\Invoices;
 
-use App\Http\Livewire\App\Common\Panels\Remittance\Payment;
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\Invoice;
 use App\Models\Tenant\User;
 use App\Models\Tenant\UserAddress;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 
@@ -16,7 +14,7 @@ class CreateInvoice extends Component
 {
     public $showForm, $selectedBookingsIds = [], $managers, $addresses, $invoice = ['billing_address_id' => null, 'billing_manager_id' => null],
         $exclude_notif = false, $bookings = [];
-    protected $listeners = ['showList' => 'resetForm'];
+    protected $listeners = [];
 
     public function rules()
     {
@@ -106,19 +104,19 @@ class CreateInvoice extends Component
                             'invoice_status' => "1",
                         ]
                     );
-                    foreach ($this->bookings as $key => $bookingId) {
-                        $booking = Booking::where('id', $bookingId->id)->first();
+                    foreach ($this->bookings as $key => $booking) {
+                        // $booking = Booking::where('id', $bookingId->id)->first();
 
-                        $message = "New invoice " . $this->invoice['invoice_number'] . " created by " . Auth::user()->name;
-                        $logs = array(
-                            'action_by' => Auth::user()->id,
-                            'action_to' => $booking->id,
-                            'item_type' => 'Booking',
-                            'message' => $message,
-                            'type' => 'Invoice created',
-                            'request_to' => ''
-                        );
-                        addLogs($logs);
+                        // $message = "New invoice " . $this->invoice['invoice_number'] . " created by " . Auth::user()->name;
+                        // $logs = array(
+                        //     'action_by' => Auth::user()->id,
+                        //     'action_to' => $booking->id,
+                        //     'item_type' => 'Booking',
+                        //     'message' => $message,
+                        //     'type' => 'Invoice created',
+                        //     'request_to' => ''
+                        // );
+                        // addLogs($logs);
                         $booking->invoice_id = $invoice;
                         $booking->invoice_status = "1";
                         $booking->save();
@@ -149,12 +147,5 @@ class CreateInvoice extends Component
 
 
 
-    function showForm()
-    {
-        $this->showForm = true;
-    }
-    public function resetForm()
-    {
-        $this->showForm = false;
-    }
+   
 }
