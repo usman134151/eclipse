@@ -1,7 +1,16 @@
-{{-- Invoice generator bookings - Start --}}
+
 <x-off-canvas show="invoiceDetailsPanel" :allowBackdrop="false" size="fullscreen">
 	<x-slot name="title">Invoice Details</x-slot>
-  @livewire('app.common.panels.invoice-details')
+    @if ($invoice_id)
+
+        @livewire('app.common.panels.invoice-details', ['invoice_id' => $invoice_id])
+    @endif
+
 		<!-- /Total -->
 </x-off-canvas>
-{{-- Invoice generator bookings - End --}}
+<script>
+    window.addEventListener('refresh-invoice-details', function(event) {
+        var invoice_id = event.detail.invoice_id;
+        Livewire.emit('openInvoiceDetails', invoice_id);
+    });
+</script>
