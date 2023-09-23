@@ -153,10 +153,11 @@ class Bookings extends Component
         $i = 0;
 
         foreach ($rows as $row) {
+            
             if ($i > 0) {
                 if ($row[0] != '') {
                     try {
-                        $booking = [];
+                        $booking = ['company_id','accommodation_id','customer_id','service_id','service_type','provider_count','timezone','booking_start_date','booking_end_date','start_hour','start_min','end_hour','end_min'];
 
                         $booking['booking_number'] = $row[0];
 
