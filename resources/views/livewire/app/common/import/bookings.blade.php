@@ -157,7 +157,7 @@
                                                                 <select class="form-select"
                                                                     wire:model='bookings.{{ $loop->index }}.service_id'>
                                                                     <option value="0">Select Option</option>
-                                                                    @if (isset($services[$bookings[$loop->index]['accommodation_id']]))
+                                                                    @if (key_exists('accommodation_id',$booking) && isset($services[$bookings[$loop->index]['accommodation_id']]))
                                                                         @foreach ($services[$bookings[$loop->index]['accommodation_id']] as $service)
                                                                             <option value="{{ $service['id'] }}">
                                                                                 {{ $service['name'] }}</option>
