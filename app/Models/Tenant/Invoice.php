@@ -4,6 +4,7 @@ namespace App\Models\Tenant;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Invoice extends Model
 {
@@ -25,4 +26,21 @@ class Invoice extends Model
     {
         return $this->belongsTo(Company::class, 'company_id');
     }
+    public function bookings(): HasMany
+    {
+        return $this->hasMany(Booking::class,'invoice_id')->where('company_id',$this->company_id);
+    }
+    public function billing_manager()
+    {
+        return $this->belongsTo(User::class, 'billing_manager_id');
+    }
+    public function billingAddress()
+    {
+        return $this->belongsTo(UserAddress::class, 'billing_address_id', 'id');
+    }
+
+    public function totalPaid(){
+        return $this->total_price - $this->outstanding_amount;
+    }
+
 }

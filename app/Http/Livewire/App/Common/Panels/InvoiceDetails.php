@@ -7,8 +7,10 @@ use Livewire\Component;
 
 class InvoiceDetails extends Component
 {
-    public $showForm,$invoice,$bookings;
-    protected $listeners = ['showList' => 'resetForm'];
+    public $showForm, $invoice;
+    protected $listeners = [];
+    public $status = [2 => ['class' => '', 'title' => 'Paid'], 1 => ['class' => '', 'title' => 'Issued'], 3 => ['class' => 'text-danger', 'title' => 'Overdue'], 4 => ['class' => '', 'title' => 'Partial']];
+
 
     public function render()
     {
@@ -17,18 +19,6 @@ class InvoiceDetails extends Component
 
     public function mount($invoice_id)
     {
-        $this->invoice = Invoice::where('id',$invoice_id)->first();
-
-        
+        $this->invoice = Invoice::where('id', $invoice_id)->first();
     }
-
-    function showForm()
-    {     
-       $this->showForm=true;
-    }
-    public function resetForm()
-    {
-        $this->showForm=false;
-    }
-
 }

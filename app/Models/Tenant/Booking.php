@@ -262,7 +262,7 @@ class Booking extends Model
             if ($this->status == 4) {
                 $invoiceTotal = $payments->cancellation_charges;
             } else {
-                if ($this->payments->is_override)
+                if ($payments->is_override)
                     $invoiceTotal = $payments->override_amount + $payments->modification_fee + $payments->reschedule_booking_charges;
                 else
                     $invoiceTotal = $payments->total_amount + $payments->modification_fee + $payments->reschedule_booking_charges;
