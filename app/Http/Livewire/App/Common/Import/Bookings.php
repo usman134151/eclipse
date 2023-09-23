@@ -3,7 +3,8 @@
 namespace App\Http\Livewire\App\Common\Import;
 
 use Livewire\Component;
-
+use App\Models\Tenant\Booking;
+use App\Models\Tenant\Payment;
 use App\Models\Tenant\Accommodation;
 use App\Models\Tenant\Company;
 use App\Models\Tenant\Industry;
@@ -13,6 +14,8 @@ use App\Helpers\SetupHelper;
 use App\Models\Tenant\ServiceCategory;
 use App\Models\Tenant\SetupValue;
 use App\Models\Tenant\User;
+use App\Services\App\BookingOperationsService;
+use Auth;
 
 class Bookings extends Component
 {
@@ -29,7 +32,91 @@ class Bookings extends Component
     {
         return view('livewire.app.common.import.bookings');
     }
+    public function save(){
+       
 
+       //getting record ready for booking
+       foreach($this->bookings as $bookingData){
+        $services=[];$dates=[];$selectedDepartments=[];$selectedIndustries=[];
+        $type=1;$unassigned=1; $status=1; //defaults
+        //draft type=2;
+        //status 1 for unassigned , 2 for past 
+        if($bookingData['status']=='Draft'){
+            $type=2;
+        }
+        elseif($bookingData['status']=='Cancelled'){
+            $status=3;
+        }
+        elseif($bookingData['status']=='Completed'){
+            $status=2; $unassigned=2;
+        }     
+        elseif($bookingData['status']=='Live'){
+            $status=1; $unassigned=1;
+        } 
+        elseif($bookingData['status']=='Paid'){
+            $status=2; $unassigned=2;
+        } 
+        $services[0]=['accommodation_id'=>$bookingData['accommodation_id'],'services'=>$bookingData['service_id'],'provider_count'=>$bookingData['provider_count'],'service_types'=>$bookingData['service_type'],'meetings'=>[],'specialization'=>'','service_consumer'=>[],'attendees'=>[]];
+        $override_amount=$bookingData['override_amount'];
+        $selectedIndustries=[$bookingData["industry_id"]];
+        $dates[0]=[
+            'start_date' =>$bookingData['booking_start_date'],
+            'start_hour' => $bookingData['start_hour'],
+            'start_min' => $bookingData['start_min'],
+            'end_date' => $bookingData['booking_end_date'], // Adjust if necessary, if the end date might be different
+            'end_hour' => $bookingData['end_hour'],
+            'end_min' => $bookingData['end_hour'],
+         
+            'duration_day' => '',
+            'duration_hour' => '',
+            'duration_minute' => '',
+            'time_zone'=>$bookingData['timezone'],
+            'day_rate'=>false
+
+        ];
+      
+        $bookingData=["booking_number"=>$bookingData['booking_number'],"company_id" => $bookingData['company_id'], "customer_id" => $bookingData["customer_id"], "industry_id" =>  $bookingData["industry_id"],'user_id'=>Auth::id(),'frequncy_id'=>1,'type'=>$type,'status'=>$unassigned,'booking_status'=>$status];
+        //checking if booking exists
+      
+        $booking=Booking::where('booking_number',$bookingData['booking_number'])->first();
+        $payment=new Payment;
+        $payment->discounted_amount=0;
+        $payment->payment_method_type=2;
+        if(is_null($booking)){
+            $booking=new Booking($bookingData);
+        }
+           
+        else{
+            
+            if(!is_null($booking->payment)){
+                $payment=$booking->payment;
+           
+            }
+
+            
+            $booking->update($bookingData);
+        }
+          
+          $booking=BookingOperationsService::createBooking($booking, $services, $dates,$selectedIndustries,$selectedDepartments,true);
+          //saving payment
+          $payment->booking_id=$booking->id;
+          $payment->is_override=1;
+          $payment->total_amount=$override_amount;
+          $payment->override_amount=$override_amount;
+          $payment->payment_method_type='Other';
+          $payment->payment_by=Auth::user()->id;  
+          $payment->save();
+       }
+       $this->showList("Booking data has been imported successfully");
+      
+       $this->bookings = [];
+
+    }
+    public function showList($message = "")
+	{
+		// Save data
+		$this->emit('showList', $message);
+	}
     public function mount()
     {
 
@@ -180,7 +267,8 @@ class Bookings extends Component
                             $booking['end_min']=$endTime[1];
 
                         $booking['status'] = $row[13];
-
+                        $booking['is_override'] = 1;
+                        $booking['override_amount'] = $row[14];
 
                         $this->bookings[] = $booking;
                     } catch (\ErrorException $e) {
@@ -197,4 +285,5 @@ class Bookings extends Component
 
         $this->dispatchBrowserEvent('refreshSelects');
     }
+
 }

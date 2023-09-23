@@ -75,7 +75,7 @@
 
                                                             <div class="col-md-10">
 
-                                                                <div>
+                                                                <div class="mt-2">
                                                                     <label class="form-label-sm" for="First Name">Booking
                                                                         Number</label>
                                                                     <input type="text"
@@ -87,7 +87,7 @@
                                                                             class="d-inline-block invalid-feedback mt-2">{{ $message }}</span>
                                                                     @enderror
                                                                 </div>
-                                                                <div>
+                                                                <div class="mt-2">
                                                                     <label class="form-label-sm" for="company">
                                                                         Company
                                                                     </label>
@@ -107,7 +107,7 @@
                                                                             class="d-inline-block invalid-feedback mt-2">{{ $message }}</span>
                                                                     @enderror
                                                                 </div>
-                                                                <div>
+                                                                <div class="mt-2">
                                                                     <label class="form-label-sm" for="Language">
                                                                         Requester
                                                                     </label>
@@ -122,7 +122,14 @@
                                                                         @endif
                                                                     </select>
                                                                 </div>
-                                                               
+                                                                <div class="mt-2">
+                                                                    <label class="form-label-sm" for="Language">
+                                                                        Booking Total
+                                                                    </label>
+                                                                    <input type="text"
+                                                                    wire:model.defer="bookings.{{ $loop->index }}.override_amount"
+                                                                    class="form-control" />
+                                                                </div>                                                               
 
 
                                                     </td>
@@ -130,7 +137,7 @@
 
 
                                                         <div class="row">
-                                                            <div class="col-lg-6 col-12">
+                                                            <div class="col-lg-6 col-12 mt-2">
                                                                 <label class="form-label-sm" for="First Name">Accommodation
                                                                 </label>
                                                                 <select class="form-select"
@@ -144,7 +151,7 @@
                                                             </div>
 
 
-                                                            <div class="col-lg-6 col-12">
+                                                            <div class="col-lg-6 col-12 mt-2">
                                                                 <label class="form-label-sm" for="First Name">Service
                                                                 </label>
                                                                 <select class="form-select"
@@ -160,14 +167,14 @@
                                                             </div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-6 col-12">
+                                                            <div class="col-lg-6 col-12 x">
                                                                 <label class="form-label-sm" for="First Name">Provider
                                                                     Count</label>
                                                                 <input type="text"
                                                                     wire:model.defer="bookings.{{ $loop->index }}.provider_count"
                                                                     class="form-control" />
                                                             </div>
-                                                            <div class="col-lg-6 col-12">
+                                                            <div class="col-lg-6 col-12 mt-2">
                                                                 <label class="form-label-sm" for="First Name">Service
                                                                     Type</label>
                                                                 <select class="form-select"
@@ -182,7 +189,7 @@
 
                                                         </div>
                                                         <div class="row ">
-                                                            <div class="col-lg-6 col-md-6 mb-4">
+                                                            <div class="col-lg-6 col-md-6 mb-4 mt-2">
                                                                 <label class="form-label-sm" for="set_time_zone">
                                                                     Time Zone <span class="mandatory">*</span></label>
                                                                 <select class="form-select select2 mb-2"
@@ -196,7 +203,7 @@
 
                                                                 </select>
                                                             </div>
-                                                              <div class="col-lg-6 col-12">
+                                                              <div class="col-lg-6 col-12 mt-2">
                                                                     <label class="form-label-sm" for="status">
                                                                         Status
                                                                     </label>
@@ -212,7 +219,7 @@
                                                                 </div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-auto col-md-6 mb-4">
+                                                            <div class="col-lg-auto col-md-6 mb-4 mt-2">
                                                                 <label class="form-label-sm"
                                                                     for="start_date_{{ $loop->index }}">Start Date
                                                                     <span class="mandatory">*</span></label>
@@ -241,7 +248,7 @@
                                                                     </span>
                                                                 @enderror
                                                             </div>
-                                                            <div class="d-flex col-lg-auto mb-4">
+                                                            <div class="d-flex col-lg-auto mb-4 mt-2">
                                                                 <div class="d-flex flex-column">
                                                                     <label class="form-label-sm"
                                                                         for="set_start_time">Start Time</label>
@@ -281,7 +288,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg-auto mb-4">
+                                                            <div class="col-lg-auto mb-4 mt-2">
                                                                 <label class="form-label-sm"
                                                                     for="end_date_{{ $loop->index }}">End Date<span
                                                                         class="mandatory">*</span></label>
@@ -310,7 +317,7 @@
                                                                     </span>
                                                                 @enderror
                                                             </div>
-                                                            <div class="d-flex col-lg-auto mb-4">
+                                                            <div class="d-flex col-lg-auto mb-4 mt-2">
                                                                 <div class="d-flex flex-column">
                                                                     <label class="form-label-sm"
                                                                         for="set_start_time">End Time</label>
