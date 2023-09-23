@@ -60,7 +60,7 @@ class AssignProviders extends Component
             $this->specializations = $value;
         } else if ($name == "setup_value_label") {
             $this->service_type_ids = $value;
-        } else if ($name == "tags_selected") {
+        } else if ($name == "tags_selected-assignProvider") {
             $this->tag_names = $value;
         } else if ($name == "providers_selected") {
             $this->provider_ids = $value;

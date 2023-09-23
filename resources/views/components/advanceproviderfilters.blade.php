@@ -38,8 +38,9 @@
                     </label>
                 </div>
             </div>
-            <select  wire:model.defer="tag_names" data-placeholder="Select Tags" multiple
-                    class="select2 form-select" tabindex="" id="tags_selected" name="tags-selected">
+            <select data-placeholder="" multiple
+                    class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="tags_selected{{$type}}"  aria-label="Select Tags">
+                                                                
                     <option value=""></option>
                     @if (isset($tags))
                         @foreach ($tags as $tag)
