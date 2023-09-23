@@ -276,8 +276,10 @@ if (!function_exists('sendTemplatemail')) {
                     "@customer" => $customer ?? '',
                     "@consumer" => $customer ?? '',
                     "@requester" => $customer ?? '',
-                    "@booking_start_at" =>  formatDateTime($bookingData->booking_start_at) ?? '',
-                    "@booking_end_at" =>  formatDateTime($bookingData->booking_end_at) ?? '',
+                    "@booking_start_date" =>  formatDateTime($bookingData->booking_start_at) ?? '',
+                    "@booking_start_time"=>'',
+                    "@booking_end_time"=>"",
+                    "@booking_end_date" =>  formatDateTime($bookingData->booking_end_at) ?? '',
                     "@booking_date" =>  formatDate($bookingData->booking_start_at) ?? '',
                     "@booking_company"=> $bookingData->company ? $bookingData->company->name :"",
                     "@booking_location" =>  $location ?? '',
@@ -386,7 +388,8 @@ if (!function_exists('sendTemplatemail')) {
             if ($sendEmail && isset($data['templateId']) && !empty($data['templateId'])) {
                 $user_role_id =  $userData->roles->first()->id; //fetch what ever is the first assigned role
                 $template = NotificationTemplateRoles::where(['notification_id' => $data['templateId'], 'role_id' => $user_role_id])->first();
-
+                if(is_null($template))
+                  return;
                 $dom = new DOMDocument();
                 $dom->loadHTML($template->notification_text);
                 $xpath = new DOMXPath($dom);
@@ -401,8 +404,8 @@ if (!function_exists('sendTemplatemail')) {
                 $data['replacements'] = $replacements;
                 if (isset($invoicePdf))
                     $data['invoice_pdf'] = $invoicePdf ?? false;
-                $data['templateSubject'] = str_replace(array_keys($replacements), array_values($replacements), $template->notification_subject ?? '');
-                $data['templateBody'] = str_replace(array_keys($replacements), array_values($replacements), $templateString);
+                $data['templateSubject'] = str_ireplace(array_keys($replacements), array_values($replacements), $template->notification_subject ?? '');
+                $data['templateBody'] = str_ireplace(array_keys($replacements), array_values($replacements), $templateString);
 
                 $data['admin'] = $admin;
                 if (session()->has('company_logo') && session()->get('company_logo') != null)
