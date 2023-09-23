@@ -1,6 +1,6 @@
 <div class="modal-content">
     <div class="modal-header">
-        <h2 class="modal-title fs-5 text-center" id="payInvoiceLabel">Pay Invoice $ 342.50</h2>
+        <h2 class="modal-title fs-5 text-center" id="payInvoiceLabel">Pay Invoice {{$invoice ? numberFormat($invoice->outstanding_amount) : '' }}</h2>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body">
@@ -58,7 +58,7 @@
                     data-bs-dismiss="modal">Cancel</button>
             </div>
             <div class="col-lg-3">
-                <button type="button" class="btn rounded w-100 btn-primary">Submit</button>
+                <button type="button" wire:click="payInvoice" class="btn rounded w-100 btn-primary">Submit</button>
             </div>
         </div>
     </div>

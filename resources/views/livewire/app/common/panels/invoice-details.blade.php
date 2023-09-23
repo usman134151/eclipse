@@ -149,7 +149,8 @@
     </div>
     <div class="col-12 form-actions">
         <button class="btn btn-primary rounded">Resend Invoice</button>
-        <button class="btn btn-primary rounded" data-bs-toggle="modal" data-bs-target="#payInvoice">Record
+        <button class="btn btn-primary rounded" data-bs-toggle="modal" data-bs-target="#payInvoice" 
+         wire:click="$emit('payInvoiceId',{{ $invoice->id }})">Record
             Payment</button>
         <button class="btn btn-primary rounded" wire:click="$emit('revertInvoice',{{ $invoice->id }})"
             x-on:close-invoice-details.window="invoiceDetailsPanel = !invoiceDetailsPanel" data-bs-toggle="modal"

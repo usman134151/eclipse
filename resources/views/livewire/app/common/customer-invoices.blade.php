@@ -159,5 +159,9 @@
         $('#revertBackModal').modal('hide');
 
     });
+        Livewire.on('payInvoiceModalDismissed', () => {
+        $('#payInvoice').modal('hide');
+
+    });
 </script>
 @endpush
