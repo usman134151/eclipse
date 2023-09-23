@@ -36,6 +36,7 @@ class AssignProviders extends Component
     public $service_id = null, $booking_id = null;
     protected $listeners = ['showList' => 'resetForm', 'refreshFilters', 'saveAssignedProviders' => 'save', 'updateVal', 'inviteProviders'];
     public $assignedProviders = [], $limit = null, $booking, $showError = false;
+    public $paymentData=["additional_label_provider"=>'', "additional_charge_provider"=>0];
 
     public function updateVal($attrName, $val)
     {
@@ -210,6 +211,11 @@ class AssignProviders extends Component
         $this->service_id = $service_id;
         $this->tags = Tag::all();
         $this->booking = Booking::where('id', $this->booking_id)->first();
+        if(!is_null($this->booking->payment)){
+            $this->paymentData=["additional_label_provider"=>$this->booking->payment->additional_label_provider, "additional_charge_provider"=>$this->booking->payment->additional_charge_provider];
+           
+             
+        }
         if ($panelType == 2) {
             $this->assignedProviders  = BookingInvitationProvider::where('invitation_id', function ($query) {
                 $query->from('booking_invitations')

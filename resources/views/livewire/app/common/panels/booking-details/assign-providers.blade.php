@@ -1,5 +1,12 @@
  {{-- BEGIN: Filters --}}
  <div>
+ <div id="loader-section" class="loader-section" wire:loading>
+        <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
+            <div class="spinner-border" role="status" aria-live="polite">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
      <div class="accordion mb-4" id="accordionFilters" wire:ignore>
          <div class="accordion-item">
              <h2 class="accordion-header" id="headingFilters">
@@ -69,10 +76,10 @@
                      <th scope="col">Provider</th>
                      @if ($panelType == 1)
                          <th scope="col" width="20%">Additional Provider Payment
-                             <small>(coming soon)</small>
+                           
                          </th>
-                         <th scope="col" class="text-center">Service Payment <small>(coming soon)</small></th>
-                         <th scope="col">Total <small>(coming soon)</small></th>
+                         <th scope="col" class="text-center" width="20%">Service Payment </th>
+                         <th scope="col">Total</th>
                      @endif
                      @if ($panelType == 3)
                          <th scope="col"></th>
@@ -155,7 +162,7 @@
                                              <input type="" name="" class="form-control form-control-sm"
                                                  placeholder="$00:00" aria-label="Additional Payment">
                                          </div>
-                                         <div>
+                                        <!--  <div>
                                              <label class="form-label-sm">Label</label>
                                              <input type="" name="" class="form-control form-control-sm"
                                                  placeholder="Payment Label" aria-label="Payment Label">
@@ -181,10 +188,10 @@
                                                  <label class="form-check-label text-nowrap"
                                                      for="ChargetoCustomer"><small>Charge to
                                                          Customer</small></label>
-                                             </div>
+                                             </div> -->
                                          </div>
                                      </div>
-                                     <div class="mb-2">
+                                    <!--  <div class="mb-2">
                                          <button class="btn btn-xs btn-has-icon btn-primary rounded">
                                              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                                  xmlns="http://www.w3.org/2000/svg">
@@ -194,27 +201,26 @@
                                              </svg>
                                              Add New
                                          </button>
-                                     </div>
+                                     </div> -->
                                      {{--
                             <div>
                                 <div class="form-check">
                                     <input class="form-check-input" id="ChargetoCustomer" name="" type="checkbox"
                                         tabindex="">
-                                    <label class="form-check-label" for="ChargetoCustomer"><small>Reimburse
-                                            Mileage</small></label>
+                                    <label class="form-check-label" for="ChargetoCustomer"><small>Reimburse Mileage</small><br/><small>Coming Soon</small></label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" id="ReimburseTravelTime" name="" type="checkbox"
                                         tabindex="">
                                     <label class="form-check-label" for="ReimburseTravelTime"><small>Reimburse
-                                            Mileage</small></label>
+                                            Mileage</small><br /><small>Coming Soon</small></label>
                                 </div>
                             </div>
                             --}}
                                  </td>
                                  <td class="text-center border-end-2">
                                      <div class="d-flex gap-2 justify-content-center mb-3">
-                                         <div class="col-md-4">
+                                         <div class="col-md-6">
                                              <label class="form-label-sm">No of Days/Hours</label>
                                              <div class="input-group">
                                                  <input type="" name=""
@@ -234,7 +240,7 @@
                                          </div>
                                      </div>
                                      <div class="d-flex justify-content-center">
-                                         <div class="form-check mb-3 col-md-3">
+                                         <div class="form-check mb-3 col-md-5 me-4">
                                              <div class="">
                                                  <input class="form-check-input" id="reimburse-mileage"
                                                      name="" type="checkbox" tabindex="" checked>
@@ -246,12 +252,13 @@
                                                          class="form-control form-control-sm text-center"
                                                          placeholder="10 km" aria-label="Distance">
                                                  </div>
+                                                 <small>Coming Soon</small>
                                              </div>
+                                           
                                          </div>
-                                     </div>
-                                     <div class="d-flex justify-content-center">
 
-                                         <div class="form-check mb-3 col-md-3">
+
+                                         <div class="form-check mb-3 col-md-5">
                                              <div>
                                                  <input class="form-check-input" id="reimburse-travel-time"
                                                      name="" type="checkbox" tabindex="" checked>
@@ -266,7 +273,9 @@
                                                  <input type="" name=""
                                                      class="form-control form-control-sm text-center rounded-0"
                                                      placeholder="32 m" aria-label="Reimburse Travel Time">
+                                                     
                                              </div>
+                                             <br /><small>Coming Soon</small>
                                          </div>
                                      </div>
                                  </td>
@@ -293,14 +302,14 @@
                                                  <input class="form-check-input" id="assignPartialCoverage"
                                                      name="" type="checkbox" tabindex="">
                                                  <label class="form-check-label text-nowrap"
-                                                     for="assignPartialCoverage" for="partial-coverage"><small>Assign
+                                                     for="assignPartialCoverage" for="partial-coverage" disabled><small>Assign
                                                          Partial Coverage</small></label>
                                              </div>
-                                             <a href="#" class="btn btn-sm btn-primary rounded text-nowrap"
+                                             <a disabled href="#" class="btn btn-sm btn-primary rounded text-nowrap"
                                                  data-bs-toggle="modal" data-bs-target="#availableTimeslotModal">
                                                  Select Booking Range
                                              </a>
-                                         </div>
+                                         </div> <small>Coming Soon</small>
                                      </div>
                                  </td>
                              @endif
