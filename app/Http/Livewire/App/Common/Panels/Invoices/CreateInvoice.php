@@ -2,13 +2,11 @@
 
 namespace App\Http\Livewire\App\Common\Panels\Invoices;
 
-use App\Http\Livewire\App\Common\Panels\Remittance\Payment;
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\Invoice;
 use App\Models\Tenant\User;
 use App\Models\Tenant\UserAddress;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 
