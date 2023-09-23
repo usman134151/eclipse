@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class CustomerInvoices extends Component
 {
-    public $showForm, $invoice_id=0,$counter=0;
+    public $showForm, $invoice_id = 0, $counter = 0, $confirmationMessage = null;
     protected $listeners = ['showList' => 'resetForm', 'openInvoiceDetails'];
 
     public function render()
@@ -27,21 +27,23 @@ class CustomerInvoices extends Component
     }
 
     function showForm()
-    {     
-       $this->showForm=true;
+    {
+        $this->showForm = true;
     }
     public function resetForm($message)
     {
-        $this->showForm=false;
-        if ($message) {
+        $this->showForm = false;
+        $this->confirmationMessage = $message;
+        if ($this->confirmationMessage) {
             // Emit an event to display a success message using the SweetAlert package
             $this->dispatchBrowserEvent('swal:modal', [
                 'type' => 'success',
                 'title' => 'Success',
-                'text' => $message,
+                'text' => $this->confirmationMessage,
             ]);
-        }
-    
-    }
+            return redirect()->to('/admin/customer-invoices');
 
+
+        }
+    }
 }

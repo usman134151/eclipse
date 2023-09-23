@@ -13,6 +13,7 @@ final class CustomerInvoices extends PowerGridComponent
 {
     use ActionButton;
     public $status = [2 => ['code' => '/css/provider.svg#green-dot', 'title' => 'Paid'], 1 => ['code' => '/css/common-icons.svg#blue-dot', 'title' => 'Issued'], 3 => ['code' => '/css/provider.svg#red-dot', 'title' => 'Overdue'], 4 => ['code' => '/css/provider.svg#yellow-dot', 'title' => 'Partial']];
+    protected $listeners = ['refresh' => 'setUp'];
 
     /*
     |--------------------------------------------------------------------------
@@ -24,14 +25,13 @@ final class CustomerInvoices extends PowerGridComponent
     public function setUp(): array
     {
         $this->showCheckBox();
-
         return [
             Exportable::make('export')
                 ->striped()
                 ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
-            Header::make()->showSearchInput(),
+            Header::make()->showSearchInput()->showToggleColumns(),
             Footer::make()
-                ->showPerPage()
+                ->showPerPage(config('app.per_page'))
                 ->showRecordCount(),
         ];
     }
@@ -95,7 +95,7 @@ final class CustomerInvoices extends PowerGridComponent
                 if ($model['company']['company_logo'] == null)
                     $col = '<div class="d-flex gap-2 align-items-center"><div class=""><img width="50" style="width:64px;height:64px;top:1rem" src="/tenant-resources/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Company Profile Image"></div><div class=""><div class="fw-semibold fs-6 text-nowrap">' . $model['company']['name'] . '</div></div></div>';
                 else
-                    $col = '<div class="d-flex gap-2 align-items-center"><div class=""><img width="50" style="width:64px;height:64px;top:1rem" src="' . $model['company']['company_logo'] . '" class="img-fluid rounded-circle" alt="Company Profile Image"></div><div class=""><div class="fw-semibold fs-6 text-nowrap">' . $model['company']['name'] . '</div></div></div>';
+                    $col = '<div class="d-flex gap-2 align-items-center"><div class=""><img wire:ignore width="50" style="width:64px;height:64px;top:1rem" src="' . $model['company']['company_logo'] . '" class="img-fluid rounded-circle" alt="Company Profile Image"></div><div class=""><div class="fw-semibold fs-6 text-nowrap">' . $model['company']['name'] . '</div></div></div>';
                 return $col;
             })
             ->addColumn('po_number')
@@ -120,7 +120,7 @@ final class CustomerInvoices extends PowerGridComponent
             ->addColumn('edit', function (Invoice $model) {
                 return '<div class="d-flex actions">
                                                     <a href="#" title="back" aria-label="back"
-                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="$emit(\'revertInvoice\','.$model->id. ')"
+                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="$emit(\'revertInvoice\',' . $model->id . ')"
                                                         data-bs-toggle="modal" data-bs-target="#revertBackModal">
                                                         <svg aria-label="Revert" class="fill-stroke" width="22"
                                                             height="20" viewBox="0 0 22 20" fill="none"
@@ -128,7 +128,7 @@ final class CustomerInvoices extends PowerGridComponent
                                                             <use xlink:href="/css/provider.svg#revert"></use>
                                                         </svg>
                                                     </a>
-                                                    <a href="#" @click="invoiceDetailsPanel = true" wire:click="$emit(\'openInvoiceDetails\','.$model->id.')"
+                                                    <a href="#" @click="invoiceDetailsPanel = true" wire:click="$emit(\'openInvoiceDetails\',' . $model->id . ')"
                                                         title="Invoice Details" aria-label="Invoice Details"
                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                         <svg aria-label="Invoice Details" width="19"
