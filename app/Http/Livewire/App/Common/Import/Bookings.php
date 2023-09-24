@@ -205,7 +205,9 @@ class Bookings extends Component
                         $booking['provider_count'] = $row[7];
 
                         $booking['timezone'] = SetupHelper::getSetupValueByValue($row[8], 4);
-
+                        
+                        if($booking['timezone']==0)
+                            $booking['timezone']=61;
                         //dob formating
                         if (is_numeric($row[9])) {
                             // Convert the timestamp to an Excel serialized date value
@@ -302,6 +304,31 @@ class Bookings extends Component
         }
 
         $this->dispatchBrowserEvent('refreshSelects');
+    }
+
+    public function updateVal($attrName, $val)
+    {
+    if (preg_match('/timezone_(\d+)/', $attrName, $matches)) {
+                $index = intval($matches[1]);
+               
+        
+             
+                    $this->bookings[$index]['time_zone'] = $val;
+                   
+                  
+               
+              
+            }         
+
+             
+
+        else
+        $this->bookings[$attrName] = $val;
+
+        
+         //extra checks to call additional functions
+
+
     }
 
 }
