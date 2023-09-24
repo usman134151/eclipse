@@ -852,6 +852,7 @@ class Booknow extends Component
         // Assuming you have the $date array in your Livewire component.
         try {
             $timeZoneCity=$this->getTimeZone($this->dates[$index]['time_zone']);
+            dd($timeZoneCity);
         if (isset($this->dates[$index]['start_date']) && isset($this->dates[$index]['end_date']) &&
             isset($this->dates[$index]['start_hour']) && isset($this->dates[$index]['start_min']) &&
             isset($this->dates[$index]['end_hour']) && isset($this->dates[$index]['end_min'])) {
@@ -910,7 +911,7 @@ class Booknow extends Component
         }
     } catch (\Exception $e) {
         // Handle the exception, log the error, or debug further
-        dd($e->getMessage());
+      //  dd($e->getMessage());
     }
     
         return null; // Return null if the required fields are not set.

@@ -600,7 +600,7 @@ class ExportDataFile
         // $ethnicityValues = SetupValue::where('setup_id', 3)->pluck('setup_value_label')->toArray();
         // $companies = Company::where('status', '1')->orderBy('name')->pluck('name')->toArray();
         $serviceType = ['in_person', 'virtual', 'phone', 'tele-conference'];
-        $statuses = ["Cancelled", "Completed", "Draft", "Live", "Paid"];
+        $statuses = ["Cancelled", "Completed", "Draft", "Unassigned", "Paid"];
 
         $rows = [
             [
@@ -650,20 +650,20 @@ class ExportDataFile
         // set the Date column format to date
         $sheet->getStyle('L:L')->getNumberFormat()->setFormatCode('dd/mmm/yyyy');
 
-        // add data validation and date picker to the DOB column
-        $validation = $sheet->getCell('L2')->getDataValidation();
-        $validation->setType(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::TYPE_CUSTOM);
-        $validation->setErrorStyle(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::STYLE_STOP);
-        $validation->setAllowBlank(true);
-        $validation->setShowInputMessage(true);
-        $validation->setShowErrorMessage(true);
-        $validation->setShowDropDown(true);
-        $validation->setErrorTitle('Input error');
-        $validation->setError('Value is not a valid date.For example 10/May/2000 06:30 AM');
-        $validation->setPromptTitle('Pick a date');
-        $validation->setPrompt('Please pick a date from the calendar.');
-        $validation->setFormula1('DATE(1900,1,1)');
-        $validation->setFormula2('DATE(9999,12,31)');
+        // // add data validation and date picker to the DOB column
+        // $validation = $sheet->getCell('L2')->getDataValidation();
+        // $validation->setType(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::TYPE_CUSTOM);
+        // $validation->setErrorStyle(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::STYLE_STOP);
+        // $validation->setAllowBlank(true);
+        // $validation->setShowInputMessage(true);
+        // $validation->setShowErrorMessage(true);
+        // $validation->setShowDropDown(true);
+        // $validation->setErrorTitle('Input error');
+        // $validation->setError('Value is not a valid date.For example 10/May/2000 06:30 AM');
+        // $validation->setPromptTitle('Pick a date');
+        // $validation->setPrompt('Please pick a date from the calendar.');
+        // $validation->setFormula1('DATE(1900,1,1)');
+        // $validation->setFormula2('DATE(9999,12,31)');
 
         foreach ($rows as $row) {
             $sheet->fromArray([$row]);
@@ -802,7 +802,7 @@ class ExportDataFile
                     if ($booking->type == 2)
                         $code = 'Draft';
                     else
-                        $code = 'Live';
+                        $code = 'Unassigned';
                 }
 
 

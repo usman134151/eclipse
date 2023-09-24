@@ -529,7 +529,9 @@ if ($startIndex <= $endIndex) {
     ];
     foreach($scheduleChecks as $scheduleData){
         $schedule = Schedule::where('model_id', $scheduleData['model_id'])->where('model_type', $scheduleData['model_type'])->with('timeslots','holidays')->get()->first();
+       
         if(!is_null($schedule) && count($schedule['timeslots'])){
+       
             return $schedule;
         }
     }

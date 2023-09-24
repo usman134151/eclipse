@@ -167,8 +167,22 @@
                                                             </div>
                                                         </div>
                                                         <div class="row">
+                                                        <div class="col-lg-6 col-12 mt-2">
+                                                                <label class="form-label-sm" for="First Name">Industry
+                                                                </label>
+                                                                <select class="form-select"
+                                                                    wire:model='bookings.{{ $loop->index }}.industry_id'>
+                                                                    <option value="0">Select Option</option>
+                                                                  
+                                                                        @foreach ($industries as $industry)
+                                                                            <option value="{{ $industry['id'] }}">
+                                                                                {{ $industry['name'] }}</option>
+                                                                        @endforeach
+                                                                   
+                                                                </select>
+                                                            </div>
                                                             <div class="col-lg-6 col-12 x">
-                                                                <label class="form-label-sm" for="First Name">Provider
+                                                                <label class="form-label-sm mt-2" for="First Name">Provider
                                                                     Count</label>
                                                                 <input type="text"
                                                                     wire:model.defer="bookings.{{ $loop->index }}.provider_count"

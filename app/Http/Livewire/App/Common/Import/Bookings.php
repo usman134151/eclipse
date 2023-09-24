@@ -37,6 +37,19 @@ class Bookings extends Component
 
        //getting record ready for booking
        foreach($this->bookings as $bookingData){
+        if (
+            !array_key_exists('accommodation_id', $bookingData) || 
+            !array_key_exists('service_id', $bookingData) || 
+            !array_key_exists('service_type', $bookingData) || 
+            !array_key_exists('timezone', $bookingData) || 
+            !array_key_exists('industry_id', $bookingData)
+        ) {
+            $this->warningMessage= $this->errorMessage = "Please fill in all required fields before importing";
+            return;
+        }
+      
+       
+    
         $services=[];$dates=[];$selectedDepartments=[];$selectedIndustries=[];
         $type=1;$unassigned=1; $status=1; //defaults
         //draft type=2;
@@ -50,7 +63,7 @@ class Bookings extends Component
         elseif($bookingData['status']=='Completed'){
             $status=2; $unassigned=2;
         }     
-        elseif($bookingData['status']=='Live'){
+        elseif($bookingData['status']=='Unassigned'){
             $status=1; $unassigned=1;
         } 
         elseif($bookingData['status']=='Paid'){
@@ -58,7 +71,10 @@ class Bookings extends Component
         } 
         $services[0]=['accommodation_id'=>$bookingData['accommodation_id'],'services'=>$bookingData['service_id'],'provider_count'=>$bookingData['provider_count'],'service_types'=>$bookingData['service_type'],'meetings'=>[],'specialization'=>'','service_consumer'=>[],'attendees'=>[]];
         $override_amount=$bookingData['override_amount'];
-        $selectedIndustries=[$bookingData["industry_id"]];
+        if(key_exists("industry_id",$bookingData))
+            $selectedIndustries=[$bookingData["industry_id"]];
+        else
+            $selectedIndustries=[];
         $dates[0]=[
             'start_date' =>$bookingData['booking_start_date'],
             'start_hour' => $bookingData['start_hour'],
@@ -134,7 +150,7 @@ class Bookings extends Component
             ->select('users.id', 'users.name', 'company_name')->get();
         $this->requesters = $req->groupBy('company_name')->toArray();
         $this->services = $services->groupBy('accommodations_id')->toArray();
-        $this->statuses = ["Cancelled", "Completed", "Draft", "Live", "Paid"];
+        $this->statuses = ["Cancelled", "Completed", "Draft", "Unassigned", "Paid"];
 
     }
 
@@ -223,10 +239,10 @@ class Bookings extends Component
                         $booking['start_min'] = $start_time_Object->format('i');
                         */
                         $startTime=explode(":",$row[10]);
-                        if(count($startTime) && !is_null($startTime[0]))
+                        if(count($startTime)>1 && !is_null($startTime[0]))
                             $booking['start_hour']=$startTime[0];
 
-                        if(count($startTime) && !is_null($startTime[1]))
+                        if(count($startTime)>1 && !is_null($startTime[1]))
                             $booking['start_min']=$startTime[1];
                         
                         //dob formating
@@ -261,10 +277,10 @@ class Bookings extends Component
                         $booking['end_hour'] = $end_time_Object->format('H');
                         $booking['end_min'] = $end_time_Object->format('H'); */
                         $endTime=explode(":",$row[12]);
-                        if(count($endTime) && !is_null($endTime[0]))
+                        if(count($endTime)>1 && !is_null($endTime[0]))
                             $booking['end_hour']=$endTime[0];
 
-                        if(count($endTime) && !is_null($endTime[1]))
+                        if(count($endTime)>1 && !is_null($endTime[1]))
                             $booking['end_min']=$endTime[1];
 
                         $booking['status'] = $row[13];
@@ -273,6 +289,7 @@ class Bookings extends Component
 
                         $this->bookings[] = $booking;
                     } catch (\ErrorException $e) {
+                        dd($e);
                         $this->warningMessage = "Please make sure that you are trying to upload valid file to import data.";
                     }
                 }
