@@ -21,7 +21,7 @@
             </div>
             <div class="col-md-7 col-lg-1 order-lg-1 me-5"></div>
             <!-- Right Column (40%) with Login Form -->
-            <div class="col-md-5 col-lg-4 order-lg-2" style="z-index:2">
+            <div class="col-md-5 col-lg-4 order-lg-2" style="z-index:2;">
                 <div class="login-form">
                 <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-4 mx-auto">
 
