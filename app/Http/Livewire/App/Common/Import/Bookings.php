@@ -223,10 +223,10 @@ class Bookings extends Component
                         $booking['start_min'] = $start_time_Object->format('i');
                         */
                         $startTime=explode(":",$row[10]);
-                        if(!is_null($startTime[0]))
+                        if(count($startTime) && !is_null($startTime[0]))
                             $booking['start_hour']=$startTime[0];
 
-                        if(!is_null($startTime[1]))
+                        if(count($startTime) && !is_null($startTime[1]))
                             $booking['start_min']=$startTime[1];
                         
                         //dob formating
@@ -261,10 +261,10 @@ class Bookings extends Component
                         $booking['end_hour'] = $end_time_Object->format('H');
                         $booking['end_min'] = $end_time_Object->format('H'); */
                         $endTime=explode(":",$row[12]);
-                        if(!is_null($endTime[0]))
+                        if(count($endTime) && !is_null($endTime[0]))
                             $booking['end_hour']=$endTime[0];
 
-                        if(!is_null($endTime[1]))
+                        if(count($endTime) && !is_null($endTime[1]))
                             $booking['end_min']=$endTime[1];
 
                         $booking['status'] = $row[13];
