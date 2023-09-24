@@ -15,13 +15,18 @@
     <link rel="stylesheet" href="/tenant-resources/css/components.css">
     <link rel="stylesheet" href="/tenant-resources/css/bootstrap-extended.css">
     <link rel="stylesheet" href="/tenant-resources/css/style.css">
+    <link rel="stylesheet" href="/tenant-resources/css/home_style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     @stack('head')
 </head>
 
-<body>
+<body style="min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    overflow-x: hidden;">
     <!-- BEGIN: Content-->
     <div class="row m-0 auth-wrapper" style="--bs-gutter-x:0rem !important;background-color:#fff !important">
      <!-- <span class="brand-logo">
