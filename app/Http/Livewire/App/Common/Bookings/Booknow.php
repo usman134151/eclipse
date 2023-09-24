@@ -271,6 +271,7 @@ class Booknow extends Component
         if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
                 
             $this->booking->recurring_end_at =  Carbon::createFromFormat('m/d/Y', $this->booking->recurring_end_at)->toDateString();
+            $this->booking->is_recurring=1;
             
         }
         if($step==1){
@@ -280,7 +281,7 @@ class Booknow extends Component
             $this->schedule=BookingOperationsService::getSchedule($this->booking->company_id,$this->booking->customer_id);
             //cross checking schedules
             $dates=$this->dates;
-            
+           
             foreach($this->services as $service){
                 $service['start_time'] =  Carbon::parse($dates[0]['start_date'].' '.$dates[0]['start_hour'].':'.$dates[0]['start_min'].':00')->format('Y-m-d H:i:s');
                 $service['end_time'] =  Carbon::parse($dates[0]['end_date'].' '.$dates[0]['end_hour'].':'.$dates[0]['end_min'].':00')->format('Y-m-d H:i:s');
@@ -320,7 +321,7 @@ class Booknow extends Component
             }
            // dd($this->booking->physical_address_id);
            if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
-                
+            
             $this->booking->recurring_end_at =  Carbon::createFromFormat('Y-m-d', $this->booking->recurring_end_at)->format('m/d/Y');
             
             }
@@ -384,7 +385,7 @@ class Booknow extends Component
                 }
                 else{
                     //new booking then replicate
-                    BookingOperationsService::createFrequency($this->booking);
+                    BookingOperationsService::createRecurring($this->booking->id);
                 }
               
                 
