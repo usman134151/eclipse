@@ -199,20 +199,27 @@ class BookingList extends Component
 			$q->where('status', '1');
 		});
 		if ($this->isCustomer) {
-			$customer = Auth::user();
+			$customer = User::find(Auth::id());
 			$query->where('company_id', $customer->company_name);
 
 			// if(in_array(9, session()->get('customerRoles')) || in_array(10, session()->get('customerRoles')) ||in_array(5, session()->get('customerRoles'))) {
-			// $query->whereHas('customer', function ($q) use ($customer) {
-			$query->where('customer_id', $customer->id);
-			// });
-			// $query->orWhereHas('booking_supervisor', function ($q) use ($customer) {
-			$query->orWhere('supervisor', $customer->id);
-			// });
-			// $query->orWhereHas('billing_manager', function ($q) use ($customer) {
-			$query->orWhere('billing_manager_id', $customer->id);
-			// });
-			// }
+			if (!in_array(10, session()->get('customerRoles'))) {
+				//if dept supervisor, then show all dept related bookings
+
+				//display only of booking is associated with customer if not admin
+				$query->where(function ($g) use ($customer, $query) {
+					$g->where('customer_id', $customer->id);
+					$g->orWhere('supervisor', $customer->id);
+					$g->orWhere('billing_manager_id','LIKE', "%".$customer->id."%");
+					// $u_dept = $customer->supervised_departments ? $customer->supervised_departments->pluck('id')->toArray() : null;
+					// dd($u_dept);
+					// if ($u_dept && count($u_dept)) {
+					// 	$query->orWhereHas('bookingDepartments', function ($q) use ($u_dept) {
+					// 		$q->whereIn('booking_departments.department_id', $u_dept);
+					// 	});
+					// }
+				});
+			}
 		}
 
 		if ($this->provider_id) { //from provider panel
