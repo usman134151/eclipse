@@ -296,7 +296,7 @@ class Bookings extends Component
 
                         $this->bookings[] = $booking;
                     } catch (\ErrorException $e) {
-                        dd($e);
+                       
                         $this->warningMessage = "Please make sure that you are trying to upload valid file to import data.";
                     }
                 }
