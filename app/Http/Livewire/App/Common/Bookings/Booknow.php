@@ -94,6 +94,7 @@ class Booknow extends Component
 
     public function mount(Booking $booking)
     {
+
        
         $this->booking=$booking;
         $this->payment=new Payment;
@@ -268,14 +269,15 @@ class Booknow extends Component
     {
        // dd($this->booking);
         //booking basic info
-        if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
-                
-            $this->booking->recurring_end_at =  Carbon::createFromFormat('m/d/Y', $this->booking->recurring_end_at)->toDateString();
-            $this->booking->is_recurring=1;
-            
-        }
+
         if($step==1){
             $this->validate();
+            if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
+                
+                $this->booking->recurring_end_at =  Carbon::createFromFormat('m/d/Y', $this->booking->recurring_end_at)->toDateString();
+                $this->booking->is_recurring=1;
+                
+            }
              //get schedule too
              $slotNotFound=0;
             $this->schedule=BookingOperationsService::getSchedule($this->booking->company_id,$this->booking->customer_id);
@@ -327,7 +329,12 @@ class Booknow extends Component
             }
             $this->booking_id=$this->booking->id;
             $this->getForms();
-            
+            if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
+                
+              //  $this->booking->recurring_end_at =  Carbon::createFromFormat('Y-m-d', $this->booking->recurring_end_at)->toDateString();
+              //  $this->booking->is_recurring=1;
+                
+            }
 
 
         }
