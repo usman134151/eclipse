@@ -13,6 +13,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Helpers\SetupHelper;
 use App\Models\Tenant\ServiceCategory;
 use App\Models\Tenant\SetupValue;
+use App\Models\Tenant\Schedule;
 use App\Models\Tenant\User;
 use App\Services\App\BookingOperationsService;
 use Auth;
@@ -204,18 +205,20 @@ class Bookings extends Component
 
                         $booking['provider_count'] = $row[7];
 
-                        $booking['timezone'] = SetupHelper::getSetupValueByValue($row[8], 4);
-                        
-                        if($booking['timezone']==0)
+                       /* $booking['timezone'] = SetupHelper::getSetupValueByValue($row[8], 4); */
+                        $timeZone=Schedule::where('model_type',1)->first();
+                        if(is_null($timeZone))
                             $booking['timezone']=61;
+                        else
+                           $booking['timezone']=$timeZone->timezone_id;
                         //dob formating
-                        if (is_numeric($row[9])) {
+                        if (is_numeric($row[8])) {
                             // Convert the timestamp to an Excel serialized date value
                             //   $excelDate = \PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel($row[3]);
-                            $excelDate = $row[9];
+                            $excelDate = $row[8];
                         } else {
                             // Convert the string date to an Excel serialized date value
-                            $excelDate = \PhpOffice\PhpSpreadsheet\Shared\Date::stringToExcel($row[9]);
+                            $excelDate = \PhpOffice\PhpSpreadsheet\Shared\Date::stringToExcel($row[8]);
                         }
 
                         // Convert the Excel serialized date value to a DateTime object
@@ -240,7 +243,7 @@ class Bookings extends Component
                         $booking['start_hour'] = $start_time_Object->format('H');
                         $booking['start_min'] = $start_time_Object->format('i');
                         */
-                        $startTime=explode(":",$row[10]);
+                        $startTime=explode(":",$row[9]);
                         if(count($startTime)>1 && !is_null($startTime[0]))
                             $booking['start_hour']=$startTime[0];
 
@@ -248,13 +251,13 @@ class Bookings extends Component
                             $booking['start_min']=$startTime[1];
                         
                         //dob formating
-                        if (is_numeric($row[11])) {
+                        if (is_numeric($row[10])) {
                             // Convert the timestamp to an Excel serialized date value
                             //   $excelDate = \PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel($row[3]);
-                            $excelDate = $row[11];
+                            $excelDate = $row[10];
                         } else {
                             // Convert the string date to an Excel serialized date value
-                            $excelDate = \PhpOffice\PhpSpreadsheet\Shared\Date::stringToExcel($row[11]);
+                            $excelDate = \PhpOffice\PhpSpreadsheet\Shared\Date::stringToExcel($row[10]);
                         }
 
                         // Convert the Excel serialized date value to a DateTime object
@@ -278,16 +281,16 @@ class Bookings extends Component
 
                         $booking['end_hour'] = $end_time_Object->format('H');
                         $booking['end_min'] = $end_time_Object->format('H'); */
-                        $endTime=explode(":",$row[12]);
+                        $endTime=explode(":",$row[11]);
                         if(count($endTime)>1 && !is_null($endTime[0]))
                             $booking['end_hour']=$endTime[0];
 
                         if(count($endTime)>1 && !is_null($endTime[1]))
                             $booking['end_min']=$endTime[1];
 
-                        $booking['status'] = $row[13];
+                        $booking['status'] = $row[12];
                         $booking['is_override'] = 1;
-                        $booking['override_amount'] = $row[14];
+                        $booking['override_amount'] = $row[13];
 
                         $this->bookings[] = $booking;
                     } catch (\ErrorException $e) {
