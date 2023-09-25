@@ -811,4 +811,20 @@ if ($startIndex <= $endIndex) {
     }
   }
 
+  public static function arrayReplace($Array, $Find, $Replace){
+    if(is_array($Array)){
+      foreach($Array as $Key=>$Val) {
+        if(is_array($Array[$Key])){
+          $Array[$Key] = self::arrayReplace($Array[$Key], $Find, $Replace);
+        }else{
+          if($Key === $Find) {
+             $Array[$Key] = $Replace;
+          }
+        }
+      }
+    }
+    return $Array;
+  }
+
+
 }
