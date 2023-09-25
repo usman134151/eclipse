@@ -43,7 +43,8 @@ class Bookings extends Component
             !array_key_exists('service_id', $bookingData) || 
             !array_key_exists('service_type', $bookingData) || 
             !array_key_exists('timezone', $bookingData) || 
-            !array_key_exists('industry_id', $bookingData) 
+            !array_key_exists('industry_id', $bookingData) ||
+            !array_key_exists('customer_id', $bookingData) 
         ) {
             $this->warningMessage= $this->errorMessage = "Please fill in all required fields before importing";
             return;
