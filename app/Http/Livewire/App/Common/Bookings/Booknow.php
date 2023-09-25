@@ -316,6 +316,8 @@ class Booknow extends Component
             {
                 $this->booking->provider_count=$this->services[0]['provider_count'];
                 //update booking
+                if(is_null($this->booking->supervisor=='') || $this->booking->supervisor=='')
+                    $this->booking->supervisor=0;
                 $this->booking->save();
                
                 BookingOperationsService::saveDetails($this->services,$this->dates,$this->selectedIndustries,$this->booking,$this->selectedDepartments);
