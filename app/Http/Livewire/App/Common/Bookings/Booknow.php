@@ -398,7 +398,8 @@ class Booknow extends Component
             $this->confirmation("Assignment Data has been saved successfully");
             
         } else {
-            $this->switch('payment-info');
+            //if(count($this->formIds)==0)
+            //$this->switch('payment-info');
       
             $this->dispatchBrowserEvent('refreshSelects');
         }
@@ -502,6 +503,7 @@ class Booknow extends Component
         if($component=="payment-info")
             $this->getBookingInfo();         
         $this->dispatchBrowserEvent('refreshSelects');
+      
 
 	}
 
@@ -1042,11 +1044,11 @@ class Booknow extends Component
                 }
             }
         } 
-        
-        if(count($this->formIds)==0){
-            $this->switch('payment-info');
-        }
-        else
+       
+    //    if(count($this->formIds)==0){
+    //        $this->switch('payment-info');
+    //    }
+    //    else
         $this->switch('request-details');
        
     }
