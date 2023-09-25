@@ -13,6 +13,7 @@ use App\Models\Tenant\Company;
 use App\Models\Tenant\Payment;
 use App\Models\Tenant\BusinessSetup;
 use App\Models\Tenant\ServiceSpecialization;
+use App\Models\Tenant\BookingCustomizeData;
 use Auth;
 use Carbon\Carbon;
 use App\Helpers\GlobalFunctions;
