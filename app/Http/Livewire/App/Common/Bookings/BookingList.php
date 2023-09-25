@@ -34,6 +34,7 @@ class BookingList extends Component
 	public $selectedBookingIds = [];
 
 
+	public $isCustomer=false;
 
 	protected $listeners = [
 		'showList' => 'resetForm', 'updateVal', 'showConfirmation',
@@ -197,6 +198,10 @@ class BookingList extends Component
 		$query->whereHas('customer', function ($q) {
 			$q->where('status', '1');
 		});
+		if($this->isCustomer){
+			$customer = Auth::user();
+			$query->where('company_id',$customer->company_name);
+		}
 
 		if ($this->provider_id) { //from provider panel
 			if ($this->bookingType == "Unassigned") {
