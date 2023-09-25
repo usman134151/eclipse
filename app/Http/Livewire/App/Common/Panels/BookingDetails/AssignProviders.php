@@ -156,7 +156,7 @@ class AssignProviders extends Component
                 });
             });
         }
-        if (count($this->specializations)) {
+        if (is_array($this->specializations) && count($this->specializations)) {
             $specializations = $this->specializations;
             // dd($this->services);
             $query->whereHas('services', function ($query) use ($specializations) {
