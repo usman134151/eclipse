@@ -613,7 +613,7 @@ if ($startIndex <= $endIndex) {
 
       }
         break;
-        case(5):
+        case(4):
         for ($jobdate = $recurring_start; $jobdate <= $recurring_end;) {
           $jobdate  = Carbon::parse($jobdate)->addDays($bookingDays+1)->format('Y-m-d');
           if($jobdate > $recurring_end){
@@ -670,7 +670,7 @@ if ($startIndex <= $endIndex) {
           $i++;
          }
       break;
-      case(4):
+      case(5):
         // echo "monthly";
 
         $lastDayofMonth   =  Carbon::parse($recurring_start)->lastOfMonth()->format('Y-m-d');
