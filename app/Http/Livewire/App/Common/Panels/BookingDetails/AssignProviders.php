@@ -280,17 +280,17 @@ class AssignProviders extends Component
     {
         $this->panelType = $panelType;
         $this->service_id = $service_id;
-        $service = ServiceCategory::find($service_id);
-        $this->services = [$this->service_id];
-        $this->accommodations = [$service->accommodations_id];
 
         $this->tags = Tag::all();
         $this->booking = Booking::where('id', $this->booking_id)->first();
-
-        $booking_service = $this->booking->booking_services->where('services', $this->service_id)->first();
-        if ($booking_service)
-            $this->specializations =     json_decode($booking_service->specialization, true);
-
+        if ($this->panelType != 3) {
+            $booking_service = $this->booking->booking_services->where('services', $this->service_id)->first();
+            if ($booking_service)
+                $this->specializations =     json_decode($booking_service->specialization, true);
+            $service = ServiceCategory::find($service_id);
+            $this->services = [$this->service_id];
+            $this->accommodations = [$service->accommodations_id];
+        }
         if (!is_null($this->booking->payment)) {
             $this->paymentData = ["additional_label_provider" => $this->booking->payment->additional_label_provider, "additional_charge_provider" => $this->booking->payment->additional_charge_provider];
             $this->totalAmount = formatPayment($this->booking->payment['total_amount']);
