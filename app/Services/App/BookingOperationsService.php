@@ -577,8 +577,9 @@ if ($startIndex <= $endIndex) {
     $booking_start  = Carbon::createFromFormat('Y-m-d H:i:s', $booking->booking_start_at);
     $booking_end    = Carbon::createFromFormat('Y-m-d H:i:s', $booking->booking_end_at);
     $bookingDays    = $booking_end->diffInDays($booking_start);
-    $recurring_start= Carbon::parse($booking->recurring_start_at)->format('Y-m-d');
+    $recurring_start= Carbon::parse($booking->booking_start_at)->format('Y-m-d');
     $recurring_end= Carbon::parse($booking->recurring_end_at)->format('Y-m-d');
+  
     $i              = 1;
     $newBooking     =  Arr::except($booking->toArray(), [ 'id','created_at','updated_at','referral_code','']);
 
@@ -636,11 +637,13 @@ if ($startIndex <= $endIndex) {
         // echo "WeekDaily";
       break;
       case(3):
-         // echo "weekly";
+        
          for ($jobdate = $recurring_start; $jobdate <= $recurring_end;) {
+        
            if($bookingDays<7)
            {
             $jobdate  = Carbon::parse($jobdate)->addDays(7)->format('Y-m-d');
+            
            }else{
              if(ceil($bookingDays/7)==1)
              {
@@ -654,6 +657,7 @@ if ($startIndex <= $endIndex) {
           if($jobEndDate > $recurring_end){
            break;
           }
+         
           $jobStartAt    = $jobdate.' '.$booking_start->format('H:i:s');
           $jobEndAt      = Carbon::parse($jobdate)->addDays($bookingDays)->format('Y-m-d').' '.$booking_end->format('H:i:s');
           // prt($jobStartAt);
