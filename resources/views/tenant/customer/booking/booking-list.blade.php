@@ -73,10 +73,9 @@
       </div>
     
     </div>
-    <div><x-advancefilters /></div>
   </div>
   <!-- Filters -->
  
-@livewire('app.common.bookings.booking-list', ['bookingType'=>$bookingType,'bookingSection'=>'customer','showHeader'=>true])
+@livewire('app.common.bookings.booking-list', ['bookingType'=>$bookingType,'bookingSection'=>'customer','showHeader'=>true,'isCustomer'=>true])
 {{-- End: Content --}}
 @endsection
