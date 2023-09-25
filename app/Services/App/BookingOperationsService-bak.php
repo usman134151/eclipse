@@ -1341,5 +1341,255 @@ public static function excludeWeekends($datetime1,$datetime2)
         return $specialization_total_charge;
     }
 
+
+    public function create_recurring($booking_id)
+  {
+    try{
+      DB::beginTransaction();
+    $booking  = Booking::find($booking_id);
+    if($booking->frequency_id == 1 || $booking->is_recurring==0){
+      return false;
+    }
+    $booking_start  = Carbon::createFromFormat('Y-m-d H:i:s', $booking->booking_start_at);
+    $booking_end    = Carbon::createFromFormat('Y-m-d H:i:s', $booking->booking_end_at);
+    $bookingDays    = $booking_end->diffInDays($booking_start);
+    $recurring_start= Carbon::parse($booking->recurring_start_at)->format('Y-m-d');
+    $recurring_end= Carbon::parse($booking->recurring_end_at)->format('Y-m-d');
+    $i              = 1;
+    $newBooking     =  Arr::except($booking->toArray(), [ 'id','created_at','updated_at','referral_code','']);
+
+    if($booking->layout == 1)
+    {
+        $specializations  = $booking->booking_services_layout->toArray();
+    }else{
+        $specializations= $booking->specialization->toArray();
+    }
+    $newPayment     =  Arr::except($booking->payment->toArray(),['id','created_at','updated_at','coupon_discount_amount','coupon_id','coupon_type','booking_id']);
+
+    $customize_data  = $booking->customize_data->toArray();
+    $newBooking['parent_id']  = $booking->id;
+//    $newBooking['supervisor']  = $booking->supervisor;
+//    dd($recurring_start,$recurring_end);
+    Switch($booking->frequency_id){
+      case(2):
+        for ($jobdate = $recurring_start; $jobdate <= $recurring_end;) {
+          $jobdate  = Carbon::parse($jobdate)->addDays($bookingDays+1)->format('Y-m-d');
+          if($jobdate > $recurring_end){
+            break;
+          }
+          $jobStartAt    = $jobdate.' '.$booking_start->format('H:i:s');
+          $jobEndAt      = Carbon::parse($jobdate)->addDays($bookingDays)->format('Y-m-d').' '.$booking_end->format('H:i:s');
+          $newBooking['booking_start_at']  = $jobStartAt;
+          $newBooking['booking_end_at']    = $jobEndAt;
+          $newBooking['booking_number']    = $booking->booking_number.'-'.$i;
+
+          self::save_recurring_booking($newBooking,$booking,$specializations,$newPayment,$customize_data);
+          $i++;
+
+      }
+        break;
+        case(5):
+        for ($jobdate = $recurring_start; $jobdate <= $recurring_end;) {
+          $jobdate  = Carbon::parse($jobdate)->addDays($bookingDays+1)->format('Y-m-d');
+          if($jobdate > $recurring_end){
+            break;
+          }
+          $jobStartAt    = $jobdate.' '.$booking_start->format('H:i:s');
+          $dayName       = Carbon::parse($jobStartAt)->dayName;
+          if($dayName == "Saturday" || $dayName == "Sunday")
+          {
+              continue;
+          }
+          $jobEndAt      = Carbon::parse($jobdate)->addDays($bookingDays)->format('Y-m-d').' '.$booking_end->format('H:i:s');
+          $newBooking['booking_start_at']  = $jobStartAt;
+          $newBooking['booking_end_at']    = $jobEndAt;
+          $newBooking['booking_number']    = $booking->booking_number.'-'.$i;
+
+          self::save_recurring_booking($newBooking,$booking,$specializations,$newPayment,$customize_data);
+          $i++;
+
+      }
+        // echo "WeekDaily";
+      break;
+      case(3):
+         // echo "weekly";
+         for ($jobdate = $recurring_start; $jobdate <= $recurring_end;) {
+           if($bookingDays<7)
+           {
+            $jobdate  = Carbon::parse($jobdate)->addDays(7)->format('Y-m-d');
+           }else{
+             if(ceil($bookingDays/7)==1)
+             {
+              $count    = 14;
+             }else{
+              $count    = ceil($bookingDays/7)*7;
+             }
+            $jobdate  = Carbon::parse($jobdate)->addDays($count)->format('Y-m-d');
+           }
+           $jobEndDate  = Carbon::parse($jobdate)->addDays($bookingDays)->format('Y-m-d');
+          if($jobEndDate > $recurring_end){
+           break;
+          }
+          $jobStartAt    = $jobdate.' '.$booking_start->format('H:i:s');
+          $jobEndAt      = Carbon::parse($jobdate)->addDays($bookingDays)->format('Y-m-d').' '.$booking_end->format('H:i:s');
+          // prt($jobStartAt);
+          // prt($jobEndAt);
+          $newBooking['booking_start_at']  = $jobStartAt;
+          $newBooking['booking_end_at']    = $jobEndAt;
+          $newBooking['booking_number']    = $booking->booking_number.'-'.$i;
+
+          self::save_recurring_booking($newBooking,$booking,$specializations,$newPayment,$customize_data);
+          $i++;
+         }
+      break;
+      case(4):
+        // echo "monthly";
+
+        $lastDayofMonth   =  Carbon::parse($recurring_start)->lastOfMonth()->format('Y-m-d');
+        $diffinMonths     = Carbon::parse($recurring_end)->diffInMonths(Carbon::parse($recurring_start));
+        $jobdate          = $recurring_start;
+
+       for ($months = 1; $months <= $diffinMonths; $months++) {
+          if($lastDayofMonth==$recurring_start){
+            $jobdate    = Carbon::parse($recurring_start)->addMonthsNoOverflow($months)->format('Y-m-d');
+            $jobdate    = Carbon::parse($jobdate)->endOfMonth()->format('Y-m-d');
+          }else{
+            $jobdate    = Carbon::parse($recurring_start)->addMonthsNoOverflow($months)->format('Y-m-d');
+          }
+          $jobEndDate  = Carbon::parse($jobdate)->addDays($bookingDays)->format('Y-m-d');
+          if($jobEndDate > $recurring_end){
+            echo "break";
+            break;
+          }
+         $jobStartAt    = $jobdate.' '.$booking_start->format('H:i:s');
+         $jobEndAt      = Carbon::parse($jobdate)->addDays($bookingDays)->format('Y-m-d').' '.$booking_end->format('H:i:s');
+         // prt($jobStartAt);
+         // prt($jobEndAt);
+
+         $newBooking['booking_start_at']  = $jobStartAt;
+         $newBooking['booking_end_at']    = $jobEndAt;
+         $newBooking['booking_number']    = $booking->booking_number.'-'.$i;
+
+         self::save_recurring_booking($newBooking,$booking,$specializations,$newPayment,$customize_data);
+         $i++;
+        }
+      break;
+
+    }
+    // prt($booking->toArray() );
+
+    DB::commit();
+
+  } catch (\Exception $e) {
+    DB::rollback();
+
+    prt($e->getFile() . $e->getLine() . $e->getMessage());
+    $response['success']        = false;
+    $response['delayTime']      = '2000';
+    $response['error_message']  = $e->getFile() . $e->getLine() . $e->getMessage();
+    return response($response);
+  }
+  }
+
+  public static function save_recurring_booking($newBooking,$booking,$specializations,$newPayment,$customize_data)
+  {
+    try{
+      DB::beginTransaction();
+      $insertedBooking = Booking::create($newBooking);
+      $newBookingId = $insertedBooking->id;
+      $newStart = $insertedBooking->booking_start_at;
+      $newEnd = $insertedBooking->booking_end_at;
+      $payment_deduct_hour = $insertedBooking->service_data->payment_deduct_hour;
+      $final_payment_deduct_hour = "";
+      if($payment_deduct_hour)
+          $final_payment_deduct_hour = Carbon::parse($newBooking['booking_start_at'])->subHours($payment_deduct_hour);
+      if($newPayment['payment_method_type']=='Stripe')
+      {
+        $arr = [
+          'booking_id' => $newBookingId,
+          'payment_deduct_time' => $final_payment_deduct_hour,
+          'added_by' => $booking->added_by,
+          'created_at' => now()
+        ];
+        BookingPaymentCron::insert($arr); // deduct hour cron
+      }
+//      $data = [
+//        'booking_id' => $newBookingId,
+//        'service_rate' => $insertedBooking->service_data->service_charge,
+//        'business_hour_rate' => $insertedBooking->service_data->hours_price,
+//        'after_hour_rate' => $insertedBooking->service_data->after_hours_price,
+//        'emergency_hour_rate' => $insertedBooking->service_data->emergency_price,
+//        'virtual_rate' => $insertedBooking->service_data->virtual_phone,
+//      ];
+//      BookingServiceCharges::insert($data); // service charges
+      if(count($specializations))
+      {
+          if($insertedBooking->layout == 1)
+          {
+              $newSpec = collect($specializations)->map(function ($special) use ($newBookingId,$newStart,$newEnd)
+              {
+                  $special['booking_id']              = $newBookingId;
+                  $special['id']              = "";
+                  $special['start_time']              = $newStart;
+                  $special['end_time']              = $newEnd;
+                  return $special;
+              });
+              BookingServices::insert($newSpec->all());
+          }
+          else
+          {
+              $newSpec = array_map("new_spec", $specializations, array($newBookingId));
+              BookingSpecialization::insert($newSpec); // specializations
+          }
+      }
+        $book = Booking::find($newBookingId);
+        $book->update(['isCompleted' => $book->isBookingCompleted()]);
+
+        $newPayment['booking_id'] = $newBookingId;
+        Payment::insert($newPayment);
+
+      if(count($customize_data))
+      {
+      // $customize_data =   self::arrayReplace($customize_data, 'booking_id',$newBookingId);
+
+        $customize_data = array_map("customize_data",$customize_data,array($newBookingId));
+        $customize_data =   self::arrayReplace($customize_data, 'booking_id',$newBookingId);
+        foreach ($customize_data as $data)
+        {
+            BookingCustomizeData::insert([
+                'booking_log_id'=>$data['booking_log_id'],
+                'booking_log_bbid'=>$data['booking_log_bbid'],
+                'booking_id'=>$data['booking_id'],
+                'service_id'=>$data['service_id'],
+                'customize_id'=>$data['customize_id'],
+                'data_value'=>$data['data_value'],
+                'customize_data'=>$data['customize_data'],
+                'added_by'=>$data['added_by'],
+                'field_title'=>json_encode($data['field_title']),
+            ]);
+        }
+//        BookingCustomizeData::insert($customize_data); // customize data
+      }
+      //Update Booking Request Info
+        $booking_request_information = $booking->booking_request_information;
+        if ($booking_request_information)
+        {
+            foreach ($booking_request_information as $bri) {
+                $newCustomize = $bri->replicate();
+                $newCustomize->booking_log_id = "";
+                $newCustomize->booking_id = $newBookingId;
+                $newCustomize->save();
+            }
+        }
+
+      DB::commit();
+    } catch (\Exception $e) {
+      DB::rollback();
+      prt($e->getFile() . $e->getLine() . $e->getMessage());
+
+    }
+  }
+
+
 }
 

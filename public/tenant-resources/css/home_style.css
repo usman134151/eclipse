@@ -1,0 +1,66 @@
+﻿/* Style for the top background image */
+.top-image {
+    background-image: url('/tenant-resources/images/header.png'); /* Replace with your image path */
+    background-size: 100% auto; /* Adjust the width to 100% while maintaining aspect ratio */
+    background-repeat: no-repeat;
+    height: 220px; /* Adjust the height as needed for your image */
+    margin: 0;
+    position: fixed;
+}
+
+/* Style for the bottom background image */
+
+.bottom-image {
+    background-image: url('/tenant-resources/images/footer.png'); /* Replace with your image path */
+    background-size: 100% auto; /* Adjust the width to 100% while maintaining aspect ratio */
+    background-repeat: no-repeat;
+    height: 250px; /* Adjust the height as needed for your image */
+    margin: 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+
+/* Center the image in the left column (60%) */
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width:90%;
+    padding-left:10%;
+}
+
+/* Style the login form in the right column (40%) */
+.login-form {
+    padding: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    max-width: 500px;
+}
+
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    overflow-x: hidden; /* Hide horizontal scrollbar if necessary */
+}
+
+@media (max-width: 767px) {
+    .top-image {
+        height: 200px; /* Adjust the height as needed for mobile screens */
+    }
+
+    .bottom-image {
+        height: 200px; /* Adjust the height as needed for mobile screens */
+    }
+
+    .image-container {
+        align-items: center; /* Center the content vertically */
+    }
+}

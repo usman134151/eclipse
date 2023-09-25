@@ -271,6 +271,7 @@ class Booknow extends Component
         if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
                 
             $this->booking->recurring_end_at =  Carbon::createFromFormat('m/d/Y', $this->booking->recurring_end_at)->toDateString();
+            $this->booking->is_recurring=1;
             
         }
         if($step==1){
@@ -280,7 +281,7 @@ class Booknow extends Component
             $this->schedule=BookingOperationsService::getSchedule($this->booking->company_id,$this->booking->customer_id);
             //cross checking schedules
             $dates=$this->dates;
-            
+           
             foreach($this->services as $service){
                 $service['start_time'] =  Carbon::parse($dates[0]['start_date'].' '.$dates[0]['start_hour'].':'.$dates[0]['start_min'].':00')->format('Y-m-d H:i:s');
                 $service['end_time'] =  Carbon::parse($dates[0]['end_date'].' '.$dates[0]['end_hour'].':'.$dates[0]['end_min'].':00')->format('Y-m-d H:i:s');
@@ -292,6 +293,7 @@ class Booknow extends Component
                 }
               
                 $slotCheck=BookingOperationsService::getBillableDuration($service,$this->schedule);
+                
                 if(!$slotCheck['business_hours'] && !$slotCheck['business_minutes'] && !$slotCheck['after_business_hours'] && !$slotCheck['after_business_minutes'])
                  {$slotNotFound=1;
                    
@@ -319,7 +321,7 @@ class Booknow extends Component
             }
            // dd($this->booking->physical_address_id);
            if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
-                
+            
             $this->booking->recurring_end_at =  Carbon::createFromFormat('Y-m-d', $this->booking->recurring_end_at)->format('m/d/Y');
             
             }
@@ -330,6 +332,7 @@ class Booknow extends Component
 
         }
         else{
+          
             foreach($this->services as $service){
                
                $serviceCalculations=[
@@ -343,13 +346,18 @@ class Booknow extends Component
                 "specialization_total" => $service["specialization_total"],
                 "specialization_charges" => $service["specialization_charges"],
                 "expedited_charges" => $service["expedited_charges"],
-                'day_rate'=>$service['day_rate']
+                "duration_hour"=>$service['business_hours']+$service['after_business_hours'],
+                "duration_minute"=>$service['business_minutes']+$service['after_business_minutes'],
+                "total_duration"=>$service['total_duration'],
+                'day_rate'=>$service['day_rate'],
+                'business_hour_duration'=>($service['business_hours']*60)+($service['business_minutes']),
+                'after_hour_duration'=>($service['after_business_hours']*60)+($service['after_business_minutes']),
 
                ];
                $serviceCalculations=json_encode($serviceCalculations);
              
                 
-                BookingServices::where('id', $service['id'])->update(['billed_total' => $service['billed_total'],'service_total'=>$service['total_charges'],'service_calculations'=>$serviceCalculations]);
+                BookingServices::where('id', $service['id'])->where('booking_id', $this->booking->id)->update(['billed_total' => $service['billed_total'],'service_total'=>$service['total_charges'],'service_calculations'=>$serviceCalculations]);
             }
             $this->booking->type=1;
             $this->booking->status=1;
@@ -377,7 +385,7 @@ class Booknow extends Component
                 }
                 else{
                     //new booking then replicate
-                    BookingOperationsService::createFrequency($this->booking);
+                    BookingOperationsService::createRecurring($this->booking->id);
                 }
               
                 
@@ -390,7 +398,8 @@ class Booknow extends Component
             $this->confirmation("Assignment Data has been saved successfully");
             
         } else {
-            $this->switch('payment-info');
+            //if(count($this->formIds)==0)
+            //$this->switch('payment-info');
       
             $this->dispatchBrowserEvent('refreshSelects');
         }
@@ -494,6 +503,7 @@ class Booknow extends Component
         if($component=="payment-info")
             $this->getBookingInfo();         
         $this->dispatchBrowserEvent('refreshSelects');
+      
 
 	}
 
@@ -844,6 +854,7 @@ class Booknow extends Component
         // Assuming you have the $date array in your Livewire component.
         try {
             $timeZoneCity=$this->getTimeZone($this->dates[$index]['time_zone']);
+           
         if (isset($this->dates[$index]['start_date']) && isset($this->dates[$index]['end_date']) &&
             isset($this->dates[$index]['start_hour']) && isset($this->dates[$index]['start_min']) &&
             isset($this->dates[$index]['end_hour']) && isset($this->dates[$index]['end_min'])) {
@@ -902,7 +913,7 @@ class Booknow extends Component
         }
     } catch (\Exception $e) {
         // Handle the exception, log the error, or debug further
-        dd($e->getMessage());
+      //  dd($e->getMessage());
     }
     
         return null; // Return null if the required fields are not set.
@@ -1033,11 +1044,11 @@ class Booknow extends Component
                 }
             }
         } 
-        
-        if(count($this->formIds)==0){
-            $this->switch('payment-info');
-        }
-        else
+       
+    //    if(count($this->formIds)==0){
+    //        $this->switch('payment-info');
+    //    }
+    //    else
         $this->switch('request-details');
        
     }

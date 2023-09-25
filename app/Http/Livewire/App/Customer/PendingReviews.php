@@ -11,6 +11,7 @@ class PendingReviews extends Component
 
     public function render()
     {
+      
         return view('livewire.app.customer.pending-reviews');
     }
 

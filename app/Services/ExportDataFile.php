@@ -600,7 +600,7 @@ class ExportDataFile
         // $ethnicityValues = SetupValue::where('setup_id', 3)->pluck('setup_value_label')->toArray();
         // $companies = Company::where('status', '1')->orderBy('name')->pluck('name')->toArray();
         $serviceType = ['in_person', 'virtual', 'phone', 'tele-conference'];
-        $statuses = ["Cancelled", "Completed", "Draft", "Live", "Paid"];
+        $statuses = ["Cancelled", "Completed", "Draft", "Unassigned", "Paid"];
 
         $rows = [
             [
@@ -615,9 +615,16 @@ class ExportDataFile
 
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
+        // Set entire columns K and M to text format
+        $sheet->getStyle('K:K')->getNumberFormat()->setFormatCode(\PhpOffice\PhpSpreadsheet\Style\NumberFormat::FORMAT_TEXT);
+        $sheet->getStyle('M:M')->getNumberFormat()->setFormatCode(\PhpOffice\PhpSpreadsheet\Style\NumberFormat::FORMAT_TEXT);
+
         //$sheet->fromArray([$headers]);
         $sheet->fromArray([$headers]);
-
+        // Explicitly set cells K2 and M2 as text
+        $sheet->setCellValueExplicit('K2', '', \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
+        $sheet->setCellValueExplicit('M2', '', \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
+    
         // set the Date column format to date
         $sheet->getStyle('J:J')->getNumberFormat()->setFormatCode('dd/mmm/yyyy');
 
@@ -643,55 +650,55 @@ class ExportDataFile
         // set the Date column format to date
         $sheet->getStyle('L:L')->getNumberFormat()->setFormatCode('dd/mmm/yyyy');
 
-        // add data validation and date picker to the DOB column
-        $validation = $sheet->getCell('L2')->getDataValidation();
-        $validation->setType(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::TYPE_CUSTOM);
-        $validation->setErrorStyle(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::STYLE_STOP);
-        $validation->setAllowBlank(true);
-        $validation->setShowInputMessage(true);
-        $validation->setShowErrorMessage(true);
-        $validation->setShowDropDown(true);
-        $validation->setErrorTitle('Input error');
-        $validation->setError('Value is not a valid date.For example 10/May/2000 06:30 AM');
-        $validation->setPromptTitle('Pick a date');
-        $validation->setPrompt('Please pick a date from the calendar.');
-        $validation->setFormula1('DATE(1900,1,1)');
-        $validation->setFormula2('DATE(9999,12,31)');
+        // // add data validation and date picker to the DOB column
+        // $validation = $sheet->getCell('L2')->getDataValidation();
+        // $validation->setType(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::TYPE_CUSTOM);
+        // $validation->setErrorStyle(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::STYLE_STOP);
+        // $validation->setAllowBlank(true);
+        // $validation->setShowInputMessage(true);
+        // $validation->setShowErrorMessage(true);
+        // $validation->setShowDropDown(true);
+        // $validation->setErrorTitle('Input error');
+        // $validation->setError('Value is not a valid date.For example 10/May/2000 06:30 AM');
+        // $validation->setPromptTitle('Pick a date');
+        // $validation->setPrompt('Please pick a date from the calendar.');
+        // $validation->setFormula1('DATE(1900,1,1)');
+        // $validation->setFormula2('DATE(9999,12,31)');
 
         foreach ($rows as $row) {
             $sheet->fromArray([$row]);
         }
 
 
-        $sheet->getStyle('K2')->getNumberFormat()->setFormatCode('[HH]:MM');
+        //$sheet->getStyle('K2')->getNumberFormat()->setFormatCode('HH:MM');
         // add data validation and date picker to the DOB column
-        $validation = $sheet->getCell('K2')->getDataValidation();
-        $validation->setType(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::TYPE_CUSTOM);
-        $validation->setErrorStyle(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::STYLE_STOP);
-        $validation->setAllowBlank(true);
-        $validation->setShowInputMessage(true);
-        $validation->setShowErrorMessage(true);
-        $validation->setShowDropDown(true);
-        $validation->setErrorTitle('Input error');
-        $validation->setError('Value is not a valid tome.For example 06:30');
-        $validation->setPromptTitle('Pick a Time');
-        $validation->setPrompt('Please set time in 24 hour format.');
+        //$validation = $sheet->getCell('K2')->getDataValidation();
+       // $validation->setType(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::TYPE_CUSTOM);
+       // $validation->setErrorStyle(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::STYLE_STOP);
+       // $validation->setAllowBlank(true);
+      //  $validation->setShowInputMessage(true);
+      //  $validation->setShowErrorMessage(true);
+      //  $validation->setShowDropDown(true);
+      //  $validation->setErrorTitle('Input error');
+       // $validation->setError('Value is not a valid tome.For example 06:30');
+       // $validation->setPromptTitle('Pick a Time');
+        //$validation->setPrompt('Please set time in 24 hour format.');
         // $validation->setFormula1('DATE(1900,1,1)');
         // $validation->setFormula2('DATE(9999,12,31)');
 
-        $sheet->getStyle('M2')->getNumberFormat()->setFormatCode('[HH]:MM');
+     //   $sheet->getStyle('M2')->getNumberFormat()->setFormatCode('HH:MM');
         // add data validation and date picker to the DOB column
-        $validation = $sheet->getCell('M2')->getDataValidation();
-        $validation->setType(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::TYPE_TIME);
-        $validation->setErrorStyle(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::STYLE_STOP);
-        $validation->setAllowBlank(true);
-        $validation->setShowInputMessage(true);
-        $validation->setShowErrorMessage(true);
-        $validation->setShowDropDown(true);
-        $validation->setErrorTitle('Input error');
-        $validation->setError('Value is not a valid tome.For example 06:30');
-        $validation->setPromptTitle('Pick a Time');
-        $validation->setPrompt('Please set time in 24 hour format.');
+    //     $validation = $sheet->getCell('M2')->getDataValidation();
+    //     $validation->setType(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::TYPE_TIME);
+    //     $validation->setErrorStyle(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::STYLE_STOP);
+    //     $validation->setAllowBlank(true);
+    //     $validation->setShowInputMessage(true);
+    //     $validation->setShowErrorMessage(true);
+    //     $validation->setShowDropDown(true);
+    //    // $validation->setErrorTitle('Input error');
+    //    // $validation->setError('Value is not a valid tome.For example 06:30');
+    //     $validation->setPromptTitle('Pick a Time');
+    //     $validation->setPrompt('Please set time in 24 hour format.');
         // $validation->setFormula1('DATE(1900,1,1)');
         // $validation->setFormula2('DATE(9999,12,31)');
 
@@ -795,7 +802,7 @@ class ExportDataFile
                     if ($booking->type == 2)
                         $code = 'Draft';
                     else
-                        $code = 'Live';
+                        $code = 'Unassigned';
                 }
 
 
