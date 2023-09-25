@@ -13,6 +13,7 @@ use App\Models\Tenant\Company;
 use App\Models\Tenant\Payment;
 use App\Models\Tenant\BusinessSetup;
 use App\Models\Tenant\ServiceSpecialization;
+use App\Models\Tenant\BookingCustomizeData;
 use Auth;
 use Carbon\Carbon;
 use App\Helpers\GlobalFunctions;
@@ -576,8 +577,9 @@ if ($startIndex <= $endIndex) {
     $booking_start  = Carbon::createFromFormat('Y-m-d H:i:s', $booking->booking_start_at);
     $booking_end    = Carbon::createFromFormat('Y-m-d H:i:s', $booking->booking_end_at);
     $bookingDays    = $booking_end->diffInDays($booking_start);
-    $recurring_start= Carbon::parse($booking->recurring_start_at)->format('Y-m-d');
+    $recurring_start= Carbon::parse($booking->booking_start_at)->format('Y-m-d');
     $recurring_end= Carbon::parse($booking->recurring_end_at)->format('Y-m-d');
+  
     $i              = 1;
     $newBooking     =  Arr::except($booking->toArray(), [ 'id','created_at','updated_at','referral_code','']);
 
@@ -635,11 +637,13 @@ if ($startIndex <= $endIndex) {
         // echo "WeekDaily";
       break;
       case(3):
-         // echo "weekly";
+        
          for ($jobdate = $recurring_start; $jobdate <= $recurring_end;) {
+        
            if($bookingDays<7)
            {
             $jobdate  = Carbon::parse($jobdate)->addDays(7)->format('Y-m-d');
+            
            }else{
              if(ceil($bookingDays/7)==1)
              {
@@ -653,6 +657,7 @@ if ($startIndex <= $endIndex) {
           if($jobEndDate > $recurring_end){
            break;
           }
+         
           $jobStartAt    = $jobdate.' '.$booking_start->format('H:i:s');
           $jobEndAt      = Carbon::parse($jobdate)->addDays($bookingDays)->format('Y-m-d').' '.$booking_end->format('H:i:s');
           // prt($jobStartAt);
@@ -778,17 +783,20 @@ if ($startIndex <= $endIndex) {
         $customize_data =   self::arrayReplace($customize_data, 'booking_id',$newBookingId);
         foreach ($customize_data as $data)
         {
+          if(key_exists('customize_data',$data) && !is_null($data['customize_data']) && $data['customize_data']!=''){
             BookingCustomizeData::insert([
-                'booking_log_id'=>$data['booking_log_id'],
-                'booking_log_bbid'=>$data['booking_log_bbid'],
-                'booking_id'=>$data['booking_id'],
-                'service_id'=>$data['service_id'],
-                'customize_id'=>$data['customize_id'],
-                'data_value'=>$data['data_value'],
-                'customize_data'=>$data['customize_data'],
-                'added_by'=>$data['added_by'],
-                'field_title'=>json_encode($data['field_title']),
-            ]);
+              'booking_log_id'=>$data['booking_log_id'],
+              'booking_log_bbid'=>$data['booking_log_bbid'],
+              'booking_id'=>$data['booking_id'],
+              'service_id'=>$data['service_id'],
+              'customize_id'=>$data['customize_id'],
+              'data_value'=>$data['data_value'],
+              'customize_data'=>$data['customize_data'],
+              'added_by'=>$data['added_by'],
+              'field_title'=>json_encode($data['field_title']),
+          ]);
+          }
+
         }
 //        BookingCustomizeData::insert($customize_data); // customize data
       }
@@ -810,5 +818,21 @@ if ($startIndex <= $endIndex) {
 
     }
   }
+
+  public static function arrayReplace($Array, $Find, $Replace){
+    if(is_array($Array)){
+      foreach($Array as $Key=>$Val) {
+        if(is_array($Array[$Key])){
+          $Array[$Key] = self::arrayReplace($Array[$Key], $Find, $Replace);
+        }else{
+          if($Key === $Find) {
+             $Array[$Key] = $Replace;
+          }
+        }
+      }
+    }
+    return $Array;
+  }
+
 
 }

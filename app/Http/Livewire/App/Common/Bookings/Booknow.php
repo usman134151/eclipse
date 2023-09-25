@@ -316,6 +316,8 @@ class Booknow extends Component
             {
                 $this->booking->provider_count=$this->services[0]['provider_count'];
                 //update booking
+                if(is_null($this->booking->supervisor=='') || $this->booking->supervisor=='')
+                    $this->booking->supervisor=0;
                 $this->booking->save();
                
                 BookingOperationsService::saveDetails($this->services,$this->dates,$this->selectedIndustries,$this->booking,$this->selectedDepartments);
@@ -369,6 +371,12 @@ class Booknow extends Component
             $this->booking->type=1;
             $this->booking->status=1;
             $this->booking->booking_status=1; //will change it later for consumers or other company users, need to check rights
+            if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
+                
+                $this->booking->recurring_end_at =  Carbon::createFromFormat('m/d/Y', $this->booking->recurring_end_at)->toDateString();
+                $this->booking->is_recurring=1;
+                
+            }
             $this->booking->save();
             $this->updateTotals();
             $this->payment['booking_id']=$this->booking->id;

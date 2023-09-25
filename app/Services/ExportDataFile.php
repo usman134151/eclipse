@@ -585,7 +585,6 @@ class ExportDataFile
             'Service',
             'Service Type ',
             'Number of Providers',
-            'Time Zone',
             'Booking Start Date (dd/mm/Y)',
             'Booking Start Time (23:32)',
             'Booking End Date (dd/mm/Y)',
@@ -616,20 +615,20 @@ class ExportDataFile
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
         // Set entire columns K and M to text format
-        $sheet->getStyle('K:K')->getNumberFormat()->setFormatCode(\PhpOffice\PhpSpreadsheet\Style\NumberFormat::FORMAT_TEXT);
-        $sheet->getStyle('M:M')->getNumberFormat()->setFormatCode(\PhpOffice\PhpSpreadsheet\Style\NumberFormat::FORMAT_TEXT);
+        $sheet->getStyle('J:J')->getNumberFormat()->setFormatCode(\PhpOffice\PhpSpreadsheet\Style\NumberFormat::FORMAT_TEXT);
+        $sheet->getStyle('L:L')->getNumberFormat()->setFormatCode(\PhpOffice\PhpSpreadsheet\Style\NumberFormat::FORMAT_TEXT);
 
         //$sheet->fromArray([$headers]);
         $sheet->fromArray([$headers]);
         // Explicitly set cells K2 and M2 as text
-        $sheet->setCellValueExplicit('K2', '', \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
-        $sheet->setCellValueExplicit('M2', '', \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
+        $sheet->setCellValueExplicit('J2', '', \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
+        $sheet->setCellValueExplicit('L2', '', \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
     
         // set the Date column format to date
-        $sheet->getStyle('J:J')->getNumberFormat()->setFormatCode('dd/mmm/yyyy');
+        $sheet->getStyle('I:I')->getNumberFormat()->setFormatCode('dd/mmm/yyyy');
 
         // add data validation and date picker to the DOB column
-        $validation = $sheet->getCell('J2')->getDataValidation();
+        $validation = $sheet->getCell('I2')->getDataValidation();
         $validation->setType(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::TYPE_CUSTOM);
         $validation->setErrorStyle(\PhpOffice\PhpSpreadsheet\Cell\DataValidation::STYLE_STOP);
         $validation->setAllowBlank(true);
@@ -648,7 +647,7 @@ class ExportDataFile
         }
 
         // set the Date column format to date
-        $sheet->getStyle('L:L')->getNumberFormat()->setFormatCode('dd/mmm/yyyy');
+        $sheet->getStyle('K:K')->getNumberFormat()->setFormatCode('dd/mmm/yyyy');
 
         // // add data validation and date picker to the DOB column
         // $validation = $sheet->getCell('L2')->getDataValidation();
@@ -705,7 +704,7 @@ class ExportDataFile
         $excelRows = [
             // 'I' => $timezoneValues,
             'G' => $serviceType,
-            'N' => $statuses
+            'M' => $statuses
         ];
         foreach ($excelRows as $key => $valueArr) {
             for ($i = 2; $i < 101; $i++) {
@@ -758,7 +757,6 @@ class ExportDataFile
             'Service',
             'Service Type ',
             'Number of Providers',
-            'Time Zone',
             'Booking Start Date (dd/mm/Y)',
             'Booking Start Time (15:25)',
             'Booking End Date (dd/mm/Y)',
@@ -784,14 +782,14 @@ class ExportDataFile
                 $row[5] = $service ? $service->name : '';
                 $row[6] = $service ? ($service->pivot->service_types ? $serviceType[$service->pivot->service_types] : '') : '';
                 $row[7] = $service ? ($service->pivot->provider_count ? $service->pivot->provider_count : '') : '';
-                $row[8] = $service ? ($service->pivot->time_zone ? (isset($timezones[$service->pivot->time_zone]) ? $timezones[$service->pivot->time_zone] : $service->pivot->time_zone) : '') : '';
+               // $row[8] = $service ? ($service->pivot->time_zone ? (isset($timezones[$service->pivot->time_zone]) ? $timezones[$service->pivot->time_zone] : $service->pivot->time_zone) : '') : '';
                 $start_time = Carbon::parse($service ? ($service->pivot->start_time ? $service->pivot->start_time : '') : $booking->booking_start_at);
-                $row[9] = $start_time->format('m/d/Y');
-                $row[10] = $start_time->format('H:i');
+                $row[8] = $start_time->format('m/d/Y');
+                $row[9] = $start_time->format('H:i');
                 $end_time =
                     Carbon::parse($service ? ($service->pivot->end_time ? $service->pivot->end_time : '') : $booking->booking_end_at);
-                $row[11] = $end_time->format('m/d/Y');
-                $row[12] = $end_time->format('H:i');
+                $row[10] = $end_time->format('m/d/Y');
+                $row[11] = $end_time->format('H:i');
                 if ($booking->is_closed == 1) {
                     $code = 'Completed';
                 } elseif ($booking->is_closed == 2) {
@@ -807,11 +805,11 @@ class ExportDataFile
 
 
 
-                $row[13] = $code;
+                $row[12] = $code;
                 if(!is_null($booking->payment) && $booking->payment->is_override)
-                    $row[14]=$booking->payment->override_amount;
+                    $row[13]=$booking->payment->override_amount;
                 elseif(!is_null($booking->payment))
-                    $row[14]=$booking->payment->total_amount;
+                    $row[13]=$booking->payment->total_amount;
                 $rows[] = $row;
             }
             $fileName = 'bookings_export.xlsx';

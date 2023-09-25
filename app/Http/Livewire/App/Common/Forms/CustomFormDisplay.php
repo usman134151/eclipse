@@ -100,7 +100,7 @@ class CustomFormDisplay extends Component
             if ($answer['field_type'] == 6) {
                 // run validation
 
-                if ($answer['data_value'] != null && !is_string($answer['data_value'])) {
+                if (key_exists('data_value',$answer) && $answer['data_value'] != null && !is_string($answer['data_value'])) {
                     $answer['data_value'] = $fileService->saveFile('booking_custom_form', $answer['data_value']);
                 }
             }
