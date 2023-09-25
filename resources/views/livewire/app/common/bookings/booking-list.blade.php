@@ -621,11 +621,11 @@ console.log('called');
                 attrName == "preferred_provider_ids" ||
                 attrName == "gender" ||
                 attrName == "ethnicity" || attrName == "distance_filter" || attrName == "accommodation_filter" ||
-                attrName == "certifications") {}
-              //  Livewire.emit('refreshFilters', attrName, val);
-         //   } else {
+                attrName == "certifications") {
+                Livewire.emit('refreshFilters', attrName, val);
+            } else {
                 Livewire.emit('updateVal', attrName, val);
-        //    }
+            }
         }
         document.addEventListener('refreshSelects2', function(event) {
             $('.select2').select2();
