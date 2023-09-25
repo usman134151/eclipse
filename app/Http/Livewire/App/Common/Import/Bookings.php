@@ -42,7 +42,7 @@ class Bookings extends Component
             !array_key_exists('service_id', $bookingData) || 
             !array_key_exists('service_type', $bookingData) || 
             !array_key_exists('timezone', $bookingData) || 
-            !array_key_exists('industry_id', $bookingData)
+            !array_key_exists('industry_id', $bookingData) 
         ) {
             $this->warningMessage= $this->errorMessage = "Please fill in all required fields before importing";
             return;
@@ -173,7 +173,7 @@ class Bookings extends Component
             if ($i > 0) {
                 if ($row[0] != '') {
                     try {
-                        $booking = ['company_id','accommodation_id','customer_id','service_id','service_type','provider_count','timezone','booking_start_date','booking_end_date','start_hour','start_min','end_hour','end_min'];
+                        $booking = ['company_id','accommodation_id','customer_id','service_id','service_type','provider_count','timezone','booking_start_date','booking_end_date','start_hour'=>"00",'start_min'=>"00",'end_hour'=>"00",'end_min'=>"00"];
 
                         $booking['booking_number'] = $row[0];
 
