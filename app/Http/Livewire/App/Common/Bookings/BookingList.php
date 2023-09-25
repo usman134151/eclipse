@@ -34,6 +34,7 @@ class BookingList extends Component
 	public $selectedBookingIds = [];
 
 
+	public $isCustomer = false;
 
 	protected $listeners = [
 		'showList' => 'resetForm', 'updateVal', 'showConfirmation',
@@ -104,10 +105,10 @@ class BookingList extends Component
 
 		$yesterday    = Carbon::now()->subDays(1)->toDateString();
 		$today          = Carbon::now()->toDateString();
-
+		$query = Booking::query();
 		switch ($this->bookingType) {
 			case ('Past'):
-				$query = Booking::where(['type' => 1, 'booking_status' => '1'])
+				$query->where(['type' => 1, 'booking_status' => '1'])
 
 					// ->when($addressCheck, function ($query) {
 					// 	$query->where('isCompleted', 0);
@@ -126,7 +127,7 @@ class BookingList extends Component
 
 				break;
 			case ("Today's"):
-				$query = Booking::where(['bookings.status' => 2, 'type' => 1, 'booking_status' => '1'])
+				$query->where(['bookings.status' => 2, 'type' => 1, 'booking_status' => '1'])
 
 					// ->when($addressCheck, function ($query) {
 					// 	$query->where('isCompleted', 0);
@@ -150,7 +151,7 @@ class BookingList extends Component
 				break;
 			case ('Upcoming'):
 
-				$query = Booking::whereDate('booking_start_at', '>', Carbon::today())
+				$query->whereDate('booking_start_at', '>', Carbon::today())
 					->where(['bookings.status' => 2, 'type' => 1, 'booking_status' => '1'])
 
 					// ->when($addressCheck, function ($query) {
@@ -161,10 +162,10 @@ class BookingList extends Component
 
 				break;
 			case ('Pending Approval'):
-				$query = Booking::where('booking_status', 0)->orderBy('booking_start_at', 'DESC');
+				$query->where('booking_status', 0)->orderBy('booking_start_at', 'DESC');
 				break;
 			case ('Draft'):
-				$query = Booking::where(['type' => 2])
+				$query->where(['type' => 2])
 
 					// ->when($addressCheck, function ($query) {
 					// 	$query->where('isCompleted', 0);
@@ -173,14 +174,14 @@ class BookingList extends Component
 				break;
 			case ('Unassigned'):
 
-				$query = Booking::where(['bookings.status' => 1, 'type' => 1, 'booking_status' => '1'])
+				$query->where(['bookings.status' => 1, 'type' => 1, 'booking_status' => '1'])
 
 					->whereRaw("DATE(booking_start_at) > '$yesterday'")
 					->orderBy('booking_start_at', 'ASC');
 				break;
 			case ('Invitations'):
 				// 
-				$query = Booking::
+				$query->
 					// whereDate('booking_start_at', '>', Carbon::now())
 					where(['bookings.status' => 1, 'type' => 1, 'booking_status' => '1'])
 					->orderBy('booking_start_at', 'ASC');
@@ -188,7 +189,7 @@ class BookingList extends Component
 
 				break;
 			default:
-				$query = Booking::where('booking_end_at', '<>', null)->orderBy('booking_start_at', 'DESC');
+				$query->where('booking_end_at', '<>', null)->orderBy('booking_start_at', 'DESC');
 				break;
 		}
 
@@ -197,6 +198,29 @@ class BookingList extends Component
 		$query->whereHas('customer', function ($q) {
 			$q->where('status', '1');
 		});
+		if ($this->isCustomer) {
+			$customer = User::find(Auth::id());
+			$query->where('company_id', $customer->company_name);
+
+			// if(in_array(9, session()->get('customerRoles')) || in_array(10, session()->get('customerRoles')) ||in_array(5, session()->get('customerRoles'))) {
+			if (!in_array(10, session()->get('customerRoles'))) {
+				//if dept supervisor, then show all dept related bookings
+
+				//display only of booking is associated with customer if not admin
+				$query->where(function ($g) use ($customer, $query) {
+					$g->where('customer_id', $customer->id);
+					$g->orWhere('supervisor', $customer->id);
+					$g->orWhere('billing_manager_id','LIKE', "%".$customer->id."%");
+					// $u_dept = $customer->supervised_departments ? $customer->supervised_departments->pluck('id')->toArray() : null;
+					// dd($u_dept);
+					// if ($u_dept && count($u_dept)) {
+					// 	$query->orWhereHas('bookingDepartments', function ($q) use ($u_dept) {
+					// 		$q->whereIn('booking_departments.department_id', $u_dept);
+					// 	});
+					// }
+				});
+			}
+		}
 
 		if ($this->provider_id) { //from provider panel
 			if ($this->bookingType == "Unassigned") {
@@ -452,20 +476,20 @@ class BookingList extends Component
 		$this->dispatchBrowserEvent('refreshSelects2');
 	}
 
-	public function resetForm($message='')
+	public function resetForm($message = '')
 	{
 		$this->showBookingDetails = false;
 		$this->importFile = false;
 
-        if ($message) {
-            $this->confirmationMessage = $message;
-            // emit an event to display a success message using the SweetAlert package
-            $this->dispatchBrowserEvent('swal:modal', [
-                'type' => 'success',
-                'title' => 'Success',
-                'text' => $message,
-            ]);
-        }
+		if ($message) {
+			$this->confirmationMessage = $message;
+			// emit an event to display a success message using the SweetAlert package
+			$this->dispatchBrowserEvent('swal:modal', [
+				'type' => 'success',
+				'title' => 'Success',
+				'text' => $message,
+			]);
+		}
 		$this->dispatchBrowserEvent('refreshSelects2');
 		$this->dispatchBrowserEvent('refreshSelects');
 	}
