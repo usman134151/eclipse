@@ -2,7 +2,7 @@ window.addEventListener('update-url', function(event) {
     pushStateToUrl(event.detail.url);
   });
   document.addEventListener('refreshSelects', function(event) {
-     
+     console.log('refresh');
       let el = $('.select2')
       initSelect();
       //initDates();

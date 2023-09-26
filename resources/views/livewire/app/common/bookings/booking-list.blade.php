@@ -612,7 +612,7 @@
 @push('scripts')
     <script>
         function updateVal(attrName, val) {
-
+console.log('called');
             if (attrName == "Service_filter" ||
                 attrName == "specialization_search_filter" ||
                 attrName == "setup_value_label" ||

@@ -50,29 +50,16 @@
                 </select>
            
         </div>
-        
-        <div class="col-lg-6 d-flex justify-content-start gap-2 mb-4">
-            <div class="mb-4 mb-lg-0">
-                <button class="btn btn-xs btn-inactive dropdown-toggle bg-secondary rounded"
-                    data-bs-toggle="collapse" href="#collapseAdvanceFilter{{$type}}" role="button"
-                    aria-expanded="false" aria-controls="collapseAdvanceFilter{{$type}}">
-                    Advance Filter
-                </button>
-            </div>
-            <div class="mb-4 mb-lg-0">
-                <button wire:click="resetFilters" type="button" class="btn btn-xs btn-outline-dark rounded">
-                    Clear all
-                </button>
-            </div>
-        </div>
-    @else
+        @else
     <div class="col-lg-2 d-flex text-nowrap align-items-center align-self-end mb-4">
         <a class="btn btn-inactive dropdown-toggle rounded" data-bs-toggle="collapse" href="#collapseAdvanceFilter{{$type}}"
             role="button" aria-expanded="false" aria-controls="collapseAdvanceFilter{{$type}}">
             <span class="">Advance Filter</span>
         </a>
     </div>
-    @endif
+   
+    @endif    
+
 </div>
 <div class="collapse" id="collapseAdvanceFilter{{$type}}" wire:ignore>
     <div class="col-lg-12">
@@ -119,7 +106,7 @@
                         </div>
                     @endif
                 </div>
-                <select wire:model.defer="preferred_provider_ids" data-placeholder="Select Preferred Providers" multiple
+                <select wire:model.defer="preferred_provider_ids" disabled data-placeholder="Select Preferred Providers" multiple
                     class="select2 form-select" tabindex="8" id="preferred_provider_ids">
                     <option value=""></option>
                     @foreach($providers as $provider)
@@ -156,10 +143,9 @@
                     <small>(coming soon)</small>
                     </label>
                     <select data-placeholder="Select Accommodation" multiple
-                        class="select2 form-select" tabindex="8">
+                        class="select2 form-select" tabindex="8" disabled>
                         <option value=""></option>
-                        <option selected>Richard Payne</option>
-                        <option selected>Mr. Justin Richardson</option>
+                     
                     </select>
                     <div class="mt-2">
                         <div class="form-check">
@@ -192,7 +178,7 @@
             @if($type=='assignProvider')
                 <div class="col-lg-4 mb-4">
                     <div class="d-lg-flex justify-content-between align-items-center mb-2">
-                        <label class="form-label mb-lg-0">Distance</label>
+                        <label class="form-label mb-lg-0">Distance</label><small>(coming soon)</small>
                         <div>
                             MILES
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
@@ -203,7 +189,7 @@
                             </svg>
                         </div>
                     </div>
-                    <select data-placeholder="Select Distance" class="select2 form-select"  wire:model.defer='distance' id="distance_filter" >
+                    <select data-placeholder="Select Distance" class="select2 form-select"  wire:model.defer='distance' id="distance_filter" disabled >
                         <option ></option>
                         <option value='5'>5</option>
                         <option value='15'>15</option>
@@ -236,7 +222,7 @@
                 </div>
                 <div class="col-lg-4 mb-4">
                     <label class="form-label">Search</label>
-                    <input class="form-control" wire:model="search" id="search"  placeholder="Name Search">
+                    <input class="form-control" wire:model.defer="search" id="search"  placeholder="Name Search">
                 </div>
                 <div class="col-lg-4 mb-4">
                     <div class="mt-5 d-flex gap-1">
@@ -260,3 +246,27 @@
         </div>
     </div>
 </div>
+
+@if($type=='assignProvider')  
+        <div class="col-lg-12 d-flex justify-content-start gap-2 mb-4">
+        <div class="mb-4 mb-lg-0">
+                <button wire:click="refreshProviders" type="button" class="btn btn-xs btn-outline-dark rounded">
+                    Apply Filters
+                </button>
+            </div>
+            <div class="mb-4 mb-lg-0">
+                <button wire:click="resetFilters" type="button" class="btn btn-xs btn-outline-dark rounded">
+                    Clear all
+                </button>
+            </div>
+            <div class="mb-4 mb-lg-0">
+                <button class="btn btn-xs btn-inactive dropdown-toggle bg-secondary rounded"
+                    data-bs-toggle="collapse" href="#collapseAdvanceFilter{{$type}}" role="button"
+                    aria-expanded="false" aria-controls="collapseAdvanceFilter{{$type}}">
+                    Advance Filter
+                </button>
+            </div>
+
+
+        </div>
+        @endif

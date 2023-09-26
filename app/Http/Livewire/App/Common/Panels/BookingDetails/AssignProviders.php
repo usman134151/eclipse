@@ -48,6 +48,7 @@ class AssignProviders extends Component
     public function updateVal($attrName, $val)
     {
         $this->$attrName = $val;
+        
     }
 
     public function render()
@@ -56,6 +57,8 @@ class AssignProviders extends Component
 
         return view('livewire.app.common.panels.booking-details.assign-providers');
     }
+
+    
 
     public function refreshFilters($name, $value)
     {
