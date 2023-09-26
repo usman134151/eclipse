@@ -69,8 +69,7 @@ class AddDepartment extends Component
         $this->updateData();
     }
     public function setBookingDepartments($selectedDepartments,$companyId)
-    {
-       
+    {    
         
         $this->updateCompany($companyId);
         $this->selectedDepartments=$selectedDepartments;
@@ -90,9 +89,21 @@ class AddDepartment extends Component
 
     public function updateCompany($companyId)
     {
-      
+    
         $this->companyId = $companyId;
-        $this->departments = Department::where('company_id', $companyId)->get();
+       
+        if(session()->get('isCustomer')){
+            $userId=Auth::user()->id;
+            $this->departments=  Department::where('company_id', $this->companyId)->whereIn('id', function($query) use ($userId) {
+                $userId = Auth::user()->id;
+                $query->select('department_id')
+                    ->from('user_departments')
+                    ->where('user_id', $userId);
+            })->get();
+            
+        }
+        else 
+         $this->departments = Department::where('company_id', $companyId)->get();
         //  $this->selectedDepartments = [];
         if ($this->user != null)
             $this->setDepartmentsDetails();
@@ -101,6 +112,8 @@ class AddDepartment extends Component
     public function isBooking(){
        
         $this->isBooking=true;
+          //checking if customer then need to reset industries
+          
     }
 
 

@@ -11,8 +11,8 @@ use Livewire\Component;
 
 class AddIndustry extends Component
 {
-    public $selectedIndustries = [], $defaultIndustry, $industries, $user = null, $companyId;
-    protected $listeners = ['editRecord' => 'setUser', 'updateCompany'];
+    public $selectedIndustries = [], $defaultIndustry, $industries, $user = null, $companyId,$isBooking;
+    protected $listeners = ['editRecord' => 'setUser', 'updateCompany','isBooking'];
 
     public function render()
     {
@@ -24,6 +24,7 @@ class AddIndustry extends Component
         if (request()->customerID) {
             $customer_id = request()->customerID;
         } elseif (session()->get('isCustomer')) {
+           
             $customer_id  = Auth::id();
         } else {
             $customer_id = '';
@@ -53,11 +54,28 @@ class AddIndustry extends Component
     public function setBookingIndustries($bookingID){
         $this->selectedIndustries = BookingIndustry::where('booking_id',$bookingID)->select('industry_id')->get()->pluck('industry_id')->toArray();
     }
-
+    public function isBooking(){
+        $this->isBooking=true;
+         //checking if customer then need to reset industries
+         if(session()->get('isCustomer')){
+            $userId=Auth::user()->id;
+            $this->industries = Industry::where('status', 1)
+             ->whereIn('id', function($query) use ($userId) {
+        $userId = Auth::user()->id;
+        $query->select('industry_id')
+            ->from('user_industries')
+            ->where('user_id', $userId);
+    })->get();
+  
+        }
+    }
     public function updateCompany($companyId)
     {
 
         $company = Company::where('id', $companyId)->first();
+
+       
+
         if ($company->industry_id) {
 
             if ($this->user == null) { //new record 
