@@ -132,6 +132,7 @@
                                                 <span>Drive</span>
                                             </button>
                                         </li>
+                                        @if(!$isCustomer)
                                         <li class="nav-item" role="presentation">
                                             <button class="nav-link" id="permission-tab" data-bs-toggle="tab"
                                                 data-bs-target="#feedback-tab-pane" type="button" role="tab"
@@ -145,6 +146,7 @@
                                                 <span>Feedback</span>
                                             </button>
                                         </li>
+                                        @endif
                                         <li class="nav-item" role="presentation">
                                             <button class="nav-link" id="invoices-tab" data-bs-toggle="tab"
                                                 data-bs-target="#invoices-tab-pane" type="button" role="tab"
@@ -802,6 +804,7 @@
     </div>
     {{-- Drive Tab -End --}}
 
+    @if(!$isCustomer)
     {{-- Feedback Tab - Start --}}
     <div class="tab-pane fade" id="feedback-tab-pane" role="tabpanel" aria-labelledby="feedback-tab" tabindex="0">
         <div class="row mb-4">
@@ -1479,6 +1482,7 @@
             {{-- Icon Legend Bar - End --}}
         </div>
     </div>
+    @endif
     {{-- Feedback Tab - End --}}
 
     {{-- Invoices Tab - Start --}}
