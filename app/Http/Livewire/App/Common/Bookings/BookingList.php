@@ -502,6 +502,16 @@ class BookingList extends Component
 		$this->emit('setBookingId', $booking_id);
 	}
 
+	public function rejectAssignment($booking_id){
+		Booking::where('id', $booking_id)->update(['status'=>3,'booking_status'=>2]);
+		$this->showConfirmation('Booking has been rejected successfully!');
+
+	}
+	public function acceptAssignment($booking_id)
+	{
+		Booking::where('id',$booking_id)->update(['type' => 1,'booking_status'=>1,'status'=>1]);
+		$this->showConfirmation('Booking has been accepted successfully!');
+	}
 	// START : provider panel functions
 
 	public function showCheckInPanel($booking_id, $booking_service_id, $bookingNumber = null,)
@@ -569,4 +579,6 @@ class BookingList extends Component
 			]);
 		}
 	}
+
+	
 }

@@ -1,5 +1,5 @@
 <div x-data="{ bookingDetails: false, providerSavedForms: false }">
-    @if ($providerProfile &&  !$providerProfile)
+    @if (($providerProfile &&  !$providerProfile))
         <div class="" wire:ignore>
             <x-advancefilters type="" :filterProviders="$filterProviders" :hideProvider=$hideProvider />
         </div>
