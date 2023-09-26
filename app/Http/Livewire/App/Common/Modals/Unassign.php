@@ -5,6 +5,7 @@ namespace App\Http\Livewire\App\Common\Modals;
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\BookingUnassignProvider;
+use App\Models\Tenant\User;
 use Carbon\Carbon;
 use Livewire\Component;
 
@@ -27,8 +28,6 @@ class Unassign extends Component
         $this->data = [
             'unassign_reason' => '',
             'unassign_date' => null,
-            'hour' => null,
-            'min' => null,
         ];
     }
 
@@ -41,23 +40,39 @@ class Unassign extends Component
         $this->data = [
             'unassign_reason' => '',
             'unassign_date' => null,
-            'hour' => null,
-            'min' => null,
+            
         ];
     }
 
     public function save()
     {
-        $this->data['unassign_date'] = Carbon::createFromTime($this->data['hour'], $this->data['min']);
-        unset($this->data['hour']);
-        unset($this->data['min']);
-
+        $this->data['unassign_date'] = Carbon::now();
+      
         BookingUnassignProvider::updateOrCreate([
             'booking_id' => $this->booking_id, 'booking_service_id' => $this->booking_service_id,
             'provider_id' => $this->provider_id
         ], $this->data);
 
         BookingProvider::where(['booking_service_id' => $this->booking_service_id, 'provider_id' => $this->provider_id, 'booking_id' => $this->booking_id])->delete();
+        
+        //send unassign email 
+        $user = User::find($this->provider_id);
+        $templateId = getTemplate('Booking: Provider Unassigned', 'email_template');
+
+            $params = [
+                'email'       =>  $user->email, //
+                'user'        =>  $user->name,
+                'user_id'     =>  $user->id,
+                'templateId'  =>  $templateId,
+                'booking_id'     => $this->booking_id,
+                'mail_type'   => 'booking',
+                'templateName' => 'Unassigned From Assignment',
+                // 'bookingData' => $this->booking,
+                'booking_service_id' => $this->booking_service_id,
+            ];
+
+            sendTemplatemail($params);
+
         Booking::where(['id' => $this->booking_id])->update(['booking_status' => 1]);
         //add check for booking_status update
         $this->emit('showConfirmation', 'Provider Assignment has been revoked successfully');

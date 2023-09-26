@@ -292,7 +292,7 @@ class AssignProviders extends Component
                 $this->specializations =     json_decode($booking_service->specialization, true);
             $service = ServiceCategory::find($service_id);
             $this->services = [$this->service_id];
-            $this->accommodations = [$service->accommodations_id];
+            $this->accommodations = $service ? [$service->accommodations_id] : [];
         }
         if (!is_null($this->booking->payment)) {
             $this->paymentData = ["additional_label_provider" => $this->booking->payment->additional_label_provider, "additional_charge_provider" => $this->booking->payment->additional_charge_provider];
@@ -357,7 +357,6 @@ class AssignProviders extends Component
             $prev = BookingProvider::where(['booking_id' => $this->booking_id, 'booking_service_id' => null])->orWhere(['booking_service_id' => $booking_service->id]);
             if ($prev->count()) {
                 $previousAssigned = $prev->get()->pluck('provider_id')->toArray();
-                // $prev->delete();
             } else
                 $previousAssigned = [];
 
@@ -366,7 +365,7 @@ class AssignProviders extends Component
             foreach ($this->assignedProviders as $provider) {
 
                 $user          = User::find($provider['provider_id']);
-
+                unset($previousAssigned[$user->id]);
                 if (!empty($user)) {
 
                     $templateId = getTemplate('Booking: Provider Assigned (manual-assign)', 'email_template');
@@ -381,6 +380,8 @@ class AssignProviders extends Component
                             'mail_type'   => 'booking',
                             'templateName' => 'New Assignment',
                             'bookingData' => $this->booking,
+                            'booking_service_id' => $booking_service->id,
+
 
 
                         ];
@@ -403,6 +404,33 @@ class AssignProviders extends Component
                 );
             }
             $status = 1;
+            //sending notification for unassign
+            foreach($previousAssigned as $unassign_prov){
+                $user          = User::find($unassign_prov);
+
+                $templateId = getTemplate('Booking: Provider Unassigned', 'email_template');
+
+                if (!in_array($provider['provider_id'], $previousAssigned)) {
+                    $params = [
+                        'email'       =>  $user->email, //
+                        'user'        =>  $user->name,
+                        'user_id'     =>  $user->id,
+                        'templateId'  =>  $templateId,
+                        'booking_id'     => $this->booking_id,
+                        'mail_type'   => 'booking',
+                        'templateName' => 'Unassigned From Assignment',
+                        'bookingData' => $this->booking,
+                        'booking_service_id' => $booking_service->id,
+
+
+
+                    ];
+
+                    sendTemplatemail($params);
+                }
+            }
+            BookingProvider::whereIn('provider_id',$previousAssigned)->delete();
+
 
             if ($this->limit == count($this->assignedProviders))
                 $status = 2;
@@ -418,6 +446,7 @@ class AssignProviders extends Component
         if (count($this->assignedProviders) > 0) {
             $this->showError = false;
             $bookingInv  = BookingInvitation::firstOrCreate(['booking_id' => $this->booking_id, 'service_id' => $this->service_id]);
+            $booking_service = BookingServices::where(['services' => $this->service_id, 'booking_id' => $this->booking_id])->first();
 
             foreach ($this->assignedProviders as $provider_id) {
                 $invData           = ['booking_id'   => $this->booking_id, 'deleted_at'   => null];
@@ -441,20 +470,11 @@ class AssignProviders extends Component
                             'mail_type'   => 'booking',
                             'provider_id' => $user->id,
                             'phone'       =>  isset($user->users_detail) ? clean($user->users_detail->phone) : "",
+                            'booking_service_id' => $booking_service->id,
 
                         ];
                         sendTemplatemail($params);
 
-                        //     // $noti = [
-                        //     //     'user_id'     =>  $user->id,
-                        //     //     'templateId'  =>  $notification_templateId,
-                        //     //     'item_id'     => $this->booking_id,
-                        //     //     'item_type'   => 'booking',
-                        //     //     // 'provider_id' =>  auth()->user()->id,
-                        //     //     // 'provider'    =>  auth()->user()->name,
-                        //     // ];
-                        //     // Helper::save_notification($noti);
-                        // }
                         $invData['provider_id']     = $provider_id;
                         $invData['invitation_id']   = $bookingInv->id;
                     }
