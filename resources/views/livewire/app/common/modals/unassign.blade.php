@@ -10,7 +10,7 @@
             <label class="form-label">Reason for Unassign</label>
             <textarea class="form-control" rows="5" cols="5" wire:model.defer="data.unassign_reason"></textarea>
         </div>
-        <div class="row mb-4">
+        {{-- <div class="row mb-4">
             <div class="col-lg-6 mb-4">
                 <label class="form-label" for="dateunassign">
                     Date <small>(coming soon)</small>
@@ -54,7 +54,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <div class="d-flex gap-3 justify-content-center mb-3">
             <a href="#" class="btn rounded btn-outline-dark" data-bs-dismiss="modal">
                 Keep Provider

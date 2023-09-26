@@ -40,6 +40,7 @@ if (!function_exists('sendMail')) {
   {
     try {
       $response = null;
+
       if ($dispathType == 'dispatch') {
         $response = sendEmail::dispatch($to, $subject, $data, $mailview)->onQueue('emails');
       } else if ($dispathType == 'dispatchSync') {
