@@ -446,6 +446,7 @@ class AssignProviders extends Component
         if (count($this->assignedProviders) > 0) {
             $this->showError = false;
             $bookingInv  = BookingInvitation::firstOrCreate(['booking_id' => $this->booking_id, 'service_id' => $this->service_id]);
+            $booking_service = BookingServices::where(['services' => $this->service_id, 'booking_id' => $this->booking_id])->first();
 
             foreach ($this->assignedProviders as $provider_id) {
                 $invData           = ['booking_id'   => $this->booking_id, 'deleted_at'   => null];
@@ -469,20 +470,11 @@ class AssignProviders extends Component
                             'mail_type'   => 'booking',
                             'provider_id' => $user->id,
                             'phone'       =>  isset($user->users_detail) ? clean($user->users_detail->phone) : "",
+                            'booking_service_id' => $booking_service->id,
 
                         ];
                         sendTemplatemail($params);
 
-                        //     // $noti = [
-                        //     //     'user_id'     =>  $user->id,
-                        //     //     'templateId'  =>  $notification_templateId,
-                        //     //     'item_id'     => $this->booking_id,
-                        //     //     'item_type'   => 'booking',
-                        //     //     // 'provider_id' =>  auth()->user()->id,
-                        //     //     // 'provider'    =>  auth()->user()->name,
-                        //     // ];
-                        //     // Helper::save_notification($noti);
-                        // }
                         $invData['provider_id']     = $provider_id;
                         $invData['invitation_id']   = $bookingInv->id;
                     }
