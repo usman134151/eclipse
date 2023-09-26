@@ -1,27 +1,5 @@
 ﻿/* Style for the top background image */
-.top-image {
-    background-image: url('/tenant-resources/images/header.png'); /* Replace with your image path */
-    background-size: 100% auto; /* Adjust the width to 100% while maintaining aspect ratio */
-    background-repeat: no-repeat;
-    height: 220px; /* Adjust the height as needed for your image */
-    margin: 0;
-    position: fixed;
-}
 
-/* Style for the bottom background image */
-
-.bottom-image {
-    background-image: url('/tenant-resources/images/footer.png'); /* Replace with your image path */
-    background-size: 100% auto; /* Adjust the width to 100% while maintaining aspect ratio */
-    background-repeat: no-repeat;
-    height: 250px; /* Adjust the height as needed for your image */
-    margin: 0;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
-}
 
 
 /* Center the image in the left column (60%) */
@@ -39,16 +17,13 @@
     background-color: #f5f5f5;
     border: 1px solid #ddd;
     border-radius: 5px;
-    max-width: 500px;
+    max-width: 650px;
+    z-index: 300;
 }
 
 
 body {
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-    position: relative;
-    overflow-x: hidden; /* Hide horizontal scrollbar if necessary */
+
 }
 
 @media (max-width: 767px) {
@@ -64,3 +39,51 @@ body {
         align-items: center; /* Center the content vertically */
     }
 }
+
+.box-area{
+    width:100vw ;
+    height: 100vh;
+}
+.custom-edit {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 25px;
+    color: #000000;
+  }
+.custom-label{
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: #000000;
+}
+.right-box{
+    padding: 50px 40px 50px 50px;
+    
+}
+.left-box img{
+    width: 350px;
+}
+.custom-btn{
+    background-color: #023DB0;
+    border: none;
+}
+.custom-link{
+    color: #023DB0;
+
+}
+@media only screen and (max-width: 768px){
+    .left-box img{
+        width: 200px;
+    }
+    .left-box{
+        padding-top: 40px;
+    }
+    .right-box{
+        margin-top: -35px;
+    }
+ 
+}
+
+.featured-image{
+    width: 80%;
+ }  
