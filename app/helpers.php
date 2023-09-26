@@ -318,8 +318,7 @@ if (!function_exists('sendTemplatemail')) {
                     "@industry" => "",
                     //  $bookingData->customer ? ($bookingData->customer->users_detail->industries ? $bookingData->customer->users_detail->industries->name : '') : '',
                     "@booking_accommodation" => isset($accommodationArray) ? implode(',', $accommodationArray) : '',
-                    "@booking_service" => isset($serviceArray) ? implode(',', $serviceArray) : '',
-                    "@booking_type" => isset($serviceTypes) ? implode(',', $serviceTypes) : '',
+                    "@booking_service_type" => isset($serviceTypes) ? implode(',', $serviceTypes) : '',
                     "@booking_specializations" => isset($serviceSpecialization) ? implode(',', $serviceSpecialization) : '',
                     "@consumers" => isset($serviceConsumer) ? implode(',', $serviceConsumer) : '',
                     "@participant" => isset($serviceParticipant) ? implode(',', $serviceParticipant) : '',
@@ -348,6 +347,7 @@ if (!function_exists('sendTemplatemail')) {
 
 
 
+                    "@booking_service" => isset($serviceArray) ? implode(',', $serviceArray) : '',
 
                 );
             }

@@ -23,7 +23,7 @@ class NotificationTagsSeeder extends Seeder
 			["name"=>"@booking_duration"],
 			["name"=>"@booking_location"],
 			// ["name"=>"@services"],
-			["name"=> "@booking_type"],
+			["name"=> "@booking_service_type"],
 			["name"=>"@dashboard"],
 			["name"=>"@reports"], 
             ["name"=>"@billing_total"],
