@@ -105,7 +105,7 @@
                         </svg>
                     </div>
                     <div>
-                        <div class="text-center block-number">15</div> -->
+                        {{-- <div class="text-center block-number">15</div> --> --}}
                     </div>
                 </a>
             </li>
@@ -114,39 +114,9 @@
             <div class="tab-pane fade show active" id="calendar-tab-pane" role="tabpanel"
                 aria-labelledby="calendar-tab" tabindex="0">
                 <h3>Booking Calendar</h3>
-                <!-- Filters -->
-                <div class="d-flex justify-content-start gap-4 mb-4">
-                    <div class="d-flex justify-content-start gap-2">
-                        <div class="mb-4 mb-lg-0 position-relative">
-                            <!-- Begin : it will be replaced with livewire module-->
-                            {{-- updated Sana to change x-icon to svg --}}
-                            <svg aria-label="Input-calender" class="icon-date sm cursor-pointer" width="20"
-                                height="20" viewBox="0 0 20 20">
-                                <use xlink:href="/css/common-icons.svg#input-calender"></use>
-                            </svg>
-                            {{-- end updated by Sana --}}
-
-                            <input type="" class="form-control form-control-sm w-auto js-single-date"
-                                placeholder="MM/DD/YYYY" name="selectDate" aria-label="Select Date">
-                            <!-- End : it will be replaced with livewire module -->
-                        </div>
-                        <div class="mb-4 mb-lg-0">
-                            <select class="form-select form-select-sm rounded bg-secondary text-white rounded"
-                                aria-label="Advance Filter" id="show_status">
-                                <option>Advance Filter</option>
-                            </select>
-                        </div>
-                        <div class="mb-4 mb-lg-0">
-                            <button type="button" class="btn btn-xs btn-outline-dark rounded">Clear all</button>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- /Filters -->
-                @livewire('app.common.calendar')
-                {{-- <div>
-                    <img src="/tenant-resources/images/img-placeholder-calendar.png" class="img-fluid" alt="Dashboard Calender" />
-                </div> --}}
+                
+                @livewire('app.common.calendar', ['isCustomer'=>true,'user_id'=>Auth::id()])
+               
             </div>
 
             {{-- Add services Form --}}
