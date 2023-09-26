@@ -430,8 +430,8 @@ if (!function_exists('sendTemplatemail')) {
                 else
                     $data['company_logo'] = null;
 
-                //    sendMail($data['email'], $data['templateSubject'],  $data, 'emails.templates', [], 'dispatch');
-                Mail::to($data['email'])->send(new createEmail($data['templateSubject'], $data, 'emails.templates', []));
+                   sendMail($data['email'], $data['templateSubject'],  $data, 'emails.templates', [], 'dispatch');
+                // Mail::to($data['email'])->send(new createEmail($data['templateSubject'], $data, 'emails.templates', []));
             }
 
             // SEND SMS
