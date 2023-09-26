@@ -7,7 +7,7 @@ use App\Models\Tenant\NotificationTemplateRoles;
 
 use App\Models\Tenant\SmsTemplate;
 use App\Models\Tenant\SystemRoleUser;
-use App\Models\Tenant\Template;
+use App\Models\Tenant\BookingServices;
 use App\Http\Controllers\Tenant\Mails\createEmail;
 
 use App\Models\Tenant\User;
@@ -146,7 +146,7 @@ if (!function_exists('sendTemplatemail')) {
             // if (!$sendEmail && !$sendSMS) {
             //     return false;
             // }
-          
+
             $admin            = User::find(1);
             $location        = "-";
             $payment_for_provider     = 0;
@@ -163,13 +163,12 @@ if (!function_exists('sendTemplatemail')) {
             $replacements[] = array(
                 "@dashboard_url" =>  $dashboard_url,
 
-                // '@dashboard'	=> '<h3 class="mb-3 mt-0"><a href="'.$dashboard_url.'" class="btn btn-primary text-center">Go to Dashboard</a></h3>',
                 '@dashboard'    => '<h3 class="mb-3 mt-0"><a href="' . $dashboard_url . '" class="btn btn-primary text-center">Go to Dashboard</a></h3><br> <span style="line-height: 4px;">Or copy and paste the URL into your browser:</span><br><span style="line-height: 16px;font-size: 14px;">' . URL::to($userData->roles()->first()->name . '/dashboard') . '</span> ',
                 "@username" => $userData->name ?? '',
                 "@document_name" => $document_name ?? '',
                 "@document_category" => $document_category ?? '',
                 "@provider" => $providerName ?? '',
-                "@admin_company" => $userData->company ? $userData->company->name : '',
+                "@admin_company" => tenant()->company,
                 "@admin" => $admin->name,
                 "@email_provider" => $userData->email ?? '',
                 "@view_booking" =>  str_replace('https://', '', URL::to($userData->roles()->first()->name . '/bookings/' . encrypt($data['booking_id']))) ?? '',
@@ -177,8 +176,8 @@ if (!function_exists('sendTemplatemail')) {
 
                 "@recipient" => $userData->name ?? '',
                 "@email" => $userData->email ?? '',
-                "@button_login_page" => $login_button?? '',
-                "@button_password_setup" => $reset_password??'',
+                "@button_login_page" => $login_button ?? '',
+                "@button_password_setup" => $reset_password ?? '',
 
             );
 
@@ -254,15 +253,33 @@ if (!function_exists('sendTemplatemail')) {
                 // $netTotal = $netTotal + $bookingData->payment->modification_fee;
 
                 $frequency        = array(1 => 'One Time', 2 => 'Daily', 3 => 'Weekly', 4 => 'Monthly', 5 => 'Week Daily');
-
-                foreach ($bookingData->booking_services_layout as $service) {
-                    $accommodationArray[] = $service->accommodation ? $service->accommodation->name : '';
-                    $serviceArray[] = $service->ServiceCategory ? $service->ServiceCategory->name : '';
-                    $serviceTypes[] = $service->service_types == 1 ? "In Person" : "Virtual";
+                $serviceType = [1 => 'In Person', 2 => 'Virtual', 4 => 'Phone', 5 => 'Tele-Conference'];
+                if (isset($data['booking_service_id'])) {
+                    //for a specific service
+                    $booking_service = $bookingData->booking_services_layout->where('id', $data['booking_service_id'])->first();
+                    // dd( $serviceType[$booking_service->service_types]);
+                    $accommodationArray[] = $booking_service->service->accommodation ? $booking_service->service->accommodation->name : '';
+                    $serviceArray[] = $booking_service->service ? $booking_service->service->name : '';
+                    $serviceTypes[] = $serviceType[$booking_service->service_types];
                     $serviceSpecialization[] = '';
-                    // getSpecializationsNameNew($service->specialization);
-                    $serviceConsumer[] = $service->service_consumer;
-                    $serviceParticipant[] = $service->attendees;
+                    $serviceConsumer[] = $booking_service->service_consumer;
+                    $serviceParticipant[] = $booking_service->attendees;
+                    $bookingData->booking_start_at = $booking_service->start_time;
+                    $bookingData->booking_end_at = $booking_service->end_time;
+
+                    
+
+                    // dd($bookingData->booking_services_layout);
+                } else {
+                    foreach ($bookingData->booking_services_layout as $service) {
+                        $accommodationArray[] = $service->accommodation ? $service->accommodation->name : '';
+                        $serviceArray[] = $service->ServiceCategory ? $service->ServiceCategory->name : '';
+                        $serviceTypes[] = $serviceType[$service->service_types];
+                        $serviceSpecialization[] = '';
+                        // getSpecializationsNameNew($service->specialization);
+                        $serviceConsumer[] = $service->service_consumer;
+                        $serviceParticipant[] = $service->attendees;
+                    }
                 }
 
                 $replacements[] = array(
@@ -271,17 +288,17 @@ if (!function_exists('sendTemplatemail')) {
                     "@document_name" => $document_name ?? '',
                     "@document_category" => $document_category ?? '',
                     "@provider" => $providerName ?? '',
-                    "@admin_company" => $userData->company ? $userData->company->name : '',
+                    "@admin_company" => tenant()->company,
                     "@admin" => $admin->name,
                     "@customer" => $customer ?? '',
                     "@consumer" => $customer ?? '',
                     "@requester" => $customer ?? '',
-                    "@booking_start_date" =>  formatDateTime($bookingData->booking_start_at) ?? '',
-                    "@booking_start_time"=>'',
-                    "@booking_end_time"=>"",
-                    "@booking_end_date" =>  formatDateTime($bookingData->booking_end_at) ?? '',
+                    "@booking_start_date" => $bookingData->booking_start_at ?  date_format(date_create($bookingData->booking_start_at), "d/m/Y") : '',
+                    "@booking_start_time" => $bookingData->booking_start_at ?  date_format(date_create($bookingData->booking_start_at), "h:i A") : '',
+                    "@booking_end_time" => $bookingData->booking_end_at ?  date_format(date_create($bookingData->booking_end_at), "h:i A") : '' ,
+                    "@booking_end_date" =>   $bookingData->booking_end_at ?  date_format(date_create($bookingData->booking_end_at), "d/m/Y") : '' ,
                     "@booking_date" =>  formatDate($bookingData->booking_start_at) ?? '',
-                    "@booking_company"=> $bookingData->company ? $bookingData->company->name :"",
+                    "@booking_company" => $bookingData->company ? $bookingData->company->name : "",
                     "@booking_location" =>  $location ?? '',
                     "@booking_number" =>  $bookingData->booking_number ?? '',
                     "@booking_provider_count" =>  $bookingData->provider_count ?? '',
@@ -300,10 +317,9 @@ if (!function_exists('sendTemplatemail')) {
                     "@billing_manager" => $bookingData->billing_manager ? $bookingData->billing_manager->name : '',
                     "@industry" => "",
                     //  $bookingData->customer ? ($bookingData->customer->users_detail->industries ? $bookingData->customer->users_detail->industries->name : '') : '',
-                    "@accommodation" => isset($accommodationArray) ? implode(',', $accommodationArray) : '',
-                    "@services" => isset($serviceArray) ? implode(',', $serviceArray) : '',
-                    "@service_type" => isset($serviceTypes) ? implode(',', $serviceTypes) : '',
-                    "@specialization" => isset($serviceSpecialization) ? implode(',', $serviceSpecialization) : '',
+                    "@booking_accommodation" => isset($accommodationArray) ? implode(',', $accommodationArray) : '',
+                    "@booking_service_type" => isset($serviceTypes) ? implode(',', $serviceTypes) : '',
+                    "@booking_specializations" => isset($serviceSpecialization) ? implode(',', $serviceSpecialization) : '',
                     "@consumers" => isset($serviceConsumer) ? implode(',', $serviceConsumer) : '',
                     "@participant" => isset($serviceParticipant) ? implode(',', $serviceParticipant) : '',
                     "@city" => $bookingData->physicalAddress ? $bookingData->physicalAddress->city : '',
@@ -331,6 +347,7 @@ if (!function_exists('sendTemplatemail')) {
 
 
 
+                    "@booking_service" => isset($serviceArray) ? implode(',', $serviceArray) : '',
 
                 );
             }
@@ -388,8 +405,8 @@ if (!function_exists('sendTemplatemail')) {
             if ($sendEmail && isset($data['templateId']) && !empty($data['templateId'])) {
                 $user_role_id =  $userData->roles->first()->id; //fetch what ever is the first assigned role
                 $template = NotificationTemplateRoles::where(['notification_id' => $data['templateId'], 'role_id' => $user_role_id])->first();
-                if(is_null($template))
-                  return;
+                if (is_null($template))
+                    return;
                 $dom = new DOMDocument();
                 $dom->loadHTML($template->notification_text);
                 $xpath = new DOMXPath($dom);
@@ -405,7 +422,7 @@ if (!function_exists('sendTemplatemail')) {
                 if (isset($invoicePdf))
                     $data['invoice_pdf'] = $invoicePdf ?? false;
                 $data['templateSubject'] = str_ireplace(array_keys($replacements), array_values($replacements), $template->notification_subject ?? '');
-                $data['templateBody'] = str_ireplace(array_keys($replacements), array_values($replacements), $templateString);
+                $data['templateBody'] = nl2br(str_ireplace(array_keys($replacements), array_values($replacements), $templateString));
 
                 $data['admin'] = $admin;
                 if (session()->has('company_logo') && session()->get('company_logo') != null)
@@ -413,8 +430,8 @@ if (!function_exists('sendTemplatemail')) {
                 else
                     $data['company_logo'] = null;
 
-               // sendMail($data['email'], $data['templateSubject'],  $data, 'emails.templates', [], 'dispatch');
-                // Mail::to('abc@email.com')->send(new createEmail($data['templateSubject'], $data, 'emails.templates', []));
+                   sendMail($data['email'], $data['templateSubject'],  $data, 'emails.templates', [], 'dispatch');
+                // Mail::to($data['email'])->send(new createEmail($data['templateSubject'], $data, 'emails.templates', []));
             }
 
             // SEND SMS
@@ -439,8 +456,8 @@ if (!function_exists('sendTemplatemail')) {
 }
 if (!function_exists('numberFormat')) {
 
-function numberFormat($foo)
-	{
-		return '$ ' . number_format((float)$foo, 2, '.', ',');
-	}
+    function numberFormat($foo)
+    {
+        return '$ ' . number_format((float)$foo, 2, '.', ',');
+    }
 }
