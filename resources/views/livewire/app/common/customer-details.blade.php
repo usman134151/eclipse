@@ -61,7 +61,7 @@
                                             <span>Dashboard</span>
                                         </button>
                                     </li>
-
+                                    @if (!$isCustomer)
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="schedule-tab" data-bs-toggle="tab"
                                             data-bs-target="#schedule-tab-pane" type="button" role="tab"
@@ -158,7 +158,6 @@
                                     </button>
                                 </li>
                                 --}}
-                                    @if (!$isCustomer)
                                         <li class="nav-item" role="presentation">
                                             <button class="nav-link" id="notes-tab" data-bs-toggle="tab"
                                                 data-bs-target="#notes-tab-pane" type="button" role="tab"
@@ -172,7 +171,6 @@
                                                 <span>Notes</span>
                                             </button>
                                         </li>
-                                    @endif
 
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="reports-tab" data-bs-toggle="tab"
@@ -215,6 +213,8 @@
                                             <span>Log</span>
                                         </button>
                                     </li>
+                                    @endif
+
                                 </ul>
 
                                 <div class="tab-content" id="myTabContent">
@@ -854,6 +854,8 @@
             src="/tenant-resources/images/portrait/small/image-placeholder-calendar.png" />
     </div>
 </div>
+@if (!$isCustomer)
+
 <!-- Schedule tab end -->
 <div class="tab-pane fade" id="customer-feedback-tab-pane" role="tabpanel" aria-labelledby="customer-feedback-tab"
     tabindex="0">
@@ -1826,12 +1828,11 @@
     </div>
 </div>
 <!-- Invoices Remittances Tab End-->
-@if (!$isCustomer)
     <div class="tab-pane fade" id="notes-tab-pane" role="tabpanel" aria-labelledby="notes-tab" tabindex="0">
         @livewire('app.common.forms.notes', ['showForm' => true, 'record_id' => $userid, 'record_type' => 3])
 
     </div>
-@endif
+
 <!-- Notes Tab End-->
 <div class="tab-pane fade" id="notifications-tab-pane" role="tabpanel" aria-labelledby="notifications-tab"
     tabindex="0">
@@ -3164,6 +3165,7 @@
         </div>
     </div>
 </div>
+@endif
 <!-- Reports tab ends -->
 
 </div> <!-- tab-content -->
