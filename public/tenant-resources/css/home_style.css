@@ -23,7 +23,7 @@
 
 
 body {
-
+background-color: #fff !important;
 }
 
 @media (max-width: 767px) {
