@@ -16,10 +16,10 @@
                         <h1 class="content-header-title float-start mb-0">
                             @if (!$isCustomer)
                                 {{ $label }} Customer
-                                    @elseif ($isCustomer && $selfProfile)
+                            @elseif ($isCustomer && $selfProfile)
                                 My Profile
-                            @else 
-                            {{ $label }} Team Member
+                            @else
+                                {{ $label }} Team Member
                             @endif
                         </h1>
                         <div class="breadcrumb-wrapper">
@@ -49,7 +49,7 @@
                                     @elseif ($isCustomer && $selfProfile)
                                         Edit Profile
                                     @else
-                                         {{ $label }} Team Members
+                                        {{ $label }} Team Members
                                     @endif
                                 </li>
                             </ol>
@@ -155,7 +155,8 @@
                                                                     <img class="user_img cropfile"
                                                                         src="{{ '/tenant' . tenant('id') . '/app/livewire-tmp/' . $image->getFilename() }}">
                                                                 @else
-                                                                    <img class="user_img cropfile" aria-label="Upload Profile Picture"
+                                                                    <img class="user_img cropfile"
+                                                                        aria-label="Upload Profile Picture"
                                                                         src="{{ $userdetail['profile_pic'] == null ? '/tenant-resources/images/img-placeholder-document.jpg' : url($userdetail['profile_pic']) }}">
                                                                 @endif
                                                                 <div class="input--file">
@@ -181,7 +182,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="row between-section-segment-spacing">
-                                                        @if (!$isCustomer )
+                                                        @if (!$isCustomer)
                                                             <div class="col-lg-12">
                                                                 <h2>Customer Information</h2>
                                                             </div>
@@ -202,14 +203,15 @@
                                                             </div>
                                                         @endif
 
-                                                        <div class="col-lg-6 {{$isCustomer ? 'pe' : 'ps'}}-lg-5 mb-4">
+                                                        <div
+                                                            class="col-lg-6 {{ $isCustomer ? 'hidden' : '' }} ps-lg-5 mb-4">
                                                             <label class="form-label" for="industry-column">
                                                                 Industry
                                                                 <span class="mandatory" aria-hidden="true">
                                                                     *
                                                                 </span>
                                                             </label>
-                                                            <div>
+                                                            <div >
                                                                 <button type="button"
                                                                     class="btn btn-has-icon px-0 btn-multiselect-popup"
                                                                     data-bs-toggle="modal"
@@ -293,11 +295,15 @@
                                                             </div>
                                                         @endif
 
-                                                        <div class="col-lg-6 {{$isCustomer ? 'pe' : 'ps'}}-lg-5 mb-4">
+                                                        <div
+                                                            class="col-lg-6 {{ $isCustomer ? 'pe' : 'ps' }}-lg-5 mb-4">
                                                             <label class="form-label" for="position-column">
                                                                 Position
                                                             </label>
-                                                            <input type="text" id="position-column"
+                                                             
+                                                            <input
+                                                            {{$isCustomer ? ((in_array(10, session()->get('customerRoles')) ||in_array(5, session()->get('customerRoles'))) ? '' :'disabled') :''}}
+                                                              type="text" id="position-column"
                                                                 class="form-control" name="positionColumn"
                                                                 placeholder="Enter Position"
                                                                 wire:model.defer="userdetail.user_position" />
@@ -321,7 +327,8 @@
                                                             @enderror
                                                         </div>
 
-                                                        <div class="col-lg-6 {{$isCustomer ? 'pe' : 'ps'}}-lg-5 mb-4">
+                                                        <div
+                                                            class="col-lg-6 {{ $isCustomer ? 'pe' : 'ps' }}-lg-5 mb-4">
                                                             <label class="form-label" for="l-name">
                                                                 Last Name
                                                                 <span class="mandatory" aria-hidden="true">
@@ -348,7 +355,8 @@
                                                                 name="pronouns" wire:model.defer="userdetail.title" />
                                                         </div>
 
-                                                        <div class="col-lg-6 {{$isCustomer ? 'pe' : 'ps'}}-lg-5 mb-4">
+                                                        <div
+                                                            class="col-lg-6 {{ $isCustomer ? 'pe' : 'ps' }}-lg-5 mb-4">
                                                             <label class="form-label" for="">
                                                                 Date of Birth
                                                             </label>
@@ -360,9 +368,10 @@
                                                                         aria-label="Date of Birth" aria-describedby=""
                                                                         wire:model.defer="user.user_dob"
                                                                         name="user_dob" id="user_dob">
-                                                                    <svg aria-label="Select Date of Birth" class="icon-date"
-                                                                        width="20" height="21"
-                                                                        viewBox="0 0 20 21" fill="none"
+                                                                    <svg aria-label="Select Date of Birth"
+                                                                        class="icon-date" width="20"
+                                                                        height="21" viewBox="0 0 20 21"
+                                                                        fill="none"
                                                                         xmlns="http://www.w3.org/2000/svg">
                                                                         <path
                                                                             d="M18.75 2.28511L13.7456 2.28513V1.03921C13.7456 0.693815 13.4659 0.414062 13.1206 0.414062C12.7753 0.414062 12.4956 0.693815 12.4956 1.03921V2.28481H7.49563V1.03921C7.49563 0.693815 7.21594 0.414062 6.87063 0.414062C6.52531 0.414062 6.24563 0.693815 6.24563 1.03921V2.28481H1.25C0.559687 2.28481 0 2.84463 0 3.53511V19.1638C0 19.8542 0.559687 20.4141 1.25 20.4141H18.75C19.4403 20.4141 20 19.8542 20 19.1638V3.53511C20 2.84492 19.4403 2.28511 18.75 2.28511ZM18.75 19.1638H1.25V3.53511H6.24563V4.16494C6.24563 4.51032 6.52531 4.79009 6.87063 4.79009C7.21594 4.79009 7.49563 4.51032 7.49563 4.16494V3.53542H12.4956V4.16525C12.4956 4.51065 12.7753 4.7904 13.1206 4.7904C13.4659 4.7904 13.7456 4.51065 13.7456 4.16525V3.53542H18.75V19.1638ZM14.375 10.412H15.625C15.97 10.412 16.25 10.1319 16.25 9.78686V8.53657C16.25 8.19149 15.97 7.91142 15.625 7.91142H14.375C14.03 7.91142 13.75 8.19149 13.75 8.53657V9.78686C13.75 10.1319 14.03 10.412 14.375 10.412ZM14.375 15.4129H15.625C15.97 15.4129 16.25 15.1331 16.25 14.7877V13.5374C16.25 13.1924 15.97 12.9123 15.625 12.9123H14.375C14.03 12.9123 13.75 13.1924 13.75 13.5374V14.7877C13.75 15.1334 14.03 15.4129 14.375 15.4129ZM10.625 12.9123H9.375C9.03 12.9123 8.75 13.1924 8.75 13.5374V14.7877C8.75 15.1331 9.03 15.4129 9.375 15.4129H10.625C10.97 15.4129 11.25 15.1331 11.25 14.7877V13.5374C11.25 13.1927 10.97 12.9123 10.625 12.9123ZM10.625 7.91142H9.375C9.03 7.91142 8.75 8.19149 8.75 8.53657V9.78686C8.75 10.1319 9.03 10.412 9.375 10.412H10.625C10.97 10.412 11.25 10.1319 11.25 9.78686V8.53657C11.25 8.19118 10.97 7.91142 10.625 7.91142ZM5.625 7.91142H4.375C4.03 7.91142 3.75 8.19149 3.75 8.53657V9.78686C3.75 10.1319 4.03 10.412 4.375 10.412H5.625C5.97 10.412 6.25 10.1319 6.25 9.78686V8.53657C6.25 8.19118 5.97 7.91142 5.625 7.91142ZM5.625 12.9123H4.375C4.03 12.9123 3.75 13.1924 3.75 13.5374V14.7877C3.75 15.1331 4.03 15.4129 4.375 15.4129H5.625C5.97 15.4129 6.25 15.1331 6.25 14.7877V13.5374C6.25 13.1927 5.97 12.9123 5.625 12.9123Z"
@@ -410,7 +419,8 @@
                                                             {!! $setupValues['gender']['rendered'] !!}
                                                         </div>
 
-                                                        <div class="col-lg-6 {{$isCustomer ? 'pe' : 'ps'}}-lg-5 mb-4">
+                                                        <div
+                                                            class="col-lg-6 {{ $isCustomer ? 'pe' : 'ps' }}-lg-5 mb-4">
                                                             <div
                                                                 class="d-flex justify-content-between align-items-center">
                                                                 <label class="form-label" for="ethnicity-column">
@@ -449,7 +459,8 @@
                                                             @enderror
                                                         </div>
 
-                                                        <div class="col-lg-6 {{$isCustomer ? 'pe' : 'ps'}}-lg-5 mb-4">
+                                                        <div
+                                                            class="col-lg-6 {{ $isCustomer ? 'pe' : 'ps' }}-lg-5 mb-4">
                                                             <label class="form-label" for="phone-number">
                                                                 Phone Number
                                                             </label>
@@ -469,7 +480,8 @@
                                                             </label>
                                                             {!! $setupValues['countries']['rendered'] !!}
                                                         </div>
-                                                        <div class="col-lg-6 mb-4 {{$isCustomer ? 'pe' : 'ps'}}-lg-5">
+                                                        <div
+                                                            class="col-lg-6 mb-4 {{ $isCustomer ? 'pe' : 'ps' }}-lg-5">
                                                             <div class="mb-4">
                                                                 <label class="form-label" for="state">State /
                                                                     Province</label>
@@ -500,7 +512,8 @@
 
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-6 mb-4 {{$isCustomer ? 'pe' : 'ps'}}-lg-5">
+                                                        <div
+                                                            class="col-lg-6 mb-4 {{ $isCustomer ? 'pe' : 'ps' }}-lg-5">
                                                             <label class="form-label" for="zip-code">
                                                                 Zip Code
                                                             </label>
@@ -534,7 +547,8 @@
                                                                 placeholder="Enter Address Line 1"
                                                                 wire:model.defer="userdetail.address_line1" />
                                                         </div>
-                                                        <div class="col-lg-6 mb-4 {{$isCustomer ? 'pe' : 'ps'}}-lg-5">
+                                                        <div
+                                                            class="col-lg-6 mb-4 {{ $isCustomer ? 'pe' : 'ps' }}-lg-5">
                                                             <label class="form-label" for="address-line-2">
                                                                 Address Line 2
                                                             </label>
@@ -550,35 +564,38 @@
                                                             {!! $setupValues['languages']['rendered'] !!}
                                                         </div>
 
-                                                        <div class="col-lg-6 {{$isCustomer ? 'pe' : 'ps'}}-lg-5 mb-4">
+                                                        <div
+                                                            class="col-lg-6 {{ $isCustomer ? 'pe' : 'ps' }}-lg-5 mb-4">
                                                             <label class="form-label" for="time-zone">
                                                                 Time Zone
                                                             </label>
                                                             {!! $setupValues['timezones']['rendered'] !!}
                                                         </div>
 
-
-                                                        <div class="col-lg-12">
-                                                            <div class="row">
-                                                                <div class="col-lg-6 pe-lg-5">
-                                                                    <label class="form-label"
-                                                                        for="tags">Tags</label>
-                                                                    <select data-placeholder="" multiple
-                                                                        class="form-select  select2 form-select select2-hidden-accessible"
-                                                                        tabindex="" id="tags-select"
-                                                                        aria-label="Select Tags">
-                                                                        @foreach ($allTags as $tag)
-                                                                            <option
-                                                                                {{ in_array($tag, $tags) ? 'selected' : '' }}
-                                                                                value="{{ $tag }}">
-                                                                                {{ $tag }}</option>
-                                                                        @endforeach
-                                                                    </select>
-                                                                    <input type="hidden" name="tags-holder"
-                                                                        id="tags-holder" wire:model.defer="tags">
+                                                        @if (!$isCustomer)
+                                                            <div class="col-lg-12">
+                                                                <div class="row">
+                                                                    <div class="col-lg-6 pe-lg-5">
+                                                                        <label class="form-label"
+                                                                            for="tags">Tags</label>
+                                                                        <select data-placeholder="" multiple
+                                                                            class="form-select  select2 form-select select2-hidden-accessible"
+                                                                            tabindex="" id="tags-select"
+                                                                            aria-label="Select Tags">
+                                                                            @foreach ($allTags as $tag)
+                                                                                <option
+                                                                                    {{ in_array($tag, $tags) ? 'selected' : '' }}
+                                                                                    value="{{ $tag }}">
+                                                                                    {{ $tag }}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                        <input type="hidden" name="tags-holder"
+                                                                            id="tags-holder"
+                                                                            wire:model.defer="tags">
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        @endif
                                                     </div>
 
 
@@ -603,7 +620,7 @@
                                                         {{-- </div> --}}
 
 
-                                                        @if (!$isCustomer ||  ($isCustomer && !$selfProfile))
+                                                        @if (!$isCustomer || ($isCustomer && !$selfProfile))
                                                             <div
                                                                 class="col-lg-12 d-lg-flex gap-5 justify-content-center between-section-segment-spacing">
                                                                 <div class="form-check mb-lg-0">
@@ -844,8 +861,9 @@
                                                                 data-bs-toggle="modal"
                                                                 data-bs-target="#assignedBillingManagerModal">
                                                                 {{-- Updated by Shanila to Add svg icon --}}
-                                                                <svg aria-label="Assigned Billing Manager" width="25"
-                                                                    height="18" viewBox="0 0 25 18">
+                                                                <svg aria-label="Assigned Billing Manager"
+                                                                    width="25" height="18"
+                                                                    viewBox="0 0 25 18">
                                                                     <use
                                                                         xlink:href="/css/common-icons.svg#right-color-arrow">
                                                                     </use>
