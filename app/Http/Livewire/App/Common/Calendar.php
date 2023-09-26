@@ -9,6 +9,7 @@ use App\Models\Tenant\Schedule;
 use App\Models\Tenant\Tag;
 use App\Models\Tenant\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Calendar extends Component
@@ -17,9 +18,9 @@ class Calendar extends Component
 	public $holidays = [], $specific = [], $user_id = null;
 
 	//adv filter variables
-	public $accommodation_search_filter = [], $booking_service_filter = [], $booking_specialization_search_filter = [], $provider_ids = [], $name_seacrh_filter='',
+	public $accommodation_search_filter = [], $booking_service_filter = [], $booking_specialization_search_filter = [], $provider_ids = [], $name_seacrh_filter = '',
 		$service_type_search_filter = [], $tag_names = [], $industry_filter = [], $booking_status_filter = null, $booking_number_filter = null;
-	public $tags=[], $filterProviders=[];
+	public $tags = [], $filterProviders = [], $isCustomer = false;
 
 	protected $listeners = ['refreshCalendar' => 'refreshEvents', 'updateVal'];
 
@@ -40,7 +41,7 @@ class Calendar extends Component
 				'users.id',
 				'users.name',
 			])->get()->toArray();
-			
+
 		if ($this->providerProfile)
 			$this->events = $this->getEventsForMonth();
 		else
@@ -48,10 +49,10 @@ class Calendar extends Component
 
 		if ($this->hideProvider)
 			$this->provider_ids = [$this->user_id];
-
 	}
 
-	public function applyFilters(){
+	public function applyFilters()
+	{
 		$this->events = $this->getCalendarEvents();
 		$this->dispatchBrowserEvent('updateScheduleCalendar', ['events' => $this->events]);
 	}
@@ -69,7 +70,7 @@ class Calendar extends Component
 		if ($this->name_seacrh_filter) {
 			$name = $this->name_seacrh_filter;
 			$query->whereHas('company', function ($query) use ($name) {
-				$query->where('companies.name','LIKE', "%" . $name . "%");
+				$query->where('companies.name', 'LIKE', "%" . $name . "%");
 			});
 		}
 		// if (count($this->tag_names)) {
@@ -146,7 +147,7 @@ class Calendar extends Component
 		$this->booking_service_filter = [];
 		$this->booking_number_filter = null;
 		$this->booking_status_filter = null;
-		$this->name_seacrh_filter=null;
+		$this->name_seacrh_filter = null;
 		if (!$this->hideProvider)
 			$this->provider_ids = [];
 
@@ -181,12 +182,33 @@ class Calendar extends Component
 		// ];
 
 		$query = Booking::query();
-		$query->where('bookings.type',1);
-		if ($this->user_id && $this->providerProfile == false)
+		$query->where('bookings.type', 1);
+		if ($this->user_id && $this->providerProfile == false && !$this->isCustomer)
 			$query->join('booking_providers', function ($join) {
 				$join->where('booking_providers.provider_id', $this->user_id);
 				$join->on('booking_providers.booking_id', 'bookings.id');
 			});
+		if ($this->user_id && $this->isCustomer) {
+			$query->where('bookings.company_id', Auth::user()->company_name);
+
+			if (!in_array(10, session()->get('customerRoles'))) {
+
+				// display only of booking is associated with customer if not admin
+				$query->where(function ($g) {
+					$g->where('customer_id', $this->user_id);
+					$g->orWhere('supervisor', $this->user_id);
+					$g->orWhere('billing_manager_id', 'LIKE', "%" . $this->user_id . "%");
+					//if dept supervisor, then show all dept related bookings
+					// $u_dept = $customer->supervised_departments ? $customer->supervised_departments->pluck('id')->toArray() : null;
+					// dd($u_dept);
+					// if ($u_dept && count($u_dept)) {
+					// 	$query->orWhereHas('bookingDepartments', function ($q) use ($u_dept) {
+					// 		$q->whereIn('booking_departments.department_id', $u_dept);
+					// 	});
+					// }
+				});
+			}
+		}
 		$query = $this->applySearchFilter($query);
 		$events = $query->select('bookings.id', 'booking_number', 'booking_title', 'booking_start_at', 'booking_end_at')
 			->get()
@@ -194,6 +216,10 @@ class Calendar extends Component
 		// $keys = ['title', 'start', 'end'];
 		$newEvents = [];
 		// $count = 0;
+		$base = '/admin';
+		if($this->isCustomer)
+		$base = '/customer';
+
 
 		foreach ($events as $key => $event) {
 			// Updated by Sohail Asghar to update calendar event title
@@ -206,7 +232,7 @@ class Calendar extends Component
 
 			$newEvents[$key]['start'] = $booking_start_at;
 			$newEvents[$key]['end'] = $booking_end_at;
-			$newEvents[$key]['url'] = '/admin/bookings/view-booking/' . encrypt($id);
+			$newEvents[$key]['url'] = $base.'/bookings/view-booking/' . encrypt($id);
 
 			// End of update by Sohail Asghar
 
