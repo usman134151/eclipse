@@ -228,7 +228,7 @@
                                                                     </td>
                                                                     <td class="{{ $cssClass }}"
                                                                         style="background-color:{{ $colorCodes[$code] }};">
-                                                                        <a href="{{ route('tenant.booking-view', ['bookingID' => encrypt($booking['id'])]) }}"
+                                                                        <a href="{{ $isCustomer ? route('tenant.customer-booking-view', ['bookingID' => encrypt($booking['id'])]) : route('tenant.booking-view', ['bookingID' => encrypt($booking['id'])]) }}"
                                                                             class="{{ $cssClass }}">{{ $booking['booking_number'] ? $booking['booking_number'] : '' }}
                                                                             <div>
                                                                                 <div
@@ -341,7 +341,7 @@
 
                                                                                 </a>
                                                                             @else
-                                                                                <a href="{{ route('tenant.booking-edit', ['bookingID' => encrypt($booking->id)]) }}"
+                                                                                <a href="{{ $isCustomer ? route('tenant.customer-booking-edit', ['bookingID' => encrypt($booking->id)]) :route('tenant.booking-edit', ['bookingID' => encrypt($booking->id)]) }}"
                                                                                     title="Edit"
                                                                                     aria-label="Edit Booking"
                                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon {{ $cssClass }}">
@@ -482,7 +482,7 @@
                                                                                         </a>
                                                                                     @endif
                                                                                     @if ($bookingType == 'Invitations')
-                                                                                        <a href="{{ route('tenant.booking-edit', ['bookingID' => encrypt($booking->id)]) }}"
+                                                                                        <a href="{{ $isCustomer ? route('tenant.customer-booking-edit', ['bookingID' => encrypt($booking->id)]) : route('tenant.booking-edit', ['bookingID' => encrypt($booking->id)]) }}"
                                                                                             title="Edit"
                                                                                             aria-label="Edit Booking"
                                                                                             style="color:#fff"
