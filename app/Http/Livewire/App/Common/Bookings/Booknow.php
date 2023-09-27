@@ -209,6 +209,7 @@ class Booknow extends Component
                     'day_rate'=>$dayRate
         
                 ];
+               
 
                 if(is_null($this->dates[$index]['time_zone'])){
                     if($this->schedule)
@@ -222,12 +223,13 @@ class Booknow extends Component
 
             }
 
-            
+          
 
         }
         if(!$this->booking->id){ //init data in case of new booking
             $this->booking->requester_information='';
             $this->booking->frequency_id=1;
+        
             $this->addDate();
            
 
@@ -285,7 +287,7 @@ class Booknow extends Component
     
        
         $this->dispatchBrowserEvent('refreshSelects');
-    
+      
        
 
     }
@@ -294,6 +296,7 @@ class Booknow extends Component
     {
       //  dd($this->services);
        // $this->dispatchBrowserEvent('refreshSelects');
+       
         return view('livewire.app.common.bookings.booknow');
     }
 
@@ -344,19 +347,21 @@ class Booknow extends Component
             if($this->booking->requester_information=='')
                 $this->booking->requester_information=0;
             //calling booking service passing required data
-            if(is_null($this->booking->id))
-                $this->booking=BookingOperationsService::createBooking($this->booking,$this->services,$this->dates,$this->selectedIndustries,$this->selectedDepartments);
-            else
-            {
-                $this->booking->provider_count=$this->services[0]['provider_count'];
+            if(!is_null($this->booking->id))
+               $isEdit=true;
+                $this->booking=BookingOperationsService::createBooking($this->booking,$this->services,$this->dates,$this->selectedIndustries,$this->selectedDepartments,false,$isEdit);
+           // else
+           // {
+           //     $this->booking->provider_count=$this->services[0]['provider_count'];
+
                 //update booking
                 if(is_null($this->booking->supervisor=='') || $this->booking->supervisor=='')
                     $this->booking->supervisor=0;
                 $this->booking->save();
                
-                BookingOperationsService::saveDetails($this->services,$this->dates,$this->selectedIndustries,$this->booking,$this->selectedDepartments);
+              //  BookingOperationsService::saveDetails($this->services,$this->dates,$this->selectedIndustries,$this->booking,$this->selectedDepartments);
               
-            }
+           // }
            // dd($this->booking->physical_address_id);
            if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
             
@@ -403,7 +408,7 @@ class Booknow extends Component
                 BookingServices::where('id', $service['id'])->where('booking_id', $this->booking->id)->update(['billed_total' => $service['billed_total'],'service_total'=>$service['total_charges'],'service_calculations'=>$serviceCalculations]);
             }
             $this->booking->type=1;
-            $this->booking->status=1;
+            //$this->booking->status=1;
             $this->booking->booking_status=1; //will change it later for consumers or other company users, need to check rights
             if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
                 
@@ -487,7 +492,7 @@ class Booknow extends Component
      // $this->refreshSelects('refreshSelects');
       $this->schedule=BookingOperationsService::getSchedule($this->booking->company_id,$this->booking->customer_id);
       
-      if($this->schedule && $this->schedule['timezone_id'])
+      if($this->schedule && $this->schedule['timezone_id'] && !$this->isEdit)
          {
             $this->dates=[];  
             $this->addDate();
@@ -577,6 +582,7 @@ class Booknow extends Component
 	}
 
     public function refreshSelects(){
+       
         $this->dispatchBrowserEvent('refreshSelects');
     }
     public function addMeeting($serviceIndex)
@@ -612,7 +618,9 @@ class Booknow extends Component
     
 
     public function addDate($givenHour=1,$dayRate=false){
-    
+       dd($this->dates);
+        if($this->isEdit)
+          return;
         if(is_null($givenHour)|| $givenHour==0 || $givenHour=='')
           $givenHour=1;
         if($this->schedule && $this->schedule['timezone_id'])
@@ -854,7 +862,7 @@ class Booknow extends Component
               $dayRate=true;
             else 
               $dayRate=false;
-          
+           if(!isEdit)
             $this->addDate($foundService['minimum_assistance_hours'.$postfix],$dayRate);  
            
         }

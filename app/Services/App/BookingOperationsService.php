@@ -26,8 +26,8 @@ class BookingOperationsService{
 
  
 
-  public static function createBooking($booking, $services, $dates,$selectedIndustries,$selectedDepartments,$isImport=false){
-    if(!$isImport)
+  public static function createBooking($booking, $services, $dates,$selectedIndustries,$selectedDepartments,$isImport=false,$isEdit=false){
+    if(!$isImport && !$isEdit)
         $booking->booking_number=self::generateBookingNumber();
     $booking->user_id=Auth::user()->id;
     //data mapping for main booking table
@@ -37,14 +37,15 @@ class BookingOperationsService{
     $booking->provider_count=$services[0]['provider_count'];
     $booking->service_type=$services[0]['service_types'];
     
-    if(!$isImport){
+    if(!$isImport && !$isEdit){
+    
       $booking->type=2;
       $booking->status=1;
       $booking->booking_status=0;
     }
    
     $booking->booking_start_at =  Carbon::parse($dates[0]['start_date'].' '.$dates[0]['start_hour'].':'.$dates[0]['start_min'].':00')->format('Y-m-d H:i:s');;
-    $booking->booking_end_at =  Carbon::parse($dates[0]['start_date'].' '.$dates[0]['start_hour'].':'.$dates[0]['start_min'].':00')->format('Y-m-d H:i:s');;
+    $booking->booking_end_at =  Carbon::parse($dates[0]['end_date'].' '.$dates[0]['end_hour'].':'.$dates[0]['end_min'].':00')->format('Y-m-d H:i:s');;
     $booking->duration_hours = $dates[0]['duration_hour'];
     $booking->duration_minute = $dates[0]['duration_minute'];
     $booking->added_by=Auth::user()->id;

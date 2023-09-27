@@ -82,7 +82,7 @@ class CustomFormDisplay extends Component
             $this->validate($this->rules);
 
         $this->emit('saveCustomForm');
-        $this->emit('confirmation',  "All Form Data saved successfully!");
+      //  $this->emit('confirmation',  "All Form Data saved successfully!");
         if ($this->next)
             $this->emit('switch', 'payment-info');
     }
