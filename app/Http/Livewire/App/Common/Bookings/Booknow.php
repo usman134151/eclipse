@@ -38,7 +38,7 @@ class Booknow extends Component
         'updateSelectedDepartments','confirmation',
         'saveCustomFormData'=>'save' ,'switch','updateAddress' => 'addAddress'];
 
-    public $dates=[],$isCustomer=false,$customerDetails=[];
+    public $dates=[],$isCustomer=false,$customerDetails=[],$cantRequest=false;
     public $foundService=['default_providers'=>2];
     public $payment,$discountedAmount=0,$totalAmount=0;
     
@@ -246,10 +246,13 @@ class Booknow extends Component
                 $this->companyName=Company::select('name')->where('id',Auth::user()->company_name)->first()->name;
                 $this->updateCompany();
                 $this->emit('updateCompany',  $this->booking->company_id);
+                $customerRoles=Session::get('customerRoles');
+                if(is_null($customerRoles))
+                   $customerRoles=[];
                
-                if(!in_array(9,Session::get('customerRoles')) && !in_array(7,Session::get('customerRoles'))) //need to reconfirm
-                     redirect()->to('/customer/dashboard');
-                elseif(in_array(7,Session::get('customerRoles'))){
+                if(!in_array(9,$customerRoles) && !in_array(7,$customerRoles)) //need to reconfirm
+                     $this->cantRequest=true;
+                elseif(in_array(7,$customerRoles)){
                     $this->booking->customer_id=Auth::user()->id;
                     $this->selectRequestor=false;
                     $this->getUserRoleDetails($this->booking['customer_id']);
@@ -257,7 +260,7 @@ class Booknow extends Component
                    
                 }
                    
-                if(in_array(9,Session::get('customerRoles')))
+                if(in_array(9,$customerRoles))
                     $this->selectRequestor=true;
               
                 $this->booking->customer_id=Auth::user()->id;
@@ -411,7 +414,7 @@ class Booknow extends Component
 
             //checking if cusotmer needs approval
             if($this->isCustomer){
-                if(!is_null($this->customerDetails['user_configuration'])){
+                if(key_exists('user_configuration',$this->customerDetails) && !is_null($this->customerDetails['user_configuration'])){
                     $configurations=json_decode($this->customerDetails['user_configuration'],true);
                     if(key_exists('require_approval',$configurations) && $configurations['require_approval']=="true"){
                       

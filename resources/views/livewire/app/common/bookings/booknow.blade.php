@@ -1,4 +1,15 @@
 <div  x-data="{addDocuments: false, assignProvider: false }" >
+    @if(@$cantRequest)
+    <div class="content-body">
+        <div class="card">
+            <div class="card-body">  <h3 class="text-align-center">Sorry you do not have rights to request service, please contact your company admin.</h3>
+            </div>
+        
+        </div>    
+    
+</div>    
+    @else
+
     <div id="loader-section" class="loader-section" wire:loading>
         <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
             <div class="spinner-border" role="status" aria-live="polite">
@@ -2160,4 +2171,5 @@
 @endif
     <script src="/tenant-resources/js/form-functions.js"></script>
     @endpush
+    @endif
 </div>
