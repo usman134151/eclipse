@@ -218,29 +218,32 @@ class AssignProviders extends Component
         $service_type = [];
         foreach ($providers as $index => &$provider) {
 
-            //fetch and set custom rates
-            $service = $this->booking->booking_services->where('services', $this->service_id)->first();
-            if ($service->service->rate_status == 1) {
-                $fetch[0] = 'hours_price'.$this->serviceTypes[$service->service_types]['postfix'].' as price';
-            } elseif ($service->service->rate_status== 2) {
-                $fetch[0] = 'day_rate_price' . $this->serviceTypes[$service->service_types]['postfix'] . ' as price';
-            } elseif ($service->service->rate_status == 4) {
-                $fetch[0] = 'fixed_rate' . $this->serviceTypes[$service->service_types]['postfix'] . ' as price';
-            }
-            $fetch[1] = 'emergency_hour'.$this->serviceTypes[$service->service_types]['postfix'].' as emergency';
-            // dd($fetch, $service->service_types);
-            $this->custom_rates[$provider['id']]['standard'] = StandardRate::where(['accommodation_service_id' => $this->service_id, 'user_id' => $provider['id']])->select($fetch)->first();
-            $this->custom_rates[$provider['id']]['standard']['emergency']= isset($this->custom_rates[$provider['id']]['standard']['emergency']) ? json_decode($this->custom_rates[$provider['id']]['standard']['emergency'],true)[0] : null;
-        //    dd($this->custom_rates[$provider['id']]['standard']['emergency']);
-           
-            if ($service->specialization)
-            $specializations = json_decode($service->specialization);
-            foreach ($specializations as $i => $s) {
+            if ($this->panelType != 2) {
 
-                $s_rates = SpecializationRate::where(['accommodation_service_id' => $this->service_id, 'user_id' => $provider['id'], 'specialization' => $s])
-                ->select('specialization_rate' . $this->serviceTypes[$service->service_types]['postfix'] . ' as price')->first();
-                $this->custom_rates[$provider['id']]['specialization'][$i] = $s_rates ? json_decode($s_rates->price,true)[0] : null;
-                $this->custom_rates[$provider['id']]['specialization'][$i]['s_name'] =  Specialization::find($s)->name;
+                //fetch and set custom rates
+                $service = $this->booking->booking_services->where('services', $this->service_id)->first();
+                if ($service->service->rate_status == 1) {
+                    $fetch[0] = 'hours_price' . $this->serviceTypes[$service->service_types]['postfix'] . ' as price';
+                } elseif ($service->service->rate_status == 2) {
+                    $fetch[0] = 'day_rate_price' . $this->serviceTypes[$service->service_types]['postfix'] . ' as price';
+                } elseif ($service->service->rate_status == 4) {
+                    $fetch[0] = 'fixed_rate' . $this->serviceTypes[$service->service_types]['postfix'] . ' as price';
+                }
+                $fetch[1] = 'emergency_hour' . $this->serviceTypes[$service->service_types]['postfix'] . ' as emergency';
+                // dd($fetch, $service->service_types);
+                $this->custom_rates[$provider['id']]['standard'] = StandardRate::where(['accommodation_service_id' => $this->service_id, 'user_id' => $provider['id']])->select($fetch)->first();
+                $this->custom_rates[$provider['id']]['standard']['emergency'] = isset($this->custom_rates[$provider['id']]['standard']['emergency']) ? json_decode($this->custom_rates[$provider['id']]['standard']['emergency'], true)[0] : null;
+                //    dd($this->custom_rates[$provider['id']]['standard']['emergency']);
+
+                if ($service->specialization)
+                    $specializations = json_decode($service->specialization);
+                foreach ($specializations as $i => $s) {
+
+                    $s_rates = SpecializationRate::where(['accommodation_service_id' => $this->service_id, 'user_id' => $provider['id'], 'specialization' => $s])
+                        ->select('specialization_rate' . $this->serviceTypes[$service->service_types]['postfix'] . ' as price')->first();
+                    $this->custom_rates[$provider['id']]['specialization'][$i] = $s_rates ? json_decode($s_rates->price, true)[0] : null;
+                    $this->custom_rates[$provider['id']]['specialization'][$i]['s_name'] =  Specialization::find($s)->name;
+                }
             }
 
             $providerCharges = $this->getProviderCharges($provider['id']);
