@@ -75,10 +75,10 @@
                      @endif
                      <th scope="col">Provider</th>
                      @if ($panelType == 1)
-                         <th scope="col" width="20%">Additional Provider Payment
+                         <th scope="col" width="20%">Provider Rates
                            
                          </th>
-                         <th scope="col" class="text-center" width="20%">Service Payment </th>
+                         <th scope="col" class="text-center" width="20%">Additional Provider & Service Payment </th>
                          <th scope="col">Total</th>
                      @endif
                      @if ($panelType == 3)
@@ -154,7 +154,170 @@
                              @if ($panelType == 1 || ($panelType == 3 && $provider->invitation_response($booking_id) == 1))
                                 
                                  <td class="border-end-2" style="min-width:340px">
-                                     <div class="d-grid grid-cols-2 gap-3 mb-3">
+                                     <div class="d-grid grid-cols-1 gap-3 mb-3">
+                                          <div>
+                                                    <div class="row">
+                                                        <div class="d-inline-flex mb-2">
+                                                            <h5>Standard Rates</h5>
+                                                        </div>
+                                                            <div class="col-12  mb-1">
+                                                                <div class="d-inline-flex">
+                                                                    @if($bookingService->service_types ==1 )
+
+                                                                        <div>
+                                                                            <svg aria-label="In-Person" width="25"
+                                                                                height="24" viewBox="0 0 25 24"
+                                                                                fill="none"
+                                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                                <use
+                                                                                    xlink:href="/css/provider.svg#in-person">
+                                                                                </use>
+                                                                            </svg>
+                                                                        </div>
+                                                                        <div class="mx-3 fw-semibold">Day Rate In-person:
+                                                                        </div>
+                                                                    @elseif($bookingService->service_types ==2 )
+                                                                        <div>
+                                                                            <svg aria-label="Virtual" width="25"
+                                                                                height="25" viewBox="0 0 25 25"
+                                                                                fill="none"
+                                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                                <use
+                                                                                    xlink:href="/css/provider.svg#virtual-service">
+                                                                                </use>
+                                                                            </svg>
+                                                                        </div>
+                                                                        <div class="mx-3 fw-semibold">Day Rate Virtual:
+                                                                        </div>
+                                                                    @elseif($bookingService->service_types ==4 )
+                                                                        <div>
+                                                                            <svg aria-label="Phone" width="30"
+                                                                                height="24" viewBox="0 0 30 24"
+                                                                                fill="none"
+                                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                                <use xlink:href="/css/provider.svg#phone">
+                                                                                </use>
+                                                                            </svg>
+                                                                        </div>
+                                                                        <div class="mx-3 fw-semibold">Day Rate Phone:
+                                                                        </div>
+                                                                    @elseif($bookingService->service_types ==5 )
+                                                                       <div>
+                                                                            <svg aria-label="Teleconference"
+                                                                                width="30" height="26"
+                                                                                viewBox="0 0 30 26" fill="none"
+                                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                                <use
+                                                                                    xlink:href="/css/provider.svg#teleconference">
+                                                                                </use>
+                                                                            </svg>
+                                                                        </div>
+                                                                        <div class="mx-3 fw-semibold">Day Rate
+                                                                            Teleconference:</div>
+                                                                    @endif
+                                                                    <div class="mx-3">
+                                                                        {{ isset($custom_rates[$provider['id']]['standard']['price']) ? numberFormat($custom_rates[$provider['id']]['standard']['price']): 'N/A' }}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                           
+                                                        <hr>
+                                                    </div>
+                                                    {{-- Standandard Rates -End --}}
+                                                    {{-- InPerson Expedited Service -Start --}}
+                                                    <div class="row">
+                                                        <div class="d-inline-flex mb-2">
+                                                            <h5>Expedited Hours </h5>
+                                                          </div>
+                                                        <div class="row mb-3">
+                                                            <div class="d-inline-flex">
+                                                                
+                                                                    @if ($custom_rates[$provider['id']]['standard']['emergency'] != null)
+                                                                        <div class="row">
+
+                                                                            @foreach ($custom_rates[$provider['id']]['standard']['emergency'] as $index => $param)
+                                                                                {{-- <div class=" col-2 mb-1">
+                                                                                    <span
+                                                                                        class="bg-muted rounded fw-semibold px-1">Parameter
+                                                                                        {{ $index + 1 }}</span>
+                                                                                </div> --}}
+                                                                                <div class="col-7"><span
+                                                                                        class="fw-semibold">Hours
+                                                                                        Notice:
+                                                                                    </span><span
+                                                                                        class="mx-1">{{ $param['hour'] ? $param['hour'] : 'N/A' }}</span>
+                                                                                </div>
+                                                                                <div class="col-5">
+                                                                                    <div class="d-inline-flex">
+                                                                                        <span class="fw-semibold">Rate:
+                                                                                        </span><span
+                                                                                            class="mx-1">{{ $param['price'] ? $param['price_type'] . number_format($param['price'], 2) : 'N/A' }}</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            @endforeach
+                                                                        </div>
+                                                                    @else
+                                                                        N/A
+                                                                    @endif
+                                                            </div>
+                                                        </div>
+                                                        @if (isset($custom_rates[$provider['id']]['specialization']))
+                                                            <div class="row">
+                                                                <hr>
+                                                            </div>
+                                                            <div class="row mb-2">
+                                                                <div class="d-inline-flex mb-3">
+                                                                    <h5>Specialization Rates</h5>
+                                                                </div>
+                                                                @foreach ($custom_rates[$provider['id']]['specialization'] as $row)
+                                                                    <div class="row">
+                                                                        <div class="bg-muted p-1 col-12 mx-3 mb-2">
+                                                                            {{ $row['s_name'] ?? 'N/A'  }}
+                                                                            <span
+                                                                                            class="mx-1">{{ isset($row['price']) ? '$' . number_format($row['price'], 2) : 'N/A' }}</span>
+
+                                                                            </div>
+                                                                        
+                                                                    </div>
+                                                                @endforeach
+                                                            </div>
+                                                        @endif
+
+
+                                                    </div>
+                                                    {{-- Specialization Rates -End --}}
+                                                </div>
+
+                                         </div>
+                                     </div>
+                                   
+                            
+                                 </td>
+                                 <td class="text-center border-end-2">
+                                     <div class="d-flex gap-2 justify-content-center mb-3">
+                                      
+                                         <div class="col-md-6">
+                                      
+                                             <label class="form-label-sm">Duration</label>
+                                             <div class="input-group">
+                                                 <input type="" name="" value="{{$durationTotal}}"
+                                                     class="form-control form-control-sm text-center" placeholder="0"
+                                                     aria-label="Hours" disabled>
+                                                 <div class="input-group-text p-0">
+                                                     <select class="form-select form-select-sm" aria-label="Days" disabled>
+                                                         <option>{{ $durationLabel}}</option>
+                                                     </select>
+                                                 </div>
+                                             </div>
+                                           
+                                         </div> 
+                                         <div class="col-md-4">
+                                             <label for="average-rate" class="form-label-sm">Average Rate</label>
+                                             <input type="" id="average-rate" name=""
+                                                 class="form-control form-control-sm w-25%" placeholder="$00:00" wire:blur="updateTotal({{$index}})"  wire:model.lazy="providersPayment.{{$index}}.override_price">
+                                         </div>
+                                     </div>
+                                      <div class="d-grid grid-cols-2 gap-3 mb-3">
                                          <div>
                                              <label class="form-label-sm">Label</label>
                                              <input type="" name="" class="form-control form-control-sm"
@@ -206,42 +369,20 @@
                                          </button>
                                      </div> -->
                                      {{--
-                            <div>
-                                <div class="form-check">
-                                    <input class="form-check-input" id="ChargetoCustomer" name="" type="checkbox"
-                                        tabindex="">
-                                    <label class="form-check-label" for="ChargetoCustomer"><small>Reimburse Mileage</small><br/><small>Coming Soon</small></label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" id="ReimburseTravelTime" name="" type="checkbox"
-                                        tabindex="">
-                                    <label class="form-check-label" for="ReimburseTravelTime"><small>Reimburse
-                                            Mileage</small><br /><small>Coming Soon</small></label>
-                                </div>
-                            </div>
-                            --}}
-                                 </td>
-                                 <td class="text-center border-end-2">
-                                     <div class="d-flex gap-2 justify-content-center mb-3">
-                                         <div class="col-md-6">
-                                             <label class="form-label-sm">Duration</label>
-                                             <div class="input-group">
-                                                 <input type="" name="" value="{{$durationTotal}}"
-                                                     class="form-control form-control-sm text-center" placeholder="0"
-                                                     aria-label="Hours" disabled>
-                                                 <div class="input-group-text p-0">
-                                                     <select class="form-select form-select-sm" aria-label="Days" disabled>
-                                                         <option>{{ $durationLabel}}</option>
-                                                     </select>
-                                                 </div>
-                                             </div>
-                                         </div> 
-                                         <div class="col-md-4">
-                                             <label for="average-rate" class="form-label-sm">Average Rate</label>
-                                             <input type="" id="average-rate" name=""
-                                                 class="form-control form-control-sm w-25%" placeholder="$00:00" wire:blur="updateTotal({{$index}})"  wire:model.lazy="providersPayment.{{$index}}.override_price">
-                                         </div>
-                                     </div>
+                                        <div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" id="ChargetoCustomer" name="" type="checkbox"
+                                                    tabindex="">
+                                                <label class="form-check-label" for="ChargetoCustomer"><small>Reimburse Mileage</small><br/><small>Coming Soon</small></label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" id="ReimburseTravelTime" name="" type="checkbox"
+                                                    tabindex="">
+                                                <label class="form-check-label" for="ReimburseTravelTime"><small>Reimburse
+                                                        Mileage</small><br /><small>Coming Soon</small></label>
+                                            </div>
+                                        </div>
+                                     --}}
                                      <div class="d-flex justify-content-center">
                                          <div class="form-check mb-3 col-md-5 me-4">
                                              <div class="">
@@ -257,6 +398,7 @@
                                                  </div>
                                                  <small>Coming Soon</small>
                                              </div>
+                                             
                                            
                                          </div>
 
