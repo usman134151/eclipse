@@ -559,7 +559,15 @@ class Booknow extends Component
     }
     public function switch($component)
 	{
-      
+     
+        if($component=='requester-info'){
+            foreach($this->services as &$service){
+                if(!is_array($service['meetings'])){
+                    $service['meetings']=json_decode($service['meetings'],true);
+                }
+            }
+          
+        }
 		$this->component = $component;
         if($component=="payment-info")
             $this->getBookingInfo();         
