@@ -250,9 +250,9 @@ class Booknow extends Component
                 if(is_null($customerRoles))
                    $customerRoles=[];
                
-                if(!in_array(9,$customerRoles) && !in_array(7,$customerRoles)) //need to reconfirm
+                if(!in_array(9,$customerRoles) && !in_array(6,$customerRoles)) //need to reconfirm
                      $this->cantRequest=true;
-                elseif(in_array(7,$customerRoles)){
+                elseif(in_array(6,$customerRoles)){
                     $this->booking->customer_id=Auth::user()->id;
                     $this->selectRequestor=false;
                     $this->getUserRoleDetails($this->booking['customer_id']);
