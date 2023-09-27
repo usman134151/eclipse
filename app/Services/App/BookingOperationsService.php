@@ -583,12 +583,12 @@ if ($startIndex <= $endIndex) {
     $i              = 1;
     $newBooking     =  Arr::except($booking->toArray(), [ 'id','created_at','updated_at','referral_code','']);
 
-    if($booking->layout == 1)
-    {
+  //  if($booking->layout == 1)
+  //  {
         $specializations  = $booking->booking_services_layout->toArray();
-    }else{
-        $specializations= $booking->specialization->toArray();
-    }
+ //   }else{
+ //       $specializations= $booking->specialization->toArray();
+ //   }
     $newPayment     =  Arr::except($booking->payment->toArray(),['id','created_at','updated_at','coupon_discount_amount','coupon_id','coupon_type','booking_id']);
 
     $customize_data  = $booking->customize_data->toArray();
