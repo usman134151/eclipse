@@ -38,7 +38,7 @@ class Booknow extends Component
         'updateSelectedDepartments','confirmation',
         'saveCustomFormData'=>'save' ,'switch','updateAddress' => 'addAddress'];
 
-    public $dates=[],$isCustomer=false,$customerDetails=[];
+    public $dates=[],$isCustomer=false,$customerDetails=[],$cantRequest=false;
     public $foundService=['default_providers'=>2];
     public $payment,$discountedAmount=0,$totalAmount=0;
     
@@ -249,8 +249,9 @@ class Booknow extends Component
                 $customerRoles=Session::get('customerRoles');
                 if(is_null($customerRoles))
                    $customerRoles=[];
+               
                 if(!in_array(9,$customerRoles) && !in_array(7,$customerRoles)) //need to reconfirm
-                     $cantRequest=true;
+                     $this->cantRequest=true;
                 elseif(in_array(7,$customerRoles)){
                     $this->booking->customer_id=Auth::user()->id;
                     $this->selectRequestor=false;
