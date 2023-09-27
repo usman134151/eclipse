@@ -347,9 +347,8 @@ class Booknow extends Component
             if($this->booking->requester_information=='')
                 $this->booking->requester_information=0;
             //calling booking service passing required data
-            if(!is_null($this->booking->id))
-               $isEdit=true;
-                $this->booking=BookingOperationsService::createBooking($this->booking,$this->services,$this->dates,$this->selectedIndustries,$this->selectedDepartments,false,$isEdit);
+
+                $this->booking=BookingOperationsService::createBooking($this->booking,$this->services,$this->dates,$this->selectedIndustries,$this->selectedDepartments,false,$this->isEdit);
            // else
            // {
            //     $this->booking->provider_count=$this->services[0]['provider_count'];
@@ -571,6 +570,11 @@ class Booknow extends Component
                     $service['meetings']=json_decode($service['meetings'],true);
                 }
             }
+            if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
+                
+                $this->booking->recurring_end_at =  Carbon::createFromFormat('Y-m-d', $this->booking->recurring_end_at)->format('m/d/Y');
+                
+            }
           
         }
 		$this->component = $component;
@@ -618,7 +622,7 @@ class Booknow extends Component
     
 
     public function addDate($givenHour=1,$dayRate=false){
-       dd($this->dates);
+     
         if($this->isEdit)
           return;
         if(is_null($givenHour)|| $givenHour==0 || $givenHour=='')
@@ -857,13 +861,16 @@ class Booknow extends Component
                 $this->services[$index]['auto_notify']=$settings[0]['broadcast'];
             } 
           
-            $this->dates=[];
+          
             if($foundService['rate_status']==2)
               $dayRate=true;
             else 
               $dayRate=false;
-           if(!isEdit)
+           if(!$this->isEdit){
+            $this->dates=[];
             $this->addDate($foundService['minimum_assistance_hours'.$postfix],$dayRate);  
+           }
+           
            
         }
          
