@@ -212,8 +212,8 @@ Route::group([
 
 
 				Route::view('booknow/create', 'tenant/common/bookings/booknow', ["showForm" => true]);
-				Route::view('/booknow/edit-booking/{bookingID}', 'tenant/common/bookings/booknow', ["showForm" => true])->name('booking-edit')->middleware(DecryptRouteParamater::class);
-				Route::view('/bookings/view-booking/{bookingID}', 'tenant/common/bookings/booking-list', ["bookingType" => "profile", 'showBookingDetails' => true])->name('booking-view')->middleware(DecryptRouteParamater::class);
+				Route::view('/booknow/edit-booking/{bookingID}', 'tenant/common/bookings/booknow', ["showForm" => true])->name('customer-booking-edit')->middleware(DecryptRouteParamater::class);
+				Route::view('/bookings/view-booking/{bookingID}', 'tenant/common/bookings/booking-list', ["bookingType" => "profile", 'showBookingDetails' => true])->name('customer-booking-view')->middleware(DecryptRouteParamater::class);
 			
 
 				Route::view('/departments/{companyID}','tenant/customer/departments')->middleware(DecryptRouteParamater::class);
