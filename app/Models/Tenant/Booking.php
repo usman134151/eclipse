@@ -109,10 +109,7 @@ class Booking extends Model
         $this->attributes['additional_charge'] = number_format((float)$value, 2, '.', '');
     }
 
-    public function specialization()
-    {
-        return $this->hasMany(BookingSpecialization::class, 'booking_id', 'id');
-    }
+  
 
     public function providerPayment()
     {
