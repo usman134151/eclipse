@@ -335,6 +335,11 @@ class Booknow extends Component
                 
                 if(!$slotCheck['business_hours'] && !$slotCheck['business_minutes'] && !$slotCheck['after_business_hours'] && !$slotCheck['after_business_minutes'])
                  {$slotNotFound=1;
+                    if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
+            
+                        $this->booking->recurring_end_at =  Carbon::createFromFormat('Y-m-d', $this->booking->recurring_end_at)->format('m/d/Y');
+                        
+                        }
                    
                 }
             }
