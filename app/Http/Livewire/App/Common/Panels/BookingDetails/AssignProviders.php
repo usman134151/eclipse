@@ -11,6 +11,9 @@ use Livewire\Component;
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\BookingServices;
 use App\Models\Tenant\ServiceCategory;
+use App\Models\Tenant\Specialization;
+use App\Models\Tenant\SpecializationRate;
+use App\Models\Tenant\StandardRate;
 use App\Models\Tenant\UserDetail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -35,7 +38,7 @@ class AssignProviders extends Component
 
     public $showForm, $panelType = 1;
     public $tags, $search;
-    public $service_id = null, $booking_id = null;
+    public $service_id = null, $booking_id = null, $custom_rates;
     protected $listeners = ['showList' => 'resetForm', 'refreshFilters', 'saveAssignedProviders' => 'save', 'updateVal', 'inviteProviders'];
     public $assignedProviders = [], $limit = null, $booking, $showError = false;
     public $paymentData = ["additional_label_provider" => '', "additional_charge_provider" => 0];
@@ -45,10 +48,16 @@ class AssignProviders extends Component
         'specializations' => ['parameters' => ['Specialization', 'id', 'name', 'status', 1, 'name', true, 'specializations', '', 'specializations', 4]],
         'services' => ['parameters' => ['ServiceCategory', 'id', 'name', 'status', 1, 'name', true, 'services', '', 'services', 3]]
     ];
+
+    public $serviceTypes = [
+        '1' => ['class' => 'inperson-rate', 'postfix' => '', 'title' => 'In-Person'],
+        '2' => ['class' => 'virtual-rate', 'postfix' => '_v', 'title' => 'Virtual'],
+        '4' => ['class' => 'phone-rate', 'postfix' => '_p', 'title' => 'Phone'],
+        '5' => ['class' => 'teleconference-rate', 'postfix' => '_t', 'title' => 'Teleconference'],
+    ];
     public function updateVal($attrName, $val)
     {
         $this->$attrName = $val;
-        
     }
 
     public function render()
@@ -58,7 +67,7 @@ class AssignProviders extends Component
         return view('livewire.app.common.panels.booking-details.assign-providers');
     }
 
-    
+
 
     public function refreshFilters($name, $value)
     {
@@ -107,6 +116,7 @@ class AssignProviders extends Component
             })->join('user_details', function ($userdetails) {
                 $userdetails->on('user_details.user_id', '=', 'users.id');
             });
+
         if ($this->panelType == 3) {
             $query->join('booking_invitation_providers', function ($query) {
                 $query->where('booking_id', $this->booking_id);
@@ -205,7 +215,34 @@ class AssignProviders extends Component
         //charges caculations 
         //end of charges calculations 
         $this->providersPayment = [];
+        $service_type = [];
         foreach ($providers as $index => &$provider) {
+
+            //fetch and set custom rates
+            $service = $this->booking->booking_services->where('services', $this->service_id)->first();
+            if ($service->service->rate_status == 1) {
+                $fetch[0] = 'hours_price'.$this->serviceTypes[$service->service_types]['postfix'].' as price';
+            } elseif ($service->service->rate_status== 2) {
+                $fetch[0] = 'day_rate_price' . $this->serviceTypes[$service->service_types]['postfix'] . ' as price';
+            } elseif ($service->service->rate_status == 4) {
+                $fetch[0] = 'fixed_rate' . $this->serviceTypes[$service->service_types]['postfix'] . ' as price';
+            }
+            $fetch[1] = 'emergency_hour'.$this->serviceTypes[$service->service_types]['postfix'].' as emergency';
+            // dd($fetch, $service->service_types);
+            $this->custom_rates[$provider['id']]['standard'] = StandardRate::where(['accommodation_service_id' => $this->service_id, 'user_id' => $provider['id']])->select($fetch)->first();
+            $this->custom_rates[$provider['id']]['standard']['emergency']= isset($this->custom_rates[$provider['id']]['standard']['emergency']) ? json_decode($this->custom_rates[$provider['id']]['standard']['emergency'],true)[0] : null;
+        //    dd($this->custom_rates[$provider['id']]['standard']['emergency']);
+           
+            if ($service->specialization)
+            $specializations = json_decode($service->specialization);
+            foreach ($specializations as $i => $s) {
+
+                $s_rates = SpecializationRate::where(['accommodation_service_id' => $this->service_id, 'user_id' => $provider['id'], 'specialization' => $s])
+                ->select('specialization_rate' . $this->serviceTypes[$service->service_types]['postfix'] . ' as price')->first();
+                $this->custom_rates[$provider['id']]['specialization'][$i] = $s_rates ? json_decode($s_rates->price,true)[0] : null;
+                $this->custom_rates[$provider['id']]['specialization'][$i]['s_name'] =  Specialization::find($s)->name;
+            }
+
             $providerCharges = $this->getProviderCharges($provider['id']);
             $this->providersPayment[$index] = [
                 'additional_label_provider' => $this->paymentData['additional_label_provider'],
@@ -405,7 +442,7 @@ class AssignProviders extends Component
             }
             $status = 1;
             //sending notification for unassign
-            foreach($previousAssigned as $unassign_prov){
+            foreach ($previousAssigned as $unassign_prov) {
                 $user          = User::find($unassign_prov);
 
                 $templateId = getTemplate('Booking: Provider Unassigned', 'email_template');
@@ -429,7 +466,7 @@ class AssignProviders extends Component
                     sendTemplatemail($params);
                 }
             }
-            BookingProvider::whereIn('provider_id',$previousAssigned)->delete();
+            BookingProvider::whereIn('provider_id', $previousAssigned)->delete();
 
 
             if ($this->limit == count($this->assignedProviders))
