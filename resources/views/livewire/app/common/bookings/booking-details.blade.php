@@ -539,8 +539,8 @@
                                                             <label class="col-form-label">Specialization:</label>
                                                         </div>
                                                         <div class="col-lg-7 align-self-center">
-                                                            <div class="font-family-tertiary">Legal
-                                                                <small>(coming soon)</small>
+                                                            <div class="font-family-tertiary">
+                                                            {{$service['specialization']  ? implode(', ',$service['specialization']) : 'N/A'}}
                                                             </div>
                                                         </div>
                                                     </div>

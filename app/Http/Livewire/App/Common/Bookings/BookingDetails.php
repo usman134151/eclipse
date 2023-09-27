@@ -10,6 +10,7 @@ use Livewire\Component;
 use App\Models\Tenant\BookingCustomizeData;
 use App\Models\Tenant\BookingServices;
 use App\Models\Tenant\CustomizeFormFields;
+use App\Models\Tenant\Specialization;
 use App\Models\Tenant\User;
 
 class BookingDetails extends Component
@@ -92,6 +93,16 @@ class BookingDetails extends Component
 
 				$this->booking_services[$key]['meeting_details'] = json_decode($service['meetings'], true) ? json_decode($service['meetings'], true)[0] : null;
 			}
+			if ($service['specialization']) {
+
+				$spez= json_decode($service['specialization'], true) ? json_decode($service['specialization'], true) : null;
+				if($spez && count($spez)){
+					$this->booking_services[$key]['specialization']  = Specialization::whereIn('id',$spez)->pluck('name')->toArray();
+				}else
+				$this->booking_services[$key]['specialization']  =null;
+				
+			}
+			// dd($this->booking_services[$key]);
 			if (!is_null($service['service_calculations'])) {
 				$serviceCharges = json_decode($service['service_calculations'], true);
 
