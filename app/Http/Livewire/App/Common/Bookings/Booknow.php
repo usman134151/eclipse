@@ -250,7 +250,7 @@ class Booknow extends Component
                 if(is_null($customerRoles))
                    $customerRoles=[];
                
-                if(!in_array(9,$customerRoles) && !in_array(6,$customerRoles)) //need to reconfirm
+                if(!in_array(10,$customerRoles) && !in_array(6,$customerRoles)) //need to reconfirm
                      $this->cantRequest=true;
                 elseif(in_array(6,$customerRoles)){
                     $this->booking->customer_id=Auth::user()->id;
@@ -260,7 +260,7 @@ class Booknow extends Component
                    
                 }
                    
-                if(in_array(9,$customerRoles))
+                if(in_array(10,$customerRoles))
                     $this->selectRequestor=true;
               
                 $this->booking->customer_id=Auth::user()->id;

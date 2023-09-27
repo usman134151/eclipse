@@ -415,7 +415,24 @@
                                                                                         </defs>
                                                                                     </svg>                                                                                
                                                                                 </a>
-                                                                       
+                                                                                @elseif($bookingSection!='customer')
+                                                                                <a href="#"
+                                                                                    title="Assign Provider"
+                                                                                    aria-label="Assign Provider"
+                                                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon"
+                                                                                    wire:click="openAssignProvidersPanel({{ $booking->id }},{{ $booking->service_id }})"
+                                                                                    @click="assignProvider = true"><svg
+                                                                                        aria-label="Assign Provider"
+                                                                                        width="20" height="20"
+                                                                                        viewBox="0 0 20 20"
+                                                                                        fill="none"
+                                                                                        xmlns="http://www.w3.org/2000/svg">
+                                                                                        <use
+                                                                                            xlink:href="/css/sprite.svg#assign-provider">
+                                                                                        </use>
+                                                                                    </svg>
+                                                                                </a>
+
                                                                             @endif
                                                                             @if($bookingType != "Pending Approval" && $bookingSection !='customer')
                                                                             <div class="dropdown ac-cstm">
