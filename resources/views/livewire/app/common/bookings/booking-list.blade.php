@@ -415,23 +415,7 @@
                                                                                         </defs>
                                                                                     </svg>                                                                                
                                                                                 </a>
-                                                                            @elseif($bookingSection!='customer')
-                                                                                <a href="#"
-                                                                                    title="Assign Provider"
-                                                                                    aria-label="Assign Provider"
-                                                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                                                    wire:click="openAssignProvidersPanel({{ $booking->id }},{{ $booking->service_id }})"
-                                                                                    @click="assignProvider = true"><svg
-                                                                                        aria-label="Assign Provider"
-                                                                                        width="20" height="20"
-                                                                                        viewBox="0 0 20 20"
-                                                                                        fill="none"
-                                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                                        <use
-                                                                                            xlink:href="/css/sprite.svg#assign-provider">
-                                                                                        </use>
-                                                                                    </svg>
-                                                                                </a>
+                                                                       
                                                                             @endif
                                                                             @if($bookingType != "Pending Approval" && $bookingSection !='customer')
                                                                             <div class="dropdown ac-cstm">
@@ -470,6 +454,7 @@
                                                                                                 class="fa fa-calendar"></i>
                                                                                             Reschedule
                                                                                         </a>
+                                                                                        @if(!$isCustomer)
                                                                                         <a title="Manage Assigned Providers"
                                                                                             aria-label="Manage Assigned Providers"
                                                                                             class="dropdown-item"
@@ -480,6 +465,7 @@
                                                                                                 class="fa fa-user-plus"></i>
                                                                                             {{ $bookingType == 'Unassigned' ? 'Assign Providers' : 'Manage Assigned Providers ' }}
                                                                                         </a>
+                                                                                        @endif
                                                                                     @endif
                                                                                     @if ($bookingType == 'Invitations')
                                                                                         <a href="{{ $isCustomer ? route('tenant.customer-booking-edit', ['bookingID' => encrypt($booking->id)]) : route('tenant.booking-edit', ['bookingID' => encrypt($booking->id)]) }}"
@@ -501,7 +487,7 @@
                                                                                             Edit
                                                                                         </a>
                                                                                     @endif
-                                                                                    @if ($bookingType == 'Unassigned' || $bookingType == 'Invitations' || $bookingType == 'Draft')
+                                                                                    @if (($bookingType == 'Unassigned' || $bookingType == 'Invitations' || $bookingType == 'Draft') && !$isCustomer )
                                                                                         <a href="javascript:void(0)"
                                                                                             aria-label="Invite Providers"
                                                                                             title="Invite Providers"
