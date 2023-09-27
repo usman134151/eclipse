@@ -271,22 +271,20 @@
                                             --}}
                                                 Cancel
                                             </a>
+                                            @if(session()->get('isCustomer')==null)
                                             <a href="" class="btn btn-has-icon btn-primary rounded"
                                                 data-bs-toggle="modal" data-bs-target="#reviewFeedbackModal"
                                                 wire:click="$emit('openAllFeedBackModal', '{{ $booking_id }}')">
 
 
-                                                {{-- Updated by Shanila to Add
-                                            svg icon --}}
                                                 <svg aria-label="Review Feedback" width="20" height="20"
                                                     viewBox="0 0 20 20" fill="none">
                                                     <use xlink:href="/css/common-icons.svg#review-feedback">
                                                     </use>
                                                 </svg>
-                                                {{-- End of update by Shanila
-                                            --}}
                                                 Review Feedback
                                             </a>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
