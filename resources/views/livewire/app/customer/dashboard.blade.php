@@ -62,6 +62,8 @@
                     </div>
                 </a>
             </li>
+            @if (in_array(6, session()->get('customerRoles')) || in_array(10, session()->get('customerRoles')))
+
             <li class="" role="presentation">
                 <a class="dashborad-block" id="submit-service-request" data-bs-toggle="tab"
                     data-bs-target="#submit-service-request-pane" type="button" role="tab"
@@ -78,6 +80,7 @@
                     </div>
                 </a>
             </li>
+            @endif
             <li class="" role="presentation">
                 <a class="dashborad-block" id="notifications-tab" data-bs-toggle="tab"
                     data-bs-target="#notifications-tab-pane" type="button" role="tab"
