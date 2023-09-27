@@ -20,6 +20,9 @@
             </div>
             @endif
           </div><!-- END: Row Header -->
+          @if(count($departments)==0)
+            <div class="text-center mt-5">Departments has not been added for this company</div>
+          @endif
           @foreach($departments as $department)
 
           <div class="row">

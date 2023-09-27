@@ -11,6 +11,7 @@ use App\Models\Tenant\SetupValue;
 use App\Models\Tenant\Accommodation;
 use App\Models\Tenant\UserAddress;
 use App\Models\Tenant\RoleUserDetail;
+use App\Models\Tenant\UserDetail;
 use App\Models\Tenant\Schedule;
 use App\Models\Tenant\Company;
 use App\Services\App\BookingOperationsService;
@@ -23,6 +24,7 @@ use Illuminate\Validation\ValidationException;
 use Carbon\Carbon;
 use DateTime;
 use Auth;
+use Session;
 
 
 
@@ -36,7 +38,7 @@ class Booknow extends Component
         'updateSelectedDepartments','confirmation',
         'saveCustomFormData'=>'save' ,'switch','updateAddress' => 'addAddress'];
 
-    public $dates=[];
+    public $dates=[],$isCustomer=false,$customerDetails=[];
     public $foundService=['default_providers'=>2];
     public $payment,$discountedAmount=0,$totalAmount=0;
     
@@ -88,14 +90,16 @@ class Booknow extends Component
     '5'=>['class'=>'teleconference-rate','postfix'=>'_t','title'=>'Teleconference'],
   ];
 
-    public $assignedSupervisor="";public $isEdit;
+    public $assignedSupervisor="";public $isEdit,$selectRequestor=true;
 
 
 
     public function mount(Booking $booking)
     {
 
-       
+
+
+
         $this->booking=$booking;
         $this->payment=new Payment;
         $this->payment['discounted_amount']=0;
@@ -232,6 +236,33 @@ class Booknow extends Component
        
            
         }
+               //checking if customer user
+              
+               if(Auth::user()->roleUser->role_id==4){
+                $this->customerDetails=UserDetail::where('user_id',Auth::user()->id)->first()->toArray();
+               
+                $this->isCustomer=true;
+                $this->booking->company_id=Auth::user()->company_name;
+                $this->companyName=Company::select('name')->where('id',Auth::user()->company_name)->first()->name;
+                $this->updateCompany();
+                $this->emit('updateCompany',  $this->booking->company_id);
+               
+                if(!in_array(9,Session::get('customerRoles')) && !in_array(7,Session::get('customerRoles'))) //need to reconfirm
+                     redirect()->to('/customer/dashboard');
+                elseif(in_array(7,Session::get('customerRoles'))){
+                    $this->booking->customer_id=Auth::user()->id;
+                    $this->selectRequestor=false;
+                    $this->getUserRoleDetails($this->booking['customer_id']);
+                    $this->refreshAddresses();
+                   
+                }
+                   
+                if(in_array(9,Session::get('customerRoles')))
+                    $this->selectRequestor=true;
+              
+                $this->booking->customer_id=Auth::user()->id;
+                
+            }
         $accommodationsCollection = collect($this->accommodations);
        
         //loop to implode service type for services arrays
@@ -377,6 +408,18 @@ class Booknow extends Component
                 $this->booking->is_recurring=1;
                 
             }
+
+            //checking if cusotmer needs approval
+            if($this->isCustomer){
+                if(!is_null($this->customerDetails['user_configuration'])){
+                    $configurations=json_decode($this->customerDetails['user_configuration'],true);
+                    if(key_exists('require_approval',$configurations) && $configurations['require_approval']=="true"){
+                      
+                        $this->booking->booking_status=0;
+                    }
+                }
+            }
+
             $this->booking->save();
             $this->updateTotals();
             $this->payment['booking_id']=$this->booking->id;
@@ -438,7 +481,7 @@ class Booknow extends Component
         $this->emit('isBooking');
         $this->departmentNames = [];
       $this->updateUsers();
-      $this->dispatchBrowserEvent('refreshSelects');
+     // $this->refreshSelects('refreshSelects');
       $this->schedule=BookingOperationsService::getSchedule($this->booking->company_id,$this->booking->customer_id);
       
       if($this->schedule && $this->schedule['timezone_id'])
@@ -605,7 +648,7 @@ class Booknow extends Component
 
     ];
     
-    $this->dispatchBrowserEvent('refreshSelects');
+    //$this->dispatchBrowserEvent('refreshSelects');
     $this->updateDurations(count($this->dates)-1);
     }
     public function removeDate($index)
@@ -649,7 +692,7 @@ class Booknow extends Component
     public function updateVal($attrName, $val)
     {
         
-      
+       
         if ($attrName == "company_id") {
 
                 $this->booking['company_id'] = $val;

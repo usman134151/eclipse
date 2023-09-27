@@ -134,7 +134,11 @@
                                             </small> 
                                         </a>
                                     </div>
-                                    {!! $setupValues['companies']['rendered'] !!}
+                                    @if(!$isCustomer)
+                                        {!! $setupValues['companies']['rendered'] !!}
+                                    @else
+                                     {!!$companyName!!}
+                                    @endif    
                                     @error('booking.company_id')
                                                     <span class="d-inline-block invalid-feedback mt-2">
                                                         {{ $message }}
@@ -167,11 +171,12 @@
                                         @endif
                                     </div>
                                 </div>
-
+                                                  
                                 <div class="col-lg-6 mb-4 pe-lg-5">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <label class="form-label" for="requestor">Requester <span class="mandatory">*</span></label>
-                                        <div class="form-check ">
+                                        <div class="form-check "  @if($isCustomer) style="display:none" @endif>
+                                            
                                             <label class="form-check-label" for="addnewrequestor">Add New Requester  </label>
                                             <small>(coming soon)</small>
                                             <input  class="form-check-input show-hidden-content"
@@ -193,7 +198,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <select class="form-select select2 mb-2" id="customer_id" name="customer_id" wire:model.defer="booking.customer_id">
+                                    <select class="form-select select2 mb-2" id="customer_id" name="customer_id" wire:model.defer="booking.customer_id" @if(!$selectRequestor) disabled @endif>
                                     <option value="0">Select User</option>
                                         @foreach($requesters as $requester)
                                         <option value="{{$requester->id}}">{{$requester->name}}</option>
@@ -211,6 +216,7 @@
                                                     </span>
                                     @enderror
                                 </div>
+                                
                                 <div class="col-lg-6 mb-4 ps-lg-5">
                                     <label class="form-label" >Industry <span class="mandatory">*</span></label>
                                     <div>
@@ -1148,7 +1154,7 @@
                                                             <div class="font-family-tertiary">{{ formatPayment($service['total_charges'])}}</div>
                                                         </div>
                                                     </div>    
-                                                    <div class="row mb-5">
+                                                    <div class="row mb-5" @if($isCustomer) style="visibility:hidden" @endif>
                                                         <label class="form-label mb-lg-0 col-lg-4 align-self-center" for="enter-override-amount">Override</label>
                                                         <div class="col-md-3 mb-3 mb-md-0">
                                                             <input type="" name="" class="form-control form-control-md text-center" placeholder="$00.00" id="enter-override-amount" wire:model="services.{{$index}}.billed_total">
@@ -1172,7 +1178,7 @@
                                 <!--start of addtional charges and discount-->
                                 <div class="col-lg-7 pe-5">
                                 <h2 class="pt-1 ">Booking Totals </h2>
-                                    <div class="mt-2">
+                                    <div class="mt-2" @if($isCustomer) style="display:none" @endif>
                                     <h3>Discounts</h3>
                                         <div class="d-flex gap-3 flex-column flex-md-row mb-4">
 
@@ -1205,7 +1211,7 @@
                                         @enderror
                                        
                                     </div>
-                                    <div class="mt-5">
+                                    <div class="mt-5" @if($isCustomer) style="display:none" @endif>
                                         <h3>Additional Customer Charge</h3>
                                         <div class="input-group">
                                             <input type="" name="" class="form-control form-control-md"
@@ -1232,7 +1238,7 @@
                                         </div>                                   
                                         @enderror
                                     </div>
-                                    <div class="mt-5">
+                                    <div class="mt-5" @if($isCustomer) style="display:none" @endif>
                                         <h3>Additional Provider Payment</h3>
                                         <div class="input-group mb-2">
                                             <input type="" name="" class="form-control form-control-md"
@@ -1268,9 +1274,9 @@
 
                                     </div>     
      
-                                    <div class="row between-section-segment-spacing">
+                                    <div class="row between-section-segment-spacing" >
                                         <div class="col-lg-12">
-                                            <div class="row mt-2">
+                                            <div class="row mt-2" @if($isCustomer) style="display:none" @endif>
                                                 <div class="col-lg-12">
                                                     <div class="d-flex gap-3 p-2">
                                                         <label class="form-label mb-0">Calculated Discount:</label>
@@ -1279,7 +1285,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="row mt-2">
+                                            <div class="row mt-2" @if($isCustomer) style="display:none" @endif>
                                                 <div class="col-lg-12 ">
                                                     <div class="row p-2">
                                                         <label class="form-label mb-lg-0 col-lg-4 align-self-center" for="enter-override-amount">                                                           Override
@@ -1364,25 +1370,25 @@
                                 </div>
                               
                                 <!--end of addtional charges and discount-->
-                                <div class="col-lg-5 mt-2 ps-3 border border-dark rounded bg-lighter mt-1">
+                                <div class="col-lg-5 mt-2 ps-3 border border-dark rounded bg-lighter mt-1" @if($isCustomer) style="height:300px" @endif>
                                 <h2 class="mt-3">Booking Notes </h2>
                                     <!-- Billing Notes -->
-                                    <div class="mb-lg-5 mb-4 col-lg-12 col-md-6 pe-md-3 pe-lg-2">
-                                        <label class="form-label" for="billing-notes">
+                                    <div class="mb-lg-5 mb-4 col-lg-12 col-md-6 pe-md-3 pe-lg-2" @if($isCustomer) style="display:none" @endif>
+                                        <label class="form-label" for="billing-notes" >
                                             Billing Notes
                                         </label>
                                         <textarea class="form-control" rows="3" cols="5" id="billing-notes" wire:model.defer="booking.billing_notes"></textarea>
                                     </div>
                                     <!-- /Billing Notes -->
                                     <!-- Payment Notes -->
-                                    <div class="mb-lg-5 mb-4 col-lg-12 col-md-6 ps-md-3 ps-lg-0">
+                                    <div class="mb-lg-5 mb-4 col-lg-12 col-md-6 ps-md-3 ps-lg-0"  @if($isCustomer) style="display:none" @endif>
                                         <label class="form-label" for="payment-notes">
                                             Payment Notes
                                         </label>
                                         <textarea class="form-control" rows="3" cols="3" id="payment-notes" wire:model.defer="booking.payment_notes"></textarea>
                                     </div>
-                                    <div class="my-lg-5">
-                                                <label class="form-label" for="provider_notes">
+                                    <div class="my-lg-5" @if($isCustomer) style="display:none" @endif>
+                                                <label class="form-label" for="provider_notes" >
                                                     Provider Notes
                                                 </label>
                                                 <textarea class="form-control" rows="3" cols="4" id="provider_notes" wire:model.defer="booking.provider_notes"></textarea>
@@ -1393,14 +1399,14 @@
                                                 </label>
                                                 <textarea class="form-control" rows="3" cols="4" id="customer-notes" wire:model.defer="booking.customer_notes"></textarea>
                                     </div>
-                                    <div class="my-lg-5">
+                                    <div class="my-lg-5" @if($isCustomer) style="display:none" @endif>
                                                 <label class="form-label" for="private-notes">
                                                     Private Notes
                                                 </label>
                                                 <textarea class="form-control" rows="3" cols="4" id="private-notes" wire:model.defer="booking.private_notes"></textarea>
                                             </div>
-                                            <div class="my-lg-5">
-                                                <label class="form-label" for="tags">
+                                            <div class="my-lg-5" @if($isCustomer) style="display:none" @endif>
+                                                <label class="form-label" for="tags" >
                                                     Tags 
                                                 </label>
                                                 <div class="mb-3">
@@ -1412,7 +1418,7 @@
                                                                 </select>
                                                 </div>
 
-                                                <div>
+                                                <div @if($isCustomer) style="display:none" @endif>
                                                     <div class="form-check form-check-inline">
                                                         <input class="form-check-input" id="Requester" name=""
                                                             type="checkbox" tabindex="" />
@@ -2141,12 +2147,13 @@
     }
 
     </script>
-    @if(!is_null($booking->id))
+    @if(!is_null($booking->id) || (!is_null($booking->company_id) && session()->get('isCustomer')))
     <script>
     document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             Livewire.emit('isBooking');
             Livewire.emit('setBookingDepartments', @json($selectedDepartments),{{$booking->company_id}});
+            Livewire.emit('updateCompany',{{$booking->company_id}});
         }, 1000);
     });
 </script>

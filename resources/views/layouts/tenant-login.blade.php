@@ -22,13 +22,25 @@
     @stack('head')
 </head>
 
-<body style="min-height: 100vh;
-    margin: 0;
-    padding: 0;
-    position: relative;
-    overflow-x: hidden;">
+<body>
     <!-- BEGIN: Content-->
-    <div class="row m-0 auth-wrapper" style="--bs-gutter-x:0rem !important;background-color:#fff !important">
+    <div>
+    <div class="container d-flex justiy-content-center align-items-center min-vh-100">\
+    <div class="position-fixed top-0 start-0 w-100 h-100" style="z-index:-10">
+                <img src="/tenant-resources/images/header.png" alt="" class="w-100 h-md-50" />
+        </div>  
+        <div class="row  rounder-5 p-3 w-100">
+
+
+            <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box">
+                <div class="featured-image mb-3" >
+                <object data="/tenant-resources/images/eclipse_logo.svg" type="image/svg+xml" width="100%">
+                        <!-- Your fallback content if the browser doesn't support SVG -->
+                        <img src="your-fallback-image.png" alt="Fallback Image">
+                    </object>
+                </div>
+            </div>
+            <div class="col-md-6 right-box l">
      <!-- <span class="brand-logo">
         <svg role="img" width="178" height="50" viewBox="0 0 178 50" fill="none" xmlns="http://www.w3.org/2000/svg">
           <title>Eclipse Scheduling Brand Logo</title>
@@ -56,6 +68,10 @@
       <!-- /Brand logo-->
 
     @yield('content')
+    <div class="position-fixed bottom-0 end-0 w-100 h-10" style="z-index:-10">
+            <img src="/tenant-resources/images/footer.png" alt="" class="w-100 h-100" />
+        </div>
+    </div>
     </div>
     <!-- END: Content-->
     {{-- <script src="/tenant-resources/js/jquery-3.6.3.min.js"></script> --}}
