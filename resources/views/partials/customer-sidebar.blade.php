@@ -127,25 +127,32 @@
                     <span class="menu-item">Chat</span>
                 </a>
             </li>
-            <li class="nav-item" id="booknow">
-                <a href="/customer/booking/booknow">
-                    <svg aria-label="Submit Service Request" class="fill-none" width="14" height="21"
-                        viewBox="0 0 14 21">
-                        <use xlink:href="/css/menu.svg#submit-service-request-icon"></use>
-                    </svg>
-                    <span class="menu-item">Submit Service Request</span>
-                </a>
-            </li>
-            <li class="nav-item" id="pending-reviews">
-                <a href="/customer/pending-reviews">
 
-                    <svg aria-label="Pending Review" width="18" height="20" viewBox="0 0 18 20"
-                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <use xlink:href="/css/menu.svg#pending-review-icon"></use>
-                    </svg>
-                    <span class="menu-item">Pending Review</span>
-                </a>
-            </li>
+            {{-- company admin and supervisor --}}
+            @if (in_array(6, session()->get('customerRoles')) || in_array(10, session()->get('customerRoles')))
+                <li class="nav-item" id="booknow">
+                    <a href="/customer/booking/booknow">
+                        <svg aria-label="Submit Service Request" class="fill-none" width="14" height="21"
+                            viewBox="0 0 14 21">
+                            <use xlink:href="/css/menu.svg#submit-service-request-icon"></use>
+                        </svg>
+                        <span class="menu-item">Submit Service Request</span>
+                    </a>
+                </li>
+            @endif
+            {{-- company Admin and supervisor only --}}
+            @if (in_array(10, session()->get('customerRoles')) || in_array(5, session()->get('customerRoles')))
+                <li class="nav-item" id="pending-reviews">
+                    <a href="/customer/pending-reviews">
+
+                        <svg aria-label="Pending Review" width="18" height="20" viewBox="0 0 18 20"
+                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <use xlink:href="/css/menu.svg#pending-review-icon"></use>
+                        </svg>
+                        <span class="menu-item">Pending Review</span>
+                    </a>
+                </li>
+            @endif
             <li class="nav-item has-sub">
                 <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
                     <svg aria-label="Scheduled Services" width="20" height="20" viewBox="0 0 20 20"
@@ -320,7 +327,8 @@
                             </a>
                         </li>
                         <li role="menuitem" class="nav-item">
-                            <a class="nav-link" href="/customer/department-profile/{{ encrypt(Auth()->user()->company_name) }}">
+                            <a class="nav-link"
+                                href="/customer/department-profile/{{ encrypt(Auth()->user()->company_name) }}">
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <use xlink:href="/css/customer.svg#profile-nav-icon"></use>

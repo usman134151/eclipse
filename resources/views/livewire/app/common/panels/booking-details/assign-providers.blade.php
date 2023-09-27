@@ -67,7 +67,7 @@
          </div>
      </div>
      <div class="table-responsive">
-         <table class="table table-fs-md table-hover" aria-label="">
+         <table class="table table-fs-md" aria-label="">
              <thead>
                  <tr>
                      @if ($panelType == 2)
