@@ -16,18 +16,21 @@ class BookingServices extends Model
      * @var array
      */
     protected $fillable = [
-        'booking_log_id', 'booking_id', 'accommodation_id', 'attendees', 'service_consumer', 'is_manual_consumer', 'is_manual_attendees', 'services', 'service_types', 'specialization', 'meeting_link', 'meeting_phone', 'meeting_passcode', 'day_rate', 'duration_day', 'duration_hour', 'duration_minute', 'start_time', 'end_time', 'provider_count', 'time_zone', 'status','meetings'
+        'booking_log_id', 'booking_id', 'accommodation_id', 'attendees', 'service_consumer', 'is_manual_consumer', 'is_manual_attendees', 'services', 'service_types', 'specialization', 'meeting_link', 'meeting_phone', 'meeting_passcode', 'day_rate', 'duration_day', 'duration_hour', 'duration_minute', 'start_time', 'end_time', 'provider_count', 'time_zone', 'status', 'meetings'
     ];
 
     public function service()
     {
         return $this->hasOne(ServiceCategory::class, 'id', 'services');
     }
+
+   
+
     public function services_data()
     {
         return $this->hasOne(ServiceCategory::class, 'id', 'services');
     }
-    
+
     public function accommodation()
     {
         return $this->hasOne(Accommodation::class, 'id', 'accommodation_id');
@@ -37,5 +40,4 @@ class BookingServices extends Model
     {
         return $this->belongsTo(User::class, 'service_consumer');
     }
-
 }

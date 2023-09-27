@@ -10,12 +10,13 @@ use Livewire\Component;
 use App\Models\Tenant\BookingCustomizeData;
 use App\Models\Tenant\BookingServices;
 use App\Models\Tenant\CustomizeFormFields;
+use App\Models\Tenant\Specialization;
 use App\Models\Tenant\User;
 
 class BookingDetails extends Component
 {
 	public $gender, $service_id = 0, $provider_id = 0, $form_id = 0;
-	public $ethnicity, $booking_id = 0, $booking_services, $data;
+	public $ethnicity, $booking_id = 0, $booking_services, $data, $status;
 
 	public $component = 'booking-details';
 	protected $listeners = [
@@ -51,23 +52,24 @@ class BookingDetails extends Component
 			$this->booking_id = request()->bookingID;
 		}
 		$this->booking = Booking::where('id', $this->booking_id)->with('payment')->first();
+
+
 		$this->getServiceDetails();	//fetching custom form data
 
 		if (!$this->booking)	//null check
 			$this->booking = new Booking;
 
 		$this->fetchData();
-		
 	}
 
 	function fetchData()
 	{
 		// fetch all services for booking 
-			$this->data['service_charges']=0;
-			$this->data['service_billed']=0;
-			$this->data['service_additional_charges']=0;
-			$this->data['service_total']=0;
-			$this->data['specialization_total']=0;
+		$this->data['service_charges'] = 0;
+		$this->data['service_billed'] = 0;
+		$this->data['service_additional_charges'] = 0;
+		$this->data['service_total'] = 0;
+		$this->data['specialization_total'] = 0;
 		$this->booking_services = BookingServices::where('booking_id', $this->booking_id)
 			->join('service_categories', 'booking_services.services', 'service_categories.id')
 			->join('accommodations', 'accommodations.id', 'service_categories.accommodations_id')
@@ -76,7 +78,7 @@ class BookingDetails extends Component
 				'booking_services.id', 'booking_services.service_types', 'booking_services.attendees',
 				'booking_services.service_consumer',
 				'booking_services.meeting_link',
-				'booking_services.meetings','booking_services.service_calculations','service_total','billed_total',
+				'booking_services.meetings', 'booking_services.service_calculations', 'service_total', 'billed_total',
 
 				'booking_services.attendees', 'booking_services.service_consumer', 'booking_services.specialization', 'booking_services.meeting_phone',
 				'booking_services.meeting_passcode', 'booking_services.provider_count', 'booking_services.created_at',
@@ -91,41 +93,46 @@ class BookingDetails extends Component
 
 				$this->booking_services[$key]['meeting_details'] = json_decode($service['meetings'], true) ? json_decode($service['meetings'], true)[0] : null;
 			}
-			if(!is_null($service['service_calculations'])){
-				$serviceCharges=json_decode($service['service_calculations'],true);
-				
-				if(key_exists('service_charges',$serviceCharges) && !is_null($serviceCharges['service_charges']) && is_numeric($serviceCharges['service_charges']))
-				{
-					$this->data['service_charges']+=$serviceCharges['service_charges'];
-					
-				}	
-				if(key_exists('additional_charges_total',$serviceCharges) && !is_null($serviceCharges['additional_charges_total']) && is_numeric($serviceCharges['additional_charges_total']))
-				{
-					
-					$this->data['service_additional_charges']+=$serviceCharges['additional_charges_total'];
-					
-				}	
-				if(key_exists('specialization_total',$serviceCharges) && !is_null($serviceCharges['specialization_total']) && is_numeric($serviceCharges['specialization_total']))
-				{
-					
-					$this->data['specialization_total']+=$serviceCharges['specialization_total'];
-					
-				}
-				if(!is_null($service['service_total']))
-					$this->data['service_total']+=$service['service_total'];			
-				if(!is_null($service['billed_total']))
-					$this->data['service_billed']+=$service['billed_total'];
+			if ($service['specialization']) {
 
-
+				$spez= json_decode($service['specialization'], true) ? json_decode($service['specialization'], true) : null;
+				if($spez && count($spez)){
+					$this->booking_services[$key]['specialization']  = Specialization::whereIn('id',$spez)->pluck('name')->toArray();
+				}else
+				$this->booking_services[$key]['specialization']  =null;
 				
 			}
+			// dd($this->booking_services[$key]);
+			if (!is_null($service['service_calculations'])) {
+				$serviceCharges = json_decode($service['service_calculations'], true);
 
+				if (key_exists('service_charges', $serviceCharges) && !is_null($serviceCharges['service_charges']) && is_numeric($serviceCharges['service_charges'])) {
+					$this->data['service_charges'] += $serviceCharges['service_charges'];
+				}
+				if (key_exists('additional_charges_total', $serviceCharges) && !is_null($serviceCharges['additional_charges_total']) && is_numeric($serviceCharges['additional_charges_total'])) {
+
+					$this->data['service_additional_charges'] += $serviceCharges['additional_charges_total'];
+				}
+				if (key_exists('specialization_total', $serviceCharges) && !is_null($serviceCharges['specialization_total']) && is_numeric($serviceCharges['specialization_total'])) {
+
+					$this->data['specialization_total'] += $serviceCharges['specialization_total'];
+				}
+				if (!is_null($service['service_total']))
+					$this->data['service_total'] += $service['service_total'];
+				if (!is_null($service['billed_total']))
+					$this->data['service_billed'] += $service['billed_total'];
+			}
 		}
 		$this->data['total_providers'] = Booking::where('bookings.id', $this->booking_id)
 			->join('booking_services', 'booking_services.booking_id', 'bookings.id')->sum('booking_services.provider_count');
 		$this->data['assigned_providers'] = BookingProvider::where(['booking_id' => $this->booking_id])
 			->join('users', 'booking_providers.provider_id', '=', 'users.id')->count();
-			
+		if ($this->booking->booking_status == 0)
+			$this->status = 'pending';
+		if ($this->booking->status == 1)
+			$this->status = 'unassigned';
+		if ($this->booking->status == 2)
+			$this->status = 'assigned';
 	}
 	//so a fuction which can then be used for editing the fields aswell.
 	public function getServiceDetails()
