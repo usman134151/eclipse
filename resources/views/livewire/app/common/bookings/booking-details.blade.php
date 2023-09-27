@@ -99,7 +99,6 @@
                                             <label class="form-label text-primary">Days Until Service</label>
                                             <div class="font-family-tertiary value">10 Days</div>
                                         </div>
-                                        <small>(coming soon)</small>
 
                                         <div class="d-flex gap-3 align-items-center">
                                             <label class="col-form-label text-primary mb-lg-0" for="status-column">
@@ -107,10 +106,10 @@
                                             </label>
 
                                             <div>
-                                                <select class="form-select form-select-sm" id="status-column">
-                                                    <option>Pending</option>
-                                                    <option>Assigned</option>
-                                                    <option>Un-assigned</option>
+                                                <select class="form-select form-select-sm" id="status" name="status" wire:model.defer="status">
+                                                    <option value ="pending">Pending</option>
+                                                    <option value='assigned'>Assigned</option>
+                                                    <option value ='unassigned'>Un-assigned</option>
 
                                                 </select>
                                             </div>
@@ -296,6 +295,7 @@
                                             <h2 class="mb-lg-0">Requester Detail </h2>
                                             <div class="d-flex flex-md-row flex-column gap-3">
                                                 <div>
+                                                <small>(coming soon)</small>
                                                     <button
                                                         class="btn btn-outline-primary btn-has-icon btn-sm dropdown-toggle h-100"
                                                         type="button" data-bs-toggle="dropdown"
@@ -709,7 +709,7 @@
                                                     <div class="col-lg-10 mb-3">
                                                         <div class="row">
                                                             <div class="col-lg-4">
-                                                                <label class="col-form-label">Arrival Notes::</label>
+                                                                <label class="col-form-label">Arrival Notes:</label>
                                                             </div>
                                                             <div class="col-lg-7 align-self-center">
                                                                 <div class="font-family-tertiary">
