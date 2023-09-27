@@ -869,7 +869,7 @@
                                         </div>
                                     </div>
                                     @endforeach
-                                    <!-- /Select Dates & Times Duplicate Block -->
+                                    <!-- /Select Dates & Times Duplicate Block 
                                     <div class="d-flex justify-content-end mt-3">
                                         <button class="btn btn-primary rounded" wire:click.prevent="addDate">
                                             <svg aria-label="Add Date" width="20" height="20" viewBox="0 0 20 20">
@@ -878,7 +878,7 @@
                                             </svg>
                                             <span class="mx-2">Add Date</span>
                                         </button>
-                                    </div>
+                                    </div>-->
                                 </div>
                                 <!-- /Select Dates & Times -->
                             </div>
