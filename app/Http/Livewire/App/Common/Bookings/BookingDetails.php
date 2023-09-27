@@ -139,8 +139,11 @@ class BookingDetails extends Component
 	{
 		$this->serviceDetails = BookingCustomizeData::where("booking_id", $this->booking_id)
 			->join('customize_form_fields', 'booking_customize_data.customize_id', '=', 'customize_form_fields.id')
+			->join('customize_forms', 'customize_form_fields.customize_form_id', 'customize_forms.id')
 			->whereNotNull('customize_form_fields.field_name')
-			->get(['customize_form_fields.field_name', 'booking_customize_data.data_value'])->toArray();
+			->get(['customize_form_fields.field_name', 'booking_customize_data.data_value', 'customize_form_fields.customize_form_id',
+			 'customize_form_fields.position', 'request_form_name'])
+			->groupBy('customize_form_id')->sortby('position')->toArray();
 	}
 
 	public function showConfirmation($message = '')

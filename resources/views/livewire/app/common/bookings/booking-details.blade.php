@@ -106,10 +106,11 @@
                                             </label>
 
                                             <div>
-                                                <select class="form-select form-select-sm" id="status" name="status" wire:model.defer="status">
-                                                    <option value ="pending">Pending</option>
+                                                <select class="form-select form-select-sm" id="status"
+                                                    name="status" wire:model.defer="status">
+                                                    <option value="pending">Pending</option>
                                                     <option value='assigned'>Assigned</option>
-                                                    <option value ='unassigned'>Un-assigned</option>
+                                                    <option value='unassigned'>Un-assigned</option>
 
                                                 </select>
                                             </div>
@@ -272,9 +273,9 @@
                                             </a>
                                             <a href="" class="btn btn-has-icon btn-primary rounded"
                                                 data-bs-toggle="modal" data-bs-target="#reviewFeedbackModal"
-                                                     wire:click="$emit('openAllFeedBackModal', '{{$booking_id}}')">
+                                                wire:click="$emit('openAllFeedBackModal', '{{ $booking_id }}')">
 
-                                                
+
                                                 {{-- Updated by Shanila to Add
                                             svg icon --}}
                                                 <svg aria-label="Review Feedback" width="20" height="20"
@@ -295,7 +296,7 @@
                                             <h2 class="mb-lg-0">Requester Detail </h2>
                                             <div class="d-flex flex-md-row flex-column gap-3">
                                                 <div>
-                                                <small>(coming soon)</small>
+                                                    <small>(coming soon)</small>
                                                     <button
                                                         class="btn btn-outline-primary btn-has-icon btn-sm dropdown-toggle h-100"
                                                         type="button" data-bs-toggle="dropdown"
@@ -540,7 +541,7 @@
                                                         </div>
                                                         <div class="col-lg-7 align-self-center">
                                                             <div class="font-family-tertiary">
-                                                            {{$service['specialization']  ? implode(', ',$service['specialization']) : 'N/A'}}
+                                                                {{ $service['specialization'] ? implode(', ', $service['specialization']) : 'N/A' }}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -879,86 +880,64 @@
                                         <!-- /Phone / Teleconference / Virtual Meeting Detail -->
                                     @endif
                                 @endforeach
-                                <!-- Service Form Detail -->
-                                <div class="row between-section-segment-spacing">
-                                    <div class="col-lg-12">
-                                        <div class="d-lg-flex justify-content-between align-items-center">
-                                            <h2 class="">Service Form Detail </h2>
-                                        </div>
-                                        <div class="row">
-                                            @if (count($serviceDetails))
-                                                @foreach ($serviceDetails as $index => $serviceDetail)
-                                                    <div class="col-lg-8 mb-3">
-                                                        <div class="row">
-                                                            <div class="col-lg-5">
-                                                                <label
-                                                                    class="col-form-label">{{ $serviceDetail['field_name'] ? $serviceDetail['field_name'] : 'N/A' }}:
-                                                                </label>
-                                                            </div>
-                                                            <div class="col-lg-7 align-self-center">
-                                                                <div class="d-flex align-items-center gap-2">
-                                                                    <div class="font-family-tertiary">
-                                                                        {{ $serviceDetail['data_value'] ? $serviceDetail['data_value'] : 'N/A' }}
+                                <!-- Booking Forms Detail -->
+
+                                @if (count($serviceDetails))
+                                    <!-- Service Form Detail -->
+                                    <div class="row between-section-segment-spacing">
+                                     <div class="d-lg-flex justify-content-between align-items-center">
+                                                    <h2 class="">Booking Forms</h2>
+                                                </div>
+
+                                        @foreach ($serviceDetails as $index => $form)
+                                            <div class="col-lg-12">
+
+                                                <div class="d-lg-flex  justify-content-between align-items-center">
+                                                    <h3 class="bg-muted rounded p-1">
+                                                        {{ $form[0]['request_form_name'] ? $form[0]['request_form_name'] : 'Form ' + $index + 1 }}
+                                                    </h3>
+                                                </div>
+                                                @foreach ($form as $i => $field)
+                                                    <div class="row">
+                                                        <div class="col-lg-8 mb-3">
+
+                                                            <div class="row">
+                                                                <div class="col-lg-5">
+                                                                    <label
+                                                                        class="col-form-label">{{ $field['field_name'] ? $field['field_name'] : 'N/A' }}:
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-lg-7 align-self-center">
+                                                                    <div class="d-flex align-items-center gap-2">
+                                                                        <div class="font-family-tertiary">
+                                                                            {{ $field['data_value'] ? $field['data_value'] : 'N/A' }}
+                                                                        </div>
+                                                                        <a href="#"
+                                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
+
+                                                                            <svg aria-label="Edit" width="20"
+                                                                                height="20" viewBox="0 0 20 20">
+                                                                                <use
+                                                                                    xlink:href="/css/common-icons.svg#pencil">
+                                                                                </use>
+                                                                            </svg>
+
+                                                                        </a>
                                                                     </div>
-                                                                    <a href="#"
-                                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                        {{-- Updated by Shanila to Add
-                                                            svg icon --}}
-                                                                        <svg aria-label="Edit" width="20"
-                                                                            height="20" viewBox="0 0 20 20">
-                                                                            <use
-                                                                                xlink:href="/css/common-icons.svg#pencil">
-                                                                            </use>
-                                                                        </svg>
-                                                                        {{-- End of update by Shanila
-                                                            --}}
-                                                                    </a>
                                                                 </div>
                                                             </div>
                                                         </div>
+
+
                                                     </div>
                                                 @endforeach
-                                            @else
-                                                <small>No Data Available</small>
-                                            @endif
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /Service Form Detail -->
-                                <!-- Industry Form Detail -->
-                                <div class="row between-section-segment-spacing">
-                                    <div class="col-lg-12">
-                                        <div class="d-lg-flex justify-content-between align-items-center">
-                                            <h2 class="">Industry Form Detail <small>(coming soon)</small> </h2>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-8 mb-3">
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <div class="row">
-                                                            <div class="col-lg-3">
-                                                                <label class="col-form-label">
-                                                                    Req_info:
-                                                                </label>
-                                                            </div>
-                                                            <div class="col-lg-9">
-                                                                <a href="#">View Uploaded Document</a>
-                                                            </div>
-                                                            <div class="col-lg-3">
-                                                                <img src="/tenant-resources/images/img-placeholder-document.jpg"
-                                                                    alt="img-placeholder-document" class="w-100">
-                                                                <p class="font-family-secondary">
-                                                                    <small>File Name</small>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
-                                        </div>
+                                        @endforeach
+
                                     </div>
-                                </div><!-- /Industry Form Detail -->
+                                @endif
+
+                                <!-- /Booking Forms Detail -->
                                 <!-- Notes -->
                                 <div class="row between-section-segment-spacing">
                                     <div class="col-lg-12">
@@ -1332,7 +1311,8 @@
                                                 <label class="form-label mb-md-0">Total Service Rate:</label>
                                             </div>
                                             <div class="col-md-3 align-self-center">
-                                                <div class="font-family-tertiary">{{formatPayment($data['service_charges'])}}</div>
+                                                <div class="font-family-tertiary">
+                                                    {{ formatPayment($data['service_charges']) }}</div>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -1347,7 +1327,8 @@
                                                 <label class="form-label mb-md-0">Total Specialization Charges:</label>
                                             </div>
                                             <div class="col-md-3 align-self-center">
-                                                <div class="font-family-tertiary">{{formatPayment($data['specialization_total'])}}</div>
+                                                <div class="font-family-tertiary">
+                                                    {{ formatPayment($data['specialization_total']) }}</div>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -1362,22 +1343,25 @@
                                                 <label class="form-label mb-md-0">Total Additional Charges:</label>
                                             </div>
                                             <div class="col-md-3 align-self-center">
-                                                <div class="font-family-tertiary">{{formatPayment($data['service_additional_charges'])}}</div>
+                                                <div class="font-family-tertiary">
+                                                    {{ formatPayment($data['service_additional_charges']) }}
+                                                </div>
                                             </div>
                                         </div>
-    
+
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <hr class="border-separate-sm">
                                             </div>
                                         </div>
-                                        
+
                                         <div class="row">
                                             <div class="col-md-9">
                                                 <label class="form-label mb-md-0">Service Total:</label>
                                             </div>
                                             <div class="col-md-3 align-self-center">
-                                                <div class="font-family-tertiary">{{formatPayment($data['service_total'])}}</div>
+                                                <div class="font-family-tertiary">
+                                                    {{ formatPayment($data['service_total']) }}</div>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -1390,7 +1374,8 @@
                                                 <label class="form-label mb-md-0">Service Billed:</label>
                                             </div>
                                             <div class="col-md-3 align-self-center">
-                                                <div class="font-family-tertiary">{{formatPayment($data['service_billed'])}}</div>
+                                                <div class="font-family-tertiary">
+                                                    {{ formatPayment($data['service_billed']) }}</div>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -1403,7 +1388,13 @@
                                                 <label class="form-label mb-md-0">Discount:</label>
                                             </div>
                                             <div class="col-md-3 align-self-center">
-                                                <div class="font-family-tertiary">@if(!is_null($booking['payment']) && !is_null($booking['payment']['coupon_discount_amount'])){{formatPayment($booking['payment']['discounted_amount'])}}@else $00.00 @endif </div>
+                                                <div class="font-family-tertiary">
+                                                    @if (!is_null($booking['payment']) && !is_null($booking['payment']['coupon_discount_amount']))
+                                                        {{ formatPayment($booking['payment']['discounted_amount']) }}
+                                                    @else
+                                                        $00.00
+                                                    @endif
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -1416,7 +1407,13 @@
                                                 <label class="form-label mb-md-0">Net Total:</label>
                                             </div>
                                             <div class="col-md-3 align-self-center">
-                                                <div class="font-family-tertiary">@if(!is_null($booking['payment'])){{formatPayment($booking['payment']['total_amount'])}}@else N/A @endif</div>
+                                                <div class="font-family-tertiary">
+                                                    @if (!is_null($booking['payment']))
+                                                        {{ formatPayment($booking['payment']['total_amount']) }}
+                                                    @else
+                                                        N/A
+                                                    @endif
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row">
