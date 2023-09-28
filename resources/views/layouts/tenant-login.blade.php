@@ -25,7 +25,7 @@
 <body>
     <!-- BEGIN: Content-->
     <div>
-    <div class="container d-flex justiy-content-center align-items-center min-vh-100">\
+    <div class="container d-flex justiy-content-center align-items-center min-vh-100">
     <div class="position-fixed top-0 start-0 w-100 h-100" style="z-index:-10">
                 <img src="/tenant-resources/images/header.png" alt="" class="w-100 h-md-50" />
         </div>  
