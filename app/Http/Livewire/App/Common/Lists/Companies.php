@@ -53,7 +53,7 @@ final class Companies extends PowerGridComponent
 	*/
 	public function datasource(): Builder
 	{
-		return Company::query()->with('phones');
+		return Company::query()->where('status',1)->with('phones');
 	}
 
 	/*
@@ -115,10 +115,21 @@ final class Companies extends PowerGridComponent
             })
 			->addColumn('edit', function (Company $model) {
 				return "<div class='d-flex actions'><a href='".route('tenant.company-edit',['companyID'=>encrypt($model->id)]). "' title='Edit Company' aria-label='Edit Company' class='btn btn-sm btn-secondary rounded btn-hs-icon'><svg aria-label='Edit' class='fill' width='20' height='28' viewBox='0 0 20 28'fill='none' xmlns='http://www.w3.org/2000/svg'><use xlink:href='/css/sprite.svg#edit-icon'></use></svg></a>
-				<a href='" . route('tenant.company-profile', ['companyID' => encrypt($model->id)]) . "'title='View Company' aria-label='View Company' class='btn btn-sm btn-secondary rounded btn-hs-icon'><svg aria-label='View' class='fill' width='20' height='28' viewBox='0 0 20 28'fill='none' xmlns='http://www.w3.org/2000/svg'><use xlink:href='/css/provider.svg#view'></use></svg></a><div class='d-flex actions'><div class='dropdown ac-cstm'><a href='javascript:void(0)' class='btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle' title='More Options' aria-label='More Options' data-bs-toggle='dropdown' data-bs-auto-close='outside' data-bs-popper-config='{&quot;strategy&quot;:&quot;fixed&quot;}'><svg aria-label='More Options' class='fill' width='20' height='20' viewBox='0 0 20 20'fill='none' xmlns='http://www.w3.org/2000/svg'><use xlink:href='/css/sprite.svg#dropdown'></use></svg></a><div class='tablediv dropdown-menu'><a title='View Company Users' aria-label='View Company Users' href='#' wire:click.prevent='showUsers(" . $model->id . ",\"" . htmlentities($model->name, ENT_QUOTES) . "\")'  @click='companyUsers = true' class='dropdown-item'><i class='fa fa-users'></i>View Company Users</a><a href='#' title='View Company Departments' aria-label='View Company Departments' class='dropdown-item' wire:click.prevent='showDetails(".$model->id.",\"". htmlentities($model->name, ENT_QUOTES)."\")'  @click='departmentList = true'><i class='fa fa-building'></i>View Company Departments</a></div></div></div></div>";
+				<a href='" . route('tenant.company-profile', ['companyID' => encrypt($model->id)]) . "'title='View Company' aria-label='View Company' class='btn btn-sm btn-secondary rounded btn-hs-icon'><svg aria-label='View' class='fill' width='20' height='28' viewBox='0 0 20 28'fill='none' xmlns='http://www.w3.org/2000/svg'><use xlink:href='/css/provider.svg#view'></use></svg></a><div class='d-flex actions'><div class='dropdown ac-cstm'><a href='javascript:void(0)' class='btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle' title='More Options' aria-label='More Options' data-bs-toggle='dropdown' data-bs-auto-close='outside' data-bs-popper-config='{&quot;strategy&quot;:&quot;fixed&quot;}'><svg aria-label='More Options' class='fill' width='20' height='20' viewBox='0 0 20 20'fill='none' xmlns='http://www.w3.org/2000/svg'><use xlink:href='/css/sprite.svg#dropdown'></use></svg></a><div class='tablediv dropdown-menu'><a title='View Company Users' aria-label='View Company Users' href='#' wire:click.prevent='showUsers(" . $model->id . ",\"" . htmlentities($model->name, ENT_QUOTES) . "\")'  @click='companyUsers = true' class='dropdown-item'><i class='fa fa-users'></i>View Company Users</a><a href='#' title='View Company Departments' aria-label='View Company Departments' class='dropdown-item' wire:click.prevent='showDetails(".$model->id.",\"". htmlentities($model->name, ENT_QUOTES). "\")'  @click='departmentList = true'><i class='fa fa-building'></i>View Company Departments</a><a href='javascript:void(0)' aria-label='Delete' title='Delete' wire:click='deleteItem(" . $model->id . ")' class='dropdown-item'><i class='fa fa-trash'></i>Delete</a></div></div></div></div>";
 			});
 	}
 
+	public function deleteItem($id)
+	{
+		$this->emit('updateRecordId', $id);
+
+		// Dispatches a browser event to show a confirmation modal
+		$this->dispatchBrowserEvent('swal:confirm', [
+			'type' => 'warning',
+			'title' => 'Delete Operation',
+			'text' => 'Are you sure you want to delete this record?',
+		]);
+	}
 	public function showDetails($companyId, $companyLabel)
 	{
 		$this->selectedCompanyId = $companyId;
