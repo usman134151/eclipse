@@ -56,9 +56,9 @@ li.page-item {
     padding: 0.4rem 0.75rem;
 }
 
-.assigned, .unassigned,.partially_assigned,.fully_assigned,.provider_running_Late,.provider_checked-in,.information_document_request_pending,
-.assigned .time-date, .unassigned .time-date,.partially_assigned .time-date,.fully_assigned .time-date,.provider_running_Late .time-date,.provider_checked-in .time-date,.information_document_request_pending .time-date,
-.assigned a, .unassigned a,.partially_assigned a,.fully_assigned a,.provider_running_Late .time-date,.provider_checked-in a,.information_document_request_pending a{
+.assigned, .unassigned,.partially_assigned,.fully_assigned,.provider_running_late,.provider_checked-in,.information_document_request_pending,
+.assigned .time-date, .unassigned .time-date,.partially_assigned .time-date,.fully_assigned .time-date,.provider_running_late .time-date,.provider_checked-in .time-date,.information_document_request_pending .time-date,
+.assigned a, .unassigned a,.partially_assigned a,.fully_assigned a,.provider_running_late .time-date,.provider_checked-in a,.information_document_request_pending a{
     color:#fff !important;
 }
 
