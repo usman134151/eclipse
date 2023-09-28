@@ -205,6 +205,9 @@ class BookingList extends Component
 		$query->whereHas('customer', function ($q) {
 			$q->where('status', '1');
 		});
+		$query->whereHas('services', function ($q) {
+			$q->where('service_categories.status', '1');
+		});
 		if ($this->isCustomer) {
 			$customer = User::find(Auth::id());
 			$query->where('company_id', $customer->company_name);

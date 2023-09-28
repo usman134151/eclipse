@@ -313,20 +313,20 @@
                                          </div> 
                                          <div class="col-md-4">
                                              <label for="average-rate" class="form-label-sm">Average Rate</label>
-                                             <input type="" id="average-rate" name=""
+                                             <input type="number" id="average-rate" name=""
                                                  class="form-control form-control-sm w-25%" placeholder="$00:00" wire:blur="updateTotal({{$index}})"  wire:model.lazy="providersPayment.{{$index}}.override_price">
                                          </div>
                                      </div>
                                       <div class="d-grid grid-cols-2 gap-3 mb-3">
                                          <div>
                                              <label class="form-label-sm">Label</label>
-                                             <input type="" name="" class="form-control form-control-sm"
+                                             <input type="text" name="" class="form-control form-control-sm"
                                                  placeholder="Payment Label" aria-label="Payment Label" wire:model.defer="providersPayment.{{$index}}.additional_label_provider">
                                          </div>
                                          <div>
                                              <label class="form-label-sm text-nowrap">Additional Payment</label> 
-                                             <input type="" name="" class="form-control form-control-sm"
-                                                 placeholder="$00:00" aria-label="Additional Payment" wire:model.defer="providersPayment.{{$index}}.additional_charge_provider"> 
+                                             <input type="number" name="" class="form-control form-control-sm"
+                                                 placeholder="00:00" aria-label="Additional Payment" wire:model.defer="providersPayment.{{$index}}.additional_charge_provider"> 
                                          </div>
                                         <!--  <div>
                                              <label class="form-label-sm">Label</label>
@@ -431,7 +431,7 @@
                                                  <label class="form-label-sm" for="total-service-payment">Total
                                                      Service
                                                      Payment</label>
-                                                 <input type="" name=""
+                                                 <input type="number" name=""
                                                      class="form-control form-control-sm" placeholder="$00:00" wire:blur="overrideTotal({{$index}})" wire:model.lazy="providersPayment.{{$index}}.total_amount"
                                                      id="total-service-payment">
                                              </div>
