@@ -211,14 +211,13 @@ class AssignProviders extends Component
             }
         }
         $providers = $this->providers = $query->get();
+        if ($this->panelType != 2) {
 
-        //charges caculations 
-        //end of charges calculations 
-        $this->providersPayment = [];
-        $service_type = [];
-        foreach ($providers as $index => &$provider) {
+            //charges caculations 
+            //end of charges calculations 
+            $this->providersPayment = [];
+            foreach ($providers as $index => &$provider) {
 
-            if ($this->panelType != 2) {
 
                 //fetch and set custom rates
                 $service = $this->booking->booking_services->where('services', $this->service_id)->first();
@@ -236,8 +235,8 @@ class AssignProviders extends Component
                 //    dd($this->custom_rates[$provider['id']]['standard']['emergency']);
 
                 if (!is_null($service->specialization) && !is_array($service->specialization))
-                    $specializations = json_decode($service->specialization,true);
-                if(is_array($service->specialization))
+                    $specializations = json_decode($service->specialization, true);
+                if (is_array($service->specialization))
                     foreach ($specializations as $i => $s) {
 
                         $s_rates = SpecializationRate::where(['accommodation_service_id' => $this->service_id, 'user_id' => $provider['id'], 'specialization' => $s])
@@ -245,24 +244,23 @@ class AssignProviders extends Component
                         $this->custom_rates[$provider['id']]['specialization'][$i] = $s_rates ? json_decode($s_rates->price, true)[0] : null;
                         $this->custom_rates[$provider['id']]['specialization'][$i]['s_name'] =  Specialization::find($s)->name;
                     }
-            }
 
-            $providerCharges = $this->getProviderCharges($provider['id']);
-            $this->providersPayment[$index] = [
-                'additional_label_provider' => $this->paymentData['additional_label_provider'],
-                'additional_charge_provider' => $this->paymentData['additional_charge_provider'],
-                "is_override_price" => 1,
-                "override_price" => $providerCharges['override_price'],
-                'total_amount' => $providerCharges['override_price'] * $this->durationTotal
-            ];
+                $providerCharges = $this->getProviderCharges($provider['id']);
+                $this->providersPayment[$index] = [
+                    'additional_label_provider' => $this->paymentData['additional_label_provider'],
+                    'additional_charge_provider' => $this->paymentData['additional_charge_provider'],
+                    "is_override_price" => 1,
+                    "override_price" => $providerCharges['override_price'],
+                    'total_amount' => $providerCharges['override_price'] * $this->durationTotal
+                ];
+                foreach ($this->assignedProviders as &$aProvider) {
+                    if ($aProvider['provider_id'] == $provider['id']) {
+                        $this->providersPayment[$index] = $aProvider; //overriding if already assigned
 
-            foreach ($this->assignedProviders as &$aProvider) {
-                if ($aProvider['provider_id'] == $provider['id']) {
-                    $this->providersPayment[$index] = $aProvider; //overriding if already assigned
+                        if (isset($aProvider['total_amount']) && $aProvider['total_amount'] == "0.00") {
 
-                    if (isset($aProvider['total_amount']) && $aProvider['total_amount'] == "0.00") {
-
-                        $aProvider['total_amount'] = $this->updateTotal($index);
+                            $aProvider['total_amount'] = $this->updateTotal($index);
+                        }
                     }
                 }
             }
@@ -324,10 +322,11 @@ class AssignProviders extends Component
     {
         $this->panelType = $panelType;
         $this->service_id = $service_id;
-
         $this->tags = Tag::all();
         $this->booking = Booking::where('id', $this->booking_id)->first();
+
         if ($this->panelType != 3) {
+            //setting filter defaults
             $booking_service = $this->booking->booking_services->where('services', $this->service_id)->first();
             if ($booking_service)
                 $this->specializations =     json_decode($booking_service->specialization, true);
@@ -335,12 +334,14 @@ class AssignProviders extends Component
             $this->services = [$this->service_id];
             $this->accommodations = $service ? [$service->accommodations_id] : [];
         }
+
         if (!is_null($this->booking->payment)) {
             $this->paymentData = ["additional_label_provider" => $this->booking->payment->additional_label_provider, "additional_charge_provider" => $this->booking->payment->additional_charge_provider];
             $this->totalAmount = formatPayment($this->booking->payment['total_amount']);
         } else {
             $this->totalAmount = 'n/a';
         }
+
         if ($panelType == 2) {
             $this->assignedProviders  = BookingInvitationProvider::where('invitation_id', function ($query) {
                 $query->from('booking_invitations')
@@ -348,7 +349,10 @@ class AssignProviders extends Component
                     ->select('id');
             })
 
-                ->get()->pluck('provider_id')->toArray();
+                ->get()
+                ->toArray();
+
+            // ->pluck('provider_id')
         } else {
             $booking_service = $this->booking->booking_services->where('services', $this->service_id)->first();
 
@@ -404,9 +408,13 @@ class AssignProviders extends Component
             $data = null;
 
             foreach ($this->assignedProviders as $provider) {
-
                 $user          = User::find($provider['provider_id']);
-                unset($previousAssigned[$user->id]);
+
+                // remove user_id from to-be-deleted array 
+                if (($key = array_search($user->id, $previousAssigned)) !== false) {
+                    unset($previousAssigned[$key]);
+                }
+
                 if (!empty($user)) {
 
                     $templateId = getTemplate('Booking: Provider Assigned (manual-assign)', 'email_template');
