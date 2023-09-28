@@ -965,7 +965,8 @@
                                 @endif 
                                 <div class="justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                                     <button type="button" class="btn btn-outline-dark rounded">Cancel</button>
-                                    <button type="button" class="btn btn-primary rounded" wire:click="save(1,1)" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">Save as Draft</button>
+                                    
+                                    <button type="button" class="btn btn-primary rounded" wire:click="save(1,1)" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">@if($isEdit) Save Changes @else Save as Draft @endif</button>
                                     <button type="button" class="btn btn-primary rounded"
                                     wire:click="save(0,1)" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });" >Proceed to Request Details</button>
                                 </div>
@@ -1467,7 +1468,7 @@
                                 class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                                 <button type="button" class="btn btn-outline-dark rounded"
                                    x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('request-details')">Back</button>
-                                <button type="button" class="btn btn-primary rounded" wire:click.prevent="save(1,1,3)" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">Save as Draft</button>
+                                <button type="button" class="btn btn-primary rounded" wire:click.prevent="save(1,1,3)" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">@if($isEdit) Save Changes @else Save as Draft @endif</button>
                                 <div class="dropdown">
                                         <button type="" class="btn btn-primary rounded dropdown-toggle w-100 h-100"
                                             type="button" data-bs-toggle="dropdown"
@@ -1968,7 +1969,7 @@
                                 <div
                                     class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                                     <button type="button" class="btn btn-outline-dark rounded" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('payment-info')">Back</button>
-                                    <button type="" class="btn btn-primary rounded">Save as Draft</button>
+                                    <button type="" class="btn btn-primary rounded">@if($isEdit) Save Changes @else Save as Draft @endif</button>
                                     <button type="" class="btn btn-primary rounded">Request Feedback</button>
                                     <div class="dropdown">
                                         <button type="" class="btn btn-primary rounded dropdown-toggle w-100 h-100"

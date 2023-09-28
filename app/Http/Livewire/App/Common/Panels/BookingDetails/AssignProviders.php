@@ -235,15 +235,16 @@ class AssignProviders extends Component
                 $this->custom_rates[$provider['id']]['standard']['emergency'] = isset($this->custom_rates[$provider['id']]['standard']['emergency']) ? json_decode($this->custom_rates[$provider['id']]['standard']['emergency'], true)[0] : null;
                 //    dd($this->custom_rates[$provider['id']]['standard']['emergency']);
 
-                if ($service->specialization)
-                    $specializations = json_decode($service->specialization);
-                foreach ($specializations as $i => $s) {
+                if (!is_null($service->specialization) && !is_array($service->specialization))
+                    $specializations = json_decode($service->specialization,true);
+                if(is_array($service->specialization))
+                    foreach ($specializations as $i => $s) {
 
-                    $s_rates = SpecializationRate::where(['accommodation_service_id' => $this->service_id, 'user_id' => $provider['id'], 'specialization' => $s])
-                        ->select('specialization_rate' . $this->serviceTypes[$service->service_types]['postfix'] . ' as price')->first();
-                    $this->custom_rates[$provider['id']]['specialization'][$i] = $s_rates ? json_decode($s_rates->price, true)[0] : null;
-                    $this->custom_rates[$provider['id']]['specialization'][$i]['s_name'] =  Specialization::find($s)->name;
-                }
+                        $s_rates = SpecializationRate::where(['accommodation_service_id' => $this->service_id, 'user_id' => $provider['id'], 'specialization' => $s])
+                            ->select('specialization_rate' . $this->serviceTypes[$service->service_types]['postfix'] . ' as price')->first();
+                        $this->custom_rates[$provider['id']]['specialization'][$i] = $s_rates ? json_decode($s_rates->price, true)[0] : null;
+                        $this->custom_rates[$provider['id']]['specialization'][$i]['s_name'] =  Specialization::find($s)->name;
+                    }
             }
 
             $providerCharges = $this->getProviderCharges($provider['id']);
