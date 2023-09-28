@@ -208,35 +208,27 @@ class BookingList extends Component
 		if ($this->isCustomer) {
 			$customer = User::find(Auth::id());
 			$query->where('company_id', $customer->company_name);
-
-			// if(in_array(9, session()->get('customerRoles')) || in_array(10, session()->get('customerRoles')) ||in_array(5, session()->get('customerRoles'))) {
+			// if not admin
 			if (!in_array(10, session()->get('customerRoles'))) {
-				//if dept supervisor, then show all dept related bookings
 
-
-
-				if ($this->bookingType == "Draft") {
-					$query->where(function ($g) use ($customer) {
-						$g->where('user_id', $customer->id);
-						$g->orWhere('customer_id', $customer->id);
-						$g->orWhere('supervisor', $customer->id);
-
-					});
-				} else {
-					//display only of booking is associated with customer if not admin
-					$query->where(function ($g) use ($customer, $query) {
-						$g->where('customer_id', $customer->id);
-						$g->orWhere('supervisor', $customer->id);
+				//display only of booking is associated with customer 
+				$query->where(function ($g) use ($customer, $query) {
+					$g->where('customer_id', $customer->id);
+					$g->orWhere('supervisor', $customer->id);
+					if ($this->bookingType == "Draft")
+						$g->orWhere('user_id', $customer->id);
+					else
 						$g->orWhere('billing_manager_id', 'LIKE', "%" . $customer->id . "%");
-						// $u_dept = $customer->supervised_departments ? $customer->supervised_departments->pluck('id')->toArray() : null;
-						// dd($u_dept);
-						// if ($u_dept && count($u_dept)) {
-						// 	$query->orWhereHas('bookingDepartments', function ($q) use ($u_dept) {
-						// 		$q->whereIn('booking_departments.department_id', $u_dept);
-						// 	});
-						// }
-					});
-				}
+
+					//if dept supervisor, then show all dept related bookings
+
+					$u_dept = $customer->supervised_departments ? $customer->supervised_departments->pluck('id')->toArray() : null;
+					if ($u_dept && count($u_dept)) {
+						$query->orWhereHas('bookingDepartments', function ($q) use ($u_dept) {
+							$q->whereIn('booking_departments.department_id', $u_dept);
+						});
+					}
+				});
 			}
 		}
 
@@ -308,7 +300,7 @@ class BookingList extends Component
 				$booking_service = count($row->booking_services) ? $row->booking_services->first() : null;
 				$row->service_id = $booking_service ? $booking_service->services : null;
 				$row->service_type = $booking_service ? $booking_service->service_types : null;
-				$row->accommodation_name = $booking_service ? ($booking_service->service ? $booking_service->service->accommodation->name : null) : null;
+				$row->accommodation_name = $booking_service ? ($booking_service->service ? ($booking_service->service->accommodation->name  ?? null) : null) : null;
 				$row->service_name = $booking_service ? ($booking_service->service ? $booking_service->service->name : null) : null;
 				$row->booking_service_id = $booking_service ? $booking_service->id : null;
 			} else {
@@ -603,7 +595,7 @@ class BookingList extends Component
 	{
 		// Delete the record from the database using the model
 		$booking = Booking::where('id', $this->deleteRecordId)->first();
-		if ($booking->user_id == Auth::id() || $booking->customer_id == Auth::id()|| $booking->supervisor == Auth::id() || !$this->isCustomer) {
+		if ($booking->user_id == Auth::id() || $booking->customer_id == Auth::id() || $booking->supervisor == Auth::id() || !$this->isCustomer) {
 			BookingProvider::where('booking_id', $this->deleteRecordId)->delete();
 			BookingServices::where('booking_id', $this->deleteRecordId)->delete();
 			BookingDepartment::where('booking_id', $this->deleteRecordId)->delete();
