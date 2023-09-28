@@ -65,7 +65,7 @@ class Accommodation extends Component
 	public function deleteRecord()
 	{
 		// Delete the record from the database using the model
-		TenantAccommodation::where('id', $this->recordId)->delete();
+		TenantAccommodation::where('id', $this->recordId)->update(['status'=>2]);
 		// Emit an event to reset the form and display a confirmation message
 		$this->emitSelf('showList', 'Record has been deleted');
 	}

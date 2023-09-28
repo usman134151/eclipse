@@ -57,7 +57,7 @@ class ServiceCategory extends Component
     public function deleteRecord()
 	{
 		// Delete the record from the database using the model
-		service_model::where('id', $this->recordId)->delete();
+		service_model::where('id', $this->recordId)->update(['status'=>2]);
 		// Emit an event to reset the form and display a confirmation message
 		$this->emitSelf('showList', 'Record has been deleted');
 	}

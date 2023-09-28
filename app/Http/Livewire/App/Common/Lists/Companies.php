@@ -53,7 +53,7 @@ final class Companies extends PowerGridComponent
 	*/
 	public function datasource(): Builder
 	{
-		return Company::query()->where('status',1)->with('phones');
+		return Company::query()->where('status', '<', 2)->with('phones');
 	}
 
 	/*
