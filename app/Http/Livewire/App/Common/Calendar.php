@@ -192,20 +192,20 @@ class Calendar extends Component
 			$query->where('bookings.company_id', Auth::user()->company_name);
 
 			if (!in_array(10, session()->get('customerRoles'))) {
+				$user = User::find(Auth::id());
 
 				// display only of booking is associated with customer if not admin
-				$query->where(function ($g) {
+				$query->where(function ($g) use ($user) {
 					$g->where('customer_id', $this->user_id);
 					$g->orWhere('supervisor', $this->user_id);
 					$g->orWhere('billing_manager_id', 'LIKE', "%" . $this->user_id . "%");
-					//if dept supervisor, then show all dept related bookings
-					// $u_dept = $customer->supervised_departments ? $customer->supervised_departments->pluck('id')->toArray() : null;
-					// dd($u_dept);
-					// if ($u_dept && count($u_dept)) {
-					// 	$query->orWhereHas('bookingDepartments', function ($q) use ($u_dept) {
-					// 		$q->whereIn('booking_departments.department_id', $u_dept);
-					// 	});
-					// }
+					// if dept supervisor, then show all dept related bookings
+					$u_dept = $user->supervised_departments ? $user->supervised_departments->pluck('id')->toArray() : null;
+					if ($u_dept && count($u_dept)) {
+						$g->orWhereHas('bookingDepartments', function ($q) use ($u_dept) {
+							$q->whereIn('booking_departments.department_id', $u_dept);
+						});
+					}
 				});
 			}
 		}

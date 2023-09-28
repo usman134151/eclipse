@@ -15,7 +15,7 @@ class CompanyMain extends Component
 	public $du_counter = 0, $du_departmentId, $du_departmentLabel,  $du_departmentDetails = false; //for company users
 	
 	public $showProfile, $isCustomer=false;
-	public $importFile, $company;
+	public $importFile, $company, $recordId;
 
 	protected $listeners = [
 		'showList' => 'resetForm',
@@ -24,10 +24,19 @@ class CompanyMain extends Component
 		'updateRecordId' => 'updateRecordId', // update the ID of the record being edited/deleted
 		'refreshDepartmentDetails' => 'refreshDetails',
 		'refreshDepartmentProfile' => 'refreshProfileDetails',
-		'refreshCompanyUsers', 'refreshDepartmentUsers'
-
+		'refreshCompanyUsers', 'refreshDepartmentUsers',
+		'delete'=>'deleteRecord'
 	];
 	protected $exportDataFile;
+
+
+	public function deleteRecord()
+	{
+		// Delete the record from the database using the model
+		Company::where('id', $this->recordId)->update(['status' => 2]);
+		// Emit an event to reset the form and display a confirmation message
+		$this->emitSelf('showList', 'Record has been deleted');
+	}
 
 	public function render()
 	{

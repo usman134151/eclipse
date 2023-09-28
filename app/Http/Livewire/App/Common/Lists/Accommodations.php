@@ -52,7 +52,7 @@ final class Accommodations extends PowerGridComponent
 	*/
 	public function datasource(): Builder
 	{
-		return Accommodation::query();
+		return Accommodation::query()->where('status','<',2);
 	}
 
 	/*

@@ -52,7 +52,7 @@ final class ServiceCatagories extends PowerGridComponent
 	*/
 	public function datasource(): Builder
 	{
-		return ServiceCategory::query();
+		return ServiceCategory::query()->where('status', '<', 2);
 	}
 
 	/*
