@@ -218,7 +218,9 @@ class BookingList extends Component
 				if ($this->bookingType == "Draft") {
 					$query->where(function ($g) use ($customer) {
 						$g->where('user_id', $customer->id);
-						$g->where('customer_id', $customer->id);
+						$g->orWhere('customer_id', $customer->id);
+						$g->orWhere('supervisor', $customer->id);
+
 					});
 				} else {
 					//display only of booking is associated with customer if not admin
