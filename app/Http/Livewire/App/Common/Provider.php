@@ -19,6 +19,8 @@ class Provider extends Component
 		'showProfile' => 'showProfile',
 		'showForm' => 'showForm', // show form when the parent component requests it
 		'updateRecordId' => 'updateRecordId', // update the ID of the record being edited/deleted
+		'delete' => 'deleteRecord',
+
 	];
 	protected $exportDataFile;
 
@@ -54,6 +56,15 @@ class Provider extends Component
 	public function importFile(){
 		$this->importFile=true;
 
+	}
+
+
+	public function deleteRecord()
+	{
+		// Delete the record from the database using the model
+		User::where('id', $this->recordId)->update(['status' => 2]);
+		// Emit an event to reset the form and display a confirmation message
+		$this->emitSelf('showList', 'Record has been deleted');
 	}
 
 	public function mount($showProfile, $status = 1)
