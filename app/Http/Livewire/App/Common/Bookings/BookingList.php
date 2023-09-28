@@ -3,6 +3,12 @@
 namespace App\Http\Livewire\App\Common\Bookings;
 
 use App\Models\Tenant\Booking;
+use App\Models\Tenant\BookingAvailableProvider;
+use App\Models\Tenant\BookingDepartment;
+use App\Models\Tenant\BookingIndustry;
+use App\Models\Tenant\BookingProvider;
+use App\Models\Tenant\BookingServiceCharges;
+use App\Models\Tenant\BookingServices;
 use App\Models\Tenant\SetupValue;
 use App\Models\Tenant\User;
 use Carbon\Carbon;
@@ -25,6 +31,7 @@ class BookingList extends Component
 	public  $booking_id = 0, $provider_id = null, $booking_service_id = 0;
 	public $providerPanelType = 0; //to ensure only clicked panel loads in provider-panel 
 	public $bookingNumber = '', $selectedProvider = 0;
+	public $deleteRecordId = 0;
 
 
 	//adv filter variables
@@ -39,7 +46,7 @@ class BookingList extends Component
 	protected $listeners = [
 		'showList' => 'resetForm', 'updateVal', 'showConfirmation',
 		'openAssignProvidersPanel', 'assignServiceProviders', 'setAssignmentDetails', 'showCheckInPanel',
-		'showCheckOutPanel'
+		'showCheckOutPanel', 'delete' => 'deleteBooking'
 	];
 	public $serviceTypes = [
 		'1' => ['class' => 'inperson-rate', 'postfix' => '', 'title' => 'In-Person'],
@@ -206,19 +213,30 @@ class BookingList extends Component
 			if (!in_array(10, session()->get('customerRoles'))) {
 				//if dept supervisor, then show all dept related bookings
 
-				//display only of booking is associated with customer if not admin
-				$query->where(function ($g) use ($customer, $query) {
-					$g->where('customer_id', $customer->id);
-					$g->orWhere('supervisor', $customer->id);
-					$g->orWhere('billing_manager_id','LIKE', "%".$customer->id."%");
-					// $u_dept = $customer->supervised_departments ? $customer->supervised_departments->pluck('id')->toArray() : null;
-					// dd($u_dept);
-					// if ($u_dept && count($u_dept)) {
-					// 	$query->orWhereHas('bookingDepartments', function ($q) use ($u_dept) {
-					// 		$q->whereIn('booking_departments.department_id', $u_dept);
-					// 	});
-					// }
-				});
+
+
+				if ($this->bookingType == "Draft") {
+					$query->where(function ($g) use ($customer) {
+						$g->where('user_id', $customer->id);
+						$g->orWhere('customer_id', $customer->id);
+						$g->orWhere('supervisor', $customer->id);
+
+					});
+				} else {
+					//display only of booking is associated with customer if not admin
+					$query->where(function ($g) use ($customer, $query) {
+						$g->where('customer_id', $customer->id);
+						$g->orWhere('supervisor', $customer->id);
+						$g->orWhere('billing_manager_id', 'LIKE', "%" . $customer->id . "%");
+						// $u_dept = $customer->supervised_departments ? $customer->supervised_departments->pluck('id')->toArray() : null;
+						// dd($u_dept);
+						// if ($u_dept && count($u_dept)) {
+						// 	$query->orWhereHas('bookingDepartments', function ($q) use ($u_dept) {
+						// 		$q->whereIn('booking_departments.department_id', $u_dept);
+						// 	});
+						// }
+					});
+				}
 			}
 		}
 
@@ -502,14 +520,14 @@ class BookingList extends Component
 		$this->emit('setBookingId', $booking_id);
 	}
 
-	public function rejectAssignment($booking_id){
-		Booking::where('id', $booking_id)->update(['status'=>3,'booking_status'=>2]);
+	public function rejectAssignment($booking_id)
+	{
+		Booking::where('id', $booking_id)->update(['status' => 3, 'booking_status' => 2]);
 		$this->showConfirmation('Booking has been rejected successfully!');
-
 	}
 	public function acceptAssignment($booking_id)
 	{
-		Booking::where('id',$booking_id)->update(['type' => 1,'booking_status'=>1,'status'=>1]);
+		Booking::where('id', $booking_id)->update(['type' => 1, 'booking_status' => 1, 'status' => 1]);
 		$this->showConfirmation('Booking has been accepted successfully!');
 	}
 	// START : provider panel functions
@@ -568,6 +586,36 @@ class BookingList extends Component
 
 	// END : provider panel functions
 
+	public function deleteRecord($booking_id)
+	{
+		$this->deleteRecordId = $booking_id;
+
+		// Dispatches a browser event to show a confirmation modal
+		$this->dispatchBrowserEvent('swal:confirm', [
+			'type' => 'warning',
+			'title' => 'Delete Operation',
+			'text' => 'Are you sure you want to delete this record?',
+		]);
+	}
+
+	// Delete the record with the specified ID
+	public function deleteBooking()
+	{
+		// Delete the record from the database using the model
+		$booking = Booking::where('id', $this->deleteRecordId)->first();
+		if ($booking->user_id == Auth::id() || $booking->customer_id == Auth::id()|| $booking->supervisor == Auth::id() || !$this->isCustomer) {
+			BookingProvider::where('booking_id', $this->deleteRecordId)->delete();
+			BookingServices::where('booking_id', $this->deleteRecordId)->delete();
+			BookingDepartment::where('booking_id', $this->deleteRecordId)->delete();
+			BookingIndustry::where('booking_id', $this->deleteRecordId)->delete();
+			BookingServiceCharges::where('booking_id', $this->deleteRecordId)->delete();
+			$booking->delete();
+		}
+
+		// Emit an event to reset the form and display a confirmation message
+		$this->emitSelf('showList', 'Record has been deleted');
+	}
+
 	public function showConfirmation($message = "")
 	{
 		if ($message) {
@@ -579,6 +627,4 @@ class BookingList extends Component
 			]);
 		}
 	}
-
-	
 }
