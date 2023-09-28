@@ -350,9 +350,9 @@ class AssignProviders extends Component
             })
 
                 ->get()
+            ->pluck('provider_id')
                 ->toArray();
 
-            // ->pluck('provider_id')
         } else {
             $booking_service = $this->booking->booking_services->where('services', $this->service_id)->first();
 
