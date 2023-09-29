@@ -37,6 +37,7 @@ class ForgotPasswordController extends Controller
 	{
 		if ($request->isMethod('post'))
 		{
+			
 			$request->validate([
 				'email' => 'required|email|exists:users',
 			]);
@@ -48,11 +49,12 @@ class ForgotPasswordController extends Controller
 				'token' => $token,
 				'created_at' => Carbon::now()
 			]);
-
-			// Mail::send('tenant.emails.forgot_password', ['token' => $token], function($message) use($request){
-			// 	$message->to($request->email);
-			// 	$message->subject('Reset Password');
-			// });
+		    $user=User::where('email',$request->email)->first();
+			
+			Mail::send('emails.forgot_password', ['token' => $token, 'data' => $user], function($message) use($request){
+			 	$message->to($request->email);
+			 	$message->subject('Reset Password');
+			 });
 			return redirect('login')->with('message', 'We have e-mailed your password reset link!');
 		}
 		return view('tenant.auth.forgot-password', ['title' => 'Forget Password']);
@@ -71,9 +73,9 @@ class ForgotPasswordController extends Controller
 				'required',
 				'string',
 				'min:8',
-				'regex:/[A-Z]/',
-				'regex:/[0-9]/',
-				'regex:/[!@#$%^&*(),.?":{}|<>]/',
+				//'regex:/[A-Z]/',
+				//'regex:/[0-9]/',
+				//'regex:/[!@#$%^&*(),.?":{}|<>]/',
 				'confirmed',
 			],
 			'password_confirmation' => 'required'

@@ -461,3 +461,5 @@ if (!function_exists('numberFormat')) {
         return '$ ' . number_format((float)$foo, 2, '.', ',');
     }
 }
+
+
