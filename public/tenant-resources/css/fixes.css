@@ -69,4 +69,10 @@ li.page-item {
     color:#fff !important;
 }
 
+.time {
+    .hours,
+    .mins {
+        width: 3rem;
+    }
+}
 /* } */
