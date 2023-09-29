@@ -323,7 +323,7 @@
                                                                                 </use>
                                                                             </svg>
                                                                             {{-- End of update by Shanila --}}
-                                                                            {{ $statusValues[$booking['status']]['title'] }}
+                                                                            @if($code!='none') {{str_replace("Provider ","",$code)}} @else {{  $statusValues[$booking['status']]['title'] }} @endif
                                                                         </div>
                                                                     </td>
                                                                     <td class="{{ $cssClass }}"
