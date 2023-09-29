@@ -393,13 +393,15 @@
                                                             // Perform the search using the filter method
 
                                                             $serviceIdToFind = $services[$index]['services'];
+                                                           
                                                             $foundService = $accommodationsCollection
                                                                 ->flatMap(fn($item) => $item['services'])
                                                                 ->firstWhere('id', $serviceIdToFind);
+                                                            
     
                                                        @endphp
                                                       @foreach($serviceTypes as $key=>$serviceType)
-                                                        @if(in_array($key,$foundService['service_type']))
+                                                        @if(!is_null($foundService) && in_array($key,$foundService['service_type']))
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio"
                                                                 name="serviceType-{{$serviceType['title']}}-{{$index}}" id="serviceType-{{$serviceType['title']}}-{{$index}}" wire:model="services.{{$index}}.service_types" value="{{$key}}" wire:click="updateServiceDefaults({{$index}},{{$key}})">
