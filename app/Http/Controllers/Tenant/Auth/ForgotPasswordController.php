@@ -54,6 +54,7 @@ class ForgotPasswordController extends Controller
 			Mail::send('emails.forgot_password', ['token' => $token, 'data' => $user], function($message) use($request){
 			 	$message->to($request->email);
 			 	$message->subject('Eclipse Scheduling Portal - Password Reset');
+				$message->from('noreply@eclipse.com', 'Eclipse Scheduling');
 			 });
 			return redirect('login')->with('message', 'We have e-mailed your password reset link!');
 		}
