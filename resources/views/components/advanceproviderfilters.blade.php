@@ -2,29 +2,25 @@
 'type'=>'',
 'tags'=>[],
 'providers'=>[],
+'setupValues'=>[]
 ])
 <div class="row" wire:ignore>
     @if($type=='assignProvider')
         <div class="col-lg-6 mb-4">
             <label class="form-label">Accommodation</label>
-            {!! App\Helpers\SetupHelper::createDropDown('Accommodation', 'id',
-            'name', 'status', 1, 'name', true, 'accommodations',
-            '','accommodation_filter') !!}
+            {!! $setupValues['accommodations']['rendered'] !!}
+
         </div>
     @endif
     <div class="{{ $type=='assignProvider'?'col-lg-6':'col-lg-5' }} ps-lg-3 mb-4">
         <label class="form-label" for="service">Filter by Service</label>
-        {!! App\Helpers\SetupHelper::createDropDown('ServiceCategory', 'id',
-        'name', 'service_status', 1, 'name', true, 'services',
-        '','Service_filter') !!}
+        {!! $setupValues['services']['rendered'] !!}
+
     </div>
     <div class="{{ $type=='assignProvider'?'col-lg-6':'col-lg-5' }} pe-lg-3 mb-4">
         <label class="form-label">Specialization</label>
-        {{-- updated by shanila to add multiselectdropdown --}}
-        {!! App\Helpers\SetupHelper::createDropDown('Specialization', 'id',
-        'name', 'status', 1, 'name', true, 'specializations',
-        '','specialization_search_filter') !!}
-        {{--ended updated--}}
+      
+        {!! $setupValues['specializations']['rendered'] !!}
     </div>
     
     @if($type=='assignProvider')
@@ -68,10 +64,7 @@
             @if($type!='assignProvider')
                 <div class="col-lg-5 ps-lg-3 mb-4">
                     <label class="form-label">Service Type</label>
-                    {{-- updated by shanila to add multiselectdropdown --}}
-                    {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
-                    'setup_value_label', 'setup_id', '5', 'id',true,"service_type_ids",'form-check ') !!}
-                    {{--ended updated--}}
+                    {!! $setupValues['service_type_ids']['rendered'] !!}
                 </div>
                 <div class="col-lg-5 ps-lg-3 mb-4">
                     <label class="form-label" for="providers_selected">Provider</label>
@@ -159,9 +152,7 @@
             @endif
             <div class="{{ $type=='assignProvider'?'col-lg-4':'col-lg-5' }} mb-4">
                 <label class="form-label">Gender</label>
-                {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
-                'setup_value_label', 'setup_id', 2, 'setup_value_label', false, 'gender',
-                '','gender') !!}
+                {!! $setupValues['gender']['rendered'] !!}
             </div>
             <div class="{{ $type=='assignProvider'?'col-lg-4':'col-lg-5' }} mb-4">
                 <label class="form-label">Ethnicity</label>
@@ -249,11 +240,7 @@
 
 @if($type=='assignProvider')  
         <div class="col-lg-12 d-flex justify-content-start gap-2 mb-4">
-        <div class="mb-4 mb-lg-0">
-                <button wire:click="refreshProviders" type="button" class="btn btn-xs btn-outline-dark rounded">
-                    Apply Filters
-                </button>
-            </div>
+
             <div class="mb-4 mb-lg-0">
                 <button wire:click="resetFilters" type="button" class="btn btn-xs btn-outline-dark rounded">
                     Clear all

@@ -31,7 +31,7 @@
              <div id="collapseFilters" class="accordion-collapse collapse" aria-labelledby="headingFilters"
                  data-bs-parent="#accordionFilters">
                  <div wire:ignore class="accordion-body">
-                     <x-advanceproviderfilters type="assignProvider" :providers="$providers" :tags="$tags" />
+                     <x-advanceproviderfilters type="assignProvider" :providers="$providers" :tags="$tags" :setupValues="$setupValues" />
                  </div>
              </div>
          </div>
