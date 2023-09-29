@@ -131,10 +131,10 @@ class CheckOut extends Component
     {
         $rules = [
             'checkout.actual_end_date' => 'required|date|after:checked_in_details.actual_start_date',
-            'checkout.actual_end_hour' => 'required|integer|between:1,23',
-            'checkout.actual_end_min' => 'required|integer|between:1,59',
-            'checkout.actual_start_hour' => 'required|integer|between:1,23',
-            'checkout.actual_start_min' => 'required|integer|between:1,59'
+            'checkout.actual_end_hour' => 'required|numeric|between:1,23',
+            'checkout.actual_end_min' => 'required|numeric|between:1,59',
+            'checkout.actual_start_hour' => 'required|numeric|between:1,23',
+            'checkout.actual_start_min' => 'required|numeric|between:1,59'
         ];
         if ($this->checkout['confirmation_upload_type'] == "print_and_sign")
             $rules['upload_timesheet'] = 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv';

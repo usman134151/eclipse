@@ -306,7 +306,8 @@
                         </li>
                     </ul>
                 </li>
-            @elseif(in_array(5, session()->get('customerRoles')))
+            @else
+            {{-- if(in_array(5, session()->get('customerRoles'))||in_array(9, session()->get('customerRoles'))) --}}
                 {{-- Supervisor --}}
                 <li class="nav-item has-sub">
                     <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
@@ -326,6 +327,7 @@
                                 <span class="menu-item">My Profile </span>
                             </a>
                         </li>
+                        @if(in_array(5, session()->get('customerRoles')))
                         <li role="menuitem" class="nav-item">
                             <a class="nav-link"
                                 href="/customer/department-profile/{{ encrypt(Auth()->user()->company_name) }}">
@@ -336,6 +338,7 @@
                                 <span class="menu-item">Department Profile</span>
                             </a>
                         </li>
+                        @endif
                         <li role="menuitem" class="nav-item" id="team-members">
                             <a class="nav-link" href="/customer/team-members">
                                 <svg aria-label="Add Team Profile" width="19" height="20" viewBox="0 0 19 20"
@@ -345,6 +348,8 @@
                                 <span class="menu-item">Team Members</span>
                             </a>
                         </li>
+                        @if(in_array(5, session()->get('customerRoles')))
+
                         <li role="menuitem" class="nav-item" id="add-team">
                             <a class="nav-link" href="/customer/add-team">
                                 <svg aria-label="Add Team Profile" width="19" height="20" viewBox="0 0 19 20"
@@ -354,9 +359,10 @@
                                 <span class="menu-item">Add Team Members</span>
                             </a>
                         </li>
+                        @endif
                     </ul>
                 </li>
-            @else
+            {{-- @else
                 <li role="menuitem" class="nav-item" id="myprofile">
                     <a class="nav-link" href="/customer/myprofile">
                         <svg aria-label="My Profile" class="fill-none" width="19" height="21"
@@ -365,7 +371,7 @@
                         </svg>
                         <span class="menu-item">My Profile </span>
                     </a>
-                </li>
+                </li> --}}
             @endif
             <li class="nav-item" id="system-logs">
                 <a href="/customer/system-logs">
