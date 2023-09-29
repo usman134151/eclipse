@@ -309,13 +309,24 @@
                                                      </select>
                                                  </div>
                                              </div>
+                                                
                                            
                                          </div> 
                                          <div class="col-md-4">
                                              <label for="average-rate" class="form-label-sm">Average Rate</label>
-                                             <input type="number" id="average-rate" name=""
-                                                 class="form-control form-control-sm w-25%" placeholder="$00:00" wire:blur="updateTotal({{$index}})"  wire:model.lazy="providersPayment.{{$index}}.override_price">
+                                             <input type="" id="average-rate" name="average-rate"
+                                                 class="form-control form-control-sm w-25%" placeholder="$00:00" 
+                                                 wire:blur="updateTotal({{$index}})"
+                                                  wire:model.lazy="providersPayment.{{$index}}.override_price">
+                                                    @error('providersPayment.'.$index.'.override_price')
+                                                                <span class="d-inline invalid-feedback">
+                                                                    {{ $message }}
+                                                                </span>
+                                                            @enderror   
+                                           
                                          </div>
+                                         
+                                         
                                      </div>
                                       <div class="d-grid grid-cols-2 gap-3 mb-3">
                                          <div>

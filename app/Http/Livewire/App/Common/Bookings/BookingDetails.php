@@ -16,7 +16,7 @@ use App\Models\Tenant\User;
 class BookingDetails extends Component
 {
 	public $gender, $service_id = 0, $provider_id = 0, $form_id = 0;
-	public $ethnicity, $booking_id = 0, $booking_services, $data, $status;
+	public $ethnicity, $booking_id = 0, $booking_services, $data, $status, $isCustomer=false;
 
 	public $component = 'booking-details';
 	protected $listeners = [
@@ -60,6 +60,8 @@ class BookingDetails extends Component
 			$this->booking = new Booking;
 
 		$this->fetchData();
+		if(session()->get('isCustomer'))
+			$this->isCustomer = true;
 	}
 
 	function fetchData()

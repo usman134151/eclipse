@@ -1,77 +1,78 @@
   <div>
-    
-      <div class="between-section-segment-spacing">
-          <div class="d-lg-flex align-items-center justify-content-between header-row">
-              <h2 class="mb-lg-0">Service {{ $index }} Assigned Providers </h2>
-              <div class="d-flex flex-md-row flex-column gap-3">
-                  @if (!$isProviderPanel)
-                      <a class="btn btn-has-icon btn-outline-dark rounded"
-                          wire:click="$emit('openAssignProvidersPanel',{{ $booking_id }},{{ $service_id }})"
-                          @click="assignProvider = true" href="javascript:refreshSelectsEvent()">
-                          <svg aria-label="Assign Providers" vwidth="20" height="20" viewBox="0 0 20 20">
-                              <use xlink:href="/css/common-icons.svg#assign-providers">
-                              </use>
-                          </svg>
-                          Assign Providers
-                      </a>
-                  @endif
 
-                  {{-- <a href="#" class="btn btn-has-icon btn-primary rounded" data-bs-toggle="modal"
+      <div class="between-section-segment-spacing">
+          @if (!session()->get('isCustomer'))
+              <div class="d-lg-flex align-items-center justify-content-between header-row">
+                  <h2 class="mb-lg-0">Service {{ $index }} Assigned Providers </h2>
+                  <div class="d-flex flex-md-row flex-column gap-3">
+                      @if (!$isProviderPanel)
+                          <a class="btn btn-has-icon btn-outline-dark rounded"
+                              wire:click="$emit('openAssignProvidersPanel',{{ $booking_id }},{{ $service_id }})"
+                              @click="assignProvider = true" href="javascript:refreshSelectsEvent()">
+                              <svg aria-label="Assign Providers" vwidth="20" height="20" viewBox="0 0 20 20">
+                                  <use xlink:href="/css/common-icons.svg#assign-providers">
+                                  </use>
+                              </svg>
+                              Assign Providers
+                          </a>
+                      @endif
+
+                      {{-- <a href="#" class="btn btn-has-icon btn-primary rounded" data-bs-toggle="modal"
                       data-bs-target="#AssignproviderTeamModal">
                       <svg aria-label=" Manage Providers" width="18" height="18" viewBox="0 0 18 18">
                           <use xlink:href="/css/common-icons.svg#manage-icon"></use>
                       </svg>
                       Manage Providers
                   </a> --}}
-                  @if (!$limitReached && !$isProviderPanel)
-                      <a href="#" class="btn btn-has-icon btn-primary rounded"
-                          wire:click="$emit('openAssignProvidersPanel',{{ $booking_id }},{{ $service_id }},2)"
-                          @click="assignProvider = true" href="javascript:refreshSelectsEvent()">
-                          {{-- Updated by Shanila to Add svg icon --}}
-                          <svg aria-label="Invite Providers" width="18" height="18" viewBox="0 0 18 18"
-                              fill="none">
-                              <use xlink:href="/css/common-icons.svg#invite-icon"></use>
-                          </svg>
-                          {{-- End of update by Shanila --}}
-                          Invite Providers
-                      </a>
-                      @if ($inv_exists)
+                      @if (!$limitReached && !$isProviderPanel)
                           <a href="#" class="btn btn-has-icon btn-primary rounded"
-                              wire:click="$emit('openAssignProvidersPanel',{{ $booking_id }},{{ $service_id }},3)"
+                              wire:click="$emit('openAssignProvidersPanel',{{ $booking_id }},{{ $service_id }},2)"
                               @click="assignProvider = true" href="javascript:refreshSelectsEvent()">
-                              <i class="fa fa-envelope-open-o"></i>
-                              View Response
+                              {{-- Updated by Shanila to Add svg icon --}}
+                              <svg aria-label="Invite Providers" width="18" height="18" viewBox="0 0 18 18"
+                                  fill="none">
+                                  <use xlink:href="/css/common-icons.svg#invite-icon"></use>
+                              </svg>
+                              {{-- End of update by Shanila --}}
+                              Invite Providers
                           </a>
+                          @if ($inv_exists)
+                              <a href="#" class="btn btn-has-icon btn-primary rounded"
+                                  wire:click="$emit('openAssignProvidersPanel',{{ $booking_id }},{{ $service_id }},3)"
+                                  @click="assignProvider = true" href="javascript:refreshSelectsEvent()">
+                                  <i class="fa fa-envelope-open-o"></i>
+                                  View Response
+                              </a>
+                          @endif
                       @endif
-                  @endif
 
-                  <a href="#" class="btn btn-has-icon btn-primary rounded">
-                      <svg aria-label="Team Chat" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                          <use xlink:href="/css/common-icons.svg#message-icon">
-                          </use>
-                      </svg>
-                      Team Chat
+                      <a href="#" class="btn btn-has-icon btn-primary rounded">
+                          <svg aria-label="Team Chat" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                              <use xlink:href="/css/common-icons.svg#message-icon">
+                              </use>
+                          </svg>
+                          Team Chat
 
-                  </a>
+                      </a>
 
+                  </div>
               </div>
-          </div>
-          <div class="mb-4 {{ $isProviderPanel ? 'hidden' : '' }}">
-              <button class="btn btn-outline-primary btn-has-icon btn-sm dropdown-toggle h-100" type="button"
-                  data-bs-toggle="dropdown" aria-expanded="false">
-                  <span>
+              <div class="mb-4 {{ $isProviderPanel ? 'hidden' : '' }}">
+                  <button class="btn btn-outline-primary btn-has-icon btn-sm dropdown-toggle h-100" type="button"
+                      data-bs-toggle="dropdown" aria-expanded="false">
+                      <span>
 
-                      <svg aria-label="Export " width="23" height="26" viewBox="0 0 23 26">
-                          <use xlink:href="/css/common-icons.svg#document-dropdown">
-                          </use>
-                      </svg>
+                          <svg aria-label="Export " width="23" height="26" viewBox="0 0 23 26">
+                              <use xlink:href="/css/common-icons.svg#document-dropdown">
+                              </use>
+                          </svg>
 
-                  </span>
-              </button>
-          </div>
-          <div class="d-flex justify-content-between mb-2 {{ $isProviderPanel ? 'hidden' : '' }}">
-              <div class="d-inline-flex align-items-center gap-4">
-                  {{-- <div class="d-inline-flex align-items-center gap-4">
+                      </span>
+                  </button>
+              </div>
+              <div class="d-flex justify-content-between mb-2 {{ $isProviderPanel ? 'hidden' : '' }}">
+                  <div class="d-inline-flex align-items-center gap-4">
+                      {{-- <div class="d-inline-flex align-items-center gap-4">
                             <label for="show_records" class="form-label-sm mb-0">Show</label>
                             <select class="form-select form-select-sm" id="show_records">
                                 <option>10</option>
@@ -80,25 +81,26 @@
                                 <option>25</option>
                             </select>
                         </div> --}}
-                  <div class="d-flex gap-4 align-items-center">
-                      <div class="form-check form-switch mb-lg-0">
-                          <input class="form-check-input" type="checkbox" role="switch" id="autoNotify" checked
-                              aria-label="Auto-notify Toggle">
-                          <label class="form-check-label" for="autoNotify">Auto-notify</label>
-                      </div>
-                      <div class="form-check form-switch mb-lg-0">
-                          <input class="form-check-input" type="checkbox" role="switch" id="autoNotify"
-                              aria-label="Auto-notify Toggle">
-                          <label class="form-check-label" for="autoNotify">Auto-Assign</label>
+                      <div class="d-flex gap-4 align-items-center">
+                          <div class="form-check form-switch mb-lg-0">
+                              <input class="form-check-input" type="checkbox" role="switch" id="autoNotify" checked
+                                  aria-label="Auto-notify Toggle">
+                              <label class="form-check-label" for="autoNotify">Auto-notify</label>
+                          </div>
+                          <div class="form-check form-switch mb-lg-0">
+                              <input class="form-check-input" type="checkbox" role="switch" id="autoNotify"
+                                  aria-label="Auto-notify Toggle">
+                              <label class="form-check-label" for="autoNotify">Auto-Assign</label>
+                          </div>
                       </div>
                   </div>
+                  <div class="d-inline-flex align-items-center gap-4">
+                      <label for="search-coulmn" class="form-label-sm mb-0">Search</label>
+                      <input type="search" class="form-control form-control-sm" id="search-coulmn" name="search"
+                          placeholder="Search here" autocomplete="on" />
+                  </div>
               </div>
-              <div class="d-inline-flex align-items-center gap-4">
-                  <label for="search-coulmn" class="form-label-sm mb-0">Search</label>
-                  <input type="search" class="form-control form-control-sm" id="search-coulmn" name="search"
-                      placeholder="Search here" autocomplete="on" />
-              </div>
-          </div>
+          @endif
           <!-- Hoverable rows start -->
           <div class="row" id="table-hover-row">
               <div class="col-12">
@@ -161,7 +163,7 @@
                                               @endif
                                               <td class="align-middle">
                                                   <div class="d-flex actions justify-content-center">
-                                                      @if (!$isProviderPanel)
+                                                      @if (!$isProviderPanel && !session()->get('isCustomer'))
                                                           <a href="#" title="Revoke" aria-label="Revoke"
                                                               data-bs-toggle="modal" data-bs-target="#UnassignModal"
                                                               wire:click="$emit('openUnassignModal','{{ $provider['booking_service_id'] ? $provider['booking_service_id'] : 'null' }}',{{ $provider['provider_id'] }},{{ $provider['booking_id'] }})"
@@ -173,7 +175,37 @@
                                                               </svg>
 
                                                           </a>
-                                                          <a href="{{ route('tenant.provider-profile', ['providerID' => $provider['provider_id']]) }}"
+                                                           <a href="#" title="Feedback"
+                                                                  aria-label="Feedback"
+                                                                  class="btn btn-sm btn-secondary rounded btn-hs-icon">
+
+                                                                  <svg aria-label="Rating" width="22"
+                                                                      height="22" viewBox="0 0 22 22"
+                                                                      fill="none">
+                                                                      <use
+                                                                          xlink:href="/css/common-icons.svg#rating-icon">
+                                                                      </use>
+                                                                  </svg>
+
+                                                              </a>
+                                                          
+                                                      @endif
+                                                      @if (!session()->get('isCustomer'))
+                                                          <a href="#" title="Chat" aria-label="Chat"
+                                                              class="btn btn-sm btn-secondary rounded btn-hs-icon">
+
+                                                              <svg aria-label="Chat" width="18" height="18"
+                                                                  viewBox="0 0 18 18"
+                                                                  xmlns="http://www.w3.org/2000/svg">
+                                                                  <use xlink:href="/css/common-icons.svg#chat-icon">
+                                                                  </use>
+                                                              </svg>
+
+                                                          </a>
+                                                      @endif
+
+                                                          @if (!$isProviderPanel)
+                                                             <a href="{{ route('tenant.provider-profile', ['providerID' => $provider['provider_id']]) }}"
                                                               target="_blank" title="View" aria-label="View"
                                                               class="btn btn-sm btn-secondary rounded btn-hs-icon">
 
@@ -184,42 +216,20 @@
                                                               </svg>
 
                                                           </a>
-                                                      @endif
-                                                      <a href="#" title="Chat" aria-label="Chat"
-                                                          class="btn btn-sm btn-secondary rounded btn-hs-icon">
-
-                                                          <svg aria-label="Chat" width="18" height="18"
-                                                              viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
-                                                              <use xlink:href="/css/common-icons.svg#chat-icon">
-                                                              </use>
-                                                          </svg>
-
-                                                      </a>
-                                                      @if (!$isProviderPanel)
-                                                          <a href="#" title="Feedback" aria-label="Feedback"
-                                                              class="btn btn-sm btn-secondary rounded btn-hs-icon">
-
-                                                              <svg aria-label="Rating" width="22" height="22"
-                                                                  viewBox="0 0 22 22" fill="none">
-                                                                  <use xlink:href="/css/common-icons.svg#rating-icon">
-                                                                  </use>
-                                                              </svg>
-
-                                                          </a>
-                                                      @endif
+                                                          @endif
                                                   </div>
                                               </td>
                                           </tr>
                                       @endforeach
                                   @else
                                       <tr>
-                                          <td colSpan="{{$isProviderPanel ? '3' : '7'}}">
+                                          <td colSpan="{{ $isProviderPanel ? '3' : '7' }}">
                                               <small>
                                                   No providers assigned to this service.
                                               </small>
                                           </td>
                                       </tr>
-                                    @endif
+                                  @endif
                               </tbody>
                           </table>
                       </div>
