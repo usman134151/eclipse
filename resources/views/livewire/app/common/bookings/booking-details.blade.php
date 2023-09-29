@@ -76,144 +76,150 @@
                     <div class="tab-content">
                         <div class="tab-pane fade {{ $component == 'booking-details' ? 'active show' : '' }}"
                             id="booking-details" role="tabpanel" aria-labelledby="booking-details-tab" tabindex="0">
-                            <div class="p-4 border border-dark rounded bg-lighter between-section-segment-spacing">
-                                <div class="row">
-                                    <div class="col-lg col-12 mb-4">
-                                        <div class="mb-4">
-                                            <label class="form-label text-primary">Booking Title</label>
-                                            <div class="font-family-tertiary value">
-                                                {{ $booking['booking_title'] ? $booking['booking_title'] : 'N/A' }}
+
+                            @if (session()->get('isCustomer') == null && session()->get('isProvider') == null)
+                                <div class="p-4 border border-dark rounded bg-lighter between-section-segment-spacing">
+                                    <div class="row">
+                                        <div class="col-lg col-12 mb-4">
+                                            <div class="mb-4">
+                                                <label class="form-label text-primary">Booking Title</label>
+                                                <div class="font-family-tertiary value">
+                                                    {{ $booking['booking_title'] ? $booking['booking_title'] : 'N/A' }}
+                                                </div>
                                             </div>
-                                        </div>
-                                        <small>(coming soon)</small>
-
-                                        <div>
-                                            <label class="form-label text-primary">Days Pending</label>
-                                            <div class="font-family-tertiary value">05 Days</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg col-12 mb-4">
-                                        <small>(coming soon)</small>
-
-                                        <div class="mb-4">
-                                            <label class="form-label text-primary">Days Until Service</label>
-                                            <div class="font-family-tertiary value">10 Days</div>
-                                        </div>
-
-                                        <div class="d-flex gap-3 align-items-center">
-                                            <label class="col-form-label text-primary mb-lg-0" for="status-column">
-                                                Status:
-                                            </label>
+                                            <small>(coming soon)</small>
 
                                             <div>
-                                                <select class="form-select form-select-sm" id="status"
-                                                    name="status" wire:model.defer="status">
-                                                    <option value="pending">Pending</option>
-                                                    <option value='assigned'>Assigned</option>
-                                                    <option value='unassigned'>Un-assigned</option>
-
-                                                </select>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="col-lg col-12 mb-4">
-                                        <div class="mb-4">
-                                            <label class="form-label text-primary">Total Provider Count</label>
-                                            <div class="d-flex flex-column gap-1">
-                                                <div class="font-family-tertiary value">
-                                                    Total Assigned: {{ number_format($data['assigned_providers']) }}
-                                                </div>
-                                                <div class="font-family-tertiary value">
-                                                    Total Requested: {{ number_format($data['total_providers']) }}
-                                                </div>
+                                                <label class="form-label text-primary">Days Pending</label>
+                                                <div class="font-family-tertiary value">05 Days</div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg col-12 mb-4">
-                                        <div class="mb-4">
+                                        <div class="col-lg col-12 mb-4">
                                             <small>(coming soon)</small>
-                                            <label class="form-label text-primary">Pending Details
-                                            </label>
-                                            <div class="d-flex flex-column gap-1">
 
-                                                <div class="font-family-tertiary value">
-                                                    Requests from Users
+                                            <div class="mb-4">
+                                                <label class="form-label text-primary">Days Until Service</label>
+                                                <div class="font-family-tertiary value">10 Days</div>
+                                            </div>
+
+                                            <div class="d-flex gap-3 align-items-center">
+                                                <label class="col-form-label text-primary mb-lg-0"
+                                                    for="status-column">
+                                                    Status:
+                                                </label>
+
+                                                <div>
+                                                    <select class="form-select form-select-sm" id="status"
+                                                        name="status" wire:model.defer="status">
+                                                        <option value="pending">Pending</option>
+                                                        <option value='assigned'>Assigned</option>
+                                                        <option value='unassigned'>Un-assigned</option>
+
+                                                    </select>
                                                 </div>
-                                                <div class="font-family-tertiary value">
-                                                    Attachments Missing
+
+                                            </div>
+                                        </div>
+                                        <div class="col-lg col-12 mb-4">
+                                            <div class="mb-4">
+                                                <label class="form-label text-primary">Total Provider Count</label>
+                                                <div class="d-flex flex-column gap-1">
+                                                    <div class="font-family-tertiary value">
+                                                        Total Assigned: {{ number_format($data['assigned_providers']) }}
+                                                    </div>
+                                                    <div class="font-family-tertiary value">
+                                                        Total Requested: {{ number_format($data['total_providers']) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg col-12 mb-4">
+                                            <div class="mb-4">
+                                                <small>(coming soon)</small>
+                                                <label class="form-label text-primary">Pending Details
+                                                </label>
+                                                <div class="d-flex flex-column gap-1">
+
+                                                    <div class="font-family-tertiary value">
+                                                        Requests from Users
+                                                    </div>
+                                                    <div class="font-family-tertiary value">
+                                                        Attachments Missing
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg col-12 mb-4">
+                                            <div class="row mb-3">
+                                                <div class="col-lg-5">
+                                                    <label class="form-label-sm">
+                                                        Broadcast
+                                                    </label>
+                                                </div>
+                                                <div class="col-lg-7">
+                                                    <div class="form-check form-switch form-switch-column">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            role="switch" id="AutoNotifyBroadcast"
+                                                            aria-label="Auto-notify Toggle">
+                                                        <label class="form-check-label" for="AutoNotifyBroadcast">
+                                                            Manual-assign
+                                                        </label>
+                                                        <label class="form-check-label" for="AutoNotifyBroadcast">
+                                                            Auto-notify
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-5">
+                                                    <label class="form-label-sm">
+                                                        Assign
+                                                    </label>
+                                                </div>
+                                                <div class="col-lg-7">
+                                                    <div class="form-check form-switch form-switch-column">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            role="switch" id="AutoNotifyAssign" checked
+                                                            aria-label="Auto-notify Toggle">
+                                                        <label class="form-check-label" for="AutoNotifyAssign">
+                                                            Manual-assign
+                                                        </label>
+                                                        <label class="form-check-label" for="AutoNotifyAssign">
+                                                            Auto-notify
+                                                        </label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg col-12 mb-4">
-                                        <div class="row mb-3">
-                                            <div class="col-lg-5">
-                                                <label class="form-label-sm">
-                                                    Broadcast
-                                                </label>
-                                            </div>
-                                            <div class="col-lg-7">
-                                                <div class="form-check form-switch form-switch-column">
-                                                    <input class="form-check-input" type="checkbox" role="switch"
-                                                        id="AutoNotifyBroadcast" aria-label="Auto-notify Toggle">
-                                                    <label class="form-check-label" for="AutoNotifyBroadcast">
-                                                        Manual-assign
-                                                    </label>
-                                                    <label class="form-check-label" for="AutoNotifyBroadcast">
-                                                        Auto-notify
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-5">
-                                                <label class="form-label-sm">
-                                                    Assign
-                                                </label>
-                                            </div>
-                                            <div class="col-lg-7">
-                                                <div class="form-check form-switch form-switch-column">
-                                                    <input class="form-check-input" type="checkbox" role="switch"
-                                                        id="AutoNotifyAssign" checked aria-label="Auto-notify Toggle">
-                                                    <label class="form-check-label" for="AutoNotifyAssign">
-                                                        Manual-assign
-                                                    </label>
-                                                    <label class="form-check-label" for="AutoNotifyAssign">
-                                                        Auto-notify
-                                                    </label>
-                                                </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="d-flex flex-lg-row flex-column gap-3 justify-content-center">
+                                                <a href="#" class="btn btn-has-icon btn-primary rounded"
+                                                    data-bs-toggle="modal" data-bs-target="#ProviderMessageModal">
+                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                    <svg aria-label="Message Providers" width="18" height="18"
+                                                        viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                                                        <use xlink:href="/css/common-icons.svg#message-icon"></use>
+                                                    </svg>
+                                                    {{-- End of update by Shanila --}}
+                                                    Message Providers
+                                                </a>
+                                                <a href="#" class="btn btn-has-icon btn-primary rounded"
+                                                    data-bs-toggle="modal" data-bs-target="#adminStaffModal">
+                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                    <svg aria-label="View Assigned Admin-staff" width="18"
+                                                        height="18" viewBox="0 0 18 18" fill="none">
+                                                        <use xlink:href="/css/common-icons.svg#invite-icon"></use>
+                                                    </svg>
+                                                    {{-- End of update by Shanila --}}
+                                                    View Assigned Admin-staff
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="d-flex flex-lg-row flex-column gap-3 justify-content-center">
-                                            <a href="#" class="btn btn-has-icon btn-primary rounded"
-                                                data-bs-toggle="modal" data-bs-target="#ProviderMessageModal">
-                                                {{-- Updated by Shanila to Add svg icon --}}
-                                                <svg aria-label="Message Providers" width="18" height="18"
-                                                    viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
-                                                    <use xlink:href="/css/common-icons.svg#message-icon"></use>
-                                                </svg>
-                                                {{-- End of update by Shanila --}}
-                                                Message Providers
-                                            </a>
-                                            <a href="#" class="btn btn-has-icon btn-primary rounded"
-                                                data-bs-toggle="modal" data-bs-target="#adminStaffModal">
-                                                {{-- Updated by Shanila to Add svg icon --}}
-                                                <svg aria-label="View Assigned Admin-staff" width="18"
-                                                    height="18" viewBox="0 0 18 18" fill="none">
-                                                    <use xlink:href="/css/common-icons.svg#invite-icon"></use>
-                                                </svg>
-                                                {{-- End of update by Shanila --}}
-                                                View Assigned Admin-staff
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endif
                             <div>
                                 <div class="row between-section-segment-spacing">
                                     <div class="col-lg-12">
@@ -225,65 +231,68 @@
                                                     <use xlink:href="/css/common-icons.svg#message-icon"></use>
                                                 </svg>
                                                 {{-- End of update by Shanila --}}
-                                                Message Requester
+                                                Message Coordinator
                                             </a>
-                                            <a href="#" class="btn btn-has-icon btn-outline-dark rounded">
-                                                {{-- Updated by Shanila to Add svg icon --}}
-                                                <svg aria-label="Duplicate" width="19" height="19"
-                                                    viewBox="0 0 19 19">
-                                                    <use xlink:href="/css/common-icons.svg#duplicate"></use>
-                                                </svg>
-                                                {{-- End of update by Shanila --}}
-                                                Duplicate
-                                            </a>
-                                            <a href="#" class="btn btn-has-icon btn-primary rounded"
-                                                @click="rescheduleBooking = true">
-                                                {{-- Updated by Shanila to Add svg icon --}}
-                                                <svg aria-label="Reschedule" width="20" height="20"
-                                                    viewBox="0 0 20 20">
-                                                    <use xlink:href="/css/common-icons.svg#datefield-icon-white"></use>
-                                                </svg>
-                                                {{-- End of update by Shanila --}}
-                                                Reschedule
-                                            </a>
-                                            <a href="{{ route('tenant.booking-edit', ['bookingID' => encrypt($booking['id'])]) }}"
-                                                class="btn btn-has-icon btn-primary rounded">
-                                                {{-- Updated by Shanila to Add
+                                            @if (!$isCustomer || ($isCustomer && (Auth::id() == $booking['customer_id'] || Auth::id() == $booking['supervisor'] || session()->get('companyAdmin'))))
+                                                <a href="#" class="btn btn-has-icon btn-outline-dark rounded">
+                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                    <svg aria-label="Duplicate" width="19" height="19"
+                                                        viewBox="0 0 19 19">
+                                                        <use xlink:href="/css/common-icons.svg#duplicate"></use>
+                                                    </svg>
+                                                    {{-- End of update by Shanila --}}
+                                                    Duplicate
+                                                </a>
+                                                <a href="#" class="btn btn-has-icon btn-primary rounded"
+                                                    @click="rescheduleBooking = true">
+                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                    <svg aria-label="Reschedule" width="20" height="20"
+                                                        viewBox="0 0 20 20">
+                                                        <use xlink:href="/css/common-icons.svg#datefield-icon-white">
+                                                        </use>
+                                                    </svg>
+                                                    {{-- End of update by Shanila --}}
+                                                    Reschedule
+                                                </a>
+                                                <a href="{{ route('tenant.booking-edit', ['bookingID' => encrypt($booking['id'])]) }}"
+                                                    class="btn btn-has-icon btn-primary rounded">
+                                                    {{-- Updated by Shanila to Add
                                             svg icon --}}
-                                                <svg aria-label="Edit" width="20" height="20"
-                                                    viewBox="0 0 20 20">
-                                                    <use xlink:href="/css/common-icons.svg#pencil-white">
-                                                    </use>
-                                                </svg>
-                                                {{-- End of update by Shanila
+                                                    <svg aria-label="Edit" width="20" height="20"
+                                                        viewBox="0 0 20 20">
+                                                        <use xlink:href="/css/common-icons.svg#pencil-white">
+                                                        </use>
+                                                    </svg>
+                                                    {{-- End of update by Shanila
                                             --}}
-                                                Edit
-                                            </a>
-                                            <a href="#" class="btn btn-has-icon btn-primary rounded">
-                                                {{-- Updated by Shanila to Add
+                                                    Edit
+                                                </a>
+                                                <a href="#" class="btn btn-has-icon btn-primary rounded">
+                                                    {{-- Updated by Shanila to Add
                                             svg icon --}}
-                                                <svg aria-label="Cancel" width="20" height="20"
-                                                    viewBox="0 0 20 20" fill="none">
-                                                    <use xlink:href="/css/common-icons.svg#cancel-icon">
-                                                    </use>
-                                                </svg>
-                                                {{-- End of update by Shanila
+                                                    <svg aria-label="Cancel" width="20" height="20"
+                                                        viewBox="0 0 20 20" fill="none">
+                                                        <use xlink:href="/css/common-icons.svg#cancel-icon">
+                                                        </use>
+                                                    </svg>
+                                                    {{-- End of update by Shanila
                                             --}}
-                                                Cancel
-                                            </a>
-                                            @if(session()->get('isCustomer')==null)
-                                            <a href="" class="btn btn-has-icon btn-primary rounded"
-                                                data-bs-toggle="modal" data-bs-target="#reviewFeedbackModal"
-                                                wire:click="$emit('openAllFeedBackModal', '{{ $booking_id }}')">
+                                                    Cancel
+                                                </a>
+                                            @endif
+                                            @if (session()->get('isCustomer') == null)
+                                                <a href="" class="btn btn-has-icon btn-primary rounded"
+                                                    data-bs-toggle="modal" data-bs-target="#reviewFeedbackModal"
+                                                    wire:click="$emit('openAllFeedBackModal', '{{ $booking_id }}')">
 
 
-                                                <svg aria-label="Review Feedback" width="20" height="20"
-                                                    viewBox="0 0 20 20" fill="none">
-                                                    <use xlink:href="/css/common-icons.svg#review-feedback">
-                                                    </use>
-                                                </svg>
-                                                Review Feedback
-                                            </a>
+                                                    <svg aria-label="Review Feedback" width="20" height="20"
+                                                        viewBox="0 0 20 20" fill="none">
+                                                        <use xlink:href="/css/common-icons.svg#review-feedback">
+                                                        </use>
+                                                    </svg>
+                                                    Review Feedback
+                                                </a>
                                             @endif
                                         </div>
                                     </div>
@@ -883,16 +892,16 @@
                                 @if (count($serviceDetails))
                                     <!-- Service Form Detail -->
                                     <div class="row between-section-segment-spacing">
-                                     <div class="d-lg-flex justify-content-between align-items-center">
-                                                    <h2 class="">Booking Forms</h2>
-                                                </div>
+                                        <div class="d-lg-flex justify-content-between align-items-center">
+                                            <h2 class="">Booking Forms</h2>
+                                        </div>
 
-                                        @foreach ($serviceDetails as $index => $form)
+                                        @foreach ($serviceDetails as $key => $form)
                                             <div class="col-lg-12">
 
                                                 <div class="d-lg-flex  justify-content-between align-items-center">
                                                     <h3 class="bg-muted rounded p-1">
-                                                        {{ $form[0]['request_form_name'] ? $form[0]['request_form_name'] : 'Form ' + $index + 1 }}
+                                                        {{ $form[0]['request_form_name'] ? $form[0]['request_form_name'] : 'Form ' }}
                                                     </h3>
                                                 </div>
                                                 @foreach ($form as $i => $field)
@@ -1414,59 +1423,64 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <hr class="border-separate-sm">
+                                        @if (!$isCustomer ||
+                                                (($isCustomer && (Auth::id() == $booking['billing_manager_id'] || Auth::id() == $booking['supervisor'])) ||
+                                                    ($isCustomer && session()->get('companyAdmin'))))
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <hr class="border-separate-sm">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-9">
-                                                <label class="form-label mb-md-0">Cancel/Modify/Reschedule Fees
-                                                    (list):</label>
+                                            <div class="row">
+                                                <div class="col-md-9">
+                                                    <label class="form-label mb-md-0">Cancel/Modify/Reschedule Fees
+                                                        (list):</label>
+                                                </div>
+                                                <div class="col-md-3 align-self-center">
+                                                    <div class="font-family-tertiary">$00.00</div>
+                                                </div>
                                             </div>
-                                            <div class="col-md-3 align-self-center">
-                                                <div class="font-family-tertiary">$00.00</div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <hr class="border-separate-sm">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <hr class="border-separate-sm">
+                                            <div class="row">
+                                                <div class="col-md-9">
+                                                    <label class="form-label mb-md-0">Provider Rate Sum:</label>
+                                                </div>
+                                                <div class="col-md-3 align-self-center">
+                                                    <div class="font-family-tertiary">$00.00</div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-9">
-                                                <label class="form-label mb-md-0">Provider Rate Sum:</label>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <hr class="border-separate-sm">
+                                                </div>
                                             </div>
-                                            <div class="col-md-3 align-self-center">
-                                                <div class="font-family-tertiary">$00.00</div>
+                                            <div class="row">
+                                                <div class="col-md-9">
+                                                    <label class="form-label mb-md-0">Additional Provider
+                                                        Payments:</label>
+                                                </div>
+                                                <div class="col-md-3 align-self-center">
+                                                    <div class="font-family-tertiary">$00.00</div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <hr class="border-separate-sm">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <hr class="border-separate-sm">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-9">
-                                                <label class="form-label mb-md-0">Additional Provider Payments:</label>
+                                            <div class="row">
+                                                <div class="col-md-9">
+                                                    <label class="form-label mb-md-0">Profit Margin:</label>
+                                                </div>
+                                                <div class="col-md-3 align-self-center">
+                                                    <div class="font-family-tertiary">$00.00</div>
+                                                </div>
                                             </div>
-                                            <div class="col-md-3 align-self-center">
-                                                <div class="font-family-tertiary">$00.00</div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <hr class="border-separate-sm">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-9">
-                                                <label class="form-label mb-md-0">Profit Margin:</label>
-                                            </div>
-                                            <div class="col-md-3 align-self-center">
-                                                <div class="font-family-tertiary">$00.00</div>
-                                            </div>
-                                        </div>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-lg-6">

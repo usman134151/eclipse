@@ -143,12 +143,17 @@ class LoginController extends Controller
 					//fetch customer Roles
 					$service = new UserService();
 					$customer_roles =  $service->getCustomerRoles(Auth::id());
+					$company_admin = in_array(10, array_keys($customer_roles));
 					if (count($customer_roles))
 						Session::put('customerRoles', array_keys($customer_roles));
 					else
 						Session::put('customerRoles', []);
+					Session::put('companyAdmin', $company_admin);
+					
 				} else {
 					Session::put('isCustomer', $is_customer);
+					Session::put('companyAdmin', false);
+
 				}
 
 				return redirect('home');
