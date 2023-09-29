@@ -7,11 +7,12 @@ use App\Models\Tenant\ServiceCategory;
 use App\Models\Tenant\AssociateService;
 use App\Models\Tenant\ProviderAccommodationServices;
 use Livewire\Component;
-
+use Auth;
 class ServiceCatelog extends Component
 {
     public $accomodations,$accomodationsList,$services=[],$searchParameter,$modelId,$modelType,$modelServices=[],$providerPriority=[],$servicesList=[],$serviceSearch,$parentId,$parentType,$showRates=true;
     protected $listeners = ['resetCatalog','updateSetRate'];
+    public $isCustomer=false;
 
     public function render()
     {
@@ -23,6 +24,9 @@ class ServiceCatelog extends Component
 
     public function mount()
     {
+        if(Auth::user()->roleUser->role_id==4){
+            $this->isCustomer=true;
+        }
         $this->resetCatalog();
        
     }

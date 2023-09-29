@@ -96,7 +96,7 @@
                                                                                             @endif
                                                                                             <th>Status</th>
                                                                                             @if($showRates!='no' || $modelType!='provider')
-                                                                                            <th>Actions</th>
+                                                                                            <th @if($isCustomer) class="hidden" @endif>Actions</th>
                                                                                             @endif
                                                                                         </tr>
                                                                                     @foreach($this->services as $index=>$service)
@@ -125,7 +125,7 @@
                                                                                             <td>
                                                                                                 <div class="d-flex actions">
                                                                                                     @if($showRates!='no' || $modelType!='provider')
-                                                                                                        <a href="javascript:void(0)" wire:click="updateServiceData({{$service['id']}})" title="Add Service Rates" aria-label="Add Service Rates" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                                                        <a href="javascript:void(0)" wire:click="updateServiceData({{$service['id']}})" title="Add Service Rates" aria-label="Add Service Rates" class="btn btn-sm btn-secondary rounded btn-hs-icon @if($isCustomer) hidden @endif">
                                                                                                             <x-icon name="dollar-icon"/>
                                                                                                         </a>
                                                                                                     @endif
