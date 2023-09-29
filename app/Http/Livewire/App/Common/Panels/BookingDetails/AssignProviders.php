@@ -48,11 +48,11 @@ class AssignProviders extends Component
         'accommodations' => ['parameters' => ['Accommodation', 'id', 'name', 'status', 1, 'name', true, 'accommodations', '', 'accommodationsassignProvider', 2]],
         'specializations' => ['parameters' => ['Specialization', 'id', 'name', 'status', 1, 'name', true, 'specializations', '', 'specializationsassignProvider', 4]],
         'services' => ['parameters' => ['ServiceCategory', 'id', 'name', 'status', 1, 'name', true, 'services', '', 'servicesassignProvider', 3]],
-        "service_type_ids"=>['parameters'=>['SetupValue', 'id','setup_value_label', 'setup_id', 5, 'setup_value_label', true,'service_type_ids','','service_type_idsassignProvider',4]],
-        'ethnicity' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 3, 'setup_value_label', true,'ethnicity','','ethnicityassignProvider',6]],
-        'gender' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 2, 'setup_value_label', true,'gender','','genderassignProvider',5]],
-        'certifications' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 8, 'setup_value_label', true,' certifications','',' certificationsassignProvider',9]],
-        
+        "service_type_ids" => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 5, 'setup_value_label', true, 'service_type_ids', '', 'service_type_idsassignProvider', 4]],
+        'ethnicity' => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 3, 'setup_value_label', true, 'ethnicity', '', 'ethnicityassignProvider', 6]],
+        'gender' => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 2, 'setup_value_label', true, 'gender', '', 'genderassignProvider', 5]],
+        'certifications' => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 8, 'setup_value_label', true, ' certifications', '', ' certificationsassignProvider', 9]],
+
     ];
 
 
@@ -315,16 +315,19 @@ class AssignProviders extends Component
     public function updateTotal($index)
     {
         $this->validate();
+        // dd($this->providersPayment[$index]['override_price']);
+        if (trim($this->providersPayment[$index]['override_price'])=='')
+        $this->providersPayment[$index]['override_price'] =0; 
 
-        $this->providersPayment[$index]['total_amount'] = number_format($this->providersPayment[$index]['override_price'] * $this->durationTotal, 2, '.', '');
-        $pid = $this->providers[$index]['id'];
-        foreach ($this->assignedProviders as &$aProvider) {
-            if ($aProvider['provider_id'] == $pid) {
+            $this->providersPayment[$index]['total_amount'] = number_format($this->providersPayment[$index]['override_price'] * $this->durationTotal, 2, '.', '');
+            $pid = $this->providers[$index]['id'];
+            foreach ($this->assignedProviders as &$aProvider) {
+                if ($aProvider['provider_id'] == $pid) {
 
-                $aProvider['total_amount'] = $this->providersPayment[$index]['total_amount'];
-                $aProvider['override_price'] = $this->providersPayment[$index]['override_price'];
+                    $aProvider['total_amount'] = $this->providersPayment[$index]['total_amount'];
+                    $aProvider['override_price'] = $this->providersPayment[$index]['override_price'];
+                }
             }
-        }
         return $this->providersPayment[$index]['total_amount'];
     }
     public function overrideTotal($index)
@@ -369,7 +372,7 @@ class AssignProviders extends Component
         $this->service_id = $service_id;
         $this->tags = Tag::all();
         $this->booking = Booking::where('id', $this->booking_id)->first();
-        $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
+        $this->setupValues = SetupHelper::loadSetupValues($this->setupValues);
         if ($this->panelType != 3) {
             //setting filter defaults
             $booking_service = $this->booking->booking_services->where('services', $this->service_id)->first();
