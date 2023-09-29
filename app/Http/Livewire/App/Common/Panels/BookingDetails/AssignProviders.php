@@ -268,8 +268,21 @@ class AssignProviders extends Component
 
         return $this->providers;
     }
+    public function messages()
+    {
+        return [
+            'providersPayment.*.override_price.numeric' => 'Average rate should be a number',
+        ];
+    }
+    public function rules()
+    {
+        return [
+            'providersPayment.*.override_price' => 'nullable|numeric',
+        ];
+    }
     public function updateTotal($index)
     {
+        $this->validate();
 
         $this->providersPayment[$index]['total_amount'] = number_format($this->providersPayment[$index]['override_price'] * $this->durationTotal, 2, '.', '');
         $pid = $this->providers[$index]['id'];
@@ -350,9 +363,8 @@ class AssignProviders extends Component
             })
 
                 ->get()
-            ->pluck('provider_id')
+                ->pluck('provider_id')
                 ->toArray();
-
         } else {
             $booking_service = $this->booking->booking_services->where('services', $this->service_id)->first();
 
@@ -395,6 +407,7 @@ class AssignProviders extends Component
     }
     public function save()
     {
+
         if ($this->limit && count($this->assignedProviders) <= $this->limit) {
             // $booking = Booking::where('id', $this->booking_id)->first();
             $booking_service = BookingServices::where(['services' => $this->service_id, 'booking_id' => $this->booking_id])->first();
