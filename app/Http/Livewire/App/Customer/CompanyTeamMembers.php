@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire\App\Customer;
 
+use App\Models\Tenant\RoleUserDetail;
 use App\Models\Tenant\User;
+use App\Models\Tenant\UserDetail;
 use App\Services\App\UserService;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -16,7 +18,7 @@ final class CompanyTeamMembers extends PowerGridComponent
     use ActionButton;
     public $company_id;
 
-   
+
     /*
     |--------------------------------------------------------------------------
     |  Features Setup
@@ -54,20 +56,41 @@ final class CompanyTeamMembers extends PowerGridComponent
      */
     public function datasource(): Builder
     {
-        return User::query()->where('company_name', $this->company_id)
-		// ->whereHas('roles', function ($query) {
-		// 	$query->where('role_id', 4);
-		// })
-		// ->leftJoin('companies', 'companies.id', '=', 'users.company_name')
-		->leftJoin('user_details', 'user_details.user_id', '=', 'users.id')
-		->select([
-			'users.id as id',
-			'users.name',
-			'users.email',
-			'user_details.phone',
-			'users.status as status',
-			'user_details.user_id', 'profile_pic'
-		])->with('departments');
+        $sv_users = [];
+        $bm_users = [];
+        $access_users = [];
+        if (in_array(5, session()->get('customerRoles')))
+            $sv_users =  RoleUserDetail::select('associated_user')
+                ->where(['user_id' => Auth::id(), 'role_id' => 5])->get()->pluck('associated_user')->toArray();
+
+        if (in_array(9, session()->get('customerRoles')))
+            $bm_users =  RoleUserDetail::select('associated_user')
+                ->where(['user_id' => Auth::id(), 'role_id' => 9])->get()->pluck('associated_user')->toArray();
+
+        // if (in_array(6, session()->get('customerRoles')) || in_array(7, session()->get('customerRoles'))|| in_array(8, session()->get('customerRoles'))) {
+        $us = UserDetail::where('user_id', Auth::id())->select('user_configuration')->first();
+
+        if ($us->user_configuration != "null" &&  $us->user_configuration != null) {
+            $j_us = json_decode($us->user_configuration, true);
+            if ($j_us['grant_access_to_schedule'] == true && isset($j_us['have_access_to']))
+                $access_users = $j_us['have_access_to'];
+        }
+        // }
+
+        $merged_users = array_merge($sv_users, $bm_users, $access_users);
+        $query = User::query()->where('company_name', $this->company_id)
+            ->whereIn('users.id', $merged_users)
+            ->leftJoin('user_details', 'user_details.user_id', '=', 'users.id')
+            ->select([
+                'users.id as id',
+                'users.name',
+                'users.email',
+                'user_details.phone',
+                'users.status as status',
+                'user_details.user_id', 'profile_pic'
+            ])->with('departments');
+
+        return $query;
     }
 
     /*
@@ -150,7 +173,10 @@ final class CompanyTeamMembers extends PowerGridComponent
 
 
             ->addColumn('edit', function (User $model) {
-            return "<div class='d-flex actions'><a href='" . route('tenant.customer-edit-team', ['customerID' => encrypt($model->id)]) . "'  title='Edit Customer' aria-label='Edit Team' class='btn btn-sm btn-secondary rounded btn-hs-icon'><svg title='Edit Customer' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#pencil'></use></svg></a></div>";
+                if (in_array(6, session()->get('customerRoles')) || in_array(7, session()->get('customerRoles')) || in_array(8, session()->get('customerRoles')) || in_array(9, session()->get('customerRoles')))
+                    return "";
+                else
+                    return "<div class='d-flex actions'><a href='" . route('tenant.customer-edit-team', ['customerID' => encrypt($model->id)]) . "'  title='Edit Customer' aria-label='Edit Team' class='btn btn-sm btn-secondary rounded btn-hs-icon'><svg title='Edit Customer' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#pencil'></use></svg></a></div>";
             });
     }
 
