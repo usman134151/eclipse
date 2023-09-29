@@ -393,13 +393,15 @@
                                                             // Perform the search using the filter method
 
                                                             $serviceIdToFind = $services[$index]['services'];
+                                                           
                                                             $foundService = $accommodationsCollection
                                                                 ->flatMap(fn($item) => $item['services'])
                                                                 ->firstWhere('id', $serviceIdToFind);
+                                                            
     
                                                        @endphp
                                                       @foreach($serviceTypes as $key=>$serviceType)
-                                                        @if(in_array($key,$foundService['service_type']))
+                                                        @if(!is_null($foundService) && in_array($key,$foundService['service_type']))
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio"
                                                                 name="serviceType-{{$serviceType['title']}}-{{$index}}" id="serviceType-{{$serviceType['title']}}-{{$index}}" wire:model="services.{{$index}}.service_types" value="{{$key}}" wire:click="updateServiceDefaults({{$index}},{{$key}})">
@@ -421,10 +423,12 @@
                                             <div class="col-lg-6 mb-4 ps-lg-5">
                                                 <label class="form-label" >Specializations</label>
                                                 <div class="" >
+                                                 @if(!is_null($foundService))   
                                                   @foreach($foundService['specializations'] as $specialization)
                                                  
                                                   <div class="form-check"><input class="form-check-input" type="checkbox" id="service_specializations-{{$index}}-{{$specialization['id']}}" name="service_specializations" value="{{$specialization['id']}}" tabindex="1" wire:model.defer="services.{{$index}}.specialization"><label class="form-check-label" for="service_specializations-{{$index}}-{{$specialization['id']}}">{{$specialization['name']}}</label></div>
                                                   @endforeach
+                                                 @endif 
                                                 </div>
                                             </div>
                                             @endif
@@ -439,7 +443,7 @@
                                                             </span>
                                                 @enderror    
                                             </div>
-                                            <div class="col-lg-6 mb-4 ps-lg-5">
+                                            <div class="col-lg-6 mb-4 ps-lg-5 @if($isCustomer) hidden @endif">
                                                 <div class="row">
                                                     <div class="col-lg-5 col-md-6 mb-4">
                                                         <div class="d-flex gap-3">
@@ -456,7 +460,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-7 col-md-6 mb-4">
+                                                    <div class="col-lg-7 col-md-6 mb-4" >
                                                         <div class="d-flex gap-3">
                                                             <label class="form-label-sm">
                                                                 Assign
