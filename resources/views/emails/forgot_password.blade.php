@@ -25,7 +25,7 @@
                                     <tbody>
                                     <tr>
                                         <td style="background:#fff;text-align:center;padding:15px;">
-                                            <img src="{{ asset('tenant-resources/images/logo.png') }}" style="height:110px; width:auto;" />
+                                            <img src="{{ url('/tenant-resources/images/logo.png') }}" style="height:110px; width:auto;" />
                                         </td>
                                     </tr>
                                     <tr>
