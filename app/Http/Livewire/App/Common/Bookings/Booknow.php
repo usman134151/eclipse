@@ -425,7 +425,7 @@ class Booknow extends Component
             if($this->isCustomer){
                 if(key_exists('user_configuration',$this->customerDetails) && !is_null($this->customerDetails['user_configuration'])){
                     $configurations=json_decode($this->customerDetails['user_configuration'],true);
-                    if(key_exists('require_approval',$configurations) && $configurations['require_approval']=="true"){
+                    if(!is_null($configurations) && key_exists('require_approval',$configurations) && $configurations['require_approval']=="true"){
                       
                         $this->booking->booking_status=0;
                     }
