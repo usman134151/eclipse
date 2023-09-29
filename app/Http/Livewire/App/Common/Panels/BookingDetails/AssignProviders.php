@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
 use Illuminate\Support\Collection;
+use App\Helpers\SetupHelper;
 
 class AssignProviders extends Component
 {
@@ -44,10 +45,16 @@ class AssignProviders extends Component
     public $paymentData = ["additional_label_provider" => '', "additional_charge_provider" => 0];
     public $providers, $providersPayment, $bookingService, $durationLabel, $durationTotal = 0, $totalAmount;
     public $setupValues = [
-        'accommodations' => ['parameters' => ['Accommodation', 'id', 'name', 'status', 1, 'name', true, 'accommodations', '', 'accommodations', 2]],
-        'specializations' => ['parameters' => ['Specialization', 'id', 'name', 'status', 1, 'name', true, 'specializations', '', 'specializations', 4]],
-        'services' => ['parameters' => ['ServiceCategory', 'id', 'name', 'status', 1, 'name', true, 'services', '', 'services', 3]]
+        'accommodations' => ['parameters' => ['Accommodation', 'id', 'name', 'status', 1, 'name', true, 'accommodations', '', 'accommodationsassignProvider', 2]],
+        'specializations' => ['parameters' => ['Specialization', 'id', 'name', 'status', 1, 'name', true, 'specializations', '', 'specializationsassignProvider', 4]],
+        'services' => ['parameters' => ['ServiceCategory', 'id', 'name', 'status', 1, 'name', true, 'services', '', 'servicesassignProvider', 3]],
+        "service_type_ids"=>['parameters'=>['SetupValue', 'id','setup_value_label', 'setup_id', 5, 'setup_value_label', true,'service_type_ids','','service_type_idsassignProvider',4]],
+        'ethnicity' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 3, 'setup_value_label', true,'ethnicity','','ethnicityassignProvider',6]],
+        'gender' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 2, 'setup_value_label', true,'gender','','genderassignProvider',5]],
+        'certifications' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 8, 'setup_value_label', true,' certifications','',' certificationsassignProvider',9]],
+        
     ];
+
 
     public $serviceTypes = [
         '1' => ['class' => 'inperson-rate', 'postfix' => '', 'title' => 'In-Person'],
@@ -55,9 +62,34 @@ class AssignProviders extends Component
         '4' => ['class' => 'phone-rate', 'postfix' => '_p', 'title' => 'Phone'],
         '5' => ['class' => 'teleconference-rate', 'postfix' => '_t', 'title' => 'Teleconference'],
     ];
-    public function updateVal($attrName, $val)
+    public function updateVal($name, $value)
     {
-        $this->$attrName = $val;
+
+        if ($name == "servicesassignProvider") {
+            $this->services = $value;
+        } else if ($name == "specializationsassignProvider") {
+            $this->specializations = $value;
+        } else if ($name == "setup_value_labelassignProvider") {
+            $this->service_type_ids = $value;
+        } else if ($name == "tags_selected-assignProviderassignProvider") {
+            $this->tag_names = $value;
+        } else if ($name == "providers_selected") {
+            $this->provider_ids = $value;
+        } else if ($name == "preferred_provider_ids") {
+            $this->preferred_provider_ids = $value;
+        } else if ($name == "genderassignProvider") {
+            $this->gender = $value;
+        } else if ($name == "ethnicityassignProvider") {
+            $this->ethnicity = $value;
+        } else if ($name == "certificationsassignProvider") {
+            $this->certifications = $value;
+        } else if ($name == "accommodationsassignProvider") {
+            $this->accommodations = $value;
+        } else if ($name == "distance_filter") {
+            $this->distance = $value;
+        }
+
+        $this->providers = $this->refreshProviders();
     }
 
     public function render()
@@ -337,7 +369,7 @@ class AssignProviders extends Component
         $this->service_id = $service_id;
         $this->tags = Tag::all();
         $this->booking = Booking::where('id', $this->booking_id)->first();
-
+        $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
         if ($this->panelType != 3) {
             //setting filter defaults
             $booking_service = $this->booking->booking_services->where('services', $this->service_id)->first();

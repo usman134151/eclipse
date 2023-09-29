@@ -6,7 +6,7 @@ use App\Models\Tenant\Tag;
 use App\Models\Tenant\User;
 use Livewire\Component;
 use App\Services\ExportDataFile;
-
+use App\Helpers\SetupHelper;
 class Provider extends Component
 {
 	public $showForm;
@@ -36,6 +36,17 @@ class Provider extends Component
 
     public $tags;
     public $providers;
+
+	public $setupValues = [
+        'accommodations' => ['parameters' => ['Accommodation', 'id', 'name', 'status', 1, 'name', true, 'accommodations', '', 'accommodations', 2]],
+        'specializations' => ['parameters' => ['Specialization', 'id', 'name', 'status', 1, 'name', true, 'specializations', '', 'specialization_search_filter', 4]],
+        'services' => ['parameters' => ['ServiceCategory', 'id', 'name', 'status', 1, 'name', true, 'services', '', 'Service_filter', 3]],
+        "service_type_ids"=>['parameters'=>['SetupValue', 'id','setup_value_label', 'setup_id', 5, 'setup_value_label', true,'service_type_ids','','setup_value_label',4]],
+        'ethnicity' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 3, 'setup_value_label', true,'ethnicity','','ethnicity',6]],
+        'gender' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 2, 'setup_value_label', true,'gender','','gender',5]],
+        'certifications' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 8, 'setup_value_label', true,' certifications','',' certifications',9]],
+        
+    ];
 
     public function __construct()
     {
@@ -83,9 +94,10 @@ class Provider extends Component
                  'id',
                  'name',
              ]);
+			 $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);	 
 	}
 	public function refreshFilters($name,$value){
-		// dd($name,$value);
+	//	 dd($name,$value);
 		if($name=="Service_filter"){
 			$this->services = $value;
 		}else if($name=="specialization_search_filter"){

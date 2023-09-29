@@ -95,7 +95,7 @@
 								</div>
 							</div>
 						</div>
-						@if($status)  <x-advanceproviderfilters :providers="$providers" :tags="$tags" /> @endif 
+						@if($status)  <x-advanceproviderfilters :providers="$providers" :tags="$tags" :setupValues="$setupValues" /> @endif 
 
 						
 
