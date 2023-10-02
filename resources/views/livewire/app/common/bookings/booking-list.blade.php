@@ -374,13 +374,15 @@
                                                                                 </svg>
                                                                             </a>
                                                                             @endif
-                                                                            @if (($bookingType == "Today's" || $bookingType == 'Past') && $bookingSection == 'customer')
+                                                                            @if (($bookingType == "Today's" || $bookingType == 'Past') && $bookingSection == 'customer' && $booking['display_customer_check_out'])
                                                                                 <a href="#"
                                                                                     title="Confirm Completion"
                                                                                     aria-label="Confirm Completion"
                                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon "
-                                                                                    data-bs-toggle="modal"
-                                                                                    data-bs-target="#confirmCompletion">
+                                                                                    wire:click="$emit('openConfirmCompletionModal','{{$booking['booking_service_id']}}')"
+                                                                                    data-bs-toggle="modal" 
+                                                                                    data-bs-target="#confirmCompletion"
+                                                                                    >
                                                                                     <svg width="30" height="30"
                                                                                         viewBox="0 0 30 30"
                                                                                         fill="none"
