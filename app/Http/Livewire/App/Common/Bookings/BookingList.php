@@ -311,7 +311,7 @@ class BookingList extends Component
 				// booking -> booking services -> booking providers (mapped to)=>  booking_services_id
 
 				$booking_service = $row->booking_services ? $row->booking_services->where('id', $row->booking_service_id)->first() : null;
-				$row->accommodation_name = $booking_service ? ($booking_service->accommodation ?  $booking_service->accommodation->name :null)  : null;
+				$row->accommodation_name = $booking_service ? ($booking_service->accommodation ?  $booking_service->accommodation->name : null)  : null;
 				$row->service_name = $booking_service ?  ($booking_service->service ? $booking_service->service->name : null) : null;
 			}
 			if ((isset($booking_service)) && ($booking_service->meetings != null)) {
@@ -323,10 +323,11 @@ class BookingList extends Component
 				$row->meeting_link = $booking_service ? $booking_service->meeting_link : null;
 				$row->meeting_phone = $booking_service ? $booking_service->meeting_phone : null;
 			}
-			if ($this->provider_id) {
+			if ($this->provider_id || $this->isCustomer) {
 				$row->display_running_late = false;
 				$row->display_check_in = false;
 				$row->display_check_out = false;
+				$row->display_customer_check_out =false;
 
 
 				if ($booking_service && $booking_service->service) {
@@ -340,10 +341,14 @@ class BookingList extends Component
 						if (isset($val['enable_button']) && ($val['enable_button']))
 							$row->display_check_in = true;
 					}
+
 					$val = json_decode($booking_service->service->close_out_procedure, true);
 					if ($val) {
 						if (isset($val['enable_button_provider']) && ($val['enable_button_provider']))
 							$row->display_check_out = true;
+						if (isset($val['enable_button_customer']) && ($val['enable_button_customer']) && isset($val['customers']) && $this->isCustomer)
+							if (in_array($val['customers'], session()->get('customerRoles')))
+								$row->display_customer_check_out = true;
 					}
 				}
 			}
@@ -580,6 +585,8 @@ class BookingList extends Component
 	}
 
 	// END : provider panel functions
+
+	
 
 	public function deleteRecord($booking_id)
 	{

@@ -233,7 +233,12 @@
                                                 {{-- End of update by Shanila --}}
                                                 Message Coordinator
                                             </a>
-                                            @if (!$isCustomer || ($isCustomer && (Auth::id() == $booking['customer_id'] || Auth::id() == $booking['supervisor'] || session()->get('companyAdmin'))))
+                                            @if (
+                                                !$isCustomer ||
+                                                    ($isCustomer &&
+                                                        (Auth::id() == $booking['customer_id'] ||
+                                                            Auth::id() == $booking['supervisor'] ||
+                                                            session()->get('companyAdmin'))))
                                                 <a href="#" class="btn btn-has-icon btn-outline-dark rounded">
                                                     {{-- Updated by Shanila to Add svg icon --}}
                                                     <svg aria-label="Duplicate" width="19" height="19"
@@ -950,7 +955,8 @@
                                     <div class="col-lg-12">
                                         <h2 class="mb-lg-4">Notes</h2>
                                         <div class="row mb-4">
-                                            <div class="col-lg-6 mb-4"  @if ($isCustomer) hidden @endif">
+                                            <div class="col-lg-6 mb-4"
+                                                @if ($isCustomer) hidden @endif">
                                                 <!-- Provider Notes -->
                                                 <div class="">
                                                     <label class="form-label">
@@ -974,7 +980,8 @@
                                                 </div>
                                                 <!-- /Customer Notes -->
                                             </div>
-                                            <div class="col-lg-6 mb-4  @if ($isCustomer) hidden @endif">
+                                            <div
+                                                class="col-lg-6 mb-4  @if ($isCustomer) hidden @endif">
                                                 <!-- Private Notes -->
                                                 <div class="">
                                                     <label class="form-label">
@@ -988,7 +995,7 @@
                                             </div>
                                             <div class="col-lg-6 mb-4">
                                                 <!-- Tags -->
-                                                <div class=""  @if ($isCustomer) hidden @endif">
+                                                <div class="" @if ($isCustomer) hidden @endif">
 
                                                     <label class="form-label">
                                                         Tags
@@ -1291,246 +1298,263 @@
 
                             <div class="col-12">
                                 @foreach ($booking_services as $index => $service)
-                                    <h2>Check-In and Close-Out for Service - {{ $service['service_name'] }}</h2>
+                                    <div class="d-flex justify-content-between gap-2">
+                                        <h2>Check-In and Close-Out for Service - {{ $service['service_name'] }}</h2>
+                                        @if ($isCustomer)
+                                            <a href="#"
+                                              wire:click="$emit('openConfirmCompletionModal','{{$service['id']}}')"
+                                                                                    data-bs-toggle="modal" 
+                                                                                    data-bs-target="#confirmCompletion"
+                                                                                
+                                                class="btn btn-has-icon btn-primary rounded justify-content-end">
 
-                                    @livewire('app.common.bookings.provider-completed-booking-services', ['service_id' => $service['service_id'], 'booking_id' => $booking_id], key(time()))
-                                @endforeach
+                                                <svg width="30" height="30" viewBox="0 0 30 30"
+                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <use xlink:href="/css/customer.svg#confirm-completion-icon">
+                                                    </use>
+                                                </svg>
+                                                Close Out
+                                            </a>
+                                    </div>
+                                @endif
+                                @livewire('app.common.bookings.provider-completed-booking-services', ['service_id' => $service['service_id'], 'booking_id' => $booking_id], key(time()))
+    @endforeach
 
-                            </div>
-                            <!-- <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
+</div>
+<!-- <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                             <button type="" class="btn btn-outline-dark rounded"
                                 x-on:click="$wire.switch('assigned-providers')">Back</button>
                             <button type="" class="btn btn-primary rounded"
                                 x-on:click="$wire.switch('payment-details')">Next</button>
                         </div>-->
-                        </div><!-- END: attachments-tab -->
-                        <div class="tab-pane fade {{ $component == 'payment-details' ? 'active show' : '' }}"
-                            id="payment-details" role="tabpanel" aria-labelledby="payment-details-tab"
-                            tabindex="0">
-                            <div class="row inner-section-segment-spacing">
-                                <h2>Payment Detail</h2>
-                            </div>
-                            <div class="row between-section-segment-spacing">
-                                <div class="col-lg-6">
-                                    <div class="d-lg-flex flex-lg-column gap-3">
-                                        <div class="row">
-                                            <div class="col-md-9">
-                                                <label class="form-label mb-md-0">Total Service Rate:</label>
-                                            </div>
-                                            <div class="col-md-3 align-self-center">
-                                                <div class="font-family-tertiary">
-                                                    {{ formatPayment($data['service_charges']) }}</div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <hr class="border-separate-sm">
-                                            </div>
-                                        </div>
+</div><!-- END: attachments-tab -->
+<div class="tab-pane fade {{ $component == 'payment-details' ? 'active show' : '' }}" id="payment-details"
+    role="tabpanel" aria-labelledby="payment-details-tab" tabindex="0">
+    <div class="row inner-section-segment-spacing">
+        <h2>Payment Detail</h2>
+    </div>
+    <div class="row between-section-segment-spacing">
+        <div class="col-lg-6">
+            <div class="d-lg-flex flex-lg-column gap-3">
+                <div class="row">
+                    <div class="col-md-9">
+                        <label class="form-label mb-md-0">Total Service Rate:</label>
+                    </div>
+                    <div class="col-md-3 align-self-center">
+                        <div class="font-family-tertiary">
+                            {{ formatPayment($data['service_charges']) }}</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <hr class="border-separate-sm">
+                    </div>
+                </div>
 
 
-                                        <div class="row">
-                                            <div class="col-md-9">
-                                                <label class="form-label mb-md-0">Total Specialization Charges:</label>
-                                            </div>
-                                            <div class="col-md-3 align-self-center">
-                                                <div class="font-family-tertiary">
-                                                    {{ formatPayment($data['specialization_total']) }}</div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <hr class="border-separate-sm">
-                                            </div>
-                                        </div>
+                <div class="row">
+                    <div class="col-md-9">
+                        <label class="form-label mb-md-0">Total Specialization Charges:</label>
+                    </div>
+                    <div class="col-md-3 align-self-center">
+                        <div class="font-family-tertiary">
+                            {{ formatPayment($data['specialization_total']) }}</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <hr class="border-separate-sm">
+                    </div>
+                </div>
 
 
-                                        <div class="row">
-                                            <div class="col-md-9">
-                                                <label class="form-label mb-md-0">Total Additional Charges:</label>
-                                            </div>
-                                            <div class="col-md-3 align-self-center">
-                                                <div class="font-family-tertiary">
-                                                    {{ formatPayment($data['service_additional_charges']) }}
-                                                </div>
-                                            </div>
-                                        </div>
+                <div class="row">
+                    <div class="col-md-9">
+                        <label class="form-label mb-md-0">Total Additional Charges:</label>
+                    </div>
+                    <div class="col-md-3 align-self-center">
+                        <div class="font-family-tertiary">
+                            {{ formatPayment($data['service_additional_charges']) }}
+                        </div>
+                    </div>
+                </div>
 
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <hr class="border-separate-sm">
-                                            </div>
-                                        </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <hr class="border-separate-sm">
+                    </div>
+                </div>
 
-                                        <div class="row">
-                                            <div class="col-md-9">
-                                                <label class="form-label mb-md-0">Service Total:</label>
-                                            </div>
-                                            <div class="col-md-3 align-self-center">
-                                                <div class="font-family-tertiary">
-                                                    {{ formatPayment($data['service_total']) }}</div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <hr class="border-separate-sm">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-9">
-                                                <label class="form-label mb-md-0">Service Billed:</label>
-                                            </div>
-                                            <div class="col-md-3 align-self-center">
-                                                <div class="font-family-tertiary">
-                                                    {{ formatPayment($data['service_billed']) }}</div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <hr class="border-separate-sm">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-9">
-                                                <label class="form-label mb-md-0">Discount:</label>
-                                            </div>
-                                            <div class="col-md-3 align-self-center">
-                                                <div class="font-family-tertiary">
-                                                    @if (!is_null($booking['payment']) && !is_null($booking['payment']['coupon_discount_amount']))
-                                                        {{ formatPayment($booking['payment']['discounted_amount']) }}
-                                                    @else
-                                                        $00.00
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <hr class="border-separate-sm">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-9">
-                                                <label class="form-label mb-md-0">Net Total:</label>
-                                            </div>
-                                            <div class="col-md-3 align-self-center">
-                                                <div class="font-family-tertiary">
-                                                    @if (!is_null($booking['payment']))
-                                                        {{ formatPayment($booking['payment']['total_amount']) }}
-                                                    @else
-                                                        N/A
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        </div>
-                                        @if (!$isCustomer ||
-                                                (($isCustomer && (Auth::id() == $booking['billing_manager_id'] || Auth::id() == $booking['supervisor'])) ||
-                                                    ($isCustomer && session()->get('companyAdmin'))))
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <hr class="border-separate-sm">
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-9">
-                                                    <label class="form-label mb-md-0">Cancel/Modify/Reschedule Fees
-                                                        (list):</label>
-                                                </div>
-                                                <div class="col-md-3 align-self-center">
-                                                    <div class="font-family-tertiary">$00.00</div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <hr class="border-separate-sm">
-                                                </div>
-                                            </div>
-                                            <div class="row @if($isCustomer) hidden @endif">
-                                                <div class="col-md-9">
-                                                    <label class="form-label mb-md-0">Provider Rate Sum:</label>
-                                                </div>
-                                                <div class="col-md-3 align-self-center">
-                                                    <div class="font-family-tertiary">$00.00</div>
-                                                </div>
-                                            </div>
-                                            <div class="row @if($isCustomer) hidden @endif">
-                                                <div class="col-md-12">
-                                                    <hr class="border-separate-sm">
-                                                </div>
-                                            </div>
-                                            <div class="row @if($isCustomer) hidden @endif">
-                                                <div class="col-md-9">
-                                                    <label class="form-label mb-md-0">Additional Provider
-                                                        Payments:</label>
-                                                </div>
-                                                <div class="col-md-3 align-self-center">
-                                                    <div class="font-family-tertiary">$00.00</div>
-                                                </div>
-                                            </div>
-                                            <div class="row @if($isCustomer) hidden @endif">
-                                                <div class="col-md-12">
-                                                    <hr class="border-separate-sm">
-                                                </div>
-                                            </div>
-                                            <div class="row @if($isCustomer) hidden @endif">
-                                                <div class="col-md-9">
-                                                    <label class="form-label mb-md-0">Profit Margin:</label>
-                                                </div>
-                                                <div class="col-md-3 align-self-center">
-                                                    <div class="font-family-tertiary">$00.00</div>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    </div>
-                                </div>
-                                <div class="col-lg-6  @if ($isCustomer) hidden @endif"">
-                                    <!-- Billing Notes -->
-                                    <div class="between-section-segment-spacing">
-                                        <label class="form-label" for="billing-notes">
-                                            Billing Notes
-                                        </label>
-                                        <textarea class="form-control" rows="4" cols="4" id="billing-notes"
-                                            wire:model.defer="booking.billing_notes"></textarea>
-                                    </div><!-- /Billing Notes -->
-                                    <!-- Payment Notes -->
-                                    <div class="mb-4">
-                                        <label class="form-label" for="payment-notes">
-                                            Payment Notes
-                                        </label>
-                                        <textarea class="form-control" rows="4" cols="4" id="payment-notes"
-                                            wire:model.defer="booking.payment_notes"></textarea>
-                                    </div><!-- /Payment Notes -->
-                                    <div class="col-lg-12">
-                                        <a href="#" class="btn btn-primary rounded" wire:click="updateNotes"
-                                            wire:model="updateNotes">Save Notes</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--  <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
+                <div class="row">
+                    <div class="col-md-9">
+                        <label class="form-label mb-md-0">Service Total:</label>
+                    </div>
+                    <div class="col-md-3 align-self-center">
+                        <div class="font-family-tertiary">
+                            {{ formatPayment($data['service_total']) }}</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <hr class="border-separate-sm">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-9">
+                        <label class="form-label mb-md-0">Service Billed:</label>
+                    </div>
+                    <div class="col-md-3 align-self-center">
+                        <div class="font-family-tertiary">
+                            {{ formatPayment($data['service_billed']) }}</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <hr class="border-separate-sm">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-9">
+                        <label class="form-label mb-md-0">Discount:</label>
+                    </div>
+                    <div class="col-md-3 align-self-center">
+                        <div class="font-family-tertiary">
+                            @if (!is_null($booking['payment']) && !is_null($booking['payment']['coupon_discount_amount']))
+                                {{ formatPayment($booking['payment']['discounted_amount']) }}
+                            @else
+                                $00.00
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <hr class="border-separate-sm">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-9">
+                        <label class="form-label mb-md-0">Net Total:</label>
+                    </div>
+                    <div class="col-md-3 align-self-center">
+                        <div class="font-family-tertiary">
+                            @if (!is_null($booking['payment']))
+                                {{ formatPayment($booking['payment']['total_amount']) }}
+                            @else
+                                N/A
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                @if (
+                    !$isCustomer ||
+                        (($isCustomer && (Auth::id() == $booking['billing_manager_id'] || Auth::id() == $booking['supervisor'])) ||
+                            ($isCustomer && session()->get('companyAdmin'))))
+                    <div class="row">
+                        <div class="col-md-12">
+                            <hr class="border-separate-sm">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <label class="form-label mb-md-0">Cancel/Modify/Reschedule Fees
+                                (list):</label>
+                        </div>
+                        <div class="col-md-3 align-self-center">
+                            <div class="font-family-tertiary">$00.00</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <hr class="border-separate-sm">
+                        </div>
+                    </div>
+                    <div class="row @if ($isCustomer) hidden @endif">
+                        <div class="col-md-9">
+                            <label class="form-label mb-md-0">Provider Rate Sum:</label>
+                        </div>
+                        <div class="col-md-3 align-self-center">
+                            <div class="font-family-tertiary">$00.00</div>
+                        </div>
+                    </div>
+                    <div class="row @if ($isCustomer) hidden @endif">
+                        <div class="col-md-12">
+                            <hr class="border-separate-sm">
+                        </div>
+                    </div>
+                    <div class="row @if ($isCustomer) hidden @endif">
+                        <div class="col-md-9">
+                            <label class="form-label mb-md-0">Additional Provider
+                                Payments:</label>
+                        </div>
+                        <div class="col-md-3 align-self-center">
+                            <div class="font-family-tertiary">$00.00</div>
+                        </div>
+                    </div>
+                    <div class="row @if ($isCustomer) hidden @endif">
+                        <div class="col-md-12">
+                            <hr class="border-separate-sm">
+                        </div>
+                    </div>
+                    <div class="row @if ($isCustomer) hidden @endif">
+                        <div class="col-md-9">
+                            <label class="form-label mb-md-0">Profit Margin:</label>
+                        </div>
+                        <div class="col-md-3 align-self-center">
+                            <div class="font-family-tertiary">$00.00</div>
+                        </div>
+                    </div>
+                @endif
+            </div>
+        </div>
+        <div class="col-lg-6  @if ($isCustomer) hidden @endif"">
+            <!-- Billing Notes -->
+            <div class="between-section-segment-spacing">
+                <label class="form-label" for="billing-notes">
+                    Billing Notes
+                </label>
+                <textarea class="form-control" rows="4" cols="4" id="billing-notes"
+                    wire:model.defer="booking.billing_notes"></textarea>
+            </div><!-- /Billing Notes -->
+            <!-- Payment Notes -->
+            <div class="mb-4">
+                <label class="form-label" for="payment-notes">
+                    Payment Notes
+                </label>
+                <textarea class="form-control" rows="4" cols="4" id="payment-notes"
+                    wire:model.defer="booking.payment_notes"></textarea>
+            </div><!-- /Payment Notes -->
+            <div class="col-lg-12">
+                <a href="#" class="btn btn-primary rounded" wire:click="updateNotes"
+                    wire:model="updateNotes">Save Notes</a>
+            </div>
+        </div>
+    </div>
+    <!--  <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                             <button type="" class="btn btn-outline-dark rounded"
                                 x-on:click="$wire.switch('attachments')">Back</button>
                             <button type="" class="btn btn-primary rounded"
                                 x-on:click="$wire.switch('assignment-log')">Next</button>
                         </div>-->
-                        </div><!-- END: payment-details-tab -->
-                        <div class="tab-pane fade {{ $component == 'assignment-log' ? 'active show' : '' }}"
-                            id="assignment-log" role="tabpanel" aria-labelledby="assignment-log-tab" tabindex="0">
-                            <livewire:app.common.bookings.assignment-logs :booking_id="$booking_id" />
-                            <!--  <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
+</div><!-- END: payment-details-tab -->
+<div class="tab-pane fade {{ $component == 'assignment-log' ? 'active show' : '' }}" id="assignment-log"
+    role="tabpanel" aria-labelledby="assignment-log-tab" tabindex="0">
+    <livewire:app.common.bookings.assignment-logs :booking_id="$booking_id" />
+    <!--  <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                             <button type="" class="btn btn-outline-dark rounded"
                                 x-on:click="$wire.switch('payment-details')">Back</button>
                             <button type="" class="btn btn-primary rounded"
                                 wire:click.prevent="showList">Exit</button>
                         </div>-->
-                        </div><!-- END: assignment-log-tab -->
-                    </div>
-                    <!-- END: Assignment Booking Form -->
-                </div>
-            </div>
-        </div>
-        {{-- Updated by Sohail Asghar to comment out duplicate modals code --}}
-        <!-- Modal - Provider Message -->
-        {{-- <div class="modal fade" id="ProviderMessageModal" tabindex="-1" aria-labelledby="ProviderMessageModalLabel"
+</div><!-- END: assignment-log-tab -->
+</div>
+<!-- END: Assignment Booking Form -->
+</div>
+</div>
+</div>
+{{-- Updated by Sohail Asghar to comment out duplicate modals code --}}
+<!-- Modal - Provider Message -->
+{{-- <div class="modal fade" id="ProviderMessageModal" tabindex="-1" aria-labelledby="ProviderMessageModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -1555,9 +1579,9 @@
             </div>
         </div>
     </div> --}}
-        <!-- /Modal - Provider Message -->
-        <!-- Modal - Provider Message -->
-        {{-- <div class="modal fade" id="ProviderMessageModal" tabindex="-1" aria-labelledby="ProviderMessageModalLabel"
+<!-- /Modal - Provider Message -->
+<!-- Modal - Provider Message -->
+{{-- <div class="modal fade" id="ProviderMessageModal" tabindex="-1" aria-labelledby="ProviderMessageModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -1582,9 +1606,9 @@
             </div>
         </div>
     </div> --}}
-        <!-- /Modal - Provider Message -->
-        <!-- Modal - Meeting Links -->
-        {{-- <div class="modal fade" id="MeetingLinksModal" tabindex="-1" aria-labelledby="MeetingLinksModalLabel"
+<!-- /Modal - Provider Message -->
+<!-- Modal - Meeting Links -->
+{{-- <div class="modal fade" id="MeetingLinksModal" tabindex="-1" aria-labelledby="MeetingLinksModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -1622,12 +1646,15 @@
             </div>
         </div>
     </div> --}}
-        @include('panels.booking-details.reschedule-booking')
-        @include('panels.common.add-documents', ['booking_id' => $booking_id])
-        @include('panels.booking-details.provider-saved-forms')
+@include('panels.booking-details.reschedule-booking')
+@include('panels.common.add-documents', ['booking_id' => $booking_id])
+@include('panels.booking-details.provider-saved-forms')
 
-        {{-- @include('panels.booking-details.assign-providers') --}}
-    @endif
+
+{{-- @include('panels.booking-details.assign-providers') --}}
+@endif
+ 
+
 </div>
 @push('scripts')
     <script>

@@ -3,12 +3,13 @@
 namespace App\Http\Livewire\App\Common\Bookings;
 
 use App\Models\Tenant\BookingProvider;
+use App\Models\Tenant\BookingServices;
 use App\Models\Tenant\ServiceCategory;
 use Livewire\Component;
 
 class ProviderCompletedBookingServices extends Component
 {
-    public $showForm, $booking_id = 0, $data = [], $service_id = 0;
+    public $showForm, $booking_id = 0, $data = [], $service_id = 0, $isCustomer=false, $booking_service_id;
     protected $listeners = ['showList' => 'resetForm'];
 
     public function render()
@@ -30,6 +31,8 @@ class ProviderCompletedBookingServices extends Component
 
     public function mount()
     {
+        if(session()->get('isCustomer'))
+            $this->isCustomer = true;
         $this->data['checkin_form_enabled'] = false;
         $this->data['checkout_form_enabled'] = false;
 
@@ -40,6 +43,7 @@ class ProviderCompletedBookingServices extends Component
             $this->data['checkin_form_enabled'] = true;
         if (isset($out['customize_form']) && $out['customize_form'] == true && isset($out['customize_form_id']))
             $this->data['checkout_form_enabled'] = true;
+        $this->booking_service_id = BookingServices::where(['booking_id'=>$this->booking_id,'services'=>$this->service_id])->first()->id;
     }
 
     public function openSavedFormsPanel($user_id)
