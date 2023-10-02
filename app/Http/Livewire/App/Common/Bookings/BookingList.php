@@ -311,7 +311,7 @@ class BookingList extends Component
 				// booking -> booking services -> booking providers (mapped to)=>  booking_services_id
 
 				$booking_service = $row->booking_services ? $row->booking_services->where('id', $row->booking_service_id)->first() : null;
-				$row->accommodation_name = $booking_service ? $booking_service->accommodation->name : null;
+				$row->accommodation_name = $booking_service ? ($booking_service->accommodation ?  $booking_service->accommodation->name :null)  : null;
 				$row->service_name = $booking_service ?  ($booking_service->service ? $booking_service->service->name : null) : null;
 			}
 			if ((isset($booking_service)) && ($booking_service->meetings != null)) {

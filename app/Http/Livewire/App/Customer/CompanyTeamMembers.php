@@ -72,18 +72,18 @@ final class CompanyTeamMembers extends PowerGridComponent
 
         if ($us->user_configuration != "null" &&  $us->user_configuration != null) {
             $j_us = json_decode($us->user_configuration, true);
-            if (!is_null($j_us) && key_exists('grant_access_to_schedule',$j_us) && $j_us['grant_access_to_schedule'] == true && isset($j_us['have_access_to']))
+            if (!is_null($j_us) && key_exists('grant_access_to_schedule', $j_us) && $j_us['grant_access_to_schedule'] == true && isset($j_us['have_access_to']))
                 $access_users = $j_us['have_access_to'];
         }
         // }
 
         $merged_users = array_merge($sv_users, $bm_users, $access_users);
         $companyId = (string) $this->company_id;
-        $query = User::query()->where('company_name', $companyId)->whereNotNull('company_name') 
+        $query = User::query()->where('company_name', $companyId)->whereNotNull('company_name')
             ->leftJoin('user_details', 'user_details.user_id', '=', 'users.id')
             ->join('role_user', 'role_user.user_id', '=', 'users.id') // Join with role_user table
             ->where('role_user.role_id', 4) // Where role_id is 4
-             ->select([
+            ->select([
                 'users.id as id',
                 'company_name',
                 'users.name',
@@ -92,13 +92,13 @@ final class CompanyTeamMembers extends PowerGridComponent
                 'users.status as status',
                 'user_details.user_id', 'profile_pic'
             ])->with('departments');
-            // Check if the session has specific roles
-            if (in_array(5, session()->get('customerRoles')) || in_array(9, session()->get('customerRoles'))) {
-                // Apply the whereIn condition to the query
+        // Check if the session has specific roles
+        if (in_array(5, session()->get('customerRoles')) || in_array(9, session()->get('customerRoles'))&& count($merged_users)) {
+            // Apply the whereIn condition to the query
                 $query->whereIn('users.id', $merged_users);
-            }
-      
-          
+        }
+
+
         return $query;
     }
 
