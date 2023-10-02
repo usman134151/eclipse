@@ -53,14 +53,7 @@ class ConfirmCompletion extends Component
 
     public function save()
     {
-        // {"confirmation_upload_type":"print_and_sign",
-        // "rating":2,"feedback_comments":"maybe could have worked better in com skills",
-        // "actual_start_timestamp":"2023-09-29T07:35:00.000000Z","actual_start_date":"09\/29\/2023",
-        // "actual_start_hour":"07","actual_start_min":"35","actual_end_date":"10\/02\/2023",
-        // "actual_end_hour":"06","actual_end_min":"35","actual_end_timestamp":"2023-02-10T06:35:00.000000Z",
-        // "uploaded_timesheet":"\/tenantabma\/app\/public\/bookings\/3497\/103497_1696245921_timesheet.docx",
-        // "entry_notes":"rtyui","checkout_status":"noshow",
-        // "provider_agreement_confirmation":true}
+       
         $this->validate();
         foreach ($this->providers as $provider) {
             $checkout =$provider->check_out_procedure_values ?? [];

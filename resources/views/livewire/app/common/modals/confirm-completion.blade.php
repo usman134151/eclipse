@@ -8,11 +8,12 @@
 
             <div class="col-lg-0  gap-2">
                 <div class="d-flex justify-between">
-                    @if (isset($service_details['statuses']) && $service_details['statuses'])
-                        <div class="col-8 ">
+                    <div class="col-8 ">
+                        @if (isset($service_details['statuses']) && $service_details['statuses'])
                             <label class="form-label">Mark Booking as:</label>
-                        </div>
-                    @endif
+                        @endif
+
+                    </div>
                     @if (isset($service_details['enable_digital_signature']) && $service_details['enable_digital_signature'])
                         <div class="col-4 d-flex gap-1">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
@@ -54,7 +55,7 @@
                                 isset($service_details['status_types']['completed']) &&
                                 $service_details['status_types']['completed'] == true)
                             <div class="form-check">
-                                <input class="form-check-input"  type="radio" name="booking-status" id="booking-status"
+                                <input class="form-check-input" type="radio" name="booking-status" id="booking-status"
                                     wire:model.lazy="status" value="completed">
                                 <label class="form-check-label" for="completed">
                                     Completed
@@ -118,14 +119,14 @@
                             <td wire:ignore>
                                 <div class="row g-2">
                                     <div class="col-md-2">
-                                        <img src="{{ $provider->profile_pic ? $provider->profile_pic : '/tenant-resources/images/portrait/small/avatar-s-20.jpg'}}"
+                                        <img src="{{ $provider->profile_pic ? $provider->profile_pic : '/tenant-resources/images/portrait/small/avatar-s-20.jpg' }}"
                                             class="img-fluid rounded-circle" alt="Image of Team Profile">
                                     </div>
                                     <div class="col-md-10">
                                         <h6 class="fw-semibold">
                                             {{ $provider->name }}
                                         </h6>
-                                        <p>{{ $provider->email }}</p>
+                                        <small>{{ $provider->email }}</small>
                                     </div>
                                 </div>
                             </td>
@@ -138,7 +139,7 @@
                                                     @for ($i = 0; $i < $feedback[$provider->provider_id]['rating']; $i++)
                                                         <svg aria-label="rating" width="18" height="16"
                                                             viewBox="0 0 18 16"
-                                                            wire:click="setRating({{$provider->provider_id}},{{ $i + 1 }})">
+                                                            wire:click="setRating({{ $provider->provider_id }},{{ $i + 1 }})">
                                                             <use xlink:href="/css/common-icons.svg#filled-star">
                                                             </use>
                                                         </svg>
@@ -146,7 +147,7 @@
                                                     @for ($i = $feedback[$provider->provider_id]['rating']; $i < 5; $i++)
                                                         <svg aria-label="rating" width="17" height="16"
                                                             viewBox="0 0 17 16"
-                                                            wire:click="setRating({{$provider->provider_id}},{{ $i + 1 }})">
+                                                            wire:click="setRating({{ $provider->provider_id }},{{ $i + 1 }})">
                                                             <use xlink:href="/css/common-icons.svg#star">
                                                             </use>
                                                         </svg>
