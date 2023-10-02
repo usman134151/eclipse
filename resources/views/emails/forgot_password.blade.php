@@ -25,7 +25,7 @@
                                     <tbody>
                                     <tr>
                                         <td style="background:#fff;text-align:center;padding:15px;">
-                                            <img src="{{ Helper::getAdminLogo() }}" style="height:110px; width:auto;" />
+                                            <img src="{{ url('/tenant-resources/images/logo.png') }}" style="height:110px; width:auto;" />
                                         </td>
                                     </tr>
                                     <tr>
@@ -34,8 +34,9 @@
                                     <tr>
                                         <td>
                                             @php
-                                                $company = Helper::getAdmin();
-                                                $company = isset($company->users_business)?$company->users_business->company_name:'';
+                                               // $company = Helper::getAdmin();
+                                             //   $company = isset($company->users_business)?$company->users_business->company_name:'';
+                                             $company="Eclipse Scheduling";
                                             @endphp
                                             <table style="" width="100%" cellspacing="0" cellpadding="0" border="0">
                                                 <tbody>
@@ -56,7 +57,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td style="color:#757575;font-family:&quot;Roboto&quot;,OpenSans,&quot;OpenSans&quot;,Arial,sans-serif;font-size:15px;font-weight:300;line-height:4px;margin:0;padding:0 30px 25px 25px;color:#000000;">
-                                                        <a style="font-family:'-apple-system', BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';color:#fff;text-decoration:none;background-color:#0a1e46;border-bottom:8px solid #0a1e46;border-left:18px solid #0a1e46;border-right:18px solid #0a1e46;border-top:8px solid #0a1e46;" href="{{ str_replace('https://' , '' , URL::to('/reset-forgot-password/' . $data->remember_token)) }}">Reset Password</a>
+                                                        <a style="font-family:'-apple-system', BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';color:#fff;text-decoration:none;background-color:#0a1e46;border-bottom:8px solid #0a1e46;border-left:18px solid #0a1e46;border-right:18px solid #0a1e46;border-top:8px solid #0a1e46;" href="{{ str_replace('https://' , '' , URL::to('/reset-password/' . $token)) }}">Reset Password</a>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -97,7 +98,7 @@
                                                     <td style="background:#fbfbfb;" height="19" bgcolor="#3A3F51"><br></td>
                                                 </tr>
                                                 <tr>
-                                                    <td style="background:#fbfbfb;color:#000;font-family:&quot;Roboto&quot;,OpenSans,&quot;OpenSans&quot;,Arial,sans-serif;font-size:12px;line-height:20px;margin:0;padding:0 6px 0 6px;text-align:center" valign="middle" align="center">Need Help? Email us at <a href="mailto:{!! Helper::getAdmin()->email; !!}">{!! Helper::getAdmin()->email; !!}</a></td>
+                                                    <td style="background:#fbfbfb;color:#000;font-family:&quot;Roboto&quot;,OpenSans,&quot;OpenSans&quot;,Arial,sans-serif;font-size:12px;line-height:20px;margin:0;padding:0 6px 0 6px;text-align:center" valign="middle" align="center"></td>
                                                 </tr>
                                                 <tr><td style="background:#fbfbfb;" height="19" bgcolor="#3A3F51"><br></td></tr>
                                                 <tr>

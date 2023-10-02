@@ -950,7 +950,7 @@
                                     <div class="col-lg-12">
                                         <h2 class="mb-lg-4">Notes</h2>
                                         <div class="row mb-4">
-                                            <div class="col-lg-6 mb-4">
+                                            <div class="col-lg-6 mb-4"  @if ($isCustomer) hidden @endif">
                                                 <!-- Provider Notes -->
                                                 <div class="">
                                                     <label class="form-label">
@@ -974,7 +974,7 @@
                                                 </div>
                                                 <!-- /Customer Notes -->
                                             </div>
-                                            <div class="col-lg-6 mb-4">
+                                            <div class="col-lg-6 mb-4  @if ($isCustomer) hidden @endif">
                                                 <!-- Private Notes -->
                                                 <div class="">
                                                     <label class="form-label">
@@ -988,7 +988,7 @@
                                             </div>
                                             <div class="col-lg-6 mb-4">
                                                 <!-- Tags -->
-                                                <div class="">
+                                                <div class=""  @if ($isCustomer) hidden @endif">
 
                                                     <label class="form-label">
                                                         Tags
@@ -1445,7 +1445,7 @@
                                                     <hr class="border-separate-sm">
                                                 </div>
                                             </div>
-                                            <div class="row">
+                                            <div class="row @if($isCustomer) hidden @endif">
                                                 <div class="col-md-9">
                                                     <label class="form-label mb-md-0">Provider Rate Sum:</label>
                                                 </div>
@@ -1453,12 +1453,12 @@
                                                     <div class="font-family-tertiary">$00.00</div>
                                                 </div>
                                             </div>
-                                            <div class="row">
+                                            <div class="row @if($isCustomer) hidden @endif">
                                                 <div class="col-md-12">
                                                     <hr class="border-separate-sm">
                                                 </div>
                                             </div>
-                                            <div class="row">
+                                            <div class="row @if($isCustomer) hidden @endif">
                                                 <div class="col-md-9">
                                                     <label class="form-label mb-md-0">Additional Provider
                                                         Payments:</label>
@@ -1467,12 +1467,12 @@
                                                     <div class="font-family-tertiary">$00.00</div>
                                                 </div>
                                             </div>
-                                            <div class="row">
+                                            <div class="row @if($isCustomer) hidden @endif">
                                                 <div class="col-md-12">
                                                     <hr class="border-separate-sm">
                                                 </div>
                                             </div>
-                                            <div class="row">
+                                            <div class="row @if($isCustomer) hidden @endif">
                                                 <div class="col-md-9">
                                                     <label class="form-label mb-md-0">Profit Margin:</label>
                                                 </div>
@@ -1483,7 +1483,7 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-6  @if ($isCustomer) hidden @endif"">
                                     <!-- Billing Notes -->
                                     <div class="between-section-segment-spacing">
                                         <label class="form-label" for="billing-notes">
