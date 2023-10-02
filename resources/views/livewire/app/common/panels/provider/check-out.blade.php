@@ -515,8 +515,8 @@
                         <div class="mb-4">
                             <label class="form-label d-block">Check-Out Status</label>
                             @if (isset($checkout_details['status_types']) &&
-                                    isset($checkout_details['status_types']['complete']) &&
-                                    $checkout_details['status_types']['complete'] == true)
+                                    isset($checkout_details['status_types']['completed']) &&
+                                    $checkout_details['status_types']['completed'] == true)
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="booking_status"
                                         wire:model='checkout.checkout_status' value="complete" id="complete">
