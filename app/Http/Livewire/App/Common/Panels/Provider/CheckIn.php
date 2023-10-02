@@ -45,8 +45,8 @@ class CheckIn extends Component
         return [
             'provider_signature' => 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv',
             'customer_signature' => 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv',
-            'hours'=> 'required|numeric|between:1,23',
-            'mins' => 'required|numeric|between:1,59'
+            'hours'=> 'required|numeric|between:0,23',
+            'mins' => 'required|numeric|between:0,59'
 
         ];
     }
