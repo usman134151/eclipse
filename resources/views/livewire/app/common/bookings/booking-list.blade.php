@@ -374,7 +374,7 @@
                                                                                 </svg>
                                                                             </a>
                                                                             @endif
-                                                                            @if (($bookingType == "Today's" || $bookingType == 'Past') && $bookingSection == 'customer' && $booking['display_customer_check_out'])
+                                                                            @if (($bookingType == "Today's" || $bookingType == 'Past') && $bookingSection == 'customer' && $booking['display_customer_check_out'] && $booking['is_closed']==false)
                                                                                 <a href="#"
                                                                                     title="Confirm Completion"
                                                                                     aria-label="Confirm Completion"
@@ -758,6 +758,11 @@
 
         Livewire.on('closeUnassignModel', () => {
             $('#UnassignModal').modal('hide');
+
+        });
+        
+        Livewire.on('closeConfirmCompletionModal', () => {
+            $('#confirmCompletion').modal('hide');
 
         });
     </script>

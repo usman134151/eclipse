@@ -1,6 +1,6 @@
 <div class="modal-content">
     <div class="modal-header">
-        <h2 class="modal-title fs-5 text-center" id="confirmCompletion">Confirm Completion</h2>
+        <h2 class="modal-title fs-5 text-center" id="confirmCompletion">Close Out Confirmation</h2>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body">
@@ -31,6 +31,22 @@
                         <input style=" opacity: 0; z-index: -1; position: absolute;" id="upload_signature"
                             wire:model="upload_signature" type="file">
                     </div>
+                    <div class="d-flex justify-content-end me-5">
+
+                        @error('upload_signature')
+                            <span class="d-inline-block invalid-feedback mt-2">
+                                {{ $message }}
+                            </span>
+                        @enderror
+                        <div class="text-muted" wire:loading wire:target='upload_signature'>
+                            Uploading...
+                        </div>
+                        @if ($upload_signature)
+                            <div class="text-muted"> <small>
+                                    {{ $upload_signature->getClientOriginalName() }} </small>
+                            </div>
+                        @endif
+                    </div>
                 @endif
                 @if (isset($service_details['statuses']) && $service_details['statuses'])
                     <div class="mb-2 d-flex gap-2 ">
@@ -38,7 +54,7 @@
                                 isset($service_details['status_types']['completed']) &&
                                 $service_details['status_types']['completed'] == true)
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="booking-status" id="booking-status"
+                                <input class="form-check-input"  type="radio" name="booking-status" id="booking-status"
                                     wire:model.lazy="status" value="completed">
                                 <label class="form-check-label" for="completed">
                                     Completed
@@ -99,10 +115,10 @@
                     @foreach ($providers as $i => $provider)
                         <tr role="row" class="odd">
 
-                            <td>
+                            <td wire:ignore>
                                 <div class="row g-2">
                                     <div class="col-md-2">
-                                        <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
+                                        <img src="{{ $provider->profile_pic ? $provider->profile_pic : '/tenant-resources/images/portrait/small/avatar-s-20.jpg'}}"
                                             class="img-fluid rounded-circle" alt="Image of Team Profile">
                                     </div>
                                     <div class="col-md-10">
@@ -122,7 +138,7 @@
                                                     @for ($i = 0; $i < $feedback[$provider->provider_id]['rating']; $i++)
                                                         <svg aria-label="rating" width="18" height="16"
                                                             viewBox="0 0 18 16"
-                                                            wire:click="setRating({{ $i + 1 }})">
+                                                            wire:click="setRating({{$provider->provider_id}},{{ $i + 1 }})">
                                                             <use xlink:href="/css/common-icons.svg#filled-star">
                                                             </use>
                                                         </svg>
@@ -130,7 +146,7 @@
                                                     @for ($i = $feedback[$provider->provider_id]['rating']; $i < 5; $i++)
                                                         <svg aria-label="rating" width="17" height="16"
                                                             viewBox="0 0 17 16"
-                                                            wire:click="setRating({{ $i + 1 }})">
+                                                            wire:click="setRating({{$provider->provider_id}},{{ $i + 1 }})">
                                                             <use xlink:href="/css/common-icons.svg#star">
                                                             </use>
                                                         </svg>
@@ -142,8 +158,8 @@
                                 </div>
                             </td>
                             <td>
-                                <textarea class="form-control" name="" id="" cols="30" rows="1" wire:model.lazy="feedback.{{$provider->provider_id}}.feedback_comments"
-                                    placeholder="Enter Feedback"></textarea>
+                                <textarea class="form-control" name="" id="" cols="30" rows="1"
+                                    wire:model.lazy="feedback.{{ $provider->provider_id }}.feedback_comments" placeholder="Enter Feedback"></textarea>
                             </td>
 
                         </tr>
@@ -159,7 +175,7 @@
                     data-bs-dismiss="modal">Cancel</button>
             </div>
             <div class="col-lg-3">
-                <button type="button" class="btn rounded w-100 btn-primary" data-bs-dismiss="modal">Submit</button>
+                <button type="button" class="btn rounded w-100 btn-primary" wire:click="save">Submit</button>
             </div>
         </div>
     </div>
