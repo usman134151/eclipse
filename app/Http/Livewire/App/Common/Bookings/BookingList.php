@@ -341,11 +341,12 @@ class BookingList extends Component
 						if (isset($val['enable_button']) && ($val['enable_button']))
 							$row->display_check_in = true;
 					}
+
 					$val = json_decode($booking_service->service->close_out_procedure, true);
 					if ($val) {
 						if (isset($val['enable_button_provider']) && ($val['enable_button_provider']))
 							$row->display_check_out = true;
-						if (isset($val['enable_button_customer']) && ($val['enable_button_customer']) && isset($val['customers']))
+						if (isset($val['enable_button_customer']) && ($val['enable_button_customer']) && isset($val['customers']) && $this->isCustomer)
 							if (in_array($val['customers'], session()->get('customerRoles')))
 								$row->display_customer_check_out = true;
 					}
