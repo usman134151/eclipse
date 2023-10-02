@@ -25,10 +25,11 @@
                 </div>
                 @if (isset($service_details['enable_digital_signature']) && $service_details['enable_digital_signature'])
                     <div class="d-flex justify-content-end me-5">
-                    <label for="upload_signature">
-                        <div class="btn btn-primary rounded btn-xs">Click to Sign</div> </label>
-                         <input style=" opacity: 0; z-index: -1; position: absolute;" id="upload_signature"
-                                        wire:model="upload_signature" type="file">
+                        <label for="upload_signature">
+                            <div class="btn btn-primary rounded btn-xs">Click to Sign</div>
+                        </label>
+                        <input style=" opacity: 0; z-index: -1; position: absolute;" id="upload_signature"
+                            wire:model="upload_signature" type="file">
                     </div>
                 @endif
                 @if (isset($service_details['statuses']) && $service_details['statuses'])
@@ -48,8 +49,8 @@
                                 isset($service_details['status_types']['noshow']) &&
                                 $service_details['status_types']['noshow'] == true)
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="booking-status"
-                                    id="booking-status" wire:model.lazy="status" value="noshow" >
+                                <input class="form-check-input" type="radio" name="booking-status" id="booking-status"
+                                    wire:model.lazy="status" value="noshow">
                                 <label class="form-check-label" for="no-show">
                                     No Show
                                 </label>
@@ -59,8 +60,8 @@
                                 isset($service_details['status_types']['cancelled']) &&
                                 $service_details['status_types']['cancelled'] == true)
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="booking-status"
-                                    id="booking-status" wire:model.lazy="status" value="cancelled">
+                                <input class="form-check-input" type="radio" name="booking-status" id="booking-status"
+                                    wire:model.lazy="status" value="cancelled">
                                 <label class="form-check-label" for="cancellation">
                                     Cancellation
                                 </label>
@@ -76,7 +77,8 @@
                             <use xlink:href="/css/provider.svg#fill-question"></use>
                         </svg>
                     </label>
-                    <textarea class="form-control" rows="3" placeholder="" name="notesColumn" id="notes-column"></textarea>
+                    <textarea wire:model.lazy="notes" class="form-control" rows="3" placeholder="" name="notesColumn"
+                        id="notes-column"></textarea>
                 </div>
             </div>
 
@@ -94,13 +96,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @php
-                        $status = ['1', '2', '3'];
-                        $statusCode = ['bg-success', 'bg-gray', 'bg-warning'];
-                    @endphp
-                    @for ($i = 1; $i <= 5; $i++)
-                        <tr role="row"
-                            class="{{ $i % 2 == 0 ? 'even' : 'odd' }} {{ $statusCode[array_rand($status)] }}">
+                    @foreach ($providers as $i => $provider)
                         <tr role="row" class="odd">
 
                             <td>
@@ -111,9 +107,9 @@
                                     </div>
                                     <div class="col-md-10">
                                         <h6 class="fw-semibold">
-                                            Dori Griffiths
+                                            {{ $provider->name }}
                                         </h6>
-                                        <p>dorigriffit@gmail.com</p>
+                                        <p>{{ $provider->email }}</p>
                                     </div>
                                 </div>
                             </td>
@@ -122,43 +118,36 @@
                                     <div class="col-md-2">
                                         <div class="uploaded-data d-flex">
                                             <div class="font-family-secondary d-flex">
-                                                <svg aria-label="rating" width="18" height="16"
-                                                    viewBox="0 0 18 16">
-                                                    <use xlink:href="/css/common-icons.svg#filled-star">
-                                                    </use>
-                                                </svg>
-                                                <svg aria-label="rating" width="18" height="16"
-                                                    viewBox="0 0 18 16">
-                                                    <use xlink:href="/css/common-icons.svg#filled-star">
-                                                    </use>
-                                                </svg>
-                                                <svg aria-label="rating" width="18" height="16"
-                                                    viewBox="0 0 18 16">
-                                                    <use xlink:href="/css/common-icons.svg#filled-star">
-                                                    </use>
-                                                </svg>
-                                                <svg aria-label="rating" width="17" height="16"
-                                                    viewBox="0 0 17 16">
-                                                    <use xlink:href="/css/common-icons.svg#star">
-                                                    </use>
-                                                </svg>
-                                                <svg aria-label="rating" width="17" height="16"
-                                                    viewBox="0 0 17 16">
-                                                    <use xlink:href="/css/common-icons.svg#star">
-                                                    </use>
-                                                </svg>
+                                                @if (isset($feedback[$provider->provider_id]['rating']))
+                                                    @for ($i = 0; $i < $feedback[$provider->provider_id]['rating']; $i++)
+                                                        <svg aria-label="rating" width="18" height="16"
+                                                            viewBox="0 0 18 16"
+                                                            wire:click="setRating({{ $i + 1 }})">
+                                                            <use xlink:href="/css/common-icons.svg#filled-star">
+                                                            </use>
+                                                        </svg>
+                                                    @endfor
+                                                    @for ($i = $feedback[$provider->provider_id]['rating']; $i < 5; $i++)
+                                                        <svg aria-label="rating" width="17" height="16"
+                                                            viewBox="0 0 17 16"
+                                                            wire:click="setRating({{ $i + 1 }})">
+                                                            <use xlink:href="/css/common-icons.svg#star">
+                                                            </use>
+                                                        </svg>
+                                                    @endfor
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </td>
                             <td>
-                                <textarea class="form-control" name="" id="" cols="30" rows="1"
+                                <textarea class="form-control" name="" id="" cols="30" rows="1" wire:model.lazy="feedback.{{$provider->provider_id}}.feedback_comments"
                                     placeholder="Enter Feedback"></textarea>
                             </td>
 
                         </tr>
-                    @endfor
+                    @endforeach
                 </tbody>
             </table>
         </div>

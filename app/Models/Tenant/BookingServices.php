@@ -35,6 +35,10 @@ class BookingServices extends Model
     {
         return $this->hasOne(Accommodation::class, 'id', 'accommodation_id');
     }
+    public function providers()
+    {
+        return $this->hasOne(BookingProvider::class, 'id', 'booking_service_id');
+    }
 
     public function serviceConsumerUser()
     {
