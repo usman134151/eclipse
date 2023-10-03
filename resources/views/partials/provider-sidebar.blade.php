@@ -64,7 +64,7 @@
 				</a>
 			</li>
 			<li class="nav-item" id="chat">
-				<a href="/provider/chat">
+				<a href="/chat">
 					<svg aria-label="Chat" width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/provider-menu.svg#chat-icon"></use>
                     </svg>
