@@ -20,7 +20,7 @@ class CheckOut extends Component
     public $showForm, $checkout = [];
     protected $listeners = ['showList' => 'resetForm', 'updateVal'];
     public $booking_id = 0, $assignment = null, $step = 1, $booking_service = null, $checkout_details = null, $checked_in_details = null;
-    public $upload_timesheet = null, $upload_signature = null, $booking_provider = null, $provider_id = null;
+    public $upload_timesheet = null, $upload_signature = null, $booking_provider = null, $provider_id = null,$booking_service_id = null;
 
 
 
@@ -41,7 +41,8 @@ class CheckOut extends Component
         $this->booking_provider->return_status = 2;
 
         $this->booking_provider->save();
-
+        //refresh booking service data
+        $this->booking_service = BookingServices::where('id', $this->booking_service_id)->first();
         //check if all other providers have checked out -> then close service
         if ($this->booking_service->provider_count == $this->booking_service->checked_out_providers->count()) {
             $this->booking_service->is_closed = true;
@@ -89,6 +90,7 @@ class CheckOut extends Component
             'feedback_comments'=>'',
 
         ];
+        $this->$booking_service_id=$booking_service_id;
         $this->assignment = Booking::where('id', $this->booking_id)->first();
         $this->booking_service = BookingServices::where('id', $booking_service_id)->first();
         $this->checkout['actual_start_timestamp'] = Carbon::parse($this->booking_service->start_time);
