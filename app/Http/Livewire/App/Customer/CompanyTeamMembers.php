@@ -59,11 +59,11 @@ final class CompanyTeamMembers extends PowerGridComponent
         $sv_users = [];
         $bm_users = [];
         $access_users = [];
-        if (in_array(5, session()->get('customerRoles')))
+        if (in_array(5, session()->get('customerRoles'))) //supervisor
             $sv_users =  RoleUserDetail::select('associated_user')
                 ->where(['user_id' => Auth::id(), 'role_id' => 5])->get()->pluck('associated_user')->toArray();
 
-        if (in_array(9, session()->get('customerRoles')))
+        if (in_array(9, session()->get('customerRoles'))) //billing manager
             $bm_users =  RoleUserDetail::select('associated_user')
                 ->where(['user_id' => Auth::id(), 'role_id' => 9])->get()->pluck('associated_user')->toArray();
 
@@ -72,12 +72,17 @@ final class CompanyTeamMembers extends PowerGridComponent
 
         if ($us->user_configuration != "null" &&  $us->user_configuration != null) {
             $j_us = json_decode($us->user_configuration, true);
-            if (!is_null($j_us) && key_exists('grant_access_to_schedule', $j_us) && $j_us['grant_access_to_schedule'] == true && isset($j_us['have_access_to']))
+          
+            if (!is_null($j_us) && key_exists('have_access_to', $j_us) && $j_us['have_access_to'] == true && isset($j_us['have_access_to']))
                 $access_users = $j_us['have_access_to'];
         }
         // }
 
         $merged_users = array_merge($sv_users, $bm_users, $access_users);
+
+        if(!in_array(10, session()->get('customerRoles')) && count($merged_users)==0)
+           return User::query()->where('id','-1');
+
         $companyId = (string) $this->company_id;
         $query = User::query()->where('company_name', $companyId)->whereNotNull('company_name')
             ->leftJoin('user_details', 'user_details.user_id', '=', 'users.id')
@@ -94,7 +99,7 @@ final class CompanyTeamMembers extends PowerGridComponent
             ])->with('departments');
             // dd($merged_users);
         // Check if the session has specific roles
-        if ((in_array(5, session()->get('customerRoles')) || in_array(9, session()->get('customerRoles'))) && !in_array(10, session()->get('customerRoles'))) {
+        if (!in_array(10, session()->get('customerRoles'))) {
             // Apply the whereIn condition to the query
        
                 $query->whereIn('users.id', $merged_users);
