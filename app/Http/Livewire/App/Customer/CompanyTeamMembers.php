@@ -87,7 +87,8 @@ final class CompanyTeamMembers extends PowerGridComponent
         $query = User::query()->where('company_name', $companyId)->whereNotNull('company_name')
             ->leftJoin('user_details', 'user_details.user_id', '=', 'users.id')
             ->join('role_user', 'role_user.user_id', '=', 'users.id') // Join with role_user table
-            ->where('role_user.role_id', 4) // Where role_id is 4
+            ->where('role_user.role_id', 4)
+            ->where('status','1') // Where role_id is 4
             ->select([
                 'users.id as id',
                 'company_name',
