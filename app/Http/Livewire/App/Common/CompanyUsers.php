@@ -28,8 +28,10 @@ class CompanyUsers extends Component
         $this->users = User::query()
             ->where(['users.status' => 1])
             ->join('user_details', 'user_details.user_id', '=', 'users.id')
-            ->join('companies', 'companies.id', '=', 'users.company_name')
-            ->where('companies.id', '=', $this->companyId)
+            // ->join('companies', 'companies.id', '=', 'users.company_name')
+            ->where('users.company_name', '=', $this->companyId)
+            ->join('role_user', 'role_user.user_id', '=', 'users.id') // Join with role_user table
+            ->where('role_user.role_id', 4) // Where role_id is 4
             ->select('users.id', 'users.name', 'email', 'phone', 'user_position as position', 'profile_pic')
             ->get();
         $service = new UserService();
