@@ -15,7 +15,7 @@ use Livewire\WithFileUploads;
 class ConfirmCompletion extends Component
 {
     use WithFileUploads;
-    public $showForm, $booking_service, $service_details = [], $upload_signature, $checkout=[], $providers = [], $feedback = [];
+    public $showForm, $booking_service, $service_details = [], $upload_signature, $checkout = [], $providers = [], $feedback = [];
     protected $listeners = ['showList' => 'resetForm', 'openConfirmCompletionModal' => 'setBookingId'];
 
     public function setBookingId($booking_service_id)
@@ -29,7 +29,7 @@ class ConfirmCompletion extends Component
             $this->feedback[$provider->provider_id]['feedback_comments'] = null;
         };
         $this->upload_signature = null;
-      
+
         $this->checkout = [
             'customer_status' => '',
             'customer_notes' => '',
@@ -48,10 +48,10 @@ class ConfirmCompletion extends Component
     public function mount()
     {
         $this->booking_service = new BookingServices();
-        $this->checkout =[
-            'customer_status'=>'',
+        $this->checkout = [
+            'customer_status' => '',
             'customer_notes' => '',
-           'customer_actual_end_date' => Carbon::today()->format('m/d/Y'),
+            'customer_actual_end_date' => Carbon::today()->format('m/d/Y'),
             'customer_actual_end_hour' => Carbon::today()->format('H'),
             'customer_actual_end_min' => Carbon::today()->format('i'),
             'customer_actual_end_timestamp' => Carbon::today()->format('i')
@@ -123,9 +123,15 @@ class ConfirmCompletion extends Component
             ]);
         }
 
+        $this->booking_service->is_closed = true;
+        $this->booking_service->save();
 
-        Booking::where('id', $this->booking_service->booking_id)->update(['is_closed' => true]);
-
+        $booking = Booking::where('id', $this->booking_service->booking_id)->first();
+        // dd(count($booking->booking_services), count($booking->closed_booking_services));
+        if (count($booking->booking_services) == count($booking->closed_booking_services)) {
+            $booking->is_closed = true;
+            $booking->save();
+        }
         $this->emit('closeConfirmCompletionModal');
         $this->emit('showConfirmation', 'Booking service has been successfully closed!');
     }
