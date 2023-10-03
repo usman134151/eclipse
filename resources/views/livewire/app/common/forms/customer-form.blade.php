@@ -146,8 +146,8 @@
                                         <div class="row">
                                             <div class="col-12">
                                                 {{-- updated by shanila to add csrf and add form tag --}}
-                                                <form class="form">
-                                                    @csrf
+                                                {{-- <form class="form">
+                                                    @csrf --}}
                                                     <div class="row between-section-segment-spacing">
                                                         <div class="provider_image_panel">
                                                             <div class="provider_image">
@@ -661,7 +661,7 @@
                                                                 Save & Exit
                                                             </button>
                                                             @if (!$isCustomer || ($isCustomer && !$selfProfile))
-                                                                <button type="button"
+                                                                <button type="submit"
                                                                     class="btn btn-primary rounded px-4 py-2"
                                                                     wire:click.prevent="save(0)"
                                                                     x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('permission-configurations')">
@@ -671,7 +671,7 @@
                                                         </div>
                                                         {{-- Action Buttons End --}}
 
-                                                </form>
+                                                {{-- </form> --}}
                                                 {{-- ended update by shanila --}}
 
                                             </div>
@@ -691,8 +691,8 @@
                                     <section id="multiple-column-form">
                                         <div class="">
                                             {{-- updated by shanila to add csrf and add form tag --}}
-                                            <form class="form">
-                                                @csrf
+                                            {{-- <form class="form">
+                                                @csrf --}}
                                                 <div class="col-lg-12 inner-section-segment-spacing">
 
 
@@ -1193,7 +1193,7 @@
                                                     </button>
                                                 </div>
                                                 {{-- Action Buttons End --}}
-                                            </form>
+                                            {{-- </form> --}}
                                             {{-- ended update by shanila --}}
 
                                         </div>
