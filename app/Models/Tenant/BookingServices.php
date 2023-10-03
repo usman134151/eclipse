@@ -16,7 +16,8 @@ class BookingServices extends Model
      * @var array
      */
     protected $fillable = [
-        'booking_log_id', 'booking_id', 'accommodation_id', 'attendees', 'service_consumer', 'is_manual_consumer', 'is_manual_attendees', 'services', 'service_types', 'specialization', 'meeting_link', 'meeting_phone', 'meeting_passcode', 'day_rate', 'duration_day', 'duration_hour', 'duration_minute', 'start_time', 'end_time', 'provider_count', 'time_zone', 'status', 'meetings'
+        'booking_log_id', 'booking_id', 'accommodation_id', 'attendees','is_closed',
+         'service_consumer', 'is_manual_consumer', 'is_manual_attendees', 'services', 'service_types', 'specialization', 'meeting_link', 'meeting_phone', 'meeting_passcode', 'day_rate', 'duration_day', 'duration_hour', 'duration_minute', 'start_time', 'end_time', 'provider_count', 'time_zone', 'status', 'meetings'
     ];
 
     public function service()
@@ -38,6 +39,10 @@ class BookingServices extends Model
     public function providers()
     {
         return $this->hasOne(BookingProvider::class, 'id', 'booking_service_id');
+    }
+    public function checked_out_providers()
+    {
+        return $this->hasOne(BookingProvider::class, 'id', 'booking_service_id')->where(['check_in_status'=>3]);
     }
 
     public function serviceConsumerUser()

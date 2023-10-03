@@ -195,7 +195,7 @@
                                     @endforeach
                                 @else
                                     <tr>
-                                        <td colSpan="{{ $isCustomer ? 3 : 10 }}">
+                                        <td colSpan="{{ $isCustomer ? 4 : 10 }}" class="text-center">
                                             <small>
                                                 No Providers have checked in to this service yet.
                                             </small>
