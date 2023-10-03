@@ -263,7 +263,8 @@ class AssignProviders extends Component
                 $fetch[1] = 'emergency_hour' . $this->serviceTypes[$service->service_types]['postfix'] . ' as emergency';
                 // dd($fetch, $service->service_types);
                 $this->custom_rates[$provider['id']]['standard'] = StandardRate::where(['accommodation_service_id' => $this->service_id, 'user_id' => $provider['id']])->select($fetch)->first();
-                $this->custom_rates[$provider['id']]['standard']['emergency'] = isset($this->custom_rates[$provider['id']]['standard']['emergency']) ? json_decode($this->custom_rates[$provider['id']]['standard']['emergency'], true)[0] : null;
+                $e_rates = isset($this->custom_rates[$provider['id']]['standard']['emergency']) ? json_decode($this->custom_rates[$provider['id']]['standard']['emergency'], true) :null;
+                $this->custom_rates[$provider['id']]['standard']['emergency'] = ($e_rates && count($e_rates))  ? $e_rates[0] : null;
                 //    dd($this->custom_rates[$provider['id']]['standard']['emergency']);
 
                 if (!is_null($service->specialization) && !is_array($service->specialization))
