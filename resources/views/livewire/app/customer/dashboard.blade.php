@@ -182,7 +182,7 @@
                     </div>
                 </div>
 
-                @livewire('app.common.bookings.booking-list', ['bookingSection' => 'customer', 'bookingType' => "Today's", 'showHeader'=>false])
+                @livewire('app.common.bookings.booking-list', ['bookingSection' => 'customer', 'bookingType' => "Today's", 'showHeader'=>false,'isCustomer'=>true])
             </div>
             <!-- /Today's Assignment -->
 
