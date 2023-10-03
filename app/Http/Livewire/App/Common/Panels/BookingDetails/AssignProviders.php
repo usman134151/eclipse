@@ -263,8 +263,13 @@ class AssignProviders extends Component
                 $fetch[1] = 'emergency_hour' . $this->serviceTypes[$service->service_types]['postfix'] . ' as emergency';
                 // dd($fetch, $service->service_types);
                 $this->custom_rates[$provider['id']]['standard'] = StandardRate::where(['accommodation_service_id' => $this->service_id, 'user_id' => $provider['id']])->select($fetch)->first();
-                $e_rates = isset($this->custom_rates[$provider['id']]['standard']['emergency']) ? json_decode($this->custom_rates[$provider['id']]['standard']['emergency'], true) :null;
-                $this->custom_rates[$provider['id']]['standard']['emergency'] = ($e_rates && count($e_rates))  ? $e_rates[0] : null;
+                $e_rates = null;
+
+                if (isset($this->custom_rates[$provider['id']])
+                    && isset($this->custom_rates[$provider['id']]['standard'])
+                    && isset($this->custom_rates[$provider['id']]['standard']['emergency'])) {
+                    $e_rates = json_decode($this->custom_rates[$provider['id']]['standard']['emergency'], true);
+                }
                 //    dd($this->custom_rates[$provider['id']]['standard']['emergency']);
 
                 if (!is_null($service->specialization) && !is_array($service->specialization))
@@ -321,6 +326,8 @@ class AssignProviders extends Component
         $this->providersPayment[$index]['override_price'] =0; 
 
             $this->providersPayment[$index]['total_amount'] = number_format($this->providersPayment[$index]['override_price'] * $this->durationTotal, 2, '.', '');
+            if(!is_null($this->providersPayment[$index]['additional_charge_provider']) && is_numeric($this->providersPayment[$index]['additional_charge_provider']))
+                $this->providersPayment[$index]['total_amount'] = $this->providersPayment[$index]['total_amount'] + $this->providersPayment[$index]['additional_charge_provider'];
             $pid = $this->providers[$index]['id'];
             foreach ($this->assignedProviders as &$aProvider) {
                 if ($aProvider['provider_id'] == $pid) {

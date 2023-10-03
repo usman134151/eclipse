@@ -232,7 +232,8 @@
                                                         <div class="row mb-3">
                                                             <div class="d-inline-flex">
                                                                 
-                                                                    @if ($custom_rates[$provider['id']]['standard']['emergency'] != null)
+                                                            @if(isset($custom_rates[$provider['id']]['standard']['emergency']) && !is_null($custom_rates[$provider['id']]['standard']['emergency']))
+
                                                                         <div class="row">
 
                                                                             @foreach ($custom_rates[$provider['id']]['standard']['emergency'] as $index => $param)
@@ -337,7 +338,7 @@
                                          <div>
                                              <label class="form-label-sm text-nowrap">Additional Payment</label> 
                                              <input type="number" name="" class="form-control form-control-sm"
-                                                 placeholder="00:00" aria-label="Additional Payment" wire:model.defer="providersPayment.{{$index}}.additional_charge_provider"> 
+                                                 placeholder="00:00" aria-label="Additional Payment" wire:model.defer="providersPayment.{{$index}}.additional_charge_provider"  wire:blur="updateTotal({{$index}})"> 
                                          </div>
                                         <!--  <div>
                                              <label class="form-label-sm">Label</label>
