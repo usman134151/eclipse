@@ -42,9 +42,9 @@ class CheckOut extends Component
 
         $this->booking_provider->save();
         //refresh booking service data
-        $this->booking_service = BookingServices::where('id', $this->booking_service->id)->first();
+        $checkedout_providers = BookingProvider::where('booking_service_id',$this->booking_service->id)->where('check_in_status',3)->count();
         //check if all other providers have checked out -> then close service
-        if ($this->booking_service->provider_count == $this->booking_service->checked_out_providers->count()) {
+        if ($this->booking_service->provider_count == $checkedout_providers) {
             $this->booking_service->is_closed = true;
             $this->booking_service->save();
         }
