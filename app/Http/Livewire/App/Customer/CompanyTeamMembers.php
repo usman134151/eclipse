@@ -92,9 +92,11 @@ final class CompanyTeamMembers extends PowerGridComponent
                 'users.status as status',
                 'user_details.user_id', 'profile_pic'
             ])->with('departments');
+            // dd($merged_users);
         // Check if the session has specific roles
-        if (in_array(5, session()->get('customerRoles')) || in_array(9, session()->get('customerRoles'))&& count($merged_users)) {
+        if ((in_array(5, session()->get('customerRoles')) || in_array(9, session()->get('customerRoles'))) && !in_array(10, session()->get('customerRoles'))) {
             // Apply the whereIn condition to the query
+       
                 $query->whereIn('users.id', $merged_users);
         }
         $query->orderBy('users.name');
