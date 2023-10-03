@@ -43,7 +43,7 @@ class CheckOut extends Component
         $this->booking_provider->save();
 
         //check if all other providers have checked out -> then close service
-        if ($this->booking_service->booking_provider->count() == $this->booking_service->checked_out_providers->count()) {
+        if ($this->booking_service->provider_count == $this->booking_service->checked_out_providers->count()) {
             $this->booking_service->is_closed = true;
             $this->booking_service->save();
         }
@@ -90,7 +90,7 @@ class CheckOut extends Component
 
         ];
         $this->assignment = Booking::where('id', $this->booking_id)->first();
-        $this->booking_service = BookingServices::where('id', $booking_service_id)->with('booking_provider')->first();
+        $this->booking_service = BookingServices::where('id', $booking_service_id)->first();
         $this->checkout['actual_start_timestamp'] = Carbon::parse($this->booking_service->start_time);
         $this->checkout['actual_start_date'] = Carbon::parse($this->booking_service->start_time)->format('m/d/Y');
         $this->checkout['actual_start_hour'] = date_format(date_create($this->booking_service->start_time), 'H');
