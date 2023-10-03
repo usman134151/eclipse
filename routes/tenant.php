@@ -37,7 +37,9 @@ Route::group([
 			Route::view('/admin/dashboard', 'tenant/dashboard/index');
 
 			Route::view('/admin/tenants', 'tenant/admin/tenants', ["showForm"=>false]);
-			Route::view('/admin/chat', 'tenant/admin/chat');
+
+            //updated by Zia - 3-10-23 - commented chat route because it will take from chatify config
+           // Route::view('/admin/chat', 'tenant/admin/chat');
 
 			Route::view('/admin/all-specialization', 'tenant/common/specialization', ["showForm"=>false]);
 			Route::view('/admin/specialization/create-specialization', 'tenant/common/specialization', ["showForm"=>true]);
@@ -65,7 +67,7 @@ Route::group([
 			Route::view('/admin/deactivated-provider', 'tenant/common/provider', ["showForm"=>false, 'showProfile' => false,'status'=>0]);
 			Route::view('/admin/provider-applications', 'tenant/admin/provider-applications', ["showForm"=>false]);
 			Route::view('/admin/provider-screenings', 'tenant/admin/provider-screenings', ["showForm"=>false]);
-			
+
 			Route::view('/admin/provider/edit-provider/{providerID}', 'tenant/common/provider', ["showForm" => true,'showProfile'=>false,'status'=>1])->name('provider-edit');
 			Route::view('/admin/provider/profile/{providerID}', 'tenant/common/provider', ["showForm" => false, 'showProfile' => true, 'status' => 1])->name('provider-profile');
 
@@ -127,7 +129,7 @@ Route::group([
 			Route::view('/admin/booknow/create', 'tenant/common/bookings/booknow', ["showForm"=>true]);
 			Route::view('/admin/booknow/edit-booking/{bookingID}', 'tenant/common/bookings/booknow', ["showForm" => true])->name('booking-edit')->middleware(DecryptRouteParamater::class);
 			Route::view('/admin/bookings/view-booking/{bookingID}', 'tenant/common/bookings/booking-list', ["bookingType" => "profile", 'showBookingDetails'=>true])->name('booking-view')->middleware(DecryptRouteParamater::class);
-			
+
 			Route::view('/admin/bookings/today', 'tenant/common/bookings/booking-list', ["bookingType"=>"Today's"]);
 			Route::view('/admin/bookings/upcoming', 'tenant/common/bookings/booking-list', ["bookingType"=>"Upcoming"]);
 			Route::view('/admin/bookings/past', 'tenant/common/bookings/booking-list', ["bookingType"=>"Past"]);
@@ -165,7 +167,8 @@ Route::group([
 			Route::prefix('provider')->namespace('Provider')->group(function(){
 				Route::view('/dashboard', 'tenant/provider/dashboard');
 
-				Route::view('/chat', 'tenant/provider/chat');
+                //updated by Zia - 3-10-23 - commented chat route because it will take from chatify config
+//				Route::view('/chat', 'tenant/provider/chat');
 				Route::view('/edit-profile', 'tenant/provider/edit-profile');
 
 				Route::view('/set-availability', 'tenant/provider/manage-availability');
@@ -199,7 +202,9 @@ Route::group([
 		Route::middleware(['role:customer'])->group(function () {
 			Route::prefix('customer')->namespace('Customer')->group(function(){
 				Route::view('/dashboard', 'tenant/customer/dashboard');
-                Route::view('/chat', 'tenant/customer/chat');
+
+                //updated by Zia - 3-10-23 - commented chat route because it will take from chatify config
+//                Route::view('/chat', 'tenant/customer/chat');
 
                 Route::view('booking/booknow', 'tenant/customer/booking/service-request');
                 Route::view('/pending-reviews', 'tenant/customer/booking/booking-list', ["bookingType" => "Pending Approval"]);
@@ -214,7 +219,7 @@ Route::group([
 				Route::view('booknow/create', 'tenant/common/bookings/booknow', ["showForm" => true]);
 				Route::view('/booknow/edit-booking/{bookingID}', 'tenant/common/bookings/booknow', ["showForm" => true])->name('customer-booking-edit')->middleware(DecryptRouteParamater::class);
 				Route::view('/bookings/view-booking/{bookingID}', 'tenant/common/bookings/booking-list', ["bookingType" => "profile", 'showBookingDetails' => true])->name('customer-booking-view')->middleware(DecryptRouteParamater::class);
-			
+
 
 				Route::view('/departments/{companyID}','tenant/customer/departments')->middleware(DecryptRouteParamater::class);
 				Route::view('/department/create-department/{companyID}', 'tenant/common/department', ["showForm" => true, 'status' => 1])->middleware(DecryptRouteParamater::class);
