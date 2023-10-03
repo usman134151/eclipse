@@ -30,15 +30,15 @@ final class CompanyTeamMembers extends PowerGridComponent
     {
         $this->showCheckBox();
 
-        return [
-            Exportable::make('export')
-                ->striped()
-                ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
-            Header::make()->showSearchInput(),
-            Footer::make()
-                ->showPerPage()
-                ->showRecordCount(),
-        ];
+      return [
+			Exportable::make('export')
+				->striped()
+				->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
+			Header::make()->showSearchInput()->showToggleColumns(),
+			Footer::make()
+                ->showPerPage(config('app.per_page'))
+				->showRecordCount(),
+		];
     }
 
     /*
@@ -97,11 +97,14 @@ final class CompanyTeamMembers extends PowerGridComponent
                 'users.status as status',
                 'user_details.user_id', 'profile_pic'
             ])->with('departments');
+            // dd($merged_users);
         // Check if the session has specific roles
         if (!in_array(10, session()->get('customerRoles'))) {
             // Apply the whereIn condition to the query
+       
                 $query->whereIn('users.id', $merged_users);
         }
+        $query->orderBy('users.name');
 
 
         return $query;
@@ -187,7 +190,7 @@ final class CompanyTeamMembers extends PowerGridComponent
 
 
             ->addColumn('edit', function (User $model) {
-                if (in_array(6, session()->get('customerRoles')) || in_array(7, session()->get('customerRoles')) || in_array(8, session()->get('customerRoles')) || in_array(9, session()->get('customerRoles')))
+                if ((in_array(6, session()->get('customerRoles')) || in_array(7, session()->get('customerRoles')) || in_array(8, session()->get('customerRoles')) || in_array(9, session()->get('customerRoles')))&&  !in_array(10, session()->get('customerRoles'))) 
                     return "";
                 else
                     return "<div class='d-flex actions'><a href='" . route('tenant.customer-edit-team', ['customerID' => encrypt($model->id)]) . "'  title='Edit Customer' aria-label='Edit Team' class='btn btn-sm btn-secondary rounded btn-hs-icon'><svg title='Edit Customer' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#pencil'></use></svg></a></div>";
