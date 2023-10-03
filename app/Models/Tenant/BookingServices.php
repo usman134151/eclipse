@@ -49,4 +49,9 @@ class BookingServices extends Model
     {
         return $this->belongsTo(User::class, 'service_consumer');
     }
+
+    public function booking_provider()
+    {
+        return $this->hasMany(BookingProvider::class, 'booking_service_id', 'id');
+    }
 }

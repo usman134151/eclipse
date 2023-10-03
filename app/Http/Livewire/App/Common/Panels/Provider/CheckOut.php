@@ -90,7 +90,7 @@ class CheckOut extends Component
 
         ];
         $this->assignment = Booking::where('id', $this->booking_id)->first();
-        $this->booking_service = BookingServices::where('id', $booking_service_id)->first();
+        $this->booking_service = BookingServices::where('id', $booking_service_id)->with('booking_provider')->first();
         $this->checkout['actual_start_timestamp'] = Carbon::parse($this->booking_service->start_time);
         $this->checkout['actual_start_date'] = Carbon::parse($this->booking_service->start_time)->format('m/d/Y');
         $this->checkout['actual_start_hour'] = date_format(date_create($this->booking_service->start_time), 'H');
