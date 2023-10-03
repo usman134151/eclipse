@@ -188,10 +188,10 @@
                                                                   </svg>
 
                                                               </a>
-                                                          
+
                                                       @endif
                                                       @if (!session()->get('isCustomer'))
-                                                          <a href="#" title="Chat" aria-label="Chat"
+                                                          <a href="/chat{{$provider['provider_id']}}"title="Chat" aria-label="Chat"
                                                               class="btn btn-sm btn-secondary rounded btn-hs-icon">
 
                                                               <svg aria-label="Chat" width="18" height="18"

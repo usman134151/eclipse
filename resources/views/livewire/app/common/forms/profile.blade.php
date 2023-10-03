@@ -221,7 +221,7 @@
                                                                             <div class="col-md-12">
                                                                                 <p class="font-family-tertiary">
                                                                                     <b>Admin Company:</b> Example
-                                                                                    
+
                                                                                 </p>
                                                                             </div>
                                                                         </div>
@@ -339,11 +339,11 @@
 
                                                         <span>Deactivate</span>
                                                     </button>
-                                                    <button type="button"
+                                                    <a href="/chat/{{$user['id']}}"
                                                         class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
 
                                                         <span>Message</span>
-                                                    </button>
+                                                    </a>
                                                     <button type="button"
                                                         class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
 
@@ -4977,7 +4977,7 @@
                                             </div>
                                             <hr>
                                             <div>
-                                                <img src="/tenant-resources/images/portrait/small/pending-payment.png" 
+                                                <img src="/tenant-resources/images/portrait/small/pending-payment.png"
                                                     class="img-fluid" alt="Pending Payment image">
                                             </div>
                                         </div>
