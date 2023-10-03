@@ -232,7 +232,7 @@
                                                         <div class="row mb-3">
                                                             <div class="d-inline-flex">
                                                                 
-                                                            @if(isset($custom_rates[$provider['id']]['standard']['emergency']) && !is_null($custom_rates[$provider['id']]['standard']['emergency']))
+                                                            @if(isset($custom_rates[$provider['id']]['standard']['emergency']) && !is_null($custom_rates[$provider['id']]['standard']['emergency']) && is_array($custom_rates[$provider['id']]['standard']['emergency']))
 
                                                                         <div class="row">
 
