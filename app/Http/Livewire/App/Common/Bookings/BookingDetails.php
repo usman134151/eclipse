@@ -81,7 +81,7 @@ class BookingDetails extends Component
 				'booking_services.service_consumer',
 				'booking_services.meeting_link',
 				'booking_services.meetings', 'booking_services.service_calculations', 'service_total', 'billed_total',
-
+				'booking_services.is_closed',
 				'booking_services.attendees', 'booking_services.service_consumer', 'booking_services.specialization', 'booking_services.meeting_phone',
 				'booking_services.meeting_passcode', 'booking_services.provider_count', 'booking_services.created_at',
 				'service_categories.name as service_name', 'service_categories.id as service_id',
