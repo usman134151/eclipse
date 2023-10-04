@@ -12,11 +12,14 @@ use App\Models\Tenant\BookingServices;
 use App\Models\Tenant\CustomizeFormFields;
 use App\Models\Tenant\Specialization;
 use App\Models\Tenant\User;
+use App\Models\Tenant\UserDetail;
+use Illuminate\Support\Facades\Auth;
 
 class BookingDetails extends Component
 {
 	public $gender, $service_id = 0, $provider_id = 0, $form_id = 0;
-	public $ethnicity, $booking_id = 0, $booking_services, $data, $status, $isCustomer=false;
+	public $ethnicity, $booking_id = 0, $booking_services, $data, $status, $isCustomer = false;
+	public $hideBilling=false;
 
 	public $component = 'booking-details';
 	protected $listeners = [
@@ -60,8 +63,15 @@ class BookingDetails extends Component
 			$this->booking = new Booking;
 
 		$this->fetchData();
-		if(session()->get('isCustomer'))
+		if (session()->get('isCustomer')) {
 			$this->isCustomer = true;
+			$user = UserDetail::where('user_id', Auth::id())->select('user_configuration')->first();
+			if($user){
+				$config = $user->user_configuration && $user->user_configuration!="null" ? json_decode($user->user_configuration,true) :null;
+				if(isset($config['hide_billing']) && ($config['hide_billing']==true || $config['hide_billing']=="true"))
+				$this->hideBilling = true;
+			}
+		}
 	}
 
 	function fetchData()
@@ -97,12 +107,11 @@ class BookingDetails extends Component
 			}
 			if ($service['specialization']) {
 
-				$spez= json_decode($service['specialization'], true) ? json_decode($service['specialization'], true) : null;
-				if($spez && count($spez)){
-					$this->booking_services[$key]['specialization']  = Specialization::whereIn('id',$spez)->pluck('name')->toArray();
-				}else
-				$this->booking_services[$key]['specialization']  =null;
-				
+				$spez = json_decode($service['specialization'], true) ? json_decode($service['specialization'], true) : null;
+				if ($spez && count($spez)) {
+					$this->booking_services[$key]['specialization']  = Specialization::whereIn('id', $spez)->pluck('name')->toArray();
+				} else
+					$this->booking_services[$key]['specialization']  = null;
 			}
 			// dd($this->booking_services[$key]);
 			if (!is_null($service['service_calculations'])) {
@@ -143,8 +152,10 @@ class BookingDetails extends Component
 			->join('customize_form_fields', 'booking_customize_data.customize_id', '=', 'customize_form_fields.id')
 			->join('customize_forms', 'customize_form_fields.customize_form_id', 'customize_forms.id')
 			->whereNotNull('customize_form_fields.field_name')
-			->get(['customize_form_fields.field_name', 'booking_customize_data.data_value', 'customize_form_fields.customize_form_id',
-			 'customize_form_fields.position', 'request_form_name'])
+			->get([
+				'customize_form_fields.field_name', 'booking_customize_data.data_value', 'customize_form_fields.customize_form_id',
+				'customize_form_fields.position', 'request_form_name'
+			])
 			->groupBy('customize_form_id')->sortby('position')->toArray();
 	}
 
