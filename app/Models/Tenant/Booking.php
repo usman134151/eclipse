@@ -93,7 +93,7 @@ class Booking extends Model
     }
     public function closed_booking_services()
     {
-        return $this->hasMany(BookingServices::class, 'booking_id', 'id')->where('is_closed',true);
+        return $this->hasMany(BookingServices::class, 'booking_id', 'id')->where('is_closed',1);
     }
 
     public function ServiceCategory()

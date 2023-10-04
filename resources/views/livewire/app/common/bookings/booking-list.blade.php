@@ -194,18 +194,18 @@
                                                             @foreach ($booking_assignments as $i => $booking)
                                                                 @php
                                                                     $code = 'none';
-                                                                    if ($bookingType == 'Past') {
+                                                                    if ($bookingType == 'Past' || $bookingType == "Today's") {
                                                                         if ($booking['is_closed'] == 1) {
                                                                             $code = 'Completed Assignment';
                                                                         } elseif ($booking['is_closed'] == 2) {
                                                                             $code = 'Cancelled';
-                                                                        }
-                                                                    } elseif ($bookingType == "Today's") {
-                                                                        if ($booking['checked_in'] > 0) {
-                                                                            $code = 'Provider Checked-in';
-                                                                        }
-                                                                        if ($booking['running_late'] > 0) {
-                                                                            $code = 'Provider Running Late';
+                                                                        } else {
+                                                                            if ($booking['checked_in'] > 0) {
+                                                                                $code = 'Provider Checked-in';
+                                                                            }
+                                                                            if ($booking['running_late'] > 0) {
+                                                                                $code = 'Provider Running Late';
+                                                                            }
                                                                         }
                                                                     } else {
                                                                         if ($booking['status'] == 2) {
@@ -323,7 +323,11 @@
                                                                                 </use>
                                                                             </svg>
                                                                             {{-- End of update by Shanila --}}
-                                                                            @if($code!='none') {{str_replace("Provider ","",$code)}} @else {{  $statusValues[$booking['status']]['title'] }} @endif
+                                                                            @if ($code != 'none')
+                                                                                {{ str_replace('Provider ', '', $code) }}
+                                                                            @else
+                                                                                {{ $statusValues[$booking['status']]['title'] }}
+                                                                            @endif
                                                                         </div>
                                                                     </td>
                                                                     <td class="{{ $cssClass }}"
@@ -359,30 +363,34 @@
                                                                                 </a>
                                                                             @endif
                                                                             @if ($bookingType == 'Draft')
-
-                                                                            <a href="#" title="Delete Booking"
-                                                                                aria-label="Delete Booking"
-                                                                                wire:click="deleteRecord({{$booking['id']}})"
-                                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                                <svg aria-label="Delete Service"
-                                                                                    width="21" height="21"
-                                                                                    viewBox="0 0 21 21" fill="none"
-                                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                                    <use
-                                                                                        xlink:href="/css/sprite.svg#delete-icon">
-                                                                                    </use>
-                                                                                </svg>
-                                                                            </a>
+                                                                                <a href="#"
+                                                                                    title="Delete Booking"
+                                                                                    aria-label="Delete Booking"
+                                                                                    wire:click="deleteRecord({{ $booking['id'] }})"
+                                                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                                    <svg aria-label="Delete Service"
+                                                                                        width="21" height="21"
+                                                                                        viewBox="0 0 21 21"
+                                                                                        fill="none"
+                                                                                        xmlns="http://www.w3.org/2000/svg">
+                                                                                        <use
+                                                                                            xlink:href="/css/sprite.svg#delete-icon">
+                                                                                        </use>
+                                                                                    </svg>
+                                                                                </a>
                                                                             @endif
-                                                                            @if (($bookingType == "Today's" || $bookingType == 'Past') && $bookingSection == 'customer' && $booking['display_customer_check_out'] && $booking['is_closed']==false)
+                                                                            @if (
+                                                                                ($bookingType == "Today's" || $bookingType == 'Past') &&
+                                                                                    $bookingSection == 'customer' &&
+                                                                                    $booking['display_customer_check_out'] &&
+                                                                                    $booking['is_closed'] == false)
                                                                                 <a href="#"
                                                                                     title="Confirm Completion"
                                                                                     aria-label="Confirm Completion"
                                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon "
-                                                                                    wire:click="$emit('openConfirmCompletionModal','{{$booking['booking_service_id']}}')"
-                                                                                    data-bs-toggle="modal" 
-                                                                                    data-bs-target="#confirmCompletion"
-                                                                                    >
+                                                                                    wire:click="$emit('openConfirmCompletionModal','{{ $booking['booking_service_id'] }}')"
+                                                                                    data-bs-toggle="modal"
+                                                                                    data-bs-target="#confirmCompletion">
                                                                                     <svg width="30" height="30"
                                                                                         viewBox="0 0 30 30"
                                                                                         fill="none"
@@ -760,7 +768,7 @@
             $('#UnassignModal').modal('hide');
 
         });
-        
+
         Livewire.on('closeConfirmCompletionModal', () => {
             $('#confirmCompletion').modal('hide');
 

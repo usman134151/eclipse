@@ -44,18 +44,18 @@
                                                 @foreach ($booking_assignments as $i => $booking)
                                                     @php
                                                         $code = 'none';
-                                                        if ($bookingType == 'Past') {
+                                                        if ($bookingType == 'Past' || $bookingType == "Today's" || $bookingType == 'Active') {
                                                             if ($booking['is_closed'] == 1) {
                                                                 $code = 'Completed Assignment';
                                                             } elseif ($booking['is_closed'] == 2) {
                                                                 $code = 'Completed Assignment';
-                                                            }
-                                                        } elseif ($bookingType == "Today's" || $bookingType == "Active" ) {
-                                                            if ($booking['check_in_status'] == 1) {
-                                                                $code = 'Provider Checked-in';
-                                                            }
-                                                            if ($booking['check_in_status'] == 2) {
-                                                                $code = 'Provider Running Late';
+                                                            } else {
+                                                                if ($booking['check_in_status'] == 1) {
+                                                                    $code = 'Provider Checked-in';
+                                                                }
+                                                                if ($booking['check_in_status'] == 2) {
+                                                                    $code = 'Provider Running Late';
+                                                                }
                                                             }
                                                         } else {
                                                             if ($booking['status'] == 2) {

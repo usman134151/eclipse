@@ -1460,7 +1460,7 @@
                                         @if (
                                             !$isCustomer ||
                                                 (($isCustomer && (Auth::id() == $booking['billing_manager_id'] || Auth::id() == $booking['supervisor'])) ||
-                                                    ($isCustomer && session()->get('companyAdmin'))))
+                                                    ($isCustomer && session()->get('companyAdmin'))) || ($isCustomer && $hideBilling==false))
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <hr class="border-separate-sm">
