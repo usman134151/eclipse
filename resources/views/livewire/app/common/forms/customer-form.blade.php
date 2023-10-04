@@ -1032,20 +1032,22 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-6 mb-4 ps-lg-5">
-
-                                                    <label class="form-label" for="user-schedule">
-                                                        Grant Access to User(s)' Schedules
-                                                    </label>
-                                                    <select name="have_access_to" id="have_access_to"
-                                                        class=" select2 form-select "
-                                                        wire:model.defer="user_configuration.have_access_to"
-                                                        tabindex="3" multiple aria-label="Select Users">
-                                                        @foreach ($allUserSchedules as $user)
-                                                            <option value="{{ $user->id }}">
-                                                                {{ $user->name }}</option>
-                                                        @endforeach
-                                                    </select>
+                                                <div class="col-lg-6 mb-4 ps-lg-5 ">
+                                                    <div
+                                                        class='{{ isset($user_configuration["grant_access_to_schedule"]) &&$user_configuration["grant_access_to_schedule"] == "true" ? "" : "hidden" }}'>
+                                                        <label class="form-label" for="user-schedule">
+                                                            Grant Access to User(s)' Schedules
+                                                        </label>
+                                                        <select name="have_access_to" id="have_access_to"
+                                                            class=" select2 form-select "
+                                                            wire:model.defer="user_configuration.have_access_to"
+                                                            tabindex="3" multiple aria-label="Select Users">
+                                                            @foreach ($allUserSchedules as $user)
+                                                                <option value="{{ $user->id }}">
+                                                                    {{ $user->name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
 
                                                 </div>
 

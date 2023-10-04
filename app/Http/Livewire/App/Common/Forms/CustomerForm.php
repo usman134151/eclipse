@@ -409,8 +409,8 @@ class CustomerForm extends Component
 			$this->unfavored_providers = explode(', ', $this->user->userdetail['unfavored_users']);
 		if ($this->user->userdetail->get('user_configuration') != null)
 			$this->user_configuration = json_decode($this->user->userdetail->user_configuration, true);
-
-		$userService = new UserService;
+		
+			$userService = new UserService;
 
 		$this->rolesArr = $userService->getCustomerRoles($this->user->id);
 		$this->serviceConsumer = in_array(7,array_keys($this->rolesArr));
