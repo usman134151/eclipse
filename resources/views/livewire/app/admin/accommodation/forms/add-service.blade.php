@@ -2080,7 +2080,7 @@
                             wire:model.defer="checkIn.notify_customers" value="true">
                         <div class="hidden-content">
                             <label class="form-label-sm">Select Customer-Users</label>
-                            <select class="form-select" wire:model.defer="checkIn.customers">
+                            <select multiple class="select2 form-select select2-hidden-accessible" id="checkin_customers" wire:model.defer="checkIn.customers">
                                 <option > Select Customer-Users</option>
                                 @foreach($companyUsers as $role)
                                 <option value="{{$role['id']}}">{{$role['name']}}</option>
@@ -2118,7 +2118,7 @@
                             value="true">
                         <div class="hidden-content">
                             <label class="form-label-sm">Select Customer-Users</label>
-                            <select class="form-select" wire:model.defer="checkOut.customers">
+                            <select  multiple class="select2 form-select select2-hidden-accessible" id="checkout_customers" wire:model.defer="checkOut.customers">
                                 <option>Select Customer-Users</option>
                                 @foreach($companyUsers as $role)
                                 <option value="{{$role['id']}}">{{$role['name']}}</option>
@@ -2403,8 +2403,11 @@
                             wire:model.defer="runningLate.notify_customer" value="true">
                         <div class="hidden-content">
                             <label class="form-label-sm">Select Customer</label>
-                            <select class="form-select" wire:model.defer="runningLate.customers">
+                            <select  multiple class="select2 form-select select2-hidden-accessible" id="runninglate_customers" wire:model.defer="runningLate.customers">
                                 <option>Select Customer</option>
+                                @foreach($companyUsers as $role)
+                                <option value="{{$role['id']}}">{{$role['name']}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
