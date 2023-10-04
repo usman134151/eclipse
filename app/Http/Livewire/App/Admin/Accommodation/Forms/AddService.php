@@ -151,11 +151,11 @@ class AddService extends Component
         $this->customForms = CustomizeForms::where(['form_name_id' => 37, 'status' => 1])->select('request_form_name', 'id')->get()->toArray();
         $this->companyUsers = [
             0 => ['id' => 10, 'name' => 'Company Admin'],
+            5 => ['id' => 5, 'name' => 'Supervisor'],
             1 => ['id' => 9, 'name' => 'Billing Manager'],
+            4 => ['id' => 6, 'name' => 'Requester'],
             2 => ['id' => 8, 'name' => 'Participant'],
             3 => ['id' => 7, 'name' => 'Service Consumer'],
-            4 => ['id' => 6, 'name' => 'Requester'],
-            5 => ['id' => 5, 'name' => 'Supervisor'],
 
         ];
 
@@ -520,7 +520,7 @@ class AddService extends Component
     {
         if ($attrName == "checkin_customers") {
             $this->checkIn['customers'] = $val;
-        }elseif($attrName == "checkout_customers"){
+        } elseif ($attrName == "checkout_customers") {
             $this->checkOut['customers'] = $val;
         } elseif ($attrName == "runninglate_customers") {
             $this->runningLate['customers'] = $val;

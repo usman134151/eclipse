@@ -327,7 +327,7 @@ class BookingList extends Component
 				$row->display_running_late = false;
 				$row->display_check_in = false;
 				$row->display_check_out = false;
-				$row->display_customer_check_out =false;
+				$row->display_customer_check_out = false;
 
 
 				if ($booking_service && $booking_service->service) {
@@ -347,8 +347,13 @@ class BookingList extends Component
 						if (isset($val['enable_button_provider']) && ($val['enable_button_provider']))
 							$row->display_check_out = true;
 						if (isset($val['enable_button_customer']) && ($val['enable_button_customer']) && isset($val['customers']) && $this->isCustomer)
-							if (in_array($val['customers'], session()->get('customerRoles')))
-								$row->display_customer_check_out = true;
+							if (is_array($val['customers'])) {
+								if (count(array_intersect($val['customers'], session()->get('customerRoles'))))
+									$row->display_customer_check_out = true;
+							} else {
+								if (in_array($val['customers'], session()->get('customerRoles')))
+									$row->display_customer_check_out = true;
+							}
 					}
 				}
 			}
@@ -586,7 +591,7 @@ class BookingList extends Component
 
 	// END : provider panel functions
 
-	
+
 
 	public function deleteRecord($booking_id)
 	{
