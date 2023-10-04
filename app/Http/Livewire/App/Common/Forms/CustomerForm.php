@@ -21,11 +21,11 @@ class CustomerForm extends Component
 {
 	use withFileUploads;
 	public $isCustomer = false, $selfProfile = false;		// true when component called from customer panel	
-	public $user, $isAdd = true, $userAddresses = [], $image = null, $label = 'Add', $tags = [];
+	public $user, $isAdd = true, $userAddresses = [], $image = null, $label = 'Add', $tags = [], $file=null;
 	public $userdetail = [
 		'industry' => null, 'phone' => null, 'gender_id' => null, 'language_id' => null, 'timezone_id' => null, 'ethnicity_id' => null,
 		'user_introduction' => null, 'title' => null, 'user_position' => null, 'profile_pic' => null, 'address_line1' =>
-		'', 'address_line2' => '', 'city' => '', 'state' => '', 'country' => ''
+		'', 'address_line2' => '', 'city' => '', 'state' => '', 'country' => '', 'user_introduction'=>'','user_introduction_file'=>null
 	];
 	public $providers = [], $allUserSchedules = [], $unfavored_providers = [], $favored_providers = [];
 	public $user_configuration = ['hide_from_providers' => "false", 'grant_access_to_schedule' => "false", 'hide_billing' => "false", 'require_approval' => "false", 'have_access_to' => []];
@@ -132,9 +132,13 @@ class CustomerForm extends Component
 		$this->component = $component;
 	}
 
+	public function setServiceConsumer(){
+		$this->serviceConsumer = !$this->serviceConsumer;
+	}
 	public function permissionConfiguration($redirect = 1)
 	{
-
+		$rules = ['file' => 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv'];
+		$this->validate($rules);
 		// dd($this->selectedSupervisors);
 		$userService = new UserService;
 		$userService->storeCustomerRoles($this->rolesArr, $this->user->id);
@@ -149,6 +153,17 @@ class CustomerForm extends Component
 		$userDet['unfavored_users'] = implode(', ', $this->unfavored_providers);
 		$userDet['favored_users'] = implode(', ', $this->favored_providers);
 		$userDet['user_configuration'] = json_encode($this->user_configuration);
+		if($this->serviceConsumer){
+		$userDet['user_introduction'] = $this->userdetail['user_introduction'];
+
+		if ($this->file != null) {
+			$fileService = new UploadFileService();
+			$userDet['user_introduction_file'] = $fileService->saveFile('files', $this->file, $this->userdetail['user_introduction_file']);
+		}}else{
+			$userDet['user_introduction']=null;
+			$userDet['user_introduction_file']=null;
+		}
+
 
 		$userDet->save();
 
@@ -307,6 +322,7 @@ class CustomerForm extends Component
 			'userdetail.zip' => ['nullable', 'max:150'],
 			'image' => 'nullable|image|mimes:jpg,png,jpeg',
 			'selectedIndustries' => 'required',
+			
 
 
 
@@ -396,6 +412,7 @@ class CustomerForm extends Component
 		$userService = new UserService;
 
 		$this->rolesArr = $userService->getCustomerRoles($this->user->id);
+		$this->serviceConsumer = in_array(7,array_keys($this->rolesArr));
 		// set modal values for step 2
 		$this->emit('setValues', $this->user->id);
 	}
