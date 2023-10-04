@@ -104,6 +104,12 @@ class CheckOut extends Component
             $this->booking_provider = BookingProvider::where(['booking_service_id' => $booking_service_id, 'provider_id' => $this->provider_id])->first();
             if ($this->booking_provider && ($this->booking_provider->check_out_procedure_values != null)) {
                 $this->checkout = $this->booking_provider->check_out_procedure_values;
+                if(!isset($this->checkout['confirmation_upload_type']))
+                $this->checkout['confirmation_upload_type'] = 'print_and_sign';
+                $this->checkout['actual_start_timestamp'] = $this->checkout['actual_start_timestamp'] ?? Carbon::parse($this->booking_service->start_time);
+                $this->checkout['actual_start_date'] = $this->checkout['actual_start_date'] ?? Carbon::parse($this->booking_service->start_time)->format('m/d/Y');
+                $this->checkout['actual_start_hour'] = $this->checkout['actual_start_hour']  ?? date_format(date_create($this->booking_service->start_time), 'H');
+                $this->checkout['actual_start_min'] =  $this->checkout['actual_start_min'] ?? date_format(date_create($this->booking_service->start_time), 'i');
             } else {
                 //check if booking-service has check-in procedure enabled
                 $check_in_procedure = json_decode($this->booking_service->service->check_in_procedure, true);
@@ -122,10 +128,11 @@ class CheckOut extends Component
                         }
                     }
                 }
-                $this->checkout['actual_end_date'] = Carbon::now()->format('m/d/Y');
-                $this->checkout['actual_end_hour'] =      date_format(date_create($this->booking_service->end_time), 'H');
-                $this->checkout['actual_end_min'] =      date_format(date_create($this->booking_service->end_time), 'i');
+                
             }
+            $this->checkout['actual_end_date'] = $this->checkout['actual_end_date']??  Carbon::now()->format('m/d/Y');
+            $this->checkout['actual_end_hour'] = $this->checkout['actual_end_hour']??      date_format(date_create($this->booking_service->end_time), 'H');
+            $this->checkout['actual_end_min'] = $this->checkout['actual_end_min']??     date_format(date_create($this->booking_service->end_time), 'i');
         }
         if (!isset($this->checkout['rating']))
             $this->checkout['rating'] = 0;
