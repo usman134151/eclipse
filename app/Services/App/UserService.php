@@ -185,10 +185,13 @@ class UserService
   public function getUserRolesDetails($customer_id, $role_id, $typeofRelation)
   {
     if ($typeofRelation == 1)
-      $details = RoleUserDetail::where(['associated_user' => $customer_id, 'role_id' => $role_id])->get();
+      $details = RoleUserDetail::where(['associated_user' => $customer_id, 'role_id' => $role_id])
+      ->join('users','user_id','users.id')->where('users.status',1)->get();
     else
       // master
-      $details = RoleUserDetail::where(['user_id' => $customer_id, 'role_id' => $role_id])->get();
+      $details = RoleUserDetail::where(['user_id' => $customer_id, 'role_id' => $role_id])
+      ->join('users', 'associated_user', 'users.id')->where('users.status', 1)->get();
+   
     return $details;
   }
 
