@@ -126,7 +126,7 @@
                                             <div>
                                                 <input class="form-control form-control-sm text-center hours"
                                                     id="actual_start_hour" aria-label="Start Time"
-                                                    name="actual_start_hour" placeholder="00" type="number"
+                                                    name="actual_start_hour" placeholder="00" type="text
                                                     tabindex="" wire:model.defer="checkout.actual_start_hour"
                                                     maxlength="2">
                                             </div>
@@ -139,7 +139,7 @@
                                             <div>
                                                 <input class="form-control form-control-sm text-center  mins"
                                                     aria-label="Start Minutes" id="actual_start_min"
-                                                    name="actual_start_min" placeholder="00" type="number"
+                                                    name="actual_start_min" placeholder="00" type="text
                                                     tabindex="" wire:model.defer="checkout.actual_start_min"
                                                     maxlength="2">
                                             </div>
@@ -181,7 +181,7 @@
                                         <div>
                                             <input class="form-control form-control-sm text-center hours"
                                                 id="actual_end_hour" aria-label="Start Time" name="actual_end_hour"
-                                                placeholder="00" type="number" tabindex=""
+                                                placeholder="00" type="text tabindex=""
                                                 wire:model.defer="checkout.actual_end_hour" maxlength="2">
                                         </div>
                                         <svg width="5" height="19" viewBox="0 0 5 19" fill="none"
@@ -193,7 +193,7 @@
                                         <div>
                                             <input class="form-control form-control-sm text-center  mins"
                                                 aria-label="Start Minutes" id="actual_end_min" name="actual_end_min"
-                                                placeholder="00" type="number" tabindex=""
+                                                placeholder="00" type="text tabindex=""
                                                 wire:model.defer="checkout.actual_end_min" maxlength="2">
                                         </div>
                                     </div>
