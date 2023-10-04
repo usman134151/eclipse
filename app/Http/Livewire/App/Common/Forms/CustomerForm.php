@@ -159,6 +159,7 @@ class CustomerForm extends Component
 		if ($this->file != null) {
 			$fileService = new UploadFileService();
 			$userDet['user_introduction_file'] = $fileService->saveFile('files', $this->file, $this->userdetail['user_introduction_file']);
+				$this->userdetail['user_introduction_file'] = $userDet['user_introduction_file'];
 		}}else{
 			$userDet['user_introduction']=null;
 			$userDet['user_introduction_file']=null;

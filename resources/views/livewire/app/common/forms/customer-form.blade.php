@@ -460,13 +460,13 @@
                                                         @enderror
 
                                                     </div>
-                                                    <div class="col-lg-6 mb-4 pe-lg-5">
+                                                    {{-- <div class="col-lg-6 mb-4 pe-lg-5">
                                                         <label class="form-label" for="country">
                                                             Country
                                                         </label>
                                                         {!! $setupValues['countries']['rendered'] !!}
-                                                    </div>
-                                                    <div class="col-lg-6 mb-4 {{ $isCustomer ? 'pe' : 'ps' }}-lg-5">
+                                                    </div> --}}
+                                                    {{-- <div class="col-lg-6 mb-4 {{ $isCustomer ? 'pe' : 'ps' }}-lg-5">
                                                         <div class="mb-4">
                                                             <label class="form-label" for="state">State /
                                                                 Province</label>
@@ -480,8 +480,8 @@
                                                             @enderror
 
                                                         </div>
-                                                    </div>
-                                                    <div class="col-lg-6 mb-4 pe-lg-5">
+                                                    </div> --}}
+                                                    {{-- <div class="col-lg-6 mb-4 pe-lg-5">
                                                         <div class="mb-4">
                                                             <label class="form-label" for="city">City</label>
                                                             <input type="text" id="city" class="form-control"
@@ -494,8 +494,8 @@
                                                             @enderror
 
                                                         </div>
-                                                    </div>
-                                                    <div class="col-lg-6 mb-4 {{ $isCustomer ? 'pe' : 'ps' }}-lg-5">
+                                                    </div> --}}
+                                                    {{-- <div class="col-lg-6 mb-4 {{ $isCustomer ? 'pe' : 'ps' }}-lg-5">
                                                         <label class="form-label" for="zip-code">
                                                             Zip Code
                                                         </label>
@@ -507,8 +507,8 @@
                                                                 class="d-inline-block invalid-feedback mt-2">{{ $message }}</span>
                                                         @enderror
 
-                                                    </div>
-                                                    <div class="col-lg-6 mb-4 pe-lg-5">
+                                                    </div> --}}
+                                                    {{-- <div class="col-lg-6 mb-4 pe-lg-5">
 
                                                         <div class="d-flex justify-content-between align-items-center">
                                                             <label class="form-label" for="address-line-1">
@@ -536,7 +536,7 @@
                                                             class="form-control" name="addressLine2"
                                                             placeholder="Enter Address Line 2"
                                                             wire:model.defer="userdetail.address_line2" />
-                                                    </div>
+                                                    </div> --}}
                                                     <div class="col-lg-6 pe-lg-5 mb-4">
                                                         <label class="form-label" for="preferred-language">
                                                             Preferred Language
