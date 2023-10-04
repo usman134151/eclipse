@@ -38,11 +38,11 @@ class BookingServices extends Model
     }
     public function providers()
     {
-        return $this->hasOne(BookingProvider::class, 'id', 'booking_service_id');
+        return $this->hasMany(BookingProvider::class, 'id', 'booking_service_id');
     }
     public function checked_out_providers()
     {
-        return $this->hasOne(BookingProvider::class, 'id', 'booking_service_id')->where(['check_in_status'=>3]);
+        return $this->hasMany(BookingProvider::class, 'id', 'booking_service_id')->where(['check_in_status'=>3]);
     }
 
     public function serviceConsumerUser()

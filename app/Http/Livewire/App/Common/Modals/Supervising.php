@@ -48,6 +48,7 @@ class Supervising extends Component
         $userService = new UserService;
         $data = $userService->getUserRolesDetails($this->user_id, 5, 0);
 
+// dd($data);
         $this->selectedSupervising = $data->pluck('associated_user')->toArray();
         $this->updateData();
     }
