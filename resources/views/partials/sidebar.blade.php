@@ -60,7 +60,7 @@
             </a>
           </li>
           <li class="nav-item " id="chat">
-            <a href="/admin/chat">
+            <a href="/chat">
               <svg aria-label="Chat" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <use xlink:href="/css/admin-menu.svg#chat-icon"></use>
               </svg>
@@ -597,7 +597,7 @@
                   </li>
                 </ul>
               </li>
-              {{--  
+              {{--
               @endif
               @if(userHasPermission(11,1))
               <li role="menuitem" class="nav-item has-sub">
@@ -672,7 +672,7 @@
                       <span class="menu-item">Stripe Setup</span>
                     </a>
                   </li>
-                  
+
                 </ul>
               </li>
               --}}

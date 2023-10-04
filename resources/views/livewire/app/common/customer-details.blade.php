@@ -146,7 +146,7 @@
                                         </button>
                                     </li>
 
-                                    {{--  
+                                    {{--
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="referrals-tab" data-bs-toggle="tab"
                                         data-bs-target="#referrals-tab-pane" type="button" role="tab"
@@ -415,7 +415,7 @@
                                                                                 </use>
                                                                             </svg>
                                                                         @endfor
-                                                                       
+
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -822,11 +822,11 @@
                 Reset Customer Password
             </span>
         </button>
-        <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
+        <a href="/chat/{{$this->user['id']}}" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
             <span>
                 Message Customer
             </span>
-        </button>
+        </a>
         <button type="button" wire:click="resendWelcomeEmail"
             class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
             <span>

@@ -49,4 +49,6 @@ class BookingServices extends Model
     {
         return $this->belongsTo(User::class, 'service_consumer');
     }
+
+
 }
