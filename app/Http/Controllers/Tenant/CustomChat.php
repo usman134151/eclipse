@@ -212,6 +212,15 @@ class CustomChat extends ChatifyMessenger
     }
 
     /**
+     * Count Unseen messages for all contacts
+     * @return int
+     */
+    public function countTotalUnseenMessages()
+    {
+        return Message::where('to_id', Auth::user()->id)->where('seen', 0)->count();
+    }
+
+    /**
      * Get user with avatar (formatted).
      *
      * @param Collection $user

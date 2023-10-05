@@ -25,7 +25,7 @@
                                     d="M15.3 1.8H13.5V0.9C13.5 0.661305 13.4052 0.432387 13.2364 0.263604C13.0676 0.0948211 12.8387 0 12.6 0C12.3613 0 12.1324 0.0948211 11.9636 0.263604C11.7948 0.432387 11.7 0.661305 11.7 0.9V1.8H6.3V0.9C6.3 0.661305 6.20518 0.432387 6.0364 0.263604C5.86761 0.0948211 5.63869 0 5.4 0C5.1613 0 4.93239 0.0948211 4.7636 0.263604C4.59482 0.432387 4.5 0.661305 4.5 0.9V1.8H2.7C1.98392 1.8 1.29716 2.08446 0.790812 2.59081C0.284464 3.09716 0 3.78392 0 4.5V15.3C0 16.0161 0.284464 16.7028 0.790812 17.2092C1.29716 17.7155 1.98392 18 2.7 18H15.3C16.0161 18 16.7028 17.7155 17.2092 17.2092C17.7155 16.7028 18 16.0161 18 15.3V4.5C18 3.78392 17.7155 3.09716 17.2092 2.59081C16.7028 2.08446 16.0161 1.8 15.3 1.8ZM16.2 15.3C16.2 15.5387 16.1052 15.7676 15.9364 15.9364C15.7676 16.1052 15.5387 16.2 15.3 16.2H2.7C2.46131 16.2 2.23239 16.1052 2.0636 15.9364C1.89482 15.7676 1.8 15.5387 1.8 15.3V9H16.2V15.3ZM16.2 7.2H1.8V4.5C1.8 4.2613 1.89482 4.03239 2.0636 3.8636C2.23239 3.69482 2.46131 3.6 2.7 3.6H4.5V4.5C4.5 4.73869 4.59482 4.96761 4.7636 5.1364C4.93239 5.30518 5.1613 5.4 5.4 5.4C5.63869 5.4 5.86761 5.30518 6.0364 5.1364C6.20518 4.96761 6.3 4.73869 6.3 4.5V3.6H11.7V4.5C11.7 4.73869 11.7948 4.96761 11.9636 5.1364C12.1324 5.30518 12.3613 5.4 12.6 5.4C12.8387 5.4 13.0676 5.30518 13.2364 5.1364C13.4052 4.96761 13.5 4.73869 13.5 4.5V3.6H15.3C15.5387 3.6 15.7676 3.69482 15.9364 3.8636C16.1052 4.03239 16.2 4.2613 16.2 4.5V7.2Z"
                                     fill="#6E6B7B" />
                             </svg></a></li>
-                    <li class="nav-item d-none d-lg-block"><a href="/chat" title="Chat"
+                    <li class="nav-item d-none d-lg-block"><a target="_blank" href="/chat" title="Chat"
                             aria-label="Eclipse Scheduling Chat" class="nav-link" data-bs-toggle="tooltip"
                             data-bs-placement="bottom">
                             <svg aria-label="Chat" width="18" height="18" viewBox="0 0 18 18" fill="none"
@@ -34,7 +34,7 @@
                                     d="M16.2 0H1.8C0.8073 0 0 0.816816 0 1.82122V12.7485C0 13.7529 0.8073 14.5697 1.8 14.5697H4.5V18L10.1493 14.5697H16.2C17.1927 14.5697 18 13.7529 18 12.7485V1.82122C18 0.816816 17.1927 0 16.2 0ZM16.2 12.7485H9.6507L6.3 14.7819V12.7485H1.8V1.82122H16.2V12.7485Z"
                                     fill="#6E6B7B" />
                             </svg>
-                            <!-- <span class="badge rounded-pill bg-danger badge-up">10</span> -->
+                            <span class="message-counter badge rounded-pill bg-danger badge-up" style="display: none"></span>
                         </a></li>
                     <li class="nav-item d-none d-lg-block"><a href="{{ session('isCustomer')? url('/customer/bookings/today') : ( session('isProvider') ? url('/provider/bookings/today') : url('/admin/bookings/today') )}}"
                             title="Assignments" aria-label="Assignments" class="nav-link" data-bs-toggle="tooltip"
@@ -237,11 +237,11 @@
                         @endif
 
                         @if (session()->get('isProvider'))
-                            <a href="{{ url('/provider/chat') }}" class="dropdown-item" href="#">
+                            <a target="_blank"  href="{{ url('/chat') }}" class="dropdown-item">
                         @elseif (session()->get('isCustomer'))
-                            <a href="{{ url('/customer/chat') }}" class="dropdown-item" href="#">
+                            <a target="_blank" href="{{ url('/chat') }}" class="dropdown-item">
                             @else
-                                <a href="{{ url('/admin/chat') }}" class="dropdown-item" href="#">
+                                <a target="_blank" href="{{ url('/chat') }}" class="dropdown-item">
                         @endif
                         <svg aria-label="Chats" xmlns="http://www.w3.org/2000/svg" width="14" height="14"
                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
