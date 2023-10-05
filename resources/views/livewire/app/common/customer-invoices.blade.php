@@ -55,7 +55,7 @@
 
                                         <div class="col-md-12 mb-3">
                                             <label class="form-label" for="Customer-invoices-summary">Customer invoices
-                                                summary</label>
+                                                summary <small>(coming soon)</small></label>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-4">
@@ -82,6 +82,7 @@
                                 </div>
                             </div>
                             <div class="row between-section-segment-spacing">
+                            <small>(coming soon)</small>
                                 <x-advancefilters type="invoice-filters" />
                             </div>
                             @if (!$showForm)
