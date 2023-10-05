@@ -170,6 +170,8 @@
         </div>
     </div>
     <div class="col-12 form-actions">
+        @if (!session()->get('isCustomer'))
+
         <button class="btn btn-primary rounded">Resend Invoice</button>
         <button class="btn btn-primary rounded" data-bs-toggle="modal" data-bs-target="#payInvoice"
             wire:click="$emit('payInvoiceId',{{ $invoice->id }})">Record
@@ -178,5 +180,6 @@
             x-on:close-invoice-details.window="invoiceDetailsPanel = false" data-bs-toggle="modal"
             data-bs-target="#revertBackModal">Revert
             Invoice</button>
+            @endif
     </div>
 </div>
