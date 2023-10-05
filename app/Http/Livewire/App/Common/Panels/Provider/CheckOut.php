@@ -110,6 +110,8 @@ class CheckOut extends Component
                 $this->checkout['actual_start_date'] = $this->checkout['actual_start_date'] ?? Carbon::parse($this->booking_service->start_time)->format('m/d/Y');
                 $this->checkout['actual_start_hour'] = $this->checkout['actual_start_hour']  ?? date_format(date_create($this->booking_service->start_time), 'H');
                 $this->checkout['actual_start_min'] =  $this->checkout['actual_start_min'] ?? date_format(date_create($this->booking_service->start_time), 'i');
+                $this->checkout['feedback_comments'] =  $this->checkout['feedback_comments'] ?? '';
+            
             } else {
                 //check if booking-service has check-in procedure enabled
                 $check_in_procedure = json_decode($this->booking_service->service->check_in_procedure, true);
