@@ -550,7 +550,7 @@
                                         </div>
                                         <hr class="my-2">
                                         <div class="grand-total">
-                                            Grand Total: $120.00
+                                            Grand Total: {{ numberFormat($booking->getInvoicePrice()) }}
                                         </div>
                                     </td>
                                     <td>
