@@ -2,12 +2,15 @@
 
 namespace App\Http\Livewire\App\Customer;
 
+use App\Models\Tenant\Booking;
+use App\Models\Tenant\Invoice;
 use Livewire\Component;
+use PDF;
 
 class PaymentsReceipts extends Component
 {
     public $showForm, $invoice_id = 0, $counter = 0, $confirmationMessage = null;
-    protected $listeners = ['showList' => 'resetForm', 'openInvoiceDetails'];
+    protected $listeners = ['showList' => 'resetForm', 'openInvoiceDetails', 'downloadInvoice' => 'createInvoicePDF'];
 
     public function render()
     {
@@ -35,5 +38,21 @@ class PaymentsReceipts extends Component
     {
         $this->showForm=false;
     }
+    function createInvoicePDF($invoice_id = 0)
+    {
+        // $orderData = [];
+        $invoice = Invoice::where('id', $invoice_id)->with(['company', 'billing_manager', 'billingAddress',])->first();
+        if ($invoice) {
 
+            $bookings = Booking::whereIn('id', $invoice->bookings->pluck('id'))->get();
+            $orderData['invoice'] = $invoice;
+            $orderData['bookings'] = $bookings ?? [];
+
+            $pdfContent = PDF::loadView('tenant.common.download_invoice_pdf', ['orderData' => $orderData])->output();
+            return response()->streamDownload(
+                fn () => print($pdfContent),
+                "invoice_" . $invoice->invoice_number . ".pdf"
+            );
+        }
+    }
 }
