@@ -104,7 +104,7 @@ final class CustomerInvoices extends PowerGridComponent
                 return numberFormat($model->total_price);
             })
             ->addColumn('pdf', function (Invoice $model) {
-                return '<svg aria-label="PDF" width="17" height="21"
+                return '<svg aria-label="PDF" width="17" height="21" wire:click="$emit(\'downloadInvoice\','.$model->id.')"
                                                     viewBox="0 0 17 21" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <use xlink:href="/css/common-icons.svg#doc"></use>
@@ -141,6 +141,7 @@ final class CustomerInvoices extends PowerGridComponent
                                                     <div class="d-flex actions">
                                                         <div class="dropdown ac-cstm">
                                                             <a href="javascript:void(0)" title="Download PDF"
+                                                                 wire:click="$emit(\'downloadInvoice\',' . $model->id . ')"
                                                                 aria-label="Download PDF"
                                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                 <svg aria-label="Download PDF" width="16"

@@ -115,7 +115,7 @@
                                         Specialization: Closed-Captioning
                                     </div>
                                 </td>
-                                <td> {{ $booking->booking_providers ? $booking->booking_providers->count() : 'N/A' }}
+                                <td> {{ $booking->booking_provider ? $booking->booking_provider->count() : 'N/A' }}
                                 </td>
                                 <td>
                                     @if ($booking->payment && ($booking->payment->additional_label_provider || $booking->payment->additional_label))
@@ -137,7 +137,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <div class="mb-2">Duration: 5 Hours 5 mins</div>
+                                    <div class="mb-2">Duration:  {{ $booking->duration_hours }} Hours {{ $booking->duration_minute }} mins</div>
                                     {{-- <div class="mb-2">Avg Rate: $10.00</div>
                                     <div class="mb-2">Total Rate: $100.00</div> --}}
                                     @if ($booking->payment && $booking->payment->discounted_amount && $booking->payment->discounted_amount > 0)
