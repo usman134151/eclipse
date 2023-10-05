@@ -58,6 +58,8 @@ final class CustomerInvoices extends PowerGridComponent
             $query->where('company_id', $this->company_id);
         if ($this->invoice_status == 'pending' && session()->get('isCustomer'))
             $query->where('invoice_status', '!=', '2');
+        if ($this->invoice_status == 'paid' && session()->get('isCustomer'))
+            $query->where('invoice_status', '2');
 
 
         $query->with('company');
@@ -100,7 +102,11 @@ final class CustomerInvoices extends PowerGridComponent
     {
         $cols =  PowerGrid::eloquent()
             ->addColumn('invoice_detail', function (Invoice $model) {
-                return '<a @click="offcanvasOpen = true">' . $model->invoice_number . '</a><p class="mt-1">' . date_format(date_create($model->invoice_date), "d/m/Y") . '</p>';
+                if ($this->invoice_status == 'paid' && session()->get('isCustomer'))
+                    $data = '<a href="#">' . $model->invoice_number . '</a><p class="mt-1">' . date_format(date_create($model->paid_on), "d/m/Y h:i A") . '</p>';
+                else
+                    $data =  '<a @click="offcanvasOpen = true">' . $model->invoice_number . '</a><p class="mt-1">' . date_format(date_create($model->invoice_date), "d/m/Y") . '</p>';
+                return $data;
             });
 
         if (!session()->get('isCustomer'))
@@ -215,7 +221,7 @@ final class CustomerInvoices extends PowerGridComponent
             Column::make('Actions', 'edit')->visibleInExport(false),
         ];
         if (!session()->get('isCustomer'))
-            $cols[1 ] =            Column::make('Recipient', 'recipient')
+            $cols[1] =            Column::make('Recipient', 'recipient')
                 ->searchable()->sortable();
 
 
