@@ -1,11 +1,11 @@
 <div x-data="{ invoiceDetailsPanel: false }">
-<div id="loader-section" class="loader-section" wire:loading>
-		<div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
-			<div class="spinner-border" role="status" aria-live="polite">
-				<span class="visually-hidden">Loading...</span>
-			</div>
-		</div>
-	</div>
+    <div id="loader-section" class="loader-section" wire:loading>
+        <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
+            <div class="spinner-border" role="status" aria-live="polite">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
     <div class="content-header row">
         <div class="content-header-left col-md-9 col-12 mb-2">
             <div class="row breadcrumbs-top">
@@ -55,7 +55,7 @@
 
                                         <div class="col-md-12 mb-3">
                                             <label class="form-label" for="Customer-invoices-summary">Customer invoices
-                                                summary</label>
+                                                summary <small>(coming soon)</small></label>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-4">
@@ -82,10 +82,11 @@
                                 </div>
                             </div>
                             <div class="row between-section-segment-spacing">
+                            <small>(coming soon)</small>
                                 <x-advancefilters type="invoice-filters" />
                             </div>
-                            @if(!$showForm)
-                            @livewire('app.common.lists.customer-invoices')
+                            @if (!$showForm)
+                                @livewire('app.common.lists.customer-invoices')
                             @endif
 
                             {{-- icon bar start --}}
@@ -132,7 +133,7 @@
 
                             <div class="justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                                 <button disabled class="btn btn-primary rounded">Resend Invoice</button>
-                                <button  disabled class="btn btn-primary rounded" data-bs-toggle="modal"
+                                <button disabled class="btn btn-primary rounded" data-bs-toggle="modal"
                                     data-bs-target="#payInvoice">Record Payment</button>
                                 <button disabled class="btn btn-primary rounded" data-bs-toggle="modal"
                                     data-bs-target="#revertBackModal">Revert Invoice</button>
@@ -150,19 +151,19 @@
     @include('panels.common.invoice-details')
 </div>
 @push('scripts')
-<script>
-    function updateVal(attrName, val) {
+    <script>
+        function updateVal(attrName, val) {
 
-        Livewire.emit('updateVal', attrName, val);
+            Livewire.emit('updateVal', attrName, val);
 
-    }
-    Livewire.on('revertModalDismissed', () => {
-        $('#revertBackModal').modal('hide');
+        }
+        Livewire.on('revertModalDismissed', () => {
+            $('#revertBackModal').modal('hide');
 
-    });
+        });
         Livewire.on('payInvoiceModalDismissed', () => {
-        $('#payInvoice').modal('hide');
+            $('#payInvoice').modal('hide');
 
-    });
-</script>
+        });
+    </script>
 @endpush

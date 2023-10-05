@@ -14,6 +14,7 @@ final class CustomerInvoices extends PowerGridComponent
     use ActionButton;
     public $status = [2 => ['code' => '/css/provider.svg#green-dot', 'title' => 'Paid'], 1 => ['code' => '/css/common-icons.svg#blue-dot', 'title' => 'Issued'], 3 => ['code' => '/css/provider.svg#red-dot', 'title' => 'Overdue'], 4 => ['code' => '/css/provider.svg#yellow-dot', 'title' => 'Partial']];
     protected $listeners = ['refresh' => 'setUp'];
+    public $invoice_status = '', $company_id = null;
 
     /*
     |--------------------------------------------------------------------------
@@ -51,10 +52,21 @@ final class CustomerInvoices extends PowerGridComponent
      */
     public function datasource(): Builder
     {
-        return Invoice::query()
-            // ->where(['invoice_status'=>1, 'supervisor_payment_status'=>0])
-            ->with('company')->orderBy('invoice_due_date');
+        $query = Invoice::query();
+        // ->where(['invoice_status'=>1, 'supervisor_payment_status'=>0])
+        if ($this->company_id && session()->get('isCustomer'))
+            $query->where('company_id', $this->company_id);
+        if ($this->invoice_status == 'pending' && session()->get('isCustomer'))
+            $query->where('invoice_status', '!=', '2');
+        if ($this->invoice_status == 'paid' && session()->get('isCustomer'))
+            $query->where('invoice_status', '2');
 
+
+        $query->with('company');
+
+
+        $query->orderBy('invoice_due_date');
+        return $query;
     }
 
     /*
@@ -88,23 +100,34 @@ final class CustomerInvoices extends PowerGridComponent
     */
     public function addColumns(): PowerGridEloquent
     {
-        return PowerGrid::eloquent()
+        $cols =  PowerGrid::eloquent()
             ->addColumn('invoice_detail', function (Invoice $model) {
-                return '<a @click="offcanvasOpen = true">' . $model->invoice_number . '</a><p class="mt-1">' . date_format(date_create($model->invoice_due_date), "d/m/Y") . '</p>';
-            })
-            ->addColumn('recipient', function (Invoice $model) {
+                if ($this->invoice_status == 'paid' && session()->get('isCustomer'))
+                    $data = '<a href="#">' . $model->invoice_number . '</a><p class="mt-1">' . date_format(date_create($model->paid_on), "d/m/Y h:i A") . '</p>';
+                else
+                    $data =  '<a @click="offcanvasOpen = true">' . $model->invoice_number . '</a><p class="mt-1">' . date_format(date_create($model->invoice_date), "d/m/Y") . '</p>';
+                return $data;
+            });
+
+        if (!session()->get('isCustomer'))
+            $cols->addColumn('recipient', function (Invoice $model) {
                 if ($model['company']['company_logo'] == null)
                     $col = '<div class="d-flex gap-2 align-items-center"><div class=""><img width="50" style="width:64px;height:64px;top:1rem" src="/tenant-resources/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Company Profile Image"></div><div class=""><div class="fw-semibold fs-6 text-nowrap">' . $model['company']['name'] . '</div></div></div>';
                 else
                     $col = '<div class="d-flex gap-2 align-items-center"><div class=""><img wire:ignore width="50" style="width:64px;height:64px;top:1rem" src="' . $model['company']['company_logo'] . '" class="img-fluid rounded-circle" alt="Company Profile Image"></div><div class=""><div class="fw-semibold fs-6 text-nowrap">' . $model['company']['name'] . '</div></div></div>';
                 return $col;
-            })
-            ->addColumn('po_number')
+            });
+
+        $cols->addColumn('po_number')
             ->addColumn('total_amount', function (Invoice $model) {
                 return numberFormat($model->total_price);
             })
+
+            ->addColumn('due_date', function (Invoice $model) {
+                return date_format(date_create($model->invoice_due_date), "d/m/Y");
+            })
             ->addColumn('pdf', function (Invoice $model) {
-                return '<svg aria-label="PDF" width="17" height="21"
+                return '<svg aria-label="PDF" width="17" height="21" wire:click="$emit(\'downloadInvoice\',' . $model->id . ')"
                                                     viewBox="0 0 17 21" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <use xlink:href="/css/common-icons.svg#doc"></use>
@@ -115,12 +138,12 @@ final class CustomerInvoices extends PowerGridComponent
                 return 'Direct Deposit';
             })
 
+
             ->addColumn('status', function (Invoice $model) {
                 return '<div class="d-flex align-items-center gap-2"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><use xlink:href="' . $this->status[$model->invoice_status]['code'] . '"></use></svg><p>' . $this->status[$model->invoice_status]['title'] . '</p></div>';
             })
             ->addColumn('edit', function (Invoice $model) {
-                return '<div class="d-flex actions">
-                                                    <a href="#" title="back" aria-label="back"
+                $view_b = '<a href="#" title="back" aria-label="back"
                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="$emit(\'revertInvoice\',' . $model->id . ')"
                                                         data-bs-toggle="modal" data-bs-target="#revertBackModal">
                                                         <svg aria-label="Revert" class="fill-stroke" width="22"
@@ -128,7 +151,8 @@ final class CustomerInvoices extends PowerGridComponent
                                                             xmlns="http://www.w3.org/2000/svg">
                                                             <use xlink:href="/css/provider.svg#revert"></use>
                                                         </svg>
-                                                    </a>
+                                                    </a>';
+                $details_b = '
                                                     <a href="#" @click="invoiceDetailsPanel = true" wire:click="$emit(\'openInvoiceDetails\',' . $model->id . ')"
                                                         title="Invoice Details" aria-label="Invoice Details"
                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
@@ -137,10 +161,11 @@ final class CustomerInvoices extends PowerGridComponent
                                                             xmlns="http://www.w3.org/2000/svg">
                                                             <use xlink:href="/css/sprite.svg#dollar-assignment"></use>
                                                         </svg>
-                                                    </a>
-                                                    <div class="d-flex actions">
+                                                    </a>';
+                $pdf_b = '<div class="d-flex actions">
                                                         <div class="dropdown ac-cstm">
                                                             <a href="javascript:void(0)" title="Download PDF"
+                                                                 wire:click="$emit(\'downloadInvoice\',' . $model->id . ')"
                                                                 aria-label="Download PDF"
                                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                 <svg aria-label="Download PDF" width="16"
@@ -149,8 +174,17 @@ final class CustomerInvoices extends PowerGridComponent
                                                                     <use xlink:href="/css/provider.svg#download-file">
                                                                     </use>
                                                                 </svg>
-                                                            </a></div></div></div>';
+                                                            </a></div></div>';
+                $actions = '<div class="d-flex actions">';
+                if (session()->get('isCustomer'))
+                    $actions .= $details_b;
+                else
+                    $actions .= $view_b . $details_b . $pdf_b;
+
+                $actions .= '</div>';
+                return  $actions;
             });
+        return $cols;
     }
 
     /*
@@ -169,14 +203,14 @@ final class CustomerInvoices extends PowerGridComponent
      */
     public function columns(): array
     {
-        return [
+        $cols = [
             Column::make('Invoice', 'invoice_detail', '')
                 ->field('invoice_detail', 'invoices.invoice_number')
                 ->searchable()
                 ->sortable(),
             // ->editOnClick(),
-            Column::make('Recipient', 'recipient')
-                ->searchable()->sortable(),
+            Column::make('Due', 'due_date'),
+
             Column::make('Po. No', 'po_number', 'companies.name'),
             Column::make('Total Amount', 'total_amount'),
             Column::make('PDF', 'pdf'),
@@ -186,6 +220,12 @@ final class CustomerInvoices extends PowerGridComponent
 
             Column::make('Actions', 'edit')->visibleInExport(false),
         ];
+        if (!session()->get('isCustomer'))
+            $cols[1] =            Column::make('Recipient', 'recipient')
+                ->searchable()->sortable();
+
+
+        return $cols;
     }
 
     /*
