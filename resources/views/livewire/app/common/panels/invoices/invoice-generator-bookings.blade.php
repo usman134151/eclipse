@@ -11,10 +11,10 @@
                             <label class="form-label mb-0">Company Name:</label>
                             <div class="text-xs"><small>{{ $company->name }}</small></div>
                         </div>
-                        <div>
+                        {{-- <div>
                             <label class="form-label mb-0">Email:</label>
                             <div><a class="text-xs text-dark"><small>examplecompany@gmail.com</small></a></div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -37,6 +37,8 @@
                 </div>
             </div>
             <div class="col-lg-4 mb-4 mb-lg-0 align-self-center">
+                <small>(coming soon)</small>
+
                 <div class="d-grid grid-cols-2 gap-2">
                     <div class="fw-semibold text-sm">Total Paid:</div>
                     <div class="text-sm">$3000</div>
@@ -454,7 +456,7 @@
                                     </td>
                                     <td>
                                         <div class="text-sm">
-                                            {{ $booking->services->count() ? $booking->services->first()->accommodation->name : '' }}
+                                            {{ $booking->services->count() ? $booking->services->first()->accommodation->name ?? '' : '' }}
 
                                         </div>
                                         <div class="text-sm">
@@ -465,7 +467,7 @@
                                             Specialization: Closed-Captioning
                                         </div>
                                     </td>
-                                    <td>{{ $booking->booking_providers ? $booking->booking_providers->count() : 'N/A' }}
+                                    <td>{{ $booking->booking_provider ? $booking->booking_provider->count() : 'N/A' }}
                                     </td>
                                     <td class="position-relative">
                                         <a href="#" title="Edit" aria-label="Edit"
@@ -477,11 +479,25 @@
                                                     fill="black"></path>
                                             </svg>
                                         </a>
-                                        <div class="">$50.00</div>
-                                        <div class="text-primary"><small>Additional Charges:</small></div>
-                                        <div>Fuel Charges: $20 <i class="fa fa-check-circle" data-bs-toggle="tooltip"
-                                                data-bs-placement="top" title=""></i></div>
-                                        <div>Food: $15</div>
+                                        @if ($booking['payment'] && ($booking['payment']->additional_label_provider || $booking['payment']->additional_label))
+                                            <div class="">
+                                                {{ numberFormat($booking['payment']->additional_charge + $booking['payment']->additional_charge_provider) }}
+                                            </div>
+                                            <div class="text-primary"><small>Additional Charges:</small></div>
+                                            @if ($booking['payment']->additional_label)
+                                                <div>{{ $booking['payment']->additional_label }}:
+                                                    {{ numberFormat($booking['payment']->additional_charge) }} <i
+                                                        class="fa fa-check-circle" data-bs-toggle="tooltip"
+                                                        data-bs-placement="top" title=""></i></div>
+                                            @endif
+                                            @if ($booking['payment']->additional_label_provider)
+                                                <div>{{ $booking['payment']->additional_label_provider }}:
+                                                    {{ numberFormat($booking['payment']->additional_charge_provider) }}
+                                                </div>
+                                            @endif
+                                        @else
+                                            N/A
+                                        @endif
                                     </td>
                                     <td class="position-relative">
                                         <div class="d-flex align-items-center gap-2 mb-2">
@@ -501,15 +517,26 @@
                                             </a>
                                         </div>
                                         <div class="row g-0 mb-2">
-                                            <div class="col-4"><label class="form-label-sm mb-0">Avg Rate:</label>
+                                            <div class="col-6"><label class="form-label-sm mb-0">Avg Rate:
+                                                    <small>(coming soon)</small></label>
                                             </div>
-                                            <div class="col-8 d-flex align-items-center gap-2">$10</div>
+                                            <div class="col-6 d-flex align-items-center gap-2">$10</div>
                                         </div>
                                         <div class="row g-0 mb-2">
-                                            <div class="col-4"><label class="form-label-sm mb-0">Total Rate:</label>
+                                            <div class="col-6"><label class="form-label-sm mb-0">Total Rate:
+                                                    <small>(coming soon)</small></label>
                                             </div>
-                                            <div class="col-8 d-flex align-items-center gap-2">$100</div>
+                                            <div class="col-6 d-flex align-items-center gap-2">$100</div>
                                         </div>
+                                        @if ($booking['payment'] && $booking['payment']->discounted_amount)
+                                            <div class="row g-0 mb-2">
+                                                <div class="col-6"><label class="form-label-sm mb-0">Discounted
+                                                        Amount:</label>
+                                                </div>
+                                                <div class="col-6 d-flex align-items-center gap-2">
+                                                    {{ numberFormat($booking['payment']->discounted_amount) }}</div>
+                                            </div>
+                                        @endif
                                         <div>
                                             <a href="#" class="btn btn-primary btn-xxs rounded btn-has-icon">
                                                 <svg width="14" height="14" viewBox="0 0 20 20"
@@ -523,17 +550,17 @@
                                         </div>
                                         <hr class="my-2">
                                         <div class="grand-total">
-                                            Grand Total: $120.00
+                                            Grand Total: {{ numberFormat($booking->getInvoicePrice()) }}
                                         </div>
                                     </td>
                                     <td>
                                         <div class="d-flex align-items-center gap-1">
-                                            $155.00
+                                            {{ numberFormat($booking->getInvoicePrice()) }}
                                         </div>
                                     </td>
                                     <td>
                                         <div class="d-flex actions justify-content-center">
-                                            <a href="#" title="Cancel Assignment"
+                                            <a href="#" title="Cancel Assignment (coming soon)"
                                                 aria-label="Cancel Assignment"
                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                 <svg aria-label="Cancel Assignment" class="fill-stroke"
@@ -545,7 +572,7 @@
                                                         stroke-linejoin="round" />
                                                 </svg>
                                             </a>
-                                            <a href="#" title="Record Payment" aria-label="Record Payment"
+                                            {{-- <a href="#" title="Record Payment" aria-label="Record Payment"
                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                 <svg aria-label="Record Payment" width="19" height="20"
                                                     viewBox="0 0 19 20" fill="none"
@@ -553,7 +580,7 @@
                                                     <path
                                                         d="M0 0V18.5714H11.6923V17.1429H1.46154V1.42857H8.76923V5.71429H13.1538V7.14286H14.6154V4.71429L14.3962 4.5L10.0115 0.214286L9.79231 0H0ZM10.2308 2.42857L12.1308 4.28571H10.2308V2.42857ZM2.92308 7.14286V8.57143H11.6923V7.14286H2.92308ZM15.3462 8.57143V10C14.1038 10.2143 13.1538 11.2143 13.1538 12.5C13.1538 13.9286 14.25 15 15.7115 15H16.4423C17.0269 15 17.5385 15.5 17.5385 16.0714C17.5385 16.6429 17.0269 17.1429 16.4423 17.1429H13.8846V18.5714H15.3462V20H16.8077V18.5714C18.05 18.3571 19 17.3571 19 16.0714C19 14.6429 17.9038 13.5714 16.4423 13.5714H15.7115C15.1269 13.5714 14.6154 13.0714 14.6154 12.5C14.6154 11.9286 15.1269 11.4286 15.7115 11.4286H18.2692V10H16.8077V8.57143H15.3462ZM2.92308 10.7143V12.1429H8.03846V10.7143H2.92308ZM9.5 10.7143V12.1429H11.6923V10.7143H9.5ZM2.92308 13.5714V15H8.03846V13.5714H2.92308ZM9.5 13.5714V15H11.6923V13.5714H9.5Z" />
                                                 </svg>
-                                            </a>
+                                            </a> --}}
                                         </div>
                                     </td>
                                 </tr>

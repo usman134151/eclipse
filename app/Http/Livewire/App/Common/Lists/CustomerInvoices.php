@@ -53,7 +53,8 @@ final class CustomerInvoices extends PowerGridComponent
     {
         return Invoice::query()
             // ->where(['invoice_status'=>1, 'supervisor_payment_status'=>0])
-            ->with('company');
+            ->with('company')->orderBy('invoice_due_date');
+
     }
 
     /*
@@ -89,7 +90,7 @@ final class CustomerInvoices extends PowerGridComponent
     {
         return PowerGrid::eloquent()
             ->addColumn('invoice_detail', function (Invoice $model) {
-                return '<a @click="offcanvasOpen = true">' . $model->invoice_number . '</a><p class="mt-1">' . date_format(date_create($model->invoice_date), "d/m/Y") . '</p>';
+                return '<a @click="offcanvasOpen = true">' . $model->invoice_number . '</a><p class="mt-1">' . date_format(date_create($model->invoice_due_date), "d/m/Y") . '</p>';
             })
             ->addColumn('recipient', function (Invoice $model) {
                 if ($model['company']['company_logo'] == null)
