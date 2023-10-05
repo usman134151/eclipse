@@ -65,6 +65,8 @@ final class DraftInvoices extends PowerGridComponent
 				$join->on('companies.id', '=', 'bookings.company_id')
 					->where('bookings.type', '=', 1)
 					->where('bookings.booking_status', '=', '1')
+					->where('bookings.is_closed', '>', '0')
+
 					->where('bookings.status', '!=', '3');
 			})
 			->leftJoin('payments', 'bookings.id', '=', 'payments.booking_id')
@@ -131,11 +133,6 @@ final class DraftInvoices extends PowerGridComponent
 								<div class="font-family-secondary leading-none">
 									' . $modal->name . '
 								</div>
-								<a href="#" class="font-family-secondary">
-									<small>
-										examplecompany@gmail.com
-									</small>
-								</a>
 							</div>
 						</div>';
 			})
@@ -171,7 +168,7 @@ final class DraftInvoices extends PowerGridComponent
 
 	public function openCompanyBookingsPanel($company_id)
 	{
-		$this->emit('openCompanyPendingBookings',$company_id);
+		$this->emit('openCompanyPendingBookings', $company_id);
 	}
 	// function edit($id)
 	// {
