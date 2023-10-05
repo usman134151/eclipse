@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class Invoices extends Component
 {
-    public $showForm;
+    public $showForm , $invoice_id=0;
     protected $listeners = ['showList' => 'resetForm'];
 
     public function render()
