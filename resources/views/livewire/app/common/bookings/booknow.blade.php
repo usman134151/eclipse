@@ -925,6 +925,7 @@
 
                                                     <div class="col-lg-12">
                                                         <div class="row between-section-segment-spacing">
+
                                                         <input type="hidden" wire:model="booking.physical_address_id" id="addressId">
                                                         @include('components.default-address', ['type' => 1, 'userAddresses' => $userAddresses, 'title'=>'Physical'])
                                                         </div>

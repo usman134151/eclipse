@@ -575,11 +575,17 @@ class Booknow extends Component
                     $service['meetings']=json_decode($service['meetings'],true);
                 }
             }
-            if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
-                
-                $this->booking->recurring_end_at =  Carbon::createFromFormat('Y-m-d', $this->booking->recurring_end_at)->format('m/d/Y');
-                
+            if (!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at != '') {
+
+                // Validate date format before conversion
+                $date = DateTime::createFromFormat('Y-m-d', $this->booking->recurring_end_at);
+                $errors = DateTime::getLastErrors();
+            
+                if ($errors['warning_count'] === 0 && $errors['error_count'] === 0) {
+                    $this->booking->recurring_end_at = Carbon::createFromFormat('Y-m-d', $this->booking->recurring_end_at)->format('m/d/Y');
+                }
             }
+            
           
         }
 		$this->component = $component;
@@ -1070,14 +1076,18 @@ class Booknow extends Component
     public function refreshAddresses(){
        //query to fetch addresses
        $this->userAddresses=[];
-       $ids=[$this->booking['customer_id'],$this->booking['company_id']];
+       $ids=[
+        ['id'=>$this->booking['customer_id'],'user_address_type'=>1],['id'=>$this->booking['company_id'],'user_address_type'=>2]
+        ];
+      
        for($i=0;$i<count($ids);$i++){
-        $addresses=UserAddress::where(['address_type'=>1,'user_id'=>$ids[$i]])->orderBy('id','desc')->get();
+        $addresses=UserAddress::where(['address_type'=>1,'user_id'=>$ids[$i]['id'],'user_address_type'=>$ids[$i]['user_address_type']])->orderBy('id','desc')->get();
+      
         foreach($addresses as $address){
           $this->userAddresses[]=$address->toArray();
            }
        }
-
+     
         
     }
 
