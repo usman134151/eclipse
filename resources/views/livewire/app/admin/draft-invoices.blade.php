@@ -53,6 +53,8 @@
                             </p>
                             <!-- BEGIN: Filters -->
                             <div class="bg-muted rounded p-4 mb-1">
+                            <strong> Coming Soon</strong>
+
                                 <div class="d-lg-flex gap-5 align-items-center mb-4">
                                     <div class="mb-4 mb-lg-0">
                                         <label class="form-label-sm">Search</label>

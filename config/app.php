@@ -138,7 +138,7 @@ return [
     |
     */
     'per_page' => 25,
-    'per_page_big'=>50,
+    'per_page_big' => 50,
     'providers' => [
 
         /*
@@ -167,6 +167,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+
         /*
          * Package Service Providers...
          */
@@ -183,6 +184,10 @@ return [
         App\Providers\TelescopeServiceProvider::class,
         App\Providers\TenancyServiceProvider::class,
         \ESolution\DBEncryption\Providers\DBEncryptionServiceProvider::class,
+
+
+        Barryvdh\DomPDF\ServiceProvider::class,
+
     ],
 
     /*
@@ -199,6 +204,8 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         'Redis' => Illuminate\Support\Facades\Redis::class,
         'Helper' => App\Http\Controllers\Tenant\Helper\Helper::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
+
     ])->toArray(),
 
 ];
