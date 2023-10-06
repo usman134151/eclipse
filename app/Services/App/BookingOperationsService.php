@@ -143,8 +143,14 @@ class BookingOperationsService{
     $service['after_business_minutes']=0;
     $service['day_rate']=$dayRate;
     $service=SELF::getBillableDuration($service,$schedule);
-    $minDurationHours=$service['service_data']['minimum_assistance_hours'.$service['postFix']];
-    $minDurationMin=$service['service_data']['minimum_assistance_min'.$service['postFix']];
+    $minDurationHours = (isset($service['service_data']['minimum_assistance_hours'.$service['postFix']]) && !is_null($service['service_data']['minimum_assistance_hours'.$service['postFix']])) 
+    ? $service['service_data']['minimum_assistance_hours'.$service['postFix']] 
+    : 0;
+
+$minDurationMin = (isset($service['service_data']['minimum_assistance_min'.$service['postFix']]) && !is_null($service['service_data']['minimum_assistance_min'.$service['postFix']]))
+    ? $service['service_data']['minimum_assistance_min'.$service['postFix']] 
+    : 0;
+
 
     if($service['service_types']==2){
         $multipleProviderCol='standard_rate_virtual_multiply_provider';
@@ -167,7 +173,7 @@ class BookingOperationsService{
       $service['service_charges']=$service['service_data']['fixed_rate'.$service['postFix']];
    }
    elseif($service['service_data']['rate_status']==1){ //for hourly rate - temp fix for day rate
-    if(($service['total_duration']['hours']*60+$service['total_duration']['mins'])<($minDurationHours*60+$minDurationMin*60))
+    if(($service['total_duration']['hours']*60+$service['total_duration']['mins'])<($minDurationHours*60+$minDurationMin))
     {
         $bh=$minDurationHours;
         $bm=$minDurationMin;
@@ -228,7 +234,7 @@ class BookingOperationsService{
             if(array_key_exists('multiply_providers',$serviceCharge[0]) && $serviceCharge[0]['multiply_providers'])
               $charges*=$service['provider_count'];
 
-            if(($service['total_duration']['hours']*60+$service['total_duration']['mins'])<($minDurationHours*60+$minDurationMin*60))
+            if(($service['total_duration']['hours']*60+$service['total_duration']['mins'])<($minDurationHours*60+$minDurationMin))
               $charges*=$minDurationHours+($minDurationMin/60);
             elseif(array_key_exists('multiply_duration',$serviceCharge[0]) && $serviceCharge[0]['multiply_duration'])
               $charges*=$service['total_duration']['hours']+($service['total_duration']['mins']/60);
@@ -285,7 +291,7 @@ class BookingOperationsService{
 
                   $charges=$charges*$service['provider_count'];
                  }
-                 if(($service['total_duration']['hours']*60+$service['total_duration']['mins'])<($minDurationHours*60+$minDurationMin*60))
+                 if(($service['total_duration']['hours']*60+$service['total_duration']['mins'])<($minDurationHours*60+$minDurationMin))
                   $charges*=$minDurationHours+($minDurationMin/60);
                  elseif(array_key_exists('multiply_service_duration',$spCharges) &&  $spCharges['multiply_service_duration']){
                   $charges=$charges*($service['total_duration']['hours']+($service['total_duration']['mins']/60));
@@ -301,7 +307,7 @@ class BookingOperationsService{
  
     $service['expedited_charges']=SELF::getExpeditedCharge($service['start_time'],$service['service_data']['emergency_hour'.$service['postFix']]);
     if($service['expedited_charges']['multiply_duration']){
-      if(($service['total_duration']['hours']*60+$service['total_duration']['mins'])<($minDurationHours*60+$minDurationMin*60))
+      if(($service['total_duration']['hours']*60+$service['total_duration']['mins'])<($minDurationHours*60+$minDurationMin))
       $service['expedited_charges']['charges']*=$minDurationHours+($minDurationMin/60);
      elseif(array_key_exists('multiply_service_duration',$spCharges) &&  $spCharges['multiply_service_duration']){
       $service['expedited_charges']['charges']=$service['expedited_charges']['charges']*($service['total_duration']['hours']+($service['total_duration']['mins']/60));
