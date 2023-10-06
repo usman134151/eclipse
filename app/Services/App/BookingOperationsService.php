@@ -278,11 +278,11 @@ $minDurationMin =(int) (isset($service['service_data']['minimum_assistance_min'.
                 "hide_from_customers" => true
                  "hide_from_providers" => true and disable*/
                 $charges=0;
-                 if(array_key_exists('price_type',$spCharges) && $spCharges['price_type']=="$" && array_key_exists('price',$spCharges)){
+                 if(array_key_exists('price_type',$spCharges) && $spCharges['price_type']=="$" && array_key_exists('price',$spCharges)  && $spCharges['price']!=''){
                    $charges=$spCharges['price'];
                   
                  }
-                 elseif(array_key_exists('price_type',$spCharges) && $spCharges['price_type']=="%" && array_key_exists('price',$spCharges)){
+                 elseif(array_key_exists('price_type',$spCharges) && $spCharges['price_type']=="%" && array_key_exists('price',$spCharges) && $spCharges['price']!=''){
                 
                    $charges= $service['service_charges']*($spCharges['price']/100);
                   
