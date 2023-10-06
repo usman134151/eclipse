@@ -175,8 +175,8 @@ $minDurationMin =(int) (isset($service['service_data']['minimum_assistance_min'.
    elseif($service['service_data']['rate_status']==1){ //for hourly rate - temp fix for day rate
     if(((int)$service['total_duration']['hours']*60+(int)$service['total_duration']['mins'])<($minDurationHours*60+(int)$minDurationMin))
     {
-        $bh=$minDurationHours;
-        $bm=$minDurationMin;
+        $bh=(int)$minDurationHours;
+        $bm=(int)$minDurationMin;
         $abh=0;
         $abm=0;
         if($service['after_business_hours']>0 || $service['after_business_minutes']>0){  //means min duration will be calculated on both business and after-hour rates
