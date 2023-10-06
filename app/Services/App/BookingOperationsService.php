@@ -258,6 +258,7 @@ class BookingOperationsService{
     $service['specialization']=json_decode($service['specialization'],true);
     $service['specialization_total']=0;
     $service['specialization_charges']=[];
+    $spCharges=[];
     if(is_array($service['specialization']) && count($service['specialization'])>0){
       foreach($service['specialization'] as $specialization){
         foreach($service['service_data']['specializations'] as $serviceSpecialization){
