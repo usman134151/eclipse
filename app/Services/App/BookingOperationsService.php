@@ -173,7 +173,7 @@ $minDurationMin = (isset($service['service_data']['minimum_assistance_min'.$serv
       $service['service_charges']=$service['service_data']['fixed_rate'.$service['postFix']];
    }
    elseif($service['service_data']['rate_status']==1){ //for hourly rate - temp fix for day rate
-    if(($service['total_duration']['hours']*60+$service['total_duration']['mins'])<($minDurationHours*60+$minDurationMin))
+    if(((int)$service['total_duration']['hours']*60+(int)$service['total_duration']['mins'])<($minDurationHours*60+$minDurationMin))
     {
         $bh=$minDurationHours;
         $bm=$minDurationMin;
