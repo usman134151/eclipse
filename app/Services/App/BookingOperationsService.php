@@ -143,6 +143,8 @@ class BookingOperationsService{
     $service['after_business_minutes']=0;
     $service['day_rate']=$dayRate;
     $service=SELF::getBillableDuration($service,$schedule);
+    if(is_null($service['provider_count']) || $service['provider_count']=='')
+      $service['provider_count']=1;
     $minDurationHours = (int)(isset($service['service_data']['minimum_assistance_hours'.$service['postFix']]) && !is_null($service['service_data']['minimum_assistance_hours'.$service['postFix']])  && ($service['service_data']['minimum_assistance_hours'.$service['postFix']]!='')) 
     ? $service['service_data']['minimum_assistance_hours'.$service['postFix']] 
     : 0;
@@ -289,7 +291,7 @@ $minDurationMin =(int) (isset($service['service_data']['minimum_assistance_min'.
               
                  if(array_key_exists('multiply_provider',$spCharges) && $spCharges['multiply_provider']){
 
-                  $charges=$charges*$service['provider_count'];
+                  $charges=(int)$charges*(int)$service['provider_count'];
                  }
                  if(((int)$service['total_duration']['hours']*60+(int)$service['total_duration']['mins'])<($minDurationHours*60+(int)$minDurationMin))
                   $charges*=$minDurationHours+($minDurationMin/60);
