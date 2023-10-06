@@ -143,11 +143,11 @@ class BookingOperationsService{
     $service['after_business_minutes']=0;
     $service['day_rate']=$dayRate;
     $service=SELF::getBillableDuration($service,$schedule);
-    $minDurationHours = (isset($service['service_data']['minimum_assistance_hours'.$service['postFix']]) && !is_null($service['service_data']['minimum_assistance_hours'.$service['postFix']])) 
+    $minDurationHours = (int)(isset($service['service_data']['minimum_assistance_hours'.$service['postFix']]) && !is_null($service['service_data']['minimum_assistance_hours'.$service['postFix']])) 
     ? $service['service_data']['minimum_assistance_hours'.$service['postFix']] 
     : 0;
 
-$minDurationMin = (isset($service['service_data']['minimum_assistance_min'.$service['postFix']]) && !is_null($service['service_data']['minimum_assistance_min'.$service['postFix']]))
+$minDurationMin =(int) (isset($service['service_data']['minimum_assistance_min'.$service['postFix']]) && !is_null($service['service_data']['minimum_assistance_min'.$service['postFix']]))
     ? $service['service_data']['minimum_assistance_min'.$service['postFix']] 
     : 0;
 
