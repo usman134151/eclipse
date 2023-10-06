@@ -79,7 +79,7 @@
               change = activeElHeight - start - parseInt(menu.clientHeight / 2);
           }
           setTimeout(function () {
-            $.app.menu.container.stop().animate(
+            $.app.menu.container?.stop().animate(
               {
                 scrollTop: change
               },

@@ -822,7 +822,7 @@
                 Reset Customer Password
             </span>
         </button>
-        <a href="/chat/{{$this->user['id']}}" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
+        <a target="_blank" href="/chat/{{$this->user['id']}}" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
             <span>
                 Message Customer
             </span>

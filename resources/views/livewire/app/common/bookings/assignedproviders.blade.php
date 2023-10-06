@@ -191,7 +191,7 @@
 
                                                       @endif
                                                       @if (!session()->get('isCustomer'))
-                                                          <a href="/chat{{$provider['provider_id']}}"title="Chat" aria-label="Chat"
+                                                          <a target="_blank" href="/chat/{{$provider['provider_id']}}" title="Chat" aria-label="Chat"
                                                               class="btn btn-sm btn-secondary rounded btn-hs-icon">
 
                                                               <svg aria-label="Chat" width="18" height="18"
