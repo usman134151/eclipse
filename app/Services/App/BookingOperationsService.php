@@ -180,10 +180,10 @@ $minDurationMin =(int) (isset($service['service_data']['minimum_assistance_min'.
         $abh=0;
         $abm=0;
         if($service['after_business_hours']>0 || $service['after_business_minutes']>0){  //means min duration will be calculated on both business and after-hour rates
-          $bh=$service['business_hours'];
-          $bm=$service['business_minutes'];
-          $abh=$minDurationHours-$service['after_business_hours'];
-          $abm=$minDurationMin-$service['after_business_minutes'];
+          $bh=(int)$service['business_hours'];
+          $bm=(int)$service['business_minutes'];
+          $abh=$bh-$service['after_business_hours'];
+          $abm=$bm-$service['after_business_minutes'];
         }
     }
     else{
