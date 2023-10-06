@@ -261,6 +261,7 @@ class BookingOperationsService{
     if(is_array($service['specialization']) && count($service['specialization'])>0){
       foreach($service['specialization'] as $specialization){
         foreach($service['service_data']['specializations'] as $serviceSpecialization){
+          $spCharges=[];
           if($serviceSpecialization['id']==$specialization){
               $spCharges=json_decode($serviceSpecialization['pivot']['specialization_price'.$service['postFix']],true);
               $spCharges=$spCharges[0];
@@ -321,7 +322,7 @@ class BookingOperationsService{
 
   static function getExpeditedCharge($bookingStartTime, $expeditedDataJson) {
     if(is_null($expeditedDataJson)){
-      return ['charges'=>0,'hour'=>'n/a'];
+      return ['charges'=>0,'hour'=>'n/a','multiply_duration'=>false];
     }
     // Step 1: Parse JSON data to PHP arrays
     $expeditedData = json_decode($expeditedDataJson, true);
@@ -351,7 +352,7 @@ class BookingOperationsService{
         }
     }
 
-    return ['charges'=>0,'hour'=>'n/a']; // No expedited charges applicable
+    return ['charges'=>0,'hour'=>'n/a','multiply_duration'=>false]; // No expedited charges applicable
 }
 
 
