@@ -234,7 +234,7 @@ $minDurationMin =(int) (isset($service['service_data']['minimum_assistance_min'.
             if(array_key_exists('multiply_providers',$serviceCharge[0]) && $serviceCharge[0]['multiply_providers'])
               $charges*=$service['provider_count'];
 
-            if(($service['total_duration']['hours']*60+$service['total_duration']['mins'])<($minDurationHours*60+$minDurationMin))
+              if(((int)$service['total_duration']['hours']*60+(int)$service['total_duration']['mins'])<($minDurationHours*60+(int)$minDurationMin))
               $charges*=$minDurationHours+($minDurationMin/60);
             elseif(array_key_exists('multiply_duration',$serviceCharge[0]) && $serviceCharge[0]['multiply_duration'])
               $charges*=$service['total_duration']['hours']+($service['total_duration']['mins']/60);
@@ -291,7 +291,7 @@ $minDurationMin =(int) (isset($service['service_data']['minimum_assistance_min'.
 
                   $charges=$charges*$service['provider_count'];
                  }
-                 if(($service['total_duration']['hours']*60+$service['total_duration']['mins'])<($minDurationHours*60+$minDurationMin))
+                 if(((int)$service['total_duration']['hours']*60+(int)$service['total_duration']['mins'])<($minDurationHours*60+(int)$minDurationMin))
                   $charges*=$minDurationHours+($minDurationMin/60);
                  elseif(array_key_exists('multiply_service_duration',$spCharges) &&  $spCharges['multiply_service_duration']){
                   $charges=$charges*($service['total_duration']['hours']+($service['total_duration']['mins']/60));
@@ -307,7 +307,7 @@ $minDurationMin =(int) (isset($service['service_data']['minimum_assistance_min'.
  
     $service['expedited_charges']=SELF::getExpeditedCharge($service['start_time'],$service['service_data']['emergency_hour'.$service['postFix']]);
     if($service['expedited_charges']['multiply_duration']){
-      if(($service['total_duration']['hours']*60+$service['total_duration']['mins'])<($minDurationHours*60+$minDurationMin))
+      if(((int)$service['total_duration']['hours']*60+(int)$service['total_duration']['mins'])<($minDurationHours*60+(int)$minDurationMin))
       $service['expedited_charges']['charges']*=$minDurationHours+($minDurationMin/60);
      elseif(array_key_exists('multiply_service_duration',$spCharges) &&  $spCharges['multiply_service_duration']){
       $service['expedited_charges']['charges']=$service['expedited_charges']['charges']*($service['total_duration']['hours']+($service['total_duration']['mins']/60));
