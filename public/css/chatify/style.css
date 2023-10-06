@@ -88,6 +88,18 @@ body {
   background: transparent;
   transition: all 0.3s ease;
 }
+
+.chat-container{
+    position: fixed;
+    width:400px;
+    height: auto;
+    z-index: 100;
+    right: 88px;
+    bottom: 12px;
+}
+.box-shadow-chat{
+    box-shadow:1px 2px 4px #ffffff, 0 4px 8px #a9a9a9;
+}
 .app-scroll-hidden::-webkit-scrollbar {
   width: 0px;
   height: 0px;
@@ -132,7 +144,7 @@ body {
   overflow: hidden;
   width: 100%;
 }
-.messenger-messagingView .m-header {
+.messenger-messagingView .m-header,.chat-container .m-header {
   padding: var(--headers-padding);
 }
 .messenger-messagingView .m-body {
