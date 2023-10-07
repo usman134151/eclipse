@@ -367,7 +367,8 @@ $minDurationMin =(int) (isset($service['service_data']['minimum_assistance_min'.
 
   public static function getBillableDuration($service,$schedule){
     //for single date 
-   
+   if(is_null($schedule))
+      return; 
     $duration=SELF::calculateDuration($service['start_time'],$service['end_time'],$service['day_rate']);
   
     $startDayOfWeek = Carbon::parse($service['start_time'])->format('l');

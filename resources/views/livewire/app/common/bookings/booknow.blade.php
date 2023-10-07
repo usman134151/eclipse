@@ -91,7 +91,7 @@
                             <div>
     @error('slot')
         <div class="alert alert-danger p-2">
-            {{ $message }}
+            {{ $message }} @if(!$isCustomer) <a href="/admin/business-setup">Click here to setup business slots before creating assignments.</a> @endif
         </div>
     @enderror
     
