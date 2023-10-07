@@ -78,6 +78,10 @@ class BookingList extends Component
 			return $this->exportDataFile->exportExcelBookings($this->selectedBookingIds, $template);
 	}
 
+	public function closeBooking($bookingId){
+		Booking::where('id',$bookingId)->update(['is_closed'=>1,'booking_status'=>1]);
+		$this->showConfirmation('Booking has been closed successfully!');
+	}
 	public function assignServiceProviders($service_id)
 	{
 

@@ -607,6 +607,16 @@
                                                                                                     class="fa fa-comment"></i>
                                                                                                 Message Provider Team
                                                                                             </a>
+                                                                                             
+                                                                                            <a href="#" wire:click.prevent="closeBooking({{ $booking->id }})"
+                                                                                                title="Cancel"
+                                                                                                aria-label="Cancel"
+                                                                                                class="dropdown-item">
+                                                                                                <svg aria-label="Invoice Generator" width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <use xlink:href="/css/admin-menu.svg#invoice-genrator-icon"></use>
+                  </svg>
+                                                                                               Close Booking
+                                                                                            </a>
                                                                                             <a href="javascript:void(0)"
                                                                                                 title="Cancel"
                                                                                                 aria-label="Cancel"
@@ -624,7 +634,7 @@
                                                                                                         stroke-linejoin="round">
                                                                                                     </path>
                                                                                                 </svg>
-                                                                                                Cancel
+                                                                                                Cancel Booking
                                                                                             </a>
                                                                                         @endif
 
