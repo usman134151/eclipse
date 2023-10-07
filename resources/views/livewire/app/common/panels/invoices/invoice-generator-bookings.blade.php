@@ -37,15 +37,15 @@
                 </div>
             </div>
             <div class="col-lg-4 mb-4 mb-lg-0 align-self-center">
-                <small>(coming soon)</small>
-
                 <div class="d-grid grid-cols-2 gap-2">
                     <div class="fw-semibold text-sm">Total Paid:</div>
-                    <div class="text-sm">$3000</div>
+                    <div class="text-sm">{{numberFormat($totalPaidAmount)}}</div>
                     <div class="fw-semibold text-sm">Pending Payment:</div>
-                    <div class="text-sm">$1500</div>
+                    <div class="text-sm">{{numberFormat($totalPendingAmount)}}</div>
                     <div class="fw-semibold text-sm">Overdue Payment:</div>
-                    <div class="text-sm">$500</div>
+                    <div class="text-sm">{{numberFormat($totalOverDueAmount)}}</div>
+                    <div class="fw-semibold text-sm">Not Invoiced Payment:</div>
+                    <div class="text-sm">{{numberFormat($totalNotInvoiceAmount)}}</div>
                 </div>
             </div>
         </div>
@@ -57,8 +57,8 @@
                         <thead>
                             <tr role="row">
                                 <th scope="col" class="text-center">
-                                    <input class="form-check-input" type="checkbox" wire:model.defer="selectAll"
-                                        wire:click="updateSelectAll" aria-label="Select All Booking">
+                                    <input id="check-all" class="form-check-input" type="checkbox"
+                                        aria-label="Select All Booking">
                                 </th>
                                 <th scope="col" width="12%" class="">Booking ID</th>
                                 <th scope="col">Accommodation</th>
@@ -434,8 +434,8 @@
                             @foreach ($bookings as $booking)
                                 <tr role="row" class="odd">
                                     <td class="text-center">
-                                        <input class="form-check-input" type="checkbox" value="{{ $booking->id }}"
-                                            wire:key='{{ $loop->index }}' wire:model.defer="selectedBookings"
+                                        <input class="form-check-input booking-checkbox" type="checkbox" value="{{ $booking->id }}"
+                                            wire:key='{{ $loop->index }}' wire:model.defer="selectedBookings" data-price="{{ $booking->payment->total_amount }}"
                                             aria-label="Select Booking">
                                     </td>
                                     <td>
@@ -597,7 +597,7 @@
                 <div class="col-lg-4">
                     <div class="d-flex justify-content-between">
                         <div class="fw-bold text-sm">Total</div>
-                        <div class="fw-bold text-sm text-lg-end">$675</div>
+                        <div class="fw-bold text-sm text-lg-end">$<span id="total-price"></span></div>
                     </div>
                 </div>
             </div>
@@ -615,3 +615,41 @@
         </div>
 
     </div>
+    <script>
+        $(document).ready(function() {
+            let totalPrice = 0;
+            updateTotalPrice();
+
+            $('.booking-checkbox').change(function() {
+                const price = parseFloat($(this).data('price'));
+
+                if ($(this).is(':checked')) {
+                    totalPrice += price;
+                } else {
+                    totalPrice -= price;
+                }
+                updateTotalPrice();
+            });
+
+            function updateTotalPrice() {
+                $('#total-price').text(totalPrice.toFixed(2)); // Format to two decimal places
+            }
+
+            $('#check-all').change(function() {
+                const isChecked = $(this).is(':checked');
+                $('.booking-checkbox').prop('checked', isChecked);
+
+                calculateTotalPrice();
+            });
+
+            function calculateTotalPrice() {
+                totalPrice = 0.00;
+
+                $('.booking-checkbox:checked').each(function() {
+                    const price = parseFloat($(this).data('price'));
+                    totalPrice += price;
+                });
+                updateTotalPrice();
+            }
+        });
+    </script>
