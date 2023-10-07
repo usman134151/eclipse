@@ -3,14 +3,14 @@
 namespace App\Http\Livewire\App\Common\Panels\Invoices;
 
 use App\Models\Tenant\Booking;
-use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\Company;
-use Illuminate\Support\Facades\DB;
+use App\Services\App\InvoiceService;
 use Livewire\Component;
 
 class InvoiceGeneratorBookings extends Component
 {
-    public $showForm, $company, $bookings, $selectedBookings = [], $selectAll = false, $showError = false;
+    public $showForm, $company, $bookings, $selectedBookings = [], $selectAll = false, $showError = false,
+        $totalPendingAmount, $totalOverDueAmount, $totalPaidAmount, $totalNotInvoiceAmount;
     protected $listeners = ['showList' => 'resetForm', 'openInvoicePanel'];
 
     public function render()
@@ -20,20 +20,24 @@ class InvoiceGeneratorBookings extends Component
 
     public function mount($company_id)
     {
+        $this->totalPendingAmount = InvoiceService::getTotalPendingDues($company_id);
+        $this->totalOverDueAmount = InvoiceService::getTotalOverDues($company_id);
+        $this->totalPaidAmount = InvoiceService::getTotalPaidAmount($company_id);
+        $this->totalNotInvoiceAmount = InvoiceService::getTotalNotInvoiced($company_id);
+
         $this->company = Company::where('id', $company_id)->first();
         if ($this->company->addresses->count())
             $this->company->address = $this->company->addresses->first()->toArray();
         $this->bookings =
             Booking::where('bookings.company_id', '=', $company_id)
-            ->where('bookings.type', '=', 1)
-            ->where('bookings.booking_status', '=', '1')
-            ->where('bookings.status', '!=', '3')
-            ->where('bookings.invoice_status', '=', '0')
-            ->where('bookings.is_closed', '>', '0')
-
-            ->leftJoin('payments', 'bookings.id', '=', 'payments.booking_id')
-            ->select(['bookings.*'])->with('payment')
-            ->get();
+                ->where('bookings.type', '=', 1)
+                ->where('bookings.booking_status', '=', '1')
+                ->where('bookings.status', '!=', '3')
+                ->where('bookings.invoice_status', '=', '0')
+                ->where('bookings.is_closed', '>', '0')
+                ->leftJoin('payments', 'bookings.id', '=', 'payments.booking_id')
+                ->select(['bookings.*'])->with('payment')
+                ->get();
         // dd($this->bookings->first()['payment']);
     }
 
@@ -60,6 +64,7 @@ class InvoiceGeneratorBookings extends Component
     {
         $this->showForm = true;
     }
+
     public function resetForm()
     {
         $this->showForm = false;
