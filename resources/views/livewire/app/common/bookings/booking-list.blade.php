@@ -607,16 +607,27 @@
                                                                                                     class="fa fa-comment"></i>
                                                                                                 Message Provider Team
                                                                                             </a>
-                                                                                             
+                                                                                            @if($booking->is_closed==0) 
                                                                                             <a href="#" wire:click.prevent="closeBooking({{ $booking->id }})"
-                                                                                                title="Cancel"
-                                                                                                aria-label="Cancel"
+                                                                                                title="Close booking"
+                                                                                                aria-label="Close booking and move to invoice generator"
                                                                                                 class="dropdown-item">
                                                                                                 <svg aria-label="Invoice Generator" width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <use xlink:href="/css/admin-menu.svg#invoice-genrator-icon"></use>
-                  </svg>
+                                                                                                        <use xlink:href="/css/admin-menu.svg#invoice-genrator-icon"></use>
+                                                                                                    </svg>
                                                                                                Close Booking
                                                                                             </a>
+                                                                                            @else
+                                                                                            <a href="#" wire:click.prevent="reOpenBooking({{ $booking->id }})"
+                                                                                                title="Reopen Booking"
+                                                                                                aria-label="Reopen Booking"
+                                                                                                class="dropdown-item">
+                                                                                                <svg aria-label="Invoice Generator" width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                        <use xlink:href="/css/admin-menu.svg#invoice-genrator-icon"></use>
+                                                                                                    </svg>
+                                                                                               Reopen Booking
+                                                                                            </a>                                                                                            
+                                                                                            @endif
                                                                                             <a href="javascript:void(0)"
                                                                                                 title="Cancel"
                                                                                                 aria-label="Cancel"

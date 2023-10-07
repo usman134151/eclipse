@@ -82,6 +82,10 @@ class BookingList extends Component
 		Booking::where('id',$bookingId)->update(['is_closed'=>1,'booking_status'=>1]);
 		$this->showConfirmation('Booking has been closed successfully!');
 	}
+	public function reOpenBooking($bookingId){
+		Booking::where('id',$bookingId)->update(['is_closed'=>0]);
+		$this->showConfirmation('Booking has been reopened successfully!');
+	}
 	public function assignServiceProviders($service_id)
 	{
 
