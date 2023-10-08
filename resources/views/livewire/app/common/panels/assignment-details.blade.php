@@ -646,82 +646,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-12 mb-3">
-                                    <div class="row">
-                                        <div class="col-lg-5">
-                                            <label class="col-form-label">Last Name:</label>
-                                        </div>
-                                        <div class="col-lg-7 align-self-center">
-                                            <div class="d-flex align-items-center gap-2">
-                                                <div class="font-family-tertiary">Charles</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 mb-3">
-                                    <div class="row">
-                                        <div class="col-lg-5">
-                                            <label class="col-form-label">Phone Number:</label>
-                                        </div>
-                                        <div class="col-lg-7 align-self-center">
-                                            <div class="d-flex align-items-center gap-2">
-                                                <div class="font-family-tertiary">
-                                                    (923)
-                                                    023-9683
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 mb-3">
-                                    <div class="row">
-                                        <div class="col-lg-5">
-                                            <label class="col-form-label">Severity:</label>
-                                        </div>
-                                        <div class="col-lg-7 align-self-center">
-                                            <div class="font-family-tertiary">Active</div>
-                                        </div>
-                                    </div>
-                                </div>
+
                             </div>
                         @endforeach
                     </div>
                 </div>
             @endif
-            <div class="row mb-4">
-                <div class="col-lg-12">
-                    <div class="d-lg-flex justify-content-between align-items-center mb-5">
-                        <h2 class="mb-lg-0">Industry Form Detail
-                            <small>(coming soon)</small>
-                        </h2>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-12 mb-3">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="row">
-                                        <div class="col-lg-3">
-                                            <label class="col-form-label">
-                                                Req_info:
-                                            </label>
-                                        </div>
-                                        <div class="col-lg-9 align-self-center">
-                                            <a href="#">View Uploaded Document</a>
-                                        </div>
-                                        <div class="col-lg-auto">
-                                            <img src="/tenant-resources/images/img-placeholder-document.jpg"
-                                                alt="img-placeholder-document">
-                                            <p class="font-family-secondary">
-                                                <small>File Name</small>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
             <div class="row mb-4">
                 <div class="col-lg-12">
                     <h2 class="mb-lg-4">Notes</h2>
