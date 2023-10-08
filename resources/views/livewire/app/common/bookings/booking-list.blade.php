@@ -1,4 +1,4 @@
-<div x-data="{ rescheduleBooking: false, assignProvider: false, providerSavedForms: false, offcanvasOpenCheckOut: false, step: 1 }">
+<div x-data="{ rescheduleBooking: false,cancelBooking:false, assignProvider: false, providerSavedForms: false, offcanvasOpenCheckOut: false, step: 1 }">
     <div id="loader-section" class="loader-section" wire:loading>
         <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
             <div class="spinner-border" role="status" aria-live="polite">
@@ -362,23 +362,7 @@
                                                                                     </svg>
                                                                                 </a>
                                                                             @endif
-                                                                            @if ($bookingType == 'Draft')
-                                                                                <a href="#"
-                                                                                    title="Delete Booking"
-                                                                                    aria-label="Delete Booking"
-                                                                                    wire:click="deleteRecord({{ $booking['id'] }})"
-                                                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                                    <svg aria-label="Delete Service"
-                                                                                        width="21" height="21"
-                                                                                        viewBox="0 0 21 21"
-                                                                                        fill="none"
-                                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                                        <use
-                                                                                            xlink:href="/css/sprite.svg#delete-icon">
-                                                                                        </use>
-                                                                                    </svg>
-                                                                                </a>
-                                                                            @endif
+
                                                                             @if (
                                                                                 ($bookingType == "Today's" || $bookingType == 'Past') &&
                                                                                     $bookingSection == 'customer' &&
@@ -506,6 +490,23 @@
                                                                                     </svg>
                                                                                 </a>
                                                                             @endif
+                                                                            @if ($bookingType == 'Draft')
+                                                                                <a href="#"
+                                                                                    title="Delete Booking"
+                                                                                    aria-label="Delete Booking"
+                                                                                    wire:click="deleteRecord({{ $booking['id'] }})"
+                                                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                                    <svg aria-label="Delete Service"
+                                                                                        width="21" height="21"
+                                                                                        viewBox="0 0 21 21"
+                                                                                        fill="none"
+                                                                                        xmlns="http://www.w3.org/2000/svg">
+                                                                                        <use
+                                                                                            xlink:href="/css/sprite.svg#delete-icon">
+                                                                                        </use>
+                                                                                    </svg>
+                                                                                </a>
+                                                                            @endif
                                                                             @if ($bookingType != 'Pending Approval' && $bookingSection != 'customer')
                                                                                 <div class="dropdown ac-cstm">
                                                                                     <a href="javascript:void(0)"
@@ -525,6 +526,7 @@
                                                                                         </svg>
                                                                                         {{-- End of update by Shanila --}}
                                                                                     </a>
+                                                                                    
                                                                                     <div
                                                                                         class="tablediv dropdown-menu fadeIn">
                                                                                         @if ($bookingType != 'Invitations')
@@ -629,9 +631,10 @@
                                                                                             </a>                                                                                            
                                                                                             @endif
                                                                                             <a href="javascript:void(0)"
-                                                                                                title="Cancel"
                                                                                                 aria-label="Cancel"
-                                                                                                class="dropdown-item">
+                                                                                                title="Cancel"
+                                                                                                class="dropdown-item"
+                                                                                                @click="cancelBooking = true" wire:click="getBookingData({{$booking->id}})">
                                                                                                 <svg width="17"
                                                                                                     height="18"
                                                                                                     viewBox="0 0 17 18"
@@ -737,6 +740,7 @@
     @endif
 
     @include('panels.booking-details.reschedule-booking')
+    @include('panels.booking-details.cancel-booking')
     @include('modals.common.confirm-completion')
     @include('modals.admin-staff')
     @include('modals.assign-provider-team')

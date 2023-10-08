@@ -533,6 +533,10 @@ class BookingList extends Component
 		$this->emit('setBookingId', $booking_id);
 	}
 
+	public function getBookingData($bookingId){
+		$this->emit('getBookingData',$bookingId);
+	}
+
 	public function rejectAssignment($booking_id)
 	{
 		Booking::where('id', $booking_id)->update(['status' => 3, 'booking_status' => 2]);

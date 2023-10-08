@@ -887,5 +887,68 @@ if ($startIndex <= $endIndex) {
     return $Array;
   }
 
+  public static function getBookingDetails($bookingId,$serviceTypes,$parameter,$dataColumn){
+    $booking = Booking::where('id', $bookingId)->with('payment','booking_services','services')->first()->toArray();
+    $totalCharges=0;
+    foreach($booking['booking_services'] as $index=>$bookingService){
+      
+      $postFix=$serviceTypes[$bookingService['service_types']]['postfix'];
+      $serviceCharge=0;
+      if(!is_null($booking['services'][$index][$dataColumn.$postFix])){
+        $cancellationCharges=json_decode($booking['services'][$index][$dataColumn.$postFix],true);
+        $charges=SELF::getCharges($cancellationCharges,$bookingService['start_time'],$parameter);
+        $serviceCharge=$charges['charges'];
+        if($charges['multiply_duration']){
+          $bookingServiceData=(json_decode($bookingService['service_calculations'],true)); 
+          $serviceCharge=$serviceCharge*(($bookingServiceData['total_duration']['days']*24)+$bookingServiceData['total_duration']['hours']+($bookingServiceData['total_duration']['mins']/60));
+        
+        }
+        if($charges['multiply_providers']){
+          $serviceCharge=$serviceCharge*$bookingService['provider_count'];
+        }  
+        $totalCharges+=$serviceCharge;
+
+      }
+    }
+    $booking['charges']=$totalCharges;
+   
+    return $booking;
+  }
+
+  public static function getCharges($cancellationData,$bookingStartTime,$parameter){
+
+    // Step 2: Sort arrays based on the 'hour' parameter
+    usort($cancellationData, function($a, $b) {
+        return $b[0]['hour'] - $a[0]['hour']; // Sort in descending order to check the larger hours first
+    });
+
+    // Step 3: Get the time difference in hours
+    $currentDateTime = new DateTime();
+    $bookingStartDateTime = new DateTime($bookingStartTime); // Assuming $bookingStartTime is in a format supported by DateTime
+   
+    $interval = $currentDateTime->diff($bookingStartDateTime);
+    $hoursDifference = $interval->h + ($interval->days * 24); // Convert days to hours and add to hour difference
+
+    // Step 4: Check if the hoursDifference matches with any 'hour' value and add respective charges
+    foreach ($cancellationData as $cancelItemArray) {
+        foreach ($cancelItemArray as $cancelItem) {
+        
+            if (key_exists($parameter,$cancelItem) && $cancelItem[$parameter]==true &&  $hoursDifference <= intval($cancelItem['hour'])) {
+               if(key_exists('multiply_duration',$cancelItem)){
+                $md=$cancelItem['multiply_duration'];
+               }
+               if(key_exists('multiply_providers',$cancelItem)){
+                $mp=$cancelItem['multiply_providers'];
+               }
+                return ['charges'=>floatval($cancelItem['price']),'hour'=>$cancelItem['hour'],'multiply_duration'=>$md,'multiply_providers'=>$mp]; // Returning the price to be added as expedited charges
+            }
+        }
+    }
+
+    return ['charges'=>0,'hour'=>'n/a','multiply_duration'=>false,'multiply_providers'=>false]; // No charges applicable
+  }
+
+ 
+
 
 }
