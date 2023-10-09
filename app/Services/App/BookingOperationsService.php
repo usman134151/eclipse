@@ -143,6 +143,16 @@ class BookingOperationsService{
     $service['after_business_minutes']=0;
     $service['day_rate']=$dayRate;
     $service=SELF::getBillableDuration($service,$schedule);
+    if(is_null($service['provider_count']) || $service['provider_count']=='')
+      $service['provider_count']=1;
+    $minDurationHours = (int)(isset($service['service_data']['minimum_assistance_hours'.$service['postFix']]) && !is_null($service['service_data']['minimum_assistance_hours'.$service['postFix']])  && ($service['service_data']['minimum_assistance_hours'.$service['postFix']]!='')) 
+    ? $service['service_data']['minimum_assistance_hours'.$service['postFix']] 
+    : 0;
+
+$minDurationMin =(int) (isset($service['service_data']['minimum_assistance_min'.$service['postFix']]) && !is_null($service['service_data']['minimum_assistance_min'.$service['postFix']]) && ($service['service_data']['minimum_assistance_min'.$service['postFix']]!=''))
+    ? $service['service_data']['minimum_assistance_min'.$service['postFix']] 
+    : 0;
+
 
     if($service['service_types']==2){
         $multipleProviderCol='standard_rate_virtual_multiply_provider';
@@ -165,16 +175,36 @@ class BookingOperationsService{
       $service['service_charges']=$service['service_data']['fixed_rate'.$service['postFix']];
    }
    elseif($service['service_data']['rate_status']==1){ //for hourly rate - temp fix for day rate
-   
+    if(((int)$service['total_duration']['hours']*60+(int)$service['total_duration']['mins'])<($minDurationHours*60+(int)$minDurationMin))
+    {
+        $bh=(int)$minDurationHours;
+        $bm=(int)$minDurationMin;
+        $abh=0;
+        $abm=0;
+        if($service['after_business_hours']>0 || $service['after_business_minutes']>0){  //means min duration will be calculated on both business and after-hour rates
+          $bh=(int)$service['business_hours'];
+          $bm=(int)$service['business_minutes'];
+          $abh=$bh-$service['after_business_hours'];
+          $abm=$bm-$service['after_business_minutes'];
+        }
+    }
+    else{
+        $bh=$service['business_hours'];
+        $bm=$service['business_minutes'];
+        $abh=$service['after_business_hours'];
+        $abm=$service['after_business_minutes'];
+
+    }
+
     if($service['service_data'][$multipleProviderCol]){
      
-        $service['business_hour_charges']=($service['service_data']['hours_price'.$service['postFix']]*$service['provider_count']*$service['business_hours'])+(($service['service_data']['hours_price'.$service['postFix']]/60)*$service['provider_count']*$service['business_minutes']);
-        $service['after_business_hour_charges']=($service['service_data']['after_hours_price'.$service['postFix']]*$service['provider_count']*$service['after_business_hours'])+(($service['service_data']['after_hours_price'.$service['postFix']]/60)*$service['provider_count']*$service['after_business_minutes']);
+        $service['business_hour_charges']=($service['service_data']['hours_price'.$service['postFix']]*$service['provider_count']*$bh)+(($service['service_data']['hours_price'.$service['postFix']]/60)*$service['provider_count']*$bm);
+        $service['after_business_hour_charges']=($service['service_data']['after_hours_price'.$service['postFix']]*$service['provider_count']*$abh)+(($service['service_data']['after_hours_price'.$service['postFix']]/60)*$service['provider_count']*$abm);
        
     }
     else{
-        $service['business_hour_charges']=($service['service_data']['hours_price'.$service['postFix']]*$service['business_hours'])+(($service['service_data']['hours_price'.$service['postFix']]/60)*$service['provider_count']*$service['business_minutes']);
-        $service['after_business_hour_charges']=($service['service_data']['after_hours_price'.$service['postFix']]*$service['after_business_hours'])+(($service['service_data']['after_hours_price'.$service['postFix']]/60)*$service['after_business_minutes']);
+        $service['business_hour_charges']=($service['service_data']['hours_price'.$service['postFix']]*$bh)+(($service['service_data']['hours_price'.$service['postFix']]/60)*$service['provider_count']*$bm);
+        $service['after_business_hour_charges']=($service['service_data']['after_hours_price'.$service['postFix']]*$abh)+(($service['service_data']['after_hours_price'.$service['postFix']]/60)*$abm);
       
     }
    
@@ -197,13 +227,18 @@ class BookingOperationsService{
 
    if(!is_null($service['service_data']['service_charge'.$service['postFix']])) {
     $serviceCharges=json_decode($service['service_data']['service_charge'.$service['postFix']],true);
+
+    
     foreach($serviceCharges as $serviceCharge){
      
             $charges=$serviceCharge[0]['price'];
-        
+           
             if(array_key_exists('multiply_providers',$serviceCharge[0]) && $serviceCharge[0]['multiply_providers'])
               $charges*=$service['provider_count'];
-            if(array_key_exists('multiply_duration',$serviceCharge[0]) && $serviceCharge[0]['multiply_duration'])
+
+              if(((int)$service['total_duration']['hours']*60+(int)$service['total_duration']['mins'])<($minDurationHours*60+(int)$minDurationMin))
+              $charges*=$minDurationHours+($minDurationMin/60);
+            elseif(array_key_exists('multiply_duration',$serviceCharge[0]) && $serviceCharge[0]['multiply_duration'])
               $charges*=$service['total_duration']['hours']+($service['total_duration']['mins']/60);
               
             $service['additional_charges'][]=['label'=>$serviceCharge[0]['label'],'charges'=>$charges];
@@ -231,9 +266,11 @@ class BookingOperationsService{
     $service['specialization']=json_decode($service['specialization'],true);
     $service['specialization_total']=0;
     $service['specialization_charges']=[];
+    $spCharges=[];
     if(is_array($service['specialization']) && count($service['specialization'])>0){
       foreach($service['specialization'] as $specialization){
         foreach($service['service_data']['specializations'] as $serviceSpecialization){
+          $spCharges=[];
           if($serviceSpecialization['id']==$specialization){
               $spCharges=json_decode($serviceSpecialization['pivot']['specialization_price'.$service['postFix']],true);
               $spCharges=$spCharges[0];
@@ -241,11 +278,11 @@ class BookingOperationsService{
                 "hide_from_customers" => true
                  "hide_from_providers" => true and disable*/
                 $charges=0;
-                 if(array_key_exists('price_type',$spCharges) && $spCharges['price_type']=="$" && array_key_exists('price',$spCharges)){
+                 if(array_key_exists('price_type',$spCharges) && $spCharges['price_type']=="$" && array_key_exists('price',$spCharges)  && $spCharges['price']!=''){
                    $charges=$spCharges['price'];
                   
                  }
-                 elseif(array_key_exists('price_type',$spCharges) && $spCharges['price_type']=="%" && array_key_exists('price',$spCharges)){
+                 elseif(array_key_exists('price_type',$spCharges) && $spCharges['price_type']=="%" && array_key_exists('price',$spCharges) && $spCharges['price']!=''){
                 
                    $charges= $service['service_charges']*($spCharges['price']/100);
                   
@@ -254,10 +291,12 @@ class BookingOperationsService{
               
                  if(array_key_exists('multiply_provider',$spCharges) && $spCharges['multiply_provider']){
 
-                  $charges=$charges*$service['provider_count'];
+                  $charges=(int)$charges*(int)$service['provider_count'];
                  }
-                 if(array_key_exists('multiply_service_duration',$spCharges) &&  $spCharges['multiply_service_duration']){
-                  $charges=$charges*$service['total_duration']['hours']+($service['total_duration']['mins']/60);
+                 if(((int)$service['total_duration']['hours']*60+(int)$service['total_duration']['mins'])<($minDurationHours*60+(int)$minDurationMin))
+                  $charges*=$minDurationHours+($minDurationMin/60);
+                 elseif(array_key_exists('multiply_service_duration',$spCharges) &&  $spCharges['multiply_service_duration']){
+                  $charges=$charges*($service['total_duration']['hours']+($service['total_duration']['mins']/60));
                  }
                  $service['specialization_charges'][]=['label'=>$serviceSpecialization['name'],'charges'=>$charges];
                  $service['specialization_total']+=$charges;
@@ -269,6 +308,14 @@ class BookingOperationsService{
     //step 5: check for expedited service charges and add 
  
     $service['expedited_charges']=SELF::getExpeditedCharge($service['start_time'],$service['service_data']['emergency_hour'.$service['postFix']]);
+    if($service['expedited_charges']['multiply_duration']){
+      if(((int)$service['total_duration']['hours']*60+(int)$service['total_duration']['mins'])<($minDurationHours*60+(int)$minDurationMin))
+      $service['expedited_charges']['charges']*=$minDurationHours+($minDurationMin/60);
+     elseif(array_key_exists('multiply_service_duration',$spCharges) &&  $spCharges['multiply_service_duration']){
+      $service['expedited_charges']['charges']=$service['expedited_charges']['charges']*($service['total_duration']['hours']+($service['total_duration']['mins']/60));
+     }
+    }
+   
     $service['total_charges']=$service['expedited_charges']['charges']+$service['specialization_total']+ $service['service_payment_total']+ $service['additional_charges_total']+$service['service_charges'];
     if(is_null($service['billed_total']) || $service['billed_total']==0){
       $service['billed_total']=$service['total_charges'];
@@ -284,7 +331,7 @@ class BookingOperationsService{
 
   static function getExpeditedCharge($bookingStartTime, $expeditedDataJson) {
     if(is_null($expeditedDataJson)){
-      return ['charges'=>0,'hour'=>'n/a'];
+      return ['charges'=>0,'hour'=>'n/a','multiply_duration'=>false];
     }
     // Step 1: Parse JSON data to PHP arrays
     $expeditedData = json_decode($expeditedDataJson, true);
@@ -297,6 +344,7 @@ class BookingOperationsService{
     // Step 3: Get the time difference in hours
     $currentDateTime = new DateTime();
     $bookingStartDateTime = new DateTime($bookingStartTime); // Assuming $bookingStartTime is in a format supported by DateTime
+   
     $interval = $currentDateTime->diff($bookingStartDateTime);
     $hoursDifference = $interval->h + ($interval->days * 24); // Convert days to hours and add to hour difference
 
@@ -305,18 +353,22 @@ class BookingOperationsService{
         foreach ($expeditedItemArray as $expeditedItem) {
         
             if ($hoursDifference <= intval($expeditedItem['hour'])) {
-                return ['charges'=>floatval($expeditedItem['price']),'hour'=>$expeditedItem['hour']]; // Returning the price to be added as expedited charges
+               if(key_exists('multiply_duration',$expeditedItem)){
+                $md=$expeditedItem['multiply_duration'];
+               }
+                return ['charges'=>floatval($expeditedItem['price']),'hour'=>$expeditedItem['hour'],'multiply_duration'=>$md]; // Returning the price to be added as expedited charges
             }
         }
     }
 
-    return ['charges'=>0,'hour'=>'n/a']; // No expedited charges applicable
+    return ['charges'=>0,'hour'=>'n/a','multiply_duration'=>false]; // No expedited charges applicable
 }
 
 
   public static function getBillableDuration($service,$schedule){
     //for single date 
-   
+   if(is_null($schedule))
+      return; 
     $duration=SELF::calculateDuration($service['start_time'],$service['end_time'],$service['day_rate']);
   
     $startDayOfWeek = Carbon::parse($service['start_time'])->format('l');
@@ -834,6 +886,69 @@ if ($startIndex <= $endIndex) {
     }
     return $Array;
   }
+
+  public static function getBookingDetails($bookingId,$serviceTypes,$parameter,$dataColumn){
+    $booking = Booking::where('id', $bookingId)->with('payment','booking_services','services')->first()->toArray();
+    $totalCharges=0;
+    foreach($booking['booking_services'] as $index=>$bookingService){
+      
+      $postFix=$serviceTypes[$bookingService['service_types']]['postfix'];
+      $serviceCharge=0;
+      if(!is_null($booking['services'][$index][$dataColumn.$postFix])){
+        $cancellationCharges=json_decode($booking['services'][$index][$dataColumn.$postFix],true);
+        $charges=SELF::getCharges($cancellationCharges,$bookingService['start_time'],$parameter);
+        $serviceCharge=$charges['charges'];
+        if($charges['multiply_duration']){
+          $bookingServiceData=(json_decode($bookingService['service_calculations'],true)); 
+          $serviceCharge=$serviceCharge*(($bookingServiceData['total_duration']['days']*24)+$bookingServiceData['total_duration']['hours']+($bookingServiceData['total_duration']['mins']/60));
+        
+        }
+        if($charges['multiply_providers']){
+          $serviceCharge=$serviceCharge*$bookingService['provider_count'];
+        }  
+        $totalCharges+=$serviceCharge;
+
+      }
+    }
+    $booking['charges']=$totalCharges;
+   
+    return $booking;
+  }
+
+  public static function getCharges($cancellationData,$bookingStartTime,$parameter){
+
+    // Step 2: Sort arrays based on the 'hour' parameter
+    usort($cancellationData, function($a, $b) {
+        return $b[0]['hour'] - $a[0]['hour']; // Sort in descending order to check the larger hours first
+    });
+
+    // Step 3: Get the time difference in hours
+    $currentDateTime = new DateTime();
+    $bookingStartDateTime = new DateTime($bookingStartTime); // Assuming $bookingStartTime is in a format supported by DateTime
+   
+    $interval = $currentDateTime->diff($bookingStartDateTime);
+    $hoursDifference = $interval->h + ($interval->days * 24); // Convert days to hours and add to hour difference
+
+    // Step 4: Check if the hoursDifference matches with any 'hour' value and add respective charges
+    foreach ($cancellationData as $cancelItemArray) {
+        foreach ($cancelItemArray as $cancelItem) {
+        
+            if (key_exists($parameter,$cancelItem) && $cancelItem[$parameter]==true &&  $hoursDifference <= intval($cancelItem['hour'])) {
+               if(key_exists('multiply_duration',$cancelItem)){
+                $md=$cancelItem['multiply_duration'];
+               }
+               if(key_exists('multiply_providers',$cancelItem)){
+                $mp=$cancelItem['multiply_providers'];
+               }
+                return ['charges'=>floatval($cancelItem['price']),'hour'=>$cancelItem['hour'],'multiply_duration'=>$md,'multiply_providers'=>$mp]; // Returning the price to be added as expedited charges
+            }
+        }
+    }
+
+    return ['charges'=>0,'hour'=>'n/a','multiply_duration'=>false,'multiply_providers'=>false]; // No charges applicable
+  }
+
+ 
 
 
 }

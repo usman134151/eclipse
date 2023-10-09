@@ -78,6 +78,14 @@ class BookingList extends Component
 			return $this->exportDataFile->exportExcelBookings($this->selectedBookingIds, $template);
 	}
 
+	public function closeBooking($bookingId){
+		Booking::where('id',$bookingId)->update(['is_closed'=>1,'booking_status'=>1]);
+		$this->showConfirmation('Booking has been closed successfully!');
+	}
+	public function reOpenBooking($bookingId){
+		Booking::where('id',$bookingId)->update(['is_closed'=>0]);
+		$this->showConfirmation('Booking has been reopened successfully!');
+	}
 	public function assignServiceProviders($service_id)
 	{
 
@@ -523,6 +531,10 @@ class BookingList extends Component
 		$this->booking_id = $booking_id;
 		//to set booking_id in panels and sub-components 
 		$this->emit('setBookingId', $booking_id);
+	}
+
+	public function getBookingData($bookingId){
+		$this->emit('getBookingData',$bookingId);
 	}
 
 	public function rejectAssignment($booking_id)

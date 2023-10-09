@@ -339,7 +339,7 @@
 
                                                         <span>Deactivate</span>
                                                     </button>
-                                                    <a href="/chat/{{$user['id']}}"
+                                                    <a target="_blank" href="/chat/{{$user['id']}}"
                                                         class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
 
                                                         <span>Message</span>

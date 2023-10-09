@@ -50,10 +50,13 @@ class MessagesController extends Controller
      * Returning the view of the app with the required data.
      *
      * @param int $id
-     * @return Application|Factory|View
+     * @return Application|Factory|View|int
      */
-    public function index($id = null)
+    public function index(Request $request, $id = null)
     {
+        if ($request->get('key') == "countTotalUnseen"){
+            return $this->customChat->countTotalUnseenMessages();
+        }
         $messenger_color = Auth::user()->messenger_color;
         return view('Chatify::pages.app', [
             'id' => $id ?? 0,

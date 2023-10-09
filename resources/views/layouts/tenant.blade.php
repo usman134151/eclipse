@@ -6,9 +6,15 @@
 
 		<!-- CSRF Token -->
 		<meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="id" content="{{Auth::user()->id}}">
+        <meta name="url" content="{{ url('').'/'.config('chatify.routes.prefix') }}" data-user="{{ Auth::user()->id }}">
 
 		<title>Eclipse Scheduling</title>
-		<link rel="stylesheet" href="/tenant-resources/css/all.min.css"/>
+        <script src="/js/chatify/font.awesome.min.js"></script>
+        <script src="/js/chatify/autosize.js"></script>
+        <link href="/css/chatify/style.css" rel="stylesheet"/>
+        <link href="/css/chatify/light.mode.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="/tenant-resources/css/all.min.css"/>
 		<link rel="stylesheet" href="/tenant-resources/css/font-awesome.min.css" type="text/css"/>
 		<link rel="stylesheet" href="/tenant-resources/css/bootstrap.min.css">
 		<link rel="stylesheet" href="/tenant-resources/css/perfect-scrollbar.css">
@@ -28,7 +34,14 @@
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="/tenant-resources/css/fixes.css">
-		<style>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <style>
+            :root {
+                --primary-color: #213969;
+            }
+        </style>
+
+        <style>
 		[x-cloak]
 		{
 		display: none !important;
@@ -81,6 +94,7 @@
 		{{-- End of update by Sohail Asghar --}}
 		@include('modals/global/savebrowserpopup')
 
+        @include('Chatify::pages.single-chat')
 		<script src="/tenant-resources/js/jquery-3.6.3.min.js"></script>
 		<script src="/tenant-resources/js/bootstrap.bundle.min.js"></script>
 		<script src="/tenant-resources/js/moment.min.js"></script>
@@ -110,7 +124,7 @@
 		@stack('scripts')
 
 
-		
+
 		<script src="/tenant-resources/js/select2-functions.js"></script>
 	</body>
 </html>

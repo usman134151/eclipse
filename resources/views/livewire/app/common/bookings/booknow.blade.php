@@ -91,7 +91,7 @@
                             <div>
     @error('slot')
         <div class="alert alert-danger p-2">
-            {{ $message }}
+            {{ $message }} @if(!$isCustomer && is_null($schedule)) <a href="/admin/business-setup">Click here to setup business slots before creating assignments.</a> @endif
         </div>
     @enderror
     
@@ -1474,17 +1474,22 @@
                                 <button type="button" class="btn btn-outline-dark rounded"
                                    x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('request-details')">Back</button>
                                 <button type="button" class="btn btn-primary rounded" wire:click.prevent="save(1,1,3)" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">@if($isEdit) Save Changes @else Save as Draft @endif</button>
-                                <div class="dropdown">
-                                        <button type="" class="btn btn-primary rounded dropdown-toggle w-100 h-100"
-                                            type="button" data-bs-toggle="dropdown"
-                                            aria-expanded="false">Confirm Booking</button>
-                                        <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#" wire:click.prevent="save(1,1,3)">Confirm Only</a></li>
-                                            <li><a class="dropdown-item" href="#">Confirm + Invite</a></li>
-                                            <li><a class="dropdown-item" href="#">Confirm + Assign</a></li>
-                                        </ul>
-                                    </div>
-                            </div> 
+                                @if(!$isCustomer)
+                                    <div class="dropdown">
+                                            <button type="" class="btn btn-primary rounded dropdown-toggle w-100 h-100"
+                                                type="button" data-bs-toggle="dropdown"
+                                                aria-expanded="false">Confirm Booking</button>
+                                            <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="#" wire:click.prevent="save(1,1,3)">Confirm Only</a></li>
+                                                <li><a class="dropdown-item" href="#">Confirm + Invite</a></li>
+                                                <li><a class="dropdown-item" href="#">Confirm + Assign</a></li>
+                                            </ul>
+                                        </div>
+    
+                                    </div> 
+                                @else
+                                <button type="button" class="btn btn-primary rounded"  wire:click.prevent="save(1,1,3)">Confirm Booking</button>
+                                @endif      
                      
                       
                     </div>
