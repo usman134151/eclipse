@@ -147,6 +147,16 @@
                                                                 {{-- End of update by Shanila --}}
                                                             </a>
                                                             <div class="tablediv dropdown-menu fadeIn">
+                                                            @if ($in &&  $in['enable_button']=="true")
+                                                                    <a @click="offcanvasOpenCheckIn = true"
+                                                                        class="dropdown-item"
+
+                                                                            wire:click="$emit('showCheckInPanel','{{ $booking_id }}','{{ $provider->booking_service_id }}','{{ $provider->booking->booking_number }}','{{$provider->user->id}}' )"
+                                                                            href="#"
+                                                                            title="Edit Check In" aria-label="Edit Check In">
+                                                                                Edit Check In
+                                                                        </a>
+                                                                @endif
                                                                 @if ($provider->check_in_status == 3)
                                                                     <a title="Edit Close Out"
                                                                         aria-label="Edit Close Out" href="#"

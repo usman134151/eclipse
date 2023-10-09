@@ -549,11 +549,13 @@ class BookingList extends Component
 	}
 	// START : provider panel functions
 
-	public function showCheckInPanel($booking_id, $booking_service_id, $bookingNumber = null,)
+	public function showCheckInPanel($booking_id, $booking_service_id, $bookingNumber = null,$selectedProvider=null)
 	{
 
 		if ($bookingNumber)
 			$this->bookingNumber = $bookingNumber;
+		if ($selectedProvider)
+		$this->selectedProvider = $selectedProvider;
 		if ($this->ci_counter == 0) {
 			$this->booking_id = 0;
 			$this->dispatchBrowserEvent('open-check-in', ['booking_id' => $booking_id, 'booking_service_id' => $booking_service_id]);

@@ -27,7 +27,10 @@ class BookingProvider extends Model
     {
         return $this->hasOne(Booking::class, 'id', 'booking_id');
     }
-
+    public function booking_service()
+    {
+        return $this->hasOne(Booking::class, 'id', 'booking_service_id');
+    }
     protected $casts = [
         'check_out_procedure_values' => 'array',
         'check_in_procedure_values' => 'array'
