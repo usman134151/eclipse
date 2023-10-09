@@ -17,7 +17,7 @@ class CheckOut extends Component
 {
     use WithFileUploads;
 
-    public $showForm, $checkout = [];
+    public $showForm, $checkout = [], $isAdmin = false;
     protected $listeners = ['showList' => 'resetForm', 'updateVal'];
     public $booking_id = 0, $assignment = null, $step = 1, $booking_service = null, $checkout_details = null, $checked_in_details = null;
     public $upload_timesheet = null, $upload_signature = null, $booking_provider = null, $provider_id = null;
@@ -42,14 +42,14 @@ class CheckOut extends Component
 
         $this->booking_provider->save();
         //refresh booking service data
-        $checkedout_providers = BookingProvider::where('booking_service_id',$this->booking_service->id)->where('check_in_status',3)->count();
+        $checkedout_providers = BookingProvider::where('booking_service_id', $this->booking_service->id)->where('check_in_status', 3)->count();
         //check if all other providers have checked out -> then close service
         if ($this->booking_service->provider_count == $checkedout_providers) {
             $this->booking_service->is_closed = true;
             $this->booking_service->save();
         }
 
-        
+
 
         FeedBackRating::updateOrCreate([
             'feedback_to' => $this->assignment->customer_id,
@@ -79,18 +79,19 @@ class CheckOut extends Component
         if ($provider_id == null)  //pass provider id when called from admin, else use auth::id
             $this->provider_id = Auth::id();
 
-        else
+        else {
             $this->provider_id =  $provider_id;
-
+            $this->isAdmin = true;
+        }
         // dd($this->booking_id,$booking_service_id, $this->provider_id);
 
         $this->checkout = [
             'confirmation_upload_type' => 'print_and_sign',
             'rating' => 0,
-            'feedback_comments'=>'',
+            'feedback_comments' => '',
 
         ];
-       
+
         $this->assignment = Booking::where('id', $this->booking_id)->first();
         $this->booking_service = BookingServices::where('id', $booking_service_id)->first();
         $this->checkout['actual_start_timestamp'] = Carbon::parse($this->booking_service->start_time);
@@ -104,14 +105,13 @@ class CheckOut extends Component
             $this->booking_provider = BookingProvider::where(['booking_service_id' => $booking_service_id, 'provider_id' => $this->provider_id])->first();
             if ($this->booking_provider && ($this->booking_provider->check_out_procedure_values != null)) {
                 $this->checkout = $this->booking_provider->check_out_procedure_values;
-                if(!isset($this->checkout['confirmation_upload_type']))
-                $this->checkout['confirmation_upload_type'] = 'print_and_sign';
+                if (!isset($this->checkout['confirmation_upload_type']))
+                    $this->checkout['confirmation_upload_type'] = 'print_and_sign';
                 $this->checkout['actual_start_timestamp'] = $this->checkout['actual_start_timestamp'] ?? Carbon::parse($this->booking_service->start_time);
                 $this->checkout['actual_start_date'] = $this->checkout['actual_start_date'] ?? Carbon::parse($this->booking_service->start_time)->format('m/d/Y');
                 $this->checkout['actual_start_hour'] = $this->checkout['actual_start_hour']  ?? date_format(date_create($this->booking_service->start_time), 'H');
                 $this->checkout['actual_start_min'] =  $this->checkout['actual_start_min'] ?? date_format(date_create($this->booking_service->start_time), 'i');
                 $this->checkout['feedback_comments'] =  $this->checkout['feedback_comments'] ?? '';
-            
             } else {
                 //check if booking-service has check-in procedure enabled
                 $check_in_procedure = json_decode($this->booking_service->service->check_in_procedure, true);
@@ -125,20 +125,17 @@ class CheckOut extends Component
                                 $this->checkout['actual_start_date'] = Carbon::parse($checked_in_details['actual_start_timestamp'])->format('m/d/Y');
                                 $this->checkout['actual_start_hour'] = $checked_in_details['actual_start_hour'];
                                 $this->checkout['actual_start_min'] = $checked_in_details['actual_start_min'];
-
                             }
                         }
                     }
                 }
-                
             }
-            $this->checkout['actual_end_date'] = $this->checkout['actual_end_date']??  Carbon::now()->format('m/d/Y');
-            $this->checkout['actual_end_hour'] = $this->checkout['actual_end_hour']??      date_format(date_create($this->booking_service->end_time), 'H');
-            $this->checkout['actual_end_min'] = $this->checkout['actual_end_min']??     date_format(date_create($this->booking_service->end_time), 'i');
+            $this->checkout['actual_end_date'] = $this->checkout['actual_end_date'] ??  Carbon::now()->format('m/d/Y');
+            $this->checkout['actual_end_hour'] = $this->checkout['actual_end_hour'] ??      date_format(date_create($this->booking_service->end_time), 'H');
+            $this->checkout['actual_end_min'] = $this->checkout['actual_end_min'] ??     date_format(date_create($this->booking_service->end_time), 'i');
         }
         if (!isset($this->checkout['rating']))
             $this->checkout['rating'] = 0;
-        
     }
 
     public function rules()
