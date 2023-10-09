@@ -93,13 +93,15 @@
                                                 </td>
 
                                                 <td class="align-middle">
-                                                    <a href="#" title="Punctuality" aria-label="Punctuality"
-                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
-
-                                                        {{-- <i class="fa-regular fa-triangle-exclamation"
-                                                                                        style="color: #e2dc22;"></i> --}}
-                                                    </a>
-
+                                                    @if ($provider->check_in_status == 2)
+                                                        <a href="#" title="Punctuality" aria-label="Punctuality"
+                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                            <i class="fa fa-caret-up text-warning"
+                                                                style="height:200px"></i>
+                                                        </a>
+                                                    @else
+                                                        N/A
+                                                    @endif
                                                 </td>
                                                 <td class="align-middle">
                                                     <a href="#" title="Notes" aria-label="Notes"
@@ -147,15 +149,14 @@
                                                                 {{-- End of update by Shanila --}}
                                                             </a>
                                                             <div class="tablediv dropdown-menu fadeIn">
-                                                            @if ($in &&  $in['enable_button']=="true")
+                                                                @if ($in && $in['enable_button'] == 'true')
                                                                     <a @click="offcanvasOpenCheckIn = true"
                                                                         class="dropdown-item"
-
-                                                                            wire:click="$emit('showCheckInPanel','{{ $booking_id }}','{{ $provider->booking_service_id }}','{{ $provider->booking->booking_number }}','{{$provider->user->id}}' )"
-                                                                            href="#"
-                                                                            title="Edit Check In" aria-label="Edit Check In">
-                                                                                Edit Check In
-                                                                        </a>
+                                                                        wire:click="$emit('showCheckInPanel','{{ $booking_id }}','{{ $provider->booking_service_id }}','{{ $provider->booking->booking_number }}','{{ $provider->user->id }}' )"
+                                                                        href="#" title="Edit Check In"
+                                                                        aria-label="Edit Check In">
+                                                                        Edit Check In
+                                                                    </a>
                                                                 @endif
                                                                 @if ($provider->check_in_status == 3)
                                                                     <a title="Edit Close Out"

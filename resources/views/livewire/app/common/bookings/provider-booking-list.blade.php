@@ -124,7 +124,7 @@
                                                                     @if ($booking->physicalAddress)
                                                                         <a target="_blank"
                                                                             href="https://www.google.com/maps/search/?api=1&query={{ str_replace(' ', '+', $booking->physicalAddress->address_line1 . ' ' . $booking->physicalAddress->address_line2 . ', ' . $booking->physicalAddress->city . ' ' . $booking->physicalAddress->state . ' ' . $booking->physicalAddress->country) }}">
-                                                                            {{ $booking->physicalAddress->address_line1 . ', ' . $booking->physicalAddress->address_line2 . ', ' . $booking->physicalAddress->city . ', ' . $booking->physicalAddress->state }}
+                                                                            {{   $booking->physicalAddress->address_name.': '. $booking->physicalAddress->address_line1 . ', ' . $booking->physicalAddress->address_line2 . ', ' . $booking->physicalAddress->city . ', ' . $booking->physicalAddress->state }}
                                                                         </a>
                                                                     @else
                                                                         N/A

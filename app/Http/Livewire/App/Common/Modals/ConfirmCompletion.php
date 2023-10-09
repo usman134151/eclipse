@@ -129,9 +129,9 @@ class ConfirmCompletion extends Component
         $booking = Booking::where('id', $this->booking_service->booking_id)->first();
         // dd(count($booking->booking_services), count($booking->closed_booking_services));
         if (count($booking->booking_services) == count($booking->closed_booking_services)) {
-            if (isset($this->checkout['customer_status']) && $this->checkout['customer_status'] != 'completed')
-                $booking->is_closed = 2;    //cancelled
-            else
+            // if (isset($this->checkout['customer_status']) && $this->checkout['customer_status'] != 'completed')
+            //     $booking->is_closed = 2;    //cancelled
+            // else
                 $booking->is_closed = true;
             $booking->save();
         }
