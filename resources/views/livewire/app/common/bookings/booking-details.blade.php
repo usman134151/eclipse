@@ -1296,41 +1296,6 @@
                                 @livewire('app.common.bookings.booking-attachments', ['booking_id' => $booking_id])
                             </div>
 
-                            <div class="col-12">
-                                @foreach ($booking_services as $index => $service)
-                                    <div class="d-flex justify-content-between gap-2">
-                                        <h2>Check-In and Close-Out for Service - {{ $service['service_name'] }}</h2>
-                                        @if ($isCustomer && !$service['is_closed'])
-                                            <a href="#"
-                                                wire:click="$emit('openConfirmCompletionModal','{{ $service['id'] }}')"
-                                                data-bs-toggle="modal" data-bs-target="#confirmCompletion"
-                                                class="btn btn-has-icon  btn-primary  rounded justify-content-end">
-
-                                                <svg width="30" height="30" viewBox="0 0 30 30"
-                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <use xlink:href="/css/customer.svg#confirm-completion-icon">
-                                                    </use>
-                                                </svg>
-                                                Close Out
-                                            </a>
-                                            @else
-                                            <a href="#"
-                                                class="btn btn-has-icon rounded justify-content-end">
-
-                                                <svg width="30" height="30" viewBox="0 0 30 30"
-                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <use xlink:href="/css/customer.svg#confirm-completion-icon">
-                                                    </use>
-                                                </svg>
-                                                Closed
-                                            </a>
-                                        @endif
-
-                                    </div>
-                                    @livewire('app.common.bookings.provider-completed-booking-services', ['service_id' => $service['service_id'], 'booking_id' => $booking_id], key(time()))
-                                @endforeach
-
-                            </div>
                             <!-- <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                             <button type="" class="btn btn-outline-dark rounded"
                                 x-on:click="$wire.switch('assigned-providers')">Back</button>
@@ -1460,7 +1425,8 @@
                                         @if (
                                             !$isCustomer ||
                                                 (($isCustomer && (Auth::id() == $booking['billing_manager_id'] || Auth::id() == $booking['supervisor'])) ||
-                                                    ($isCustomer && session()->get('companyAdmin'))) || ($isCustomer && $hideBilling==false))
+                                                    ($isCustomer && session()->get('companyAdmin'))) ||
+                                                ($isCustomer && $hideBilling == false))
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <hr class="border-separate-sm">
@@ -1550,7 +1516,47 @@
                         </div><!-- END: payment-details-tab -->
                         <div class="tab-pane fade {{ $component == 'assignment-log' ? 'active show' : '' }}"
                             id="assignment-log" role="tabpanel" aria-labelledby="assignment-log-tab" tabindex="0">
-                            <livewire:app.common.bookings.assignment-logs :booking_id="$booking_id" />
+                            <div class="row">
+                                <div class="col-12">
+                                    <livewire:app.common.bookings.assignment-logs :booking_id="$booking_id" />
+                                </div>
+                                <div class="col-12 mt-5">
+                                    @foreach ($booking_services as $index => $service)
+                                        <div class="d-flex justify-content-between gap-2">
+                                            <h2>Check-In and Close-Out for Service - {{ $service['service_name'] }}
+                                            </h2>
+                                            @if ($isCustomer && !$service['is_closed'])
+                                                <a href="#"
+                                                    wire:click="$emit('openConfirmCompletionModal','{{ $service['id'] }}')"
+                                                    data-bs-toggle="modal" data-bs-target="#confirmCompletion"
+                                                    class="btn btn-has-icon  btn-primary  rounded justify-content-end">
+
+                                                    <svg width="30" height="30" viewBox="0 0 30 30"
+                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <use xlink:href="/css/customer.svg#confirm-completion-icon">
+                                                        </use>
+                                                    </svg>
+                                                    Close Out
+                                                </a>
+                                            @else
+                                                <a href="#"
+                                                    class="btn btn-has-icon rounded justify-content-end">
+
+                                                    <svg width="30" height="30" viewBox="0 0 30 30"
+                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <use xlink:href="/css/customer.svg#confirm-completion-icon">
+                                                        </use>
+                                                    </svg>
+                                                    Closed
+                                                </a>
+                                            @endif
+
+                                        </div>
+                                        @livewire('app.common.bookings.provider-completed-booking-services', ['service_id' => $service['service_id'], 'booking_id' => $booking_id], key(time()))
+                                    @endforeach
+
+                                </div>
+                            </div>
                             <!--  <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                             <button type="" class="btn btn-outline-dark rounded"
                                 x-on:click="$wire.switch('payment-details')">Back</button>
