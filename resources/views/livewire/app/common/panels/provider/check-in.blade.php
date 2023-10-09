@@ -111,7 +111,7 @@
                                     <div class="time d-flex align-items-center gap-2">
                                         <div>
                                             <input required class="form-control form-control-sm text-center hours"
-                                                {{ $this->booking_provider->check_in_status > 0 ? 'disabled' : '' }}
+                                                {{ ($this->booking_provider->check_in_status > 0 && !$isAdmin) ? 'disabled' : '' }}
                                                 id="hour" aria-label="Start Time" name="hour" placeholder="00"
                                                 type="" tabindex="" wire:model.defer="hours" maxlength="2">
                                         </div>
@@ -123,7 +123,7 @@
                                         </svg>
                                         <div>
                                             <input required class="form-control form-control-sm text-center  mins"
-                                                {{ $this->booking_provider->check_in_status > 0 ? 'disabled' : '' }}
+                                                {{ ($this->booking_provider->check_in_status > 0 && !$isAdmin) ? 'disabled' : '' }}
                                                 aria-label="Start Minutes" id="mins" name="DisplayToProviders"
                                                 placeholder="00" type="" tabindex="" wire:model.defer="mins"
                                                 maxlength="2">
@@ -153,7 +153,7 @@
                 <div>
                     {{-- <h3 class="text-primary">Check-In Form <small>(coming soon)</small> </h3> --}}
                     <div class="row">
-                        @livewire('app.common.forms.custom-form-display', ['showForm' => true, 'formId' => $form_id, 'bookingId' => $assignment->id, 'lastForm' => false,  'bookingId' => $assignment->id,  'formType' => 2, 'service_id' => $booking_service->services,  'added_by_id' => Auth::id()])
+                        @livewire('app.common.forms.custom-form-display', ['showForm' => true, 'formId' => $form_id, 'bookingId' => $assignment->id, 'lastForm' => false,  'bookingId' => $assignment->id,  'formType' => 2, 'service_id' => $booking_service->services,  'added_by_id' => $provider_id])
 
                     </div>
                 </div>
@@ -179,7 +179,7 @@
                         </label>
                     </div>
                     <input style=" opacity: 0; z-index: -1; position: absolute;" id="provider_signature"
-                        {{ $this->booking_provider->check_in_status > 0 ? 'disabled' : '' }}
+                        {{ ($this->booking_provider->check_in_status > 0 && !$isAdmin) ? 'disabled' : '' }}
                         wire:model="provider_signature" type="file">
                     <div class="text-muted" wire:loading wire:target='provider_signature'>
                         Uploading...
@@ -217,7 +217,7 @@
                         </label>
                     </div>
                     <input style=" opacity: 0; z-index: -1; position: absolute;" id="customer_signature"
-                        {{ $this->booking_provider->check_in_status > 0 ? 'disabled' : '' }} class=""
+                        {{ ($this->booking_provider->check_in_status > 0 && !$isAdmin) ? 'disabled' : '' }} class=""
                         wire:model="customer_signature" type="file">
                     <div class="text-muted" wire:loading wire:target='customer_signature'>
                         Uploading...
@@ -257,7 +257,7 @@
                 </label>
             </div>
             <div class="form-actions d-flex gap-3 justify-content-center mt-5">
-                @if ($this->booking_provider->check_in_status > 0)
+                @if (($this->booking_provider->check_in_status > 0 && !$isAdmin))
                     <button type="button" class="btn btn-outline-dark rounded"
                         x-on:click="offcanvasOpenCheckIn = !offcanvasOpenCheckIn">Close</button>
                 @else

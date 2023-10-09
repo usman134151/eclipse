@@ -1,4 +1,4 @@
-<div x-data="{ rescheduleBooking: false,cancelBooking:false, assignProvider: false, providerSavedForms: false, offcanvasOpenCheckOut: false, step: 1 }">
+<div x-data="{ rescheduleBooking: false,cancelBooking:false, assignProvider: false, providerSavedForms: false, offcanvasOpenCheckIn: false, offcanvasOpenCheckOut: false, step: 1 }">
     <div id="loader-section" class="loader-section" wire:loading>
         <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
             <div class="spinner-border" role="status" aria-live="polite">
@@ -43,6 +43,8 @@
 
         @livewire('app.common.bookings.booking-details', ['booking_id' => $booking_id])
         @include('panels.provider.check-out')
+        @include('panels.provider.check-in')
+
     @elseif($importFile)
         @livewire('app.common.import.bookings')
     @else

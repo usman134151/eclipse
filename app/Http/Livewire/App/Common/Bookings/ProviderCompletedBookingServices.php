@@ -11,6 +11,7 @@ class ProviderCompletedBookingServices extends Component
 {
     public $showForm, $booking_id = 0, $data = [], $service_id = 0, $isCustomer=false, $booking_service_id;
     protected $listeners = ['showList' => 'resetForm'];
+    public $in =[], $out=[];
 
     public function render()
     {
@@ -37,13 +38,14 @@ class ProviderCompletedBookingServices extends Component
         $this->data['checkout_form_enabled'] = false;
 
         $service = ServiceCategory::where('id', $this->service_id)->first();
-        $in = $service->check_in_procedure ? json_decode($service->check_in_procedure, true) : null;
-        $out = $service->check_out_procedure ? json_decode($service->check_out_procedure, true) : null;
-        if (isset($in['customize_form']) && $in['customize_form'] == true && isset($in['customize_form_id']))
+        $this->in = $service->check_in_procedure ? json_decode($service->check_in_procedure, true) : null;
+        $this->out = $service->check_out_procedure ? json_decode($service->check_out_procedure, true) : null;
+        if (isset($this->in['customize_form']) && $this->in['customize_form'] == true && isset($this->in['customize_form_id']))
             $this->data['checkin_form_enabled'] = true;
-        if (isset($out['customize_form']) && $out['customize_form'] == true && isset($out['customize_form_id']))
+        if (isset($this->out['customize_form']) && $this->out['customize_form'] == true && isset($this->out['customize_form_id']))
             $this->data['checkout_form_enabled'] = true;
         $this->booking_service_id = BookingServices::where(['booking_id'=>$this->booking_id,'services'=>$this->service_id])->first()->id;
+        // dd($this->in);
     }
 
     public function openSavedFormsPanel($user_id)
