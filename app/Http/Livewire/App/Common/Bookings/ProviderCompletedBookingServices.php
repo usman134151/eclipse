@@ -16,7 +16,7 @@ class ProviderCompletedBookingServices extends Component
     public function render()
     {
         $this->data['attendingProviders'] = BookingProvider::where(['booking_providers.booking_id' => $this->booking_id])
-            ->where('check_in_status', '>', 0)
+            // ->where('check_in_status', '>', 0)   // show all providers here  - LBT-50
             ->join('booking_services', function ($join) {
                 $join->on('booking_services.id', 'booking_providers.booking_service_id');
                 $join->where(['booking_services.services' => $this->service_id, 'booking_services.booking_id' => $this->booking_id]);
