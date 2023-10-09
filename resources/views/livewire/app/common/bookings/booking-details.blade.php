@@ -1296,12 +1296,6 @@
                                 @livewire('app.common.bookings.booking-attachments', ['booking_id' => $booking_id])
                             </div>
 
-                            <!-- <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
-                            <button type="" class="btn btn-outline-dark rounded"
-                                x-on:click="$wire.switch('assigned-providers')">Back</button>
-                            <button type="" class="btn btn-primary rounded"
-                                x-on:click="$wire.switch('payment-details')">Next</button>
-                        </div>-->
                         </div><!-- END: attachments-tab -->
                         <div class="tab-pane fade {{ $component == 'payment-details' ? 'active show' : '' }}"
                             id="payment-details" role="tabpanel" aria-labelledby="payment-details-tab"
