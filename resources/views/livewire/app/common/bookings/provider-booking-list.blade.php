@@ -264,25 +264,42 @@
                                                                     @endif
                                                                 @elseif(
                                                                     $booking['check_in_status'] > 0 &&
-                                                                        $booking['display_check_out'] &&
                                                                         $bookingType != 'Unassigned' &&
                                                                         $bookingType != 'Invitations' &&
                                                                         $bookingType != 'Cancelled')
-                                                                    <a href="#"
-                                                                        @click="offcanvasOpenCheckOut = true"
-                                                                        wire:click="showCheckOutPanel('{{ $booking['id'] }}','{{ $booking['booking_service_id'] }}','{{ $booking['booking_number'] }}')"
-                                                                        title="Check Out" aria-label="Check Out"
-                                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                        <svg aria-label="Check Out" width="23"
-                                                                            height="21" viewBox="0 0 23 21"
-                                                                            fill="none"
-                                                                            xmlns="http://www.w3.org/2000/svg">
-                                                                            <use
-                                                                                xlink:href="/css/provider.svg#check-out">
-                                                                            </use>
-                                                                        </svg>
+                                                                    @if ($booking['display_check_in'])
+                                                                        <a href="javascript:void(0)"
+                                                                            @click="offcanvasOpenCheckIn = true"
+                                                                            wire:click="showCheckInPanel('{{ $booking['id'] }}','{{ $booking['booking_service_id'] }}','{{ $booking['booking_number'] }}')"
+                                                                            title="Check In" aria-label="Check In"
+                                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                            <svg aria-label="Check In" width="22"
+                                                                                height="22" viewBox="0 0 22 22"
+                                                                                fill="none"
+                                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                                <use
+                                                                                    xlink:href="/css/provider.svg#check-in">
+                                                                                </use>
+                                                                            </svg>
+                                                                        </a>
+                                                                    @endif
+                                                                    @if ($booking['display_check_out'])
+                                                                        <a href="#"
+                                                                            @click="offcanvasOpenCheckOut = true"
+                                                                            wire:click="showCheckOutPanel('{{ $booking['id'] }}','{{ $booking['booking_service_id'] }}','{{ $booking['booking_number'] }}')"
+                                                                            title="Check Out" aria-label="Check Out"
+                                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                            <svg aria-label="Check Out" width="23"
+                                                                                height="21" viewBox="0 0 23 21"
+                                                                                fill="none"
+                                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                                <use
+                                                                                    xlink:href="/css/provider.svg#check-out">
+                                                                                </use>
+                                                                            </svg>
 
-                                                                    </a>
+                                                                        </a>
+                                                                    @endif
                                                                 @elseif($bookingType == 'Unassigned')
                                                                     <a href="#" title="Submit Availability"
                                                                         aria-label="Submit Availability"

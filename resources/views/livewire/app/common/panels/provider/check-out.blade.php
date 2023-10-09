@@ -61,7 +61,7 @@
                                             <use xlink:href="/css/common-icons.svg#datefield-icon">
                                             </use>
                                         </svg>
-                                        <input class="form-control form-control-md js-single-date"
+                                        <input class="form-control form-control-md js-single-date" {{($this->booking_provider->check_in_status == 3 && !$isAdmin ) ? 'disabled' : ''}}
                                             wire:model="checkout.actual_start_date" id="actual_start_date"
                                             placeholder="MM/DD/YYYY" name="actual_start_date" aria-label="Select Date">
                                     </div>
@@ -90,7 +90,7 @@
                                         <use xlink:href="/css/common-icons.svg#datefield-icon">
                                         </use>
                                     </svg>
-                                    <input class="form-control form-control-md js-single-date"
+                                    <input class="form-control form-control-md js-single-date" {{($this->booking_provider->check_in_status == 3 && !$isAdmin ) ? 'disabled' : ''}}
                                         wire:model="checkout.actual_end_date" placeholder="MM/DD/YYYY"
                                         name="actual_end_date" aria-label="Select Date" id="actual_end_date">
                                     @error('checkout.actual_end_date')
@@ -124,7 +124,7 @@
                                     <div class="d-flex gap-2">
                                         <div class="time d-flex align-items-center gap-2">
                                             <div>
-                                                <input class="form-control form-control-sm text-center hours"
+                                                <input class="form-control form-control-sm text-center hours" {{($this->booking_provider->check_in_status == 3 && !$isAdmin ) ? 'disabled' : ''}}
                                                     id="actual_start_hour" aria-label="Start Time"
                                                     name="actual_start_hour" placeholder="00" type="text"
                                                     tabindex="" wire:model.defer="checkout.actual_start_hour"
@@ -137,7 +137,7 @@
                                                     fill="black" />
                                             </svg>
                                             <div>
-                                                <input class="form-control form-control-sm text-center  mins"
+                                                <input class="form-control form-control-sm text-center  mins" {{($this->booking_provider->check_in_status == 3 && !$isAdmin ) ? 'disabled' : ''}}
                                                     aria-label="Start Minutes" id="actual_start_min"
                                                     name="actual_start_min" placeholder="00" type="text"
                                                     tabindex="" wire:model.defer="checkout.actual_start_min"
@@ -179,7 +179,7 @@
                                 <div class="d-flex gap-2">
                                     <div class="time d-flex align-items-center gap-2">
                                         <div>
-                                            <input class="form-control form-control-sm text-center hours"
+                                            <input class="form-control form-control-sm text-center hours" {{($this->booking_provider->check_in_status == 3 && !$isAdmin ) ? 'disabled' : ''}}
                                                 id="actual_end_hour" aria-label="Start Time" name="actual_end_hour"
                                                 placeholder="00" type="text" tabindex=""
                                                 wire:model.defer="checkout.actual_end_hour" maxlength="2">
@@ -191,7 +191,7 @@
                                                 fill="black" />
                                         </svg>
                                         <div>
-                                            <input class="form-control form-control-sm text-center  mins"
+                                            <input class="form-control form-control-sm text-center  mins" {{($this->booking_provider->check_in_status == 3 && !$isAdmin ) ? 'disabled' : ''}}
                                                 aria-label="Start Minutes" id="actual_end_min" name="actual_end_min"
                                                 placeholder="00" type="text" tabindex=""
                                                 wire:model.defer="checkout.actual_end_min" maxlength="2">
@@ -217,7 +217,7 @@
 
                 <div class="col-lg-8">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="checkout_confirmation_upload_type"
+                        <input class="form-check-input" type="radio" name="checkout_confirmation_upload_type" {{($this->booking_provider->check_in_status == 3 && !$isAdmin ) ? 'disabled' : ''}}
                             wire:model="checkout.confirmation_upload_type" id="print_sign" value="print_and_sign">
                         <label class="form-check-label" for="print_sign">
                             Print & Sign
@@ -234,6 +234,7 @@
                                         2 <div type="" class="btn btn-sm rounded btn-outline-dark">Upload
                                             Timesheet</div></label>
                                     <input style=" opacity: 0; z-index: -1; position: absolute;" id="upload_timesheet"
+                                     {{($this->booking_provider->check_in_status == 3 && !$isAdmin ) ? 'disabled' : ''}}
                                         wire:model="upload_timesheet" type="file">
 
 
@@ -279,7 +280,7 @@
                     </div>
                     <div
                         class="form-check {{ isset($checkout_details['enable_digital_signature']) && $checkout_details['enable_digital_signature'] == true ? '' : 'hidden' }}">
-                        <input class="form-check-input" type="radio" name="checkout_confirmation_upload_type"
+                        <input class="form-check-input" type="radio" name="checkout_confirmation_upload_type" {{($this->booking_provider->check_in_status == 3 && !$isAdmin ) ? 'disabled' : ''}}
                             wire:model="checkout.confirmation_upload_type" id="digital_signature"
                             aria-label="Digital Signature" value="digital_signature">
                         <label class="form-check-label" for="digital_signature">
@@ -290,7 +291,7 @@
                             <div class="mb-4">
                                 <label class="form-label d-block">Select who sign from customer</label>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" value="requester"
+                                    <input class="form-check-input" type="radio" value="requester" {{($this->booking_provider->check_in_status == 3 && !$isAdmin ) ? 'disabled' : ''}}
                                         wire:model="checkout.digital_signature.customer_type"
                                         name="Print&SignDigitalSignature" id="Print&SignDigitalSignature2"
                                         aria-label="Requester">
@@ -301,7 +302,7 @@
                                     </label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" aria-label="Supervisor"
+                                    <input class="form-check-input" type="radio" aria-label="Supervisor" {{($this->booking_provider->check_in_status == 3 && !$isAdmin ) ? 'disabled' : ''}}
                                         value="supervisor" wire:model="checkout.digital_signature.customer_type"
                                         name="Print&SignDigitalSignature" id="Print&SignDigitalSignature2">
                                     <label class="form-check-label" for="flexRadioDefault2">
@@ -311,7 +312,7 @@
                                     </label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" aria-label="Service Consumer"
+                                    <input class="form-check-input" type="radio" aria-label="Service Consumer" {{($this->booking_provider->check_in_status == 3 && !$isAdmin ) ? 'disabled' : ''}}
                                         value="consumer" wire:model="checkout.digital_signature.customer_type"
                                         name="Print&SignDigitalSignature" id="Print&SignDigitalSignature2">
                                     <label class="form-check-label" for="flexRadioDefault2">
@@ -321,7 +322,7 @@
                                     </label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" aria-label="Other" value="other"
+                                    <input class="form-check-input" type="radio" aria-label="Other" value="other" {{($this->booking_provider->check_in_status == 3 && !$isAdmin ) ? 'disabled' : ''}}
                                         wire:model="checkout.digital_signature.customer_type"
                                         name="Print&SignDigitalSignature" id="Print&SignDigitalSignature2">
                                     <label class="form-check-label" for="flexRadioDefault2">
@@ -334,13 +335,13 @@
                             <div class="row mb-4">
                                 <div class="col-lg-6">
                                     <label class="form-label" for="signer-name">Signer’s Name</label>
-                                    <input type="" name="" class="form-control"
+                                    <input type="" name="" class="form-control" {{($this->booking_provider->check_in_status == 3 && !$isAdmin ) ? 'disabled' : ''}}
                                         wire:model="checkout.digital_signature.signer_name" placeholder="Enter Name"
                                         id="signer-name">
                                 </div>
                                 <div class="col-lg-6">
                                     <label class="form-label" for="position">Position</label>
-                                    <input type="" name="" class="form-control"
+                                    <input type="" name="" class="form-control" {{($this->booking_provider->check_in_status == 3 && !$isAdmin ) ? 'disabled' : ''}}
                                         wire:model="checkout.digital_signature.signer_position"
                                         placeholder="Enter Position" id="position">
                                 </div>
@@ -351,7 +352,7 @@
                                         <div class="btn btn-sm rounded btn-outline-dark">Upload
                                             Signature</div>
                                     </label>
-                                    <input style=" opacity: 0; z-index: -1; position: absolute;" id="upload_signature"
+                                    <input style=" opacity: 0; z-index: -1; position: absolute;" id="upload_signature" {{($this->booking_provider->check_in_status == 3 && !$isAdmin ) ? 'disabled' : ''}}
                                         wire:model="upload_signature" type="file">
 
 
@@ -466,7 +467,7 @@
                     <div class="row">
                         <div class="col-lg-6 mb-4">
                             <label class="form-label-sm" for="entry-notes">Entry Notes</label>
-                            <textarea wire:model.defer="checkout.entry_notes" class="form-control" rows="5" cols="5"
+                            <textarea wire:model.defer="checkout.entry_notes" class="form-control" rows="5" cols="5" {{($this->booking_provider->check_in_status == 3 && !$isAdmin ) ? 'disabled' : ''}}
                                 id="entry-notes"></textarea>
                         </div>
                     </div>
@@ -500,6 +501,8 @@
     <!-- END: Step 3 -->
     <!-- BEGIN: Step 4 -->
     <div class="{{ $step == 4 ? '' : 'hidden' }}">
+        <form wire:submit.prevent='save'>
+        @csrf
         <div class="mb-4">
             <div class="row">
                 <div class="col-lg-12">
@@ -518,7 +521,7 @@
                                     isset($checkout_details['status_types']['completed']) &&
                                     $checkout_details['status_types']['completed'] == true)
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="booking_status"
+                                    <input class="form-check-input" type="radio" name="booking_status" {{($this->booking_provider->check_in_status == 3 && !$isAdmin ) ? 'disabled' : ''}}
                                         wire:model='checkout.checkout_status' value="complete" id="complete">
                                     <label class="form-check-label" for="complete">
                                         <small>
@@ -531,7 +534,7 @@
                                     isset($checkout_details['status_types']['noshow']) &&
                                     $checkout_details['status_types']['noshow'] == true)
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="booking_status"
+                                    <input class="form-check-input" type="radio" name="booking_status" {{($this->booking_provider->check_in_status == 3 && !$isAdmin ) ? 'disabled' : ''}}
                                         wire:model='checkout.checkout_status' id="no-show" value="noshow">
                                     <label class="form-check-label" for="no-show">
                                         <small>
@@ -544,7 +547,7 @@
                                     isset($checkout_details['status_types']['cancelled']) &&
                                     $checkout_details['status_types']['cancelled'] == true)
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="booking_status"
+                                    <input class="form-check-input" type="radio" name="booking_status" {{($this->booking_provider->check_in_status == 3 && !$isAdmin ) ? 'disabled' : ''}}
                                         wire:model='checkout.checkout_status' id="cancelled" value="cancelled">
                                     <label class="form-check-label" for="cancelled">
                                         <small>
@@ -587,14 +590,14 @@
                         <div class="col-lg-6 mb-4">
                             <label class="form-label-sm" for="EntryNotes">Feedback Notes
                             </label>
-                            <textarea class="form-control" rows="5" wire:model.defer="checkout.feedback_comments" cols="5"
+                            <textarea class="form-control" rows="5" wire:model.defer="checkout.feedback_comments" cols="5" {{($this->booking_provider->check_in_status == 3 && !$isAdmin ) ? 'disabled' : ''}}
                                 id="EntryNotes"></textarea>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-check mb-0">
-                                <input class="form-check-input" type="checkbox"
+                                <input class="form-check-input" type="checkbox" required {{($this->booking_provider->check_in_status == 3 && !$isAdmin )? 'disabled' : ''}}
                                     wire:model="checkout.provider_agreement_confirmation"
                                     id="provider_agreement_confirmation">
                                 <label class="form-check-label" for="provider_agreement_confirmation">
@@ -612,13 +615,19 @@
         <hr>
         <div class="mb-4">
             <div class="form-actions d-flex gap-3 justify-content-center mt-5">
-                <button type="submit" class="btn btn-primary rounded" wire:click="setStep(3)">Back</button>
+                @if(($this->booking_provider->check_in_status == 3 && !$isAdmin ))
+                   <button x-on:click="offcanvasOpenCheckOut = !offcanvasOpenCheckOut" type="button"
+                    class="btn btn-outline-dark rounded">Close</button>
+                @else
+                <button type="button" class="btn btn-primary rounded" wire:click="setStep(3)">Back</button>
                 <button x-on:click="offcanvasOpenCheckOut = !offcanvasOpenCheckOut" type="button"
                     class="btn btn-outline-dark rounded">Cancel</button>
-                <button type="submit" class="btn btn-primary rounded" wire:click="save"
+                <button type="submit" class="btn btn-primary rounded"
                     x-on:close-check-out.window="offcanvasOpenCheckOut = !offcanvasOpenCheckOut">Submit</button>
+                    @endif
             </div>
         </div>
+        </form>
     </div>
     <!-- END: Step 4 -->
 </div>
