@@ -71,12 +71,12 @@
                     </div>
                 </div>
                 <div>
-                    <div class="form-check form-switch mb-0">
+                    {{-- <div class="form-check form-switch mb-0">
                         <input wire:model.defer="checkIn" class="form-check-input" type="checkbox" role="switch"
                             id="checkin" aria-label="Check-in permission toggle">
                         <label class="form-check-label" for="checkin">No</label>
                         <label class="form-check-label" for="checkin">Yes</label>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="row">
@@ -111,6 +111,7 @@
                                     <div class="time d-flex align-items-center gap-2">
                                         <div>
                                             <input required class="form-control form-control-sm text-center hours"
+                                                {{ $this->booking_provider->check_in_status > 0 ? 'disabled' : '' }}
                                                 id="hour" aria-label="Start Time" name="hour" placeholder="00"
                                                 type="" tabindex="" wire:model.defer="hours" maxlength="2">
                                         </div>
@@ -122,6 +123,7 @@
                                         </svg>
                                         <div>
                                             <input required class="form-control form-control-sm text-center  mins"
+                                                {{ $this->booking_provider->check_in_status > 0 ? 'disabled' : '' }}
                                                 aria-label="Start Minutes" id="mins" name="DisplayToProviders"
                                                 placeholder="00" type="" tabindex="" wire:model.defer="mins"
                                                 maxlength="2">
@@ -151,7 +153,7 @@
                 <div>
                     {{-- <h3 class="text-primary">Check-In Form <small>(coming soon)</small> </h3> --}}
                     <div class="row">
-                        @livewire('app.common.forms.custom-form-display', ['showForm' => true, 'formId' => $form_id, 'bookingId' => $assignment->id, 'lastForm' => false, 'formType' => 2, 'service_id' => $booking_service->services])
+                        @livewire('app.common.forms.custom-form-display', ['showForm' => true, 'formId' => $form_id, 'bookingId' => $assignment->id, 'lastForm' => false,  'bookingId' => $assignment->id,  'formType' => 2, 'service_id' => $booking_service->services,  'added_by_id' => Auth::id()])
 
                     </div>
                 </div>
@@ -177,7 +179,8 @@
                         </label>
                     </div>
                     <input style=" opacity: 0; z-index: -1; position: absolute;" id="provider_signature"
-                        class="" wire:model="provider_signature" type="file">
+                        {{ $this->booking_provider->check_in_status > 0 ? 'disabled' : '' }}
+                        wire:model="provider_signature" type="file">
                     <div class="text-muted" wire:loading wire:target='provider_signature'>
                         Uploading...
                     </div>
@@ -185,6 +188,9 @@
                     <div class="text-muted my-1 mx-2">
                         @if ($provider_signature)
                             {{ $provider_signature->getClientOriginalName() }}
+                        @endif
+                        @if ($files['provider_signature'])
+                            {{ basename($files['provider_signature']) }}
                         @endif
                     </div>
                     @error('provider_signature')
@@ -211,13 +217,17 @@
                         </label>
                     </div>
                     <input style=" opacity: 0; z-index: -1; position: absolute;" id="customer_signature"
-                        class="" wire:model="customer_signature" type="file">
+                        {{ $this->booking_provider->check_in_status > 0 ? 'disabled' : '' }} class=""
+                        wire:model="customer_signature" type="file">
                     <div class="text-muted" wire:loading wire:target='customer_signature'>
                         Uploading...
                     </div>
                     <div class="text-muted my-1 mx-2">
                         @if ($customer_signature)
                             {{ $customer_signature->getClientOriginalName() }}
+                        @endif
+                        @if ($files['customer_signature'])
+                            {{ basename($files['customer_signature']) }}
                         @endif
                     </div>
                     @error('customer_signature')
@@ -247,10 +257,15 @@
                 </label>
             </div>
             <div class="form-actions d-flex gap-3 justify-content-center mt-5">
-                <button type="button" class="btn btn-outline-dark rounded"
-                    x-on:click="offcanvasOpenCheckIn = !offcanvasOpenCheckIn">Back</button>
-                <button type="submit" class="btn btn-primary rounded" wire:loading.attr="disabled"
-                    x-on:close-check-in-panel.window="offcanvasOpenCheckIn = !offcanvasOpenCheckIn">Submit</button>
+                @if ($this->booking_provider->check_in_status > 0)
+                    <button type="button" class="btn btn-outline-dark rounded"
+                        x-on:click="offcanvasOpenCheckIn = !offcanvasOpenCheckIn">Close</button>
+                @else
+                    <button type="button" class="btn btn-outline-dark rounded"
+                        x-on:click="offcanvasOpenCheckIn = !offcanvasOpenCheckIn">Back</button>
+                    <button type="submit" class="btn btn-primary rounded" wire:loading.attr="disabled"
+                        x-on:close-check-in-panel.window="offcanvasOpenCheckIn = !offcanvasOpenCheckIn">Submit</button>
+                @endif
             </div>
         </div>
     </form>

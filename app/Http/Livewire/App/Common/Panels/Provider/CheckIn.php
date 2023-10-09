@@ -15,9 +15,9 @@ class CheckIn extends Component
 {
     use WithFileUploads;
 
-    public $showForm, $checkIn = true, $hours = null, $mins = null, $provider_signature = null, $customer_signature = null, $form_id = null;
+    public $showForm, $checkIn = true, $hours = null, $mins = null, $provider_signature = null, $customer_signature = null, $form_id = null , $files=['provider_signature'=>null,'customer_signature'=>null];
     protected $listeners = ['showList' => 'resetForm', 'setCheckInBookingId' => 'setBookingId'];
-    public $booking_id = 0, $assignment = null, $booking_service = null, $checkin_details = [];
+    public $booking_id = 0, $assignment = null, $booking_service = null, $checkin_details = [], $booking_provider=null;
 
     public function render()
     {
@@ -37,6 +37,7 @@ class CheckIn extends Component
         $this->booking_service = null;
         $this->checkin_details = [];
         $this->form_id = null;
+        $this->booking_provider=null;
     }
 
 
@@ -96,6 +97,14 @@ class CheckIn extends Component
             $this->mins =      date_format(date_create($this->assignment->booking_start_at), 'i');
             if (isset($this->checkin_details['customize_form_id']))
                 $this->form_id = $this->checkin_details['customize_form_id'];
+            $this->booking_provider = BookingProvider::where(['booking_service_id' => $booking_service_id, 'provider_id' => Auth::id()])->first();
+            if($this->booking_provider && $this->booking_provider->check_in_procedure_values){
+                $values = $this->booking_provider->check_in_procedure_values;
+                $this->hours = $values['actual_start_hour'] ?? null;
+                $this->mins = $values['actual_start_min'] ?? null;
+                $this->files['provider_signature'] = $values['provider_signature_path'] ?? null;
+                $this->files['customer_signature'] = $values['provider_signature_path'] ?? null;
+            }
         }
     }
 
