@@ -123,20 +123,15 @@ class BookingList extends Component
 		$query = Booking::query();
 		switch ($this->bookingType) {
 			case ('Past'):
-				$query->where(['type' => 1, 'booking_status' => '1'])
-
-					// ->when($addressCheck, function ($query) {
-					// 	$query->where('isCompleted', 0);
-					// })
-					// ->whereIn('bookings.status', [3, 4])
-					// Or
-					->where(function ($ca) use ($today) {
-						$ca->whereRaw("DATE(booking_start_at) < '$today'")
-							->whereIn('bookings.status', [1, 2]);
-						// ->when($addressCheck, function ($query) {
-						// 	$query->where('isCompleted', 0);
-						// });
-					});
+				$query->where('type', 1)
+				->where('booking_status', '1')
+				->where(function ($q) use ($today) {
+					$q->where(function ($ca) use ($today) {
+							$ca->whereRaw("DATE(booking_start_at) < '$today'")
+							   ->whereIn('bookings.status', [1, 2]);
+						})
+						->orWhereIn('bookings.status', [3, 4]);
+				});
 
 				$query->orderBy('booking_start_at', 'DESC');
 

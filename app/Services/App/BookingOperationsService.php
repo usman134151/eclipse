@@ -888,7 +888,7 @@ if ($startIndex <= $endIndex) {
   }
 
   public static function getBookingDetails($bookingId,$serviceTypes,$parameter,$dataColumn){
-    $booking = Booking::where('id', $bookingId)->with('payment','booking_services','services')->first()->toArray();
+    $booking = Booking::where('id', $bookingId)->with('payment','booking_services','services','customer')->first();
     $totalCharges=0;
     foreach($booking['booking_services'] as $index=>$bookingService){
       
@@ -910,9 +910,21 @@ if ($startIndex <= $endIndex) {
 
       }
     }
-    $booking['charges']=$totalCharges;
+    $booking->status=4; //default cancel billable
+    $booking->payment->cancellation_charges=$totalCharges;
    
     return $booking;
+  }
+
+  public static function cancelBooking($booking){
+     
+     $booking->cancelled_by=Auth::user()->id;
+     $booking->booking_cancelled_at=now();
+     $booking->save();
+    
+     $booking->payment->save();
+
+
   }
 
   public static function getCharges($cancellationData,$bookingStartTime,$parameter){

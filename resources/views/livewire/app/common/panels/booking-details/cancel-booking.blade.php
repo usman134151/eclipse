@@ -1,4 +1,6 @@
 <div>
+    @if(!is_null($booking['customer']))
+  
     <div class="row mt-4">
         <div class="col-md-6">
 
@@ -7,9 +9,26 @@
             Are you sure you want to cancel this booking? 
             @if($booking['charges']>0)Booking is outside it’s cancellation window. If you’d like to cancel this booking, you will be charged {{formatPayment($booking['charges'])}}. @endif Would you like to proceed with cancelling?
             </div>
-
             <div class="col-lg-12 my-4">
-            @if($booking['is_recurring'])
+            <div class="">
+                                                    <label class="form-label">
+                                                        Override charges
+                                                    </label>
+                                                    <input type="text" class="form-control" rows="4" cols="4" wire:model.defer="override_charges">													
+												
+                                                </div>
+            </div>  
+            <div class="col-lg-12 my-4">
+            <div class="">
+                                                    <label class="form-label">
+                                                        Cancellation Notes
+                                                    </label>
+                                                    <textarea class="form-control" rows="4" cols="4" wire:model.defer="booking.cancellation_notes">													
+												</textarea>
+                                                </div>
+            </div>  
+            <div class="col-lg-6 my-4">
+           <!-- @if($booking['is_recurring'])
                 <ul class="list-group list-group-flush gap-1">
                     <li class="list-group-item border-0 ps-0">
                         <div class="form-check">
@@ -41,17 +60,19 @@
                     </li>
                   
                 </ul>
-                @endif
+                @endif -->
             </div>
-            <div class="col-lg-12 my-4">
-            <div class="">
-                                                    <label class="form-label">
-                                                        Cancellation Notes
-                                                    </label>
-                                                    <textarea class="form-control" rows="4" cols="4" wire:model.defer="cancellation_notes">													
-												</textarea>
-                                                </div>
-            </div>    
+            <div class="col-lg-6 my-4">
+<div class="form-check">
+<input class="form-check-input position-static" type="checkbox" wire:model.defer="unbillable" value="3" {{ $booking['status'] == 3 ? 'checked' : '' }}>
+<label class="form-check-label" for="gridCheck1">Mark as Unbillable</label>
+</div>
+<div class="form-check">
+<input class="form-check-input position-static" type="checkbox" value="1" wire:model.defer="booking.cancel_provider_payment">
+<label class="form-check-label" for="blankCheckbox2CancellationModal">Cancel Provider Payment</label>
+</div>
+</div>
+  
 
         </div>
         <div class="col-md-6">
@@ -76,48 +97,11 @@
                 <div class="col-lg-12 mb-3">
                     <div class="row">
                         <div class="col-lg-5">
-                            <label class="col-form-label fw-semibold">Service Date:</label>
-                        </div>
-                        <div class="col-lg-7 align-self-center">
-                            <div>
-                                12/15/2022
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-12 mb-3">
-                    <div class="row">
-                        <div class="col-lg-5">
-                            <label class="col-form-label fw-semibold">Service:</label>
-                        </div>
-                        <div class="col-lg-7 align-self-center">
-                            <div>
-                                Copy of Check service duration
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-12 mb-3">
-                    <div class="row">
-                        <div class="col-lg-5">
-                            <label class="col-form-label fw-semibold">No. of Provider:</label>
-                        </div>
-                        <div class="col-lg-7 align-self-center">
-                            <div>
-                                5 of 5
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-12 mb-3">
-                    <div class="row">
-                        <div class="col-lg-5">
                             <label class="col-form-label fw-semibold">Customer Name:</label>
                         </div>
                         <div class="col-lg-7 align-self-center">
                             <div>
-                                John Wick
+                               {{$booking['customer']['first_name']}}  {{$booking['customer']['last_name']}}
                             </div>
                         </div>
                     </div>
@@ -128,20 +112,59 @@
                             <label class="col-form-label fw-semibold">Price:</label>
                         </div>
                         <div class="col-lg-7 align-self-center">
-                            <div>$20.87</div>
+                            <div>                                                                        @if (!is_null($booking['payment']))
+                                                                            {{ formatPayment($booking['payment']['total_amount']) }}
+                                                                        @else
+                                                                            N/A
+                                                                        @endif</div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-12 mb-3">
                     <div class="row">
                         <div class="col-lg-5">
-                            <label class="col-form-label fw-semibold">Status:</label>
+                            <label class="col-form-label fw-semibold">Service Date:</label>
                         </div>
                         <div class="col-lg-7 align-self-center">
-                            <div>Assigned</div>
+                            <div>
+                            {{ $booking['booking_start_at'] ? date_format(date_create($booking['booking_start_at']), 'h:i A') : '' }}
+                                                                                    to
+                            {{ $booking['booking_end_at'] ? date_format(date_create($booking['booking_end_at']), 'h:i A') : '' }}
+                            </div>
                         </div>
                     </div>
                 </div>
+                @foreach($booking['booking_services'] as $index=>$service)
+
+
+                <div class="col-lg-12 mb-3">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <label class="col-form-label fw-semibold">Service:</label>
+                        </div>
+                        <div class="col-lg-7 align-self-center">
+                            <div>
+                               {{$booking['services'][$index]['name']}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+                <div class="col-lg-12 mb-3">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <label class="col-form-label fw-semibold">No. of Provider:</label>
+                        </div>
+                        <div class="col-lg-7 align-self-center">
+                            <div>
+                               {{$service['provider_count']}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+
+
             </div>
         </div>
     </div>
@@ -152,11 +175,13 @@
             </a>
           
                 <button type="button" class="btn btn-primary rounded" type="button"
-                    data-bs-toggle="dropdown" aria-expanded="false">
+                    data-bs-toggle="dropdown" aria-expanded="false" wire:click="cancelBooking"  x-on:click="cancelBooking = !cancelBooking" >
                     Cancel Booking
                 </button>
 
           
         </div>
     </div>
+
+@endif
 </div>

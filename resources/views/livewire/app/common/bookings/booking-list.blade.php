@@ -492,7 +492,7 @@
                                                                                     </svg>
                                                                                 </a>
                                                                             @endif
-                                                                            @if ($bookingType == 'Draft')
+                                                                            @if ($bookingType == 'Draft' || $booking->status==3 || $booking->status==4)
                                                                                 <a href="#"
                                                                                     title="Delete Booking"
                                                                                     aria-label="Delete Booking"
