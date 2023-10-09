@@ -500,6 +500,8 @@
     <!-- END: Step 3 -->
     <!-- BEGIN: Step 4 -->
     <div class="{{ $step == 4 ? '' : 'hidden' }}">
+        <form wire:submit.prevent='save'>
+        @csrf
         <div class="mb-4">
             <div class="row">
                 <div class="col-lg-12">
@@ -594,7 +596,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-check mb-0">
-                                <input class="form-check-input" type="checkbox"
+                                <input class="form-check-input" type="checkbox" required
                                     wire:model="checkout.provider_agreement_confirmation"
                                     id="provider_agreement_confirmation">
                                 <label class="form-check-label" for="provider_agreement_confirmation">
@@ -612,13 +614,14 @@
         <hr>
         <div class="mb-4">
             <div class="form-actions d-flex gap-3 justify-content-center mt-5">
-                <button type="submit" class="btn btn-primary rounded" wire:click="setStep(3)">Back</button>
+                <button type="button" class="btn btn-primary rounded" wire:click="setStep(3)">Back</button>
                 <button x-on:click="offcanvasOpenCheckOut = !offcanvasOpenCheckOut" type="button"
                     class="btn btn-outline-dark rounded">Cancel</button>
-                <button type="submit" class="btn btn-primary rounded" wire:click="save"
+                <button type="submit" class="btn btn-primary rounded"
                     x-on:close-check-out.window="offcanvasOpenCheckOut = !offcanvasOpenCheckOut">Submit</button>
             </div>
         </div>
+        </form>
     </div>
     <!-- END: Step 4 -->
 </div>
