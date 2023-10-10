@@ -985,16 +985,17 @@
                     @elseif($component == 'request-details')
                     <div class="tab-pane fade {{ $component == 'request-details' ? 'active show' : '' }}"
                         id="request-details" role="tabpanel" aria-labelledby="request-details-tab" tabindex="0">
-                        @foreach($formIds as $formIndex => $formId)
-                            <div class="" wire:ignore>
-                                @php
-                                 $lastForm = ($formIndex ===  count($formIds) - 1) ? true : false;
-                                @endphp
-                                @livewire('app.common.forms.custom-form-display',['showForm'=>true,'formId'=> $formId  ,'bookingId'=>$booking->id,'lastForm' => $lastForm], key($formIndex))
-                            </div>
-                        @endforeach     
-
-                        @if(count($formIds)==0)
+                        @if(!is_null($formIds))
+                            @foreach($formIds as $formIndex => $formId)
+                                <div class="" wire:ignore>
+                                    @php
+                                    $lastForm = ($formIndex ===  count($formIds) - 1) ? true : false;
+                                    @endphp
+                                    @livewire('app.common.forms.custom-form-display',['showForm'=>true,'formId'=> $formId  ,'bookingId'=>$booking->id,'lastForm' => $lastForm], key($formIndex))
+                                </div>
+                            @endforeach     
+                        @endif                                
+                        @if(is_null($formIds) && count($formIds)==0)
                             <div class="row between-section-segment-spacing">
                                 <div class="col-12 justify-content-center  d-flex flex-column flex-md-row gap-2">
                                     <h4>No form attached with industry / service(s)</h4>
