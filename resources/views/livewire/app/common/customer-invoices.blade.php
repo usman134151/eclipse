@@ -131,6 +131,10 @@
                             </div>
 
 
+                            <div class="justify-content-center d-flex flex-md-row">
+                                <div id="messageAlert" class="text-danger">
+                                </div>
+                            </div>
                             <div class="justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                                 <button disabled class="btn btn-primary rounded">Resend Invoice</button>
                                 <button class="btn btn-primary rounded" onclick="payInvoices()">Record Payment</button>
@@ -168,6 +172,11 @@
 
                 Livewire.emit('initMultipleInvoices', selectedValues);
                 $('#payInvoice').modal('show');
+            } else {
+                $('#messageAlert').html('Please select at least one invoice.');
+                setTimeout(function () {
+                    $('#messageAlert').html('');
+                }, 2000);
             }
         }
 
@@ -180,6 +189,11 @@
             if (selectedValues.length > 0) {
                 Livewire.emit('revertMultipleInvoice', selectedValues);
                 $('#revertBackModal').modal('show');
+            } else {
+                $('#messageAlert').html('Please select at least one invoice.');
+                setTimeout(function () {
+                    $('#messageAlert').html('');
+                }, 2000);
             }
         }
 
