@@ -4,6 +4,7 @@ namespace App\Http\Livewire\App\Common;
 
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\Invoice;
+use App\Services\App\InvoiceService;
 use Livewire\Component;
 use PDF;
 
@@ -11,7 +12,14 @@ use PDF;
 class CustomerInvoices extends Component
 {
     public $showForm, $invoice_id = 0, $counter = 0, $confirmationMessage = null;
+    public $overDueAmount = 0, $comingAmount = 0, $avgPaymentDays = 0;
     protected $listeners = ['showList' => 'resetForm', 'openInvoiceDetails', 'downloadInvoice'=> 'createInvoicePDF'];
+
+    public function mount(){
+        $this->overDueAmount = InvoiceService::getOverDueAmount();
+        $this->comingAmount = InvoiceService::getComingAmount();
+        $this->avgPaymentDays = InvoiceService::getAvgPaymentDays();
+    }
 
     public function render()
     {

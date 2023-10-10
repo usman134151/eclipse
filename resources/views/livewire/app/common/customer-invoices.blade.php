@@ -51,28 +51,27 @@
                             <div class="row between-section-segment-spacing">
                                 <div class="col-lg-8">
                                     <div class="border border-primary p-3">
-
-
                                         <div class="col-md-12 mb-3">
-                                            <label class="form-label" for="Customer-invoices-summary">Customer invoices
-                                                summary <small>(coming soon)</small></label>
+                                            <label class="form-label" for="Customer-invoices-summary">
+                                                Customer invoices summary
+                                            </label>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div>
-                                                    <h2>$1735.6</h2>
+                                                    <h2>{{numberFormat($overDueAmount)}}</h2>
                                                     <p>Overdue</p>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div>
-                                                    <h2>$6298.8</h2>
+                                                    <h2>{{numberFormat($comingAmount)}}</h2>
                                                     <p>Coming in the Next 30 Days</p>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div>
-                                                    <h2>20 Days</h2>
+                                                    <h2>{{$avgPaymentDays}} Days</h2>
                                                     <p>Average Payment Timeline</p>
                                                 </div>
                                             </div>
