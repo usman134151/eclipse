@@ -7,6 +7,7 @@ use App\Models\Tenant\Invoice;
 use App\Models\Tenant\InvoicePayment;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class InvoiceService
 {
@@ -108,5 +109,31 @@ class InvoiceService
             $booking->save();
         }
         $invoice->delete();
+    }
+
+    public static function getOverDueAmount()
+    {
+        $today = Carbon::now()->endOfDay();
+        return Invoice::where('invoice_due_date', '<', $today)->sum('outstanding_amount');
+    }
+
+    public static function getAvgPaymentDays()
+    {
+        $averagePaymentDays = Invoice::whereNotNull('invoice_date')
+            ->whereNotNull('paid_on')
+            ->select(DB::raw('AVG(DATEDIFF(paid_on, invoice_date)) as average_payment_days'))
+            ->first();
+
+        return ($averagePaymentDays) ? (int)$averagePaymentDays->average_payment_days : 'N/A';
+    }
+
+    public static function getComingAmount()
+    {
+        $today = Carbon::now()->startOfDay(); // Start of the current day
+        $thirtyDaysFromNow = $today->copy()->addDays(30)->endOfDay(); // End of the day 30 days from now
+
+        return Invoice::where('invoice_due_date', '>=', $today)
+            ->where('invoice_due_date', '<=', $thirtyDaysFromNow)
+            ->sum('outstanding_amount');
     }
 }
