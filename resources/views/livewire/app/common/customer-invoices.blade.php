@@ -82,8 +82,8 @@
                                 </div>
                             </div>
                             <div class="row between-section-segment-spacing">
-                            <small>(coming soon)</small>
-                                <x-advancefilters type="invoice-filters" />
+                                <small>(coming soon)</small>
+                                <x-advancefilters type="invoice-filters"/>
                             </div>
                             @if (!$showForm)
                                 @livewire('app.common.lists.customer-invoices')
@@ -93,10 +93,10 @@
                             <div class="d-flex actions gap-3 justify-content-end mb-2 flex-wrap">
                                 <div class="d-flex gap-2 align-items-center">
                                     <a href="#" title="back" aria-label="back"
-                                        class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal"
-                                        data-bs-target="#revertBackModal">
+                                       class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal"
+                                       data-bs-target="#revertBackModal">
                                         <svg aria-label="Revert" class="fill-stroke" width="22" height="20"
-                                            viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                             viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <use xlink:href="/css/provider.svg#revert"></use>
                                         </svg>
                                     </a>
@@ -106,9 +106,9 @@
                                 </div>
                                 <div class="d-flex gap-2 align-items-center">
                                     <a href="#" title="Invoice Details" aria-label="Invoice Details"
-                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                       class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                         <svg aria-label="Invoice Details" width="19" height="20"
-                                            viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                             viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <use xlink:href="/css/sprite.svg#dollar-assignment"></use>
                                         </svg>
                                     </a>
@@ -118,9 +118,9 @@
                                 </div>
                                 <div class="d-flex gap-2 align-items-center">
                                     <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF"
-                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                       class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                         <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"
-                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                             fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <use xlink:href="/css/provider.svg#download-file"></use>
                                         </svg>
                                     </a>
@@ -133,10 +133,10 @@
 
                             <div class="justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                                 <button disabled class="btn btn-primary rounded">Resend Invoice</button>
-                                <button disabled class="btn btn-primary rounded" data-bs-toggle="modal"
-                                    data-bs-target="#payInvoice">Record Payment</button>
-                                <button disabled class="btn btn-primary rounded" data-bs-toggle="modal"
-                                    data-bs-target="#revertBackModal">Revert Invoice</button>
+                                <button class="btn btn-primary rounded" onclick="payInvoices()">Record Payment</button>
+                                <button class="btn btn-primary rounded" onclick="revertInvoices()">Revert
+                                    Invoice
+                                </button>
                             </div>
                         </div>
 
@@ -157,6 +157,37 @@
             Livewire.emit('updateVal', attrName, val);
 
         }
+
+        function payInvoices() {
+            let selectedValues = [];
+            $('tbody .form-check-input:checked').each(function () {
+                selectedValues.push($(this).val());
+            });
+
+            if (selectedValues.length > 0) {
+
+                Livewire.emit('initMultipleInvoices', selectedValues);
+                $('#payInvoice').modal('show');
+            }else {
+                $('#result').html('Please select at least one checkbox for 2 seconds.');
+                setTimeout(function() {
+                    $('#error').html('');
+                }, 1000);
+            }
+        }
+
+        function revertInvoices() {
+            let selectedValues = [];
+            $('tbody .form-check-input:checked').each(function () {
+                selectedValues.push($(this).val());
+            });
+
+            if (selectedValues.length > 0) {
+                Livewire.emit('revertMultipleInvoice', selectedValues);
+                $('#revertBackModal').modal('show');
+            }
+        }
+
         Livewire.on('revertModalDismissed', () => {
             $('#revertBackModal').modal('hide');
 
