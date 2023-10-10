@@ -14,6 +14,7 @@ use App\Models\Tenant\Payment;
 use App\Models\Tenant\BusinessSetup;
 use App\Models\Tenant\ServiceSpecialization;
 use App\Models\Tenant\BookingCustomizeData;
+use App\Models\Tenant\BookingProvider;
 use Auth;
 use Carbon\Carbon;
 use App\Helpers\GlobalFunctions;
@@ -914,6 +915,32 @@ if ($startIndex <= $endIndex) {
     $booking->payment->cancellation_charges=$totalCharges;
    
     return $booking;
+  }
+
+  public static function reinstateBooking($bookingId){
+    $booking = Booking::where('id', $bookingId)->with('payment','booking_services')->first();
+    $booking->cancelled_by=0;
+    $booking->booking_cancelled_at=null;
+    $status=2;
+    //determine status
+    foreach($booking->booking_services as $service){
+      $providerCount = (int)$service->provider_count;
+      
+      $assignedProvidersCount = BookingProvider::where('booking_service_id',$service->id)->count();
+   
+      if ($providerCount !== $assignedProvidersCount) {
+         $status=1;
+      }
+    }
+ 
+    $booking->status=$status;
+    $booking->cancellation_notes='';
+    $booking->cancel_provider_payment=0;
+    $booking->save();
+    
+    $booking->payment->cancellation_charges=0;
+    $booking->payment->save();
+
   }
 
   public static function cancelBooking($booking){

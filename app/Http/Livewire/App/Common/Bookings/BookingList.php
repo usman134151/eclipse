@@ -11,6 +11,7 @@ use App\Models\Tenant\BookingServiceCharges;
 use App\Models\Tenant\BookingServices;
 use App\Models\Tenant\SetupValue;
 use App\Models\Tenant\User;
+use App\Services\App\BookingOperationsService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -642,5 +643,11 @@ class BookingList extends Component
 				'text' => $message,
 			]);
 		}
+	}
+
+	public function reinstate($bookingId){
+		BookingOperationsService::reinstateBooking($bookingId);
+		$this->emit('showConfirmation', 'Booking status updated successfully');
+
 	}
 }

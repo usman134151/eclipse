@@ -44,7 +44,8 @@ class CancelBooking extends Component
     public function rules()
     {
         return [
-                'booking.cancellation_notes' => 'nullable'
+                'booking.cancellation_notes' => 'nullable',
+                'booking.cancel_provider_payment'=>'nullable'
 
 
             ];
