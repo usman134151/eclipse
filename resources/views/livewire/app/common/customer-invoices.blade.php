@@ -168,11 +168,6 @@
 
                 Livewire.emit('initMultipleInvoices', selectedValues);
                 $('#payInvoice').modal('show');
-            }else {
-                $('#result').html('Please select at least one checkbox for 2 seconds.');
-                setTimeout(function() {
-                    $('#error').html('');
-                }, 1000);
             }
         }
 
