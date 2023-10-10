@@ -2,55 +2,47 @@
 
 namespace App\Http\Livewire\App\Common\Modals;
 
-use App\Models\Tenant\Booking;
 use App\Models\Tenant\Invoice;
+use App\Services\App\InvoiceService;
 use Livewire\Component;
 
 class RevertBack extends Component
 {
-    public $showForm, $invoice = null;
-    protected $listeners = [ 'revertInvoice'];
+    public $showForm, $invoice = null, $invoices, $isMultiple;
+
+    protected $listeners = ['revertInvoice', 'revertMultipleInvoice'];
 
     public function render()
     {
         return view('livewire.app.common.modals.revert-back');
     }
 
-    public function revertInvoice($invoice_id)
+    public function revertMultipleInvoice($selectedValues)
     {
-        $this->invoice = Invoice::find($invoice_id);
+        $this->isMultiple = true;
+        $this->invoices = Invoice::all()->whereIn('id', $selectedValues);
     }
 
     public function revert()
     {
-        if ($this->invoice) {
-            $bookings = Booking::where('invoice_id', $this->invoice->id)->get();
-
-            foreach ($bookings as $key => $booking) {
-
-                // $message = "New invoice " . $this->invoice['invoice_number'] . " created by " . Auth::user()->name;
-                // $logs = array(
-                //     'action_by' => Auth::user()->id,
-                //     'action_to' => $booking->id,
-                //     'item_type' => 'Booking',
-                //     'message' => $message,
-                //     'type' => 'Invoice created',
-                //     'request_to' => ''
-                // );
-                // addLogs($logs);
-                $booking->invoice_id = 0;
-                $booking->invoice_status = "0";
-                $booking->save();
+        if ($this->isMultiple) {
+            if (count($this->invoices) > 0) {
+                foreach ($this->invoices as $invoice) {
+                    InvoiceService::revertInvoice($invoice);
+                }
             }
-            $this->invoice->delete();
+        } else {
+            if ($this->invoice) {
+                InvoiceService::revertInvoice($this->invoice);
+            }
+            $this->dispatchBrowserEvent('close-invoice-details');  // emit to close modal
         }
         $this->emit('showList', 'Invoice reverted successfully');
-
         $this->emit('revertModalDismissed');  // emit to close modal
-        $this->dispatchBrowserEvent('close-invoice-details');  // emit to close modal
-
-
     }
 
-   
+    public function revertInvoice($invoice_id)
+    {
+        $this->invoice = Invoice::find($invoice_id);
+    }
 }
