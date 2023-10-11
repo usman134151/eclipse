@@ -214,20 +214,19 @@
                 </div>
                 
             </div>
-            <small>(coming soon)</small>
 
             <div class="col-12 d-flex flex-column flex-md-row gap-2">
 
-                <button type="btn" class="btn btn-sm btn-outline-primary mx-2">
+                <button type="btn" wire:click="incDate(15)" class="btn btn-sm {{$days == 15 ? 'btn-primary' :''}} btn-outline-primary mx-2">
                     Net 15
                 </button>
-                <button type="btn" class="btn btn-sm btn-primary btn-outline-primary mx-2">
+                <button type="btn" wire:click="incDate(30)" class="btn btn-sm {{$days == 30 ? 'btn-primary' :''}} btn-outline-primary mx-2">
                     Net 30
                 </button>
-                <button type="btn" class="btn btn-sm btn-outline-primary mx-2">
+                <button type="btn" wire:click="incDate(45)" class="btn btn-sm btn-outline-primary mx-2 {{$days == 45 ? 'btn-primary' :''}}">
                     Net 45
                 </button>
-                <button type="btn" class="btn btn-sm btn-outline-primary mx-2">
+                <button type="btn" wire:click="incDate(60)" class="btn btn-sm btn-outline-primary mx-2 {{$days == 60 ? 'btn-primary' :''}}">
                     Net 60
                 </button>
             </div>
