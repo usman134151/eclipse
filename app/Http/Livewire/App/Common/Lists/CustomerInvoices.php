@@ -103,9 +103,12 @@ final class CustomerInvoices extends PowerGridComponent
         $cols =  PowerGrid::eloquent()
             ->addColumn('invoice_detail', function (Invoice $model) {
                 if ($this->invoice_status == 'paid' && session()->get('isCustomer'))
-                    $data = '<a href="#">' . $model->invoice_number . '</a><p class="mt-1">' . date_format(date_create($model->paid_on), "d/m/Y h:i A") . '</p>';
-                else
-                    $data =  '<a @click="offcanvasOpen = true">' . $model->invoice_number . '</a><p class="mt-1">' . date_format(date_create($model->invoice_date), "d/m/Y") . '</p>';
+                    $data = '<a href="#">' . $model->invoice_number . '</a><p class="mt-1">' . date_format(date_create($model->paid_on), "m/d/Y h:i A") . '</p>';
+            elseif ($this->invoice_status == 'pending' && session()->get('isCustomer'))
+                $data =  '<a >' . $model->invoice_number . '</a><p class="mt-1">' . date_format(date_create($model->invoice_date), "m/d/Y") . '</p>';
+              
+                    else
+                    $data =  '<a @click="offcanvasOpen = true">' . $model->invoice_number . '</a><p class="mt-1">' . date_format(date_create($model->invoice_due_date), "m/d/Y") . '</p>';
                 return $data;
             });
 
@@ -124,7 +127,7 @@ final class CustomerInvoices extends PowerGridComponent
             })
 
             ->addColumn('due_date', function (Invoice $model) {
-                return date_format(date_create($model->invoice_due_date), "d/m/Y");
+                return date_format(date_create($model->invoice_due_date), "m/d/Y");
             })
             ->addColumn('pdf', function (Invoice $model) {
                 return '<svg aria-label="PDF" width="17" height="21" wire:click="$emit(\'downloadInvoice\',' . $model->id . ')"

@@ -123,7 +123,7 @@
                             @endif
                             <div>
                                 <div class="" wire:ignore>
-                                    <x-advancefilters type="" :filterProviders="$filterProviders" :hideProvider="false" />
+                                    <x-advancefilters type="" :filterProviders="$filterProviders" :hideProvider="false" :setupValues="$setupValues" />
                                 </div>
                                 <div class="d-flex flex-column flex-md-row justify-content-between mb-2">
 
