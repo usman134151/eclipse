@@ -123,7 +123,7 @@
                                     </div>
 
                                 </div> --}}
-                                <x-advancefilters type="invoice-filters"  :setupValues="[]"/>
+                                <x-advancefilters type="invoice-filters"  :setupValues="$setupValues"/>
                             </div>
                             <!-- END: Filters -->
 
