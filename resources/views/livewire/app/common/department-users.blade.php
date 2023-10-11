@@ -51,6 +51,7 @@
                                 xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#message"></use>
                                 </svg>
                         </a>
+                        @if(!session()->get('isCustomer'))
                         <a href="javascript:void(0)" wire:click="deleteRecord({{$user->id}})" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                             <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
                                 <use
@@ -58,6 +59,7 @@
                                 </use>
                             </svg>
                         </a>
+                        @endif
                     </div>
                 </td>
             
