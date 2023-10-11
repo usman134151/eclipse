@@ -14,6 +14,7 @@ use App\Models\Tenant\Payment;
 use App\Models\Tenant\BusinessSetup;
 use App\Models\Tenant\ServiceSpecialization;
 use App\Models\Tenant\BookingCustomizeData;
+use App\Models\Tenant\BookingProvider;
 use Auth;
 use Carbon\Carbon;
 use App\Helpers\GlobalFunctions;
@@ -888,7 +889,7 @@ if ($startIndex <= $endIndex) {
   }
 
   public static function getBookingDetails($bookingId,$serviceTypes,$parameter,$dataColumn){
-    $booking = Booking::where('id', $bookingId)->with('payment','booking_services','services')->first()->toArray();
+    $booking = Booking::where('id', $bookingId)->with('payment','booking_services','services','customer')->first();
     $totalCharges=0;
     foreach($booking['booking_services'] as $index=>$bookingService){
       
@@ -910,9 +911,47 @@ if ($startIndex <= $endIndex) {
 
       }
     }
-    $booking['charges']=$totalCharges;
+    $booking->status=4; //default cancel billable
+    $booking->payment->cancellation_charges=$totalCharges;
    
     return $booking;
+  }
+
+  public static function reinstateBooking($bookingId){
+    $booking = Booking::where('id', $bookingId)->with('payment','booking_services')->first();
+    $booking->cancelled_by=0;
+    $booking->booking_cancelled_at=null;
+    $status=2;
+    //determine status
+    foreach($booking->booking_services as $service){
+      $providerCount = (int)$service->provider_count;
+      
+      $assignedProvidersCount = BookingProvider::where('booking_service_id',$service->id)->count();
+   
+      if ($providerCount !== $assignedProvidersCount) {
+         $status=1;
+      }
+    }
+ 
+    $booking->status=$status;
+    $booking->cancellation_notes='';
+    $booking->cancel_provider_payment=0;
+    $booking->save();
+    
+    $booking->payment->cancellation_charges=0;
+    $booking->payment->save();
+
+  }
+
+  public static function cancelBooking($booking){
+     
+     $booking->cancelled_by=Auth::user()->id;
+     $booking->booking_cancelled_at=now();
+     $booking->save();
+    
+     $booking->payment->save();
+
+
   }
 
   public static function getCharges($cancellationData,$bookingStartTime,$parameter){

@@ -492,7 +492,7 @@
                                                                                     </svg>
                                                                                 </a>
                                                                             @endif
-                                                                            @if ($bookingType == 'Draft')
+                                                                            @if ($bookingType == 'Draft' || $booking->status==3 || $booking->status==4)
                                                                                 <a href="#"
                                                                                     title="Delete Booking"
                                                                                     aria-label="Delete Booking"
@@ -632,6 +632,29 @@
                                                                                                Reopen Booking
                                                                                             </a>                                                                                            
                                                                                             @endif
+                                                                                            @if($booking->status==3 || $booking->status==4)
+                                                                                            <a href="javascript:void(0)"
+                                                                                                aria-label="Reinstate booking"
+                                                                                                title="Reinstate booking"
+                                                                                                class="dropdown-item"
+                                                                                                wire:click="reinstate({{$booking->id}})">
+                                                                                                <svg width="17"
+                                                                                                    height="18"
+                                                                                                    viewBox="0 0 17 18"
+                                                                                                    fill="none"
+                                                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                                                    <path
+                                                                                                        d="M8.3125 16.8125H1.4375V1.1875H14.5625V9.3125M15.8125 12.4375L11.4375 16.8125M5.1875 8.6875H10.8125M5.1875 12.4375H7.0625M5.1875 4.9375H10.8125M11.4375 12.4375L15.8125 16.8125"
+                                                                                                        stroke="black"
+                                                                                                        stroke-width="1.5"
+                                                                                                        stroke-linecap="round"
+                                                                                                        stroke-linejoin="round">
+                                                                                                    </path>
+                                                                                                </svg>
+                                                                                                Reinstate booking
+                                                                                            </a>
+                                                                                           
+                                                                                            @else
                                                                                             <a href="javascript:void(0)"
                                                                                                 aria-label="Cancel"
                                                                                                 title="Cancel"
@@ -652,6 +675,7 @@
                                                                                                 </svg>
                                                                                                 Cancel Booking
                                                                                             </a>
+                                                                                            @endif
                                                                                         @endif
 
                                                                                     </div>
