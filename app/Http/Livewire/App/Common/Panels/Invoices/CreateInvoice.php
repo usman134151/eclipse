@@ -13,7 +13,7 @@ use Livewire\Component;
 class CreateInvoice extends Component
 {
     public $showForm, $selectedBookingsIds = [], $managers, $addresses, $invoice = ['billing_address_id' => null, 'billing_manager_id' => null],
-        $exclude_notif = false, $bookings = [];
+        $exclude_notif = false, $bookings = [], $days=0;
     protected $listeners = [];
 
     public function rules()
@@ -50,62 +50,31 @@ class CreateInvoice extends Component
     public function createInvoice()
     {
         $this->validate();
-        // $this->invoice['invoice_status'] = 0;
-        // Invoice::create($this->invoice);
 
 
         if (!empty($this->selectedBookingsIds)) {
-            // $bookingIds = $this->selectedBookingsIds;
 
-            $invoiceNumber = Carbon::parse($this->invoice['invoice_due_date'])->format('Y-m-d H:i:s');
-            // $this->invoice['po_number'] = isset($request->po_number) ? $request->po_number : null;
-            // $supervisor_id = $request->supervisor_id;
-            // $this->invoice['invoice_number'] = $request->invoice_number;
-            // $paymentMethod = $request->payment_method;
-
-
-
-            // $book = Booking::whereIn('id', $bookingIds)->get();
             if ($this->bookings) {
-                // $data['bookings'] = $this->bookings;
-                // $data['admin'] = $this->user->getAdmin();
-                $invoice_issue_date =  Carbon::today();
-                //              $totalPrice = $this->invoiceTotal($bookingIds);
                 $totalPrice = $this->invoiceTotalV1($this->bookings);
-                $totalDuePrice = $this->invoiceTotalV1($this->bookings);
-                $data['total_price'] = numberFormat($totalPrice);
-                $data['cancellation_price'] = numberFormat($totalDuePrice);
-                // $supervisorCompanies = getCompanies();
-                // $states = getUSAStates();
-                // $data['states'] = $states;
-                // $data['companies'] = $supervisorCompanies;
-                $data['invoice_number'] = $this->invoice['invoice_number'];
-                $data['po_number'] = $this->invoice['po_number'] ?? null;
-                $data['invoice_issue_date'] = formatDateNew($invoice_issue_date);
-                $data['invoice_due_date'] = formatDateNew($invoiceNumber);
-
-                // dd($fileName);
                 if ($this->invoice['invoice_number']) {
                     $invoice = Invoice::insertGetId(
                         [
                             'company_id' => $this->bookings[0]->company_id,
                             'invoice_number' => $this->invoice['invoice_number'],
-                            'invoice_date' => $invoice_issue_date,
+                            'invoice_date' => Carbon::now(),
                             'po_number' => $this->invoice['po_number'] ?? null,
-                            'invoice_due_date' => $invoiceNumber,
+                            'invoice_due_date' => Carbon::createFromFormat('m/d/Y', $this->invoice['invoice_due_date']),
                             'total_price' => $totalPrice,
                             'outstanding_amount' => $totalPrice,
                             // 'invoice_pdf' => $fileName,
                             'billing_manager_id' => $this->invoice['billing_manager_id'],
                             'billing_address_id' => $this->invoice['billing_address_id'],
-
                             // 'payment_method' => $paymentMethod,
                             'supervisor_payment_status' => "0",
                             'invoice_status' => "1",
                         ]
                     );
                     foreach ($this->bookings as $key => $booking) {
-                        // $booking = Booking::where('id', $bookingId->id)->first();
 
                         // $message = "New invoice " . $this->invoice['invoice_number'] . " created by " . Auth::user()->name;
                         // $logs = array(
@@ -126,6 +95,11 @@ class CreateInvoice extends Component
         }
         $this->dispatchBrowserEvent('close-create-invoice');
         $this->emit('showList', 'Invoice created successfully');
+    }
+
+    public function incDate($days=0){
+        $this->days = $days;
+        $this->invoice['invoice_due_date'] = Carbon::now()->addDays($days)->format('m/d/Y');
     }
 
 
