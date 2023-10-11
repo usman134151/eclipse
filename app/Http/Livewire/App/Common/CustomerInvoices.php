@@ -2,8 +2,10 @@
 
 namespace App\Http\Livewire\App\Common;
 
+use App\Helpers\SetupHelper;
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\Invoice;
+use App\Models\Tenant\User;
 use App\Services\App\InvoiceService;
 use Livewire\Component;
 use PDF;
@@ -13,15 +15,46 @@ class CustomerInvoices extends Component
 {
     public $showForm, $invoice_id = 0, $counter = 0, $confirmationMessage = null;
     public $overDueAmount = 0, $comingAmount = 0, $avgPaymentDays = 0;
-    protected $listeners = ['showList' => 'resetForm', 'openInvoiceDetails', 'downloadInvoice'=> 'createInvoicePDF'];
+    protected $listeners = ['showList' => 'resetForm', 'openInvoiceDetails', 'downloadInvoice'=> 'createInvoicePDF', 'updateVal' => 'setCompanyDetails'];
+    public $filter_companies, $filter_bmanager;
+        public $setupValues = [
+        'companies' => ['parameters' => ['Company', 'id', 'name', 'status', 1, 'name', false, 'filter_companies', '', 'filter_companies', 2]],
+        // 'specializations' => ['parameters' => ['Specialization', 'id', 'name', 'status', 1, 'name', true, 'filter_specialization', '', 'filter_specialization', 4]],
+        // "service_type_ids" => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 5, 'setup_value_label', true, 'filter_service_type_ids', '', 'filter_service_type_ids', 4]],
+        // 'ethnicity' => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 3, 'setup_value_label', true, 'ethnicity', '', 'ethnicityassignProvider', 6]],
+        // 'gender' => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 2, 'setup_value_label', true, 'gender', '', 'genderassignProvider', 5]],
+        // 'certifications' => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 8, 'setup_value_label', true, ' certifications', '', ' certificationsassignProvider', 9]],
 
+    ];
+    public $bmanagers = [];
+
+    public function setCompanyDetails($attrName, $val)
+    {
+        if ($attrName == 'filter_companies') {
+            // fetch billing managers for this company 
+            $this->bmanagers = User::where('company_name', $val)->whereHas('roles', function ($query) {
+                $query->where('role_id', 9);
+            })->select(['users.name', 'users.id'])->get();
+
+        }
+        $this->$attrName = $val;
+    }
+    public function resetFilters(){
+        $this->filter_bmanager=null;
+        $this->filter_companies = null;
+
+    }
+  
     public function mount(){
         $this->overDueAmount = InvoiceService::getOverDueAmount();
         $this->comingAmount = InvoiceService::getComingAmount();
         $this->avgPaymentDays = InvoiceService::getAvgPaymentDays();
+
+        $this->setupValues = SetupHelper::loadSetupValues($this->setupValues);
+
     }
 
-    public function render()
+    public function render()    
     {
         return view('livewire.app.common.customer-invoices');
     }

@@ -1,23 +1,25 @@
-@props(['type' => '', 'hideProvider' => false, 'filterProviders' => [], 'setupValues' => []])
+@props(['type' => '', 'hideProvider' => false, 'filterProviders' => [], 'bmanagers' => [], 'setupValues' => []])
 <div class="row">
     @if ($type == 'invoice-filters')
         <div class="col-lg-5 pe-lg-3 ">
             <div>
                 <label class="form-label" for="company-column-1">Company</label>
-                <select class="select2 form-select" id="company-column-1">
-                    <option>Select Company</option>
-                    <option>Company-1</option>
-                    <option>Comapany-2</option>
-                </select>
+                {!! $setupValues['companies']['rendered'] !!}
+
             </div>
         </div>
         <div class="col-lg-5 ps-lg-3">
             <div>
                 <label class="form-label" for="Billing-Manager">Billing Manager</label>
-                <select class="select2 form-select" id="Billing-Manager">
-                    <option>Select Billing Manager</option>
-                    <option>Department-1</option>
-                    <option>Department-2</option>
+
+
+                <select wire:model='filter_bmanager' name="filter_bmanager" class="select2 form-select"
+                    id="filter_bmanager">
+                    @if (isset($bmanagers))
+                        @foreach ($bmanagers as $bmanager)
+                            <option value="{{ $bmanager->id }}">{{ $bmanager->name }}</option>
+                        @endforeach
+                    @endif
                 </select>
             </div>
         </div>
@@ -46,7 +48,7 @@
     </div>
 
 </div>
-<div class="collapse" id="collapseAdvanceFilter">
+<div class="collapse" id="collapseAdvanceFilter" wire:ignore>
     <div class="col-lg-12 mt-3">
         <div class="row">
             @if ($type == 'invoice-filters')
@@ -85,79 +87,81 @@
                         <option>Payment Status-2</option>
                     </select>
                 </div>
-            @endif
-            @if (isset($setupValues['specializations']))
+            @else
+                @if (isset($setupValues['specializations']))
+                    <div class="col-lg-5 pe-lg-3 mb-5">
+                        <label class="form-label">Specialization</label>
+                        {!! $setupValues['specializations']['rendered'] !!}
+                    </div>
+                @endif
+                @if (isset($setupValues['service_type_ids']))
+                    <div class="col-lg-5 ps-lg-3 mb-5">
+                        <label class="form-label">Service Type</label>
+                        {!! $setupValues['service_type_ids']['rendered'] !!}
+
+                    </div>
+                @endif
                 <div class="col-lg-5 pe-lg-3 mb-5">
-                    <label class="form-label">Specialization</label>
-                    {!! $setupValues['specializations']['rendered'] !!}
+                    <label class="form-label" for="OrgDeptUser">Company </span>
+
+                    </label>
+                    <input type="text" class="form-control" name="name_seacrh_filter" id="name_seacrh_filter"
+                        placeholder="Enter Company Name " wire:model.defer="name_seacrh_filter">
                 </div>
-            @endif
-            @if (isset($setupValues['service_type_ids']))
+                <div class="col-lg-5 ps-lg-3 mb-5 {{ $hideProvider ? 'hidden' : '' }}">
+                    <label class="form-label" for="provider_ids">Provider</label>
+                    <select wire:model.defer="provider_ids" name="provider_ids" id="provider_ids"
+                        data-placeholder="Select Provider" multiple class="select2 form-select" tabindex="">
+                        <option value=""></option>
+                        @if (isset($filterProviders))
+                            @foreach ($filterProviders as $provider)
+                                <option value="{{ $provider['id'] }}">{{ $provider['name'] }}</option>
+                            @endforeach
+                        @endif
+                    </select>
+                </div>
+                <div class="col-lg-5 pe-lg-3 mb-5">
+                    <label class="form-label" for="tags">Tags
+                        <small>(coming soon)</small>
+                    </label>
+
+                    <select disabled wire:model.defer="tag_names" data-placeholder="Select Tags" multiple
+                        class="select2 form-select" tabindex="" id="tags_selected">
+                        <option value=""></option>
+                        @if (isset($tags))
+                            @foreach ($tags as $tag)
+                                <option value="{{ $tag->name }}">{{ $tag->name }}</option>
+                            @endforeach
+                        @endif
+                    </select>
+                </div>
+                @if (isset($setupValues['industries']))
+                    <div class="col-lg-5 ps-lg-3 mb-5">
+                        <label class="form-label">Industry</label>
+                        {!! $setupValues['industries']['rendered'] !!}
+
+                    </div>
+                @endif
                 <div class="col-lg-5 ps-lg-3 mb-5">
-                    <label class="form-label">Service Type</label>
-                    {!! $setupValues['service_type_ids']['rendered'] !!}
+                    <label class="form-label">Status</label>
+                    <select data-placeholder="Select Booking Status" wire:model.defer="booking_status_filter"
+                        class="select2 form-select" tabindex="" id="booking_status_filter"
+                        name="booking_status_filter">
+                        <option value=""></option>
+                        <option value=1>Approved</option>
+                        <option value=0>Pending</option>
+                        <option selected=2>Declined</option>
 
+                    </select>
                 </div>
-            @endif
-            <div class="col-lg-5 pe-lg-3 mb-5">
-                <label class="form-label" for="OrgDeptUser">Company </span>
 
-                </label>
-                <input type="text" class="form-control" name="name_seacrh_filter" id="name_seacrh_filter"
-                    placeholder="Enter Company Name " wire:model.defer="name_seacrh_filter">
-            </div>
-            <div class="col-lg-5 ps-lg-3 mb-5 {{ $hideProvider ? 'hidden' : '' }}">
-                <label class="form-label" for="provider_ids">Provider</label>
-                <select wire:model.defer="provider_ids" name="provider_ids" id="provider_ids"
-                    data-placeholder="Select Provider" multiple class="select2 form-select" tabindex="">
-                    <option value=""></option>
-                    @if (isset($filterProviders))
-                        @foreach ($filterProviders as $provider)
-                            <option value="{{ $provider['id'] }}">{{ $provider['name'] }}</option>
-                        @endforeach
-                    @endif
-                </select>
-            </div>
-            <div class="col-lg-5 pe-lg-3 mb-5">
-                <label class="form-label" for="tags">Tags
-                    <small>(coming soon)</small>
-                </label>
-
-                <select disabled wire:model.defer="tag_names" data-placeholder="Select Tags" multiple
-                    class="select2 form-select" tabindex="" id="tags_selected">
-                    <option value=""></option>
-                    @if (isset($tags))
-                        @foreach ($tags as $tag)
-                            <option value="{{ $tag->name }}">{{ $tag->name }}</option>
-                        @endforeach
-                    @endif
-                </select>
-            </div>
-            @if (isset($setupValues['industries']))
                 <div class="col-lg-5 ps-lg-3 mb-5">
-                    <label class="form-label">Industry</label>
-                    {!! $setupValues['industries']['rendered'] !!}
-
+                    <label class="form-label">Booking Number</label>
+                    <input type="text" class="form-control" name="booking_number_filter"
+                        id="booking_number_filter" placeholder="Enter Booking Number"
+                        wire:model.defer="booking_number_filter">
                 </div>
             @endif
-            <div class="col-lg-5 ps-lg-3 mb-5">
-                <label class="form-label">Status</label>
-                <select data-placeholder="Select Booking Status" wire:model.defer="booking_status_filter"
-                    class="select2 form-select" tabindex="" id="booking_status_filter"
-                    name="booking_status_filter">
-                    <option value=""></option>
-                    <option value=1>Approved</option>
-                    <option value=0>Pending</option>
-                    <option selected=2>Declined</option>
-
-                </select>
-            </div>
-
-            <div class="col-lg-5 ps-lg-3 mb-5">
-                <label class="form-label">Booking Number</label>
-                <input type="text" class="form-control" name="booking_number_filter" id="booking_number_filter"
-                    placeholder="Enter Booking Number" wire:model.defer="booking_number_filter">
-            </div>
         </div>
     </div>
 </div>
