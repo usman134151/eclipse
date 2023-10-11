@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\App\Common\Bookings;
 
+use App\Helpers\SetupHelper;
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingAvailableProvider;
 use App\Models\Tenant\BookingDepartment;
@@ -33,6 +34,17 @@ class BookingList extends Component
 	public $providerPanelType = 0; //to ensure only clicked panel loads in provider-panel 
 	public $bookingNumber = '', $selectedProvider = 0;
 	public $deleteRecordId = 0;
+	public $setupValues = [
+		'accommodations' => ['parameters' => ['Accommodation', 'id', 'name', 'status', 1, 'name', true, 'accommodation_search_filter', '', 'accommodation_search_filter', 2]],
+		'specializations' => ['parameters' => ['Specialization', 'id', 'name', 'status', 1, 'name', true, 'booking_specialization_search_filter', '', 'booking_specialization_search_filter', 4]],
+		'services' => ['parameters' => ['ServiceCategory', 'id', 'name', 'status', 1, 'name', true, 'booking_service_filter', '', 'booking_service_filter', 3]],
+		"service_type_ids" => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 5, 'setup_value_label', true, 'service_type_search_filter', '', 'service_type_search_filter', 4]],
+		
+		// 'tags' => ['parameters' => ['Tag', 'id', 'name', null, null, 'name', true, 'tags', '', 'tag_names', 6]],
+		'industries' => ['parameters' => ['Industry', 'id', 'name', 'status', 1, 'name', true, 'industry_filter', '', 'industry_filter', 7]],
+		// 'certifications' => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 8, 'setup_value_label', true, ' certifications', '', ' certificationsassignProvider', 9]],
+
+	];
 
 
 	//adv filter variables
@@ -367,6 +379,7 @@ class BookingList extends Component
 
 	public function mount()
 	{
+		$this->setupValues = SetupHelper::loadSetupValues($this->setupValues);
 
 
 		if (session('isProvider')) {

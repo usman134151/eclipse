@@ -1,4 +1,4 @@
-@props(['type' => '', 'hideProvider' => false, 'filterProviders'=>[]])
+@props(['type' => '', 'hideProvider' => false, 'filterProviders' => [], 'setupValues' => []])
 <div class="row">
     @if ($type == 'invoice-filters')
         <div class="col-lg-5 pe-lg-3 ">
@@ -22,36 +22,18 @@
             </div>
         </div>
     @else
-        <div class="col-lg-5 pe-lg-3 ">
-            <label class="form-label">Filter by Accommodation</label>
-            {!! App\Helpers\SetupHelper::createDropDown(
-                'Accommodation',
-                'id',
-                'name',
-                'status',
-                1,
-                'name',
-                true,
-                'accommodation_search_filter',
-                '',
-                'accommodation_search_filter',
-            ) !!}
-        </div>
-        <div class="col-lg-5 ps-lg-3">
-            <label class="form-label" for="service">Filter by Service</label>
-            {!! App\Helpers\SetupHelper::createDropDown(
-                'ServiceCategory',
-                'id',
-                'name',
-                'service_status',
-                1,
-                'name',
-                true,
-                'booking_service_filter',
-                '',
-                'booking_service_filter',
-            ) !!}
-        </div>
+        @if (isset($setupValues['accommodations']))
+            <div class="col-lg-5 pe-lg-3 ">
+                <label class="form-label">Filter by Accommodation</label>
+                {!! $setupValues['accommodations']['rendered'] !!}
+            </div>
+        @endif
+        @if (isset($setupValues['services']))
+            <div class="col-lg-5 ps-lg-3">
+                <label class="form-label" for="service">Filter by Service</label>
+                {!! $setupValues['services']['rendered'] !!}
+            </div>
+        @endif
     @endif
     <div class="col-lg-2 d-flex text-nowrap align-items-center align-self-end ">
 
@@ -65,7 +47,7 @@
 
 </div>
 <div class="collapse" id="collapseAdvanceFilter">
-    <div class="col-lg-12">
+    <div class="col-lg-12 mt-3">
         <div class="row">
             @if ($type == 'invoice-filters')
                 <div class="col-lg-5 pe-lg-3 mb-5">
@@ -104,47 +86,25 @@
                     </select>
                 </div>
             @endif
+            @if (isset($setupValues['specializations']))
+                <div class="col-lg-5 pe-lg-3 mb-5">
+                    <label class="form-label">Specialization</label>
+                    {!! $setupValues['specializations']['rendered'] !!}
+                </div>
+            @endif
+            @if (isset($setupValues['service_type_ids']))
+                <div class="col-lg-5 ps-lg-3 mb-5">
+                    <label class="form-label">Service Type</label>
+                    {!! $setupValues['service_type_ids']['rendered'] !!}
+
+                </div>
+            @endif
             <div class="col-lg-5 pe-lg-3 mb-5">
-                <label class="form-label">Specialization</label>
-                {{-- updated by shanila to add multiselectdropdown --}}
-                {!! App\Helpers\SetupHelper::createDropDown(
-                    'Specialization',
-                    'id',
-                    'name',
-                    'status',
-                    1,
-                    'name',
-                    true,
-                    'booking_specialization_search_filter',
-                    '',
-                    'booking_specialization_search_filter',
-                ) !!}
-                {{-- ended updated --}}
-            </div>
-            <div class="col-lg-5 ps-lg-3 mb-5">
-                <label class="form-label">Service Type</label>
-                {{-- updated by shanila to add multiselectdropdown --}}
-                {!! App\Helpers\SetupHelper::createDropDown(
-                    'SetupValue',
-                    'id',
-                    'setup_value_label',
-                    'setup_id',
-                    '5',
-                    'id',
-                    true,
-                    'service_type_search_filter',
-                    'form-check ',
-                    'service_type_search_filter',
-                ) !!}
-                {{-- ended updated --}}
-            </div>
-            <div class="col-lg-5 pe-lg-3 mb-5">
-                <label class="form-label" for="OrgDeptUser">Company / Department <span><small>(coming soon)</small></span>
-               
+                <label class="form-label" for="OrgDeptUser">Company </span>
+
                 </label>
-                    <input type="text" class="form-control" name="name_seacrh_filter" id="name_seacrh_filter"
-                    placeholder="Enter Company Name / Department Name"
-                    wire:model.defer="name_seacrh_filter">
+                <input type="text" class="form-control" name="name_seacrh_filter" id="name_seacrh_filter"
+                    placeholder="Enter Company Name " wire:model.defer="name_seacrh_filter">
             </div>
             <div class="col-lg-5 ps-lg-3 mb-5 {{ $hideProvider ? 'hidden' : '' }}">
                 <label class="form-label" for="provider_ids">Provider</label>
@@ -173,23 +133,13 @@
                     @endif
                 </select>
             </div>
-            <div class="col-lg-5 ps-lg-3 mb-5">
-                <label class="form-label">Industry</label>
-                {{-- updated by shanila to add multiselectdropdown --}}
-                {!! App\Helpers\SetupHelper::createDropDown(
-                    'Industry',
-                    'id',
-                    'name',
-                    'status',
-                    1,
-                    'name',
-                    true,
-                    'industry_filter',
-                    '',
-                    'industry_filter',
-                ) !!}
-                {{-- ended updated --}}
-            </div>
+            @if (isset($setupValues['industries']))
+                <div class="col-lg-5 ps-lg-3 mb-5">
+                    <label class="form-label">Industry</label>
+                    {!! $setupValues['industries']['rendered'] !!}
+
+                </div>
+            @endif
             <div class="col-lg-5 ps-lg-3 mb-5">
                 <label class="form-label">Status</label>
                 <select data-placeholder="Select Booking Status" wire:model.defer="booking_status_filter"
@@ -206,14 +156,14 @@
             <div class="col-lg-5 ps-lg-3 mb-5">
                 <label class="form-label">Booking Number</label>
                 <input type="text" class="form-control" name="booking_number_filter" id="booking_number_filter"
-                    placeholder="Enter Booking Number"
-                    wire:model.defer="booking_number_filter">
+                    placeholder="Enter Booking Number" wire:model.defer="booking_number_filter">
             </div>
         </div>
     </div>
 </div>
-<div class="row">    <div class="col-lg-4 d-flex mb-5  mt-1">
-     <div class="text-start my-1 mb-lg-0 me-1 ">
+<div class="row">
+    <div class="col-lg-4 d-flex mb-5  mt-1">
+        <div class="text-start my-1 mb-lg-0 me-1 ">
             <button wire:click="applyFilters" type="button" class="btn btn-xs btn-outline-dark rounded">
                 Apply Filters
             </button>
@@ -223,4 +173,5 @@
                 Clear all
             </button>
         </div>
-    </div></div>
+    </div>
+</div>

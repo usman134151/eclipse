@@ -435,7 +435,7 @@
                                 <tr role="row" class="odd">
                                     <td class="text-center">
                                         <input class="form-check-input booking-checkbox" type="checkbox" value="{{ $booking->id }}"
-                                            wire:key='{{ $loop->index }}' wire:model.defer="selectedBookings" data-price="{{ $booking->payment->total_amount }}"
+                                            wire:key='{{ $loop->index }}' wire:model.defer="selectedBookings" data-price="{{ $booking->payment ? $booking->payment->total_amount : 0 }}"
                                             aria-label="Select Booking">
                                     </td>
                                     <td>
