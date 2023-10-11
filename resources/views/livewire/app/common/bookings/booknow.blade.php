@@ -995,7 +995,7 @@
                                 </div>
                             @endforeach     
                         @endif                                
-                        @if(is_null($formIds) && count($formIds)==0)
+                        @if(is_null($formIds) || count($formIds)==0)
                             <div class="row between-section-segment-spacing">
                                 <div class="col-12 justify-content-center  d-flex flex-column flex-md-row gap-2">
                                     <h4>No form attached with industry / service(s)</h4>
