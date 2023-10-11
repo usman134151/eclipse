@@ -312,6 +312,11 @@ class BusinessSetup extends Component
         
         
 		$this->emit('saveSchedule');
+        $this->dispatchBrowserEvent('swal:modal', [
+            'type' => 'success',
+            'title' => 'Success',
+            'text' => "Business Schedule has been saved successfully",
+        ]);
 		
 	}
     

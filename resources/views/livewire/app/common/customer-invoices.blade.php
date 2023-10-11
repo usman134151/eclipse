@@ -80,12 +80,12 @@
 
                                 </div>
                             </div>
-                            <div class="row between-section-segment-spacing">
-                                <small>(coming soon)</small>
-                                <x-advancefilters type="invoice-filters"/>
+                            <div class="row between-section-segment-spacing  rounded p-4 mb-1 bg-muted">
+                                {{-- <small>(coming soon)</small> --}}
+                                <x-advancefilters type="invoice-filters" :bmanagers="$bmanagers" :setupValues="$setupValues"/>
                             </div>
                             @if (!$showForm)
-                                @livewire('app.common.lists.customer-invoices')
+                                @livewire('app.common.lists.customer-invoices', ['filter_companies' => $filter_companies,'filter_bmanager' => $filter_bmanager])
                             @endif
 
                             {{-- icon bar start --}}

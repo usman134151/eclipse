@@ -1,4 +1,4 @@
-<div x-data="{ rescheduleBooking: false,cancelBooking:false, assignProvider: false, providerSavedForms: false, offcanvasOpenCheckIn: false, offcanvasOpenCheckOut: false, step: 1 }">
+<div x-data="{ rescheduleBooking: false, cancelBooking: false, assignProvider: false, providerSavedForms: false, offcanvasOpenCheckIn: false, offcanvasOpenCheckOut: false, step: 1 }">
     <div id="loader-section" class="loader-section" wire:loading>
         <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
             <div class="spinner-border" role="status" aria-live="polite">
@@ -44,7 +44,6 @@
         @livewire('app.common.bookings.booking-details', ['booking_id' => $booking_id])
         @include('panels.provider.check-out')
         @include('panels.provider.check-in')
-
     @elseif($importFile)
         @livewire('app.common.import.bookings')
     @else
@@ -123,7 +122,8 @@
                             @endif
                             <div>
                                 <div class="" wire:ignore>
-                                    <x-advancefilters type="" :filterProviders="$filterProviders" :hideProvider="false" :setupValues="$setupValues" />
+                                    <x-advancefilters type="" :filterProviders="$filterProviders" :hideProvider="false"
+                                        :setupValues="$setupValues" />
                                 </div>
                                 <div class="d-flex flex-column flex-md-row justify-content-between mb-2">
 
@@ -186,6 +186,7 @@
                                                             <th scope="col">Accommodation</th>
                                                             <th scope="col">Address</th>
                                                             <th scope="col">Company</th>
+                                                            <th scope="col">No. of Providers</th>
                                                             <th scope="col">Billing</th>
                                                             <th scope="col">Status</th>
                                                             <th scope="col" class="text-center">Action</th>
@@ -301,7 +302,12 @@
                                                                         <div>
                                                                             {{ $booking['company'] ? $booking['company']['name'] : '' }}
                                                                         </div>
-                                                                        <div>No. of Providers:
+
+                                                                    </td>
+                                                                    <td class="{{ $cssClass }}"
+                                                                        style="background-color:{{ $colorCodes[$code] }};">
+
+                                                                        <div>
                                                                             {{ $booking['provider_count'] }}
                                                                         </div>
                                                                     </td>
@@ -492,7 +498,7 @@
                                                                                     </svg>
                                                                                 </a>
                                                                             @endif
-                                                                            @if ($bookingType == 'Draft' || $booking->status==3 || $booking->status==4)
+                                                                            @if ($bookingType == 'Draft' || $booking->status == 3 || $booking->status == 4)
                                                                                 <a href="#"
                                                                                     title="Delete Booking"
                                                                                     aria-label="Delete Booking"
@@ -528,7 +534,7 @@
                                                                                         </svg>
                                                                                         {{-- End of update by Shanila --}}
                                                                                     </a>
-                                                                                    
+
                                                                                     <div
                                                                                         class="tablediv dropdown-menu fadeIn">
                                                                                         @if ($bookingType != 'Invitations')
@@ -611,70 +617,86 @@
                                                                                                     class="fa fa-comment"></i>
                                                                                                 Message Provider Team
                                                                                             </a>
-                                                                                            @if($booking->is_closed==0) 
-                                                                                            <a href="#" wire:click.prevent="closeBooking({{ $booking->id }})"
-                                                                                                title="Close booking"
-                                                                                                aria-label="Close booking and move to invoice generator"
-                                                                                                class="dropdown-item">
-                                                                                                <svg aria-label="Invoice Generator" width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                                                        <use xlink:href="/css/admin-menu.svg#invoice-genrator-icon"></use>
+                                                                                            @if ($booking->is_closed == 0)
+                                                                                                <a href="#"
+                                                                                                    wire:click.prevent="closeBooking({{ $booking->id }})"
+                                                                                                    title="Close booking"
+                                                                                                    aria-label="Close booking and move to invoice generator"
+                                                                                                    class="dropdown-item">
+                                                                                                    <svg aria-label="Invoice Generator"
+                                                                                                        width="19"
+                                                                                                        height="20"
+                                                                                                        viewBox="0 0 19 20"
+                                                                                                        fill="none"
+                                                                                                        xmlns="http://www.w3.org/2000/svg">
+                                                                                                        <use
+                                                                                                            xlink:href="/css/admin-menu.svg#invoice-genrator-icon">
+                                                                                                        </use>
                                                                                                     </svg>
-                                                                                               Close Booking
-                                                                                            </a>
+                                                                                                    Close Booking
+                                                                                                </a>
                                                                                             @else
-                                                                                            <a href="#" wire:click.prevent="reOpenBooking({{ $booking->id }})"
-                                                                                                title="Reopen Booking"
-                                                                                                aria-label="Reopen Booking"
-                                                                                                class="dropdown-item">
-                                                                                                <svg aria-label="Invoice Generator" width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                                                        <use xlink:href="/css/admin-menu.svg#invoice-genrator-icon"></use>
+                                                                                                <a href="#"
+                                                                                                    wire:click.prevent="reOpenBooking({{ $booking->id }})"
+                                                                                                    title="Reopen Booking"
+                                                                                                    aria-label="Reopen Booking"
+                                                                                                    class="dropdown-item">
+                                                                                                    <svg aria-label="Invoice Generator"
+                                                                                                        width="19"
+                                                                                                        height="20"
+                                                                                                        viewBox="0 0 19 20"
+                                                                                                        fill="none"
+                                                                                                        xmlns="http://www.w3.org/2000/svg">
+                                                                                                        <use
+                                                                                                            xlink:href="/css/admin-menu.svg#invoice-genrator-icon">
+                                                                                                        </use>
                                                                                                     </svg>
-                                                                                               Reopen Booking
-                                                                                            </a>                                                                                            
+                                                                                                    Reopen Booking
+                                                                                                </a>
                                                                                             @endif
-                                                                                            @if($booking->status==3 || $booking->status==4)
-                                                                                            <a href="javascript:void(0)"
-                                                                                                aria-label="Reinstate booking"
-                                                                                                title="Reinstate booking"
-                                                                                                class="dropdown-item"
-                                                                                                wire:click="reinstate({{$booking->id}})">
-                                                                                                <svg width="17"
-                                                                                                    height="18"
-                                                                                                    viewBox="0 0 17 18"
-                                                                                                    fill="none"
-                                                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                                                    <path
-                                                                                                        d="M8.3125 16.8125H1.4375V1.1875H14.5625V9.3125M15.8125 12.4375L11.4375 16.8125M5.1875 8.6875H10.8125M5.1875 12.4375H7.0625M5.1875 4.9375H10.8125M11.4375 12.4375L15.8125 16.8125"
-                                                                                                        stroke="black"
-                                                                                                        stroke-width="1.5"
-                                                                                                        stroke-linecap="round"
-                                                                                                        stroke-linejoin="round">
-                                                                                                    </path>
-                                                                                                </svg>
-                                                                                                Reinstate booking
-                                                                                            </a>
-                                                                                           
+                                                                                            @if ($booking->status == 3 || $booking->status == 4)
+                                                                                                <a href="javascript:void(0)"
+                                                                                                    aria-label="Reinstate booking"
+                                                                                                    title="Reinstate booking"
+                                                                                                    class="dropdown-item"
+                                                                                                    wire:click="reinstate({{ $booking->id }})">
+                                                                                                    <svg width="17"
+                                                                                                        height="18"
+                                                                                                        viewBox="0 0 17 18"
+                                                                                                        fill="none"
+                                                                                                        xmlns="http://www.w3.org/2000/svg">
+                                                                                                        <path
+                                                                                                            d="M8.3125 16.8125H1.4375V1.1875H14.5625V9.3125M15.8125 12.4375L11.4375 16.8125M5.1875 8.6875H10.8125M5.1875 12.4375H7.0625M5.1875 4.9375H10.8125M11.4375 12.4375L15.8125 16.8125"
+                                                                                                            stroke="black"
+                                                                                                            stroke-width="1.5"
+                                                                                                            stroke-linecap="round"
+                                                                                                            stroke-linejoin="round">
+                                                                                                        </path>
+                                                                                                    </svg>
+                                                                                                    Reinstate booking
+                                                                                                </a>
                                                                                             @else
-                                                                                            <a href="javascript:void(0)"
-                                                                                                aria-label="Cancel"
-                                                                                                title="Cancel"
-                                                                                                class="dropdown-item"
-                                                                                                @click="cancelBooking = true" wire:click="getBookingData({{$booking->id}})">
-                                                                                                <svg width="17"
-                                                                                                    height="18"
-                                                                                                    viewBox="0 0 17 18"
-                                                                                                    fill="none"
-                                                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                                                    <path
-                                                                                                        d="M8.3125 16.8125H1.4375V1.1875H14.5625V9.3125M15.8125 12.4375L11.4375 16.8125M5.1875 8.6875H10.8125M5.1875 12.4375H7.0625M5.1875 4.9375H10.8125M11.4375 12.4375L15.8125 16.8125"
-                                                                                                        stroke="black"
-                                                                                                        stroke-width="1.5"
-                                                                                                        stroke-linecap="round"
-                                                                                                        stroke-linejoin="round">
-                                                                                                    </path>
-                                                                                                </svg>
-                                                                                                Cancel Booking
-                                                                                            </a>
+                                                                                                <a href="javascript:void(0)"
+                                                                                                    aria-label="Cancel"
+                                                                                                    title="Cancel"
+                                                                                                    class="dropdown-item"
+                                                                                                    @click="cancelBooking = true"
+                                                                                                    wire:click="getBookingData({{ $booking->id }})">
+                                                                                                    <svg width="17"
+                                                                                                        height="18"
+                                                                                                        viewBox="0 0 17 18"
+                                                                                                        fill="none"
+                                                                                                        xmlns="http://www.w3.org/2000/svg">
+                                                                                                        <path
+                                                                                                            d="M8.3125 16.8125H1.4375V1.1875H14.5625V9.3125M15.8125 12.4375L11.4375 16.8125M5.1875 8.6875H10.8125M5.1875 12.4375H7.0625M5.1875 4.9375H10.8125M11.4375 12.4375L15.8125 16.8125"
+                                                                                                            stroke="black"
+                                                                                                            stroke-width="1.5"
+                                                                                                            stroke-linecap="round"
+                                                                                                            stroke-linejoin="round">
+                                                                                                        </path>
+                                                                                                    </svg>
+                                                                                                    Cancel Booking
+                                                                                                </a>
                                                                                             @endif
                                                                                         @endif
 

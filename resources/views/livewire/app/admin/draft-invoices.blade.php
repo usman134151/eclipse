@@ -52,7 +52,7 @@
                                 from "Payment Manager."
                             </p>
                             <!-- BEGIN: Filters -->
-                            <div class="bg-muted rounded p-4 mb-1">
+                            {{-- <div class="bg-muted rounded p-4 mb-1"> --}}
 
                                 {{-- <div class="d-lg-flex gap-5 align-items-center mb-4">
                                     <div class="mb-4 mb-lg-0">
@@ -123,8 +123,8 @@
                                     </div>
 
                                 </div> --}}
-                                <x-advancefilters type="invoice-filters"  :setupValues="[]"/>
-                            </div>
+                                {{-- <x-advancefilters wire:ignore.self type="invoice-filters" :bmanagers="$bmanagers" :setupValues="$setupValues"/> --}}
+                            {{-- </div> --}}
                             <!-- END: Filters -->
 
                             {{-- <div class="form-check">
