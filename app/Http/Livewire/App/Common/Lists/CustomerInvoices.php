@@ -15,6 +15,7 @@ final class CustomerInvoices extends PowerGridComponent
     public $status = [2 => ['code' => '/css/provider.svg#green-dot', 'title' => 'Paid'], 1 => ['code' => '/css/common-icons.svg#blue-dot', 'title' => 'Issued'], 3 => ['code' => '/css/provider.svg#red-dot', 'title' => 'Overdue'], 4 => ['code' => '/css/provider.svg#yellow-dot', 'title' => 'Partial']];
     protected $listeners = ['refresh' => 'setUp'];
     public $invoice_status = '', $company_id = null;
+    public $filter_bmanager, $filter_companies;
 
     /*
     |--------------------------------------------------------------------------
@@ -36,6 +37,30 @@ final class CustomerInvoices extends PowerGridComponent
                 ->showRecordCount(),
         ];
     }
+
+    protected function getListeners(): array
+    {
+        return array_merge(
+            parent::getListeners(),
+            [
+                'updateVal'   => 'updateVal',
+                'resetFilters'   => 'resetFilters',
+
+            ]
+        );
+    }
+
+    public function updateVal($attrName, $val)
+    {
+        $this->$attrName = $val;
+    }
+
+    public function resetFilters()
+    {
+        $this->filter_bmanager = null;
+        $this->filter_companies = null;
+    }
+  
 
     /*
     |--------------------------------------------------------------------------
@@ -62,10 +87,15 @@ final class CustomerInvoices extends PowerGridComponent
             $query->where('invoice_status', '2');
 
 
-        // $query->with('company');
         $query->join('companies', 'companies.id', 'invoices.company_id');
         $query->select(['companies.name', 'companies.company_logo', 'invoices.*']);
         // $query->orderBy('invoice_due_date');
+
+        if ($this->filter_companies)
+            $query->where('company_id', $this->filter_companies);
+
+        if ($this->filter_bmanager)
+            $query->where('billing_manager_id', $this->filter_bmanager);
         return $query;
     }
 
@@ -210,7 +240,7 @@ final class CustomerInvoices extends PowerGridComponent
     public function columns(): array
     {
         $cols = [
-            Column::make('Invoice', 'invoice_detail', 'invoice_number')
+            Column::make('Invoice', 'invoice_detail')
                 ->field('invoice_detail', 'invoice_number')
                 ->searchable()
                 ->sortable(),
@@ -226,7 +256,7 @@ final class CustomerInvoices extends PowerGridComponent
             Column::make('Actions', 'edit')->visibleInExport(false),
         ];
         if (!session()->get('isCustomer'))
-            $cols[1] =            Column::make('Recipient', 'recipient', 'name')
+            $cols[1] =            Column::make('Recipient', 'recipient', 'companies.name')
                 ->searchable()->sortable();
 
 
