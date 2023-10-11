@@ -461,6 +461,9 @@
                                 <div
                                     class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                                     <button type="submit" class="btn btn-primary rounded"
+                                        x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });"
+                                        wire:click.prevent="save(1)">Save Changes</button>
+                                    <button type="submit" class="btn btn-primary rounded"
                                         x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('business-hours')"
                                         wire:click.prevent="save(0)">Next</button>
                                 </div>
@@ -479,6 +482,8 @@
                                 <button type="button" class="btn btn-outline-dark rounded mx-2"
                                     x-on:click="$wire.switch('configuration-setting')"
                                     wire:click.prevent="saveSchedule">Back</button>
+                                 <button type="button" class="btn btn-primary rounded"
+                                    wire:click.prevent="saveSchedule(1)">Save Changes</button>
                                 <button type="button" class="btn btn-primary rounded"
                                     x-on:click="$wire.switch('payments')"
                                     wire:click.prevent="saveSchedule">Next</button>
