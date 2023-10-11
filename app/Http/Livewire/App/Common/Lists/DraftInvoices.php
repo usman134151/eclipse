@@ -21,9 +21,9 @@ final class DraftInvoices extends PowerGridComponent
 	// public $status, $filter_companies=null, $filter_specialization=[], $filter_service_type_ids=[], $filter_bmanager=null;
 
 	// for adv search filters
-	public function updateVal($attrName,$val){
+	public function updateVal($attrName, $val)
+	{
 		$this->$attrName = $val;
-		
 	}
 
 	protected function getListeners(): array
@@ -98,11 +98,11 @@ final class DraftInvoices extends PowerGridComponent
 		')
 			->groupBy('companies.id', 'companies.name', 'companies.company_logo')  // <-- Add companies.name here
 			->having('pending_invoices', '>', 0);
-		
+
 		// if($this->filter_companies){
 		// 	$subQuery->where('bookings.company_id',$this->filter_companies);
 		// }
-
+		// dd(Company::fromSub($subQuery, 'sub')->select(['sub.*'])->get());
 		return Company::fromSub($subQuery, 'sub')
 			->select(['sub.*']);
 	}
@@ -140,8 +140,8 @@ final class DraftInvoices extends PowerGridComponent
 	public function addColumns(): PowerGridEloquent
 	{
 		return PowerGrid::eloquent()
-
-			->addColumn('name', function (Company $modal) {
+			->addColumn('name')
+			->addColumn('company_name', function (Company $modal) {
 				$logo = $modal->company_logo != null ? $modal->company_logo : '/tenant-resources/images/portrait/small/image.png';
 				return '<div class="d-flex gap-2 align-items-center">
 							<div>
@@ -211,19 +211,17 @@ final class DraftInvoices extends PowerGridComponent
 	public function columns(): array
 	{
 		return [
-			Column::make('Provider', 'name', '')
-				->searchable()
-				->sortable(),
-			Column::make('TOTAL PENDING', 'pending', ''),
-			Column::make('No. OF BOOKINGS', 'bookings', ''),
-			Column::make('PREFERRED PAYMENT METHOD', 'method', '')
-				->searchable()
-				->sortable(),
-			Column::make('CHAT', 'chat', ''),
+			Column::make('Company', 'company_name','')
+				->field('company_name', 'name')
+				->searchable(),
+			Column::make('TOTAL PENDING', 'pending'),
+			Column::make('No. OF BOOKINGS', 'bookings'),
+			Column::make('PREFERRED PAYMENT METHOD', 'method'),
+			Column::make('CHAT', 'chat'),
 			Column::make('<svg width="12" height="15" viewBox="0 0 12 15" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path d="M5.875 1L10.75 7.5L5.875 14" stroke="white" stroke-width="1.625" stroke-linecap="round" stroke-linejoin="round"/>
 								<path d="M1 1L5.875 7.5L1 14" stroke="white" stroke-width="1.625" stroke-linecap="round" stroke-linejoin="round"/>
-							</svg>', 'next', '')
+							</svg>', 'next',)
 		];
 	}
 

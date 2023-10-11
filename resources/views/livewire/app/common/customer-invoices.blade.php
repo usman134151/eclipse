@@ -80,10 +80,10 @@
 
                                 </div>
                             </div>
-                            <div class="row between-section-segment-spacing">
+                            {{-- <div class="row between-section-segment-spacing">
                                 <small>(coming soon)</small>
                                 <x-advancefilters type="invoice-filters"/>
-                            </div>
+                            </div> --}}
                             @if (!$showForm)
                                 @livewire('app.common.lists.customer-invoices')
                             @endif

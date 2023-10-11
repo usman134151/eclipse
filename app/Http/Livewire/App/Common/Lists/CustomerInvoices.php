@@ -30,7 +30,7 @@ final class CustomerInvoices extends PowerGridComponent
             Exportable::make('export')
                 ->striped()
                 ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
-            Header::make()->showSearchInput()->showToggleColumns(),
+            Header::make()->showSearchInput(),
             Footer::make()
                 ->showPerPage(config('app.per_page'))
                 ->showRecordCount(),
@@ -62,10 +62,10 @@ final class CustomerInvoices extends PowerGridComponent
             $query->where('invoice_status', '2');
 
 
-        $query->with('company');
-
-
-        $query->orderBy('invoice_due_date');
+        // $query->with('company');
+        $query->join('companies', 'companies.id', 'invoices.company_id');
+        $query->select(['companies.name', 'companies.company_logo', 'invoices.*']);
+        // $query->orderBy('invoice_due_date');
         return $query;
     }
 
@@ -101,23 +101,26 @@ final class CustomerInvoices extends PowerGridComponent
     public function addColumns(): PowerGridEloquent
     {
         $cols =  PowerGrid::eloquent()
+            ->addColumn('invoice_number')
+            ->addColumn('name')
+
             ->addColumn('invoice_detail', function (Invoice $model) {
                 if ($this->invoice_status == 'paid' && session()->get('isCustomer'))
                     $data = '<a href="#">' . $model->invoice_number . '</a><p class="mt-1">' . date_format(date_create($model->paid_on), "m/d/Y h:i A") . '</p>';
-            elseif ($this->invoice_status == 'pending' && session()->get('isCustomer'))
-                $data =  '<a >' . $model->invoice_number . '</a><p class="mt-1">' . date_format(date_create($model->invoice_date), "m/d/Y") . '</p>';
-              
-                    else
+                elseif ($this->invoice_status == 'pending' && session()->get('isCustomer'))
+                    $data =  '<a >' . $model->invoice_number . '</a><p class="mt-1">' . date_format(date_create($model->invoice_date), "m/d/Y") . '</p>';
+
+                else
                     $data =  '<a @click="offcanvasOpen = true">' . $model->invoice_number . '</a><p class="mt-1">' . date_format(date_create($model->invoice_due_date), "m/d/Y") . '</p>';
                 return $data;
             });
 
         if (!session()->get('isCustomer'))
             $cols->addColumn('recipient', function (Invoice $model) {
-                if ($model['company']['company_logo'] == null)
-                    $col = '<div class="d-flex gap-2 align-items-center"><div class=""><img width="50" style="width:64px;height:64px;top:1rem" src="/tenant-resources/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Company Profile Image"></div><div class=""><div class="fw-semibold fs-6 text-nowrap">' . $model['company']['name'] . '</div></div></div>';
+                if ($model->company_logo == null)
+                    $col = '<div class="d-flex gap-2 align-items-center"><div class=""><img width="50" style="width:64px;height:64px;top:1rem" src="/tenant-resources/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Company Profile Image"></div><div class=""><div class="fw-semibold fs-6 text-nowrap">' . $model->name . '</div></div></div>';
                 else
-                    $col = '<div class="d-flex gap-2 align-items-center"><div class=""><img wire:ignore width="50" style="width:64px;height:64px;top:1rem" src="' . $model['company']['company_logo'] . '" class="img-fluid rounded-circle" alt="Company Profile Image"></div><div class=""><div class="fw-semibold fs-6 text-nowrap">' . $model['company']['name'] . '</div></div></div>';
+                    $col = '<div class="d-flex gap-2 align-items-center"><div class=""><img wire:ignore width="50" style="width:64px;height:64px;top:1rem" src="' . $model->company_logo . '" class="img-fluid rounded-circle" alt="Company Profile Image"></div><div class=""><div class="fw-semibold fs-6 text-nowrap">' . $model->name . '</div></div></div>';
                 return $col;
             });
 
@@ -207,14 +210,13 @@ final class CustomerInvoices extends PowerGridComponent
     public function columns(): array
     {
         $cols = [
-            Column::make('Invoice', 'invoice_detail', '')
-                ->field('invoice_detail', 'invoices.invoice_number')
+            Column::make('Invoice', 'invoice_detail', 'invoice_number')
+                ->field('invoice_detail', 'invoice_number')
                 ->searchable()
                 ->sortable(),
-            // ->editOnClick(),
             Column::make('Due', 'due_date'),
 
-            Column::make('Po. No', 'po_number', 'companies.name'),
+            Column::make('Po. No', 'po_number', 'po_number')->searchable(),
             Column::make('Total Amount', 'total_amount'),
             Column::make('PDF', 'pdf'),
             Column::make('Payment Method', 'payment_method'),
@@ -224,7 +226,7 @@ final class CustomerInvoices extends PowerGridComponent
             Column::make('Actions', 'edit')->visibleInExport(false),
         ];
         if (!session()->get('isCustomer'))
-            $cols[1] =            Column::make('Recipient', 'recipient')
+            $cols[1] =            Column::make('Recipient', 'recipient', 'name')
                 ->searchable()->sortable();
 
 
