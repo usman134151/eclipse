@@ -15,6 +15,7 @@ use App\Models\Tenant\UserDetail;
 use App\Models\Tenant\Schedule;
 use App\Models\Tenant\Company;
 use App\Services\App\BookingOperationsService;
+use App\Services\App\NotificationService;
 use App\Models\Tenant\CustomizeForms;
 use App\Models\Tenant\Payment;
 use App\Services\App\AddressService;
@@ -388,29 +389,7 @@ class Booknow extends Component
           
             foreach($this->services as $service){
                
-               $serviceCalculations=[
-                "business_hour_charges" => $service["business_hour_charges"],
-                "after_business_hour_charges" =>  $service["after_business_hour_charges"],
-                "service_charges" => $service["service_charges"],
-                "additional_payments" => $service["additional_payments"],
-                "service_payment_total"=> $service["service_payment_total"],
-                "additional_charges" =>  $service["additional_charges"],
-                "additional_charges_total" => $service["additional_charges_total"],
-                "specialization_total" => $service["specialization_total"],
-                "specialization_charges" => $service["specialization_charges"],
-                "expedited_charges" => $service["expedited_charges"],
-                "duration_hour"=>$service['business_hours']+$service['after_business_hours'],
-                "duration_minute"=>$service['business_minutes']+$service['after_business_minutes'],
-                "total_duration"=>$service['total_duration'],
-                'day_rate'=>$service['day_rate'],
-                'business_hour_duration'=>($service['business_hours']*60)+($service['business_minutes']),
-                'after_hour_duration'=>($service['after_business_hours']*60)+($service['after_business_minutes']),
-
-               ];
-               $serviceCalculations=json_encode($serviceCalculations);
-             
-                
-                BookingServices::where('id', $service['id'])->where('booking_id', $this->booking->id)->update(['billed_total' => $service['billed_total'],'service_total'=>$service['total_charges'],'service_calculations'=>$serviceCalculations]);
+               BookingOperationsService::updateServiceCalculations($service,$this->booking->id);
             }
             $this->booking->type=1;
             //$this->booking->status=1;
@@ -447,6 +426,8 @@ class Booknow extends Component
                  
             $this->payment->save();
 
+
+
             if($this->booking->frequency_id>1){
 
                 //multiple bookings 
@@ -461,6 +442,16 @@ class Booknow extends Component
               
                 
             }
+
+            if(!$this->isEdit){
+              
+
+                $data['bookingData']=Booking::where('id',$this->booking->id)->with('booking_services','services','payment','company','customer','booking_provider')->first();
+                NotificationService::sendNotification('Booking: Created',$data);
+                     
+                    
+                   
+             }
 
             return redirect()->to('/admin/bookings/unassigned');
         }

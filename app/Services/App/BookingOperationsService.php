@@ -62,7 +62,7 @@ class BookingOperationsService{
     $booking->save();
     //end of data mapping for main booking table
     SELF::saveDetails($services,$dates,$selectedIndustries,$booking,$selectedDepartments);
-
+   
     return $booking;
     
   }
@@ -988,6 +988,31 @@ if ($startIndex <= $endIndex) {
   }
 
  
+  public static function updateServiceCalculations($service,$bookingId){
+    $serviceCalculations=[
+      "business_hour_charges" => $service["business_hour_charges"],
+      "after_business_hour_charges" =>  $service["after_business_hour_charges"],
+      "service_charges" => $service["service_charges"],
+      "additional_payments" => $service["additional_payments"],
+      "service_payment_total"=> $service["service_payment_total"],
+      "additional_charges" =>  $service["additional_charges"],
+      "additional_charges_total" => $service["additional_charges_total"],
+      "specialization_total" => $service["specialization_total"],
+      "specialization_charges" => $service["specialization_charges"],
+      "expedited_charges" => $service["expedited_charges"],
+      "duration_hour"=>$service['business_hours']+$service['after_business_hours'],
+      "duration_minute"=>$service['business_minutes']+$service['after_business_minutes'],
+      "total_duration"=>$service['total_duration'],
+      'day_rate'=>$service['day_rate'],
+      'business_hour_duration'=>($service['business_hours']*60)+($service['business_minutes']),
+      'after_hour_duration'=>($service['after_business_hours']*60)+($service['after_business_minutes']),
 
+     ];
+     $serviceCalculations=json_encode($serviceCalculations);
+   
+      
+      BookingServices::where('id', $service['id'])->where('booking_id', $bookingId)->update(['billed_total' => $service['billed_total'],'service_total'=>$service['total_charges'],'service_calculations'=>$serviceCalculations]);
+      return $service;
+  }
 
 }
