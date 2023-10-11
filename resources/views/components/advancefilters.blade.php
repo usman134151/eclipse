@@ -22,14 +22,18 @@
             </div>
         </div>
     @else
-        <div class="col-lg-5 pe-lg-3 ">
-            <label class="form-label">Filter by Accommodation</label>
-            {!! $setupValues['accommodations']['rendered'] !!}
-        </div>
-        <div class="col-lg-5 ps-lg-3">
-            <label class="form-label" for="service">Filter by Service</label>
-            {!! $setupValues['services']['rendered'] !!}
-        </div>
+        @if (isset($setupValues['accommodations']))
+            <div class="col-lg-5 pe-lg-3 ">
+                <label class="form-label">Filter by Accommodation</label>
+                {!! $setupValues['accommodations']['rendered'] !!}
+            </div>
+        @endif
+        @if (isset($setupValues['services']))
+            <div class="col-lg-5 ps-lg-3">
+                <label class="form-label" for="service">Filter by Service</label>
+                {!! $setupValues['services']['rendered'] !!}
+            </div>
+        @endif
     @endif
     <div class="col-lg-2 d-flex text-nowrap align-items-center align-self-end ">
 
@@ -82,15 +86,19 @@
                     </select>
                 </div>
             @endif
-            <div class="col-lg-5 pe-lg-3 mb-5">
-                <label class="form-label">Specialization</label>
-                {!! $setupValues['specializations']['rendered'] !!}
-            </div>
-            <div class="col-lg-5 ps-lg-3 mb-5">
-                <label class="form-label">Service Type</label>
-                {!! $setupValues['service_type_ids']['rendered'] !!}
+            @if (isset($setupValues['specializations']))
+                <div class="col-lg-5 pe-lg-3 mb-5">
+                    <label class="form-label">Specialization</label>
+                    {!! $setupValues['specializations']['rendered'] !!}
+                </div>
+            @endif
+            @if (isset($setupValues['service_type_ids']))
+                <div class="col-lg-5 ps-lg-3 mb-5">
+                    <label class="form-label">Service Type</label>
+                    {!! $setupValues['service_type_ids']['rendered'] !!}
 
-            </div>
+                </div>
+            @endif
             <div class="col-lg-5 pe-lg-3 mb-5">
                 <label class="form-label" for="OrgDeptUser">Company </span>
 
@@ -125,11 +133,13 @@
                     @endif
                 </select>
             </div>
-            <div class="col-lg-5 ps-lg-3 mb-5">
-                <label class="form-label">Industry</label>
-                {!! $setupValues['industries']['rendered'] !!}
+            @if (isset($setupValues['industries']))
+                <div class="col-lg-5 ps-lg-3 mb-5">
+                    <label class="form-label">Industry</label>
+                    {!! $setupValues['industries']['rendered'] !!}
 
-            </div>
+                </div>
+            @endif
             <div class="col-lg-5 ps-lg-3 mb-5">
                 <label class="form-label">Status</label>
                 <select data-placeholder="Select Booking Status" wire:model.defer="booking_status_filter"
