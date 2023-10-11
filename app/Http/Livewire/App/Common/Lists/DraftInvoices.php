@@ -18,7 +18,7 @@ final class DraftInvoices extends PowerGridComponent
 	use ActionButton;
 	protected $listeners = ['refresh' => 'setUp'];
 	public $name;
-	public $status, $filter_companies, $filter_specialization=[], $filter_service_type_ids=[], $filter_bmanager=null;
+	// public $status, $filter_companies=null, $filter_specialization=[], $filter_service_type_ids=[], $filter_bmanager=null;
 
 	// for adv search filters
 	public function updateVal($attrName,$val){
@@ -99,9 +99,9 @@ final class DraftInvoices extends PowerGridComponent
 			->groupBy('companies.id', 'companies.name', 'companies.company_logo')  // <-- Add companies.name here
 			->having('pending_invoices', '>', 0);
 		
-		if($this->filter_companies){
-			$subQuery->where('bookings.company_id',$this->filter_companies);
-		}
+		// if($this->filter_companies){
+		// 	$subQuery->where('bookings.company_id',$this->filter_companies);
+		// }
 
 		return Company::fromSub($subQuery, 'sub')
 			->select(['sub.*']);
