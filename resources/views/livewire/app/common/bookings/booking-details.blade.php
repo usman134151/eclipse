@@ -216,7 +216,7 @@
                                                     View Assigned Admin-staff
                                                 </a>
                                                 <a href="#" class="btn btn-has-icon btn-outline-dark rounded"
-                                                    @click="closeOutBooking = true">
+                                                    @click="closeOutBooking = true" wire:click="$emit('openBookingCloseOut',true)">
                                                     <svg width="30" height="30" viewBox="0 0 30 30"
                                                         fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <use xlink:href="/css/customer.svg#confirm-completion-icon">

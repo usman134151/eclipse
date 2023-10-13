@@ -1,8 +1,17 @@
-{{-- BEGIN: Reschedule Booking Off Canvas --}}
+{{-- BEGIN: CloseOut Booking Off Canvas --}}
 <x-off-canvas show="closeOutBooking" size="fullscreen">
-	<x-slot name="title">Close Booking # 1234566
-	<small>(coming soon)</small>
-	</x-slot>
-	@livewire('app.common.panels.booking-details.reschedule-booking')
+    <x-slot name="title">Close Booking # {{ $booking->booking_number }}
+    </x-slot>
+    @if ($closeOut)
+        @livewire('app.common.panels.booking-details.booking-close-out', ['booking' => $booking])
+    @endif
 </x-off-canvas>
-{{-- END: Reschedule Booking Off Canvas --}}
+<script>
+    window.addEventListener('open-booking-close-out', function(event) {
+        var close_out = event.detail.close_out;
+        Livewire.emit('openBookingCloseOut', close_out);
+
+
+    });
+</script>
+{{-- END: CloseOut Booking Off Canvas --}}
