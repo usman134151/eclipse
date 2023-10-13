@@ -38,7 +38,7 @@ class BookingServices extends Model
     }
     public function providers()
     {
-        return $this->hasMany(BookingProvider::class, 'id', 'booking_service_id');
+        return $this->belongsTo(BookingProvider::class, 'id', 'booking_service_id');
     }
     public function checked_out_providers()
     {

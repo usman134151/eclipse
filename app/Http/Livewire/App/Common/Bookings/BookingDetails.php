@@ -31,7 +31,7 @@ class BookingDetails extends Component
 
 	//panel
 	public $currentServiceId = 0, $counter;
-
+	public $close_counter = 0;
 
 	protected $rules = [
 		'booking.provider_notes' => 'nullable|string',
@@ -207,13 +207,13 @@ class BookingDetails extends Component
 		}
 	}
 	public function openBookingCloseOut($closeOut=false){
-		if ($this->counter == 0) {
+		if ($this->close_counter == 0) {
 			$this->closeOut = false;
 			$this->dispatchBrowserEvent('open-booking-close-out', ['close_out' => $closeOut]);
-			$this->counter = 1;
+			$this->close_counter = 1;
 		} else {
 			$this->closeOut = $closeOut;
-			$this->counter = 0;
+			$this->close_counter = 0;
 		}
 	}
 }
