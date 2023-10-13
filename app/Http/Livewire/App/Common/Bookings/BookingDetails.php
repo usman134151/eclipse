@@ -18,12 +18,12 @@ use Illuminate\Support\Facades\Auth;
 class BookingDetails extends Component
 {
 	public $gender, $service_id = 0, $provider_id = 0, $form_id = 0;
-	public $ethnicity, $booking_id = 0, $booking_services, $data, $status, $isCustomer = false;
+	public $ethnicity, $booking_id = 0, $booking_services, $data, $status, $isCustomer = false, $closeOut=false;
 	public $hideBilling=false;
 
 	public $component = 'booking-details';
 	protected $listeners = [
-		'showConfirmation', 'openCustomSavedFroms'
+		'showConfirmation', 'openCustomSavedFroms','openBookingCloseOut'
 	];
 	public $booking;
 	public $serviceDetails;
@@ -31,7 +31,7 @@ class BookingDetails extends Component
 
 	//panel
 	public $currentServiceId = 0, $counter;
-
+	public $close_counter = 0;
 
 	protected $rules = [
 		'booking.provider_notes' => 'nullable|string',
@@ -204,6 +204,16 @@ class BookingDetails extends Component
 			$this->service_id = $service_id;
 			$this->provider_id = $provider_id;
 			$this->counter = 0;
+		}
+	}
+	public function openBookingCloseOut($closeOut=false){
+		if ($this->close_counter == 0) {
+			$this->closeOut = false;
+			$this->dispatchBrowserEvent('open-booking-close-out', ['close_out' => $closeOut]);
+			$this->close_counter = 1;
+		} else {
+			$this->closeOut = $closeOut;
+			$this->close_counter = 0;
 		}
 	}
 }

@@ -45,17 +45,18 @@ class CheckOut extends Component
         $checkedout_providers = BookingProvider::where('booking_service_id', $this->booking_service->id)->where('check_in_status', 3)->count();
         //check if all other providers have checked out -> then close service
         if ($this->booking_service->provider_count == $checkedout_providers) {
-            $service_permission = $this->booking_service->service->close_out_procedure ?  json_decode($this->booking_service->service->close_out_procedure, true) : null;
-            if ($service_permission['enable_button_customer'] != "true") {
+            // $service_permission = $this->booking_service->service->close_out_procedure ?  json_decode($this->booking_service->service->close_out_procedure, true) : null;
+            // if ($service_permission['enable_button_customer'] != "true") {
                 $this->booking_service->is_closed = true;
                 $this->booking_service->save();
 
-                //close assignment booking if service setting does not require customer approval.
-                if (count($this->assignment->booking_services) == count($this->assignment->closed_booking_services)) {
-                    $this->assignment->is_closed = true;
-                    $this->assignment->save();
-                }
-            }
+                //close assignment booking if service setting does not require customer approval. 
+                // logic changed to allow Admin to close assignment after review ( Phase 1).
+                // if (count($this->assignment->booking_services) == count($this->assignment->closed_booking_services)) {
+                //     $this->assignment->is_closed = true;
+                //     $this->assignment->save();
+                // }
+            // }
         }
 
 
