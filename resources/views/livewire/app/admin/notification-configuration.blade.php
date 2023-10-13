@@ -1,6 +1,10 @@
+@php
+    $videoUrl = 'https://www.youtube.com/embed/rylWoNqHiyw?si=QdYj-gyVZWeuqb6W';
+@endphp
+
 <div>
     <div class="content-header row  mb-3">
-        <div class="content-header-left col-md-9 col-12 mb-2">
+        <div class="content-header-left col-12 mb-2">
           <div class="row breadcrumbs-top">
             <div class="col-12">
 			@if($importFile)
@@ -8,6 +12,9 @@
             @else
 			  <h1 class="content-header-title float-start mb-0">{{$title}}</h1>
             @endif
+			<div class="float-lg-end float-md-end float-sm-start mb-0">
+                            @include('layouts.video-guide')					
+                         </div>
 			  <div class="breadcrumb-wrapper">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item">
