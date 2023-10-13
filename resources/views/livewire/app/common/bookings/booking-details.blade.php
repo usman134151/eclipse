@@ -1,4 +1,4 @@
-<div x-data="{ rescheduleBooking: false, addDocuments: false }">
+<div x-data="{ rescheduleBooking: false, addDocuments: false, closeOutBooking: false }">
     <div id="loader-section" class="loader-section" wire:loading>
         <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
             <div class="spinner-border" role="status" aria-live="polite">
@@ -215,6 +215,21 @@
                                                     {{-- End of update by Shanila --}}
                                                     View Assigned Admin-staff
                                                 </a>
+                                                <a href="#" class="btn btn-has-icon btn-outline-dark rounded"
+                                                    @click="closeOutBooking = true"
+                                                    wire:click="$emit('openBookingCloseOut',true)">
+                                                    <svg width="30" height="30" viewBox="0 0 30 30"
+                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <use xlink:href="/css/customer.svg#confirm-completion-icon">
+                                                        </use>
+                                                    </svg>
+                                                    @if ($booking->is_closed == 0)
+                                                        Close Assignment
+                                                    @else
+                                                        Closed
+                                                    @endif
+                                                </a>
+
                                             </div>
                                         </div>
                                     </div>
@@ -1511,6 +1526,26 @@
                         <div class="tab-pane fade {{ $component == 'assignment-log' ? 'active show' : '' }}"
                             id="assignment-log" role="tabpanel" aria-labelledby="assignment-log-tab" tabindex="0">
                             <div class="row">
+                                @if (!session()->get('isCustomer'))
+                                    <div class="col-12   mb-2">
+                                        <div class="">
+                                            <a href="#" class="btn btn-has-icon btn-primary rounded"
+                                                @click="closeOutBooking = true"
+                                                wire:click="$emit('openBookingCloseOut',true)">
+                                                <svg width="30" height="30" viewBox="0 0 30 30"
+                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <use xlink:href="/css/customer.svg#confirm-completion-icon">
+                                                    </use>
+                                                </svg>
+                                                @if ($booking->is_closed == 0)
+                                                    Close Assignment
+                                                @else
+                                                    Closed
+                                                @endif
+                                            </a>
+                                        </div>
+                                    </div>
+                                @endif
                                 <div class="col-12">
                                     <livewire:app.common.bookings.assignment-logs :booking_id="$booking_id" />
                                 </div>
@@ -1520,7 +1555,7 @@
                                             <div class="d-flex justify-content-between gap-2">
                                                 <h2>Check-In and Close-Out for Service - {{ $service['service_name'] }}
                                                 </h2>
-                                                @if (!$service['is_closed'])
+                                                {{-- @if (!$service['is_closed'])
                                                     <a href="#"
                                                         wire:click="$emit('openConfirmCompletionModal','{{ $service['id'] }}')"
                                                         data-bs-toggle="modal" data-bs-target="#confirmCompletion"
@@ -1546,7 +1581,7 @@
                                                         </svg>
                                                         Closed
                                                     </a>
-                                                @endif
+                                                @endif --}}
 
                                             </div>
                                             @livewire('app.common.bookings.provider-completed-booking-services', ['service_id' => $service['service_id'], 'booking_id' => $booking_id], key(time()))
@@ -1661,6 +1696,7 @@
             </div>
         </div>
     </div> --}}
+        @include('panels.booking-details.admin-close-out')
         @include('panels.booking-details.reschedule-booking')
         @include('panels.common.add-documents', ['booking_id' => $booking_id])
         @include('panels.booking-details.provider-saved-forms')
