@@ -10,6 +10,7 @@ use App\Models\Tenant\Company;
 use App\Models\Tenant\NotificationTemplateRoles;
 use App\Models\Tenant\NotificationTemplates;
 use App\Models\Tenant\ServiceCategory;
+use App\Models\Tenant\Specialization;
 use Carbon\Carbon;
 
 use App\Models\Tenant\TriggerType;
@@ -829,5 +830,46 @@ class ExportDataFile
             return $fileResponse;
         } else
             return;
+    }
+
+    // hammad date:13/10/23
+    public function generateSpecializationmainExcelTemplate()
+    {
+        $headers = [
+            'Specialization',
+            'Description',
+        ];
+
+        
+        $rows = [
+            [
+                '','','','','','',
+                '','','','','','',
+                '','','','','','',
+                '',
+            ]
+        ];
+
+        $fileName = 'specialization-import.xlsx';
+        $filePath = Storage::disk('local')->path($fileName);
+
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        //$sheet->fromArray([$headers]);
+        $sheet->fromArray([$headers]);
+
+        foreach ($rows as $row) {
+            $sheet->fromArray([$row]);
+        }
+
+
+        $writer = new Xlsx($spreadsheet);
+        $writer->save($filePath);
+
+        $fileResponse = response()->file($filePath, [
+            'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
+        ])->deleteFileAfterSend(true);
+
+        return $fileResponse;
     }
 }
