@@ -1,3 +1,7 @@
+@php
+    $videoUrl = 'https://www.youtube.com/embed/epSdx8YXwNw?si=1zRdQJd90vL4WXe8';
+@endphp
+
 <div x-data="{ associateCompanies:false, associateCustomer:false, associateDepartment:false,associateservice:false}">
     {{--  commented due to creating error --}}
     <div id="loader-section" class="loader-section" wire:loading>
@@ -18,10 +22,13 @@
     <!-- BEGIN: Content-->
     <!-- BEGIN: Header-->
     <div class="content-header row">
-        <div class="content-header-left col-md-9 col-12 mb-2">
+        <div class="content-header-left col-12 mb-2">
             <div class="row breadcrumbs-top">
                 <div class="col-12">
                     <h1 class="content-header-title float-start mb-0">Associate Service</h1>
+                    <div class="float-lg-end float-md-end float-sm-start mb-0">
+                            @include('layouts.video-guide')					
+                         </div>
                     <div class="breadcrumb-wrapper">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
