@@ -4,6 +4,8 @@ namespace App\Http\Livewire\App\Common;
 
 use Livewire\Component;
 use App\Models\Tenant\Specialization;
+use App\Services\ExportDataFile;
+
 
 class Specializationmain extends Component
 {
@@ -21,13 +23,28 @@ class Specializationmain extends Component
         'delete' => 'deleteRecord', // delete the record with the specified ID
         'updateRecordId' => 'updateRecordId', // update the ID of the record being edited/deleted
     ];
+    protected $exportDataFile;
+    public $importFile;
 
     public function mount()
     {
         // This function runs when the component is mounted
         // No code here at the moment
     }
+    // hammad date:13/10/23
+    public function downloadExportFile()
+    {
+        return $this->exportDataFile->generateSpecializationmainExcelTemplate();
+    }
+    public function __construct()
+    {
+        $this->exportDataFile = new ExportDataFile;
+    }
+    public function importFile(){
+		$this->importFile=true;
 
+	}
+    // end work hammad
     // function to show the form
     function showForm($specialization = null)
     {
@@ -54,6 +71,7 @@ class Specializationmain extends Component
         }
         // set the showForm property to false to hide the form
         $this->showForm = false;
+        $this->importFile = false;
         $this->dispatchBrowserEvent('update-url', ['url' => '/admin/all-specialization']);
     }
 
