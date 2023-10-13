@@ -1,3 +1,8 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.2.3/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
 <style>
         .custom-btn {
             background-color: #213969;
@@ -8,6 +13,9 @@
             background-color: blue;
             color: blue;
             border: 2px solid blue;
+        }
+        .modal-dialog{
+          max-width:700px;
         }
 
     </style>
@@ -22,15 +30,15 @@
 
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog " role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="exampleModalLabel">Video Guide</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body text-center"> <!-- Center the content -->
-          <div class="embed-responsive embed-responsive-16by9 h-90">
-            <iframe id="videoIframe" class="embed-responsive-item" src="{{ $videoUrl }}" frameborder="0" allowfullscreen width="100%" height="500"></iframe>
+          <div class="ratio ratio-16x9">
+            <iframe id="videoIframe" class="embed-responsive-item" src="{{ $videoUrl }}" frameborder="0" allowfullscreen></iframe>
           </div>
         </div>
       </div>
