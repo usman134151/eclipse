@@ -514,14 +514,14 @@
                                                 </div>
                                                                     <input type="" name=""
                                                                         class="form-control mb-2  js-form-input-manual-entry mt-2"
-                                                                        placeholder="Enter Service Consumer(s)" wire:model="services.{{$index}}.service_consumer">
+                                                                        placeholder="Enter Service Consumer(s)" wire:model="services.{{$index}}.service_consumer_manual">
                                                                     @else
                                                                     <select id="service_consumer_{{$index}}" name="service_consumer_{{$index}}"
                                                                         class="hidden form-select select2 select2-container js-form-select-manual-entry"
                                                                         aria-label="Select Service Consumer(s)" wire:model="services.{{$index}}.service_consumer" multiple>
                                                                         <option>Select Service Consumer(s)</option>
                                                                         @foreach($consumers as $consumer)
-                                                                        <option value="{{$consumer['name']}}">{{$consumer['name']}}</option>
+                                                                        <option value="{{$consumer['id']}}">{{$consumer['name']}}</option>
                                                                         @endforeach
                                                                     </select>
                                                                     <input type="" name=""
@@ -533,7 +533,7 @@
                                                                         <input
                                                                             class="form-check-input js-form-check-input-manual-entry"
                                                                             id="ManualEntryServiceConsumer" name=""
-                                                                            type="checkbox" tabindex="" wire:key="manual-{{ $index }}" wire:model="services.{{$index}}.is_manual_consumer">
+                                                                            type="checkbox" tabindex="" wire:key="manual-{{ $index }}" wire:model.defer="services.{{$index}}.is_manual_consumer">
                                                                         <label class="form-check-label"
                                                                             for="ManualEntryServiceConsumer"><small>Manual Entry</small></label>
                                                                     </div>
@@ -558,12 +558,12 @@
                                                                         aria-label="Select Participant(s)" wire:model.defer="services.{{$index}}.attendees">
                                                                        
                                                                         @foreach($participants as $participant)
-                                                                        <option value="{{$participant['name']}}">{{$participant['name']}}</option>
+                                                                        <option value="{{$participant['id']}}">{{$participant['name']}}</option>
                                                                         @endforeach
                                                                     </select></div>
                                                                     <input type="" name=""
                                                                         class="form-control mb-2  js-form-input-manual-entry"
-                                                                        placeholder="Enter Participant(s)" wire:model="services.{{$index}}.attendees">
+                                                                        placeholder="Enter Participant(s)" wire:model.defer="services.{{$index}}.attendees_manual">
                                                                     @else
                                                                   
                                                                     <select
@@ -571,7 +571,7 @@
                                                                         aria-label="Select Participant(s)" wire:model.defer="services.{{$index}}.attendees">
                                                                        
                                                                         @foreach($participants as $participant)
-                                                                        <option value="{{$participant['name']}}">{{$participant['name']}}</option>
+                                                                        <option value="{{$participant['id']}}">{{$participant['name']}}</option>
                                                                         @endforeach
                                                                     </select>
                                                                     <input type="" name=""
