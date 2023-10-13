@@ -872,4 +872,44 @@ class ExportDataFile
 
         return $fileResponse;
     }
+
+    // hammad date:13/10/23
+    public function generateOptionsExcelTemplate()
+    {
+        $headers = [
+            'Options',
+        ];
+
+        
+        $rows = [
+            [
+                '','','','','','',
+                '','','','','','',
+                '','','','','','',
+                '',
+            ]
+        ];
+
+        $fileName = 'options-import.xlsx';
+        $filePath = Storage::disk('local')->path($fileName);
+
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        //$sheet->fromArray([$headers]);
+        $sheet->fromArray([$headers]);
+
+        foreach ($rows as $row) {
+            $sheet->fromArray([$row]);
+        }
+
+
+        $writer = new Xlsx($spreadsheet);
+        $writer->save($filePath);
+
+        $fileResponse = response()->file($filePath, [
+            'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
+        ])->deleteFileAfterSend(true);
+
+        return $fileResponse;
+    }
 }

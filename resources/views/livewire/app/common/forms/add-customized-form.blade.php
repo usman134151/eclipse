@@ -284,6 +284,20 @@
 																<div class=" justify-content-start">
 																	<div class="mb-4 ">
 																		<button class="btn btn-primary rounded" wire:click.prevent="addOption({{$index}})">+</button>
+																		<button class="btn btn-primary rounded" wire:click.prevent="downloadExportFile()">Download Options File</button>
+																		<div class="btn btn-primary rounded" style="position: relative; overflow: hidden;">
+																			<span>Import Options File</span>
+																			<input type="file" wire:model="file" wire:change="getIndex({{$index}})" style="position: absolute; top: 0; right: 0; margin: 0; padding: 0; cursor: pointer; font-size: 20px; opacity: 0; filter: alpha(opacity=0);">
+																		</div>
+                            											@error('file')
+                            											    <span class="d-inline-block invalid-feedback mt-2">
+                            											        {{ $message }}
+                            											    </span>
+                            											@enderror
+																		@if ($warningMessage)
+                            											    <h4 class="mt-4"><span
+                            											            class='d-inline-block invalid-feedback mt-2'>{{ $warningMessage }}</span></h4>
+                            											@endif
 																	</div>
 																</div>
 															@else
@@ -337,7 +351,7 @@
 									</div>
 								</div>
 
-								<div class="col-12 justify-content-center form-actions d-flex">
+								<div class="col-12 justify-content-center form-actions d-flex"> 
 
 									<button  type="submit" wire:click.prevent="{{$custom_form_details['form_name_id']==37 ? 'save' : ''}}" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });"
 									class="btn btn-primary rounded">Publish Form</button>
