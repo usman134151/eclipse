@@ -10,11 +10,11 @@
         <div class="col-12 justify-content-center form-actions d-flex gap-3">
             <button type="button" class="btn btn-outline-dark rounded"
                 x-on:click="closeOutBooking = !closeOutBooking">Cancel</button>
-            {{-- @if ($booking->is_closed == 0) --}}
+            @if ($booking->is_closed == 0)
                 <button type="" x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });"
                     x-on:close-out-booking.window="closeOutBooking = !closeOutBooking" wire:click="$emit('closeBooking')"
                     class="btn btn-primary rounded">Save</button>
-            {{-- @endif --}}
+            @endif
         </div>
     </x-slot>
 
