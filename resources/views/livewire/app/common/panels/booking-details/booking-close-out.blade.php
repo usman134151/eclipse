@@ -43,7 +43,7 @@
                                                 @foreach ($providers[$booking_service->id] as $provider)
                                                     <tr role="row" class="odd">
 
-                                                        <td class="align-middle">
+                                                    <td class="align-middle " style="min-width:350px">
                                                             <div class="d-flex gap-2 align-items-center">
                                                                 <div>
                                                                     <img width="50" height="50"
@@ -131,7 +131,7 @@
 
                                                         </td>
                                                         <td class="align-middle">
-                                                            <div class="mb-2 w-50">
+                                                            <div class="">
                                                                 <input type="number" name=""
                                                                     class="form-control form-control-sm"
                                                                     placeholder="$00:00"
