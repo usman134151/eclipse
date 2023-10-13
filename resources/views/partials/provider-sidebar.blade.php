@@ -63,14 +63,14 @@
 					<span class="menu-item">Dashboard</span>
 				</a>
 			</li>
-			<li class="nav-item" id="chat">
+			{{-- <li class="nav-item" id="chat">
 				<a href="/chat" target="_blank" >
 					<svg aria-label="Chat" width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/provider-menu.svg#chat-icon"></use>
                     </svg>
 					<span class="menu-item">Chat</span>
 				</a>
-			</li>
+			</li> --}}
 		<li class="nav-item" id="set-availability">
 		  <a href="/provider/set-availability">
 			<svg aria-label="Manage Availability" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
