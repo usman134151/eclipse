@@ -25,7 +25,7 @@
                         <div class="col-12">
                             <div class="">
                                 <div class=" d-inline-flex  align-self-end">
-                                    <h2 class="pl-2 pt-3">
+                                    <h2 class="pl-2 pt-3" style="min-width:500px">  
                                         {{ $booking_service->service->name }} </h2>
                                     <div class="flex ">
                                         <label class="form-label-sm" for="service_charges">
@@ -37,7 +37,7 @@
                                     </div>
                                     <div class="flex  align-self-end">
                                         <button type="button" wire:click="overrideServiceCharges({{$booking_service->id}})"
-                                            class="self_end btn btn-primary rounded ">Override</button>
+                                            class="self_end btn btn-sm mx-1 btn-outline-dark rounded ">Override</button>
                                     </div>
                                 </div>
                                 <div class="table-responsive">
