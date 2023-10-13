@@ -1,4 +1,4 @@
-<div x-data="{ rescheduleBooking: false, addDocuments: false }">
+<div x-data="{ rescheduleBooking: false, addDocuments: false, closeOutBooking:false }">
     <div id="loader-section" class="loader-section" wire:loading>
         <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
             <div class="spinner-border" role="status" aria-live="polite">
@@ -215,6 +215,16 @@
                                                     {{-- End of update by Shanila --}}
                                                     View Assigned Admin-staff
                                                 </a>
+                                                <a href="#" class="btn btn-has-icon btn-outline-dark rounded"
+                                                    @click="closeOutBooking = true">
+                                                    <svg width="30" height="30" viewBox="0 0 30 30"
+                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <use xlink:href="/css/customer.svg#confirm-completion-icon">
+                                                        </use>
+                                                    </svg>
+                                                    Close Assignment
+                                                </a>
+
                                             </div>
                                         </div>
                                     </div>
@@ -1661,6 +1671,7 @@
             </div>
         </div>
     </div> --}}
+        @include('panels.booking-details.admin-close-out')
         @include('panels.booking-details.reschedule-booking')
         @include('panels.common.add-documents', ['booking_id' => $booking_id])
         @include('panels.booking-details.provider-saved-forms')
