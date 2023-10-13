@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class BookingCloseOut extends Component
 {
-    public $showForm, $booking, $providers, $close_out = [], $booking_total_amount = 0, $override = false;
+    public $showForm, $booking, $providers, $close_out = [], $booking_total_amount = 0, $override = false, $override_amount =0;
     protected $listeners = ['showList' => 'resetForm', 'closeBooking'];
 
     public function render()
@@ -74,6 +74,11 @@ class BookingCloseOut extends Component
         $this->emit('showConfirmation', 'Booking has been successfully closed');
     }
 
+    public function overrideBookingAmount(){
+        $this->override=true;
+        $this->booking_total_amount = $this->override_amount  ;
+    }
+
     public function mount()
     {
         foreach ($this->booking->booking_services as $booking_service) {
@@ -94,6 +99,8 @@ class BookingCloseOut extends Component
             }
         }
         $this->booking_total_amount = $this->booking->getInvoicePrice();
+        $this->override_amount = $this->booking->getInvoicePrice();
+
     }
 
     function showForm()

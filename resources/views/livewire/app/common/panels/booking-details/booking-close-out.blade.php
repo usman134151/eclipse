@@ -3,14 +3,21 @@
         @if (count($booking->booking_services))
 
             <div class="row">
-                <div class=" d-inline-flex  justify-content-between bg-muted rounded p-2">
-                    <h3 >
-                        Total Assignment Charges
-                    </h3>
-                    <div class=" w-20">
-                        <input type="number" name="" class="form-control form-control-sm" placeholder="$00:00"
-                            wire:model.lazy="booking_total_amount" id="total-service-payment">
+                <div class="d-inline-flex col-12 bg-muted rounded p-2">
+                    <div class="col-6">
+                        <h3>
+                            Total Assignment Charges
+                        </h3>
+                        {{ numberFormat($booking_total_amount) }}
                     </div>
+                    @if($booking->is_closed ==0)
+                    <div class="col-6 w-20 justify-content-end">
+                        <input type="number" name="" class="form-control form-control-sm" placeholder="$00:00"
+                            wire:model.lazy="override_amount" id="total-service-payment">
+                        <button type="button" wire:click="overrideBookingAmount"
+                            class="btn btn-primary rounded my-1 align-end">Override</button>
+                    </div>
+                    @endif
                 </div>
             </div>
             @foreach ($booking->booking_services as $booking_service)
@@ -43,7 +50,7 @@
                                                 @foreach ($providers[$booking_service->id] as $provider)
                                                     <tr role="row" class="odd">
 
-                                                    <td class="align-middle " style="min-width:350px">
+                                                        <td class="align-middle " style="min-width:350px">
                                                             <div class="d-flex gap-2 align-items-center">
                                                                 <div>
                                                                     <img width="50" height="50"
