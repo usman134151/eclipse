@@ -2,21 +2,21 @@
     <div class="between-section-segment-spacing">
         @if (count($booking->booking_services))
 
-            <div class="row">
-                <div class="d-inline-flex col-12 bg-muted rounded p-2">
+            <div class="row" >
+                <div  class="d-inline-flex col-12 bg-muted rounded p-2">
                     <div class="col-6">
                         <h3>
                             Total Assignment Charges
                         </h3>
                         {{ numberFormat($booking_total_amount) }}
                     </div>
-                    @if($booking->is_closed ==0)
-                    <div class="col-6 w-20 justify-content-end">
-                        <input type="number" name="" class="form-control form-control-sm" placeholder="$00:00"
-                            wire:model.lazy="override_amount" id="total-service-payment">
-                        <button type="button" wire:click="overrideBookingAmount"
-                            class="btn btn-primary rounded my-1 align-end">Override</button>
-                    </div>
+                    @if ($booking->is_closed == 0)
+                        <div class="col-6 w-20 justify-content-end">
+                            <input type="number" name="" class="form-control form-control-sm" placeholder="$00:00"
+                                wire:model.lazy="override_amount" id="total-service-payment">
+                            <button type="button" wire:click="overrideBookingAmount"
+                                class="btn btn-primary rounded my-1 align-end">Override</button>
+                        </div>
                     @endif
                 </div>
             </div>
@@ -78,7 +78,7 @@
                                                                             class="form-control form-control-sm text-center hours"
                                                                             id="actual_start_hour"
                                                                             aria-label="Start Time"
-                                                                            name="actual_start_hour" placeholder="00"
+                                                                            name="actual_start_hour" 
                                                                             type="text" tabindex=""
                                                                             wire:model.defer="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.actual_start_hour"
                                                                             maxlength="2">
@@ -95,13 +95,25 @@
                                                                             class="form-control form-control-sm text-center  mins"
                                                                             aria-label="Start Minutes"
                                                                             id="actual_start_min"
-                                                                            name="actual_start_min" placeholder="00"
+                                                                            name="actual_start_min" 
                                                                             type="text" tabindex=""
                                                                             wire:model.defer="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.actual_start_min"
                                                                             maxlength="2">
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            @error('close_out.' . $booking_service->id . '.' .
+                                                                $provider['provider_id'] . '.actual_start_hour')
+                                                                <span class="d-inline-block invalid-feedback mt-2">
+                                                                    Hour field is required to be between 0 and 24.
+                                                                </span>
+                                                            @enderror
+                                                            @error('close_out.' . $booking_service->id . '.' .
+                                                                $provider['provider_id'] . '.actual_start_min')
+                                                                <span class="d-inline-block invalid-feedback mt-2">
+                                                                    Minute field is required to be between 0 and 59.
+                                                                </span>
+                                                            @enderror
                                                         </td>
                                                         <td class="align-middle">
                                                             <div class="d-flex gap-2">
@@ -111,7 +123,7 @@
                                                                             class="form-control form-control-sm text-center hours"
                                                                             id="actual_start_hour"
                                                                             aria-label="Start Time"
-                                                                            name="actual_start_hour" placeholder="00"
+                                                                            name="actual_start_hour" 
                                                                             type="text" tabindex=""
                                                                             wire:model.defer="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.actual_end_hour"
                                                                             maxlength="2">
@@ -128,13 +140,26 @@
                                                                             class="form-control form-control-sm text-center  mins"
                                                                             aria-label="Start Minutes"
                                                                             id="actual_start_min"
-                                                                            name="actual_start_min" placeholder="00"
+                                                                            name="actual_start_min" 
                                                                             type="text" tabindex=""
                                                                             wire:model.defer="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.actual_end_min"
                                                                             maxlength="2">
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            @error('close_out.' . $booking_service->id . '.' .
+                                                                $provider['provider_id'] . '.actual_end_hour')
+                                                                <span class="d-inline-block invalid-feedback mt-2">
+                                                                    Hour field is required to be between 0 and 24.
+                                                                </span>
+                                                            @enderror
+
+                                                            @error('close_out.' . $booking_service->id . '.' .
+                                                                $provider['provider_id'] . '.actual_end_min')
+                                                                <span class="d-inline-block invalid-feedback mt-2">
+                                                                    Minute field is required to be between 0 and 59.
+                                                                </span>
+                                                            @enderror
 
                                                         </td>
                                                         <td class="align-middle">

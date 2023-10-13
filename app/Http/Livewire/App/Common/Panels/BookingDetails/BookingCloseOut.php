@@ -4,6 +4,7 @@ namespace App\Http\Livewire\App\Common\Panels\BookingDetails;
 
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\BookingServices;
+use App\Models\Tenant\Payment;
 use Carbon\Carbon;
 use Livewire\Component;
 
@@ -16,9 +17,19 @@ class BookingCloseOut extends Component
     {
         return view('livewire.app.common.panels.booking-details.booking-close-out');
     }
+    public function rules()
+    {
+        return [
+            'close_out.*.*.actual_end_hour' => 'required|numeric|between:0,23',
+            'close_out.*.*.actual_end_min' => 'required|numeric|between:0,59',
+            'close_out.*.*.actual_start_hour' => 'required|numeric|between:0,23',
+            'close_out.*.*.actual_start_min' => 'required|numeric|between:0,59'
+        ];
+    }
 
     public function closeBooking()
     {
+        $this->validate();
 
         foreach ($this->close_out as $booking_service_id => $service) {
             $booking_service = BookingServices::find($booking_service_id);
@@ -33,13 +44,13 @@ class BookingCloseOut extends Component
 
                 $checkin['actual_start_hour'] = $closing_details['actual_start_hour'];
                 $checkin['actual_start_min'] = $closing_details['actual_start_min'];
-                $checkin['actual_start_timestamp'] = Carbon::createFromFormat('m/d/Y H : m',date_format(date_create($booking_service->start_time), 'm/d/Y') . ' '. $closing_details['actual_start_hour'].' : '. $closing_details['actual_start_min']);
+                $checkin['actual_start_timestamp'] = Carbon::createFromFormat('m/d/Y H:i',date_format(date_create($booking_service->start_time), 'm/d/Y') . ' '. $closing_details['actual_start_hour'].':'. $closing_details['actual_start_min']);
                 $booking_provider->check_in_procedure_values = $checkin;
 
                 $checkout = $booking_provider->check_out_procedure_values;
                 $checkout['actual_end_hour'] = $closing_details['actual_end_hour'];
                 $checkout['actual_end_min'] = $closing_details['actual_end_min'];
-                $checkout['actual_end_timestamp'] = Carbon::createFromFormat('m/d/Y H : m',date_format(date_create($booking_service->end_time), 'm/d/Y') . ' ' . $closing_details['actual_end_hour'] . ' : ' . $closing_details['actual_end_min']);
+                $checkout['actual_end_timestamp'] = Carbon::createFromFormat('m/d/Y H : i',date_format(date_create($booking_service->end_time), 'm/d/Y') . ' ' . $closing_details['actual_end_hour'] . ' : ' . $closing_details['actual_end_min']);
 
                 $booking_provider->check_out_procedure_values = $checkout;
 
@@ -64,9 +75,7 @@ class BookingCloseOut extends Component
         }
         //override booking total amound
         if ($this->override) {
-            $this->booking->payment->is_override = true;
-            $this->booking->payment->override_amount = $this->booking_total_amount;
-            $this->booking->payment->save();
+            Payment::where('booking_id',$this->booking->id)->update(['is_override'=>'1','override_amount'=>$this->override_amount]);
         }
         $this->booking->save();
 
@@ -86,13 +95,12 @@ class BookingCloseOut extends Component
                 ->select(['booking_providers.*', 'users.name', 'user_details.profile_pic', 'users.email'])->get()->toArray();
             if ($this->providers[$booking_service->id] && count($this->providers[$booking_service->id])) {
                 foreach ($this->providers[$booking_service->id] as $provider) {
-                    // dd($provider['check_in_procedure_values']);
                     $start = Carbon::parse(($provider['check_in_procedure_values'] && isset($provider['check_in_procedure_values']['actual_start_timestamp']) && $provider['check_in_procedure_values']['actual_start_timestamp']) ? $provider['check_in_procedure_values']['actual_start_timestamp'] : $booking_service->start_time);
                     $this->close_out[$booking_service->id][$provider['provider_id']]['actual_start_hour'] = $start->format('H');
-                    $this->close_out[$booking_service->id][$provider['provider_id']]['actual_start_min'] = $start->format('m');
+                    $this->close_out[$booking_service->id][$provider['provider_id']]['actual_start_min'] = $start->format('i');
                     $end = Carbon::parse(($provider['check_out_procedure_values']  && isset($provider['check_out_procedure_values']['actual_end_timestamp']) && $provider['check_out_procedure_values']['actual_end_timestamp']) ? $provider['check_out_procedure_values']['actual_end_timestamp'] : $booking_service->end_time);
                     $this->close_out[$booking_service->id][$provider['provider_id']]['actual_end_hour'] = $end->format('H');
-                    $this->close_out[$booking_service->id][$provider['provider_id']]['actual_end_min'] = $end->format('m');
+                    $this->close_out[$booking_service->id][$provider['provider_id']]['actual_end_min'] = $end->format('i');
 
                     $this->close_out[$booking_service->id][$provider['provider_id']]['total_amount'] = $provider['total_amount'];
                 }
@@ -102,6 +110,8 @@ class BookingCloseOut extends Component
         $this->override_amount = $this->booking->getInvoicePrice();
 
     }
+
+    
 
     function showForm()
     {
