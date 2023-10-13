@@ -10,7 +10,8 @@ use Livewire\Component;
 
 class BookingCloseOut extends Component
 {
-    public $showForm, $booking, $providers, $close_out = [], $booking_total_amount = 0, $override = false, $override_amount =0;
+    public $showForm, $booking, $providers, $close_out = [], $booking_total_amount = 0, $override = false, $override_amount = 0;
+    public $service_charges = [];
     protected $listeners = ['showList' => 'resetForm', 'closeBooking'];
 
     public function render()
@@ -39,18 +40,18 @@ class BookingCloseOut extends Component
                 $booking_provider->check_in_status = 3;
                 $booking_provider->return_status = 1;
 
-                $checkin= $booking_provider->check_in_procedure_values;
+                $checkin = $booking_provider->check_in_procedure_values;
                 // dd($checkin);
 
                 $checkin['actual_start_hour'] = $closing_details['actual_start_hour'];
                 $checkin['actual_start_min'] = $closing_details['actual_start_min'];
-                $checkin['actual_start_timestamp'] = Carbon::createFromFormat('m/d/Y H:i',date_format(date_create($booking_service->start_time), 'm/d/Y') . ' '. $closing_details['actual_start_hour'].':'. $closing_details['actual_start_min']);
+                $checkin['actual_start_timestamp'] = Carbon::createFromFormat('m/d/Y H:i', date_format(date_create($booking_service->start_time), 'm/d/Y') . ' ' . $closing_details['actual_start_hour'] . ':' . $closing_details['actual_start_min']);
                 $booking_provider->check_in_procedure_values = $checkin;
 
                 $checkout = $booking_provider->check_out_procedure_values;
                 $checkout['actual_end_hour'] = $closing_details['actual_end_hour'];
                 $checkout['actual_end_min'] = $closing_details['actual_end_min'];
-                $checkout['actual_end_timestamp'] = Carbon::createFromFormat('m/d/Y H : i',date_format(date_create($booking_service->end_time), 'm/d/Y') . ' ' . $closing_details['actual_end_hour'] . ' : ' . $closing_details['actual_end_min']);
+                $checkout['actual_end_timestamp'] = Carbon::createFromFormat('m/d/Y H : i', date_format(date_create($booking_service->end_time), 'm/d/Y') . ' ' . $closing_details['actual_end_hour'] . ' : ' . $closing_details['actual_end_min']);
 
                 $booking_provider->check_out_procedure_values = $checkout;
 
@@ -59,15 +60,18 @@ class BookingCloseOut extends Component
                 $booking_provider->override_price = $closing_details['total_amount'];
 
                 $booking_provider->save();
-
             }
 
             $checkedout_providers = BookingProvider::where('booking_service_id', $booking_service_id)->where('check_in_status', 3)->count();
             //check if all providers have checked out -> then close service
             if ($booking_service->provider_count == $checkedout_providers) {
                 $booking_service->is_closed = true;
-                $booking_service->save();
             }
+
+            if ($this->service_charges[$booking_service_id]['override'] == true) {
+                $booking_service->billed_total = $this->service_charges[$booking_service_id]['charges'];
+            }
+            $booking_service->save();
         }
 
         if (count($this->booking->booking_services) == count($this->booking->closed_booking_services)) {
@@ -75,7 +79,7 @@ class BookingCloseOut extends Component
         }
         //override booking total amound
         if ($this->override) {
-            Payment::where('booking_id',$this->booking->id)->update(['is_override'=>'1','override_amount'=>$this->override_amount]);
+            Payment::where('booking_id', $this->booking->id)->update(['is_override' => '1', 'override_amount' => $this->override_amount]);
         }
         $this->booking->save();
 
@@ -83,9 +87,20 @@ class BookingCloseOut extends Component
         $this->emit('showConfirmation', 'Booking has been successfully closed');
     }
 
-    public function overrideBookingAmount(){
-        $this->override=true;
-        $this->booking_total_amount = $this->override_amount  ;
+    public function overrideBookingAmount()
+    {
+        $this->override = true;
+        $this->booking_total_amount = $this->override_amount;
+    }
+    public function overrideServiceCharges($booking_service_id)
+    {
+        $this->service_charges[$booking_service_id]['override'] = true;
+        $sum = 0;
+        foreach ($this->service_charges as $sc) {
+            $sum = $sum + $sc['charges'];
+        }
+        $this->override_amount = $sum;
+        $this->overrideBookingAmount();
     }
 
     public function mount()
@@ -105,13 +120,14 @@ class BookingCloseOut extends Component
                     $this->close_out[$booking_service->id][$provider['provider_id']]['total_amount'] = $provider['total_amount'];
                 }
             }
+            $this->service_charges[$booking_service->id]['charges'] = $booking_service->billed_total;
+            $this->service_charges[$booking_service->id]['override'] = false;
         }
         $this->booking_total_amount = $this->booking->getInvoicePrice();
         $this->override_amount = $this->booking->getInvoicePrice();
-
     }
 
-    
+
 
     function showForm()
     {

@@ -2,22 +2,20 @@
     <div class="between-section-segment-spacing">
         @if (count($booking->booking_services))
 
-            <div class="row" >
-                <div  class="d-inline-flex col-12 bg-muted rounded p-2">
+            <div class="row">
+                <div class="d-inline-flex col-12 bg-muted rounded p-2">
                     <div class="col-6">
                         <h3>
                             Total Assignment Charges
                         </h3>
                         {{ numberFormat($booking_total_amount) }}
                     </div>
-                    @if ($booking->is_closed == 0)
-                        <div class="col-6 w-20 justify-content-end">
-                            <input type="number" name="" class="form-control form-control-sm" placeholder="$00:00"
-                                wire:model.lazy="override_amount" id="total-service-payment">
-                            <button type="button" wire:click="overrideBookingAmount"
-                                class="btn btn-primary rounded my-1 align-end">Override</button>
-                        </div>
-                    @endif
+                    <div class="col-6 w-20 justify-content-end">
+                        <input type="number" name="" class="form-control form-control-sm" placeholder="$00:00"
+                            wire:model.lazy="override_amount" id="total-service-payment">
+                        <button type="button" wire:click="overrideBookingAmount"
+                            class="btn btn-primary rounded my-1 align-end">Override</button>
+                    </div>
                 </div>
             </div>
             @foreach ($booking->booking_services as $booking_service)
@@ -26,10 +24,22 @@
                     <div class="row" id="table-hover-row">
                         <div class="col-12">
                             <div class="">
-                                <h2 class="pl-2 pt-3">
-                                    {{ $booking_service->service->name }} </h2>
+                                <div class=" d-inline-flex  align-self-end">
+                                    <h2 class="pl-2 pt-3">
+                                        {{ $booking_service->service->name }} </h2>
+                                    <div class="flex ">
+                                        <label class="form-label-sm" for="service_charges">
+                                            Service Charges</label>
+                                        <input type="number" name="" class="form-control form-control-sm"
+                                            placeholder="$00:00" wire:model.lazy="service_charges.{{$booking_service->id}}.charges"
+                                            id="service_charges">
 
-
+                                    </div>
+                                    <div class="flex  align-self-end">
+                                        <button type="button" wire:click="overrideServiceCharges({{$booking_service->id}})"
+                                            class="self_end btn btn-primary rounded ">Override</button>
+                                    </div>
+                                </div>
                                 <div class="table-responsive">
                                     <table id="unassigned_data" class="table table-fs-md table-hover" aria-label="">
                                         <thead>
@@ -78,8 +88,8 @@
                                                                             class="form-control form-control-sm text-center hours"
                                                                             id="actual_start_hour"
                                                                             aria-label="Start Time"
-                                                                            name="actual_start_hour" 
-                                                                            type="text" tabindex=""
+                                                                            name="actual_start_hour" type="text"
+                                                                            tabindex=""
                                                                             wire:model.defer="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.actual_start_hour"
                                                                             maxlength="2">
                                                                     </div>
@@ -95,8 +105,8 @@
                                                                             class="form-control form-control-sm text-center  mins"
                                                                             aria-label="Start Minutes"
                                                                             id="actual_start_min"
-                                                                            name="actual_start_min" 
-                                                                            type="text" tabindex=""
+                                                                            name="actual_start_min" type="text"
+                                                                            tabindex=""
                                                                             wire:model.defer="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.actual_start_min"
                                                                             maxlength="2">
                                                                     </div>
@@ -123,8 +133,8 @@
                                                                             class="form-control form-control-sm text-center hours"
                                                                             id="actual_start_hour"
                                                                             aria-label="Start Time"
-                                                                            name="actual_start_hour" 
-                                                                            type="text" tabindex=""
+                                                                            name="actual_start_hour" type="text"
+                                                                            tabindex=""
                                                                             wire:model.defer="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.actual_end_hour"
                                                                             maxlength="2">
                                                                     </div>
@@ -140,8 +150,8 @@
                                                                             class="form-control form-control-sm text-center  mins"
                                                                             aria-label="Start Minutes"
                                                                             id="actual_start_min"
-                                                                            name="actual_start_min" 
-                                                                            type="text" tabindex=""
+                                                                            name="actual_start_min" type="text"
+                                                                            tabindex=""
                                                                             wire:model.defer="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.actual_end_min"
                                                                             maxlength="2">
                                                                     </div>
