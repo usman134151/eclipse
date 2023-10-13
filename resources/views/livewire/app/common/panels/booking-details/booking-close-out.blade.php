@@ -39,7 +39,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @if (isset($providers[$booking_service->id]))
+                                            @if (isset($providers[$booking_service->id]) && count($providers[$booking_service->id]))
                                                 @foreach ($providers[$booking_service->id] as $provider)
                                                     <tr role="row" class="odd">
 

@@ -222,7 +222,8 @@
                                                         <use xlink:href="/css/customer.svg#confirm-completion-icon">
                                                         </use>
                                                     </svg>
-                                                    Close Assignment
+                                                    @if($booking->is_closed == 0)
+                                                    Close Assignment @else Closed @endif
                                                 </a>
 
                                             </div>
