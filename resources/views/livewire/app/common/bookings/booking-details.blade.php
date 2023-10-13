@@ -1520,7 +1520,7 @@
                                             <div class="d-flex justify-content-between gap-2">
                                                 <h2>Check-In and Close-Out for Service - {{ $service['service_name'] }}
                                                 </h2>
-                                                @if (!$service['is_closed'])
+                                                {{-- @if (!$service['is_closed'])
                                                     <a href="#"
                                                         wire:click="$emit('openConfirmCompletionModal','{{ $service['id'] }}')"
                                                         data-bs-toggle="modal" data-bs-target="#confirmCompletion"
@@ -1546,7 +1546,7 @@
                                                         </svg>
                                                         Closed
                                                     </a>
-                                                @endif
+                                                @endif --}}
 
                                             </div>
                                             @livewire('app.common.bookings.provider-completed-booking-services', ['service_id' => $service['service_id'], 'booking_id' => $booking_id], key(time()))
