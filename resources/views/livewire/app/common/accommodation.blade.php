@@ -1,3 +1,7 @@
+@php
+    $videoUrl = 'https://www.youtube.com/embed/epSdx8YXwNw?si=1zRdQJd90vL4WXe8';
+@endphp
+
 <div>
 	<div id="loader-section" class="loader-section" wire:loading>
 		<div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
@@ -16,13 +20,17 @@
                     <h1 class="content-header-title float-start mb-0">
                        All Accommodations
                     </h1>
+					<div class="float-lg-end float-md-end float-sm-start mb-0">
+						@include('layouts.video-guide')					
+					</div>
+
                     <div class="breadcrumb-wrapper">
-                        <ol class="breadcrumb">
+						<ol class="breadcrumb">
                             <li class="breadcrumb-item">
                                 <a href="http://127.0.0.1:8000" title="Go to Dashboard" aria-label="Home">
                                     {{-- Updated by Shanila to Add svg icon--}}
                                     <svg aria-label="Go to Dashboard" width="22" height="23" viewBox="0 0 22 23">
-                                        <use xlink:href="/css/common-icons.svg#home"></use>
+										<use xlink:href="/css/common-icons.svg#home"></use>
                                     </svg>
                                     {{-- End of update by Shanila --}}
                                 </a>
@@ -37,6 +45,7 @@
                             </li>
                         </ol>
                     </div>
+
                 </div>
             </div>
         </div>

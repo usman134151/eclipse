@@ -1,3 +1,6 @@
+@php
+$videoUrl = 'https://www.youtube.com/embed/KvjnuVlXhgo?si=I183B4d-L_MvRbQ2';
+@endphp
 <div >
     <div id="loader-section" class="loader-section" wire:loading>
 		<div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
@@ -7,10 +10,13 @@
 		</div>
 	</div>
     <div class="content-header row">
-        <div class="content-header-left col-md-9 col-12 mb-2">
+        <div class="content-header-left col-12 mb-2">
             <div class="row breadcrumbs-top">
                 <div class="col-12">
                     <h1 class="content-header-title float-start mb-0">Add Credential</h1>
+                    <div class="float-lg-end float-md-end float-sm-start mb-0">
+                            @include('layouts.video-guide')					
+                         </div>
                     <div class="breadcrumb-wrapper">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">

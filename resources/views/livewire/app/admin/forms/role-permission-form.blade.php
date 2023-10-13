@@ -1,9 +1,15 @@
+@php
+    $videoUrl = 'https://www.youtube.com/embed/MLdkcJ5Cb5s?si=jHEX4ax2vVYkfJnZ';
+@endphp
 <div x-data="{ accommodationServicesAccess: false, teamsProviderAccess: false, companiesCustomers: false }">
 	<div class="content-header row">
-		<div class="content-header-left col-md-9 col-12 mb-2">
+		<div class="content-header-left col-12 mb-2">
 			<div class="row breadcrumbs-top">
 				<div class="col-12">
 					<h1 class="content-header-title float-start mb-0">{{$label}} Role</h1>
+					<div class="float-lg-end float-md-end float-sm-start mb-0">
+                            @include('layouts.video-guide')					
+                         </div>
 					<div class="breadcrumb-wrapper">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item">

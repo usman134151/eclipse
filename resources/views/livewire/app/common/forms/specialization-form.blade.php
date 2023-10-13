@@ -1,3 +1,7 @@
+@php
+    $videoUrl = 'https://www.youtube.com/embed/epSdx8YXwNw?si=1zRdQJd90vL4WXe8';
+@endphp
+
 <div>
   <div class="content-header row">
     <div class="content-header-left col-12 mb-4">
@@ -6,6 +10,9 @@
                 <h1 class="content-header-title float-start mb-0">
                    Add Specialization
                 </h1>
+                <div class="float-lg-end float-md-end float-sm-start mb-0">
+                            @include('layouts.video-guide')					
+                         </div>
                 <div class="breadcrumb-wrapper">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
