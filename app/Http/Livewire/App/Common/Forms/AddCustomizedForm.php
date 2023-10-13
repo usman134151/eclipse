@@ -11,9 +11,16 @@ use App\Models\Tenant\ServiceCategory;
 use App\Services\CustomizeForm;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use App\Services\ExportDataFile;
+use Livewire\WithFileUploads;
+use Maatwebsite\Excel\Facades\Excel;
+
+
+
 
 class AddCustomizedForm extends Component
 {
+    use WithFileUploads;
     protected $listeners = ['updateVal'];
     public $industry_id = '', $industries = [], $formId = null, $services = [];
     public $questions = [[
@@ -28,6 +35,13 @@ class AddCustomizedForm extends Component
     ]];
 
     public $custom_form_details = ['form_name_id' => '', 'industry_id' => 0, 'screen_name' => '', 'request_form_name' => ''];
+
+    protected $exportDataFile;
+    public $warningMessage = '';
+    public $file;
+    public $optionsIndex;
+
+
 
     public function showList($message = '')
     {
@@ -151,6 +165,67 @@ class AddCustomizedForm extends Component
         $this->questions[$index]['options'][] = [
             'option_field_name' => ''
         ];
+    }
+
+    // hammad date:13/10/23
+
+    public function getIndex($index)
+    {
+        $this->optionsIndex = $index;
+    }
+
+    public function updatedFile()
+    {
+        $this->validate([
+            'file' => 'required|file|mimetypes:application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        ]);
+    
+        // Reset the warning message at the beginning.
+        $this->warningMessage = '';
+    
+        $rows = Excel::toArray([], $this->file)[0];
+        $options = [];
+    
+        foreach ($rows as $row) {
+            try {
+                if ($row[0] != '') {
+                    $option = [];
+                    $option['option_field_name'] = $row[0];
+                    if($option['option_field_name']!='Options')
+                    {
+                        $option_exists = false;
+
+                        // Check if the option already exists in the $options array
+                        foreach ($options as $existing_option) {
+                            if ($existing_option['option_field_name'] == $option['option_field_name']) {
+                                $option_exists = true;
+                                break;
+                            }
+                        }
+                        if(!$option_exists)
+                            $options[] = $option;
+                    }
+                }
+            } catch (\ErrorException $e) {
+                $this->warningMessage = "Please make sure that you are trying to upload a valid file to import data.";
+            }
+        }
+    
+        if (count($options) == 0 && $this->warningMessage == '') {
+            $this->warningMessage = "Please ensure that the file contains records before proceeding with the import. Currently, the file is empty.";
+        }
+    
+        $this->questions[$this->optionsIndex]['options'] = $options;
+    }
+    
+
+    public function downloadExportFile()
+    {
+        return $this->exportDataFile->generateOptionsExcelTemplate();
+    }
+    public function __construct()
+    {
+        $this->exportDataFile = new ExportDataFile;
     }
 
     public function removeQuestion($index)
