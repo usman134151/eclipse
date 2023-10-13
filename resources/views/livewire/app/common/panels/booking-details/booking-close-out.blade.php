@@ -1,6 +1,18 @@
 <div class="  row">
     <div class="between-section-segment-spacing">
         @if (count($booking->booking_services))
+
+            <div class="row">
+                <div class=" d-inline-flex  justify-content-between bg-muted rounded p-2">
+                    <h3 >
+                        Total Assignment Charges
+                    </h3>
+                    <div class=" w-20">
+                        <input type="number" name="" class="form-control form-control-sm" placeholder="$00:00"
+                            wire:model.lazy="booking_total_amount" id="total-service-payment">
+                    </div>
+                </div>
+            </div>
             @foreach ($booking->booking_services as $booking_service)
                 <!-- Hoverable rows start -->
                 <div class="mt-3">
@@ -9,6 +21,8 @@
                             <div class="">
                                 <h2 class="pl-2 pt-3">
                                     {{ $booking_service->service->name }} </h2>
+
+
                                 <div class="table-responsive">
                                     <table id="unassigned_data" class="table table-fs-md table-hover" aria-label="">
                                         <thead>
@@ -25,7 +39,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @if ($providers[$booking_service->id] && $providers[$booking_service->id]->count())
+                                            @if (isset($providers[$booking_service->id]))
                                                 @foreach ($providers[$booking_service->id] as $provider)
                                                     <tr role="row" class="odd">
 
@@ -33,18 +47,18 @@
                                                             <div class="d-flex gap-2 align-items-center">
                                                                 <div>
                                                                     <img width="50" height="50"
-                                                                        src="{{ $provider->profile_pic ? $provider->profile_pic : '/tenant-resources/images/portrait/small/avatar-s-20.jpg' }}"
+                                                                        src="{{ $provider['profile_pic'] ? $provider['profile_pic'] : '/tenant-resources/images/portrait/small/avatar-s-20.jpg' }}"
                                                                         class="rounded-circle"
                                                                         alt="Provider Profile Image">
                                                                 </div>
                                                                 <div class="pt-2">
                                                                     <div class="font-family-secondary leading-none">
-                                                                        {{ $provider->name }}
+                                                                        {{ $provider['name'] }}
                                                                     </div>
                                                                     <a target="_blank"
-                                                                        href="{{ route('tenant.provider-profile', ['providerID' => $provider->provider_id]) }}"
+                                                                        href="{{ route('tenant.provider-profile', ['providerID' => $provider['provider_id']]) }}"
                                                                         class="font-family-secondary"><small>
-                                                                            {{ $provider->email }}</small></a>
+                                                                            {{ $provider['email'] }}</small></a>
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -59,7 +73,7 @@
                                                                             aria-label="Start Time"
                                                                             name="actual_start_hour" placeholder="00"
                                                                             type="text" tabindex=""
-                                                                            wire:model.defer="close_out.{{ $booking_service->id }}.{{ $provider->provider_id }}.actual_start_hour"
+                                                                            wire:model.defer="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.actual_start_hour"
                                                                             maxlength="2">
                                                                     </div>
                                                                     <svg width="5" height="19"
@@ -76,7 +90,7 @@
                                                                             id="actual_start_min"
                                                                             name="actual_start_min" placeholder="00"
                                                                             type="text" tabindex=""
-                                                                            wire:model.defer="close_out.{{ $booking_service->id }}.{{ $provider->provider_id }}.actual_start_min"
+                                                                            wire:model.defer="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.actual_start_min"
                                                                             maxlength="2">
                                                                     </div>
                                                                 </div>
@@ -92,7 +106,7 @@
                                                                             aria-label="Start Time"
                                                                             name="actual_start_hour" placeholder="00"
                                                                             type="text" tabindex=""
-                                                                            wire:model.defer="close_out.{{ $booking_service->id }}.{{ $provider->provider_id }}.actual_end_hour"
+                                                                            wire:model.defer="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.actual_end_hour"
                                                                             maxlength="2">
                                                                     </div>
                                                                     <svg width="5" height="19"
@@ -109,7 +123,7 @@
                                                                             id="actual_start_min"
                                                                             name="actual_start_min" placeholder="00"
                                                                             type="text" tabindex=""
-                                                                            wire:model.defer="close_out.{{ $booking_service->id }}.{{ $provider->provider_id }}.actual_end_min"
+                                                                            wire:model.defer="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.actual_end_min"
                                                                             maxlength="2">
                                                                     </div>
                                                                 </div>
@@ -121,7 +135,7 @@
                                                                 <input type="number" name=""
                                                                     class="form-control form-control-sm"
                                                                     placeholder="$00:00"
-                                                                    wire:model.lazy="close_out.{{ $booking_service->id }}.{{ $provider->provider_id }}.total_amount"
+                                                                    wire:model.lazy="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.total_amount"
                                                                     id="total-service-payment">
                                                             </div>
                                                         </td>
