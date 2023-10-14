@@ -3,9 +3,11 @@
 namespace App\Http\Livewire\App\Common\Bookings;
 
 use App\Http\Livewire\App\Admin\Customer\ServiceCatelog;
+use App\Services\App\BookingOperationsService;
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\ServiceCategory;
+
 use Livewire\Component;
 use App\Models\Tenant\BookingCustomizeData;
 use App\Models\Tenant\BookingServices;
@@ -13,6 +15,7 @@ use App\Models\Tenant\CustomizeFormFields;
 use App\Models\Tenant\Specialization;
 use App\Models\Tenant\User;
 use App\Models\Tenant\UserDetail;
+
 use Illuminate\Support\Facades\Auth;
 
 class BookingDetails extends Component
@@ -217,5 +220,14 @@ class BookingDetails extends Component
 			$this->closeOut = $closeOut;
 			$this->close_counter = 0;
 		}
+	}
+
+	public function getBookingData($bookingId){
+		$this->emit('getBookingData',$bookingId);
+	}
+	public function reinstate($bookingId){
+		BookingOperationsService::reinstateBooking($bookingId);
+		$this->emit('showConfirmation', 'Booking status updated successfully');
+
 	}
 }

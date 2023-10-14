@@ -246,18 +246,27 @@
                                             --}}
                                                     Edit
                                                 </a>
-                                                <a href="#" class="btn btn-has-icon btn-primary rounded">
-                                                    {{-- Updated by Shanila to Add
-                                            svg icon --}}
+                                                @if ($booking->status == 3 || $booking->status == 4)
+                                                <a href="#" wire:click="reinstate({{ $booking->id }})"  class="btn btn-has-icon btn-primary rounded">
+
+                                                    <svg aria-label="Reinstate" width="20" height="20"
+                                                        viewBox="0 0 20 20" fill="none">
+                                                        <use xlink:href="/css/common-icons.svg#gray-journal">
+                                                        </use>
+                                                    </svg>
+                                                    Reinstate
+                                                    </a>
+                                                @else
+                                                <a href="#" @click="cancelBooking = true" wire:click="getBookingData({{ $booking->id }})" class="btn btn-has-icon btn-primary rounded">
+
                                                     <svg aria-label="Cancel" width="20" height="20"
                                                         viewBox="0 0 20 20" fill="none">
                                                         <use xlink:href="/css/common-icons.svg#cancel-icon">
                                                         </use>
                                                     </svg>
-                                                    {{-- End of update by Shanila
-                                            --}}
                                                     Cancel
                                                 </a>
+                                                @endif
                                             @endif
                                             @if (session()->get('isCustomer') == null)
                                                 <a href="" class="btn btn-has-icon btn-primary rounded"
