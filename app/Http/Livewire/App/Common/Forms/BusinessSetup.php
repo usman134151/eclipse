@@ -186,6 +186,13 @@ class BusinessSetup extends Component
         // dd($this->messages);
         $this->validate();
 
+        if(!is_null($this->configuration->id)){
+            $type = "update";
+        }
+        else{
+            $type = "create";
+        }
+
         $fileService = new UploadFileService();
 
         if($this->company_logo)
@@ -283,21 +290,8 @@ class BusinessSetup extends Component
 		}
         
 
-        if(!is_null($this->configuration->id)){
-            $type = "update";
-        }
-        else{
-            $type = "create";
-        }
         // hammad 16-10-23
-        addLogs([
-            'action_by' => \Auth::id(),
-            'action_to' => $this->configuration->id,
-            'item_type' => 'business_setup',
-            'type' => $type,
-            'message' => 'Business-Setup '. $type .'d by '. \Auth::user()->name,
-            'ip_address' => \request()->ip(), 
-        ]);
+        callLogs($this->configuration->id, 'business_setup', $type);
         
     }
 

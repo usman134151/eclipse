@@ -85,6 +85,22 @@ if (!function_exists('userHasPermission')) {
             // }
         }
     }
+            // hammad 16-10-23
+    if (!function_exists('callLogs')) {
+        function callLogs($action_to, $item_type, $type)
+        {
+            $messageItemType = ucwords(str_replace('_', '-', $item_type)) . ' ';
+            
+            addLogs([
+                'action_by' => \Auth::id(),
+                'action_to' => $action_to,
+                'item_type' => $item_type,
+                'type' => $type,
+                'message' => $messageItemType . $type .'d by '. \Auth::user()->name,
+                'ip_address' => \request()->ip(), 
+            ]);
+        }
+    }
 }
 if (!function_exists('getTemplate')) {
 

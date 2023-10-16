@@ -129,14 +129,7 @@ class TeamInfo extends Component
 		}
 
 		// hammad 16-10-23
-		addLogs([
-			'action_by' => \Auth::id(),
-			'action_to' => $this->team->id,
-			'item_type' => 'admin_team',
-			'type' => $type,
-			'message' => 'Admin-Team '. $type .'d by '. \Auth::user()->name,
-			'ip_address' => \request()->ip(), 
-		]);
+		callLogs($this->team->id,'admin_team',$type);
 		
 	}
 
