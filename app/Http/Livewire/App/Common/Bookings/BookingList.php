@@ -32,7 +32,7 @@ class BookingList extends Component
 	public  $limit = 10, $counter, $ad_counter = 0, $ci_counter = 0, $co_counter = 0, $currentServiceId, $panelType = 1;
 	public  $booking_id = 0, $provider_id = null, $booking_service_id = 0;
 	public $providerPanelType = 0; //to ensure only clicked panel loads in provider-panel 
-	public $bookingNumber = '', $selectedProvider = 0;
+	public $bookingNumber = '', $selectedProvider = 0, $checkin_booking_id=0;
 	public $deleteRecordId = 0;
 	public $setupValues = [
 		'accommodations' => ['parameters' => ['Accommodation', 'id', 'name', 'status', 1, 'name', true, 'accommodation_search_filter', '', 'accommodation_search_filter', 2]],
@@ -564,15 +564,16 @@ class BookingList extends Component
 			$this->bookingNumber = $bookingNumber;
 		if ($selectedProvider)
 		$this->selectedProvider = $selectedProvider;
+		// dd($booking_id, $booking_service_id);
 		if ($this->ci_counter == 0) {
-			$this->booking_id = 0;
+			$this->checkin_booking_id = 0;
 			$this->dispatchBrowserEvent('open-check-in', ['booking_id' => $booking_id, 'booking_service_id' => $booking_service_id]);
 			$this->ci_counter = 1;
 		} else {
-			$this->booking_id = $booking_id;
+			$this->checkin_booking_id = $booking_id;
 			$this->booking_service_id = $booking_service_id;
 			$this->ci_counter = 0;
-			$this->providerPanelType = 1;
+			// $this->providerPanelType = 1;
 		}
 	}
 	public function showCheckOutPanel($booking_id, $booking_service_id, $bookingNumber = null, $selectedProvider = null)

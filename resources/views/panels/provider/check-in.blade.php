@@ -1,7 +1,7 @@
-<x-off-canvas show="offcanvasOpenCheckIn">
+<x-off-canvas show="offcanvasOpenCheckIn" style="z-index:10569">
     <x-slot name="title">Check-In # {{ $bookingNumber }}</x-slot>
-    @if ($booking_id &&$providerPanelType==1)
-        @livewire('app.common.panels.provider.check-in', ['booking_id' => $booking_id,'booking_service_id'=>$booking_service_id, 'provider_id'=>$selectedProvider])
+    @if ($checkin_booking_id)
+        @livewire('app.common.panels.provider.check-in', ['booking_id' => $checkin_booking_id,'booking_service_id'=>$booking_service_id, 'provider_id'=>$selectedProvider])
     @endif
 </x-off-canvas>
 <script>

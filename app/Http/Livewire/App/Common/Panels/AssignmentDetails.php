@@ -51,6 +51,7 @@ class AssignmentDetails extends Component
                 'booking_services.attendees', 'booking_services.service_consumer', 'booking_services.specialization', 'booking_services.meeting_phone',
                 'booking_services.meeting_passcode', 'booking_services.provider_count', 'booking_services.created_at',
                 'booking_services.meeting_link', 'service_categories.name as service_name', 'service_categories.id as service_id',
+                'service_categories.check_in_procedure', 'service_categories.close_out_procedure', 'service_categories.running_late_procedure',
                 'accommodations.name as accommodation_name'
             ])
             ->toArray();
@@ -63,7 +64,23 @@ class AssignmentDetails extends Component
 
                 $this->data['booking_services'][$key]['meeting_details'] = json_decode($service['meetings'], true) ? json_decode($service['meetings'], true)[0] : null;
             }
-        }
+            $this->data['booking_services'][$key]['display_running_late'] = false;
+            $this->data['booking_services'][$key]['display_check_in'] = false;
+
+            $val = $service['running_late_procedure'] ? json_decode($service['running_late_procedure'], true) : null;
+            if ($val) {
+                if (isset($val['enable_button']) && ($val['enable_button']))
+                    $this->data['booking_services'][$key]['display_running_late'] = true;
+            }
+            $val = json_decode($service['check_in_procedure'], true);
+            if ($val) {
+                if (isset($val['enable_button']) && ($val['enable_button']))
+                    $this->data['booking_services'][$key]['display_check_in'] = true;
+            }
+
+             $provider = BookingProvider::where(['booking_service_id'=>$service->id,'provider_id'=>Auth::id()])->first();
+            $this->data['booking_services'][$key]['provider'] = $provider ? $provider->toArray() : null;
+            }
         $this->data['assigned'] = $assigned;
         if (Carbon::parse($this->booking->booking_start_at)->isToday())
             $this->data['isToday'] = true;
