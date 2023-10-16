@@ -267,7 +267,7 @@
                                                                         $bookingType != 'Unassigned' &&
                                                                         $bookingType != 'Invitations' &&
                                                                         $bookingType != 'Cancelled')
-                                                                    @if ($booking['display_check_in'])
+                                                                    @if ($booking['display_check_in'] &&  $bookingType != "Today's" )
                                                                         <a href="javascript:void(0)"
                                                                             @click="offcanvasOpenCheckIn = true"
                                                                             wire:click="showCheckInPanel('{{ $booking['id'] }}','{{ $booking['booking_service_id'] }}','{{ $booking['booking_number'] }}')"
