@@ -97,6 +97,13 @@ class TeamInfo extends Component
 	}
 	public function save($redirect=1){
 		$this->validate();
+		
+		if(!is_null($this->team->id)){
+            $type = "update";
+        }
+        else{
+            $type = "create";
+        }
 
         $teamService = new AdminTeamService;
         $this->team = $teamService->createAdminTeam($this->team);
@@ -121,6 +128,16 @@ class TeamInfo extends Component
 			$this->emit('updateComponent', $this->team);
 		}
 
+		// hammad 16-10-23
+		addLogs([
+			'action_by' => \Auth::id(),
+			'action_to' => $this->team->id,
+			'item_type' => 'admin_team',
+			'type' => $type,
+			'message' => 'Admin-Team '. $type .'d by '. \Auth::user()->name,
+			'ip_address' => \request()->ip(), 
+		]);
+		
 	}
 
 	
