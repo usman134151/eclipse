@@ -69,7 +69,7 @@ class BookingCloseOut extends Component
             }
 
             if ($this->service_charges[$booking_service_id]['override'] == true) {
-                $booking_service->billed_total = $this->service_charges[$booking_service_id]['charges'];
+                $booking_service->billed_total = $this->service_charges[$booking_service_id]['charges']!="" ? $this->service_charges[$booking_service_id]['charges'] : 0;
             }
             $booking_service->save();
         }
@@ -79,7 +79,7 @@ class BookingCloseOut extends Component
         }
         //override booking total amound
         if ($this->override) {
-            Payment::where('booking_id', $this->booking->id)->update(['is_override' => '1', 'override_amount' => $this->override_amount]);
+            Payment::where('booking_id', $this->booking->id)->update(['is_override' => '1', 'override_amount' => $this->override_amount!="" ? $this->override_amount: 0]);
         }
         $this->booking->save();
 
@@ -97,6 +97,8 @@ class BookingCloseOut extends Component
         $this->service_charges[$booking_service_id]['override'] = true;
         $sum = 0;
         foreach ($this->service_charges as $sc) {
+            if ($sc['charges'] == '')
+                $sc['charges'] = 0;
             $sum = $sum + $sc['charges'];
         }
         $this->override_amount = $sum;
@@ -120,7 +122,7 @@ class BookingCloseOut extends Component
                     $this->close_out[$booking_service->id][$provider['provider_id']]['total_amount'] = $provider['total_amount'];
                 }
             }
-            $this->service_charges[$booking_service->id]['charges'] = $booking_service->billed_total;
+            $this->service_charges[$booking_service->id]['charges'] = $booking_service->billed_total ?? 0;
             $this->service_charges[$booking_service->id]['override'] = false;
         }
         $this->booking_total_amount = $this->booking->getInvoicePrice();
