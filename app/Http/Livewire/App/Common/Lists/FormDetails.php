@@ -144,6 +144,10 @@ final class FormDetails extends PowerGridComponent
             $columns[] = Column::make('Industry', 'industry_name', '')->field('industry_name','industries.name','')->searchable()->makeinputtext()->sortable();
             
         }
+        if ($this->formId == 194 || $this->formId == 195 ) {
+            $columns[] = Column::make('Name', 'request_form_name', '')->searchable()->makeinputtext()->sortable();
+        }
+    
         if ($this->formId == 38) {
             $columns[] = Column::make('Industry', 'industry_name', '')->field('industry_name', 'industries.name', '')->searchable()->makeinputtext()->sortable();
         }
