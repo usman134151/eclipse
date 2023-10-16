@@ -98,19 +98,21 @@
                                     <div class="col-lg-12">
                                         <h2 class="mb-4">Configuration Setting</h2>
                                         <div class="row inner-section-segment-spacing">
-                                            <div class="col-lg-6">
-                                                <div class="col-lg-12"> {{-- updated by hammad 16-10-23 --}}
-                                                    <label class="form-label" for="add-company-logo"> Company Name</label>
-                                                        <input aria-label="Company Name" type=""
-                                                        name="" wire:model.defer="configuration.business_name"
-                                                        class="form-control" placeholder="Name">
-                                                    @error('business_name')
-                                                        <span class="d-inline-block invalid-feedback mt-2">
-                                                            {{ $message }}
-                                                        </span>
-                                                    @enderror
+                                            <div class="row inner-section-segment-spacing">
+                                                <div class="col-lg-6">
+                                                    <div class="col-lg-12">
+                                                        <label class="form-label" for="add-company-logo"> Company Name</label>
+                                                            <input aria-label="Company Name" type=""
+                                                            name="" wire:model.defer="configuration.business_name"
+                                                            class="form-control" placeholder="Name">
+                                                        @error('business_name')
+                                                            <span class="d-inline-block invalid-feedback mt-2">
+                                                                {{ $message }}
+                                                            </span>
+                                                        @enderror
+                                                    </div>
                                                 </div>
-                                            </div> {{-- update ended by hammad 16-10-23 --}}
+                                            </div>
                                             <div class="col-lg-6">
                                                 <h3>Choose Portal Default Colours</h3>
                                                 <div class="row gap-0 row-gap-3">
