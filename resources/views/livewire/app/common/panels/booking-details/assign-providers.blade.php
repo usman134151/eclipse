@@ -112,7 +112,7 @@
                              @endif
                              <td class="border-end-2">
                                  <div class="d-flex gap-2 align-items-center">
-                                     <div>
+                                     <div wire:ignore>
                                          @if ($provider->profile_pic)
                                              <img width="50" height="50" src="{{ $provider->profile_pic }}"
                                                  style="max-width:100%;" class="rounded-circle" alt="Image">

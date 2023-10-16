@@ -592,16 +592,7 @@
             </div>
         </div>
         <!-- Total -->
-        <div class="bg-muted py-2 mb-4">
-            <div class="row justify-content-center">
-                <div class="col-lg-4">
-                    <div class="d-flex justify-content-between">
-                        <div class="fw-bold text-sm">Total</div>
-                        <div class="fw-bold text-sm text-lg-end">$<span id="total-price"></span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
         {{-- <!-- /Total --> --}}
 
         <div class="text-center">
