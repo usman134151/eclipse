@@ -2073,7 +2073,7 @@
                         <div class="hidden-content">
                             <label class="form-label-sm">Select Form</label>
                             <select class="form-select" wire:model.defer="checkIn.customize_form_id">
-                                @foreach ($customForms as $form)
+                                @foreach ($checkin_customForms as $form)
                                     <option value="{{ $form['id'] }}">{{ $form['request_form_name'] }}</option>
                                 @endforeach
                             </select>
@@ -2118,14 +2118,14 @@
                     <div class="form-check">
                         <label class="form-check-label" for="EnableAuthorizeandCloseButtonforCustomers">Enable
                             “Authorize
-                            and Close” Button for Customers</label>
-                        <input class="form-check-input show-hidden-content"
+                            and Close” Button for Customers <small>(coming soon)</small></label>
+                        <input disabled class="form-check-input show-hidden-content"
                             id="EnableAuthorizeandCloseButtonforCustomers" name="RequestStartTimeforServices"
                             type="checkbox" tabindex="" wire:model.defer="checkOut.enable_button_customer"
                             value="true">
                         <div class="hidden-content">
                             <label class="form-label-sm">Select Customer-Users</label>
-                            <select  multiple class="select2 form-select select2-hidden-accessible" id="checkout_customers" wire:model.defer="checkOut.customers">
+                            <select disabled  multiple class="select2 form-select select2-hidden-accessible" id="checkout_customers" wire:model.defer="checkOut.customers">
                                 <option>Select Customer-Users</option>
                                 @foreach($companyUsers as $role)
                                 <option value="{{$role['id']}}">{{$role['name']}}</option>
@@ -2158,13 +2158,13 @@
                     <div class="form-check">
                         <label class="form-check-label" for="AddCustomizedCloseOutForm">Add
                             Customized “Close-Out” Form</label>
-                        <input class="form-check-input show-hidden-content" id="AddCustomizedCloseOutForm"
+                        <input  class="form-check-input show-hidden-content" id="AddCustomizedCloseOutForm"
                             name="RequestStartTimeforServices" type="checkbox" tabindex=""
                             wire:model.defer="checkOut.customize_form" value="true">
                         <div class="hidden-content">
                             <label class="form-label-sm">Select Form</label>
                             <select class="form-select" wire:model.defer="checkOut.customize_form_id">
-                                @foreach ($customForms as $form)
+                                @foreach ($checkout_customForms as $form)
                                     <option value="{{ $form['id'] }}">{{ $form['request_form_name'] }}</option>
                                 @endforeach
                             </select>
@@ -2428,14 +2428,14 @@
                     </div>
                     <div class="form-check">
                         <label class="form-check-label" for="AddCustomizedRunningLateForm">Add
-                            Customized “Running Late” Form</label>
-                        <input class="form-check-input show-hidden-content" id="AddCustomizedRunningLateForm"
+                            Customized “Running Late” Form <small>(coming soon)</small> </label>
+                        <input disabled class="form-check-input show-hidden-content" id="AddCustomizedRunningLateForm"
                             name="RequestStartTimeforServices" type="checkbox" tabindex=""
                             wire:model.defer="runningLate.customize_form" value="true">
                         <div class="hidden-content">
                             <label class="form-label-sm">Select
                                 Form</label>
-                            <select class="form-select"  wire:model.defer="runningLate.customize_form_id">
+                            <select disabled class="form-select"  wire:model.defer="runningLate.customize_form_id">
                                 @foreach ($customForms as $form)
                                     <option value="{{ $form['id'] }}">{{ $form['request_form_name'] }}</option>
                                 @endforeach
