@@ -38,7 +38,7 @@ class AddService extends Component
 
     public $setupValues = [
         'accomodations' => ['parameters' => ['Accommodation', 'id', 'name', '', '', 'name', false, 'service.accommodations_id', '', 'accommodations_id', 1]],
-        'customerForms' => ['parameters' => ['CustomizeForms', 'id', 'request_form_name', 'form_name_id', '37', 'request_form_name', false, 'service.request_form_id', '', 'request_form_id', 1]]
+        'customerForms' => ['parameters' => ['CustomizeForms', 'id', 'request_form_name', 'form_name_id', '37', 'request_form_name', false, 'service.request_form_id', '', 'request_form_id', 1]],
     ];
     public $serviceTypes = [
         '1' => ['class' => 'inperson-rate', 'postfix' => '', 'title' => 'In-Person'],
@@ -103,6 +103,7 @@ class AddService extends Component
 
     ]];
 
+    public $checkin_customForms=[], $checkout_customForms = [];
     /*=[[
         'in_person'=>'',
         'virtual'=>'',
@@ -149,6 +150,9 @@ class AddService extends Component
         // 'customerForms' => ['parameters' => ['CustomizeForms', 'id', 'request_form_name', 'form_name_id', '37', 'request_form_name', false, 'service.request_form_id','','request_form_id',1]]
 
         $this->customForms = CustomizeForms::where(['form_name_id' => 37, 'status' => 1])->select('request_form_name', 'id')->get()->toArray();
+        $this->checkin_customForms = CustomizeForms::where(['form_name_id' => 194, 'status' => 1])->select('request_form_name', 'id')->get()->toArray();
+        $this->checkout_customForms = CustomizeForms::where(['form_name_id' => 195, 'status' => 1])->select('request_form_name', 'id')->get()->toArray();
+        
         $this->companyUsers = [
             0 => ['id' => 10, 'name' => 'Company Admin'],
             5 => ['id' => 5, 'name' => 'Supervisor'],
