@@ -82,7 +82,7 @@
                                     <span>Check In</span>
                                 </button>
                             @endif
-                            @if ($data['booking_services'][0]['display_running_late'] && ($this->data['booking_services'][$key]['provider'] && $this->data['booking_services'][$key]['provider']['check_in_status']==0))
+                            @if ($data['booking_services'][0]['display_running_late'] && ($this->data['booking_services'][0]['provider'] && $this->data['booking_services'][0]['provider']['check_in_status']==0))
                                 <button type="button"
                                     class="btn btn-primary rounded text-sm d-inline-flex gap-1 align-items-center px-3"
                                     data-bs-toggle="modal" data-bs-target="#runningLateModal"
@@ -405,7 +405,7 @@
                                             @if (isset($service['participants']))
                                                 @foreach ($service['participants'] as $key => $user)
                                                     <a href="">{{ $user['name'] }}</a>
-                                                    @if ($key != count($service['participants']) - 1)
+                                                    @if (0 != count($service['participants']) - 1)
                                                         ,
                                                     @endif
                                                 @endforeach

@@ -113,6 +113,7 @@ class CheckIn extends Component
                 $this->files['customer_signature'] = $values['provider_signature_path'] ?? null;
             }
         }
+        // dd($this->booking_provider);
     }
 
     function showForm()

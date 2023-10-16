@@ -78,7 +78,7 @@ class AssignmentDetails extends Component
                     $this->data['booking_services'][$key]['display_check_in'] = true;
             }
 
-             $provider = BookingProvider::where(['booking_service_id'=>$service->id,'provider_id'=>Auth::id()])->first();
+             $provider = BookingProvider::where(['booking_service_id'=>$service['id'],'provider_id'=>Auth::id()])->first();
             $this->data['booking_services'][$key]['provider'] = $provider ? $provider->toArray() : null;
             }
         $this->data['assigned'] = $assigned;
