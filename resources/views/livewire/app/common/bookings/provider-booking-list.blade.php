@@ -9,7 +9,7 @@
     <div class="card">
         <div class="card-body">
             <div class="mt-3" wire:ignore>
-                <x-advancefilters type="" :filterProviders="$filterProviders" :hideProvider="false" />
+                <x-advancefilters type="" :filterProviders="$filterProviders" :hideProvider="true"  :setupValues="$setupValues" />
             </div>
 
             <div class="row mb-5">

@@ -381,7 +381,6 @@ class BookingList extends Component
 	{
 		$this->setupValues = SetupHelper::loadSetupValues($this->setupValues);
 
-
 		if (session('isProvider')) {
 			$this->provider_id = Auth::id();
 
