@@ -113,7 +113,7 @@
 								</div>
 								<!-- End: This is conditional, link with select "Form" / option "New Provider Screening"   -->
 								@endif
-								@if($custom_form_details['form_name_id']==37)
+								@if($custom_form_details['form_name_id']==37 || $custom_form_details['form_name_id']==194 || $custom_form_details['form_name_id']==195)
 								<!-- Begin: This is conditional, link with select "Form" / option "Customer Request Form"   -->
 								 <div class="col-md-12">
 									<div class="mb-4">
@@ -353,7 +353,7 @@
 
 								<div class="col-12 justify-content-center form-actions d-flex"> 
 
-									<button  type="submit" wire:click.prevent="{{$custom_form_details['form_name_id']==37 ? 'save' : ''}}" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });"
+									<button  type="submit" wire:click.prevent="{{($custom_form_details['form_name_id']==37|| $custom_form_details['form_name_id']==194 || $custom_form_details['form_name_id']==195) ? 'save' : ''}}" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });"
 									class="btn btn-primary rounded">Publish Form</button>
 									<button type="button"
 										class="btn btn-outline-dark rounded mx-2" wire:click.prevent="showList">Cancel</button>
