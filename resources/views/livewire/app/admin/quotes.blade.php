@@ -114,9 +114,9 @@
 
 				  <div class="tablediv dropdown-menu fadeIn">
 					<a title="Convert to Consumer" aria-label="Convert to Consumer" href="#" class="dropdown-item"><i class="fa fa-sync"></i>Create Quote</a>
-					<a title="Convert to Consumer" aria-label="Convert to Consumer" href="#" class="dropdown-item"><i class="fa fa-envelope-open-o"></i>View Request</a>
+					<a title="Convert to Consumer" aria-label="Convert to Consumer" href="#" class="dropdown-item"><i class="fa fa-envelope-open"></i>View Request</a>
 					<a title="Edit Lead" aria-label="Edit Lead" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-edit"></i>Edit Request</a>
-					<a title="Delete" aria-label="Delete" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-trash-o"></i>Delete Request</a>
+					<a title="Delete" aria-label="Delete" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-trash"></i>Delete Request</a>
 				  </div>
 				</div>
 			  </div>

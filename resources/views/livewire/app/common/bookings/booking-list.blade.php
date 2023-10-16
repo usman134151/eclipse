@@ -350,7 +350,7 @@
                                                                                     wire:click="openAssignProvidersPanel({{ $booking->id }},{{ $booking->service_id }}, 3)"
                                                                                     @click="assignProvider = true">
                                                                                     <i
-                                                                                        class="fa fa-envelope-open-o"></i>
+                                                                                        class="fa fa-envelope-open"></i>
 
                                                                                 </a>
                                                                             @else
@@ -596,7 +596,7 @@
                                                                                                 wire:click="openAssignProvidersPanel({{ $booking->id }},{{ $booking->service_id }}, 2)"
                                                                                                 @click="assignProvider = true">
                                                                                                 <i
-                                                                                                    class="fa fa-envelope-o"></i>
+                                                                                                    class="fa fa-envelope"></i>
                                                                                                 Invite Providers
                                                                                             </a>
                                                                                         @endif
