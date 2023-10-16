@@ -26,9 +26,10 @@ class BusinessSetup extends Component
     public function rules()
     {
         return [
+            'configuration.business_name' => ['nullable'],
             'configuration.default_colour' => ['required'],
             'configuration.foreground_colour' => ['required'],
-            'configuration.portal_url' => ['required','max:255'],
+            'configuration.portal_url' => ['nullable','max:255'],
             'configuration.company_logo' => ['nullable'],
             'configuration.login_screen' => ['nullable'],
             'configuration.welcome_text' => ['nullable'],
