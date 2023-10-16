@@ -1,8 +1,8 @@
 <?php
 namespace app\Services\App;
 
-use App\Models\NotificationTemplates;
-use App\Models\NotificationTag;
+use App\Models\Tenant\NotificationTemplates;
+use App\Models\Tenant\NotificationTag;
 use App\Models\Tenant\NotificationTemplateRoleFrequencies;
 use App\Models\Tenant\NotificationTemplateRoles;
 use App\Models\Tenant\Role;
@@ -17,11 +17,32 @@ class NotificationService{
 
     public static function sendNotification($triggerName,$data){
         //get notification trigger 
+        $notificationData=NotificationTemplates::where('trigger',$triggerName)->with('notificationTemplateRoles')->orderBy('notification_type')->get()->toArray();
+       return;
+        foreach($notificationData as $notification){
+            //get list of users to send notification to
+            $notificationUsers=SELF::getUsers($notificationData['notificationTemplateRoles'],$notificationData['trigger_type_id']);
+
+            //loop to send
+            foreach($notificationData['notificationTemplateRoles'] as $roleData){
+                dd($roleData);
+            //replace data in loop
+
+
+            //send notification
+            if($notification['notification_type']==1){
+                //send email
+            }
+            elseif($notification['notification_type']==2){ //system
+
+            }
+            else{ //sms
+
+            }
+        }
+
+        }
         
-        //get list of users to send notification to
-        //loop to send
-        //replace data in loop
-        //send notification
 
     }
 
@@ -124,5 +145,5 @@ class NotificationService{
 
             
     }
-
+    public static function getUsers($rolesData,$triggerType){}
 }

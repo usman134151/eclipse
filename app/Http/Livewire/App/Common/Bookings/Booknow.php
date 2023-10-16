@@ -307,7 +307,9 @@ class Booknow extends Component
     {
        // dd($this->booking);
         //booking basic info
-
+		$base = '/admin';
+		if($this->isCustomer)
+		$base = '/customer';
         if($step==1){
             $this->validate();
             if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
@@ -382,9 +384,14 @@ class Booknow extends Component
               //  $this->booking->is_recurring=1;
                 
             }
-
-
-        }
+           
+            //checking if edit
+            if($this->isEdit){
+                $data['bookingData']=Booking::where('id',$this->booking->id)->with('booking_services','services','payment','company','customer','booking_provider')->first();
+ 
+                NotificationService::sendNotification('Booking: Dynamic Details Updated (Step 1 details)',$data);
+            }
+        } //step 1 end
         else{
           
             foreach($this->services as $service){
@@ -453,11 +460,11 @@ class Booknow extends Component
                    
              }
 
-            return redirect()->to('/admin/bookings/unassigned');
+            return redirect()->to($base.'/bookings/view-booking/' . encrypt($this->booking->id));
         }
        
         if ($redirect) {
-            $this->confirmation("Assignment Data has been saved successfully");
+            return redirect()->to($base.'/bookings/view-booking/' . encrypt($this->booking->id));
             
         } else {
             //if(count($this->formIds)==0)
