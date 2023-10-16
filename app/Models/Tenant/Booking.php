@@ -87,6 +87,10 @@ class Booking extends Model
     {
         return $this->hasMany(BookingProvider::class, 'booking_id', 'id')->where('check_in_status', 3);
     }
+    public function checked_in_providers()
+    {
+        return $this->hasMany(BookingProvider::class, 'booking_id', 'id')->where('check_in_status', 1);
+    }
     public function booking_services()
     {
         return $this->hasMany(BookingServices::class, 'booking_id', 'id');

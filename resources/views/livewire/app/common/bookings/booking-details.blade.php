@@ -174,20 +174,25 @@
                                                     {{-- End of update by Shanila --}}
                                                     View Assigned Admin-staff
                                                 </a>
-                                                <a href="#" class="btn btn-has-icon btn-outline-dark rounded"
-                                                    @click="closeOutBooking = true"
-                                                    wire:click="$emit('openBookingCloseOut',true)">
-                                                    <svg width="30" height="30" viewBox="0 0 30 30"
-                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <use xlink:href="/css/customer.svg#confirm-completion-icon">
-                                                        </use>
-                                                    </svg>
-                                                    @if ($booking->is_closed == 0)
-                                                        Close Assignment
-                                                    @else
-                                                        Closed
-                                                    @endif
-                                                </a>
+                                                @if (!session()->get('isCustomer') &&
+                                                        $booking->status == 2 && $data['show_close_button'])
+                                                    <a href="#"
+                                                        class="btn btn-has-icon btn-outline-dark rounded"
+                                                        @click="closeOutBooking = true"
+                                                        wire:click="$emit('openBookingCloseOut',true)">
+                                                        <svg width="30" height="30" viewBox="0 0 30 30"
+                                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <use
+                                                                xlink:href="/css/customer.svg#confirm-completion-icon">
+                                                            </use>
+                                                        </svg>
+                                                        @if ($booking->is_closed == 0)
+                                                            Close Assignment
+                                                        @else
+                                                            Closed
+                                                        @endif
+                                                    </a>
+                                                @endif
 
                                             </div>
                                         </div>
@@ -247,25 +252,28 @@
                                                     Edit
                                                 </a>
                                                 @if ($booking->status == 3 || $booking->status == 4)
-                                                <a href="#" wire:click="reinstate({{ $booking->id }})"  class="btn btn-has-icon btn-primary rounded">
+                                                    <a href="#" wire:click="reinstate({{ $booking->id }})"
+                                                        class="btn btn-has-icon btn-primary rounded">
 
-                                                    <svg aria-label="Reinstate" width="20" height="20"
-                                                        viewBox="0 0 20 20" fill="none">
-                                                        <use xlink:href="/css/common-icons.svg#gray-journal">
-                                                        </use>
-                                                    </svg>
-                                                    Reinstate
+                                                        <svg aria-label="Reinstate" width="20" height="20"
+                                                            viewBox="0 0 20 20" fill="none">
+                                                            <use xlink:href="/css/common-icons.svg#gray-journal">
+                                                            </use>
+                                                        </svg>
+                                                        Reinstate
                                                     </a>
                                                 @else
-                                                <a href="#" @click="cancelBooking = true" wire:click="getBookingData({{ $booking->id }})" class="btn btn-has-icon btn-primary rounded">
+                                                    <a href="#" @click="cancelBooking = true"
+                                                        wire:click="getBookingData({{ $booking->id }})"
+                                                        class="btn btn-has-icon btn-primary rounded">
 
-                                                    <svg aria-label="Cancel" width="20" height="20"
-                                                        viewBox="0 0 20 20" fill="none">
-                                                        <use xlink:href="/css/common-icons.svg#cancel-icon">
-                                                        </use>
-                                                    </svg>
-                                                    Cancel
-                                                </a>
+                                                        <svg aria-label="Cancel" width="20" height="20"
+                                                            viewBox="0 0 20 20" fill="none">
+                                                            <use xlink:href="/css/common-icons.svg#cancel-icon">
+                                                            </use>
+                                                        </svg>
+                                                        Cancel
+                                                    </a>
                                                 @endif
                                             @endif
                                             @if (session()->get('isCustomer') == null)
@@ -510,9 +518,15 @@
                                                                 Broadcast
                                                             </label>
                                                             <div class="form-check form-switch form-switch-column">
-                                                                <input class="form-check-input" type="checkbox" role="switch" id="AutoNotifyBroadcast" checked="" aria-label="Auto-notify Broadcast" value="true" wire:model.defer="services.0.auto_notify">
-                                                                <label class="form-check-label" for="AutoNotifyBroadcast">Manual-notify</label>
-                                                                <label class="form-check-label" for="AutoNotifyBroadcast">Auto-notify</label>
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    role="switch" id="AutoNotifyBroadcast"
+                                                                    checked="" aria-label="Auto-notify Broadcast"
+                                                                    value="true"
+                                                                    wire:model.defer="services.0.auto_notify">
+                                                                <label class="form-check-label"
+                                                                    for="AutoNotifyBroadcast">Manual-notify</label>
+                                                                <label class="form-check-label"
+                                                                    for="AutoNotifyBroadcast">Auto-notify</label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -522,15 +536,21 @@
                                                                 Assign
                                                             </label>
                                                             <div class="form-check form-switch form-switch-column">
-                                                                <input class="form-check-input" type="checkbox" role="switch" id="ManualAssignAssign" checked="" aria-label="Auto assign" value="true" wire:model.defer="services.0.auto_assign">
-                                                                <label class="form-check-label" for="ManualAssignAssign">Manual-assign</label>
-                                                                <label class="form-check-label" for="ManualAssignAssign">Auto-assign</label>
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    role="switch" id="ManualAssignAssign"
+                                                                    checked="" aria-label="Auto assign"
+                                                                    value="true"
+                                                                    wire:model.defer="services.0.auto_assign">
+                                                                <label class="form-check-label"
+                                                                    for="ManualAssignAssign">Manual-assign</label>
+                                                                <label class="form-check-label"
+                                                                    for="ManualAssignAssign">Auto-assign</label>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="row">
                                                 <div class="col-lg-8 mb-3">
                                                     <div class="row">
@@ -609,8 +629,8 @@
                                                             </label>
                                                         </div>
                                                         <div class="col-lg-7 align-self-center">
-                                                            @if($service['is_manual_consumer'])
-                                                                {{$service['service_consumer_manual']}}
+                                                            @if ($service['is_manual_consumer'])
+                                                                {{ $service['service_consumer_manual'] }}
                                                             @else
                                                                 <div class="font-family-tertiary">
                                                                     <a target="_blank"
@@ -628,8 +648,8 @@
                                                             </label>
                                                         </div>
                                                         <div class="col-lg-7 align-self-center">
-                                                            @if($service['is_manual_attendees'])
-                                                                {{$service['attendees_manual']}}
+                                                            @if ($service['is_manual_attendees'])
+                                                                {{ $service['attendees_manual'] }}
                                                             @else
                                                                 <div class="font-family-tertiary">
                                                                     @if (isset($service['participants']))
@@ -1529,7 +1549,10 @@
                         <div class="tab-pane fade {{ $component == 'assignment-log' ? 'active show' : '' }}"
                             id="assignment-log" role="tabpanel" aria-labelledby="assignment-log-tab" tabindex="0">
                             <div class="row">
-                                @if (!session()->get('isCustomer'))
+                                @if (
+                                    !session()->get('isCustomer') &&
+                                        $booking->status == 2 && $data['show_close_button'])
+
                                     <div class="col-12   mb-2">
                                         <div class="">
                                             <a href="#" class="btn btn-has-icon btn-primary rounded"

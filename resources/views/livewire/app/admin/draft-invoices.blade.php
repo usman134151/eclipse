@@ -290,7 +290,7 @@
                             </div>
                         </div>
                         {{-- Icon Legend Bar - End --}}
-                        <div class="bg-muted py-2 mb-4">
+                        {{-- <div class="bg-muted py-2 mb-4">
                             <div class="row justify-content-start">
                                 <div class="col-lg-4">
                                     <div class="d-flex justify-content-start">
@@ -303,7 +303,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
             </section>
         </div>

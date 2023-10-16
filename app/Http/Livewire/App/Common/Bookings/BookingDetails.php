@@ -15,18 +15,18 @@ use App\Models\Tenant\CustomizeFormFields;
 use App\Models\Tenant\Specialization;
 use App\Models\Tenant\User;
 use App\Models\Tenant\UserDetail;
-
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class BookingDetails extends Component
 {
 	public $gender, $service_id = 0, $provider_id = 0, $form_id = 0;
-	public $ethnicity, $booking_id = 0, $booking_services, $data, $status, $isCustomer = false, $closeOut=false;
-	public $hideBilling=false;
+	public $ethnicity, $booking_id = 0, $booking_services, $data, $status, $isCustomer = false, $closeOut = false;
+	public $hideBilling = false;
 
 	public $component = 'booking-details';
 	protected $listeners = [
-		'showConfirmation', 'openCustomSavedFroms','openBookingCloseOut'
+		'showConfirmation', 'openCustomSavedFroms', 'openBookingCloseOut'
 	];
 	public $booking;
 	public $serviceDetails;
@@ -69,10 +69,10 @@ class BookingDetails extends Component
 		if (session()->get('isCustomer')) {
 			$this->isCustomer = true;
 			$user = UserDetail::where('user_id', Auth::id())->select('user_configuration')->first();
-			if($user){
-				$config = $user->user_configuration && $user->user_configuration!="null" ? json_decode($user->user_configuration,true) :null;
-				if(isset($config['hide_billing']) && ($config['hide_billing']==true || $config['hide_billing']=="true"))
-				$this->hideBilling = true;
+			if ($user) {
+				$config = $user->user_configuration && $user->user_configuration != "null" ? json_decode($user->user_configuration, true) : null;
+				if (isset($config['hide_billing']) && ($config['hide_billing'] == true || $config['hide_billing'] == "true"))
+					$this->hideBilling = true;
 			}
 		}
 	}
@@ -94,7 +94,7 @@ class BookingDetails extends Component
 				'booking_services.service_consumer',
 				'booking_services.meeting_link',
 				'booking_services.meetings', 'booking_services.service_calculations', 'service_total', 'billed_total',
-				'booking_services.is_closed','booking_services.attendees_manual', 'booking_services.service_consumer_manual','is_manual_consumer','is_manual_attendees',
+				'booking_services.is_closed', 'booking_services.attendees_manual', 'booking_services.service_consumer_manual', 'is_manual_consumer', 'is_manual_attendees',
 				'booking_services.attendees', 'booking_services.service_consumer', 'booking_services.specialization', 'booking_services.meeting_phone',
 				'booking_services.meeting_passcode', 'booking_services.provider_count', 'booking_services.created_at',
 				'service_categories.name as service_name', 'service_categories.id as service_id',
@@ -104,7 +104,7 @@ class BookingDetails extends Component
 		foreach ($this->booking_services as $key => $service) {
 			if ($service['attendees'])
 				$this->booking_services[$key]['participants'] = User::whereIn('id', explode(',', $service['attendees']))->select('name', 'id')->get();
-			
+
 			if ($service['meetings']) {
 
 				$this->booking_services[$key]['meeting_details'] = json_decode($service['meetings'], true) ? json_decode($service['meetings'], true)[0] : null;
@@ -138,7 +138,7 @@ class BookingDetails extends Component
 					$this->data['service_billed'] += $service['billed_total'];
 			}
 		}
-	
+
 		$this->data['total_providers'] = Booking::where('bookings.id', $this->booking_id)
 			->join('booking_services', 'booking_services.booking_id', 'bookings.id')->sum('booking_services.provider_count');
 		$this->data['assigned_providers'] = BookingProvider::where(['booking_id' => $this->booking_id])
@@ -147,8 +147,15 @@ class BookingDetails extends Component
 			$this->status = 'pending';
 		if ($this->booking->status == 1)
 			$this->status = 'unassigned';
-		if ($this->booking->status == 2)
+		if ($this->booking->status == 2) {
 			$this->status = 'assigned';
+		}
+
+		$start_date = Carbon::parse($this->booking->booking_start_at);
+		if ($start_date->isPast() || $start_date->isToday() || $this->booking->checked_in_providers->count())
+			$this->data['show_close_button'] = true;
+		else
+			$this->data['show_close_button'] = false;
 	}
 	//so a fuction which can then be used for editing the fields aswell.
 	public function getServiceDetails()
@@ -211,7 +218,8 @@ class BookingDetails extends Component
 			$this->counter = 0;
 		}
 	}
-	public function openBookingCloseOut($closeOut=false){
+	public function openBookingCloseOut($closeOut = false)
+	{
 		if ($this->close_counter == 0) {
 			$this->closeOut = false;
 			$this->dispatchBrowserEvent('open-booking-close-out', ['close_out' => $closeOut]);
@@ -222,12 +230,13 @@ class BookingDetails extends Component
 		}
 	}
 
-	public function getBookingData($bookingId){
-		$this->emit('getBookingData',$bookingId);
+	public function getBookingData($bookingId)
+	{
+		$this->emit('getBookingData', $bookingId);
 	}
-	public function reinstate($bookingId){
+	public function reinstate($bookingId)
+	{
 		BookingOperationsService::reinstateBooking($bookingId);
 		$this->emit('showConfirmation', 'Booking status updated successfully');
-
 	}
 }
