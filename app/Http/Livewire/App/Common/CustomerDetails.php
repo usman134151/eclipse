@@ -38,9 +38,14 @@ class CustomerDetails extends Component
 
 		$data = $userService->getUserRolesDetails($this->user['id'], 9, 1);
 		$this->user['userdetail']['billing_managers'] = User::whereIn('id', $data->pluck('user_id')->toArray())->get()->pluck('name')->toArray();
+		if(key_exists('favored_users',$this->user['userdetail'])){
+			$data = explode(',', $this->user['userdetail']['favored_users']);
+			$this->user['userdetail']['favoured_users'] = User::whereIn('id', $data)->limit(5)->with('userdetail')->get()->toArray();
+		}
+		else{
+			$this->user['userdetail']['favoured_users'] =[];
+		}
 
-		$data = explode(',', $this->user['userdetail']['favored_users']);
-		$this->user['userdetail']['favoured_users'] = User::whereIn('id', $data)->limit(5)->with('userdetail')->get()->toArray();
 		// dd($this->user['userdetail']['favoured_users']);
 		$this->user['userdetail']['physical_address'] = null;
 		$this->user['userdetail']['billing_address'] = null;
@@ -57,7 +62,12 @@ class CustomerDetails extends Component
 		else{
 			$this->user['userdetail']['language']='N/A';
 		}
-		$this->user['tags'] = json_decode($this->user['userdetail']['tags']);
+		if(key_exists('language_id',$this->user['userdetail'])){
+			$this->user['tags'] = json_decode($this->user['userdetail']['tags']);
+		}
+		else 
+		$this->user['tags'] = [];
+		
 
 		$query = User::query();
 		$query->where('users.id', $this->userid);

@@ -3,9 +3,11 @@
 namespace App\Http\Livewire\App\Common\Bookings;
 
 use App\Http\Livewire\App\Admin\Customer\ServiceCatelog;
+use App\Services\App\BookingOperationsService;
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\ServiceCategory;
+
 use Livewire\Component;
 use App\Models\Tenant\BookingCustomizeData;
 use App\Models\Tenant\BookingServices;
@@ -13,6 +15,7 @@ use App\Models\Tenant\CustomizeFormFields;
 use App\Models\Tenant\Specialization;
 use App\Models\Tenant\User;
 use App\Models\Tenant\UserDetail;
+
 use Illuminate\Support\Facades\Auth;
 
 class BookingDetails extends Component
@@ -91,7 +94,7 @@ class BookingDetails extends Component
 				'booking_services.service_consumer',
 				'booking_services.meeting_link',
 				'booking_services.meetings', 'booking_services.service_calculations', 'service_total', 'billed_total',
-				'booking_services.is_closed',
+				'booking_services.is_closed','booking_services.attendees_manual', 'booking_services.service_consumer_manual','is_manual_consumer','is_manual_attendees',
 				'booking_services.attendees', 'booking_services.service_consumer', 'booking_services.specialization', 'booking_services.meeting_phone',
 				'booking_services.meeting_passcode', 'booking_services.provider_count', 'booking_services.created_at',
 				'service_categories.name as service_name', 'service_categories.id as service_id',
@@ -100,7 +103,8 @@ class BookingDetails extends Component
 			->toArray();
 		foreach ($this->booking_services as $key => $service) {
 			if ($service['attendees'])
-				$this->data['booking_services'][$key]['participants'] = User::whereIn('id', explode(',', $service['attendees']))->select('name', 'id')->get();
+				$this->booking_services[$key]['participants'] = User::whereIn('id', explode(',', $service['attendees']))->select('name', 'id')->get();
+			
 			if ($service['meetings']) {
 
 				$this->booking_services[$key]['meeting_details'] = json_decode($service['meetings'], true) ? json_decode($service['meetings'], true)[0] : null;
@@ -134,6 +138,7 @@ class BookingDetails extends Component
 					$this->data['service_billed'] += $service['billed_total'];
 			}
 		}
+	
 		$this->data['total_providers'] = Booking::where('bookings.id', $this->booking_id)
 			->join('booking_services', 'booking_services.booking_id', 'bookings.id')->sum('booking_services.provider_count');
 		$this->data['assigned_providers'] = BookingProvider::where(['booking_id' => $this->booking_id])
@@ -215,5 +220,14 @@ class BookingDetails extends Component
 			$this->closeOut = $closeOut;
 			$this->close_counter = 0;
 		}
+	}
+
+	public function getBookingData($bookingId){
+		$this->emit('getBookingData',$bookingId);
+	}
+	public function reinstate($bookingId){
+		BookingOperationsService::reinstateBooking($bookingId);
+		$this->emit('showConfirmation', 'Booking status updated successfully');
+
 	}
 }

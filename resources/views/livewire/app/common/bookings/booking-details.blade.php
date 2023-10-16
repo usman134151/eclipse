@@ -149,48 +149,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg col-12 mb-4">
-                                            <div class="row mb-3">
-                                                <div class="col-lg-5">
-                                                    <label class="form-label-sm">
-                                                        Broadcast
-                                                    </label>
-                                                </div>
-                                                <div class="col-lg-7">
-                                                    <div class="form-check form-switch form-switch-column">
-                                                        <input class="form-check-input" type="checkbox"
-                                                            role="switch" id="AutoNotifyBroadcast"
-                                                            aria-label="Auto-notify Toggle">
-                                                        <label class="form-check-label" for="AutoNotifyBroadcast">
-                                                            Manual-assign
-                                                        </label>
-                                                        <label class="form-check-label" for="AutoNotifyBroadcast">
-                                                            Auto-notify
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-5">
-                                                    <label class="form-label-sm">
-                                                        Assign
-                                                    </label>
-                                                </div>
-                                                <div class="col-lg-7">
-                                                    <div class="form-check form-switch form-switch-column">
-                                                        <input class="form-check-input" type="checkbox"
-                                                            role="switch" id="AutoNotifyAssign" checked
-                                                            aria-label="Auto-notify Toggle">
-                                                        <label class="form-check-label" for="AutoNotifyAssign">
-                                                            Manual-assign
-                                                        </label>
-                                                        <label class="form-check-label" for="AutoNotifyAssign">
-                                                            Auto-notify
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-12">
@@ -287,18 +246,27 @@
                                             --}}
                                                     Edit
                                                 </a>
-                                                <a href="#" class="btn btn-has-icon btn-primary rounded">
-                                                    {{-- Updated by Shanila to Add
-                                            svg icon --}}
+                                                @if ($booking->status == 3 || $booking->status == 4)
+                                                <a href="#" wire:click="reinstate({{ $booking->id }})"  class="btn btn-has-icon btn-primary rounded">
+
+                                                    <svg aria-label="Reinstate" width="20" height="20"
+                                                        viewBox="0 0 20 20" fill="none">
+                                                        <use xlink:href="/css/common-icons.svg#gray-journal">
+                                                        </use>
+                                                    </svg>
+                                                    Reinstate
+                                                    </a>
+                                                @else
+                                                <a href="#" @click="cancelBooking = true" wire:click="getBookingData({{ $booking->id }})" class="btn btn-has-icon btn-primary rounded">
+
                                                     <svg aria-label="Cancel" width="20" height="20"
                                                         viewBox="0 0 20 20" fill="none">
                                                         <use xlink:href="/css/common-icons.svg#cancel-icon">
                                                         </use>
                                                     </svg>
-                                                    {{-- End of update by Shanila
-                                            --}}
                                                     Cancel
                                                 </a>
+                                                @endif
                                             @endif
                                             @if (session()->get('isCustomer') == null)
                                                 <a href="" class="btn btn-has-icon btn-primary rounded"
@@ -535,7 +503,34 @@
                                         <div class="col-lg-12">
                                             <div class="d-lg-flex justify-content-between align-items-center">
                                                 <h2 class="">Service {{ $index + 1 }}</h2>
+                                                <div class="row">
+                                                    <div class="col-lg-5 col-md-6 mb-4">
+                                                        <div class="d-flex gap-3">
+                                                            <label class="form-label-sm">
+                                                                Broadcast
+                                                            </label>
+                                                            <div class="form-check form-switch form-switch-column">
+                                                                <input class="form-check-input" type="checkbox" role="switch" id="AutoNotifyBroadcast" checked="" aria-label="Auto-notify Broadcast" value="true" wire:model.defer="services.0.auto_notify">
+                                                                <label class="form-check-label" for="AutoNotifyBroadcast">Manual-notify</label>
+                                                                <label class="form-check-label" for="AutoNotifyBroadcast">Auto-notify</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-7 col-md-6 mb-4">
+                                                        <div class="d-flex gap-3">
+                                                            <label class="form-label-sm">
+                                                                Assign
+                                                            </label>
+                                                            <div class="form-check form-switch form-switch-column">
+                                                                <input class="form-check-input" type="checkbox" role="switch" id="ManualAssignAssign" checked="" aria-label="Auto assign" value="true" wire:model.defer="services.0.auto_assign">
+                                                                <label class="form-check-label" for="ManualAssignAssign">Manual-assign</label>
+                                                                <label class="form-check-label" for="ManualAssignAssign">Auto-assign</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
+                                            
                                             <div class="row">
                                                 <div class="col-lg-8 mb-3">
                                                     <div class="row">
@@ -614,10 +609,14 @@
                                                             </label>
                                                         </div>
                                                         <div class="col-lg-7 align-self-center">
-                                                            <div class="font-family-tertiary">
-                                                                <a target="_blank"
-                                                                    href="{{ $service['service_consumer_user'] ? route('tenant.customer-profile', ['customerID' => encrypt($service['service_consumer_user']['id'])]) : '' }}">{{ $service['service_consumer_user'] ? $service['service_consumer_user']['name'] : 'N/A' }}</a>
-                                                            </div>
+                                                            @if($service['is_manual_consumer'])
+                                                                {{$service['service_consumer_manual']}}
+                                                            @else
+                                                                <div class="font-family-tertiary">
+                                                                    <a target="_blank"
+                                                                        href="{{ $service['service_consumer_user'] ? route('tenant.customer-profile', ['customerID' => encrypt($service['service_consumer_user']['id'])]) : '' }}">{{ $service['service_consumer_user'] ? $service['service_consumer_user']['name'] : 'N/A' }}</a>
+                                                                </div>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>
@@ -629,19 +628,23 @@
                                                             </label>
                                                         </div>
                                                         <div class="col-lg-7 align-self-center">
-                                                            <div class="font-family-tertiary">
-                                                                @if (isset($service['participants']))
-                                                                    @foreach ($service['participants'] as $key => $user)
-                                                                        <a target="_blank"
-                                                                            href="{{ route('tenant.customer-profile', ['customerID' => encrypt($user['id'])]) }}">{{ $user['name'] }}</a>
-                                                                        @if ($key != count($service['participants']) - 1)
-                                                                            ,
-                                                                        @endif
-                                                                    @endforeach
-                                                                @else
-                                                                    N/A
-                                                                @endif
-                                                            </div>
+                                                            @if($service['is_manual_attendees'])
+                                                                {{$service['attendees_manual']}}
+                                                            @else
+                                                                <div class="font-family-tertiary">
+                                                                    @if (isset($service['participants']))
+                                                                        @foreach ($service['participants'] as $key => $user)
+                                                                            <a target="_blank"
+                                                                                href="{{ route('tenant.customer-profile', ['customerID' => encrypt($user['id'])]) }}">{{ $user['name'] }}</a>
+                                                                            @if ($key != count($service['participants']) - 1)
+                                                                                ,
+                                                                            @endif
+                                                                        @endforeach
+                                                                    @else
+                                                                        N/A
+                                                                    @endif
+                                                                </div>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>

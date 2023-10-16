@@ -40,7 +40,7 @@
                               <a href="#" class="btn btn-has-icon btn-primary rounded"
                                   wire:click="$emit('openAssignProvidersPanel',{{ $booking_id }},{{ $service_id }},3)"
                                   @click="assignProvider = true" href="javascript:refreshSelectsEvent()">
-                                  <i class="fa fa-envelope-open-o"></i>
+                                  <i class="fa fa-envelope-open"></i>
                                   View Response
                               </a>
                           @endif
