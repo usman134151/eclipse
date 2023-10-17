@@ -182,7 +182,7 @@ class NotificationService{
                 if (isset($invoicePdf))
                     $data['invoice_pdf'] = $invoicePdf ?? false;
                 $data['templateSubject'] = str_ireplace(array_keys($replacements), array_values($replacements), $notificationSubject ?? '');
-                $data['templateBody'] = nl2br(str_ireplace(array_keys($replacements), array_values($replacements), $templateString));
+                $data['templateBody'] = 'test';//nl2br(str_ireplace(array_keys($replacements), array_values($replacements), $templateString));
 
                 $data['admin'] = $admin;
                 if (session()->has('company_logo') && session()->get('company_logo') != null)
@@ -190,7 +190,7 @@ class NotificationService{
                 else
                     $data['company_logo'] = null;
 
-                   sendMail($userData['email'], $data['templateSubject'],  $data['templateBody'], 'emails.templates', [], 'dispatch');
+                   sendMail($userData['email'], $data['templateSubject'],  $data, 'emails.templates', [], 'dispatch');
    }
 
     public static function getUsers($rolesData,$triggerType,$data){

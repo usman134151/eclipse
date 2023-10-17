@@ -39,11 +39,12 @@ if (!function_exists('sendMail')) {
   function sendMail($to, $subject, $data, $mailview, $attachment = [], $dispathType = 'dispatch',  $delaymin = 0)
   {
    
-   
+  
     try {
       $response = null;
 
       if ($dispathType == 'dispatch') {
+        \Log::info('Email queued for dispatch to: ' . $to); 
         $response = sendEmail::dispatch($to, $subject, $data, $mailview)->onQueue('emails');
       } else if ($dispathType == 'dispatchSync') {
         $response = sendEmail::dispatchSync($to, $subject, $data, $mailview);
