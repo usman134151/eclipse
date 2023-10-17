@@ -27,8 +27,9 @@ class NotificationService{
         
         $admin            = User::find(1);
         $notificationData=NotificationTemplates::where('trigger',$triggerName)->with('notificationTemplateRoles')->orderBy('notification_type')->get()->toArray();
-        $notification['trigger_type_id']=6;
+        
         foreach($notificationData as $notification){
+            $notification['trigger_type_id']=6;
             //get list of users to send notification to
             $notification['notification_template_roles']=SELF::getUsers($notification['notification_template_roles'],$notification['trigger_type_id'],$data['bookingData'],$admin);
 
@@ -43,7 +44,7 @@ class NotificationService{
                         //send email
                                     //replace data in loop
                     $replacements=SELF::replaceData($notification['trigger_type_id'],$data,$userData,$admin);
-                    dd($roleData);
+                 
                         SELF::getEmail($roleData['notification_text'],$roleData['notification_subject'],$replacements,$admin,$userData);
                         
                     }
