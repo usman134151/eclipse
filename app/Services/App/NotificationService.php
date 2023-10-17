@@ -43,7 +43,7 @@ class NotificationService{
                         //send email
                                     //replace data in loop
                     $replacements=SELF::replaceData($notification['trigger_type_id'],$data,$userData,$admin);
-                    
+                    dd($roleData);
                         SELF::getEmail($roleData['notification_text'],$roleData['notification_subject'],$replacements,$admin,$userData);
                         
                     }
