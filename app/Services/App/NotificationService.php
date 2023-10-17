@@ -258,7 +258,7 @@ class NotificationService{
                     $data['invoice_pdf'] = $invoicePdf ?? false;
                 $data['templateSubject'] = str_ireplace(array_keys($replacements), array_values($replacements), $notificationSubject ?? '');
                 $data['templateBody'] = nl2br(str_ireplace(array_keys($replacements), array_values($replacements), $templateString));
-                dd($data['templateBody']);
+               // dd($data['templateBody']);
                 $data['admin'] = $admin;
                 if (session()->has('company_logo') && session()->get('company_logo') != null)
                     $data['company_logo'] = url(session()->get('company_logo'));
