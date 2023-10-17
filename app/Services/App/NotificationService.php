@@ -190,7 +190,7 @@ class NotificationService{
                 else
                     $data['company_logo'] = null;
 
-                   sendMail($userData['email'], $data['templateSubject'],  $data, 'emails.templates', [], 'dispatch');
+                   sendMail($userData['email'], $data['templateSubject'],  $data['templateBody'], 'emails.templates', [], 'dispatch');
    }
 
     public static function getUsers($rolesData,$triggerType,$data){
