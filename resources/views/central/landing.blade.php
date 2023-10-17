@@ -1,6 +1,8 @@
 @extends('layouts.central')
 
 @section('content')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
 <div class="preloader-wrapper">
 <div class="preloader"></div>
 </div>
@@ -257,9 +259,15 @@
 </svg>
 </div>
 </div>
-<div class="tab-content js-content px-lg-0 mb-5 mb-lg-0">
-<div class="tab-pane fade show active" id="about-us" role="tabpanel" aria-labelledby="about-us-tab" tabindex="0">
-<h2>About Eclipse</h2>
+<div class="tab-content js-content px-lg-0 mb-5 mb-lg-0">   
+    <div class="tab-pane fade show active" id="about-us" role="tabpanel" aria-labelledby="about-us-tab" tabindex="0">
+        <a href="{{route('guideline')}}" class=" guide-btn btn btn-primary btn-sm float-end cursor-pointer z-6" >
+        <span>
+        <i class="bi bi-card-heading p-1"></i>
+        <span class="p-1">Guideline</span>
+        </span>    
+        </a>
+        <h2>About Eclipse</h2>
 <p>Our intuitive, secure system improves the efficiency by which your staff, customers, and providers manage language interpreting and accommodation services. Eclipse Scheduling was envisioned, designed, and developed by a team of professional interpreters and accommodation professionals with more than 50-years of industry experience.</p>
 <div class="d-flex mb-4">
 <img src="/landing-page-assets/images/img-content-1.jpg" alt="img-content-1" class="w-25">
@@ -274,6 +282,12 @@
 </div>
 </div>
 <div class="tab-pane fade" id="software-features" role="tabpanel" aria-labelledby="software-features-tab" tabindex="0">
+<a href="{{route('guideline')}}" class=" guide-btn btn btn-primary btn-sm float-end cursor-pointer z-6" >
+        <span>
+        <i class="bi bi-card-heading p-1"></i>
+        <span class="p-1">Guideline</span>
+        </span>    
+        </a>
 <h2>Software Features</h2>
 <ul class="list-group list-group-flush mb-4">
 <li class="list-group-item border-bottom-0">
@@ -347,6 +361,12 @@ Quickly assess provider availability and coordinate schedules; manage providersâ
 </div>
 </div>
 <div class="tab-pane fade" id="getting-started" role="tabpanel" aria-labelledby="getting-started-tab" tabindex="0">
+<a href="{{route('guideline')}}" class=" guide-btn btn btn-primary btn-sm float-end cursor-pointer z-6" >
+        <span>
+        <i class="bi bi-card-heading p-1"></i>
+        <span class="p-1">Guideline</span>
+        </span>    
+        </a>
 <h2>Getting Started</h2>
 <div class="row">
 <div class="col-lg-5 mb-5">
@@ -364,6 +384,12 @@ Quickly assess provider availability and coordinate schedules; manage providersâ
 </div>
 </div>
 <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+<a href="{{route('guideline')}}" class=" guide-btn btn btn-primary btn-sm float-end cursor-pointer z-6" >
+        <span>
+        <i class="bi bi-card-heading p-1"></i>
+        <span class="p-1">Guideline</span>
+        </span>    
+        </a>
 <h2>Contacts Us</h2>
 <p class="fs-5 mb-4">You should contact with us for any Help</p>
 <div class="row mb-5">
