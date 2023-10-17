@@ -38,6 +38,7 @@ if (!function_exists('api_date_formate')) {
 if (!function_exists('sendMail')) {
   function sendMail($to, $subject, $data, $mailview, $attachment = [], $dispathType = 'dispatch',  $delaymin = 0)
   {
+   
     try {
       $response = null;
 
@@ -54,7 +55,7 @@ if (!function_exists('sendMail')) {
         return false;
       }
     } catch (\Exception $e) {
-      Log::error($e->getMessage());
+      dd($e);
     }
   }
 }
