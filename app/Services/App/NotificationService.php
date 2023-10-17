@@ -11,6 +11,9 @@ use App\Models\Tenant\SystemRole;
 use DB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\URL;
+use DOMDocument;
+use DOMXPath;
+
 
 class NotificationService{
 
@@ -21,21 +24,30 @@ class NotificationService{
 
     public static function sendNotification($triggerName,$data){
         //get notification trigger 
+        $admin            = User::find(1);
         $notificationData=NotificationTemplates::where('trigger',$triggerName)->with('notificationTemplateRoles')->orderBy('notification_type')->get()->toArray();
      
         foreach($notificationData as $notification){
             //get list of users to send notification to
-            $notification['notification_template_roles']=SELF::getUsers($notification['notification_template_roles'],$notification['trigger_type_id'],$data['bookingData']);
+            $notification['notification_template_roles']=SELF::getUsers($notification['notification_template_roles'],$notification['trigger_type_id'],$data['bookingData'],$admin);
 
             //loop to send
             foreach($notification['notification_template_roles'] as $roleData){
               
-            //replace data in loop
-            //SELF::replaceData($notification['trigger_type_id'],$data);
-
+              
             //send notification
             if($notification['notification_type']==1){
-                //send email
+                if(key_exists('user_information',$roleData)){
+                    foreach($roleData['user_information'] as $userData){
+                        //send email
+                                    //replace data in loop
+                    $replacements=SELF::replaceData($notification['trigger_type_id'],$data,$userData,$admin);
+                    
+                        SELF::getEmail($roleData['notification_text'],$roleData['notification_subject'],$replacements,$admin,$userData);
+                        
+                    }
+                }
+
             }
             elseif($notification['notification_type']==2){ //system
 
@@ -50,7 +62,7 @@ class NotificationService{
 
     }
 
-    public static function replaceData($triggerType,$data){
+    public static function replaceData($triggerType,$data,$userData,$admin){
         if ($triggerType == 5) {
                 $replacements[] = array(
                     "@dashboard_url" =>  $dashboard_url,
@@ -74,82 +86,113 @@ class NotificationService{
                 );
         }
         elseif($triggerType==6){
-          //  $admin=$data['admin'];
-            $bookingData=$data['bookingData'];
-            $payment_for_provider     = 0;
-          //  $userData=$data['userData'];
-            $replacements[] = array(
-            "@username" => $username ?? '',
-            "@document_name" => $document_name ?? '',
-            "@document_category" => $document_category ?? '',
-            "@provider" => $providerName ?? '',
-            "@admin_company" => tenant()->company,
-          //  "@admin" => $admin->name,
-            "@customer" => $customer ?? '',
-            "@consumer" => $customer ?? '',
-            "@requester" => $customer ?? '',
-            "@booking_start_date" => $bookingData->booking_start_at ?  date_format(date_create($bookingData->booking_start_at), "d/m/Y") : '',
-            "@booking_start_time" => $bookingData->booking_start_at ?  date_format(date_create($bookingData->booking_start_at), "h:i A") : '',
-            "@booking_end_time" => $bookingData->booking_end_at ?  date_format(date_create($bookingData->booking_end_at), "h:i A") : '' ,
-            "@booking_end_date" =>   $bookingData->booking_end_at ?  date_format(date_create($bookingData->booking_end_at), "d/m/Y") : '' ,
-            "@booking_date" =>  formatDate($bookingData->booking_start_at) ?? '',
-            "@booking_company" => $bookingData->company ? $bookingData->company->name : "",
-            "@booking_location" =>  $location ?? '',
-            "@booking_number" =>  $bookingData->booking_number ?? '',
-            "@booking_provider_count" =>  $bookingData->provider_count ?? '',
-            "@booking_duration" =>  Carbon::parse($bookingData->booking_end_at)->diffAsCarbonInterval(Carbon::parse($bookingData->booking_start_at))->forHumans() ?? '',
-            "@payment_for_provider" => formatPayment($payment_for_provider) ?? '',
-            "@email_provider" => $userData->email ?? '',
-            "@email_consumer" => $bookingData->customer->email ?? '',
-            "@assigned_providers" => $assignedproviders ?? '',
-            "@view_booking" =>  str_replace('https://', '', URL::to($userData->roles()->first()->name . '/bookings/' . encrypt($data['booking_id']))) ?? '',
+           
+               
+                $bookingData=$data['bookingData'];
+                $payment_for_provider     = 0;
+               // $userData=$data['userData'];
+                $replacements[] = array(
+                "@username" => $username ?? '',
+                "@document_name" => $document_name ?? '',
+                "@document_category" => $document_category ?? '',
+                "@provider" => $providerName ?? '',
+                "@admin_company" => tenant()->company,
+                "@admin" => $admin->name,
+                "@customer" => $customer ?? '',
+                "@consumer" => $customer ?? '',
+                "@requester" => $customer ?? '',
+                "@booking_start_date" => $bookingData->booking_start_at ?  date_format(date_create($bookingData->booking_start_at), "d/m/Y") : '',
+                "@booking_start_time" => $bookingData->booking_start_at ?  date_format(date_create($bookingData->booking_start_at), "h:i A") : '',
+                "@booking_end_time" => $bookingData->booking_end_at ?  date_format(date_create($bookingData->booking_end_at), "h:i A") : '' ,
+                "@booking_end_date" =>   $bookingData->booking_end_at ?  date_format(date_create($bookingData->booking_end_at), "d/m/Y") : '' ,
+                "@booking_date" =>  formatDate($bookingData->booking_start_at) ?? '',
+                "@booking_company" => $bookingData->company ? $bookingData->company->name : "",
+                "@booking_location" =>  $location ?? '',
+                "@booking_number" =>  $bookingData->booking_number ?? '',
+                "@booking_provider_count" =>  $bookingData->provider_count ?? '',
+                "@booking_duration" =>  Carbon::parse($bookingData->booking_end_at)->diffAsCarbonInterval(Carbon::parse($bookingData->booking_start_at))->forHumans() ?? '',
+                "@payment_for_provider" => formatPayment($payment_for_provider) ?? '',
+                "@email_provider" => $userData->email ?? '',
+                "@email_consumer" => $bookingData->customer->email ?? '',
+                "@assigned_providers" => $assignedproviders ?? '',
+                "@view_booking" =>  str_replace('https://', '', URL::to($userData->roles()->first()->name . '/bookings/' . encrypt($bookingData['id']))) ?? '',
 
-            "@booking_rescheduled_from" => $bookingData->rescheduled_from ?? '',
-            "@frequency" => $frequency[$bookingData->frequency_id] ?? '',
-            "@booking_requester_company" => $bookingData->customer->company_data->name ?? '',
-            "@booking_requester_phone" => $bookingData->poc_phone ?? '',
-            "@booking_requester_poc" => $bookingData->contact_point ?? '',
-            "@billing_manager" => $bookingData->billing_manager ? $bookingData->billing_manager->name : '',
-            "@industry" => "",
-            //  $bookingData->customer ? ($bookingData->customer->users_detail->industries ? $bookingData->customer->users_detail->industries->name : '') : '',
-            "@booking_accommodation" => isset($accommodationArray) ? implode(',', $accommodationArray) : '',
-            "@booking_service_type" => isset($serviceTypes) ? implode(',', $serviceTypes) : '',
-            "@booking_specializations" => isset($serviceSpecialization) ? implode(',', $serviceSpecialization) : '',
-            "@consumers" => isset($serviceConsumer) ? implode(',', $serviceConsumer) : '',
-            "@participant" => isset($serviceParticipant) ? implode(',', $serviceParticipant) : '',
-            "@city" => $bookingData->physicalAddress ? $bookingData->physicalAddress->city : '',
-            "@state" => $bookingData->physicalAddress ? $bookingData->physicalAddress->state : '',
-            "@zip_code" => $bookingData->physicalAddress ? $bookingData->physicalAddress->zip : '',
-            "@status" => $frequency[$bookingData->frequency_id] ?? '',
-            "@arrival_notes" => $bookingData->physicalAddress ? $bookingData->physicalAddress->notes : '',
-            "@created_at" => formatDateTime($bookingData->created_at) ?? '',
+                "@booking_rescheduled_from" => $bookingData->rescheduled_from ?? '',
+                "@frequency" => $frequency[$bookingData->frequency_id] ?? '',
+                "@booking_requester_company" => $bookingData->customer->company_data->name ?? '',
+                "@booking_requester_phone" => $bookingData->poc_phone ?? '',
+                "@booking_requester_poc" => $bookingData->contact_point ?? '',
+                "@billing_manager" => $bookingData->billing_manager ? $bookingData->billing_manager->name : '',
+                "@industry" => "",
+                //  $bookingData->customer ? ($bookingData->customer->users_detail->industries ? $bookingData->customer->users_detail->industries->name : '') : '',
+                "@booking_accommodation" => isset($accommodationArray) ? implode(',', $accommodationArray) : '',
+                "@booking_service_type" => isset($serviceTypes) ? implode(',', $serviceTypes) : '',
+                "@booking_specializations" => isset($serviceSpecialization) ? implode(',', $serviceSpecialization) : '',
+                "@consumers" => isset($serviceConsumer) ? implode(',', $serviceConsumer) : '',
+                "@participant" => isset($serviceParticipant) ? implode(',', $serviceParticipant) : '',
+                "@city" => $bookingData->physicalAddress ? $bookingData->physicalAddress->city : '',
+                "@state" => $bookingData->physicalAddress ? $bookingData->physicalAddress->state : '',
+                "@zip_code" => $bookingData->physicalAddress ? $bookingData->physicalAddress->zip : '',
+                "@status" => $frequency[$bookingData->frequency_id] ?? '',
+                "@arrival_notes" => $bookingData->physicalAddress ? $bookingData->physicalAddress->notes : '',
+                "@created_at" => formatDateTime($bookingData->created_at) ?? '',
 
-            "@booking_service_total" => $bookingData->payment ? formatPayment($bookingData->payment->sub_total) : '',
-            "@booking_discount" => $bookingData->payment ? formatPayment($bookingData->payment->coupon_discount_amount) : '',
-            "@booking_sub_total" => $bookingData->payment ? formatPayment($bookingData->payment->total_amount) : '',
-            "@booking_override_amount" => $bookingData->payment ? formatPayment($bookingData->payment->override_amount) : '$0.00',
-            "@payment_detail_provider_rate_sum" => $bookingData->payment ? formatPayment($total) : '',
-            "@booking_additional_provider_payment" => $bookingData->payment ? formatPayment($additional) : '',
-            "@booking_total_provider_payment" => $bookingData->payment ? formatPayment($total + $additional) : '',
-            "@booking_modification_fee" => $bookingData->payment ? formatPayment($bookingData->payment->modification_fee) : '$0.00',
-            // "@booking_net_total" => formatPayment($netTotal) ?? '',
+                "@booking_service_total" => $bookingData->payment ? formatPayment($bookingData->payment->sub_total) : '',
+                "@booking_discount" => $bookingData->payment ? formatPayment($bookingData->payment->coupon_discount_amount) : '',
+                "@booking_sub_total" => $bookingData->payment ? formatPayment($bookingData->payment->total_amount) : '',
+                "@booking_override_amount" => $bookingData->payment ? formatPayment($bookingData->payment->override_amount) : '$0.00',
+                //"@payment_detail_provider_rate_sum" => $bookingData->payment ? formatPayment($total) : '',
+              //  "@booking_additional_provider_payment" => $bookingData->payment ? formatPayment($additional) : '',
+               // "@booking_total_provider_payment" => $bookingData->payment ? formatPayment($total + $additional) : '',
+               // "@booking_modification_fee" => $bookingData->payment ? formatPayment($bookingData->payment->modification_fee) : '$0.00',
+                // "@booking_net_total" => formatPayment($netTotal) ?? '',
 
-            "@private_notes" => $bookingData->private_notes ?? '',
-            "@booking_customer_notes" => $bookingData->customer_notes ?? '',
-            "@provider_notes" => $bookingData->provider_notes ?? '',
+                "@private_notes" => $bookingData->private_notes ?? '',
+                "@booking_customer_notes" => $bookingData->customer_notes ?? '',
+                "@provider_notes" => $bookingData->provider_notes ?? '',
 
-            "@button_login_page" => $login_button ?? '',
+                "@button_login_page" => $login_button ?? '',
 
 
 
-            "@booking_service" => isset($serviceArray) ? implode(',', $serviceArray) : '',
-            );
+                "@booking_service" => isset($serviceArray) ? implode(',', $serviceArray) : '',
+                );
+            
+          
         }
 
-       dd($replacements);
+       return call_user_func_array('array_merge', $replacements);
 
             
     }
+
+   public static function getEmail($notificationText,$notificationSubject,$replacements,$admin,$userData){
+    $dom = new DOMDocument();
+                $dom->loadHTML($notificationText);
+                $xpath = new DOMXPath($dom);
+                $nodes = $xpath->query('//@*');
+                foreach ($nodes as $node) {
+                    if ($node->nodeName == "data-mention") {
+                        $node->parentNode->removeAttribute($node->nodeName);
+                    }
+                }
+
+                $templateString    = $dom->saveHTML();
+                $data['replacements'] = $replacements;
+                if (isset($invoicePdf))
+                    $data['invoice_pdf'] = $invoicePdf ?? false;
+                $data['templateSubject'] = str_ireplace(array_keys($replacements), array_values($replacements), $notificationSubject ?? '');
+                $data['templateBody'] = nl2br(str_ireplace(array_keys($replacements), array_values($replacements), $templateString));
+
+                $data['admin'] = $admin;
+                if (session()->has('company_logo') && session()->get('company_logo') != null)
+                    $data['company_logo'] = url(session()->get('company_logo'));
+                else
+                    $data['company_logo'] = null;
+
+                   sendMail($userData['email'], $data['templateSubject'],  $data, 'emails.templates', [], 'dispatch');
+   }
+
     public static function getUsers($rolesData,$triggerType,$data){
 
        
@@ -175,8 +218,8 @@ class NotificationService{
          
            $users = User::whereIn('id', $userIds)
            ->where('status', 1) // Add this line for the status condition
-           ->select('id', 'email')
-           ->get()->toArray();
+           ->with('roles')
+           ->get();
     
 
           foreach($rolesData as &$role){
@@ -187,7 +230,7 @@ class NotificationService{
                             ->from('role_user')
                             ->where('role_id', 1)
                             ->limit(1);
-                    })->where('status',1)->select('first_name','last_name','email','id')->get()->toArray();
+                    })->where('status',1)->with('roles')->get();
                 //$role['user_information']=[];
                 $role['user_information']=$adminUserIds;
             }
@@ -204,10 +247,8 @@ class NotificationService{
                         ->from('booking_providers')
                         ->where('booking_id', $data['id']);
                 })
-                ->where('status', 1)
-                ->select('first_name', 'last_name', 'email', 'id')
-                ->get()
-                ->toArray();
+                ->where('status', 1)->with('roles')
+                ->get();
                 $role['user_information']=$providerIds;
                 
          
@@ -222,8 +263,7 @@ class NotificationService{
                 })->where('company_name',$data['company_id'])
                 ->where('status', 1)
                 ->select('first_name', 'last_name', 'email', 'id')
-                ->get()
-                ->toArray();
+                ->get();
                 $role['user_information']=$companyAdmins;
               
                
