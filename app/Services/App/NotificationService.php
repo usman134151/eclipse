@@ -44,7 +44,7 @@ class NotificationService{
                         //send email
                                     //replace data in loop
                     $replacements=SELF::replaceData($notification['trigger_type_id'],$data,$userData,$admin);
-                 
+               
                         SELF::getEmail($roleData['notification_text'],$roleData['notification_subject'],$replacements,$admin,$userData);
                         
                     }
@@ -92,7 +92,76 @@ class NotificationService{
            
                
                 $bookingData=$data['bookingData'];
+               
                 $payment_for_provider     = 0;
+                if ($bookingData->physicalAddress && $bookingData->service_type == 1) {
+                    $location    = getCombineLocation($bookingData->physical_address_id);
+                }
+                if ($bookingData->booking_provider) {
+                    $ids    = array_column($bookingData->booking_provider->toArray(), 'provider_id');
+                    $assignedproviders    = getUsersName($ids);
+                }
+
+                // payment
+                // if ($data['templateId'] == 37) {
+                //     $bookingProvider = BookingProvider::where(['booking_id' => $data['booking_id'], 'provider_id' => $data['user_id']])->first();
+                //     $payment_for_provider  = Helper::get_provider_booking_service_price_total($data['booking_id'], $data['user_id']);
+                //     $payment_for_provider += ($bookingData->payment->additional_charge_provider + $bookingProvider->additional_charge_provider);
+                // }
+                $providerName    = $userData->name;
+
+                if (isset($data['provider_id']) || !empty($data['provider_id'])) {
+                    $provider    = User::find($data['provider_id']);
+                    $providerName    = $provider->name;
+                }
+
+                $total              = 0;
+                $additional        = 0;
+                // if ($bookingData->payment->additional_charge_provider) {
+                //     $additional = $bookingData->payment->additional_charge_provider * count($bookingData->booking_provider);
+                // }
+
+                // if (count($bookingData->booking_provider)) {
+                //     foreach ($bookingData->booking_provider as $bProvider) {
+                //         $total += Helper::get_provider_booking_service_price_total($bookingData->id, $bProvider->provider_id);
+                //         $additional += $bProvider->additional_charge_provider;
+                //     }
+                // }
+
+                // $customerCharge = ($bookingData->payment->override_amount) ?? $bookingData->payment->total_amount;
+                // $netTotal = $customerCharge -  ($total + $additional);
+                // $netTotal = $netTotal + $bookingData->payment->modification_fee;
+
+                $frequency        = array(1 => 'One Time', 2 => 'Daily', 3 => 'Weekly', 4 => 'Monthly', 5 => 'Week Daily');
+                $serviceType = [1 => 'In Person', 2 => 'Virtual', 4 => 'Phone', 5 => 'Tele-Conference'];
+                if ($bookingData->services->first()) {
+                    //for a specific service
+                    $booking_service = $bookingData->services->first();//$bookingData->booking_services_layout->where('id', $data['booking_service_id'])->first();
+                   
+                    $accommodationArray[] = $booking_service->accommodation ? $booking_service->accommodation->name : '';
+                    $serviceArray[] = $booking_service->name;
+                  
+                    $serviceSpecialization[] = '';
+                    $serviceConsumer[] = $booking_service->service_consumer;
+                    $serviceParticipant[] = $booking_service->attendees;
+                    $bookingData->booking_start_at = $booking_service->start_time;
+                    $bookingData->booking_end_at = $booking_service->end_time;
+
+                    
+
+                    // dd($bookingData->booking_services_layout);
+                } else {
+                    foreach ($bookingData->booking_services_layout as $service) {
+                        $accommodationArray[] = $service->accommodation ? $service->accommodation->name : '';
+                        $serviceArray[] = $service->ServiceCategory ? $service->ServiceCategory->name : '';
+                        $serviceTypes[] = $serviceType[$service->service_types];
+                        $serviceSpecialization[] = '';
+                        // getSpecializationsNameNew($service->specialization);
+                        $serviceConsumer[] = $service->service_consumer;
+                        $serviceParticipant[] = $service->attendees;
+                    }
+                }
+                
                // $userData=$data['userData'];
                 $replacements[] = array(
                 "@username" => $username ?? '',
@@ -119,9 +188,9 @@ class NotificationService{
                 "@email_consumer" => $bookingData->customer->email ?? '',
                 "@assigned_providers" => $assignedproviders ?? '',
                 "@view_booking" =>  str_replace('https://', '', URL::to($userData->roles()->first()->name . '/bookings/' . encrypt($bookingData['id']))) ?? '',
-
                 "@booking_rescheduled_from" => $bookingData->rescheduled_from ?? '',
                 "@frequency" => $frequency[$bookingData->frequency_id] ?? '',
+                "@booking_requester"=>$bookingData->customer->name,
                 "@booking_requester_company" => $bookingData->customer->company_data->name ?? '',
                 "@booking_requester_phone" => $bookingData->poc_phone ?? '',
                 "@booking_requester_poc" => $bookingData->contact_point ?? '',
@@ -129,7 +198,7 @@ class NotificationService{
                 "@industry" => "",
                 //  $bookingData->customer ? ($bookingData->customer->users_detail->industries ? $bookingData->customer->users_detail->industries->name : '') : '',
                 "@booking_accommodation" => isset($accommodationArray) ? implode(',', $accommodationArray) : '',
-                "@booking_service_type" => isset($serviceTypes) ? implode(',', $serviceTypes) : '',
+                "@booking_service_type" => $serviceType[$bookingData->booking_services->first()->service_types],
                 "@booking_specializations" => isset($serviceSpecialization) ? implode(',', $serviceSpecialization) : '',
                 "@consumers" => isset($serviceConsumer) ? implode(',', $serviceConsumer) : '',
                 "@participant" => isset($serviceParticipant) ? implode(',', $serviceParticipant) : '',
@@ -186,7 +255,7 @@ class NotificationService{
                     $data['invoice_pdf'] = $invoicePdf ?? false;
                 $data['templateSubject'] = str_ireplace(array_keys($replacements), array_values($replacements), $notificationSubject ?? '');
                 $data['templateBody'] = nl2br(str_ireplace(array_keys($replacements), array_values($replacements), $templateString));
-
+                
                 $data['admin'] = $admin;
                 if (session()->has('company_logo') && session()->get('company_logo') != null)
                     $data['company_logo'] = url(session()->get('company_logo'));
