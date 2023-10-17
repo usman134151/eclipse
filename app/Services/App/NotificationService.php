@@ -89,7 +89,7 @@ class NotificationService{
                 );
         }
         elseif($triggerType==6){
-           
+          
                
                 $bookingData=$data['bookingData'];
                
@@ -136,10 +136,11 @@ class NotificationService{
                 $serviceType = [1 => 'In Person', 2 => 'Virtual', 4 => 'Phone', 5 => 'Tele-Conference'];
                 if ($bookingData->services->first()) {
                     //for a specific service
-                    $booking_service = $bookingData->services->first();//$bookingData->booking_services_layout->where('id', $data['booking_service_id'])->first();
-                   
-                    $accommodationArray[] = $booking_service->accommodation ? $booking_service->accommodation->name : '';
-                    $serviceArray[] = $booking_service->name;
+                    $service = $bookingData->services->first();//$bookingData->booking_services_layout->where('id', $data['booking_service_id'])->first();
+                    $booking_service = $bookingData->booking_services->first();
+                  
+                    $accommodationArray[] = $service->accommodation ? $booking_service->accommodation->name : '';
+                    $serviceArray[] = $service->name;
                   
                     $serviceSpecialization[] = '';
                     $serviceConsumer[] = $booking_service->service_consumer;
@@ -161,9 +162,11 @@ class NotificationService{
                         $serviceParticipant[] = $service->attendees;
                     }
                 }
-                
+               
                // $userData=$data['userData'];
                 $replacements[] = array(
+                "@recipient" => $userData->name ?? '',
+                "@email" => $userData->email ?? '',   
                 "@username" => $username ?? '',
                 "@document_name" => $document_name ?? '',
                 "@document_category" => $document_category ?? '',
@@ -255,7 +258,7 @@ class NotificationService{
                     $data['invoice_pdf'] = $invoicePdf ?? false;
                 $data['templateSubject'] = str_ireplace(array_keys($replacements), array_values($replacements), $notificationSubject ?? '');
                 $data['templateBody'] = nl2br(str_ireplace(array_keys($replacements), array_values($replacements), $templateString));
-                
+                dd($data['templateBody']);
                 $data['admin'] = $admin;
                 if (session()->has('company_logo') && session()->get('company_logo') != null)
                     $data['company_logo'] = url(session()->get('company_logo'));
