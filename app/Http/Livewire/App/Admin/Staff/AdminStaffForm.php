@@ -125,6 +125,7 @@ class AdminStaffForm extends Component
 	}
     public function save($redirect=1){
 		$this->validate();
+        $type = !is_null($this->user->id) ? "update" : "create";
         $this->user->name=$this->user->first_name.' '.$this->user->last_name;
 		$this->user->added_by = Auth::id();
         $this->user->status=1;
@@ -146,6 +147,7 @@ class AdminStaffForm extends Component
 			$this->showList("Admin Staff has been saved successfully");
 			$this->user = new User;
 		}
+        callLogs($this->user->id,"Admin_staff",$type);
 
 	}
     public function updateVal($attrName, $val)

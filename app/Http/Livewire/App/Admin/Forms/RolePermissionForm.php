@@ -92,7 +92,7 @@ class RolePermissionForm extends Component
 	{
 		
 		$this->validate();
-
+		$type = !is_null($id) ? "update" : "create";
 		if ($id)
 		{
 			$systemRole = SystemRole::find($id);
@@ -122,6 +122,9 @@ class RolePermissionForm extends Component
 				$this->message = 'Role and permissions saved successfully';
 			}
 		}
+
+		callLogs($id,"Role & Permissions",$type);
+
 		if ($success)
 		{
 			$this->clearFields();
