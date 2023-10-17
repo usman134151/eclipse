@@ -1004,7 +1004,7 @@
                                                                                     <div class="d-inline-flex">
                                                                                         <span class="fw-semibold">Rate:
                                                                                         </span><span
-                                                                                            class="mx-1">{{ $param[0]['price'] ? $param[0]['price_type'] . number_format($param[0]['price'], 2) : 'N/A' }}</span>
+                                                                                            class="mx-1">{{ $param[0]['price'] ? $param[0]['price_type'] . formatPayment($param[0]['price']) : 'N/A' }}</span>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="mx-4 col-4">
@@ -1082,7 +1082,7 @@
                                                                                     <div class="d-inline-flex">
                                                                                         <span class="fw-semibold">Rate:
                                                                                         </span><span
-                                                                                            class="mx-1">{{ $param[0]['price'] ? $param[0]['price_type'] . number_format($param[0]['price'], 2) : 'N/A' }}</span>
+                                                                                            class="mx-1">{{ $param[0]['price'] ? $param[0]['price_type'] . formatPayment($param[0]['price']) : 'N/A' }}</span>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="mx-4 col-4">
@@ -1161,7 +1161,7 @@
                                                                                     <div class="d-inline-flex">
                                                                                         <span class="fw-semibold">Rate:
                                                                                         </span><span
-                                                                                            class="mx-1">{{ $param[0]['price'] ? $param[0]['price_type'] . number_format($param[0]['price'], 2) : 'N/A' }}</span>
+                                                                                            class="mx-1">{{ $param[0]['price'] ? $param[0]['price_type'] . formatPayment($param[0]['price']) : 'N/A' }}</span>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="mx-4 col-4">
@@ -1240,7 +1240,7 @@
                                                                                     <div class="d-inline-flex">
                                                                                         <span class="fw-semibold">Rate:
                                                                                         </span><span
-                                                                                            class="mx-1">{{ $param[0]['price'] ? $param[0]['price_type'] . number_format($param[0]['price'], 2) : 'N/A' }}</span>
+                                                                                            class="mx-1">{{ $param[0]['price'] ? $param[0]['price_type'] . formatPayment($param[0]['price']) : 'N/A' }}</span>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="mx-4 col-4">
