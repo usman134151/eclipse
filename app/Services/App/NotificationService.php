@@ -27,10 +27,10 @@ class NotificationService{
         
         $admin            = User::find(1);
         $notificationData=NotificationTemplates::where('trigger',$triggerName)->with('notificationTemplateRoles')->orderBy('notification_type')->get()->toArray();
-     dd($notificationData);
+    
         foreach($notificationData as $notification){
             //get list of users to send notification to
-            $notification['notification_template_roles']=SELF::getUsers($notification['notification_template_roles'],$notification['trigger_type_id'],$data['bookingData'],$admin);
+            $notification['notification_template_roles']=SELF::getUsers($notification['notification_template_roles'],14,$data['bookingData'],$admin);
 
             //loop to send
             foreach($notification['notification_template_roles'] as $roleData){
