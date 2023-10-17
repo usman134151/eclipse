@@ -192,7 +192,7 @@ class NotificationService{
                     $data['company_logo'] = url(session()->get('company_logo'));
                 else
                     $data['company_logo'] = null;
-dd($data);
+
                    sendMail($userData['email'], $data['templateSubject'],  $data, 'emails.templates', [], 'dispatch');
    }
 
