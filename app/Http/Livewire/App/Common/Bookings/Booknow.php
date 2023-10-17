@@ -365,8 +365,8 @@ class Booknow extends Component
                 //update booking
                 if(is_null($this->booking->supervisor=='') || $this->booking->supervisor=='')
                     $this->booking->supervisor=0;
-                $this->booking->save();
                
+             
               //  BookingOperationsService::saveDetails($this->services,$this->dates,$this->selectedIndustries,$this->booking,$this->selectedDepartments);
               
            // }
@@ -388,7 +388,7 @@ class Booknow extends Component
             //checking if edit
             if($this->isEdit){
                 $data['bookingData']=Booking::where('id',$this->booking->id)->with('booking_services','services','payment','company','customer','booking_provider')->first();
- 
+               
                 NotificationService::sendNotification('Booking: Dynamic Details Updated (Step 1 details)',$data);
             }
         } //step 1 end
@@ -784,6 +784,7 @@ class Booknow extends Component
         
                 if (isset($this->services[$index])) {
                     $this->services[$index]['attendees'] = $val;
+                   
                 }
             }  
             elseif (preg_match('/start_date_(\d+)/', $attrName, $matches)) {

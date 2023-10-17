@@ -1494,7 +1494,7 @@
 
         <div class="d-flex justify-content-between">
             <div class="row gap-4">
-                <x-advancefilters type="invoice-filters" />
+               
             </div>
             <div class="d-inline-flex align-items-center gap-4">
                 <div class="dropdown">
@@ -2505,7 +2505,7 @@
         </div>
         <div class="d-flex justify-content-between">
             <div class="row gap-4">
-                <x-advancefilters type="invoice-filters" />
+              
             </div>
             <div class="d-inline-flex align-items-center gap-4">
                 <div class="dropdown">

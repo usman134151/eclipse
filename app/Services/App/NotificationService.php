@@ -6,7 +6,11 @@ use App\Models\Tenant\NotificationTag;
 use App\Models\Tenant\NotificationTemplateRoleFrequencies;
 use App\Models\Tenant\NotificationTemplateRoles;
 use App\Models\Tenant\Role;
+use App\Models\Tenant\User;
 use App\Models\Tenant\SystemRole;
+use DB;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\URL;
 
 class NotificationService{
 
@@ -18,16 +22,16 @@ class NotificationService{
     public static function sendNotification($triggerName,$data){
         //get notification trigger 
         $notificationData=NotificationTemplates::where('trigger',$triggerName)->with('notificationTemplateRoles')->orderBy('notification_type')->get()->toArray();
-       return;
+     
         foreach($notificationData as $notification){
             //get list of users to send notification to
-            $notificationUsers=SELF::getUsers($notificationData['notificationTemplateRoles'],$notificationData['trigger_type_id']);
+            $notification['notification_template_roles']=SELF::getUsers($notification['notification_template_roles'],$notification['trigger_type_id'],$data['bookingData']);
 
             //loop to send
-            foreach($notificationData['notificationTemplateRoles'] as $roleData){
-                dd($roleData);
+            foreach($notification['notification_template_roles'] as $roleData){
+              
             //replace data in loop
-
+            //SELF::replaceData($notification['trigger_type_id'],$data);
 
             //send notification
             if($notification['notification_type']==1){
@@ -70,16 +74,17 @@ class NotificationService{
                 );
         }
         elseif($triggerType==6){
-            $admin=$data['admin'];
+          //  $admin=$data['admin'];
             $bookingData=$data['bookingData'];
-            $userData=$data['userData'];
+            $payment_for_provider     = 0;
+          //  $userData=$data['userData'];
             $replacements[] = array(
             "@username" => $username ?? '',
             "@document_name" => $document_name ?? '',
             "@document_category" => $document_category ?? '',
             "@provider" => $providerName ?? '',
             "@admin_company" => tenant()->company,
-            "@admin" => $admin->name,
+          //  "@admin" => $admin->name,
             "@customer" => $customer ?? '',
             "@consumer" => $customer ?? '',
             "@requester" => $customer ?? '',
@@ -141,9 +146,128 @@ class NotificationService{
             );
         }
 
-       
+       dd($replacements);
 
             
     }
-    public static function getUsers($rolesData,$triggerType){}
+    public static function getUsers($rolesData,$triggerType,$data){
+
+       
+        //booking type
+        if($triggerType==6){
+           $userMapping=['5'=>$data['supervisor'],'6'=>$data['customer_id'],'9'=>$data['billing_manager_id']];    
+           $userIds=[$data['supervisor'],$data['customer_id'],$data['billing_manager_id']];
+           $userMapping['8']='';
+           $userMapping['7']='';
+           foreach($data['booking_services'] as $service){
+            if($service['attendees']!='' && $service['is_manual_attendees']==0){
+               
+                $userIds=array_merge($userIds, explode(",",$service['attendees']));
+                $userMapping['8'].=$service['attendees'];
+            }
+            if($service['service_consumer']!='' && $service['is_manual_consumer']==0){
+                $userMapping['7']=$service['service_consumer'];
+                $userIds=array_merge($userIds, explode(",",$service['service_consumer']));
+               }
+           }
+
+
+         
+           $users = User::whereIn('id', $userIds)
+           ->where('status', 1) // Add this line for the status condition
+           ->select('id', 'email')
+           ->get()->toArray();
+    
+
+          foreach($rolesData as &$role){
+            if($role['role_id']==1){
+                //main admin
+                $adminUserIds=User::where('id', '=', function ($subquery) {
+                        $subquery->select('user_id')
+                            ->from('role_user')
+                            ->where('role_id', 1)
+                            ->limit(1);
+                    })->where('status',1)->select('first_name','last_name','email','id')->get()->toArray();
+                //$role['user_information']=[];
+                $role['user_information']=$adminUserIds;
+            }
+            elseif($role['role_id']==2){
+                //provider
+                $providerIds = User::whereIn('id', function ($query) use ($data) {
+                    $query->select('user_id')
+                        ->from('role_user')
+                        ->where('role_id', 2);
+                        
+                })
+                ->whereIn('id', function ($query) use ($data) {
+                    $query->select('provider_id')
+                        ->from('booking_providers')
+                        ->where('booking_id', $data['id']);
+                })
+                ->where('status', 1)
+                ->select('first_name', 'last_name', 'email', 'id')
+                ->get()
+                ->toArray();
+                $role['user_information']=$providerIds;
+                
+         
+            }
+            elseif($role['role_id']==10){
+                //company admins
+                $companyAdmins=User::whereIn('id', function ($query) use ($data) {
+                    $query->select('user_id')
+                        ->from('role_user')
+                        ->where('role_id', 10);
+                        
+                })->where('company_name',$data['company_id'])
+                ->where('status', 1)
+                ->select('first_name', 'last_name', 'email', 'id')
+                ->get()
+                ->toArray();
+                $role['user_information']=$companyAdmins;
+              
+               
+            }
+            elseif($role['role_id']!=4 && $role['role_id']!=3){
+                    //add logic for supervisor, billing manager, consumers, participants
+                   
+                    $roleUsersId=$userMapping[$role['role_id']];
+                   
+                        if($role['role_id']==5 || $role['role_id']==6 || $role['role_id']==9 ){
+                            foreach($users as $user){
+                                if($user['id']==$roleUsersId){
+                                    $role['user_information'][]=$user;
+                                
+                                }
+                            }    
+
+                            
+
+                        }
+                        else{
+                           
+                            if($roleUsersId!=''){
+                                $ids=explode(',',$roleUsersId);
+                               
+                                foreach($ids as $id){
+                                    foreach($users as $user){
+                                    if($user['id']==$id){
+                                      
+                                        $role['user_information'][]=$user;
+                                    } 
+                                  } 
+                                 
+                                }
+                            }
+                          
+                        }
+                    
+            }
+           
+
+          }
+        }
+       
+        return $rolesData;
+    }
 }
