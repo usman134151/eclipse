@@ -150,8 +150,12 @@ class AddService extends Component
         // 'customerForms' => ['parameters' => ['CustomizeForms', 'id', 'request_form_name', 'form_name_id', '37', 'request_form_name', false, 'service.request_form_id','','request_form_id',1]]
 
         $this->customForms = CustomizeForms::where(['form_name_id' => 37, 'status' => 1])->select('request_form_name', 'id')->get()->toArray();
-        $this->checkin_customForms = CustomizeForms::where(['form_name_id' => 194, 'status' => 1])->select('request_form_name', 'id')->get()->toArray();
-        $this->checkout_customForms = CustomizeForms::where(['form_name_id' => 195, 'status' => 1])->select('request_form_name', 'id')->get()->toArray();
+        $this->checkin_customForms = CustomizeForms::where('status', 1)->where('form_name_id',function($query){
+                $query->select('id')->from('setup_values')->where('setup_value_label','Check In Form');
+        })->select('request_form_name', 'id')->get()->toArray();
+        $this->checkout_customForms = CustomizeForms::where('status', 1)->where('form_name_id', function ($query) {
+            $query->select('id')->from('setup_values')->where('setup_value_label', 'Check Out Form');
+        })->select('request_form_name', 'id')->get()->toArray();
         
         $this->companyUsers = [
             0 => ['id' => 10, 'name' => 'Company Admin'],

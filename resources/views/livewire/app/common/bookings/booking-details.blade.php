@@ -174,8 +174,7 @@
                                                     {{-- End of update by Shanila --}}
                                                     View Assigned Admin-staff
                                                 </a>
-                                                @if (!session()->get('isCustomer') &&
-                                                        $booking->status == 2 && $data['show_close_button'])
+                                                @if (!session()->get('isCustomer') && $booking->status == 2 && $data['show_close_button'])
                                                     <a href="#"
                                                         class="btn btn-has-icon btn-outline-dark rounded"
                                                         @click="closeOutBooking = true"
@@ -228,6 +227,8 @@
                                                     Duplicate
                                                 </a>
                                                 <a href="#" class="btn btn-has-icon btn-primary rounded"
+                                                        wire:click="$emit('getRescheduleBookingData','{{ $booking->id }}')"
+
                                                     @click="rescheduleBooking = true">
                                                     {{-- Updated by Shanila to Add svg icon --}}
                                                     <svg aria-label="Reschedule" width="20" height="20"
@@ -1549,34 +1550,31 @@
                         <div class="tab-pane fade {{ $component == 'assignment-log' ? 'active show' : '' }}"
                             id="assignment-log" role="tabpanel" aria-labelledby="assignment-log-tab" tabindex="0">
                             <div class="row">
-                                @if (
-                                    !session()->get('isCustomer') &&
-                                        $booking->status == 2 && $data['show_close_button'])
 
-                                    <div class="col-12   mb-2">
-                                        <div class="">
-                                            <a href="#" class="btn btn-has-icon btn-primary rounded"
-                                                @click="closeOutBooking = true"
-                                                wire:click="$emit('openBookingCloseOut',true)">
-                                                <svg width="30" height="30" viewBox="0 0 30 30"
-                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <use xlink:href="/css/customer.svg#confirm-completion-icon">
-                                                    </use>
-                                                </svg>
-                                                @if ($booking->is_closed == 0)
-                                                    Close Assignment
-                                                @else
-                                                    Closed
-                                                @endif
-                                            </a>
-                                        </div>
-                                    </div>
-                                @endif
                                 <div class="col-12">
                                     <livewire:app.common.bookings.assignment-logs :booking_id="$booking_id" />
                                 </div>
                                 @if (!session()->get('isCustomer'))
-                                    <div class="col-12 mt-5">
+                                    <div class="col-12 mt-5 ">
+                                        @if ($booking->status == 2 && $data['show_close_button'])
+                                                <div class="d-flex justify-content-end">
+                                                    <a href="#" class="btn btn-has-icon btn-primary rounded"
+                                                        @click="closeOutBooking = true"
+                                                        wire:click="$emit('openBookingCloseOut',true)">
+                                                        <svg width="30" height="30" viewBox="0 0 30 30"
+                                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <use
+                                                                xlink:href="/css/customer.svg#confirm-completion-icon">
+                                                            </use>
+                                                        </svg>
+                                                        @if ($booking->is_closed == 0)
+                                                            Close Assignment
+                                                        @else
+                                                            Closed
+                                                        @endif
+                                                    </a>
+                                            </div>
+                                        @endif
                                         @foreach ($booking_services as $index => $service)
                                             <div class="d-flex justify-content-between gap-2">
                                                 <h2>Check-In and Close-Out for Service - {{ $service['service_name'] }}
@@ -1737,6 +1735,9 @@
     <script>
         Livewire.on('openFeedBackModal', (type) => {
             $('#reviewFeedbackModal').modal('show');
+        });
+        Livewire.on('openProviderNotesModal', (type) => {
+            $('#providerCheckInNotesModal').modal('show');
         });
         Livewire.on('closeFeedbackModal', () => {
             $('#reviewFeedbackModal').modal('hide');
