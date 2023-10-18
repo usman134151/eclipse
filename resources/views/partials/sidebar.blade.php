@@ -539,6 +539,32 @@
                 </ul>
               </li>
               @endif
+              <li role="menuitem" class="nav-item has-sub">
+                <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
+                  <svg aria-label="Specializations"  width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <use xlink:href="/css/admin-menu.svg#specialization-icon"></use>
+                  </svg>
+                  <span class="menu-item">Tags</span>
+                </a>
+                <ul role="menu" class="menu-content " id="Tag">
+                  <li role="menuitem" class="nav-item " id="create-tag">
+                    <a class="nav-link" href="/admin/tags/create-tags">
+                      <svg aria-label="Add Tag"  width="13" height="19" viewBox="0 0 13 19" xmlns="http://www.w3.org/2000/svg">
+                        <use xlink:href="/css/admin-menu.svg#add-specialization-icon"></use>
+                      </svg>
+                      <span class="menu-item">Add Tag</span>
+                    </a>
+                  </li>
+                  <li role="menuitem" class="nav-item  " id="all-tag">
+                    <a class="nav-link" href="/admin/all-tags">
+                      <svg aria-label="Tags"  width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <use xlink:href="/css/admin-menu.svg#specialiazation"></use>
+                      </svg>
+                      <span class="menu-item">Tags</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
               @if(userHasPermission(9,1))
               <li role="menuitem" class="nav-item has-sub">
                 <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">

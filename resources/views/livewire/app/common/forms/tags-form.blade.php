@@ -1,0 +1,82 @@
+@php
+$videoUrl = 'https://www.youtube.com/embed/epSdx8YXwNw?si=1zRdQJd90vL4WXe8';
+@endphp
+
+<div>
+    <div class="content-header row">
+        <div class="content-header-left col-12 mb-4">
+            <div class="row breadcrumbs-top">
+                <div class="col-12">
+                    <h1 class="content-header-title float-start mb-0">
+                        Add Tag
+                    </h1>
+                    <div class="float-lg-end float-md-end float-sm-start mb-0">
+                        @include('layouts.video-guide')
+                    </div>
+                    <div class="breadcrumb-wrapper">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="http://127.0.0.1:8000" title="Go to Dashboard" aria-label="Home">
+                                    <svg aria-label="Go to Dashboard" width="22" height="23" viewBox="0 0 22 23">
+                                        <use xlink:href="/css/common-icons.svg#home"></use>
+                                    </svg>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="#">
+                                    Settings
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                Add Tag
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section id="multiple-column-form">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form class="form" wire:submit.prevent="save">
+                            <div class="row">
+                                <div class="col-md-12 mb-md-2">
+                                    <h1>{{$label}} Tag</h1>
+                                    <p>Create a tag to add to your service catalog.</p>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="mb-4">
+                                                <label class="form-label" for="specialization-name">Tag Name
+                                                    <span class="text-danger">*</span> </label>
+                                                <input type="text" id="tag.name" class="form-control"
+                                                    name="tag.name" placeholder="Enter tag name"
+                                                    wire:model.defer="tag.name" />
+                                                @error('tag.name') <span
+                                                    class="d-inline-block invalid-feedback mt-2">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 form-actions d-flex justify-content-between">
+                                <div>
+                                    <button class="btn btn-outline-dark rounded mx-2 justify-content-end"
+                                        wire:click.prevent="showList">Back</button>
+                                </div>
+                                <div>
+                                    <button type="submit" class="btn btn-primary rounded mx-2 justify-content-start"
+                                        wire:click.prevent="save">Submit</button>
+                                </div>
+                            </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+</div>
+</section>
+</div>

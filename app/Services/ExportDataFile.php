@@ -912,4 +912,43 @@ class ExportDataFile
 
         return $fileResponse;
     }
+
+    public function generateTagsExcelTemplate()
+    {
+        $headers = [
+            'Tags',
+        ];
+
+        
+        $rows = [
+            [
+                '','','','','','',
+                '','','','','','',
+                '','','','','','',
+                '',
+            ]
+        ];
+
+        $fileName = 'tags-import.xlsx';
+        $filePath = Storage::disk('local')->path($fileName);
+
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        //$sheet->fromArray([$headers]);
+        $sheet->fromArray([$headers]);
+
+        foreach ($rows as $row) {
+            $sheet->fromArray([$row]);
+        }
+
+
+        $writer = new Xlsx($spreadsheet);
+        $writer->save($filePath);
+
+        $fileResponse = response()->file($filePath, [
+            'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
+        ])->deleteFileAfterSend(true);
+
+        return $fileResponse;
+    }
 }
