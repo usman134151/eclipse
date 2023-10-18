@@ -158,7 +158,7 @@
                                                                         Edit Check In
                                                                     </a>
                                                                 @endif
-                                                                @if ($provider->check_in_status == 3)
+                                                                @if ($out && $out['enable_button_provider'] == 'true' && $provider->check_in_status == 3)
                                                                     <a title="Edit Close Out"
                                                                         aria-label="Edit Close Out" href="#"
                                                                         class="dropdown-item"
@@ -175,16 +175,16 @@
                                                                     Download Timesheet
                                                                 </a>
 
-                                                                <a title="Download Forms" aria-label="Download Forms"
+                                                                {{-- <a title="Download Forms" aria-label="Download Forms"
                                                                     href="#" class="dropdown-item">
-                                                                    {{-- <i class="fa fa-clone"></i> --}}
                                                                     Download Forms
-                                                                </a>
+                                                                </a> --}}
                                                                 <a title="Approve Time Extension"
                                                                     aria-label="Approve Time Extension" href="#"
                                                                     class="dropdown-item">
                                                                     {{-- <i class="fa fa-clone"></i> --}}
                                                                     Approve Time Extension
+
                                                                 </a>
 
                                                                 <a title="Deny Time Extension"

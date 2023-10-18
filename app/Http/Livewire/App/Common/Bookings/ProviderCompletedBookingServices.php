@@ -24,6 +24,7 @@ class ProviderCompletedBookingServices extends Component
             ->whereHas('user')
             ->with('booking')
             ->get();
+        //  dd($this->data['attendingProviders']->first()->check_out_procedure_values);
 
 
 
@@ -39,13 +40,12 @@ class ProviderCompletedBookingServices extends Component
 
         $service = ServiceCategory::where('id', $this->service_id)->first();
         $this->in = $service->check_in_procedure ? json_decode($service->check_in_procedure, true) : null;
-        $this->out = $service->check_out_procedure ? json_decode($service->check_out_procedure, true) : null;
+        $this->out = $service->close_out_procedure ? json_decode($service->close_out_procedure, true) : null;
         if (isset($this->in['customize_form']) && $this->in['customize_form'] == true && isset($this->in['customize_form_id']))
             $this->data['checkin_form_enabled'] = true;
         if (isset($this->out['customize_form']) && $this->out['customize_form'] == true && isset($this->out['customize_form_id']))
             $this->data['checkout_form_enabled'] = true;
         $this->booking_service_id = BookingServices::where(['booking_id'=>$this->booking_id,'services'=>$this->service_id])->first()->id;
-        // dd($this->in);
     }
 
     public function openSavedFormsPanel($user_id)

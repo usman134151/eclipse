@@ -296,7 +296,7 @@ class BookingList extends Component
 					$join->on('booking_providers.booking_service_id', 'booking_services.id');
 				});
 				$query->select([
-					'booking_providers.check_in_status', 'booking_services.services as service_id', 'booking_services.id as booking_service_id',
+					'booking_providers.check_in_status','booking_services.services as service_id', 'booking_services.id as booking_service_id',
 					'booking_services.service_types as service_type', 'bookings.*', 'bookings.status as status'
 				]);
 			}
