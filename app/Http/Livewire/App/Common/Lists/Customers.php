@@ -113,9 +113,9 @@ final class Customers extends PowerGridComponent
 			->addColumn('name')
 			->addColumn('customer', function (User $model) {
 				if ($model->profile_pic == null)
-					$col = '<div class="row g-2 align-items-center"><div class="col-md-2"><img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Customer Profile Image"></div><div class="col-md-10"><h6 class="fw-semibold"><a href="' . route('tenant.customer-profile', ['customerID' => encrypt($model->id)]) . '">' . $model->name . '</a></h6><p>' . $model->email . '</p></div></div>';
+					$col = '<div class="row g-2 align-items-center"><div class="col-md-2"><a href="'.route('tenant.customer-profile', ['customerID' => encrypt($model->id)]).'"><img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Customer Profile Image"></a></div><div class="col-md-10"><h6 class="fw-semibold"><a href="' . route('tenant.customer-profile', ['customerID' => encrypt($model->id)]) . '">' . $model->name . '</h6><p>' . $model->email . '</p></a></div></div>';
 				else
-					$col = '<div class="row g-2 align-items-center"><div class="col-md-2"><img style="width:64px;height:64px;top:1rem"  src="' . $model->profile_pic . '" class="img-fluid rounded-circle" alt="Customer Profile Image"></div><div class="col-md-10"><h6 class="fw-semibold"><a href="' . route('tenant.customer-profile', ['customerID' => encrypt($model->id)]) . '">' . $model->name . '</a></h6><p>' . $model->email . '</p></div></div>';
+					$col = '<div class="row g-2 align-items-center"><div class="col-md-2"><a href="'.route('tenant.customer-profile', ['customerID' => encrypt($model->id)]).'"><img style="width:64px;height:64px;top:1rem"  src="' . $model->profile_pic . '" class="img-fluid rounded-circle" alt="Customer Profile Image"></a></div><div class="col-md-10"><h6 class="fw-semibold"><a href="' . route('tenant.customer-profile', ['customerID' => encrypt($model->id)]) . '">' . $model->name . '</h6><p>' . $model->email . '</p></a></div></div>';
 				return $col;
 			})
 			->addColumn('phone')
