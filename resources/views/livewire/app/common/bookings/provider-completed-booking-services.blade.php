@@ -69,7 +69,8 @@
                                                 </div>
                                             </td>
                                             <td class="align-middle">
-                                                04 hours 3 mins
+                                                {{$provider->duration}}
+
                                             </td>
                                             @if (!$isCustomer)
                                                 <td class="align-middle">
@@ -93,7 +94,7 @@
                                                 </td>
 
                                                 <td class="align-middle">
-                                                    @if ($provider->check_in_status == 2)
+                                                    @if ($provider->check_in_status == 2 )
                                                         <a href="#" title="Punctuality" aria-label="Punctuality"
                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                             <i class="fa fa-caret-up text-warning"
@@ -169,11 +170,13 @@
                                                                         Edit Close Out
                                                                     </a>
                                                                 @endif
-                                                                <a title="Timesheet" aria-label="Timesheet"
-                                                                    href="#" class="dropdown-item">
-                                                                    {{-- <i class="fa fa-clone"></i> --}}
-                                                                    Download Timesheet
-                                                                </a>
+                                                                @if (isset($provider->check_out_procedure_values['uploaded_timesheet']))
+                                                                    <a title="Timesheet" aria-label="Timesheet"
+                                                                        href="{{$provider->check_out_procedure_values['uploaded_timesheet']}}" target="_blank" class="dropdown-item">
+                                                                        {{-- <i class="fa fa-clone"></i> --}}
+                                                                        Download Timesheet
+                                                                    </a>
+                                                                @endif
 
                                                                 {{-- <a title="Download Forms" aria-label="Download Forms"
                                                                     href="#" class="dropdown-item">
