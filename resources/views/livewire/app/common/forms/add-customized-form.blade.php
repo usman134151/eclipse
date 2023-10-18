@@ -1,4 +1,12 @@
 <div>
+	{{-- updated by hammad 16-10-23 --}}
+	<div id="loader-section" class="loader-section" wire:loading>
+        <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
+            <div class="spinner-border" role="status" aria-live="polite">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
 	<div class="content-header row">
 		<div class="content-header-left col-12 mb-4">
 			<div class="row breadcrumbs-top">
@@ -113,8 +121,7 @@
 								</div>
 								<!-- End: This is conditional, link with select "Form" / option "New Provider Screening"   -->
 								@endif
-								@if($custom_form_details['form_name_id']==37 || $custom_form_details['form_name_id']==194 || $custom_form_details['form_name_id']==195)
-								<!-- Begin: This is conditional, link with select "Form" / option "Customer Request Form"   -->
+									<!-- Begin: This is conditional, link with select "Form" / option "Customer Request Form"   -->
 								 <div class="col-md-12">
 									<div class="mb-4">
 										<div class="form-group">
@@ -128,7 +135,7 @@
 									</div>
 								</div>
 								  <!-- End: This is conditional, link with select "Form" / option "Customer Request Form"   -->
-								@endif
+								
 								<div wire:sortable="updateOrder">
 									@foreach($questions as $index=>$question)
 										<div wire:sortable.item="{{$index}}" wire:key='box-{{$index}}' class="border-dashed rounded p-3 mb-3" >
@@ -353,7 +360,7 @@
 
 								<div class="col-12 justify-content-center form-actions d-flex"> 
 
-									<button  type="submit" wire:click.prevent="{{($custom_form_details['form_name_id']==37|| $custom_form_details['form_name_id']==194 || $custom_form_details['form_name_id']==195) ? 'save' : ''}}" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });"
+									<button  type="submit" wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });"
 									class="btn btn-primary rounded">Publish Form</button>
 									<button type="button"
 										class="btn btn-outline-dark rounded mx-2" wire:click.prevent="showList">Cancel</button>

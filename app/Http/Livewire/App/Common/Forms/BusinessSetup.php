@@ -186,6 +186,13 @@ class BusinessSetup extends Component
         // dd($this->messages);
         $this->validate();
 
+        if(!is_null($this->configuration->id)){
+            $type = "update";
+        }
+        else{
+            $type = "create";
+        }
+
         $fileService = new UploadFileService();
 
         if($this->company_logo)
@@ -281,6 +288,10 @@ class BusinessSetup extends Component
 			$this->getBusinessSchedule();
 		
 		}
+        
+
+        // hammad 16-10-23
+        callLogs($this->configuration->id, 'business_setup', $type);
         
     }
 

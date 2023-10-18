@@ -533,7 +533,7 @@
                                                                         <input
                                                                             class="form-check-input js-form-check-input-manual-entry"
                                                                             id="ManualEntryServiceConsumer" name=""
-                                                                            type="checkbox" tabindex="" wire:key="manual-{{ $index }}" wire:model.defer="services.{{$index}}.is_manual_consumer">
+                                                                            type="checkbox" tabindex="" wire:key="manual-{{ $index }}" wire:model="services.{{$index}}.is_manual_consumer">
                                                                         <label class="form-check-label"
                                                                             for="ManualEntryServiceConsumer"><small>Manual Entry</small></label>
                                                                     </div>

@@ -67,11 +67,13 @@ class SetupForm extends Component
 
     public function save(){
        // dd($this->setupvalue->setup_id);
+       $type = !is_null($this->setupvalue->id) ? "update" : "create";
         $this->validate();
         //$this->setupvalue->added_by=1;
         $this->setupvalue->save();
         $this->showList("Record saved successfully");
         $this->setupvalue=new SetupValue;
+        callLogs($this->setupvalue->id,"setup_value",$type);
     }
 
     public function render()

@@ -38,23 +38,28 @@ if (!function_exists('api_date_formate')) {
 if (!function_exists('sendMail')) {
   function sendMail($to, $subject, $data, $mailview, $attachment = [], $dispathType = 'dispatch',  $delaymin = 0)
   {
+   
+  
     try {
       $response = null;
 
       if ($dispathType == 'dispatch') {
+        \Log::info('Email queued for dispatch to: ' . $to); 
         $response = sendEmail::dispatch($to, $subject, $data, $mailview)->onQueue('emails');
       } else if ($dispathType == 'dispatchSync') {
         $response = sendEmail::dispatchSync($to, $subject, $data, $mailview);
       } else if ($dispathType == 'delay') {
         $response = sendEmail::dispatch($to, $subject, $data, $mailview)->delay(now()->addMinutes($delaymin))->onQueue('emails');
       }
+      
       if ($response) {
         return true;
       } else {
         return false;
       }
+    
     } catch (\Exception $e) {
-      Log::error($e->getMessage());
+      dd($e);
     }
   }
 }
