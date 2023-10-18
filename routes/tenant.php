@@ -44,6 +44,9 @@ Route::group([
 			Route::view('/admin/all-specialization', 'tenant/common/specialization', ["showForm"=>false]);
 			Route::view('/admin/specialization/create-specialization', 'tenant/common/specialization', ["showForm"=>true]);
 
+			Route::view('/admin/all-tags', 'tenant/common/tags', ["showForm"=>false]);
+			Route::view('/admin/tags/create-tags', 'tenant/common/tags', ["showForm"=>true]);
+
 			Route::view('/admin/all-industry', 'tenant/common/industry', ["showForm"=>false]);
 			Route::view('/admin/industry/create-industry', 'tenant/common/industry', ["showForm"=>true]);
 
