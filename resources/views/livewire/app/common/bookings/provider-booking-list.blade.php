@@ -159,11 +159,11 @@
                                                             style="background-color:{{ $colorCodes[$code] }}">
                                                             <div class="d-flex actions">
                                                                 @if (
-                                                                    $booking['check_in_status'] == 0 &&
+                                                                    {{-- $booking['check_in_status'] == 0 && --}}
                                                                         $bookingType != 'Unassigned' &&
                                                                         $bookingType != 'Invitations' &&
                                                                         $bookingType != 'Cancelled')
-                                                                    @if ($booking->service_type)
+                                                                    @if ($booking->service_type &&  $bookingType != 'Past')
                                                                         @if ($booking->service_type == 1)
                                                                             {{-- In - Person --}}
                                                                             <div
@@ -229,7 +229,7 @@
 
 
 
-                                                                    @if ($booking['display_running_late'])
+                                                                    @if ($booking['display_running_late'] && $booking['check_in_status'] == 0 &&  ($bookingType == "Today's" || $bookingType == 'Upcoming') )
                                                                         <a href="javascript:void(0)"
                                                                             title="Running Late"
                                                                             aria-label="Running Late"
@@ -267,7 +267,7 @@
                                                                         $bookingType != 'Unassigned' &&
                                                                         $bookingType != 'Invitations' &&
                                                                         $bookingType != 'Cancelled')
-                                                                    {{-- @if ($booking['display_check_in'] && $bookingType == "Today's")
+                                                                    @if ($booking['display_check_in'] && $bookingType == "Today's" )
                                                                         <a href="javascript:void(0)"
                                                                             @click="offcanvasOpenCheckIn = true"
                                                                             wire:click="showCheckInPanel('{{ $booking['id'] }}','{{ $booking['booking_service_id'] }}','{{ $booking['booking_number'] }}')"
@@ -282,7 +282,7 @@
                                                                                 </use>
                                                                             </svg>
                                                                         </a>
-                                                                    @endif --}}
+                                                                    @endif
                                                                     @if ($booking['display_check_out'])
                                                                         <a href="#"
                                                                             @click="offcanvasOpenCheckOut = true"
