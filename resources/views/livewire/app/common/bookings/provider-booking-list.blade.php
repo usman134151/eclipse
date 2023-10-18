@@ -158,12 +158,9 @@
                                                         <td class="{{ $cssClass }}"
                                                             style="background-color:{{ $colorCodes[$code] }}">
                                                             <div class="d-flex actions">
-                                                                @if (
-                                                                    {{-- $booking['check_in_status'] == 0 && --}}
-                                                                        $bookingType != 'Unassigned' &&
-                                                                        $bookingType != 'Invitations' &&
-                                                                        $bookingType != 'Cancelled')
-                                                                    @if ($booking->service_type &&  $bookingType != 'Past')
+                                                                @if ($bookingType != 'Unassigned' && $bookingType != 'Invitations' && $bookingType != 'Cancelled')
+                                                                    {{-- location and meeting link display --}}
+                                                                    @if ($booking->service_type && $bookingType != 'Past')
                                                                         @if ($booking->service_type == 1)
                                                                             {{-- In - Person --}}
                                                                             <div
@@ -228,8 +225,11 @@
 
 
 
-
-                                                                    @if ($booking['display_running_late'] && $booking['check_in_status'] == 0 &&  ($bookingType == "Today's" || $bookingType == 'Upcoming') )
+                                                                    {{-- running late --}}
+                                                                    @if (
+                                                                        $booking['display_running_late'] &&
+                                                                            $booking['check_in_status'] == 0 &&
+                                                                            ($bookingType == "Today's" || $bookingType == 'Upcoming'))
                                                                         <a href="javascript:void(0)"
                                                                             title="Running Late"
                                                                             aria-label="Running Late"
@@ -246,7 +246,11 @@
                                                                             </svg>
                                                                         </a>
                                                                     @endif
-                                                                    @if ($booking['display_check_in'] && $bookingType == "Today's")
+                                                                    {{-- checkin --}}
+                                                                    @if (
+                                                                        $booking['display_check_in'] &&
+                                                                            ($bookingType == "Today's" || $bookingType == 'Active') &&
+                                                                            ($booking['check_in_status'] == 0 || $booking['check_in_status'] ==2) )
                                                                         <a href="javascript:void(0)"
                                                                             @click="offcanvasOpenCheckIn = true"
                                                                             wire:click="showCheckInPanel('{{ $booking['id'] }}','{{ $booking['booking_service_id'] }}','{{ $booking['booking_number'] }}')"
@@ -262,28 +266,8 @@
                                                                             </svg>
                                                                         </a>
                                                                     @endif
-                                                                @elseif(
-                                                                    $booking['check_in_status'] > 0 &&
-                                                                        $bookingType != 'Unassigned' &&
-                                                                        $bookingType != 'Invitations' &&
-                                                                        $bookingType != 'Cancelled')
-                                                                    @if ($booking['display_check_in'] && $bookingType == "Today's" )
-                                                                        <a href="javascript:void(0)"
-                                                                            @click="offcanvasOpenCheckIn = true"
-                                                                            wire:click="showCheckInPanel('{{ $booking['id'] }}','{{ $booking['booking_service_id'] }}','{{ $booking['booking_number'] }}')"
-                                                                            title="Check In" aria-label="Check In"
-                                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                            <svg aria-label="Check In" width="22"
-                                                                                height="22" viewBox="0 0 22 22"
-                                                                                fill="none"
-                                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                                <use
-                                                                                    xlink:href="/css/provider.svg#check-in">
-                                                                                </use>
-                                                                            </svg>
-                                                                        </a>
-                                                                    @endif
-                                                                    @if ($booking['display_check_out'])
+                                                                    {{-- check out --}}
+                                                                    @if ($booking['display_check_out'] && ($booking['check_in_status'] == 1 || $booking['check_in_status'] == 3))
                                                                         <a href="#"
                                                                             @click="offcanvasOpenCheckOut = true"
                                                                             wire:click="showCheckOutPanel('{{ $booking['id'] }}','{{ $booking['booking_service_id'] }}','{{ $booking['booking_number'] }}')"
