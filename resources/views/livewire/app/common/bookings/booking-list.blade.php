@@ -795,6 +795,7 @@
     @include('modals.meeting-links')
     @include('modals.provider-message')
     @include('modals.common.review-feedback')
+    @include('modals.common.provider-check-in-notes')
     @include('modals.common.available-timeslot')
     @include('panels.booking-details.assign-providers')
     @include('modals.unassign')

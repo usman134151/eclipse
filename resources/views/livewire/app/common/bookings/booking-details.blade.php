@@ -1738,6 +1738,9 @@
         Livewire.on('openFeedBackModal', (type) => {
             $('#reviewFeedbackModal').modal('show');
         });
+                Livewire.on('openProviderNotesModal', (type) => {
+            $('#providerCheckInNotesModal').modal('show');
+        });
         Livewire.on('closeFeedbackModal', () => {
             $('#reviewFeedbackModal').modal('hide');
 
