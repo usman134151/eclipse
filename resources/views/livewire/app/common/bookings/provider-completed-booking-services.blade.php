@@ -69,7 +69,8 @@
                                                 </div>
                                             </td>
                                             <td class="align-middle">
-                                                04 hours 3 mins
+                                                {{ $provider->duration }}
+
                                             </td>
                                             @if (!$isCustomer)
                                                 <td class="align-middle">
@@ -92,9 +93,9 @@
 
                                                 </td>
 
-                                                <td class="align-middle">
-                                                    @if ($provider->check_in_status == 2)
-                                                        <a href="#" title="Punctuality" aria-label="Punctuality"
+                                                <td class="align-middle text-center">
+                                                    @if ($provider->check_in_status == 2 || $provider->running_late_hour != null || $provider->running_late_min != null)
+                                                        <a href="#" title="Running Late" aria-label="Running Late"
                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                             <i class="fa fa-caret-up text-warning"
                                                                 style="height:200px"></i>
@@ -104,15 +105,21 @@
                                                     @endif
                                                 </td>
                                                 <td class="align-middle">
-                                                    <a href="#" title="Notes" aria-label="Notes"
-                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
-
-                                                        <svg aria-label="Notes" width="28" height="29"
-                                                            viewBox="0 0 28 29" fill="none"
-                                                            xmlns="http://www.w3.org/2000/svg">
-                                                            <use xlink:href="/css/sprite.svg#gray-notes">
-                                                            </use>
-                                                        </svg>
+                                                    @if (isset($provider->check_out_procedure_values['entry_notes']) && $provider->check_out_procedure_values['entry_notes']!=null &&
+                                                            trim($provider->check_out_procedure_values['entry_notes']) != '')
+                                                        <a href="#" title="Notes" aria-label="Notes"
+                                                            wire:click="$emit('openProviderNotesModal', '{{ $provider->check_out_procedure_values['entry_notes']}}')"
+                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                        @else
+                                                            <a href="#" title="No Notes Available" aria-label="Notes"
+                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                    @endif
+                                                    <svg aria-label="Notes" width="28" height="29"
+                                                        viewBox="0 0 28 29" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <use xlink:href="/css/sprite.svg#gray-notes">
+                                                        </use>
+                                                    </svg>
                                                     </a>
                                                 </td>
                                                 <td class="align-middle">
@@ -158,7 +165,7 @@
                                                                         Edit Check In
                                                                     </a>
                                                                 @endif
-                                                                @if ($provider->check_in_status == 3)
+                                                                @if ($out && $out['enable_button_provider'] == 'true' && $provider->check_in_status == 3)
                                                                     <a title="Edit Close Out"
                                                                         aria-label="Edit Close Out" href="#"
                                                                         class="dropdown-item"
@@ -169,22 +176,25 @@
                                                                         Edit Close Out
                                                                     </a>
                                                                 @endif
-                                                                <a title="Timesheet" aria-label="Timesheet"
-                                                                    href="#" class="dropdown-item">
-                                                                    {{-- <i class="fa fa-clone"></i> --}}
-                                                                    Download Timesheet
-                                                                </a>
+                                                                @if (isset($provider->check_out_procedure_values['uploaded_timesheet']))
+                                                                    <a title="Timesheet" aria-label="Timesheet"
+                                                                        href="{{ $provider->check_out_procedure_values['uploaded_timesheet'] }}"
+                                                                        target="_blank" class="dropdown-item">
+                                                                        {{-- <i class="fa fa-clone"></i> --}}
+                                                                        Download Timesheet
+                                                                    </a>
+                                                                @endif
 
-                                                                <a title="Download Forms" aria-label="Download Forms"
+                                                                {{-- <a title="Download Forms" aria-label="Download Forms"
                                                                     href="#" class="dropdown-item">
-                                                                    {{-- <i class="fa fa-clone"></i> --}}
                                                                     Download Forms
-                                                                </a>
+                                                                </a> --}}
                                                                 <a title="Approve Time Extension"
                                                                     aria-label="Approve Time Extension" href="#"
                                                                     class="dropdown-item">
                                                                     {{-- <i class="fa fa-clone"></i> --}}
                                                                     Approve Time Extension
+
                                                                 </a>
 
                                                                 <a title="Deny Time Extension"
