@@ -1,3 +1,18 @@
+<style>
+    .btn-text{
+        font-size:8px;
+        font-weight:600;
+    }
+    .btn-custom{
+        background: transparent !important;
+        border: 2px solid #213969 !important;
+        color: #213969 !important;
+        padding:5px !important;
+    }
+    .btn-custom:hover{
+        background: #DBDBDB !important;
+    }
+</style>
 <div  x-data="{addDocuments: false, assignProvider: false }" >
     @if(@$cantRequest)
     <div class="content-body">
@@ -681,13 +696,19 @@
                                     <!-- /Services Duplicate Block -->
                                     <div class="row justify-content-end">
                                         <div class="col-md-6 col-lg-3">
-                                            <a wire:click.prevent="addService" href="#" class="btn btn-primary rounded btn-has-icon w-100">
-                                                <svg aria-label=" Add Service" width="20" height="20"
-                                                    viewBox="0 0 20 20">
-                                                    <use xlink:href="/css/common-icons.svg#plus">
-                                                    </use>
-                                                </svg>
-                                                Add Service
+                                            <a wire:click.prevent="addService" href="#" class=" float-end btn btn-secondary btn-custom rounded btn-has-icon w-55">
+                                            <span class="p-0 d-flex align-item-center">
+
+                                                <svg aria-label=" Add Service" width="13" height="13"
+                                                        viewBox="0 0 20 20">
+                                                        <use xlink:href="/css/common-icons.svg#blueplus">
+                                                        </use>
+                                                    </svg>
+                                                    <span class="btn-text ps-1">
+    
+                                                        Add Service
+                                                    </span>
+                                            </span>    
                                             </a>
                                         </div>
                                     </div>
