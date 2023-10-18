@@ -161,7 +161,7 @@ $minDurationMin =(int) (isset($service['service_data']['minimum_assistance_min'.
     else{
         $multipleProviderCol='standard_in_person_multiply_provider'.$service['postFix'];
     }
-   
+  
   
    //step 2 : calculate booking billable duration with billing increments - skipping for now
    
@@ -176,6 +176,7 @@ $minDurationMin =(int) (isset($service['service_data']['minimum_assistance_min'.
       $service['service_charges']=$service['service_data']['fixed_rate'.$service['postFix']];
    }
    elseif($service['service_data']['rate_status']==1){ //for hourly rate - temp fix for day rate
+    
     if(((int)$service['total_duration']['hours']*60+(int)$service['total_duration']['mins'])<($minDurationHours*60+(int)$minDurationMin))
     {
         $bh=(int)$minDurationHours;
@@ -189,8 +190,14 @@ $minDurationMin =(int) (isset($service['service_data']['minimum_assistance_min'.
         if($service['after_business_hours']>0 || $service['after_business_minutes']>0){  //means min duration will be calculated on both business and after-hour rates
           $bh=(int)$service['business_hours'];
           $bm=(int)$service['business_minutes'];
-          $abh=$bh-$service['after_business_hours'];
-          $abm=$bm-$service['after_business_minutes'];
+          if($bh>0)
+            $abh=$bh-$service['after_business_hours'];
+          else 
+            $abh=$service['after_business_hours'];
+          if($bm>0)
+            $abm=$bm-$service['after_business_minutes'];
+          else
+            $abm=$service['after_business_minutes'];
         }
     }
     else{
@@ -202,8 +209,8 @@ $minDurationMin =(int) (isset($service['service_data']['minimum_assistance_min'.
     }
 
     if($service['service_data'][$multipleProviderCol]){
-     
-        $service['business_hour_charges']=($service['service_data']['hours_price'.$service['postFix']]*$service['provider_count']*$bh)+(($service['service_data']['hours_price'.$service['postFix']]/60)*$service['provider_count']*$bm);
+    
+        $service['business_hour_charges']=((float)$service['service_data']['hours_price'.$service['postFix']]*(int)$service['provider_count']*$bh)+(((float)$service['service_data']['hours_price'.$service['postFix']]/60)*(int)$service['provider_count']*$bm);
         $service['after_business_hour_charges']=($service['service_data']['after_hours_price'.$service['postFix']]*$service['provider_count']*$abh)+(($service['service_data']['after_hours_price'.$service['postFix']]/60)*$service['provider_count']*$abm);
        
     }
