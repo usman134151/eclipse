@@ -190,10 +190,10 @@ $minDurationMin =(int) (isset($service['service_data']['minimum_assistance_min'.
         }
     }
     else{
-        $bh=$service['business_hours'];
-        $bm=$service['business_minutes'];
-        $abh=$service['after_business_hours'];
-        $abm=$service['after_business_minutes'];
+        $bh=(int)$service['business_hours'];
+        $bm=(int)$service['business_minutes'];
+        $abh=(int)$service['after_business_hours'];
+        $abm=(int)$service['after_business_minutes'];
 
     }
 
