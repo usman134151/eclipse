@@ -8,7 +8,7 @@ class Profile extends Component
 {
     public $user,$userid;
 	protected $listeners = [
-		'showDetails'
+		'showDetails','showConfirmation'
 	];
     public $showForm;
     public function render()
@@ -34,6 +34,17 @@ class Profile extends Component
 		$user=User::find($userId);
 
 		$this->emit('showList');
+	}
+
+    public function showConfirmation($message=""){
+		if ($message) {
+			// Emit an event to display a success message using the SweetAlert package
+			$this->dispatchBrowserEvent('swal:modal', [
+				'type' => 'success',
+				'title' => 'Success',
+				'text' => $message,
+			]);
+		}
 	}
 
 
