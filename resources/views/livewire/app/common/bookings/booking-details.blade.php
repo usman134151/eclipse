@@ -227,6 +227,8 @@
                                                     Duplicate
                                                 </a>
                                                 <a href="#" class="btn btn-has-icon btn-primary rounded"
+                                                        wire:click="$emit('getRescheduleBookingData','{{ $booking->id }}')"
+
                                                     @click="rescheduleBooking = true">
                                                     {{-- Updated by Shanila to Add svg icon --}}
                                                     <svg aria-label="Reschedule" width="20" height="20"

@@ -1,4 +1,6 @@
 <div>
+    @if(!is_null($booking))
+
     <div class="row mt-4">
         <div class="col-md-6">
             <div class="row">
@@ -291,4 +293,5 @@
             </div>
         </div>
     </div>
+    @endif
 </div>

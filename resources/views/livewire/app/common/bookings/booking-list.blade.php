@@ -550,6 +550,7 @@
                                                                                                 aria-label="Reschedule"
                                                                                                 title="Reschedule"
                                                                                                 class="dropdown-item"
+                                                                                                wire:click="$emit('getRescheduleBookingData','{{ $booking->id }}')"
                                                                                                 @click="rescheduleBooking = true">
                                                                                                 <i
                                                                                                     class="fa fa-calendar"></i>
