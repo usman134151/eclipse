@@ -424,16 +424,16 @@
     </div>
     <!-- END: Step 1 -->
     <!-- BEGIN: Step 2 -->
-    @if (isset($this->checkout_details['customize_form']) &&
-            $this->checkout_details['customize_form'] == true &&
-            isset($this->checkout_details['customize_form_id']))
+    @if (isset($checkout_details['customize_form']) &&
+            $checkout_details['customize_form'] == true &&
+            isset($checkout_details['customize_form_id']))
         <div class="{{ $step == 2 ? '' : 'hidden' }}">
             <form wire:submit.prevent="saveStepTwo">
                 <div class="mb-4">
                     <div class="row inner-section-segment-spacing">
                         <div class="col-lg-12">
                             <h3 class="text-primary">Step 2:</h3>
-                            @livewire('app.common.forms.custom-form-display', ['showForm' => true, 'formId' => $this->checkout_details['customize_form_id'], 'bookingId' => $assignment->id, 'lastForm' => false, 'formType' => 3, 'service_id' => $booking_service->services, 'added_by_id' => $provider_id])
+                            @livewire('app.common.forms.custom-form-display', ['showForm' => true, 'formId' => $checkout_details['customize_form_id'], 'bookingId' => $assignment->id, 'lastForm' => false, 'formType' => 3, 'service_id' => $booking_service->services, 'added_by_id' => $provider_id])
                         </div>
                     </div>
                 </div>
@@ -457,9 +457,9 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h3 class="text-primary">Step
-                        {{ isset($this->checkout_details['customize_form']) &&
-                        $this->checkout_details['customize_form'] == true &&
-                        isset($this->checkout_details['customize_form_id'])
+                        {{ isset($checkout_details['customize_form']) &&
+                        $checkout_details['customize_form'] == true &&
+                        isset($checkout_details['customize_form_id'])
                             ? '3'
                             : '2' }}
 
@@ -484,9 +484,9 @@
 
         <div class="mb-4">
             <div class="form-actions d-flex gap-3 justify-content-center mt-5">
-                @if (isset($this->checkout_details['customize_form']) &&
-                        $this->checkout_details['customize_form'] == true &&
-                        isset($this->checkout_details['customize_form_id']))
+                @if (isset($checkout_details['customize_form']) &&
+                        $checkout_details['customize_form'] == true &&
+                        isset($checkout_details['customize_form_id']))
                     <button type="submit" class="btn btn-primary rounded" wire:click="setStep(2)">Back</button>
                 @else
                     <button type="submit" class="btn btn-primary rounded" wire:click="setStep(1)">Back</button>
@@ -507,9 +507,9 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h3 class="text-primary">Step
-                        {{ isset($this->checkout_details['customize_form']) &&
-                        $this->checkout_details['customize_form'] == true &&
-                        isset($this->checkout_details['customize_form_id'])
+                        {{ isset($checkout_details['customize_form']) &&
+                        $checkout_details['customize_form'] == true &&
+                        isset($checkout_details['customize_form_id'])
                             ? '4'
                             : '3' }}
 
