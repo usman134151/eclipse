@@ -165,7 +165,7 @@
                                                                         Edit Check In
                                                                     </a>
                                                                 @endif
-                                                                @if ($out key_exists('enable_button_button',$out) && && $out['enable_button_provider'] == 'true' && $provider->check_in_status == 3)
+                                                                @if ($out &&  key_exists('enable_button_button',$out) && $out['enable_button_provider'] == 'true' && $provider->check_in_status == 3)
                                                                     <a title="Edit Close Out"
                                                                         aria-label="Edit Close Out" href="#"
                                                                         class="dropdown-item"
