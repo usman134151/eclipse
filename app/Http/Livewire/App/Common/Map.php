@@ -19,7 +19,8 @@ class Map extends Component
     public $bookingList;
     public $addressList;
     public $selectedBooking;
-
+    public $bookingFilter;    
+    protected $bookingIds;
 
     public function render()
     {
@@ -52,7 +53,7 @@ class Map extends Component
                 return $query->whereRaw("CONCAT(address_line1, ', ', city, ', ', state, ', ', country) LIKE ?", ['%' . $selectedAddress . '%']);
             })
             ->when($this->selectedBookingNo, function ($query, $selectedBookingNo) {
-                return $query->where('bookings.id', $selectedBookingNo);
+                return $query->whereIn('bookings.id', $this->bookingIds);
             })
             ->select([
                 'bookings.id',
@@ -128,6 +129,8 @@ class Map extends Component
     }
     public function resetDate()
     {
+        $this->bookingFilter = null; 
+        $this->$this->bookingIds = null; 
         $this->selectedBooking = null; // Reset the selected date and bookingid etc
         $this->selectedAddress = null;
         $this->selectDate = null;
@@ -136,5 +139,11 @@ class Map extends Component
         $this->addressList = UserAddress::select([
             DB::raw("CONCAT(address_line1,', ', city, ', ', state, ', ', country) as full_address")
         ])->get();
+    }
+
+    public function applyFilter(){
+        if($this->bookingFilter != null)
+            $this->bookingIds = Booking::where('booking_number', 'like', '%' . $this->bookingFilter . '%')->pluck('id');
+        $this->applyFilters();
     }
 }

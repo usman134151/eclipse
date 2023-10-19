@@ -19,7 +19,7 @@
 		  </div>
         <div class="col-lg mb-4 mb-lg-0">
             <label class="form-label" for="supervisor">Filter by Booking</label>
-            <select class="form-select select2 booking" id="BookingID" name="BookingID"  wire:click="ChangeFilter($event.target.value,'Booking')">
+            {{-- <select class="form-select select2 booking" id="BookingID" name="BookingID"  wire:click="ChangeFilter($event.target.value,'Booking')">
             @if(!empty($selectedBookingNumber))
             <option>{{$selectedBookingNumber}}</option>
             @else
@@ -29,12 +29,13 @@
                 @foreach($bookingList as $list)
                     <option value="{{$list->id}}">{{$list->booking_number}}</option>   
                 @endforeach
-            </select>
+            </select> --}}
+            <input type="text" class="form-control" id="BookingID" name="BookingID"  wire:model="bookingFilter" placeholder="Search Bookings">
         </div>
 
        <div class="col-lg mb-1 mb-lg-0">
         <label class="form-label" for="ProviderId">Filter By Provider</label>
-        <select class="form-select select2 provider" id="ProviderId" name="ProviderId" wire:click="ChangeFilter($event.target.value,'Provider')">
+        {{-- <select class="form-select select2 provider" id="ProviderId" name="ProviderId" wire:click="ChangeFilter($event.target.value,'Provider')">
         @if(!empty($selectedProvider))
             <option>{{$selectedProvider}}</option>
             @else
@@ -44,10 +45,11 @@
         @foreach($providerList as $list)
                     <option value="{{$list->id}}">{{$list->name}}</option>   
                 @endforeach
-        </select>
+        </select> --}}
+        <input type="text" class="form-control" id="ProviderId" name="ProviderId"  wire:model="providerFilter" placeholder="Search Providers">
        </div>
 
-       <div class="col-lg mb-4 mb-lg-0">
+       {{-- <div class="col-lg mb-4 mb-lg-0">
         <label class="form-label" for="steam">Filter By Provider Team</label>
         <select class="form-select select2 team" id="steam" name="steam" wire:click="ChangeFilter($event.target.value,'Team')" >
         @if(!empty($selectedTeam))
@@ -60,10 +62,11 @@
                     <option value="{{$list->id}}">{{$list->name}}</option>   
                 @endforeach 
         </select>
-       </div>
+       </div> --}}
     </div>
     <div class="col-sm mb-4">
     <a href="#" wire:click.prevent="resetDate">Reset Filters</a>
+    <a href="#" wire:click.prevent="applyFilter">Apply Filters</a>
     </div>
     <!-- /Filters -->
     <!-- BEGIN: Availability -->
@@ -104,7 +107,9 @@
                             <td colspan="">
                                 @foreach($booking as $book)
                                 <div class="{{$book['class'] }}">
-                                    {{ $book['title'] }}
+                                    <a href="/admin/bookings/view-booking/{{ encrypt($index['booking_id']) }}">
+                                        {{ $book['title'] }}
+                                    </a>
                                 </div>
                                 @endforeach
                             </td>
