@@ -27,7 +27,8 @@ class NotificationService{
         
         $admin            = User::find(1);
         $notificationData=NotificationTemplates::where('trigger',$triggerName)->with('notificationTemplateRoles')->orderBy('notification_type')->get()->toArray();
-        
+        $parts = explode("(", $triggerName);
+        $templateName=trim($parts[0]);
         foreach($notificationData as $notification){
             $notification['trigger_type_id']=6;
             //get list of users to send notification to
@@ -45,7 +46,7 @@ class NotificationService{
                                     //replace data in loop
                     $replacements=SELF::replaceData($notification['trigger_type_id'],$data,$userData,$admin);
                
-                        SELF::getEmail($roleData['notification_text'],$roleData['notification_subject'],$replacements,$admin,$userData);
+                        SELF::getEmail($roleData['notification_text'],$roleData['notification_subject'],$replacements,$admin,$userData,$templateName);
                         
                     }
                 }
@@ -241,7 +242,7 @@ class NotificationService{
             
     }
 
-   public static function getEmail($notificationText,$notificationSubject,$replacements,$admin,$userData){
+   public static function getEmail($notificationText,$notificationSubject,$replacements,$admin,$userData,$templateName=''){
     $dom = new DOMDocument();
                 $dom->loadHTML($notificationText);
                 $xpath = new DOMXPath($dom);
@@ -258,6 +259,7 @@ class NotificationService{
                     $data['invoice_pdf'] = $invoicePdf ?? false;
                 $data['templateSubject'] = str_ireplace(array_keys($replacements), array_values($replacements), $notificationSubject ?? '');
                 $data['templateBody'] = nl2br(str_ireplace(array_keys($replacements), array_values($replacements), $templateString));
+                $data['templateSubject']=$templateName;
                // dd($data['templateBody']);
                 $data['admin'] = $admin;
                 if (session()->has('company_logo') && session()->get('company_logo') != null)
