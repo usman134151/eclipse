@@ -32,7 +32,7 @@
 		  </div>
       <div class="col-lg mb-4 mb-lg-0">
             <label class="form-label" for="supervisor">Address</label>
-            <select class="form-select select2 address">
+            {{-- <select class="form-select select2 address">
             @if(!empty($selectedAddress))
             <option>{{$selectedAddress}}</option>
             @else
@@ -41,11 +41,12 @@
             @foreach($addressList as $address)
                     <option value="{{$address->full_address }}">{{$address->full_address}}</option>
                 @endforeach
-            </select>
+            </select> --}}
+        <input type="text" class="form-control" id="address" name="address"  wire:model="selectedAddress" placeholder="Search Address">
         </div>
       <div class="col-lg mb-4 mb-lg-0">
             <label class="form-label" for="supervisor">Bookings</label>
-            <select class="form-select select2 booking" id="BookingID" name="BookingID"  wire:click="ChangeFilter($event.target.value,'Booking')">
+            {{-- <select class="form-select select2 booking" id="BookingID" name="BookingID"  wire:click="ChangeFilter($event.target.value,'Booking')">
             @if(!empty($selectedBooking))
             <option>{{$selectedBooking}}</option>
             @else
@@ -55,7 +56,8 @@
                 @foreach($bookingList as $list)
                     <option value="{{$list->id}}">{{$list->booking_number}}</option>
                 @endforeach
-            </select>
+            </select> --}}
+            <input type="text" class="form-control" id="BookingID" name="BookingID"  wire:model="bookingFilter" placeholder="Search Bookings">
         </div>
 		  <div class="col-lg mb-4 mb-lg-0">
 			<div class="d-flex flex-column mt-1">
@@ -82,6 +84,7 @@
 		</div>
     <div class="col-sm mb-4">
     <a href="#" wire:click.prevent="resetDate">Reset Filters</a>
+    <a href="#" wire:click.prevent="applyFilters">Apply Filters</a>
 </div>
 		<!-- /Filters -->
 		<div id="map"  wire:ignore></div>
@@ -148,7 +151,7 @@
                         text: location.title,
                         fontWeight: 'bold',
                         fontSize: '14px',
-                        color: '#0000FF',
+                        color: 'black',
                     }
                 });
 
