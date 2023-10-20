@@ -150,10 +150,10 @@
                                               </td>
                                               @if (!$isProviderPanel)
                                                   <td class="align-middle">
-                                                      Additional Pay Label
+                                                      {{ $provider['additional_label_provider'] ?? 'N/A' }}
                                                   </td>
                                                   <td class="text-center align-middle">
-                                                      $00:00
+                                                      {{ $provider['additional_charge_provider'] ?numberFormat($provider['additional_charge_provider']) : 'N/A' }}
                                                   </td>
                                                   <td class="text-center align-middle">
                                                       {{ $provider['paid_at'] }}
@@ -175,23 +175,21 @@
                                                               </svg>
 
                                                           </a>
-                                                           <a href="#" title="Feedback"
-                                                                  aria-label="Feedback"
-                                                                  class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                          <a href="#" title="Feedback" aria-label="Feedback"
+                                                              class="btn btn-sm btn-secondary rounded btn-hs-icon">
 
-                                                                  <svg aria-label="Rating" width="22"
-                                                                      height="22" viewBox="0 0 22 22"
-                                                                      fill="none">
-                                                                      <use
-                                                                          xlink:href="/css/common-icons.svg#rating-icon">
-                                                                      </use>
-                                                                  </svg>
+                                                              <svg aria-label="Rating" width="22" height="22"
+                                                                  viewBox="0 0 22 22" fill="none">
+                                                                  <use xlink:href="/css/common-icons.svg#rating-icon">
+                                                                  </use>
+                                                              </svg>
 
-                                                              </a>
-
+                                                          </a>
                                                       @endif
                                                       @if (!session()->get('isCustomer'))
-                                                          <a target="_blank" href="/chat/{{$provider['provider_id']}}" title="Chat" aria-label="Chat"
+                                                          <a target="_blank"
+                                                              href="/chat/{{ $provider['provider_id'] }}"
+                                                              title="Chat" aria-label="Chat"
                                                               class="btn btn-sm btn-secondary rounded btn-hs-icon">
 
                                                               <svg aria-label="Chat" width="18" height="18"
@@ -204,8 +202,8 @@
                                                           </a>
                                                       @endif
 
-                                                          @if (!$isProviderPanel)
-                                                             <a href="{{ route('tenant.provider-profile', ['providerID' => $provider['provider_id']]) }}"
+                                                      @if (!$isProviderPanel)
+                                                          <a href="{{ route('tenant.provider-profile', ['providerID' => $provider['provider_id']]) }}"
                                                               target="_blank" title="View" aria-label="View"
                                                               class="btn btn-sm btn-secondary rounded btn-hs-icon">
 
@@ -216,7 +214,7 @@
                                                               </svg>
 
                                                           </a>
-                                                          @endif
+                                                      @endif
                                                   </div>
                                               </td>
                                           </tr>
