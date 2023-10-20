@@ -20,7 +20,6 @@ class Map extends Component
     public $addressList;
     public $selectedBooking;
     public $bookingFilter;    
-    public $test;
 
     public function render()
     {
