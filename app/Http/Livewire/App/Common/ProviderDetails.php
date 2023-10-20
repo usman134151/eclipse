@@ -173,12 +173,20 @@ class ProviderDetails extends Component
 
 					if ($service['emergency_hour'] && !session()->get('isProvider'))
 						$this->accommodation_catalog[$key][$index]['emergency_hour'] = json_decode($service['emergency_hour'], true);
+					else
+						$this->accommodation_catalog[$key][$index]['emergency_hour'] = null;
 					if ($service['emergency_hour_v'] && !session()->get('isProvider'))
 						$this->accommodation_catalog[$key][$index]['emergency_hour_v'] = json_decode($service['emergency_hour_v'], true);
+					else
+						$this->accommodation_catalog[$key][$index]['emergency_hour_v'] = null;
 					if ($service['emergency_hour_p'] && !session()->get('isProvider'))
 						$this->accommodation_catalog[$key][$index]['emergency_hour_p'] = json_decode($service['emergency_hour_p'], true);
+					else
+						$this->accommodation_catalog[$key][$index]['emergency_hour_p'] = null;
 					if ($service['emergency_hour_t'] && !session()->get('isProvider'))
 						$this->accommodation_catalog[$key][$index]['emergency_hour_t'] = json_decode($service['emergency_hour_t'], true);
+					else
+						$this->accommodation_catalog[$key][$index]['emergency_hour_t'] = null;
 				}
 				$specializations = ServiceSpecialization::where('service_id', $service['id'])->with('specialization')->get()->toArray();
 
@@ -203,9 +211,10 @@ class ProviderDetails extends Component
 					}
 				else
 					$this->accommodation_catalog[$key][$index]['specializations'] = null;
+				// dd(json_decode($this->accommodation_catalog[$key][$index]['emergency_hour']));
+
 			}
 		}
-
 		$lastLogin = UserLoginAddress::where('user_id', $this->userid)->orderBy('created_at', 'DESC')->first();
 		if ($lastLogin)
 			$this->user['last_login'] = $lastLogin->toArray();
