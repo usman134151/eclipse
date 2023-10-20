@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('booking_providers', function (Blueprint $table) {
-            $table->dropColumn('override_price');
+          //  $table->dropColumn('override_price');
             $table->double('business_hours_override_price', 8, 2)->default(0)->nullable();
             $table->double('after_hours_override_price', 8, 2)->default(0)->nullable();
 
