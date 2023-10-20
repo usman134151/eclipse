@@ -317,8 +317,8 @@
                                              <input type="" id="average-rate" name="average-rate"
                                                  class="form-control form-control-sm  w-25%" placeholder="$00:00"
                                                  wire:blur="updateTotal({{ $index }})"
-                                                 wire:model.lazy="providersPayment.{{ $index }}.override_price">
-                                             @error('providersPayment.' . $index . '.override_price')
+                                                 wire:model.lazy="providersPayment.{{ $index }}.business_hours_override_price">
+                                             @error('providersPayment.' . $index . '.business_hours_override_price')
                                                  <span class="d-inline invalid-feedback">
                                                      {{ $message }}
                                                  </span>
@@ -371,8 +371,8 @@
                                              <input type="" id="average-rate" name="average-rate"
                                                  class="form-control form-control-sm  w-25%" placeholder="$00:00"
                                                  wire:blur="updateTotal({{ $index }})"
-                                                 wire:model.lazy="providersPayment.{{ $index }}.override_price">
-                                             @error('providersPayment.' . $index . '.override_price')
+                                                 wire:model.lazy="providersPayment.{{ $index }}.after_hours_override_price">
+                                             @error('providersPayment.' . $index . '.after_hours_override_price')
                                                  <span class="d-inline invalid-feedback">
                                                      {{ $message }}
                                                  </span>
