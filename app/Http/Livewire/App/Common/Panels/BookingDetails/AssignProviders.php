@@ -431,8 +431,8 @@ class AssignProviders extends Component
                         $this->durationTotal = number_format($booking_service['service_calculations']['total_duration']['days'] + ($booking_service['service_calculations']['total_duration']['hours'] / 24) + ($booking_service['service_calculations']['total_duration']['mins'] / 60 / 24));
                     }
                     if (key_exists('business_hour_duration', $booking_service['service_calculations'])) {
-                        $this->b_hours_duration =  ($booking_service['service_calculations']['business_hour_duration'] /60 / 24);
-                        $this->a_hours_duration =  ($booking_service['service_calculations']['after_hour_duration'] /60 / 24);
+                        $this->b_hours_duration =  round($booking_service['service_calculations']['business_hour_duration'] /60 / 24,1);
+                        $this->a_hours_duration =  round($booking_service['service_calculations']['after_hour_duration'] /60 / 24,1);
                     
                     }
                 } else {
@@ -441,8 +441,8 @@ class AssignProviders extends Component
                         $this->durationTotal = number_format(($booking_service['service_calculations']['total_duration']['hours']) + ($booking_service['service_calculations']['total_duration']['mins'] / 60 / 24), 2);
                     }
                     if (key_exists('business_hour_duration', $booking_service['service_calculations'])) {
-                        $this->b_hours_duration =  $booking_service['service_calculations']['business_hour_duration'] /60;
-                        $this->a_hours_duration =  $booking_service['service_calculations']['after_hour_duration']/60;
+                        $this->b_hours_duration = round( $booking_service['service_calculations']['business_hour_duration'] /60,1);
+                        $this->a_hours_duration =  round($booking_service['service_calculations']['after_hour_duration']/60,1);
                     }
                 }
             }
