@@ -54,7 +54,11 @@
 
               </div>
               <div class="row mb-4"><div class="d-lg-flex gap-3 align-items-center mb-3">            <button type="submit"
-            class="btn btn-primary rounded" wire:click="saveSchedule">Update Settings</button></div></div>
+            class="btn btn-secondary btn-custom rounded" wire:click="saveSchedule">
+            <span class="btn-text">
+            Update Settings
+            </span>
+            </button></div></div>
                 <div class="row mb-4">
                   <h3>Add Hours Slot In Schedule</h3>
                   <label class="form-label">Type Of Slot</label>
@@ -140,7 +144,10 @@
 
                       </div>
 
-                      <button class="btn btn-primary btn-sm rounded" wire:click="addSlot">Submit</button>
+                      <button class="btn btn-secondary btn-custom btn-sm rounded" wire:click="addSlot">
+                        <span class="btn-text">
+                            Submit
+                        </span></button>
                   </div>
               </div>
                 <div class="row mb-4">
@@ -281,9 +288,12 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <button class="btn btn-primary btn-sm rounded" wire:click.prevent="saveHoliday">
-                                                        Submit
-                                                    </button>
+                                                    <button class="btn btn-secondary btn-custom btn-sm rounded" wire:click.prevent="saveHoliday">
+                                                <span class="btn-text">
+
+                                                    Submit
+                                                </span>        
+                                                </button>
                                                 </div>
                                             </div>
                                             <div class="row mb-4">

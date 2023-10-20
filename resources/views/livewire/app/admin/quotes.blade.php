@@ -46,12 +46,14 @@
 						  <h1 class="text-secondary">Quotes</h1>
 
 						<div class="col-12 d-flex align-items-center gap-2 mb-4">
-						  <div class="text-secondary h5">
+						  <div class="text-secondary m-0 h5">
 								 Quote URL :
 						  </div>
 						  <div>
-							  <a href="#" class="btn btn-primary rounded">
-								  Copy Link</a>
+							  <a href="#" class="btn btn-secondary btn-custom rounded">
+								  <span class="btn-text">
+								  Copy Link
+								  </span> </a>
 						  </div>
 						</div>
 					  </div>

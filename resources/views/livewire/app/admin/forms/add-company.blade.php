@@ -479,13 +479,13 @@
                                                         </div>
                                                         <div class="col-lg-8 d-flex justify-content-end md-2 mt-4">
                                                                 <button type="button" onclick="newElement($('#formRow'), $('#elementRow'),{{count($phoneNumbers)}})"
-                                                                    class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
-                                                                    <svg aria-label="Add Phone Number" width="20"
-                                                                        height="20" viewBox="0 0 20 20">
-                                                                        <use xlink:href="/css/common-icons.svg#plus">
+                                                                    class="d-inline-flex align-items-center btn btn-secondary btn-custom rounded px-3 py-2 gap-1">
+                                                                    <svg aria-label="Add Phone Number" width="15"
+                                                                        height="15" viewBox="0 0 20 20">
+                                                                        <use xlink:href="/css/common-icons.svg#blueplus">
                                                                         </use>
                                                                     </svg>
-                                                                    <span>Add Phone Number</span>
+                                                                    <span class="btn-text">Add Phone Number</span>
                                                                 </button>
                                                             </div>
                                                         </div>

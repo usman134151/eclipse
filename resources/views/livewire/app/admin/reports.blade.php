@@ -64,26 +64,26 @@
 	                                        </div>
 	                                    </div>
 	                                    <div class="col-2 d-flex flex-column gap-4 align-self-center mb-4">
-	                                        <button class="btn btn-primary w-100">
+	                                        <button class="btn btn-primary w-100" style="font-size:15px;">
 	                                        Last 7 Days
 	                                        </button>
-	                                        <button class="btn btn-primary w-100">
+	                                        <button class="btn btn-primary w-100" style="font-size:15px;">
 	                                        Last Month
 	                                        </button>
 	                                    </div>
 	                                    <div class="col-2 d-flex flex-column gap-4 align-self-center mb-4">
-	                                        <button class="btn btn-primary w-100">
+	                                        <button class="btn btn-primary w-100" style="font-size:15px;">
 	                                        Last 30 Days
 	                                        </button>
-	                                        <button class="btn btn-primary w-100">
+	                                        <button class="btn btn-primary w-100" style="font-size:15px;">
 	                                        This Year
 	                                        </button>
 	                                    </div>
-	                                    <div class="col-2 d-flex flex-column gap-4 align-self-center mb-4">
-	                                        <button class="btn btn-primary w-100">
+	                                    <div class="col-2 d-flex flex-column gap-4 align-self-center mb-4" >
+	                                        <button class="btn btn-primary w-100" style="font-size:15px;">
 	                                        This Month
 	                                        </button>
-	                                        <button class="btn btn-primary w-100">
+	                                        <button class="btn btn-primary w-100" style="font-size:15px;">
 	                                        Last Year
 	                                        </button>
 	                                    </div>
