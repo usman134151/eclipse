@@ -737,7 +737,8 @@
 
             <span>Reset Provider Password</span>
         </button>
-        <a target="_blank" href="/chat/{{$this->user['id']}}" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
+        <a target="_blank" href="/chat/{{ $this->user['id'] }}"
+            class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
 
             <span>Message Provider</span>
         </a>
@@ -839,8 +840,7 @@
 
                                                 <div class="mb-3 fw-semibold" type="button">
                                                     <svg aria-label="Service" class="icon-arrow-bottom me-1"
-                                                        width="25" height="13"
-                                                        viewBox="0 0 25 13"fill="none"
+                                                        width="25" height="13" viewBox="0 0 25 13"fill="none"
                                                         xmlns="http://www.w3.org/2000/svg">
                                                         <use xlink:href="/css/common-icons.svg#grey-upper-arrow"></use>
                                                     </svg>
@@ -851,9 +851,9 @@
                                         </tr>
                                         <tr class="p-0 m-0 collapse" id="accomodation-{{ $service['service_id'] }}">
                                             <td colSpan=4>
-                                                <div>
-                                                    <div class="row">
-                                                        <div class="d-inline-flex mb-4">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="d-inline-flex mb-4 w-100">
                                                             <h2>Standard Rates</h2>
                                                             <svg aria-label="Set the standard rates for the service"
                                                                 class="mx-2 mt-2" width="15" height="16"
@@ -879,7 +879,7 @@
                                                                     <div class="mx-3 fw-semibold">Day Rate In-person:
                                                                     </div>
                                                                     <div class="mx-3">
-                                                                        {{ $service['price'] ? '$' . number_format($service['price'], 2) : 'N/A' }}
+                                                                        {{ $service['price'] ? numberFormat($service['price']) : 'N/A' }}
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -945,7 +945,7 @@
                                                     </div>
                                                     {{-- Standandard Rates -End --}}
                                                     {{-- InPerson Expedited Service -Start --}}
-                                                    <div class="row">
+                                                    <div class="col-12">
                                                         <div class="d-inline-flex mb-4">
                                                             <h2>Expedited Hours </h2>
                                                             <svg aria-label="Expedited Hours for the service"
@@ -1004,7 +1004,7 @@
                                                                                     <div class="d-inline-flex">
                                                                                         <span class="fw-semibold">Rate:
                                                                                         </span><span
-                                                                                            class="mx-1">{{ $param[0]['price'] ? $param[0]['price_type'] . formatPayment($param[0]['price']) : 'N/A' }}</span>
+                                                                                            class="mx-1">{{ $param[0]['price'] ? $param[0]['price_type'] . number_format($param[0]['price'],2) : 'N/A' }}</span>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="mx-4 col-4">
@@ -1082,7 +1082,7 @@
                                                                                     <div class="d-inline-flex">
                                                                                         <span class="fw-semibold">Rate:
                                                                                         </span><span
-                                                                                            class="mx-1">{{ $param[0]['price'] ? $param[0]['price_type'] . formatPayment($param[0]['price']) : 'N/A' }}</span>
+                                                                                            class="mx-1">{{ $param[0]['price'] ? $param[0]['price_type'] .  number_format($param[0]['price'],2) : 'N/A' }}</span>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="mx-4 col-4">
@@ -1161,7 +1161,7 @@
                                                                                     <div class="d-inline-flex">
                                                                                         <span class="fw-semibold">Rate:
                                                                                         </span><span
-                                                                                            class="mx-1">{{ $param[0]['price'] ? $param[0]['price_type'] . formatPayment($param[0]['price']) : 'N/A' }}</span>
+                                                                                            class="mx-1">{{ $param[0]['price'] ? $param[0]['price_type'] .  number_format($param[0]['price'],2) : 'N/A' }}</span>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="mx-4 col-4">
@@ -1240,7 +1240,7 @@
                                                                                     <div class="d-inline-flex">
                                                                                         <span class="fw-semibold">Rate:
                                                                                         </span><span
-                                                                                            class="mx-1">{{ $param[0]['price'] ? $param[0]['price_type'] . formatPayment($param[0]['price']) : 'N/A' }}</span>
+                                                                                            class="mx-1">{{ $param[0]['price'] ? $param[0]['price_type'] .' '.  number_format($param[0]['price'],2) : 'N/A' }}</span>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="mx-4 col-4">
@@ -1280,8 +1280,7 @@
                                                                     <h2>Specialization Rates</h2>
                                                                     <svg aria-label="Specialization Rates"
                                                                         class="mx-2 mt-2" width="15"
-                                                                        height="16"
-                                                                        viewBox="0 0 15 16"fill="none"
+                                                                        height="16" viewBox="0 0 15 16"fill="none"
                                                                         xmlns="http://www.w3.org/2000/svg">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#fill-question">

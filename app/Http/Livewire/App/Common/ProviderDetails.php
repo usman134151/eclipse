@@ -14,7 +14,7 @@ use App\Services\App\UserService;
 
 class ProviderDetails extends Component
 {
-	public $user, $userid, $accommodation_catalog, $service_catalog, $isProvider = false, $feedbackType=false;
+	public $user, $userid, $accommodation_catalog, $service_catalog, $isProvider = false, $feedbackType = false;
 	public $settings = ['travel_rate_per_unit' => '', 'travel_rate_unit' => "km", 'rate_for_travel_time' => '', 'same_as_service_rate' => '', 'provider_payroll' => false];
 
 
@@ -151,33 +151,33 @@ class ProviderDetails extends Component
 
 					// use default standard rates
 					if ($service['rate_status'] == 1) {
-						$this->accommodation_catalog[$key][$index]['price'] = $service['hours_price'] ? $service['hours_price'] : null;
-						$this->accommodation_catalog[$key][$index]['price_p'] = $service['hours_price_p'] ? $service['hours_price_p'] : null;
-						$this->accommodation_catalog[$key][$index]['price_v'] = $service['hours_price_v'] ? $service['hours_price_v'] : null;
-						$this->accommodation_catalog[$key][$index]['price_t'] = $service['hours_price_t'] ? $service['hours_price_t'] : null;
+						$this->accommodation_catalog[$key][$index]['price'] = $service['hours_price'] && !session()->get('isProvider') ? $service['hours_price'] : null;
+						$this->accommodation_catalog[$key][$index]['price_p'] = $service['hours_price_p'] && !session()->get('isProvider') ? $service['hours_price_p'] : null;
+						$this->accommodation_catalog[$key][$index]['price_v'] = $service['hours_price_v'] && !session()->get('isProvider') ? $service['hours_price_v'] : null;
+						$this->accommodation_catalog[$key][$index]['price_t'] = $service['hours_price_t'] && !session()->get('isProvider') ? $service['hours_price_t'] : null;
 					} elseif ($service['rate_status'] == 2) {
-						$this->accommodation_catalog[$key][$index]['price'] = $service['day_rate_price'] ? $service['day_rate_price'] : null;
-						$this->accommodation_catalog[$key][$index]['price_p'] = $service['day_rate_price_p'] ? $service['day_rate_price_p'] : null;
-						$this->accommodation_catalog[$key][$index]['price_v'] = $service['day_rate_price_v'] ? $service['day_rate_price_v'] : null;
-						$this->accommodation_catalog[$key][$index]['price_t'] = $service['day_rate_price_t'] ? $service['day_rate_price_t'] : null;
+						$this->accommodation_catalog[$key][$index]['price'] = $service['day_rate_price'] && !session()->get('isProvider') ? $service['day_rate_price'] : null;
+						$this->accommodation_catalog[$key][$index]['price_p'] = $service['day_rate_price_p'] && !session()->get('isProvider') ? $service['day_rate_price_p'] : null;
+						$this->accommodation_catalog[$key][$index]['price_v'] = $service['day_rate_price_v'] && !session()->get('isProvider') ? $service['day_rate_price_v'] : null;
+						$this->accommodation_catalog[$key][$index]['price_t'] = $service['day_rate_price_t'] && !session()->get('isProvider') ? $service['day_rate_price_t'] : null;
 					} elseif ($service['rate_status'] == 4) {
 
-						$this->accommodation_catalog[$key][$index]['price'] = $service['fixed_rate'] ? $service['fixed_rate'] : null;
-						$this->accommodation_catalog[$key][$index]['price_p'] = $service['fixed_rate_p'] ? $service['fixed_rate_p'] : null;
-						$this->accommodation_catalog[$key][$index]['price_v'] = $service['fixed_rate_v'] ? $service['fixed_rate_v'] : null;
-						$this->accommodation_catalog[$key][$index]['price_t'] = $service['fixed_rate_t'] ? $service['fixed_rate_t'] : null;
+						$this->accommodation_catalog[$key][$index]['price'] = $service['fixed_rate'] && !session()->get('isProvider') ? $service['fixed_rate'] : null;
+						$this->accommodation_catalog[$key][$index]['price_p'] = $service['fixed_rate_p'] && !session()->get('isProvider') ? $service['fixed_rate_p'] : null;
+						$this->accommodation_catalog[$key][$index]['price_v'] = $service['fixed_rate_v'] && !session()->get('isProvider') ? $service['fixed_rate_v'] : null;
+						$this->accommodation_catalog[$key][$index]['price_t'] = $service['fixed_rate_t'] && !session()->get('isProvider') ? $service['fixed_rate_t'] : null;
 					}
 
 
 					//use default emergency rates
 
-					if ($service['emergency_hour'])
+					if ($service['emergency_hour'] && !session()->get('isProvider'))
 						$this->accommodation_catalog[$key][$index]['emergency_hour'] = json_decode($service['emergency_hour'], true);
-					if ($service['emergency_hour_v'])
+					if ($service['emergency_hour_v'] && !session()->get('isProvider'))
 						$this->accommodation_catalog[$key][$index]['emergency_hour_v'] = json_decode($service['emergency_hour_v'], true);
-					if ($service['emergency_hour_p'])
+					if ($service['emergency_hour_p'] && !session()->get('isProvider'))
 						$this->accommodation_catalog[$key][$index]['emergency_hour_p'] = json_decode($service['emergency_hour_p'], true);
-					if ($service['emergency_hour_t'])
+					if ($service['emergency_hour_t'] && !session()->get('isProvider'))
 						$this->accommodation_catalog[$key][$index]['emergency_hour_t'] = json_decode($service['emergency_hour_t'], true);
 				}
 				$specializations = ServiceSpecialization::where('service_id', $service['id'])->with('specialization')->get()->toArray();
@@ -193,13 +193,13 @@ class ProviderDetails extends Component
 							$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_p'] =  isset(json_decode($custom_special_rates['specialization_rate_p'], true)[0]['price']) ? json_decode($custom_special_rates['specialization_rate_p'], true)[0]['price'] : null;
 							$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_t'] =  isset(json_decode($custom_special_rates['specialization_rate_t'], true)[0]['price']) ? json_decode($custom_special_rates['specialization_rate_t'], true)[0]['price'] : null;
 						} else {
-							$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp'] = isset(json_decode($s['specialization_price'], true)[0]['price']) ? json_decode($s['specialization_price'], true)[0]['price'] : null;
-							$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_v'] = isset(json_decode($s['specialization_price_v'], true)[0]['price']) ? json_decode($s['specialization_price_v'], true)[0]['price'] : null;
-							$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_p'] = isset(json_decode($s['specialization_price_p'], true)[0]['price']) ? json_decode($s['specialization_price_p'], true)[0]['price'] : null;
-							$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_t'] = isset(json_decode($s['specialization_price_t'], true)[0]['price']) ? json_decode($s['specialization_price_t'], true)[0]['price'] : null;
+							$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp'] = isset(json_decode($s['specialization_price'], true)[0]['price']) && !session()->get('isProvider') ? json_decode($s['specialization_price'], true)[0]['price'] : null;
+							$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_v'] = isset(json_decode($s['specialization_price_v'], true)[0]['price']) && !session()->get('isProvider') ? json_decode($s['specialization_price_v'], true)[0]['price'] : null;
+							$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_p'] = isset(json_decode($s['specialization_price_p'], true)[0]['price']) && !session()->get('isProvider') ? json_decode($s['specialization_price_p'], true)[0]['price'] : null;
+							$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_t'] = isset(json_decode($s['specialization_price_t'], true)[0]['price']) && !session()->get('isProvider') ? json_decode($s['specialization_price_t'], true)[0]['price'] : null;
 						}
-						$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_price_type'] = isset(json_decode($s['specialization_price'], true)[0]['price_type']) ? json_decode($s['specialization_price'], true)[0]['price_type'] : null;
-						$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_name'] = isset($s['specialization']['name']) ? $s['specialization']['name'] : null;
+						$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_price_type'] = isset(json_decode($s['specialization_price'], true)[0]['price_type']) && !session()->get('isProvider') ? json_decode($s['specialization_price'], true)[0]['price_type'] : null;
+						$this->accommodation_catalog[$key][$index]['specializations'][$i]['sp_name'] = isset($s['specialization']['name']) && !session()->get('isProvider')  ? $s['specialization']['name'] : null;
 					}
 				else
 					$this->accommodation_catalog[$key][$index]['specializations'] = null;
