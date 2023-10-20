@@ -115,8 +115,8 @@ class Availibility extends Component
         //     }
         //     $query->whereDate('bookings.booking_start_at', $this->currentDate->format('Y-m-d'));
         // }
-        $this->bookingFilter = null;
-        $this->providerFilter = null;
+        // $this->bookingFilter = null;
+        // $this->providerFilter = null;
     
         return $query->get()->toArray();
     }
@@ -272,8 +272,8 @@ class Availibility extends Component
         $this->providerFilter = null;
         $this->selecteddate = null; // Reset the selected date
         $this->selectedBookingNumber=null;
-       $this->selectedTeam=null;
-       $this->selectedProvider=null;
+        $this->selectedTeam=null;
+        $this->selectedProvider=null;
         $this->Filter = 'CurrentDate'; // Reset the filter
         $bookingData = $this->getBookingData();
         $this->schedule = $this->transformBookingData($bookingData);
@@ -282,43 +282,40 @@ class Availibility extends Component
 
     public function applyFilter()
     {
-        $filteredItems = [];
-        $bookingIds = [];
-        $bookingData = Booking::join('booking_providers', 'bookings.id', '=', 'booking_providers.booking_id')
-        ->join('users', 'users.id', '=', 'booking_providers.provider_id')
-        ->join('booking_services', 'bookings.id', '=', 'booking_services.booking_id')
-        ->join('service_categories', 'booking_services.services', '=', 'service_categories.id')
-        ->select(
-            'users.id as usersid',
-            'bookings.id as bookingId',
-            'users.name as Provider',
-            'service_categories.name as Title',
-            'booking_services.start_time',
-            'booking_services.end_time'
-        )
-        ->orderByDesc('booking_services.start_time')->get()->toArray();
-    
-        if ($this->bookingFilter != '') {
-            $bookingIds = Booking::where('booking_number', 'like', '%' . $this->bookingFilter . '%')->pluck('id');
-        }
-    
-        foreach ($bookingData as $item) {
-            $bookingIdCondition = empty($bookingIds) || $bookingIds->contains($item['bookingId']);
-            $providerCondition = empty($this->providerFilter) || stripos($item['Provider'], $this->providerFilter) !== false;
-    
-            if ($bookingIdCondition && $providerCondition) {
-                if($this->bookingFilter != null || $this->providerFilter != null)
-                    $filteredItems[] = $item;
+        if ($this->bookingFilter != null && $this->providerFilter != null) {
+            $filteredItems = [];
+            $bookingIds = [];
+            $bookingData = Booking::join('booking_providers', 'bookings.id', '=', 'booking_providers.booking_id')
+            ->join('users', 'users.id', '=', 'booking_providers.provider_id')
+            ->join('booking_services', 'bookings.id', '=', 'booking_services.booking_id')
+            ->join('service_categories', 'booking_services.services', '=', 'service_categories.id')
+            ->select(
+                'users.id as usersid',
+                'bookings.id as bookingId',
+                'users.name as Provider',
+                'service_categories.name as Title',
+                'booking_services.start_time',
+                'booking_services.end_time'
+            )
+                ->orderByDesc('booking_services.start_time')->get()->toArray();
+
+            if ($this->bookingFilter != '') {
+                $bookingIds = Booking::where('booking_number', 'like', '%' . $this->bookingFilter . '%')->pluck('id');
             }
+
+            foreach ($bookingData as $item) {
+                $bookingIdCondition = empty($bookingIds) || $bookingIds->contains($item['bookingId']);
+                $providerCondition = empty($this->providerFilter) || stripos($item['Provider'], $this->providerFilter) !== false;
+
+                if ($bookingIdCondition && $providerCondition) {
+                    if ($this->bookingFilter != null || $this->providerFilter != null)
+                        $filteredItems[] = $item;
+                }
+            }
+
+            $this->schedule = $this->transformBookingData($filteredItems);
         }
-    
-        $this->schedule = $this->transformBookingData($filteredItems);
         
     }
-    
-    
-
-
-
 
 }
