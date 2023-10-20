@@ -850,9 +850,9 @@
                                             </th>
                                         </tr>
                                         <tr class="p-0 m-0 collapse" id="accomodation-{{ $service['service_id'] }}">
-                                            <td colSpan=3>
+                                            <td colSpan=4>
                                                 <div class="row">
-                                                    <div class="col-12 w-100">
+                                                    <div class="col-12">
                                                         <div class="d-inline-flex mb-4 w-100">
                                                             <h2>Standard Rates</h2>
                                                             <svg aria-label="Set the standard rates for the service"
@@ -945,7 +945,7 @@
                                                     </div>
                                                     {{-- Standandard Rates -End --}}
                                                     {{-- InPerson Expedited Service -Start --}}
-                                                    <div class="col-12 w-100">
+                                                    <div class="col-12">
                                                         <div class="d-inline-flex mb-4">
                                                             <h2>Expedited Hours </h2>
                                                             <svg aria-label="Expedited Hours for the service"

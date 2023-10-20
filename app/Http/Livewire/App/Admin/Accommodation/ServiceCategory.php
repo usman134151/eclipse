@@ -56,8 +56,20 @@ class ServiceCategory extends Component
     }
     public function deleteRecord()
 	{
+		// Retrieve the service using the ID
+		$service = service_model::find($this->recordId);
+		$name = $service->name; // Retrieve the name
+		// Generate a unique identifier (e.g., a timestamp or random string)
+		$uniqueIdentifier = uniqid();
+		// Create the new name with the "delete-" prefix and unique identifier
+		$newName = 'delete-' . $uniqueIdentifier . '-' . $name;
+
 		// Delete the record from the database using the model
-		service_model::where('id', $this->recordId)->update(['status'=>2]);
+		service_model::where('id', $this->recordId)->update([
+			'name' => $newName,
+			'status' => 2,
+		]);
+
 		// Emit an event to reset the form and display a confirmation message
 		$this->emitSelf('showList', 'Record has been deleted');
 	}
