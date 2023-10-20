@@ -581,7 +581,7 @@
                                     wire:click="setRating({{ $i + 1 }})"></i>
                             @endfor
                             @for ($i = $checkout['rating']; $i < 5; $i++)
-                                <i class="fa fa-star-o fa-2x text-warning"
+                                <i class="fa fa-star fa-2x text-warning"
                                     wire:click="setRating({{ $i + 1 }})"></i>
                             @endfor
                         @endif
