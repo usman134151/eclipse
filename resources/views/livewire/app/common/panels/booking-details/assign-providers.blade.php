@@ -1,12 +1,12 @@
  {{-- BEGIN: Filters --}}
  <div>
- <div id="loader-section" class="loader-section" wire:loading>
-        <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
-            <div class="spinner-border" role="status" aria-live="polite">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-        </div>
-    </div>
+     <div id="loader-section" class="loader-section" wire:loading>
+         <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
+             <div class="spinner-border" role="status" aria-live="polite">
+                 <span class="visually-hidden">Loading...</span>
+             </div>
+         </div>
+     </div>
      <div class="accordion mb-4" id="accordionFilters" wire:ignore>
          <div class="accordion-item">
              <h2 class="accordion-header" id="headingFilters">
@@ -31,27 +31,31 @@
              <div id="collapseFilters" class="accordion-collapse collapse" aria-labelledby="headingFilters"
                  data-bs-parent="#accordionFilters">
                  <div wire:ignore class="accordion-body">
-                     <x-advanceproviderfilters type="assignProvider" :providers="$providers" :tags="$tags" :setupValues="$setupValues" />
+                     <x-advanceproviderfilters type="assignProvider" :providers="$providers" :tags="$tags"
+                         :setupValues="$setupValues" />
                  </div>
              </div>
          </div>
      </div><!-- END: Filters -->
      <!-- BEGIN: Filter Table -->
-     @if ($limit && ($panelType ==1 || $panelType ==3))
+     @if ($limit && ($panelType == 1 || $panelType == 3))
          <div style="position: fixed;bottom: 24px;right: 44px;text-align: right;z-index:-10000">
-             <span> Required Providers : {{ $limit }} </span> | 
+             <span> Required Providers : {{ $limit }} </span> |
              <span class="d-inline-block  mt-2"
                  style="{{ count($assignedProviders) <= $limit ? '' : 'color:#b02a37' }}">
                  Assigned Providers : {{ count($assignedProviders) }} </span>
-            
-                 <span class="d-inline-block invalid-feedback mt-2"> @if (count($assignedProviders) > $limit) Max Limit exceeded - Please unassign
-                     provider @endif </span>
-            
+
+             <span class="d-inline-block invalid-feedback mt-2">
+                 @if (count($assignedProviders) > $limit)
+                     Max Limit exceeded - Please unassign
+                     provider
+                 @endif
+             </span>
+
          </div>
      @endif
-     @if($showError)
-        <span class="d-inline-block invalid-feedback my-1">No providers are selected.</span>
-
+     @if ($showError)
+         <span class="d-inline-block invalid-feedback my-1">No providers are selected.</span>
      @endif
 
      <div class="d-lg-flex justify-content-between align-items-end mb-3">
@@ -76,7 +80,7 @@
                      <th scope="col">Provider</th>
                      @if ($panelType == 1)
                          <th scope="col" width="20%">SERVICE PAYMENT
-                           
+
                          </th>
                          <th scope="col" class="" width="20%">ADDITIONAL PAYMENT </th>
                          <th scope="col">Total</th>
@@ -90,10 +94,10 @@
              </thead>
              <tbody>
                  @if (count($providers))
-                 @php
-                 $assignedProvidersCollection = new \Illuminate\Support\Collection($assignedProviders);
-                 @endphp
-                     @foreach ($providers as $index=>$provider)
+                     @php
+                         $assignedProvidersCollection = new \Illuminate\Support\Collection($assignedProviders);
+                     @endphp
+                     @foreach ($providers as $index => $provider)
                          <tr>
                              @if ($panelType == 2)
                                  <td>
@@ -139,252 +143,302 @@
                                          @endif
                                      @endforeach
                                  </div>
-                                 @if(isset($provider->notes) && $provider->notes!=null && $panelType == 3)
-                                   <div class=" mt-3"
-                                     style="{{ $panelType == 1 || $panelType == 3 ? 'width:300px' : '' }}">
-                                     <strong>Invitation Response :</strong>
-                                        {{$provider->notes}}
-                                 </div>
+                                 @if (isset($provider->notes) && $provider->notes != null && $panelType == 3)
+                                     <div class=" mt-3"
+                                         style="{{ $panelType == 1 || $panelType == 3 ? 'width:300px' : '' }}">
+                                         <strong>Invitation Response :</strong>
+                                         {{ $provider->notes }}
+                                     </div>
                                  @endif
                                  <div class="d-inline-flex mb-2">
-                                                            <h6 class="mt-1">Standard Rates</h6>
-                                                        </div>
-                                                            <div class="col-12  mb-1">
-                                                                <div class="d-inline-flex">
-                                                                    @if($bookingService->service_types ==1 )
+                                     <h6 class="mt-1">Standard Rates</h6>
+                                 </div>
+                                 <div class="col-12  mb-1">
+                                     <div class="d-inline-flex">
+                                         @if ($bookingService->service_types == 1)
+                                             <div>
+                                                 <svg aria-label="In-Person" width="25" height="24"
+                                                     viewBox="0 0 25 24" fill="none"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                     <use xlink:href="/css/provider.svg#in-person">
+                                                     </use>
+                                                 </svg>
+                                             </div>
+                                             <div class="mx-3 fw-semibold">Day Rate In-person:
+                                             </div>
+                                         @elseif($bookingService->service_types == 2)
+                                             <div>
+                                                 <svg aria-label="Virtual" width="25" height="25"
+                                                     viewBox="0 0 25 25" fill="none"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                     <use xlink:href="/css/provider.svg#virtual-service">
+                                                     </use>
+                                                 </svg>
+                                             </div>
+                                             <div class="mx-3 fw-semibold">Day Rate Virtual:
+                                             </div>
+                                         @elseif($bookingService->service_types == 4)
+                                             <div>
+                                                 <svg aria-label="Phone" width="30" height="24"
+                                                     viewBox="0 0 30 24" fill="none"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                     <use xlink:href="/css/provider.svg#phone">
+                                                     </use>
+                                                 </svg>
+                                             </div>
+                                             <div class="mx-3 fw-semibold">Day Rate Phone:
+                                             </div>
+                                         @elseif($bookingService->service_types == 5)
+                                             <div>
+                                                 <svg aria-label="Teleconference" width="30" height="26"
+                                                     viewBox="0 0 30 26" fill="none"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                     <use xlink:href="/css/provider.svg#teleconference">
+                                                     </use>
+                                                 </svg>
+                                             </div>
+                                             <div class="mx-3 fw-semibold">Day Rate
+                                                 Teleconference:</div>
+                                         @endif
+                                         <div class="mx-3">
+                                             {{ isset($custom_rates[$provider['id']]['standard']['price']) ? numberFormat($custom_rates[$provider['id']]['standard']['price']) : 'N/A' }}
+                                         </div>
+                                     </div>
+                                 </div>
 
-                                                                        <div>
-                                                                            <svg aria-label="In-Person" width="25"
-                                                                                height="24" viewBox="0 0 25 24"
-                                                                                fill="none"
-                                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                                <use
-                                                                                    xlink:href="/css/provider.svg#in-person">
-                                                                                </use>
-                                                                            </svg>
-                                                                        </div>
-                                                                        <div class="mx-3 fw-semibold">Day Rate In-person:
-                                                                        </div>
-                                                                    @elseif($bookingService->service_types ==2 )
-                                                                        <div>
-                                                                            <svg aria-label="Virtual" width="25"
-                                                                                height="25" viewBox="0 0 25 25"
-                                                                                fill="none"
-                                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                                <use
-                                                                                    xlink:href="/css/provider.svg#virtual-service">
-                                                                                </use>
-                                                                            </svg>
-                                                                        </div>
-                                                                        <div class="mx-3 fw-semibold">Day Rate Virtual:
-                                                                        </div>
-                                                                    @elseif($bookingService->service_types ==4 )
-                                                                        <div>
-                                                                            <svg aria-label="Phone" width="30"
-                                                                                height="24" viewBox="0 0 30 24"
-                                                                                fill="none"
-                                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                                <use xlink:href="/css/provider.svg#phone">
-                                                                                </use>
-                                                                            </svg>
-                                                                        </div>
-                                                                        <div class="mx-3 fw-semibold">Day Rate Phone:
-                                                                        </div>
-                                                                    @elseif($bookingService->service_types ==5 )
-                                                                       <div>
-                                                                            <svg aria-label="Teleconference"
-                                                                                width="30" height="26"
-                                                                                viewBox="0 0 30 26" fill="none"
-                                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                                <use
-                                                                                    xlink:href="/css/provider.svg#teleconference">
-                                                                                </use>
-                                                                            </svg>
-                                                                        </div>
-                                                                        <div class="mx-3 fw-semibold">Day Rate
-                                                                            Teleconference:</div>
-                                                                    @endif
-                                                                    <div class="mx-3">
-                                                                        {{ isset($custom_rates[$provider['id']]['standard']['price']) ? numberFormat($custom_rates[$provider['id']]['standard']['price']): 'N/A' }}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                           
-                                                        <hr>
-                                                    </div>
-                                                    {{-- Standandard Rates -End --}}
-                                                    {{-- InPerson Expedited Service -Start --}}
-                                                    <div class="row">
-                                                        <div class="d-inline-flex mb-2">
-                                                            <h6>Expedited Hours </h6>
-                                                          </div>
-                                                        <div class="row mb-1">
-                                                            <div class="d-inline-flex">
-                                                                
-                                                            @if(isset($custom_rates[$provider['id']]['standard']['emergency']) && !is_null($custom_rates[$provider['id']]['standard']['emergency']) && is_array($custom_rates[$provider['id']]['standard']['emergency']))
+                                 <hr>
+     </div>
+     {{-- Standandard Rates -End --}}
+     {{-- InPerson Expedited Service -Start --}}
+     <div class="row">
+         <div class="d-inline-flex mb-2">
+             <h6>Expedited Hours </h6>
+         </div>
+         <div class="row mb-1">
+             <div class="d-inline-flex">
 
-                                                                        <div class="row">
+                 @if (isset($custom_rates[$provider['id']]['standard']['emergency']) &&
+                         !is_null($custom_rates[$provider['id']]['standard']['emergency']) &&
+                         is_array($custom_rates[$provider['id']]['standard']['emergency']))
+                     <div class="row">
 
-                                                                            @foreach ($custom_rates[$provider['id']]['standard']['emergency'] as $index => $param)
-                                                                                {{-- <div class=" col-2 mb-1">
+                         @foreach ($custom_rates[$provider['id']]['standard']['emergency'] as $index => $param)
+                             {{-- <div class=" col-2 mb-1">
                                                                                     <span
                                                                                         class="bg-muted rounded fw-semibold px-1">Parameter
                                                                                         {{ $index + 1 }}</span>
                                                                                 </div> --}}
-                                                                                <div class="col-7"><span
-                                                                                        class="fw-semibold">Hours
-                                                                                        Notice:
-                                                                                    </span><span
-                                                                                        class="mx-1">{{ $param['hour'] ? $param['hour'] : 'N/A' }}</span>
-                                                                                </div>
-                                                                                <div class="col-5">
-                                                                                    <div class="d-inline-flex">
-                                                                                        <span class="fw-semibold">Rate:
-                                                                                        </span><span
-                                                                                            class="mx-1">{{ $param['price'] ? $param['price_type'] . number_format($param['price'], 2) : 'N/A' }}</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                            @endforeach
-                                                                        </div>
-                                                                    @else
-                                                                        N/A
-                                                                    @endif
-                                                            </div>
-                                                        </div>
-                                                        @if (isset($custom_rates[$provider['id']]['specialization']))
-                                                            <div class="row">
-                                                                <hr>
-                                                            </div>
-                                                            <div class="row mb-2">
-                                                                <div class="d-inline-flex mb-3">
-                                                                    <h5>Specialization Rates</h5>
-                                                                </div>
-                                                                @foreach ($custom_rates[$provider['id']]['specialization'] as $row)
-                                                                    <div class="row">
-                                                                        <div class="bg-muted p-1 col-12 mx-3 mb-2">
-                                                                            {{ $row['s_name'] ?? 'N/A'  }}
-                                                                            <span
-                                                                                            class="mx-1">{{ isset($row['price']) ? '$' . number_format($row['price'], 2) : 'N/A' }}</span>
+                             <div class="col-7"><span class="fw-semibold">Hours
+                                     Notice:
+                                 </span><span class="mx-1">{{ $param['hour'] ? $param['hour'] : 'N/A' }}</span>
+                             </div>
+                             <div class="col-5">
+                                 <div class="d-inline-flex">
+                                     <span class="fw-semibold">Rate:
+                                     </span><span
+                                         class="mx-1">{{ $param['price'] ? $param['price_type'] . number_format($param['price'], 2) : 'N/A' }}</span>
+                                 </div>
+                             </div>
+                         @endforeach
+                     </div>
+                 @else
+                     N/A
+                 @endif
+             </div>
+         </div>
+         @if (isset($custom_rates[$provider['id']]['specialization']))
+             <div class="row">
+                 <hr>
+             </div>
+             <div class="row mb-2">
+                 <div class="d-inline-flex mb-3">
+                     <h5>Specialization Rates</h5>
+                 </div>
+                 @foreach ($custom_rates[$provider['id']]['specialization'] as $row)
+                     <div class="row">
+                         <div class="bg-muted p-1 col-12 mx-3 mb-2">
+                             {{ $row['s_name'] ?? 'N/A' }}
+                             <span
+                                 class="mx-1">{{ isset($row['price']) ? '$' . number_format($row['price'], 2) : 'N/A' }}</span>
 
-                                                                            </div>
-                                                                        
-                                                                    </div>
-                                                                @endforeach
-                                                            </div>
-                                                        @endif
+                         </div>
+
+                     </div>
+                 @endforeach
+             </div>
+         @endif
 
 
-                                                    </div>
+     </div>
 
-                             </td>
+     </td>
 
-                             @if ($panelType == 3 && $provider->invitation_response($booking_id) == 0)
-                                 <td colSpan=4> Pending</td>
-                             @endif
-                             @if ($panelType == 1 || ($panelType == 3 && $provider->invitation_response($booking_id) == 1))
-                             
-                                
-                                 <td class="border-end-2" style="min-width:340px">
-                                     <div class="d-grid grid-cols-1 gap-3 mb-3">
-                                          <div>
-                                                    <div class="row">
-                                                    <div class="d-flex  mt-3 mb-3">
-                                                    <div class="d-inline-flex mb-2"> </div   
-                                      <div class="col col-12">
-                                   
-    <div class="col-3 mt-1">
-        <label class="form-label-sm">Duration:</label>
-    </div>
-    <div class="col-7">
-        <div class="input-group">
-            <input type="" name="" value="{{$durationTotal}}" class="form-control form-control-sm text-center" placeholder="0" aria-label="Hours" disabled>
-            <div class="input-group-text p-0">
-                <select class="form-select form-select-sm" aria-label="Days" disabled>
-                    <option>{{ $durationLabel}}</option>
-                </select>
-            </div>
-        </div>
-    </div>
-</div>
+     @if ($panelType == 3 && $provider->invitation_response($booking_id) == 0)
+         <td colSpan=4> Pending</td>
+     @endif
+     @if ($panelType == 1 || ($panelType == 3 && $provider->invitation_response($booking_id) == 1))
+         <td class="border-end-2" style="min-width:340px">
+             <div class="d-grid grid-cols-1 gap-3 mb-3">
+                 {{-- <div> --}}
+                 <div class="row">
+                     <div class="  mt-3 mb-3">
+                         <div class="col col-12">
+                             <div class="col-12 mt-1">
+                                 <label class="form-label-sm"><strong> Business Hours</strong></label>
+                             </div>
+                             <div class="row">
+                                 <div class="col-3 mt-1">
+                                     <label class="form-label-sm">Duration:</label>
+                                 </div>
+                                 <div class="col-7">
+                                     <div class="input-group">
+                                         <input type="" name="" value="{{ $durationTotal }}"
+                                             class="form-control form-control-sm text-center" placeholder="0"
+                                             aria-label="Hours" disabled>
+                                         <div class="input-group-text p-0">
+                                             <select class="form-select form-select-sm" aria-label="Days" disabled>
+                                                 <option>{{ $durationLabel }}</option>
+                                             </select>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
 
-<div>
-                                                    <div class="row">
-                                                    <div class="d-flex  mt-3">
-                                                    <div class="d-inline-flex mb-2"> </div   
-                                      <div class="col col-12">
-                                   
-    <div class="col-5 mt-1"  style="margin-right: -15px;" >
-    <label for="average-rate" class="form-label-sm">Average Rate:</label>
-    </div>
-    <div class="col-6 " style=" width:47%;">
-        <div class="input-group ">
-        <input type="" id="average-rate" name="average-rate"
-                                              class="form-control form-control-sm  w-25%" placeholder="$00:00" 
-                                              wire:blur="updateTotal({{$index}})"
-                                               wire:model.lazy="providersPayment.{{$index}}.override_price">
-                                                 @error('providersPayment.'.$index.'.override_price')
-                                                             <span class="d-inline invalid-feedback">
-                                                                 {{ $message }}
-                                                             </span>
-                                                         @enderror   
-                                        
-            </div>
-        </div>
-    </div>
-</div>
- </div> 
-                                  
-                                  {{-- Specialization Rates -End --}}
-                                                </div>
+                         <div class="col col-12 mt-2">
+                             <div class="d-flex ">
+                                 <div class="row">
+
+                                     <div class="col-5 mt-1" style="margin-right: -15px;">
+                                         <label for="average-rate" class="form-label-sm">Average Rate:</label>
+                                     </div>
+                                     <div class="col-6 " style=" width:47%;">
+                                         <div class="input-group ">
+                                             <input type="" id="average-rate" name="average-rate"
+                                                 class="form-control form-control-sm  w-25%" placeholder="$00:00"
+                                                 wire:blur="updateTotal({{ $index }})"
+                                                 wire:model.lazy="providersPayment.{{ $index }}.override_price">
+                                             @error('providersPayment.' . $index . '.override_price')
+                                                 <span class="d-inline invalid-feedback">
+                                                     {{ $message }}
+                                                 </span>
+                                             @enderror
 
                                          </div>
                                      </div>
-                                   
-                            
-                                 </td>
-                                 <td class="text-center border-end-2">
-                                 <div class="d-grid grid-cols-4 gap-3 mb-3">
-                                          <div>
-                                                    <div class="row">
-                                                    <div class="d-flex mt-3 mb-3">
-                                                    <div class="d-inline-flex mb-2"> </div   
-                                      <div class="col col-12">
-                                   
-    <div class="col-2 mt-1">
-    <label class="form-label-sm">Label:</label>
-    </div>
-    <div class="col-7">
-        <div class="input-group">
-        <input type="text" name="" class="form-control form-control-sm"
-                                                 placeholder="Payment Label" aria-label="Payment Label" wire:model.defer="providersPayment.{{$index}}.additional_label_provider"> 
-             
-        </div>
-    </div>
-</div>
+                                 </div>
+                             </div>
+                         </div>
 
-<div>
-                                                    <div class="row">
-                                                    <div class="d-flex mt-3 mb-3">
-                                                    <div class="d-inline-flex mb-3"> </div   
-                                      <div class="col col-12">
-                                   
-    <div class="col-6 mt-1">
-    <label class="form-label-sm text-nowrap">Additional Payment: </label> 
-    </div>
-    <div class="col-3">
-        <div class="input-group">
-        <input type="number" name="" class="form-control form-control-sm"
-                                                 placeholder="00:00" aria-label="Additional Payment" wire:model.defer="providersPayment.{{$index}}.additional_charge_provider"  wire:blur="updateTotal({{$index}})"> 
-                                         
-                                        
-            </div>
-        </div>
-    </div>
-</div>
- </div>    
- <div class="mt-3">
-                                      
-                                        <!--  <div>
+
+                     </div>
+                 </div>
+                 <hr>
+                 <div class="row">
+                     <div class="  mt-3 mb-3">
+                         <div class="col col-12">
+                             <div class="col-12 mt-1">
+                                 <label class="form-label-sm"><strong> After Hours</strong></label>
+                             </div>
+                             <div class="row">
+                                 <div class="col-3 mt-1">
+                                     <label class="form-label-sm">Duration:</label>
+                                 </div>
+                                 <div class="col-7">
+                                     <div class="input-group">
+                                         <input type="" name="" value="{{ $durationTotal }}"
+                                             class="form-control form-control-sm text-center" placeholder="0"
+                                             aria-label="Hours" disabled>
+                                         <div class="input-group-text p-0">
+                                             <select class="form-select form-select-sm" aria-label="Days" disabled>
+                                                 <option>{{ $durationLabel }}</option>
+                                             </select>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+
+                         <div class="col col-12 mt-2">
+                             <div class="d-flex ">
+                                 <div class="row">
+
+                                     <div class="col-5 mt-1" style="margin-right: -15px;">
+                                         <label for="average-rate" class="form-label-sm">Average Rate:</label>
+                                     </div>
+                                     <div class="col-6 " style=" width:47%;">
+                                         <div class="input-group ">
+                                             <input type="" id="average-rate" name="average-rate"
+                                                 class="form-control form-control-sm  w-25%" placeholder="$00:00"
+                                                 wire:blur="updateTotal({{ $index }})"
+                                                 wire:model.lazy="providersPayment.{{ $index }}.override_price">
+                                             @error('providersPayment.' . $index . '.override_price')
+                                                 <span class="d-inline invalid-feedback">
+                                                     {{ $message }}
+                                                 </span>
+                                             @enderror
+
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+
+
+                     </div>
+                 </div>
+             </div>
+
+
+         </td>
+         <td class="text-center border-end-2">
+             <div class="d-grid grid-cols-4 gap-3 mb-3">
+                 <div class="row">
+                     <div class="mt-3 mb-3">
+                         {{-- <div class="d-inline-flex mb-2"> --}}
+                         <div class="row col-12">
+
+                             <div class="col-2 mt-1">
+                                 <label class="form-label-sm">Label:</label>
+                             </div>
+                             <div class="col-7">
+                                 <div class="input-group">
+                                     <input type="text" name="" class="form-control form-control-sm"
+                                         placeholder="Payment Label" aria-label="Payment Label"
+                                         wire:model.defer="providersPayment.{{ $index }}.additional_label_provider">
+
+                                 </div>
+                             </div>
+                         </div>
+                         {{-- </div> --}}
+
+                         {{-- <div> --}}
+                             <div class="row col-12">
+                                 <div class="mt-3 mb-3">
+                                     {{-- <div class="d-inline-flex mb-3"> --}}
+                                         <div class="row col-12">
+
+                                             <div class="col-6 mt-1">
+                                                 <label class="form-label-sm text-nowrap">Additional Payment:
+                                                 </label>
+                                             </div>
+                                             <div class="col-6">
+                                                 <div class="input-group">
+                                                     <input type="number" name=""
+                                                         class="form-control form-control-sm" placeholder="00:00"
+                                                         aria-label="Additional Payment"
+                                                         wire:model.defer="providersPayment.{{ $index }}.additional_charge_provider"
+                                                         wire:blur="updateTotal({{ $index }})">
+
+                                                 </div>
+                                             </div>
+                                         {{-- </div> --}}
+                                     </div>
+                                 </div>
+                             </div>
+                             <div class="mt-3 col-12">
+
+                                 <!--  <div>
                                              <label class="form-label-sm">Label</label>
                                              <input type="" name="" class="form-control form-control-sm"
                                                  placeholder="Payment Label" aria-label="Payment Label">
@@ -411,9 +465,9 @@
                                                      for="ChargetoCustomer"><small>Charge to
                                                          Customer</small></label>
                                              </div> -->
-                                         </div>
-                                     </div>
-                                    <!--  <div class="mb-2">
+                             </div>
+                         {{-- </div> --}}
+                         <!--  <div class="mb-2">
                                          <button class="btn btn-xs btn-has-icon btn-primary rounded">
                                              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                                  xmlns="http://www.w3.org/2000/svg">
@@ -424,7 +478,7 @@
                                              Add New
                                          </button>
                                      </div> -->
-                                     {{--
+                         {{--
                                         <div>
                                             <div class="form-check">
                                                 <input class="form-check-input" id="ChargetoCustomer" name="" type="checkbox"
@@ -439,67 +493,74 @@
                                             </div>
                                         </div>
                                      --}}
-                                     <div class="d-flex ">
-                                         <div class="form-check mb-3 col-md-5 me-4">
-                                             <div class="">
-                                                 <input class="form-check-input" id="reimburse-mileage"
-                                                     name="" type="checkbox" tabindex="" checked>
-                                                 <label class="form-check-label text-nowrap"
-                                                     for="reimburse-mileage"><small>Reimburse
-                                                         Mileage</small></label>
-                                                 <div>
-                                                     <input type="" name=""
-                                                         class="form-control form-control-sm text-center"
-                                                         placeholder="10 km" aria-label="Distance">
-                                                 </div>
-                                                 <small>Coming Soon</small>
-                                             </div>
-                                             
-                                           
-                                         </div>
+                         <div class="d-flex ">
+                             <div class="form-check mb-3 col-md-5 me-4">
+                                 <div class="">
+                                     <input class="form-check-input" id="reimburse-mileage" name=""
+                                         type="checkbox" tabindex="" checked>
+                                     <label class="form-check-label text-nowrap"
+                                         for="reimburse-mileage"><small>Reimburse
+                                             Mileage</small></label>
+                                     <div>
+                                         <input type="" name=""
+                                             class="form-control form-control-sm text-center" placeholder="10 km"
+                                             aria-label="Distance">
+                                     </div>
+                                     <small>Coming Soon</small>
+                                 </div>
 
 
-                                         <div class="form-check mb-3 col-md-5">
-                                             <div>
-                                                 <input class="form-check-input" id="reimburse-travel-time"
-                                                     name="" type="checkbox" tabindex="" checked>
-                                                 <label class="form-check-label text-nowrap"
-                                                     for="reimburse-travel-time"><small>Reimburse Travel
-                                                         Time</small></label>
-                                             </div>
-                                             <div class="d-inline-flex">
-                                                 <input type="" name=""
-                                                     class="form-control form-control-sm text-center rounded-0"
-                                                     placeholder="1 hr" aria-label="Reimburse Travel Time">
-                                                 <input type="" name=""
-                                                     class="form-control form-control-sm text-center rounded-0"
-                                                     placeholder="32 m" aria-label="Reimburse Travel Time">
-                                                     
-                                             </div>
-                                             <br /><small>Coming Soon</small>
-                                         </div>
-                                     
-                                 </td>
-                                 <td>
-                                     <div class="d-inline-flex">
-                                         <div class="col-md-6">
-                                             <div class="mb-2">
-                                                 <label class="form-label-sm" for="total-service-payment">Total
-                                                     Service
-                                                     Payment</label>
-                                                 <input type="number" name=""
-                                                     class="form-control form-control-sm " style="background-color: lightgrey; width:70%;" placeholder="$00:00" wire:blur="overrideTotal({{$index}})" wire:model.lazy="providersPayment.{{$index}}.total_amount"
-                                                     id="total-service-payment">
-                                             </div>
-                                           <!--  <div class="">
+                             </div>
+
+
+                             <div class="form-check mb-3 col-md-5">
+                                 <div>
+                                     <input class="form-check-input" id="reimburse-travel-time" name=""
+                                         type="checkbox" tabindex="" checked>
+                                     <label class="form-check-label text-nowrap"
+                                         for="reimburse-travel-time"><small>Reimburse Travel
+                                             Time</small></label>
+                                 </div>
+                                 <div class="d-inline-flex">
+                                     <input type="" name=""
+                                         class="form-control form-control-sm text-center rounded-0" placeholder="1 hr"
+                                         aria-label="Reimburse Travel Time">
+                                     <input type="" name=""
+                                         class="form-control form-control-sm text-center rounded-0" placeholder="32 m"
+                                         aria-label="Reimburse Travel Time">
+
+                                 </div>
+                                 <br /><small>Coming Soon</small>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+
+
+         </td>
+         <td>
+             <div class="d-inline-flex">
+                 <div class="col-md-6">
+                     <div class="mb-2">
+                         <label class="form-label-sm" for="total-service-payment">Total
+                             Service
+                             Payment</label>
+                         <input type="number" name="" class="form-control form-control-sm "
+                             style="background-color: lightgrey; width:70%;" placeholder="$00:00"
+                             wire:blur="overrideTotal({{ $index }})"
+                             wire:model.lazy="providersPayment.{{ $index }}.total_amount"
+                             id="total-service-payment">
+                     </div>
+                     <!--  <div class="">
                                                  <label class="form-label-sm">Total Booking Payment</label>
-                                                 {{$totalAmount}}
+                                                 {{ $totalAmount }}
                                              </div> -->
-                                         </div>
-                                         <div class="mx-3 mt-4">
-                                             <button class="btn btn-sm btn-outline-dark rounded mb-2"
-                                                 wire:click="{{ $assignedProvidersCollection->contains('provider_id', $provider->id) ? 'remove' : 'add' }}({{ $provider->id }},{{$index}})">{{ $assignedProvidersCollection->contains('provider_id', $provider->id) ? 'Unassign' : 'Assign' }}</button>
-                                             <!--  <div class="form-check">
+                 </div>
+                 <div class="mx-3 mt-4">
+                     <button class="btn btn-sm btn-outline-dark rounded mb-2"
+                         wire:click="{{ $assignedProvidersCollection->contains('provider_id', $provider->id) ? 'remove' : 'add' }}({{ $provider->id }},{{ $index }})">{{ $assignedProvidersCollection->contains('provider_id', $provider->id) ? 'Unassign' : 'Assign' }}</button>
+                     <!--  <div class="form-check">
                                                  <input class="form-check-input" id="assignPartialCoverage"
                                                      name="" type="checkbox" tabindex="">
                                                  <label class="form-check-label text-nowrap"
@@ -511,25 +572,25 @@
                                                  Select Booking Range
                                              </a>
                                          </div> <small>Coming Soon</small> -->
-                                     </div>
-                                 </td>
-                             @endif
-                             @if ($panelType == 3 && $provider->invitation_response($booking_id) == 2)
-                                 <td colSpan=4> Declined</td>
-                             @endif
-                         </tr>
-                     @endforeach
-                 @else
-                     <tr>
-                         <td colSpan='{{ $panelType == 2 ? '2' : '4' }}' class="text-center">
-                             <small>No Providers Available</small>
-                         </td>
-                     </tr>
-                 @endif
-             </tbody>
-         </table>
-     </div>
-     <!-- END: Filter Table -->
+                 </div>
+         </td>
+     @endif
+     @if ($panelType == 3 && $provider->invitation_response($booking_id) == 2)
+         <td colSpan=4> Declined</td>
+     @endif
+     </tr>
+     @endforeach
+ @else
+     <tr>
+         <td colSpan='{{ $panelType == 2 ? '2' : '4' }}' class="text-center">
+             <small>No Providers Available</small>
+         </td>
+     </tr>
+     @endif
+     </tbody>
+     </table>
+ </div>
+ <!-- END: Filter Table -->
 
 
  </div>
