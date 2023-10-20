@@ -78,7 +78,7 @@
                          <th scope="col" width="20%">SERVICE PAYMENT
                            
                          </th>
-                         <th scope="col" class="" width="20%">Additional Provider </th>
+                         <th scope="col" class="" width="20%">ADDITIONAL PAYMENT </th>
                          <th scope="col">Total</th>
                      @endif
                      @if ($panelType == 3)
@@ -288,7 +288,7 @@
                                      <div class="d-grid grid-cols-1 gap-3 mb-3">
                                           <div>
                                                     <div class="row">
-                                                    <div class="d-flex  justify-content-center mt-3 mb-3">
+                                                    <div class="d-flex  mt-3 mb-3">
                                                     <div class="d-inline-flex mb-2"> </div   
                                       <div class="col col-12">
                                    
@@ -309,7 +309,7 @@
 
 <div>
                                                     <div class="row">
-                                                    <div class="d-flex  justify-content-center mt-3">
+                                                    <div class="d-flex  mt-3">
                                                     <div class="d-inline-flex mb-2"> </div   
                                       <div class="col col-12">
                                    
@@ -346,7 +346,7 @@
                                  <div class="d-grid grid-cols-4 gap-3 mb-3">
                                           <div>
                                                     <div class="row">
-                                                    <div class="d-flex  justify-content-center mt-3 mb-3">
+                                                    <div class="d-flex mt-3 mb-3">
                                                     <div class="d-inline-flex mb-2"> </div   
                                       <div class="col col-12">
                                    
@@ -364,7 +364,7 @@
 
 <div>
                                                     <div class="row">
-                                                    <div class="d-flex  justify-content-center mt-3 mb-3">
+                                                    <div class="d-flex mt-3 mb-3">
                                                     <div class="d-inline-flex mb-3"> </div   
                                       <div class="col col-12">
                                    

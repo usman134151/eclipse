@@ -54,7 +54,7 @@ $videoUrl = 'https://www.youtube.com/embed/KvjnuVlXhgo?si=I183B4d-L_MvRbQ2';
                         
                         </div>
                     </div>
-                    <div class="col-lg-5 ms-5">
+                    <div class="col-lg-5 msa-5">
                         <div class="mb-4">
                             <label class="form-label" for="service-name">
                                 Attach Credential To
@@ -431,13 +431,13 @@ $videoUrl = 'https://www.youtube.com/embed/KvjnuVlXhgo?si=I183B4d-L_MvRbQ2';
                 </div>
                 @endforeach
                 <div class="row mb-5">
-                    <div class="d-flex justify-content-end col-6">
-                        <button class="btn btn-primary rounded" wire:click.prevent="addDocumentType">
-                            <svg class="mx-2" aria-label="Add Message" width="20" height="20" viewBox="0 0 20 20">
-                                <use xlink:href="/css/common-icons.svg#plus">
+                    <div class="d-flex justify-content-end col-6 p-0">
+                        <button class="btn btn-secondary btn-custom rounded" wire:click.prevent="addDocumentType">
+                            <svg class="mx-1" aria-label="Add Message" width="15" height="15" viewBox="0 0 20 20">
+                                <use xlink:href="/css/common-icons.svg#blueplus">
                                 </use>
                             </svg>
-                            <span class="mx-2"> Add Document</span>
+                            <span class="btn-text me-1"> Add Document</span>
                         </button>
                     </div>
                 </div>
