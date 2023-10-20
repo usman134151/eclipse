@@ -137,6 +137,9 @@ class AssignProviders extends Component
         $returnCols = [
             'users.id',
             'users.name',
+            'user_details.city',
+            'user_details.state',
+            'user_details.country',
             'users.email',
             'user_details.phone', 'user_details.profile_pic', 'user_details.tags',
             'users.status',
@@ -249,7 +252,6 @@ class AssignProviders extends Component
             //end of charges calculations 
             $this->providersPayment = [];
             foreach ($providers as $index => &$provider) {
-
 
                 //fetch and set custom rates
                 $service = $this->booking->booking_services->where('services', $this->service_id)->first();

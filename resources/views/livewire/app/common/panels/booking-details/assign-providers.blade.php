@@ -130,7 +130,7 @@
                                          <div class="font-family-secondary leading-none">{{ $provider->name }}</div>
                                          <a href="#"
                                              class="font-family-secondary text-sm"><small>{{ $provider->email }}</small></a>
-                                         <div class="text-sm">599 Miles</div>
+                                         <div class="text-sm">{{$provider->city ? $provider->city.', ' : ''}} {{$provider->state ? $provider->state.', ' : ''}} {{$provider->country ? $provider->country.', ' : ''}}</div>
                                          <div></div>
                                      </div>
                                  </div>
