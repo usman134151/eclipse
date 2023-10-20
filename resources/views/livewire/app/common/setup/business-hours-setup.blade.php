@@ -66,21 +66,21 @@
 
                         <div class="mt-2 " >
                           <div class="input-group  ">
-                              <div class="input-group-text">
-                                <input class="form-check-input mt-0" checked style="background-color:white;" type="radio" value="1" name="timeslot_type" aria-label="Time slot for business hours"  wire:model.defer="timeslot.timeslot_type">
+                              <div class="d-flex align-items-center">
+                                <input class="form-check-input mt-0 me-1"  type="radio" value="1" name="timeslot_type" aria-label="Time slot for business hours"  wire:model.defer="timeslot.timeslot_type">
                               </div>
 
-                              <input disabled placeholder="Business Hours" type="text" class="form-control" aria-label="Text input with radio button" name="timeslot.timeslot_type">
+                              <input disabled placeholder="Business Hours" type="text"  class="form-control border-0" aria-label="Text input with radio button" name="timeslot.timeslot_type">
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-3">
                       <div class="mt-2" >
                         <div class="input-group">
-                            <div class="input-group-text">
-                              <input class="form-check-input mt-0" checked style="background-color:white;" type="radio" value="2"  name="timeslot_type"  aria-label="Time slot for after business hours" name="timeslot.timeslot_type" wire:model.defer="timeslot.timeslot_type">
+                            <div class="d-flex align-items-center">
+                              <input class="form-check-input mt-0 me-1" type="radio" value="2"  name="timeslot_type"  aria-label="Time slot for after business hours" name="timeslot.timeslot_type" wire:model.defer="timeslot.timeslot_type">
                             </div>
-                            <input disabled placeholder="After Business Hours" type="text" class="form-control" aria-label="Text input with radio button">
+                            <input disabled placeholder="After Business Hours" type="text" class="form-control border-0" aria-label="Text input with radio button">
                           </div>
                       </div>
                   </div>
@@ -146,7 +146,7 @@
 
                       <button class="btn btn-secondary btn-custom btn-sm rounded" wire:click="addSlot">
                         <span class="btn-text">
-                            Submit
+                            Add slots
                         </span></button>
                   </div>
               </div>
@@ -291,7 +291,7 @@
                                                     <button class="btn btn-secondary btn-custom btn-sm rounded" wire:click.prevent="saveHoliday">
                                                 <span class="btn-text">
 
-                                                    Submit
+                                                    Add Holiday
                                                 </span>        
                                                 </button>
                                                 </div>
