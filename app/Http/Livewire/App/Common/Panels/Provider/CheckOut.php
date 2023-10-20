@@ -169,7 +169,7 @@ class CheckOut extends Component
     {
 
         $this->validate();
-        $this->checkout['actual_end_timestamp'] = Carbon::createFromFormat('d/m/Y H:i:s', $this->checkout['actual_end_date'] . ' ' . $this->checkout['actual_end_hour'] . ':' . $this->checkout['actual_end_min'] . ':00');
+        $this->checkout['actual_end_timestamp'] = Carbon::createFromFormat('m/d/Y H:i:s', $this->checkout['actual_end_date'] . ' ' . $this->checkout['actual_end_hour'] . ':' . $this->checkout['actual_end_min'] . ':00');
 
         $fileService = new UploadFileService();
         if ($this->checkout['confirmation_upload_type'] == "print_and_sign") {
