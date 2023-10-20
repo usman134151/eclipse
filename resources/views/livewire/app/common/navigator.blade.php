@@ -17,7 +17,7 @@
                     </div>
                     <div>
                         {{-- <div class="text-center block-number">{{ $userNavigator['count'] }}</div> --}}
-                        <div class="text-center block-number">0</div>
+                        <div class="text-center block-number"></div>
                     </div>
                 </a>
             </li>
