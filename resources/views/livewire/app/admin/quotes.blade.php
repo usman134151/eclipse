@@ -93,7 +93,8 @@
 		  </tr>
 		</thead>
 		<tbody>
-		  <tr role="row" class="odd">
+			<td>Coming Soon</td>
+		  {{-- <tr role="row" class="odd">
 			<td>100010</td>
 			<td>01/15/2023</td>
 			<td>12:13 PM - 2:13 PM</td>
@@ -247,7 +248,7 @@
 				</div>
 			  </div>
 			</td>
-		  </tr>
+		  </tr> --}}
 		</tbody>
 	  </table>
 

@@ -96,7 +96,8 @@
                           </tr>
                         </thead>
                           <tbody>
-                            <tr role="row" class="odd">
+                            <td>Coming Soon</td>
+                            {{-- <tr role="row" class="odd">
                               <td>
                                   <div class="form-check">
                                   <input class="form-check-input" aria-label="Select Booking" id="" name="" type="checkbox" tabindex="">
@@ -127,6 +128,7 @@
                                 Mail a Check
                               </td>
                               </tr>
+                            </tr>
                               <tr role="row" class="even">
                                 <td>
                                     <div class="form-check">
@@ -374,7 +376,7 @@
                                 <td>
                                   Mail a Check
                                 </td>
-                              </tr>
+                              </tr> --}}
                               </tbody>
                           </table>
                    </div>
