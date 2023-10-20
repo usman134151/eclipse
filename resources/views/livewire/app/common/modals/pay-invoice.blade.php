@@ -41,7 +41,8 @@
                     <label class="form-label" for="paymentAmount">
                         Payment Amount
                     </label>
-                    <input type="text" id="paymentAmount" class="form-control form-control-md" name="paymentAmount"
+                    <input type="text" id="paymentAmount" class="form-control form-control-md" name="paymentAmount" {{$isMultiple?"readonly":''}}
+                    {{-- <input type="text" id="paymentAmount" class="form-control form-control-md" name="paymentAmount" {{$isMultiple?"readonly":''}} --}}
                            wire:model.defer="payment.payment_amount" placeholder="$420" required aria-required="true"/>
 
                     @error('payment.payment_amount')
