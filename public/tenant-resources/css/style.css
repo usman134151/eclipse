@@ -250,6 +250,24 @@ select.form-control {
 .btn-outline-primary.btn-sm.btn-has-icon {
   padding: 0.5125rem 1rem; }
 
+  .btn-text{
+    font-size: 10px;
+    font-weight:600;
+    margin-top:2px;
+}
+.btn-custom{
+    background: transparent !important;
+    border: 2px solid #213969 !important;
+    color: #213969 !important;
+    padding:5px !important;
+}
+.btn-custom:hover{
+    background: #DBDBDB !important;
+}
+.custom-padding{
+  padding:14px !important;
+}
+
 html, body {
   height: 100%; }
 

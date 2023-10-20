@@ -354,7 +354,15 @@
 								<div class=" justify-content-start">
 									<div class="mb-4 ">
 										<button type="submit"
-										class="btn btn-primary rounded" wire:click.prevent="addQuestion()">+ Add Question</button>
+										class="btn btn-secondary rounded btn-has-icon btn-custom w-55" wire:click.prevent="addQuestion()">
+										<svg  width="15" height="15"
+                                                        viewBox="0 0 20 20">
+                                                        <use xlink:href="/css/common-icons.svg#blueplus">
+                                                        </use>
+                                                    </svg>
+                                                    <span class="ps-1 btn-text" style="margin-left:-8px;">
+                                                       Add Question
+                                                    </span></button>
 									</div>
 								</div>
 
