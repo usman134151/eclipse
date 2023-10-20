@@ -350,6 +350,9 @@ class AssignProviders extends Component
                 // $aProvider['override_price'] = $this->providersPayment[$index]['override_price'];
                 $aProvider['after_hours_override_price'] = $this->providersPayment[$index]['after_hours_override_price'];
                 $aProvider['business_hours_override_price'] = $this->providersPayment[$index]['business_hours_override_price'];
+                $aProvider['additional_label_provider'] = $this->providersPayment[$index]['additional_label_provider'];
+                $aProvider['additional_charge_provider'] = $this->providersPayment[$index]['additional_charge_provider'];
+
             }
         }
         return $this->providersPayment[$index]['total_amount'];
@@ -527,7 +530,7 @@ class AssignProviders extends Component
 
                 $provider['booking_id'] = $this->booking_id;
                 $provider['booking_service_id'] = $booking_service ? $booking_service->id : null;
-
+                // dd($this->providersPayment);
 
                 BookingProvider::updateOrCreate(
                     [
