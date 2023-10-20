@@ -1,3 +1,4 @@
+
 <div  x-data="{addDocuments: false, assignProvider: false }" >
     @if(@$cantRequest)
     <div class="content-body">
@@ -444,13 +445,13 @@
                                                 @enderror    
                                             </div>
                                             <div class="col-lg-6 mb-4 ps-lg-5 @if($isCustomer) hidden @endif">
-                                                <div class="row">
-                                                    <div class="col-lg-5 col-md-6 mb-4">
-                                                        <div class="d-flex gap-3">
-                                                            <label class="form-label-sm">
+                                                <div class="row mt-5">
+                                                    <div class="col-lg-6 col-md-6 mb-4">
+                                                        <div class="d-flex gap-3 ">
+                                                            <label class="form-label-sm ">
                                                                 Broadcast
                                                             </label>
-                                                            <div class="form-check form-switch form-switch-column">
+                                                            <div class="form-check form-switch form-switch-column " >
                                                                 <input class="form-check-input" type="checkbox"
                                                                     role="switch" id="AutoNotifyBroadcast" checked aria-label="Auto-notify Broadcast" value="true" wire:model.defer="services.{{$index}}.auto_notify" >
                                                                 <label class="form-check-label"
@@ -460,7 +461,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-7 col-md-6 mb-4" >
+                                                    <div class="col-lg-6 col-md-6 mb-4 " >
                                                         <div class="d-flex gap-3">
                                                             <label class="form-label-sm">
                                                                 Assign
@@ -544,8 +545,6 @@
                                                                     <label class="form-label">Participant(s)</label>
                                                                     <div class="form-check ">
                                                                         <label class="form-check-label" for="EnableCloseOutStatuses">Add New Participant</label>
-
-
                                                                        
                                                                         </div>
                                                                     </div>
@@ -578,14 +577,13 @@
                                                                         class="form-control mb-2 hidden js-form-input-manual-entry"
                                                                         placeholder="Enter Participant(s)">
                                                                     @endif    
-                                                                    <div class="form-check">
+                                                                    <div class="form-check mt-2">
                                                                         <input
                                                                             class="form-check-input js-form-check-input-manual-entry"
                                                                             id="ManualEntryParticipant" name=""
                                                                             type="checkbox" tabindex="" wire:key="manual-{{ $index }}" wire:model="services.{{$index}}.is_manual_attendees">
                                                                         <label class="form-check-label"
-                                                                            for="ManualEntryParticipant"><small>Manual
-                                                                                Entry</small></label>
+                                                                            for="ManualEntryParticipant"><small>Manual Entry</small></label>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -681,13 +679,19 @@
                                     <!-- /Services Duplicate Block -->
                                     <div class="row justify-content-end">
                                         <div class="col-md-6 col-lg-3">
-                                            <a wire:click.prevent="addService" href="#" class="btn btn-primary rounded btn-has-icon w-100">
-                                                <svg aria-label=" Add Service" width="20" height="20"
-                                                    viewBox="0 0 20 20">
-                                                    <use xlink:href="/css/common-icons.svg#plus">
-                                                    </use>
-                                                </svg>
-                                                Add Service
+                                            <a wire:click.prevent="addService" href="#" class=" float-end btn btn-secondary btn-custom rounded btn-has-icon w-55">
+                                            <span class="p-0 d-flex align-item-center">
+
+                                                <svg aria-label=" Add Service" width="15" height="15"
+                                                        viewBox="0 0 20 20">
+                                                        <use xlink:href="/css/common-icons.svg#blueplus">
+                                                        </use>
+                                                    </svg>
+                                                    <span class="btn-text ps-1">
+    
+                                                        Add Service
+                                                    </span>
+                                            </span>    
                                             </a>
                                         </div>
                                     </div>
@@ -700,7 +704,7 @@
                                     <h2>Select Dates & Times</h2>
                                     <!-- Select Dates & Times Duplicate Block -->
                                     @foreach($dates as $index=>$date)
-                                    <div class="duplicate-block mb-4">
+                                    <div class="duplicate-block mb-4" >
                                         <div class="d-flex justify-content-between">
                                         <h3 class="text-primary">Date & Time {{ $loop->index + 1 }}</h3>
                                         <div class="align-items-center gap-2">
@@ -716,11 +720,12 @@
                                             @endif
                                         </div>
                                     </div>
-                                        <div class="d-md-flex flex-md-wrap justify-content-between">
+                                        <div class="d-md-flex gap-1 justify-content-between flex-md-wrap flex-lg-nowrap" >
+
                                             <div class="col-lg-3 col-md-6 pe-md-2 pe-lg-0 mb-4">
                                                 <label class="form-label-sm" for="set_time_zone">Set Time Zone <span
                                                         class="mandatory">*</span></label>
-                                               <select class="form-select select2 mb-2" wire:model.defer='dates.{{ $index }}.time_zone'  id="timezone_{{$index}}" name="timezone_{{$index}}">
+                                               <select class="form-select select2 mb-2 " wire:model.defer='dates.{{ $index }}.time_zone'  id="timezone_{{$index}}" name="timezone_{{$index}}">
                                                  @foreach($timezones as $zone)
                                                   <option value="{{$zone['id']}}">{{$zone['setup_value_label']}}</option>
                                                  @endforeach
@@ -732,11 +737,11 @@
                                                         class="mandatory">*</span></label>
                                                 <div class="position-relative">
                                                     <input type="" name=""
-                                                        class="form-control form-control-md js-single-date" 
+                                                        class="form-control js-single-date" 
                                                         placeholder="MM/DD/YYYY" id="start_date_{{$index}}" value="{{$dates[0]['start_date']}}"
                                                         aria-label="Set Start Date" wire:model="dates.{{$index}}.start_date" style="width:200px">
                                                    
-                                                    <svg aria-label="Date" class="icon-date md" width="20" height="20"
+                                                    <svg aria-label="Date" class="icon-date lg pb-1" width="20" height="20"
                                                         viewBox="0 0 20 20">
                                                         <use xlink:href="/css/common-icons.svg#datefield-icon">
                                                         </use>
@@ -752,22 +757,22 @@
                                             <div class="d-flex col-lg-auto mb-4">
                                                 <div class="d-flex flex-column">
                                                     <label class="form-label-sm" for="set_start_time">Start Time</label>
-                                                    <div class="d-flex">
-                                                        <div class="time d-flex align-items-center gap-2">
-                                                            <select wire:model.defer="dates.{{$index}}.start_hour"  wire:change="updateDurations({{ $index }})">
+                                                    <div class="d-md-flex d-lg-inline">
+                                                        <div class="time d-flex align-items-center gap-1" style="margin-top:2px;">
+                                                            <select class="form-select form-select-sm custom-padding" wire:model.defer="dates.{{$index}}.start_hour"  wire:change="updateDurations({{ $index }})">
                                                                 @for($i=0;$i<24;$i++)
                                                                  <option value="{{str_pad($i, 2, '0', STR_PAD_LEFT)}}">{{str_pad($i, 2, '0', STR_PAD_LEFT)}}</option>
                                                                 @endfor
 
                                                             </select>
                                                            
-                                                            <svg aria-label="colon" width="5" height="19"
+                                                            <svg aria-label="colon" width="20" height="19"
                                                                 viewBox="0 0 5 19">
                                                                 <use xlink:href="/css/common-icons.svg#date-colon">
                                                                 </use>
                                                             </svg>
                                                             
-                                                            <select wire:model.defer="dates.{{$index}}.start_min"  wire:change="updateDurations({{ $index }})">
+                                                            <select class="form-select form-select-sm custom-padding"  wire:model.defer="dates.{{$index}}.start_min"  wire:change="updateDurations({{ $index }})">
                                                                 @for($i=0;$i<59;$i++)
                                                                  <option value="{{str_pad($i, 2, '0', STR_PAD_LEFT)}}">{{str_pad($i, 2, '0', STR_PAD_LEFT)}}</option>
                                                                 @endfor
@@ -790,11 +795,11 @@
                                                         class="mandatory">*</span></label>
                                                 <div class="position-relative">
                                                     <input type="" name=""
-                                                        class="form-control form-control-md js-single-date"
+                                                        class="form-control js-single-date"
                                                         placeholder="MM/DD/YYYY" id="end_date_{{$index}}"
                                                         aria-label="Set End Date" wire:key="endtime-{{ $index }}" wire:model="dates.{{$index}}.end_date"  style="width:200px">
                                                    
-                                                    <svg aria-label="Date" class="icon-date md" width="20" height="20"
+                                                    <svg aria-label="Date" class="icon-date lg pb-1" width="20" height="20"
                                                         viewBox="0 0 20 20">
                                                         <use xlink:href="/css/common-icons.svg#datefield-icon">
                                                         </use>
@@ -811,21 +816,21 @@
                                                 <div class="d-flex flex-column">
                                                     <label class="form-label-sm" for="set_start_time">End Time</label>
                                                     <div class="d-flex">
-                                                        <div class="time d-flex align-items-center gap-2">
-                                                            <select wire:model.defer="dates.{{$index}}.end_hour"  wire:change="updateDurations({{ $index }})">
+                                                        <div class="time d-flex align-items-center gap-1">
+                                                            <select class="form-select form-select-sm custom-padding" wire:model.defer="dates.{{$index}}.end_hour"  wire:change="updateDurations({{ $index }})">
                                                                 @for($i=0;$i<24;$i++)
                                                                  <option value="{{str_pad($i, 2, '0', STR_PAD_LEFT)}}">{{str_pad($i, 2, '0', STR_PAD_LEFT)}}</option>
                                                                 @endfor
 
                                                             </select>
                                                            
-                                                            <svg aria-label="colon" width="5" height="19"
+                                                            <svg aria-label="colon" width="20" height="19"
                                                                 viewBox="0 0 5 19">
                                                                 <use xlink:href="/css/common-icons.svg#date-colon">
                                                                 </use>
                                                             </svg>
                                                             
-                                                            <select wire:model.defer="dates.{{$index}}.end_min"  wire:change="updateDurations({{ $index }})">
+                                                            <select class="form-select form-select-sm custom-padding" wire:model.defer="dates.{{$index}}.end_min"  wire:change="updateDurations({{ $index }})">
                                                                 @for($i=0;$i<59;$i++)
                                                                  <option value="{{str_pad($i, 2, '0', STR_PAD_LEFT)}}">{{str_pad($i, 2, '0', STR_PAD_LEFT)}}</option>
                                                                 @endfor
@@ -844,7 +849,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="d-md-flex align-items-center gap-5">
+                                        <div class="d-md-flex align-items-end mb-4 gap-4">
                                             <label class="form-label mb-lg-0">Total Billable Service Duration</label>
                                             @if($dates[$index]['day_rate'])
                                             <div>
@@ -860,13 +865,13 @@
                                             <div>
                                                 <label class="form-label-sm">Hours</label>
                                                 <input type=""
-                                                    class="form-control form-control-md form-control-md text-center"
+                                                    class="form-control form-control-sm text-center"
                                                     aria-label="Hours" placeholder="00"
                                                     id="dates.{{$index}}.duration_hour" wire:key="total-{{ $index }}" wire:model="dates.{{$index}}.duration_hour" style="width:100px" >
                                             </div>
                                             <div>
                                                 <label class="form-label-sm">Minutes</label>
-                                                <input type="" class="form-control form-control-md text-center"
+                                                <input type="" class="form-control form-control-sm text-center"
                                                     aria-label="Minutes" placeholder="00"
                                                     id="dates.{{$index}}.duration_minute" wire:key="total-{{ $index }}" wire:model="dates.{{$index}}.duration_minute" style="width:100px">
                                             </div>

@@ -53,8 +53,11 @@
                                                 <h2 class="me-lg-1 mb-lg-0">Provider Application URL:</h2>
                                                 <p class="quote_url_div_p mb-0" url="#"> </p>
                                                 <div class="btn-copy align-self-center position-relative"> <button
-                                                        class="btn btn-primary clipboard waves-effect waves-float waves-light">Copy
-                                                        Link</button>
+                                                        class="btn btn-secondary btn-custom rounded clipboard waves-effect waves-float waves-light">
+                                                        <span class="btn-text">
+                                                        Copy Link   
+                                                        </span>
+                                                        </button>
                                                     <p class="copied_text"></p>
                                                 </div>
                                             </div>

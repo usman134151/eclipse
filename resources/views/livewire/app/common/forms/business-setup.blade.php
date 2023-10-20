@@ -462,13 +462,13 @@
                                             </div>
                                         @endforeach
                                         <div class="col-lg-8 mt-3">
-                                            <a class="btn btn-primary btn-sm rounded" wire:click.prevent="addMessage">
-                                                <svg class="mx-2" aria-label="Add Message" width="20"
-                                                    height="20" viewBox="0 0 20 20">
-                                                    <use xlink:href="/css/common-icons.svg#plus">
+                                            <a class="btn btn-secondary btn-custom btn-sm rounded" wire:click.prevent="addMessage">
+                                                <svg class="me-1" aria-label="Add Message" width="15"
+                                                    height="15" viewBox="0 0 20 20">
+                                                    <use xlink:href="/css/common-icons.svg#blueplus">
                                                     </use>
                                                 </svg>
-                                                <span class="ms-2">Add Message</span>
+                                                <span class="btn-text">Add Message</span>
                                             </a>
                                         </div>
                                     </div>
@@ -1658,12 +1658,17 @@
                                                             <div class="row between-section-segment-spacing">
                                                                 <div class="col-lg-12 text-lg-end mt-2">
                                                                     <button type="button" id="payments"
-                                                                        class="btn btn-primary btn rounded"
+                                                                        class="btn btn-secondary btn-custom rounded"
                                                                         wire:click.prevent="addPolicy">
-                                                                        <i class="fa fa-plus-circle"
-                                                                            aria-hidden="true"
-                                                                            aria-label="Add Policy"></i>
-                                                                        Add Policy
+                                                                        <svg class="me-1" aria-hidden="true" aria-label="Add Policy" width="15"
+                                                    height="15" viewBox="0 0 20 20">
+                                                    <use xlink:href="/css/common-icons.svg#blueplus">
+                                                    </use>
+                                                </svg>
+                                                                     <span class="btn-text">
+
+                                                                         Add Policy
+                                                                     </span>
                                                                     </button>
                                                                 </div>
                                                             </div>

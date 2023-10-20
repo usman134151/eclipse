@@ -37,7 +37,7 @@
             </div>
         @endif
     @endif
-    <div class="col-lg-2 d-flex text-nowrap align-items-center align-self-end ">
+    <div class="col-lg-2 d-flex text-nowrap align-items-center align-self-end " style="margin-left: -10px;">
 
         <a class="btn btn-inactive dropdown-toggle rounded" data-bs-toggle="collapse" href="#collapseAdvanceFilter"
             role="button" aria-expanded="false" aria-controls="collapseAdvanceFilter">

@@ -161,7 +161,10 @@
                                                                     class="btn btn-outline-dark rounded px-4 py-2" type="button">Cancel</button>  --}}
 
                             <button wire:click.prevent="upload" wire:loading.attr="disabled" wire:target="drive_file"
-                                class="btn btn-primary rounded  " type="submit">Upload File</button>
+                                class="btn btn-secondary btn-custom rounded  " type="submit">
+                                <span class="btn-text">
+                                Upload File
+                                </span> </button>
                         </div>
                     </div>
 
