@@ -21,7 +21,7 @@
             <div><label class="form-label" for="supervisor">Filter by Date</label></div>
             <div class="position-relative align-self-end">
                     <!-- Begin : it will be replaced with livewire module-->
-                    <svg aria-label="Date" class="icon-date md cursor-pointer" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                    <svg aria-label="Date" class="icon-date lg cursor-pointer" width="20" height="20" viewBox="0 0 20 20" fill="none"
                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#date-field" style="padding:0.6rem"></use>
                     </svg>
                     <input type="" style="padding:0.6rem 0.75rem;min-height:3.125rem" class="form-control form-control-md form-control-date js-single-date" placeholder="" name="selectDate" aria-label="Select Date" id="selectdate" wire:model="selectDate" >
@@ -83,8 +83,8 @@
 		  </div>
 		</div>
     <div class="col-sm mb-4">
-    <a href="#" wire:click.prevent="resetDate">Reset Filters</a>
-    <a href="#" wire:click.prevent="applyFilters">Apply Filters</a>
+    <a href="#" class="btn btn-xs btn-outline-dark rounded" wire:click.prevent="resetDate">Reset Filters</a>
+    <a href="#" class="btn btn-xs btn-outline-dark rounded" wire:click.prevent="applyFilters">Apply Filters</a>
 </div>
 		<!-- /Filters -->
 		<div id="map"  wire:ignore></div>

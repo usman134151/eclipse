@@ -86,7 +86,8 @@
 		  </tr>
 		</thead>
 		<tbody>
-		  <tr role="row" class="odd">
+			<td>Coming Soon</td>
+		  {{-- <tr role="row" class="odd">
 			<td>AbmaSoft</td>
 			<td>Jennie</td>
 			<td>helper@dispostable.com</td>
@@ -223,7 +224,7 @@
 				</div>
 			  </div>
 			</td>
-		  </tr>
+		  </tr> --}}
 		</tbody>
 	  </table>
 

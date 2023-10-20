@@ -260,14 +260,14 @@
                           @endforeach
                           <div class="row">
                             <div class="col-lg-12 text-end mb-4">
-                              <div class="btn btn-has-icon">
+                              <div class="btn btn-secondary rounded btn-custom">
                                 {{-- Updated by Shanila to Add svg icon--}}
-                                <svg aria-label="Add New" class="me-1" width="20" height="21"
+                                <svg aria-label="Add New" class="me-1" width="15" height="15"
                                     viewBox="0 0 20 21">
-                                    <use xlink:href="/css/common-icons.svg#add-new"></use>
+                                    <use xlink:href="/css/common-icons.svg#blueplus"></use>
                                 </svg>
                                 {{-- End of update by Shanila --}}
-                                <span class="text-primary" wire:click="addFrequency({{$key}})">
+                                <span class="btn-text" wire:click="addFrequency({{$key}})">
                                   Add Frequency
                                 </span>
                               </div>
@@ -293,7 +293,7 @@
                       <div class="col-lg-4 col-12 mb-4">
                         <div class="p-3 border rounded">
                           <label class="form-label">Tag Key</label>
-                          <div class="d-lg-flex flex-wrap gap-3">
+                          <div class="d-lg-flex flex-wrap gap-3 " style="max-height:300px; overflow-y:auto; overflow-x:hidden;">
                             @foreach($tagValues as $tag)
                               <div class="tag" onclick="appendTagInnerText(this,'SubjectColumn-{{$selectedType['role_id']}}')">{{$tag}}</div>
                             @endforeach

@@ -30,7 +30,7 @@
                           <div class="d-flex gap-2">
                               <div class="input-group">
                                   <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="time_format" id="time_format12" value="1" wire:model="schedule.time_format">
+                                      <input class="form-check-input" checked style="paddin:0; " type="radio" name="time_format" id="time_format12" value="1" wire:model="schedule.time_format">
                                       <label class="form-check-label"  for="time_format12">
                                           12 Hrs
                                       </label>
@@ -66,21 +66,21 @@
 
                         <div class="mt-2 " >
                           <div class="input-group  ">
-                              <div class="input-group-text">
-                                <input class="form-check-input  mt-0" type="radio" value="1" name="timeslot_type" aria-label="Time slot for business hours"  wire:model.defer="timeslot.timeslot_type">
+                              <div class="d-flex align-items-center">
+                                <input class="form-check-input mt-0 me-1"  type="radio" value="1" name="timeslot_type" aria-label="Time slot for business hours"  wire:model.defer="timeslot.timeslot_type">
                               </div>
 
-                              <input disabled placeholder="Business Hours" type="text" class="form-control" aria-label="Text input with radio button" name="timeslot.timeslot_type">
+                              <input disabled placeholder="Business Hours" type="text"  class="form-control border-0" aria-label="Text input with radio button" name="timeslot.timeslot_type">
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-3">
                       <div class="mt-2" >
                         <div class="input-group">
-                            <div class="input-group-text">
-                              <input class="form-check-input mt-0" type="radio" value="2"  name="timeslot_type"  aria-label="Time slot for after business hours" name="timeslot.timeslot_type" wire:model.defer="timeslot.timeslot_type">
+                            <div class="d-flex align-items-center">
+                              <input class="form-check-input mt-0 me-1" type="radio" value="2"  name="timeslot_type"  aria-label="Time slot for after business hours" name="timeslot.timeslot_type" wire:model.defer="timeslot.timeslot_type">
                             </div>
-                            <input disabled placeholder="After Business Hours" type="text" class="form-control" aria-label="Text input with radio button">
+                            <input disabled placeholder="After Business Hours" type="text" class="form-control border-0" aria-label="Text input with radio button">
                           </div>
                       </div>
                   </div>
@@ -89,13 +89,13 @@
                   <div class="col-lg-12">
                       <label class="form-label">Select Days & Time</label>
                       <div class="d-inline-block invalid-feedback mt-2 " > {{ $errors->first('timeValidation') }}</div>
-                      <div class="d-lg-flex gap-3 align-items-center mb-3">
+                      <div class="d-lg-flex gap-3 align-items-end mb-3">
                         <select name="timeslot_day" aria-label="Select Days" wire:model.defer="timeslot.timeslot_day" class="form-control w-25">
                         @foreach ($days as $day)
                             <option value="{{$day}}">{{$day}}</option>
                         @endforeach
                         </select>
-                          <label class="form-label-sm">Choose Time</label>
+                          <label class="form-label-sm ">Choose Time</label>
                           <div class="d-flex">
                             <div class="d-flex flex-column justify-content-between">
                               <label class="form-label-sm" for="set_start_time">Start Time</label>
@@ -146,7 +146,7 @@
 
                       <button class="btn btn-secondary btn-custom btn-sm rounded" wire:click="addSlot">
                         <span class="btn-text">
-                            Submit
+                            Add slots
                         </span></button>
                   </div>
               </div>
@@ -291,7 +291,7 @@
                                                     <button class="btn btn-secondary btn-custom btn-sm rounded" wire:click.prevent="saveHoliday">
                                                 <span class="btn-text">
 
-                                                    Submit
+                                                    Add Holiday
                                                 </span>        
                                                 </button>
                                                 </div>
