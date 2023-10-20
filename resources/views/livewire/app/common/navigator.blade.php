@@ -16,7 +16,8 @@
                         </svg>
                     </div>
                     <div>
-                        <div class="text-center block-number">{{ $userNavigator['count'] }}</div>
+                        {{-- <div class="text-center block-number">{{ $userNavigator['count'] }}</div> --}}
+                        <div class="text-center block-number">0</div>
                     </div>
                 </a>
             </li>

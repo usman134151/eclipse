@@ -27,8 +27,19 @@ class Customer extends Component
 
 	public function deleteRecord()
 	{
+		// Retrieve the user's email using the ID
+		$user = User::find($this->recordId);
+		$email = $user->email; // Retrieve the email
+		// Generate a unique identifier (e.g., a timestamp or random string)
+		$uniqueIdentifier = uniqid();
+		// Create the new email address with the "delete-" prefix and unique identifier
+		$newEmail = 'delete-' . $uniqueIdentifier . '-' . $email;
+		
 		// Delete the record from the database using the model
-		User::where('id', $this->recordId)->update(['status' => 2]);
+		User::where('id', $this->recordId)->update([
+			'email' => $newEmail,
+			'status' => 2,
+		]);
 		// Emit an event to reset the form and display a confirmation message
 		$this->emitSelf('showList', 'Record has been deleted');
 	}
