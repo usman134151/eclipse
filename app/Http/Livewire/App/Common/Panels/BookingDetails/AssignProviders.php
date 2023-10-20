@@ -44,6 +44,7 @@ class AssignProviders extends Component
     public $assignedProviders = [], $limit = null, $booking, $showError = false;
     public $paymentData = ["additional_label_provider" => '', "additional_charge_provider" => 0];
     public $providers, $providersPayment, $bookingService, $durationLabel, $durationTotal = 0, $totalAmount;
+    public $b_hours_duration =0 , $a_hours_duration=0;
     public $setupValues = [
         'accommodations' => ['parameters' => ['Accommodation', 'id', 'name', 'status', 1, 'name', true, 'accommodations', '', 'accommodationsassignProvider', 2]],
         'specializations' => ['parameters' => ['Specialization', 'id', 'name', 'status', 1, 'name', true, 'specializations', '', 'specializationsassignProvider', 4]],
@@ -429,10 +430,19 @@ class AssignProviders extends Component
                     if (key_exists('total_duration', $booking_service['service_calculations'])) {
                         $this->durationTotal = number_format($booking_service['service_calculations']['total_duration']['days'] + ($booking_service['service_calculations']['total_duration']['hours'] / 24) + ($booking_service['service_calculations']['total_duration']['mins'] / 60 / 24));
                     }
+                    if (key_exists('business_hour_duration', $booking_service['service_calculations'])) {
+                        $this->b_hours_duration =  ($booking_service['service_calculations']['business_hour_duration'] /60 / 24);
+                        $this->a_hours_duration =  ($booking_service['service_calculations']['after_hour_duration'] /60 / 24);
+                    
+                    }
                 } else {
                     $this->durationLabel = ' hour(s)';
                     if (key_exists('total_duration', $booking_service['service_calculations'])) {
                         $this->durationTotal = number_format(($booking_service['service_calculations']['total_duration']['hours']) + ($booking_service['service_calculations']['total_duration']['mins'] / 60 / 24), 2);
+                    }
+                    if (key_exists('business_hour_duration', $booking_service['service_calculations'])) {
+                        $this->b_hours_duration =  $booking_service['service_calculations']['business_hour_duration'] /60;
+                        $this->a_hours_duration =  $booking_service['service_calculations']['after_hour_duration']/60;
                     }
                 }
             }

@@ -292,7 +292,7 @@
                                  </div>
                                  <div class="col-7">
                                      <div class="input-group">
-                                         <input type="" name="" value="{{ $durationTotal }}"
+                                         <input type="" name="" value="{{ $b_hours_duration }}"
                                              class="form-control form-control-sm text-center" placeholder="0"
                                              aria-label="Hours" disabled>
                                          <div class="input-group-text p-0">
@@ -346,7 +346,7 @@
                                  </div>
                                  <div class="col-7">
                                      <div class="input-group">
-                                         <input type="" name="" value="{{ $durationTotal }}"
+                                         <input type="" name="" value="{{ $a_hours_duration }}"
                                              class="form-control form-control-sm text-center" placeholder="0"
                                              aria-label="Hours" disabled>
                                          <div class="input-group-text p-0">
