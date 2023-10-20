@@ -295,7 +295,7 @@ class AssignProviders extends Component
                     "is_override_price" => 1,
                     "business_hours_override_price" => $providerCharges['business_hours_override_price'],
                     "after_hours_override_price" => $providerCharges['after_hours_override_price'],
-                    'total_amount' => ($providerCharges['business_hours_override_price']* $this->b_hours_duration) + $providerCharges['after_hours_override_price'] * $this->a_hours_duration
+                    'total_amount' => ($providerCharges['business_hours_override_price'] * $this->b_hours_duration) + $providerCharges['after_hours_override_price'] * $this->a_hours_duration
                 ];
                 foreach ($this->assignedProviders as &$aProvider) {
                     if ($aProvider['provider_id'] == $provider['id']) {
@@ -333,7 +333,7 @@ class AssignProviders extends Component
     {
         $this->validate();
         // dd($this->providersPayment[$index]['override_price']);
-        if (!isset($this->providersPayment[$index]['business_hours_override_price']) ||trim($this->providersPayment[$index]['business_hours_override_price']) == '')
+        if (!isset($this->providersPayment[$index]['business_hours_override_price']) || trim($this->providersPayment[$index]['business_hours_override_price']) == '')
             $this->providersPayment[$index]['business_hours_override_price'] = 0;
         if (!isset($this->providersPayment[$index]['after_hours_override_price']) || trim($this->providersPayment[$index]['after_hours_override_price']) == '')
             $this->providersPayment[$index]['after_hours_override_price'] = 0;
@@ -350,7 +350,6 @@ class AssignProviders extends Component
                 // $aProvider['override_price'] = $this->providersPayment[$index]['override_price'];
                 $aProvider['after_hours_override_price'] = $this->providersPayment[$index]['after_hours_override_price'];
                 $aProvider['business_hours_override_price'] = $this->providersPayment[$index]['business_hours_override_price'];
-
             }
         }
         return $this->providersPayment[$index]['total_amount'];
@@ -369,9 +368,11 @@ class AssignProviders extends Component
     public function getProviderCharges($providerId)
     {
         //checking if provider is configured for service
-        return ['charges' => 0,
-        //  'override_price' => 0,
-         'business_hours_override_price' => 0, 'after_hours_override_price' => 0];
+        return [
+            'charges' => 0,
+            //  'override_price' => 0,
+            'business_hours_override_price' => 0, 'after_hours_override_price' => 0
+        ];
     }
 
     public function resetFilters()
@@ -448,8 +449,9 @@ class AssignProviders extends Component
                     }
                     if (key_exists('business_hour_duration', $booking_service['service_calculations'])) {
                         $this->b_hours_duration =  round($booking_service['service_calculations']['business_hour_duration'] / 60 / 24, 1);
-                        $this->a_hours_duration =  round($booking_service['service_calculations']['after_hour_duration'] / 60 / 24, 1);
                     }
+                    if (key_exists('after_hour_duration', $booking_service['service_calculations']))
+                        $this->a_hours_duration =  round($booking_service['service_calculations']['after_hour_duration'] / 60 / 24, 1);
                 } else {
                     $this->durationLabel = ' hour(s)';
                     if (key_exists('total_duration', $booking_service['service_calculations'])) {
@@ -457,8 +459,9 @@ class AssignProviders extends Component
                     }
                     if (key_exists('business_hour_duration', $booking_service['service_calculations'])) {
                         $this->b_hours_duration = round($booking_service['service_calculations']['business_hour_duration'] / 60, 1);
-                        $this->a_hours_duration =  round($booking_service['service_calculations']['after_hour_duration'] / 60, 1);
                     }
+                    if (key_exists('after_hour_duration', $booking_service['service_calculations']))
+                        $this->a_hours_duration =  round($booking_service['service_calculations']['after_hour_duration'] / 60, 1);
                 }
             }
         }
