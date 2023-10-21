@@ -1,4 +1,8 @@
  {{-- BEGIN: Filters --}}
+ <head>
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+ </head>
  <div>
      <div id="loader-section" class="loader-section" wire:loading>
          <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
@@ -134,15 +138,23 @@
                                          <div></div>
                                      </div>
                                  </div>
-                                 <div class=""
-                                     style="{{ $panelType == 1 || $panelType == 3 ? 'width:300px' : '' }}">
-                                     @foreach ($provider->services as $key => $service)
-                                         <a href="#">{{ $service->name }}</a>
-                                         @if ($key != $provider->services->count() - 1)
-                                             <span>,</span>
-                                         @endif
-                                     @endforeach
-                                 </div>
+                                 <div class=" position-relative mb-3">
+    <div class="" id="servicePanel-{{ $provider->id }}" style="width: 300px; max-height:60px; overflow-y:hidden;">
+        @foreach ($provider->services as $key => $service)
+            <a href="#">{{ $service->name }}</a>
+            @if ($key != $provider->services->count() - 1)
+                <span>,</span>
+            @endif
+            @endforeach
+        </div>
+        <span class="position-absolute end-0 me-3">
+
+            <a href="#" id="toggleServices-{{ $provider->id }}" class="fw-bold">View All</a>
+        </span>
+    
+</div>
+
+
                                  @if (isset($provider->notes) && $provider->notes != null && $panelType == 3)
                                      <div class=" mt-3"
                                          style="{{ $panelType == 1 || $panelType == 3 ? 'width:300px' : '' }}">
@@ -401,7 +413,7 @@
                              <div class="col-2 mt-1">
                                  <label class="form-label-sm">Label:</label>
                              </div>
-                             <div class="col-7">
+                             <div class="col-8">
                                  <div class="input-group">
                                      <input type="text" name="" class="form-control form-control-sm"
                                          placeholder="Payment Label" aria-label="Payment Label"
@@ -422,7 +434,7 @@
                                                  <label class="form-label-sm text-nowrap">Additional Payment:
                                                  </label>
                                              </div>
-                                             <div class="col-6">
+                                             <div class="col-4 ms-3" >
                                                  <div class="input-group">
                                                      <input type="number" name=""
                                                          class="form-control form-control-sm" placeholder="00:00"
@@ -594,3 +606,25 @@
 
 
  </div>
+ <script>
+     console.log("hi");
+        @foreach ($providers as $provider)
+            const button{{ $provider->id }} = document.getElementById("toggleServices-{{ $provider->id }}");
+            const panel{{ $provider->id }} = document.getElementById("servicePanel-{{ $provider->id }}");
+
+            let isToggled{{ $provider->id }} = false;
+
+            button{{ $provider->id }}.addEventListener("click", function() {
+                isToggled{{ $provider->id }} = !isToggled{{ $provider->id }};
+                if (isToggled{{ $provider->id }}) {
+                    button{{ $provider->id }}.textContent = "Minimize";
+                    panel{{ $provider->id }}.style.maxHeight = "";
+                    panel{{ $provider->id }}.style.overflowY = "";
+                } else {
+                    button{{ $provider->id }}.textContent = "View All";
+                    panel{{ $provider->id }}.style.maxHeight = "60px";
+                    panel{{ $provider->id }}.style.overflowY = "hidden";
+                }
+            });
+        @endforeach
+</script>
