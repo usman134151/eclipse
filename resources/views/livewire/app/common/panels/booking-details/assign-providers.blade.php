@@ -303,22 +303,22 @@
                                  </div>
                                  <div class="col-7">
                                      <div class="input-group">
-                                         <input type="number"
+                                         <input type=""
                                              name="{{ $index }}_service_payment_details_b_hours_duration"
                                              wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.b_hours_duration"
                                              class="form-control form-control-sm text-center" placeholder="0"
                                              aria-label="Hours">
-                                         @error('providersPayment.' . $index .
-                                             '.service_payment_details.b_hours_duration')
-                                             <span class="d-inline invalid-feedback">
-                                                 {{ $message }}
-                                             </span>
-                                         @enderror
+                                         
                                          <div class="input-group-text p-0">
                                              <select class="form-select form-select-sm" aria-label="Days" disabled>
                                                  <option>{{ $durationLabel }}</option>
                                              </select>
                                          </div>
+                                         @error('providersPayment.' . $index .'.service_payment_details.b_hours_duration')
+                                             <span class="d-inline invalid-feedback">
+                                                 {{ $message }}
+                                             </span>
+                                         @enderror
                                      </div>
                                  </div>
                              </div>
@@ -336,9 +336,8 @@
                                              <input type="" id="average-rate" name="average-rate"
                                                  class="form-control form-control-sm  w-25%" placeholder="$00:00"
                                                  wire:blur="updateTotal({{ $index }})"
-                                                 wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.b_hours_price">
-                                             @error('providersPayment.' . $index .
-                                                 '.service_payment_details.b_hours_price')
+                                                 wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.b_hours_rate">
+                                             @error('providersPayment.' . $index .'.service_payment_details.b_hours_rate')
                                                  <span class="d-inline invalid-feedback">
                                                      {{ $message }}
                                                  </span>
@@ -370,17 +369,18 @@
                                              wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.a_hours_duration"
                                              class="form-control form-control-sm text-center" placeholder="0"
                                              aria-label="Hours">
+                                         
+                                         <div class="input-group-text p-0">
+                                             <select class="form-select form-select-sm" aria-label="Days" disabled>
+                                                 <option>{{ $durationLabel }}</option>
+                                             </select>
+                                         </div>
                                          @error('providersPayment.' . $index .
                                              '.service_payment_details.a_hours_duration')
                                              <span class="d-inline invalid-feedback">
                                                  {{ $message }}
                                              </span>
                                          @enderror
-                                         <div class="input-group-text p-0">
-                                             <select class="form-select form-select-sm" aria-label="Days" disabled>
-                                                 <option>{{ $durationLabel }}</option>
-                                             </select>
-                                         </div>
                                      </div>
                                  </div>
                              </div>
@@ -398,9 +398,9 @@
                                              <input type="" id="average-rate" name="average-rate"
                                                  class="form-control form-control-sm  w-25%" placeholder="$00:00"
                                                  wire:blur="updateTotal({{ $index }})"
-                                                 wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.a_hours_price">
+                                                 wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.a_hours_rate">
                                              @error('providersPayment.' . $index .
-                                                 '.service_payment_details.a_hours_price')
+                                                 '.service_payment_details.a_hours_rate')
                                                  <span class="d-inline invalid-feedback">
                                                      {{ $message }}
                                                  </span>
@@ -433,18 +433,20 @@
                                                  wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.expedited_duration"
                                                  class="form-control form-control-sm text-center" placeholder="0"
                                                  aria-label="Hours">
-                                             @error('providersPayment.' . $index .
-                                                 '.service_payment_details.expedited_duration')
-                                                 <span class="d-inline invalid-feedback">
-                                                     {{ $message }}
-                                                 </span>
-                                             @enderror
+                                             
                                              <div class="input-group-text p-0">
                                                  <select class="form-select form-select-sm" aria-label="Hours"
                                                      disabled>
                                                      <option>hour(s)</option>
                                                  </select>
                                              </div>
+
+                                             @error('providersPayment.' . $index .
+                                                 '.service_payment_details.expedited_duration')
+                                                 <span class="d-inline invalid-feedback">
+                                                     {{ $message }}
+                                                 </span>
+                                             @enderror
                                          </div>
                                      </div>
                                  </div>
