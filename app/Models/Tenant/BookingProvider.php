@@ -15,7 +15,7 @@ class BookingProvider extends Model
      * @var array
      */
     protected $fillable = [
-        'booking_id', 'provider_id', 'remittance_id', 'is_override_price', 'business_hours_override_price', 'after_hours_override_price', 'additional_label_provider', 'additional_charge_provider', 'check_in_status', 'payment_status', 'payment_method', 'issued_at', 'payment_scheduled_at', 'paid_at', 'deleted_at', 'paid_amount', 'return_status', 'provider_response',
+        'booking_id', 'provider_id', 'remittance_id', 'is_override_price', 'override_price', 'business_hours_override_price', 'after_hours_override_price', 'additional_label_provider', 'additional_charge_provider', 'check_in_status', 'payment_status', 'payment_method', 'issued_at', 'payment_scheduled_at', 'paid_at', 'deleted_at', 'paid_amount', 'return_status', 'provider_response',
         'booking_service_id','running_late_hour','running_late_min', 'check_in_procedure_values', 'check_out_procedure_values','total_amount'
     ];
 
