@@ -130,25 +130,28 @@
                                          <div class="font-family-secondary leading-none">{{ $provider->name }}</div>
                                          <a href="#"
                                              class="font-family-secondary text-sm"><small>{{ $provider->email }}</small></a>
-                                         <div class="text-sm">{{$provider->city ? $provider->city.', ' : ''}} {{$provider->state ? $provider->state.', ' : ''}} {{$provider->country ? $provider->country.', ' : ''}}</div>
+                                         <div class="text-sm">{{ $provider->city ? $provider->city . ', ' : '' }}
+                                             {{ $provider->state ? $provider->state . ', ' : '' }}
+                                             {{ $provider->country ? $provider->country . ', ' : '' }}</div>
                                          <div></div>
                                      </div>
                                  </div>
                                  <div class=" position-relative mb-3">
-    <div class="" id="servicePanel-{{ $provider->id }}" style="width: 300px; max-height:60px; overflow-y:hidden;">
-        @foreach ($provider->services as $key => $service)
-            <a href="#">{{ $service->name }}</a>
-            @if ($key != $provider->services->count() - 1)
-                <span>,</span>
-            @endif
-            @endforeach
-        </div>
-        <!-- <span class="position-absolute end-0 me-3">
+                                     <div class="" id="servicePanel-{{ $provider->id }}"
+                                         style="width: 300px; max-height:60px; overflow-y:hidden;">
+                                         @foreach ($provider->services as $key => $service)
+                                             <a href="#">{{ $service->name }}</a>
+                                             @if ($key != $provider->services->count() - 1)
+                                                 <span>,</span>
+                                             @endif
+                                         @endforeach
+                                     </div>
+                                     <!-- <span class="position-absolute end-0 me-3">
 
             <a href="#" id="toggleServices-{{ $provider->id }}" class="fw-bold">View All</a>
         </span> -->
-    
-</div>
+
+                                 </div>
 
 
                                  @if (isset($provider->notes) && $provider->notes != null && $panelType == 3)
@@ -285,7 +288,7 @@
          <td colSpan=4> Pending</td>
      @endif
      @if ($panelType == 1 || ($panelType == 3 && $provider->invitation_response($booking_id) == 1))
-          <td class="border-end-2" style="min-width:340px">
+         <td class="border-end-2" style="min-width:340px">
              <div class="d-grid grid-cols-1 gap-3 mb-3">
                  {{-- <div> --}}
                  <div class="row">
@@ -300,16 +303,17 @@
                                  </div>
                                  <div class="col-7">
                                      <div class="input-group">
-                                         <input type="number" name="{{ $index }}_service_payment_details_b_hours_duration"
-                                           wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.b_hours_duration"
-                                          
+                                         <input type="number"
+                                             name="{{ $index }}_service_payment_details_b_hours_duration"
+                                             wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.b_hours_duration"
                                              class="form-control form-control-sm text-center" placeholder="0"
-                                             aria-label="Hours" >
-                                             @error('providersPayment.' . $index . '.service_payment_details.b_hours_duration')
-                                                 <span class="d-inline invalid-feedback">
-                                                     {{ $message }}
-                                                 </span>
-                                             @enderror
+                                             aria-label="Hours">
+                                         @error('providersPayment.' . $index .
+                                             '.service_payment_details.b_hours_duration')
+                                             <span class="d-inline invalid-feedback">
+                                                 {{ $message }}
+                                             </span>
+                                         @enderror
                                          <div class="input-group-text p-0">
                                              <select class="form-select form-select-sm" aria-label="Days" disabled>
                                                  <option>{{ $durationLabel }}</option>
@@ -333,7 +337,8 @@
                                                  class="form-control form-control-sm  w-25%" placeholder="$00:00"
                                                  wire:blur="updateTotal({{ $index }})"
                                                  wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.b_hours_price">
-                                             @error('providersPayment.' . $index . '.service_payment_details.b_hours_price')
+                                             @error('providersPayment.' . $index .
+                                                 '.service_payment_details.b_hours_price')
                                                  <span class="d-inline invalid-feedback">
                                                      {{ $message }}
                                                  </span>
@@ -362,14 +367,15 @@
                                  <div class="col-7">
                                      <div class="input-group">
                                          <input type="" name=""
-                                           wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.a_hours_duration"
+                                             wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.a_hours_duration"
                                              class="form-control form-control-sm text-center" placeholder="0"
                                              aria-label="Hours">
-                                             @error('providersPayment.' . $index . '.service_payment_details.a_hours_duration')
-                                                 <span class="d-inline invalid-feedback">
-                                                     {{ $message }}
-                                                 </span>
-                                             @enderror
+                                         @error('providersPayment.' . $index .
+                                             '.service_payment_details.a_hours_duration')
+                                             <span class="d-inline invalid-feedback">
+                                                 {{ $message }}
+                                             </span>
+                                         @enderror
                                          <div class="input-group-text p-0">
                                              <select class="form-select form-select-sm" aria-label="Days" disabled>
                                                  <option>{{ $durationLabel }}</option>
@@ -393,7 +399,8 @@
                                                  class="form-control form-control-sm  w-25%" placeholder="$00:00"
                                                  wire:blur="updateTotal({{ $index }})"
                                                  wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.a_hours_price">
-                                             @error('providersPayment.' . $index . '.service_payment_details.a_hours_price')
+                                             @error('providersPayment.' . $index .
+                                                 '.service_payment_details.a_hours_price')
                                                  <span class="d-inline invalid-feedback">
                                                      {{ $message }}
                                                  </span>
@@ -408,123 +415,139 @@
 
                      </div>
                  </div>
-                 @if($expedited_hours)
-                 
-                 <hr>
-                 <div class="row">
-                     <div class="  mt-1">
-                         <div class="col col-12">
-                             <div class="col-12">
-                                 <label class="form-label-sm"><strong> Expedition Charges</strong></label>
-                             </div>
-                             <div class="row">
-                                 <div class="col-3 mt-1">
-                                     <label class="form-label-sm">Duration:</label>
+                 @if ($expedited_hours)
+                     <hr>
+                     <div class="row">
+                         <div class="  mt-1">
+                             <div class="col col-12">
+                                 <div class="col-12">
+                                     <label class="form-label-sm"><strong> Expedition Charges</strong></label>
                                  </div>
-                                 <div class="col-7">
-                                     <div class="input-group">
-                                         <input type="" name=""
-                                           wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.expedited_duration"
-                                             class="form-control form-control-sm text-center" placeholder="0"
-                                             aria-label="Hours">
-                                             @error('providersPayment.' . $index . '.service_payment_details.expedited_duration')
-                                                 <span class="d-inline invalid-feedback">
-                                                     {{ $message }}
-                                                 </span>
-                                             @enderror
-                                         <div class="input-group-text p-0">
-                                             <select class="form-select form-select-sm" aria-label="Hours" disabled>
-                                                 <option>hour(s)</option>
-                                             </select>
-                                         </div>
-                                     </div>
-                                 </div>
-                             </div>
-                         </div>
-
-                         <div class="col col-12 mt-2">
-                             <div class="d-flex ">
                                  <div class="row">
-
-                                     <div class="col-5 mt-1" style="margin-right: -15px;">
-                                         <label for="average-rate" class="form-label-sm">Average Rate:</label>
+                                     <div class="col-3 mt-1">
+                                         <label class="form-label-sm">Duration:</label>
                                      </div>
-                                     <div class="col-6 " style=" width:47%;">
-                                         <div class="input-group ">
-                                             <input type="" id="average-rate" name="average-rate"
-                                                 class="form-control form-control-sm  w-25%" placeholder="$00:00"
-                                                 wire:blur="updateTotal({{ $index }})"
-                                                 wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.expedited_rate">
-                                             @error('providersPayment.' . $index . '.service_payment_details.expedited_rate')
+                                     <div class="col-7">
+                                         <div class="input-group">
+                                             <input type="" name=""
+                                                 wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.expedited_duration"
+                                                 class="form-control form-control-sm text-center" placeholder="0"
+                                                 aria-label="Hours">
+                                             @error('providersPayment.' . $index .
+                                                 '.service_payment_details.expedited_duration')
                                                  <span class="d-inline invalid-feedback">
                                                      {{ $message }}
                                                  </span>
                                              @enderror
-
+                                             <div class="input-group-text p-0">
+                                                 <select class="form-select form-select-sm" aria-label="Hours"
+                                                     disabled>
+                                                     <option>hour(s)</option>
+                                                 </select>
+                                             </div>
                                          </div>
                                      </div>
                                  </div>
                              </div>
+
+                             <div class="col col-12 mt-2">
+                                 <div class="d-flex ">
+                                     <div class="row">
+
+                                         <div class="col-5 mt-1" style="margin-right: -15px;">
+                                             <label for="average-rate" class="form-label-sm">Average Rate:</label>
+                                         </div>
+                                         <div class="col-6 " style=" width:47%;">
+                                             <div class="input-group ">
+                                                 <input type="" id="average-rate" name="average-rate"
+                                                     class="form-control form-control-sm  w-25%" placeholder="$00:00"
+                                                     wire:blur="updateTotal({{ $index }})"
+                                                     wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.expedited_rate">
+                                                 @error('providersPayment.' . $index .
+                                                     '.service_payment_details.expedited_rate')
+                                                     <span class="d-inline invalid-feedback">
+                                                         {{ $message }}
+                                                     </span>
+                                                 @enderror
+
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+
+
                          </div>
-
-
                      </div>
-                 </div>
-                 
                  @endif
-                 <hr>
+                 @if (count($booking_specializations))
+                     <hr>
 
-                   <div class="row">
-                     <div class="  mt-1">
-                         
+                     <div class="row">
+                         <div class="  mt-1">
                          <div class="col col-12">
-                             <div class="">
-                                 {{-- <div class="row">
+                                     <label class="form-label-sm"><strong>
+                                             Specialization Charges</strong></label>
+                                 </div>
 
-                                     <div class="col-6 mt-1" style="margin-right: -15px;">
-                                         <label for="average-rate" class="form-label-sm">Expediation Rate:</label>
-                                     </div>
-                                     <div class="col-6 " style=" width:47%;">
-                                         <div class="input-group ">
-                                             <input type="" id="average-rate" name="average-rate"
-                                                 class="form-control form-control-sm  w-25%" placeholder="$00:00"
-                                                 wire:blur="updateTotal({{ $index }})"
-                                                 wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.expedited_rate">
-                                             @error('providersPayment.' . $index . '.service_payment_details.expedited_rate')
-                                                 <span class="d-inline invalid-feedback">
-                                                     {{ $message }}
-                                                 </span>
-                                             @enderror
+                             @foreach ($booking_specializations as $key => $specialization)
+                              
+                                 <div class="col col-12 mt-2">
+                                     <div class="d-flex ">
+                                         <div class="row">
 
-                                         </div>
-                                     </div>
-                                 </div> --}}
-                                    <div class="row mt-2">
+                                             <div class="col-5 mt-1" style="margin-right: -15px;">
+                                                 <label for="average-rate" class="form-label-sm">{{ $specialization['label'] }} :</label>
+                                             </div>
+                                             <div class="col-6 mt-2" style=" width:47%;">
+                                                 <div class="input-group ">
+                                                     <input type="" id="average-rate" name="average-rate"
+                                                         class="form-control form-control-sm  w-25%"
+                                                         placeholder="$00:00"
+                                                         wire:blur="updateTotal({{ $index }})"
+                                                         wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.specialization_charges.{{$key}}.provider_charges">
+                                                     @error('providersPayment.' . $index .'service_payment_details.specialization_charges.'.$key.'provider_charges')
+                                                         <span class="d-inline invalid-feedback">
+                                                             {{ $message }}
+                                                         </span>
+                                                     @enderror
 
-                                     <div class="col-6 mt-1" style="margin-right: -15px;">
-                                         <label for="average-rate" class="form-label-sm">Specialization Rate:</label>
-                                     </div>
-                                     <div class="col-6 mt-2" style=" width:47%;">
-                                         <div class="input-group ">
-                                             <input type="" id="average-rate" name="average-rate"
-                                                 class="form-control form-control-sm  w-25%" placeholder="$00:00"
-                                                 wire:blur="updateTotal({{ $index }})"
-                                                 wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.specialization_rate">
-                                             @error('providersPayment.' . $index . '.service_payment_details.specialization_rate')
-                                                 <span class="d-inline invalid-feedback">
-                                                     {{ $message }}
-                                                 </span>
-                                             @enderror
-
+                                                 </div>
+                                             </div>
                                          </div>
                                      </div>
                                  </div>
-                             </div>
+                             @endforeach
+                             {{-- <div class="col col-12">
+                                 <div class="">
+                                     <div class="row mt-2">
+
+                                         <div class="col-6 mt-1" style="margin-right: -15px;">
+                                             <label for="average-rate" class="form-label-sm">Specialization
+                                                 Rate:</label>
+                                         </div>
+                                         <div class="col-6 mt-2" style=" width:47%;">
+                                             <div class="input-group ">
+                                                 <input type="" id="average-rate" name="average-rate"
+                                                     class="form-control form-control-sm  w-25%" placeholder="$00:00"
+                                                     wire:blur="updateTotal({{ $index }})"
+                                                     wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.specialization_rate">
+                                                 @error('providersPayment.' . $index . '.service_payment_details.specialization_rate')
+                                                     <span class="d-inline invalid-feedback">
+                                                         {{ $message }}
+                                                     </span>
+                                                 @enderror
+
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div> --}}
+
+
                          </div>
-
-
                      </div>
-                 </div>
+                 @endif
 
              </div>
 
@@ -552,32 +575,32 @@
                          {{-- </div> --}}
 
                          {{-- <div> --}}
-                             <div class="row col-12">
-                                 <div class="mt-3 mb-3">
-                                     {{-- <div class="d-inline-flex mb-3"> --}}
-                                         <div class="row col-12">
+                         <div class="row col-12">
+                             <div class="mt-3 mb-3">
+                                 {{-- <div class="d-inline-flex mb-3"> --}}
+                                 <div class="row col-12">
 
-                                             <div class="col-6 mt-1">
-                                                 <label class="form-label-sm text-nowrap">Additional Payment:
-                                                 </label>
-                                             </div>
-                                             <div class="col-4 ms-3" >
-                                                 <div class="input-group">
-                                                     <input type="number" name=""
-                                                         class="form-control form-control-sm" placeholder="00:00"
-                                                         aria-label="Additional Payment"
-                                                         wire:model.defer="providersPayment.{{ $index }}.additional_charge_provider"
-                                                         wire:blur="updateTotal({{ $index }})">
-
-                                                 </div>
-                                             </div>
-                                         {{-- </div> --}}
+                                     <div class="col-6 mt-1">
+                                         <label class="form-label-sm text-nowrap">Additional Payment:
+                                         </label>
                                      </div>
+                                     <div class="col-4 ms-3">
+                                         <div class="input-group">
+                                             <input type="number" name=""
+                                                 class="form-control form-control-sm" placeholder="00:00"
+                                                 aria-label="Additional Payment"
+                                                 wire:model.defer="providersPayment.{{ $index }}.additional_charge_provider"
+                                                 wire:blur="updateTotal({{ $index }})">
+
+                                         </div>
+                                     </div>
+                                     {{-- </div> --}}
                                  </div>
                              </div>
-                             <div class="mt-3 col-12">
+                         </div>
+                         <div class="mt-3 col-12">
 
-                                 <!--  <div>
+                             <!--  <div>
                                              <label class="form-label-sm">Label</label>
                                              <input type="" name="" class="form-control form-control-sm"
                                                  placeholder="Payment Label" aria-label="Payment Label">
@@ -604,7 +627,7 @@
                                                      for="ChargetoCustomer"><small>Charge to
                                                          Customer</small></label>
                                              </div> -->
-                             </div>
+                         </div>
                          {{-- </div> --}}
                          <!--  <div class="mb-2">
                                          <button class="btn btn-xs btn-has-icon btn-primary rounded">
@@ -733,4 +756,3 @@
 
 
  </div>
-
