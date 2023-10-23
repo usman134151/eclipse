@@ -1,8 +1,4 @@
  {{-- BEGIN: Filters --}}
- <head>
- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
- </head>
  <div>
      <div id="loader-section" class="loader-section" wire:loading>
          <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
@@ -147,10 +143,10 @@
             @endif
             @endforeach
         </div>
-        <span class="position-absolute end-0 me-3">
+        <!-- <span class="position-absolute end-0 me-3">
 
             <a href="#" id="toggleServices-{{ $provider->id }}" class="fw-bold">View All</a>
-        </span>
+        </span> -->
     
 </div>
 
@@ -606,25 +602,4 @@
 
 
  </div>
- <script>
-     console.log("hi");
-        @foreach ($providers as $provider)
-            const button{{ $provider->id }} = document.getElementById("toggleServices-{{ $provider->id }}");
-            const panel{{ $provider->id }} = document.getElementById("servicePanel-{{ $provider->id }}");
 
-            let isToggled{{ $provider->id }} = false;
-
-            button{{ $provider->id }}.addEventListener("click", function() {
-                isToggled{{ $provider->id }} = !isToggled{{ $provider->id }};
-                if (isToggled{{ $provider->id }}) {
-                    button{{ $provider->id }}.textContent = "Minimize";
-                    panel{{ $provider->id }}.style.maxHeight = "";
-                    panel{{ $provider->id }}.style.overflowY = "";
-                } else {
-                    button{{ $provider->id }}.textContent = "View All";
-                    panel{{ $provider->id }}.style.maxHeight = "60px";
-                    panel{{ $provider->id }}.style.overflowY = "hidden";
-                }
-            });
-        @endforeach
-</script>
