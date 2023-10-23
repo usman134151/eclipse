@@ -284,10 +284,18 @@ class AssignProviders extends Component
 
                 $providerCharges = $this->getProviderCharges($provider['id']);
                 $servicePayments = $this->getservicePayments();
+                $additionalPayments = [
+                    0 => [
+                        'additional_label_provider' => $this->paymentData['additional_label_provider'],
+                        'additional_charge_provider' => $this->paymentData['additional_charge_provider'],
+                    ]
+                ];
+
 
                 $this->providersPayment[$index] = [
                     'additional_label_provider' => $this->paymentData['additional_label_provider'],
                     'additional_charge_provider' => $this->paymentData['additional_charge_provider'],
+                    'additional_payments' => $additionalPayments,
                     "is_override_price" => 1,
                     'service_payment_details' => $servicePayments,
                     'total_amount' => ($servicePayments['b_hours_rate'] * $servicePayments['b_hours_duration']) + ($servicePayments['a_hours_rate'] * $servicePayments['a_hours_duration'])
@@ -300,6 +308,8 @@ class AssignProviders extends Component
 
                             $aProvider['total_amount'] = $this->updateTotal($index);
                         }
+                        if (!isset($aProvider['additional_payments']))
+                            $this->providersPayment[$index]['additional_payments'] = $additionalPayments;
                     }
                 }
             }
@@ -348,12 +358,20 @@ class AssignProviders extends Component
             $this->providersPayment[$index]['service_payment_details']['expedited_rate'] = 0;
         if (!isset($this->providersPayment[$index]['service_payment_details']['expedited_duration']) || trim($this->providersPayment[$index]['service_payment_details']['expedited_duration']) == '')
             $this->providersPayment[$index]['service_payment_details']['expedited_duration'] = 0;
-        // $this->providersPayment[$index]['total_amount'] = number_format($this->providersPayment[$index]['override_price'] * $this->durationTotal, 2, '.', '');
+        if (!isset($this->providersPayment[$index]['additional_payments']))
+            $this->providersPayment[$index]['additional_payments'] = [];
         $this->providersPayment[$index]['total_amount'] = number_format(($this->providersPayment[$index]['service_payment_details']['b_hours_rate'] * $this->providersPayment[$index]['service_payment_details']['b_hours_duration']) + ($this->providersPayment[$index]['service_payment_details']['a_hours_rate'] * $this->providersPayment[$index]['service_payment_details']['a_hours_duration'])
             + ($this->providersPayment[$index]['service_payment_details']['expedited_rate'] * $this->providersPayment[$index]['service_payment_details']['expedited_duration']), 2, '.', '');
 
-        if (!is_null($this->providersPayment[$index]['additional_charge_provider']) && is_numeric($this->providersPayment[$index]['additional_charge_provider']))
-            $this->providersPayment[$index]['total_amount'] = $this->providersPayment[$index]['total_amount'] + $this->providersPayment[$index]['additional_charge_provider'];
+
+        if (count($this->providersPayment[$index]['additional_payments'])) {
+            foreach ($this->providersPayment[$index]['additional_payments'] as $key => $payment) {
+                $this->providersPayment[$index]['total_amount'] = $this->providersPayment[$index]['total_amount']
+                    + $payment['additional_charge_provider'] ?? 0;
+            }
+        }
+
+
         if (count($this->booking_specializations)) {
             foreach ($this->providersPayment[$index]['service_payment_details']['specialization_charges'] as $key => $specialization) {
                 $this->providersPayment[$index]['total_amount'] = $this->providersPayment[$index]['total_amount'] + $this->providersPayment[$index]['service_payment_details']['specialization_charges'][$key]['provider_charges'] ?? 0;
@@ -365,8 +383,10 @@ class AssignProviders extends Component
 
                 $aProvider['total_amount'] = $this->providersPayment[$index]['total_amount'];
                 $aProvider['service_payment_details'] = $this->providersPayment[$index]['service_payment_details'];
-                $aProvider['additional_label_provider'] = $this->providersPayment[$index]['additional_label_provider'];
-                $aProvider['additional_charge_provider'] = $this->providersPayment[$index]['additional_charge_provider'];
+                $aProvider['additional_payments'] = $this->providersPayment[$index]['additional_payments'];
+                $aProvider['additional_label_provider'] = isset($this->providersPayment[$index]['additional_payments'][0]['additional_label_provider']) ? $this->providersPayment[$index]['additional_payments'][0]['additional_label_provider'] : null;
+                $aProvider['additional_charge_provider'] = isset($this->providersPayment[$index]['additional_payments'][0]['additional_charge_provider']) ? $this->providersPayment[$index]['additional_payments'][0]['additional_charge_provider'] : null;
+           
             }
         }
         return $this->providersPayment[$index]['total_amount'];
@@ -690,6 +710,7 @@ class AssignProviders extends Component
             'additional_label_provider' => $this->providersPayment[$index]['additional_label_provider'],
             'additional_charge_provider' => $this->providersPayment[$index]['additional_charge_provider'],
             "is_override_price" => 1,
+            "additional_payments" => $this->providersPayment[$index]['additional_payments'],
             "service_payment_details" => $this->providersPayment[$index]['service_payment_details'],
             "total_amount" => $this->providersPayment[$index]['total_amount']
 
