@@ -130,25 +130,28 @@
                                          <div class="font-family-secondary leading-none">{{ $provider->name }}</div>
                                          <a href="#"
                                              class="font-family-secondary text-sm"><small>{{ $provider->email }}</small></a>
-                                         <div class="text-sm">{{$provider->city ? $provider->city.', ' : ''}} {{$provider->state ? $provider->state.', ' : ''}} {{$provider->country ? $provider->country.', ' : ''}}</div>
+                                         <div class="text-sm">{{ $provider->city ? $provider->city . ', ' : '' }}
+                                             {{ $provider->state ? $provider->state . ', ' : '' }}
+                                             {{ $provider->country ? $provider->country . ', ' : '' }}</div>
                                          <div></div>
                                      </div>
                                  </div>
                                  <div class=" position-relative mb-3">
-    <div class="" id="servicePanel-{{ $provider->id }}" style="width: 300px; max-height:60px; overflow-y:hidden;">
-        @foreach ($provider->services as $key => $service)
-            <a href="#">{{ $service->name }}</a>
-            @if ($key != $provider->services->count() - 1)
-                <span>,</span>
-            @endif
-            @endforeach
-        </div>
-        <!-- <span class="position-absolute end-0 me-3">
+                                     <div class="" id="servicePanel-{{ $provider->id }}"
+                                         style="width: 300px; max-height:60px; overflow-y:hidden;">
+                                         @foreach ($provider->services as $key => $service)
+                                             <a href="#">{{ $service->name }}</a>
+                                             @if ($key != $provider->services->count() - 1)
+                                                 <span>,</span>
+                                             @endif
+                                         @endforeach
+                                     </div>
+                                     <!-- <span class="position-absolute end-0 me-3">
 
             <a href="#" id="toggleServices-{{ $provider->id }}" class="fw-bold">View All</a>
         </span> -->
-    
-</div>
+
+                                 </div>
 
 
                                  @if (isset($provider->notes) && $provider->notes != null && $panelType == 3)
@@ -289,7 +292,7 @@
              <div class="d-grid grid-cols-1 gap-3 mb-3">
                  {{-- <div> --}}
                  <div class="row">
-                     <div class="  mt-3 mb-3">
+                     <div class="  mt-1">
                          <div class="col col-12">
                              <div class="col-12 mt-1">
                                  <label class="form-label-sm"><strong> Business Hours</strong></label>
@@ -300,14 +303,23 @@
                                  </div>
                                  <div class="col-7">
                                      <div class="input-group">
-                                         <input type="" name="" value="{{ $b_hours_duration }}"
+                                         <input type=""
+                                             name="{{ $index }}_service_payment_details_b_hours_duration"
+                                             wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.b_hours_duration"
                                              class="form-control form-control-sm text-center" placeholder="0"
-                                             aria-label="Hours" disabled>
+                                             aria-label="Hours">
+
                                          <div class="input-group-text p-0">
                                              <select class="form-select form-select-sm" aria-label="Days" disabled>
                                                  <option>{{ $durationLabel }}</option>
                                              </select>
                                          </div>
+                                         @error('providersPayment.' . $index .
+                                             '.service_payment_details.b_hours_duration')
+                                             <span class="d-inline invalid-feedback">
+                                                 {{ $message }}
+                                             </span>
+                                         @enderror
                                      </div>
                                  </div>
                              </div>
@@ -325,8 +337,9 @@
                                              <input type="" id="average-rate" name="average-rate"
                                                  class="form-control form-control-sm  w-25%" placeholder="$00:00"
                                                  wire:blur="updateTotal({{ $index }})"
-                                                 wire:model.lazy="providersPayment.{{ $index }}.business_hours_override_price">
-                                             @error('providersPayment.' . $index . '.business_hours_override_price')
+                                                 wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.b_hours_rate">
+                                             @error('providersPayment.' . $index .
+                                                 '.service_payment_details.b_hours_rate')
                                                  <span class="d-inline invalid-feedback">
                                                      {{ $message }}
                                                  </span>
@@ -343,9 +356,9 @@
                  </div>
                  <hr>
                  <div class="row">
-                     <div class="  mt-3 mb-3">
+                     <div class="  mt-1">
                          <div class="col col-12">
-                             <div class="col-12 mt-1">
+                             <div class="col-12">
                                  <label class="form-label-sm"><strong> After Hours</strong></label>
                              </div>
                              <div class="row">
@@ -354,14 +367,22 @@
                                  </div>
                                  <div class="col-7">
                                      <div class="input-group">
-                                         <input type="" name="" value="{{ $a_hours_duration }}"
+                                         <input type="" name=""
+                                             wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.a_hours_duration"
                                              class="form-control form-control-sm text-center" placeholder="0"
-                                             aria-label="Hours" disabled>
+                                             aria-label="Hours">
+
                                          <div class="input-group-text p-0">
                                              <select class="form-select form-select-sm" aria-label="Days" disabled>
                                                  <option>{{ $durationLabel }}</option>
                                              </select>
                                          </div>
+                                         @error('providersPayment.' . $index .
+                                             '.service_payment_details.a_hours_duration')
+                                             <span class="d-inline invalid-feedback">
+                                                 {{ $message }}
+                                             </span>
+                                         @enderror
                                      </div>
                                  </div>
                              </div>
@@ -379,8 +400,9 @@
                                              <input type="" id="average-rate" name="average-rate"
                                                  class="form-control form-control-sm  w-25%" placeholder="$00:00"
                                                  wire:blur="updateTotal({{ $index }})"
-                                                 wire:model.lazy="providersPayment.{{ $index }}.after_hours_override_price">
-                                             @error('providersPayment.' . $index . '.after_hours_override_price')
+                                                 wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.a_hours_rate">
+                                             @error('providersPayment.' . $index .
+                                                 '.service_payment_details.a_hours_rate')
                                                  <span class="d-inline invalid-feedback">
                                                      {{ $message }}
                                                  </span>
@@ -395,58 +417,199 @@
 
                      </div>
                  </div>
+                 @if ($expedited_hours)
+                     <hr>
+                     <div class="row">
+                         <div class="  mt-1">
+                             <div class="col col-12">
+                                 <div class="col-12">
+                                     <label class="form-label-sm"><strong> Expedition Charges</strong></label>
+                                 </div>
+                                 <div class="row">
+                                     <div class="col-3 mt-1">
+                                         <label class="form-label-sm">Duration:</label>
+                                     </div>
+                                     <div class="col-7">
+                                         <div class="input-group">
+                                             <input type="" name=""
+                                                 wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.expedited_duration"
+                                                 class="form-control form-control-sm text-center" placeholder="0"
+                                                 aria-label="Hours">
+
+                                             <div class="input-group-text p-0">
+                                                 <select class="form-select form-select-sm" aria-label="Hours"
+                                                     disabled>
+                                                     <option>hour(s)</option>
+                                                 </select>
+                                             </div>
+
+                                             @error('providersPayment.' . $index .
+                                                 '.service_payment_details.expedited_duration')
+                                                 <span class="d-inline invalid-feedback">
+                                                     {{ $message }}
+                                                 </span>
+                                             @enderror
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+
+                             <div class="col col-12 mt-2">
+                                 <div class="d-flex ">
+                                     <div class="row">
+
+                                         <div class="col-5 mt-1" style="margin-right: -15px;">
+                                             <label for="average-rate" class="form-label-sm">Average Rate:</label>
+                                         </div>
+                                         <div class="col-6 " style=" width:47%;">
+                                             <div class="input-group ">
+                                                 <input type="" id="average-rate" name="average-rate"
+                                                     class="form-control form-control-sm  w-25%" placeholder="$00:00"
+                                                     wire:blur="updateTotal({{ $index }})"
+                                                     wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.expedited_rate">
+                                                 @error('providersPayment.' . $index .
+                                                     '.service_payment_details.expedited_rate')
+                                                     <span class="d-inline invalid-feedback">
+                                                         {{ $message }}
+                                                     </span>
+                                                 @enderror
+
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+
+
+                         </div>
+                     </div>
+                 @endif
+                 @if (count($booking_specializations))
+                     <hr>
+
+                     <div class="row">
+                         <div class="  mt-1">
+                             <div class="col col-12">
+                                 <label class="form-label-sm"><strong>
+                                         Specialization Charges</strong></label>
+                             </div>
+
+                             @foreach ($booking_specializations as $key => $specialization)
+                                 <div class="col col-12 mt-2">
+                                     <div class="d-flex ">
+                                         <div class="row">
+
+                                             <div class="col-5 mt-1" style="margin-right: -15px;">
+                                                 <label for="average-rate"
+                                                     class="form-label-sm">{{ $specialization['label'] }} :</label>
+                                             </div>
+                                             <div class="col-6 mt-2" style=" width:47%;">
+                                                 <div class="input-group ">
+                                                     <input type="" id="average-rate" name="average-rate"
+                                                         class="form-control form-control-sm  w-25%"
+                                                         placeholder="$00:00"
+                                                         wire:blur="updateTotal({{ $index }})"
+                                                         wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.specialization_charges.{{ $key }}.provider_charges">
+                                                     @error('providersPayment.' . $index .
+                                                         'service_payment_details.specialization_charges.' . $key .
+                                                         'provider_charges')
+                                                         <span class="d-inline invalid-feedback">
+                                                             {{ $message }}
+                                                         </span>
+                                                     @enderror
+
+                                                 </div>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
+                             @endforeach
+                             {{-- <div class="col col-12">
+                                 <div class="">
+                                     <div class="row mt-2">
+
+                                         <div class="col-6 mt-1" style="margin-right: -15px;">
+                                             <label for="average-rate" class="form-label-sm">Specialization
+                                                 Rate:</label>
+                                         </div>
+                                         <div class="col-6 mt-2" style=" width:47%;">
+                                             <div class="input-group ">
+                                                 <input type="" id="average-rate" name="average-rate"
+                                                     class="form-control form-control-sm  w-25%" placeholder="$00:00"
+                                                     wire:blur="updateTotal({{ $index }})"
+                                                     wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.specialization_rate">
+                                                 @error('providersPayment.' . $index . '.service_payment_details.specialization_rate')
+                                                     <span class="d-inline invalid-feedback">
+                                                         {{ $message }}
+                                                     </span>
+                                                 @enderror
+
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div> --}}
+
+
+                         </div>
+                     </div>
+                 @endif
+
              </div>
 
 
          </td>
          <td class="text-center border-end-2">
              <div class="d-grid grid-cols-4 gap-3 mb-3">
-                 <div class="row">
-                     <div class="mt-3 mb-3">
-                         {{-- <div class="d-inline-flex mb-2"> --}}
-                         <div class="row col-12">
+                 @if ($providersPayment[$index]['additional_payments'])
+                     @foreach ($providersPayment[$index]['additional_payments'] as $key => $payment)
+                         <div class="row">
+                             <div class="mt-3 mb-3">
+                                 {{-- <div class="d-inline-flex mb-2"> --}}
+                                 <div class="row col-12">
 
-                             <div class="col-2 mt-1">
-                                 <label class="form-label-sm">Label:</label>
-                             </div>
-                             <div class="col-8">
-                                 <div class="input-group">
-                                     <input type="text" name="" class="form-control form-control-sm"
-                                         placeholder="Payment Label" aria-label="Payment Label"
-                                         wire:model.defer="providersPayment.{{ $index }}.additional_label_provider">
+                                     <div class="col-2 mt-1">
+                                         <label class="form-label-sm">Label:</label>
+                                     </div>
+                                     <div class="col-8">
+                                         <div class="input-group">
+                                             <input type="text" name=""
+                                                 class="form-control form-control-sm" placeholder="Payment Label"
+                                                 aria-label="Payment Label"
+                                                 wire:model.defer="providersPayment.{{ $index }}.additional_payments.{{ $key }}.additional_label_provider">
 
+                                         </div>
+                                     </div>
                                  </div>
-                             </div>
-                         </div>
-                         {{-- </div> --}}
+                                 {{-- </div> --}}
 
-                         {{-- <div> --}}
-                             <div class="row col-12">
-                                 <div class="mt-3 mb-3">
-                                     {{-- <div class="d-inline-flex mb-3"> --}}
+                                 {{-- <div> --}}
+                                 <div class="row col-12">
+                                     <div class="mt-3 mb-3">
+                                         {{-- <div class="d-inline-flex mb-3"> --}}
                                          <div class="row col-12">
 
                                              <div class="col-6 mt-1">
                                                  <label class="form-label-sm text-nowrap">Additional Payment:
                                                  </label>
                                              </div>
-                                             <div class="col-4 ms-3" >
+                                             <div class="col-4 ms-3">
                                                  <div class="input-group">
                                                      <input type="number" name=""
                                                          class="form-control form-control-sm" placeholder="00:00"
                                                          aria-label="Additional Payment"
-                                                         wire:model.defer="providersPayment.{{ $index }}.additional_charge_provider"
+                                                         wire:model.defer="providersPayment.{{ $index }}.additional_payments.{{ $key }}.additional_charge_provider"
                                                          wire:blur="updateTotal({{ $index }})">
 
                                                  </div>
                                              </div>
-                                         {{-- </div> --}}
+                                             {{-- </div> --}}
+                                         </div>
                                      </div>
                                  </div>
-                             </div>
-                             <div class="mt-3 col-12">
+                                 <div class="mt-3 col-12">
 
-                                 <!--  <div>
+                                     <!--  <div>
                                              <label class="form-label-sm">Label</label>
                                              <input type="" name="" class="form-control form-control-sm"
                                                  placeholder="Payment Label" aria-label="Payment Label">
@@ -473,9 +636,9 @@
                                                      for="ChargetoCustomer"><small>Charge to
                                                          Customer</small></label>
                                              </div> -->
-                             </div>
-                         {{-- </div> --}}
-                         <!--  <div class="mb-2">
+                                 </div>
+                                 {{-- </div> --}}
+                                 <!--  <div class="mb-2">
                                          <button class="btn btn-xs btn-has-icon btn-primary rounded">
                                              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                                  xmlns="http://www.w3.org/2000/svg">
@@ -486,7 +649,7 @@
                                              Add New
                                          </button>
                                      </div> -->
-                         {{--
+                                 {{--
                                         <div>
                                             <div class="form-check">
                                                 <input class="form-check-input" id="ChargetoCustomer" name="" type="checkbox"
@@ -501,48 +664,50 @@
                                             </div>
                                         </div>
                                      --}}
-                         <div class="d-flex ">
-                             <div class="form-check mb-3 col-md-5 me-4">
-                                 <div class="">
-                                     <input class="form-check-input" id="reimburse-mileage" name=""
-                                         type="checkbox" tabindex="" checked>
-                                     <label class="form-check-label text-nowrap"
-                                         for="reimburse-mileage"><small>Reimburse
-                                             Mileage</small></label>
-                                     <div>
-                                         <input type="" name=""
-                                             class="form-control form-control-sm text-center" placeholder="10 km"
-                                             aria-label="Distance">
+                                 <div class="d-flex ">
+                                     <div class="form-check mb-3 col-md-5 me-4">
+                                         <div class="">
+                                             <input class="form-check-input" id="reimburse-mileage" name=""
+                                                 type="checkbox" tabindex="" checked>
+                                             <label class="form-check-label text-nowrap"
+                                                 for="reimburse-mileage"><small>Reimburse
+                                                     Mileage</small></label>
+                                             <div>
+                                                 <input type="" name=""
+                                                     class="form-control form-control-sm text-center"
+                                                     placeholder="10 km" aria-label="Distance">
+                                             </div>
+                                             <small>Coming Soon</small>
+                                         </div>
+
+
                                      </div>
-                                     <small>Coming Soon</small>
+
+
+                                     <div class="form-check mb-3 col-md-5">
+                                         <div>
+                                             <input class="form-check-input" id="reimburse-travel-time"
+                                                 name="" type="checkbox" tabindex="" checked>
+                                             <label class="form-check-label text-nowrap"
+                                                 for="reimburse-travel-time"><small>Reimburse Travel
+                                                     Time</small></label>
+                                         </div>
+                                         <div class="d-inline-flex">
+                                             <input type="" name=""
+                                                 class="form-control form-control-sm text-center rounded-0"
+                                                 placeholder="1 hr" aria-label="Reimburse Travel Time">
+                                             <input type="" name=""
+                                                 class="form-control form-control-sm text-center rounded-0"
+                                                 placeholder="32 m" aria-label="Reimburse Travel Time">
+
+                                         </div>
+                                         <br /><small>Coming Soon</small>
+                                     </div>
                                  </div>
-
-
-                             </div>
-
-
-                             <div class="form-check mb-3 col-md-5">
-                                 <div>
-                                     <input class="form-check-input" id="reimburse-travel-time" name=""
-                                         type="checkbox" tabindex="" checked>
-                                     <label class="form-check-label text-nowrap"
-                                         for="reimburse-travel-time"><small>Reimburse Travel
-                                             Time</small></label>
-                                 </div>
-                                 <div class="d-inline-flex">
-                                     <input type="" name=""
-                                         class="form-control form-control-sm text-center rounded-0" placeholder="1 hr"
-                                         aria-label="Reimburse Travel Time">
-                                     <input type="" name=""
-                                         class="form-control form-control-sm text-center rounded-0" placeholder="32 m"
-                                         aria-label="Reimburse Travel Time">
-
-                                 </div>
-                                 <br /><small>Coming Soon</small>
                              </div>
                          </div>
-                     </div>
-                 </div>
+                     @endforeach
+                 @endif
              </div>
 
 
@@ -602,4 +767,3 @@
 
 
  </div>
-
