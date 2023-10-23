@@ -1,4 +1,6 @@
-<div>
+<div x-data="{ isUploading: false, progress: 0 }" x-on:livewire-upload-start="isUploading = true"
+    x-on:livewire-upload-finish="isUploading = false" x-on:livewire-upload-error="isUploading = false"
+    x-on:livewire-upload-progress="progress = $event.detail.progress">
     <div class="row between-section-segment-spacing">
         <div class="row mt-4">
             <h3>Billing Manager</h3>
@@ -233,7 +235,56 @@
         </div>
     </div>
 
-    <div class="row mb-3">
+
+    {{-- Upload File --}}
+    <div class="col-md-6 col-12 ps-lg-2">
+        <div class="row d-flex">
+            <div class="col-lg-12 d-flex text-center">
+                <label class="form-label" for="first-name-column">
+                    Upload File</label>
+            </div>
+            <div class="text-center col-lg-3 d-flex ">
+    
+                <div class="btn btn-outline-primary d-block px-2 pb-0">
+                    <label for="file">
+                        <svg class="mb-2" width="35" height="35" viewBox="0 0 35 35" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M32.0833 1.1498e-06H25.5208C25.3274 1.1498e-06 25.142 0.076824 25.0052 0.213569C24.8685 0.350315 24.7917 0.535781 24.7917 0.729168V8.75C24.7917 9.13678 24.638 9.50771 24.3645 9.7812C24.091 10.0547 23.7201 10.2083 23.3333 10.2083H11.7214C11.3429 10.2143 10.9763 10.0765 10.6955 9.82281C10.4147 9.56906 10.2406 9.21824 10.2083 8.84115C10.1959 8.64211 10.2244 8.44263 10.292 8.25504C10.3597 8.06745 10.4652 7.89573 10.6019 7.75051C10.7385 7.60528 10.9036 7.48964 11.0867 7.41072C11.2699 7.3318 11.4672 7.29128 11.6667 7.29167H21.875V0.729168C21.875 0.535781 21.7982 0.350315 21.6614 0.213569C21.5247 0.076824 21.3392 1.1498e-06 21.1458 1.1498e-06H10.8099C10.427 -0.000339916 10.0478 0.0752001 9.69421 0.222257C9.34065 0.369313 9.01973 0.584972 8.75 0.856772L0.856772 8.75C0.584972 9.01973 0.369313 9.34065 0.222257 9.69421C0.0752001 10.0478 -0.000339916 10.427 1.1498e-06 10.8099V32.0833C1.1498e-06 32.8569 0.307292 33.5987 0.854273 34.1457C1.40125 34.6927 2.14312 35 2.91667 35H32.0833C32.8569 35 33.5987 34.6927 34.1457 34.1457C34.6927 33.5987 35 32.8569 35 32.0833V2.91667C35 2.14312 34.6927 1.40125 34.1457 0.854273C33.5987 0.307292 32.8569 1.1498e-06 32.0833 1.1498e-06ZM17.5 26.25C16.4905 26.25 15.5037 25.9506 14.6643 25.3898C13.8249 24.8289 13.1707 24.0318 12.7844 23.0991C12.398 22.1665 12.297 21.1402 12.4939 20.1501C12.6909 19.16 13.177 18.2505 13.8908 17.5366C14.6046 16.8228 15.5141 16.3367 16.5042 16.1397C17.4943 15.9428 18.5206 16.0439 19.4533 16.4302C20.3859 16.8165 21.1831 17.4707 21.744 18.3101C22.3048 19.1495 22.6042 20.1363 22.6042 21.1458C22.5994 22.4981 22.0601 23.7935 21.1039 24.7497C20.1477 25.7059 18.8522 26.2452 17.5 26.25Z"
+                                fill="url(#paint0_linear_2957_105064)" />
+                            <defs>
+                                <linearGradient id="paint0_linear_2957_105064" x1="17.5" y1="0" x2="31.5419" y2="0"
+                                    gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#213969" />
+                                    <stop offset="1" stop-color="#204387" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <p class="text-primary mb-0 fw-medium"> Attach from Device </p>
+                    </label>
+                    <input style=" opacity: 0; z-index: -1; position: absolute;" id="file" class="" wire:model="file" type="file">  
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div x-show="isUploading">
+                    <progress max="100" x-bind:value="progress"></progress>
+                </div>
+                <div class="">
+                    @if ($file)
+                    {{ $this->file->getClientOriginalName() }}
+                    @endif
+                </div>
+            </div>
+            @error('file')
+            <span class="d-inline-block invalid-feedback mt-2">
+                {{ $message }}
+            </span>
+            @enderror
+        </div>
+    </div>
+
+
+    {{-- <div class="row mb-3">
         <small>(coming soon)</small>
 
         <div class="col-md-3">
@@ -254,24 +305,24 @@
         <div>
             <button class="btn btn-outline-primary mx-2">Attachment 3</button>
         </div>
-    </div>
+    </div> --}}
     <div>
         <div class="row between-section-segment-spacing">
             <div class="mt-2">
-                <input disabled class="form-check-input" type="checkbox" value="reimbursement-records"
+                <input wire:model="selected_Record_type" class="form-check-input" type="radio" value="1" name="record-type" 
                     id="reimbursement-records">
                 <label class="form-check-label form-label" for="reimbursement-records">
                     Reimbursement Records
-                    <small>(coming soon)</small>
+                    {{-- <small>(coming soon)</small> --}}
 
                 </label>
             </div>
             <div class="mt-2">
-                <input disabled class="form-check-input" type="checkbox" value="provider-timesheet"
+                <input wire:model="selected_Record_type" class="form-check-input" type="radio" value="2" name="record-type" 
                     id="provider-timesheet">
                 <label class="form-check-label form-label" for="provider-timesheet">
                     Provider Timesheet(s)
-                    <small>(coming soon)</small>
+                    {{-- <small>(coming soon)</small> --}}
 
                 </label>
             </div>

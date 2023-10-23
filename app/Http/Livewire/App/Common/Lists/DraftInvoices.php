@@ -149,7 +149,9 @@ final class DraftInvoices extends PowerGridComponent
 							</div>
 							<div class="pt-2">
 								<div class="font-family-secondary leading-none">
+								<a @click="invoiceGeneratorbookings = true" wire:click="openCompanyBookingsPanel(' . $modal->id . ')" title="Booking" aria-label="Booking" class="btn btn-hs-icon p-0">
 									' . $modal->name . '
+								</a>
 								</div>
 							</div>
 						</div>';
