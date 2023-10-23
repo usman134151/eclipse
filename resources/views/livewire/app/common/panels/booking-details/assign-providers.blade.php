@@ -285,11 +285,11 @@
          <td colSpan=4> Pending</td>
      @endif
      @if ($panelType == 1 || ($panelType == 3 && $provider->invitation_response($booking_id) == 1))
-         <td class="border-end-2" style="min-width:340px">
+          <td class="border-end-2" style="min-width:340px">
              <div class="d-grid grid-cols-1 gap-3 mb-3">
                  {{-- <div> --}}
                  <div class="row">
-                     <div class="  mt-3 mb-3">
+                     <div class="  mt-1">
                          <div class="col col-12">
                              <div class="col-12 mt-1">
                                  <label class="form-label-sm"><strong> Business Hours</strong></label>
@@ -300,9 +300,9 @@
                                  </div>
                                  <div class="col-7">
                                      <div class="input-group">
-                                         <input type="" name="" value="{{ $b_hours_duration }}"
+                                         <input type="number" name="" value="{{ $b_hours_duration }}"
                                              class="form-control form-control-sm text-center" placeholder="0"
-                                             aria-label="Hours" disabled>
+                                             aria-label="Hours" >
                                          <div class="input-group-text p-0">
                                              <select class="form-select form-select-sm" aria-label="Days" disabled>
                                                  <option>{{ $durationLabel }}</option>
@@ -343,9 +343,9 @@
                  </div>
                  <hr>
                  <div class="row">
-                     <div class="  mt-3 mb-3">
+                     <div class="  mt-1">
                          <div class="col col-12">
-                             <div class="col-12 mt-1">
+                             <div class="col-12">
                                  <label class="form-label-sm"><strong> After Hours</strong></label>
                              </div>
                              <div class="row">
@@ -395,6 +395,60 @@
 
                      </div>
                  </div>
+                 <hr>
+
+                   <div class="row">
+                     <div class="  mt-1">
+                         
+                         <div class="col col-12">
+                             <div class="">
+                                 <div class="row">
+
+                                     <div class="col-6 mt-1" style="margin-right: -15px;">
+                                         <label for="average-rate" class="form-label-sm">Expediation Rate:</label>
+                                     </div>
+                                     <div class="col-6 " style=" width:47%;">
+                                         <div class="input-group ">
+                                             <input type="" id="average-rate" name="average-rate"
+                                                 class="form-control form-control-sm  w-25%" placeholder="$00:00"
+                                                 wire:blur="updateTotal({{ $index }})"
+                                                 wire:model.lazy="providersPayment.{{ $index }}.expediation_rate">
+                                             @error('providersPayment.' . $index . '.expediation_rate')
+                                                 <span class="d-inline invalid-feedback">
+                                                     {{ $message }}
+                                                 </span>
+                                             @enderror
+
+                                         </div>
+                                     </div>
+                                 </div>
+                                    <div class="row mt-2">
+
+                                     <div class="col-6 mt-1" style="margin-right: -15px;">
+                                         <label for="average-rate" class="form-label-sm">Specialization Rate:</label>
+                                     </div>
+                                     <div class="col-6 mt-2" style=" width:47%;">
+                                         <div class="input-group ">
+                                             <input type="" id="average-rate" name="average-rate"
+                                                 class="form-control form-control-sm  w-25%" placeholder="$00:00"
+                                                 wire:blur="updateTotal({{ $index }})"
+                                                 wire:model.lazy="providersPayment.{{ $index }}.specialization_rate">
+                                             @error('providersPayment.' . $index . '.specialization_rate')
+                                                 <span class="d-inline invalid-feedback">
+                                                     {{ $message }}
+                                                 </span>
+                                             @enderror
+
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+
+
+                     </div>
+                 </div>
+
              </div>
 
 
