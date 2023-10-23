@@ -6,14 +6,20 @@ use App\Models\Tenant\Booking;
 use App\Models\Tenant\Invoice;
 use App\Models\Tenant\User;
 use App\Models\Tenant\UserAddress;
+use App\Models\Tenant\InvoiceAttachment;
+use App\Services\App\UploadFileService;
 use Carbon\Carbon;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class CreateInvoice extends Component
 {
+
+    use WithFileUploads;
+
     public $showForm, $selectedBookingsIds = [], $managers, $addresses, $invoice = ['billing_address_id' => null, 'billing_manager_id' => null],
-        $exclude_notif = false, $bookings = [], $days=0;
+        $exclude_notif = false, $bookings = [], $days=0, $file = null, $selected_Record_type;
     protected $listeners = [];
 
     public function rules()
@@ -28,6 +34,7 @@ class CreateInvoice extends Component
                 Rule::unique('invoices', 'invoice_number')
                 // ->ignore($this->user->id)
             ],
+            'file' => 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv',
         ];
     }
 
@@ -93,6 +100,17 @@ class CreateInvoice extends Component
                 }
             }
         }
+        if ($this->file != null) {
+            $fileService = new UploadFileService();
+            $attachmentPath  = $fileService->saveFile('invoice/' . $invoice, $this->file);
+            $type = $this->selected_Record_type != null ? $this->selected_Record_type : '0'; // default 0, 1 for reimbrusement, 2 for timesheet
+            InvoiceAttachment::create([
+                'invoice_id' => $invoice, // $invoice holds the ID of the associated invoice
+                'attachment_path' => $attachmentPath,
+                'type' => $type, 
+            ]);
+        }
+
         $this->dispatchBrowserEvent('close-create-invoice');
         $this->emit('showList', 'Invoice created successfully');
     }
