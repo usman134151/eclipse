@@ -38,13 +38,13 @@ class AssignProviders extends Component
     public $distance;
 
     public $showForm, $panelType = 1;
-    public $tags, $search;
+    public $tags, $search, $service_payments = [];
     public $service_id = null, $booking_id = null, $custom_rates;
     protected $listeners = ['showList' => 'resetForm', 'refreshFilters', 'saveAssignedProviders' => 'save', 'updateVal', 'inviteProviders'];
     public $assignedProviders = [], $limit = null, $booking, $showError = false;
     public $paymentData = ["additional_label_provider" => '', "additional_charge_provider" => 0];
     public $providers, $providersPayment, $bookingService, $durationLabel, $durationTotal = 0, $totalAmount;
-    public $b_hours_duration = 0, $a_hours_duration = 0;
+    public $b_hours_duration = 0, $a_hours_duration = 0, $expedited_hours = 0, $booking_specializations = [];
     public $setupValues = [
         'accommodations' => ['parameters' => ['Accommodation', 'id', 'name', 'status', 1, 'name', true, 'accommodations', '', 'accommodationsassignProvider', 2]],
         'specializations' => ['parameters' => ['Specialization', 'id', 'name', 'status', 1, 'name', true, 'specializations', '', 'specializationsassignProvider', 4]],
@@ -104,7 +104,6 @@ class AssignProviders extends Component
 
     public function refreshFilters($name, $value)
     {
-        // dd($name,$value);
         if ($name == "Service_filter") {
             $this->services = $value;
         } else if ($name == "specialization_search_filter") {
@@ -199,7 +198,6 @@ class AssignProviders extends Component
             $query->whereHas('services', function ($query) use ($filterArray) {
                 $query->where('provider_accommodation_services.status', '=', 1)->where(function ($query) use ($filterArray) {
                     foreach ($filterArray as $item) {
-                        // $query->orWhereRaw("FIND_IN_SET($item, service_type)");
                         $query->where('service_categories.service_type', 'LIKE', "%$item%");
                     }
                 });
@@ -207,7 +205,6 @@ class AssignProviders extends Component
         }
         if (is_array($this->specializations) && count($this->specializations)) {
             $specializations = $this->specializations;
-            // dd($this->services);
             $query->whereHas('services', function ($query) use ($specializations) {
                 $query->where('provider_accommodation_services.status', '=', 1)
                     ->whereHas('specializations', function ($query) use ($specializations) {
@@ -249,8 +246,6 @@ class AssignProviders extends Component
         $providers = $this->providers = $query->get();
         if ($this->panelType != 2) {
 
-            //charges caculations 
-            //end of charges calculations 
             $this->providersPayment = [];
             foreach ($providers as $index => &$provider) {
 
@@ -275,7 +270,6 @@ class AssignProviders extends Component
                 ) {
                     $e_rates = json_decode($this->custom_rates[$provider['id']]['standard']['emergency'], true);
                 }
-                //    dd($this->custom_rates[$provider['id']]['standard']['emergency']);
 
                 if (!is_null($service->specialization) && !is_array($service->specialization))
                     $specializations = json_decode($service->specialization, true);
@@ -289,13 +283,22 @@ class AssignProviders extends Component
                     }
 
                 $providerCharges = $this->getProviderCharges($provider['id']);
+                $servicePayments = $this->getservicePayments();
+                $additionalPayments = [
+                    0 => [
+                        'additional_label_provider' => $this->paymentData['additional_label_provider'],
+                        'additional_charge_provider' => $this->paymentData['additional_charge_provider'],
+                    ]
+                ];
+
+
                 $this->providersPayment[$index] = [
                     'additional_label_provider' => $this->paymentData['additional_label_provider'],
                     'additional_charge_provider' => $this->paymentData['additional_charge_provider'],
+                    'additional_payments' => $additionalPayments,
                     "is_override_price" => 1,
-                    "business_hours_override_price" => $providerCharges['business_hours_override_price'],
-                    "after_hours_override_price" => $providerCharges['after_hours_override_price'],
-                    'total_amount' => ($providerCharges['business_hours_override_price'] * $this->b_hours_duration) + $providerCharges['after_hours_override_price'] * $this->a_hours_duration
+                    'service_payment_details' => $servicePayments,
+                    'total_amount' => ($servicePayments['b_hours_rate'] * $servicePayments['b_hours_duration']) + ($servicePayments['a_hours_rate'] * $servicePayments['a_hours_duration'])
                 ];
                 foreach ($this->assignedProviders as &$aProvider) {
                     if ($aProvider['provider_id'] == $provider['id']) {
@@ -305,6 +308,8 @@ class AssignProviders extends Component
 
                             $aProvider['total_amount'] = $this->updateTotal($index);
                         }
+                        if (!isset($aProvider['additional_payments']))
+                            $this->providersPayment[$index]['additional_payments'] = $additionalPayments;
                     }
                 }
             }
@@ -315,8 +320,12 @@ class AssignProviders extends Component
     public function messages()
     {
         return [
-            'providersPayment.*.business_hours_override_price.numeric' => 'Average rate should be a number',
-            'providersPayment.*.after_hours_override_price.numeric' => 'Average rate should be a number',
+            'providersPayment.*.service_payment_details.b_hours_duration.numeric' => 'Average rate should be a number',
+            'providersPayment.*.service_payment_details.a_hours_duration.numeric' => 'Average rate should be a number',
+            'providersPayment.*.service_payment_details.b_hours_rate.numeric' => 'Average rate should be a number',
+            'providersPayment.*.service_payment_details.a_hours_rate.numeric' => 'Average rate should be a number',
+            'providersPayment.*.service_payment_details.expedited_rate.numeric' => 'Average rate should be a number',
+            'providersPayment.*.service_payment_details.specialization_charges.*.provider_charges.numeric' => 'Average rate should be a number',
 
         ];
     }
@@ -324,8 +333,12 @@ class AssignProviders extends Component
     {
         return [
             // 'providersPayment.*.override_price' => 'nullable|numeric',
-            'providersPayment.*.business_hours_override_price' => 'nullable|numeric',
-            'providersPayment.*.after_hours_override_price' => 'nullable|numeric',
+            'providersPayment.*.service_payment_details.b_hours_duration' => 'nullable|numeric',
+            'providersPayment.*.service_payment_details.a_hours_duration' => 'nullable|numeric',
+            'providersPayment.*.service_payment_details.b_hours_rate' => 'nullable|numeric',
+            'providersPayment.*.service_payment_details.a_hours_rate' => 'nullable|numeric',
+            'providersPayment.*.service_payment_details.expedited_rate' => 'nullable|numeric',
+            'providersPayment.*.service_payment_details.specialization_charges.*.provider_charges' => 'nullable|numeric',
 
         ];
     }
@@ -333,26 +346,47 @@ class AssignProviders extends Component
     {
         $this->validate();
         // dd($this->providersPayment[$index]['override_price']);
-        if (!isset($this->providersPayment[$index]['business_hours_override_price']) || trim($this->providersPayment[$index]['business_hours_override_price']) == '')
-            $this->providersPayment[$index]['business_hours_override_price'] = 0;
-        if (!isset($this->providersPayment[$index]['after_hours_override_price']) || trim($this->providersPayment[$index]['after_hours_override_price']) == '')
-            $this->providersPayment[$index]['after_hours_override_price'] = 0;
-        // $this->providersPayment[$index]['total_amount'] = number_format($this->providersPayment[$index]['override_price'] * $this->durationTotal, 2, '.', '');
-        $this->providersPayment[$index]['total_amount'] = number_format(($this->providersPayment[$index]['business_hours_override_price'] * $this->b_hours_duration) + ($this->providersPayment[$index]['after_hours_override_price'] * $this->a_hours_duration), 2, '.', '');
+        if (!isset($this->providersPayment[$index]['service_payment_details']['b_hours_rate']) || trim($this->providersPayment[$index]['service_payment_details']['b_hours_rate']) == '')
+            $this->providersPayment[$index]['service_payment_details']['b_hours_rate'] = 0;
+        if (!isset($this->providersPayment[$index]['service_payment_details']['a_hours_rate']) || trim($this->providersPayment[$index]['service_payment_details']['a_hours_rate']) == '')
+            $this->providersPayment[$index]['service_payment_details']['a_hours_rate'] = 0;
+        if (!isset($this->providersPayment[$index]['service_payment_details']['b_hours_duration']) || trim($this->providersPayment[$index]['service_payment_details']['b_hours_duration']) == '')
+            $this->providersPayment[$index]['service_payment_details']['b_hours_duration'] = 0;
+        if (!isset($this->providersPayment[$index]['service_payment_details']['a_hours_duration']) || trim($this->providersPayment[$index]['service_payment_details']['a_hours_duration']) == '')
+            $this->providersPayment[$index]['service_payment_details']['a_hours_duration'] = 0;
+        if (!isset($this->providersPayment[$index]['service_payment_details']['expedited_rate']) || trim($this->providersPayment[$index]['service_payment_details']['expedited_rate']) == '')
+            $this->providersPayment[$index]['service_payment_details']['expedited_rate'] = 0;
+        if (!isset($this->providersPayment[$index]['service_payment_details']['expedited_duration']) || trim($this->providersPayment[$index]['service_payment_details']['expedited_duration']) == '')
+            $this->providersPayment[$index]['service_payment_details']['expedited_duration'] = 0;
+        if (!isset($this->providersPayment[$index]['additional_payments']))
+            $this->providersPayment[$index]['additional_payments'] = [];
+        $this->providersPayment[$index]['total_amount'] = number_format(($this->providersPayment[$index]['service_payment_details']['b_hours_rate'] * $this->providersPayment[$index]['service_payment_details']['b_hours_duration']) + ($this->providersPayment[$index]['service_payment_details']['a_hours_rate'] * $this->providersPayment[$index]['service_payment_details']['a_hours_duration'])
+            + ($this->providersPayment[$index]['service_payment_details']['expedited_rate'] * $this->providersPayment[$index]['service_payment_details']['expedited_duration']), 2, '.', '');
 
-        if (!is_null($this->providersPayment[$index]['additional_charge_provider']) && is_numeric($this->providersPayment[$index]['additional_charge_provider']))
-            $this->providersPayment[$index]['total_amount'] = $this->providersPayment[$index]['total_amount'] + $this->providersPayment[$index]['additional_charge_provider'];
+
+        if (count($this->providersPayment[$index]['additional_payments'])) {
+            foreach ($this->providersPayment[$index]['additional_payments'] as $key => $payment) {
+                $this->providersPayment[$index]['total_amount'] = $this->providersPayment[$index]['total_amount']
+                    + $payment['additional_charge_provider'] ?? 0;
+            }
+        }
+
+
+        if (count($this->booking_specializations)) {
+            foreach ($this->providersPayment[$index]['service_payment_details']['specialization_charges'] as $key => $specialization) {
+                $this->providersPayment[$index]['total_amount'] = $this->providersPayment[$index]['total_amount'] + $this->providersPayment[$index]['service_payment_details']['specialization_charges'][$key]['provider_charges'] ?? 0;
+            }
+        }
         $pid = $this->providers[$index]['id'];
         foreach ($this->assignedProviders as &$aProvider) {
             if ($aProvider['provider_id'] == $pid) {
 
                 $aProvider['total_amount'] = $this->providersPayment[$index]['total_amount'];
-                // $aProvider['override_price'] = $this->providersPayment[$index]['override_price'];
-                $aProvider['after_hours_override_price'] = $this->providersPayment[$index]['after_hours_override_price'];
-                $aProvider['business_hours_override_price'] = $this->providersPayment[$index]['business_hours_override_price'];
-                $aProvider['additional_label_provider'] = $this->providersPayment[$index]['additional_label_provider'];
-                $aProvider['additional_charge_provider'] = $this->providersPayment[$index]['additional_charge_provider'];
-
+                $aProvider['service_payment_details'] = $this->providersPayment[$index]['service_payment_details'];
+                $aProvider['additional_payments'] = $this->providersPayment[$index]['additional_payments'];
+                $aProvider['additional_label_provider'] = isset($this->providersPayment[$index]['additional_payments'][0]['additional_label_provider']) ? $this->providersPayment[$index]['additional_payments'][0]['additional_label_provider'] : null;
+                $aProvider['additional_charge_provider'] = isset($this->providersPayment[$index]['additional_payments'][0]['additional_charge_provider']) ? $this->providersPayment[$index]['additional_payments'][0]['additional_charge_provider'] : null;
+           
             }
         }
         return $this->providersPayment[$index]['total_amount'];
@@ -373,8 +407,19 @@ class AssignProviders extends Component
         //checking if provider is configured for service
         return [
             'charges' => 0,
-            //  'override_price' => 0,
-            'business_hours_override_price' => 0, 'after_hours_override_price' => 0
+            'override_price' => 0,
+        ];
+    }
+    public function getServicePayments()
+    {
+        return [
+            'b_hours_duration' => $this->b_hours_duration,
+            'b_hours_rate' => 0,
+            'a_hours_duration' => $this->a_hours_duration,
+            'a_hours_rate' => 0,
+            'expedited_duration' => $this->expedited_hours,
+            'expedited_rate' => 0,
+            'specialization_charges' => $this->booking_specializations,
         ];
     }
 
@@ -431,12 +476,12 @@ class AssignProviders extends Component
                 ->get()
                 ->pluck('provider_id')
                 ->toArray();
-                $booking_service = $this->booking->booking_services->where('services', $this->service_id)->first();
+            $booking_service = $this->booking->booking_services->where('services', $this->service_id)->first();
 
-                if ($booking_service) {
-                    $this->limit = $booking_service->provider_count;
-                    $this->bookingService = $booking_service;
-                }
+            if ($booking_service) {
+                $this->limit = $booking_service->provider_count;
+                $this->bookingService = $booking_service;
+            }
         } else {
             $booking_service = $this->booking->booking_services->where('services', $this->service_id)->first();
 
@@ -450,6 +495,21 @@ class AssignProviders extends Component
                     $booking_service['service_calculations'] = json_decode($booking_service['service_calculations'], true);
                 } else
                     $booking_service['service_calculations'] = [];
+                if (isset($booking_service['service_calculations']['expedited_charges']) && count($booking_service['service_calculations']['expedited_charges'])) {
+                    if ($booking_service['service_calculations']['expedited_charges']['charges']) {
+                        $this->bookingService->expedited_rates = true;
+                        $this->expedited_hours = $booking_service['service_calculations']['expedited_charges']['hour'];
+                    } else
+                        $this->bookingService->expedited_rates = false;
+                }
+                // dd($booking_service['service_calculations']);
+                if (isset($booking_service['service_calculations']['specialization_charges']) && count($booking_service['service_calculations']['specialization_charges'])) {
+                    $this->booking_specializations = $booking_service['service_calculations']['specialization_charges'];
+                    foreach ($booking_service['service_calculations']['specialization_charges'] as $key => $specialization) {
+                        $this->booking_specializations[$key]['label'] = $specialization['label'];
+                        $this->booking_specializations[$key]['provider_charges'] = 0;
+                    }
+                }
                 if ($booking_service['day_rate']) {
                     $this->durationLabel = 'day(s)';
 
@@ -490,8 +550,8 @@ class AssignProviders extends Component
     public function save()
     {
 
+        $this->validate();
         if ($this->limit && count($this->assignedProviders) <= $this->limit) {
-            // $booking = Booking::where('id', $this->booking_id)->first();
             $booking_service = BookingServices::where(['services' => $this->service_id, 'booking_id' => $this->booking_id])->first();
             // delete existing records
             $prev = BookingProvider::where(['booking_id' => $this->booking_id, 'booking_service_id' => null])->orWhere(['booking_service_id' => $booking_service->id]);
@@ -536,7 +596,6 @@ class AssignProviders extends Component
 
                 $provider['booking_id'] = $this->booking_id;
                 $provider['booking_service_id'] = $booking_service ? $booking_service->id : null;
-                // dd($this->providersPayment);
 
                 BookingProvider::updateOrCreate(
                     [
@@ -651,8 +710,8 @@ class AssignProviders extends Component
             'additional_label_provider' => $this->providersPayment[$index]['additional_label_provider'],
             'additional_charge_provider' => $this->providersPayment[$index]['additional_charge_provider'],
             "is_override_price" => 1,
-            "business_hours_override_price" => $this->providersPayment[$index]['business_hours_override_price'],
-            "after_hours_override_price" => $this->providersPayment[$index]['after_hours_override_price'],
+            "additional_payments" => $this->providersPayment[$index]['additional_payments'],
+            "service_payment_details" => $this->providersPayment[$index]['service_payment_details'],
             "total_amount" => $this->providersPayment[$index]['total_amount']
 
         ];
