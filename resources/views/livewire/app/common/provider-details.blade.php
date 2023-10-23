@@ -898,7 +898,7 @@
                                                                     <div class="mx-3 fw-semibold">Day Rate Virtual:
                                                                     </div>
                                                                     <div class="mx-3">
-                                                                        {{ $service['price_v'] ? '$' . number_format($service['price_v'], 2) : 'N/A' }}
+                                                                        {{ $service['price_v'] ?  formatPayment($service['price_v']) : 'N/A' }}
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -917,7 +917,7 @@
                                                                     </div>
                                                                     <div class="mx-3 fw-semibold">Day Rate Phone:</div>
                                                                     <div class="mx-3">
-                                                                        {{ $service['price_p'] ? '$' . number_format($service['price_p'], 2) : 'N/A' }}
+                                                                        {{ $service['price_p'] ?  formatPayment($service['price_p']) : 'N/A' }}
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -936,7 +936,7 @@
                                                                     <div class="mx-3 fw-semibold">Day Rate
                                                                         Teleconference:</div>
                                                                     <div class="mx-3">
-                                                                        {{ $service['price_t'] ? '$' . number_format($service['price_t'], 2) : 'N/A' }}
+                                                                        {{ $service['price_t'] ?  formatPayment($service['price_t']) : 'N/A' }}
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1004,7 +1004,16 @@
                                                                                     <div class="d-inline-flex">
                                                                                         <span class="fw-semibold">Rate:
                                                                                         </span><span
-                                                                                            class="mx-1">{{ $param[0]['price'] ? $param[0]['price_type'] . number_format($param[0]['price'],2) : 'N/A' }}</span>
+                                                                                            class="mx-1">@if ($param[0]['price'])
+                                                                                                            @if ($param[0]['price_type'] == "$")
+                                                                                                                {{ formatPayment($param[0]['price']) }}
+                                                                                                            @else
+                                                                                                                {{ $param[0]['price'] }}
+                                                                                                            @endif
+                                                                                                        @else
+                                                                                                            N/A
+                                                                                                        @endif
+                                                                                                        </span>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="mx-4 col-4">
@@ -1082,7 +1091,7 @@
                                                                                     <div class="d-inline-flex">
                                                                                         <span class="fw-semibold">Rate:
                                                                                         </span><span
-                                                                                            class="mx-1">{{ $param[0]['price'] ? $param[0]['price_type'] .  number_format($param[0]['price'],2) : 'N/A' }}</span>
+                                                                                            class="mx-1">{{ $param[0]['price'] ? $param[0]['price_type'] .  formatPayment($param[0]['price']) : 'N/A' }}</span>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="mx-4 col-4">
@@ -1161,7 +1170,7 @@
                                                                                     <div class="d-inline-flex">
                                                                                         <span class="fw-semibold">Rate:
                                                                                         </span><span
-                                                                                            class="mx-1">{{ $param[0]['price'] ? $param[0]['price_type'] .  number_format($param[0]['price'],2) : 'N/A' }}</span>
+                                                                                            class="mx-1">{{ $param[0]['price'] ? $param[0]['price_type'] .  formatPayment($param[0]['price']) : 'N/A' }}</span>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="mx-4 col-4">
@@ -1240,7 +1249,7 @@
                                                                                     <div class="d-inline-flex">
                                                                                         <span class="fw-semibold">Rate:
                                                                                         </span><span
-                                                                                            class="mx-1">{{ $param[0]['price'] ? $param[0]['price_type'] .' '.  number_format($param[0]['price'],2) : 'N/A' }}</span>
+                                                                                            class="mx-1">{{ $param[0]['price'] ? $param[0]['price_type'] .' '.  formatPayment($param[0]['price']) : 'N/A' }}</span>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="mx-4 col-4">
@@ -1318,7 +1327,7 @@
                                                                                     <div class="mx-1 mt-1"><span
                                                                                             class="fw-semibold">In-Person:
                                                                                         </span><span
-                                                                                            class="mx-1">{{ $row['sp'] ? '$' . number_format($row['sp'], 2) : 'N/A' }}</span>
+                                                                                            class="mx-1">{{ $row['sp'] ?  formatPayment($row['sp']) : 'N/A' }}</span>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -1338,7 +1347,7 @@
                                                                                     </div>
                                                                                     <div class="mx-1 mt-1"><span
                                                                                             class="fw-semibold">Virtual:</span><span
-                                                                                            class="mx-1">{{ $row['sp_v'] ? '$' . number_format($row['sp_v'], 2) : 'N/A' }}</span>
+                                                                                            class="mx-1">{{ $row['sp_v'] ?  formatPayment($row['sp_v']) : 'N/A' }}</span>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -1358,7 +1367,7 @@
                                                                                     </div>
                                                                                     <div class="mx-1 mt-1"><span
                                                                                             class="fw-semibold">Phone:</span><span
-                                                                                            class="mx-1">{{ $row['sp_p'] ? '$' . number_format($row['sp_p'], 2) : 'N/A' }}</span>
+                                                                                            class="mx-1">{{ $row['sp_p'] ?  formatPayment($row['sp_p']) : 'N/A' }}</span>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -1378,7 +1387,7 @@
                                                                                     </div>
                                                                                     <div class="mx-1 mt-1"><span
                                                                                             class="fw-semibold">Teleconferencing:</span><span
-                                                                                            class="mx-1">{{ $row['sp_t'] ? '$' . number_format($row['sp_t'], 2) : 'N/A' }}</span>
+                                                                                            class="mx-1">{{ $row['sp_t'] ?  formatPayment($row['sp_t']) : 'N/A' }}</span>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
