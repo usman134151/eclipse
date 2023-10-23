@@ -104,7 +104,6 @@ class AssignProviders extends Component
 
     public function refreshFilters($name, $value)
     {
-        // dd($name,$value);
         if ($name == "Service_filter") {
             $this->services = $value;
         } else if ($name == "specialization_search_filter") {
@@ -199,7 +198,6 @@ class AssignProviders extends Component
             $query->whereHas('services', function ($query) use ($filterArray) {
                 $query->where('provider_accommodation_services.status', '=', 1)->where(function ($query) use ($filterArray) {
                     foreach ($filterArray as $item) {
-                        // $query->orWhereRaw("FIND_IN_SET($item, service_type)");
                         $query->where('service_categories.service_type', 'LIKE', "%$item%");
                     }
                 });
@@ -207,7 +205,6 @@ class AssignProviders extends Component
         }
         if (is_array($this->specializations) && count($this->specializations)) {
             $specializations = $this->specializations;
-            // dd($this->services);
             $query->whereHas('services', function ($query) use ($specializations) {
                 $query->where('provider_accommodation_services.status', '=', 1)
                     ->whereHas('specializations', function ($query) use ($specializations) {
@@ -249,8 +246,6 @@ class AssignProviders extends Component
         $providers = $this->providers = $query->get();
         if ($this->panelType != 2) {
 
-            //charges caculations 
-            //end of charges calculations 
             $this->providersPayment = [];
             foreach ($providers as $index => &$provider) {
 
@@ -275,7 +270,6 @@ class AssignProviders extends Component
                 ) {
                     $e_rates = json_decode($this->custom_rates[$provider['id']]['standard']['emergency'], true);
                 }
-                //    dd($this->custom_rates[$provider['id']]['standard']['emergency']);
 
                 if (!is_null($service->specialization) && !is_array($service->specialization))
                     $specializations = json_decode($service->specialization, true);
@@ -369,10 +363,6 @@ class AssignProviders extends Component
 
                 $aProvider['total_amount'] = $this->providersPayment[$index]['total_amount'];
                 $aProvider['service_payment_details'] = $this->providersPayment[$index]['service_payment_details'];
-
-                // $aProvider['override_price'] = $this->providersPayment[$index]['override_price'];
-                // $aProvider['after_hours_override_price'] = $this->providersPayment[$index]['after_hours_override_price'];
-                // $aProvider['business_hours_override_price'] = $this->providersPayment[$index]['business_hours_override_price'];
                 $aProvider['additional_label_provider'] = $this->providersPayment[$index]['additional_label_provider'];
                 $aProvider['additional_charge_provider'] = $this->providersPayment[$index]['additional_charge_provider'];
             }
@@ -540,7 +530,6 @@ class AssignProviders extends Component
     {
 
         if ($this->limit && count($this->assignedProviders) <= $this->limit) {
-            // $booking = Booking::where('id', $this->booking_id)->first();
             $booking_service = BookingServices::where(['services' => $this->service_id, 'booking_id' => $this->booking_id])->first();
             // delete existing records
             $prev = BookingProvider::where(['booking_id' => $this->booking_id, 'booking_service_id' => null])->orWhere(['booking_service_id' => $booking_service->id]);
@@ -585,7 +574,6 @@ class AssignProviders extends Component
 
                 $provider['booking_id'] = $this->booking_id;
                 $provider['booking_service_id'] = $booking_service ? $booking_service->id : null;
-                // dd($this->providersPayment);
 
                 BookingProvider::updateOrCreate(
                     [
