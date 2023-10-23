@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedInteger('invoice_id');
             $table->string('attachment_path');
-            $table->enum('type', [0, 1, 2])->default(0);
-            $table->foreign('invoice_id')->references('id')->on('invoices');
+            $table->integer('type')->nullable()->default(0);
+            // $table->foreign('invoice_id')->references('id')->on('invoices');
             $table->timestamps();
         });
     }
