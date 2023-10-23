@@ -431,6 +431,12 @@ class AssignProviders extends Component
                 ->get()
                 ->pluck('provider_id')
                 ->toArray();
+                $booking_service = $this->booking->booking_services->where('services', $this->service_id)->first();
+
+                if ($booking_service) {
+                    $this->limit = $booking_service->provider_count;
+                    $this->bookingService = $booking_service;
+                }
         } else {
             $booking_service = $this->booking->booking_services->where('services', $this->service_id)->first();
 
