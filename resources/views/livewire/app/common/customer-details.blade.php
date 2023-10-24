@@ -117,7 +117,8 @@
                                             <span>Feedback</span>
                                         </button>
                                     </li>
-
+                                    @if (in_array('company_admin', $this->user['roles']) || in_array('supervisor', $this->user['roles']) || in_array('billing_manager', $this->user['roles']))
+                                        
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="invoices-tab" data-bs-toggle="tab"
                                             data-bs-target="#invoices-tab-pane" type="button" role="tab"
@@ -145,6 +146,8 @@
                                             <span>Payments</span>
                                         </button>
                                     </li>
+
+                                    @endif
 
                                     {{--
                                 <li class="nav-item" role="presentation">
@@ -313,8 +316,14 @@
                                                                                 Access Role:
                                                                             </span>
                                                                             <div>
-                                                                                Service Consumer
-                                                                                <small>(coming soon)</small>
+                                                                                @foreach ($user['roles'] as $key => $roles)
+                                                                                {{$roles}}
+                                                                                @if ($key != count($user['roles']) - 1 )
+                                                                                        ,
+                                                                                    @endif
+                                                                                @endforeach
+                                                                                {{-- Service Consumer
+                                                                                <small>(coming soon)</small> --}}
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -469,7 +478,8 @@
                                                                 </div>
                                                                 <div class="col-md-6 align-self-center">
                                                                     <div class="font-family-secondary">
-                                                                        60 Hours <small>(coming soon)</small>
+                                                                        {{$this->user['completedRequest']}} Hours
+                                                                        {{-- 60 Hours <small>(coming soon)</small> --}}
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -481,12 +491,14 @@
                                                                 </div>
                                                                 <div class="col-md-6 align-self-center">
                                                                     <div class="font-family-secondary">
-                                                                        20 Hours <small>(coming soon)</small>
+                                                                        {{$this->user['openRequest']}} Hours
+                                                                        {{-- 20 Hours <small>(coming soon)</small> --}}
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    @if (in_array('company_admin', $this->user['roles']) || in_array('supervisor', $this->user['roles']) || in_array('billing_manager', $this->user['roles']))
                                                     <div class="row mb-4">
                                                         <div class="col-md-12">
                                                             <div class="row mb-1">
@@ -497,7 +509,8 @@
                                                                 </div>
                                                                 <div class="col-md-5 align-self-center">
                                                                     <div class="font-family-secondary">
-                                                                        $500 <small>(coming soon)</small>
+                                                                        ${{$this->user['totalInvoice']}}
+                                                                        {{-- $500 <small>(coming soon)</small> --}}
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -509,7 +522,8 @@
                                                                 </div>
                                                                 <div class="col-md-5 align-self-center">
                                                                     <div class="font-family-secondary">
-                                                                        $300 <small>(coming soon)</small>
+                                                                        ${{$this->user['paidInvoice']}}
+                                                                        {{-- $300 <small>(coming soon)</small> --}}
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -521,9 +535,8 @@
                                                                 </div>
                                                                 <div class="col-md-5 align-self-center">
                                                                     <div class="font-family-secondary">
-                                                                        $200
-                                                                        <small>(coming soon)</small>
-
+                                                                        ${{$this->user['dueInvoice']}}
+                                                                        {{-- $200<small>(coming soon)</small> --}}
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -535,9 +548,8 @@
                                                                 </div>
                                                                 <div class="col-md-5 align-self-center">
                                                                     <div class="font-family-secondary">
-                                                                        $300
-                                                                        <small>(coming soon)</small>
-
+                                                                        ${{$this->user['overDueInvoice']}}
+                                                                        {{-- $300<small>(coming soon)</small> --}}
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -550,14 +562,15 @@
                                                                 </div>
                                                                 <div class="col-md-5 align-self-center">
                                                                     <div class="font-family-secondary">
-                                                                        $000
-                                                                        <small>(coming soon)</small>
+                                                                        ${{$user['accountCredit']}}
+                                                                        {{-- <small>(coming soon)</small> --}}
 
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    @endif
                                                 </div>
                                                 <div class="col-lg-6 between-section-segment-spacing">
                                                     <div class="row" id="table-hover-row">
@@ -778,7 +791,7 @@
             <div class="col-md-1 mb-md-2 font-family-tertiary fw-medium">
                 Date</div>
             <div class="col-md-6 mb-md-2 font-family-secondary">
-                20/10/2022
+                {{$this->user['login_date']}}
             </div>
         </div>
     </div>
@@ -786,7 +799,7 @@
         <div class="col-md-12 d-flex mb-md-2">
             <div class="col-md-1 mb-md-2 font-family-tertiary fw-medium">
                 Time</div>
-            <div class="col-md-6 mb-md-2 font-family-secondary">01:34 PM
+            <div class="col-md-6 mb-md-2 font-family-secondary">{{$this->user['login_date']}}
             </div>
         </div>
     </div>
@@ -906,6 +919,8 @@
 </div>
 
 <!-- drive Tab End-->
+@if (in_array('company_admin', $this->user['roles']) || in_array('supervisor', $this->user['roles']) || in_array('billing_manager', $this->user['roles']))
+    
 <div class="tab-pane fade" id="invoices-tab-pane" role="tabpanel" aria-labelledby="invoices-tab" tabindex="0">
     <h3>
         Invoices <small>(coming soon)</small>
@@ -1827,6 +1842,8 @@
         </div>
     </div>
 </div>
+@endif
+
 <!-- Invoices Remittances Tab End-->
     <div class="tab-pane fade" id="notes-tab-pane" role="tabpanel" aria-labelledby="notes-tab" tabindex="0">
         @livewire('app.common.forms.notes', ['showForm' => true, 'record_id' => $userid, 'record_type' => 3])
@@ -1974,6 +1991,9 @@
     tabindex="0">
 </div>
 <!-- Settings Tab End-->
+
+@if (in_array('company_admin', $this->user['roles']) || in_array('supervisor', $this->user['roles']) || in_array('billing_manager', $this->user['roles']))
+    
 <div class="tab-pane fade" id="payments-tab-pane" role="tabpanel" aria-labelledby="payments-tab"
     tabindex="0">
     <div class="row">
@@ -3089,6 +3109,8 @@
         </div>
     </div>
 </div>
+@endif
+
 <div class="tab-pane fade" id="reports-tab-pane" role="tabpanel" aria-labelledby="reports-tab" tabindex="0">
     <div class="row mb-3">
         <h3>
