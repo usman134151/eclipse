@@ -122,6 +122,8 @@ class BookingCloseOut extends Component
                     $this->close_out[$booking_service->id][$provider['provider_id']]['total_amount'] = $provider['total_amount'];
                 }
             }
+            $booking_service->service_calculations = $booking_service->service_calculations ? json_decode($booking_service->service_calculations, true):null;
+            // dd($booking_service->service_calculations);
             $this->service_charges[$booking_service->id]['charges'] = $booking_service->billed_total ?? 0;
             $this->service_charges[$booking_service->id]['override'] = false;
         }
