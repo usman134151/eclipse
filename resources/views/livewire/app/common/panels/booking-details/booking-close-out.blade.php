@@ -35,19 +35,19 @@
                                         <p>After Business Hours :</p>
 
                                     </div>
-                                    <div class="mx-5">
-                                        <p>{{ $booking_service->service_calculations ? $booking_service->service_calculations['total_duration']['hours'] : '0' }}
+                                    <div class="mx-5"  wire:ignore>
+                                        <p>{{ $booking_service['service_details'] ? $booking_service['service_details']['total_duration']['hours'] : '0' }}
                                             Hours,
-                                            {{ $booking_service->service_calculations ? $booking_service->service_calculations['total_duration']['mins'] : '0' }}
+                                            {{ $booking_service['service_details'] ? $booking_service['service_details']['total_duration']['mins'] : '0' }}
                                             mins </p>
-                                        <p>{{ $booking_service->service_calculations ? floor($booking_service->service_calculations['business_hour_duration'] / 60) : '0' }}
+                                        <p>{{ $booking_service['service_details'] ? floor($booking_service['service_details']['business_hour_duration'] / 60) : '0' }}
                                             Hours,
-                                            {{ $booking_service->service_calculations ? fmod($booking_service->service_calculations['business_hour_duration'] / 60, 1) * 60 : '0' }}
+                                            {{ $booking_service['service_details'] ? fmod($booking_service['service_details']['business_hour_duration'] / 60, 1) * 60 : '0' }}
                                             mins </p>
 
-                                        <p>{{ $booking_service->service_calculations ? floor($booking_service->service_calculations['after_hour_duration'] / 60) : '0' }}
+                                        <p>{{ $booking_service['service_details'] ? floor($booking_service['service_details']['after_hour_duration'] / 60) : '0' }}
                                             Hours,
-                                            {{ $booking_service->service_calculations ? fmod($booking_service->service_calculations['after_hour_duration'] / 60, 1) * 60 : '0' }}
+                                            {{ $booking_service['service_details'] ? fmod($booking_service['service_details']['after_hour_duration'] / 60, 1) * 60 : '0' }}
                                             mins </p>
                                     </div>
                                 </div>
@@ -224,7 +224,7 @@
                                                                                 aria-label="Start Time"
                                                                                 name="actual_start_hour"
                                                                                 type="text" tabindex=""
-                                                                                wire:model.defer="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.actual_end_hour"
+                                                                                wire:model.defer="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.actual_duration_hour"
                                                                                 maxlength="2">
                                                                         </div>
                                                                         <svg width="5" height="19"
@@ -241,20 +241,20 @@
                                                                                 id="actual_start_min"
                                                                                 name="actual_start_min" type="text"
                                                                                 tabindex=""
-                                                                                wire:model.defer="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.actual_end_min"
+                                                                                wire:model.defer="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.actual_duration_min"
                                                                                 maxlength="2">
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 @error('close_out.' . $booking_service->id . '.' .
-                                                                    $provider['provider_id'] . '.actual_end_hour')
+                                                                    $provider['provider_id'] . '.actual_duration_hour')
                                                                     <span class="d-inline-block invalid-feedback mt-2">
                                                                         Hour field is required to be between 0 and 24.
                                                                     </span>
                                                                 @enderror
 
                                                                 @error('close_out.' . $booking_service->id . '.' .
-                                                                    $provider['provider_id'] . '.actual_end_min')
+                                                                    $provider['provider_id'] . '.actual_duration_min')
                                                                     <span class="d-inline-block invalid-feedback mt-2">
                                                                         Minute field is required to be between 0 and 59.
                                                                     </span>
@@ -280,8 +280,8 @@
                                                                             <div class="col-7">
                                                                                 <div class="input-group">
                                                                                     <input type=""
-                                                                                        {{-- name="{{ $index }}_service_payment_details_b_hours_duration" --}}
-                                                                                        {{-- wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.b_hours_duration" --}}
+                                                                                        name=""
+                                                                                        wire:model.lazy="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.service_payment_details.b_hours_duration"
                                                                                         class="form-control form-control-sm text-center"
                                                                                         placeholder="0"
                                                                                         aria-label="Hours">
@@ -324,8 +324,8 @@
                                                                                             name="average-rate"
                                                                                             class="form-control form-control-sm  w-25%"
                                                                                             placeholder="$00:00"
-                                                                                            {{-- wire:blur="updateTotal({{ $index }})"
-                                                                                            wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.b_hours_rate"> --}}
+                                                                                            {{-- wire:blur="updateTotal({{ $index }})" --}}
+                                                                                            wire:model.lazy="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.service_payment_details.b_hours_rate">
                                                                                             {{-- @error('providersPayment.' . $index . '.service_payment_details.b_hours_rate')
                                                                                             <span
                                                                                                 class="d-inline invalid-feedback">
@@ -358,7 +358,7 @@
                                                                                     <div class="input-group">
                                                                                         <input type=""
                                                                                             name=""
-                                                                                            {{-- wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.a_hours_duration" --}}
+                                                                                            wire:model.lazy="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.service_payment_details.a_hours_duration"
                                                                                             class="form-control form-control-sm text-center"
                                                                                             placeholder="0"
                                                                                             aria-label="Hours">
@@ -403,8 +403,8 @@
                                                                                                 name="average-rate"
                                                                                                 class="form-control form-control-sm  w-25%"
                                                                                                 placeholder="$00:00"
-                                                                                                {{-- wire:blur="updateTotal({{ $index }})"
-                                                                                            wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.a_hours_rate" --}}>
+                                                                                                {{-- wire:blur="updateTotal({{ $index }})" --}}
+                                                                                            wire:model.lazy="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.service_payment_details.a_hours_rate">
                                                                                             {{-- @error('providersPayment.' . $index . '.service_payment_details.a_hours_rate')
                                                                                             <span
                                                                                                 class="d-inline invalid-feedback">
@@ -439,7 +439,7 @@
                                                                                     <div class="input-group">
                                                                                         <input type=""
                                                                                             name=""
-                                                                                            {{-- wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.expedited_duration" --}}
+                                                                                            wire:model.lazy="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.service_payment_details.expedited_duration"
                                                                                             class="form-control form-control-sm text-center"
                                                                                             placeholder="0"
                                                                                             aria-label="Hours">
@@ -483,8 +483,8 @@
                                                                                                 name="average-rate"
                                                                                                 class="form-control form-control-sm  w-25%"
                                                                                                 placeholder="$00:00"
-                                                                                                {{-- wire:blur="updateTotal({{ $index }})"
-                                                                                            wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.expedited_rate" --}}>
+                                                                                                {{-- wire:blur="updateTotal({{ $index }})" --}}
+                                                                                            wire:model.lazy="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.service_payment_details.expedited_rate">
                                                                                             {{-- @error('providersPayment.' . $index . '.service_payment_details.expedited_rate')
                                                                                             <span
                                                                                                 class="d-inline invalid-feedback">
@@ -501,7 +501,7 @@
 
                                                                     </div>
                                                                 </div>
-                                                                {{-- @if (count($booking_specializations))
+                                                                {{-- @if (count($showSpecialization))
                                                                 <hr>
 
                                                                 <div class="row">
@@ -532,7 +532,7 @@
                                                                                                     class="form-control form-control-sm  w-25%"
                                                                                                     placeholder="$00:00"
                                                                                                     wire:blur="updateTotal({{ $index }})"
-                                                                                                    wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.specialization_charges.{{ $key }}.provider_charges">
+                                                                                                    wire:model.lazy="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.service_payment_details.specialization_charges.{{ $key }}.provider_charges">
                                                                                                 @error('providersPayment.' . $index . 'service_payment_details.specialization_charges.' . $key . 'provider_charges')
                                                                                                     <span
                                                                                                         class="d-inline invalid-feedback">
@@ -658,7 +658,7 @@
                                             @endforeach
                                         @else
                                             <tr>
-                                                <td colSpan="4" class="text-center">
+                                                <td colSpan="6" class="text-center">
                                                     <small>
                                                         No Providers assigned to this service.
                                                     </small>
