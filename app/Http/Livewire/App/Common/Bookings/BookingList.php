@@ -12,6 +12,7 @@ use App\Models\Tenant\BookingServiceCharges;
 use App\Models\Tenant\BookingServices;
 use App\Models\Tenant\SetupValue;
 use App\Models\Tenant\User;
+use App\Models\Tenant\UserAddress;
 use App\Services\App\BookingOperationsService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -161,14 +162,14 @@ class BookingList extends Component
 					$query->leftJoin('booking_providers', function ($join) {
 						$join->on('booking_providers.booking_id', 'bookings.id');
 					});
-					$query->select('bookings.id', 'bookings.booking_number', 'is_closed', 'bookings.status', 'booking_start_at', 'booking_end_at', 'provider_count');
+					$query->select('bookings.id', 'bookings.booking_number','bookings.company_id', 'bookings.physical_address_id', 'is_closed', 'bookings.status', 'booking_start_at', 'booking_end_at', 'provider_count');
 
 					$query->selectRaw('
 					SUM(CASE WHEN booking_providers.check_in_status = "1" THEN 1 ELSE 0 END) AS checked_in,
 					SUM(CASE WHEN booking_providers.check_in_status = "2" THEN 1 ELSE 0 END) AS running_late
 				');
 
-					$query->groupBy('bookings.id', 'bookings.booking_number', 'is_closed', 'bookings.status', 'booking_start_at', 'booking_end_at', 'provider_count');
+					$query->groupBy('bookings.id', 'bookings.physical_address_id','bookings.company_id', 'bookings.booking_number', 'is_closed', 'bookings.status', 'booking_start_at', 'booking_end_at', 'provider_count');
 				}
 
 				break;
@@ -330,6 +331,10 @@ class BookingList extends Component
 				$row->accommodation_name = $booking_service ? ($booking_service->accommodation ?  $booking_service->accommodation->name : null)  : null;
 				$row->service_name = $booking_service ?  ($booking_service->service ? $booking_service->service->name : null) : null;
 			}
+
+			// if (!$row->physicalAddress  ) {
+			// }
+
 			if ((isset($booking_service)) && ($booking_service->meetings != null)) {
 				$meeting = json_decode($booking_service->meetings, true) ? json_decode($booking_service->meetings, true)[0] : null;
 
