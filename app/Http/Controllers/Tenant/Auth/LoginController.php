@@ -131,9 +131,6 @@ class LoginController extends Controller
 				$is_provider = RoleUser::where('role_id', 2)->where('user_id', auth()->user()->id)->orderBy('id', 'asc')->first();
 				if ($is_provider) {
 					Session::put('isProvider', 1);
-					//save ip from where user logged in
-					UserLoginAddress::create(['user_id'=>Auth::id(),'ip_address'=> request()->ip()]);
-
 				} else {
 					Session::put('isProvider', $is_provider);
 				}
@@ -155,6 +152,8 @@ class LoginController extends Controller
 					Session::put('companyAdmin', false);
 
 				}
+				//save ip from where user logged in
+				UserLoginAddress::create(['user_id' => Auth::id(), 'ip_address' => request()->ip()]);
 
 				return redirect('home');
 			}
