@@ -270,15 +270,18 @@ class AssignProviders extends Component
                 ) {
                     $e_rates = json_decode($this->custom_rates[$provider['id']]['standard']['emergency'], true);
                 }
-
+                $this->custom_rates[$provider['id']]['standard']['emergency'] = $e_rates;
+                // dd($this->custom_rates[$provider['id']]['standard']['emergency']);
                 if (!is_null($service->specialization) && !is_array($service->specialization))
                     $specializations = json_decode($service->specialization, true);
-                if (is_array($service->specialization))
+
+                if (is_array($specializations))
                     foreach ($specializations as $i => $s) {
 
                         $s_rates = SpecializationRate::where(['accommodation_service_id' => $this->service_id, 'user_id' => $provider['id'], 'specialization' => $s])
                             ->select('specialization_rate' . $this->serviceTypes[$service->service_types]['postfix'] . ' as price')->first();
                         $this->custom_rates[$provider['id']]['specialization'][$i] = $s_rates ? json_decode($s_rates->price, true)[0] : null;
+                        // dd($this->custom_rates[$provider['id']]['specialization'][$i]);
                         $this->custom_rates[$provider['id']]['specialization'][$i]['s_name'] =  Specialization::find($s)->name;
                     }
 
@@ -303,19 +306,18 @@ class AssignProviders extends Component
                 foreach ($this->assignedProviders as &$aProvider) {
 
                     if ($aProvider['provider_id'] == $provider['id']) {
-                      
+
                         $this->providersPayment[$index] = $aProvider; //overriding if already assigned
-    
+
                         if (isset($aProvider['total_amount']) && $aProvider['total_amount'] == "0.00") {
-    
+
                             $aProvider['total_amount'] = $this->updateTotal($index);
                         }
                         if (!isset($aProvider['additional_payments']) && !is_null($aProvider['additional_payments']))
                             $this->providersPayment[$index]['additional_payments'] = $additionalPayments;
                     }
-                }      
+                }
             }
-
         }
 
         return $this->providers;
@@ -389,7 +391,6 @@ class AssignProviders extends Component
                 $aProvider['additional_payments'] = $this->providersPayment[$index]['additional_payments'];
                 $aProvider['additional_label_provider'] = isset($this->providersPayment[$index]['additional_payments'][0]['additional_label_provider']) ? $this->providersPayment[$index]['additional_payments'][0]['additional_label_provider'] : null;
                 $aProvider['additional_charge_provider'] = isset($this->providersPayment[$index]['additional_payments'][0]['additional_charge_provider']) ? $this->providersPayment[$index]['additional_payments'][0]['additional_charge_provider'] : null;
-           
             }
         }
         return $this->providersPayment[$index]['total_amount'];
@@ -499,11 +500,8 @@ class AssignProviders extends Component
                 } else
                     $booking_service['service_calculations'] = [];
                 if (isset($booking_service['service_calculations']['expedited_charges']) && count($booking_service['service_calculations']['expedited_charges'])) {
-                    if ($booking_service['service_calculations']['expedited_charges']['charges']) {
-                        $this->bookingService->expedited_rates = true;
+                    if ($booking_service['service_calculations']['expedited_charges']['charges'])
                         $this->expedited_hours = $booking_service['service_calculations']['expedited_charges']['hour'];
-                    } else
-                        $this->bookingService->expedited_rates = false;
                 }
                 // dd($booking_service['service_calculations']);
                 if (isset($booking_service['service_calculations']['specialization_charges']) && count($booking_service['service_calculations']['specialization_charges'])) {
