@@ -301,18 +301,21 @@ class AssignProviders extends Component
                     'total_amount' => ($servicePayments['b_hours_rate'] * $servicePayments['b_hours_duration']) + ($servicePayments['a_hours_rate'] * $servicePayments['a_hours_duration'])
                 ];
                 foreach ($this->assignedProviders as &$aProvider) {
+
                     if ($aProvider['provider_id'] == $provider['id']) {
+                      
                         $this->providersPayment[$index] = $aProvider; //overriding if already assigned
-
+    
                         if (isset($aProvider['total_amount']) && $aProvider['total_amount'] == "0.00") {
-
+    
                             $aProvider['total_amount'] = $this->updateTotal($index);
                         }
-                        if (!isset($aProvider['additional_payments']))
+                        if (!isset($aProvider['additional_payments']) && !is_null($aProvider['additional_payments']))
                             $this->providersPayment[$index]['additional_payments'] = $additionalPayments;
                     }
-                }
+                }      
             }
+
         }
 
         return $this->providers;

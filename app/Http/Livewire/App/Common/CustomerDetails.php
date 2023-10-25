@@ -6,6 +6,11 @@ use Livewire\Component;
 use App\Models\Tenant\User;
 use App\Services\App\UserService;
 use App\Helpers\SetupHelper;
+use App\Models\Tenant\Booking;
+use App\Models\Tenant\BookingServices;
+use App\Models\Tenant\Invoice;
+use App\Models\Tenant\UserLoginAddress;
+
 class CustomerDetails extends Component
 {
 	public $user,$userid, $service_catalog, $isCustomer=false;
@@ -88,6 +93,37 @@ class CustomerDetails extends Component
 
 		$this->user['avg_rating'] = round($user1->feedbackRecieved->avg('rating'));
 
+		$this->user['roles'] = $user1->roles->where('role_type', 2)->pluck('name')->toArray();
+
+		$completedBookingIds = Booking::where('user_id', $this->userid)->where('is_closed', 1)->pluck('id');
+		$this->user['completedRequest'] = BookingServices::whereIn('booking_id', $completedBookingIds)->sum('duration_hour');
+
+		$openBookingIds = Booking::where('user_id', $this->userid)->where('is_closed', 0)->pluck('id');
+		$this->user['openRequest'] = BookingServices::whereIn('booking_id', $openBookingIds)->sum('duration_hour');
+
+		if (in_array('company_admin', $this->user['roles']) || in_array('supervisor', $this->user['roles'])) {
+			$this->user['totalInvoice'] = Invoice::where('company_id', $user1->company_name)->sum('total_price');
+			$this->user['dueInvoice'] = Invoice::where('company_id', $user1->company_name)->whereDate('invoice_due_date', '>=', now())->sum('outstanding_amount');
+			$this->user['overDueInvoice'] = Invoice::where('company_id', $user1->company_name)->whereDate('invoice_due_date', '<', now())->sum('outstanding_amount');
+			$this->user['paidInvoice'] = $this->user['totalInvoice'] - $this->user['dueInvoice'] - $this->user['overDueInvoice'];
+			$this->user['accountCredit'] = $this->user['totalInvoice'] - $this->user['paidInvoice'];
+		} elseif (in_array('billing_manager', $this->user['roles'])) {
+			$this->user['totalInvoice'] = Invoice::where('company_id', $user1->company_name)->where('billing_manager_id', $this->userid)->sum('total_price');
+			$this->user['dueInvoice'] = Invoice::where('company_id', $user1->company_name)->where('billing_manager_id', $this->userid)->whereDate('invoice_due_date', '>=', now())->sum('outstanding_amount');
+			$this->user['overDueInvoice'] = Invoice::where('company_id', $user1->company_name)->where('billing_manager_id', $this->userid)->whereDate('invoice_due_date', '<', now())->sum('outstanding_amount');
+			$this->user['paidInvoice'] = $this->user['totalInvoice'] - $this->user['dueInvoice'] - $this->user['overDueInvoice'];
+			$this->user['accountCredit'] = $this->user['totalInvoice'] - $this->user['paidInvoice'];
+		}
+
+		$createdAt = UserLoginAddress::where('user_id', $this->userid)->latest('created_at')->value('created_at');
+		if ($createdAt) {
+			$this->user['login_date'] = $createdAt->format('d-m-Y');
+			$this->user['login_time'] = $createdAt->format('H:i A');
+		} else {
+			// Handle the case where $createdAt is null
+			$this->user['login_date'] = 'N/A';
+			$this->user['login_time'] = 'N/A';
+		}		
 	}
 
 	public function lockAccount()

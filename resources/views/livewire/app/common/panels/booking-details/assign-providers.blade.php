@@ -247,7 +247,16 @@
                                  <div class="d-inline-flex">
                                      <span class="fw-semibold">Rate:
                                      </span><span
-                                         class="mx-1">{{ $param['price'] ? $param['price_type'] . number_format($param['price'], 2) : 'N/A' }}</span>
+                                                                                            class="mx-1">@if ($param[0]['price'])
+                                                                                                            @if ($param[0]['price_type'] == "$")
+                                                                                                                {{ formatPayment($param[0]['price']) }}
+                                                                                                            @else
+                                                                                                                {{ $param[0]['price'] }}
+                                                                                                            @endif
+                                                                                                        @else
+                                                                                                            N/A
+                                                                                                        @endif
+                                                                                                        </span>
                                  </div>
                              </div>
                          @endforeach
@@ -270,7 +279,7 @@
                          <div class="bg-muted p-1 col-12 mx-3 mb-2">
                              {{ $row['s_name'] ?? 'N/A' }}
                              <span
-                                 class="mx-1">{{ isset($row['price']) ? '$' . number_format($row['price'], 2) : 'N/A' }}</span>
+                                 class="mx-1">{{ isset($row['price']) ? '$' . formatPayment($row['price']):'N/A'}}</span>
 
                          </div>
 
