@@ -12,6 +12,7 @@ class BookingCloseOut extends Component
 {
     public $showForm, $booking, $providers, $close_out = [], $booking_total_amount = 0, $override = false, $override_amount = 0;
     public $service_charges = [];
+    public $durationLabel='';
     protected $listeners = ['showList' => 'resetForm', 'closeBooking'];
 
     public function render()
@@ -129,6 +130,7 @@ class BookingCloseOut extends Component
         }
         $this->booking_total_amount = $this->booking->getInvoicePrice();
         $this->override_amount = $this->booking->getInvoicePrice();
+        $this->durationLabel='hour(s)';
     }
 
 
