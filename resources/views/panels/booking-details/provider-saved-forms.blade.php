@@ -1,6 +1,6 @@
 {{-- BEGIN: Reschedule Booking Off Canvas --}}
 <x-off-canvas show="providerSavedForms">
-    <x-slot name="title">Custom Froms
+    <x-slot name="title">Custom Forms
     </x-slot>
     @if ($form_id)
         @livewire('app.common.panels.booking-details.provider-saved-forms',['booking_id'=>$booking_id,'form_id' => $form_id, 'service_id' => $service_id,'provider_id'=>$provider_id])

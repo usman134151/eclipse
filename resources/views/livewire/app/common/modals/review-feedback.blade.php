@@ -39,7 +39,7 @@
                     @endforeach
                 </ol>
             @else
-                <small class="text-center">No feedback avaialable</small>
+                <small class="text-center">No feedback available</small>
             @endif
         </div>
     </div>
