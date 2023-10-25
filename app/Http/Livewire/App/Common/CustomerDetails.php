@@ -115,14 +115,17 @@ class CustomerDetails extends Component
 			$this->user['accountCredit'] = $this->user['totalInvoice'] - $this->user['paidInvoice'];
 		}
 
-		$createdAt = UserLoginAddress::where('user_id', $this->userid)->latest('created_at')->value('created_at');
+		$lastLogin = UserLoginAddress::where('user_id', $this->userid)->latest('created_at')->first();
+		$createdAt = $lastLogin->value('created_at');
 		if ($createdAt) {
 			$this->user['login_date'] = $createdAt->format('d-m-Y');
 			$this->user['login_time'] = $createdAt->format('H:i A');
+			$this->user['login_ip'] = $lastLogin->ip_address;
 		} else {
 			// Handle the case where $createdAt is null
 			$this->user['login_date'] = 'N/A';
 			$this->user['login_time'] = 'N/A';
+			$this->user['login_ip'] = 'N/A';
 		}		
 	}
 

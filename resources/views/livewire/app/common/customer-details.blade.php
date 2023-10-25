@@ -783,7 +783,7 @@
 
 </div>
 <div class="col-md-12 inner-section-segment-spacing">
-    <small>(coming soon)</small>
+    {{-- <small>(coming soon)</small> --}}
 
     <h2>Last Login:</h2>
     <div class="row">
@@ -799,16 +799,19 @@
         <div class="col-md-12 d-flex mb-md-2">
             <div class="col-md-1 mb-md-2 font-family-tertiary fw-medium">
                 Time</div>
-            <div class="col-md-6 mb-md-2 font-family-secondary">{{$this->user['login_date']}}
+            <div class="col-md-6 mb-md-2 font-family-secondary">{{$this->user['login_time']}}
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12 d-flex mb-md-2">
             <div class="col-md-1 mb-md-2 font-family-tertiary fw-medium">
-                Location</div>
+                {{-- Location --}}
+                IP Address
+            </div>
             <div class="col-md-6 mb-md-2 font-family-secondary">
-                Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA
+                {{-- Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA --}}
+                {{$this->user['login_ip']}}
             </div>
         </div>
     </div>
