@@ -931,8 +931,12 @@ class BookingOperationsService
         //fetch all bookings with parent_id == booking_id && bookings.booking_end_at is between current booking_date and $reschdule_details['reschedule_until']
         dd('fetch all up-until bookings');
       } else {
-        // fetch all bookings with parent_id == booking_id
-        dd('fetch all subsequent bookings');
+        // fetch all subsequent bookings with parent_id == booking_id
+        if ($booking->parent_id == 0)
+          $parent_id = $booking->id;
+        else
+          $parent_id = $booking->parent_id;
+        $r_bookings = Booking::where('parent_id', $parent_id)->get();
       }
     }
     $r_bookings[] = $booking;
