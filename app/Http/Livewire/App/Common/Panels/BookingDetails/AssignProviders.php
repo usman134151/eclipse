@@ -306,7 +306,6 @@ class AssignProviders extends Component
                 foreach ($this->assignedProviders as &$aProvider) {
 
                     if ($aProvider['provider_id'] == $provider['id']) {
-
                         $this->providersPayment[$index] = $aProvider; //overriding if already assigned
 
                         if (isset($aProvider['total_amount']) && $aProvider['total_amount'] == "0.00") {
@@ -315,11 +314,14 @@ class AssignProviders extends Component
                         }
                         if (!isset($aProvider['additional_payments']) && !is_null($aProvider['additional_payments']))
                             $this->providersPayment[$index]['additional_payments'] = $additionalPayments;
+                        
                     }
                 }
+ 
             }
-        }
 
+        }
+        // dd($this->providersPayment, $this->providers->toArray());
         return $this->providers;
     }
     public function messages()
