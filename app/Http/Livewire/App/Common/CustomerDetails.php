@@ -17,7 +17,7 @@ class CustomerDetails extends Component
 	public $user,$userid, $service_catalog, $isCustomer=false , $companyIds, $supervisorId, $billing_managerId, $counter = 0, $invoice_id;
 	protected $invoiceService;
 	protected $listeners = [
-		'showDetails', 'showConfirmation' , 'openInvoiceDetails', 'downloadInvoice'=> 'createInvoicePDF'
+		'showDetails', 'showConfirmation' , 'openInvoiceDetails', 'downloadInvoice'=> 'createInvoicePDF', 'updateVal' => 'showDetails'
 	];
 
 	public $filter_companies, $filter_bmanager;
