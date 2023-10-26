@@ -957,8 +957,8 @@
     </div>
 
 
-    @livewire('app.common.lists.customer-invoices', ['company_id'=>$companyIds, 'invoice_status'=>'pending' ])
-
+@livewire('app.common.lists.customer-invoices', ['company_id'=>$companyIds, 'invoice_status'=>'pending',
+    'supervisor_id'=>$supervisorId,'billing_manager_id'=>$billing_managerId ])
 
 
     {{-- <div class="d-flex justify-content-between mb-2">

@@ -7,7 +7,7 @@ use App\Models\Tenant\Schedule;
 use App\Models\Tenant\User;
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\Invoice;
-use App\Services\app\CompanyService;
+use App\Services\InvoiceService;
 use Livewire\Component;
 use PDF;
 class CompanyProfile extends Component
@@ -26,11 +26,11 @@ class CompanyProfile extends Component
 		'downloadInvoice'=> 'createInvoicePDF'
 	];
 
-	protected $companyService;
+	protected $invoiceService;
 
 	public function __construct()
     {
-        $this->companyService = new CompanyService;
+        $this->invoiceService = new InvoiceService;
     }
 
 	public function render()
@@ -98,9 +98,9 @@ class CompanyProfile extends Component
 			}
 		}
 
-		$this->company['completedRequest'] = $this->companyService->calculateCompletedRequest($this->company['id']);
-		$this->company['openRequest'] = $this->companyService->calculateOpenRequest($this->company['id']);
-		$invoiceTotals = $this->companyService->calculateInvoices($this->company['id']);
+		$this->company['completedRequest'] = $this->invoiceService->calculateRequest($this->company['id'],2,1);
+		$this->company['openRequest'] = $this->invoiceService->calculateRequest($this->company['id'],2,0);
+		$invoiceTotals = $this->invoiceService->calculateInvoices($this->company['id'] , 2);
 		
 		$this->company['totalInvoice'] = $invoiceTotals['totalInvoice'];
 		$this->company['dueInvoice'] = $invoiceTotals['dueInvoice'];

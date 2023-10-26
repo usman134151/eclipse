@@ -8,12 +8,12 @@ use App\Services\App\UserService;
 use App\Helpers\SetupHelper;
 use App\Models\Tenant\Invoice;
 use App\Models\Tenant\UserLoginAddress;
-use App\Services\CustomerService;
+use App\Services\InvoiceService;
 
 class CustomerDetails extends Component
 {
-	public $user,$userid, $service_catalog, $isCustomer=false , $companyIds, $invoiceIds;
-	protected $customerService;
+	public $user,$userid, $service_catalog, $isCustomer=false , $companyIds, $supervisorId, $billing_managerId;
+	protected $invoiceService;
 	protected $listeners = [
 		'showDetails', 'showConfirmation' 
 	];
@@ -21,7 +21,7 @@ class CustomerDetails extends Component
 
 	public function __construct()
     {
-        $this->customerService = new CustomerService;
+        $this->invoiceService = new InvoiceService;
     }
 
 	public function render()
@@ -102,10 +102,10 @@ class CustomerDetails extends Component
 
 		$this->user['roles'] = $user1->roles->where('role_type', 2)->pluck('name')->toArray();
 
-		$this->user['completedRequest'] = $this->customerService->calculateCompletedRequest($this->userid);
-		$this->user['openRequest'] = $this->customerService->calculateOpenRequest($this->userid);
-		
-		$invoiceTotals = $this->customerService->calculateInvoices($this->user['roles'], $this->userid, $user1->company_name);
+		$this->user['completedRequest'] = $this->invoiceService->calculateRequest($this->userid, 1, 1);
+		$this->user['openRequest'] = $this->invoiceService->calculateRequest($this->userid, 1, 2);
+
+		$invoiceTotals = $this->invoiceService->calculateInvoices($user1->company_name,1, $this->user['roles'], $this->userid);
 		$this->user['totalInvoice'] = $invoiceTotals['totalInvoice'];
 		$this->user['dueInvoice'] = $invoiceTotals['dueInvoice'];
 		$this->user['overDueInvoice'] = $invoiceTotals['overDueInvoice'];
@@ -123,22 +123,23 @@ class CustomerDetails extends Component
 			$this->user['login_date'] = 'N/A';
 			$this->user['login_time'] = 'N/A';
 			$this->user['login_ip'] = 'N/A';
-		}	
-		
-		
-		if (in_array('company_admin', $this->user['roles'])) {            
-			$invoices = Invoice::where('company_id', $user1->company_name)->get();
-			$this->companyIds = $invoices->pluck('company_id')->unique()->toArray();
-			$this->invoiceIds = $invoices->pluck('id')->unique()->toArray();
-        } elseif (in_array('supervisor', $this->user['roles'])) {
-			$invoices = Invoice::where('company_id', $user1->company_name)->where('supervisor_id', $this->userid)->get();
-			$this->companyIds = $invoices->pluck('company_id')->unique()->toArray();
-			$this->invoiceIds = $invoices->pluck('id')->unique()->toArray();
-        } elseif (in_array('billing_manager', $this->user['roles'])) {
-			$invoices = Invoice::where('company_id', $user1->company_name)->where('billing_manager_id', $this->userid)->get();
-			$this->companyIds = $invoices->pluck('company_id')->unique()->toArray();
-			$this->invoiceIds = $invoices->pluck('id')->unique()->toArray();
-        }
+		}
+
+		// invoices tab
+		$this->companyIds = Invoice::where('company_id', $user1->company_name)->get()->pluck('company_id')->unique()->toArray();
+
+		if (in_array('company_admin', $this->user['roles'])) {
+		} elseif (in_array('supervisor', $this->user['roles']) && !in_array('company_admin', $this->user['roles'])) {
+			$this->supervisorId = Invoice::where('company_id', $user1->company_name)->whereNotNull('supervisor_id')->get()->pluck('supervisor_id')->unique()->toArray();
+
+			if ($this->supervisorId == [] || $this->supervisorId == null)
+			$this->supervisorId = -1;
+		} elseif (in_array('billing_manager', $this->user['roles'])) {
+			$this->billing_managerId = Invoice::where('company_id', $user1->company_name)->whereNotNull('billing_manager_id')->get()->pluck('billing_manager_id')->unique()->toArray();
+
+			if ($this->billing_managerId == [] || $this->billing_managerId == null)
+			$this->billing_managerId = -1;
+		}
 	}
 
 	public function lockAccount()

@@ -50,34 +50,4 @@ class CompanyService
         return Company::with(['phones', 'addresses'])->find($id);
     }
 
-    public function calculateCompletedRequest($companyId)
-    {
-        $completedBookingIds = Booking::where('company_id', $companyId)->where('is_closed', 1)->pluck('id');
-        return BookingServices::whereIn('booking_id', $completedBookingIds)->sum('duration_hour');
-    }
-
-    public function calculateOpenRequest($companyId)
-    {
-        $openBookingIds = Booking::where('company_id', $companyId)->where('is_closed', 0)->pluck('id');
-        return BookingServices::whereIn('booking_id', $openBookingIds)->sum('duration_hour');
-    }
-
-    public function calculateInvoices($companyId)
-    {
-        $totals = [
-            'totalInvoice' => 0,
-            'dueInvoice' => 0,
-            'overDueInvoice' => 0,
-            'paidInvoice' => 0,
-            'accountCredit' => 0,
-        ];
-
-
-        $totals['totalInvoice'] = Invoice::where('company_id', $companyId)->sum('total_price');
-        $totals['dueInvoice'] = Invoice::where('company_id', $companyId)->whereDate('invoice_due_date', '>=', now())->sum('outstanding_amount');
-        $totals['overDueInvoice'] = Invoice::where('company_id', $companyId)->whereDate('invoice_due_date', '<', now())->sum('outstanding_amount');
-        $totals['paidInvoice'] = $totals['totalInvoice'] - $totals['dueInvoice'] - $totals['overDueInvoice'];
-        
-        return $totals;
-    }
 }
