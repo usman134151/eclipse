@@ -1,4 +1,4 @@
-<div x-data="{ addDocument: false }">
+<div x-data="{ addDocument: false , invoiceDetailsPanel: false }">
 
     <div class="content-header row">
         <div class="content-header-left col-md-9 col-12 mb-2">
@@ -926,9 +926,10 @@
     
 <div class="tab-pane fade" id="invoices-tab-pane" role="tabpanel" aria-labelledby="invoices-tab" tabindex="0">
     <h3>
-        Invoices <small>(coming soon)</small>
+        Invoices 
+        {{-- <small>(coming soon)</small> --}}
     </h3>
-    <div class="col-md-12 d-flex col-12 gap-4 mb-4">
+    {{-- <div class="col-md-12 d-flex col-12 gap-4 mb-4">
         <div class="col-md-3 col-12 mb-4">
             <label class="form-label" for="search-records">
                 Search
@@ -936,7 +937,7 @@
             <input type="text" id="search-records" class="form-control" name="search-column"
                 placeholder="Search here" required aria-required="true" />
         </div>
-        {{-- Date Range --}}
+
         <div class="col-md-3 col-12">
             <div>
                 <label class="form-label" for="date-range">
@@ -945,20 +946,18 @@
                 <div class="position-relative">
                     <input type="" name="" class="form-control js-single-date"
                         placeholder="Jan 1, 2022 - Oct 1, 2022" id="date-range">
-                    {{-- Updated by Shanila to Add svg icon --}}
                     <svg aria-label="Date" class="icon-date" width="20" height="20" viewBox="0 0 20 20">
                         <use xlink:href="/css/common-icons.svg#datefield-icon">
                         </use>
                     </svg>
-                    {{-- End of update by Shanila --}}
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
+    <x-advancefilters type="invoice-filters" :bmanagers="$bmanagers" :setupValues="$setupValues"/>
 
-
-@livewire('app.common.lists.customer-invoices', ['company_id'=>$companyIds, 'invoice_status'=>'pending',
-    'supervisor_id'=>$supervisorId,'billing_manager_id'=>$billing_managerId ])
+    @livewire('app.common.lists.customer-invoices', ['company_id'=>$companyIds, 'invoice_status'=>'pending',
+        'supervisor_id'=>$supervisorId,'billing_manager_id'=>$billing_managerId ])
 
 
     {{-- <div class="d-flex justify-content-between mb-2">
@@ -2528,6 +2527,8 @@
 </div>
 </div>
 @include('panels.common.add-document')
+@include('modals.common.revert-back')
+@include('panels.common.invoice-details')
 @include('modals.mark-as-paid')
 @include('modals.common.change-password', ['userid' => $userid])
 </section>
