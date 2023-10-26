@@ -352,7 +352,7 @@
                                 <label class="col-form-label fw-semibold">Price:</label>
                             </div>
                             <div class="col-lg-7 align-self-center">
-                                <div>{{ numberFormat($booking->getInvoicePrice()) }}</div>
+                                <div>{{ numberFormat($booking->payment->total_amount) }}</div>
                             </div>
                         </div>
                     </div>
@@ -379,23 +379,26 @@
         </div>
         <div class="row">
             <div class="col-lg-12 d-flex justify-content-center gap-2 mt-5 form-actions">
-                <a href="javascript:void(0);" class="btn btn-outline-dark rounded" role="button">
+                <a href="javascript:void(0);" class="btn btn-outline-dark rounded" role="button"
+                        x-on:click="rescheduleBooking = !rescheduleBooking"
+                >
                     Cancel
                 </a>
-                <div class="dropdown">
-                    <button type="button" class="btn btn-primary rounded dropdown-toggle w-100 h-100" type="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
+                {{-- <div class="dropdown"> --}}
+                    <button type="button" class="btn btn-primary rounded " wire:click="saveBooking" 
+                        x-on:close-reschedule.window="rescheduleBooking = !rescheduleBooking"
+                    type="button">
                         Update
                     </button>
-                    <ul class="dropdown-menu">
+                    {{-- <ul class="dropdown-menu">
                         <li>
                             <a href="#" class="dropdown-item d-block rounded">Update + Invite</a>
                         </li>
                         <li>
                             <a href="#" class="dropdown-item d-block rounded">Update + Assign</a>
                         </li>
-                    </ul>
-                </div>
+                    </ul> --}}
+                {{-- </div> --}}
             </div>
         </div>
     @endif

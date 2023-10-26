@@ -931,7 +931,10 @@ if ($startIndex <= $endIndex) {
       }
     }
     $booking->status=4; //default cancel billable
-    $booking->payment->cancellation_charges=$totalCharges;
+    if($parameter == 'rescheduling')
+      $booking->payment->reschedule_booking_charges = $totalCharges;
+    else
+      $booking->payment->cancellation_charges=$totalCharges;
    
     return $booking;
   }
