@@ -1167,6 +1167,17 @@
             </span>
         </div>
     </div>
+    <div class="justify-content-center d-flex flex-md-row">
+        <div id="messageAlert" class="text-danger">
+        </div>
+    </div>
+    <div class="justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
+        <button disabled class="btn btn-primary rounded">Resend Invoice</button>
+        <button class="btn btn-primary rounded" onclick="payInvoices()">Record Payment</button>
+        <button class="btn btn-primary rounded" onclick="revertInvoices()">Revert
+            Invoice
+        </button>
+    </div>
 </div>
 @endif
 
@@ -2530,6 +2541,7 @@
 @include('modals.common.revert-back')
 @include('panels.common.invoice-details')
 @include('modals.mark-as-paid')
+@include('modals.common.pay-invoice')
 @include('modals.common.change-password', ['userid' => $userid])
 </section>
 @endif
@@ -2537,3 +2549,59 @@
 
 
 </div>
+@push('scripts')
+    <script>
+        function updateVal(attrName, val) {
+
+            Livewire.emit('updateVal', attrName, val);
+
+        }
+
+        function payInvoices() {
+            let selectedValues = [];
+            $('tbody .form-check-input:checked').each(function () {
+                selectedValues.push($(this).val());
+            });
+
+            if (selectedValues.length > 0) {
+
+                Livewire.emit('initMultipleInvoices', selectedValues);
+                $('#payInvoice').modal('show');
+            } else {
+                $('#messageAlert').html('Please select at least one invoice.');
+                setTimeout(function () {
+                    $('#messageAlert').html('');
+                }, 2000);
+            }
+        }
+
+
+        function revertInvoices() {
+            let selectedValues = [];
+            $('tbody .form-check-input:checked').each(function () {
+                selectedValues.push($(this).val());
+            });
+
+            if (selectedValues.length > 0) {
+                Livewire.emit('revertMultipleInvoice', selectedValues);
+                $('#revertBackModal').modal('show');
+            } else {
+                $('#messageAlert').html('Please select at least one invoice.');
+                setTimeout(function () {
+                    $('#messageAlert').html('');
+                }, 2000);
+            }
+        }
+
+        Livewire.on('revertModalDismissed', () => {
+            $('#revertBackModal').modal('hide');
+
+        });
+
+        Livewire.on('payInvoiceModalDismissed', () => {
+            $('#payInvoice').modal('hide');
+
+        });
+        
+    </script>
+@endpush
