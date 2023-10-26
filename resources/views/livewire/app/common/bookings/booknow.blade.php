@@ -327,7 +327,7 @@
                                         <div class="d-flex justify-content-between">
                                         <h3 class="text-primary">Services {{ $loop->index + 1 }}</h3>
                                         <div class="align-items-center gap-4">
-                                        @if($index>=1)
+                                        @if($index>=1 || $isEdit)
                                             <a wire:click.prevent="removeServices({{$index}})" href="#" title="Delete" aria-label="Delete"
                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                 <svg class="delete-icon" width="20" height="20"
@@ -340,7 +340,7 @@
                                         </div>
                                     </div>
                                         <div class="row mb-5">
-                                            <div class="col-lg-6 mb-4 pe-lg-5">
+                                            <div class="col-lg-6 mb-4 pe-lg-5">@if($isEdit && key_exists('id',$service)) <input type="hidden" value="{{$services[$index]['id']}}" wire:model="services.{{$index}}.id"> @endif
                                                 <label class="form-label">Accommodation <span
                                                         class="mandatory">*</span></label>
                                                         <select class="form-select select2 mb-2" id="accommodation_id_{{$index}}" name="accommodation_id_{{$index}}" wire:model="services.{{$index}}.accommodation_id">
@@ -708,7 +708,7 @@
                                         <div class="d-flex justify-content-between">
                                         <h3 class="text-primary">Date & Time {{ $loop->index + 1 }}</h3>
                                         <div class="align-items-center gap-2">
-                                            @if($index>=1)
+                                            @if($index>=1 || $isEdit)
                                             <a wire:click.prevent="removeDate({{$index}})" href="#" title="Delete" aria-label="Delete"
                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                 <svg class="delete-icon" width="20" height="20"
