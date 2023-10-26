@@ -953,7 +953,6 @@ class BookingOperationsService
         $booking->reschedule_status = 1;
       }
       $booking->payment->reschedule_booking_charges = $reschedule_details['charges'];
-
       $booking->save();
       $booking->payment->save();
     }

@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class RescheduleBooking extends Component
 {
-    public $showForm, $booking, $reschedule_details = [], $override_charges=0;
+    public $showForm, $booking, $reschedule_details = [], $override_charges='';
     protected $listeners = ['showList' => 'resetForm', 'getRescheduleBookingData', 'updateVal'];
     public $serviceTypes = [
         '1' => ['class' => 'inperson-rate', 'postfix' => '', 'title' => 'In-Person'],
@@ -27,6 +27,7 @@ class RescheduleBooking extends Component
         //fetch booking with rescheduling charges
         $this->booking = BookingOperationsService::getBookingDetails($booking_id, $this->serviceTypes, 'rescheduling', 'cancellation_hour1');
         
+        $this->override_charges = round($this->booking->payment->reschedule_booking_charges,1);
         $start = Carbon::parse($this->booking->booking_start_at);
         $end = Carbon::parse($this->booking->booking_end_at);
         $this->reschedule_details['booking_start_at'] = $start->format('m/d/Y');
@@ -50,7 +51,7 @@ class RescheduleBooking extends Component
         BookingOperationsService::rescheduleBooking($this->booking,$this->reschedule_details);
         $this->emit('showConfirmation', 'Booking status updated successfully');
        
-        // $this->dispatchBrowserEvent('close-reschedule');
+        $this->dispatchBrowserEvent('close-reschedule');
     }
 
 

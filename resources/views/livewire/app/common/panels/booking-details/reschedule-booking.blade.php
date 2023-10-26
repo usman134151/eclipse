@@ -11,18 +11,17 @@
                     </div>
                 </div>
                 <div class="col-lg-12 my-4">
-                <div class="position-relative mb-3">
-                                <label class="form-label-sm" for="override_charges">Override Charges</label>
+                    <div class="position-relative mb-3">
+                        <label class="form-label-sm" for="override_charges">Override Rescheduling Charges</label>
 
-                            <input type="" class="form-control " 
-                                id="override_charges" name="override_charges" placeholder="$0.00"
-                                wire:model="reschedule_details.override_charges">
-                        </div>
+                        <input type="" class="form-control " id="override_charges" name="override_charges"
+                            placeholder="$0.00" wire:model="override_charges">
+                    </div>
                     <div
                         class="d-flex flex-column flex-lg-row gap-lg-3 gap-2 align-items-lg-center justify justify-content-between">
                         <label class="form-label fw-semibold">Start Date & Time</label>
-                         
-                       
+
+
                         <div class="position-relative">
                             <input type="" class="form-control js-single-date" placeholder="MM/DD/YYYY"
                                 id="booking_start_at" name="booking_start_at"
@@ -144,12 +143,13 @@
                                         Reschedule this booking and all future bookings until.
                                     </label>
                                 </div>
-                                <div class="position-relative {{ $reschedule_details['setting'] == 'bookings_until' ?: 'hidden' }}">
+                                <div
+                                    class="position-relative {{ $reschedule_details['setting'] == 'bookings_until' ?: 'hidden' }}">
                                     <div class="input-group w-50 ">
                                         <input type="" class="form-control  js-single-date"
                                             placeholder="MM/DD/YYYY"
-                                            wire:model.defer="reschedule_details.reschedule_until" id="reschedule_until"
-                                            name="reschedule_until">
+                                            wire:model.defer="reschedule_details.reschedule_until"
+                                            id="reschedule_until" name="reschedule_until">
                                         <svg class="icon-date cursor-pointer" width="20" height="20"
                                             viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -389,16 +389,15 @@
         <div class="row">
             <div class="col-lg-12 d-flex justify-content-center gap-2 mt-5 form-actions">
                 <a href="javascript:void(0);" class="btn btn-outline-dark rounded" role="button"
-                        x-on:click="rescheduleBooking = !rescheduleBooking"
-                >
+                    x-on:click="rescheduleBooking = !rescheduleBooking">
                     Cancel
                 </a>
                 {{-- <div class="dropdown"> --}}
-                    <button type="button" class="btn btn-primary rounded " wire:click="saveBooking" 
-                        x-on:close-reschedule.window="rescheduleBooking = !rescheduleBooking">
-                        Update
-                    </button>
-                    {{-- <ul class="dropdown-menu">
+                <button type="button" class="btn btn-primary rounded " wire:click="saveBooking"
+                    x-on:close-reschedule.window="rescheduleBooking = false">
+                    Update
+                </button>
+                {{-- <ul class="dropdown-menu">
                         <li>
                             <a href="#" class="dropdown-item d-block rounded">Update + Invite</a>
                         </li>
