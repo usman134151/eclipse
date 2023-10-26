@@ -6,17 +6,49 @@ use Livewire\Component;
 use App\Models\Tenant\User;
 use App\Services\App\UserService;
 use App\Helpers\SetupHelper;
+use App\Models\Tenant\Booking;
 use App\Models\Tenant\Invoice;
 use App\Models\Tenant\UserLoginAddress;
 use App\Services\InvoiceService;
+use PDF;
 
 class CustomerDetails extends Component
 {
-	public $user,$userid, $service_catalog, $isCustomer=false , $companyIds, $supervisorId, $billing_managerId;
+	public $user,$userid, $service_catalog, $isCustomer=false , $companyIds, $supervisorId, $billing_managerId, $counter = 0, $invoice_id;
 	protected $invoiceService;
 	protected $listeners = [
-		'showDetails', 'showConfirmation' 
+		'showDetails', 'showConfirmation' , 'openInvoiceDetails', 'downloadInvoice'=> 'createInvoicePDF'
 	];
+
+	public $filter_companies, $filter_bmanager;
+        public $setupValues = [
+        'companies' => ['parameters' => ['Company', 'id', 'name', 'status', 1, 'name', false, 'filter_companies', '', 'filter_companies', 2]],
+        // 'specializations' => ['parameters' => ['Specialization', 'id', 'name', 'status', 1, 'name', true, 'filter_specialization', '', 'filter_specialization', 4]],
+        // "service_type_ids" => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 5, 'setup_value_label', true, 'filter_service_type_ids', '', 'filter_service_type_ids', 4]],
+        // 'ethnicity' => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 3, 'setup_value_label', true, 'ethnicity', '', 'ethnicityassignProvider', 6]],
+        // 'gender' => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 2, 'setup_value_label', true, 'gender', '', 'genderassignProvider', 5]],
+        // 'certifications' => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 8, 'setup_value_label', true, ' certifications', '', ' certificationsassignProvider', 9]],
+
+    ];
+    public $bmanagers = [];
+
+    public function setCompanyDetails($attrName, $val)
+    {
+        if ($attrName == 'filter_companies') {
+            // fetch billing managers for this company 
+            $this->bmanagers = User::where('company_name', $val)->whereHas('roles', function ($query) {
+                $query->where('role_id', 9);
+            })->select(['users.name', 'users.id'])->get();
+
+        }
+        $this->$attrName = $val;
+    }
+    public function resetFilters(){
+        $this->filter_bmanager=null;
+        $this->filter_companies = null;
+
+    }
+  
 
 
 	public function __construct()
@@ -35,6 +67,8 @@ class CustomerDetails extends Component
 		if($user){
 			$this->showdetails($user);
 		}
+		$this->setupValues = SetupHelper::loadSetupValues($this->setupValues);
+
 	}
 
 	public function showDetails($user){
@@ -127,6 +161,11 @@ class CustomerDetails extends Component
 
 		// invoices tab
 		$this->companyIds = Invoice::where('company_id', $user1->company_name)->get()->pluck('company_id')->unique()->toArray();
+		
+		
+		if ($this->companyIds == [] || $this->companyIds == null)
+		$this->companyIds = -1;
+
 
 		if (in_array('company_admin', $this->user['roles'])) {
 		} elseif (in_array('supervisor', $this->user['roles']) && !in_array('company_admin', $this->user['roles'])) {
@@ -175,4 +214,34 @@ class CustomerDetails extends Component
 		sendWelcomeMail($user);
 		$this->showConfirmation("Welcome Email Send Successfully");
 	}
+
+	function createInvoicePDF($invoice_id = 0)
+    {
+        // $orderData = [];
+        $invoice = Invoice::where('id', $invoice_id)->with(['company', 'billing_manager', 'billingAddress',])->first();
+        if ($invoice) {
+
+            $bookings = Booking::whereIn('id', $invoice->bookings->pluck('id'))->get();
+            $orderData['invoice'] = $invoice;
+            $orderData['bookings'] = $bookings ?? [];
+
+            $pdfContent = PDF::loadView('tenant.common.download_invoice_pdf', ['orderData' => $orderData])->output();
+            return response()->streamDownload(
+                fn () => print($pdfContent),
+                "invoice_" . $invoice->invoice_number . ".pdf"
+            );
+        }
+    }
+
+	public function openInvoiceDetails($invoice_id)
+    {
+        if ($this->counter == 0) {
+            $this->invoice_id = 0;
+            $this->dispatchBrowserEvent('refresh-invoice-details', ['invoice_id' => $invoice_id]);
+            $this->counter = 1;
+        } else {
+            $this->invoice_id = $invoice_id;
+            $this->counter = 0;
+        }
+    }
 }
