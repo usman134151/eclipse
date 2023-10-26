@@ -91,7 +91,7 @@ class Booknow extends Component
     '5'=>['class'=>'teleconference-rate','postfix'=>'_t','title'=>'Teleconference'],
   ];
 
-    public $assignedSupervisor="";public $isEdit,$selectRequestor=true;
+    public $assignedSupervisor="";public $isEdit=false,$selectRequestor=true;
 
 
 
@@ -143,6 +143,7 @@ class Booknow extends Component
          // dd($this->booking);
             $this->updateCompany();
             $this->services=$this->booking->booking_services_new_layout->toArray();
+            
             foreach($this->services as &$service)
             {
                 $service['specialization']=json_decode($service['specialization'],true);

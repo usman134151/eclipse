@@ -86,11 +86,19 @@ class BookingOperationsService{
         $service['end_time'] =  Carbon::parse($dates[0]['end_date'].' '.$dates[0]['end_hour'].':'.$dates[0]['end_min'].':00')->format('Y-m-d H:i:s');
         $service['time_zone'] =  $dates[0]['time_zone'];
     
-       
-        BookingServices::updateOrCreate(
-          ['booking_id' => $booking->id, 'services' => $service['services']], 
-          $service
-      );
+       if(key_exists('id',$service)){
+        $service['created_at']=now();
+        BookingServices::where('id', $service['id'])
+        ->update($service);  
+       }
+       else{
+          $service['created_at']=now();
+          BookingServices::updateOrCreate(
+            ['booking_id' => $booking->id, 'services' => $service['services']], 
+            $service
+        );
+       }
+
     }
     //store services
     BookingIndustry::where('booking_id', $booking->id)->delete();
@@ -210,7 +218,7 @@ $minDurationMin =(int) (isset($service['service_data']['minimum_assistance_min'.
 
     if($service['service_data'][$multipleProviderCol]){
     
-        $service['business_hour_charges']=((float)$service['service_data']['hours_price'.$service['postFix']]*(int)$service['provider_count']*$bh)+(((float)$service['service_data']['hours_price'.$service['postFix']]/60)*(int)$service['provider_count']*$bm);
+        $service['business_hour_charges']=((float)$service['service_data']['hours_price'.$service['postFix']]*(int)$service['provider_count']*$bh)+((((float)$service['service_data']['hours_price'.$service['postFix']])/60)*(int)$service['provider_count']*$bm);
         $service['after_business_hour_charges']=((float)$service['service_data']['after_hours_price'.$service['postFix']]*(int)$service['provider_count']*(int)$abh)+(((float)$service['service_data']['after_hours_price'.$service['postFix']]/60)*(int)$service['provider_count']*$abm);
        
     }
