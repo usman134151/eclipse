@@ -471,7 +471,8 @@
                                                                         </div>
                                                                         <div class="col-md-7 align-self-center">
                                                                             <div class="font-family-secondary">
-                                                                                50 Hours <small>(coming soon)</small>
+                                                                                {{-- 50 Hours <small>(coming soon)</small> --}}
+                                                                                {{$company['completedRequest']}} Hours
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -486,7 +487,8 @@
                                                                         </div>
                                                                         <div class="col-md-7 align-self-center">
                                                                             <div class="font-family-secondary">
-                                                                                80 Hours <small>(coming soon)</small>
+                                                                                {{-- 80 Hours <small>(coming soon)</small> --}}
+                                                                                {{$company['openRequest']}} Hours
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -501,7 +503,8 @@
                                                                         </div>
                                                                         <div class="col-md-7 align-self-center">
                                                                             <div class="font-family-secondary">
-                                                                                $192892.00 <small>(coming soon)</small>
+                                                                                {{-- $192892.00 <small>(coming soon)</small> --}}
+                                                                                ${{$company['totalInvoice']}}
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -516,7 +519,8 @@
                                                                         </div>
                                                                         <div class="col-md-7 align-self-center">
                                                                             <div class="font-family-secondary">
-                                                                                $84733.55 <small>(coming soon)</small>
+                                                                                {{-- $84733.55 <small>(coming soon)</small> --}}
+                                                                                ${{$company['paidInvoice']}}
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -531,7 +535,8 @@
                                                                         </div>
                                                                         <div class="col-md-7 align-self-center">
                                                                             <div class="font-family-secondary">
-                                                                                $2834.00 <small>(coming soon)</small>
+                                                                                {{-- $2834.00 <small>(coming soon)</small> --}}
+                                                                                ${{$company['dueInvoice']}}
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -546,7 +551,8 @@
                                                                         </div>
                                                                         <div class="col-md-7 align-self-center">
                                                                             <div class="font-family-secondary">
-                                                                                $78734.00 <small>(coming soon)</small>
+                                                                                {{-- $78734.00 <small>(coming soon)</small> --}}
+                                                                                ${{$company['overDueInvoice']}}
                                                                             </div>
                                                                         </div>
                                                                     </div>
