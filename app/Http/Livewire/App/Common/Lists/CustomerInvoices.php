@@ -98,6 +98,10 @@ final class CustomerInvoices extends PowerGridComponent
             $query->where('billing_manager_id', $this->billing_manager_id);
         }
 
+        if($this->company_id){
+            $query->where('company_id', $this->company_id);
+        }
+
 
         if ($this->filter_companies)
             $query->where('company_id', $this->filter_companies);
