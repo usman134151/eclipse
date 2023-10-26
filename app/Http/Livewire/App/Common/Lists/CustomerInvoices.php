@@ -14,7 +14,7 @@ final class CustomerInvoices extends PowerGridComponent
     use ActionButton;
     public $status = [2 => ['code' => '/css/provider.svg#green-dot', 'title' => 'Paid'], 1 => ['code' => '/css/common-icons.svg#blue-dot', 'title' => 'Issued'], 3 => ['code' => '/css/provider.svg#red-dot', 'title' => 'Overdue'], 4 => ['code' => '/css/provider.svg#yellow-dot', 'title' => 'Partial']];
     protected $listeners = ['refresh' => 'setUp'];
-    public $invoice_status = '', $company_id = null;
+    public $invoice_status = '', $company_id = null , $supervisor_id , $billing_manager_id;
     public $filter_bmanager, $filter_companies;
 
     /*
@@ -91,11 +91,22 @@ final class CustomerInvoices extends PowerGridComponent
         $query->select(['companies.name', 'companies.company_logo', 'invoices.*']);
         // $query->orderBy('invoice_due_date');
 
+        if($this->supervisor_id)
+            $query->where('supervisor_id', $this->supervisor_id);
+            
+        if($this->billing_manager_id){
+            $query->where('billing_manager_id', $this->billing_manager_id);
+        }
+
+
         if ($this->filter_companies)
             $query->where('company_id', $this->filter_companies);
 
         if ($this->filter_bmanager)
             $query->where('billing_manager_id', $this->filter_bmanager);
+
+        
+        
         return $query;
     }
 

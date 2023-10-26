@@ -90,10 +90,10 @@ final class Companies extends PowerGridComponent
 		return PowerGrid::eloquent()
 			->addColumn('name')
 			->addColumn('displayname', function (Company $model) {
-				if ($model->profile_pic == null)
+				if ($model->company_logo == null)
 					$col = '<div class="row g-2 align-items-center"><div class="col-md-2"><a href="'.route('tenant.company-profile', ['companyID' => encrypt($model->id)]).'"><img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Customer Profile Image"></a></div><div class="col-md-10"><h6 class="fw-semibold"><a href="' . route('tenant.company-profile', ['companyID' => encrypt($model->id)]) . '">' . $model->name . '</h6></a></div></div>';
 				else
-					$col = '<div class="row g-2 align-items-center"><div class="col-md-2"><a href="'.route('tenant.company-profile', ['companyID' => encrypt($model->id)]).'"><img style="width:64px;height:64px;top:1rem"  src="' . $model->profile_pic . '" class="img-fluid rounded-circle" alt="Customer Profile Image"></a></div><div class="col-md-10"><h6 class="fw-semibold"><a href="' . route('tenant.company-profile', ['companyID' => encrypt($model->id)]) . '">' . $model->name . '</h6></a></div></div>';
+					$col = '<div class="row g-2 align-items-center"><div class="col-md-2"><a href="'.route('tenant.company-profile', ['companyID' => encrypt($model->id)]).'"><img style="width:64px;height:64px;top:1rem"  src="' . $model->company_logo . '" class="img-fluid rounded-circle" alt="Customer Profile Image"></a></div><div class="col-md-10"><h6 class="fw-semibold"><a href="' . route('tenant.company-profile', ['companyID' => encrypt($model->id)]) . '">' . $model->name . '</h6></a></div></div>';
 				return $col;
 			})
 			->addColumn('phone', function (Company $model) {

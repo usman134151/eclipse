@@ -2,7 +2,10 @@
 
 namespace app\Services\App;
 
-use App\Models\Company;
+use App\Models\Tenant\Company;
+use App\Models\Tenant\Booking;
+use App\Models\Tenant\BookingServices;
+use App\Models\Tenant\Invoice;
 use App\Models\Tenant\Phone;
 use App\Services\App\AddressService;
 
@@ -46,4 +49,5 @@ class CompanyService
     {
         return Company::with(['phones', 'addresses'])->find($id);
     }
+
 }
