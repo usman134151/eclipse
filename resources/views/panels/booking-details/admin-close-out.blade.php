@@ -1,5 +1,5 @@
 {{-- BEGIN: CloseOut Booking Off Canvas --}}
-<x-off-canvas show="closeOutBooking">
+<x-off-canvas show="closeOutBooking" size="fullscreen">
     <x-slot name="title">Close Booking # {{ $booking->booking_number }}
     </x-slot>
     @if ($closeOut)

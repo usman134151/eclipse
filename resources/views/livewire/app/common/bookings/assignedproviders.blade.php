@@ -156,9 +156,9 @@
                                                       {{ $provider['additional_charge_provider'] ?numberFormat($provider['additional_charge_provider']) : 'N/A' }}
                                                   </td>
                                                   <td class="text-center align-middle">
-                                                      {{ $provider['paid_at'] }}
+                                                      {{-- {{ $provider['paid_at'] ?? 'N/A' }} --}}
                                                   </td>
-                                                  <td class="text-center align-middle">{{ $provider['paid_amount'] }}
+                                                  <td class="text-center align-middle">{{ numberFormat($provider['total_amount']) }}
                                                   </td>
                                               @endif
                                               <td class="align-middle">
