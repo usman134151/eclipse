@@ -7,6 +7,7 @@ use App\Models\Tenant\Schedule;
 use App\Models\Tenant\User;
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\Invoice;
+use App\Services\InvoiceService;
 use Livewire\Component;
 use PDF;
 class CompanyProfile extends Component
@@ -24,6 +25,13 @@ class CompanyProfile extends Component
 		'openInvoiceDetails',
 		'downloadInvoice'=> 'createInvoicePDF'
 	];
+
+	protected $invoiceService;
+
+	public function __construct()
+    {
+        $this->invoiceService = new InvoiceService;
+    }
 
 	public function render()
 	{
@@ -89,7 +97,15 @@ class CompanyProfile extends Component
 				$this->company['schedule'][$dayName] = $slots->groupBy('timeslot_type')->toArray();
 			}
 		}
-		// dd($this->company['schedule']);
+
+		$this->company['completedRequest'] = $this->invoiceService->calculateRequest($this->company['id'],2,1);
+		$this->company['openRequest'] = $this->invoiceService->calculateRequest($this->company['id'],2,0);
+		$invoiceTotals = $this->invoiceService->calculateInvoices($this->company['id'] , 2);
+		
+		$this->company['totalInvoice'] = $invoiceTotals['totalInvoice'];
+		$this->company['dueInvoice'] = $invoiceTotals['dueInvoice'];
+		$this->company['overDueInvoice'] = $invoiceTotals['overDueInvoice'];
+		$this->company['paidInvoice'] = $invoiceTotals['paidInvoice'];
 
         $this->dispatchBrowserEvent('refreshSelects');
 		$this->getCompanySchedule();
