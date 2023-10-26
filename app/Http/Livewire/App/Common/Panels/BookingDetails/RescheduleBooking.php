@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class RescheduleBooking extends Component
 {
-    public $showForm, $booking, $reschedule_details = [];
+    public $showForm, $booking, $reschedule_details = [], $override_charges=0;
     protected $listeners = ['showList' => 'resetForm', 'getRescheduleBookingData', 'updateVal'];
     public $serviceTypes = [
         '1' => ['class' => 'inperson-rate', 'postfix' => '', 'title' => 'In-Person'],
@@ -41,12 +41,22 @@ class RescheduleBooking extends Component
 
     public function saveBooking()
     {
-        $this->dispatchBrowserEvent('close-reschedule');
+        if ($this->override_charges != '' && is_numeric($this->override_charges)) {
+            $this->booking->payment->reschedule_booking_charges = (float)$this->override_charges;
+        }
+        $this->reschedule_details['charges'] = $this->booking->payment->reschedule_booking_charges;
+
+
+        BookingOperationsService::rescheduleBooking($this->booking,$this->reschedule_details);
+        $this->emit('showConfirmation', 'Booking status updated successfully');
+       
+        // $this->dispatchBrowserEvent('close-reschedule');
     }
 
 
     function updateVal($attrName, $val)
     {
+
         $this->reschedule_details[$attrName] = $val;
     }
     public function resetForm()

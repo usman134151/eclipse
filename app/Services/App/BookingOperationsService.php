@@ -976,6 +976,46 @@ if ($startIndex <= $endIndex) {
 
   }
 
+  public static function rescheduleBooking($booking, $reschedule_details)
+  {
+    // dd($booking, $reschedule_details);
+    // check if recurring
+    if($booking->is_recurring && $reschedule_details['setting']!= "only_this_booking"){
+        if($reschedule_details['setting'] == "bookings_until")
+        {
+          // $reschdule_details['reschedule_until']
+          //fetch all bookings with parent_id == booking_id && bookings.booking_end_at is between current booking_date and $reschdule_details['reschedule_until']
+          dd('fetch all bookings with parent_id == booking_id && bookings.booking_end_at is between current booking_date and $reschdule_details["reschedule_until"]');
+        
+        }
+        else{
+          // fetch all bookings with parent_id == booking_id
+          dd('fetch all bookings with parent_id == booking_id');
+        }
+    }
+    $r_bookings[] = $booking;
+    foreach($r_bookings as $booking){
+        // set $booking->reschedule_date according to admin/customer permissions
+        $booking->booking_reschedule_at = Carbon::now();
+        $booking->reschedule_start_at = Carbon::parse($reschedule_details['booking_start_at'] .' '. $reschedule_details['booking_start_hour'] .':'. $reschedule_details['booking_start_min']);
+        $booking->reschedule_end_at = Carbon::parse($reschedule_details['booking_end_at'] .' '. $reschedule_details['booking_end_hour'] .':'. $reschedule_details['booking_end_min']);
+        $booking->reschedule_by = Auth::id();
+        $booking->reschedule_status=2;
+        if(!session()->get('isCustomer')){
+            //is admin hence directly approved
+              $booking->booking_start_at = $booking->reschedule_start_at;
+              $booking->booking_end_at = $booking->reschedule_end_at;
+              $booking->reschedule_status = 1;
+
+        }
+           $booking->payment->reschedule_booking_charges = $reschedule_details['charges'];
+
+          $booking->save();
+          $booking->payment->save();
+    }
+    return;
+  }
+  
   public static function getCharges($cancellationData,$bookingStartTime,$parameter){
 
     // Step 2: Sort arrays based on the 'hour' parameter

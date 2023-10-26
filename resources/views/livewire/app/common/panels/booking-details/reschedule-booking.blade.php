@@ -11,9 +11,18 @@
                     </div>
                 </div>
                 <div class="col-lg-12 my-4">
+                <div class="position-relative mb-3">
+                                <label class="form-label-sm" for="override_charges">Override Charges</label>
+
+                            <input type="" class="form-control " 
+                                id="override_charges" name="override_charges" placeholder="$0.00"
+                                wire:model="reschedule_details.override_charges">
+                        </div>
                     <div
                         class="d-flex flex-column flex-lg-row gap-lg-3 gap-2 align-items-lg-center justify justify-content-between">
                         <label class="form-label fw-semibold">Start Date & Time</label>
+                         
+                       
                         <div class="position-relative">
                             <input type="" class="form-control js-single-date" placeholder="MM/DD/YYYY"
                                 id="booking_start_at" name="booking_start_at"
@@ -386,8 +395,7 @@
                 </a>
                 {{-- <div class="dropdown"> --}}
                     <button type="button" class="btn btn-primary rounded " wire:click="saveBooking" 
-                        x-on:close-reschedule.window="rescheduleBooking = !rescheduleBooking"
-                    type="button">
+                        x-on:close-reschedule.window="rescheduleBooking = !rescheduleBooking">
                         Update
                     </button>
                     {{-- <ul class="dropdown-menu">
