@@ -5,6 +5,7 @@ namespace App\Http\Livewire\App\Common;
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\ProviderSpecificSchedule;
 use App\Models\Tenant\ProviderVacation;
+use App\Models\Tenant\RoleUserDetail;
 use App\Models\Tenant\Schedule;
 use App\Models\Tenant\Tag;
 use App\Models\Tenant\User;
@@ -14,7 +15,7 @@ use Livewire\Component;
 
 class Calendar extends Component
 {
-	public $events = [], $model_id = 0, $model_type = 0, $providerProfile = false, $hideProvider = false;
+	public $events = [], $model_id = 0, $model_type = 0, $providerProfile = false, $hideProvider = false, $customerProfile = false;
 	public $holidays = [], $specific = [], $user_id = null;
 
 	//adv filter variables
@@ -183,7 +184,40 @@ class Calendar extends Component
 
 		$query = Booking::query();
 		$query->where('bookings.type', 1);
-		if ($this->user_id && $this->providerProfile == false && !$this->isCustomer)
+
+		if ($this->user_id && $this->customerProfile && !$this->isCustomer) {
+
+			$user = User::find($this->user_id);
+			$query->where('bookings.company_id', $user['company_name']);
+			$userRoles = $user->roles->where('role_type', 2)->pluck('name')->toArray();
+
+			// check if user is not admin
+			if (!in_array('company_admin', $userRoles)) {
+				$query->where(function ($g) use ($user) {
+
+					// Check if the user is a customer of the booking
+					$g->orWhere('customer_id', $this->user_id);
+
+					// Check if the user is a supervisor of the booking
+					$g->orWhere('supervisor', $this->user_id);
+
+					// Check if the user is a billing manager of the booking
+					$g->orWhere('billing_manager_id', $this->user_id);
+
+					// Check if the user is attendee or service_consumer of the booking
+					$g->orWhereHas('booking_services', function ($q) use ($user) {
+						$q->where('attendees', 'LIKE', '%' . $user->id . '%')
+							->orWhere('service_consumer', 'LIKE', '%' . $user->id . '%');
+					});
+
+					// check if the user is supervisor or booking manager of a customer of the booking
+					$associated_user = RoleUserDetail::whereIn('role_id', [5, 9])->where('user_id', $this->user_id)->get()->pluck('associated_user');
+					$g->orWhereIn('customer_id', $associated_user);
+				});
+			}
+		}
+
+		if ($this->user_id && $this->providerProfile == false && !$this->isCustomer && !$this->customerProfile)
 			$query->join('booking_providers', function ($join) {
 				$join->where('booking_providers.provider_id', $this->user_id);
 				$join->on('booking_providers.booking_id', 'bookings.id');

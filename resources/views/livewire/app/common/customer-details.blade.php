@@ -865,9 +865,11 @@
     <div class="inner-section-segment-spacing">
     </div>
     <div>
-        <x-advancefilters />
-        <img class="w-100" alt="Schedule Calendar"
-            src="/tenant-resources/images/portrait/small/image-placeholder-calendar.png" />
+        {{-- <x-advancefilters /> --}}
+        {{-- <img class="w-100" alt="Schedule Calendar"
+            src="/tenant-resources/images/portrait/small/image-placeholder-calendar.png" /> --}}
+		@livewire('app.common.calendar',['customerProfile' => true, 'user_id' => $userid])
+
     </div>
 </div>
 @if (!$isCustomer)
