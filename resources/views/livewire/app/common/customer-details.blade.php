@@ -859,7 +859,9 @@
 <!-- Dashboard tab end -->
 <div class="tab-pane fade" id="schedule-tab-pane" role="tabpanel" aria-labelledby="schedule-tab" tabindex="0">
     <div class="row mb-2">
-        <h3>Schedule <small>(coming soon)</small></h3>
+        <h3>Schedule 
+            {{-- <small>(coming soon)</small> --}}
+        </h3>
 
     </div>
     <div class="inner-section-segment-spacing">
