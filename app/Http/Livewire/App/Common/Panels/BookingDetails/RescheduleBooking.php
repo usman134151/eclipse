@@ -50,7 +50,7 @@ class RescheduleBooking extends Component
             'reschedule_details.booking_end_at' => 'required|date|after_or_equal:reschedule_details.booking_start_at',
             'reschedule_details.booking_end_hour' => 'required|numeric|between:0,23',
             'reschedule_details.booking_end_min' => 'required|numeric|between:0,59',
-
+            'override_charges'=>'nullable|numeric'
         ];
     }
 

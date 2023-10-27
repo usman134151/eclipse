@@ -16,6 +16,12 @@
 
                         <input type="" class="form-control " id="override_charges" name="override_charges"
                             placeholder="$0.00" wire:model="override_charges">
+                            
+                    @error('override_charges')
+                        <span class="d-inline-block invalid-feedback mt-2">
+                            {{ $message }}
+                        </span>
+                    @enderror
                     </div>
                     <div
                         class="d-flex flex-column flex-lg-row gap-lg-3 gap-2 align-items-lg-center justify justify-content-between">
