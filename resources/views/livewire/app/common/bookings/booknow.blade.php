@@ -2140,7 +2140,7 @@
     @include('modals.common.add-address')
     @include('modals.common.add-industry')
     @include('modals.common.add-department')
-    
+    @include('modals.common.booking-modification-confirmation')
     @include('modals.common.add-new-customer')
     @include('modals.common.assign-admin-staff')
     @include('modals.common.assign-admin-staff-team')
@@ -2158,7 +2158,12 @@
             Livewire.emit('updateVal', attrName, val);
 
         }
-
+        Livewire.on('confirmBookingModification', (type) => {
+            // Handle the event here
+           
+            // Open the modal
+            $('#modificationConfirmation').modal('show');
+        });
         Livewire.on('updateAddressType', (type) => {
             // Handle the event here
            

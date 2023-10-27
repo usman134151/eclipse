@@ -330,170 +330,172 @@ class Booknow extends Component
 		$base = '/admin';
 		if($this->isCustomer)
 		$base = '/customer';
-        if($step==1){
-            $this->validate();
-            if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
+        if($this->isEdit)
+            $this->emit('confirmBookingModification');
+        
+        // if($step==1){
+        //     $this->validate();
+        //     if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
                 
-                $this->booking->recurring_end_at =  Carbon::createFromFormat('m/d/Y', $this->booking->recurring_end_at)->toDateString();
-                $this->booking->is_recurring=1;
+        //         $this->booking->recurring_end_at =  Carbon::createFromFormat('m/d/Y', $this->booking->recurring_end_at)->toDateString();
+        //         $this->booking->is_recurring=1;
                 
-            }
-             //get schedule too
-             $slotNotFound=0;
-            $this->schedule=BookingOperationsService::getSchedule($this->booking->company_id,$this->booking->customer_id);
-            //cross checking schedules
-            $dates=$this->dates;
+        //     }
+        //      //get schedule too
+        //      $slotNotFound=0;
+        //     $this->schedule=BookingOperationsService::getSchedule($this->booking->company_id,$this->booking->customer_id);
+        //     //cross checking schedules
+        //     $dates=$this->dates;
            
-            foreach($this->services as $service){
-                $service['start_time'] =  Carbon::parse($dates[0]['start_date'].' '.$dates[0]['start_hour'].':'.$dates[0]['start_min'].':00')->format('Y-m-d H:i:s');
-                $service['end_time'] =  Carbon::parse($dates[0]['end_date'].' '.$dates[0]['end_hour'].':'.$dates[0]['end_min'].':00')->format('Y-m-d H:i:s');
-           //     dd($service);
-                if($service['start_time']>$service['end_time']){
-                    throw ValidationException::withMessages([
-                        'slot' => ['Invalid time range selected - Service start time must be less than service end time'],
-                    ]);
-                }
-               if(!is_null($this->schedule))
-                $slotCheck=BookingOperationsService::getBillableDuration($service,$this->schedule);
-               else 
-                  $slotNotFound=1;  
-                if($slotNotFound==0 && !$slotCheck['business_hours'] && !$slotCheck['business_minutes'] && !$slotCheck['after_business_hours'] && !$slotCheck['after_business_minutes'])
-                 {$slotNotFound=1;
-                    if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
+        //     foreach($this->services as $service){
+        //         $service['start_time'] =  Carbon::parse($dates[0]['start_date'].' '.$dates[0]['start_hour'].':'.$dates[0]['start_min'].':00')->format('Y-m-d H:i:s');
+        //         $service['end_time'] =  Carbon::parse($dates[0]['end_date'].' '.$dates[0]['end_hour'].':'.$dates[0]['end_min'].':00')->format('Y-m-d H:i:s');
+        //    //     dd($service);
+        //         if($service['start_time']>$service['end_time']){
+        //             throw ValidationException::withMessages([
+        //                 'slot' => ['Invalid time range selected - Service start time must be less than service end time'],
+        //             ]);
+        //         }
+        //        if(!is_null($this->schedule))
+        //         $slotCheck=BookingOperationsService::getBillableDuration($service,$this->schedule);
+        //        else 
+        //           $slotNotFound=1;  
+        //         if($slotNotFound==0 && !$slotCheck['business_hours'] && !$slotCheck['business_minutes'] && !$slotCheck['after_business_hours'] && !$slotCheck['after_business_minutes'])
+        //          {$slotNotFound=1;
+        //             if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
             
-                        $this->booking->recurring_end_at =  Carbon::createFromFormat('Y-m-d', $this->booking->recurring_end_at)->format('m/d/Y');
+        //                 $this->booking->recurring_end_at =  Carbon::createFromFormat('Y-m-d', $this->booking->recurring_end_at)->format('m/d/Y');
                         
-                        }
+        //                 }
                    
-                }
-            }
-            if ($slotNotFound === 1) {
-                throw ValidationException::withMessages([
-                    'slot' => ['The selected service time falls within the business\'s closed hours. Please choose a start and end time during the operating hours to proceed with your booking.'],
-                ]);
-            }
+        //         }
+        //     }
+        //     if ($slotNotFound === 1) {
+        //         throw ValidationException::withMessages([
+        //             'slot' => ['The selected service time falls within the business\'s closed hours. Please choose a start and end time during the operating hours to proceed with your booking.'],
+        //         ]);
+        //     }
 
-            if($this->booking->requester_information=='')
-                $this->booking->requester_information=0;
-            //calling booking service passing required data
+        //     if($this->booking->requester_information=='')
+        //         $this->booking->requester_information=0;
+        //     //calling booking service passing required data
 
-                $this->booking=BookingOperationsService::createBooking($this->booking,$this->services,$this->dates,$this->selectedIndustries,$this->selectedDepartments,false,$this->isEdit);
-           // else
-           // {
-           //     $this->booking->provider_count=$this->services[0]['provider_count'];
+        //         $this->booking=BookingOperationsService::createBooking($this->booking,$this->services,$this->dates,$this->selectedIndustries,$this->selectedDepartments,false,$this->isEdit);
+        //    // else
+        //    // {
+        //    //     $this->booking->provider_count=$this->services[0]['provider_count'];
 
-                //update booking
-                if(is_null($this->booking->supervisor=='') || $this->booking->supervisor=='')
-                    $this->booking->supervisor=0;
+        //         //update booking
+        //         if(is_null($this->booking->supervisor=='') || $this->booking->supervisor=='')
+        //             $this->booking->supervisor=0;
                
              
-              //  BookingOperationsService::saveDetails($this->services,$this->dates,$this->selectedIndustries,$this->booking,$this->selectedDepartments);
+        //       //  BookingOperationsService::saveDetails($this->services,$this->dates,$this->selectedIndustries,$this->booking,$this->selectedDepartments);
               
-           // }
-           // dd($this->booking->physical_address_id);
-           if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
+        //    // }
+        //    // dd($this->booking->physical_address_id);
+        //    if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
             
-            $this->booking->recurring_end_at =  Carbon::createFromFormat('Y-m-d', $this->booking->recurring_end_at)->format('m/d/Y');
+        //     $this->booking->recurring_end_at =  Carbon::createFromFormat('Y-m-d', $this->booking->recurring_end_at)->format('m/d/Y');
             
-            }
-            $this->booking_id=$this->booking->id;
-            $this->getForms();
-            if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
+        //     }
+        //     $this->booking_id=$this->booking->id;
+        //     $this->getForms();
+        //     if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
                 
-              //  $this->booking->recurring_end_at =  Carbon::createFromFormat('Y-m-d', $this->booking->recurring_end_at)->toDateString();
-              //  $this->booking->is_recurring=1;
+        //       //  $this->booking->recurring_end_at =  Carbon::createFromFormat('Y-m-d', $this->booking->recurring_end_at)->toDateString();
+        //       //  $this->booking->is_recurring=1;
                 
-            }
+        //     }
            
-            //checking if edit
-            if($this->isEdit){
-                $data['bookingData']=Booking::where('id',$this->booking->id)->with('booking_services','services','payment','company','customer','booking_provider')->first();
+        //     //checking if edit
+        //     if($this->isEdit){
+        //         $data['bookingData']=Booking::where('id',$this->booking->id)->with('booking_services','services','payment','company','customer','booking_provider')->first();
                
-                NotificationService::sendNotification('Booking: Dynamic Details Updated (Step 1 details)',$data);
-            }
-        } //step 1 end
-        else{
+        //         NotificationService::sendNotification('Booking: Dynamic Details Updated (Step 1 details)',$data);
+        //     }
+        // } //step 1 end
+        // else{
           
-            foreach($this->services as $service){
+        //     foreach($this->services as $service){
                
-               BookingOperationsService::updateServiceCalculations($service,$this->booking->id);
-            }
-            $this->booking->type=1;
-            //$this->booking->status=1;
-            $this->booking->booking_status=1; //will change it later for consumers or other company users, need to check rights
-            if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
+        //        BookingOperationsService::updateServiceCalculations($service,$this->booking->id);
+        //     }
+        //     $this->booking->type=1;
+        //     //$this->booking->status=1;
+        //     $this->booking->booking_status=1; //will change it later for consumers or other company users, need to check rights
+        //     if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
                 
-                $this->booking->recurring_end_at =  Carbon::createFromFormat('m/d/Y', $this->booking->recurring_end_at)->toDateString();
-                $this->booking->is_recurring=1;
+        //         $this->booking->recurring_end_at =  Carbon::createFromFormat('m/d/Y', $this->booking->recurring_end_at)->toDateString();
+        //         $this->booking->is_recurring=1;
                 
-            }
+        //     }
 
-            //checking if cusotmer needs approval
-            if($this->isCustomer){
-                if(key_exists('user_configuration',$this->customerDetails) && !is_null($this->customerDetails['user_configuration'])){
-                    $configurations=json_decode($this->customerDetails['user_configuration'],true);
-                    if(!is_null($configurations) && key_exists('require_approval',$configurations) && $configurations['require_approval']=="true"){
+        //     //checking if cusotmer needs approval
+        //     if($this->isCustomer){
+        //         if(key_exists('user_configuration',$this->customerDetails) && !is_null($this->customerDetails['user_configuration'])){
+        //             $configurations=json_decode($this->customerDetails['user_configuration'],true);
+        //             if(!is_null($configurations) && key_exists('require_approval',$configurations) && $configurations['require_approval']=="true"){
                       
-                        $this->booking->booking_status=0;
-                    }
-                }
-            }
-            $this->booking->tags = json_encode($this->tags);
-		    $this->updateTags();    //save newly added tags to table
+        //                 $this->booking->booking_status=0;
+        //             }
+        //         }
+        //     }
+        //     $this->booking->tags = json_encode($this->tags);
+		//     $this->updateTags();    //save newly added tags to table
 
-            $this->booking->save();
-            $this->updateTotals();
-            $this->payment['booking_id']=$this->booking->id;
-            $this->payment['payment_method_type']='Other';
-            $this->payment['payment_by']=Auth::user()->id;
-            if($this->payment['additional_charge']=='' || is_null($this->payment['additional_charge']))
-                 $this->payment['additional_charge']=0;
-            if($this->payment['additional_charge_provider']=='' || is_null($this->payment['additional_charge_provider']))
-                 $this->payment['additional_charge_provider']=0;    
-            if($this->payment['coupon_discount_amount']=='' || is_null($this->payment['coupon_discount_amount']))
-                 $this->payment['coupon_discount_amount']=0;        
+        //     $this->booking->save();
+        //     $this->updateTotals();
+        //     $this->payment['booking_id']=$this->booking->id;
+        //     $this->payment['payment_method_type']='Other';
+        //     $this->payment['payment_by']=Auth::user()->id;
+        //     if($this->payment['additional_charge']=='' || is_null($this->payment['additional_charge']))
+        //          $this->payment['additional_charge']=0;
+        //     if($this->payment['additional_charge_provider']=='' || is_null($this->payment['additional_charge_provider']))
+        //          $this->payment['additional_charge_provider']=0;    
+        //     if($this->payment['coupon_discount_amount']=='' || is_null($this->payment['coupon_discount_amount']))
+        //          $this->payment['coupon_discount_amount']=0;        
                  
-            $this->payment->save();
+        //     $this->payment->save();
 
 
 
-            if($this->booking->frequency_id>1){
+        //     if($this->booking->frequency_id>1){
 
-                //multiple bookings 
-                //check if new booking
-                if ($this->isEdit) {
+        //         //multiple bookings 
+        //         //check if new booking
+        //         if ($this->isEdit) {
                    
-                }
-                else{
-                    //new booking then replicate
-                    BookingOperationsService::createRecurring($this->booking->id);
-                }
+        //         }
+        //         else{
+        //             //new booking then replicate
+        //             BookingOperationsService::createRecurring($this->booking->id);
+        //         }
               
                 
-            }
+        //     }
 
-            if(!$this->isEdit){
+        //     if(!$this->isEdit){
               
 
-                $data['bookingData']=Booking::where('id',$this->booking->id)->with('booking_services','services','payment','company','customer','booking_provider')->first();
-                NotificationService::sendNotification('Booking: Created',$data);
+        //         $data['bookingData']=Booking::where('id',$this->booking->id)->with('booking_services','services','payment','company','customer','booking_provider')->first();
+        //         NotificationService::sendNotification('Booking: Created',$data);
                      
                     
                    
-             }
+        //      }
 
-            return redirect()->to($base.'/bookings/view-booking/' . encrypt($this->booking->id));
-        }
+        //     return redirect()->to($base.'/bookings/view-booking/' . encrypt($this->booking->id));
+        // }
        
-        if ($redirect) {
-            return redirect()->to($base.'/bookings/view-booking/' . encrypt($this->booking->id));
+        // if ($redirect) {
+        //     return redirect()->to($base.'/bookings/view-booking/' . encrypt($this->booking->id));
             
-        } else {
-            //if(count($this->formIds)==0)
-            //$this->switch('payment-info');
+        // } else {
+        //     //if(count($this->formIds)==0)
+        //     //$this->switch('payment-info');
       
-            $this->dispatchBrowserEvent('refreshSelects');
-        }
+        //     $this->dispatchBrowserEvent('refreshSelects');
     }
 
     public function confirmation($message = '')
