@@ -18,6 +18,7 @@ use App\Services\App\BookingOperationsService;
 use App\Services\App\NotificationService;
 use App\Models\Tenant\CustomizeForms;
 use App\Models\Tenant\Payment;
+use App\Models\Tenant\Tag;
 use App\Services\App\AddressService;
 use Illuminate\Support\Collection;
 use Illuminate\Validation\ValidationException;
@@ -42,6 +43,7 @@ class Booknow extends Component
     public $dates=[],$isCustomer=false,$customerDetails=[],$cantRequest=false;
     public $foundService=['default_providers'=>2];
     public $payment,$discountedAmount=0,$totalAmount=0;
+    public $allTags = [], $tags=[];
     
     
     public $setupValues = [
@@ -109,6 +111,9 @@ class Booknow extends Component
         $this->timezones=SetupValue::where('setup_id',4)->select('id','setup_value_label')->get()->toArray();
         $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
         $this->frequencies=SetupValue::where('setup_id',6)->select('id','setup_value_label')->get()->toArray();
+		$this->allTags = Tag::pluck('name')->toArray();
+        $this->tags=[];
+
         $this->accommodations = Accommodation::with(['services' => function ($query) {
             $query->where('status', 1)->with(['specializations' => function ($query) {
                 $query->where('status', 1);
@@ -225,6 +230,11 @@ class Booknow extends Component
 
             }
 
+            // load tags if edit
+            if ($this->booking->tags != null)
+                $this->tags = json_decode($this->booking->tags, true);
+            else
+                $this->tags = [];
           
 
         }
@@ -289,9 +299,18 @@ class Booknow extends Component
     
        
         $this->dispatchBrowserEvent('refreshSelects');
-      
-       
 
+        //null check to avoid break
+        if (!is_array($this->tags))
+        $this->tags = [];
+
+    }
+
+    public function updateTags()
+    {
+        foreach ($this->allTags as $tag) {
+            Tag::firstOrCreate(['name' => $tag]);
+        }
     }
 
     public function render()
@@ -419,6 +438,8 @@ class Booknow extends Component
                     }
                 }
             }
+            $this->booking->tags = json_encode($this->tags);
+		    $this->updateTags();    //save newly added tags to table
 
             $this->booking->save();
             $this->updateTotals();
@@ -831,7 +852,11 @@ class Booknow extends Component
                 $this->refreshAddresses();
                
              }
-             
+        elseif ($attrName == 'tags') {
+            $this->tags = explode(',', $val);
+            $this->allTags = array_unique(array_merge($this->allTags, $this->tags));
+            $this->allTags = array_values($this->allTags);
+        }
 
         else
         $this->booking[$attrName] = $val;
