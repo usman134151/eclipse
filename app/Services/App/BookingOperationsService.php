@@ -879,6 +879,9 @@ class BookingOperationsService
     $booking->status = 4; //default cancel billable
     if ($parameter == 'rescheduling')
       $booking->payment->reschedule_booking_charges = $totalCharges;
+
+    elseif ($parameter == 'modifications')
+      $booking->payment->modification_fee = $totalCharges;
     else
       $booking->payment->cancellation_charges = $totalCharges;
 
@@ -926,7 +929,7 @@ class BookingOperationsService
     // check if recurring
     if ($booking->is_recurring && $reschedule_details['setting'] != "only_this_booking") {
       if ($reschedule_details['setting'] == "bookings_until") {
-          // dd('fetch all up-until bookings');
+        // dd('fetch all up-until bookings');
       } else {
         // fetch all subsequent bookings with parent_id == booking_id
         // we need 

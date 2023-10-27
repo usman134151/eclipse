@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-12">
                 Are you sure you want to update this Booking? Booking is outside it’s modification window.
-                If you’d like to modify this booking, you will be charged $ 2.25. Would you like to proceed with
+                If you’d like to modify this booking, you will be charged {{$booking ? numberFormat($booking['payment']['modification_fee']) : ''}}. Would you like to proceed with
                 modification?
             </div>
             <div class="col-lg-12 mt-2">
