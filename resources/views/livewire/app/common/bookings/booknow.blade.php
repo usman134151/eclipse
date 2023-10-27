@@ -1429,39 +1429,47 @@
                                                 <textarea class="form-control" rows="3" cols="4" id="private-notes" wire:model.defer="booking.private_notes"></textarea>
                                             </div>
                                             <div class="my-lg-5" @if($isCustomer) style="display:none" @endif>
+                                                <div class="mb-3">
+                                                
                                                 <label class="form-label" for="tags" >
                                                     Tags 
                                                 </label>
-                                                <div class="mb-3">
-                                                <select data-placeholder="" multiple
-                                                                    class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="tags-select" aria-label="Select Tags" wire:model.defer="tags">
-                                                                    <option value=""></option>
-                                                                    <option selected>Admin staff</option>
-                                                                    <option selected>Customers</option>
-                                                                </select>
+                                                <select multiple class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="tags-select" aria-label="Select Tags">
+                                                                        @foreach ($allTags as $tag)
+                                                                            <option
+                                                                                {{ in_array($tag, $tags) ? 'selected' : '' }}
+                                                                                value="{{ $tag }}">
+                                                                                {{ $tag }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                    <input type="hidden" name="tags-holder"
+                                                                        id="tags-holder" wire:model.defer="tags">
                                                 </div>
 
                                                 <div @if($isCustomer) style="display:none" @endif>
+                                                    <div class="block">
+                                                    <small>Coming Soon</small>
+                                                    </div>
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" id="Requester" name=""
+                                                        <input disabled class="form-check-input" id="Requester" name=""
                                                             type="checkbox" tabindex="" />
                                                         <label class="form-check-label"
                                                             for="Requester">Requester</label>
                                                     </div>
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" id="ServiceConsumers" name=""
+                                                        <input disabled class="form-check-input" id="ServiceConsumers" name=""
                                                             type="checkbox" tabindex="" />
                                                         <label class="form-check-label" for="ServiceConsumers">Service
                                                             Consumer(s)</label>
                                                     </div>
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" id="Participants" name=""
+                                                        <input disabled class="form-check-input" id="Participants" name=""
                                                             type="checkbox" tabindex="" />
                                                         <label class="form-check-label"
                                                             for="Participants">Company</label>
                                                     </div>
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" id="Participants" name=""
+                                                        <input disabled class="form-check-input" id="Participants" name=""
                                                             type="checkbox" tabindex="" />
                                                         <label class="form-check-label"
                                                             for="Participants">Department</label>
