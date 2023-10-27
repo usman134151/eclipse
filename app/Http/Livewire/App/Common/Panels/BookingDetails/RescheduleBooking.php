@@ -47,6 +47,7 @@ class RescheduleBooking extends Component
         }
         $this->reschedule_details['charges'] = $this->booking->payment->reschedule_booking_charges;
 
+        $this->reschedule_details['setting'] = "only_this_booking"; // limiting for this phase only
 
         BookingOperationsService::rescheduleBooking($this->booking,$this->reschedule_details);
         $this->emit('showConfirmation', 'Booking status updated successfully');

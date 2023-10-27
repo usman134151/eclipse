@@ -136,11 +136,11 @@
                             </li>
                             <li class="list-group-item border-0 ps-0">
                                 <div class="form-check">
-                                    <input class="form-check-input me-1" type="radio" name="dateRangeRadio"
+                                    <input disabled class="form-check-input me-1" type="radio" name="dateRangeRadio"
                                         wire:model="reschedule_details.setting" value="bookings_until"
                                         id="thisAndFutureBookings">
                                     <label class="form-check-label" for="thisAndFutureBookings">
-                                        Reschedule this booking and all future bookings until.
+                                        Reschedule this booking and all future bookings until. <small>(coming soon)</small>
                                     </label>
                                 </div>
                                 <div
@@ -161,11 +161,11 @@
                             </li>
                             <li class="list-group-item border-0 ps-0">
                                 <div class="form-check">
-                                    <input class="form-check-input me-1" type="radio" name="dateRangeRadio"
+                                    <input disabled class="form-check-input me-1" type="radio" name="dateRangeRadio"
                                         wire:model="reschedule_details.setting" value="subsequent_bookings"
                                         id="allSubsequentBookings">
                                     <label class="form-check-label" for="allSubsequentBookings">
-                                        Reschedule all subsequent bookings.
+                                        Reschedule all subsequent bookings. <small>(coming soon)</small>
                                     </label>
                                 </div>
 
