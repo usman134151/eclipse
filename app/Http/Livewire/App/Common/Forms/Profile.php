@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\App\Common\Forms;
 use App\Models\Tenant\User;
+use App\Models\Tenant\UserLoginAddress;
 use Livewire\Component;
 
 class Profile extends Component
@@ -27,6 +28,15 @@ class Profile extends Component
 		$this->user=$user;
         $this->userid = $this->user['id'];
 
+		$lastLogin = UserLoginAddress::where('user_id', $this->userid)->latest('created_at')->first();
+		if ($lastLogin) {
+			$createdAt = $lastLogin->created_at;
+		} else 
+			$createdAt = null;
+		
+		$this->user['login_date'] = $createdAt ? $createdAt->format('d-m-Y') : 'N/A';
+		$this->user['login_time'] = $createdAt ? $createdAt->format('H:i A') : 'N/A';
+		$this->user['login_ip'] = $lastLogin ? $lastLogin->ip_address : 'N/A';
 	}
 
     public function showList($userId=1)
