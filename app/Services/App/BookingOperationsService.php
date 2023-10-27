@@ -923,15 +923,13 @@ class BookingOperationsService
 
   public static function rescheduleBooking($booking, $reschedule_details)
   {
-    // dd($booking, $reschedule_details);
     // check if recurring
     if ($booking->is_recurring && $reschedule_details['setting'] != "only_this_booking") {
       if ($reschedule_details['setting'] == "bookings_until") {
-        // $reschdule_details['reschedule_until']
-        //fetch all bookings with parent_id == booking_id && bookings.booking_end_at is between current booking_date and $reschdule_details['reschedule_until']
-        dd('fetch all up-until bookings');
+          // dd('fetch all up-until bookings');
       } else {
         // fetch all subsequent bookings with parent_id == booking_id
+        // we need 
         if ($booking->parent_id == 0)
           $parent_id = $booking->id;
         else

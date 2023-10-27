@@ -37,16 +37,33 @@ class RescheduleBooking extends Component
         $this->reschedule_details['booking_end_hour'] = $end->format('H');
         $this->reschedule_details['booking_end_min'] = $end->format('i');
         $this->reschedule_details['setting'] = "only_this_booking";
-        $this->reschedule_details['reschedule_until'] = Carbon::parse($this->booking->recurring_end_at)->format('m/d/Y');
+        // $this->reschedule_details['reschedule_until'] = Carbon::parse($this->booking->recurring_end_at)->format('m/d/Y');
+        $this->resetValidation();
+    }
+
+    public function rules()
+    {
+        return [
+            'reschedule_details.booking_start_at' => 'required|date',
+            'reschedule_details.booking_start_hour' => 'required|numeric|between:0,23',
+            'reschedule_details.booking_start_min' => 'required|numeric|between:0,59',
+            'reschedule_details.booking_end_at' => 'required|date|after_or_equal:reschedule_details.booking_start_at',
+            'reschedule_details.booking_end_hour' => 'required|numeric|between:0,23',
+            'reschedule_details.booking_end_min' => 'required|numeric|between:0,59',
+            'override_charges'=>'nullable|numeric'
+        ];
     }
 
     public function saveBooking()
     {
+        $this->validate();
+
         if ($this->override_charges != '' && is_numeric($this->override_charges)) {
             $this->booking->payment->reschedule_booking_charges = (float)$this->override_charges;
         }
         $this->reschedule_details['charges'] = $this->booking->payment->reschedule_booking_charges;
 
+        $this->reschedule_details['setting'] = "only_this_booking"; // limiting for this phase only
 
         BookingOperationsService::rescheduleBooking($this->booking,$this->reschedule_details);
         $this->emit('showConfirmation', 'Booking status updated successfully');
