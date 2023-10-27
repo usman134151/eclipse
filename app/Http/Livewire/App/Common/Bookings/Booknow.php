@@ -33,67 +33,73 @@ use Session;
 class Booknow extends Component
 {
     public $component = 'requester-info';
-    
-    public $booking_id,$showForm,$booking,$requesters =[],$bManagers=[],$supervisors=[],$consumers=[],$participants=[], $step=1,$userAddresses=[], $timezone, $schedule, $timezones, $formIds,$selectedAddressId, $bookingDetails,$selectedServices=[];
-    protected $listeners = ['showList' => 'resetForm','updateVal', 'updateCompany',
-        'updateSelectedIndustries' => 'selectIndustries',
-        'updateSelectedDepartments','confirmation',
-        'saveCustomFormData'=>'save' ,'switch','updateAddress' => 'addAddress'];
 
-    public $dates=[],$isCustomer=false,$customerDetails=[],$cantRequest=false;
-    public $foundService=['default_providers'=>2];
-    public $payment,$discountedAmount=0,$totalAmount=0;
-    public $allTags = [], $tags=[];
-    
-    
+    public $booking_id, $showForm, $booking, $requesters = [], $bManagers = [], $supervisors = [], $consumers = [], $participants = [], $step = 1, $userAddresses = [], $timezone, $schedule, $timezones, $formIds, $selectedAddressId, $bookingDetails, $selectedServices = [];
+    protected $listeners = [
+        'showList' => 'resetForm', 'updateVal', 'updateCompany',
+        'updateSelectedIndustries' => 'selectIndustries',
+        'updateSelectedDepartments', 'confirmation',
+        'saveCustomFormData' => 'save', 'switch', 'updateAddress' => 'addAddress',
+        'confirmedModificationFee'=>'checkCharges',
+    ];
+
+    public $dates = [], $isCustomer = false, $customerDetails = [], $cantRequest = false;
+    public $foundService = ['default_providers' => 2];
+    public $payment, $discountedAmount = 0, $totalAmount = 0;
+    public $allTags = [], $tags = [], $confirmed = false;
+
+
     public $setupValues = [
-      
-    
+
+
         'companies' => ['parameters' => ['Company', 'id', 'name', '', '', 'name', false, 'booking.company_id', '', 'company_id', 3]],
     ];
 
-    
+
 
     //modal variables
-    public $selectedIndustries=[],  $selectedDepartments = [], $svDepartments=[],$industryNames=[], $departmentNames=[];
+    public $selectedIndustries = [],  $selectedDepartments = [], $svDepartments = [], $industryNames = [], $departmentNames = [];
 
-   
 
-    public $services=[
-        [   'accommodation_id'=>'',
-            'services'=>'',
-            'service_types'=>'',
-            'meetings' =>[['meeting_name' => '','phone_number' => '','access_code' => '']], //updated by Amna Bilal to define meeting links array within services array
-            'time_zone'=>'',
-            'is_manual_consumer' =>0,
-            'is_manual_attendees' =>0,
+
+    public $services = [
+        [
+            'accommodation_id' => '',
+            'services' => '',
+            'service_types' => '',
+            'meetings' => [['meeting_name' => '', 'phone_number' => '', 'access_code' => '']], //updated by Amna Bilal to define meeting links array within services array
+            'time_zone' => '',
+            'is_manual_consumer' => 0,
+            'is_manual_attendees' => 0,
             'service_consumer' => '',
             'attendees' => [],
-            'provider_count'=>'',
-            'specialization' =>[],
-            'day_rate' =>'',
-            'duration_day'=>'',
-            'duration_hour'=>'',
-            'duration_minute'=>'',
-            'start_time'=>'',
-            'end_time'=>'',
-            'status'=>0,
-            'auto_assign'=>false,
-            'auto_notify'=>false
-            
-            
+            'provider_count' => '',
+            'specialization' => [],
+            'day_rate' => '',
+            'duration_day' => '',
+            'duration_hour' => '',
+            'duration_minute' => '',
+            'start_time' => '',
+            'end_time' => '',
+            'status' => 0,
+            'auto_assign' => false,
+            'auto_notify' => false
+
+
         ]
     ];
 
-    public $freqencies=[],$accommodations=[];
+    public $freqencies = [], $accommodations = [];
 
-    public $serviceTypes=['1'=>['class'=>'inperson-rate','postfix'=>'','title'=>'In-Person'],
-    '2'=>['class'=>'virtual-rate','postfix'=>'_v','title'=>'Virtual'],
-    '4'=>['class'=>'phone-rate','postfix'=>'_p','title'=>'Phone'],
-    '5'=>['class'=>'teleconference-rate','postfix'=>'_t','title'=>'Teleconference'],
-  ];
+    public $serviceTypes = [
+        '1' => ['class' => 'inperson-rate', 'postfix' => '', 'title' => 'In-Person'],
+        '2' => ['class' => 'virtual-rate', 'postfix' => '_v', 'title' => 'Virtual'],
+        '4' => ['class' => 'phone-rate', 'postfix' => '_p', 'title' => 'Phone'],
+        '5' => ['class' => 'teleconference-rate', 'postfix' => '_t', 'title' => 'Teleconference'],
+    ];
 
-    public $assignedSupervisor="";public $isEdit=false,$selectRequestor=true;
+    public $assignedSupervisor = "";
+    public $isEdit = false, $selectRequestor = true;
 
 
 
@@ -103,131 +109,128 @@ class Booknow extends Component
 
 
 
-        $this->booking=$booking;
-        $this->payment=new Payment;
-        $this->payment['discounted_amount']=0;
-        $this->payment['payment_method']=2;
-        $this->schedule=Schedule::where('model_id',1)->where('model_type',1)->get()->first();
-        $this->timezones=SetupValue::where('setup_id',4)->select('id','setup_value_label')->get()->toArray();
-        $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
-        $this->frequencies=SetupValue::where('setup_id',6)->select('id','setup_value_label')->get()->toArray();
-		$this->allTags = Tag::pluck('name')->toArray();
-        $this->tags=[];
+        $this->booking = $booking;
+        $this->payment = new Payment;
+        $this->payment['discounted_amount'] = 0;
+        $this->payment['payment_method'] = 2;
+        $this->schedule = Schedule::where('model_id', 1)->where('model_type', 1)->get()->first();
+        $this->timezones = SetupValue::where('setup_id', 4)->select('id', 'setup_value_label')->get()->toArray();
+        $this->setupValues = SetupHelper::loadSetupValues($this->setupValues);
+        $this->frequencies = SetupValue::where('setup_id', 6)->select('id', 'setup_value_label')->get()->toArray();
+        $this->allTags = Tag::pluck('name')->toArray();
+        $this->tags = [];
 
         $this->accommodations = Accommodation::with(['services' => function ($query) {
             $query->where('status', 1)->with(['specializations' => function ($query) {
                 $query->where('status', 1);
             }]);
         }])->where('status', 1)->get()->toArray();
-        
-       
-        $serviceTypeLabels=SetupValue::where('setup_id',5)->pluck('setup_value_label')->toArray();
-        for($i=0,$j=1;$i<4;$i++,$j++){
-            if($j==3)
-               $j=4;
-            $this->serviceTypes[$j]['title']=$serviceTypeLabels[$i];
+
+
+        $serviceTypeLabels = SetupValue::where('setup_id', 5)->pluck('setup_value_label')->toArray();
+        for ($i = 0, $j = 1; $i < 4; $i++, $j++) {
+            if ($j == 3)
+                $j = 4;
+            $this->serviceTypes[$j]['title'] = $serviceTypeLabels[$i];
         }
 
         if (request()->bookingID != null) {
-            $id=request()->bookingID;
-            $this->isEdit=true;
+            $id = request()->bookingID;
+            $this->isEdit = true;
 
-            $this->booking=Booking::with('company','accommodation','booking_services_new_layout','industries','customer','payment','departments')->find($id);
 
-            if(!is_null($this->booking->payment)){
-                $this->payment=$this->booking->payment;
-                $this->payment['discounted_amount']=0;
-                $this->payment['payment_method']=2;
+
+            $this->booking = Booking::with('company', 'accommodation', 'booking_services_new_layout', 'industries', 'customer', 'payment', 'departments')->find($id);
+
+            if (!is_null($this->booking->payment)) {
+                $this->payment = $this->booking->payment;
+                $this->payment['discounted_amount'] = 0;
+                $this->payment['payment_method'] = 2;
             }
-              
-            if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
-                
+
+            if (!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at != '') {
+
                 $this->booking->recurring_end_at =  Carbon::createFromFormat('Y-m-d', $this->booking->recurring_end_at)->format('m/d/Y');
-                
             }
-         // dd($this->booking);
+            // dd($this->booking);
             $this->updateCompany();
-            $this->services=$this->booking->booking_services_new_layout->toArray();
-            
-            foreach($this->services as &$service)
-            {
-                $service['specialization']=json_decode($service['specialization'],true);
-                $accId=$service['accommodation_id'];
-                $accIndex = collect($this->accommodations)->search(function ($accommodation) use($accId) {
+            $this->services = $this->booking->booking_services_new_layout->toArray();
+
+            foreach ($this->services as &$service) {
+                $service['specialization'] = json_decode($service['specialization'], true);
+                $accId = $service['accommodation_id'];
+                $accIndex = collect($this->accommodations)->search(function ($accommodation) use ($accId) {
                     return $accommodation['id'] === $accId;
                 });
-                
             }
-          
-            $this->selectedIndustries=$this->booking->industries->pluck('id')->toArray();
+
+            $this->selectedIndustries = $this->booking->industries->pluck('id')->toArray();
             $this->industryNames = $this->booking->industries->pluck('name');
-    
-            $this->selectedDepartments=$this->booking->departments->pluck('pivot')->toArray();
-            
-            $this->departmentNames=$this->booking->departments->pluck('name')->toArray();
 
-          // dd($this->departmentNames);
-          // dd( $this->selectedIndustries);
+            $this->selectedDepartments = $this->booking->departments->pluck('pivot')->toArray();
 
-         
-           
+            $this->departmentNames = $this->booking->departments->pluck('name')->toArray();
+
+            // dd($this->departmentNames);
+            // dd( $this->selectedIndustries);
+
+
+
             $this->refreshAddresses();
-            foreach($this->services as  $index => &$service){
-                $dayRate=false;
-                if(!is_null($service['service_calculations'])){
-                    $serviceCalculations=json_decode($service["service_calculations"],true);
-                    if(key_exists('day_rate',$serviceCalculations)){
-                      $dayRate=$serviceCalculations['day_rate'];
+            foreach ($this->services as  $index => &$service) {
+                $dayRate = false;
+                if (!is_null($service['service_calculations'])) {
+                    $serviceCalculations = json_decode($service["service_calculations"], true);
+                    if (key_exists('day_rate', $serviceCalculations)) {
+                        $dayRate = $serviceCalculations['day_rate'];
                     }
-                }
-                else{
+                } else {
                     $accommodationsCollection = collect($this->accommodations);
 
                     // Perform the search using the filter method
 
                     $serviceIdToFind = $service['services'];
                     $foundService = $accommodationsCollection
-                        ->flatMap(fn($item) => $item['services'])
+                        ->flatMap(fn ($item) => $item['services'])
                         ->firstWhere('id', $serviceIdToFind);
 
-                    if($foundService['rate_status']==2){
-                        $dayRate=true;
+                    if ($foundService['rate_status'] == 2) {
+                        $dayRate = true;
                     }
                 }
-                 
 
-                $service['meetings']=json_decode($service['meetings'], true);
+
+                $service['meetings'] = json_decode($service['meetings'], true);
                 //date time mapping
                 $startDate = new DateTime($service['start_time']);
                 $endDate = new DateTime($service['end_time']);
-                $this->dates[$index]=[
-                    'start_date'=>$startDate->format('m/d/Y'),
+                $this->dates[$index] = [
+                    'start_date' => $startDate->format('m/d/Y'),
                     'start_hour' => $startDate->format('H'),
-                    'start_min'=>$startDate->format('i'),
-                    'end_date'=>$endDate->format('m/d/Y'),
+                    'start_min' => $startDate->format('i'),
+                    'end_date' => $endDate->format('m/d/Y'),
                     'end_hour' => $endDate->format('H'),
-                    'end_min'=>$endDate->format('i'),
-                    'start_am'=>'',
-                    'end_am'=>'',
+                    'end_min' => $endDate->format('i'),
+                    'start_am' => '',
+                    'end_am' => '',
                     'duration_day' => '',
                     'duration_hour' => '',
                     'duration_minute' => '',
                     'time_zone' => $service['time_zone'],
-                    'day_rate'=>$dayRate
-        
-                ];
-               
+                    'day_rate' => $dayRate
 
-                if(is_null($this->dates[$index]['time_zone'])){
-                    if($this->schedule)
-                        $this->dates[$index]['time_zone']=$this->schedule->timezone_id;
+                ];
+
+
+                if (is_null($this->dates[$index]['time_zone'])) {
+                    if ($this->schedule)
+                        $this->dates[$index]['time_zone'] = $this->schedule->timezone_id;
                 }
 
-             
-                if($this->dates[$index])
-                    $this->updateDurations($index);
-                $this->booking_id=$this->booking->id;
 
+                if ($this->dates[$index])
+                    $this->updateDurations($index);
+                $this->booking_id = $this->booking->id;
             }
 
             // load tags if edit
@@ -235,75 +238,61 @@ class Booknow extends Component
                 $this->tags = json_decode($this->booking->tags, true);
             else
                 $this->tags = [];
-          
-
         }
-        if(!$this->booking->id){ //init data in case of new booking
-            $this->booking->requester_information='';
-            $this->booking->frequency_id=1;
-        
+        if (!$this->booking->id) { //init data in case of new booking
+            $this->booking->requester_information = '';
+            $this->booking->frequency_id = 1;
+
             $this->addDate();
-           
-
-           
-            
-       
-           
         }
-               //checking if customer user
-              
-               if(Auth::user()->roleUser->role_id==4){
-                $this->customerDetails=UserDetail::where('user_id',Auth::user()->id)->first()->toArray();
-               
-                $this->isCustomer=true;
-                $this->booking->company_id=Auth::user()->company_name;
-                $this->companyName=Company::select('name')->where('id',Auth::user()->company_name)->first()->name;
-                $this->updateCompany();
-                $this->emit('updateCompany',  $this->booking->company_id);
-                $customerRoles=Session::get('customerRoles');
-                if(is_null($customerRoles))
-                   $customerRoles=[];
-               
-                if(!in_array(10,$customerRoles) && !in_array(6,$customerRoles)) //need to reconfirm
-                     $this->cantRequest=true;
-                elseif(in_array(6,$customerRoles)){
-                    $this->booking->customer_id=Auth::user()->id;
-                    $this->selectRequestor=false;
-                    $this->getUserRoleDetails($this->booking['customer_id']);
-                    $this->refreshAddresses();
-                   
-                }
-                   
-                if(in_array(10,$customerRoles))
-                    $this->selectRequestor=true;
-              
-                $this->booking->customer_id=Auth::user()->id;
-                
+        //checking if customer user
+
+        if (Auth::user()->roleUser->role_id == 4) {
+            $this->customerDetails = UserDetail::where('user_id', Auth::user()->id)->first()->toArray();
+
+            $this->isCustomer = true;
+            $this->booking->company_id = Auth::user()->company_name;
+            $this->companyName = Company::select('name')->where('id', Auth::user()->company_name)->first()->name;
+            $this->updateCompany();
+            $this->emit('updateCompany',  $this->booking->company_id);
+            $customerRoles = Session::get('customerRoles');
+            if (is_null($customerRoles))
+                $customerRoles = [];
+
+            if (!in_array(10, $customerRoles) && !in_array(6, $customerRoles)) //need to reconfirm
+                $this->cantRequest = true;
+            elseif (in_array(6, $customerRoles)) {
+                $this->booking->customer_id = Auth::user()->id;
+                $this->selectRequestor = false;
+                $this->getUserRoleDetails($this->booking['customer_id']);
+                $this->refreshAddresses();
             }
+
+            if (in_array(10, $customerRoles))
+                $this->selectRequestor = true;
+
+            $this->booking->customer_id = Auth::user()->id;
+        }
         $accommodationsCollection = collect($this->accommodations);
-       
+
         //loop to implode service type for services arrays
 
-        foreach($this->accommodations as &$accommodation){
-           foreach($accommodation['services'] as &$service)
-           {
-            if(!is_null($service['service_type'])){
-           
-                if(!is_array($service['service_type']))
-                $service['service_type']=explode(',',$service['service_type']);
-              
-              
+        foreach ($this->accommodations as &$accommodation) {
+            foreach ($accommodation['services'] as &$service) {
+                if (!is_null($service['service_type'])) {
+
+                    if (!is_array($service['service_type']))
+                        $service['service_type'] = explode(',', $service['service_type']);
+                }
             }
-           }
         }
-    
-       
+
+
         $this->dispatchBrowserEvent('refreshSelects');
 
         //null check to avoid break
         if (!is_array($this->tags))
-        $this->tags = [];
-
+            $this->tags = [];
     }
 
     public function updateTags()
@@ -315,184 +304,192 @@ class Booknow extends Component
 
     public function render()
     {
-      //  dd($this->services);
-       // $this->dispatchBrowserEvent('refreshSelects');
-       
+        //  dd($this->services);
+        // $this->dispatchBrowserEvent('refreshSelects');
+
         return view('livewire.app.common.bookings.booknow');
     }
 
-    
-
-    public function save($redirect = 1,$draft=0,$step=1)
+    public function checkCharges($confirmed = false, $redirect = 1, $draft = 0, $step = 1)
     {
-       // dd($this->booking);
+        $this->confirmed = true;
+        $this->save($redirect, $draft, $step);
+    }
+
+
+
+    public function save($redirect = 1, $draft = 0, $step = 1)
+    {
+        // dd($this->booking);
         //booking basic info
-		$base = '/admin';
-		if($this->isCustomer)
-		$base = '/customer';
-        if($step==1){
-            $this->validate();
-            if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
-                
-                $this->booking->recurring_end_at =  Carbon::createFromFormat('m/d/Y', $this->booking->recurring_end_at)->toDateString();
-                $this->booking->is_recurring=1;
-                
-            }
-             //get schedule too
-             $slotNotFound=0;
-            $this->schedule=BookingOperationsService::getSchedule($this->booking->company_id,$this->booking->customer_id);
-            //cross checking schedules
-            $dates=$this->dates;
-           
-            foreach($this->services as $service){
-                $service['start_time'] =  Carbon::parse($dates[0]['start_date'].' '.$dates[0]['start_hour'].':'.$dates[0]['start_min'].':00')->format('Y-m-d H:i:s');
-                $service['end_time'] =  Carbon::parse($dates[0]['end_date'].' '.$dates[0]['end_hour'].':'.$dates[0]['end_min'].':00')->format('Y-m-d H:i:s');
-           //     dd($service);
-                if($service['start_time']>$service['end_time']){
-                    throw ValidationException::withMessages([
-                        'slot' => ['Invalid time range selected - Service start time must be less than service end time'],
-                    ]);
-                }
-               if(!is_null($this->schedule))
-                $slotCheck=BookingOperationsService::getBillableDuration($service,$this->schedule);
-               else 
-                  $slotNotFound=1;  
-                if($slotNotFound==0 && !$slotCheck['business_hours'] && !$slotCheck['business_minutes'] && !$slotCheck['after_business_hours'] && !$slotCheck['after_business_minutes'])
-                 {$slotNotFound=1;
-                    if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
+        $base = '/admin';
+        if ($this->isCustomer)
+            $base = '/customer';
             
-                        $this->booking->recurring_end_at =  Carbon::createFromFormat('Y-m-d', $this->booking->recurring_end_at)->format('m/d/Y');
-                        
+        //making sure modification charges are checked at step 1 before editing booking
+        if ($this->confirmed == false && $step == 1 && $this->isEdit) {
+            $mod_booking = BookingOperationsService::getBookingDetails($this->booking->id, $this->serviceTypes, 'modifications', 'cancellation_hour1');
+            if ($mod_booking->payment->modification_fee && $mod_booking->payment->modification_fee > 0) {
+                $this->emit('setModificationCharges', $mod_booking, $redirect, $draft, $step);
+                $this->emit('confirmBookingModification');
+            } else {
+                // no charges hence save func called again
+                $this->confirmed = true;
+                $this->save($redirect = 1, $draft = 0, $step = 1);
+            }
+        } else {
+
+            if ($step == 1) {
+                $this->validate();
+                if (!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at != '') {
+
+                    $this->booking->recurring_end_at =  Carbon::createFromFormat('m/d/Y', $this->booking->recurring_end_at)->toDateString();
+                    $this->booking->is_recurring = 1;
+                }
+                //get schedule too
+                $slotNotFound = 0;
+                $this->schedule = BookingOperationsService::getSchedule($this->booking->company_id, $this->booking->customer_id);
+                //cross checking schedules
+                $dates = $this->dates;
+
+                foreach ($this->services as $service) {
+                    $service['start_time'] =  Carbon::parse($dates[0]['start_date'] . ' ' . $dates[0]['start_hour'] . ':' . $dates[0]['start_min'] . ':00')->format('Y-m-d H:i:s');
+                    $service['end_time'] =  Carbon::parse($dates[0]['end_date'] . ' ' . $dates[0]['end_hour'] . ':' . $dates[0]['end_min'] . ':00')->format('Y-m-d H:i:s');
+                    //     dd($service);
+                    if ($service['start_time'] > $service['end_time']) {
+                        throw ValidationException::withMessages([
+                            'slot' => ['Invalid time range selected - Service start time must be less than service end time'],
+                        ]);
+                    }
+                    if (!is_null($this->schedule))
+                        $slotCheck = BookingOperationsService::getBillableDuration($service, $this->schedule);
+                    else
+                        $slotNotFound = 1;
+                    if ($slotNotFound == 0 && !$slotCheck['business_hours'] && !$slotCheck['business_minutes'] && !$slotCheck['after_business_hours'] && !$slotCheck['after_business_minutes']) {
+                        $slotNotFound = 1;
+                        if (!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at != '') {
+
+                            $this->booking->recurring_end_at =  Carbon::createFromFormat('Y-m-d', $this->booking->recurring_end_at)->format('m/d/Y');
                         }
-                   
-                }
-            }
-            if ($slotNotFound === 1) {
-                throw ValidationException::withMessages([
-                    'slot' => ['The selected service time falls within the business\'s closed hours. Please choose a start and end time during the operating hours to proceed with your booking.'],
-                ]);
-            }
-
-            if($this->booking->requester_information=='')
-                $this->booking->requester_information=0;
-            //calling booking service passing required data
-
-                $this->booking=BookingOperationsService::createBooking($this->booking,$this->services,$this->dates,$this->selectedIndustries,$this->selectedDepartments,false,$this->isEdit);
-           // else
-           // {
-           //     $this->booking->provider_count=$this->services[0]['provider_count'];
-
-                //update booking
-                if(is_null($this->booking->supervisor=='') || $this->booking->supervisor=='')
-                    $this->booking->supervisor=0;
-               
-             
-              //  BookingOperationsService::saveDetails($this->services,$this->dates,$this->selectedIndustries,$this->booking,$this->selectedDepartments);
-              
-           // }
-           // dd($this->booking->physical_address_id);
-           if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
-            
-            $this->booking->recurring_end_at =  Carbon::createFromFormat('Y-m-d', $this->booking->recurring_end_at)->format('m/d/Y');
-            
-            }
-            $this->booking_id=$this->booking->id;
-            $this->getForms();
-            if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
-                
-              //  $this->booking->recurring_end_at =  Carbon::createFromFormat('Y-m-d', $this->booking->recurring_end_at)->toDateString();
-              //  $this->booking->is_recurring=1;
-                
-            }
-           
-            //checking if edit
-            if($this->isEdit){
-                $data['bookingData']=Booking::where('id',$this->booking->id)->with('booking_services','services','payment','company','customer','booking_provider')->first();
-               
-                NotificationService::sendNotification('Booking: Dynamic Details Updated (Step 1 details)',$data);
-            }
-        } //step 1 end
-        else{
-          
-            foreach($this->services as $service){
-               
-               BookingOperationsService::updateServiceCalculations($service,$this->booking->id);
-            }
-            $this->booking->type=1;
-            //$this->booking->status=1;
-            $this->booking->booking_status=1; //will change it later for consumers or other company users, need to check rights
-            if(!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at!=''){
-                
-                $this->booking->recurring_end_at =  Carbon::createFromFormat('m/d/Y', $this->booking->recurring_end_at)->toDateString();
-                $this->booking->is_recurring=1;
-                
-            }
-
-            //checking if cusotmer needs approval
-            if($this->isCustomer){
-                if(key_exists('user_configuration',$this->customerDetails) && !is_null($this->customerDetails['user_configuration'])){
-                    $configurations=json_decode($this->customerDetails['user_configuration'],true);
-                    if(!is_null($configurations) && key_exists('require_approval',$configurations) && $configurations['require_approval']=="true"){
-                      
-                        $this->booking->booking_status=0;
                     }
                 }
-            }
-            $this->booking->tags = json_encode($this->tags);
-		    $this->updateTags();    //save newly added tags to table
+                if ($slotNotFound === 1) {
+                    throw ValidationException::withMessages([
+                        'slot' => ['The selected service time falls within the business\'s closed hours. Please choose a start and end time during the operating hours to proceed with your booking.'],
+                    ]);
+                }
 
-            $this->booking->save();
-            $this->updateTotals();
-            $this->payment['booking_id']=$this->booking->id;
-            $this->payment['payment_method_type']='Other';
-            $this->payment['payment_by']=Auth::user()->id;
-            if($this->payment['additional_charge']=='' || is_null($this->payment['additional_charge']))
-                 $this->payment['additional_charge']=0;
-            if($this->payment['additional_charge_provider']=='' || is_null($this->payment['additional_charge_provider']))
-                 $this->payment['additional_charge_provider']=0;    
-            if($this->payment['coupon_discount_amount']=='' || is_null($this->payment['coupon_discount_amount']))
-                 $this->payment['coupon_discount_amount']=0;        
-                 
-            $this->payment->save();
+                if ($this->booking->requester_information == '')
+                    $this->booking->requester_information = 0;
+                //calling booking service passing required data
+
+                $this->booking = BookingOperationsService::createBooking($this->booking, $this->services, $this->dates, $this->selectedIndustries, $this->selectedDepartments, false, $this->isEdit);
+                // else
+                // {
+                //     $this->booking->provider_count=$this->services[0]['provider_count'];
+
+                //update booking
+                if (is_null($this->booking->supervisor == '') || $this->booking->supervisor == '')
+                    $this->booking->supervisor = 0;
 
 
+                //  BookingOperationsService::saveDetails($this->services,$this->dates,$this->selectedIndustries,$this->booking,$this->selectedDepartments);
 
-            if($this->booking->frequency_id>1){
+                // }
+                // dd($this->booking->physical_address_id);
+                if (!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at != '') {
 
-                //multiple bookings 
-                //check if new booking
+                    $this->booking->recurring_end_at =  Carbon::createFromFormat('Y-m-d', $this->booking->recurring_end_at)->format('m/d/Y');
+                }
+                $this->booking_id = $this->booking->id;
+                $this->getForms();
+                if (!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at != '') {
+
+                    //  $this->booking->recurring_end_at =  Carbon::createFromFormat('Y-m-d', $this->booking->recurring_end_at)->toDateString();
+                    //  $this->booking->is_recurring=1;
+
+                }
+
+                //checking if edit
                 if ($this->isEdit) {
-                   
+                    $data['bookingData'] = Booking::where('id', $this->booking->id)->with('booking_services', 'services', 'payment', 'company', 'customer', 'booking_provider')->first();
+
+                    NotificationService::sendNotification('Booking: Dynamic Details Updated (Step 1 details)', $data);
                 }
-                else{
-                    //new booking then replicate
-                    BookingOperationsService::createRecurring($this->booking->id);
+            } //step 1 end
+            else {
+
+                foreach ($this->services as $service) {
+
+                    BookingOperationsService::updateServiceCalculations($service, $this->booking->id);
                 }
-              
-                
+                $this->booking->type = 1;
+                //$this->booking->status=1;
+                $this->booking->booking_status = 1; //will change it later for consumers or other company users, need to check rights
+                if (!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at != '') {
+
+                    $this->booking->recurring_end_at =  Carbon::createFromFormat('m/d/Y', $this->booking->recurring_end_at)->toDateString();
+                    $this->booking->is_recurring = 1;
+                }
+
+                //checking if cusotmer needs approval
+                if ($this->isCustomer) {
+                    if (key_exists('user_configuration', $this->customerDetails) && !is_null($this->customerDetails['user_configuration'])) {
+                        $configurations = json_decode($this->customerDetails['user_configuration'], true);
+                        if (!is_null($configurations) && key_exists('require_approval', $configurations) && $configurations['require_approval'] == "true") {
+
+                            $this->booking->booking_status = 0;
+                        }
+                    }
+                }
+                $this->booking->tags = json_encode($this->tags);
+                $this->updateTags();    //save newly added tags to table
+
+                $this->booking->save();
+                $this->updateTotals();
+                $this->payment['booking_id'] = $this->booking->id;
+                $this->payment['payment_method_type'] = 'Other';
+                $this->payment['payment_by'] = Auth::user()->id;
+                if ($this->payment['additional_charge'] == '' || is_null($this->payment['additional_charge']))
+                    $this->payment['additional_charge'] = 0;
+                if ($this->payment['additional_charge_provider'] == '' || is_null($this->payment['additional_charge_provider']))
+                    $this->payment['additional_charge_provider'] = 0;
+                if ($this->payment['coupon_discount_amount'] == '' || is_null($this->payment['coupon_discount_amount']))
+                    $this->payment['coupon_discount_amount'] = 0;
+
+                $this->payment->save();
+
+
+
+                if ($this->booking->frequency_id > 1) {
+
+                    //multiple bookings 
+                    //check if new booking
+                    if ($this->isEdit) {
+                    } else {
+                        //new booking then replicate
+                        BookingOperationsService::createRecurring($this->booking->id);
+                    }
+                }
+
+                if (!$this->isEdit) {
+
+
+                    $data['bookingData'] = Booking::where('id', $this->booking->id)->with('booking_services', 'services', 'payment', 'company', 'customer', 'booking_provider')->first();
+                    NotificationService::sendNotification('Booking: Created', $data);
+                }
+
+                return redirect()->to($base . '/bookings/view-booking/' . encrypt($this->booking->id));
             }
 
-            if(!$this->isEdit){
-              
+            if ($redirect) {
+                return redirect()->to($base . '/bookings/view-booking/' . encrypt($this->booking->id));
+            } else {
+                //if(count($this->formIds)==0)
+                //$this->switch('payment-info');
 
-                $data['bookingData']=Booking::where('id',$this->booking->id)->with('booking_services','services','payment','company','customer','booking_provider')->first();
-                NotificationService::sendNotification('Booking: Created',$data);
-                     
-                    
-                   
-             }
-
-            return redirect()->to($base.'/bookings/view-booking/' . encrypt($this->booking->id));
-        }
-       
-        if ($redirect) {
-            return redirect()->to($base.'/bookings/view-booking/' . encrypt($this->booking->id));
-            
-        } else {
-            //if(count($this->formIds)==0)
-            //$this->switch('payment-info');
-      
-            $this->dispatchBrowserEvent('refreshSelects');
+                $this->dispatchBrowserEvent('refreshSelects');
+            }
         }
     }
 
@@ -510,58 +507,55 @@ class Booknow extends Component
 
 
     // update all dropdown values when company is changed
-    public function updateCompany(){
+    public function updateCompany()
+    {
         $this->emit('isBooking');
         $this->departmentNames = [];
-      $this->updateUsers();
-     // $this->refreshSelects('refreshSelects');
-      $this->schedule=BookingOperationsService::getSchedule($this->booking->company_id,$this->booking->customer_id);
-      
-      if($this->schedule && $this->schedule['timezone_id'] && !$this->isEdit)
-         {
-            $this->dates=[];  
+        $this->updateUsers();
+        // $this->refreshSelects('refreshSelects');
+        $this->schedule = BookingOperationsService::getSchedule($this->booking->company_id, $this->booking->customer_id);
+
+        if ($this->schedule && $this->schedule['timezone_id'] && !$this->isEdit) {
+            $this->dates = [];
             $this->addDate();
-         }   
-
-
+        }
     }
-    
-   //refactor code
-    public function updateUsers() {
+
+    //refactor code
+    public function updateUsers()
+    {
         $departmentIds = array_column($this->selectedDepartments, 'department_id');
-    
+
         $this->requesters = $this->getUsersByRole(6, $departmentIds, 'requesters');
         $this->supervisors = $this->getUsersByRole(5, $departmentIds, 'supervisors');
         $this->bManagers = $this->getUsersByRole(9, $departmentIds, 'bManagers');
         $this->consumers = $this->getUsersByRole(7, $departmentIds, 'consumers');
         $this->participants = $this->getUsersByRole(8, $departmentIds, 'bManagers');
-
-      
-       
-        
     }
-    
-    private function getUsersByRole($roleId, $departmentIds, $property) {
+
+    private function getUsersByRole($roleId, $departmentIds, $property)
+    {
         $query = User::query()
-        ->where(['users.status' => 1])
-        ->whereHas('roles', function ($query) use ($roleId) {
-            $query->where('role_id', $roleId);
-        })
-        ->leftJoin('user_details', 'user_details.user_id', '=', 'users.id')
-        ->leftJoin('companies', 'companies.id', '=', 'users.company_name')
-        ->when(isset($this->booking['company_id']), function ($query) {
-            return $query->where('companies.id', '=', $this->booking['company_id']);
-        })
-        ->leftJoin('user_departments', 'user_departments.user_id', '=', 'users.id')
-        ->where('user_departments.department_id', '=', $departmentIds)
-        ->select('users.id', 'users.name', 'phone', 'email');
+            ->where(['users.status' => 1])
+            ->whereHas('roles', function ($query) use ($roleId) {
+                $query->where('role_id', $roleId);
+            })
+            ->leftJoin('user_details', 'user_details.user_id', '=', 'users.id')
+            ->leftJoin('companies', 'companies.id', '=', 'users.company_name')
+            ->when(isset($this->booking['company_id']), function ($query) {
+                return $query->where('companies.id', '=', $this->booking['company_id']);
+            })
+            ->leftJoin('user_departments', 'user_departments.user_id', '=', 'users.id')
+            ->where('user_departments.department_id', '=', $departmentIds)
+            ->select('users.id', 'users.name', 'phone', 'email');
 
-    return $query->get()->isEmpty()
-        ? $this->getFallbackUsers($roleId)
-        : $query->get();
+        return $query->get()->isEmpty()
+            ? $this->getFallbackUsers($roleId)
+            : $query->get();
     }
-    
-    private function getFallbackUsers($roleId) {
+
+    private function getFallbackUsers($roleId)
+    {
         return User::query()
             ->where(['users.status' => 1])
             ->whereHas('roles', function ($query) use ($roleId) {
@@ -573,27 +567,27 @@ class Booknow extends Component
             ->select('users.id', 'users.name', 'phone', 'email')
             ->get();
     }
-  
-    
-    
-    
-    
+
+
+
+
+
 
     function showForm()
     {
-       $this->showForm=true;
+        $this->showForm = true;
     }
     public function resetForm()
     {
-        $this->showForm=false;
+        $this->showForm = false;
     }
     public function switch($component)
-	{
-     
-        if($component=='requester-info'){
-            foreach($this->services as &$service){
-                if(!is_array($service['meetings'])){
-                    $service['meetings']=json_decode($service['meetings'],true);
+    {
+
+        if ($component == 'requester-info') {
+            foreach ($this->services as &$service) {
+                if (!is_array($service['meetings'])) {
+                    $service['meetings'] = json_decode($service['meetings'], true);
                 }
             }
             if (!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at != '') {
@@ -601,24 +595,21 @@ class Booknow extends Component
                 // Validate date format before conversion
                 $date = DateTime::createFromFormat('Y-m-d', $this->booking->recurring_end_at);
                 $errors = DateTime::getLastErrors();
-            
+
                 if ($errors['warning_count'] === 0 && $errors['error_count'] === 0) {
                     $this->booking->recurring_end_at = Carbon::createFromFormat('Y-m-d', $this->booking->recurring_end_at)->format('m/d/Y');
                 }
             }
-            
-          
         }
-		$this->component = $component;
-        if($component=="payment-info")
-            $this->getBookingInfo();         
+        $this->component = $component;
+        if ($component == "payment-info")
+            $this->getBookingInfo();
         $this->dispatchBrowserEvent('refreshSelects');
-      
+    }
 
-	}
+    public function refreshSelects()
+    {
 
-    public function refreshSelects(){
-       
         $this->dispatchBrowserEvent('refreshSelects');
     }
     public function addMeeting($serviceIndex)
@@ -629,14 +620,15 @@ class Booknow extends Component
             'access_code' => '',
         ]; //updated by Amna Bilal to add new item in meetings array within service array on index passed
     }
-    public function removeMeeting($index,$serviceIndex)
+    public function removeMeeting($index, $serviceIndex)
     {
         unset($this->services[$serviceIndex]['meetings'][$index]);
         $this->services[$serviceIndex]['meetings'] = array_values($this->services[$serviceIndex]['meetings']); //updated by Amna Bilal to meeting remove link from service array
     }
 
-    public function getTimeZone($timeZone){
-        $timeZoneCity='';
+    public function getTimeZone($timeZone)
+    {
+        $timeZoneCity = '';
 
 
         $selectedTimezone = collect($this->timezones)->firstWhere('id', $timeZone);
@@ -647,94 +639,96 @@ class Booknow extends Component
             // Extracting the timezone city from the string
             preg_match('/\(([^)]+)\)/', $timezoneString, $matches);
             $timeZoneCity = isset($matches[1]) ? $matches[1] : null;
-        }    
+        }
         return $timeZoneCity;
     }
 
-    
 
-    public function addDate($givenHour=1,$dayRate=false){
-     
-        if($this->isEdit)
-          return;
-        if(is_null($givenHour)|| $givenHour==0 || $givenHour=='')
-          $givenHour=1;
-        if($this->schedule && $this->schedule['timezone_id'])
-        $timeZone=$this->schedule->timezone_id;
-        else 
-            $timeZone=60;
-        $timeZoneCity=$this->getTimeZone($timeZone);
-    
-            // If we were able to extract a city, use it to get the current date and time
-            if ($timeZoneCity) {
-                $currentDate = Carbon::now(new \DateTimeZone($timeZoneCity));
-            } else {
-                // If not, fall back to the default timezone
-                $currentDate = Carbon::now();
-            }
 
-       
-       
-            $startDate= $currentDate->format('m/d/Y');    
-  
-            $currentHour = $currentDate->format('H');
-            $currentMinute = $currentDate->format('i');
-       
+    public function addDate($givenHour = 1, $dayRate = false)
+    {
 
-      
+        if ($this->isEdit)
+            return;
+        if (is_null($givenHour) || $givenHour == 0 || $givenHour == '')
+            $givenHour = 1;
+        if ($this->schedule && $this->schedule['timezone_id'])
+            $timeZone = $this->schedule->timezone_id;
+        else
+            $timeZone = 60;
+        $timeZoneCity = $this->getTimeZone($timeZone);
+
+        // If we were able to extract a city, use it to get the current date and time
+        if ($timeZoneCity) {
+            $currentDate = Carbon::now(new \DateTimeZone($timeZoneCity));
+        } else {
+            // If not, fall back to the default timezone
+            $currentDate = Carbon::now();
+        }
+
+
+
+        $startDate = $currentDate->format('m/d/Y');
+
+        $currentHour = $currentDate->format('H');
+        $currentMinute = $currentDate->format('i');
+
+
+
         //dd($currentDate->addHours($givenHour));
         $endHour = $currentDate->addHours($givenHour)->format('H');
         $endTime = $currentDate->format('i');
 
-        $this->dates[] =[
-            'start_date' =>$startDate,
+        $this->dates[] = [
+            'start_date' => $startDate,
             'start_hour' => $currentHour,
             'start_min' => $currentMinute,
             'end_date' => $currentDate->format('m/d/Y'), // Adjust if necessary, if the end date might be different
             'end_hour' => $endHour,
             'end_min' => $endTime,
-            'start_am'=>'',
-            'end_am'=>'',
+            'start_am' => '',
+            'end_am' => '',
             'duration_day' => '',
             'duration_hour' => '',
             'duration_minute' => '',
             'time_zone' => $timeZone,
-            'day_rate'=>$dayRate
+            'day_rate' => $dayRate
 
-    ];
-    
-    //$this->dispatchBrowserEvent('refreshSelects');
-    $this->updateDurations(count($this->dates)-1);
+        ];
+
+        //$this->dispatchBrowserEvent('refreshSelects');
+        $this->updateDurations(count($this->dates) - 1);
     }
     public function removeDate($index)
     {
         unset($this->dates[$index]);
         $this->dates = array_values($this->dates);
     }
-    public function addService(){
-        $this->services[]= [   
-        'accommodation_id'=>'',
-        'services'=>'',
-        'service_types'=>'',
-        'meetings' =>[['meeting_name' => '','phone_number' => '','access_code' => '']], //updated by Amna Bilal to define meeting links array within services array
-        'time_zone'=>'',
-        'is_manual_consumer' =>0,
-        'is_manual_attendees' =>0,
-        'service_consumer' => '',
-        'attendees' => [],
-        'provider_count'=>'',
-        'specialization' =>[],
-        'day_rate' =>'',
-        'duration_day'=>'',
-        'duration_hour'=>'',
-        'duration_minute'=>'',
-        'start_time'=>'',
-        'end_time'=>'',
-        'status'=>0,
-        'auto_assign'=>false,
-        'auto_notify'=>false
-    ];
-    $this->dispatchBrowserEvent('refreshSelects');
+    public function addService()
+    {
+        $this->services[] = [
+            'accommodation_id' => '',
+            'services' => '',
+            'service_types' => '',
+            'meetings' => [['meeting_name' => '', 'phone_number' => '', 'access_code' => '']], //updated by Amna Bilal to define meeting links array within services array
+            'time_zone' => '',
+            'is_manual_consumer' => 0,
+            'is_manual_attendees' => 0,
+            'service_consumer' => '',
+            'attendees' => [],
+            'provider_count' => '',
+            'specialization' => [],
+            'day_rate' => '',
+            'duration_day' => '',
+            'duration_hour' => '',
+            'duration_minute' => '',
+            'start_time' => '',
+            'end_time' => '',
+            'status' => 0,
+            'auto_assign' => false,
+            'auto_notify' => false
+        ];
+        $this->dispatchBrowserEvent('refreshSelects');
     }
     public function removeServices($index)
     {
@@ -746,139 +740,119 @@ class Booknow extends Component
 
     public function updateVal($attrName, $val)
     {
-        
-       
+
+
         if ($attrName == "company_id") {
 
-                $this->booking['company_id'] = $val;
-                
-                // Emit an event with data
-                $this->emit('updateCompany', $val);
-              
-            } elseif (preg_match('/accommodation_id_(\d+)/', $attrName, $matches)) {
-                $index = intval($matches[1]);
-               
-        
-                if (isset($this->services[$index])) {
-                    $this->services[$index]['accommodation_id'] = $val;
-                    $this->updateServiceDefaults($index);
+            $this->booking['company_id'] = $val;
+
+            // Emit an event with data
+            $this->emit('updateCompany', $val);
+        } elseif (preg_match('/accommodation_id_(\d+)/', $attrName, $matches)) {
+            $index = intval($matches[1]);
+
+
+            if (isset($this->services[$index])) {
+                $this->services[$index]['accommodation_id'] = $val;
+                $this->updateServiceDefaults($index);
+            }
+        } elseif (preg_match('/services_(\d+)/', $attrName, $matches)) {
+            $index = intval($matches[1]);
+
+            //getting selected service to check if its day rate service
+            if (isset($this->services[$index])) {
+                $this->services[$index]['services'] = $val;
+                $accommodationsCollection = collect($this->accommodations);
+
+                // Perform the search using the filter method
+
+                $serviceIdToFind = $this->services[$index]['services'];
+                $foundService = $accommodationsCollection
+                    ->flatMap(fn ($item) => $item['services'])
+                    ->firstWhere('id', $serviceIdToFind);
+
+                if ($foundService['rate_status'] == 2) {
+                    $this->dates[0]['day_rate'] = true;
+                    $this->updateDurations(0);
+                } else {
+                    $this->dates[0]['day_rate'] = false;
+                    $this->updateDurations(0);
                 }
             }
-            elseif (preg_match('/services_(\d+)/', $attrName, $matches)) {
-                $index = intval($matches[1]);
-               
-                //getting selected service to check if its day rate service
-                if (isset($this->services[$index])) {
-                    $this->services[$index]['services'] = $val;
-                    $accommodationsCollection = collect($this->accommodations);
-
-                    // Perform the search using the filter method
-
-                    $serviceIdToFind = $this->services[$index]['services'];
-                    $foundService = $accommodationsCollection
-                        ->flatMap(fn($item) => $item['services'])
-                        ->firstWhere('id', $serviceIdToFind);
-
-                    if($foundService['rate_status']==2){
-                        $this->dates[0]['day_rate']=true;
-                        $this->updateDurations(0);
-                    }
-                    else{
-                        $this->dates[0]['day_rate']=false;
-                        $this->updateDurations(0);
-                    }
-                   
-                }
+        } elseif (preg_match('/service_consumer_(\d+)/', $attrName, $matches)) {
+            $index = intval($matches[1]);
 
 
+            if (isset($this->services[$index])) {
+                $this->services[$index]['service_consumer'] = $val;
             }
-            elseif (preg_match('/service_consumer_(\d+)/', $attrName, $matches)) {
-                $index = intval($matches[1]);
-               
-        
-                if (isset($this->services[$index])) {
-                    $this->services[$index]['service_consumer'] = $val;
-                }
-            }
-            elseif (preg_match('/attendees_(\d+)/', $attrName, $matches)) {
-                $index = intval($matches[1]);
-               
-        
-                if (isset($this->services[$index])) {
-                    $this->services[$index]['attendees'] = $val;
-                   
-                }
-            }  
-            elseif (preg_match('/start_date_(\d+)/', $attrName, $matches)) {
-                $index = intval($matches[1]);
-               
-                //dd($val);
-                if (isset($this->dates[$index])) {
-                    $this->dates[$index]['start_date'] = $val;
-                   
-                    // Step 1: Parse the date
-                    $date = Carbon::createFromFormat('m/d/Y', $this->dates[$index]['start_date']);
+        } elseif (preg_match('/attendees_(\d+)/', $attrName, $matches)) {
+            $index = intval($matches[1]);
 
-                    $this->dates[$index]['end_date']=$date->addDays($this->dates[$index]['duration_day'])->addHours( $this->dates[$index]['duration_hour'])->addMinutes($this->dates[$index]['duration_minute'])->format('m/d/Y');
-                    $this->updateDurations($index);
-                }
-              
-            }        
-            elseif (preg_match('/timezone_(\d+)/', $attrName, $matches)) {
-                $index = intval($matches[1]);
-               
-        
-                if (isset($this->dates[$index])) {
-                    $this->dates[$index]['time_zone'] = $val;
-                    $this->updateDurations($index);
-                  
-                }
-              
-            }         
-            elseif (preg_match('/end_date_(\d+)/', $attrName, $matches)) {
-                $index = intval($matches[1]);
-               
-       
-                if (isset($this->dates[$index])) {
-                    $this->dates[$index]['end_date'] = $val;
-                    $this->updateDurations($index);
-                  
-                }
-              //  dd( $this->dates[$index]['end_date']);
-            }  
-            elseif($attrName=='customer_id'){
-                $this->booking['customer_id']=$val;
-                $this->getUserRoleDetails($this->booking['customer_id']);
-                $this->refreshAddresses();
-               
-             }
-        elseif ($attrName == 'tags') {
+
+            if (isset($this->services[$index])) {
+                $this->services[$index]['attendees'] = $val;
+            }
+        } elseif (preg_match('/start_date_(\d+)/', $attrName, $matches)) {
+            $index = intval($matches[1]);
+
+            //dd($val);
+            if (isset($this->dates[$index])) {
+                $this->dates[$index]['start_date'] = $val;
+
+                // Step 1: Parse the date
+                $date = Carbon::createFromFormat('m/d/Y', $this->dates[$index]['start_date']);
+
+                $this->dates[$index]['end_date'] = $date->addDays($this->dates[$index]['duration_day'])->addHours($this->dates[$index]['duration_hour'])->addMinutes($this->dates[$index]['duration_minute'])->format('m/d/Y');
+                $this->updateDurations($index);
+            }
+        } elseif (preg_match('/timezone_(\d+)/', $attrName, $matches)) {
+            $index = intval($matches[1]);
+
+
+            if (isset($this->dates[$index])) {
+                $this->dates[$index]['time_zone'] = $val;
+                $this->updateDurations($index);
+            }
+        } elseif (preg_match('/end_date_(\d+)/', $attrName, $matches)) {
+            $index = intval($matches[1]);
+
+
+            if (isset($this->dates[$index])) {
+                $this->dates[$index]['end_date'] = $val;
+                $this->updateDurations($index);
+            }
+            //  dd( $this->dates[$index]['end_date']);
+        } elseif ($attrName == 'customer_id') {
+            $this->booking['customer_id'] = $val;
+            $this->getUserRoleDetails($this->booking['customer_id']);
+            $this->refreshAddresses();
+        } elseif ($attrName == 'tags') {
             $this->tags = explode(',', $val);
             $this->allTags = array_unique(array_merge($this->allTags, $this->tags));
             $this->allTags = array_values($this->allTags);
-        }
+        } else
+            $this->booking[$attrName] = $val;
 
-        else
-        $this->booking[$attrName] = $val;
 
-        
-         //extra checks to call additional functions
+        //extra checks to call additional functions
 
 
     }
 
-    public function updateServiceDefaults($index,$key=0){
+    public function updateServiceDefaults($index, $key = 0)
+    {
         //updating defaults
-             $accommodationsCollection = collect($this->accommodations);
+        $accommodationsCollection = collect($this->accommodations);
 
-            // Perform the search using the filter method
-        
-            $serviceIdToFind = $this->services[$index]['services'];
-            $foundService = $accommodationsCollection
-                     ->flatMap(fn($item) => $item['services'])
-                     ->firstWhere('id', $serviceIdToFind);
+        // Perform the search using the filter method
+
+        $serviceIdToFind = $this->services[$index]['services'];
+        $foundService = $accommodationsCollection
+            ->flatMap(fn ($item) => $item['services'])
+            ->firstWhere('id', $serviceIdToFind);
         //auto-notify and auto-assign
-        
+
         //provider and consumer
 
         //start date and end date
@@ -886,68 +860,56 @@ class Booknow extends Component
         //show or hide day rate?
 
 
-        if($key>0){
-            $postfix=$this->serviceTypes[$key]['postfix'];
-            $this->services[$index]['provider_count']=$foundService['default_providers'.$postfix];   
-            $settings=json_decode($foundService['notification_settings'.$postfix],true);
-          
-            if(!is_null($settings) && count($settings) && key_exists('auto_assign',$settings[0])){
-                $this->services[$index]['auto_assign']=$settings[0]['auto_assign'];
-            } 
-            if(!is_null($settings) &&  count($settings) &&  key_exists('broadcast',$settings[0])){
-                $this->services[$index]['auto_notify']=$settings[0]['broadcast'];
-            } 
-          
-          
-            if($foundService['rate_status']==2)
-              $dayRate=true;
-            else 
-              $dayRate=false;
-           if(!$this->isEdit){
-            $this->dates=[];
-            $this->addDate($foundService['minimum_assistance_hours'.$postfix],$dayRate);  
-           }
-           
-           
+        if ($key > 0) {
+            $postfix = $this->serviceTypes[$key]['postfix'];
+            $this->services[$index]['provider_count'] = $foundService['default_providers' . $postfix];
+            $settings = json_decode($foundService['notification_settings' . $postfix], true);
+
+            if (!is_null($settings) && count($settings) && key_exists('auto_assign', $settings[0])) {
+                $this->services[$index]['auto_assign'] = $settings[0]['auto_assign'];
+            }
+            if (!is_null($settings) &&  count($settings) &&  key_exists('broadcast', $settings[0])) {
+                $this->services[$index]['auto_notify'] = $settings[0]['broadcast'];
+            }
+
+
+            if ($foundService['rate_status'] == 2)
+                $dayRate = true;
+            else
+                $dayRate = false;
+            if (!$this->isEdit) {
+                $this->dates = [];
+                $this->addDate($foundService['minimum_assistance_hours' . $postfix], $dayRate);
+            }
         }
-         
-
-             
-        
-
     }
 
-    public function getUserRoleDetails($customerId){
+    public function getUserRoleDetails($customerId)
+    {
         //getting role billing manager and supervisor
-        $userRoles=RoleUserDetail::where('associated_user',$customerId)
-        ->where(function ($query) {
-            $query->where('role_id', 5)
-                ->orWhere('role_id', 9);
-        })->orderBy('role_id')->orderBy('is_default','desc')->select('role_id','user_id')->get();
-        $this->assignedSupervisor='checked';
-        if(!is_null($userRoles)){
-           $supervisorSet=0;
-           $bManagerSet=0;
-           $this->booking->supervisor='';
-           $this->booking->billing_manager_id='';
-           foreach($userRoles as $userRole)
-           {
-             if($userRole['role_id']==5 ){
-                $this->booking->supervisor=$userRole['user_id'];
-                $supervisorSet=1;
-
-             }
-             elseif($userRole['role_id']==9){
-                $this->booking->billing_manager_id=$userRole['user_id'];
-                $bManagerSet=1;
-             }
-
-
-           }
-           if($supervisorSet==0 || $bManagerSet==0)
-                $this->assignedSupervisor='';
+        $userRoles = RoleUserDetail::where('associated_user', $customerId)
+            ->where(function ($query) {
+                $query->where('role_id', 5)
+                    ->orWhere('role_id', 9);
+            })->orderBy('role_id')->orderBy('is_default', 'desc')->select('role_id', 'user_id')->get();
+        $this->assignedSupervisor = 'checked';
+        if (!is_null($userRoles)) {
+            $supervisorSet = 0;
+            $bManagerSet = 0;
+            $this->booking->supervisor = '';
+            $this->booking->billing_manager_id = '';
+            foreach ($userRoles as $userRole) {
+                if ($userRole['role_id'] == 5) {
+                    $this->booking->supervisor = $userRole['user_id'];
+                    $supervisorSet = 1;
+                } elseif ($userRole['role_id'] == 9) {
+                    $this->booking->billing_manager_id = $userRole['user_id'];
+                    $bManagerSet = 1;
+                }
+            }
+            if ($supervisorSet == 0 || $bManagerSet == 0)
+                $this->assignedSupervisor = '';
         }
-
     }
 
     //functions to set modal values
@@ -962,114 +924,113 @@ class Booknow extends Component
     {
         //need to pass user to set values
         $this->selectedDepartments = $selectedDepartments;
-       
+
         // $this->userdetail['department'] = $defaultDepartment;
         $this->departmentNames = $departmentNames;
         $this->updateUsers();
-       
     }
 
     public function updateDurations($index)
     {
-      
+
         // Assuming you have the $date array in your Livewire component.
         try {
-            $timeZoneCity=$this->getTimeZone($this->dates[$index]['time_zone']);
-           
-        if (isset($this->dates[$index]['start_date']) && isset($this->dates[$index]['end_date']) &&
-            isset($this->dates[$index]['start_hour']) && isset($this->dates[$index]['start_min']) &&
-            isset($this->dates[$index]['end_hour']) && isset($this->dates[$index]['end_min'])) {
-               
-                if($this->dates[$index]['time_zone']){
-                  
+            $timeZoneCity = $this->getTimeZone($this->dates[$index]['time_zone']);
+
+            if (
+                isset($this->dates[$index]['start_date']) && isset($this->dates[$index]['end_date']) &&
+                isset($this->dates[$index]['start_hour']) && isset($this->dates[$index]['start_min']) &&
+                isset($this->dates[$index]['end_hour']) && isset($this->dates[$index]['end_min'])
+            ) {
+
+                if ($this->dates[$index]['time_zone']) {
+
 
                     $timeZoneIds = array_column($this->timezones, 'id'); // Assuming 'id' is the key that holds the ID
                     $timeZoneIndex = array_search($this->dates[$index]['time_zone'], $timeZoneIds);
-                    
+
                     if ($timeZoneIndex !== false) {
                         $timezoneLabel = $this->timezones[$timeZoneIndex]['setup_value_label'];
                     }
                 }
-                   // dd($this->dates[$index]['start_date'] . $this->dates[$index]['start_hour'] . ':' . $this->dates[$index]['start_min'] . ':00');      
-                    
+                // dd($this->dates[$index]['start_date'] . $this->dates[$index]['start_hour'] . ':' . $this->dates[$index]['start_min'] . ':00');      
+
                 $startDateTime = Carbon::createFromFormat(
-                    'm/d/YH:i:s', 
-                    $this->dates[$index]['start_date'] . $this->dates[$index]['start_hour'] . ':' . $this->dates[$index]['start_min'] . ':00', 
+                    'm/d/YH:i:s',
+                    $this->dates[$index]['start_date'] . $this->dates[$index]['start_hour'] . ':' . $this->dates[$index]['start_min'] . ':00',
                     new \DateTimeZone($timeZoneCity)
                 );
-              
+
                 $endDateTime = Carbon::createFromFormat(
-                    'm/d/YH:i:s', 
-                    $this->dates[$index]['end_date'] . $this->dates[$index]['end_hour'] . ':' . $this->dates[$index]['end_min'] . ':00', 
+                    'm/d/YH:i:s',
+                    $this->dates[$index]['end_date'] . $this->dates[$index]['end_hour'] . ':' . $this->dates[$index]['end_min'] . ':00',
                     new \DateTimeZone($timeZoneCity)
-                );  
-              
-          //  if ($endDateTime >= $startDateTime) {
+                );
+
+                //  if ($endDateTime >= $startDateTime) {
                 $diff = $endDateTime->diff($startDateTime);
-    
- 
-               if($this->dates[$index]['day_rate']){
-                $days = $diff->days;
-                $hours = $diff->h;
-               
- 
-               }
-               else{
-                $days=0;
-                $hours=(($diff->days * 24) + ($diff->h)); //+ $diff->i)/60
-               }
+
+
+                if ($this->dates[$index]['day_rate']) {
+                    $days = $diff->days;
+                    $hours = $diff->h;
+                } else {
+                    $days = 0;
+                    $hours = (($diff->days * 24) + ($diff->h)); //+ $diff->i)/60
+                }
                 $minutes = $diff->i;
-                $this->dates[$index]['duration_day']=$days;
-                $this->dates[$index]['duration_hour']=$hours;
- 
-                $this->dates[$index]['duration_minute']=$minutes;
-               //dd($this->dates);
-               
-            //} else {
+                $this->dates[$index]['duration_day'] = $days;
+                $this->dates[$index]['duration_hour'] = $hours;
+
+                $this->dates[$index]['duration_minute'] = $minutes;
+                //dd($this->dates);
+
+                //} else {
 
                 // Return an error message or handle the case where end date/time is not greater than start date/time.
-               // return ['error' => 'End date/time must be greater than start date/time.'];
-          //  }
-           // dd($this->dates);
+                // return ['error' => 'End date/time must be greater than start date/time.'];
+                //  }
+                // dd($this->dates);
+            }
+        } catch (\Exception $e) {
+            // Handle the exception, log the error, or debug further
+            //  dd($e->getMessage());
         }
-    } catch (\Exception $e) {
-        // Handle the exception, log the error, or debug further
-      //  dd($e->getMessage());
-    }
-    
+
         return null; // Return null if the required fields are not set.
     }
-    
 
-    public function rules(){
-        $rules= [
-            'booking.frequency_id'=>'required',
-            'booking.requester_information'=>'nullable',
-            'booking.poc_phone'=>'nullable',
-            'booking.company_id'=>'required',
-            'booking.customer_id'=>'required',
-            'booking.supervisor'=>'nullable',
-            'booking.billing_manager_id'=>'nullable',
-            'booking.recurring_end_at'=>'nullable',
-            'booking.booking_title'=>'nullable',
+
+    public function rules()
+    {
+        $rules = [
+            'booking.frequency_id' => 'required',
+            'booking.requester_information' => 'nullable',
+            'booking.poc_phone' => 'nullable',
+            'booking.company_id' => 'required',
+            'booking.customer_id' => 'required',
+            'booking.supervisor' => 'nullable',
+            'booking.billing_manager_id' => 'nullable',
+            'booking.recurring_end_at' => 'nullable',
+            'booking.booking_title' => 'nullable',
             'selectedIndustries' => 'required|array|min:1',
-            'booking.private_notes'=>'nullable',
-            'booking.provider_notes'=>'nullable',
-            'booking.customer_notes'=>'nullable',
-            'booking.billing_notes'=>'nullable',
-            'booking.payment_notes'=>'nullable',
-            'booking.physical_address_id'=>'nullable',
-            'booking.contact_point'=>'nullable',
-            'booking.poc_phone'=>'nullable',
-            'payment.coupon_type'=>'nullable',
-            'payment.override_amount'=>'nullable|numeric',
-            'payment.coupon_discount_amount'=>'nullable|numeric',
-            'payment.additional_label'=>'nullable',
-            'payment.additional_charge'=>'nullable|numeric',
-            'payment.additional_label_provider'=>'nullable',
-            'payment.additional_charge_provider'=>'nullable|numeric',
-            'payment.discounted_amount'=>'nullable',
-            'payment.payment_method'=>'sometimes|numeric'
+            'booking.private_notes' => 'nullable',
+            'booking.provider_notes' => 'nullable',
+            'booking.customer_notes' => 'nullable',
+            'booking.billing_notes' => 'nullable',
+            'booking.payment_notes' => 'nullable',
+            'booking.physical_address_id' => 'nullable',
+            'booking.contact_point' => 'nullable',
+            'booking.poc_phone' => 'nullable',
+            'payment.coupon_type' => 'nullable',
+            'payment.override_amount' => 'nullable|numeric',
+            'payment.coupon_discount_amount' => 'nullable|numeric',
+            'payment.additional_label' => 'nullable',
+            'payment.additional_charge' => 'nullable|numeric',
+            'payment.additional_label_provider' => 'nullable',
+            'payment.additional_charge_provider' => 'nullable|numeric',
+            'payment.discounted_amount' => 'nullable',
+            'payment.payment_method' => 'sometimes|numeric'
 
         ];
 
@@ -1082,7 +1043,6 @@ class Booknow extends Component
         foreach ($this->dates as $index => $date) {
             $rules['dates.' . $index . '.start_date'] = 'required';
             $rules['dates.' . $index . '.end_date'] = 'required|after_or_equal:dates.' . $index . '.start_date';
-
         }
         return $rules;
     }
@@ -1099,120 +1059,110 @@ class Booknow extends Component
         return $messages;
     }
 
-    public function refreshAddresses(){
-       //query to fetch addresses
-       $this->userAddresses=[];
-       $ids=[
-        ['id'=>$this->booking['customer_id'],'user_address_type'=>1],['id'=>$this->booking['company_id'],'user_address_type'=>2]
+    public function refreshAddresses()
+    {
+        //query to fetch addresses
+        $this->userAddresses = [];
+        $ids = [
+            ['id' => $this->booking['customer_id'], 'user_address_type' => 1], ['id' => $this->booking['company_id'], 'user_address_type' => 2]
         ];
-      
-       for($i=0;$i<count($ids);$i++){
-        $addresses=UserAddress::where(['address_type'=>1,'user_id'=>$ids[$i]['id'],'user_address_type'=>$ids[$i]['user_address_type']])->orderBy('id','desc')->get();
-      
-        foreach($addresses as $address){
-          $this->userAddresses[]=$address->toArray();
-           }
-       }
-     
-        
+
+        for ($i = 0; $i < count($ids); $i++) {
+            $addresses = UserAddress::where(['address_type' => 1, 'user_id' => $ids[$i]['id'], 'user_address_type' => $ids[$i]['user_address_type']])->orderBy('id', 'desc')->get();
+
+            foreach ($addresses as $address) {
+                $this->userAddresses[] = $address->toArray();
+            }
+        }
     }
 
     public function setBookingAddress($addressId)
     {
-        $this->booking->physical_address_id=$addressId;
-        $this->selectedAddressId = $addressId; 
-       
+        $this->booking->physical_address_id = $addressId;
+        $this->selectedAddressId = $addressId;
     }
-	public function addAddress($addressArr)
-	{
+    public function addAddress($addressArr)
+    {
 
-		if (isset($addressArr['index'])) { //update existing
-			$this->userAddresses[$addressArr['index']] = $addressArr;
-		} else{
+        if (isset($addressArr['index'])) { //update existing
+            $this->userAddresses[$addressArr['index']] = $addressArr;
+        } else {
             //saving address for user first
             $addressService = new AddressService();
-            $addressService->saveAddresses($this->booking['customer_id'],1,[$addressArr]);
+            $addressService->saveAddresses($this->booking['customer_id'], 1, [$addressArr]);
             $this->refreshAddresses();
             $this->setBookingAddress($this->userAddresses[0]['id']);
         }
-			
-	}
-
-    public function editAddress($index, $type)
-	{
-		$this->userAddresses[$index]['index'] = $index;	//passing ref index
-		$this->emit('updateAddressType', $type, $this->userAddresses[$index]);
-	}
-
-    public function getForms(){
-        $this->formIds=[];
-       // dd($this->selectedIndustries);
-        foreach($this->selectedIndustries as $industry){ //getting industry forms
-
-            $industryForm=CustomizeForms::where('industry_id',$industry)->select('id')->first();
-            if(!is_null($industryForm))
-              $this->formIds[]=$industryForm->id;
-            
-        }
-        foreach($this->accommodations as &$accommodation){
-            foreach($accommodation['services'] as $service)
-            {
-                 foreach($this->services as $selectedService){
-                 //getitng service forms
-                    
-                    if($selectedService['services']==$service['id'])
-                        {
-                            if(!in_array($service['request_form_id'],$this->formIds) && !is_null($service['request_form_id'])) //checking if form id already there, can happen if same form is selected for industry and servcies 
-                                $this->formIds[]=$service['request_form_id'];    
-                        }
-                           
-                }
-            }
-        } 
-       
-    //    if(count($this->formIds)==0){
-    //        $this->switch('payment-info');
-    //    }
-    //    else
-        $this->switch('request-details');
-       
     }
 
-    public function getBookingInfo(){
-        $this->selectedServices=[];
-        $bookingServices=BookingServices::where('booking_id',$this->booking->id)->get()->toArray();
-       
-        foreach($bookingServices as &$service){
-            foreach($this->accommodations as $accommodation){
-                if($accommodation['id'] == $service['accommodation_id']){
-                    foreach($accommodation['services'] as $accommodationService)
-                    {
-                        if($service['services'] == $accommodationService['id']){
-                            $postFix=$this->serviceTypes[$service['service_types']]['postfix'];
-                            $serviceType=$this->serviceTypes[$service['service_types']]['title'];
-                            $service['service_data']=$accommodationService;
-                            $service['postFix']=$postFix;
-                            $service["service_type"]=$serviceType;
-                            $service['accommodation']=$accommodation;
-                           
-                            
-                        }
-                           
+    public function editAddress($index, $type)
+    {
+        $this->userAddresses[$index]['index'] = $index;    //passing ref index
+        $this->emit('updateAddressType', $type, $this->userAddresses[$index]);
+    }
+
+    public function getForms()
+    {
+        $this->formIds = [];
+        // dd($this->selectedIndustries);
+        foreach ($this->selectedIndustries as $industry) { //getting industry forms
+
+            $industryForm = CustomizeForms::where('industry_id', $industry)->select('id')->first();
+            if (!is_null($industryForm))
+                $this->formIds[] = $industryForm->id;
+        }
+        foreach ($this->accommodations as &$accommodation) {
+            foreach ($accommodation['services'] as $service) {
+                foreach ($this->services as $selectedService) {
+                    //getitng service forms
+
+                    if ($selectedService['services'] == $service['id']) {
+                        if (!in_array($service['request_form_id'], $this->formIds) && !is_null($service['request_form_id'])) //checking if form id already there, can happen if same form is selected for industry and servcies 
+                            $this->formIds[] = $service['request_form_id'];
                     }
                 }
             }
-          
         }
-   //   dd($bookingServices);
-        $this->services=BookingOperationsService::getBookingCharges($this->booking,$bookingServices,$this->dates,$this->schedule);
-        $this->updateTotals();
-       // dd($this->booking->total_amount);
-       // dd($this->bookingCharges);
-       // $this->bookingDetails=BookingOperationsService::getBookingInfoNewLayout($this->booking);
-       
+
+        //    if(count($this->formIds)==0){
+        //        $this->switch('payment-info');
+        //    }
+        //    else
+        $this->switch('request-details');
     }
-    public function updateTotals(){
-       
+
+    public function getBookingInfo()
+    {
+        $this->selectedServices = [];
+        $bookingServices = BookingServices::where('booking_id', $this->booking->id)->get()->toArray();
+
+        foreach ($bookingServices as &$service) {
+            foreach ($this->accommodations as $accommodation) {
+                if ($accommodation['id'] == $service['accommodation_id']) {
+                    foreach ($accommodation['services'] as $accommodationService) {
+                        if ($service['services'] == $accommodationService['id']) {
+                            $postFix = $this->serviceTypes[$service['service_types']]['postfix'];
+                            $serviceType = $this->serviceTypes[$service['service_types']]['title'];
+                            $service['service_data'] = $accommodationService;
+                            $service['postFix'] = $postFix;
+                            $service["service_type"] = $serviceType;
+                            $service['accommodation'] = $accommodation;
+                        }
+                    }
+                }
+            }
+        }
+        //   dd($bookingServices);
+        $this->services = BookingOperationsService::getBookingCharges($this->booking, $bookingServices, $this->dates, $this->schedule);
+        $this->updateTotals();
+        // dd($this->booking->total_amount);
+        // dd($this->bookingCharges);
+        // $this->bookingDetails=BookingOperationsService::getBookingInfoNewLayout($this->booking);
+
+    }
+    public function updateTotals()
+    {
+
         $this->validate([
             'payment.coupon_discount_amount' => 'nullable|numeric',
             'payment.additional_charge' => 'nullable|numeric',
@@ -1220,53 +1170,46 @@ class Booknow extends Component
             'payment.override_amount' => 'nullable|numeric',
         ]);
 
-        foreach($this->services as $service)
-        {
-            if($service['billed_total'])
-                $this->payment['sub_total']+=$service['billed_total'];
+        foreach ($this->services as $service) {
+            if ($service['billed_total'])
+                $this->payment['sub_total'] += $service['billed_total'];
             else
-            $this->payment['sub_total']+=$service['total_charges'];    
+                $this->payment['sub_total'] += $service['total_charges'];
         }
-        
-//
+
+        //
         //discounts
-      
-       
-        if($this->payment['coupon_type']==3 && !is_null($this->payment['coupon_discount_amount']) &&  $this->payment['coupon_discount_amount']!=''){
+
+
+        if ($this->payment['coupon_type'] == 3 && !is_null($this->payment['coupon_discount_amount']) &&  $this->payment['coupon_discount_amount'] != '') {
             //percentage of booking total discount
-            $this->discountedAmount=$this->payment['discounted_amount']=($this->payment['sub_total']*$this->payment['coupon_discount_amount'])/100;
-            $this->payment['sub_total']-= $this->payment['discounted_amount'];
-            
-        }
-        elseif($this->payment['coupon_type']==2 && !is_null($this->payment['coupon_discount_amount']) &&  $this->payment['coupon_discount_amount']!=''){
-            $this->discountedAmount= $this->payment['discounted_amount']=$this->payment['coupon_discount_amount'];
-            $this->payment['sub_total']-=$this->payment['coupon_discount_amount'];
-        }
-        else{
-            $this->payment['discounted_amount']=0;
+            $this->discountedAmount = $this->payment['discounted_amount'] = ($this->payment['sub_total'] * $this->payment['coupon_discount_amount']) / 100;
+            $this->payment['sub_total'] -= $this->payment['discounted_amount'];
+        } elseif ($this->payment['coupon_type'] == 2 && !is_null($this->payment['coupon_discount_amount']) &&  $this->payment['coupon_discount_amount'] != '') {
+            $this->discountedAmount = $this->payment['discounted_amount'] = $this->payment['coupon_discount_amount'];
+            $this->payment['sub_total'] -= $this->payment['coupon_discount_amount'];
+        } else {
+            $this->payment['discounted_amount'] = 0;
         }
 
-        if($this->payment['additional_charge']){
-            $this->payment['sub_total']+=$this->payment['additional_charge'];
+        if ($this->payment['additional_charge']) {
+            $this->payment['sub_total'] += $this->payment['additional_charge'];
         }
-        if($this->payment['additional_charge']){
-            $this->payment['sub_total']+=$this->payment['additional_charge'];
+        if ($this->payment['additional_charge']) {
+            $this->payment['sub_total'] += $this->payment['additional_charge'];
         }
 
-        if($this->payment['override_amount']){
-            $this->payment['is_override']=1;
-            $this->payment['total_amount']=$this->payment['override_amount'];
+        if ($this->payment['override_amount']) {
+            $this->payment['is_override'] = 1;
+            $this->payment['total_amount'] = $this->payment['override_amount'];
+        } else {
+            $this->payment['total_amount'] = $this->payment['sub_total'];
         }
-        else{
-            $this->payment['total_amount']=$this->payment['sub_total'];
-        }
-        $this->totalAmount= $this->payment['total_amount'];
-       // dd($this->payment);
+        $this->totalAmount = $this->payment['total_amount'];
+        // dd($this->payment);
 
         //addtional payments and charges
 
 
     }
-   
-
 }
