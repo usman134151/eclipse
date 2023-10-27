@@ -2170,6 +2170,12 @@
             // Open the modal
             $('#addAddressModal').modal('show');
         });
+        
+                Livewire.on('closeConfirmationModal', () => {
+            $('#modificationConfirmation').modal('hide');
+               
+            });
+
         Livewire.on('modalDismissed', () => {
             $('#addAddressModal').modal('hide');
                

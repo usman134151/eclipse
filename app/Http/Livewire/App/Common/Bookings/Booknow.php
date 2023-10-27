@@ -39,7 +39,8 @@ class Booknow extends Component
         'showList' => 'resetForm', 'updateVal', 'updateCompany',
         'updateSelectedIndustries' => 'selectIndustries',
         'updateSelectedDepartments', 'confirmation',
-        'saveCustomFormData' => 'save', 'switch', 'updateAddress' => 'addAddress'
+        'saveCustomFormData' => 'save', 'switch', 'updateAddress' => 'addAddress',
+        'confirmedModificationFee'=>'checkCharges',
     ];
 
     public $dates = [], $isCustomer = false, $customerDetails = [], $cantRequest = false;
@@ -312,7 +313,7 @@ class Booknow extends Component
     public function checkCharges($confirmed = false, $redirect = 1, $draft = 0, $step = 1)
     {
         $this->confirmed = true;
-        $this->save($redirect = 1, $draft = 0, $step = 1);
+        $this->save($redirect, $draft, $step);
     }
 
 
@@ -324,11 +325,17 @@ class Booknow extends Component
         $base = '/admin';
         if ($this->isCustomer)
             $base = '/customer';
+            
+        //making sure modification charges are checked at step 1 before editing booking
         if ($this->confirmed == false && $step == 1 && $this->isEdit) {
             $mod_booking = BookingOperationsService::getBookingDetails($this->booking->id, $this->serviceTypes, 'modifications', 'cancellation_hour1');
             if ($mod_booking->payment->modification_fee && $mod_booking->payment->modification_fee > 0) {
                 $this->emit('setModificationCharges', $mod_booking, $redirect, $draft, $step);
                 $this->emit('confirmBookingModification');
+            } else {
+                // no charges hence save func called again
+                $this->confirmed = true;
+                $this->save($redirect = 1, $draft = 0, $step = 1);
             }
         } else {
 

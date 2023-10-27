@@ -7,39 +7,50 @@
         <div class="row">
             <div class="col-12">
                 Are you sure you want to update this Booking? Booking is outside it’s modification window.
-                If you’d like to modify this booking, you will be charged {{$booking ? numberFormat($booking['payment']['modification_fee']) : ''}}. Would you like to proceed with
+                If you’d like to modify this booking, you will be charged
+                {{ $booking ? numberFormat($booking['payment']['modification_fee']) : '' }}. Would you like to proceed
+                with
                 modification?
             </div>
-            <div class="col-lg-12 mt-2">
+            @if (!session()->get('isCustomer'))
+                <div class="col-lg-12 mt-2">
 
 
-                <div class="mb-4">
-                    <label class="form-label" for="first-name-column">Override Charges</label>
-                    <input type="text" id="charges" class="form-control" placeholder="$0.00" name="charges" />
+                    <div class="mb-4">
+                        <label class="form-label" for="first-name-column">Override Charges</label>
+                        <input type="text" id="charges" wire:model.defer="override_charges" class="form-control"
+                            placeholder="$0.00" name="charges" />
+                        @error('override_charges')
+                            <span class="d-inline-block invalid-feedback mt-2">
+                                {{ $message }}
+                            </span>
+                        @enderror
+                    </div>
                 </div>
-            </div>
-            <div class="col-12">
+                {{-- <div class="col-12">
                 <div class="mb-4">
                     <label class="form-label" for="first-name-column">Reason For Edit</label>
                     <textarea type="number" id="reason" class="form-control" placeholder="Enter Reason For Modification" name="reason"></textarea>
                 </div>
-            </div>
-            <div class="col-12">
-                <div class="">
+            </div> --}}
+                <div class="col-12">
+                    <div class="">
 
-                    <input class="form-check-input " id="waive_modification" name="waive_modification" type="checkbox"
-                        tabindex="">
-                    <label class="form-check-label" for="waive_modification">Waive Modification Fee </label>
+                        <input class="form-check-input " wire:model="waiveModification" id="waive_modification"
+                            name="waive_modification" type="checkbox" tabindex="">
+                        <label class="form-check-label" for="waive_modification">Waive Modification Fee </label>
 
+                    </div>
+                    <div class="">
+
+                        <input class="form-check-input show-hidden-content" id="cancel_provider_payment"
+                            name="cancel_provider_payment" type="checkbox" tabindex="" disabled>
+                        <label class="form-check-label" for="cancel_provider_payment">Cancel Provider Payment
+                            <small>(coming soon)</small> </label>
+
+                    </div>
                 </div>
-                <div class="">
-
-                    <input class="form-check-input show-hidden-content" id="cancel_provider_payment"
-                        name="cancel_provider_payment" type="checkbox" tabindex="">
-                    <label class="form-check-label" for="cancel_provider_payment">Cancel Provider Payment </label>
-
-                </div>
-            </div>
+            @endif
 
         </div>
 
@@ -51,7 +62,8 @@
                     booking as created! </button>
             </div>
             <div class="col-lg-6">
-                <button type="button" class="btn rounded w-100 btn-primary">Yes, I accept the modification
+                <button type="button" wire:click="confirm" class="btn rounded w-100 btn-primary">Yes, I accept the
+                    modification
                     charge!</button>
             </div>
         </div>
