@@ -707,13 +707,15 @@
     {{-- Schedule Tab - Start --}}
     <div class="tab-pane fade" id="schedule-tab-pane" role="tabpanel" aria-labelledby="schedule-tab" tabindex="0">
         <div class="row mb-4">
-            <h3>Schedule <small>(coming soon)</small></h3>
+            <h3>Schedule 
+                {{-- <small>(coming soon)</small></h3> --}}
         </div>
 
         <div>
-            <x-advancefilters />
+            {{-- <x-advancefilters />
             <img class="w-100" alt="Dashboard Calendar"
-                src="/tenant-resources/images/portrait/small/image-placeholder-calendar.png" />
+                src="/tenant-resources/images/portrait/small/image-placeholder-calendar.png" /> --}}
+                @livewire('app.common.calendar',['companyProfile' => true, 'user_id' => $company['id']])
         </div>
     </div>
     {{-- Schedule Tab - End --}}
