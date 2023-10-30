@@ -297,7 +297,7 @@ class AssignProviders extends Component
             + ($this->providersPayment[$index]['service_payment_details']['expedited_rate'] * $this->providersPayment[$index]['service_payment_details']['expedited_duration']), 2, '.', '');
 
 
-        if (count($this->providersPayment[$index]['additional_payments'])) {
+        if (count($this->providersPayment[$index]['additional_payments']) && key_exists('additional_charge_provider',$this->providersPayment[$index]['additional_payments'])) {
             //foreach ($this->providersPayment[$index]['additional_payments'] as $key => $payment) {
                 $this->providersPayment[$index]['total_amount'] = $this->providersPayment[$index]['total_amount']
                     + $this->providersPayment[$index]['additional_payments']['additional_charge_provider'] ?? 0;
