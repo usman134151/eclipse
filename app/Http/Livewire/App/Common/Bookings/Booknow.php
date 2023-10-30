@@ -312,7 +312,7 @@ class Booknow extends Component
 
     public function checkCharges($confirmed = false, $redirect = 1, $draft = 0, $step = 1)
     {
-        dd('checkCharges');
+       
         $this->confirmed = true;
         $this->save($redirect, $draft, $step);
     }
