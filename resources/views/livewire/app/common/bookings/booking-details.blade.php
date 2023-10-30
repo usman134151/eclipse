@@ -1266,9 +1266,11 @@
                                                     </div>
                                                 </div>-->
                                                     <div class="d-lg-flex flex-wrap gap-3 mb-3">
-                                                        @foreach ($tags as $tag)
-                                                            <div class="tag">{{$tag}}</div>    
-                                                        @endforeach
+                                                        @if(!is_null($tags))
+                                                            @foreach ($tags as $tag)
+                                                                <div class="tag">{{$tag}}</div>    
+                                                            @endforeach
+                                                        @endif
                                                     </div>
                                                     <div>
                                                         <div class="form-check form-check-inline">
