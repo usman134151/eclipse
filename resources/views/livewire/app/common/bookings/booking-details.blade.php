@@ -1467,11 +1467,54 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-9">
-                                                    <label class="form-label mb-md-0">Cancel/Modify/Reschedule Fees
-                                                        (list):</label>
+                                                    <label class="form-label mb-md-0">Modifications charges:</label>
                                                 </div>
                                                 <div class="col-md-3 align-self-center">
-                                                    <div class="font-family-tertiary">$00.00</div>
+                                                    <div class="font-family-tertiary">
+                                                        @if (!is_null($booking['payment']) && !is_null($booking['payment']['modification_fee']))
+                                                            {{ formatPayment($booking['payment']['modification_fee']) }}
+                                                        @else
+                                                            N/A
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <hr class="border-separate-sm">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-9">
+                                                    <label class="form-label mb-md-0">Rescheduling charges:</label>
+                                                </div>
+                                                <div class="col-md-3 align-self-center">
+                                                    <div class="font-family-tertiary">
+                                                        @if (!is_null($booking['payment']) && !is_null($booking['payment']['reschedule_booking_charges']))
+                                                            {{ formatPayment($booking['payment']['reschedule_booking_charges']) }}
+                                                        @else
+                                                            N/A
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <hr class="border-separate-sm">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-9">
+                                                    <label class="form-label mb-md-0">Cancellation charges:</label>
+                                                </div>
+                                                <div class="col-md-3 align-self-center">
+                                                    <div class="font-family-tertiary">
+                                                        @if (!is_null($booking['payment']) && !is_null($booking['payment']['cancellation_charges']))
+                                                            {{ formatPayment($booking['payment']['cancellation_charges']) }}
+                                                        @else
+                                                            N/A
+                                                        @endif
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -1484,7 +1527,13 @@
                                                     <label class="form-label mb-md-0">Provider Rate Sum:</label>
                                                 </div>
                                                 <div class="col-md-3 align-self-center">
-                                                    <div class="font-family-tertiary">$00.00</div>
+                                                    <div class="font-family-tertiary">
+                                                        @if(!is_null($data['providerPayments']))
+                                                        {{ formatPayment($data['providerPayments']) }}
+                                                        @else
+                                                            N/A 
+                                                        @endif
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="row @if ($isCustomer) hidden @endif">
