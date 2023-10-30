@@ -159,6 +159,13 @@ class BookingDetails extends Component
 
 
 			$this->tags = json_decode($this->booking['tags'], true);
+			$providers = BookingProvider::where('booking_id',$this->booking_id)->get();
+			$this->data['providerPayments'] = 0;
+			foreach ($providers as $provider){
+				$this->data['providerPayments'] = $this->data['providerPayments'] + $provider['total_amount'];
+			}
+			// dd($provider['id']);
+			// dd($this->data['providerPayments']);
 		}
 	//so a fuction which can then be used for editing the fields aswell.
 	public function getServiceDetails()
