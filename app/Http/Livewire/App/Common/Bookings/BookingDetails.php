@@ -22,7 +22,7 @@ class BookingDetails extends Component
 {
 	public $gender, $service_id = 0, $provider_id = 0, $form_id = 0;
 	public $ethnicity, $booking_id = 0, $booking_services, $data, $status, $isCustomer = false, $closeOut = false;
-	public $hideBilling = false;
+	public $hideBilling = false, $tags;
 
 	public $component = 'booking-details';
 	protected $listeners = [
@@ -156,7 +156,10 @@ class BookingDetails extends Component
 			$this->data['show_close_button'] = true;
 		else
 			$this->data['show_close_button'] = false;
-	}
+
+
+			$this->tags = json_decode($this->booking['tags'], true);
+		}
 	//so a fuction which can then be used for editing the fields aswell.
 	public function getServiceDetails()
 	{

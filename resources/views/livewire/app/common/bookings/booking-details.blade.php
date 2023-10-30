@@ -1039,14 +1039,14 @@
                                                     <label class="form-label">
                                                         Tags
                                                     </label>
-                                                    <select x-cloak="" id="select">
+                                                    {{-- <select x-cloak="" id="select">
                                                         <option value="1">Option 1</option>
                                                         <option value="2">Option 2</option>
                                                         <option value="3">Option 3</option>
                                                         <option value="4">Option 4</option>
                                                         <option value="5">Option 5</option>
-                                                    </select>
-                                                    <small>(coming soon)</small>
+                                                    </select> --}}
+                                                    {{-- <small>(coming soon)</small> --}}
 
                                                     <!-- Error needed to be fixed, commented out for now
                                                 <div x-data="dropdown()" x-init="loadOptions()"
@@ -1266,30 +1266,28 @@
                                                     </div>
                                                 </div>-->
                                                     <div class="d-lg-flex flex-wrap gap-3 mb-3">
-                                                        <div class="tag">@admin_company</div>
-                                                        <div class="tag">@booking_start_at</div>
-                                                        <div class="tag">@consumer</div>
-                                                        <div class="tag">@booking_end_at</div>
-                                                        <div class="tag">@booking_duration</div>
+                                                        @foreach ($tags as $tag)
+                                                            <div class="tag">{{$tag}}</div>    
+                                                        @endforeach
                                                     </div>
                                                     <div>
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" id="Requester"
-                                                                name="" type="checkbox" tabindex="">
+                                                                name="" type="checkbox" tabindex="" disabled>
                                                             <label class="form-check-label" for="Requester">
                                                                 Requester
                                                             </label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" id="ServiceConsumers"
-                                                                name="" type="checkbox" tabindex="">
+                                                                name="" type="checkbox" tabindex="" disabled>
                                                             <label class="form-check-label" for="ServiceConsumers">
                                                                 Service Consumer(s)
                                                             </label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" id="Participants"
-                                                                name="" type="checkbox" tabindex="">
+                                                                name="" type="checkbox" tabindex="" disabled>
                                                             <label class="form-check-label" for="Participants">
                                                                 Participant(s)
                                                             </label>
