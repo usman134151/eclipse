@@ -585,7 +585,7 @@
                                  <td class="text-center border-end-2">
                                      <div class="d-grid grid-cols-4 gap-3 mb-3">
                                          @if ($providersPayment[$index]['additional_payments'])
-                                             @foreach ($providersPayment[$index]['additional_payments'] as $key => $payment)
+                                             
                                                  <div class="row">
                                                      <div class="mt-3 mb-3">
                                                          {{-- <div class="d-inline-flex mb-2"> --}}
@@ -600,7 +600,7 @@
                                                                          class="form-control form-control-sm"
                                                                          placeholder="Payment Label"
                                                                          aria-label="Payment Label"
-                                                                         wire:model.defer="providersPayment.{{ $index }}.additional_payments.{{ $key }}.additional_label_provider">
+                                                                         wire:model.defer="providersPayment.{{ $index }}.additional_payments.additional_label_provider">
 
                                                                  </div>
                                                              </div>
@@ -625,7 +625,7 @@
                                                                                  class="form-control form-control-sm"
                                                                                  placeholder="00:00"
                                                                                  aria-label="Additional Payment"
-                                                                                 wire:model.defer="providersPayment.{{ $index }}.additional_payments.{{ $key }}.additional_charge_provider"
+                                                                                 wire:model.defer="providersPayment.{{ $index }}.additional_payments.additional_charge_provider"
                                                                                  wire:blur="updateTotal({{ $index }})">
 
                                                                          </div>
@@ -739,7 +739,7 @@
                                                          </div>
                                                      </div>
                                                  </div>
-                                             @endforeach
+                                             
                                          @endif
                                      </div>
 

@@ -298,10 +298,10 @@ class AssignProviders extends Component
 
 
         if (count($this->providersPayment[$index]['additional_payments'])) {
-            foreach ($this->providersPayment[$index]['additional_payments'] as $key => $payment) {
+            //foreach ($this->providersPayment[$index]['additional_payments'] as $key => $payment) {
                 $this->providersPayment[$index]['total_amount'] = $this->providersPayment[$index]['total_amount']
-                    + $payment['additional_charge_provider'] ?? 0;
-            }
+                    + $this->providersPayment[$index]['additional_payments']['additional_charge_provider'] ?? 0;
+            //}
         }
 
 
@@ -343,14 +343,17 @@ class AssignProviders extends Component
             foreach ($providers as $index => &$provider) {
                 //check if provider is assigned provider
                 $assigned=false;
-                $this->providersPayment[$index]['additional_payments'][0]=$this->paymentData;
+                
                 foreach ($this->assignedProviders as &$aProvider) {
 
                     if ($aProvider['provider_id'] == $provider['id']) {
                         $assigned=true;
+
                         
                         $this->providersPayment[$index] = $aProvider; //overriding if already assigned
-        
+                        if(!key_exists('specialization_charges',$aProvider['service_payment_details'])){
+                            $this->providersPayment[$index]['service_payment_details']['specialization_charges']=[];
+                        }
                         if (isset($aProvider['total_amount']) && $aProvider['total_amount'] == "0.00") {
         
                             $aProvider['total_amount'] = $this->updateTotal($index);
@@ -359,10 +362,11 @@ class AssignProviders extends Component
                             $this->providersPayment[$index]['additional_payments'] = $additionalPayments;
                         
                     }
+                  
                 }
                 if(!$assigned){
                 //else fetch and set custom rates
-               
+                $this->providersPayment[$index]['additional_payments']=$this->paymentData;
                 $standardRate=StandardRate::where('accommodation_service_id',$serviceId)->where('user_id',$provider['id'])->first();
                 if($standardRate){
                   
