@@ -225,7 +225,7 @@ class BookingOperationsService
         $service['business_hour_charges'] = ((float)$service['service_data']['hours_price' . $service['postFix']] * (int)$service['provider_count'] * $bh) + ((((float)$service['service_data']['hours_price' . $service['postFix']]) / 60) * (int)$service['provider_count'] * $bm);
         $service['after_business_hour_charges'] = ((float)$service['service_data']['after_hours_price' . $service['postFix']] * (int)$service['provider_count'] * (int)$abh) + (((float)$service['service_data']['after_hours_price' . $service['postFix']] / 60) * (int)$service['provider_count'] * $abm);
       } else {
-        $service['business_hour_charges'] = ((float)$service['service_data']['hours_price' . $service['postFix']] * $bh) + (($service['service_data']['hours_price' . $service['postFix']] / 60) * $bm);
+        $service['business_hour_charges'] = ((float)$service['service_data']['hours_price' . $service['postFix']] * $bh) + ((((float)$service['service_data']['hours_price' . $service['postFix']]) / 60) * $bm);
         $service['after_business_hour_charges'] = ((float)$service['service_data']['after_hours_price' . $service['postFix']] * $abh) + (((float)$service['service_data']['after_hours_price' . $service['postFix']] / 60) * $abm);
       }
 
