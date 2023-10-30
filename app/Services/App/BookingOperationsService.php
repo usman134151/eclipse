@@ -89,10 +89,14 @@ class BookingOperationsService
       $service['time_zone'] =  $dates[0]['time_zone'];
 
       if (key_exists('id', $service)) {
+        $serviceData=$service['service_data'];
         unset($service['service_data']); // Remove the 'service_data' column
         $service['updated_at'] = now();
         BookingServices::where('id', $service['id'])
           ->update($service);
+        // Now you can add 'service_data' back to the array
+          $service['service_data'] = $serviceData;
+           
       } else {
         $service['created_at'] = now();
         BookingServices::updateOrCreate(
