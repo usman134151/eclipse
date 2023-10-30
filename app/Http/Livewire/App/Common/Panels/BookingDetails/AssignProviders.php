@@ -354,7 +354,7 @@ class AssignProviders extends Component
                         if(!is_null($aProvider['service_payment_details']) && is_array($aProvider['service_payment_details']) && !key_exists('specialization_charges',$aProvider['service_payment_details'])){
                             $this->providersPayment[$index]['service_payment_details']['specialization_charges']=$this->booking_specializations;
                         }
-                        elseif(!is_array($aProvider['service_payment_details'])){
+                        elseif(is_null($aProvider['service_payment_details']) || !is_array($aProvider['service_payment_details'])){
                             $assigned=false; //to cover old bookings with no data of service details
                         }
                         if (isset($aProvider['total_amount']) && $aProvider['total_amount'] == "0.00") {
