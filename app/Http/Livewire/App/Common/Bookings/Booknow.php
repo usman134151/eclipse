@@ -312,6 +312,7 @@ class Booknow extends Component
 
     public function checkCharges($confirmed = false, $redirect = 1, $draft = 0, $step = 1)
     {
+        dd('checkCharges');
         $this->confirmed = true;
         $this->save($redirect, $draft, $step);
     }
@@ -335,9 +336,9 @@ class Booknow extends Component
             } else {
                 // no charges hence save func called again
                 $this->confirmed = true;
-                $this->save($redirect = 1, $draft = 0, $step = 1);
+               // $this->save($redirect = 1, $draft = 0, $step = 1);
             }
-        } else {
+        }
 
             if ($step == 1) {
                 $this->validate();
@@ -490,7 +491,7 @@ class Booknow extends Component
 
                 $this->dispatchBrowserEvent('refreshSelects');
             }
-        }
+        
     }
 
     public function confirmation($message = '')
