@@ -306,9 +306,12 @@ class AssignProviders extends Component
 
 
         if (count($this->booking_specializations)) {
-            foreach ($this->providersPayment[$index]['service_payment_details']['specialization_charges'] as $key => $specialization) {
-                $this->providersPayment[$index]['total_amount'] = $this->providersPayment[$index]['total_amount'] + $this->providersPayment[$index]['service_payment_details']['specialization_charges'][$key]['provider_charges'] ?? 0;
+            if(key_exists('specialization_charges',$this->providersPayment[$index]['service_payment_details'])){
+                foreach ($this->providersPayment[$index]['service_payment_details']['specialization_charges'] as $key => $specialization) {
+                    $this->providersPayment[$index]['total_amount'] = $this->providersPayment[$index]['total_amount'] + $this->providersPayment[$index]['service_payment_details']['specialization_charges'][$key]['provider_charges'] ?? 0;
+                }
             }
+
         }
         $pid = $this->providers[$index]['id'];
         foreach ($this->assignedProviders as &$aProvider) {
