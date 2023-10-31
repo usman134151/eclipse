@@ -886,14 +886,20 @@ class BookingOperationsService
         $totalCharges += $serviceCharge;
       }
     }
-    $booking->status = 4; //default cancel billable
-    if ($parameter == 'rescheduling')
+   
+    if($booking->payment !== null){
+      if ($parameter == 'rescheduling')
       $booking->payment->reschedule_booking_charges = $totalCharges;
 
-    elseif ($parameter == 'modifications' && $booking->payment !== null)
+    elseif ($parameter == 'modifications')
       $booking->payment->modification_fee = $totalCharges;
-    else
+    else{
+      $booking->status = 4; //default cancel billable
       $booking->payment->cancellation_charges = $totalCharges;
+    }
+     
+    }
+
 
     return $booking;
   }
