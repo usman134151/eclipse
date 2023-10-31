@@ -13,6 +13,7 @@ use App\Models\Tenant\BookingCustomizeData;
 use App\Models\Tenant\BookingServices;
 use App\Models\Tenant\CustomizeFormFields;
 use App\Models\Tenant\Specialization;
+use App\Models\Tenant\Tag;
 use App\Models\Tenant\User;
 use App\Models\Tenant\UserDetail;
 use Carbon\Carbon;
@@ -22,7 +23,7 @@ class BookingDetails extends Component
 {
 	public $gender, $service_id = 0, $provider_id = 0, $form_id = 0;
 	public $ethnicity, $booking_id = 0, $booking_services, $data, $status, $isCustomer = false, $closeOut = false;
-	public $hideBilling = false, $tags;
+	public $hideBilling = false, $tags, $allTags ;
 
 	public $component = 'booking-details';
 	protected $listeners = [
@@ -58,7 +59,8 @@ class BookingDetails extends Component
 			$this->booking_id = request()->bookingID;
 		}
 		$this->booking = Booking::where('id', $this->booking_id)->with('payment')->first();
-
+		$this->allTags = Tag::pluck('name')->toArray();
+        $this->tags = [];
 
 		$this->getServiceDetails();	//fetching custom form data
 
@@ -75,6 +77,8 @@ class BookingDetails extends Component
 					$this->hideBilling = true;
 			}
 		}
+		if (!is_array($this->tags))
+            $this->tags = [];
 	}
 
 	function fetchData()
@@ -157,8 +161,11 @@ class BookingDetails extends Component
 		else
 			$this->data['show_close_button'] = false;
 
+			if ($this->booking->tags != null)
+				$this->tags = json_decode($this->booking->tags, true);
+			else
+				$this->tags = [];
 
-			$this->tags = json_decode($this->booking['tags'], true);
 			$providers = BookingProvider::where('booking_id',$this->booking_id)->get();
 			$this->data['providerPayments'] = 0;
 			foreach ($providers as $provider){
@@ -208,9 +215,10 @@ class BookingDetails extends Component
 	{
 
 		$this->validate();
+		$this->booking->tags = json_encode($this->tags);
+		$this->updateTags();    //save newly added tags to table
 		$booking = $this->booking;
 		$booking->save();
-
 
 		$this->showConfirmation('Booking notes updated');
 	}
@@ -249,4 +257,11 @@ class BookingDetails extends Component
 		BookingOperationsService::reinstateBooking($bookingId);
 		$this->emit('showConfirmation', 'Booking status updated successfully');
 	}
+
+	public function updateTags()
+    {
+        foreach ($this->allTags as $tag) {
+            Tag::firstOrCreate(['name' => $tag]);
+        }
+    }
 }
