@@ -69,11 +69,10 @@ class AddNewCustomer extends Component
 
 	public function addUser($redirect = 1)
 	{
-       
+      
 
 		$this->validate();
 		
-
 		$this->user->name = $this->user->first_name . ' ' . $this->user->last_name;
 		$this->user->added_by = Auth::id();
 		$this->user->status = 1;
@@ -89,7 +88,9 @@ class AddNewCustomer extends Component
         $userService->storeCustomerRoles($roles, $this->user->id);
         $this->emit('updateUsers');
         $this->emit('customerModalDismissed');  // emit to close modal
+        $companyId=$this->user->company_name;
         $this->user=new User;
+        $this->user->company_name=$companyId;
 
 		
 	}
