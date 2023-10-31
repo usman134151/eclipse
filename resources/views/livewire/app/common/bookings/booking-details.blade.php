@@ -1278,11 +1278,11 @@
                                                     </div>
                                                 </div>-->
                                                     <div class="d-lg-flex flex-wrap gap-3 mb-3">
-                                                        @if(!is_null($tags))
+                                                        {{-- @if(!is_null($tags))
                                                             @foreach ($tags as $tag)
                                                                 <div class="tag">{{$tag}}</div>    
                                                             @endforeach
-                                                        @endif
+                                                        @endif --}}
                                                     </div>
                                                     <div>
                                                         <div class="form-check form-check-inline">
@@ -1312,7 +1312,7 @@
                                             </div>
                                             <div class="col-lg-12">
                                                 <a href="#" class="btn btn-primary rounded"
-                                                    wire:click="updateNotes">Save Notes</a>
+                                                    wire:click="updateNotes">Update</a>
                                             </div>
                                         </div>
                                     </div>
