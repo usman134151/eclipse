@@ -26,19 +26,21 @@ class RescheduleBooking extends Component
     {
         //fetch booking with rescheduling charges
         $this->booking = BookingOperationsService::getBookingDetails($booking_id, $this->serviceTypes, 'rescheduling', 'cancellation_hour1');
-        
-        $this->override_charges = round($this->booking->payment->reschedule_booking_charges,1);
-        $start = Carbon::parse($this->booking->booking_start_at);
-        $end = Carbon::parse($this->booking->booking_end_at);
-        $this->reschedule_details['booking_start_at'] = $start->format('m/d/Y');
-        $this->reschedule_details['booking_start_hour'] = $start->format('H');
-        $this->reschedule_details['booking_start_min'] = $start->format('i');
-        $this->reschedule_details['booking_end_at'] = $end->format('m/d/Y');
-        $this->reschedule_details['booking_end_hour'] = $end->format('H');
-        $this->reschedule_details['booking_end_min'] = $end->format('i');
-        $this->reschedule_details['setting'] = "only_this_booking";
-        // $this->reschedule_details['reschedule_until'] = Carbon::parse($this->booking->recurring_end_at)->format('m/d/Y');
-        $this->resetValidation();
+        if(!is_null($this->booking->payment)){
+            $this->override_charges = round($this->booking->payment->reschedule_booking_charges,1);
+            $start = Carbon::parse($this->booking->booking_start_at);
+            $end = Carbon::parse($this->booking->booking_end_at);
+            $this->reschedule_details['booking_start_at'] = $start->format('m/d/Y');
+            $this->reschedule_details['booking_start_hour'] = $start->format('H');
+            $this->reschedule_details['booking_start_min'] = $start->format('i');
+            $this->reschedule_details['booking_end_at'] = $end->format('m/d/Y');
+            $this->reschedule_details['booking_end_hour'] = $end->format('H');
+            $this->reschedule_details['booking_end_min'] = $end->format('i');
+            $this->reschedule_details['setting'] = "only_this_booking";
+            // $this->reschedule_details['reschedule_until'] = Carbon::parse($this->booking->recurring_end_at)->format('m/d/Y');
+            $this->resetValidation();
+        }
+
     }
 
     public function rules()
