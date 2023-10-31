@@ -2143,9 +2143,9 @@
     @include('modals.common.add-industry')
     @include('modals.common.add-department')
     @include('modals.common.booking-modification-confirmation')
-    @if(!is_null($booking['company_id']))
+    
         @include('modals.common.add-new-customer')
-    @endif    
+    
     @include('modals.common.assign-admin-staff')
     @include('modals.common.assign-admin-staff-team')
     <!-- /Modal Request from User -->
