@@ -189,25 +189,27 @@
                                         <label class="form-label" for="requestor">Requester <span class="mandatory">*</span></label>
                                         <div class="form-check "  @if($isCustomer) style="display:none" @endif>
                                             
-                                            <label class="form-check-label" for="addnewrequestor">Add New Requester  </label>
+                                            <!-- <label class="form-check-label" for="addnewrequestor">Add New Customer </label>
                                             <small>(coming soon)</small>
                                             <input  class="form-check-input show-hidden-content"
                                                 id="addnewrequestor" name="addnewrequestor"
-                                                type="checkbox" tabindex="">
-                                            <div class="hidden-content">
+                                                type="checkbox" tabindex=""> -->
+                                            @if($booking['company_id'])    
+                                            <div class="">
                                                 <div class="form-check-inline">
                                                     <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup"
-                                                    data-bs-toggle="modal" data-bs-target="#addNewCustomer" aria-label="Requester">
+                                                    data-bs-toggle="modal" data-bs-target="#addNewCustomer" aria-label="Requester" wire:click="addNewCustomer()">
                                                 <svg aria-label="Requester" width="25" height="18"
                                                     viewBox="0 0 25 18">
                                                     <use xlink:href="/css/common-icons.svg#right-color-arrow">
                                                     </use>
                                                 </svg>
-                                                Requester
+                                                Add new customer
                                             </button>
 
                                                 </div>
-                                            </div>
+                                             
+                                            </div>@endif   
                                         </div>
                                     </div>
                                     <select class="form-select select2 mb-2" id="customer_id" name="customer_id" wire:model.defer="booking.customer_id" @if(!$selectRequestor) disabled @endif>
@@ -2141,7 +2143,9 @@
     @include('modals.common.add-industry')
     @include('modals.common.add-department')
     @include('modals.common.booking-modification-confirmation')
-    @include('modals.common.add-new-customer')
+    @if(!is_null($booking['company_id']))
+        @include('modals.common.add-new-customer')
+    @endif    
     @include('modals.common.assign-admin-staff')
     @include('modals.common.assign-admin-staff-team')
     <!-- /Modal Request from User -->
@@ -2180,6 +2184,10 @@
             $('#addAddressModal').modal('hide');
                
             });
+        Livewire.on('customerModalDismissed', () => {
+            $('#addNewCustomer').modal('hide');
+               
+            });    
 			
             document.addEventListener('updateModelVars', function (event) {
 				const elemId = event.detail.elem;

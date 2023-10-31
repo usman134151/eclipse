@@ -40,7 +40,7 @@ class Booknow extends Component
         'updateSelectedIndustries' => 'selectIndustries',
         'updateSelectedDepartments', 'confirmation',
         'saveCustomFormData' => 'save', 'switch', 'updateAddress' => 'addAddress',
-        'confirmedModificationFee'=>'checkCharges',
+        'confirmedModificationFee'=>'checkCharges','updateUsers'
     ];
 
     public $dates = [], $isCustomer = false, $customerDetails = [], $cantRequest = false;
@@ -1212,5 +1212,9 @@ class Booknow extends Component
         //addtional payments and charges
 
 
+    }
+
+    public function addNewCustomer(){
+        $this->emit('setCompany',$this->booking->company_id);
     }
 }
