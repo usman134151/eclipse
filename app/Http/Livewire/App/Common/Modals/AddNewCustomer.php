@@ -89,6 +89,7 @@ class AddNewCustomer extends Component
         $userService->storeCustomerRoles($roles, $this->user->id);
         $this->emit('updateUsers');
         $this->emit('customerModalDismissed');  // emit to close modal
+        $this->user=new User;
 
 		
 	}
