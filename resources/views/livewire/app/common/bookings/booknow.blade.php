@@ -198,7 +198,7 @@
                                             <div class="">
                                                 <div class="form-check-inline">
                                                     <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup"
-                                                    data-bs-toggle="modal" data-bs-target="#addNewCustomer" aria-label="Requester" wire:click="addNewCustomer()">
+                                                    data-bs-toggle="modal" data-bs-target="#addNewCustomer" aria-label="Requester">
                                                 <svg aria-label="Requester" width="25" height="18"
                                                     viewBox="0 0 25 18">
                                                     <use xlink:href="/css/common-icons.svg#right-color-arrow">

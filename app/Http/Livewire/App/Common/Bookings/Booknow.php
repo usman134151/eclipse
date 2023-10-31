@@ -513,6 +513,7 @@ class Booknow extends Component
         $this->emit('isBooking');
         $this->departmentNames = [];
         $this->updateUsers();
+        $this->addNewCustomer();
         // $this->refreshSelects('refreshSelects');
         $this->schedule = BookingOperationsService::getSchedule($this->booking->company_id, $this->booking->customer_id);
 
