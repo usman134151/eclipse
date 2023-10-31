@@ -1036,9 +1036,21 @@
                                                 <!-- Tags -->
                                                 <div class="" @if ($isCustomer) hidden @endif">
 
-                                                    <label class="form-label">
+                                                    <label class="form-label" for="tags">
                                                         Tags
                                                     </label>
+
+                                                    <select multiple class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="tags-select" aria-label="Select Tags">
+                                                        @foreach ($allTags as $tag)
+                                                            <option
+                                                                {{ in_array($tag, $tags) ? 'selected' : '' }}
+                                                                value="{{ $tag }}">
+                                                                {{ $tag }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <input type="hidden" name="tags-holder"
+                                                        id="tags-holder" wire:model.defer="tags">
+
                                                     {{-- <select x-cloak="" id="select">
                                                         <option value="1">Option 1</option>
                                                         <option value="2">Option 2</option>
@@ -1792,6 +1804,14 @@
             $('#reviewFeedbackModal').modal('hide');
 
         });
+        document.addEventListener("livewire:load", function () {
+        $('#tags-select').select2({tags: false});
+
+        $('#tags-select').on('change', function () {
+        @this.set('tags', $(this).val());
+            });
+        });
+
     </script>
 @endpush
 {{-- @if ($booking->physicalAddress)
