@@ -330,7 +330,7 @@ class Booknow extends Component
         //making sure modification charges are checked at step 1 before editing booking
         if ($this->confirmed == false && $step == 1 && $this->isEdit) {
             $mod_booking = BookingOperationsService::getBookingDetails($this->booking->id, $this->serviceTypes, 'modifications', 'cancellation_hour1');
-            if ($mod_booking->payment->modification_fee && $mod_booking->payment->modification_fee > 0) {
+            if (!is_null($mod_booking->payment) && isset($mod_booking->payment->modification_fee) && $mod_booking->payment->modification_fee > 0) {
                 $this->emit('setModificationCharges', $mod_booking, $redirect, $draft, $step);
                 $this->emit('confirmBookingModification');
             } else {
