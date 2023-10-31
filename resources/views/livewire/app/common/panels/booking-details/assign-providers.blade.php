@@ -584,7 +584,7 @@
                                  </td>
                                  <td class="text-center border-end-2">
                                      <div class="d-grid grid-cols-4 gap-3 mb-3">
-                                         @if ($providersPayment[$index]['additional_payments'])
+                                         @if (isset($providersPayment[$index]) && isset($providersPayment[$index]['additional_payments']))
                                              
                                                  <div class="row">
                                                      <div class="mt-3 mb-3">
