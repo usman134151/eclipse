@@ -53,7 +53,7 @@ class NavigatorTableSeeder extends Seeder
           [
                 'navigator_label' => 'Chat',
                 'navigator_icon' => '/css/dashboard.svg#chat-icon',
-                'navigator_link' => '/admin/chat',
+                'navigator_link' => '/chat',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

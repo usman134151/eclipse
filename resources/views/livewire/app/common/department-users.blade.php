@@ -46,7 +46,7 @@
                                 xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                                 </svg>
                         </a>
-                        <a href="javascript:void(0)" title="Message (coming soon)" aria-label="Message" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                        <a href="/chat/{{$user->id}}" title="Message" aria-label="Message" class="btn btn-sm btn-secondary rounded btn-hs-icon" target="_blank">
                             <svg class="fill" width="20" height="20" viewBox="0 0 20 20"fill="none"
                                 xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#message"></use>
                                 </svg>
