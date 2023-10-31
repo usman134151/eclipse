@@ -159,7 +159,7 @@ final class Customers extends PowerGridComponent
 				<a title='View customer's Invoice' aria-label='View customer's Invoice' href='#' class='dropdown-item'>
 				<i class='fa fa-eye me-1'></i>
 				View Customer's Invoices</a>
-				<a title='Chat' aria-label='Chat' class='dropdown-item' href='#'>
+				<a title='Chat' aria-label='Chat' class='dropdown-item' href='/chat/" . $model->id . "' target='_blank'>
 				<i class='fa fa-comment me-1'></i>
 				Chat</a>
 				<a href='javascript:void(0)' aria-label='Deactivate' title='Deactivate' class='dropdown-item'>
