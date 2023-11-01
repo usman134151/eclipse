@@ -7,7 +7,7 @@
 
             <div class="col-lg-12 my-4">
             Are you sure you want to cancel this booking? 
-            @if($booking['charges']>0)Booking is outside it’s cancellation window. If you’d like to cancel this booking, you will be charged {{formatPayment($booking['charges'])}}. @endif Would you like to proceed with cancelling?
+            @if($charges>0)Booking is outside it’s cancellation window. If you’d like to cancel this booking, you will be charged {{formatPayment($charges)}}. @endif Would you like to proceed with cancelling?
             </div>
             <div class="col-lg-12 my-4">
             <div class="">

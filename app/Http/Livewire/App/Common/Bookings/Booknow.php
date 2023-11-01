@@ -1164,7 +1164,7 @@ class Booknow extends Component
     }
     public function updateTotals()
     {
-
+        $this->payment['sub_total']=0;
         $this->validate([
             'payment.coupon_discount_amount' => 'nullable|numeric',
             'payment.additional_charge' => 'nullable|numeric',

@@ -17,7 +17,7 @@ class CancelBooking extends Component
     '4'=>['class'=>'phone-rate','postfix'=>'_p','title'=>'Phone'],
     '5'=>['class'=>'teleconference-rate','postfix'=>'_t','title'=>'Teleconference'],
   ];
-    public $booking,$override_charges='',$unbillable=false;
+    public $booking,$override_charges='',$unbillable=false,$charges;
 
     public function render()
     {
@@ -32,6 +32,10 @@ class CancelBooking extends Component
 
     public function getBookingData($bookingId){
         $this->booking=BookingOperationsService::getBookingDetails($bookingId,$this->serviceTypes,'cancellation','cancellation_hour1');
+        if(!is_null($this->booking->payment->cancellation_charges)){
+            $this->override_charges=$this->charges=$this->booking->payment->cancellation_charges;
+            
+        }
     }
     function showForm()
     {     
