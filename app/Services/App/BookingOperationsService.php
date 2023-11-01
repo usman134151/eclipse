@@ -877,8 +877,12 @@ class BookingOperationsService
         $charges = SELF::getCharges($cancellationCharges, $bookingService['start_time'], $parameter);
         $serviceCharge = $charges['charges'];
         if ($charges['multiply_duration']) {
+         
           $bookingServiceData = (json_decode($bookingService['service_calculations'], true));
-          $serviceCharge = $serviceCharge * (($bookingServiceData['total_duration']['days'] * 24) + $bookingServiceData['total_duration']['hours'] + ($bookingServiceData['total_duration']['mins'] / 60));
+          if(!is_null( $bookingServiceData) && key_exists('total_duration',$bookingServiceData))
+            $serviceCharge = $serviceCharge * (($bookingServiceData['total_duration']['days'] * 24) + $bookingServiceData['total_duration']['hours'] + ($bookingServiceData['total_duration']['mins'] / 60));
+          else
+            $serviceCharge=0;
         }
         if ($charges['multiply_providers']) {
           $serviceCharge = $serviceCharge * $bookingService['provider_count'];
