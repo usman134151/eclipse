@@ -874,21 +874,46 @@ class BookingOperationsService
       $serviceCharge = 0;
       if (!is_null($booking['services'][$index][$dataColumn . $postFix])) {
         $cancellationCharges = json_decode($booking['services'][$index][$dataColumn . $postFix], true);
+        
         $charges = SELF::getCharges($cancellationCharges, $bookingService['start_time'], $parameter);
+       
+        $bookingServiceData = (json_decode($bookingService['service_calculations'], true));
         $serviceCharge = $charges['charges'];
-        if ($charges['multiply_duration']) {
+        if($charges['price_type']=="$"){
+        
+          if ($charges['multiply_duration']) {
+           
+            
+            if(!is_null( $bookingServiceData) && key_exists('total_duration',$bookingServiceData))
+              $serviceCharge = $serviceCharge * (($bookingServiceData['total_duration']['days'] * 24) + $bookingServiceData['total_duration']['hours'] + ($bookingServiceData['total_duration']['mins'] / 60));
+            else
+              $serviceCharge=0;
+          }
+          if ($charges['multiply_providers']) {
+            $serviceCharge = $serviceCharge * $bookingService['provider_count'];
+          }
+          $totalCharges += $serviceCharge;
+        }
+        else{ //for percentage - will be calculated on booking
+          $addtionalCharge=0;
+          $bookingTotal=0;
+         if(!is_null($booking->payment->additional_charge) && isset($booking->payment->additional_charge)){
+          $addtionalCharge=$booking->payment->additional_charge;
+         }
+         if(!is_null($booking->payment->total_amount) && isset($booking->payment->total_amount)){
+          $bookingTotal=$booking->payment->total_amount;
+         }
+          $total=($bookingTotal-$addtionalCharge);
+        
+          $totalCharges=($total*($serviceCharge/100));
          
-          $bookingServiceData = (json_decode($bookingService['service_calculations'], true));
-          if(!is_null( $bookingServiceData) && key_exists('total_duration',$bookingServiceData))
-            $serviceCharge = $serviceCharge * (($bookingServiceData['total_duration']['days'] * 24) + $bookingServiceData['total_duration']['hours'] + ($bookingServiceData['total_duration']['mins'] / 60));
-          else
-            $serviceCharge=0;
+          if ($charges['multiply_providers']) {
+            $totalCharges =  $totalCharges * $bookingService['provider_count'];
+          }
         }
-        if ($charges['multiply_providers']) {
-          $serviceCharge = $serviceCharge * $bookingService['provider_count'];
-        }
-        $totalCharges += $serviceCharge;
+
       }
+       
     }
    
     if($booking->payment !== null){
@@ -991,7 +1016,7 @@ class BookingOperationsService
     usort($cancellationData, function ($a, $b) {
       return $b[0]['hour'] - $a[0]['hour']; // Sort in descending order to check the larger hours first
     });
-
+     
     // Step 3: Get the time difference in hours
     $currentDateTime = new DateTime();
     $bookingStartDateTime = new DateTime($bookingStartTime); // Assuming $bookingStartTime is in a format supported by DateTime
@@ -1004,18 +1029,19 @@ class BookingOperationsService
       foreach ($cancelItemArray as $cancelItem) {
 
         if (key_exists($parameter, $cancelItem) && $cancelItem[$parameter] == true &&  $hoursDifference <= intval($cancelItem['hour'])) {
+          
           if (key_exists('multiply_duration', $cancelItem)) {
             $md = $cancelItem['multiply_duration'];
           }
           if (key_exists('multiply_providers', $cancelItem)) {
             $mp = $cancelItem['multiply_providers'];
           }
-          return ['charges' => floatval($cancelItem['price']), 'hour' => $cancelItem['hour'], 'multiply_duration' => $md, 'multiply_providers' => $mp]; // Returning the price to be added as expedited charges
+          return ['charges' => floatval($cancelItem['price']), 'hour' => $cancelItem['hour'], 'multiply_duration' => $md, 'multiply_providers' => $mp,'price_type'=>$cancelItem['price_type']]; // Returning the price to be added as expedited charges
         }
       }
     }
 
-    return ['charges' => 0, 'hour' => 'n/a', 'multiply_duration' => false, 'multiply_providers' => false]; // No charges applicable
+    return ['charges' => 0, 'hour' => 'n/a', 'multiply_duration' => false, 'multiply_providers' => false,'price_type'=>'$']; // No charges applicable
   }
 
 

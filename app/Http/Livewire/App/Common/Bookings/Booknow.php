@@ -1197,9 +1197,7 @@ class Booknow extends Component
         if ($this->payment['additional_charge']) {
             $this->payment['sub_total'] += $this->payment['additional_charge'];
         }
-        if ($this->payment['additional_charge']) {
-            $this->payment['sub_total'] += $this->payment['additional_charge'];
-        }
+
 
         if ($this->payment['override_amount']) {
             $this->payment['is_override'] = 1;
