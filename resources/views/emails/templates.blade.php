@@ -151,10 +151,10 @@ a.btn.btn-primary.pull-right {
                           </tr> --}}
                           <tr >
                               <td style="padding:0 24px 0 25px;" height="100" width="100" align="center">
-                                        <a class="navbar-brand" href="/admin/dashboard" aria-label="Eclipse Scheduling Brand Logo">
+                                        <a class="navbar-brand" href="{{url('/admin/dashboard')}}" aria-label="Eclipse Scheduling Brand Logo">
                                           <span class="brand-logo">
                                             @if($data['company_logo']!=null)
-                                              <img height="100" width="100" src="{{$data['company_logo']}}" alt="">
+                                              <img height="100" width="100" src="{{url($data['company_logo'])}}" alt="">
                                             @else
                                             <img src="{{ url('/tenant-resources/images/logo.png') }}" style="height:118px; width:auto" />
                                             @endif

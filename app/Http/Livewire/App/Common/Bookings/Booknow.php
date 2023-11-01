@@ -38,15 +38,15 @@ class Booknow extends Component
     protected $listeners = [
         'showList' => 'resetForm', 'updateVal', 'updateCompany',
         'updateSelectedIndustries' => 'selectIndustries',
-        'updateSelectedDepartments', 'confirmation',
+        'updateSelectedDepartments', 'confirmation','showConfirmation',
         'saveCustomFormData' => 'save', 'switch', 'updateAddress' => 'addAddress',
-        'confirmedModificationFee'=>'checkCharges','updateUsers'
+        'confirmedModificationFee'=>'checkCharges','updateUsers','openAssignProvidersPanel'
     ];
 
     public $dates = [], $isCustomer = false, $customerDetails = [], $cantRequest = false;
     public $foundService = ['default_providers' => 2];
     public $payment, $discountedAmount = 0, $totalAmount = 0;
-    public $allTags = [], $tags = [], $confirmed = false;
+    public $allTags = [], $tags = [], $confirmed = false, $currentServiceId, $panelType = 1;
 
 
     public $setupValues = [
@@ -1218,4 +1218,35 @@ class Booknow extends Component
     public function addNewCustomer(){
         $this->emit('setCompany',$this->booking->company_id);
     }
+
+    public function openAssignProvidersPanel($panelType = 1)
+	{
+        
+		$this->panelType = $panelType;
+        
+		$this->assignServiceProviders($this->booking->booking_services_new_layout->first()->services);
+	}
+	public function assignServiceProviders($service_id)
+	{
+
+		    $this->booking_id=$this->booking->id;
+           	$this->currentServiceId = $service_id;
+            $this->emit('reMount',$service_id,$this->panelType);
+            $this->dispatchBrowserEvent('refreshSelects2');
+            $this->dispatchBrowserEvent('refreshSelects');
+			
+		
+	}
+    public function showConfirmation($message = "")
+	{
+		if ($message) {
+			// Emit an event to display a success message using the SweetAlert package
+			$this->dispatchBrowserEvent('swal:modal', [
+				'type' => 'success',
+				'title' => 'Success',
+				'text' => $message,
+			]);
+            $this->save(1,1,3);
+		}
+	}
 }

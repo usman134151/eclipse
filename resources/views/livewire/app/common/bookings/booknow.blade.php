@@ -1497,8 +1497,9 @@
                                                 aria-expanded="false">Confirm Booking</button>
                                             <ul class="dropdown-menu">
                                             <li><a class="dropdown-item" href="#" wire:click.prevent="save(1,1,3)">Confirm Only</a></li>
-                                                <li><a class="dropdown-item" href="#">Confirm + Invite</a></li>
-                                                <li><a class="dropdown-item" href="#">Confirm + Assign</a></li>
+                                                <li><a class="dropdown-item" href="#" wire:click.prevent="$emit('openAssignProvidersPanel',2)"   @click="assignProvider = true">Confirm + Invite</a></li>
+                                                <li><a class="dropdown-item" href="#"  wire:click.prevent="$emit('openAssignProvidersPanel')"
+                              @click="assignProvider = true">Confirm + Assign</a></li>
                                             </ul>
                                         </div>
     
@@ -2152,8 +2153,9 @@
     @if(!is_null($booking->id))
 
         @include('panels.common.add-documents', ['booking_id' => $booking->id])
+      
     @endif
-
+    @include('panels.booking-details.assign-providers')
     @push('scripts')
 
     <script>

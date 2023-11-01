@@ -41,7 +41,7 @@ class AssignProviders extends Component
     public $showForm, $panelType = 1;
     public $tags, $search, $service_payments = [];
     public $service_id = null, $booking_id = null, $custom_rates, $booking_service=null;
-    protected $listeners = ['showList' => 'resetForm', 'refreshFilters', 'saveAssignedProviders' => 'save', 'updateVal', 'inviteProviders'];
+    protected $listeners = ['showList' => 'resetForm', 'refreshFilters', 'saveAssignedProviders' => 'save', 'updateVal', 'inviteProviders','reMount'];
     public $assignedProviders = [], $limit = null, $booking, $showError = false;
     public $paymentData = ["additional_label_provider" => '', "additional_charge_provider" => 0];
     public $providers, $providersPayment, $bookingService, $durationLabel, $durationTotal = 0, $totalAmount;
@@ -135,6 +135,7 @@ class AssignProviders extends Component
     }
     public function refreshProviders()
     {
+     
         $returnCols = [
             'users.id',
             'users.name',
@@ -245,6 +246,7 @@ class AssignProviders extends Component
             }
         }
         $providers = $this->providers = $query->get();
+       
         $this->getProviderCharges($this->service_id,$this->booking_service,$this->specializations,$providers);
 
         // dd($this->providersPayment, $this->providers->toArray());
@@ -339,6 +341,7 @@ class AssignProviders extends Component
     }
     public function getProviderCharges($serviceId,$service,$specialization,$providers)
     {
+      
         $postFix=($this->serviceTypes[$service['service_types']]['postfix']);
         if ($this->panelType != 2) {
 
@@ -455,21 +458,30 @@ class AssignProviders extends Component
 
     public function mount($service_id = null, $panelType = 1)
     {
+       $this->reMount($service_id,$panelType);
+    }
+
+    public function reMount($service_id,$panelType){
         $this->panelType = $panelType;
         $this->service_id = $service_id;
+        
         $this->tags = Tag::all();
         $this->booking = Booking::where('id', $this->booking_id)->with('payment')->first();
-       
+        $booking_service = $this->booking->booking_services->where('services', $this->service_id)->first();
+        if(is_null($booking_service))
+            $booking_service = $this->booking->booking_services->first();
+     
         $this->setupValues = SetupHelper::loadSetupValues($this->setupValues);
         if ($this->panelType != 3) {
             //setting filter defaults
-            $booking_service = $this->booking->booking_services->where('services', $this->service_id)->first();
+           
             if ($booking_service)
                 $this->specializations =     json_decode($booking_service->specialization, true);
             $service = ServiceCategory::find($service_id);
             $this->services = [$this->service_id];
             $this->accommodations = $service ? [$service->accommodations_id] : [];
             $this->booking_service=$booking_service;
+           
         }
 
         if (!is_null($this->booking->payment)) {
@@ -490,14 +502,13 @@ class AssignProviders extends Component
                 ->get()
                 ->pluck('provider_id')
                 ->toArray();
-            $booking_service = $this->booking->booking_services->where('services', $this->service_id)->first();
-
+           
             if ($booking_service) {
                 $this->limit = $booking_service->provider_count;
                 $this->bookingService = $booking_service;
             }
         } else {
-            $booking_service = $this->booking->booking_services->where('services', $this->service_id)->first();
+           
 
             if ($booking_service) {
                 $this->limit = $booking_service->provider_count;
@@ -546,6 +557,7 @@ class AssignProviders extends Component
             }
         }
         $this->booking_service=$booking_service;
+        
         $this->providers = $this->refreshProviders();
         $this->dispatchBrowserEvent('refreshSelects');
         $this->dispatchBrowserEvent('refreshSelects2');
