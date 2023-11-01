@@ -57,12 +57,13 @@ class Reimbursement extends Component
 			$user = User::where('id', $reimbursement['provider_id'])->with('userdetail')->first();
 			
 			// dd($img,$reimbursement);
+			// dd($user->userdetail->profile_pic);
 
 			// Store the provider name in your data array or do whatever you need with it
 			$data[] = [
 				'provider_name' => $user->name,
 				'provider_email' => $user->email,
-				'provider_profilePic' => $user->profile_pic,
+				'provider_profilePic' => $user->userdetail->profile_pic,
 				'booking_number' => $booking->booking_number,
 				'booking_start_at' => $booking->booking_start_at,
 				'booking_end_at' => $booking->booking_end_at,

@@ -252,8 +252,14 @@
                                                 <td>
                                                     <div class="row g-2">
                                                         <div class="col-md-3">
-                                                            <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle"
-                                                                alt="Provider Profile Image">
+                                                            
+                                                            @if ($reimbursement['provider_profilePic']!= null)
+                                                                <img src={{$reimbursement['provider_profilePic']}} class="img-fluid rounded-circle"
+                                                                    alt="Provider Profile Image">
+                                                            @else
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle"
+                                                                    alt="Provider Profile Image">
+                                                            @endif
                                                         </div>
                                                         <div class="col-md-9">
                                                             <h6 class="fw-semibold">{{$reimbursement['provider_name']}}</h6>
