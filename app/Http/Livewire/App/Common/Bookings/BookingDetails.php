@@ -289,12 +289,13 @@ class BookingDetails extends Component
 				$propertyIds = explode(",", $service->$column);
 			}
 		}
-
-		foreach ($propertyIds as $propertyId) {
-			if ($propertyId != '') {
-				$userTags = User::where('id', $propertyId)->with('userdetail')->first()->userdetail->tags;
-				$userTags = json_decode($userTags, true);
-				$this->tags = $this->$propertyName ? array_merge($this->tags, $userTags) : array_diff($this->tags, $userTags);
+		if (!empty($propertyIds)) {
+			foreach ($propertyIds as $propertyId) {
+				if ($propertyId != '') {
+					$userTags = User::where('id', $propertyId)->with('userdetail')->first()->userdetail->tags;
+					$userTags = json_decode($userTags, true) ?? [];
+					$this->tags = $this->$propertyName ? array_merge($this->tags, $userTags) : array_diff($this->tags, $userTags);
+				}
 			}
 		}
 
