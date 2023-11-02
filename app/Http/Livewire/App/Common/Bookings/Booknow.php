@@ -416,6 +416,7 @@ class Booknow extends Component
                     $data['bookingData'] = Booking::where('id', $this->booking->id)->with('booking_services', 'services', 'payment', 'company', 'customer', 'booking_provider')->first();
 
                     NotificationService::sendNotification('Booking: Dynamic Details Updated (Step 1 details)', $data);
+                    callLogs($this->booking->id,"Booking","Modified","Booking modified");
                 }
             } //step 1 end
             else {
@@ -478,6 +479,7 @@ class Booknow extends Component
 
                     $data['bookingData'] = Booking::where('id', $this->booking->id)->with('booking_services', 'services', 'payment', 'company', 'customer', 'booking_provider')->first();
                     NotificationService::sendNotification('Booking: Created', $data);
+                    callLogs($this->booking->id,"Booking","Create");
                 }
 
                 return redirect()->to($base . '/bookings/view-booking/' . encrypt($this->booking->id));

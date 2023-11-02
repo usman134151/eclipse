@@ -615,6 +615,7 @@ class AssignProviders extends Component
                         ];
 
                         sendTemplatemail($params);
+                        callLogs($this->booking->id,'assign','assigned',"Provider '".$user->name."' assigned to booking");
                     }
                 }
 
@@ -637,7 +638,7 @@ class AssignProviders extends Component
 
                 $templateId = getTemplate('Booking: Provider Unassigned', 'email_template');
 
-                if (!in_array($provider['provider_id'], $previousAssigned)) {
+                if (isset($provider) && !in_array($provider['provider_id'], $previousAssigned)) {
                     $params = [
                         'email'       =>  $user->email, //
                         'user'        =>  $user->name,
@@ -654,6 +655,7 @@ class AssignProviders extends Component
                     ];
 
                     sendTemplatemail($params);
+                    callLogs($this->booking->id,'assign','assigned',"Provider '".$user->name."' unassigned from booking");
                 }
             }
             BookingProvider::whereIn('provider_id', $previousAssigned)->delete();
@@ -664,6 +666,7 @@ class AssignProviders extends Component
             Booking::where('id', $this->booking_id)->update(['status' => $status]);
 
             $this->dispatchBrowserEvent('close-assign-providers');
+            
             $this->emit('showConfirmation', 'Providers have been assigned successfully');
         }
     }

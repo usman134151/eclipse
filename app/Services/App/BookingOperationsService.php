@@ -991,6 +991,7 @@ class BookingOperationsService
       $booking->booking_reschedule_at = Carbon::now();
       $booking->reschedule_start_at = Carbon::parse($reschedule_details['booking_start_at'] . ' ' . $reschedule_details['booking_start_hour'] . ':' . $reschedule_details['booking_start_min']);
       $booking->reschedule_end_at = Carbon::parse($reschedule_details['booking_end_at'] . ' ' . $reschedule_details['booking_end_hour'] . ':' . $reschedule_details['booking_end_min']);
+     
       $booking->reschedule_by = Auth::id();
       //  if customer and not company admin/ supervisor move booking to pending-review
       if (session()->get('isCustomer') && (!in_array(10, session()->get('customerRoles')))) {

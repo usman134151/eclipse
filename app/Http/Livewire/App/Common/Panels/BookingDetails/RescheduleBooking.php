@@ -6,6 +6,7 @@ use App\Models\Tenant\Booking;
 use App\Services\App\BookingOperationsService;
 use Carbon\Carbon;
 use Livewire\Component;
+use App\Services\App\NotificationService;
 
 class RescheduleBooking extends Component
 {
@@ -66,8 +67,11 @@ class RescheduleBooking extends Component
         $this->reschedule_details['charges'] = $this->booking->payment->reschedule_booking_charges;
 
         $this->reschedule_details['setting'] = "only_this_booking"; // limiting for this phase only
-
+        
         BookingOperationsService::rescheduleBooking($this->booking,$this->reschedule_details);
+        $data['bookingData']=$this->booking;
+        $data['rescheduleData']=$this->reschedule_details;
+        NotificationService::sendNotification('Booking: Reschedule Request (after service parameter)', $data);
         $this->emit('showConfirmation', 'Booking status updated successfully');
        
         $this->dispatchBrowserEvent('close-reschedule');

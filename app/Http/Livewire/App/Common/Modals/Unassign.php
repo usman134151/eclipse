@@ -74,6 +74,7 @@ class Unassign extends Component
             sendTemplatemail($params);
 
         Booking::where(['id' => $this->booking_id])->update(['booking_status' => 1]);
+        callLogs($this->booking_id,'assign','assigned',"Provider '".$user->name."' unassigned from booking");
         //add check for booking_status update
         $this->emit('showConfirmation', 'Provider Assignment has been revoked successfully');
         $this->emit('closeUnassignModel');

@@ -255,6 +255,7 @@ class BookingDetails extends Component
 	public function reinstate($bookingId)
 	{
 		BookingOperationsService::reinstateBooking($bookingId);
+		callLogs($this->booking->id,"Booking","Reinstate");
 		$this->emit('showConfirmation', 'Booking status updated successfully');
 	}
 

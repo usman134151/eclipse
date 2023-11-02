@@ -87,16 +87,20 @@ if (!function_exists('userHasPermission')) {
     }
             // hammad 16-10-23
     if (!function_exists('callLogs')) {
-        function callLogs($action_to, $item_type, $type)
+        function callLogs($action_to, $item_type, $type,$customMessage=false)
         {
             $messageItemType = ucwords(str_replace('_', '-', $item_type)) . ' ';
-            
+            if(!$customMessage){
+                $message=$messageItemType . $type .'d by ';
+            }
+            else
+               $message=$customMessage.' by ';
             addLogs([
                 'action_by' => \Auth::id(),
                 'action_to' => $action_to,
                 'item_type' => $item_type,
                 'type' => $type,
-                'message' => $messageItemType . $type .'d by '. \Auth::user()->name,
+                'message' => $message. \Auth::user()->name,
                 'ip_address' => \request()->ip(), 
             ]);
         }

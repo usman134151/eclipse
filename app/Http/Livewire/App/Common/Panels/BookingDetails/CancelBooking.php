@@ -64,12 +64,15 @@ class CancelBooking extends Component
         if($this->unbillable==3){
             $this->booking->status=3;
             $this->booking->payment->cancellation_charges=0;
+            $billingStatus="unbillable";
         }
         else{
             $this->booking->status=4;
+            $billingStatus="billable";
         }
        
         BookingOperationsService::cancelBooking($this->booking);
+        callLogs($this->booking->id,"Booking","Cancelled","Booking cancelled as ".$billingStatus);
         $this->emit('showConfirmation', 'Booking status updated successfully');
         
     }
