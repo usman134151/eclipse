@@ -52,7 +52,7 @@ final class AssignmentLogs extends PowerGridComponent
     */
     public function datasource(): Builder
     {
-        return Log::query()->where("action_to",$this->booking_id)->where('item_type','Booking')->latest();
+        return Log::query()->where("action_to",$this->booking_id)->latest();
     }
 
     /*
