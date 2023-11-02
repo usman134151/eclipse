@@ -95,11 +95,11 @@
                                             </div>
                                         </div>
                                         <div class="col-lg col-12 mb-4">
-                                            <small>(coming soon)</small>
+                                            {{-- <small>(coming soon)</small> --}}
 
                                             <div class="mb-4">
                                                 <label class="form-label text-primary">Days Until Service</label>
-                                                <div class="font-family-tertiary value">10 Days</div>
+                                                <div class="font-family-tertiary value">{{$booking['days_until_service']}} Days</div>
                                             </div>
 
                                             <div class="d-flex gap-3 align-items-center">
@@ -1286,22 +1286,22 @@
                                                     </div>
                                                     <div>
                                                         <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" id="Requester"
-                                                                name="" type="checkbox" tabindex="" disabled>
+                                                            <input wire:model="Requester" wire:change="updateBookingTags('Requester')" class="form-check-input" id="Requester"
+                                                                name="" type="checkbox" tabindex="" >
                                                             <label class="form-check-label" for="Requester">
                                                                 Requester
                                                             </label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" id="ServiceConsumers"
-                                                                name="" type="checkbox" tabindex="" disabled>
+                                                            <input wire:model="Consumer"  wire:change="updateBookingTags('Consumer')" class="form-check-input" id="ServiceConsumers"
+                                                                name="" type="checkbox" tabindex="" >
                                                             <label class="form-check-label" for="ServiceConsumers">
                                                                 Service Consumer(s)
                                                             </label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" id="Participants"
-                                                                name="" type="checkbox" tabindex="" disabled>
+                                                            <input wire:model="Participant" wire:change="updateBookingTags('Participant')" class="form-check-input" id="Participants"
+                                                                name="" type="checkbox" tabindex="" >
                                                             <label class="form-check-label" for="Participants">
                                                                 Participant(s)
                                                             </label>

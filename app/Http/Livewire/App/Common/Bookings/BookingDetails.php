@@ -24,6 +24,7 @@ class BookingDetails extends Component
 	public $gender, $service_id = 0, $provider_id = 0, $form_id = 0;
 	public $ethnicity, $booking_id = 0, $booking_services, $data, $status, $isCustomer = false, $closeOut = false;
 	public $hideBilling = false, $tags, $allTags ;
+	public $Requester = false, $Consumer = false, $Participant = false; 
 
 	public $component = 'booking-details';
 	protected $listeners = [
@@ -171,7 +172,15 @@ class BookingDetails extends Component
 			foreach ($providers as $provider){
 				$this->data['providerPayments'] = $this->data['providerPayments'] + $provider['total_amount'];
 			}
-			// dd($provider['id']);
+
+
+			$endDate = Carbon::parse($this->booking['booking_end_at']);
+			$currentDate = Carbon::today();
+			$daysUntilService = $endDate->diffInDays($currentDate);
+			$datePassed= $endDate < $currentDate ? 1 : 0;
+			$this->booking['days_until_service'] = $datePassed ? 0 : $daysUntilService;
+			
+			
 			// dd($this->data['providerPayments']);
 		}
 	//so a fuction which can then be used for editing the fields aswell.
@@ -219,7 +228,7 @@ class BookingDetails extends Component
 		$this->updateTags();    //save newly added tags to table
 		$booking = $this->booking;
 		$booking->save();
-
+		callLogs($this->booking->id,"Booking Notes/Tags","Update");
 		$this->showConfirmation('Booking notes updated');
 	}
 
@@ -265,4 +274,30 @@ class BookingDetails extends Component
             Tag::firstOrCreate(['name' => $tag]);
         }
     }
+
+	public function updateBookingTags($propertyName)
+	{
+		$propertyIds = [];
+
+		if ($propertyName === 'Requester') {
+			$propertyIds = [$this->booking->customer_id];
+		} elseif ($propertyName === 'Consumer' || $propertyName === 'Participant') {
+			$service = Booking::where('id', $this->booking->id)->with('booking_services')->first()->booking_services->first();
+
+			if ($propertyName === 'Consumer' || $propertyName === 'Participant') {
+				$column = ($propertyName === 'Consumer') ? 'service_consumer' : 'attendees';
+				$propertyIds = explode(",", $service->$column);
+			}
+		}
+
+		foreach ($propertyIds as $propertyId) {
+			if ($propertyId != '') {
+				$userTags = User::where('id', $propertyId)->with('userdetail')->first()->userdetail->tags;
+				$userTags = json_decode($userTags, true);
+				$this->tags = $this->$propertyName ? array_merge($this->tags, $userTags) : array_diff($this->tags, $userTags);
+			}
+		}
+
+		$this->tags = array_values(array_unique(array_filter($this->tags)));
+	}
 }
