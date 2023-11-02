@@ -341,7 +341,7 @@ class AssignProviders extends Component
     }
     public function getProviderCharges($serviceId,$service,$specialization,$providers)
     {
-      
+   
         $postFix=($this->serviceTypes[$service['service_types']]['postfix']);
         if ($this->panelType != 2) {
 
@@ -349,7 +349,8 @@ class AssignProviders extends Component
             foreach ($providers as $index => &$provider) {
                 //check if provider is assigned provider
                 $assigned=false;
-                
+                $specializationRate=SpecializationRate::where('user_id',$provider['id'])->where('accommodation_service_id',$serviceId)->get();
+              
                 foreach ($this->assignedProviders as &$aProvider) {
 
                     if ($aProvider['provider_id'] == $provider['id']) {
@@ -359,6 +360,7 @@ class AssignProviders extends Component
                         $this->providersPayment[$index] = $aProvider; //overriding if already assigned
                         if(!is_null($aProvider['service_payment_details']) && is_array($aProvider['service_payment_details']) && !key_exists('specialization_charges',$aProvider['service_payment_details'])){
                             $this->providersPayment[$index]['service_payment_details']['specialization_charges']=$this->booking_specializations;
+
                         }
                         elseif(is_null($aProvider['service_payment_details']) || !is_array($aProvider['service_payment_details'])){
                             $assigned=false; //to cover old bookings with no data of service details
@@ -377,6 +379,7 @@ class AssignProviders extends Component
                 //else fetch and set custom rates
                 $this->providersPayment[$index]['additional_payments']=$this->paymentData;
                 $standardRate=StandardRate::where('accommodation_service_id',$serviceId)->where('user_id',$provider['id'])->first();
+               
                 if($standardRate){
                   
                     $this->providersPayment[$index]['service_payment_details']=[
@@ -389,6 +392,17 @@ class AssignProviders extends Component
                         'specialization_charges' => $this->booking_specializations,
                        
                     ];
+
+                    foreach($this->booking_specializations as $skey=>$specialization){
+                        foreach($specializationRate as $spRate){
+                            if($spRate['specialization']==$specialization['id']){
+                                $spCharge=json_decode($spRate['specialization_rate'.$postFix],true);
+                             
+                                if(!is_null($spCharge) && key_exists('price',$spCharge[0]));
+                                $this->providersPayment[$index]['service_payment_details']['specialization_charges'][$skey]['provider_charges']=(float)$spCharge[0]['price'];
+                            }
+                        }
+                    }
                  //  dd($standardRate['hours_price'.$postFix]);
 
                 }
@@ -526,11 +540,16 @@ class AssignProviders extends Component
                 }
                 // dd($booking_service['service_calculations']);
                 if (isset($booking_service['service_calculations']['specialization_charges']) && count($booking_service['service_calculations']['specialization_charges'])) {
-                    $this->booking_specializations = $booking_service['service_calculations']['specialization_charges'];
-                    foreach ($booking_service['service_calculations']['specialization_charges'] as $key => $specialization) {
-                        $this->booking_specializations[$key]['label'] = $specialization['label'];
-                        $this->booking_specializations[$key]['provider_charges'] = 0;
+                    $specializations= json_decode($booking_service['specialization'],true);//$booking_service['service_calculations']['specialization_charges'];
+                    if(!is_null($specializations)){
+                        $specializationData=Specialization::whereIn('id',$specializations)->get()->toArray();
+                     
+                        foreach ($specializations as $key => $specialization) {
+                            
+                            $this->booking_specializations[] = ["id"=>$specialization, 'provider_charges' => 0, 'label'=>$specializationData[$key]['name']];
+                        }
                     }
+
                 }
                 if ($booking_service['day_rate']) {
                     $this->durationLabel = 'day(s)';

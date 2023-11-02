@@ -127,7 +127,7 @@
                                          @endif
                                      </div>
                                      <div class="pt-2">
-                                         <div class="font-family-secondary leading-none">{{ $provider->name }}</div>
+                                         <div class="font-family-secondary leading-none">{{ $provider->name }} {{ $provider->id }}</div>
                                          <a href="#"
                                              class="font-family-secondary text-sm"><small>{{ $provider->email }}</small></a>
                                          <div class="text-sm">{{ $provider->city ? $provider->city . ', ' : '' }}
@@ -162,51 +162,18 @@
                                  </div>
                                  <div class="col-12  mb-1">
                                      <div class="d-inline-flex">
-                                         @if ($bookingService->service_types == 1)
+                                        
                                              <div>
                                                  <svg aria-label="In-Person" width="25" height="24"
                                                      viewBox="0 0 25 24" fill="none"
                                                      xmlns="http://www.w3.org/2000/svg">
-                                                     <use xlink:href="/css/provider.svg#in-person">
+                                                     <use xlink:href="/css/provider.svg#">
                                                      </use>
                                                  </svg>
                                              </div>
-                                             <div class="mx-3 fw-semibold">Day Rate In-person:
+                                             <div class="mx-3 fw-semibold">{{$serviceTypes[$bookingService->service_types]['title']}}:
                                              </div>
-                                         @elseif($bookingService->service_types == 2)
-                                             <div>
-                                                 <svg aria-label="Virtual" width="25" height="25"
-                                                     viewBox="0 0 25 25" fill="none"
-                                                     xmlns="http://www.w3.org/2000/svg">
-                                                     <use xlink:href="/css/provider.svg#virtual-service">
-                                                     </use>
-                                                 </svg>
-                                             </div>
-                                             <div class="mx-3 fw-semibold">Day Rate Virtual:
-                                             </div>
-                                         @elseif($bookingService->service_types == 4)
-                                             <div>
-                                                 <svg aria-label="Phone" width="30" height="24"
-                                                     viewBox="0 0 30 24" fill="none"
-                                                     xmlns="http://www.w3.org/2000/svg">
-                                                     <use xlink:href="/css/provider.svg#phone">
-                                                     </use>
-                                                 </svg>
-                                             </div>
-                                             <div class="mx-3 fw-semibold">Day Rate Phone:
-                                             </div>
-                                         @elseif($bookingService->service_types == 5)
-                                             <div>
-                                                 <svg aria-label="Teleconference" width="30" height="26"
-                                                     viewBox="0 0 30 26" fill="none"
-                                                     xmlns="http://www.w3.org/2000/svg">
-                                                     <use xlink:href="/css/provider.svg#teleconference">
-                                                     </use>
-                                                 </svg>
-                                             </div>
-                                             <div class="mx-3 fw-semibold">Day Rate
-                                                 Teleconference:</div>
-                                         @endif
+
                                          <div class="mx-3">
                                              {{ isset($custom_rates[$provider['id']]['standard']['price']) ? numberFormat($custom_rates[$provider['id']]['standard']['price']) : 'N/A' }}
                                          </div>
@@ -442,7 +409,7 @@
                                                          <label class="form-label-sm"><strong> Expedition
                                                                  Charges</strong></label>
                                                      </div>
-                                                     <div class="row">
+                                                    <!-- <div class="row">
                                                          <div class="col-3 mt-1">
                                                              <label class="form-label-sm">Parameter: </label>
                                                          </div>
@@ -469,7 +436,7 @@
                                                              </div>
                                                          </div>
                                                      </div>
-                                                 </div>
+                                                 </div> -->
 
                                                  <div class="col col-12 mt-2">
                                                      <div class="d-flex ">
@@ -505,10 +472,12 @@
                                          </div>
                                          {{-- @endif --}}
                                          @if (count($booking_specializations))
-                                             <hr>
+                                            
+                                           
 
                                              <div class="row">
                                                  <div class="  mt-1">
+                                                 <hr>
                                                      <div class="col col-12">
                                                          <label class="form-label-sm"><strong>
                                                                  Specialization Charges</strong></label>
