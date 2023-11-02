@@ -275,53 +275,29 @@ class BookingDetails extends Component
         }
     }
 
-	public function updatedRequester()
+	public function updateBookingTags($propertyName)
 	{
-		$userTags = User::where('id', $this->booking->customer_id)->with('userdetail')->first()->userdetail->tags;
-		$userTags = json_decode($userTags, true);
+		$propertyIds = [];
 
-		if ($this->Requester) {
-			$this->tags = array_merge($this->tags, $userTags);
-		} else {
-			$this->tags = array_diff($this->tags, $userTags);
-		}
+		if ($propertyName === 'Requester') {
+			$propertyIds = [$this->booking->customer_id];
+		} elseif ($propertyName === 'Consumer' || $propertyName === 'Participant') {
+			$service = Booking::where('id', $this->booking->id)->with('booking_services')->first()->booking_services->first();
 
-		$this->tags = array_values(array_unique(array_filter($this->tags)));
-	}
-
-	public function updatedConsumer()
-	{
-		$ConsumerId = Booking::where('id', $this->booking->id)->with('booking_services')->first()->booking_services->first()->service_consumer;
-
-		$userTags = User::where('id', $ConsumerId)->with('userdetail')->first()->userdetail->tags;
-		$userTags = json_decode($userTags, true);
-
-		if ($this->Consumer) {
-			$this->tags = array_merge($this->tags, $userTags);
-		} else {
-			$this->tags = array_diff($this->tags, $userTags);
-		}
-
-		$this->tags = array_values(array_unique(array_filter($this->tags)));
-	}
-
-	public function updatedParticipant()
-	{
-		$participantIds = Booking::where('id', $this->booking->id)->with('booking_services')->first()->booking_services->first()->attendees;
-		$participantIds = explode(",", $participantIds);
-
-		foreach ($participantIds as $participantId) {
-			if ($participantId != '') {
-				$userTags = User::where('id', $participantId)->with('userdetail')->first()->userdetail->tags;
-				$userTags = json_decode($userTags, true);
-
-				if ($this->Participant) {
-					$this->tags = array_merge($this->tags, $userTags);
-				} else {
-					$this->tags = array_diff($this->tags, $userTags);
-				}
+			if ($propertyName === 'Consumer' || $propertyName === 'Participant') {
+				$column = ($propertyName === 'Consumer') ? 'service_consumer' : 'attendees';
+				$propertyIds = explode(",", $service->$column);
 			}
 		}
+
+		foreach ($propertyIds as $propertyId) {
+			if ($propertyId != '') {
+				$userTags = User::where('id', $propertyId)->with('userdetail')->first()->userdetail->tags;
+				$userTags = json_decode($userTags, true);
+				$this->tags = $this->$propertyName ? array_merge($this->tags, $userTags) : array_diff($this->tags, $userTags);
+			}
+		}
+
 		$this->tags = array_values(array_unique(array_filter($this->tags)));
 	}
 }

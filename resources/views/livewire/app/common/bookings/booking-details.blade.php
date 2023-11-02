@@ -1286,21 +1286,21 @@
                                                     </div>
                                                     <div>
                                                         <div class="form-check form-check-inline">
-                                                            <input wire:model="Requester" class="form-check-input" id="Requester"
+                                                            <input wire:model="Requester" wire:change="updateBookingTags('Requester')" class="form-check-input" id="Requester"
                                                                 name="" type="checkbox" tabindex="" >
                                                             <label class="form-check-label" for="Requester">
                                                                 Requester
                                                             </label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
-                                                            <input wire:model="Consumer" class="form-check-input" id="ServiceConsumers"
+                                                            <input wire:model="Consumer"  wire:change="updateBookingTags('Consumer')" class="form-check-input" id="ServiceConsumers"
                                                                 name="" type="checkbox" tabindex="" >
                                                             <label class="form-check-label" for="ServiceConsumers">
                                                                 Service Consumer(s)
                                                             </label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
-                                                            <input wire:model="Participant" class="form-check-input" id="Participants"
+                                                            <input wire:model="Participant" wire:change="updateBookingTags('Participant')" class="form-check-input" id="Participants"
                                                                 name="" type="checkbox" tabindex="" >
                                                             <label class="form-check-label" for="Participants">
                                                                 Participant(s)
