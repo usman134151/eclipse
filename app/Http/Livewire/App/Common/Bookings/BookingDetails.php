@@ -24,6 +24,7 @@ class BookingDetails extends Component
 	public $gender, $service_id = 0, $provider_id = 0, $form_id = 0;
 	public $ethnicity, $booking_id = 0, $booking_services, $data, $status, $isCustomer = false, $closeOut = false;
 	public $hideBilling = false, $tags, $allTags ;
+	public $Requester = false, $Consumer = false, $Participant = false; 
 
 	public $component = 'booking-details';
 	protected $listeners = [
@@ -171,7 +172,15 @@ class BookingDetails extends Component
 			foreach ($providers as $provider){
 				$this->data['providerPayments'] = $this->data['providerPayments'] + $provider['total_amount'];
 			}
-			// dd($provider['id']);
+
+
+			$endDate = Carbon::parse($this->booking['booking_end_at']);
+			$currentDate = Carbon::today();
+			$daysUntilService = $endDate->diffInDays($currentDate);
+			$datePassed= $endDate < $currentDate ? 1 : 0;
+			$this->booking['days_until_service'] = $datePassed ? 0 : $daysUntilService;
+			
+			
 			// dd($this->data['providerPayments']);
 		}
 	//so a fuction which can then be used for editing the fields aswell.
@@ -219,7 +228,7 @@ class BookingDetails extends Component
 		$this->updateTags();    //save newly added tags to table
 		$booking = $this->booking;
 		$booking->save();
-
+		callLogs($this->booking->id,"Booking Notes/Tags","Update");
 		$this->showConfirmation('Booking notes updated');
 	}
 
@@ -265,4 +274,54 @@ class BookingDetails extends Component
             Tag::firstOrCreate(['name' => $tag]);
         }
     }
+
+	public function updatedRequester()
+	{
+		$userTags = User::where('id', $this->booking->customer_id)->with('userdetail')->first()->userdetail->tags;
+		$userTags = json_decode($userTags, true);
+
+		if ($this->Requester) {
+			$this->tags = array_merge($this->tags, $userTags);
+		} else {
+			$this->tags = array_diff($this->tags, $userTags);
+		}
+
+		$this->tags = array_values(array_unique(array_filter($this->tags)));
+	}
+
+	public function updatedConsumer()
+	{
+		$ConsumerId = Booking::where('id', $this->booking->id)->with('booking_services')->first()->booking_services->first()->service_consumer;
+
+		$userTags = User::where('id', $ConsumerId)->with('userdetail')->first()->userdetail->tags;
+		$userTags = json_decode($userTags, true);
+
+		if ($this->Consumer) {
+			$this->tags = array_merge($this->tags, $userTags);
+		} else {
+			$this->tags = array_diff($this->tags, $userTags);
+		}
+
+		$this->tags = array_values(array_unique(array_filter($this->tags)));
+	}
+
+	public function updatedParticipant()
+	{
+		$participantIds = Booking::where('id', $this->booking->id)->with('booking_services')->first()->booking_services->first()->attendees;
+		$participantIds = explode(",", $participantIds);
+
+		foreach ($participantIds as $participantId) {
+			if ($participantId != '') {
+				$userTags = User::where('id', $participantId)->with('userdetail')->first()->userdetail->tags;
+				$userTags = json_decode($userTags, true);
+
+				if ($this->Participant) {
+					$this->tags = array_merge($this->tags, $userTags);
+				} else {
+					$this->tags = array_diff($this->tags, $userTags);
+				}
+			}
+		}
+		$this->tags = array_values(array_unique(array_filter($this->tags)));
+	}
 }
