@@ -91,7 +91,7 @@ final class AssignmentLogs extends PowerGridComponent
             ->addColumn('message')
             ->addColumn('ip_address')
             ->addColumn('created_at')
-            ->addColumn('created_at_formatted', fn (Log $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
+            ->addColumn('created_at_formatted', fn (Log $model) => date_format(date_create($model->created_at), "m/d/Y H:i A"));
     }
 
     /*
