@@ -32,9 +32,22 @@ class CancelBooking extends Component
 
     public function getBookingData($bookingId){
         $this->booking=BookingOperationsService::getBookingDetails($bookingId,$this->serviceTypes,'cancellation','cancellation_hour1');
+         if($this->booking->status==3)
+          $this->unbillable=3;
+
         if(!is_null($this->booking->payment->cancellation_charges)){
             $this->override_charges=$this->charges=$this->booking->payment->cancellation_charges;
             
+        }
+    }
+    public function updateBillable(){
+        if($this->override_charges>0){
+            $this->booking->status=4;
+            $this->unbillable=false;
+        }
+        else{
+            $this->unbillable=true;
+            $this->booking->status=3;
         }
     }
     function showForm()
@@ -55,6 +68,7 @@ class CancelBooking extends Component
             ];
     }
     public function cancelBooking(){
+      
         if($this->override_charges!='' && is_numeric($this->override_charges)){
             $this->booking->payment->cancellation_charges=(float)$this->override_charges;
         }
@@ -72,7 +86,11 @@ class CancelBooking extends Component
         }
        
         BookingOperationsService::cancelBooking($this->booking);
-        callLogs($this->booking->id,"Booking","Cancelled","Booking cancelled as ".$billingStatus);
+        $message="Booking cancelled as ".$billingStatus;
+        if($this->booking->cancellation_notes){
+            $message.='(Notes: '.$this->booking->cancellation_notes.")";
+        } 
+        callLogs($this->booking->id,"Booking","Cancelled",$message);
         $this->emit('showConfirmation', 'Booking status updated successfully');
         
     }

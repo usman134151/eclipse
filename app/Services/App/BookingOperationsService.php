@@ -923,7 +923,10 @@ class BookingOperationsService
     elseif ($parameter == 'modifications')
       $booking->payment->modification_fee = $totalCharges;
     else{
-      $booking->status = 4; //default cancel billable
+      
+      $booking->status = 3; //default cancel billable
+      if($totalCharges>0)
+        $booking->status = 4;
       $booking->payment->cancellation_charges = $totalCharges;
     }
      
