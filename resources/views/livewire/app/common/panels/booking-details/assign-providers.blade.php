@@ -469,6 +469,44 @@
 
                                              </div>
                                          </div>
+                                         @else
+                                         <div class="row">
+                                             <div class="  mt-1">
+        
+
+
+                                                 <div class="col col-12 mt-2">
+                                                     <div class="d-flex ">
+                                                         <div class="row">
+
+                                                             <div class="col-5 mt-1" style="margin-right: -15px;">
+                                                                 <label for="average-rate"
+                                                                     class="form-label-sm">Fixed Rate:</label>
+                                                             </div>
+                                                             <div class="col-6 " style=" width:47%;">
+                                                                 <div class="input-group ">
+                                                                     <input type="" id="average-rate"
+                                                                         name="average-rate"
+                                                                         class="form-control form-control-sm  w-25%"
+                                                                         placeholder="$00:00"
+                                                                         wire:blur="updateTotal({{ $index }})"
+                                                                         wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.rate">
+                                                                     @error('providersPayment.' . $index .
+                                                                         '.service_payment_details.rate')
+                                                                         <span class="d-inline invalid-feedback">
+                                                                             {{ $message }}
+                                                                         </span>
+                                                                     @enderror
+
+                                                                 </div>
+                                                             </div>
+                                                         </div>
+                                                     </div>
+                                                 </div>
+
+
+                                             </div>
+                                         </div>
                                          @endif
                                          {{-- @if ($expedited_hours) --}}
                                          <hr>

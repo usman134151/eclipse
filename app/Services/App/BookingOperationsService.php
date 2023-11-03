@@ -336,6 +336,10 @@ class BookingOperationsService
       $service['billed_total'] = $service['total_charges'];
     }
 
+    if($service['billed_total']==''){
+      $service['billed_total']=0;
+    }
+
     return $service;
   }
 
@@ -1072,7 +1076,9 @@ class BookingOperationsService
     ];
     $serviceCalculations = json_encode($serviceCalculations);
 
-
+    if($service['billed_total']==''){
+      $service['billed_total']=0;
+    }
     BookingServices::where('id', $service['id'])->where('booking_id', $bookingId)->update(['billed_total' => $service['billed_total'], 'service_total' => $service['total_charges'], 'service_calculations' => $serviceCalculations]);
     return $service;
   }

@@ -40,7 +40,7 @@ class AssignProviders extends Component
 
     public $showForm, $panelType = 1;
     public $tags, $search, $service_payments = [];
-    public $service_id = null, $booking_id = null, $custom_rates, $booking_service=null;
+    public $service_id = null, $booking_id = null, $custom_rates, $booking_service=null,$serviceData;
     protected $listeners = ['showList' => 'resetForm', 'refreshFilters', 'saveAssignedProviders' => 'save', 'updateVal', 'inviteProviders','reMount'];
     public $assignedProviders = [], $limit = null, $booking, $showError = false;
     public $paymentData = ["additional_label_provider" => '', "additional_charge_provider" => 0];
@@ -301,6 +301,11 @@ class AssignProviders extends Component
                 $subTotal=(float)$this->providersPayment[$index]['service_payment_details']['rate']*$this->providersPayment[$index]['service_payment_details']['total_duration'];
              
             }
+            if ($this->providersPayment[$index]['service_payment_details']['fixed_rate']==true) {
+               
+                $subTotal=(float)$this->providersPayment[$index]['service_payment_details']['rate'];
+             
+            }
             else{
                 $subTotal=($this->providersPayment[$index]['service_payment_details']['b_hours_rate'] * $this->providersPayment[$index]['service_payment_details']['b_hours_duration']) + ($this->providersPayment[$index]['service_payment_details']['a_hours_rate'] * $this->providersPayment[$index]['service_payment_details']['a_hours_duration']);
             }
@@ -418,6 +423,13 @@ class AssignProviders extends Component
                         $this->providersPayment[$index]['service_payment_details']['day_rate']=true;
                            
                     }
+                    elseif($this->serviceData['rate_status']==4){
+                       
+                        $rateCol="fixed_rate";
+                        $this->providersPayment[$index]['service_payment_details']['rate']=$standardRate[$rateCol.$postFix];
+                        $this->providersPayment[$index]['service_payment_details']['fixed_rate']=true;
+
+                    }
 
 
                     foreach($this->booking_specializations as $skey=>$specialization){
@@ -455,6 +467,12 @@ class AssignProviders extends Component
                         $this->providersPayment[$index]['service_payment_details']['rate']=0;
                         $this->providersPayment[$index]['service_payment_details']['day_rate']=true;
                            
+                    }
+                    elseif($this->serviceData['rate_status']==4){
+                        $rateCol="fixed_rate_price";
+                        $this->providersPayment[$index]['service_payment_details']['rate']=0;
+                        $this->providersPayment[$index]['service_payment_details']['fixed_rate']=true;
+
                     }
                 }
 
@@ -517,9 +535,10 @@ class AssignProviders extends Component
         $this->service_id = $service_id;
         
         $this->tags = Tag::all();
-        $this->booking = Booking::where('id', $this->booking_id)->with('payment')->first();
+        $this->booking = Booking::where('id', $this->booking_id)->with('payment','services')->first();
         $booking_service = $this->booking->booking_services->where('services', $this->service_id)->first();
-      
+        $this->serviceData=$this->booking->services->where('id', $this->service_id)->first();
+       
         if(is_null($booking_service))
             $booking_service = $this->booking->booking_services->first();
      
@@ -589,6 +608,7 @@ class AssignProviders extends Component
                     }
 
                 }
+              
                 if (isset($booking_service['service_calculations']['day_rate']) && $booking_service['service_calculations']['day_rate']==true) {
                    // dd($booking_service['service_calculations']['total_duration']);
                     $this->durationLabel = 'day(s)';
@@ -596,7 +616,13 @@ class AssignProviders extends Component
                     $this->b_hours_duration=0;
                     $this->a_hours_duration=0;
 
-                } else {
+                }elseif($this->serviceData['rate_status']==4){
+                    $this->durationLabel = 'day(s)';
+                    $this->durationTotal = 0;
+                    $this->b_hours_duration=0;
+                    $this->a_hours_duration=0;
+                }
+                 else {
                     $this->durationLabel = ' hour(s)';
                     if (key_exists('total_duration', $booking_service['service_calculations'])) {
                         $this->durationTotal = number_format(($booking_service['service_calculations']['total_duration']['hours']) + ($booking_service['service_calculations']['total_duration']['mins'] / 60 / 24), 2);
