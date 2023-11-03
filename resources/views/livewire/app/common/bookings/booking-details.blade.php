@@ -133,7 +133,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg col-12 mb-4">
+                                        {{-- <div class="col-lg col-12 mb-4">
                                             <div class="mb-4">
                                                 <small>(coming soon)</small>
                                                 <label class="form-label text-primary">Pending Details
@@ -148,7 +148,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
 
                                     </div>
                                     <div class="row">
@@ -696,7 +696,7 @@
                                                                             N/A
                                                                         @endif
                                                                     </div>
-                                                                    <a href="#"
+                                                                    {{-- <a href="#"
                                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                         <svg aria-label="Edit" width="20"
                                                                             height="20" viewBox="0 0 20 20">
@@ -705,7 +705,7 @@
                                                                             </use>
                                                                         </svg>
 
-                                                                    </a>
+                                                                    </a> --}}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -815,21 +815,17 @@
                                                                             N/A
                                                                         @endif
                                                                     </div>
-                                                                    <a href="#"
+                                                                    {{-- <a href="#"
                                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon"
                                                                         data-bs-toggle="modal"
                                                                         data-bs-target="#MeetingLinksModal">
-                                                                        {{-- Updated by Shanila to Add
-                                                            svg icon --}}
                                                                         <svg aria-label="Edit" width="20"
                                                                             height="20" viewBox="0 0 20 20">
                                                                             <use
                                                                                 xlink:href="/css/common-icons.svg#pencil">
                                                                             </use>
                                                                         </svg>
-                                                                        {{-- End of update by Shanila
-                                                            --}}
-                                                                    </a>
+                                                                    </a> --}}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -850,19 +846,17 @@
 
 
                                                                     </div>
-                                                                    <a href="#"
+                                                                    {{-- <a href="#"
                                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                        {{-- Updated by Shanila to Add
-                                                            svg icon --}}
+                                                                        
                                                                         <svg aria-label="Edit" width="20"
                                                                             height="20" viewBox="0 0 20 20">
                                                                             <use
                                                                                 xlink:href="/css/common-icons.svg#pencil">
                                                                             </use>
                                                                         </svg>
-                                                                        {{-- End of update by Shanila
-                                                            --}}
-                                                                    </a>
+                                                                
+                                                                    </a> --}}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -963,7 +957,7 @@
                                                                         <div class="font-family-tertiary">
                                                                             {{ $field['data_value'] ? $field['data_value'] : 'N/A' }}
                                                                         </div>
-                                                                        <a href="#"
+                                                                        {{-- <a href="#"
                                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon">
 
                                                                             <svg aria-label="Edit" width="20"
@@ -973,7 +967,7 @@
                                                                                 </use>
                                                                             </svg>
 
-                                                                        </a>
+                                                                        </a> --}}
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1286,21 +1280,21 @@
                                                     </div>
                                                     <div>
                                                         <div class="form-check form-check-inline">
-                                                            <input wire:model="Requester" wire:change="updateBookingTags('Requester')" class="form-check-input" id="Requester"
+                                                            <input wire:model="Requester" wire:change="updateBookingTags" class="form-check-input" id="Requester"
                                                                 name="" type="checkbox" tabindex="" >
                                                             <label class="form-check-label" for="Requester">
                                                                 Requester
                                                             </label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
-                                                            <input wire:model="Consumer"  wire:change="updateBookingTags('Consumer')" class="form-check-input" id="ServiceConsumers"
+                                                            <input wire:model="Consumer"  wire:change="updateBookingTags" class="form-check-input" id="ServiceConsumers"
                                                                 name="" type="checkbox" tabindex="" >
                                                             <label class="form-check-label" for="ServiceConsumers">
                                                                 Service Consumer(s)
                                                             </label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
-                                                            <input wire:model="Participant" wire:change="updateBookingTags('Participant')" class="form-check-input" id="Participants"
+                                                            <input wire:model="Participant" wire:change="updateBookingTags" class="form-check-input" id="Participants"
                                                                 name="" type="checkbox" tabindex="" >
                                                             <label class="form-check-label" for="Participants">
                                                                 Participant(s)
