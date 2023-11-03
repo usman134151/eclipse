@@ -295,8 +295,17 @@ class AssignProviders extends Component
             $this->providersPayment[$index]['service_payment_details']['expedited_duration'] = 0;
         if (!isset($this->providersPayment[$index]['additional_payments']))
             $this->providersPayment[$index]['additional_payments'] = [];
-        $this->providersPayment[$index]['total_amount'] = number_format(($this->providersPayment[$index]['service_payment_details']['b_hours_rate'] * $this->providersPayment[$index]['service_payment_details']['b_hours_duration']) + ($this->providersPayment[$index]['service_payment_details']['a_hours_rate'] * $this->providersPayment[$index]['service_payment_details']['a_hours_duration'])
-            + ($this->providersPayment[$index]['service_payment_details']['expedited_rate'] * $this->providersPayment[$index]['service_payment_details']['expedited_duration']), 2, '.', '');
+       
+            if ($this->providersPayment[$index]['service_payment_details']['day_rate']==true) {
+               
+                $subTotal=$this->providersPayment[$index]['service_payment_details']['rate']*$this->providersPayment[$index]['service_payment_details']['total_duration'];
+             
+            }
+            else{
+                $subTotal=($this->providersPayment[$index]['service_payment_details']['b_hours_rate'] * $this->providersPayment[$index]['service_payment_details']['b_hours_duration']) + ($this->providersPayment[$index]['service_payment_details']['a_hours_rate'] * $this->providersPayment[$index]['service_payment_details']['a_hours_duration']);
+            }
+       
+            $this->providersPayment[$index]['total_amount'] =  number_format($subTotal+ ($this->providersPayment[$index]['service_payment_details']['expedited_rate'] * $this->providersPayment[$index]['service_payment_details']['expedited_duration']), 2, '.', '');
 
 
         if (count($this->providersPayment[$index]['additional_payments']) && key_exists('additional_charge_provider',$this->providersPayment[$index]['additional_payments'])) {
@@ -315,6 +324,7 @@ class AssignProviders extends Component
             }
 
         }
+        
         $pid = $this->providers[$index]['id'];
         foreach ($this->assignedProviders as &$aProvider) {
             if ($aProvider['provider_id'] == $pid) {
@@ -326,6 +336,11 @@ class AssignProviders extends Component
                 $aProvider['additional_charge_provider'] = isset($this->providersPayment[$index]['additional_payments'][0]['additional_charge_provider']) ? $this->providersPayment[$index]['additional_payments'][0]['additional_charge_provider'] : null;
             }
         }
+
+
+
+
+
         return $this->providersPayment[$index]['total_amount'];
     }
     public function overrideTotal($index)
@@ -379,7 +394,8 @@ class AssignProviders extends Component
                 //else fetch and set custom rates
                 $this->providersPayment[$index]['additional_payments']=$this->paymentData;
                 $standardRate=StandardRate::where('accommodation_service_id',$serviceId)->where('user_id',$provider['id'])->first();
-               
+             //  dd($standardRate);
+
                 if($standardRate){
                   
                     $this->providersPayment[$index]['service_payment_details']=[
@@ -387,11 +403,22 @@ class AssignProviders extends Component
                         'b_hours_rate' =>$standardRate['hours_price'.$postFix] ,
                         'a_hours_duration' => $this->a_hours_duration,
                         'a_hours_rate' => $standardRate['after_hours_price'.$postFix],
+                        'total_duration'=>$this->durationTotal,
                         'expedited_duration' => $this->expedited_hours,
                         'expedited_rate' => 0 , //$standardRate['emergency_hour'.$postFix],
                         'specialization_charges' => $this->booking_specializations,
+                        'day_rate'=>false,
+                        'fixed_rate'=>false
                        
                     ];
+                    if (isset($this->booking_service['service_calculations']['day_rate']) && $this->booking_service['service_calculations']['day_rate']==true) {
+                        $rateCol="day_rate_price";
+                       
+                        $this->providersPayment[$index]['service_payment_details']['rate']=$standardRate[$rateCol.$postFix];
+                        $this->providersPayment[$index]['service_payment_details']['day_rate']=true;
+                           
+                    }
+
 
                     foreach($this->booking_specializations as $skey=>$specialization){
                         foreach($specializationRate as $spRate){
@@ -405,21 +432,32 @@ class AssignProviders extends Component
                     }
                  //  dd($standardRate['hours_price'.$postFix]);
 
+               
                 }
                 else{
                     //zero rate assignment
-                   
+               
                     $this->providersPayment[$index]['service_payment_details']=[
                         'b_hours_duration' => $this->b_hours_duration,
                         'b_hours_rate' =>0 ,
                         'a_hours_duration' => $this->a_hours_duration,
                         'a_hours_rate' => 0,
+                        'total_duration'=>$this->durationTotal,
                         'expedited_duration' => $this->expedited_hours,
                         'expedited_rate' => 0,
                         'specialization_charges' => $this->booking_specializations,
+                        'day_rate'=>false,
+                        'fixed_rate'=>false
                         
                     ];
+                    if (isset($this->booking_service['service_calculations']['day_rate']) && $this->booking_service['service_calculations']['day_rate']==true) {
+                        $rateCol="day_rate";
+                        $this->providersPayment[$index]['service_payment_details']['rate']=0;
+                        $this->providersPayment[$index]['service_payment_details']['day_rate']=true;
+                           
+                    }
                 }
+
                 $this->providersPayment[$index]['total_amount'] = $this->updateTotal($index);
                 }
 
@@ -434,7 +472,6 @@ class AssignProviders extends Component
       
         
 
-        
 
 
     }
@@ -482,6 +519,7 @@ class AssignProviders extends Component
         $this->tags = Tag::all();
         $this->booking = Booking::where('id', $this->booking_id)->with('payment')->first();
         $booking_service = $this->booking->booking_services->where('services', $this->service_id)->first();
+      
         if(is_null($booking_service))
             $booking_service = $this->booking->booking_services->first();
      
@@ -551,17 +589,12 @@ class AssignProviders extends Component
                     }
 
                 }
-                if ($booking_service['day_rate']) {
+                if (isset($booking_service['service_calculations']['day_rate']) && $booking_service['service_calculations']['day_rate']==true) {
                     $this->durationLabel = 'day(s)';
+                    $this->durationTotal = $booking_service['service_calculations']['total_duration']['days'];
+                    $this->b_hours_duration=0;
+                    $this->a_hours_duration=0;
 
-                    if (key_exists('total_duration', $booking_service['service_calculations'])) {
-                        $this->durationTotal = number_format($booking_service['service_calculations']['total_duration']['days'] + ($booking_service['service_calculations']['total_duration']['hours'] / 24) + ($booking_service['service_calculations']['total_duration']['mins'] / 60 / 24));
-                    }
-                    if (key_exists('business_hour_duration', $booking_service['service_calculations'])) {
-                        $this->b_hours_duration =  round($booking_service['service_calculations']['business_hour_duration'] / 60 / 24, 1);
-                    }
-                    if (key_exists('after_hour_duration', $booking_service['service_calculations']))
-                        $this->a_hours_duration =  round($booking_service['service_calculations']['after_hour_duration'] / 60 / 24, 1);
                 } else {
                     $this->durationLabel = ' hour(s)';
                     if (key_exists('total_duration', $booking_service['service_calculations'])) {
