@@ -301,7 +301,7 @@ class AssignProviders extends Component
                 $subTotal=(float)$this->providersPayment[$index]['service_payment_details']['rate']*$this->providersPayment[$index]['service_payment_details']['total_duration'];
              
             }
-            if ($this->providersPayment[$index]['service_payment_details']['fixed_rate']==true) {
+            elseif ($this->providersPayment[$index]['service_payment_details']['fixed_rate']==true) {
                
                 $subTotal=(float)$this->providersPayment[$index]['service_payment_details']['rate'];
              
