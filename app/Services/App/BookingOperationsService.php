@@ -1082,4 +1082,52 @@ class BookingOperationsService
     BookingServices::where('id', $service['id'])->where('booking_id', $bookingId)->update(['billed_total' => $service['billed_total'], 'service_total' => $service['total_charges'], 'service_calculations' => $serviceCalculations]);
     return $service;
   }
+
+  
+  public static function updateTags($booking, $properties, $tags)
+  {
+    if(!$booking)
+      return $tags;
+
+    $propertyTags = []; // Create an empty array to store tags for each property
+    $propertyIds = []; 
+    $options = ['Consumer', 'Participant', 'Requester'];
+
+    foreach ($options as $propertyName) {
+        if ($propertyName === 'Requester') {
+            $propertyIds = [$booking->customer_id];
+        } elseif ($propertyName === 'Consumer' || $propertyName === 'Participant') {
+            $service = Booking::where('id', $booking->id)->with('booking_services')->first();
+
+            if ($service) {
+                $service = $service->booking_services->first();
+                $column = ($propertyName === 'Consumer') ? 'service_consumer' : 'attendees';
+                $propertyIds = explode(",", $service->$column);
+            }
+        }
+
+        // Collect user tags for the current property
+        $propertyUserTags = [];
+        foreach ($propertyIds as $propertyId) {
+            if ($propertyId) {
+                $user = User::where('id', $propertyId)->with('userdetail')->first();
+                if ($user && $user->userdetail) {
+                    $userTags = json_decode($user->userdetail->tags, true) ?? [];
+                    $propertyUserTags = array_merge($propertyUserTags, $userTags);
+                }
+            }
+        }
+        $propertyTags[$propertyName] = $propertyUserTags;
+    }
+
+    foreach ($options as $propertyName) {
+        if (in_array($propertyName, $properties)) {
+            $tags = array_merge($tags, $propertyTags[$propertyName]);
+        }
+        else
+           $tags = array_diff($tags, $propertyTags[$propertyName]);
+    }
+    return array_values(array_unique(array_filter($tags)));
+  }
+
 }
