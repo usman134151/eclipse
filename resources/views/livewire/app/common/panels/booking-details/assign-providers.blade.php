@@ -278,8 +278,8 @@
                                                          <div class="col-7">
                                                              <div class="input-group">
                                                                  <input type=""
-                                                                     name="{{ $index }}_service_payment_details_b_hours_duration"
-                                                                     wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.b_hours_duration"
+                                                                     name="{{ $index }}_service_payment_details_b_hours_duration"  wire:blur="updateTotal({{ $index }})"
+                                                                     wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.b_hours_duration"  wire:blur="updateTotal({{ $index }})"
                                                                      class="form-control form-control-sm text-center"
                                                                      placeholder="0" aria-label="Hours">
 
@@ -350,6 +350,7 @@
                                                                  <input type="" name=""
                                                                      wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.a_hours_duration"
                                                                      class="form-control form-control-sm text-center"
+                                                                     wire:blur="updateTotal({{ $index }})"
                                                                      placeholder="0" aria-label="Hours">
 
                                                                  <div class="input-group-text p-0">
@@ -415,7 +416,7 @@
                                                          <div class="col-7">
                                                              <div class="input-group">
                                                                  <input type="" name=""
-                                                                     wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.total_duration"
+                                                                     wire:model.lazy="providersPayment.{{ $index }}.service_payment_details.total_duration"  wire:blur="updateTotal({{ $index }})"
                                                                      class="form-control form-control-sm text-center"
                                                                      placeholder="0" aria-label="Days">
 
