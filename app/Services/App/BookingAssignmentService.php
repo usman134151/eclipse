@@ -35,8 +35,14 @@ class BookingAssignmentService
     public static function getAvailableProviders($booking,$booking_services,$operation){
         foreach($booking_services as $service)
         {   
+
             if($service[$operation]==1)
-                 $providers=SELF::getProviders($booking->tags,$service['service_id'],$service['accommodation_id'],$service,$booking['id'],$booking,$operation);
+            {
+                if(!key_exists('service_id',$service))
+                    $service['service_id']=$service['services'];
+                $providers=SELF::getProviders($booking->tags,$service['service_id'],$service['accommodation_id'],$service,$booking['id'],$booking,$operation);
+            }
+                 
         }
 
 

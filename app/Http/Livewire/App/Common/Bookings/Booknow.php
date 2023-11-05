@@ -479,7 +479,7 @@ class Booknow extends Component
                 }
 
                 
-                        BookingAssignmentService::getAvailableProviders($this->booking,$this->services,'auto-notify');
+                        BookingAssignmentService::getAvailableProviders($this->booking,$this->services,'auto_notify');
                
 
                 if (!$this->isEdit) {
