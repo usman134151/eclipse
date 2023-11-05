@@ -72,9 +72,9 @@ class BookingAssignmentService
 
         $query->select($returnCols);
 
-        // if (count($tag_names)) {
-        //     $query->whereJsonContains('tags', $tag_names);
-        // }
+        if (count($tag_names)) {
+            $query->whereJsonContains('tags', $tag_names);
+        }
 
         if ($service_id) {
            
