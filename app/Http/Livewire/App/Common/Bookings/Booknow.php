@@ -15,6 +15,7 @@ use App\Models\Tenant\UserDetail;
 use App\Models\Tenant\Schedule;
 use App\Models\Tenant\Company;
 use App\Services\App\BookingOperationsService;
+use App\Services\App\BookingAssignmentService;
 use App\Services\App\NotificationService;
 use App\Models\Tenant\CustomizeForms;
 use App\Models\Tenant\Payment;
