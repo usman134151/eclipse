@@ -43,8 +43,10 @@ class BookingAssignmentService
 
     public static function getProviders($tags,$service_id,$accommodation,$booking_service,$bookingId,$booking,$operation)
     {
-        if ($booking_service)
+        if ($booking_service && !is_array($booking_service['specialization']))
             $specializations = json_decode($booking_service['specialization'], true);
+        elseif(is_array($booking_service['specialization']))
+            $specializations = $booking_service['specialization'];
         if($tags){
             $tag_names=json_decode($tags,true);
         }
