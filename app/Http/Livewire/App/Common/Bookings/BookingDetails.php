@@ -4,6 +4,7 @@ namespace App\Http\Livewire\App\Common\Bookings;
 
 use App\Http\Livewire\App\Admin\Customer\ServiceCatelog;
 use App\Services\App\BookingOperationsService;
+use App\Services\App\BookingAssignmentService;
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\ServiceCategory;
@@ -103,9 +104,11 @@ class BookingDetails extends Component
 				'booking_services.attendees', 'booking_services.service_consumer', 'booking_services.specialization', 'booking_services.meeting_phone',
 				'booking_services.meeting_passcode', 'booking_services.provider_count', 'booking_services.created_at',
 				'service_categories.name as service_name', 'service_categories.id as service_id',
-				'accommodations.name as accommodation_name'
+				'accommodations.name as accommodation_name','booking_services.auto_assign','booking_services.auto_notify'
 			])
 			->toArray();
+
+			
 		foreach ($this->booking_services as $key => $service) {
 			if ($service['attendees'])
 				$this->booking_services[$key]['participants'] = User::whereIn('id', explode(',', $service['attendees']))->select('name', 'id')->get();
@@ -304,5 +307,9 @@ class BookingDetails extends Component
 			}
 		}
 		$this->tags = array_values(array_unique(array_filter($this->tags)));
+	}
+
+	public function updateServiceSettings($propertyName,$index){
+		//dd($this->booking_services[$index][$propertyName]);
 	}
 }

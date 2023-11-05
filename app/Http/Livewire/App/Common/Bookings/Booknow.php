@@ -34,7 +34,7 @@ class Booknow extends Component
 {
     public $component = 'requester-info';
 
-    public $booking_id, $showForm, $booking, $requesters = [], $bManagers = [], $supervisors = [], $consumers = [], $participants = [], $step = 1, $userAddresses = [], $timezone, $schedule, $timezones, $formIds, $selectedAddressId, $bookingDetails, $selectedServices = [];
+    public $booking_id, $showForm, $booking, $requesters = [], $bManagers = [], $supervisors = [], $consumers = [], $participants = [], $step = 1, $userAddresses = [], $timezone, $schedule, $timezones, $formIds, $selectedAddressId, $bookingDetails, $selectedServices = [],$changesLog=[];
     protected $listeners = [
         'showList' => 'resetForm', 'updateVal', 'updateCompany',
         'updateSelectedIndustries' => 'selectIndustries',
@@ -82,8 +82,8 @@ class Booknow extends Component
             'start_time' => '',
             'end_time' => '',
             'status' => 0,
-            'auto_assign' => false,
-            'auto_notify' => false
+            'auto_assign' => 0,
+            'auto_notify' => 0
 
 
         ]
@@ -729,8 +729,8 @@ class Booknow extends Component
             'start_time' => '',
             'end_time' => '',
             'status' => 0,
-            'auto_assign' => false,
-            'auto_notify' => false
+            'auto_assign' => 0,
+            'auto_notify' => 0
         ];
         $this->dispatchBrowserEvent('refreshSelects');
     }
@@ -887,6 +887,8 @@ class Booknow extends Component
             }
         }
     }
+
+
 
     public function getUserRoleDetails($customerId)
     {

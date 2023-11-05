@@ -455,7 +455,7 @@
                                                             </label>
                                                             <div class="form-check form-switch form-switch-column " >
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    role="switch" id="AutoNotifyBroadcast" checked aria-label="Auto-notify Broadcast" value="true" wire:model.defer="services.{{$index}}.auto_notify" >
+                                                                    role="switch" id="AutoNotifyBroadcast" checked aria-label="Auto-notify Broadcast" value="1" wire:model.defer="services.{{$index}}.auto_notify" >
                                                                 <label class="form-check-label"
                                                                     for="AutoNotifyBroadcast">Manual-notify</label>
                                                                 <label class="form-check-label"
@@ -470,7 +470,7 @@
                                                             </label>
                                                             <div class="form-check form-switch form-switch-column">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    role="switch" id="ManualAssignAssign" checked aria-label="Auto assign" value="true" wire:model.defer="services.{{$index}}.auto_assign">
+                                                                    role="switch" id="ManualAssignAssign" checked aria-label="Auto assign" value="1" wire:model.defer="services.{{$index}}.auto_assign">
                                                                 <label class="form-check-label"
                                                                     for="ManualAssignAssign">Manual-assign</label>
                                                                 <label class="form-check-label"

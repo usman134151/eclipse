@@ -87,7 +87,7 @@
                                                     {{ $booking['booking_title'] ? $booking['booking_title'] : 'N/A' }}
                                                 </div>
                                             </div>
-                                            <small>(coming soon)</small>
+                                            
 
                                             <div>
                                                 <label class="form-label text-primary">Days Pending</label>
@@ -135,11 +135,11 @@
                                         </div>
                                         <div class="col-lg col-12 mb-4">
                                             <div class="mb-4">
-                                                <small>(coming soon)</small>
-                                                <label class="form-label text-primary">Pending Details
+                                               
+                                                <label class="form-label text-primary">Pending Details <small>(coming soon)</small>
                                                 </label>
                                                 <div class="d-flex flex-column gap-1">
-
+                                               
                                                     <div class="font-family-tertiary value">
                                                         Requests from Users
                                                     </div>
@@ -523,7 +523,7 @@
                                                                     role="switch" id="AutoNotifyBroadcast"
                                                                     checked="" aria-label="Auto-notify Broadcast"
                                                                     value="true"
-                                                                    wire:model.defer="services.0.auto_notify">
+                                                                    wire:model.defer="booking_services.{{$index}}.auto_notify" wire:click="updateServiceSettings('auto_notify',{{$index}})">
                                                                 <label class="form-check-label"
                                                                     for="AutoNotifyBroadcast">Manual-notify</label>
                                                                 <label class="form-check-label"
@@ -541,7 +541,7 @@
                                                                     role="switch" id="ManualAssignAssign"
                                                                     checked="" aria-label="Auto assign"
                                                                     value="true"
-                                                                    wire:model.defer="services.0.auto_assign">
+                                                                    wire:model.defer="booking_services.{{$index}}.auto_assign">
                                                                 <label class="form-check-label"
                                                                     for="ManualAssignAssign">Manual-assign</label>
                                                                 <label class="form-check-label"
