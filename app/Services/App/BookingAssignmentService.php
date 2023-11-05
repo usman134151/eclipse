@@ -21,6 +21,7 @@ use App\Models\Tenant\SpecializationRate;
 use App\Models\Tenant\StandardRate;
 use App\Models\Tenant\BookingInvitation;
 use App\Models\Tenant\BookingInvitationProvider;
+use App\Models\Tenant\Specialization;
 use Auth;
 use Carbon\Carbon;
 use App\Helpers\GlobalFunctions;
