@@ -286,7 +286,9 @@ class BookingDetails extends Component
     }
 
 	public function updateServiceSettings($propertyName,$index){
-		//dd($this->booking_services[$index][$propertyName]);
+		
+		
+		BookingServices::where('id',$this->booking_services[$index]['id'])->update([$propertyName=>$this->booking_services[$index][$propertyName]]);
 	}
 
 }

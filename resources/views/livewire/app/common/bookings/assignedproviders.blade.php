@@ -57,19 +57,7 @@
 
                   </div>
               </div>
-              <div class="mb-4 {{ $isProviderPanel ? 'hidden' : '' }}">
-                  <button class="btn btn-outline-primary btn-has-icon btn-sm dropdown-toggle h-100" type="button"
-                      data-bs-toggle="dropdown" aria-expanded="false">
-                      <span>
 
-                          <svg aria-label="Export " width="23" height="26" viewBox="0 0 23 26">
-                              <use xlink:href="/css/common-icons.svg#document-dropdown">
-                              </use>
-                          </svg>
-
-                      </span>
-                  </button>
-              </div>
               <div class="d-flex justify-content-between mb-2 {{ $isProviderPanel ? 'hidden' : '' }}">
                   <div class="d-inline-flex align-items-center gap-4">
                       {{-- <div class="d-inline-flex align-items-center gap-4">
@@ -81,24 +69,13 @@
                                 <option>25</option>
                             </select>
                         </div> --}}
-                      <div class="d-flex gap-4 align-items-center">
-                          <div class="form-check form-switch mb-lg-0">
-                              <input class="form-check-input" type="checkbox" role="switch" id="autoNotify" checked
-                                  aria-label="Auto-notify Toggle">
-                              <label class="form-check-label" for="autoNotify">Auto-notify</label>
-                          </div>
-                          <div class="form-check form-switch mb-lg-0">
-                              <input class="form-check-input" type="checkbox" role="switch" id="autoNotify"
-                                  aria-label="Auto-notify Toggle">
-                              <label class="form-check-label" for="autoNotify">Auto-Assign</label>
-                          </div>
-                      </div>
+
                   </div>
-                  <div class="d-inline-flex align-items-center gap-4">
+                  {{--  <div class="d-inline-flex align-items-center gap-4">
                       <label for="search-coulmn" class="form-label-sm mb-0">Search</label>
                       <input type="search" class="form-control form-control-sm" id="search-coulmn" name="search"
                           placeholder="Search here" autocomplete="on" />
-                  </div>
+                  </div> --}}
               </div>
           @endif
           <!-- Hoverable rows start -->

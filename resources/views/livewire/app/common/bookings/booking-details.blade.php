@@ -522,7 +522,7 @@
                                                                 <input class="form-check-input" type="checkbox"
                                                                     role="switch" id="AutoNotifyBroadcast"
                                                                     checked="" aria-label="Auto-notify Broadcast"
-                                                                    value="true"
+                                                                    value="1"
                                                                     wire:model.defer="booking_services.{{$index}}.auto_notify" wire:click="updateServiceSettings('auto_notify',{{$index}})">
                                                                 <label class="form-check-label"
                                                                     for="AutoNotifyBroadcast">Manual-notify</label>
@@ -540,8 +540,8 @@
                                                                 <input class="form-check-input" type="checkbox"
                                                                     role="switch" id="ManualAssignAssign"
                                                                     checked="" aria-label="Auto assign"
-                                                                    value="true"
-                                                                    wire:model.defer="booking_services.{{$index}}.auto_assign">
+                                                                    value="1"
+                                                                    wire:model.defer="booking_services.{{$index}}.auto_assign" wire:click="updateServiceSettings('auto_assign',{{$index}})">
                                                                 <label class="form-check-label"
                                                                     for="ManualAssignAssign">Manual-assign</label>
                                                                 <label class="form-check-label"
