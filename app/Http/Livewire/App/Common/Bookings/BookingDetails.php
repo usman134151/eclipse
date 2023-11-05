@@ -289,7 +289,7 @@ class BookingDetails extends Component
 		
 		$value=$this->booking_services[$index][$propertyName];
 		BookingServices::where('id',$this->booking_services[$index]['id'])->update([$propertyName=>$this->booking_services[$index][$propertyName]]);
-		if($value==1){
+		if($value==1 && $propertyName=="auto_notify"){
 			BookingAssignmentService::getAvailableProviders($this->booking,$this->booking_services,$propertyName);
 			$this->dispatchBrowserEvent('close-assign-providers');
             
