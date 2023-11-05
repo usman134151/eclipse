@@ -426,6 +426,8 @@ class Booknow extends Component
 
                     BookingOperationsService::updateServiceCalculations($service, $this->booking->id);
                 }
+
+               
                 $this->booking->type = 1;
                 //$this->booking->status=1;
                 $this->booking->booking_status = 1; //will change it later for consumers or other company users, need to check rights
@@ -473,6 +475,11 @@ class Booknow extends Component
                         //new booking then replicate
                         BookingOperationsService::createRecurring($this->booking->id);
                     }
+                }
+
+                foreach ($this->services as $service) {
+                    if($service['auto_notify'])
+                        BookingAssignmentService::getAvailableProviders($this->booking,$service,'auto-notify');
                 }
 
                 if (!$this->isEdit) {
