@@ -460,7 +460,7 @@ class BookingAssignmentService
                 }
                 // dd($booking_service['service_calculations']);
                 if (isset($booking_service['service_calculations']['specialization_charges']) && count($booking_service['service_calculations']['specialization_charges'])) {
-                    $specializations= json_decode($booking_service['specialization'],true);//$booking_service['service_calculations']['specialization_charges'];
+                    $specializations= $booking_service['specialization'];//$booking_service['service_calculations']['specialization_charges'];
                     if(!is_null($specializations)){
                         $specializationData=Specialization::whereIn('id',$specializations)->get()->toArray();
                      
