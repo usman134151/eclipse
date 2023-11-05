@@ -104,7 +104,7 @@ class BookingDetails extends Component
 				'booking_services.attendees', 'booking_services.service_consumer', 'booking_services.specialization', 'booking_services.meeting_phone',
 				'booking_services.meeting_passcode', 'booking_services.provider_count', 'booking_services.created_at',
 				'service_categories.name as service_name', 'service_categories.id as service_id',
-				'accommodations.name as accommodation_name','booking_services.auto_assign','booking_services.auto_notify'
+				'accommodations.name as accommodation_name','booking_services.auto_assign','booking_services.auto_notify','booking_services.accommodation_id'
 			])
 			->toArray();
 
@@ -287,8 +287,16 @@ class BookingDetails extends Component
 
 	public function updateServiceSettings($propertyName,$index){
 		
-		
+		$value=$this->booking_services[$index][$propertyName];
 		BookingServices::where('id',$this->booking_services[$index]['id'])->update([$propertyName=>$this->booking_services[$index][$propertyName]]);
+		if($value==1){
+			BookingAssignmentService::getAvailableProviders($this->booking,$this->booking_services,$propertyName);
+			$this->dispatchBrowserEvent('close-assign-providers');
+            
+            $this->emit('showConfirmation', 'Providers have been '.str_replace("_"," ",$propertyName).' successfully');
+
+
+		}
 	}
 
 }
