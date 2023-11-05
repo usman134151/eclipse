@@ -1450,32 +1450,32 @@
 
                                                 <div @if($isCustomer) style="display:none" @endif>
                                                     <div class="block">
-                                                    <small>Coming Soon</small>
+                                                    {{-- <small>Coming Soon</small> --}}
                                                     </div>
                                                     <div class="form-check form-check-inline">
-                                                        <input disabled class="form-check-input" id="Requester" name=""
+                                                        <input wire:model="Requester" wire:change="updateBookingTags" class="form-check-input" id="Requester" name=""
                                                             type="checkbox" tabindex="" />
                                                         <label class="form-check-label"
                                                             for="Requester">Requester</label>
                                                     </div>
                                                     <div class="form-check form-check-inline">
-                                                        <input disabled class="form-check-input" id="ServiceConsumers" name=""
+                                                        <input wire:model="Consumer"  wire:change="updateBookingTags" class="form-check-input" id="ServiceConsumers" name=""
                                                             type="checkbox" tabindex="" />
                                                         <label class="form-check-label" for="ServiceConsumers">Service
                                                             Consumer(s)</label>
                                                     </div>
                                                     <div class="form-check form-check-inline">
-                                                        <input disabled class="form-check-input" id="Participants" name=""
+                                                        <input wire:model="Participant" wire:change="updateBookingTags" class="form-check-input" id="Participants" name=""
                                                             type="checkbox" tabindex="" />
                                                         <label class="form-check-label"
-                                                            for="Participants">Company</label>
+                                                            for="Participants">Participant(s)</label>
                                                     </div>
-                                                    <div class="form-check form-check-inline">
+                                                    {{-- <div class="form-check form-check-inline">
                                                         <input disabled class="form-check-input" id="Participants" name=""
                                                             type="checkbox" tabindex="" />
                                                         <label class="form-check-label"
                                                             for="Participants">Department</label>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                             </div>        
                                     <!-- /Payment Notes -->

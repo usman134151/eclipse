@@ -47,6 +47,7 @@ class Booknow extends Component
     public $foundService = ['default_providers' => 2];
     public $payment, $discountedAmount = 0, $totalAmount = 0;
     public $allTags = [], $tags = [], $confirmed = false, $currentServiceId, $panelType = 1;
+    public $Requester = false, $Consumer = false, $Participant = false; 
 
 
     public $setupValues = [
@@ -1251,4 +1252,11 @@ class Booknow extends Component
             $this->save(1,1,3);
 		}
 	}
+
+    public function updateBookingTags()
+    {
+		// dd($this->Requester,$this->Consumer,$this->Participant);
+		$properties = [ $this->Requester ? 'Requester' : '', $this->Consumer ? 'Consumer' : '', $this->Participant ? 'Participant' : ''];
+        $this->tags = BookingOperationsService::updateTags($this->booking, $properties, $this->tags);
+    }
 }
