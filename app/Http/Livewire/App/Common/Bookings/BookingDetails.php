@@ -172,18 +172,41 @@ class BookingDetails extends Component
 
 			$providers = BookingProvider::where('booking_id',$this->booking_id)->get();
 			$this->data['providerPayments'] = 0;
+			$this->data['additionalProviderPayments'] = 0;
 			foreach ($providers as $provider){
 				$this->data['providerPayments'] = $this->data['providerPayments'] + $provider['total_amount'];
+				$this->data['additionalProviderPayments'] = $this->data['additionalProviderPayments'] + $provider['additional_charge_provider'];
 			}
+			$this->data['profitMargin'] = $this->booking['payment'] ? ((
+				($this->booking['payment']['total_amount'] ?? 0) +
+				($this->booking['payment']['cancellation_charges'] ?? 0) +
+				($this->booking['payment']['outstanding_amount'] ?? 0) +
+				($this->booking['payment']['modification_fee'] ?? 0)
+			)- $this->data['providerPayments'] - $this->data['additionalProviderPayments']) : 0;
+			
 
+			$this->data['profitMarginPercent'] = $this->booking['payment'] ? ( $this->data['profitMargin'] / (
+				($this->booking['payment']['total_amount'] ?? 0) +
+				($this->booking['payment']['cancellation_charges'] ?? 0) +
+				($this->booking['payment']['outstanding_amount'] ?? 0) +
+				($this->booking['payment']['modification_fee'] ?? 0)
+			) * 100 ): 0;
+			$this->data['profitMarginPercent'] = number_format($this->data['profitMarginPercent'], 2);
+
+			// dd($this->data,$this->booking['payment']['total_amount']);
+			// dd($providers);
 
 			$endDate = Carbon::parse($this->booking['booking_end_at']);
 			$currentDate = Carbon::today();
 			$daysUntilService = $endDate->diffInDays($currentDate);
 			$datePassed= $endDate < $currentDate ? 1 : 0;
 			$this->booking['days_until_service'] = $datePassed ? 0 : $daysUntilService;
-			
-			
+
+
+			$creationDate = Carbon::parse($this->booking['booking_start_at']);
+			$daysPending = $creationDate->diffInDays($currentDate);
+			$this->booking['daysPending'] = $this->booking['is_closed'] ? 0 : $daysPending;
+						
 			// dd($this->data['providerPayments']);
 		}
 	//so a fuction which can then be used for editing the fields aswell.
