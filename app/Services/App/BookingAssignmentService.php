@@ -122,10 +122,11 @@ class BookingAssignmentService
         $assignedProviders = BookingProvider::where(['booking_id' => $bookingId, 'booking_service_id' => $booking_service['id']])
         ->get()->toArray();
         $serviceData=$booking->services->where('id', $service_id)->first();
-        $durationData=SELF::getDurations($service_id,$serviceData,$booking_service,$booking);
+        
        
         
         if($operation=='auto_assign'){
+            $durationData=SELF::getDurations($service_id,$serviceData,$booking_service,$booking);
             $aAproviders=[];
             $providers=SELF::getProviderCharges($service_id,$booking_service,$durationData['specializations'],$providers,$assignedProviders,$durationData,$serviceData);
             $assignedProviderIds = collect($assignedProviders)->pluck('provider_id')->toArray();
