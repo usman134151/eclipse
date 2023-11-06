@@ -91,7 +91,7 @@
 
                                             <div>
                                                 <label class="form-label text-primary">Days Pending</label>
-                                                <div class="font-family-tertiary value">05 Days</div>
+                                                <div class="font-family-tertiary value">{{$booking['daysPending']}} Days</div>
                                             </div>
                                         </div>
                                         <div class="col-lg col-12 mb-4">
@@ -1553,7 +1553,13 @@
                                                         Payments:</label>
                                                 </div>
                                                 <div class="col-md-3 align-self-center">
-                                                    <div class="font-family-tertiary">$00.00</div>
+                                                    <div class="font-family-tertiary">
+                                                        @if(!is_null($data['additionalProviderPayments']))
+                                                        {{ formatPayment($data['additionalProviderPayments']) }}
+                                                        @else
+                                                            N/A 
+                                                        @endif
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="row @if ($isCustomer) hidden @endif">
@@ -1566,7 +1572,13 @@
                                                     <label class="form-label mb-md-0">Profit Margin:</label>
                                                 </div>
                                                 <div class="col-md-3 align-self-center">
-                                                    <div class="font-family-tertiary">$00.00</div>
+                                                    <div class="font-family-tertiary">
+                                                        @if(!is_null($data['profitMargin']))
+                                                        {{ formatPayment($data['profitMargin']) }} ({{$data['profitMarginPercent']}}%)
+                                                        @else
+                                                            N/A 
+                                                        @endif
+                                                    </div>
                                                 </div>
                                             </div>
                                         @endif
