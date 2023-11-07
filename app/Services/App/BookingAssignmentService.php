@@ -176,9 +176,9 @@ class BookingAssignmentService
                   
                     $providersPayment['service_payment_details']=[
                         'b_hours_duration' => $durationData['b_hours_duration'],
-                        'b_hours_rate' =>$standardRate['hours_price'.$postFix] ,
+                        'b_hours_rate' =>(float)$standardRate['hours_price'.$postFix] ,
                         'a_hours_duration' => $durationData['a_hours_duration'],
-                        'a_hours_rate' => $standardRate['after_hours_price'.$postFix],
+                        'a_hours_rate' => (float)$standardRate['after_hours_price'.$postFix],
                         'total_duration'=>$durationData['durationTotal'],
                         'expedited_duration' => $expedited_hours,
                         'expedited_rate' => 0 , //$standardRate['emergency_hour'.$postFix],
