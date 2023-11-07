@@ -258,6 +258,8 @@
 
                              @if ($panelType == 3 && $provider->invitation_response($booking_id) == 0)
                                  <td colSpan=4> Pending</td>
+                             @elseif($panelType == 3 &&  $provider->invitation_response($booking_id) == 3)
+                                <td colSpan=4>Rejected by Admin</td>
                              @endif
                              @if ($panelType == 1 || ($panelType == 3 && $provider->invitation_response($booking_id) == 1))
                                  <td class="border-end-2" style="min-width:340px">

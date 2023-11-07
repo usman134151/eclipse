@@ -364,7 +364,7 @@ class BookingAssignmentService
             $status = 1;
 
 
-            if ($limit == count($assignedProviders))
+            if ($limit == count($assignedProviders)+1)
                 $status = 2;
             Booking::where('id', $booking_id)->update(['status' => $status]);
 
@@ -438,7 +438,7 @@ class BookingAssignmentService
             if ($booking_service) {
 
 
-                if (!is_null($booking_service['service_calculations'])) {
+                if (!is_null($booking_service['service_calculations']) && !is_array($booking_service['service_calculations'])) {
                     $booking_service['service_calculations'] = json_decode($booking_service['service_calculations'], true);
                 } else
                     $booking_service['service_calculations'] = [];
@@ -481,6 +481,9 @@ class BookingAssignmentService
                     $a_hours_duration=0;
                 }
                  else {
+                    $durationTotal = 0;
+                    $b_hours_duration=0;
+                    $a_hours_duration=0;
                     $durationLabel = ' hour(s)';
                     if (key_exists('total_duration', $booking_service['service_calculations'])) {
                         $durationTotal = number_format(($booking_service['service_calculations']['total_duration']['hours']) + ($booking_service['service_calculations']['total_duration']['mins'] / 60 / 24), 2);
@@ -495,20 +498,22 @@ class BookingAssignmentService
             return ['totalAmount'=>$totalAmount,'durationLabel'=>$durationLabel,'durationTotal'=>$durationTotal,'b_hours_duration'=>$b_hours_duration,'a_hours_duration'=>$a_hours_duration,'specializations'=>$specializations];
        
     }
-    public static function checkAutoAssign($invitationId,$bookingId,$providerId){
+    public static function checkAutoAssign($invitationId,$bookingId,$providerId, $assignedProviders=null,$booking=null,$booking_service=null){
         $inviteData=BookingInvitation::where('id',$invitationId)->first();
         $serviceId=$inviteData->service_id; //getting service id
-        $booking=BOOKING::where('id',$bookingId)->with('services','booking_services','payment')->first();
-       
-        $booking_service=$booking->booking_services->where('services', $serviceId)->first();
+        if(is_null($booking))
+            $booking=BOOKING::where('id',$bookingId)->with('services','booking_services','payment')->first();
+        if(is_null($booking_service))
+            $booking_service=$booking->booking_services->where('services', $serviceId)->first();
       
         if($booking_service['auto_assign']){
             $serviceData=$booking->services->where('id', $serviceId)->first();
             //if auto-assign then check if space is available and provider is not already assigned
             $aAproviders=[];
-            $assignedProviders = BookingProvider::where(['booking_id' => $bookingId, 'booking_service_id' => $serviceId])
-            ->get()->toArray();
-           
+            if(is_null($assignedProviders))
+                $assignedProviders = BookingProvider::where(['booking_id' => $bookingId, 'booking_service_id' => $booking_service->id])
+                ->get()->toArray();
+          
             //assign provider   
                 if(count($assignedProviders)<$booking_service['provider_count'])
                 {
@@ -543,6 +548,31 @@ class BookingAssignmentService
 
 
 
+    }
+
+    public static function reTriggerAutoAssign($bookingId,$serviceId){
+        $booking=BOOKING::where('id',$bookingId)->with('services','booking_services','payment')->first();
+       
+        $booking_service=$booking->booking_services->where('id', $serviceId)->first();
+        
+        if($booking_service['auto_assign']){
+            $assignedProviders = BookingProvider::where(['booking_id' => $bookingId, 'booking_service_id' => $booking_service->id])
+            ->get()->toArray();
+            $limit=count($assignedProviders);
+            //checking providers who has accepted the invite
+            $acceptedProviders=BookingInvitationProvider::where('booking_id',$bookingId)->where('status',1)->get()->toArray();
+            if(!is_null($acceptedProviders)){
+                foreach($acceptedProviders as $acceptedProvider){
+                    //assign provider   
+                        if($limit<$booking_service['provider_count'])
+                        {   SELF::checkAutoAssign($acceptedProvider['invitation_id'],$bookingId,$acceptedProvider['provider_id'], $assignedProviders,$booking,$booking_service);
+                            $limit++;
+                        }
+                    }
+            }
+
+
+        }        
     }
 
 }
