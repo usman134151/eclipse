@@ -184,14 +184,21 @@ class BookingDetails extends Component
 				($this->booking['payment']['modification_fee'] ?? 0)
 			)- $this->data['providerPayments'] - $this->data['additionalProviderPayments']) : 0;
 			
-
-			$this->data['profitMarginPercent'] = $this->booking['payment'] ? ( $this->data['profitMargin'] / (
+			$totalCost=(
 				($this->booking['payment']['total_amount'] ?? 0) +
 				($this->booking['payment']['cancellation_charges'] ?? 0) +
 				($this->booking['payment']['outstanding_amount'] ?? 0) +
 				($this->booking['payment']['modification_fee'] ?? 0)
-			) * 100 ): 0;
-			$this->data['profitMarginPercent'] = number_format($this->data['profitMarginPercent'], 2);
+			);
+			if($totalCost>0)	
+				{   $this->data['profitMarginPercent'] = $this->booking['payment'] ? ( $this->data['profitMargin'] / $totalCost * 100 ): 0;
+					$this->data['profitMarginPercent'] = number_format($this->data['profitMarginPercent'], 2);
+				}
+			else{
+				$this->data['profitMarginPercent']='N/A';
+				
+			}
+			
 
 			// dd($this->data,$this->booking['payment']['total_amount']);
 			// dd($providers);
