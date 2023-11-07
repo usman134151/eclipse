@@ -29,6 +29,8 @@ class BusinessSetup extends Component
             'configuration.business_name' => ['nullable'],
             'configuration.default_colour' => ['required'],
             'configuration.foreground_colour' => ['required'],
+            'configuration.dark_default_colour' => ['required'],
+            'configuration.dark_foreground_colour' => ['required'],
             'configuration.portal_url' => ['nullable','max:255'],
             'configuration.company_logo' => ['nullable'],
             'configuration.login_screen' => ['nullable'],
@@ -122,6 +124,8 @@ class BusinessSetup extends Component
             $this->configuration = new TenantBusinessSetup();
             $this->configuration->default_colour = '#0A1E46';
             $this->configuration->foreground_colour = '#000000'; //setting defaults
+            $this->configuration->dark_default_colour = '#0A1E46';
+            $this->configuration->dark_foreground_colour = '#000000'; //setting defaults
             $this->configuration->send_qoutes = false; //setting defaults
             $this->configuration->customer_approve_on_login = false; //setting defaults
             $this->configuration->require_provider_approval = false; //setting defaults
