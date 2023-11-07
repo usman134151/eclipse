@@ -195,7 +195,7 @@ class BookingDetails extends Component
 					$this->data['profitMarginPercent'] = number_format($this->data['profitMarginPercent'], 2);
 				}
 			else{
-				$this->data['profitMarginPercent']='N/A';
+				$this->data['profitMarginPercent']='';
 				
 			}
 			
