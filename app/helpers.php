@@ -91,16 +91,16 @@ if (!function_exists('userHasPermission')) {
         {
             $messageItemType = ucwords(str_replace('_', '-', $item_type)) . ' ';
             if(!$customMessage){
-                $message=$messageItemType . $type .'d by ';
+                $message=$messageItemType . $type .'d by ' .\Auth::user()->name;
             }
             else
-               $message=$customMessage.' by ';
+               $message=$customMessage;
             addLogs([
                 'action_by' => \Auth::id(),
                 'action_to' => $action_to,
                 'item_type' => $item_type,
                 'type' => $type,
-                'message' => $message. \Auth::user()->name,
+                'message' => $message,
                 'ip_address' => \request()->ip(), 
             ]);
         }

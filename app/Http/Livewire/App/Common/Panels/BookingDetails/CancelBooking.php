@@ -7,6 +7,7 @@ use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\ServiceCategory;
 use App\Services\App\BookingOperationsService;
+use Auth;
 
 class CancelBooking extends Component
 {
@@ -86,9 +87,9 @@ class CancelBooking extends Component
         }
        
         BookingOperationsService::cancelBooking($this->booking);
-        $message="Booking cancelled as ".$billingStatus;
+        $message="Booking cancelled by ".Auth::user()->name." as ".$billingStatus;
         if($this->booking->cancellation_notes){
-            $message.='(Notes: '.$this->booking->cancellation_notes.")";
+            $message.=' (Notes: '.$this->booking->cancellation_notes.")";
         } 
         callLogs($this->booking->id,"Booking","Cancelled",$message);
         $this->emit('showConfirmation', 'Booking status updated successfully');

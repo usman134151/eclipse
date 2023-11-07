@@ -879,9 +879,13 @@ class Booknow extends Component
 
             if (!is_null($settings) && count($settings) && key_exists('auto_assign', $settings[0])) {
                 $this->services[$index]['auto_assign'] = $settings[0]['auto_assign'];
+                if($this->services[$index]['auto_assign']==true)
+                    $this->services[$index]['auto_assign']=1;
             }
             if (!is_null($settings) &&  count($settings) &&  key_exists('broadcast', $settings[0])) {
                 $this->services[$index]['auto_notify'] = $settings[0]['broadcast'];
+                if($this->services[$index]['auto_notify']==true)
+                $this->services[$index]['auto_notify']=1;
             }
 
 

@@ -202,8 +202,11 @@ class BookingAssignmentService
 
                     }
 
-
+                    if(!is_array($specializations))
+                        $specializations=json_decode($specializations,true);
+                        
                     foreach($specializations as $skey=>$specialization){
+                       
                         foreach($specializationRate as $spRate){
                             if($spRate['specialization']==$specialization['id']){
                                 $spCharge=json_decode($spRate['specialization_rate'.$postFix],true);
@@ -430,7 +433,7 @@ class BookingAssignmentService
         }
 
 
-            $specializations=[];
+            
 
             if ($booking_service) {
 
@@ -445,11 +448,15 @@ class BookingAssignmentService
                 }
                 // dd($booking_service['service_calculations']);
                 if (isset($booking_service['service_calculations']['specialization_charges']) && count($booking_service['service_calculations']['specialization_charges'])) {
-                    $specializations= $booking_service['specialization'];//$booking_service['service_calculations']['specialization_charges'];
-                    if(!is_null($specializations)){
-                        $specializationData=Specialization::whereIn('id',$specializations)->get()->toArray();
+                    $bspecializations= $booking_service['specialization'];//$booking_service['service_calculations']['specialization_charges'];
+                   
+                    if(!is_null($bspecializations)){
+                        if(!is_array($bspecializations))
+                            $bspecializations=json_decode($bspecializations,true);
+                          
+                        $specializationData=Specialization::whereIn('id',$bspecializations)->get()->toArray();
                      
-                        foreach ($specializations as $key => $specialization) {
+                        foreach ($bspecializations as $key => $specialization) {
                             
                             $specializations[] = ["id"=>$specialization, 'provider_charges' => 0, 'label'=>$specializationData[$key]['name']];
                         }
@@ -457,7 +464,7 @@ class BookingAssignmentService
                    
                       
 
-                }
+                }  
               
                 if (isset($booking_service['service_calculations']['day_rate']) && $booking_service['service_calculations']['day_rate']==true) {
                    // dd($booking_service['service_calculations']['total_duration']);
