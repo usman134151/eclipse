@@ -362,7 +362,7 @@ class BookingOperationsService
 
     $interval = $currentDateTime->diff($bookingStartDateTime);
     $hoursDifference = $interval->h + ($interval->days * 24); // Convert days to hours and add to hour difference
-
+    $md =false;
     // Step 4: Check if the hoursDifference matches with any 'hour' value and add respective charges
     foreach ($expeditedData as $expeditedItemArray) {
       foreach ($expeditedItemArray as $expeditedItem) {

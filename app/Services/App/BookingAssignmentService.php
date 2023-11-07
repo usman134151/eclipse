@@ -22,6 +22,7 @@ use App\Models\Tenant\StandardRate;
 use App\Models\Tenant\BookingInvitation;
 use App\Models\Tenant\BookingInvitationProvider;
 use App\Models\Tenant\Specialization;
+
 use Auth;
 use Carbon\Carbon;
 use App\Helpers\GlobalFunctions;
@@ -126,33 +127,7 @@ class BookingAssignmentService
        
         
         if($operation=='auto_assign'){
-            $durationData=SELF::getDurations($service_id,$serviceData,$booking_service,$booking);
-            $aAproviders=[];
-            $providers=SELF::getProviderCharges($service_id,$booking_service,$durationData['specializations'],$providers,$assignedProviders,$durationData,$serviceData);
-            $assignedProviderIds = collect($assignedProviders)->pluck('provider_id')->toArray();
-            foreach($providers as $index=>$provider){
-                
-                if($index<=$booking_service['provider_count'] && (count($assignedProviders)+count($aAproviders))<$booking_service['provider_count'])
-                {
-                    if(!in_array($provider['id'],$assignedProviderIds)){
-                        $aAproviders[] = [
-                            'provider_id' => $provider['id'],
-                            'additional_label_provider' => $providers[$index]['payment_details']['additional_payments']['additional_label_provider'],
-                            'additional_charge_provider' => $providers[$index]['payment_details']['additional_payments']['additional_charge_provider'],
-                            "is_override_price" => 0,
-                            "additional_payments" => $providers[$index]['payment_details']['additional_payments'],
-                            "service_payment_details" => $providers[$index]['payment_details']['service_payment_details'],
-                            "total_amount" => $providers[$index]['total_amount']
-                
-                        ];
-
-                    }
-
-                }
-
-            }
-            
-            SELF::assignProviders($booking_service['provider_count'],$assignedProviders,$aAproviders,$bookingId,$booking_service,$booking);
+           
            
         }
         else{
@@ -162,7 +137,7 @@ class BookingAssignmentService
         return $providers;
     }
 
-    public static function getProviderCharges($serviceId,$service,$specializations,$providers,$assignedProviders,$durationData,$serviceData)
+    public static function getProviderCharges($serviceId,$service,$specializations,$provider,$assignedProviders,$durationData,$serviceData)
     {
 
         $paymentData=["additional_label_provider" => '', "additional_charge_provider" => 0];
@@ -177,7 +152,7 @@ class BookingAssignmentService
 
             $providersPayment = [];
 
-            foreach ($providers as $index => &$provider) {
+          
                 //check if provider is assigned provider
                 $assigned=false;
                 $specializationRate=SpecializationRate::where('user_id',$provider['id'])->where('accommodation_service_id',$serviceId)->get();
@@ -193,13 +168,13 @@ class BookingAssignmentService
                 }
                 if(!$assigned){
                 //else fetch and set custom rates
-                $providersPayment[$index]['additional_payments']=$paymentData;
+                $providersPayment['additional_payments']=$paymentData;
                 $standardRate=StandardRate::where('accommodation_service_id',$serviceId)->where('user_id',$provider['id'])->first();
              //  dd($standardRate);
                 $expedited_hours=0;
                 if($standardRate){
                   
-                    $providersPayment[$index]['service_payment_details']=[
+                    $providersPayment['service_payment_details']=[
                         'b_hours_duration' => $durationData['b_hours_duration'],
                         'b_hours_rate' =>$standardRate['hours_price'.$postFix] ,
                         'a_hours_duration' => $durationData['a_hours_duration'],
@@ -215,15 +190,15 @@ class BookingAssignmentService
                     if (isset($booking_service['service_calculations']['day_rate']) && $booking_service['service_calculations']['day_rate']==true) {
                         $rateCol="day_rate_price";
                        
-                        $providersPayment[$index]['service_payment_details']['rate']=$standardRate[$rateCol.$postFix];
-                        $providersPayment[$index]['service_payment_details']['day_rate']=true;
+                        $providersPayment['service_payment_details']['rate']=$standardRate[$rateCol.$postFix];
+                        $providersPayment['service_payment_details']['day_rate']=true;
                            
                     }
                     elseif($serviceData['rate_status']==4){
                        
                         $rateCol="fixed_rate";
-                        $providersPayment[$index]['service_payment_details']['rate']=$standardRate[$rateCol.$postFix];
-                        $providersPayment[$index]['service_payment_details']['fixed_rate']=true;
+                        $providersPayment['service_payment_details']['rate']=$standardRate[$rateCol.$postFix];
+                        $providersPayment['service_payment_details']['fixed_rate']=true;
 
                     }
 
@@ -234,7 +209,7 @@ class BookingAssignmentService
                                 $spCharge=json_decode($spRate['specialization_rate'.$postFix],true);
                              
                                 if(!is_null($spCharge) && key_exists('price',$spCharge[0]));
-                                $providersPayment[$index]['service_payment_details']['specialization_charges'][$skey]['provider_charges']=(float)$spCharge[0]['price'];
+                                $providersPayment['service_payment_details']['specialization_charges'][$skey]['provider_charges']=(float)$spCharge[0]['price'];
                             }
                         }
                     }
@@ -245,7 +220,7 @@ class BookingAssignmentService
                 else{
                     //zero rate assignment
                
-                    $providersPayment[$index]['service_payment_details']=[
+                    $providersPayment['service_payment_details']=[
                         'b_hours_duration' => $durationData['b_hours_duration'],
                         'b_hours_rate' =>0 ,
                         'a_hours_duration' => $durationData['a_hours_duration'],
@@ -260,20 +235,20 @@ class BookingAssignmentService
                     ];
                     if (isset($booking_service['service_calculations']['day_rate']) && $booking_service['service_calculations']['day_rate']==true) {
                         $rateCol="day_rate";
-                        $providersPayment[$index]['service_payment_details']['rate']=0;
-                        $providersPayment[$index]['service_payment_details']['day_rate']=true;
+                        $providersPayment['service_payment_details']['rate']=0;
+                        $providersPayment['service_payment_details']['day_rate']=true;
                            
                     }
                     elseif($serviceData['rate_status']==4){
                         $rateCol="fixed_rate_price";
-                        $providersPayment[$index]['service_payment_details']['rate']=0;
-                        $providersPayment[$index]['service_payment_details']['fixed_rate']=true;
+                        $providersPayment['service_payment_details']['rate']=0;
+                        $providersPayment['service_payment_details']['fixed_rate']=true;
 
                     }
                 }
 
-                $provider['total_amount'] = SELF::updateTotal($index,$providersPayment,$specializations);
-                $provider['payment_details']=  $providersPayment[$index];
+                $provider['total_amount'] = SELF::updateTotal($providersPayment,$specializations);
+                $provider['payment_details']=  $providersPayment;
                 }
 
             
@@ -281,40 +256,40 @@ class BookingAssignmentService
             
          
 
-        }
+        
    
-        return $providers;
+        return $provider;
     }
-    public static function updateTotal($index,$providersPayment,$booking_specializations){
-        if ($providersPayment[$index]['service_payment_details']['day_rate']==true) {
+    public static function updateTotal($providersPayment,$booking_specializations){
+        if ($providersPayment['service_payment_details']['day_rate']==true) {
                
-            $subTotal=(float)$providersPayment[$index]['service_payment_details']['rate']*$providersPayment[$index]['service_payment_details']['total_duration'];
+            $subTotal=(float)$providersPayment['service_payment_details']['rate']*$providersPayment['service_payment_details']['total_duration'];
          
         }
-        elseif ($providersPayment[$index]['service_payment_details']['fixed_rate']==true) {
+        elseif ($providersPayment['service_payment_details']['fixed_rate']==true) {
            
-            $subTotal=(float)$providersPayment[$index]['service_payment_details']['rate'];
+            $subTotal=(float)$providersPayment['service_payment_details']['rate'];
          
         }
         else{
-            $subTotal=($providersPayment[$index]['service_payment_details']['b_hours_rate'] * $providersPayment[$index]['service_payment_details']['b_hours_duration']) + ($providersPayment[$index]['service_payment_details']['a_hours_rate'] * $providersPayment[$index]['service_payment_details']['a_hours_duration']);
+            $subTotal=($providersPayment['service_payment_details']['b_hours_rate'] * $providersPayment['service_payment_details']['b_hours_duration']) + ($providersPayment['service_payment_details']['a_hours_rate'] * $providersPayment['service_payment_details']['a_hours_duration']);
         }
    
-        $providersPayment[$index]['total_amount'] =  number_format($subTotal+ ($providersPayment[$index]['service_payment_details']['expedited_rate'] * $providersPayment[$index]['service_payment_details']['expedited_duration']), 2, '.', '');
+        $providersPayment['total_amount'] =  number_format($subTotal+ ($providersPayment['service_payment_details']['expedited_rate'] * $providersPayment['service_payment_details']['expedited_duration']), 2, '.', '');
 
 
-    if (count($providersPayment[$index]['additional_payments']) && key_exists('additional_charge_provider',$providersPayment[$index]['additional_payments'])) {
-        //foreach ($providersPayment[$index]['additional_payments'] as $key => $payment) {
-            $providersPayment[$index]['total_amount'] = $providersPayment[$index]['total_amount']
-                + $providersPayment[$index]['additional_payments']['additional_charge_provider'] ?? 0;
+    if (count($providersPayment['additional_payments']) && key_exists('additional_charge_provider',$providersPayment['additional_payments'])) {
+        //foreach ($providersPayment['additional_payments'] as $key => $payment) {
+            $providersPayment['total_amount'] = $providersPayment['total_amount']
+                + $providersPayment['additional_payments']['additional_charge_provider'] ?? 0;
         //}
     }
 
 
     if (count($booking_specializations)) {
-        if(key_exists('specialization_charges',$providersPayment[$index]['service_payment_details'])){
-            foreach ($providersPayment[$index]['service_payment_details']['specialization_charges'] as $key => $specialization) {
-                $providersPayment[$index]['total_amount'] = $providersPayment[$index]['total_amount'] + $providersPayment[$index]['service_payment_details']['specialization_charges'][$key]['provider_charges'] ?? 0;
+        if(key_exists('specialization_charges',$providersPayment['service_payment_details'])){
+            foreach ($providersPayment['service_payment_details']['specialization_charges'] as $key => $specialization) {
+                $providersPayment['total_amount'] = $providersPayment['total_amount'] + $providersPayment['service_payment_details']['specialization_charges'][$key]['provider_charges'] ?? 0;
             }
         }
 
@@ -327,10 +302,10 @@ class BookingAssignmentService
 
 
 
-    return $providersPayment[$index]['total_amount'];
+    return $providersPayment['total_amount'];
     }
 
-    public static function assignProviders($limit,$assignedProviders,$providers,$booking_id,$booking_service,$booking)
+    public static function assignProvider($limit,$assignedProviders,$provider,$booking_id,$booking_service,$booking)
     {
 
        
@@ -340,7 +315,7 @@ class BookingAssignmentService
 
             $data = null;
 
-            foreach ($providers as $provider) {
+           
               
                 $user          = User::find($provider['provider_id']);
                 $assigned=false;
@@ -391,7 +366,7 @@ class BookingAssignmentService
             Booking::where('id', $booking_id)->update(['status' => $status]);
 
            
-        }
+        
     }
 
     public static function inviteProviders($booking_id,$service_id,$booking_service,$assignedProviders,$booking)
@@ -512,6 +487,54 @@ class BookingAssignmentService
             return ['totalAmount'=>$totalAmount,'durationLabel'=>$durationLabel,'durationTotal'=>$durationTotal,'b_hours_duration'=>$b_hours_duration,'a_hours_duration'=>$a_hours_duration,'specializations'=>$specializations];
        
     }
+    public static function checkAutoAssign($invitationId,$bookingId,$providerId){
+        $inviteData=BookingInvitation::where('id',$invitationId)->first();
+        $serviceId=$inviteData->service_id; //getting service id
+        $booking=BOOKING::where('id',$bookingId)->with('services','booking_services','payment')->first();
+       
+        $booking_service=$booking->booking_services->where('services', $serviceId)->first();
+      
+        if($booking_service['auto_assign']){
+            $serviceData=$booking->services->where('id', $serviceId)->first();
+            //if auto-assign then check if space is available and provider is not already assigned
+            $aAproviders=[];
+            $assignedProviders = BookingProvider::where(['booking_id' => $bookingId, 'booking_service_id' => $serviceId])
+            ->get()->toArray();
+           
+            //assign provider   
+                if(count($assignedProviders)<$booking_service['provider_count'])
+                {
+                    $assignedProviderIds = collect($assignedProviders)->pluck('provider_id')->toArray();
+                    if(!in_array($providerId,$assignedProviderIds)){
+                        $durationData=SELF::getDurations($serviceId,$serviceData,$booking_service,$booking);  //if yes then get booking data  getDurations($service_id,$serviceData,$booking_service,$booking)
+                       
+                        $provider=SELF::getProviderCharges($serviceId,$booking_service,$durationData['specializations'],['id'=>$providerId],$assignedProviders,$durationData,$serviceData,$providerId); //get charges
+                      
+                        $aAprovider = [
+                            'provider_id' => $provider['id'],
+                            'additional_label_provider' => $provider['payment_details']['additional_payments']['additional_label_provider'],
+                            'additional_charge_provider' => $provider['payment_details']['additional_payments']['additional_charge_provider'],
+                            "is_override_price" => 0,
+                            "additional_payments" => $provider['payment_details']['additional_payments'],
+                            "service_payment_details" => $provider['payment_details']['service_payment_details'],
+                            "total_amount" => $provider['total_amount']
+                
+                        ];
+                       
+                        SELF::assignProvider($booking_service['provider_count'],$assignedProviders,$aAprovider,$bookingId,$booking_service,$booking,$providerId);
+                    }
+    
+                }
+        }
+       
 
+        
+        
+       
+
+
+
+
+    }
 
 }
