@@ -187,6 +187,7 @@ class BookingAssignmentService
                         'fixed_rate'=>false
                        
                     ];
+                    dd($providersPayment);
                     if (isset($booking_service['service_calculations']['day_rate']) && $booking_service['service_calculations']['day_rate']==true) {
                         $rateCol="day_rate_price";
                        
