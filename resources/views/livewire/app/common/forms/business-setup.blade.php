@@ -114,7 +114,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
-                                                <h3>Choose Portal Default Colours</h3>
+                                                <h3>Choose Portal Light Theme Colours</h3>
                                                 <div class="row gap-0 row-gap-3">
                                                     <div class="choose-portal-colors">
                                                         <div class="row">
@@ -145,6 +145,48 @@
                                                                 <div class="choosen-color">
                                                                     <input type="color"
                                                                         wire:model.defer="configuration.foreground_colour"
+                                                                        class="form-control form-control-color border-0 p-0 w-100 h-100"
+                                                                        id="PortalForegroundColour" value=""
+                                                                        title="Choose your color">
+                                                                </div>
+                                                                <label class="form-label-sm">Choose Colour</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <h3>Choose Portal Dark Theme Colours</h3>
+                                                <div class="row gap-0 row-gap-3">
+                                                    <div class="choose-portal-colors">
+                                                        <div class="row">
+                                                            <div class="col-12 col-md-3 col-lg-5 col-xl-4 mb-1 mb-md-0">
+                                                                <label class="form-label-sm">Default Colour</label>
+                                                            </div>
+                                                            <div
+                                                                class="d-flex align-items-center col-12 col-md-8 col-lg-7 col-xl-8">
+                                                                <div class="choosen-color">
+                                                                    <input type="color"
+                                                                        wire:model.defer="configuration.dark_default_colour"
+                                                                        class="form-control form-control-color border-0 p-0 w-100 h-100"
+                                                                        id="PortalDefaultColour" value=""
+                                                                        title="Choose your color">
+                                                                </div>
+                                                                <label class="form-label-sm">Choose Colour</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="choose-portal-colors">
+                                                        <div class="row">
+                                                            <div
+                                                                class="col-12 col-md-3 col-lg-5 col-xl-4 mb-1 mb-md-0">
+                                                                <label class="form-label-sm">Foreground Color</label>
+                                                            </div>
+                                                            <div
+                                                                class="d-flex align-items-center col-12 col-md-8 col-lg-7 col-xl-8">
+                                                                <div class="choosen-color">
+                                                                    <input type="color"
+                                                                        wire:model.defer="configuration.dark_foreground_colour"
                                                                         class="form-control form-control-color border-0 p-0 w-100 h-100"
                                                                         id="PortalForegroundColour" value=""
                                                                         title="Choose your color">
