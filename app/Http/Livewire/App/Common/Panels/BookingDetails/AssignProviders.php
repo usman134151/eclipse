@@ -716,8 +716,9 @@ class AssignProviders extends Component
                 $user          = User::find($unassign_prov);
 
                 $templateId = getTemplate('Booking: Provider Unassigned', 'email_template');
-
+               
                 if (isset($provider) && !in_array($provider['provider_id'], $previousAssigned)) {
+                   
                     $params = [
                         'email'       =>  $user->email, //
                         'user'        =>  $user->name,
@@ -737,7 +738,7 @@ class AssignProviders extends Component
                     callLogs($this->booking->id,'assign','assigned',"Provider '".$user->name."' unassigned from booking");
                 }
             }
-            BookingProvider::whereIn('provider_id', $previousAssigned)->delete();
+            BookingProvider::whereIn('provider_id', $previousAssigned)->where('booking_id',$this->booking_id)->where('booking_service_id',$booking_service->id)->delete();
 
 
             if ($this->limit == count($this->assignedProviders))

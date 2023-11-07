@@ -81,7 +81,7 @@ class Unassign extends Component
         $message="Provider '".$user->name."' unassigned from booking";
         if($this->data['unassign_reason'])
            $message.=' (Reason: '.$this->data['unassign_reason'].')';
-        callLogs($this->booking_id,'assign','assigned',$message);
+        callLogs($this->booking_id,'unassign','unassigned',$message);
         BookingAssignmentService::reTriggerAutoAssign( $this->booking_id,$this->booking_service_id);
         //add check for booking_status update
         $this->emit('showConfirmation', 'Provider Assignment has been revoked successfully');
