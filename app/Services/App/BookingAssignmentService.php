@@ -447,6 +447,7 @@ class BookingAssignmentService
                         $expedited_hours = $booking_service['service_calculations']['expedited_charges']['hour'];
                 }
                 // dd($booking_service['service_calculations']);
+                $specializations=[];
                 if (isset($booking_service['service_calculations']['specialization_charges']) && count($booking_service['service_calculations']['specialization_charges'])) {
                     $bspecializations= $booking_service['specialization'];//$booking_service['service_calculations']['specialization_charges'];
                    
