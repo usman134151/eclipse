@@ -22,7 +22,7 @@ class NotificationService{
         return $notification;
     }
 
-    public static function sendNotification($triggerName,$data){
+    public static function sendNotification($triggerName,$data,$triggerType=6){
         //get notification trigger 
      
         
@@ -33,7 +33,7 @@ class NotificationService{
         $templateName=trim($parts[0]);
         
         foreach($notificationData as $notification){
-            $notification['trigger_type_id']=6;
+            $notification['trigger_type_id']=$triggerType;
             //get list of users to send notification to
             $notification['notification_template_roles']=SELF::getUsers($notification['notification_template_roles'],$notification['trigger_type_id'],$data['bookingData'],$admin);
 
