@@ -92,7 +92,7 @@
                                       </th>
                                       <th scope="col">Provider</th>
                                       @if (!$isProviderPanel)
-                                          <th scope="col">Additional Pay</th>
+                                          {{-- <th scope="col">Additional Pay</th> --}}
                                           <th scope="col" class="text-center">Additional Pay</th>
                                           <th scope="col" class="text-center">Time Paid</th>
                                           <th scope="col" class="text-center">Total Payment</th>
@@ -126,10 +126,12 @@
                                                   </div>
                                               </td>
                                               @if (!$isProviderPanel)
-                                                  <td class="align-middle">
+                                                  {{-- <td class="align-middle">
                                                       {{ $provider['additional_label_provider'] ?? 'N/A' }}
-                                                  </td>
+                                                  </td> --}}
                                                   <td class="text-center align-middle">
+                                                    <div class="font-family-secondary leading-none">
+                                                        {{ $provider['additional_label_provider'] ?? '' }}</div> 
                                                       {{ $provider['additional_charge_provider'] ?numberFormat($provider['additional_charge_provider']) : 'N/A' }}
                                                   </td>
                                                   <td class="text-center align-middle">

@@ -34,10 +34,14 @@
 
             <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box">
                 <div class="featured-image mb-3" >
-                <object data="/tenant-resources/images/eclipse_logo.svg" type="image/svg+xml" width="100%">
+                  @if($login_screen)
+                    <img src="{{$login_screen}}" alt="">
+                  @else
+                    <object data="/tenant-resources/images/eclipse_logo.svg" type="image/svg+xml" width="100%">
                         <!-- Your fallback content if the browser doesn't support SVG -->
                         <img src="your-fallback-image.png" alt="Fallback Image">
                     </object>
+                  @endif
                 </div>
             </div>
             <div class="col-md-6 right-box l">
