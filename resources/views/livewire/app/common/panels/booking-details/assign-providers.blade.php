@@ -39,6 +39,9 @@
      </div><!-- END: Filters -->
      <!-- BEGIN: Filter Table -->
      @if ($limit && ($panelType == 1 || $panelType == 3))
+         <div style="position: fixed;bottom: 18px;right: 44px;text-align: right;z-index:-10000">
+            <span> Click Save to save changes </span>
+         </div>
          <div style="position: fixed;bottom: 24px;right: 44px;text-align: right;z-index:-10000">
              <span> Required Providers : {{ $limit }} </span> |
              <span class="d-inline-block  mt-2"
