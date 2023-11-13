@@ -60,7 +60,7 @@ class BookingList extends Component
 	protected $listeners = [
 		'showList' => 'resetForm', 'updateVal', 'showConfirmation',
 		'openAssignProvidersPanel', 'assignServiceProviders', 'setAssignmentDetails', 'showCheckInPanel',
-		'showCheckOutPanel', 'delete' => 'deleteBooking'
+		'showCheckOutPanel', 'delete' => 'deleteBooking', 'refreshFilters'
 	];
 	public $serviceTypes = [
 		'1' => ['class' => 'inperson-rate', 'postfix' => '', 'title' => 'In-Person'],
@@ -433,9 +433,9 @@ class BookingList extends Component
 				$query->where('companies.name', 'LIKE', "%" . $name . "%");
 			});
 		}
-		// if (count($this->tag_names)) {
-		// 	$query->whereJsonContains('tags', $this->tag_names);
-		// }
+		if (count($this->tag_names)) {
+			$query->whereJsonContains('tags', $this->tag_names);
+		}
 		if (count($this->provider_ids)) {
 			$provider_ids = $this->provider_ids;
 			$query->whereHas('booking_provider', function ($query) use ($provider_ids) {
@@ -667,5 +667,12 @@ class BookingList extends Component
 		BookingOperationsService::reinstateBooking($bookingId);
 		$this->emit('showConfirmation', 'Booking status updated successfully');
 
+	}
+
+	public function refreshFilters($name,$value)
+	{
+		if($name=="tags_selected"){
+			$this->tag_names = $value;
+		}
 	}
 }

@@ -124,8 +124,7 @@
                     <label class="form-label" for="tags">Tags
                         <small>(coming soon)</small>
                     </label>
-
-                    <select disabled wire:model.defer="tag_names" data-placeholder="Select Tags" multiple
+                    <select wire:model.defer="tag_names" data-placeholder="Select Tags" multiple
                         class="select2 form-select" tabindex="" id="tags_selected">
                         <option value=""></option>
                         @if (isset($tags))
