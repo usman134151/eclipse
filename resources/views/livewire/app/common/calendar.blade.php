@@ -1,5 +1,5 @@
 <div x-data="{ bookingDetails: false, providerSavedForms: false }">
-    @if (($providerProfile &&  !$providerProfile))
+    @if ($providerProfile && !$providerProfile)
         <div class="" wire:ignore>
             <x-advancefilters type="" :filterProviders="$filterProviders" :hideProvider=$hideProvider />
         </div>
@@ -8,6 +8,7 @@
         <div id='{{ $providerProfile ? 'avail_calendar' : 'calendar' }}'></div>
     </div>
     @include('panels.booking-details.admin-booking-details')
+
     <template x-if="bookingDetails">
         <div>
             @include('modals.admin-staff')
@@ -57,10 +58,11 @@
                     eventDisplay: 'block',
                     eventDidMount: function(info) {
 
-                        //$(info.el).attr('x-on:click', 'bookingDetails = true');
+                        $(info.el).attr('@click', 'assignmentDetails = true');
                         $(info.el).attr('tabindex', '0');
                         // $(info.el).attr('data-id',info.event.id); // When off canvas panel will be dynamic
                         let event = info.event;
+                        $(info.el).attr('wire:click', event.extendedProps.panel_call);
 
                         startDate = moment(event.start).format('MMMM DD, YYYY');
                         let curr_date_moment = moment(event.start).format('YYYY-MM-DD');
@@ -75,6 +77,12 @@
                         // 	// delay: {"show":0, "hide":1000}
                         // });
                     },
+                    eventClick: function(info) {
+                        Livewire.emit(info.event.extendedProps.panel_call)
+
+                    },
+
+
                     //editable: true,
                     //selectable: true,
                     displayEventTime: false,

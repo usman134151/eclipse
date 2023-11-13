@@ -214,7 +214,7 @@
                 </div>
                 <!-- /Buttons -->
                 <h3>Unassigned Assignments</h3>
-                @livewire('app.common.bookings.booking-list', ['bookingType' => "Unassigned", 'showHeader' => false])
+                {{-- @livewire('app.common.bookings.booking-list', ['bookingType' => "Unassigned", 'showHeader' => false]) --}}
                 
             </div>
             <div class="tab-pane fade" id="map-tab-pane" role="tabpanel" aria-labelledby="map-tab" tabindex="0">

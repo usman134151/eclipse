@@ -602,6 +602,7 @@ class BookingList extends Component
 	}
 	public function setAssignmentDetails($booking_id, $bookingNumber = null)
 	{
+		// dd("emit recieved");
 		if ($bookingNumber)
 			$this->bookingNumber = $bookingNumber;
 		// $this->emit('setAssignmentDetails', $booking_id);
