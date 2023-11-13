@@ -1,4 +1,4 @@
-<div x-data="{ bookingDetails: false, providerSavedForms: false }">
+<div x-data="{ bookingDetails: false, providerSavedForms: false , assignmentDetails:false }">
     @if ($providerProfile && !$providerProfile)
         <div class="" wire:ignore>
             <x-advancefilters type="" :filterProviders="$filterProviders" :hideProvider=$hideProvider />
@@ -8,6 +8,7 @@
         <div id='{{ $providerProfile ? 'avail_calendar' : 'calendar' }}'></div>
     </div>
     @include('panels.booking-details.admin-booking-details')
+    @include('panels.common.assignment-details')
 
     <template x-if="bookingDetails">
         <div>
@@ -78,7 +79,10 @@
                         // });
                     },
                     eventClick: function(info) {
+                        console.log("should emit = ", info.event.extendedProps.panel_call);
                         Livewire.emit(info.event.extendedProps.panel_call)
+
+                        {{-- Livewire.emit('setAssignmentDetails') --}}
 
                     },
 

@@ -62,7 +62,7 @@
                     </div>
                 </a>
             </li>
-            <li class="" role="presentation">
+            {{-- <li class="" role="presentation">
                 <a class="dashborad-block" id="available-assignments" data-bs-toggle="tab"
                     data-bs-target="#available-assignments-pane" type="button" role="tab"
                     aria-controls="available-assignments-pane" aria-selected="false">
@@ -88,7 +88,7 @@
                         <!--<div class="text-center block-number">50</div>-->
                     </div>
                 </a>
-            </li>
+            </li> --}}
             <li class="" role="presentation">
                 <a class="dashborad-block" id="map-tab" data-bs-toggle="tab" data-bs-target="#map-tab-pane"
                     type="button" role="tab" aria-controls="map-tab-pane" aria-selected="false">
@@ -193,6 +193,10 @@
                             <a href="/provider/bookings/cancelled"
                                 class="btn btn-xs btn-inactive rounded">Cancelled</a>
                         </div>
+                                                <div class="mb-4 mb-lg-0">
+                            <a href="/provider/bookings/invitations"
+                                class="btn btn-xs btn-inactive rounded">Invited</a>
+                        </div>
                     </div>
 
                     <!-- Begin : show button on conditional basis -->
@@ -204,7 +208,7 @@
                 @livewire('app.common.bookings.booking-list', ['bookingType' => "Today's", 'showHeader' => false])
 
             </div>
-            <div class="tab-pane fade" id="available-assignments-pane" role="tabpanel"
+            {{-- <div class="tab-pane fade" id="available-assignments-pane" role="tabpanel"
                 aria-labelledby="available-assignments" tabindex="0">
                 <h3>Assignment List</h3>
                 <!-- Buttons -->
@@ -214,9 +218,9 @@
                 </div>
                 <!-- /Buttons -->
                 <h3>Unassigned Assignments</h3>
-                {{-- @livewire('app.common.bookings.booking-list', ['bookingType' => "Unassigned", 'showHeader' => false]) --}}
+                @livewire('app.common.bookings.booking-list', ['bookingType' => "Unassigned", 'showHeader' => false])
                 
-            </div>
+            </div> --}}
             <div class="tab-pane fade" id="map-tab-pane" role="tabpanel" aria-labelledby="map-tab" tabindex="0">
                 @livewire('app.common.map')
             </div>
