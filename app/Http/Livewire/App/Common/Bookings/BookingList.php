@@ -615,6 +615,7 @@ class BookingList extends Component
 			$this->ad_counter = 0;
 			$this->providerPanelType = 3;
 		}
+
 	}
 
 	// END : provider panel functions
