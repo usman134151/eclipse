@@ -12,5 +12,10 @@ class Dashboard extends Component
 	}
 
 	public function mount()
-	{}
+	{
+
+
+		$this->dispatchBrowserEvent('refreshSelects');
+		$this->dispatchBrowserEvent('refreshSelects2');
+	}
 }
