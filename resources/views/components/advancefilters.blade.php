@@ -122,7 +122,7 @@
                 </div>
                 <div class="col-lg-5 pe-lg-3 mb-5">
                     <label class="form-label" for="tags">Tags
-                        <small>(coming soon)</small>
+                        {{-- <small>(coming soon)</small> --}}
                     </label>
                     <select wire:model.defer="tag_names" data-placeholder="Select Tags" multiple
                         class="select2 form-select" tabindex="" id="tags_selected">
