@@ -16,7 +16,7 @@ use Livewire\Component;
 
 class Calendar extends Component
 {
-	public $events = [], $model_id = 0, $model_type = 0, $providerProfile = false, $hideProvider = false, $customerProfile = false, $companyProfile = false, $departmentProfile = false , $department_id = null;
+	public $events = [], $model_id = 0, $model_type = 0, $providerProfile = false, $hideProvider = false, $customerProfile = false, $companyProfile = false, $departmentProfile = false, $department_id = null;
 	public $holidays = [], $specific = [], $user_id = null;
 
 	//adv filter variables
@@ -25,7 +25,6 @@ class Calendar extends Component
 	public $tags = [], $filterProviders = [], $isCustomer = false;
 
 	protected $listeners = ['refreshCalendar' => 'refreshEvents', 'updateVal'];
-
 
 	public function render()
 	{
@@ -261,8 +260,8 @@ class Calendar extends Component
 		$newEvents = [];
 		// $count = 0;
 		$base = '/admin';
-		if($this->isCustomer)
-		$base = '/customer';
+		if ($this->isCustomer)
+			$base = '/customer';
 
 
 		foreach ($events as $key => $event) {
@@ -276,7 +275,11 @@ class Calendar extends Component
 
 			$newEvents[$key]['start'] = $booking_start_at;
 			$newEvents[$key]['end'] = $booking_end_at;
-			$newEvents[$key]['url'] = $base.'/bookings/view-booking/' . encrypt($id);
+			if (session()->get('isProvider'))
+				$newEvents[$key]['panel_call'] = "'setAssignmentDetails'," . $id . ",'" . $booking_number . "'";
+			else
+				$newEvents[$key]['url'] = $base . '/bookings/view-booking/' . encrypt($id);
+
 
 			// End of update by Sohail Asghar
 
