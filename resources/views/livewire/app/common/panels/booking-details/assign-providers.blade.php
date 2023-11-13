@@ -130,7 +130,7 @@
                                          @endif
                                      </div>
                                      <div class="pt-2">
-                                         <div class="font-family-secondary leading-none">{{ $provider->name }} {{ $provider->id }}</div>
+                                         <div class="font-family-secondary leading-none">{{ $provider->name }}</div>
                                          <a href="#"
                                              class="font-family-secondary text-sm"><small>{{ $provider->email }}</small></a>
                                          <div class="text-sm">{{ $provider->city ? $provider->city . ', ' : '' }}
