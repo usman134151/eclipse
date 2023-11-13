@@ -87,19 +87,19 @@
                                                     {{ $booking['booking_title'] ? $booking['booking_title'] : 'N/A' }}
                                                 </div>
                                             </div>
-                                            <small>(coming soon)</small>
+                                            
 
                                             <div>
                                                 <label class="form-label text-primary">Days Pending</label>
-                                                <div class="font-family-tertiary value">05 Days</div>
+                                                <div class="font-family-tertiary value">{{$booking['daysPending']}} Days</div>
                                             </div>
                                         </div>
                                         <div class="col-lg col-12 mb-4">
-                                            <small>(coming soon)</small>
+                                            {{-- <small>(coming soon)</small> --}}
 
                                             <div class="mb-4">
                                                 <label class="form-label text-primary">Days Until Service</label>
-                                                <div class="font-family-tertiary value">10 Days</div>
+                                                <div class="font-family-tertiary value">{{$booking['days_until_service']}} Days</div>
                                             </div>
 
                                             <div class="d-flex gap-3 align-items-center">
@@ -133,13 +133,13 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg col-12 mb-4">
+                                        {{-- <div class="col-lg col-12 mb-4">
                                             <div class="mb-4">
-                                                <small>(coming soon)</small>
-                                                <label class="form-label text-primary">Pending Details
+                                               
+                                                <label class="form-label text-primary">Pending Details <small>(coming soon)</small>
                                                 </label>
                                                 <div class="d-flex flex-column gap-1">
-
+                                               
                                                     <div class="font-family-tertiary value">
                                                         Requests from Users
                                                     </div>
@@ -148,7 +148,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
 
                                     </div>
                                     <div class="row">
@@ -522,8 +522,8 @@
                                                                 <input class="form-check-input" type="checkbox"
                                                                     role="switch" id="AutoNotifyBroadcast"
                                                                     checked="" aria-label="Auto-notify Broadcast"
-                                                                    value="true"
-                                                                    wire:model.defer="services.0.auto_notify">
+                                                                    value="1"
+                                                                    wire:model.defer="booking_services.{{$index}}.auto_notify" wire:click="updateServiceSettings('auto_notify',{{$index}})">
                                                                 <label class="form-check-label"
                                                                     for="AutoNotifyBroadcast">Manual-notify</label>
                                                                 <label class="form-check-label"
@@ -540,8 +540,8 @@
                                                                 <input class="form-check-input" type="checkbox"
                                                                     role="switch" id="ManualAssignAssign"
                                                                     checked="" aria-label="Auto assign"
-                                                                    value="true"
-                                                                    wire:model.defer="services.0.auto_assign">
+                                                                    value="1"
+                                                                    wire:model.defer="booking_services.{{$index}}.auto_assign" wire:click="updateServiceSettings('auto_assign',{{$index}})">
                                                                 <label class="form-check-label"
                                                                     for="ManualAssignAssign">Manual-assign</label>
                                                                 <label class="form-check-label"
@@ -696,7 +696,7 @@
                                                                             N/A
                                                                         @endif
                                                                     </div>
-                                                                    <a href="#"
+                                                                    {{-- <a href="#"
                                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                         <svg aria-label="Edit" width="20"
                                                                             height="20" viewBox="0 0 20 20">
@@ -705,7 +705,7 @@
                                                                             </use>
                                                                         </svg>
 
-                                                                    </a>
+                                                                    </a> --}}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -815,21 +815,17 @@
                                                                             N/A
                                                                         @endif
                                                                     </div>
-                                                                    <a href="#"
+                                                                    {{-- <a href="#"
                                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon"
                                                                         data-bs-toggle="modal"
                                                                         data-bs-target="#MeetingLinksModal">
-                                                                        {{-- Updated by Shanila to Add
-                                                            svg icon --}}
                                                                         <svg aria-label="Edit" width="20"
                                                                             height="20" viewBox="0 0 20 20">
                                                                             <use
                                                                                 xlink:href="/css/common-icons.svg#pencil">
                                                                             </use>
                                                                         </svg>
-                                                                        {{-- End of update by Shanila
-                                                            --}}
-                                                                    </a>
+                                                                    </a> --}}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -850,19 +846,17 @@
 
 
                                                                     </div>
-                                                                    <a href="#"
+                                                                    {{-- <a href="#"
                                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                        {{-- Updated by Shanila to Add
-                                                            svg icon --}}
+                                                                        
                                                                         <svg aria-label="Edit" width="20"
                                                                             height="20" viewBox="0 0 20 20">
                                                                             <use
                                                                                 xlink:href="/css/common-icons.svg#pencil">
                                                                             </use>
                                                                         </svg>
-                                                                        {{-- End of update by Shanila
-                                                            --}}
-                                                                    </a>
+                                                                
+                                                                    </a> --}}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -963,7 +957,7 @@
                                                                         <div class="font-family-tertiary">
                                                                             {{ $field['data_value'] ? $field['data_value'] : 'N/A' }}
                                                                         </div>
-                                                                        <a href="#"
+                                                                        {{-- <a href="#"
                                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon">
 
                                                                             <svg aria-label="Edit" width="20"
@@ -973,7 +967,7 @@
                                                                                 </use>
                                                                             </svg>
 
-                                                                        </a>
+                                                                        </a> --}}
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1036,17 +1030,29 @@
                                                 <!-- Tags -->
                                                 <div class="" @if ($isCustomer) hidden @endif">
 
-                                                    <label class="form-label">
+                                                    <label class="form-label" for="tags">
                                                         Tags
                                                     </label>
-                                                    <select x-cloak="" id="select">
+
+                                                    <select multiple class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="tags-select" aria-label="Select Tags">
+                                                        @foreach ($allTags as $tag)
+                                                            <option
+                                                                {{ in_array($tag, $tags) ? 'selected' : '' }}
+                                                                value="{{ $tag }}">
+                                                                {{ $tag }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <input type="hidden" name="tags-holder"
+                                                        id="tags-holder" wire:model.defer="tags">
+
+                                                    {{-- <select x-cloak="" id="select">
                                                         <option value="1">Option 1</option>
                                                         <option value="2">Option 2</option>
                                                         <option value="3">Option 3</option>
                                                         <option value="4">Option 4</option>
                                                         <option value="5">Option 5</option>
-                                                    </select>
-                                                    <small>(coming soon)</small>
+                                                    </select> --}}
+                                                    {{-- <small>(coming soon)</small> --}}
 
                                                     <!-- Error needed to be fixed, commented out for now
                                                 <div x-data="dropdown()" x-init="loadOptions()"
@@ -1266,30 +1272,30 @@
                                                     </div>
                                                 </div>-->
                                                     <div class="d-lg-flex flex-wrap gap-3 mb-3">
-                                                        <div class="tag">@admin_company</div>
-                                                        <div class="tag">@booking_start_at</div>
-                                                        <div class="tag">@consumer</div>
-                                                        <div class="tag">@booking_end_at</div>
-                                                        <div class="tag">@booking_duration</div>
+                                                        {{-- @if(!is_null($tags))
+                                                            @foreach ($tags as $tag)
+                                                                <div class="tag">{{$tag}}</div>    
+                                                            @endforeach
+                                                        @endif --}}
                                                     </div>
                                                     <div>
                                                         <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" id="Requester"
-                                                                name="" type="checkbox" tabindex="">
+                                                            <input wire:model="Requester" wire:change="updateBookingTags" class="form-check-input" id="Requester"
+                                                                name="" type="checkbox" tabindex="" >
                                                             <label class="form-check-label" for="Requester">
                                                                 Requester
                                                             </label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" id="ServiceConsumers"
-                                                                name="" type="checkbox" tabindex="">
+                                                            <input wire:model="Consumer"  wire:change="updateBookingTags" class="form-check-input" id="ServiceConsumers"
+                                                                name="" type="checkbox" tabindex="" >
                                                             <label class="form-check-label" for="ServiceConsumers">
                                                                 Service Consumer(s)
                                                             </label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" id="Participants"
-                                                                name="" type="checkbox" tabindex="">
+                                                            <input wire:model="Participant" wire:change="updateBookingTags" class="form-check-input" id="Participants"
+                                                                name="" type="checkbox" tabindex="" >
                                                             <label class="form-check-label" for="Participants">
                                                                 Participant(s)
                                                             </label>
@@ -1300,7 +1306,7 @@
                                             </div>
                                             <div class="col-lg-12">
                                                 <a href="#" class="btn btn-primary rounded"
-                                                    wire:click="updateNotes">Save Notes</a>
+                                                    wire:click="updateNotes">Update</a>
                                             </div>
                                         </div>
                                     </div>
@@ -1467,11 +1473,54 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-9">
-                                                    <label class="form-label mb-md-0">Cancel/Modify/Reschedule Fees
-                                                        (list):</label>
+                                                    <label class="form-label mb-md-0">Modifications charges:</label>
                                                 </div>
                                                 <div class="col-md-3 align-self-center">
-                                                    <div class="font-family-tertiary">$00.00</div>
+                                                    <div class="font-family-tertiary">
+                                                        @if (!is_null($booking['payment']) && !is_null($booking['payment']['modification_fee']))
+                                                            {{ formatPayment($booking['payment']['modification_fee']) }}
+                                                        @else
+                                                            N/A
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <hr class="border-separate-sm">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-9">
+                                                    <label class="form-label mb-md-0">Rescheduling charges:</label>
+                                                </div>
+                                                <div class="col-md-3 align-self-center">
+                                                    <div class="font-family-tertiary">
+                                                        @if (!is_null($booking['payment']) && !is_null($booking['payment']['reschedule_booking_charges']))
+                                                            {{ formatPayment($booking['payment']['reschedule_booking_charges']) }}
+                                                        @else
+                                                            N/A
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <hr class="border-separate-sm">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-9">
+                                                    <label class="form-label mb-md-0">Cancellation charges:</label>
+                                                </div>
+                                                <div class="col-md-3 align-self-center">
+                                                    <div class="font-family-tertiary">
+                                                        @if (!is_null($booking['payment']) && !is_null($booking['payment']['cancellation_charges']))
+                                                            {{ formatPayment($booking['payment']['cancellation_charges']) }}
+                                                        @else
+                                                            N/A
+                                                        @endif
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -1484,7 +1533,13 @@
                                                     <label class="form-label mb-md-0">Provider Rate Sum:</label>
                                                 </div>
                                                 <div class="col-md-3 align-self-center">
-                                                    <div class="font-family-tertiary">$00.00</div>
+                                                    <div class="font-family-tertiary">
+                                                        @if(!is_null($data['providerPayments']))
+                                                        {{ formatPayment($data['providerPayments']) }}
+                                                        @else
+                                                            N/A 
+                                                        @endif
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="row @if ($isCustomer) hidden @endif">
@@ -1498,7 +1553,13 @@
                                                         Payments:</label>
                                                 </div>
                                                 <div class="col-md-3 align-self-center">
-                                                    <div class="font-family-tertiary">$00.00</div>
+                                                    <div class="font-family-tertiary">
+                                                        @if(!is_null($data['additionalProviderPayments']))
+                                                        {{ formatPayment($data['additionalProviderPayments']) }}
+                                                        @else
+                                                            N/A 
+                                                        @endif
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="row @if ($isCustomer) hidden @endif">
@@ -1511,7 +1572,13 @@
                                                     <label class="form-label mb-md-0">Profit Margin:</label>
                                                 </div>
                                                 <div class="col-md-3 align-self-center">
-                                                    <div class="font-family-tertiary">$00.00</div>
+                                                    <div class="font-family-tertiary">
+                                                        @if(!is_null($data['profitMargin']))
+                                                        {{ formatPayment($data['profitMargin']) }} ({{$data['profitMarginPercent']}}%)
+                                                        @else
+                                                            N/A 
+                                                        @endif
+                                                    </div>
                                                 </div>
                                             </div>
                                         @endif
@@ -1743,6 +1810,14 @@
             $('#reviewFeedbackModal').modal('hide');
 
         });
+        document.addEventListener("livewire:load", function () {
+        $('#tags-select').select2({tags: false});
+
+        $('#tags-select').on('change', function () {
+        @this.set('tags', $(this).val());
+            });
+        });
+
     </script>
 @endpush
 {{-- @if ($booking->physicalAddress)

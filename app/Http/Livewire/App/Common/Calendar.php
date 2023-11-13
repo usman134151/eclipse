@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\App\Common;
 
 use App\Models\Tenant\Booking;
+use App\Models\Tenant\BookingDepartment;
 use App\Models\Tenant\ProviderSpecificSchedule;
 use App\Models\Tenant\ProviderVacation;
 use App\Models\Tenant\RoleUserDetail;
@@ -15,7 +16,7 @@ use Livewire\Component;
 
 class Calendar extends Component
 {
-	public $events = [], $model_id = 0, $model_type = 0, $providerProfile = false, $hideProvider = false, $customerProfile = false;
+	public $events = [], $model_id = 0, $model_type = 0, $providerProfile = false, $hideProvider = false, $customerProfile = false, $companyProfile = false, $departmentProfile = false , $department_id = null;
 	public $holidays = [], $specific = [], $user_id = null;
 
 	//adv filter variables
@@ -185,7 +186,16 @@ class Calendar extends Component
 		$query = Booking::query();
 		$query->where('bookings.type', 1);
 
-		if ($this->user_id && $this->customerProfile && !$this->isCustomer) {
+		if ($this->companyProfile && $this->user_id) {
+			$query->where('bookings.company_id', $this->user_id); // user id have company id
+
+			if ($this->department_id) {
+				$bookingIds = BookingDepartment::where('department_id', $this->department_id)->get()->pluck('booking_id');
+				$query->whereIn('bookings.id', $bookingIds);
+			}
+		}
+
+		if ($this->user_id && $this->customerProfile) {
 
 			$user = User::find($this->user_id);
 			$query->where('bookings.company_id', $user['company_name']);
@@ -217,7 +227,7 @@ class Calendar extends Component
 			}
 		}
 
-		if ($this->user_id && $this->providerProfile == false && !$this->isCustomer && !$this->customerProfile)
+		if ($this->user_id && $this->providerProfile && !$this->isCustomer)
 			$query->join('booking_providers', function ($join) {
 				$join->where('booking_providers.provider_id', $this->user_id);
 				$join->on('booking_providers.booking_id', 'bookings.id');

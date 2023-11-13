@@ -45,8 +45,9 @@ class LoginController extends Controller
 		if ($businessSetup) {
 			$welcome_text = $businessSetup->welcome_text;
 			if ($businessSetup->login_screen != null) {
-				if (\File::exists(public_path($businessSetup->login_screen)))
-					$login_screen = $businessSetup->login_screen;
+				// if (\File::exists(public_path($businessSetup->login_screen)))
+				if ($businessSetup->login_screen)
+					$login_screen = url($businessSetup->login_screen);
 			}
 			if ($businessSetup->company_logo != null) {
 				if (\File::exists(public_path($businessSetup->company_logo)))

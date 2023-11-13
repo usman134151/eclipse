@@ -7,6 +7,7 @@ use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\ServiceCategory;
 use App\Services\App\BookingOperationsService;
+use Auth;
 
 class CancelBooking extends Component
 {
@@ -17,7 +18,7 @@ class CancelBooking extends Component
     '4'=>['class'=>'phone-rate','postfix'=>'_p','title'=>'Phone'],
     '5'=>['class'=>'teleconference-rate','postfix'=>'_t','title'=>'Teleconference'],
   ];
-    public $booking,$override_charges='',$unbillable=false;
+    public $booking,$override_charges='',$unbillable=false,$charges;
 
     public function render()
     {
@@ -32,6 +33,23 @@ class CancelBooking extends Component
 
     public function getBookingData($bookingId){
         $this->booking=BookingOperationsService::getBookingDetails($bookingId,$this->serviceTypes,'cancellation','cancellation_hour1');
+         if($this->booking->status==3)
+          $this->unbillable=3;
+
+        if(!is_null($this->booking->payment->cancellation_charges)){
+            $this->override_charges=$this->charges=$this->booking->payment->cancellation_charges;
+            
+        }
+    }
+    public function updateBillable(){
+        if($this->override_charges>0){
+            $this->booking->status=4;
+            $this->unbillable=false;
+        }
+        else{
+            $this->unbillable=true;
+            $this->booking->status=3;
+        }
     }
     function showForm()
     {     
@@ -51,6 +69,7 @@ class CancelBooking extends Component
             ];
     }
     public function cancelBooking(){
+      
         if($this->override_charges!='' && is_numeric($this->override_charges)){
             $this->booking->payment->cancellation_charges=(float)$this->override_charges;
         }
@@ -60,12 +79,19 @@ class CancelBooking extends Component
         if($this->unbillable==3){
             $this->booking->status=3;
             $this->booking->payment->cancellation_charges=0;
+            $billingStatus="unbillable";
         }
         else{
             $this->booking->status=4;
+            $billingStatus="billable";
         }
        
         BookingOperationsService::cancelBooking($this->booking);
+        $message="Booking cancelled by ".Auth::user()->name." as ".$billingStatus;
+        if($this->booking->cancellation_notes){
+            $message.=' (Notes: '.$this->booking->cancellation_notes.")";
+        } 
+        callLogs($this->booking->id,"Booking","Cancelled",$message);
         $this->emit('showConfirmation', 'Booking status updated successfully');
         
     }

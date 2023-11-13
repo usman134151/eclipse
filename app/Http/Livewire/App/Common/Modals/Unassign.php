@@ -5,9 +5,11 @@ namespace App\Http\Livewire\App\Common\Modals;
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\BookingUnassignProvider;
+use App\Models\Tenant\BookingInvitationProvider;
 use App\Models\Tenant\User;
 use Carbon\Carbon;
 use Livewire\Component;
+use App\Services\App\BookingAssignmentService;
 
 class Unassign extends Component
 {
@@ -54,7 +56,9 @@ class Unassign extends Component
         ], $this->data);
 
         BookingProvider::where(['booking_service_id' => $this->booking_service_id, 'provider_id' => $this->provider_id, 'booking_id' => $this->booking_id])->delete();
-        
+        //updating invite data too to avoid reassignment
+        BookingInvitationProvider::where(['booking_id' => $this->booking_id, 'provider_id' =>$this->provider_id])
+        ->update(['status'=>3]);
         //send unassign email 
         $user = User::find($this->provider_id);
         $templateId = getTemplate('Booking: Provider Unassigned', 'email_template');
@@ -73,10 +77,16 @@ class Unassign extends Component
 
             sendTemplatemail($params);
 
-        Booking::where(['id' => $this->booking_id])->update(['booking_status' => 1]);
+        Booking::where(['id' => $this->booking_id])->update(['status' => 1]);
+        $message="Provider '".$user->name."' unassigned from booking";
+        if($this->data['unassign_reason'])
+           $message.=' (Reason: '.$this->data['unassign_reason'].')';
+        callLogs($this->booking_id,'unassign','unassigned',$message);
+        BookingAssignmentService::reTriggerAutoAssign( $this->booking_id,$this->booking_service_id);
         //add check for booking_status update
         $this->emit('showConfirmation', 'Provider Assignment has been revoked successfully');
         $this->emit('closeUnassignModel');
+        
     }
     function showForm()
     {

@@ -15,6 +15,7 @@ use App\Models\Tenant\UserDetail;
 use App\Models\Tenant\Schedule;
 use App\Models\Tenant\Company;
 use App\Services\App\BookingOperationsService;
+use App\Services\App\BookingAssignmentService;
 use App\Services\App\NotificationService;
 use App\Models\Tenant\CustomizeForms;
 use App\Models\Tenant\Payment;
@@ -34,19 +35,20 @@ class Booknow extends Component
 {
     public $component = 'requester-info';
 
-    public $booking_id, $showForm, $booking, $requesters = [], $bManagers = [], $supervisors = [], $consumers = [], $participants = [], $step = 1, $userAddresses = [], $timezone, $schedule, $timezones, $formIds, $selectedAddressId, $bookingDetails, $selectedServices = [];
+    public $booking_id, $showForm, $booking, $requesters = [], $bManagers = [], $supervisors = [], $consumers = [], $participants = [], $step = 1, $userAddresses = [], $timezone, $schedule, $timezones, $formIds, $selectedAddressId, $bookingDetails, $selectedServices = [],$changesLog=[];
     protected $listeners = [
         'showList' => 'resetForm', 'updateVal', 'updateCompany',
         'updateSelectedIndustries' => 'selectIndustries',
-        'updateSelectedDepartments', 'confirmation',
+        'updateSelectedDepartments', 'confirmation','showConfirmation',
         'saveCustomFormData' => 'save', 'switch', 'updateAddress' => 'addAddress',
-        'confirmedModificationFee'=>'checkCharges',
+        'confirmedModificationFee'=>'checkCharges','updateUsers','openAssignProvidersPanel'
     ];
 
     public $dates = [], $isCustomer = false, $customerDetails = [], $cantRequest = false;
     public $foundService = ['default_providers' => 2];
     public $payment, $discountedAmount = 0, $totalAmount = 0;
-    public $allTags = [], $tags = [], $confirmed = false;
+    public $allTags = [], $tags = [], $confirmed = false, $currentServiceId, $panelType = 1;
+    public $Requester = false, $Consumer = false, $Participant = false; 
 
 
     public $setupValues = [
@@ -82,8 +84,8 @@ class Booknow extends Component
             'start_time' => '',
             'end_time' => '',
             'status' => 0,
-            'auto_assign' => false,
-            'auto_notify' => false
+            'auto_assign' => 0,
+            'auto_notify' => 0
 
 
         ]
@@ -312,6 +314,7 @@ class Booknow extends Component
 
     public function checkCharges($confirmed = false, $redirect = 1, $draft = 0, $step = 1)
     {
+       
         $this->confirmed = true;
         $this->save($redirect, $draft, $step);
     }
@@ -329,15 +332,15 @@ class Booknow extends Component
         //making sure modification charges are checked at step 1 before editing booking
         if ($this->confirmed == false && $step == 1 && $this->isEdit) {
             $mod_booking = BookingOperationsService::getBookingDetails($this->booking->id, $this->serviceTypes, 'modifications', 'cancellation_hour1');
-            if ($mod_booking->payment->modification_fee && $mod_booking->payment->modification_fee > 0) {
+            if (!is_null($mod_booking->payment) && isset($mod_booking->payment->modification_fee) && $mod_booking->payment->modification_fee > 0) {
                 $this->emit('setModificationCharges', $mod_booking, $redirect, $draft, $step);
                 $this->emit('confirmBookingModification');
             } else {
                 // no charges hence save func called again
                 $this->confirmed = true;
-                $this->save($redirect = 1, $draft = 0, $step = 1);
+               // $this->save($redirect = 1, $draft = 0, $step = 1);
             }
-        } else {
+        }
 
             if ($step == 1) {
                 $this->validate();
@@ -415,6 +418,7 @@ class Booknow extends Component
                     $data['bookingData'] = Booking::where('id', $this->booking->id)->with('booking_services', 'services', 'payment', 'company', 'customer', 'booking_provider')->first();
 
                     NotificationService::sendNotification('Booking: Dynamic Details Updated (Step 1 details)', $data);
+                    callLogs($this->booking->id,"Booking","Modified","Booking modified");
                 }
             } //step 1 end
             else {
@@ -423,6 +427,8 @@ class Booknow extends Component
 
                     BookingOperationsService::updateServiceCalculations($service, $this->booking->id);
                 }
+
+               
                 $this->booking->type = 1;
                 //$this->booking->status=1;
                 $this->booking->booking_status = 1; //will change it later for consumers or other company users, need to check rights
@@ -472,11 +478,16 @@ class Booknow extends Component
                     }
                 }
 
+                
+                        BookingAssignmentService::getAvailableProviders($this->booking,$this->services,'auto_notify');
+               
+
                 if (!$this->isEdit) {
 
 
                     $data['bookingData'] = Booking::where('id', $this->booking->id)->with('booking_services', 'services', 'payment', 'company', 'customer', 'booking_provider')->first();
                     NotificationService::sendNotification('Booking: Created', $data);
+                    callLogs($this->booking->id,"Booking","Create");
                 }
 
                 return redirect()->to($base . '/bookings/view-booking/' . encrypt($this->booking->id));
@@ -490,7 +501,7 @@ class Booknow extends Component
 
                 $this->dispatchBrowserEvent('refreshSelects');
             }
-        }
+        
     }
 
     public function confirmation($message = '')
@@ -512,6 +523,7 @@ class Booknow extends Component
         $this->emit('isBooking');
         $this->departmentNames = [];
         $this->updateUsers();
+        $this->addNewCustomer();
         // $this->refreshSelects('refreshSelects');
         $this->schedule = BookingOperationsService::getSchedule($this->booking->company_id, $this->booking->customer_id);
 
@@ -725,8 +737,8 @@ class Booknow extends Component
             'start_time' => '',
             'end_time' => '',
             'status' => 0,
-            'auto_assign' => false,
-            'auto_notify' => false
+            'auto_assign' => 0,
+            'auto_notify' => 0
         ];
         $this->dispatchBrowserEvent('refreshSelects');
     }
@@ -867,9 +879,13 @@ class Booknow extends Component
 
             if (!is_null($settings) && count($settings) && key_exists('auto_assign', $settings[0])) {
                 $this->services[$index]['auto_assign'] = $settings[0]['auto_assign'];
+                if($this->services[$index]['auto_assign']==true)
+                    $this->services[$index]['auto_assign']=1;
             }
             if (!is_null($settings) &&  count($settings) &&  key_exists('broadcast', $settings[0])) {
                 $this->services[$index]['auto_notify'] = $settings[0]['broadcast'];
+                if($this->services[$index]['auto_notify']==true)
+                $this->services[$index]['auto_notify']=1;
             }
 
 
@@ -883,6 +899,8 @@ class Booknow extends Component
             }
         }
     }
+
+
 
     public function getUserRoleDetails($customerId)
     {
@@ -1162,7 +1180,7 @@ class Booknow extends Component
     }
     public function updateTotals()
     {
-
+        $this->payment['sub_total']=0;
         $this->validate([
             'payment.coupon_discount_amount' => 'nullable|numeric',
             'payment.additional_charge' => 'nullable|numeric',
@@ -1195,9 +1213,7 @@ class Booknow extends Component
         if ($this->payment['additional_charge']) {
             $this->payment['sub_total'] += $this->payment['additional_charge'];
         }
-        if ($this->payment['additional_charge']) {
-            $this->payment['sub_total'] += $this->payment['additional_charge'];
-        }
+
 
         if ($this->payment['override_amount']) {
             $this->payment['is_override'] = 1;
@@ -1211,5 +1227,47 @@ class Booknow extends Component
         //addtional payments and charges
 
 
+    }
+
+    public function addNewCustomer(){
+        $this->emit('setCompany',$this->booking->company_id);
+    }
+
+    public function openAssignProvidersPanel($panelType = 1)
+	{
+        
+		$this->panelType = $panelType;
+        
+		$this->assignServiceProviders($this->booking->booking_services_new_layout->first()->services);
+	}
+	public function assignServiceProviders($service_id)
+	{
+
+		    $this->booking_id=$this->booking->id;
+           	$this->currentServiceId = $service_id;
+            $this->emit('reMount',$service_id,$this->panelType);
+            $this->dispatchBrowserEvent('refreshSelects2');
+            $this->dispatchBrowserEvent('refreshSelects');
+			
+		
+	}
+    public function showConfirmation($message = "")
+	{
+		if ($message) {
+			// Emit an event to display a success message using the SweetAlert package
+			$this->dispatchBrowserEvent('swal:modal', [
+				'type' => 'success',
+				'title' => 'Success',
+				'text' => $message,
+			]);
+            $this->save(1,1,3);
+		}
+	}
+
+    public function updateBookingTags()
+    {
+		// dd($this->Requester,$this->Consumer,$this->Participant);
+		$properties = [ $this->Requester ? 'Requester' : '', $this->Consumer ? 'Consumer' : '', $this->Participant ? 'Participant' : ''];
+        $this->tags = BookingOperationsService::updateTags($this->booking, $properties, $this->tags);
     }
 }

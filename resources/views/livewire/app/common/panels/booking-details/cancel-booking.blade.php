@@ -7,14 +7,14 @@
 
             <div class="col-lg-12 my-4">
             Are you sure you want to cancel this booking? 
-            @if($booking['charges']>0)Booking is outside it’s cancellation window. If you’d like to cancel this booking, you will be charged {{formatPayment($booking['charges'])}}. @endif Would you like to proceed with cancelling?
+            @if($charges>0)Booking is outside it’s cancellation window. If you’d like to cancel this booking, you will be charged {{formatPayment($charges)}}. @endif Would you like to proceed with cancelling?
             </div>
             <div class="col-lg-12 my-4">
             <div class="">
                                                     <label class="form-label">
                                                         Override charges
                                                     </label>
-                                                    <input type="text" class="form-control" rows="4" cols="4" wire:model.defer="override_charges">													
+                                                    <input type="text" class="form-control" rows="4" cols="4" wire:model.lazy="override_charges" wire:blur="updateBillable">													
 												
                                                 </div>
             </div>  
@@ -64,8 +64,8 @@
             </div>
             <div class="col-lg-6 my-4">
 <div class="form-check">
-<input class="form-check-input position-static" type="checkbox" wire:model.defer="unbillable" value="3" {{ $booking['status'] == 3 ? 'checked' : '' }}>
-<label class="form-check-label" for="gridCheck1">Mark as Unbillable</label>
+<input class="form-check-input position-static" type="checkbox" wire:model.defer="unbillable" value="3" {{ ($booking['status'] == 3 || $booking['override_charges']>0) ? 'checked' : '' }}>
+<label class="form-check-label" for="gridCheck1">Mark as Unbillable {{$booking['override_charges']}}</label>
 </div>
 <div class="form-check">
 <input class="form-check-input position-static" type="checkbox" value="1" wire:model.defer="booking.cancel_provider_payment">

@@ -25,7 +25,8 @@
 		<link rel="stylesheet" href="/tenant-resources/css/daterangepicker.css">
 		<link rel="stylesheet" href="/tenant-resources/css/select2.min.css"/>
 		<link rel="stylesheet" href="/tenant-resources/css/pikaday.css">
-		<link rel="stylesheet" href="/tenant-resources/css/dark-layout.css">
+		{{-- <link rel="stylesheet" href="/tenant-resources/css/dark-layout.css"> --}}
+		<link id="dark_mode" rel="stylesheet" href="/tenant-resources/css/dark-mode.css" >
 		<link rel="stylesheet" href="/tenant-resources/css/style.css">
 		<link rel="stylesheet" href='/tenant-resources/css/bootstrap-icons.css'/>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -108,6 +109,7 @@
 		<script src="/tenant-resources/js/select2.min.js"></script>
 		<script src="/tenant-resources/js/sweetalert.min.js"></script>
 		<script src="/tenant-resources/js/common.js"></script>
+		<script src="/tenant-resources/js/app-theme.js" ></script>
 
 		<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyAANwmAq3UQc8j5GkJgzF9AglzF7XLfPxI&libraries=places&language=en-AU"></script>
 		@auth

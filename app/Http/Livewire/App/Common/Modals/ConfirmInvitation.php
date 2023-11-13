@@ -8,6 +8,7 @@ use App\Models\Tenant\Role;
 use App\Models\Tenant\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use App\Services\App\BookingAssignmentService;
 
 class ConfirmInvitation extends Component
 {
@@ -39,6 +40,8 @@ class ConfirmInvitation extends Component
     {
         BookingInvitationProvider::where(['booking_id' => $this->booking_id, 'invitation_id' => $this->invitation_id, 'provider_id' => Auth::id()])
             ->update($this->data);
+        if($this->data['status']==1)
+            BookingAssignmentService::checkAutoAssign($this->invitation_id,$this->booking_id,Auth::id());
        
         $this->emit('closeConfirmInvitationModal');
         $this->emit('showConfirmation', 'Invitation response sent successfully');

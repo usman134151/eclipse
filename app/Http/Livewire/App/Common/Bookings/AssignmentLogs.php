@@ -52,7 +52,7 @@ final class AssignmentLogs extends PowerGridComponent
     */
     public function datasource(): Builder
     {
-        return Log::query()->where("action_to",$this->booking_id)->where('item_type','Booking')->latest();
+        return Log::query()->where("action_to",$this->booking_id)->latest();
     }
 
     /*
@@ -91,7 +91,7 @@ final class AssignmentLogs extends PowerGridComponent
             ->addColumn('message')
             ->addColumn('ip_address')
             ->addColumn('created_at')
-            ->addColumn('created_at_formatted', fn (Log $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
+            ->addColumn('created_at_formatted', fn (Log $model) => date_format(date_create($model->created_at), "m/d/Y H:i A"));
     }
 
     /*

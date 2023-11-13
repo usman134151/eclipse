@@ -320,4 +320,9 @@ class Booking extends Model
     {
         return $this->belongsToMany(Department::class, 'booking_departments', 'booking_id', 'department_id');
     }
+
+    public function reimbursements()
+    {
+        return $this->hasMany(BookingReimbursement::class, 'booking_id', 'id');
+    }
 }

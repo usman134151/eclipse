@@ -189,12 +189,13 @@
                                         <label class="form-label" for="requestor">Requester <span class="mandatory">*</span></label>
                                         <div class="form-check "  @if($isCustomer) style="display:none" @endif>
                                             
-                                            <label class="form-check-label" for="addnewrequestor">Add New Requester  </label>
+                                            <!-- <label class="form-check-label" for="addnewrequestor">Add New Customer </label>
                                             <small>(coming soon)</small>
                                             <input  class="form-check-input show-hidden-content"
                                                 id="addnewrequestor" name="addnewrequestor"
-                                                type="checkbox" tabindex="">
-                                            <div class="hidden-content">
+                                                type="checkbox" tabindex=""> -->
+                                            @if($booking['company_id'])    
+                                            <div class="">
                                                 <div class="form-check-inline">
                                                     <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup"
                                                     data-bs-toggle="modal" data-bs-target="#addNewCustomer" aria-label="Requester">
@@ -203,11 +204,12 @@
                                                     <use xlink:href="/css/common-icons.svg#right-color-arrow">
                                                     </use>
                                                 </svg>
-                                                Requester
+                                                Add new customer
                                             </button>
 
                                                 </div>
-                                            </div>
+                                             
+                                            </div>@endif   
                                         </div>
                                     </div>
                                     <select class="form-select select2 mb-2" id="customer_id" name="customer_id" wire:model.defer="booking.customer_id" @if(!$selectRequestor) disabled @endif>
@@ -453,7 +455,7 @@
                                                             </label>
                                                             <div class="form-check form-switch form-switch-column " >
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    role="switch" id="AutoNotifyBroadcast" checked aria-label="Auto-notify Broadcast" value="true" wire:model.defer="services.{{$index}}.auto_notify" >
+                                                                    role="switch" id="AutoNotifyBroadcast" checked aria-label="Auto-notify Broadcast" value="1" wire:model.defer="services.{{$index}}.auto_notify" >
                                                                 <label class="form-check-label"
                                                                     for="AutoNotifyBroadcast">Manual-notify</label>
                                                                 <label class="form-check-label"
@@ -468,7 +470,7 @@
                                                             </label>
                                                             <div class="form-check form-switch form-switch-column">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    role="switch" id="ManualAssignAssign" checked aria-label="Auto assign" value="true" wire:model.defer="services.{{$index}}.auto_assign">
+                                                                    role="switch" id="ManualAssignAssign" checked aria-label="Auto assign" value="1" wire:model.defer="services.{{$index}}.auto_assign">
                                                                 <label class="form-check-label"
                                                                     for="ManualAssignAssign">Manual-assign</label>
                                                                 <label class="form-check-label"
@@ -1448,32 +1450,32 @@
 
                                                 <div @if($isCustomer) style="display:none" @endif>
                                                     <div class="block">
-                                                    <small>Coming Soon</small>
+                                                    {{-- <small>Coming Soon</small> --}}
                                                     </div>
                                                     <div class="form-check form-check-inline">
-                                                        <input disabled class="form-check-input" id="Requester" name=""
+                                                        <input wire:model="Requester" wire:change="updateBookingTags" class="form-check-input" id="Requester" name=""
                                                             type="checkbox" tabindex="" />
                                                         <label class="form-check-label"
                                                             for="Requester">Requester</label>
                                                     </div>
                                                     <div class="form-check form-check-inline">
-                                                        <input disabled class="form-check-input" id="ServiceConsumers" name=""
+                                                        <input wire:model="Consumer"  wire:change="updateBookingTags" class="form-check-input" id="ServiceConsumers" name=""
                                                             type="checkbox" tabindex="" />
                                                         <label class="form-check-label" for="ServiceConsumers">Service
                                                             Consumer(s)</label>
                                                     </div>
                                                     <div class="form-check form-check-inline">
-                                                        <input disabled class="form-check-input" id="Participants" name=""
+                                                        <input wire:model="Participant" wire:change="updateBookingTags" class="form-check-input" id="Participants" name=""
                                                             type="checkbox" tabindex="" />
                                                         <label class="form-check-label"
-                                                            for="Participants">Company</label>
+                                                            for="Participants">Participant(s)</label>
                                                     </div>
-                                                    <div class="form-check form-check-inline">
+                                                    {{-- <div class="form-check form-check-inline">
                                                         <input disabled class="form-check-input" id="Participants" name=""
                                                             type="checkbox" tabindex="" />
                                                         <label class="form-check-label"
                                                             for="Participants">Department</label>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                             </div>        
                                     <!-- /Payment Notes -->
@@ -1495,8 +1497,9 @@
                                                 aria-expanded="false">Confirm Booking</button>
                                             <ul class="dropdown-menu">
                                             <li><a class="dropdown-item" href="#" wire:click.prevent="save(1,1,3)">Confirm Only</a></li>
-                                                <li><a class="dropdown-item" href="#">Confirm + Invite</a></li>
-                                                <li><a class="dropdown-item" href="#">Confirm + Assign</a></li>
+                                                <li><a class="dropdown-item" href="#" wire:click.prevent="$emit('openAssignProvidersPanel',2)"   @click="assignProvider = true">Confirm + Invite</a></li>
+                                                <li><a class="dropdown-item" href="#"  wire:click.prevent="$emit('openAssignProvidersPanel')"
+                              @click="assignProvider = true">Confirm + Assign</a></li>
                                             </ul>
                                         </div>
     
@@ -2141,15 +2144,18 @@
     @include('modals.common.add-industry')
     @include('modals.common.add-department')
     @include('modals.common.booking-modification-confirmation')
-    @include('modals.common.add-new-customer')
+    
+        @include('modals.common.add-new-customer')
+    
     @include('modals.common.assign-admin-staff')
     @include('modals.common.assign-admin-staff-team')
     <!-- /Modal Request from User -->
     @if(!is_null($booking->id))
 
         @include('panels.common.add-documents', ['booking_id' => $booking->id])
+      
     @endif
-
+    @include('panels.booking-details.assign-providers')
     @push('scripts')
 
     <script>
@@ -2180,6 +2186,10 @@
             $('#addAddressModal').modal('hide');
                
             });
+        Livewire.on('customerModalDismissed', () => {
+            $('#addNewCustomer').modal('hide');
+               
+            });    
 			
             document.addEventListener('updateModelVars', function (event) {
 				const elemId = event.detail.elem;

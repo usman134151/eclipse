@@ -1,5 +1,5 @@
 <div>
-    <div x-data="{ addReimbursement: false,}">
+    <div x-data="{ addReimbursement: false}">
         <div id="loader-section" class="loader-section" wire:loading>
             <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
                 <div class="spinner-border" role="status" aria-live="polite">
@@ -237,62 +237,75 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @forelse ($reimbursementData as  $index => $reimbursement)
                                             <tr role="row" class="odd">
                                                 <td>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" aria-label="List Checkbox" id=""
-                                                            name="" type="checkbox" tabindex="">
+                                                        <input class="form-check-input" aria-label="List Checkbox" id="" name="" type="checkbox" tabindex="">
                                                     </div>
                                                 </td>
-                                                <td><a @click="offcanvasOpen = true">100995-6<p>08/24/2022 <br>
-                                                            9:59 AM to 4:22 PM</p></a></td>
+                                                <td><a @click="offcanvasOpen = true">{{$reimbursement["booking_number"]}}<br />{{
+                                                        date_format(date_create($reimbursement['booking_start_at']), 'm/d/Y') }} <br>
+                                                        {{ $reimbursement['booking_start_at'] ? date_format(date_create($reimbursement['booking_start_at']), 'h:i
+                                                        A') : 'N/A' }} to {{ $reimbursement['booking_end_at'] ?
+                                                        date_format(date_create($reimbursement['booking_end_at']), 'h:i A') : 'N/A' }}</p></a></td>
                                                 <td>
                                                     <div class="row g-2">
                                                         <div class="col-md-3">
-                                                            <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                                                class="img-fluid rounded-circle"
-                                                                alt="Provider Profile Image">
+                                                            
+                                                            @if ($reimbursement['provider_profilePic']!= null)
+                                                                <img src={{$reimbursement['provider_profilePic']}} class="img-fluid rounded-circle"
+                                                                    alt="Provider Profile Image">
+                                                            @else
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle"
+                                                                    alt="Provider Profile Image">
+                                                            @endif
                                                         </div>
                                                         <div class="col-md-9">
-                                                            <h6 class="fw-semibold">Dori Griffiths</h6>
-                                                            <p>dorigriffit@gmail.com</p>
+                                                            <h6 class="fw-semibold">{{$reimbursement['provider_name']}}</h6>
+                                                            <p>{{$reimbursement['provider_email']}}</p>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td>Fuel Expenses<br>
                                                     {{-- Updated by Shanila to Add svg icon--}}
-                                                    <svg class="mx-2" aria-label="document" width="17" height="21" viewBox="0 0 17 21">
-                                                        <use xlink:href="/css/common-icons.svg#doc">
-                                                        </use>
-                                                    </svg>
+                                                    <button wire:click="downloadFile({{ $index }})" class="btn btn-link">
+                                                        <svg class="mx-2" aria-label="document" width="17" height="21" viewBox="0 0 17 21">
+                                                            <use xlink:href="/css/common-icons.svg#doc"></use>
+                                                        </svg>
+                                                    </button>
+                                                    
                                                     {{-- End of update by Shanila --}}
                                                 </td>
-                                                <td>$100.00</td>
-                                                <td>Approved</td>
-                                                <td>10/20/2022 <br> 10/20/2022</td>
-                                                <td>Direct Deposit</td>
+                                                <td>{{$reimbursement['amount']}}</td>
+                                                <td>{{$reimbursement['review_status']}}</td>
+                                                <td>{{ $reimbursement['issued_at'] ? date_format(date_create($reimbursement['issued_at']), 'm/d/Y') : 'N/A' }} <br> 
+                                                {{ $reimbursement['paid_at'] ? date_format(date_create($reimbursement['paid_at']), 'm/d/Y') : 'N/A' }}</td>
+                                                <td>{{$reimbursement['payment_method']}}</td>
                                                 <td>
                                                     <div class="d-flex actions">
                                                         <a href="javascript:void(0)" title="Edit" aria-label="Edit"
                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                             {{-- Updated by Shanila to Add svg icon--}}
-                                                             <svg title="Edit" width="20" height="20" viewBox="0 0 20 20">
+                                                            {{-- Updated by Shanila to Add svg icon--}}
+                                                            <svg title="Edit" width="20" height="20" viewBox="0 0 20 20">
                                                                 <use xlink:href="/css/common-icons.svg#pencil">
                                                                 </use>
                                                             </svg>
                                                             {{-- End of update by Shanila --}}
                                                         </a>
                                                         <a href="javascript:void(0)" title="Check" aria-label="Check"
-                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#reimbursementReview">
-                                                              {{-- Updated by Shanila to Add svg icon--}}
-                                                              <svg aria-label="Check" width="22" height="20" viewBox="0 0 22 20">
+                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal"
+                                                            data-bs-target="#reimbursementReview">
+                                                            {{-- Updated by Shanila to Add svg icon--}}
+                                                            <svg aria-label="Check" width="22" height="20" viewBox="0 0 22 20">
                                                                 <use xlink:href="/css/common-icons.svg#check">
                                                                 </use>
                                                             </svg>
                                                             {{-- End of update by Shanila --}}
                                                         </a>
                                                         <a href="javascript:void(0)" title="cross" aria-label="cross"
-                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#denyReimbursement">
+                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal"
+                                                            data-bs-target="#denyReimbursement">
                                                             {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="cancel" width="20" height="20" viewBox="0 0 20 20">
                                                                 <use xlink:href="/css/common-icons.svg#cross">
@@ -302,276 +315,16 @@
                                                         </a>
                                                     </div>
                                                 </td>
-                                            </tr>
-                                            <tr role="row" class="odd">
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" aria-label="List Checkbox" id=""
-                                                            name="" type="checkbox" tabindex="">
-                                                    </div>
-                                                </td>
-                                                <td><a @click="offcanvasOpen = true">100995-6<p>08/24/2022 <br>
-                                                            9:59 AM to 4:22 PM</p></a></td>
-                                                <td>
-                                                    <div class="row g-2">
-                                                        <div class="col-md-3">
-                                                            <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                                                class="img-fluid rounded-circle"
-                                                                alt="Provider Profile Image">
-                                                        </div>
-                                                        <div class="col-md-9">
-                                                            <h6 class="fw-semibold">Dori Griffiths</h6>
-                                                            <p>dorigriffit@gmail.com</p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>Fuel Expenses<br>
-                                                   {{-- Updated by Shanila to Add svg icon--}}
-                                                   <svg class="mx-2" aria-label="document" width="17" height="21" viewBox="0 0 17 21">
-                                                    <use xlink:href="/css/common-icons.svg#doc">
-                                                    </use>
-                                                </svg>
-                                                {{-- End of update by Shanila --}}
-                                                </td>
-                                                <td>$100.00 <br> </td>
-                                                <td>Approved</td>
-                                                <td>10/20/2022 <br> 10/20/2022</td>
-                                                <td>Direct Deposit</td>
-                                                <td>
-                                                    <div class="d-flex actions">
-                                                        <a href="javascript:void(0)" title="Edit" aria-label="Edit"
-                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                             {{-- Updated by Shanila to Add svg icon--}}
-                                                             <svg title="Edit" width="20" height="20" viewBox="0 0 20 20">
-                                                                <use xlink:href="/css/common-icons.svg#pencil">
-                                                                </use>
-                                                            </svg>
-                                                            {{-- End of update by Shanila --}}
-                                                        </a>
-                                                        <a href="javascript:void(0)" title="Check" aria-label="Check"
-                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#reimbursementReview">
-                                                              {{-- Updated by Shanila to Add svg icon--}}
-                                                              <svg aria-label="Check" width="22" height="20" viewBox="0 0 22 20">
-                                                                <use xlink:href="/css/common-icons.svg#check">
-                                                                </use>
-                                                            </svg>
-                                                            {{-- End of update by Shanila --}}
-                                                        </a>
-                                                        <a href="javascript:void(0)" title="cross" aria-label="cross"
-                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#denyReimbursement">
-                                                            {{-- Updated by Shanila to Add svg icon--}}
-                                                            <svg aria-label="cancel" width="20" height="20" viewBox="0 0 20 20">
-                                                                <use xlink:href="/css/common-icons.svg#cross">
-                                                                </use>
-                                                            </svg>
-                                                            {{-- End of update by Shanila --}}
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr role="row" class="odd">
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" aria-label="List Checkbox" id=""
-                                                            name="" type="checkbox" tabindex="">
-                                                    </div>
-                                                </td>
-                                                <td><a @click="offcanvasOpen = true">100995-6<p>08/24/2022 <br>
-                                                            9:59 AM to 4:22 PM</p></a></td>
-                                                <td>
-                                                    <div class="row g-2">
-                                                        <div class="col-md-3">
-                                                            <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                                                class="img-fluid rounded-circle"
-                                                                alt="Provider Profile Image">
-                                                        </div>
-                                                        <div class="col-md-9">
-                                                            <h6 class="fw-semibold">Dori Griffiths</h6>
-                                                            <p>dorigriffit@gmail.com</p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>Fuel Expenses<br>
-                                                  {{-- Updated by Shanila to Add svg icon--}}
-                                                  <svg class="mx-2" aria-label="document" width="17" height="21" viewBox="0 0 17 21">
-                                                    <use xlink:href="/css/common-icons.svg#doc">
-                                                    </use>
-                                                </svg>
-                                                {{-- End of update by Shanila --}}
-                                                </td>
-                                                <td>$100.00</td>
-                                                <td>Approved</td>
-                                                <td>10/20/2022 <br> 10/20/2022</td>
-                                                <td>Direct Deposit</td>
-                                                <td>
-                                                    <div class="d-flex actions">
-                                                        <a href="javascript:void(0)" title="Edit" aria-label="Edit"
-                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                             {{-- Updated by Shanila to Add svg icon--}}
-                                                             <svg title="Edit" width="20" height="20" viewBox="0 0 20 20">
-                                                                <use xlink:href="/css/common-icons.svg#pencil">
-                                                                </use>
-                                                            </svg>
-                                                            {{-- End of update by Shanila --}}
-                                                        </a>
-                                                        <a href="javascript:void(0)" title="Check" aria-label="Check"
-                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#reimbursementReview">
-                                                              {{-- Updated by Shanila to Add svg icon--}}
-                                                              <svg aria-label="Check" width="22" height="20" viewBox="0 0 22 20">
-                                                                <use xlink:href="/css/common-icons.svg#check">
-                                                                </use>
-                                                            </svg>
-                                                            {{-- End of update by Shanila --}}
-                                                        </a>
-                                                        <a href="javascript:void(0)" title="cross" aria-label="cross"
-                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#denyReimbursement">
-                                                            {{-- Updated by Shanila to Add svg icon--}}
-                                                            <svg aria-label="cancel" width="20" height="20" viewBox="0 0 20 20">
-                                                                <use xlink:href="/css/common-icons.svg#cross">
-                                                                </use>
-                                                            </svg>
-                                                            {{-- End of update by Shanila --}}
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr role="row" class="odd">
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" aria-label="List Checkbox" id=""
-                                                            name="" type="checkbox" tabindex="">
-                                                    </div>
-                                                </td>
-                                                <td><a @click="offcanvasOpen = true">100995-6<p>08/24/2022 <br>
-                                                            9:59 AM to 4:22 PM</p></a></td>
-                                                <td>
-                                                    <div class="row g-2">
-                                                        <div class="col-md-3">
-                                                            <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                                                class="img-fluid rounded-circle"
-                                                                alt="Provider Profile Image">
-                                                        </div>
-                                                        <div class="col-md-9">
-                                                            <h6 class="fw-semibold">Dori Griffiths</h6>
-                                                            <p>dorigriffit@gmail.com</p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>Fuel Expenses<br>
-                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                    <svg class="mx-2" aria-label="document" width="17" height="21" viewBox="0 0 17 21">
-                                                        <use xlink:href="/css/common-icons.svg#doc">
-                                                        </use>
-                                                    </svg>
-                                                    {{-- End of update by Shanila --}}
-                                                </td>
-                                                <td>$100.00</td>
-                                                <td>Approved</td>
-                                                <td>10/20/2022 <br> 10/20/2022</td>
-                                                <td>Direct Deposit</td>
-                                                <td>
-                                                    <div class="d-flex actions">
-                                                        <a href="javascript:void(0)" title="Edit" aria-label="Edit"
-                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#denyReimbursement">
-                                                             {{-- Updated by Shanila to Add svg icon--}}
-                                                             <svg title="Edit" width="20" height="20" viewBox="0 0 20 20">
-                                                                <use xlink:href="/css/common-icons.svg#pencil">
-                                                                </use>
-                                                            </svg>
-                                                            {{-- End of update by Shanila --}}
-                                                        </a>
-                                                        <a href="javascript:void(0)" title="Check" aria-label="Check"
-                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#reimbursementReview">
-                                                              {{-- Updated by Shanila to Add svg icon--}}
-                                                              <svg aria-label="Check" width="22" height="20" viewBox="0 0 22 20">
-                                                                <use xlink:href="/css/common-icons.svg#check">
-                                                                </use>
-                                                            </svg>
-                                                            {{-- End of update by Shanila --}}
-                                                        </a>
-                                                        <a href="javascript:void(0)" title="cross" aria-label="cross"
-                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#denyReimbursement">
-                                                            {{-- Updated by Shanila to Add svg icon--}}
-                                                            <svg aria-label="cancel" width="20" height="20" viewBox="0 0 20 20">
-                                                                <use xlink:href="/css/common-icons.svg#cross">
-                                                                </use>
-                                                            </svg>
-                                                            {{-- End of update by Shanila --}}
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr role="row" class="odd">
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" aria-label="List Checkbox" id=""
-                                                            name="" type="checkbox" tabindex="">
-                                                    </div>
-                                                </td>
-                                                <td><a @click="offcanvasOpen = true">100995-6<p>08/24/2022 <br>
-                                                            9:59 AM to 4:22 PM</p></a></td>
-                                                <td>
-                                                    <div class="row g-2">
-                                                        <div class="col-md-3">
-                                                            <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                                                class="img-fluid rounded-circle"
-                                                                alt="Provider Profile Image">
-                                                        </div>
-                                                        <div class="col-md-9">
-                                                            <h6 class="fw-semibold">Dori Griffiths</h6>
-                                                            <p>dorigriffit@gmail.com</p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>Fuel Expenses<br>
-                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                    <svg class="mx-2" aria-label="document" width="17" height="21" viewBox="0 0 17 21">
-                                                        <use xlink:href="/css/common-icons.svg#doc">
-                                                        </use>
-                                                    </svg>
-                                                    {{-- End of update by Shanila --}}
-                                                </td>
-                                                <td>$100.00</td>
-                                                <td>Approved</td>
-                                                <td>10/20/2022 <br> 10/20/2022</td>
-                                                <td>Direct Deposit</td>
-                                                <td>
-                                                    <div class="d-flex actions">
-                                                        <a href="javascript:void(0)" title="Edit" aria-label="Edit"
-                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                             {{-- Updated by Shanila to Add svg icon--}}
-                                                             <svg title="Edit" width="20" height="20" viewBox="0 0 20 20">
-                                                                <use xlink:href="/css/common-icons.svg#pencil">
-                                                                </use>
-                                                            </svg>
-                                                            {{-- End of update by Shanila --}}
-                                                        </a>
-                                                        <a href="javascript:void(0)" title="Check" aria-label="Check"
-                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#reimbursementReview">
-                                                              {{-- Updated by Shanila to Add svg icon--}}
-                                                              <svg aria-label="Check" width="22" height="20" viewBox="0 0 22 20">
-                                                                <use xlink:href="/css/common-icons.svg#check">
-                                                                </use>
-                                                            </svg>
-                                                            {{-- End of update by Shanila --}}
-                                                        </a>
-                                                        <a href="javascript:void(0)" title="cross" aria-label="cross"
-                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#denyReimbursement">
-                                                            {{-- Updated by Shanila to Add svg icon--}}
-                                                            <svg aria-label="cancel" width="20" height="20" viewBox="0 0 20 20">
-                                                                <use xlink:href="/css/common-icons.svg#cross">
-                                                                </use>
-                                                            </svg>
-                                                            {{-- End of update by Shanila --}}
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                            </tr>    
+                                            @empty
+                                                No Data
+                                            @endforelse
+                                            
                                         </tbody>
                                     </table>
                                 </div>
 
-                                <div class="d-flex flex-column flex-md-row justify-content-between">
+                                {{-- <div class="d-flex flex-column flex-md-row justify-content-between">
                                     <div>
                                         <p class="fw-semibold">Showing 1 to 5 of 30 entries</p>
                                     </div>
@@ -593,7 +346,7 @@
                                             </li>
                                         </ul>
                                     </nav>
-                                </div>
+                                </div> --}}
                                 {{-- icon legend bar start --}}
                                 <div class="d-flex actions gap-3 justify-content-md-end mb-2">
                                     <div class="d-flex gap-2 align-items-center">

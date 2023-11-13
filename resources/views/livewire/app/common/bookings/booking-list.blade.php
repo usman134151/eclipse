@@ -605,7 +605,8 @@
                                                                                             <a title="Message Customer"
                                                                                                 aria-label="Message Customer"
                                                                                                 class="dropdown-item"
-                                                                                                href="">
+                                                                                                target="_blank"
+                                                                                                href="/chat/{{$booking->customer_id}}">
                                                                                                 <i
                                                                                                     class="fa fa-comment"></i>
                                                                                                 Message Customer

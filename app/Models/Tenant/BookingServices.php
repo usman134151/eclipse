@@ -17,7 +17,7 @@ class BookingServices extends Model
      */
     protected $fillable = [
         'booking_log_id', 'booking_id', 'accommodation_id', 'attendees','attendees_manual','is_closed',
-         'service_consumer','service_consumer_manual', 'is_manual_consumer', 'is_manual_attendees', 'services', 'service_types', 'specialization', 'meeting_link', 'meeting_phone', 'meeting_passcode', 'day_rate', 'duration_day', 'duration_hour', 'duration_minute', 'start_time', 'end_time', 'provider_count', 'time_zone', 'status', 'meetings'
+         'service_consumer','service_consumer_manual', 'is_manual_consumer', 'is_manual_attendees', 'services', 'service_types', 'specialization', 'meeting_link', 'meeting_phone', 'meeting_passcode', 'day_rate', 'duration_day', 'duration_hour', 'duration_minute', 'start_time', 'end_time', 'provider_count', 'time_zone', 'status', 'meetings','auto_assign','auto_notify'
     ];
 
     public function service()
