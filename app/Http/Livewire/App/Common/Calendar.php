@@ -226,8 +226,8 @@ class Calendar extends Component
 				});
 			}
 		}
-
-		if ($this->user_id && $this->providerProfile && !$this->isCustomer)
+		// dd($this->user_id ,$this->providerProfile ,$this->isCustomer);
+		if ($this->user_id && !$this->providerProfile && !$this->isCustomer)
 			$query->join('booking_providers', function ($join) {
 				$join->where('booking_providers.provider_id', $this->user_id);
 				$join->on('booking_providers.booking_id', 'bookings.id');
