@@ -33,14 +33,14 @@ class BookingList extends Component
 	public  $limit = 10, $counter, $ad_counter = 0, $ci_counter = 0, $co_counter = 0, $currentServiceId, $panelType = 1;
 	public  $booking_id = 0, $provider_id = null, $booking_service_id = 0;
 	public $providerPanelType = 0; //to ensure only clicked panel loads in provider-panel 
-	public $bookingNumber = '', $selectedProvider = 0, $checkin_booking_id=0;
+	public $bookingNumber = '', $selectedProvider = 0, $checkin_booking_id = 0;
 	public $deleteRecordId = 0;
 	public $setupValues = [
 		'accommodations' => ['parameters' => ['Accommodation', 'id', 'name', 'status', 1, 'name', true, 'accommodation_search_filter', '', 'accommodation_search_filter', 2]],
 		'specializations' => ['parameters' => ['Specialization', 'id', 'name', 'status', 1, 'name', true, 'booking_specialization_search_filter', '', 'booking_specialization_search_filter', 4]],
 		'services' => ['parameters' => ['ServiceCategory', 'id', 'name', 'status', 1, 'name', true, 'booking_service_filter', '', 'booking_service_filter', 3]],
 		"service_type_ids" => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 5, 'setup_value_label', true, 'service_type_search_filter', '', 'service_type_search_filter', 4]],
-		
+
 		// 'tags' => ['parameters' => ['Tag', 'id', 'name', null, null, 'name', true, 'tags', '', 'tag_names', 6]],
 		'industries' => ['parameters' => ['Industry', 'id', 'name', 'status', 1, 'name', true, 'industry_filter', '', 'industry_filter', 7]],
 		// 'certifications' => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 8, 'setup_value_label', true, ' certifications', '', ' certificationsassignProvider', 9]],
@@ -92,12 +92,14 @@ class BookingList extends Component
 			return $this->exportDataFile->exportExcelBookings($this->selectedBookingIds, $template);
 	}
 
-	public function closeBooking($bookingId){
-		Booking::where('id',$bookingId)->update(['is_closed'=>1,'booking_status'=>1]);
+	public function closeBooking($bookingId)
+	{
+		Booking::where('id', $bookingId)->update(['is_closed' => 1, 'booking_status' => 1]);
 		$this->showConfirmation('Booking has been closed successfully!');
 	}
-	public function reOpenBooking($bookingId){
-		Booking::where('id',$bookingId)->update(['is_closed'=>0]);
+	public function reOpenBooking($bookingId)
+	{
+		Booking::where('id', $bookingId)->update(['is_closed' => 0]);
 		$this->showConfirmation('Booking has been reopened successfully!');
 	}
 	public function assignServiceProviders($service_id)
@@ -138,14 +140,14 @@ class BookingList extends Component
 		switch ($this->bookingType) {
 			case ('Past'):
 				$query->where('type', 1)
-				->where('booking_status', '1')
-				->where(function ($q) use ($today) {
-					$q->where(function ($ca) use ($today) {
+					->where('booking_status', '1')
+					->where(function ($q) use ($today) {
+						$q->where(function ($ca) use ($today) {
 							$ca->whereRaw("DATE(booking_start_at) < '$today'")
-							   ->whereIn('bookings.status', [1, 2]);
+								->whereIn('bookings.status', [1, 2]);
 						})
-						->orWhereIn('bookings.status', [3, 4]);
-				});
+							->orWhereIn('bookings.status', [3, 4]);
+					});
 
 				$query->orderBy('booking_start_at', 'DESC');
 
@@ -162,14 +164,14 @@ class BookingList extends Component
 					$query->leftJoin('booking_providers', function ($join) {
 						$join->on('booking_providers.booking_id', 'bookings.id');
 					});
-					$query->select('bookings.id', 'bookings.booking_number','bookings.company_id', 'bookings.physical_address_id', 'is_closed', 'bookings.status', 'booking_start_at', 'booking_end_at', 'provider_count');
+					$query->select('bookings.id', 'bookings.booking_number', 'bookings.company_id', 'bookings.physical_address_id', 'is_closed', 'bookings.status', 'booking_start_at', 'booking_end_at', 'provider_count');
 
 					$query->selectRaw('
 					SUM(CASE WHEN booking_providers.check_in_status = "1" THEN 1 ELSE 0 END) AS checked_in,
 					SUM(CASE WHEN booking_providers.check_in_status = "2" THEN 1 ELSE 0 END) AS running_late
 				');
 
-					$query->groupBy('bookings.id', 'bookings.physical_address_id','bookings.company_id', 'bookings.booking_number', 'is_closed', 'bookings.status', 'booking_start_at', 'booking_end_at', 'provider_count');
+					$query->groupBy('bookings.id', 'bookings.physical_address_id', 'bookings.company_id', 'bookings.booking_number', 'is_closed', 'bookings.status', 'booking_start_at', 'booking_end_at', 'provider_count');
 				}
 
 				break;
@@ -297,7 +299,7 @@ class BookingList extends Component
 					$join->on('booking_providers.booking_service_id', 'booking_services.id');
 				});
 				$query->select([
-					'booking_providers.check_in_status','booking_services.services as service_id', 'booking_services.id as booking_service_id',
+					'booking_providers.check_in_status', 'booking_services.services as service_id', 'booking_services.id as booking_service_id',
 					'booking_services.service_types as service_type', 'bookings.*', 'bookings.status as status'
 				]);
 			}
@@ -546,8 +548,9 @@ class BookingList extends Component
 		$this->emit('setBookingId', $booking_id);
 	}
 
-	public function getBookingData($bookingId){
-		$this->emit('getBookingData',$bookingId);
+	public function getBookingData($bookingId)
+	{
+		$this->emit('getBookingData', $bookingId);
 	}
 
 	public function rejectAssignment($booking_id)
@@ -562,13 +565,13 @@ class BookingList extends Component
 	}
 	// START : provider panel functions
 
-	public function showCheckInPanel($booking_id, $booking_service_id, $bookingNumber = null,$selectedProvider=null)
+	public function showCheckInPanel($booking_id, $booking_service_id, $bookingNumber = null, $selectedProvider = null)
 	{
 
 		if ($bookingNumber)
 			$this->bookingNumber = $bookingNumber;
 		if ($selectedProvider)
-		$this->selectedProvider = $selectedProvider;
+			$this->selectedProvider = $selectedProvider;
 		// dd($booking_id, $booking_service_id);
 		if ($this->ci_counter == 0) {
 			$this->checkin_booking_id = 0;
@@ -600,12 +603,11 @@ class BookingList extends Component
 			$this->dispatchBrowserEvent('refreshSelects');
 		}
 	}
-	public function setAssignmentDetails($booking_id=0, $bookingNumber = null)
+	public function setAssignmentDetails($booking_id = 0, $bookingNumber = null)
 	{
-		dd($bookingNumber);
 		if ($bookingNumber)
 			$this->bookingNumber = $bookingNumber;
-		 $this->emit('setAssignmentDetails', $booking_id);
+		// $this->emit('setAssignmentDetails', $booking_id);
 		if ($this->ad_counter == 0) {
 			$this->booking_id = 0;
 			$this->dispatchBrowserEvent('open-assignment-details', ['booking_id' => $booking_id]);
@@ -616,7 +618,6 @@ class BookingList extends Component
 			$this->ad_counter = 0;
 			$this->providerPanelType = 3;
 		}
-
 	}
 
 	// END : provider panel functions
@@ -665,15 +666,15 @@ class BookingList extends Component
 		}
 	}
 
-	public function reinstate($bookingId){
+	public function reinstate($bookingId)
+	{
 		BookingOperationsService::reinstateBooking($bookingId);
 		$this->emit('showConfirmation', 'Booking status updated successfully');
-
 	}
 
-	public function refreshFilters($name,$value)
+	public function refreshFilters($name, $value)
 	{
-		if($name=="tags_selected"){
+		if ($name == "tags_selected") {
 			$this->tag_names = $value;
 		}
 	}
