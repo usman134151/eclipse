@@ -130,9 +130,9 @@ class BookingCloseOut extends Component
                     $this->close_out[$booking_service->id][$provider['provider_id']]['actual_duration_hour'] = abs($this->close_out[$booking_service->id][$provider['provider_id']]['actual_end_hour'] - $this->close_out[$booking_service->id][$provider['provider_id']]['actual_start_hour']);
                     $this->close_out[$booking_service->id][$provider['provider_id']]['actual_duration_min'] = abs($this->close_out[$booking_service->id][$provider['provider_id']]['actual_end_min'] - $this->close_out[$booking_service->id][$provider['provider_id']]['actual_start_min']);
                     $this->close_out[$booking_service->id][$provider['provider_id']]['service_payment_details']= $provider['service_payment_details'];
-                    if(count($booking_service['service_details']['specialization_charges'])){
-                        $this->showSpecialization =true;
-                    }
+                    // if(count($booking_service['service_details']['specialization_charges'])){
+                    //     $this->showSpecialization =true;
+                    // }
                 }
             }
             $this->service_charges[$booking_service->id]['charges'] = $booking_service->billed_total ?? 0;

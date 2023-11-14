@@ -504,7 +504,7 @@
 
                                                                 </div>
                                                             </div>
-                                                            @if ($showSpecialization && count($provider['service_payment_details']['specialization_charges']))
+                                                            @if (count($provider['service_payment_details']['specialization_charges']))
                                                                 <hr>
 
                                                                 <div class="row">
