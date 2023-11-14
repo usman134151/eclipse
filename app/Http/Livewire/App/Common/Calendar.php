@@ -47,7 +47,7 @@ class Calendar extends Component
 			$this->events = $this->getEventsForMonth();
 		else
 			$this->events = $this->getCalendarEvents();
-
+			
 		if ($this->hideProvider)
 			$this->provider_ids = [$this->user_id];
 	}
@@ -154,6 +154,7 @@ class Calendar extends Component
 
 
 		$this->events = $this->getCalendarEvents();
+		
 		$this->dispatchBrowserEvent('updateScheduleCalendar', ['events' => $this->events]);
 
 		$this->dispatchBrowserEvent('refreshSelects2');
@@ -275,6 +276,8 @@ class Calendar extends Component
 
 			$newEvents[$key]['start'] = $booking_start_at;
 			$newEvents[$key]['end'] = $booking_end_at;
+			$newEvents[$key]['bookingId'] = $id;
+			$newEvents[$key]['bookingNumber'] = $booking_number;
 			if (session()->get('isProvider'))
 				$newEvents[$key]['panel_call'] = "'setAssignmentDetails'," . $id . ",'" . $booking_number . "'";
 			else
@@ -439,5 +442,24 @@ class Calendar extends Component
 			return json_encode($eventData, JSON_UNESCAPED_UNICODE);
 		} else
 			return;
+	}
+
+		public function setAssignmentDetails($booking_id=0, $bookingNumber = null)
+	{
+		dd($booking_id);
+		if ($bookingNumber)
+			$this->bookingNumber = $bookingNumber;
+		// $this->emit('setAssignmentDetails', $booking_id);
+		if ($this->ad_counter == 0) {
+			$this->booking_id = 0;
+			$this->dispatchBrowserEvent('open-assignment-details', ['booking_id' => $booking_id]);
+			$this->ad_counter = 1;
+		} else {
+			$this->booking_id = $booking_id;
+			$this->emit('setBookingId', $booking_id);
+			$this->ad_counter = 0;
+			$this->providerPanelType = 3;
+		}
+
 	}
 }
