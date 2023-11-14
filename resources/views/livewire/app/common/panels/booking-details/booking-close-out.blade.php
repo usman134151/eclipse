@@ -89,7 +89,7 @@
                                             <th scope="col"> Actual Duration</th>
                                             <th scope="col">Pay Duration & Rates</th>
                                             <th scope="col">Final Payment</th>
-                                            <th scope="col">Billable Duration
+                                            <th scope="col">Billable Duration<br>
                                                 <small>(coming soon)</small>
                                             </th>
                                             <th scope="col">Actions</th>
@@ -784,16 +784,7 @@
                                                                     </defs>
                                                                 </svg>
                                                             </a>
-                                                            <a href="#" title="Edit"
-                                                                aria-label="Edit Booking"
-                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                <svg aria-label="Assign Provider" class="fill"
-                                                                    width="20" height="28" viewBox="0 0 20 28"
-                                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                    <use xlink:href="/css/sprite.svg#edit-icon">
-                                                                    </use>
-                                                                </svg>
-                                                            </a>
+                                                           
                                                             <a href="#" title="Reset" aria-label="Reset"
                                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                 <svg aria-label="Reset" class="fill-stroke"
