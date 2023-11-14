@@ -51,6 +51,15 @@
                     dayMaxEvents: true, // allow "more" link when too many events
                     events: JSON.parse(data),
                     eventClick: function(event, jsEvent, view) {
+                        //added by Amna Bilal to trigger livewire on click
+                        var eventData = JSON.stringify(event);
+                        eventData=JSON.parse(eventData)
+                        var bookingId = eventData.event.extendedProps.bookingId;
+                        var bookingNumber = eventData.event.extendedProps.bookingNumber;
+
+
+                        Livewire.emit('setAssignmentDetails',bookingId,bookingNumber);
+                         //end of updates by Amna Bilal to trigger livewire on click
                         if (event.url) {
                             window.location.href = event.url;
                             return false;
@@ -58,13 +67,14 @@
                     },
                     eventDisplay: 'block',
                     eventDidMount: function(info) {
-
+                      
                         $(info.el).attr('@click', 'assignmentDetails = true');
+                       
                         $(info.el).attr('tabindex', '0');
                         // $(info.el).attr('data-id',info.event.id); // When off canvas panel will be dynamic
                         let event = info.event;
                         //$(info.el).attr('wire:click', event.extendedProps.panel_call);
-
+                       
                         startDate = moment(event.start).format('MMMM DD, YYYY');
                         let curr_date_moment = moment(event.start).format('YYYY-MM-DD');
                         $(info.el).attr('data-date', curr_date_moment);
@@ -78,11 +88,11 @@
                         // 	// delay: {"show":0, "hide":1000}
                         // });
                     },
-                    eventClick: function(info) {
+                    eventDidClick: function(info) {
                         {{-- console.log("should emit = ", info.event.extendedProps.panel_call); --}}
                         {{-- Livewire.emit(info.event.extendedProps.panel_call) --}}
-
-                        Livewire.emit('setAssignmentDetails',3643,'103622-21')
+                        //alert(info.el);
+                       // Livewire.emit('setAssignmentDetails',3643,'103622-21')
 
                     },
 
@@ -159,6 +169,7 @@
                         startDate = moment(event.start).format('MMMM DD, YYYY');
                         let curr_date_moment = moment(event.start).format('YYYY-MM-DD');
                         $(info.el).attr('data-date', curr_date_moment);
+                          
                     },
                     //editable: true,
                     //selectable: true,

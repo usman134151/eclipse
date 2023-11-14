@@ -600,11 +600,12 @@ class BookingList extends Component
 			$this->dispatchBrowserEvent('refreshSelects');
 		}
 	}
-	public function setAssignmentDetails($booking_id, $bookingNumber = null)
+	public function setAssignmentDetails($booking_id=0, $bookingNumber = null)
 	{
+		dd($bookingNumber);
 		if ($bookingNumber)
 			$this->bookingNumber = $bookingNumber;
-		// $this->emit('setAssignmentDetails', $booking_id);
+		 $this->emit('setAssignmentDetails', $booking_id);
 		if ($this->ad_counter == 0) {
 			$this->booking_id = 0;
 			$this->dispatchBrowserEvent('open-assignment-details', ['booking_id' => $booking_id]);
