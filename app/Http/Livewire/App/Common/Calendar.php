@@ -24,7 +24,7 @@ class Calendar extends Component
 		$service_type_search_filter = [], $tag_names = [], $industry_filter = [], $booking_status_filter = null, $booking_number_filter = null;
 	public $tags = [], $filterProviders = [], $isCustomer = false;
 
-	protected $listeners = ['refreshCalendar' => 'refreshEvents', 'updateVal'];
+	protected $listeners = ['refreshCalendar' => 'refreshEvents', 'updateVal', 'openBookingDetails'];
 
 	public function render()
 	{
@@ -47,7 +47,7 @@ class Calendar extends Component
 			$this->events = $this->getEventsForMonth();
 		else
 			$this->events = $this->getCalendarEvents();
-			
+
 		if ($this->hideProvider)
 			$this->provider_ids = [$this->user_id];
 	}
@@ -154,7 +154,7 @@ class Calendar extends Component
 
 
 		$this->events = $this->getCalendarEvents();
-		
+
 		$this->dispatchBrowserEvent('updateScheduleCalendar', ['events' => $this->events]);
 
 		$this->dispatchBrowserEvent('refreshSelects2');
@@ -278,9 +278,9 @@ class Calendar extends Component
 			$newEvents[$key]['end'] = $booking_end_at;
 			$newEvents[$key]['bookingId'] = $id;
 			$newEvents[$key]['bookingNumber'] = $booking_number;
-			if (session()->get('isProvider'))
-				$newEvents[$key]['panel_call'] = "'setAssignmentDetails'," . $id . ",'" . $booking_number . "'";
-			else
+			if (!session()->get('isProvider'))
+				// 	$newEvents[$key]['panel_call'] = "'setAssignmentDetails'," . $id . ",'" . $booking_number . "'";
+				// else
 				$newEvents[$key]['url'] = $base . '/bookings/view-booking/' . encrypt($id);
 
 
@@ -444,22 +444,21 @@ class Calendar extends Component
 			return;
 	}
 
-		public function setAssignmentDetails($booking_id=0, $bookingNumber = null)
+	public $booking_id,$bookingNumber,$ad_counter, $providerPanelType;
+
+	public function openBookingDetails($booking_id = 0, $bookingNumber = null)
 	{
-		dd($booking_id);
 		if ($bookingNumber)
 			$this->bookingNumber = $bookingNumber;
-		// $this->emit('setAssignmentDetails', $booking_id);
 		if ($this->ad_counter == 0) {
 			$this->booking_id = 0;
-			$this->dispatchBrowserEvent('open-assignment-details', ['booking_id' => $booking_id]);
 			$this->ad_counter = 1;
+			$this->dispatchBrowserEvent('open-assignment-details-dashboard', ['booking_id' => $booking_id]);
 		} else {
 			$this->booking_id = $booking_id;
 			$this->emit('setBookingId', $booking_id);
 			$this->ad_counter = 0;
 			$this->providerPanelType = 3;
 		}
-
 	}
 }
