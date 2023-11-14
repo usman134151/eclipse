@@ -53,11 +53,12 @@ class BookingCloseOut extends Component
                 $checkout['actual_end_hour'] = $closing_details['actual_end_hour'];
                 $checkout['actual_end_min'] = $closing_details['actual_end_min'];
                 $checkout['actual_end_timestamp'] = Carbon::createFromFormat('m/d/Y H : i', date_format(date_create($booking_service->end_time), 'm/d/Y') . ' ' . $closing_details['actual_end_hour'] . ' : ' . $closing_details['actual_end_min']);
-
-                // $checkout['duration_hour'] = Carbon::createFromFormat('m/d/Y H : i', date_format(date_create($booking_service->end_time), 'm/d/Y') . ' ' . $closing_details['actual_end_hour'] . ' : ' . $closing_details['actual_end_min']);
-                // $checkout['duration_min'] = Carbon::createFromFormat('m/d/Y H : i', date_format(date_create($booking_service->end_time), 'm/d/Y') . ' ' . $closing_details['actual_end_hour'] . ' : ' . $closing_details['actual_end_min']);
-
                 $booking_provider->check_out_procedure_values = $checkout;
+
+                $closing_details['service_payment_details']['duration_hour'] = $closing_details['actual_duration_hour'];
+                $closing_details['service_payment_details']['duration_min'] = $closing_details['actual_duration_min'];
+                $booking_provider->service_payment_details = $closing_details['service_payment_details'];
+
 
                 $booking_provider->total_amount = $closing_details['total_amount'];
                 $booking_provider->is_override_price = 1;
@@ -118,7 +119,6 @@ class BookingCloseOut extends Component
           
                 if ($this->providers[$booking_service->id] && count($this->providers[$booking_service->id])) {
                 foreach ($this->providers[$booking_service->id] as $provider) {
-                    // dd($provider);
                     $start = Carbon::parse(($provider['check_in_procedure_values'] && isset($provider['check_in_procedure_values']['actual_start_timestamp']) && $provider['check_in_procedure_values']['actual_start_timestamp']) ? $provider['check_in_procedure_values']['actual_start_timestamp'] : $booking_service->start_time);
                     $this->close_out[$booking_service->id][$provider['provider_id']]['actual_start_hour'] = $start->format('H');
                     $this->close_out[$booking_service->id][$provider['provider_id']]['actual_start_min'] = $start->format('i');

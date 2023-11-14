@@ -58,8 +58,10 @@
 
                                     </div>
                                     <div class="mx-5" wire:ignore>
-                                        <p>{{ $booking_service['start_time'] ? date_format(date_create($booking_service['start_time']), 'h:i A - d F Y') : 'N/A' }}</p>
-                                        <p>{{ $booking_service['end_time'] ? date_format(date_create($booking_service['end_time']), 'h:i A - d F Y') : 'N/A' }}</p>
+                                        <p>{{ $booking_service['start_time'] ? date_format(date_create($booking_service['start_time']), 'h:i A - d F Y') : 'N/A' }}
+                                        </p>
+                                        <p>{{ $booking_service['end_time'] ? date_format(date_create($booking_service['end_time']), 'h:i A - d F Y') : 'N/A' }}
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="col-4 d-inline-flex justify-content-end">
@@ -524,8 +526,8 @@
                                                                                             style="margin-right: -15px;">
                                                                                             <label for="average-rate"
                                                                                                 class="form-label-sm">
-                                                                                            
-                                                                                                {{ $specialization['label'] }}
+
+                                                                                                {{ $specialization['label'] ? $specialization['label'] : '' }}
                                                                                                 :</label>
                                                                                         </div>
                                                                                         <div class="col-6 mt-2"
@@ -537,9 +539,15 @@
                                                                                                     class="form-control form-control-sm  w-25%"
                                                                                                     placeholder="$00:00"
                                                                                                     {{-- wire:blur="updateTotal({{ $index }})" --}}
-                                                                                                    wire:model.lazy="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.service_payment_details.specialization_charges.{{ $key }}.provider_charges"
-                                                                                                    >
-                                                                                                @error('close_out.'.$booking_service->id.'.'. $provider['provider_id'].'.service_payment_details.specialization_charges.' . $key . 'provider_charges')
+                                                                                                    wire:model.lazy="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.service_payment_details.specialization_charges.{{ $key }}.provider_charges">
+                                                                                                @error('close_out.' .
+                                                                                                    $booking_service->id .
+                                                                                                    '.' .
+                                                                                                    $provider['provider_id']
+                                                                                                    .
+                                                                                                    '.service_payment_details.specialization_charges.'
+                                                                                                    . $key .
+                                                                                                    'provider_charges')
                                                                                                     <span
                                                                                                         class="d-inline invalid-feedback">
                                                                                                         {{ $message }}
@@ -556,7 +564,7 @@
 
                                                                     </div>
                                                                 </div>
-                                                                 @endif
+                                                            @endif
 
                                                         </div>
                                                     </td>
