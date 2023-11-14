@@ -54,6 +54,9 @@ class BookingCloseOut extends Component
                 $checkout['actual_end_min'] = $closing_details['actual_end_min'];
                 $checkout['actual_end_timestamp'] = Carbon::createFromFormat('m/d/Y H : i', date_format(date_create($booking_service->end_time), 'm/d/Y') . ' ' . $closing_details['actual_end_hour'] . ' : ' . $closing_details['actual_end_min']);
 
+                // $checkout['duration_hour'] = Carbon::createFromFormat('m/d/Y H : i', date_format(date_create($booking_service->end_time), 'm/d/Y') . ' ' . $closing_details['actual_end_hour'] . ' : ' . $closing_details['actual_end_min']);
+                // $checkout['duration_min'] = Carbon::createFromFormat('m/d/Y H : i', date_format(date_create($booking_service->end_time), 'm/d/Y') . ' ' . $closing_details['actual_end_hour'] . ' : ' . $closing_details['actual_end_min']);
+
                 $booking_provider->check_out_procedure_values = $checkout;
 
                 $booking_provider->total_amount = $closing_details['total_amount'];
@@ -130,7 +133,6 @@ class BookingCloseOut extends Component
                     if(count($booking_service['service_details']['specialization_charges'])){
                         $this->showSpecialization =true;
                     }
-                    // dd($provider['service_payment_details']);
                 }
             }
             $this->service_charges[$booking_service->id]['charges'] = $booking_service->billed_total ?? 0;

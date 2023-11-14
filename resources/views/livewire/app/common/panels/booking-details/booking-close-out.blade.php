@@ -504,7 +504,7 @@
 
                                                                 </div>
                                                             </div>
-                                                            {{-- @if (count($showSpecialization))
+                                                            @if ($showSpecialization && count($provider['service_payment_details']['specialization_charges']))
                                                                 <hr>
 
                                                                 <div class="row">
@@ -515,7 +515,7 @@
                                                                                     Charges</strong></label>
                                                                         </div>
 
-                                                                        @foreach ($booking_specializations as $key => $specialization)
+                                                                        @foreach ($provider['service_payment_details']['specialization_charges'] as $key => $specialization)
                                                                             <div class="col col-12 mt-2">
                                                                                 <div class="d-flex ">
                                                                                     <div class="row">
@@ -523,7 +523,9 @@
                                                                                         <div class="col-5 mt-1"
                                                                                             style="margin-right: -15px;">
                                                                                             <label for="average-rate"
-                                                                                                class="form-label-sm">{{ $specialization['label'] }}
+                                                                                                class="form-label-sm">
+                                                                                            
+                                                                                                {{ $specialization['label'] }}
                                                                                                 :</label>
                                                                                         </div>
                                                                                         <div class="col-6 mt-2"
@@ -534,9 +536,10 @@
                                                                                                     name="average-rate"
                                                                                                     class="form-control form-control-sm  w-25%"
                                                                                                     placeholder="$00:00"
-                                                                                                    wire:blur="updateTotal({{ $index }})"
-                                                                                                    wire:model.lazy="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.service_payment_details.specialization_charges.{{ $key }}.provider_charges">
-                                                                                                @error('providersPayment.' . $index . 'service_payment_details.specialization_charges.' . $key . 'provider_charges')
+                                                                                                    {{-- wire:blur="updateTotal({{ $index }})" --}}
+                                                                                                    wire:model.lazy="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.service_payment_details.specialization_charges.{{ $key }}.provider_charges"
+                                                                                                    >
+                                                                                                @error('close_out.'.$booking_service->id.'.'. $provider['provider_id'].'.service_payment_details.specialization_charges.' . $key . 'provider_charges')
                                                                                                     <span
                                                                                                         class="d-inline invalid-feedback">
                                                                                                         {{ $message }}
@@ -553,7 +556,7 @@
 
                                                                     </div>
                                                                 </div>
-                                                                 @endif --}}
+                                                                 @endif
 
                                                         </div>
                                                     </td>
