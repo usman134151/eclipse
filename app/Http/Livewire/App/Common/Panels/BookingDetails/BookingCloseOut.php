@@ -55,8 +55,8 @@ class BookingCloseOut extends Component
                 $checkout['actual_end_timestamp'] = Carbon::createFromFormat('m/d/Y H : i', date_format(date_create($booking_service->end_time), 'm/d/Y') . ' ' . $closing_details['actual_end_hour'] . ' : ' . $closing_details['actual_end_min']);
                 $booking_provider->check_out_procedure_values = $checkout;
 
-                $closing_details['service_payment_details']['duration_hour'] = $closing_details['actual_duration_hour'];
-                $closing_details['service_payment_details']['duration_min'] = $closing_details['actual_duration_min'];
+                $closing_details['service_payment_details']['actual_duration_hour'] = $closing_details['actual_duration_hour'];
+                $closing_details['service_payment_details']['actual_duration_min'] = $closing_details['actual_duration_min'];
                 $booking_provider->service_payment_details = $closing_details['service_payment_details'];
 
 
@@ -127,12 +127,17 @@ class BookingCloseOut extends Component
                     $this->close_out[$booking_service->id][$provider['provider_id']]['actual_end_min'] = $end->format('i');
 
                     $this->close_out[$booking_service->id][$provider['provider_id']]['total_amount'] = $provider['total_amount'];
-                    $this->close_out[$booking_service->id][$provider['provider_id']]['actual_duration_hour'] = abs($this->close_out[$booking_service->id][$provider['provider_id']]['actual_end_hour'] - $this->close_out[$booking_service->id][$provider['provider_id']]['actual_start_hour']);
-                    $this->close_out[$booking_service->id][$provider['provider_id']]['actual_duration_min'] = abs($this->close_out[$booking_service->id][$provider['provider_id']]['actual_end_min'] - $this->close_out[$booking_service->id][$provider['provider_id']]['actual_start_min']);
                     $this->close_out[$booking_service->id][$provider['provider_id']]['service_payment_details'] = $provider['service_payment_details'];
-                    // if(count($booking_service['service_details']['specialization_charges'])){
-                    //     $this->showSpecialization =true;
-                    // }
+                    if (!isset($provider['service_payment_details']['actual_duration_hour']))
+                        $this->close_out[$booking_service->id][$provider['provider_id']]['actual_duration_hour'] = abs($this->close_out[$booking_service->id][$provider['provider_id']]['actual_end_hour'] - $this->close_out[$booking_service->id][$provider['provider_id']]['actual_start_hour']);
+                    else
+                        $this->close_out[$booking_service->id][$provider['provider_id']]['actual_duration_hour'] = $provider['service_payment_details']['actual_duration_hour'];
+
+                    if (!isset($provider['service_payment_details']['actual_duration_min']))
+                        $this->close_out[$booking_service->id][$provider['provider_id']]['actual_duration_min'] = abs($this->close_out[$booking_service->id][$provider['provider_id']]['actual_end_min'] - $this->close_out[$booking_service->id][$provider['provider_id']]['actual_start_min']);
+                    else
+                        $this->close_out[$booking_service->id][$provider['provider_id']]['actual_duration_min'] = $provider['service_payment_details']['actual_duration_min'];
+                   
                 }
             }
             $this->service_charges[$booking_service->id]['charges'] = $booking_service->billed_total ?? 0;

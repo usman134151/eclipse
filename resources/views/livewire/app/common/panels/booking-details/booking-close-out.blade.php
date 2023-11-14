@@ -706,7 +706,7 @@
                                                         </div>
                                                     </td>
 
-                                                    <td class="align-middle">
+                                                    <td class="align-middle border-end-2">
                                                         <div class="">
                                                             <input type="number" name=""
                                                                 class="form-control form-control-sm"
@@ -715,8 +715,8 @@
                                                                 id="total-service-payment">
                                                         </div>
                                                     </td>
-                                                    <td class="align-middle text-center">1 hours, 2 mins</td>
-                                                    <td>
+                                                    <td class="align-middle text-center border-end-2">1 hours, 2 mins</td>
+                                                    <td class="align-middle text-center ">
                                                         <div class="d-inline-flex actions">
 
                                                             <a href="#" title="Accept Assignment"
