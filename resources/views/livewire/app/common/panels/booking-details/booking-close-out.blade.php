@@ -306,13 +306,11 @@
                                                                                                 aria-label="Days"
                                                                                                 disabled>
                                                                                                 <option>
-                                                                                                    {{ $durationLabel }}
+                                                                                                    {{ $durationLabel[$booking_service->id] }}
                                                                                                 </option>
                                                                                             </select>
                                                                                         </div>
-                                                                                        @error('providersPayment.' .
-                                                                                            $index .
-                                                                                            '.service_payment_details.b_hours_duration')
+                                                                                        @error('close_out.'.$booking_service->id.'.'. $provider['provider_id'] .'.service_payment_details.b_hours_duration')
                                                                                             <span
                                                                                                 class="d-inline invalid-feedback">
                                                                                                 {{ $message }}
@@ -344,9 +342,7 @@
                                                                                                 placeholder="$00:00"
                                                                                                 wire:blur="updateTotal({{ $booking_service->id }},{{ $provider['provider_id'] }})"
                                                                                                 wire:model.lazy="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.service_payment_details.b_hours_rate">
-                                                                                            @error('providersPayment.' .
-                                                                                                $index .
-                                                                                                '.service_payment_details.b_hours_rate')
+                                                                                            @error('close_out.'.$booking_service->id.'.'. $provider['provider_id'] .'.service_payment_details.b_hours_rate')
                                                                                                 <span
                                                                                                     class="d-inline invalid-feedback">
                                                                                                     {{ $message }}
@@ -393,13 +389,11 @@
                                                                                                 aria-label="Days"
                                                                                                 disabled>
                                                                                                 <option>
-                                                                                                    {{ $durationLabel }}
+                                                                                                    {{ $durationLabel[$booking_service->id] }}
                                                                                                 </option>
                                                                                             </select>
                                                                                         </div>
-                                                                                        @error('providersPayment.' .
-                                                                                            $index .
-                                                                                            '.service_payment_details.a_hours_duration')
+                                                                                        @error('close_out.'.$booking_service->id.'.'. $provider['provider_id'] .'.service_payment_details.a_hours_duration')
                                                                                             <span
                                                                                                 class="d-inline invalid-feedback">
                                                                                                 {{ $message }}
@@ -430,9 +424,7 @@
                                                                                                 placeholder="$00:00"
                                                                                                 wire:blur="updateTotal({{ $booking_service->id }},{{ $provider['provider_id'] }})"
                                                                                                 wire:model.lazy="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.service_payment_details.a_hours_rate">
-                                                                                            @error('providersPayment.' .
-                                                                                                $index .
-                                                                                                '.service_payment_details.a_hours_rate')
+                                                                                            @error('close_out.'.$booking_service->id.'.'. $provider['provider_id'] .'.service_payment_details.a_hours_rate')
                                                                                                 <span
                                                                                                     class="d-inline invalid-feedback">
                                                                                                     {{ $message }}
@@ -478,13 +470,11 @@
                                                                                                 aria-label="Days"
                                                                                                 disabled>
                                                                                                 <option>
-                                                                                                    {{ $durationLabel }}
+                                                                                                    {{ $durationLabel[$booking_service->id] }}
                                                                                                 </option>
                                                                                             </select>
                                                                                         </div>
-                                                                                        @error('providersPayment.' .
-                                                                                            $index .
-                                                                                            '.service_payment_details.total_duration')
+                                                                                        @error('close_out.'.$booking_service->id.'.'. $provider['provider_id'] .'.service_payment_details.total_duration')
                                                                                             <span
                                                                                                 class="d-inline invalid-feedback">
                                                                                                 {{ $message }}
@@ -515,9 +505,7 @@
                                                                                                 placeholder="$00:00"
                                                                                                 wire:blur="updateTotal({{ $booking_service->id }},{{ $provider['provider_id'] }})"
                                                                                                 wire:model.lazy="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.service_payment_details.rate">
-                                                                                            @error('providersPayment.' .
-                                                                                                $index .
-                                                                                                '.service_payment_details.rate')
+                                                                                            @error('close_out.'.$booking_service->id.'.'. $provider['provider_id'] .'service_payment_details.rate')
                                                                                                 <span
                                                                                                     class="d-inline invalid-feedback">
                                                                                                     {{ $message }}
@@ -559,14 +547,12 @@
                                                                                                 placeholder="$00:00"
                                                                                                 wire:blur="updateTotal({{ $booking_service->id }},{{ $provider['provider_id'] }})"
                                                                                                 wire:model.lazy="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.service_payment_details.rate">
-                                                                                            {{-- @error('providersPayment.' .
-                                                                                                $index .
-                                                                                                '.service_payment_details.rate')
+                                                                                            @error('close_out.'.$booking_service->id.'.'. $provider['provider_id'] .'.service_payment_details.rate')
                                                                                                 <span
                                                                                                     class="d-inline invalid-feedback">
                                                                                                     {{ $message }}
                                                                                                 </span>
-                                                                                            @enderror --}}
+                                                                                            @enderror
 
                                                                                         </div>
                                                                                     </div>
@@ -610,12 +596,12 @@
                                                                                         </select>
                                                                                     </div>
 
-                                                                                    {{-- @error('providersPayment.' . $index . '.service_payment_details.expedited_duration')
+                                                                                    @error('close_out.'.$booking_service->id.'.'. $provider['provider_id'] .'.service_payment_details.expedited_duration')
                                                                                         <span
                                                                                             class="d-inline invalid-feedback">
                                                                                             {{ $message }}
                                                                                         </span>
-                                                                                    @enderror --}}
+                                                                                    @enderror
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -641,12 +627,12 @@
                                                                                             placeholder="$00:00"
                                                                                             wire:blur="updateTotal({{ $booking_service->id }},{{ $provider['provider_id'] }})"
                                                                                             wire:model.lazy="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.service_payment_details.expedited_rate">
-                                                                                        {{-- @error('providersPayment.' . $index . '.service_payment_details.expedited_rate')
+                                                                                        @error('close_out.'.$booking_service->id.'.'. $provider['provider_id'] .'.service_payment_details.expedited_rate')
                                                                                             <span
                                                                                                 class="d-inline invalid-feedback">
                                                                                                 {{ $message }}
                                                                                             </span>
-                                                                                        @enderror --}}
+                                                                                        @enderror
 
                                                                                     </div>
                                                                                 </div>
