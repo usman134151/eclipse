@@ -292,7 +292,6 @@
                                                                                 <div class="col-7">
                                                                                     <div class="input-group">
                                                                                         <input type=""
-                                                                                            name="{{ $index }}_service_payment_details_b_hours_duration"
                                                                                             wire:blur="updateTotal({{ $booking_service->id }},{{ $provider['provider_id'] }})"
                                                                                             wire:model.lazy="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.service_payment_details.b_hours_duration"
                                                                                             class="form-control form-control-sm text-center"
@@ -664,7 +663,7 @@
                                                                                             <label for="average-rate"
                                                                                                 class="form-label-sm">
 
-                                                                                                {{ $specialization['label'] ? $specialization['label'] : '' }}
+                                                                                                {{ isset($specialization['label']) ? $specialization['label'] : '' }}
                                                                                                 :</label>
                                                                                         </div>
                                                                                         <div class="col-6 mt-2"
