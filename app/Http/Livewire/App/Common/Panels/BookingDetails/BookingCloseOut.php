@@ -200,6 +200,20 @@ class BookingCloseOut extends Component
         return $this->close_out[$booking_service_id][$provider_id]['total_amount'];
     }
 
+    public function resetVals($booking_service_id, $provider_id){
+        $booking_service = $this->booking->booking_services->where('id',$booking_service_id)->first();
+        $start = Carbon::parse($booking_service->start_time);
+        $this->close_out[$booking_service_id][$provider_id]['actual_start_hour'] = $start->format('H');
+        $this->close_out[$booking_service_id][$provider_id]['actual_start_min'] = $start->format('i');
+        $end = Carbon::parse($booking_service->end_time);
+        $this->close_out[$booking_service_id][$provider_id]['actual_end_hour'] = $end->format('H');
+        $this->close_out[$booking_service_id][$provider_id]['actual_end_min'] = $end->format('i');
+
+        $this->close_out[$booking_service_id][$provider_id]['actual_duration_hour'] = abs($this->close_out[$booking_service_id][$provider_id]['actual_end_hour'] - $this->close_out[$booking_service_id][$provider_id]['actual_start_hour']);
+        $this->close_out[$booking_service_id][$provider_id]['actual_duration_min'] = abs($this->close_out[$booking_service_id][$provider_id]['actual_end_min'] - $this-> close_out[$booking_service_id][$provider_id]['actual_start_min']);
+
+
+    }
 
 
     function showForm()

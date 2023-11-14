@@ -785,7 +785,8 @@
                                                                 </svg>
                                                             </a>
                                                            
-                                                            <a href="#" title="Reset" aria-label="Reset"
+                                                            <a href="#" title="Reset to Assignment Duration" aria-label="Reset to Assignment Duration"
+                                                                wire:click="resetVals({{$booking_service->id}},{{$provider['provider_id']}})"
                                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                 <svg aria-label="Reset" class="fill-stroke"
                                                                     width="22" height="20" viewBox="0 0 22 20"
