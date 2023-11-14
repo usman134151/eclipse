@@ -876,7 +876,7 @@
                                                                             </use>
                                                                         </svg>
                                                                     </div>
-                                                                    <div class="mx-3 fw-semibold">Day Rate In-person:
+                                                                    <div class="mx-3 fw-semibold">{{$billingTypes[intval($service['rate_status'])]['title']}} In-Person:
                                                                     </div>
                                                                     <div class="mx-3">
                                                                         {{ $service['price'] ? numberFormat($service['price']) : 'N/A' }}
@@ -895,7 +895,7 @@
                                                                             </use>
                                                                         </svg>
                                                                     </div>
-                                                                    <div class="mx-3 fw-semibold">Day Rate Virtual:
+                                                                    <div class="mx-3 fw-semibold">{{$billingTypes[intval($service['rate_status'])]['title']}} Virtual:
                                                                     </div>
                                                                     <div class="mx-3">
                                                                         {{ $service['price_v'] ?  formatPayment($service['price_v']) : 'N/A' }}
@@ -915,7 +915,7 @@
                                                                             </use>
                                                                         </svg>
                                                                     </div>
-                                                                    <div class="mx-3 fw-semibold">Day Rate Phone:</div>
+                                                                    <div class="mx-3 fw-semibold">{{$billingTypes[intval($service['rate_status'])]['title']}} Phone:</div>
                                                                     <div class="mx-3">
                                                                         {{ $service['price_p'] ?  formatPayment($service['price_p']) : 'N/A' }}
                                                                     </div>
@@ -933,7 +933,7 @@
                                                                             </use>
                                                                         </svg>
                                                                     </div>
-                                                                    <div class="mx-3 fw-semibold">Day Rate
+                                                                    <div class="mx-3 fw-semibold">{{$billingTypes[intval($service['rate_status'])]['title']}}
                                                                         Teleconference:</div>
                                                                     <div class="mx-3">
                                                                         {{ $service['price_t'] ?  formatPayment($service['price_t']) : 'N/A' }}
