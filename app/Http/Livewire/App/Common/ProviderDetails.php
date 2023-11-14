@@ -20,6 +20,20 @@ class ProviderDetails extends Component
 
 	// variabled for my-drive (upload-credential-file) panel 
 	public  $counter = 0, $credentialId, $credentialLabel = "", $credentialDetails = false;
+	public $serviceTypes = [
+        '1' => ['class' => 'inperson-rate', 'postfix' => '', 'title' => 'In-Person'],
+        '2' => ['class' => 'virtual-rate', 'postfix' => '_v', 'title' => 'Virtual'],
+        '4' => ['class' => 'phone-rate', 'postfix' => '_p', 'title' => 'Phone'],
+        '5' => ['class' => 'teleconference-rate', 'postfix' => '_t', 'title' => 'Teleconference'],
+    ];
+
+	public $billingTypes = [
+        '1' => ['class' => 'hour-rate', 'postfix' => 'hour_price', 'title' => 'Hour Rate'],
+        '2' => ['class' => 'day-rate', 'postfix' => 'day_rate_price', 'title' => 'Day Rate'],
+        '4' => ['class' => 'fixed-rate', 'postfix' => 'fixed_rate', 'title' => 'Fixed Rate'],
+
+    ];
+
 
 
 	protected $listeners = [
