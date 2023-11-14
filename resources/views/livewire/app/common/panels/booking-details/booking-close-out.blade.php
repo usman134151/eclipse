@@ -2,22 +2,27 @@
     <div class="between-section-segment-spacing">
         @if (count($booking->booking_services))
 
-            <div class="row">
-                <div class="d-inline-flex col-12 bg-muted rounded p-2">
-                    <div class="col-6">
-                        <h3>
+            {{-- <div class="row"> --}}
+                {{--  changes to move display to bottom right in pane -- Maarooshaa Asim --}}
+                <div class="d-inline-flex p-2 row" style="position: fixed;bottom: 24px;right: 44px;text-align: right;z-index:-10000">
+                    <div class="col-12 justify-content-start ">
+                            <label for="amount" class="bg-muted">
                             Total Assignment Charges
-                        </h3>
+
+                        <strong class="">
                         {{ numberFormat($booking_total_amount) }}
+
+                        </strong>
+                        </label>
                     </div>
-                    <div class="col-6 w-20 justify-content-end">
-                        <input type="number" name="" class="form-control form-control-sm" placeholder="$00:00"
+                    <div class="col-12 w-20 d-flex justify-content-end mt-1">
+                        <input type="number" name="amount" class="form-control form-control-sm " style="width:20%" placeholder="$00:00"
                             wire:model.lazy="override_amount" id="total-service-payment">
                         <button type="button" wire:click="overrideBookingAmount"
-                            class="btn btn-primary rounded my-1 align-end">Override</button>
+                            class=" self_end btn btn-sm mx-1 btn-outline-dark rounded  align-end">Override</button>
                     </div>
                 </div>
-            </div>
+            {{-- </div> --}}
             @foreach ($booking->booking_services as $booking_service)
                 <!-- Hoverable rows start -->
                 <div class="mt-3">
