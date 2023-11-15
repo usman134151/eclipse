@@ -23,7 +23,6 @@ class AddReimbursement extends Component
     // protected $listeners = ['showList' => 'resetForm', 'getProviderAssignments', 'updateVal' => 'updateVal'];
     public $providers = [], $assignments = [], $reimbursement, $file = null;
 
-    // Validation Rules
     public $other = [
         'details' => '',
     ];
@@ -31,7 +30,8 @@ class AddReimbursement extends Component
         'hours' => '',
         'mins' => '',
     ];
-
+    
+    // Validation Rules
     public $rules = [
         'reimbursement.provider_id' => 'required',
         'reimbursement.booking_id' => 'required',
@@ -56,13 +56,27 @@ class AddReimbursement extends Component
     {
         $this->reimbursement = $reimbursement;
 
-        $this->providers = User::where('status', 1)
+        if(session()->get('isProvider'))
+        {
+            $this->reimbursement->provider_id = Auth::user()->id;
+            $this->assignments = BookingProvider::where('provider_id', Auth::user()->id)
+                ->join('bookings', 'bookings.id', '=', 'booking_providers.booking_id')
+                ->select('bookings.id', 'bookings.booking_number')
+                ->distinct()
+                ->get();
+        }
+        else
+        {
+            $this->providers = User::where('status', 1)
             ->whereHas('roles', function ($query) {
                 $query->wherein('role_id', [2]);
             })->select([
                 'users.id',
                 'users.name',
             ])->get();
+        }
+
+        
     }
 
     public function getProviderAssignments($id)
@@ -99,11 +113,9 @@ class AddReimbursement extends Component
     public function save()
     {
         $this->reimbursement->booking_id = $this->selectedValue;
-
-        $this->validate();
+        // $a= $this->validate();
         // dd($this->reimbursement,$this->other,$this->time);
-        // $this->validate();
-
+        $this->validate();
         $reasonData = null; 
 
         if ($this->reimbursement->reason === "compensated-travel-time") {
@@ -142,7 +154,8 @@ class AddReimbursement extends Component
                 'attachment_path' => $attachmentPath,
             ]);
         }
-       
+       $this->emit('showList');
+       $this->refreshForm();
     }
 
     function showForm()
@@ -153,6 +166,20 @@ class AddReimbursement extends Component
     public function resetForm()
     {
         $this->showForm = false;
+    }
+
+    public function refreshForm()
+    {
+        $this->reimbursement = new BookingReimbursement(); // Reset to a new instance
+        $this->other = [
+         'details' => '',
+        ];
+        $this->time = [
+            'hours' => '',
+            'mins' => '',
+        ];
+        $this->selectedValue = null;
+        $this->file = null;
     }
 
 }
