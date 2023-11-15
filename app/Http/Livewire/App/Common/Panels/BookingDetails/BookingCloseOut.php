@@ -48,6 +48,9 @@ class BookingCloseOut extends Component
         ];
     }
 
+    public function approveRequest(){
+
+    }
     public function closeBooking()
     {
         $this->validate();
@@ -161,6 +164,17 @@ class BookingCloseOut extends Component
                     else
                         $this->closeOut[$bookingService->id][$provider['provider_id']]['actual_duration_min'] = $provider['service_payment_details']['actual_duration_min'];
                    
+                    $bookingStart = Carbon::parse($bookingService->start_time);
+                    $bookingEnd = Carbon::parse($bookingService->end_time);
+                    if($bookingEnd->diffInSeconds($bookingStart) - $end->diffInSeconds($start)<0){
+                          $this->closeOut[$bookingService->id][$provider['provider_id']]['timeExtention'] = true;
+                    }else
+                          $this->closeOut[$bookingService->id][$provider['provider_id']]['timeExtention'] = false;
+
+
+                    // dd($bookingEnd->diffInSeconds($bookingStart), $end->diffInSeconds($start) , $bookingEnd->diffInSeconds($bookingStart)- $end->diffInSeconds($start));
+
+                    
                 }
             }
             $this->service_charges[$bookingService->id]['charges'] = $bookingService->billed_total ?? 0;
