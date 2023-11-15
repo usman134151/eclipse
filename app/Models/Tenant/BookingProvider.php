@@ -36,6 +36,7 @@ class BookingProvider extends Model
         'check_in_procedure_values' => 'array',
         'service_payment_details' => 'array',
         'additional_payments' => 'array',
+        'admin_approved_payment_detail'=>'array',
 
     ];
 }
