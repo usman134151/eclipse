@@ -450,15 +450,10 @@ class Calendar extends Component
 	{
 		if ($bookingNumber)
 			$this->bookingNumber = $bookingNumber;
-		if ($this->ad_counter == 0) {
-			$this->booking_id = 0;
-			$this->ad_counter = 1;
-			$this->dispatchBrowserEvent('open-assignment-details-dashboard', ['booking_id' => $booking_id]);
-		} else {
 			$this->booking_id = $booking_id;
-			$this->emit('setBookingId', $booking_id);
-			$this->ad_counter = 0;
 			$this->providerPanelType = 3;
-		}
+			$this->emit('setBookingId', $booking_id);
+			//$this->dispatchBrowserEvent('open-assignment-details-dashboard', ['booking_id' => $booking_id]);
+		 
 	}
 }

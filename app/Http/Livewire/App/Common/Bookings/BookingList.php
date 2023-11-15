@@ -11,6 +11,7 @@ use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\BookingServiceCharges;
 use App\Models\Tenant\BookingServices;
 use App\Models\Tenant\SetupValue;
+use App\Models\Tenant\Tag;
 use App\Models\Tenant\User;
 use App\Models\Tenant\UserAddress;
 use App\Services\App\BookingOperationsService;
@@ -35,6 +36,7 @@ class BookingList extends Component
 	public $providerPanelType = 0; //to ensure only clicked panel loads in provider-panel 
 	public $bookingNumber = '', $selectedProvider = 0, $checkin_booking_id = 0;
 	public $deleteRecordId = 0;
+	public $isDashboard=false;
 	public $setupValues = [
 		'accommodations' => ['parameters' => ['Accommodation', 'id', 'name', 'status', 1, 'name', true, 'accommodation_search_filter', '', 'accommodation_search_filter', 2]],
 		'specializations' => ['parameters' => ['Specialization', 'id', 'name', 'status', 1, 'name', true, 'booking_specialization_search_filter', '', 'booking_specialization_search_filter', 4]],
@@ -60,7 +62,7 @@ class BookingList extends Component
 	protected $listeners = [
 		'showList' => 'resetForm', 'updateVal', 'showConfirmation',
 		'openAssignProvidersPanel', 'assignServiceProviders', 'setAssignmentDetails', 'showCheckInPanel',
-		'showCheckOutPanel', 'delete' => 'deleteBooking', 'refreshFilters'
+		'showCheckOutPanel', 'delete' => 'deleteBooking','refreshFilters'
 	];
 	public $serviceTypes = [
 		'1' => ['class' => 'inperson-rate', 'postfix' => '', 'title' => 'In-Person'],
@@ -387,7 +389,7 @@ class BookingList extends Component
 	public function mount()
 	{
 		$this->setupValues = SetupHelper::loadSetupValues($this->setupValues);
-
+		$this->tags = Tag::where('status','1')->get();
 		if (session('isProvider')) {
 			$this->provider_id = Auth::id();
 
@@ -605,14 +607,23 @@ class BookingList extends Component
 	}
 	public function setAssignmentDetails($booking_id = 0, $bookingNumber = null)
 	{
+
 		if ($bookingNumber)
 			$this->bookingNumber = $bookingNumber;
+			if($this->isDashboard==true){
+				$this->bookingNumber = $bookingNumber;
+				$this->booking_id = $booking_id;
+				$this->providerPanelType = 3;
+				$this->emit('setBookingId', $booking_id);
+				return;
+			}
 		// $this->emit('setAssignmentDetails', $booking_id);
 		if ($this->ad_counter == 0) {
 			$this->booking_id = 0;
 			$this->dispatchBrowserEvent('open-assignment-details', ['booking_id' => $booking_id]);
 			$this->ad_counter = 1;
 		} else {
+			
 			$this->booking_id = $booking_id;
 			$this->emit('setBookingId', $booking_id);
 			$this->ad_counter = 0;

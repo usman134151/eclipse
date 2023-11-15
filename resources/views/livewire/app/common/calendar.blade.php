@@ -62,7 +62,7 @@
                             var bookingNumber = eventData.event.extendedProps.bookingNumber;
 
 
-                            {{-- Livewire.emit('openBookingDetails', bookingId, bookingNumber); --}}
+                             Livewire.emit('openBookingDetails', bookingId, bookingNumber); 
                             //end of updates by Amna Bilal to trigger livewire on click
                         }
                     },
