@@ -205,7 +205,7 @@
 
                 </div>
                 <!-- /Filters -->
-                @livewire('app.common.bookings.booking-list', ['bookingType' => "Today's", 'showHeader' => false])
+                @livewire('app.common.bookings.booking-list', ['bookingType' => "Past", 'showHeader' => false, 'isDashboard'=>true])
 
             </div>
             {{-- <div class="tab-pane fade" id="available-assignments-pane" role="tabpanel"

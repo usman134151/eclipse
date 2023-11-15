@@ -1,4 +1,4 @@
-@props(['type' => '', 'hideProvider' => false, 'filterProviders' => [], 'bmanagers' => [], 'setupValues' => []])
+@props(['type' => '', 'hideProvider' => false, 'filterProviders' => [], 'bmanagers' => [], 'setupValues' => [], 'tags'=>[]])
 <div class="row">
     @if ($type == 'invoice-filters')
         <div class="col-lg-5 pe-lg-3 ">
