@@ -20,11 +20,11 @@ class ProviderDetails extends Component
 
 	// variabled for my-drive (upload-credential-file) panel 
 	public  $counter = 0, $credentialId, $credentialLabel = "", $credentialDetails = false;
-	public $serviceTypes = [
-        '1' => ['class' => 'inperson-rate', 'postfix' => '', 'title' => 'In-Person'],
-        '2' => ['class' => 'virtual-rate', 'postfix' => '_v', 'title' => 'Virtual'],
-        '4' => ['class' => 'phone-rate', 'postfix' => '_p', 'title' => 'Phone'],
-        '5' => ['class' => 'teleconference-rate', 'postfix' => '_t', 'title' => 'Teleconference'],
+	public  $serviceTypes = [
+        ['type' => '1', 'icon' => 'in-person', 'label' => 'In-Person', 'priceKey' => 'price'],
+        ['type' => '2', 'icon' => 'virtual-service', 'label' => 'Virtual', 'priceKey' => 'price_v'],
+        ['type' => '4', 'icon' => 'phone', 'label' => 'Phone', 'priceKey' => 'price_p'],
+        ['type' => '5', 'icon' => 'teleconference', 'label' => 'Teleconference', 'priceKey' => 'price_t'],
     ];
 
 	public $billingTypes = [
@@ -119,8 +119,8 @@ class ProviderDetails extends Component
 			'provider_accommodation_services.provider_priority',
 			'service_categories.*'
 		]);
-		$this->accommodation_catalog = $query->distinct('service_id')->orderBy('provider_priority')->get()->groupBy('accommodation_id')->toArray();
-
+		$this->accommodation_catalog = $query->distinct('service_id')->orderBy('provider_priority')->where('service_categories.status',1)->get()->groupBy('accommodation_id')->toArray();
+		// dd($this->accommodation_catalog);
 		// rate_status 1 => hourly
 		// rate_status 2 => day rate
 		// rate_status 4 => fixed

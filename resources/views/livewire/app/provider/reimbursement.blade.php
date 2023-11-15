@@ -1,4 +1,11 @@
 <div x-data="{addReimbursement: false, assignmentDetails: false, step: 1}">
+  <div id="loader-section" class="loader-section" wire:loading>
+    <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
+        <div class="spinner-border" role="status" aria-live="polite">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+  </div>
     <div class="content-header row">
         <div class="content-header-left col-md-9 col-12 mb-2">
           <div class="row breadcrumbs-top">
@@ -52,7 +59,7 @@
               </div>
               <x-advancefilters/>
               <div class="d-flex justify-content-between mb-2">
-                  <div class="d-inline-flex align-items-center gap-4">
+                  {{-- <div class="d-inline-flex align-items-center gap-4">
                     <label for="show_records" class="form-label">Show</label>
                     <select class="form-select" id="show_records">
                       <option>10</option>
@@ -74,7 +81,7 @@
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                       </ul>
                     </div>
-                  </div>
+                  </div> --}}
                 </div>
                 <div class="table-responsive">
                     <table id="remittances" class="table table-hover" aria-label="Reimbursements">
@@ -96,7 +103,69 @@
                           </tr>
                         </thead>
                           <tbody>
-                            <td>Coming Soon</td>
+                            @forelse ($reimbursementData as  $index => $reimbursement)
+                                            <tr role="row" class="odd">
+                                                <td>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" aria-label="List Checkbox" id="" name="" type="checkbox" tabindex="">
+                                                    </div>
+                                                </td>
+                                                <td>{{$reimbursement["booking_number"]}}<br />{{
+                                                        date_format(date_create($reimbursement['booking_start_at']), 'm/d/Y') }} <br>
+                                                        {{ $reimbursement['booking_start_at'] ? date_format(date_create($reimbursement['booking_start_at']), 'h:i
+                                                        A') : 'N/A' }} to {{ $reimbursement['booking_end_at'] ?
+                                                        date_format(date_create($reimbursement['booking_end_at']), 'h:i A') : 'N/A' }}</p></td>
+            
+                                                <td>{{$reimbursement['reason']}}<br>
+                                                    {{-- Updated by Shanila to Add svg icon--}}
+                                                    @if($reimbursement['file'])
+                                                    <button wire:click="downloadFile({{ $index }})" class="btn btn-link">
+                                                        <svg class="mx-2" aria-label="document" width="17" height="21" viewBox="0 0 17 21">
+                                                            <use xlink:href="/css/common-icons.svg#doc"></use>
+                                                        </svg>
+                                                    </button>
+                                                    @endif
+                                                    
+                                                    {{-- End of update by Shanila --}}
+                                                </td>
+                                                <td>{{formatPayment($reimbursement['amount'])}}</td>
+                                                <td>{{$reimbursement['review_status']}}</td>
+                                                <td>{{$reimbursement['payment_status']}}</td>
+                                                <td>{{ $reimbursement['issued_at'] ? date_format(date_create($reimbursement['issued_at']), 'm/d/Y') : 'N/A' }} </td> 
+                                                <td>{{ $reimbursement['paid_at'] ? date_format(date_create($reimbursement['paid_at']), 'm/d/Y') : 'N/A' }}</td>
+                                                <td>{{$reimbursement['payment_method']}}</td>
+                                                {{-- <td>
+                                                    <div class="d-flex actions">
+                                                        <a href="javascript:void(0)" title="Edit" aria-label="Edit"
+                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                            <svg title="Edit" width="20" height="20" viewBox="0 0 20 20">
+                                                                <use xlink:href="/css/common-icons.svg#pencil">
+                                                                </use>
+                                                            </svg>
+                                                        </a>
+                                                        <a href="javascript:void(0)" title="Check" aria-label="Check"
+                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal"
+                                                            data-bs-target="#reimbursementReview">
+                                                            <svg aria-label="Check" width="22" height="20" viewBox="0 0 22 20">
+                                                                <use xlink:href="/css/common-icons.svg#check">
+                                                                </use>
+                                                            </svg>
+                                                        </a>
+                                                        <a href="javascript:void(0)" title="cross" aria-label="cross"
+                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal"
+                                                            data-bs-target="#denyReimbursement">
+                                                            <svg aria-label="cancel" width="20" height="20" viewBox="0 0 20 20">
+                                                                <use xlink:href="/css/common-icons.svg#cross">
+                                                                </use>
+                                                            </svg>
+                                                        </a>
+                                                    </div>
+                                                </td> --}}
+                                            </tr>    
+                                            @empty
+                                                No Data
+                                            @endforelse
+                            {{-- <td>Coming Soon</td> --}}
                             {{-- <tr role="row" class="odd">
                               <td>
                                   <div class="form-check">
@@ -381,7 +450,7 @@
                           </table>
                    </div>
             </div>
-            <div class="d-flex justify-content-between">
+            {{-- <div class="d-flex justify-content-between">
                 <div>
                   <p class="fw-semibold">Showing 1 to 5 of 30 entries</p>
                 </div>
@@ -404,10 +473,19 @@
                   </ul>
                 </nav>
               </div>
+            </div> --}}
         </div>
      </div>
-     @include('panels.provider.add-reimbursement')
+     @include('panels.common.add-reimbursement')
      @include('panels.common.assignment-details')
     @include('modals.common.running-late')
     @include('modals.return-assignment')
 </div>
+<script>
+  function updateVal(attrName,val){
+
+      Livewire.emit('updateVal', attrName, val);
+
+  }
+</script>
+

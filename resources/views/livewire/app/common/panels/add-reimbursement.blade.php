@@ -1,11 +1,19 @@
 <div x-data="{ isUploading: false, progress: 0 }" x-on:livewire-upload-start="isUploading = true"
     x-on:livewire-upload-finish="isUploading = false" x-on:livewire-upload-error="isUploading = false"
     x-on:livewire-upload-progress="progress = $event.detail.progress">
+    <div id="loader-section" class="loader-section" wire:loading>
+        <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
+            <div class="spinner-border" role="status" aria-live="polite">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
     <form class="form" wire:submit.prevent="save">
         {{-- updated by shanila to add csrf--}}
         @csrf
         {{-- update ended by shanila --}}
         <div class="row">
+            @if(!session()->get('isProvider'))
             <div class="col-md-10 mb-4">
                 <label class="form-label" for="provider_id">
                     Provider
@@ -23,6 +31,7 @@
                 <span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span>
                 @enderror
             </div>
+            @endif
         </div>
         <div class="row">
             <div class="col-md-10 mb-4">
@@ -79,7 +88,7 @@
                         type="radio" name="reason-for-reimbursement" id="reason-for-reimbursement" checked=""
                         value="other">
                     <div class="hidden-content">
-                        <input wire:model.defer="other.detail" type="text" id="" class="form-control" name=""
+                        <input wire:model.defer="other.details" type="text" id="" class="form-control" name=""
                             placeholder="Reason for Reimbursement" aria-label="Reason for Reimbursement">
                     </div>
                 </div>
