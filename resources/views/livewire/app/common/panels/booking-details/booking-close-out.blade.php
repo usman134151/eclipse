@@ -755,9 +755,10 @@
                                                     </td>
                                                     <td class="align-middle text-center ">
                                                         <div class="d-inline-flex actions">
-                                                            @if ($closeOut[$bookingService->id][$provider['provider_id']]['timeExtention'])
+                                                            @if ($closeOut[$bookingService->id][$provider['provider_id']]['timeExtension'])
                                                                 <a href="#" title="Accept Assignment"
                                                                     aria-label="Accept Assignment"
+                                                                    wire:click="approveRequest({{$bookingService->id}},{{$provider['provider_id']}})"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon ">
                                                                     <svg width="30" height="30"
                                                                         viewBox="0 0 30 30" fill="none"

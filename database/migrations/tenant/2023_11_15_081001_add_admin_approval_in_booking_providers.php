@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('booking_providers', function (Blueprint $table) {
+            $table->json('admin_approved_payment_detail')->nullable()->default(null);
             //
         });
     }
@@ -27,7 +28,6 @@ return new class extends Migration
     {
         Schema::table('booking_providers', function (Blueprint $table) {
             //
-            $table->json('admin_approved_payment_detail')->nullable()->default(null);
         });
     }
 };
