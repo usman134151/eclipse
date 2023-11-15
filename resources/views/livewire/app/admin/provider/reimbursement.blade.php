@@ -270,7 +270,7 @@
                                                 <td>{{$reimbursement['reason']}}<br>
                                                     {{-- Updated by Shanila to Add svg icon--}}
                                                     @if($reimbursement['file'])
-                                                    <button wire:click="downloadFile({{ $index }})" class="btn btn-link">
+                                                    <button wire:click="downloadFile({{ $reimbursement }})" class="btn btn-link">
                                                         <svg class="mx-2" aria-label="document" width="17" height="21" viewBox="0 0 17 21">
                                                             <use xlink:href="/css/common-icons.svg#doc"></use>
                                                         </svg>
@@ -326,6 +326,28 @@
                                     </table>
                                 </div>
 
+                                <div class="d-flex flex-column flex-md-row justify-content-between">
+
+                                    <div class="col-auto overflow-auto my-sm-2 my-md-0 ms-sm-0">
+                                        <div class="d-flex flex-lg-row align-items-center">
+                                            <label class="w-auto">
+                                                <select wire:model="limit" class="form-select form-select-sm"
+                                                    id="limit">
+                                                    <option>10</option>
+                                                    <option>25</option>
+                                                    <option>50</option>
+                                                    <option>100</option>
+                                                </select>
+                                            </label>
+                                            <small class="ms-2 text-muted">
+                                                Records per page
+                                            </small>
+                                        </div>
+                                    </div>
+                                    {{-- @dd($reimbursementData) --}}
+                                    {{ $reimbursementData->links('livewire.app.common.bookings.booking-nav') }}
+
+                                </div>
                                 {{-- <div class="d-flex flex-column flex-md-row justify-content-between">
                                     <div>
                                         <p class="fw-semibold">Showing 1 to 5 of 30 entries</p>

@@ -899,6 +899,7 @@
                                                                 </use>
                                                             </svg>
                                                         </div>
+                                                        @if (strpos($service['service_type'], 1) !== false)
                                                         <div class="row mb-3">
                                                             <div class="d-inline-flex">
                                                                 <div class="d-inline-flex col-3">
@@ -983,7 +984,9 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        @endif
                                                         {{-- InPerson Expedited Service -End --}}
+                                                        @if (strpos($service['service_type'], 2) !== false)
                                                         <div class="row mb-3">
                                                             <div class="d-inline-flex">
                                                                 <div class="d-inline-flex col-3">
@@ -1063,7 +1066,9 @@
 
                                                             </div>
                                                         </div>
+                                                        @endif
                                                         {{-- Virtual Expedited service End --}}
+                                                        @if (strpos($service['service_type'], 4) !== false)
                                                         <div class="row mb-3">
                                                             <div class="d-inline-flex">
                                                                 <div class="d-inline-flex col-3">
@@ -1141,7 +1146,9 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        @endif
                                                         {{-- Phone Expedited Service -End --}}
+                                                        @if (strpos($service['service_type'], 5) !== false)
                                                         <div class="row mb-4">
                                                             <div class="d-inline-flex">
                                                                 <div class="d-inline-flex col-3">
@@ -1222,6 +1229,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        @endif
                                                         {{-- Teleconference Expedited Service End --}}
                                                         @if ($service['specializations'])
                                                             <div class="row">
@@ -1253,6 +1261,7 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
+                                                                            @if (strpos($service['service_type'], 1) !== false)
                                                                             <div class="mx-3">
                                                                                 <div class="d-inline-flex">
                                                                                     <div>
@@ -1274,6 +1283,8 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
+                                                                            @endif
+                                                                            @if (strpos($service['service_type'], 2) !== false)
                                                                             <div class="mx-3">
                                                                                 <div class="d-inline-flex">
                                                                                     <div>
@@ -1294,6 +1305,8 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
+                                                                            @endif
+                                                                            @if (strpos($service['service_type'], 4) !== false)
                                                                             <div class="mx-3">
                                                                                 <div class="d-inline-flex">
                                                                                     <div>
@@ -1314,6 +1327,8 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
+                                                                            @endif
+                                                                            @if (strpos($service['service_type'], 5) !== false)
                                                                             <div class="mx-3">
                                                                                 <div class="d-inline-flex">
                                                                                     <div>
@@ -1334,6 +1349,7 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
+                                                                            @endif
                                                                         </div>
                                                                     </div>
                                                                 @endforeach

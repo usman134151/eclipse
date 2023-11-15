@@ -6,10 +6,13 @@ use App\Models\Tenant\BookingReimbursement;
 use App\Models\Tenant\ReimbursementAttachment;
 use App\Models\Tenant\User;
 use Livewire\Component;
+use Livewire\WithPagination;
+
 
 class Reimbursement extends Component
 {
-	public $showForm, $reimbursementData;
+	use WithPagination;
+	public $showForm, $limit = 10;
 	protected $listeners = ['showList' => 'resetForm'];
 
 	function showForm()
@@ -28,14 +31,13 @@ class Reimbursement extends Component
 
 	public function render()
 	{
-		$this->reimbursementData = $this->fetchData();
-		return view('livewire.app.admin.provider.reimbursement');
+		return view('livewire.app.admin.provider.reimbursement', ['reimbursementData' => $this->fetchData()]);
 	}
 
 	public function fetchData()
 	{
-		$reimbursements = BookingReimbursement::with('booking')->get();
-		$data = [];
+		$reimbursements = BookingReimbursement::with('booking')->paginate($this->limit);
+
 		$statusLabels = [
 			0 => 'Pending',
 			1 => 'Approved',
@@ -46,18 +48,17 @@ class Reimbursement extends Component
 			2 => 'Mail a Check',
 		];
 
-		foreach ($reimbursements as $reimbursement) {
+		foreach ($reimbursements as $index => $reimbursement) {
+			
 			// Access the booking relationship for each reimbursement
 			$booking = $reimbursement->booking;
-			$img = ReimbursementAttachment::where('reimbursement_id', $reimbursement->id)->get()->first();
+			$file = ReimbursementAttachment::where('reimbursement_id', $reimbursement->id)->get()->first();
 			
-			if($img != null){
-				$img = $img['attachment_path'] != null ? $img->attachment_path : null;
+			if($file != null){
+				$file = $file['attachment_path'] != null ? $file->attachment_path : null;
 			}
 			$user = User::where('id', $reimbursement['provider_id'])->with('userdetail')->first();
 			
-			// dd($img,$reimbursement);
-			// dd($user->userdetail->profile_pic);
 			$reason = '';
 			if(!empty($reimbursement->reason))
             {
@@ -66,31 +67,37 @@ class Reimbursement extends Component
             }
 
 			// Store the provider name in your data array or do whatever you need with it
-			$data[] = [
-				'provider_name' => $user->name,
-				'provider_email' => $user->email,
-				'provider_profilePic' => $user->userdetail->profile_pic,
-				'booking_number' => $booking->booking_number,
-				'booking_start_at' => $booking->booking_start_at,
-				'booking_end_at' => $booking->booking_end_at,
-				'amount' => $reimbursement->amount,
-				'reason' => $reason,
-				'review_status' => $statusLabels[$reimbursement->status],
-				'issued_at' => $reimbursement->issued_at,
-				'paid_at' => $reimbursement->paid_at,
-				'payment_method' => $paymentLabels[$reimbursement->payment_method] ?? 'N/A',
-				'file' => $img
-			];
+			$reimbursement->provider_name = $user->name;
+			$reimbursement->provider_email = $user->email;
+			$reimbursement->provider_profilePic = $user->userdetail->profile_pic;
+			$reimbursement->booking_number = $booking->booking_number;
+			$reimbursement->booking_start_at = $booking->booking_start_at;
+			$reimbursement->booking_end_at = $booking->booking_end_at;
+			$reimbursement->amount = $reimbursement->amount;
+			$reimbursement->reason = $reason;
+			$reimbursement->review_status = $statusLabels[$reimbursement->status];
+			$reimbursement->issued_at = $reimbursement->issued_at;
+			$reimbursement->paid_at = $reimbursement->paid_at;
+			$reimbursement->payment_method = $paymentLabels[$reimbursement->payment_method] ?? 'N/A';
+			$reimbursement->file = $file;
 		}
-		return $data;
+
+		return $reimbursements;
 	}
 
 	public function downloadFile($file)
     {
-		// dd($this->reimbursementData[$file]['file']);
-		if($this->reimbursementData[$file]['file'] != null){
-			$storedPath = $this->reimbursementData[$file]['file']; // This path comes from the database
-			$correctedPath = str_replace('tenantabma/', '', $storedPath);
+		if($file['file'] != null){
+			// $storedPath = $file['file']; // This path comes from the database
+			// $correctedPath = str_replace('tenantabma/', '', $storedPath);
+			// $path = storage_path($correctedPath); // Adjust the path as per your file storage
+			// if (file_exists($path)) {
+			// 	return response()->download($path);
+			// }
+
+			$storedPath = $file['file']; // This path comes from the database
+			$correctedPath = str_replace('/tenantabma/', '', $storedPath);
+
 			$path = storage_path($correctedPath); // Adjust the path as per your file storage
 			if (file_exists($path)) {
 				return response()->download($path);
