@@ -72,9 +72,9 @@
 
                                     </div>
                                     <div class="mx-5" wire:ignore>
-                                        <p>{{ $booking_service['start_time'] ? date_format(date_create($booking_service['start_time']), 'h:i A - d F Y') : 'N/A' }}
+                                        <p>{{ $booking_service['start_time'] ? formatDateTime($booking_service['start_time']) : 'N/A' }}
                                         </p>
-                                        <p>{{ $booking_service['end_time'] ? date_format(date_create($booking_service['end_time']), 'h:i A - d F Y') : 'N/A' }}
+                                        <p>{{ $booking_service['end_time'] ? formatDateTime($booking_service['end_time']) : 'N/A' }}
                                         </p>
                                     </div>
                                 </div>
@@ -100,7 +100,6 @@
                                     <thead>
                                         <tr role="row">
                                             <th scope="col">Provider</th>
-                                            <th scope="col"> Actual Duration</th>
                                             <th scope="col">Pay Duration & Rates</th>
                                             <th scope="col">Final Payment</th>
                                             <th scope="col">Billable Duration<br>
@@ -132,8 +131,8 @@
                                                                         {{ $provider['email'] }}</small></a>
                                                             </div>
                                                         </div>
-                                                    </td>
-                                                    <td class="border-end-2 align-middle">
+                                                        <hr>
+
                                                         <div class="d-inline-flex my-2">
                                                             <p class="pe-5">Check In</p>
                                                             <div class="">
