@@ -130,7 +130,19 @@
                                                                     class="font-family-secondary"><small>
                                                                         {{ $provider['email'] }}</small></a>
                                                             </div>
+
                                                         </div>
+                                                            @if($provider['admin_approved_payment_detail']!=null && isset($provider['admin_approved_payment_detail']['approved_time_extension']))
+                                                            <div class="pt-2">
+                                                                <p class=" bg-muted p-1">Time Extension {{$provider['admin_approved_payment_detail']['approved_time_extension'] == 1 ? "Approved" : 'Denied'}}</p>
+                                                            </div>
+                                                            @if($provider['admin_approved_payment_detail']['approved_time_extension'] == 0)
+                                                                <div class="">
+                                                                display provider checkin checkout -  the one thats been declined
+                                                                </div>
+                                                            @endif
+                                                            @endif
+
                                                         <hr>
 
                                                         <div class="d-inline-flex my-2">
