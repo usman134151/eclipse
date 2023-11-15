@@ -12,7 +12,7 @@
                 x-on:click="closeOutBooking = !closeOutBooking">Cancel</button>
                 <button type="" x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });"
                     x-on:close-out-booking.window="closeOutBooking = !closeOutBooking" wire:click="$emit('closeBooking')"
-                    class="btn btn-primary rounded">Save</button>
+                    class="btn btn-primary rounded">Close Booking</button>
         </div>
     </x-slot>
 
