@@ -83,9 +83,24 @@ class BookingCloseOut extends Component
         $details['time_extension_status'] = $status;
 
         $booking_provider->admin_approved_payment_detail = $details;        //saving approved extension details
-
         $booking_provider->service_payment_details = $this->closeOut[$bookingServiceId][$providerId]['service_payment_details'];
 
+        if($booking_provider->check_in_procedure_values == null){
+            //provider has not checked in, add values from admin entered values
+            $checkin['actual_start_hour'] = $details['actual_start_hour'];
+            $checkin['actual_start_min'] = $details['actual_start_min'];
+            $checkin['actual_start_timestamp'] = Carbon::createFromFormat('m/d/Y H:i', date_format(date_create($bookingService->start_time), 'm/d/Y') . ' ' . $details['actual_start_hour'] . ':' . $details['actual_start_min']);
+            $booking_provider->check_in_procedure_values = $checkin;
+        }
+
+        if ($booking_provider->check_out_procedure_values == null) {
+            //provider has not checked out, add values from admin entered values
+            $checkout['actual_end_hour'] = $details['actual_end_hour'];
+            $checkout['actual_end_min'] = $details['actual_end_min'];
+            $checkout['actual_end_timestamp'] = Carbon::createFromFormat('m/d/Y H : i', date_format(date_create($bookingService->end_time), 'm/d/Y') . ' ' . $details['actual_end_hour'] . ' : ' . $details['actual_end_min']);
+            $booking_provider->check_out_procedure_values = $checkout;
+
+        }
         $booking_provider->total_amount = $this->closeOut[$bookingServiceId][$providerId]['total_amount'];
         // $booking_provider->is_override_price = 1;
         $booking_provider->override_price = $this->closeOut[$bookingServiceId][$providerId]['total_amount'];

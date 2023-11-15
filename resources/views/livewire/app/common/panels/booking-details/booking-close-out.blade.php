@@ -134,11 +134,11 @@
                                                         </div>
                                                         @if ($closeOut[$bookingService->id][$provider['provider_id']]['time_extension_status'] != 0)
                                                             <div class="pt-2">
-                                                                <p class=" bg-muted p-1">Time Extension
+                                                                <p class=" bg-muted p-1">Time Extension Request
                                                                     @if ($closeOut[$bookingService->id][$provider['provider_id']]['time_extension_status'] == 1)
-                                                                        <strong> Approved </strong>
+                                                                        :<strong> Approved </strong>
                                                                     @elseif($closeOut[$bookingService->id][$provider['provider_id']]['time_extension_status'] == 2)
-                                                                        <strong> Denied </strong>
+                                                                        :<strong> Denied </strong>
                                                                     @endif
                                                                 </p>
                                                             </div>
@@ -149,8 +149,8 @@
                                                                         <p class="p-1">Provider End Time: </p>
                                                                     </div>
                                                                     <div class="col-6">
-                                                                        <p class="p-1">{{formatDateTime($provider['check_in_procedure_values']['actual_start_timestamp'])}}</p>
-                                                                        <p class="p-1">{{formatDateTime($provider['check_out_procedure_values']['actual_end_timestamp'])}}</p>
+                                                                        <p class="p-1">{{$provider['check_in_procedure_values'] ? formatDateTime($provider['check_in_procedure_values']['actual_start_timestamp']): 'N/A'}}</p>
+                                                                        <p class="p-1">{{$provider['check_out_procedure_values'] ? formatDateTime($provider['check_out_procedure_values']['actual_end_timestamp']) : 'N/A'}}</p>
                                                                     </div>
                                                                 </div>
                                                             @endif
