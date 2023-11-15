@@ -216,6 +216,14 @@ class BookingList extends Component
 				$query->whereHas('invitation');
 
 				break;
+			case ('Cancelled'):
+				// 
+				$query->
+					// whereDate('booking_start_at', '>', Carbon::now())
+					where('bookings.status','>=' ,3)
+					->orderBy('booking_start_at', 'ASC');
+
+				break;
 			default:
 				$query->where('booking_end_at', '<>', null)->orderBy('booking_start_at', 'DESC');
 				break;
