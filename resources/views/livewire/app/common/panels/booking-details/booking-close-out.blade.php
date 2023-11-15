@@ -32,7 +32,7 @@
                 </div>
             </div>
             {{-- </div> --}}
-            @foreach ($booking->booking_services as $booking_service)
+            @foreach ($booking->booking_services as $bookingService)
                 <!-- Hoverable rows start -->
                 <div class="mt-3">
                     <div class="row" id="table-hover-row">
@@ -40,7 +40,7 @@
                             <div class=" row">
                                 <div class="col-12">
                                     <h2 class="pl-2 pt-3">
-                                        {{ $booking_service->service->name }} </h2>
+                                        {{ $bookingService->service->name }} </h2>
                                 </div>
                                 <div class="col-4  d-inline-flex">
                                     <div class="">
@@ -50,18 +50,18 @@
 
                                     </div>
                                     <div class="mx-5" wire:ignore>
-                                        <p>{{ $booking_service['service_details'] ? $booking_service['service_details']['total_duration']['hours'] : '0' }}
+                                        <p>{{ $bookingService['service_details'] ? $bookingService['service_details']['total_duration']['hours'] : '0' }}
                                             Hours,
-                                            {{ $booking_service['service_details'] ? $booking_service['service_details']['total_duration']['mins'] : '0' }}
+                                            {{ $bookingService['service_details'] ? $bookingService['service_details']['total_duration']['mins'] : '0' }}
                                             mins </p>
-                                        <p>{{ $booking_service['service_details'] ? floor($booking_service['service_details']['business_hour_duration'] / 60) : '0' }}
+                                        <p>{{ $bookingService['service_details'] ? floor($bookingService['service_details']['business_hour_duration'] / 60) : '0' }}
                                             Hours,
-                                            {{ $booking_service['service_details'] ? fmod($booking_service['service_details']['business_hour_duration'] / 60, 1) * 60 : '0' }}
+                                            {{ $bookingService['service_details'] ? fmod($bookingService['service_details']['business_hour_duration'] / 60, 1) * 60 : '0' }}
                                             mins </p>
 
-                                        <p>{{ $booking_service['service_details'] ? floor($booking_service['service_details']['after_hour_duration'] / 60) : '0' }}
+                                        <p>{{ $bookingService['service_details'] ? floor($bookingService['service_details']['after_hour_duration'] / 60) : '0' }}
                                             Hours,
-                                            {{ $booking_service['service_details'] ? fmod($booking_service['service_details']['after_hour_duration'] / 60, 1) * 60 : '0' }}
+                                            {{ $bookingService['service_details'] ? fmod($bookingService['service_details']['after_hour_duration'] / 60, 1) * 60 : '0' }}
                                             mins </p>
                                     </div>
                                 </div>
@@ -72,9 +72,9 @@
 
                                     </div>
                                     <div class="mx-5" wire:ignore>
-                                        <p>{{ $booking_service['start_time'] ? formatDateTime($booking_service['start_time']) : 'N/A' }}
+                                        <p>{{ $bookingService['start_time'] ? formatDateTime($bookingService['start_time']) : 'N/A' }}
                                         </p>
-                                        <p>{{ $booking_service['end_time'] ? formatDateTime($booking_service['end_time']) : 'N/A' }}
+                                        <p>{{ $bookingService['end_time'] ? formatDateTime($bookingService['end_time']) : 'N/A' }}
                                         </p>
                                     </div>
                                 </div>
@@ -84,13 +84,13 @@
                                             Service Charges</label>
                                         <input type="number" name="" class="form-control form-control-sm"
                                             placeholder="$00:00"
-                                            wire:model.lazy="service_charges.{{ $booking_service->id }}.charges"
+                                            wire:model.lazy="service_charges.{{ $bookingService->id }}.charges"
                                             id="service_charges">
 
                                     </div>
                                     <div class="flex  align-self-end">
                                         <button type="button"
-                                            wire:click="overrideServiceCharges({{ $booking_service->id }})"
+                                            wire:click="overrideServiceCharges({{ $bookingService->id }})"
                                             class="self_end btn btn-sm mx-1 btn-outline-dark rounded ">Override</button>
                                     </div>
                                 </div>
@@ -110,8 +110,8 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @if (isset($providers[$booking_service->id]) && count($providers[$booking_service->id]))
-                                            @foreach ($providers[$booking_service->id] as $provider)
+                                        @if (isset($providers[$bookingService->id]) && count($providers[$bookingService->id]))
+                                            @foreach ($providers[$bookingService->id] as $provider)
                                                 <tr role="row" class="">
 
                                                     <td class="align-middle border-end-2 " style="min-width:250px">
@@ -145,7 +145,7 @@
                                                                                 aria-label="Start Time"
                                                                                 name="actual_start_hour" type="text"
                                                                                 tabindex=""
-                                                                                wire:model.defer="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.actual_start_hour"
+                                                                                wire:model.defer="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.actual_start_hour"
                                                                                 maxlength="2">
                                                                         </div>
                                                                         <svg width="5" height="19"
@@ -162,18 +162,18 @@
                                                                                 id="actual_start_min"
                                                                                 name="actual_start_min" type="text"
                                                                                 tabindex=""
-                                                                                wire:model.defer="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.actual_start_min"
+                                                                                wire:model.defer="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.actual_start_min"
                                                                                 maxlength="2">
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                @error('close_out.' . $booking_service->id . '.' .
+                                                                @error('closeOut.' . $bookingService->id . '.' .
                                                                     $provider['provider_id'] . '.actual_start_hour')
                                                                     <span class="d-inline-block invalid-feedback mt-2">
                                                                         Hour field is required to be between 0 and 24.
                                                                     </span>
                                                                 @enderror
-                                                                @error('close_out.' . $booking_service->id . '.' .
+                                                                @error('closeOut.' . $bookingService->id . '.' .
                                                                     $provider['provider_id'] . '.actual_start_min')
                                                                     <span class="d-inline-block invalid-feedback mt-2">
                                                                         Minute field is required to be between 0 and 59.
@@ -194,7 +194,7 @@
                                                                                 aria-label="Start Time"
                                                                                 name="actual_start_hour"
                                                                                 type="text" tabindex=""
-                                                                                wire:model.defer="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.actual_end_hour"
+                                                                                wire:model.defer="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.actual_end_hour"
                                                                                 maxlength="2">
                                                                         </div>
                                                                         <svg width="5" height="19"
@@ -211,19 +211,19 @@
                                                                                 id="actual_start_min"
                                                                                 name="actual_start_min" type="text"
                                                                                 tabindex=""
-                                                                                wire:model.defer="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.actual_end_min"
+                                                                                wire:model.defer="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.actual_end_min"
                                                                                 maxlength="2">
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                @error('close_out.' . $booking_service->id . '.' .
+                                                                @error('closeOut.' . $bookingService->id . '.' .
                                                                     $provider['provider_id'] . '.actual_end_hour')
                                                                     <span class="d-inline-block invalid-feedback mt-2">
                                                                         Hour field is required to be between 0 and 24.
                                                                     </span>
                                                                 @enderror
 
-                                                                @error('close_out.' . $booking_service->id . '.' .
+                                                                @error('closeOut.' . $bookingService->id . '.' .
                                                                     $provider['provider_id'] . '.actual_end_min')
                                                                     <span class="d-inline-block invalid-feedback mt-2">
                                                                         Minute field is required to be between 0 and 59.
@@ -244,7 +244,7 @@
                                                                                 aria-label="Start Time"
                                                                                 name="actual_start_hour"
                                                                                 type="text" tabindex=""
-                                                                                wire:model.defer="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.actual_duration_hour"
+                                                                                wire:model.defer="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.actual_duration_hour"
                                                                                 maxlength="2">
                                                                         </div>
                                                                         <svg width="5" height="19"
@@ -261,19 +261,19 @@
                                                                                 id="actual_start_min"
                                                                                 name="actual_start_min" type="text"
                                                                                 tabindex=""
-                                                                                wire:model.defer="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.actual_duration_min"
+                                                                                wire:model.defer="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.actual_duration_min"
                                                                                 maxlength="2">
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                @error('close_out.' . $booking_service->id . '.' .
+                                                                @error('closeOut.' . $bookingService->id . '.' .
                                                                     $provider['provider_id'] . '.actual_duration_hour')
                                                                     <span class="d-inline-block invalid-feedback mt-2">
                                                                         Hour field is required to be between 0 and 24.
                                                                     </span>
                                                                 @enderror
 
-                                                                @error('close_out.' . $booking_service->id . '.' .
+                                                                @error('closeOut.' . $bookingService->id . '.' .
                                                                     $provider['provider_id'] . '.actual_duration_min')
                                                                     <span class="d-inline-block invalid-feedback mt-2">
                                                                         Minute field is required to be between 0 and 59.
@@ -302,8 +302,8 @@
                                                                                 <div class="col-7">
                                                                                     <div class="input-group">
                                                                                         <input type=""
-                                                                                            wire:blur="updateTotal({{ $booking_service->id }},{{ $provider['provider_id'] }})"
-                                                                                            wire:model.lazy="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.service_payment_details.b_hours_duration"
+                                                                                            wire:blur="updateTotal({{ $bookingService->id }},{{ $provider['provider_id'] }})"
+                                                                                            wire:model.lazy="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.service_payment_details.b_hours_duration"
                                                                                             class="form-control form-control-sm text-center"
                                                                                             placeholder="0"
                                                                                             aria-label="Hours">
@@ -315,12 +315,12 @@
                                                                                                 aria-label="Days"
                                                                                                 disabled>
                                                                                                 <option>
-                                                                                                    {{ $durationLabel[$booking_service->id] }}
+                                                                                                    {{ $durationLabel[$bookingService->id] }}
                                                                                                 </option>
                                                                                             </select>
                                                                                         </div>
-                                                                                        @error('close_out.' .
-                                                                                            $booking_service->id . '.' .
+                                                                                        @error('closeOut.' .
+                                                                                            $bookingService->id . '.' .
                                                                                             $provider['provider_id'] .
                                                                                             '.service_payment_details.b_hours_duration')
                                                                                             <span
@@ -352,10 +352,10 @@
                                                                                                 name="average-rate"
                                                                                                 class="form-control form-control-sm  w-25%"
                                                                                                 placeholder="$00:00"
-                                                                                                wire:blur="updateTotal({{ $booking_service->id }},{{ $provider['provider_id'] }})"
-                                                                                                wire:model.lazy="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.service_payment_details.b_hours_rate">
-                                                                                            @error('close_out.' .
-                                                                                                $booking_service->id . '.' .
+                                                                                                wire:blur="updateTotal({{ $bookingService->id }},{{ $provider['provider_id'] }})"
+                                                                                                wire:model.lazy="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.service_payment_details.b_hours_rate">
+                                                                                            @error('closeOut.' .
+                                                                                                $bookingService->id . '.' .
                                                                                                 $provider['provider_id'] .
                                                                                                 '.service_payment_details.b_hours_rate')
                                                                                                 <span
@@ -391,9 +391,9 @@
                                                                                     <div class="input-group">
                                                                                         <input type=""
                                                                                             name=""
-                                                                                            wire:model.lazy="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.service_payment_details.a_hours_duration"
+                                                                                            wire:model.lazy="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.service_payment_details.a_hours_duration"
                                                                                             class="form-control form-control-sm text-center"
-                                                                                            wire:blur="updateTotal({{ $booking_service->id }},{{ $provider['provider_id'] }})"
+                                                                                            wire:blur="updateTotal({{ $bookingService->id }},{{ $provider['provider_id'] }})"
                                                                                             placeholder="0"
                                                                                             aria-label="Hours">
 
@@ -404,12 +404,12 @@
                                                                                                 aria-label="Days"
                                                                                                 disabled>
                                                                                                 <option>
-                                                                                                    {{ $durationLabel[$booking_service->id] }}
+                                                                                                    {{ $durationLabel[$bookingService->id] }}
                                                                                                 </option>
                                                                                             </select>
                                                                                         </div>
-                                                                                        @error('close_out.' .
-                                                                                            $booking_service->id . '.' .
+                                                                                        @error('closeOut.' .
+                                                                                            $bookingService->id . '.' .
                                                                                             $provider['provider_id'] .
                                                                                             '.service_payment_details.a_hours_duration')
                                                                                             <span
@@ -440,10 +440,10 @@
                                                                                                 name="average-rate"
                                                                                                 class="form-control form-control-sm  w-25%"
                                                                                                 placeholder="$00:00"
-                                                                                                wire:blur="updateTotal({{ $booking_service->id }},{{ $provider['provider_id'] }})"
-                                                                                                wire:model.lazy="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.service_payment_details.a_hours_rate">
-                                                                                            @error('close_out.' .
-                                                                                                $booking_service->id . '.' .
+                                                                                                wire:blur="updateTotal({{ $bookingService->id }},{{ $provider['provider_id'] }})"
+                                                                                                wire:model.lazy="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.service_payment_details.a_hours_rate">
+                                                                                            @error('closeOut.' .
+                                                                                                $bookingService->id . '.' .
                                                                                                 $provider['provider_id'] .
                                                                                                 '.service_payment_details.a_hours_rate')
                                                                                                 <span
@@ -478,8 +478,8 @@
                                                                                     <div class="input-group">
                                                                                         <input type=""
                                                                                             name=""
-                                                                                            wire:model.lazy="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.service_payment_details.total_duration"
-                                                                                            wire:blur="updateTotal({{ $booking_service->id }},{{ $provider['provider_id'] }})"
+                                                                                            wire:model.lazy="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.service_payment_details.total_duration"
+                                                                                            wire:blur="updateTotal({{ $bookingService->id }},{{ $provider['provider_id'] }})"
                                                                                             class="form-control form-control-sm text-center"
                                                                                             placeholder="0"
                                                                                             aria-label="Days">
@@ -491,12 +491,12 @@
                                                                                                 aria-label="Days"
                                                                                                 disabled>
                                                                                                 <option>
-                                                                                                    {{ $durationLabel[$booking_service->id] }}
+                                                                                                    {{ $durationLabel[$bookingService->id] }}
                                                                                                 </option>
                                                                                             </select>
                                                                                         </div>
-                                                                                        @error('close_out.' .
-                                                                                            $booking_service->id . '.' .
+                                                                                        @error('closeOut.' .
+                                                                                            $bookingService->id . '.' .
                                                                                             $provider['provider_id'] .
                                                                                             '.service_payment_details.total_duration')
                                                                                             <span
@@ -527,10 +527,10 @@
                                                                                                 name="average-rate"
                                                                                                 class="form-control form-control-sm  w-25%"
                                                                                                 placeholder="$00:00"
-                                                                                                wire:blur="updateTotal({{ $booking_service->id }},{{ $provider['provider_id'] }})"
-                                                                                                wire:model.lazy="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.service_payment_details.rate">
-                                                                                            @error('close_out.' .
-                                                                                                $booking_service->id . '.' .
+                                                                                                wire:blur="updateTotal({{ $bookingService->id }},{{ $provider['provider_id'] }})"
+                                                                                                wire:model.lazy="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.service_payment_details.rate">
+                                                                                            @error('closeOut.' .
+                                                                                                $bookingService->id . '.' .
                                                                                                 $provider['provider_id'] .
                                                                                                 'service_payment_details.rate')
                                                                                                 <span
@@ -572,10 +572,10 @@
                                                                                                 name="average-rate"
                                                                                                 class="form-control form-control-sm  w-25%"
                                                                                                 placeholder="$00:00"
-                                                                                                wire:blur="updateTotal({{ $booking_service->id }},{{ $provider['provider_id'] }})"
-                                                                                                wire:model.lazy="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.service_payment_details.rate">
-                                                                                            @error('close_out.' .
-                                                                                                $booking_service->id . '.' .
+                                                                                                wire:blur="updateTotal({{ $bookingService->id }},{{ $provider['provider_id'] }})"
+                                                                                                wire:model.lazy="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.service_payment_details.rate">
+                                                                                            @error('closeOut.' .
+                                                                                                $bookingService->id . '.' .
                                                                                                 $provider['provider_id'] .
                                                                                                 '.service_payment_details.rate')
                                                                                                 <span
@@ -612,7 +612,7 @@
                                                                                 <div class="input-group">
                                                                                     <input type=""
                                                                                         name=""
-                                                                                        wire:model.lazy="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.service_payment_details.expedited_duration"
+                                                                                        wire:model.lazy="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.service_payment_details.expedited_duration"
                                                                                         class="form-control form-control-sm text-center"
                                                                                         placeholder="0"
                                                                                         aria-label="Hours">
@@ -626,8 +626,8 @@
                                                                                         </select>
                                                                                     </div>
 
-                                                                                    @error('close_out.' .
-                                                                                        $booking_service->id . '.' .
+                                                                                    @error('closeOut.' .
+                                                                                        $bookingService->id . '.' .
                                                                                         $provider['provider_id'] .
                                                                                         '.service_payment_details.expedited_duration')
                                                                                         <span
@@ -658,10 +658,10 @@
                                                                                             name="average-rate"
                                                                                             class="form-control form-control-sm  w-25%"
                                                                                             placeholder="$00:00"
-                                                                                            wire:blur="updateTotal({{ $booking_service->id }},{{ $provider['provider_id'] }})"
-                                                                                            wire:model.lazy="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.service_payment_details.expedited_rate">
-                                                                                        @error('close_out.' .
-                                                                                            $booking_service->id . '.' .
+                                                                                            wire:blur="updateTotal({{ $bookingService->id }},{{ $provider['provider_id'] }})"
+                                                                                            wire:model.lazy="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.service_payment_details.expedited_rate">
+                                                                                        @error('closeOut.' .
+                                                                                            $bookingService->id . '.' .
                                                                                             $provider['provider_id'] .
                                                                                             '.service_payment_details.expedited_rate')
                                                                                             <span
@@ -711,10 +711,10 @@
                                                                                                     name="average-rate"
                                                                                                     class="form-control form-control-sm  w-25%"
                                                                                                     placeholder="$00:00"
-                                                                                                    wire:blur="updateTotal({{ $booking_service->id }},{{ $provider['provider_id'] }})"
-                                                                                                    wire:model.lazy="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.service_payment_details.specialization_charges.{{ $key }}.provider_charges">
-                                                                                                @error('close_out.' .
-                                                                                                    $booking_service->id .
+                                                                                                    wire:blur="updateTotal({{ $bookingService->id }},{{ $provider['provider_id'] }})"
+                                                                                                    wire:model.lazy="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.service_payment_details.specialization_charges.{{ $key }}.provider_charges">
+                                                                                                @error('closeOut.' .
+                                                                                                    $bookingService->id .
                                                                                                     '.' .
                                                                                                     $provider['provider_id']
                                                                                                     .
@@ -747,7 +747,7 @@
                                                             <input type="number" name=""
                                                                 class="form-control form-control-sm"
                                                                 placeholder="$00:00"
-                                                                wire:model.lazy="close_out.{{ $booking_service->id }}.{{ $provider['provider_id'] }}.total_amount"
+                                                                wire:model.lazy="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.total_amount"
                                                                 id="total-service-payment">
                                                         </div>
                                                     </td>
@@ -824,7 +824,7 @@
 
                                                             <a href="#" title="Reset to Assignment Duration"
                                                                 aria-label="Reset to Assignment Duration"
-                                                                wire:click="resetVals({{ $booking_service->id }},{{ $provider['provider_id'] }})"
+                                                                wire:click="resetVals({{ $bookingService->id }},{{ $provider['provider_id'] }})"
                                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                 <svg aria-label="Reset" class="fill-stroke"
                                                                     width="22" height="20" viewBox="0 0 22 20"
