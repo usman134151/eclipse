@@ -107,7 +107,9 @@ class Reimbursement extends Component
 			// }
 
             $storedPath = $file['file']; // This path comes from the database
-			$path = public_path($storedPath); // Adjust the path as per your file storage
+			$correctedPath = str_replace('/tenantabma/', '', $storedPath);
+
+			$path = storage_path($correctedPath); // Adjust the path as per your file storage
 			if (file_exists($path)) {
 				return response()->download($path);
 			}
