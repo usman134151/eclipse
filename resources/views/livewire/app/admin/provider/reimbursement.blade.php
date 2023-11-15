@@ -200,7 +200,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="d-flex flex-column flex-md-row justify-content-between mb-2 gap-2">
+                                {{-- <div class="d-flex flex-column flex-md-row justify-content-between mb-2 gap-2">
                                     <div class="d-inline-flex align-items-center gap-4">
                                         <label for="show_records_number" class="form-label">Show</label>
                                         <select class="form-select" id="show_records_number">
@@ -215,7 +215,7 @@
                                         <input type="search" class="form-control" id="search" name="search"
                                             placeholder="Search here" autocomplete="on" />
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="table-responsive mb-2">
                                     <table id="remittances" class="table table-hover" aria-label="Remittance">
                                         <thead>
@@ -267,17 +267,19 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td>Fuel Expenses<br>
+                                                <td>{{$reimbursement['reason']}}<br>
                                                     {{-- Updated by Shanila to Add svg icon--}}
+                                                    @if($reimbursement['file'])
                                                     <button wire:click="downloadFile({{ $index }})" class="btn btn-link">
                                                         <svg class="mx-2" aria-label="document" width="17" height="21" viewBox="0 0 17 21">
                                                             <use xlink:href="/css/common-icons.svg#doc"></use>
                                                         </svg>
                                                     </button>
+                                                    @endif
                                                     
                                                     {{-- End of update by Shanila --}}
                                                 </td>
-                                                <td>{{$reimbursement['amount']}}</td>
+                                                <td>{{formatPayment($reimbursement['amount'])}}</td>
                                                 <td>{{$reimbursement['review_status']}}</td>
                                                 <td>{{ $reimbursement['issued_at'] ? date_format(date_create($reimbursement['issued_at']), 'm/d/Y') : 'N/A' }} <br> 
                                                 {{ $reimbursement['paid_at'] ? date_format(date_create($reimbursement['paid_at']), 'm/d/Y') : 'N/A' }}</td>

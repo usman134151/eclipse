@@ -863,84 +863,27 @@
                                                                 </use>
                                                             </svg>
                                                         </div>
-                                                        <div class="row mb-4">
-                                                            <div class="col-md-4">
-                                                                <div class="d-inline-flex">
-                                                                    <div>
-                                                                        <svg aria-label="In-Person" width="25"
-                                                                            height="24" viewBox="0 0 25 24"
-                                                                            fill="none"
-                                                                            xmlns="http://www.w3.org/2000/svg">
-                                                                            <use
-                                                                                xlink:href="/css/provider.svg#in-person">
-                                                                            </use>
-                                                                        </svg>
-                                                                    </div>
-                                                                    <div class="mx-3 fw-semibold">{{$billingTypes[intval($service['rate_status'])]['title']}} In-Person:
-                                                                    </div>
-                                                                    <div class="mx-3">
-                                                                        {{ $service['price'] ? numberFormat($service['price']) : 'N/A' }}
-                                                                    </div>
-                                                                </div>
+                                                        @for ($i = 0; $i < count($serviceTypes); $i += 2)
+                                                            <div class="row mb-4">
+                                                                @foreach (array_slice($serviceTypes, $i, 2) as $type)
+                                                                    @if (strpos($service['service_type'], $type['type']) !== false)
+                                                                        <div class="col-md-6">
+                                                                            <div class="d-inline-flex">
+                                                                                <div>
+                                                                                    <svg aria-label="{{ $type['label'] }}" width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                        <use xlink:href="/css/provider.svg#{{ $type['icon'] }}"></use>
+                                                                                    </svg>
+                                                                                </div>
+                                                                                <div class="mx-3 fw-semibold">{{ $billingTypes[intval($service['rate_status'])]['title'] }} {{ $type['label'] }}:</div>
+                                                                                <div class="mx-3">
+                                                                                    {{ $service[$type['priceKey']] ? formatPayment($service[$type['priceKey']]) : 'N/A' }}
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    @endif
+                                                                @endforeach
                                                             </div>
-                                                            <div class="col-md-4">
-                                                                <div class="d-inline-flex">
-                                                                    <div>
-                                                                        <svg aria-label="Virtual" width="25"
-                                                                            height="25" viewBox="0 0 25 25"
-                                                                            fill="none"
-                                                                            xmlns="http://www.w3.org/2000/svg">
-                                                                            <use
-                                                                                xlink:href="/css/provider.svg#virtual-service">
-                                                                            </use>
-                                                                        </svg>
-                                                                    </div>
-                                                                    <div class="mx-3 fw-semibold">{{$billingTypes[intval($service['rate_status'])]['title']}} Virtual:
-                                                                    </div>
-                                                                    <div class="mx-3">
-                                                                        {{ $service['price_v'] ?  formatPayment($service['price_v']) : 'N/A' }}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mb-4">
-                                                            <div class="col-md-4">
-                                                                <div class="d-inline-flex">
-                                                                    <div>
-                                                                        <svg aria-label="Phone" width="30"
-                                                                            height="24" viewBox="0 0 30 24"
-                                                                            fill="none"
-                                                                            xmlns="http://www.w3.org/2000/svg">
-                                                                            <use xlink:href="/css/provider.svg#phone">
-                                                                            </use>
-                                                                        </svg>
-                                                                    </div>
-                                                                    <div class="mx-3 fw-semibold">{{$billingTypes[intval($service['rate_status'])]['title']}} Phone:</div>
-                                                                    <div class="mx-3">
-                                                                        {{ $service['price_p'] ?  formatPayment($service['price_p']) : 'N/A' }}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <div class="d-inline-flex">
-                                                                    <div>
-                                                                        <svg aria-label="Teleconference"
-                                                                            width="30" height="26"
-                                                                            viewBox="0 0 30 26" fill="none"
-                                                                            xmlns="http://www.w3.org/2000/svg">
-                                                                            <use
-                                                                                xlink:href="/css/provider.svg#teleconference">
-                                                                            </use>
-                                                                        </svg>
-                                                                    </div>
-                                                                    <div class="mx-3 fw-semibold">{{$billingTypes[intval($service['rate_status'])]['title']}}
-                                                                        Teleconference:</div>
-                                                                    <div class="mx-3">
-                                                                        {{ $service['price_t'] ?  formatPayment($service['price_t']) : 'N/A' }}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                        @endfor
                                                         <hr>
                                                     </div>
                                                     {{-- Standandard Rates -End --}}

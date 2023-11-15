@@ -34,7 +34,7 @@ class Reimbursement extends Component
 
 	public function fetchData()
 	{
-		$query = $reimbursements = BookingReimbursement::with('booking')->get();
+		$reimbursements = BookingReimbursement::with('booking')->get();
 		$data = [];
 		$statusLabels = [
 			0 => 'Pending',
@@ -58,6 +58,12 @@ class Reimbursement extends Component
 			
 			// dd($img,$reimbursement);
 			// dd($user->userdetail->profile_pic);
+			$reason = '';
+			if(!empty($reimbursement->reason))
+            {
+                $reason = json_decode($reimbursement['reason'],true);
+                $reason = $reason['type'] === 'Other' ? $reason['details'] : $reason['type'];
+            }
 
 			// Store the provider name in your data array or do whatever you need with it
 			$data[] = [
@@ -68,7 +74,7 @@ class Reimbursement extends Component
 				'booking_start_at' => $booking->booking_start_at,
 				'booking_end_at' => $booking->booking_end_at,
 				'amount' => $reimbursement->amount,
-				'reason' => $reimbursement->reason,
+				'reason' => $reason,
 				'review_status' => $statusLabels[$reimbursement->status],
 				'issued_at' => $reimbursement->issued_at,
 				'paid_at' => $reimbursement->paid_at,
