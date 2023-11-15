@@ -132,16 +132,29 @@
                                                             </div>
 
                                                         </div>
-                                                            @if($provider['admin_approved_payment_detail']!=null && isset($provider['admin_approved_payment_detail']['approved_time_extension']))
+                                                        @if ($closeOut[$bookingService->id][$provider['provider_id']]['time_extension_status'] != 0)
                                                             <div class="pt-2">
-                                                                <p class=" bg-muted p-1">Time Extension {{$provider['admin_approved_payment_detail']['approved_time_extension'] == 1 ? "Approved" : 'Denied'}}</p>
+                                                                <p class=" bg-muted p-1">Time Extension
+                                                                    @if ($closeOut[$bookingService->id][$provider['provider_id']]['time_extension_status'] == 1)
+                                                                        <strong> Approved </strong>
+                                                                    @elseif($closeOut[$bookingService->id][$provider['provider_id']]['time_extension_status'] == 2)
+                                                                        <strong> Denied </strong>
+                                                                    @endif
+                                                                </p>
                                                             </div>
-                                                            @if($provider['admin_approved_payment_detail']['approved_time_extension'] == 0)
-                                                                <div class="">
-                                                                display provider checkin checkout -  the one thats been declined
+                                                            @if ($closeOut[$bookingService->id][$provider['provider_id']]['time_extension_status'] == 2)
+                                                                <div class="mt-2 row">
+                                                                    <div class="col-6">
+                                                                        <p class="p-1">Provider Start Time:</p>
+                                                                        <p class="p-1">Provider End Time: </p>
+                                                                    </div>
+                                                                    <div class="col-6">
+                                                                        <p class="p-1">{{formatDateTime($provider['check_in_procedure_values']['actual_start_timestamp'])}}</p>
+                                                                        <p class="p-1">{{formatDateTime($provider['check_out_procedure_values']['actual_end_timestamp'])}}</p>
+                                                                    </div>
                                                                 </div>
                                                             @endif
-                                                            @endif
+                                                        @endif
 
                                                         <hr>
 
@@ -767,10 +780,10 @@
                                                     </td>
                                                     <td class="align-middle text-center ">
                                                         <div class="d-inline-flex actions">
-                                                            @if ($closeOut[$bookingService->id][$provider['provider_id']]['timeExtension'])
+                                                            @if ($closeOut[$bookingService->id][$provider['provider_id']]['time_extension_status'] == 3)
                                                                 <a href="#" title="Accept Assignment"
                                                                     aria-label="Accept Assignment"
-                                                                    wire:click="approveRequest({{$bookingService->id}},{{$provider['provider_id']}})"
+                                                                    wire:click="updateTimeExtension({{ $bookingService->id }},{{ $provider['provider_id'] }},1)"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon ">
                                                                     <svg width="30" height="30"
                                                                         viewBox="0 0 30 30" fill="none"
@@ -805,6 +818,7 @@
                                                                     </svg>
                                                                 </a>
                                                                 <a href="#" title="Reject Assignment"
+                                                                    wire:click="updateTimeExtension({{ $bookingService->id }},{{ $provider['provider_id'] }},2)"
                                                                     aria-label="Reject Assignment"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon ">
                                                                     <svg width="30" height="30"

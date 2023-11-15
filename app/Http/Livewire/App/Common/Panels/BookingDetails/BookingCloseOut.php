@@ -48,13 +48,27 @@ class BookingCloseOut extends Component
         ];
     }
 
-    public function approveRequest($bookingServiceId, $providerId)
+    public function updateTimeExtension($bookingServiceId, $providerId, $status)
     {
+        $this->closeOut[$bookingServiceId][$providerId]['time_extension_status'] = $status;
+
         $booking_provider = BookingProvider::where(['booking_service_id' => $bookingServiceId, 'provider_id' => $providerId])->first();
         $bookingService = $this->booking->booking_services->where('id', $bookingServiceId)->first();
 
         $booking_provider->check_in_status = 3;
         $booking_provider->return_status = 1;
+        if ($status == 2) {
+            //rejecting the time extension and changing values back to assignment-default
+            $start = Carbon::parse($bookingService->start_time);
+            $this->closeOut[$bookingService->id][$booking_provider['provider_id']]['actual_start_hour'] = $start->format('H');
+            $this->closeOut[$bookingService->id][$booking_provider['provider_id']]['actual_start_min'] = $start->format('i');
+            $end = Carbon::parse($bookingService->end_time);
+            $this->closeOut[$bookingService->id][$booking_provider['provider_id']]['actual_end_hour'] = $end->format('H');
+            $this->closeOut[$bookingService->id][$booking_provider['provider_id']]['actual_end_min'] = $end->format('i');
+
+            $this->closeOut[$bookingService->id][$booking_provider['provider_id']]['actual_duration_hour'] = abs($this->closeOut[$bookingService->id][$booking_provider['provider_id']]['actual_end_hour'] - $this->closeOut[$bookingService->id][$booking_provider['provider_id']]['actual_start_hour']);
+            $this->closeOut[$bookingService->id][$booking_provider['provider_id']]['actual_duration_min'] = abs($this->closeOut[$bookingService->id][$booking_provider['provider_id']]['actual_end_min'] - $this->closeOut[$bookingService->id][$booking_provider['provider_id']]['actual_start_min']);
+        }
 
         $details['actual_start_hour'] = $this->closeOut[$bookingServiceId][$providerId]['actual_start_hour'];
         $details['actual_start_min'] = $this->closeOut[$bookingServiceId][$providerId]['actual_start_min'];
@@ -66,9 +80,7 @@ class BookingCloseOut extends Component
 
         $details['actual_duration_hour'] = $this->closeOut[$bookingServiceId][$providerId]['actual_duration_hour'];
         $details['actual_duration_min'] = $this->closeOut[$bookingServiceId][$providerId]['actual_duration_min'];
-        $details['approved_time_extension'] = 1;
-
-        unset($this->closeOut[$bookingServiceId][$providerId]['timeExtension']);    //removing display variable 
+        $details['time_extension_status'] = $status;
 
         $booking_provider->admin_approved_payment_detail = $details;        //saving approved extension details
 
@@ -77,8 +89,8 @@ class BookingCloseOut extends Component
         $booking_provider->total_amount = $this->closeOut[$bookingServiceId][$providerId]['total_amount'];
         // $booking_provider->is_override_price = 1;
         $booking_provider->override_price = $this->closeOut[$bookingServiceId][$providerId]['total_amount'];
-
         $booking_provider->save();
+        $this->closeOut[$bookingServiceId][$providerId]['saved'] = true;
     }
     public function closeBooking()
     {
@@ -87,6 +99,8 @@ class BookingCloseOut extends Component
         foreach ($this->closeOut as $bookingServiceId => $service) {
             $bookingService = BookingServices::find($bookingServiceId);
             foreach ($service as $provider_id => $closingDetails) {
+                if (key_exists('saved', $closingDetails) && $closingDetails['saved'] == true)
+                    continue;   //this provider has been updated already, skip to next
 
                 $booking_provider = BookingProvider::where(['booking_service_id' => $bookingServiceId, 'provider_id' => $provider_id])->first();
                 $booking_provider->check_in_status = 3;
@@ -161,8 +175,14 @@ class BookingCloseOut extends Component
         $this->overrideBookingAmount();
     }
 
+
     public function mount()
     {
+        // time_extension_status -> 0 does not require time extension
+        // time_extension_status -> 1 approved time extension
+        // time_extension_status -> 2 denied time extension
+        // time_extension_status -> 3 requires time extension
+
         foreach ($this->booking->booking_services as $bookingService) {
             //for each service
             $this->providers[$bookingService->id] = BookingProvider::where('booking_service_id', $bookingService->id)->join('users', 'users.id', 'provider_id')->join('user_details', 'users.id', 'user_details.user_id')
@@ -181,29 +201,29 @@ class BookingCloseOut extends Component
                         $this->closeOut[$bookingService->id][$provider['provider_id']]['actual_end_hour'] = $end->format('H');
                         $this->closeOut[$bookingService->id][$provider['provider_id']]['actual_end_min'] = $end->format('i');
 
-                        if (!isset($provider['service_payment_details']['actual_duration_hour']))
+                        if (!isset($provider['admin_approved_payment_detail']['actual_duration_hour']))
                             $this->closeOut[$bookingService->id][$provider['provider_id']]['actual_duration_hour'] = abs($this->closeOut[$bookingService->id][$provider['provider_id']]['actual_end_hour'] - $this->closeOut[$bookingService->id][$provider['provider_id']]['actual_start_hour']);
                         else
-                            $this->closeOut[$bookingService->id][$provider['provider_id']]['actual_duration_hour'] = $provider['service_payment_details']['actual_duration_hour'];
+                            $this->closeOut[$bookingService->id][$provider['provider_id']]['actual_duration_hour'] = $provider['admin_approved_payment_detail']['actual_duration_hour'];
 
-                        if (!isset($provider['service_payment_details']['actual_duration_min']))
+                        if (!isset($provider['admin_approved_payment_detail']['actual_duration_min']))
                             $this->closeOut[$bookingService->id][$provider['provider_id']]['actual_duration_min'] = abs($this->closeOut[$bookingService->id][$provider['provider_id']]['actual_end_min'] - $this->closeOut[$bookingService->id][$provider['provider_id']]['actual_start_min']);
                         else
-                            $this->closeOut[$bookingService->id][$provider['provider_id']]['actual_duration_min'] = $provider['service_payment_details']['actual_duration_min'];
+                            $this->closeOut[$bookingService->id][$provider['provider_id']]['actual_duration_min'] = $provider['admin_approved_payment_detail']['actual_duration_min'];
 
                         $bookingStart = Carbon::parse($bookingService->start_time);
                         $bookingEnd = Carbon::parse($bookingService->end_time);
-
+                        //checking difference between assignment duration and provider duration 
                         if ($bookingEnd->diffInSeconds($bookingStart) - $end->diffInSeconds($start) < 0)
-                            $this->closeOut[$bookingService->id][$provider['provider_id']]['timeExtension'] = true;
+                            //requires time extension
+                            $this->closeOut[$bookingService->id][$provider['provider_id']]['time_extension_status'] = 3;
                         else
-                            $this->closeOut[$bookingService->id][$provider['provider_id']]['timeExtension'] = false;
-
+                            $this->closeOut[$bookingService->id][$provider['provider_id']]['time_extension_status'] = 0;
                     } else {
                         //time extension already approved/rejected
                         $this->closeOut[$bookingService->id][$provider['provider_id']]    = $provider['admin_approved_payment_detail'];
-                        $this->closeOut[$bookingService->id][$provider['provider_id']]['timeExtension'] = false;
-
+                        // if($provider['admin_approved_payment_detail']['time_extension_status'] == 2)
+                        //     // display provider checkin-checkout times 
                     }
                     $this->closeOut[$bookingService->id][$provider['provider_id']]['total_amount'] = $provider['total_amount'];
                     $this->closeOut[$bookingService->id][$provider['provider_id']]['service_payment_details'] = $provider['service_payment_details'];
