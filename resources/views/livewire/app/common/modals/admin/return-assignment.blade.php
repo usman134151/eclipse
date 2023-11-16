@@ -11,7 +11,7 @@
         </div>
     </div>
     <div class="modal-footer justify-items-center">
-        <button type="button" class="btn btn-primary" wire:click="unassign">
+        <button type="button" class="btn btn-primary" wire:click="unassign" x-on:click="assignmentDetails=false">
             Yes
         </button>
         <button type="button" class="btn border-2 btn-outline-secondary btn-secondary" data-bs-dismiss="modal">
