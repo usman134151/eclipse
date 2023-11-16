@@ -36,9 +36,12 @@ class ReturnAssignment extends Component
             $provider_id = Auth::id();
 
             $bookingPro = BookingProvider::where(['booking_id' => $this->booking->id, 'provider_id' => $provider_id])->first();
-            $bookingPro->delete();
-            $this->booking->status = 1;
-            $this->booking->save();
+            if(!is_null($bookingPro)){
+                $bookingPro->delete();
+                $this->booking->status = 1;
+                $this->booking->save();
+            }
+
 
             $user = User::find($provider_id);
             $templateId = getTemplate('Booking: Provider Unassigned', 'email_template');
