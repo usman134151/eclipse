@@ -56,7 +56,6 @@ class BookingCloseOut extends Component
         $bookingService = $this->booking->booking_services->where('id', $bookingServiceId)->first();
 
         $booking_provider->check_in_status = 3;
-        $booking_provider->return_status = 1;
         if ($status == 2) {
             //rejecting the time extension and changing values back to assignment-default
             $start = Carbon::parse($bookingService->start_time);
@@ -119,7 +118,6 @@ class BookingCloseOut extends Component
 
                 $booking_provider = BookingProvider::where(['booking_service_id' => $bookingServiceId, 'provider_id' => $provider_id])->first();
                 $booking_provider->check_in_status = 3;
-                $booking_provider->return_status = 1;
 
                 $checkin = $booking_provider->check_in_procedure_values;
                 // dd($checkin);

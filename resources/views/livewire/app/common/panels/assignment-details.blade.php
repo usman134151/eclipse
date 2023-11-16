@@ -131,6 +131,7 @@
                             @endif
                             <button type="button"
                                 class="btn btn-primary rounded text-sm d-inline-flex gap-1 align-items-center px-3"
+                                wire:click="$emit('openReturnAssignmentModal',{{ $booking['id'] }}, {{ $booking['service_id'] }})"
                                 data-bs-toggle="modal" data-bs-target="#returnAssignmentModal">
                                 <svg aria-label="Return Assignment" width="30" height="30"
                                     viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
