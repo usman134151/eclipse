@@ -310,7 +310,7 @@ class AssignProviders extends Component
                 $subTotal=($this->providersPayment[$index]['service_payment_details']['b_hours_rate'] * $this->providersPayment[$index]['service_payment_details']['b_hours_duration']) + ($this->providersPayment[$index]['service_payment_details']['a_hours_rate'] * $this->providersPayment[$index]['service_payment_details']['a_hours_duration']);
             }
        
-            $this->providersPayment[$index]['total_amount'] =  number_format($subTotal+ ($this->providersPayment[$index]['service_payment_details']['expedited_rate'] * $this->providersPayment[$index]['service_payment_details']['expedited_duration']), 2, '.', '');
+            $this->providersPayment[$index]['total_amount'] =  number_format($subTotal+ ($this->providersPayment[$index]['service_payment_details']['expedited_rate']), 2, '.', '');
 
 
         if (count($this->providersPayment[$index]['additional_payments']) && key_exists('additional_charge_provider',$this->providersPayment[$index]['additional_payments'])) {
@@ -324,7 +324,7 @@ class AssignProviders extends Component
         if (count($this->booking_specializations)) {
             if(key_exists('specialization_charges',$this->providersPayment[$index]['service_payment_details'])){
                 foreach ($this->providersPayment[$index]['service_payment_details']['specialization_charges'] as $key => $specialization) {
-                    $this->providersPayment[$index]['total_amount'] = $this->providersPayment[$index]['total_amount'] + $this->providersPayment[$index]['service_payment_details']['specialization_charges'][$key]['provider_charges'] ?? 0;
+                    $this->providersPayment[$index]['total_amount'] = $this->providersPayment[$index]['total_amount'] + (float) $this->providersPayment[$index]['service_payment_details']['specialization_charges'][$key]['provider_charges'] ?? 0;
                 }
             }
 
