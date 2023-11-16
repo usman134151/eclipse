@@ -294,14 +294,14 @@
                                                                 @error('closeOut.' . $bookingService->id . '.' .
                                                                     $provider['provider_id'] . '.actual_duration_hour')
                                                                     <span class="d-inline-block invalid-feedback mt-2">
-                                                                        Hour field is required to be between 0 and 24.
+                                                                       Duration hours must be a number
                                                                     </span>
                                                                 @enderror
 
                                                                 @error('closeOut.' . $bookingService->id . '.' .
                                                                     $provider['provider_id'] . '.actual_duration_min')
                                                                     <span class="d-inline-block invalid-feedback mt-2">
-                                                                        Minute field is required to be between 0 and 59.
+                                                                       Duration minutes must be a number
                                                                     </span>
                                                                 @enderror
                                                             </div>

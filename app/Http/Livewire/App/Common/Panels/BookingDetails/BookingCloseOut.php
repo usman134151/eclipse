@@ -26,9 +26,13 @@ class BookingCloseOut extends Component
             'closeOut.*.*.actual_end_min' => 'required|numeric|between:0,59',
             'closeOut.*.*.actual_start_hour' => 'required|numeric|between:0,23',
             'closeOut.*.*.actual_start_min' => 'required|numeric|between:0,59',
+            'closeOut.*.*.actual_duration_hour' => 'required|numeric',
+            'closeOut.*.*.actual_duration_min' => 'required|numeric',
+            
             'closeOut.*.*.service_payment_details.b_hours_duration' => 'nullable|numeric',
             'closeOut.*.*.service_payment_details.a_hours_duration' => 'nullable|numeric',
             'closeOut.*.*.service_payment_details.b_hours_rate' => 'nullable|numeric',
+            'closeOut.*.*.service_payment_details.rate' => 'nullable|numeric',
             'closeOut.*.*.service_payment_details.a_hours_rate' => 'nullable|numeric',
             'closeOut.*.*.service_payment_details.expedited_rate' => 'nullable|numeric',
             'closeOut.*.*.service_payment_details.specialization_charges.*.provider_charges' => 'nullable|numeric',
@@ -43,6 +47,7 @@ class BookingCloseOut extends Component
             'closeOut.*.*.service_payment_details.b_hours_rate.numeric' => 'Average rate should be a number',
             'closeOut.*.*.service_payment_details.a_hours_rate.numeric' => 'Average rate should be a number',
             'closeOut.*.*.service_payment_details.expedited_rate.numeric' => 'Average rate should be a number',
+            'closeOut.*.*.service_payment_details.rate.numeric' => 'Rate should be a number',
             'closeOut.*.*.service_payment_details.specialization_charges.*.provider_charges.numeric' => 'Average rate should be a number',
 
         ];
