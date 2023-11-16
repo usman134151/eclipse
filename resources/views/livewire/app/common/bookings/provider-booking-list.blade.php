@@ -604,8 +604,13 @@
             $('#runningLateModal').modal('hide');
 
         });
-        Livewire.on('closeConfirmInvitationModal', () => {
-            $('#confirmInvitation').modal('hide');
+        Livewire.on('closeRunningLateModal', () => {
+            $('#runningLateModal').modal('hide');
+
+        });
+        
+        Livewire.on('closeReturnAssignmentModal', () => {
+            $('#returnAssignmentModal').modal('hide');
 
         });
 

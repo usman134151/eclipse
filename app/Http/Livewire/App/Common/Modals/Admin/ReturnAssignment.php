@@ -22,13 +22,14 @@ class ReturnAssignment extends Component
         if (is_null($service_id)) 
             //if booking_providers.service_id not set, fetch first service from booking_services 
             $service_id = $this->booking->services->first()->id;
-        // } else
-        //     $service = $this->booking->services->where('id', $service_id)->first();
+
         $this->bookingService = $this->booking->booking_services->where('services',$service_id)->first();
 
     }
 
     public function unassign(){
+        $this->emit('showConfirmation', 'Unassigned from booking successfully');
+        $this->emit('closeReturnAssignmentModal');
 
     }
 
