@@ -68,7 +68,13 @@
                     },
                     eventDisplay: 'block',
                     eventDidMount: function(info) {
-                       
+
+                        var eventData = info.event.extendedProps; 
+
+                        if (eventData.eventColor != "") {
+                            info.event.setProp('backgroundColor', eventData.eventColor);
+                        }
+
                         $(info.el).attr('@click', 'assignmentDetails = true');  //update to open assignment-details panel in provider-dashboard -- Maarooshaa Asim
 
                         $(info.el).attr('tabindex', '0');
