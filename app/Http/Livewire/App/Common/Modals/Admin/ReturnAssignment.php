@@ -4,8 +4,11 @@ namespace App\Http\Livewire\App\Common\Modals\Admin;
 
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingProvider;
+use App\Models\Tenant\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use App\Services\App\BookingAssignmentService;
+
 
 class ReturnAssignment extends Component
 {
@@ -36,6 +39,32 @@ class ReturnAssignment extends Component
             $bookingPro->delete();
             $this->booking->status = 1;
             $this->booking->save();
+
+            $user = User::find($provider_id);
+            $templateId = getTemplate('Booking: Provider Unassigned', 'email_template');
+
+            $params = [
+                'email'       =>  $user->email, //
+                'user'        =>  $user->name,
+                'user_id'     =>  $user->id,
+                'templateId'  =>  $templateId,
+                'booking_id'     => $this->booking->id,
+                'mail_type'   => 'booking',
+                'templateName' => 'Unassigned From Assignment',
+                // 'bookingData' => $this->booking,
+                'booking_service_id' => $this->bookingService->id,
+            ];
+
+            sendTemplatemail($params);
+
+            $message = "Provider '" . $user->name . "' surrendered from booking";
+            // if ($this->data['unassign_reason'])
+            //     $message .= ' (Reason: ' . $this->data['unassign_reason'] . ')';
+            callLogs($this->booking->id, 'unassign', 'unassigned', $message);
+            BookingAssignmentService::reTriggerAutoAssign($this->booking->id, $this->bookingService->id);
+       
+            // START : L7 EMAILS AND NOTIFICATION TRIGGERS 
+
             // $provider = Auth::user();
             // $user_role_id =  $this->role->getProviderId();
             // $templateId = Helper::getTemplate('assignment-returned', $user_role_id, 'email_template');
@@ -102,6 +131,9 @@ class ReturnAssignment extends Component
             //     'request_to' => json_encode($request->all())
             // );
             // Helper::addLogs($logs);
+            
+            // END : L7 EMAILS AND NOTIFICATION TRIGGERS 
+
         }
 
         $this->emit('showConfirmation', 'Unassigned from booking successfully');
