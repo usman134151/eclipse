@@ -26,11 +26,17 @@ class BookingCloseOut extends Component
             'closeOut.*.*.actual_end_min' => 'required|numeric|between:0,59',
             'closeOut.*.*.actual_start_hour' => 'required|numeric|between:0,23',
             'closeOut.*.*.actual_start_min' => 'required|numeric|between:0,59',
+            'closeOut.*.*.actual_duration_hour' => 'required|numeric',
+            'closeOut.*.*.actual_duration_min' => 'required|numeric',
+            'closeOut.*.*.service_payment_details.total_duration' => 'nullable|numeric',
             'closeOut.*.*.service_payment_details.b_hours_duration' => 'nullable|numeric',
             'closeOut.*.*.service_payment_details.a_hours_duration' => 'nullable|numeric',
             'closeOut.*.*.service_payment_details.b_hours_rate' => 'nullable|numeric',
+            'closeOut.*.*.service_payment_details.rate' => 'nullable|numeric',
             'closeOut.*.*.service_payment_details.a_hours_rate' => 'nullable|numeric',
             'closeOut.*.*.service_payment_details.expedited_rate' => 'nullable|numeric',
+            'closeOut.*.*.service_payment_details.expedited_duration' => 'nullable|numeric',
+
             'closeOut.*.*.service_payment_details.specialization_charges.*.provider_charges' => 'nullable|numeric',
         ];
     }
@@ -42,7 +48,11 @@ class BookingCloseOut extends Component
             'closeOut.*.*.service_payment_details.a_hours_duration.numeric' => 'Average rate should be a number',
             'closeOut.*.*.service_payment_details.b_hours_rate.numeric' => 'Average rate should be a number',
             'closeOut.*.*.service_payment_details.a_hours_rate.numeric' => 'Average rate should be a number',
+            'closeOut.*.*.service_payment_details.total_duration.numeric' => 'Duration should be a number',
+            'closeOut.*.*.service_payment_details.expedited_duration.numeric' => 'Expedited Duration should be a number',
+
             'closeOut.*.*.service_payment_details.expedited_rate.numeric' => 'Average rate should be a number',
+            'closeOut.*.*.service_payment_details.rate.numeric' => 'Rate should be a number',
             'closeOut.*.*.service_payment_details.specialization_charges.*.provider_charges.numeric' => 'Average rate should be a number',
 
         ];
@@ -56,7 +66,6 @@ class BookingCloseOut extends Component
         $bookingService = $this->booking->booking_services->where('id', $bookingServiceId)->first();
 
         $booking_provider->check_in_status = 3;
-        $booking_provider->return_status = 1;
         if ($status == 2) {
             //rejecting the time extension and changing values back to assignment-default
             $start = Carbon::parse($bookingService->start_time);
@@ -119,7 +128,6 @@ class BookingCloseOut extends Component
 
                 $booking_provider = BookingProvider::where(['booking_service_id' => $bookingServiceId, 'provider_id' => $provider_id])->first();
                 $booking_provider->check_in_status = 3;
-                $booking_provider->return_status = 1;
 
                 $checkin = $booking_provider->check_in_procedure_values;
                 // dd($checkin);

@@ -107,7 +107,6 @@ class ConfirmCompletion extends Component
 
             $provider->check_out_procedure_values = $p_checkout;
             $provider->check_in_status = 3;
-            $provider->return_status = 1;
 
 
             $provider->save();
