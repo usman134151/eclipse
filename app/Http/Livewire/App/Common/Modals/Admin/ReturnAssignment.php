@@ -9,11 +9,11 @@ use App\Models\Tenant\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Services\App\BookingAssignmentService;
-
+use Carbon\Carbon;
 
 class ReturnAssignment extends Component
 {
-    public $showForm, $booking, $bookingService;
+    public $showForm, $booking, $bookingService, $bookingProvider, $requireApproval = false;
     protected $listeners = ['showList' => 'resetForm', 'openReturnAssignmentModal' => 'setDetails'];
     private $serviceTypes = [
         '1' => ['class' => 'inperson-rate', 'postfix' => '', 'title' => 'In-Person'],
@@ -36,105 +36,124 @@ class ReturnAssignment extends Component
             $service_id = $this->booking->services->first()->id;
 
         $this->bookingService = $this->booking->booking_services->where('services', $service_id)->first();
+        $this->bookingProvider = BookingProvider::where(['booking_id' => $this->booking->id, 'booking_service_id' => $this->bookingService->id, 'provider_id' => Auth::id()])->first();
 
-        $val = ServiceCategory::where('id',$service_id)->select('provider_return_window'.$this->serviceTypes[$this->bookingService->service_types]['postfix'])->first()->toArray();
-        if($val)
-        $return_window = json_decode($val['provider_return_window' . $this->serviceTypes[$this->bookingService->service_types]['postfix']],true);
-        dd($return_window);
+        $minimumHours = 0;
+
+        // fetch service provider return window
+        $val = ServiceCategory::where('id', $service_id)->select('provider_return_window' . $this->serviceTypes[$this->bookingService->service_types]['postfix'])->first()->toArray();
+        if ($val) { //if set, fetch and convert into min-hours
+            $returnWindowArr = json_decode($val['provider_return_window' . $this->serviceTypes[$this->bookingService->service_types]['postfix']], true);
+            $hour = 0;
+            $minute = 0;
+            if (isset($returnWindowArr[0][0]['hour']) && !is_null($returnWindowArr[0][0]['hour']) && (int)$returnWindowArr[0][0]['hour'] != 0)
+                $hour = (int)$returnWindowArr[0][0]['hour'];
+            if (isset($returnWindowArr[0][0]['minute']) && !is_null($returnWindowArr[0][0]['minute']) && (int)$returnWindowArr[0][0]['minute'] != 0)
+                $minute = (int)$returnWindowArr[0][0]['minute'];
+            $minimumHours =$hour  + ($minute / 60);
+        }
+        $returnWindow = Carbon::parse($this->bookingService->start_time)->subDay($minimumHours);
+        if ($this->bookingProvider->return_status != '2') {
+            if ($returnWindow > Carbon::now() && $this->booking->status != 3 && $this->booking->type == 1) {
+                $this->requireApproval = false;
+            } else {
+                //return window has passed, hence requires admin approval
+                $this->requireApproval = true;
+            }
+        }
     }
 
     public function unassign()
-    { 
-            $provider_id = Auth::id();
-            //delete booking_provider record
-            $bookingPro = BookingProvider::where(['booking_id' => $this->booking->id,'booking_service_id'=>$this->bookingService->id, 'provider_id' => $provider_id])->first();
-            if(!is_null($bookingPro)){
-                $bookingPro->delete();
-                $this->booking->status = 1;
-                $this->booking->save();
-            }
+    {
+        $provider_id = Auth::id();
+        //delete booking_provider record
+        if (!is_null($this->bookingProvider)) {
+            $this->bookingProvider->delete();
+            $this->booking->status = 1;
+            $this->booking->save();
+        }
 
 
-           //add email notification
+        //add email notification
 
-            $message = "Provider '" . Auth::user()->name . "' surrendered from booking";
-            // if ($this->data['unassign_reason'])
-            //     $message .= ' (Reason: ' . $this->data['unassign_reason'] . ')';
-            callLogs($this->booking->id, 'unassign', 'unassigned', $message);
-            BookingAssignmentService::reTriggerAutoAssign($this->booking->id, $this->bookingService->id);
-       
-            // START : L7 EMAILS AND NOTIFICATION TRIGGERS 
+        $message = "Provider '" . Auth::user()->name . "' surrendered from booking";
+        // if ($this->data['unassign_reason'])
+        //     $message .= ' (Reason: ' . $this->data['unassign_reason'] . ')';
+        callLogs($this->booking->id, 'unassign', 'unassigned', $message);
+        BookingAssignmentService::reTriggerAutoAssign($this->booking->id, $this->bookingService->id);
 
-            // $provider = Auth::user();
-            // $user_role_id =  $this->role->getProviderId();
-            // $templateId = Helper::getTemplate('assignment-returned', $user_role_id, 'email_template');
-            // $sms_templateId = Helper::getTemplate('assignment-returned', $user_role_id, 'sms_template');
-            // $notification_templateId = Helper::getTemplate('assignment-returned', $user_role_id, 'notification_template');
-            // $params = [
-            //     'email'       =>  $provider->email, //Provider Assignment Returned
-            //     'user'        =>  $provider->name,
-            //     'user_id'     =>  $provider->id,
-            //     'sms_template' =>  $sms_templateId,
-            //     'templateId'  =>  $templateId,
-            //     'item_id'     =>  $this->booking->id,
-            //     'mail_type'   => 'booking',
-            //     'provider_id' => $provider_id,
-            //     'phone'       =>  isset($provider->users_detail) ? clean($provider->users_detail->phone) : "",
+        // START : L7 EMAILS AND NOTIFICATION TRIGGERS 
 
-            // ];
-            // Helper::sendTemplatemail($params);
+        // $provider = Auth::user();
+        // $user_role_id =  $this->role->getProviderId();
+        // $templateId = Helper::getTemplate('assignment-returned', $user_role_id, 'email_template');
+        // $sms_templateId = Helper::getTemplate('assignment-returned', $user_role_id, 'sms_template');
+        // $notification_templateId = Helper::getTemplate('assignment-returned', $user_role_id, 'notification_template');
+        // $params = [
+        //     'email'       =>  $provider->email, //Provider Assignment Returned
+        //     'user'        =>  $provider->name,
+        //     'user_id'     =>  $provider->id,
+        //     'sms_template' =>  $sms_templateId,
+        //     'templateId'  =>  $templateId,
+        //     'item_id'     =>  $this->booking->id,
+        //     'mail_type'   => 'booking',
+        //     'provider_id' => $provider_id,
+        //     'phone'       =>  isset($provider->users_detail) ? clean($provider->users_detail->phone) : "",
 
-            // $noti = [
-            //     'user_id'     =>  auth()->user()->id, // provider
-            //     'templateId'  =>  $notification_templateId,
-            //     'item_id'     => $this->booking->id,
-            //     'item_type'   => 'booking',
-            // ];
-            // Helper::save_notification($noti);
+        // ];
+        // Helper::sendTemplatemail($params);
 
-            // $admin = $this->user->getAdmin();
-            // $user_role_id =  $this->role->getAdminId();
-            // $templateId = Helper::getTemplate('assignment-returned', $user_role_id, 'email_template');
-            // $sms_templateId = Helper::getTemplate('assignment-returned', $user_role_id, 'sms_template');
-            // $notification_templateId = Helper::getTemplate('assignment-returned', $user_role_id, 'notification_template');
-            // $params = [
-            //     'email'       =>  $admin->email, //admin Assignment Returned
-            //     'user'        =>  $admin->name,
-            //     'user_id'     =>  $admin->id,
-            //     'sms_template' =>  $sms_templateId,
-            //     'templateId'  =>  $templateId,
-            //     'item_id'     =>  $this->booking->id,
-            //     'mail_type'   => 'booking',
-            //     'provider_id' => $provider_id,
-            //     'phone'       =>  isset($admin->users_detail) ? clean($admin->users_detail->phone) : "",
+        // $noti = [
+        //     'user_id'     =>  auth()->user()->id, // provider
+        //     'templateId'  =>  $notification_templateId,
+        //     'item_id'     => $this->booking->id,
+        //     'item_type'   => 'booking',
+        // ];
+        // Helper::save_notification($noti);
 
-            // ];
+        // $admin = $this->user->getAdmin();
+        // $user_role_id =  $this->role->getAdminId();
+        // $templateId = Helper::getTemplate('assignment-returned', $user_role_id, 'email_template');
+        // $sms_templateId = Helper::getTemplate('assignment-returned', $user_role_id, 'sms_template');
+        // $notification_templateId = Helper::getTemplate('assignment-returned', $user_role_id, 'notification_template');
+        // $params = [
+        //     'email'       =>  $admin->email, //admin Assignment Returned
+        //     'user'        =>  $admin->name,
+        //     'user_id'     =>  $admin->id,
+        //     'sms_template' =>  $sms_templateId,
+        //     'templateId'  =>  $templateId,
+        //     'item_id'     =>  $this->booking->id,
+        //     'mail_type'   => 'booking',
+        //     'provider_id' => $provider_id,
+        //     'phone'       =>  isset($admin->users_detail) ? clean($admin->users_detail->phone) : "",
 
-            // Helper::sendTemplatemail($params);
-            // $noti = [
-            //     'user_id'     =>  $admin->id, // admin
-            //     'templateId'  =>  $notification_templateId,
-            //     'item_id'     => $this->booking->id,
-            //     'item_type'   => 'booking',
-            //     'provider_id' => $provider_id,
+        // ];
 
-            // ];
-            // Helper::save_notification($noti);
+        // Helper::sendTemplatemail($params);
+        // $noti = [
+        //     'user_id'     =>  $admin->id, // admin
+        //     'templateId'  =>  $notification_templateId,
+        //     'item_id'     => $this->booking->id,
+        //     'item_type'   => 'booking',
+        //     'provider_id' => $provider_id,
 
-            // $message = "Assignment returned request by "  . \Auth::user()->name;
-            // $logs = array(
-            //     'action_by' => \Auth::user()->id,
-            //     'action_to' => $this->booking->id,
-            //     'item_type' => 'Booking',
-            //     'message' => $message,
-            //     'type' => 'Booking return',
-            //     'request_to' => json_encode($request->all())
-            // );
-            // Helper::addLogs($logs);
-            
-            // END : L7 EMAILS AND NOTIFICATION TRIGGERS 
+        // ];
+        // Helper::save_notification($noti);
 
-        
+        // $message = "Assignment returned request by "  . \Auth::user()->name;
+        // $logs = array(
+        //     'action_by' => \Auth::user()->id,
+        //     'action_to' => $this->booking->id,
+        //     'item_type' => 'Booking',
+        //     'message' => $message,
+        //     'type' => 'Booking return',
+        //     'request_to' => json_encode($request->all())
+        // );
+        // Helper::addLogs($logs);
+
+        // END : L7 EMAILS AND NOTIFICATION TRIGGERS 
+
+
 
         $this->emit('showConfirmation', 'Unassigned from booking successfully');
         $this->emit('closeReturnAssignmentModal');
