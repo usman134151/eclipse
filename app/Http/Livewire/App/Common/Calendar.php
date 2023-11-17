@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire\App\Common;
 
+use App\Models\Tenant\SetupValue;
+use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingDepartment;
 use App\Models\Tenant\ProviderSpecificSchedule;
@@ -254,7 +256,7 @@ class Calendar extends Component
 			}
 		}
 		$query = $this->applySearchFilter($query);
-		$events = $query->select('bookings.id', 'booking_number', 'booking_title', 'booking_start_at', 'booking_end_at')
+		$events = $query->select('bookings.id', 'booking_number', 'booking_title', 'booking_start_at', 'booking_end_at','status', 'is_closed','provider_count')
 			->get()
 			->toArray();
 		// $keys = ['title', 'start', 'end'];
@@ -264,6 +266,7 @@ class Calendar extends Component
 		if ($this->isCustomer)
 			$base = '/customer';
 
+		$colorCodes = SetupValue::where("setup_id",10)->pluck('setup_value_label','setup_value_alt_id');
 
 		foreach ($events as $key => $event) {
 			// Updated by Sohail Asghar to update calendar event title
@@ -274,10 +277,41 @@ class Calendar extends Component
 				$newEvents[$key]['title'] = $booking_number;
 			}
 
+			$mappingCode = "";
+			
+			if ($is_closed == 1) {
+				$mappingCode = "Completed Assignment";
+			} elseif ($is_closed == 2) {
+				$mappingCode = "Cancelled";
+			} elseif ($status == 1 || $status == 2) {
+				$providers = BookingProvider::where("booking_id", $id)->get();
+				if(count($providers) == 0) {
+					$mappingCode = "Unassigned";
+				} else {
+					if ($provider_count != count($providers)) {
+						$mappingCode = "Partially Assigned";
+					} else {
+						$checked_in = $providers->contains('check_in_status', 1);
+						$running_late = $providers->contains('check_in_status', 2);
+					
+						if ($checked_in) {
+							$mappingCode = "Provider Checked-in";
+						} elseif ($running_late) {
+							$mappingCode = "Provider Running Late";
+						} else {
+							$mappingCode = "Fully assigned";
+						}
+					}
+				}
+			} else {
+				$mappingCode = "pending";
+			}
+
 			$newEvents[$key]['start'] = $booking_start_at;
 			$newEvents[$key]['end'] = $booking_end_at;
 			$newEvents[$key]['bookingId'] = $id;
 			$newEvents[$key]['bookingNumber'] = $booking_number;
+			$newEvents[$key]['eventColor'] = ($mappingCode == "" || $mappingCode == "pending") ? '' : $colorCodes[$mappingCode];
 			if (!session()->get('isProvider'))
 				// 	$newEvents[$key]['panel_call'] = "'setAssignmentDetails'," . $id . ",'" . $booking_number . "'";
 				// else

@@ -295,15 +295,15 @@ class BookingCloseOut extends Component
 
             $subTotal = (float)$this->closeOut[$bookingServiceId][$provider_id]['service_payment_details']['rate'];
         } else {
-            $subTotal = ($this->closeOut[$bookingServiceId][$provider_id]['service_payment_details']['b_hours_rate'] * $this->closeOut[$bookingServiceId][$provider_id]['service_payment_details']['b_hours_duration']) + ($this->closeOut[$bookingServiceId][$provider_id]['service_payment_details']['a_hours_rate'] * $this->closeOut[$bookingServiceId][$provider_id]['service_payment_details']['a_hours_duration']);
+            $subTotal = (float)($this->closeOut[$bookingServiceId][$provider_id]['service_payment_details']['b_hours_rate'] * $this->closeOut[$bookingServiceId][$provider_id]['service_payment_details']['b_hours_duration']) + (float)($this->closeOut[$bookingServiceId][$provider_id]['service_payment_details']['a_hours_rate'] * $this->closeOut[$bookingServiceId][$provider_id]['service_payment_details']['a_hours_duration']);
         }
 
-        $this->closeOut[$bookingServiceId][$provider_id]['total_amount'] =  number_format($subTotal + ($this->closeOut[$bookingServiceId][$provider_id]['service_payment_details']['expedited_rate'] * $this->closeOut[$bookingServiceId][$provider_id]['service_payment_details']['expedited_duration']), 2, '.', '');
+        $this->closeOut[$bookingServiceId][$provider_id]['total_amount'] =  number_format($subTotal + (float)($this->closeOut[$bookingServiceId][$provider_id]['service_payment_details']['expedited_rate'] * (float)$this->closeOut[$bookingServiceId][$provider_id]['service_payment_details']['expedited_duration']), 2, '.', '');
 
         // adding specialization charges to total_amount
         if (key_exists('specialization_charges', $this->closeOut[$bookingServiceId][$provider_id]['service_payment_details'])) {
             foreach ($this->closeOut[$bookingServiceId][$provider_id]['service_payment_details']['specialization_charges'] as $key => $specialization) {
-                $this->closeOut[$bookingServiceId][$provider_id]['total_amount'] = $this->closeOut[$bookingServiceId][$provider_id]['total_amount'] + $this->closeOut[$bookingServiceId][$provider_id]['service_payment_details']['specialization_charges'][$key]['provider_charges'] ?? 0;
+                $this->closeOut[$bookingServiceId][$provider_id]['total_amount'] = (float)$this->closeOut[$bookingServiceId][$provider_id]['total_amount'] + (float)$this->closeOut[$bookingServiceId][$provider_id]['service_payment_details']['specialization_charges'][$key]['provider_charges'] ?? 0;
             }
         }
         return $this->closeOut[$bookingServiceId][$provider_id]['total_amount'];
