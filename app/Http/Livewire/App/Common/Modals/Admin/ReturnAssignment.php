@@ -34,8 +34,8 @@ class ReturnAssignment extends Component
     public function unassign()
     { {
             $provider_id = Auth::id();
-
-            $bookingPro = BookingProvider::where(['booking_id' => $this->booking->id, 'provider_id' => $provider_id])->first();
+            //delete booking_provider record
+            $bookingPro = BookingProvider::where(['booking_id' => $this->booking->id,'booking_service_id'=>$this->bookingService->id, 'provider_id' => $provider_id])->first();
             if(!is_null($bookingPro)){
                 $bookingPro->delete();
                 $this->booking->status = 1;
