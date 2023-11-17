@@ -37,10 +37,10 @@ class ApproveReturnAssignment extends Component
             //accept the request, remove/unassign provider from service
             $message = "Provider '" . $this->bookingProvider->user->name . "' surrendered from booking";
 
-            //send email before removing provider record
-            NotificationService::sendNotification('Booking: Provider Return Approved',
-                $data
-            );
+            // //send email before removing provider record
+            // NotificationService::sendNotification('Booking: Provider Return Approved',
+            //     $data
+            // );
 
             $this->bookingProvider->delete();
             $booking->status = 1;
@@ -58,7 +58,7 @@ class ApproveReturnAssignment extends Component
             $this->bookingProvider->provider_response = null;
             $this->bookingProvider->save();
             $message = "Request denied, provider retained for booking";
-            NotificationService::sendNotification('Booking: Provider Return Declined', $data);
+            // NotificationService::sendNotification('Booking: Provider Return Declined', $data);
 
 
         }

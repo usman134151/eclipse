@@ -74,14 +74,14 @@ class ReturnAssignment extends Component
              $this->bookingProvider->provider_response = $this->provider_response ?? '';
              $this->bookingProvider->save();
              $message = "Return Request submitted to Admin successfully";
-            NotificationService::sendNotification('Booking: Provider Return Request', $data);
+            // NotificationService::sendNotification('Booking: Provider Return Request', $data);
 
         } else {       
              //delete booking_provider record
             if (!is_null($this->bookingProvider)) {
                 
                 // sending notification before removing the record.
-                NotificationService::sendNotification('Booking: Returned by Provider', $data);
+                // NotificationService::sendNotification('Booking: Returned by Provider', $data);
 
                 $this->bookingProvider->delete();
                 $this->booking->status = 1;
