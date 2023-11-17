@@ -9,6 +9,7 @@ use App\Services\App\UploadFileService;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use App\Services\App\NotificationService;
 
 class AddDocuments extends Component
 {
@@ -63,7 +64,7 @@ class AddDocuments extends Component
         BookingDocument::create($this->document);
 
         $data['newAttachmentData']=$this->document;
-        NotificationService::sendNotification('Booking: New Attachment Upload', $data);
+        // NotificationService::sendNotification('Booking: New Attachment Upload', $data);
 
         $this->dispatchBrowserEvent('close-add-documents');
         $this->emit('showConfirmation', 'Document added successfully');

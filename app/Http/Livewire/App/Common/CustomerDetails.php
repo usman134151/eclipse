@@ -183,10 +183,11 @@ class CustomerDetails extends Component
 
 	public function lockAccount()
 	{
-		$user = User::find($this->user['id']);
-		$user->status = !$user->status ;
-		$user->save();
-		$this->user['status']= $user->status;
+		UserService::modifyAccountLockState($this->user['id'],!$this->user['status']);
+		// $user = User::find($this->user['id']);
+		// $user->status = !$user->status ;
+		// $user->save();
+		$this->user['status']= !$this->user['status'];
 		$this->showConfirmation("Account status changed Successfully");
 
 	}

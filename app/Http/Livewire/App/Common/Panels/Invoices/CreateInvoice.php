@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use App\Services\App\NotificationService;
 
 class CreateInvoice extends Component
 {
@@ -112,7 +113,7 @@ class CreateInvoice extends Component
         }
 
         $data['invoiceData']=Invoice::where('id',$invoice)->first();
-        NotificationService::sendNotification('Billing: Invoice Issued', $data);
+        // NotificationService::sendNotification('Billing: Invoice Issued', $data);
         $this->dispatchBrowserEvent('close-create-invoice');
         $this->emit('showList', 'Invoice created successfully');
     }
