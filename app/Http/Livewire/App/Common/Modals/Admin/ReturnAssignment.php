@@ -4,6 +4,7 @@ namespace App\Http\Livewire\App\Common\Modals\Admin;
 
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingProvider;
+use App\Models\Tenant\ServiceCategory;
 use App\Models\Tenant\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -14,6 +15,12 @@ class ReturnAssignment extends Component
 {
     public $showForm, $booking, $bookingService;
     protected $listeners = ['showList' => 'resetForm', 'openReturnAssignmentModal' => 'setDetails'];
+    private $serviceTypes = [
+        '1' => ['class' => 'inperson-rate', 'postfix' => '', 'title' => 'In-Person'],
+        '2' => ['class' => 'virtual-rate', 'postfix' => '_v', 'title' => 'Virtual'],
+        '4' => ['class' => 'phone-rate', 'postfix' => '_p', 'title' => 'Phone'],
+        '5' => ['class' => 'teleconference-rate', 'postfix' => '_t', 'title' => 'Teleconference'],
+    ];
 
     public function render()
     {
@@ -25,14 +32,19 @@ class ReturnAssignment extends Component
         $this->booking = Booking::where('id', $booking_id)->first();
 
         if (is_null($service_id))
-            //if booking_providers.service_id not set, fetch first service from booking_services 
+            //if service_id not set, fetch first service from booking_services 
             $service_id = $this->booking->services->first()->id;
 
         $this->bookingService = $this->booking->booking_services->where('services', $service_id)->first();
+
+        $val = ServiceCategory::where('id',$service_id)->select('provider_return_window'.$this->serviceTypes[$this->bookingService->service_types]['postfix'])->first()->toArray();
+        if($val)
+        $return_window = json_decode($val['provider_return_window' . $this->serviceTypes[$this->bookingService->service_types]['postfix']],true);
+        dd($return_window);
     }
 
     public function unassign()
-    { {
+    { 
             $provider_id = Auth::id();
             //delete booking_provider record
             $bookingPro = BookingProvider::where(['booking_id' => $this->booking->id,'booking_service_id'=>$this->bookingService->id, 'provider_id' => $provider_id])->first();
@@ -43,24 +55,9 @@ class ReturnAssignment extends Component
             }
 
 
-            $user = User::find($provider_id);
-            $templateId = getTemplate('Booking: Provider Unassigned', 'email_template');
+           //add email notification
 
-            $params = [
-                'email'       =>  $user->email, //
-                'user'        =>  $user->name,
-                'user_id'     =>  $user->id,
-                'templateId'  =>  $templateId,
-                'booking_id'     => $this->booking->id,
-                'mail_type'   => 'booking',
-                'templateName' => 'Unassigned From Assignment',
-                // 'bookingData' => $this->booking,
-                'booking_service_id' => $this->bookingService->id,
-            ];
-
-            sendTemplatemail($params);
-
-            $message = "Provider '" . $user->name . "' surrendered from booking";
+            $message = "Provider '" . Auth::user()->name . "' surrendered from booking";
             // if ($this->data['unassign_reason'])
             //     $message .= ' (Reason: ' . $this->data['unassign_reason'] . ')';
             callLogs($this->booking->id, 'unassign', 'unassigned', $message);
@@ -137,7 +134,7 @@ class ReturnAssignment extends Component
             
             // END : L7 EMAILS AND NOTIFICATION TRIGGERS 
 
-        }
+        
 
         $this->emit('showConfirmation', 'Unassigned from booking successfully');
         $this->emit('closeReturnAssignmentModal');
