@@ -13,7 +13,7 @@ use Carbon\Carbon;
 
 class ReturnAssignment extends Component
 {
-    public $showForm, $booking, $bookingService, $bookingProvider, $requireApproval = false , $provider_response=null; 
+    public $showForm, $booking, $bookingService, $bookingProvider, $requireApproval = false , $provider_response=""; 
     protected $listeners = ['showList' => 'resetForm', 'openReturnAssignmentModal' => 'setDetails'];
     private $serviceTypes = [
         '1' => ['class' => 'inperson-rate', 'postfix' => '', 'title' => 'In-Person'],
@@ -68,7 +68,7 @@ class ReturnAssignment extends Component
         if ($this->requireApproval == true) {
             //send approval request to admin 
              $this->bookingProvider->return_status = 2;
-             $this->bookingProvider->provider_response = $this->provider_response;
+             $this->bookingProvider->provider_response = $this->provider_response ?? '';
              $this->bookingProvider->save();
              $message = "Return Request submitted to Admin successfully";
 
