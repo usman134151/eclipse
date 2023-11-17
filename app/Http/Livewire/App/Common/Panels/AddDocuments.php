@@ -62,6 +62,9 @@ class AddDocuments extends Component
         $this->document['booking_id'] = $this->booking_id;
         BookingDocument::create($this->document);
 
+        $data['newAttachmentData']=$this->document;
+        NotificationService::sendNotification('Booking: New Attachment Upload', $data);
+
         $this->dispatchBrowserEvent('close-add-documents');
         $this->emit('showConfirmation', 'Document added successfully');
         $this->initFields();

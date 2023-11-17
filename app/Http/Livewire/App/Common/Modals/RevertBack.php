@@ -37,6 +37,9 @@ class RevertBack extends Component
             }
             $this->dispatchBrowserEvent('close-invoice-details');  // emit to close modal
         }
+        
+        $data['revertInvoiceData']=$this->invoice;
+        NotificationService::sendNotification('Billing: Invoice Voided (Reverted)', $data);
         $this->emit('showList', 'Invoice reverted successfully');
         $this->emit('revertModalDismissed');  // emit to close modal
     }

@@ -154,6 +154,10 @@ class AddReimbursement extends Component
                 'attachment_path' => $attachmentPath,
             ]);
         }
+
+        $data['reimbursementRequestData']=BookingReimbursement::where('id',$reimbursement)->first();
+        NotificationService::sendNotification('Payments: Reimbursement Requested', $data);
+        
        $this->emit('showList');
        $this->refreshForm();
     }

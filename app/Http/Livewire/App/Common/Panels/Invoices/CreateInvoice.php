@@ -111,6 +111,8 @@ class CreateInvoice extends Component
             ]);
         }
 
+        $data['invoiceData']=Invoice::where('id',$invoice)->first();
+        NotificationService::sendNotification('Billing: Invoice Issued', $data);
         $this->dispatchBrowserEvent('close-create-invoice');
         $this->emit('showList', 'Invoice created successfully');
     }

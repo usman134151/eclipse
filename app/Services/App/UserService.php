@@ -90,7 +90,9 @@ class UserService
       'message'         => "User " . $type . "d by " . \Auth::user()->name,
       'ip_address'     => \request()->ip(),
     ]);
-
+    
+    $data['userData']=$user;
+    NotificationService::sendNotification('Account: Created', $data);
 
     return $user;
   }
