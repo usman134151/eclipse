@@ -196,8 +196,10 @@
                                                           </a>
                                                       @endif
                                                       @if ($provider['return_status'] == 2)
-                                                          <a href="{{ route('tenant.provider-profile', ['providerID' => $provider['provider_id']]) }}"
-                                                              target="_blank" title="Approve Return Request"
+                                                          <a  title="Approve Return Request"
+                                                                 data-bs-toggle="modal" data-bs-target="#approveReturnAssignmentModal"
+                                                              {{-- wire:click="$emit('openUnassignModal','{{ $provider['booking_service_id'] ? $provider['booking_service_id'] : 'null' }}',{{ $provider['provider_id'] }},{{ $provider['booking_id'] }})" --}}
+                                                          
                                                               aria-label="Approve Return Request"
                                                               class="btn btn-sm btn-secondary rounded btn-hs-icon">
 

@@ -801,6 +801,7 @@
     @include('modals.common.available-timeslot')
     @include('panels.booking-details.assign-providers')
     @include('modals.unassign')
+    @include('modals.approve-return-assignment')
 
 
 
