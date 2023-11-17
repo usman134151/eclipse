@@ -82,9 +82,9 @@ class AssignmentDetails extends Component
             $this->data['booking_services'][$key]['provider'] = $provider ? $provider->toArray() : null;
             }
         $this->data['assigned'] = $assigned;
-        $this->data['isToday'] = Carbon::parse($this->booking->booking_start_at)->isToday();
-        $this->data['isUpcoming'] =  Carbon::parse($this->booking->booking_start_at)->isFuture();
-
+        $this->data['isToday'] = Carbon::parse($service['start_time'])->isToday();
+        $this->data['isUpcoming'] =  Carbon::parse($service['start_time'])->isFuture();
+        $this->data['providerStatus']  = BookingProvider::where(['provider_id'=>Auth::id(), 'booking_service_id'=>$service['id']])->select('return_status')->first();
         $this->data['serviceFormDetails'] = BookingCustomizeData::where("booking_id", $this->booking->id)
             ->join('customize_form_fields', 'booking_customize_data.customize_id', '=', 'customize_form_fields.id')
             ->whereNotNull('customize_form_fields.field_name')

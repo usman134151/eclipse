@@ -129,7 +129,7 @@
                                     <span>Running Late</span>
                                 </button>
                             @endif
-                            @if ($data['isUpcoming'])
+                            @if ($data['isUpcoming'] && $this->data['providerStatus']->return_status ==0)
 
                             <button type="button"
                                 class="btn btn-primary rounded text-sm d-inline-flex gap-1 align-items-center px-3"

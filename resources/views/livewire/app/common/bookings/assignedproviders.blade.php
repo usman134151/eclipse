@@ -130,14 +130,15 @@
                                                       {{ $provider['additional_label_provider'] ?? 'N/A' }}
                                                   </td> --}}
                                                   <td class="text-center align-middle">
-                                                    <div class="font-family-secondary leading-none">
-                                                        {{ $provider['additional_label_provider'] ?? '' }}</div> 
-                                                      {{ $provider['additional_charge_provider'] ?numberFormat($provider['additional_charge_provider']) : 'N/A' }}
+                                                      <div class="font-family-secondary leading-none">
+                                                          {{ $provider['additional_label_provider'] ?? '' }}</div>
+                                                      {{ $provider['additional_charge_provider'] ? numberFormat($provider['additional_charge_provider']) : 'N/A' }}
                                                   </td>
                                                   <td class="text-center align-middle">
                                                       {{-- {{ $provider['paid_at'] ?? 'N/A' }} --}}
                                                   </td>
-                                                  <td class="text-center align-middle">{{ numberFormat($provider['total_amount']) }}
+                                                  <td class="text-center align-middle">
+                                                      {{ numberFormat($provider['total_amount']) }}
                                                   </td>
                                               @endif
                                               <td class="align-middle">
@@ -192,6 +193,19 @@
                                                                   </use>
                                                               </svg>
 
+                                                          </a>
+                                                      @endif
+                                                      @if ($provider['return_status'] == 2)
+                                                          <a href="{{ route('tenant.provider-profile', ['providerID' => $provider['provider_id']]) }}"
+                                                              target="_blank" title="Approve Return Request"
+                                                              aria-label="Approve Return Request"
+                                                              class="btn btn-sm btn-secondary rounded btn-hs-icon">
+
+                                                              <svg aria-label="Reset" class="fill-stroke"
+                                                                  width="22" height="20" viewBox="0 0 22 20"
+                                                                  fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                  <use xlink:href="/css/provider.svg#revert"></use>
+                                                              </svg>
                                                           </a>
                                                       @endif
                                                   </div>

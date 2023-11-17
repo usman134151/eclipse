@@ -13,7 +13,7 @@ use Carbon\Carbon;
 
 class ReturnAssignment extends Component
 {
-    public $showForm, $booking, $bookingService, $bookingProvider, $requireApproval = false;
+    public $showForm, $booking, $bookingService, $bookingProvider, $requireApproval = false , $provider_response=null; 
     protected $listeners = ['showList' => 'resetForm', 'openReturnAssignmentModal' => 'setDetails'];
     private $serviceTypes = [
         '1' => ['class' => 'inperson-rate', 'postfix' => '', 'title' => 'In-Person'],
@@ -50,7 +50,7 @@ class ReturnAssignment extends Component
                 $hour = (int)$returnWindowArr[0][0]['hour'];
             if (isset($returnWindowArr[0][0]['minute']) && !is_null($returnWindowArr[0][0]['minute']) && (int)$returnWindowArr[0][0]['minute'] != 0)
                 $minute = (int)$returnWindowArr[0][0]['minute'];
-            $minimumHours =$hour  + ($minute / 60);
+            $minimumHours = $hour  + ($minute / 60);
         }
         $returnWindow = Carbon::parse($this->bookingService->start_time)->subDay($minimumHours);
         if ($this->bookingProvider->return_status != '2') {
@@ -65,22 +65,33 @@ class ReturnAssignment extends Component
 
     public function unassign()
     {
-        $provider_id = Auth::id();
-        //delete booking_provider record
-        if (!is_null($this->bookingProvider)) {
-            $this->bookingProvider->delete();
-            $this->booking->status = 1;
-            $this->booking->save();
+        if ($this->requireApproval == true) {
+            //send approval request to admin 
+             $this->bookingProvider->return_status = 2;
+             $this->bookingProvider->provider_response = $this->provider_response;
+             $this->bookingProvider->save();
+             $message = "Return Request submitted to Admin successfully";
+
+        } else {       
+             //delete booking_provider record
+            if (!is_null($this->bookingProvider)) {
+                $this->bookingProvider->delete();
+                $this->booking->status = 1;
+                $this->booking->save();
+                
+                $message = "Provider '" . Auth::user()->name . "' surrendered from booking";
+                callLogs($this->booking->id, 'unassign', 'unassigned', $message);
+                BookingAssignmentService::reTriggerAutoAssign($this->booking->id, $this->bookingService->id);
+                $message = "Unassigned from booking successfully";
+
+            }
         }
 
 
+        
         //add email notification
 
-        $message = "Provider '" . Auth::user()->name . "' surrendered from booking";
-        // if ($this->data['unassign_reason'])
-        //     $message .= ' (Reason: ' . $this->data['unassign_reason'] . ')';
-        callLogs($this->booking->id, 'unassign', 'unassigned', $message);
-        BookingAssignmentService::reTriggerAutoAssign($this->booking->id, $this->bookingService->id);
+       
 
         // START : L7 EMAILS AND NOTIFICATION TRIGGERS 
 
@@ -155,7 +166,7 @@ class ReturnAssignment extends Component
 
 
 
-        $this->emit('showConfirmation', 'Unassigned from booking successfully');
+        $this->emit('showConfirmation', $message);
         $this->emit('closeReturnAssignmentModal');
     }
 
