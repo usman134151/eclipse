@@ -349,8 +349,7 @@
                                                                                     style="color:#000000;"
                                                                                     wire:click="openAssignProvidersPanel({{ $booking->id }},{{ $booking->service_id }}, 3)"
                                                                                     @click="assignProvider = true">
-                                                                                    <i
-                                                                                        class="fa fa-envelope-open"></i>
+                                                                                    <i class="fa fa-envelope-open"></i>
 
                                                                                 </a>
                                                                             @else
@@ -405,8 +404,7 @@
                                                                                         <g
                                                                                             clip-path="url(#clip0_12641_124172)">
                                                                                             <circle cx="15"
-                                                                                                cy="15"
-                                                                                                r="15"
+                                                                                                cy="15" r="15"
                                                                                                 transform="rotate(90 15 15)"
                                                                                                 fill="url(#paint0_linear_12641_124172)" />
                                                                                         </g>
@@ -447,8 +445,7 @@
                                                                                         <g
                                                                                             clip-path="url(#clip0_12641_124163)">
                                                                                             <circle cx="15"
-                                                                                                cy="15"
-                                                                                                r="15"
+                                                                                                cy="15" r="15"
                                                                                                 transform="rotate(90 15 15)"
                                                                                                 fill="url(#paint0_linear_12641_124163)" />
                                                                                         </g>
@@ -606,7 +603,7 @@
                                                                                                 aria-label="Message Customer"
                                                                                                 class="dropdown-item"
                                                                                                 target="_blank"
-                                                                                                href="/chat/{{$booking->customer_id}}">
+                                                                                                href="/chat/{{ $booking->customer_id }}">
                                                                                                 <i
                                                                                                     class="fa fa-comment"></i>
                                                                                                 Message Customer
@@ -801,6 +798,7 @@
     @include('modals.common.available-timeslot')
     @include('panels.booking-details.assign-providers')
     @include('modals.unassign')
+    @include('modals.approve-return-assignment')
 
 
 
@@ -842,6 +840,10 @@
 
         Livewire.on('closeUnassignModel', () => {
             $('#UnassignModal').modal('hide');
+
+        });
+        Livewire.on('closeApproveReturnAssignmentModal', () => {
+            $('#approveReturnAssignmentModal').modal('hide');
 
         });
 

@@ -130,14 +130,15 @@
                                                       {{ $provider['additional_label_provider'] ?? 'N/A' }}
                                                   </td> --}}
                                                   <td class="text-center align-middle">
-                                                    <div class="font-family-secondary leading-none">
-                                                        {{ $provider['additional_label_provider'] ?? '' }}</div> 
-                                                      {{ $provider['additional_charge_provider'] ?numberFormat($provider['additional_charge_provider']) : 'N/A' }}
+                                                      <div class="font-family-secondary leading-none">
+                                                          {{ $provider['additional_label_provider'] ?? '' }}</div>
+                                                      {{ $provider['additional_charge_provider'] ? numberFormat($provider['additional_charge_provider']) : 'N/A' }}
                                                   </td>
                                                   <td class="text-center align-middle">
                                                       {{-- {{ $provider['paid_at'] ?? 'N/A' }} --}}
                                                   </td>
-                                                  <td class="text-center align-middle">{{ numberFormat($provider['total_amount']) }}
+                                                  <td class="text-center align-middle">
+                                                      {{ numberFormat($provider['total_amount']) }}
                                                   </td>
                                               @endif
                                               <td class="align-middle">
@@ -192,6 +193,21 @@
                                                                   </use>
                                                               </svg>
 
+                                                          </a>
+                                                      @endif
+                                                      @if ($provider['return_status'] == 2)
+                                                          <a  title="Approve Return Request"
+                                                                 data-bs-toggle="modal" data-bs-target="#approveReturnAssignmentModal"
+                                                              wire:click="$emit('openApproveReturnAssignmentModal','{{ $provider['booking_service_id'] ? $provider['booking_service_id'] : 'null' }}',{{ $provider['provider_id'] }},{{ $provider['booking_id'] }})"
+                                                          
+                                                              aria-label="Approve Return Request"
+                                                              class="btn btn-sm btn-secondary rounded btn-hs-icon">
+
+                                                              <svg aria-label="Reset" class="fill-stroke"
+                                                                  width="22" height="20" viewBox="0 0 22 20"
+                                                                  fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                  <use xlink:href="/css/provider.svg#revert"></use>
+                                                              </svg>
                                                           </a>
                                                       @endif
                                                   </div>
