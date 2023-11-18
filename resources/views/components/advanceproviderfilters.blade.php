@@ -35,7 +35,8 @@
                 </div>
             </div>
             <select data-placeholder="" multiple
-                    class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="tags_selected{{$type}}"  aria-label="Select Tags">
+                    class="form-select  select2 form-select select2-hidden-accessible" tabindex=""
+                    wire:model.defer="tag_names" id="tags_selected{{$type}}"  aria-label="Select Tags">
                                                                 
                     <option value=""></option>
                     @if (isset($tags))
