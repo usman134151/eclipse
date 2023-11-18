@@ -137,6 +137,8 @@ Route::group([
 			Route::view('/admin/bookings/upcoming', 'tenant/common/bookings/booking-list', ["bookingType"=>"Upcoming"]);
 			Route::view('/admin/bookings/past', 'tenant/common/bookings/booking-list', ["bookingType"=>"Past"]);
 			Route::view('/admin/bookings/pending-approval', 'tenant/common/bookings/booking-list', ["bookingType"=>"Pending Approval"]);
+			Route::view('/admin/bookings/pending-closeout', 'tenant/common/bookings/booking-list', ["bookingType" => "Pending Close-out"]);
+
 			Route::view('/admin/bookings/drafts', 'tenant/common/bookings/booking-list', ["bookingType"=>"Draft"]);
 			Route::view('/admin/bookings/unassigned', 'tenant/common/bookings/booking-list', ["bookingType"=>"Unassigned"]);
 			Route::view('/admin/bookings/invitations', 'tenant/common/bookings/booking-list', ["bookingType"=>"Invitations"]);
@@ -211,6 +213,7 @@ Route::group([
 
                 Route::view('booking/booknow', 'tenant/customer/booking/service-request');
                 Route::view('/pending-reviews', 'tenant/customer/booking/booking-list', ["bookingType" => "Pending Approval"]);
+
                 Route::view('/booking/today', 'tenant/customer/booking/booking-list', ["bookingType"=>"Today's"]);
 				Route::view('/booking/upcoming', 'tenant/customer/booking/booking-list', ["bookingType"=>"Upcoming"]);
 				Route::view('/booking/past', 'tenant/customer/booking/booking-list', ["bookingType"=>"Past"]);
