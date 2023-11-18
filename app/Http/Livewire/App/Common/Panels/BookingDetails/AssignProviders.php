@@ -73,7 +73,7 @@ class AssignProviders extends Component
             $this->specializations = $value;
         } else if ($name == "setup_value_labelassignProvider") {
             $this->service_type_ids = $value;
-        } else if ($name == "tags_selected-assignProviderassignProvider") {
+        } else if ($name == "tags_selectedassignProvider") {
             $this->tag_names = $value;
         } else if ($name == "providers_selected") {
             $this->provider_ids = $value;
@@ -552,7 +552,7 @@ class AssignProviders extends Component
             $this->services = [$this->service_id];
             $this->accommodations = $service ? [$service->accommodations_id] : [];
             $this->booking_service=$booking_service;
-           
+            $this->tag_names = json_decode($this->booking->tags);
         }
 
         if (!is_null($this->booking->payment)) {

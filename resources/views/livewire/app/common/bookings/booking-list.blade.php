@@ -210,7 +210,11 @@
                                                                                 $code = 'Provider Running Late';
                                                                             }
                                                                         }
-                                                                    } else {
+                                                                    }
+                                                                    elseif ($bookingType == 'Pending Close-out') 
+                                                                            $code = 'none';
+
+                                                                    else {
                                                                         if ($booking['status'] == 2) {
                                                                             $code = 'Fully assigned';
                                                                         } elseif ($booking['status'] == 1) {
