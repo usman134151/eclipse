@@ -5,6 +5,7 @@ namespace App\Http\Livewire\App\Common\Modals;
 use App\Models\Tenant\Invoice;
 use App\Services\App\InvoiceService;
 use Livewire\Component;
+use App\Services\App\NotificationService;
 
 class RevertBack extends Component
 {
@@ -37,6 +38,9 @@ class RevertBack extends Component
             }
             $this->dispatchBrowserEvent('close-invoice-details');  // emit to close modal
         }
+        
+        $data['revertInvoiceData']=$this->invoice;
+        // NotificationService::sendNotification('Billing: Invoice Voided (Reverted)', $data);
         $this->emit('showList', 'Invoice reverted successfully');
         $this->emit('revertModalDismissed');  // emit to close modal
     }
