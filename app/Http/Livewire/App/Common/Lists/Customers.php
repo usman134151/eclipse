@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\App\Common\Lists;
 
+use App\Services\App\UserService;
 use App\Models\Tenant\User;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
@@ -212,11 +213,11 @@ final class Customers extends PowerGridComponent
 	public function onUpdatedToggleable(string $id, string $field, string $value): void
 	{
 
-
+		UserService::updateUserStatus($id,$value);
 		// Updates the specified field of the record with the new value
-		User::query()->where('id', $id)->update([
-			'status' => $value,
-		]);
+		// User::query()->where('id', $id)->update([
+		// 	'status' => $value,
+		// ]);
 		$this->dispatchBrowserEvent('swal:modal', [
 			'type' => 'success',
 			'title' => 'Success',

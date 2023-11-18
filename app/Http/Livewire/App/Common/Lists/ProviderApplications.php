@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\App\Common\Lists;
 
+use App\Services\App\UserService;
 use App\Models\Tenant\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -153,10 +154,11 @@ final class ProviderApplications extends PowerGridComponent
     // A method to handle the toggleable columns update event
     public function onUpdatedToggleable(string $id, string $field, string $value): void
     {
+		UserService::updateUserStatus($id,$value);
         // Updates the specified field of the record with the new value
-        User::query()->find($id)->update([
-            $field => $value,
-        ]);
+        // User::query()->find($id)->update([
+        //     $field => $value,
+        // ]);
     }
 
     // A method to handle the editable columns update event

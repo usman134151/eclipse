@@ -12,6 +12,7 @@ use App\Models\Tenant\TeamProviders;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use App\Services\App\AddressService;
+use App\Services\App\NotificationService;
 
 
 class UserService
@@ -90,7 +91,9 @@ class UserService
       'message'         => "User " . $type . "d by " . \Auth::user()->name,
       'ip_address'     => \request()->ip(),
     ]);
-
+    
+    $data['userData']=$user;
+    // NotificationService::sendNotification('Account: Created', $data);
 
     return $user;
   }
@@ -206,6 +209,34 @@ class UserService
 
       if ($roleId)
         SystemRoleUser::create(['user_id' => $userId, 'system_role_id' => $roleId, 'system_user_type' => $user_type]);
+    }
+  }
+
+  public static function updateUserStatus($userId, $status)
+  {
+    User::query()->where('id', $userId)->update([
+			'status' => $status,
+		]);
+
+    $data['userData']=User::where('id', $userId);
+    if($status == 0){
+      // NotificationService::sendNotification('Account: Deactivated', $data);
+    } elseif ($status == 1){
+      // NotificationService::sendNotification('Account: Reactivated', $data);
+    }
+  }
+
+  public static function modifyAccountLockState($userId, $status)
+  {
+    User::query()->where('id', $userId)->update([
+			'status' => $status,
+		]);
+
+    $data['userData']=User::where('id', $userId);
+    if($status == 0){
+      // NotificationService::sendNotification('Account: Locked', $data);
+    } elseif ($status == 1){
+      // NotificationService::sendNotification('Account: Unlocked', $data);
     }
   }
 }

@@ -10,6 +10,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Services\App\UploadFileService;
 use Illuminate\Support\Facades\Auth;
+use App\Services\App\NotificationService;
 
 
 
@@ -154,6 +155,10 @@ class AddReimbursement extends Component
                 'attachment_path' => $attachmentPath,
             ]);
         }
+
+        $data['reimbursementRequestData']=BookingReimbursement::where('id',$reimbursement)->first();
+        // NotificationService::sendNotification('Payments: Reimbursement Requested', $data);
+        
        $this->emit('showList');
        $this->refreshForm();
     }
