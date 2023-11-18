@@ -35,7 +35,7 @@
     <div class="tab-content" id="assignment-details-tab-content">
         <div class="tab-pane fade show active" id="booking-details-tab-pane" role="tabpanel"
             aria-labelledby="booking-details-tab" :class="{ 'active show': step == 1 }" x-show="step == 1">
-            @if (count($data['assigned']) && $data['isToday'])
+            @if (count($data['assigned']) )
                 <div class="row align-items-center ">
                     <div class="col-auto">
                         <h2 class="font-family-tertiary text-center mb-0">
@@ -69,7 +69,7 @@
                                 </svg>
                                 <span>Message Coordinator</span>
                             </button>
-                            @if ($data['booking_services'][0]['display_check_in'])
+                            @if ($data['booking_services'][0]['display_check_in'] && $data['isToday'])
                                 <button type="button" @click="offcanvasOpenCheckIn = true"
                                     wire:click="$emit('showCheckInPanel','{{ $booking['id'] }}','{{ $data['booking_services'][0]['id'] }}','{{ $booking['booking_number'] }}')"
                                     title="Check In" aria-label="Check In"
@@ -82,7 +82,7 @@
                                     <span>Check In</span>
                                 </button>
                             @endif
-                            @if ($data['booking_services'][0]['display_running_late'] && ($this->data['booking_services'][0]['provider'] && $this->data['booking_services'][0]['provider']['check_in_status']==0))
+                            @if ($data['booking_services'][0]['display_running_late'] && ($this->data['booking_services'][0]['provider'] && $this->data['booking_services'][0]['provider']['check_in_status']==0) && $data['isToday'])
                                 <button type="button"
                                     class="btn btn-primary rounded text-sm d-inline-flex gap-1 align-items-center px-3"
                                     data-bs-toggle="modal" data-bs-target="#runningLateModal"
@@ -129,6 +129,8 @@
                                     <span>Running Late</span>
                                 </button>
                             @endif
+                            @if ($data['isUpcoming'] && $this->data['providerStatus']->return_status ==0)
+
                             <button type="button"
                                 class="btn btn-primary rounded text-sm d-inline-flex gap-1 align-items-center px-3"
                                 wire:click="$emit('openReturnAssignmentModal',{{ $booking['id'] }}, {{ $booking['service_id'] }})"
@@ -141,6 +143,7 @@
                                 </svg>
                                 <span>Return Assignment</span>
                             </button>
+                            @endif
                         </div>
                     </div>
                 </div>
