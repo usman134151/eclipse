@@ -97,6 +97,7 @@ class Setup extends Component
 		// Delete the record from the database using the model
 		Setupvalues::where('id', $this->recordId)->delete();
 		// Emit an event to reset the form and display a confirmation message
+		callLogs($this->recordId,'setup-value',"delete");
 		$this->emitSelf('showList', 'Record has been deleted');
 	}
 

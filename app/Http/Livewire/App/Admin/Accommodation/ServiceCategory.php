@@ -69,7 +69,7 @@ class ServiceCategory extends Component
 			'name' => $newName,
 			'status' => 2,
 		]);
-
+        callLogs($this->recordId,'service',"delete");
 		// Emit an event to reset the form and display a confirmation message
 		$this->emitSelf('showList', 'Record has been deleted');
 	}
