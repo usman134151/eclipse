@@ -37,17 +37,19 @@ class NotificationService{
             //get list of users to send notification to
             
             $notification['notification_template_roles']=SELF::getUsers($notification['notification_template_roles'],$notification['trigger_type_id'],$data['bookingData'],$admin,$authProvider);
-           
+          
             //loop to send
             foreach($notification['notification_template_roles'] as $roleData){
               
-              
+             
             //send notification
             if($notification['notification_type']==1){
+              
                 if(key_exists('user_information',$roleData)){
                     foreach($roleData['user_information'] as $userData){
                         //send email
                                     //replace data in loop
+                                  
                     $replacements=SELF::replaceData($notification['trigger_type_id'],$data,$userData,$admin);
               
                         SELF::getEmail($roleData['notification_text'],$roleData['notification_subject'],$replacements,$admin,$userData,$templateName);
@@ -93,7 +95,7 @@ class NotificationService{
 
                 );
         }
-        elseif($triggerType==6){
+        elseif($triggerType==6 || $triggerType==7){
           
                
                 $bookingData=$data['bookingData'];
@@ -173,6 +175,7 @@ class NotificationService{
                 "@recipient" => $userData->name ?? '',
                 "@email" => $userData->email ?? '',   
                 "@username" => $username ?? '',
+                "@booking_provider_return_requester"=>Auth::user()->name,
                 "@document_name" => $document_name ?? '',
                 "@document_category" => $document_category ?? '',
                 "@provider" => $providerName ?? '',
@@ -190,6 +193,7 @@ class NotificationService{
                 "@booking_location" =>  $location ?? '',
                 "@booking_number" =>  $bookingData->booking_number ?? '',
                 "@booking_provider_count" =>  $bookingData->provider_count ?? '',
+                "@booking_assigned_providers" =>  $bookingData->assigned_providers ?? '',
                 "@booking_duration" =>  Carbon::parse($bookingData->booking_end_at)->diffAsCarbonInterval(Carbon::parse($bookingData->booking_start_at))->forHumans() ?? '',
                 "@payment_for_provider" => formatPayment($payment_for_provider) ?? '',
                 "@email_provider" => $userData->email ?? '',
@@ -240,6 +244,7 @@ class NotificationService{
             
           
         }
+        
 
        return call_user_func_array('array_merge', $replacements);
 
@@ -279,7 +284,7 @@ class NotificationService{
 
        
         //booking type
-        if($triggerType==6){
+        if($triggerType==6 || $triggerType==7){
            $userMapping=['5'=>$data['supervisor'],'6'=>$data['customer_id'],'9'=>$data['billing_manager_id']];    
            $userIds=[$data['supervisor'],$data['customer_id'],$data['billing_manager_id']];
            $userMapping['8']='';
