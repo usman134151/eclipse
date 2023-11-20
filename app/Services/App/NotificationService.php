@@ -13,7 +13,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\URL;
 use DOMDocument;
 use DOMXPath;
-
+use Auth;
 
 class NotificationService{
 
@@ -22,7 +22,7 @@ class NotificationService{
         return $notification;
     }
 
-    public static function sendNotification($triggerName,$data,$triggerType=6){
+    public static function sendNotification($triggerName,$data,$triggerType=6,$authProvider=false){
         //get notification trigger 
      
         
@@ -35,8 +35,9 @@ class NotificationService{
         foreach($notificationData as $notification){
             $notification['trigger_type_id']=$triggerType;
             //get list of users to send notification to
-            $notification['notification_template_roles']=SELF::getUsers($notification['notification_template_roles'],$notification['trigger_type_id'],$data['bookingData'],$admin);
-
+            
+            $notification['notification_template_roles']=SELF::getUsers($notification['notification_template_roles'],$notification['trigger_type_id'],$data['bookingData'],$admin,$authProvider);
+           
             //loop to send
             foreach($notification['notification_template_roles'] as $roleData){
               
@@ -274,7 +275,7 @@ class NotificationService{
                    sendMail($userData['email'], $data['templateSubject'],  $data, 'emails.templates', [], 'dispatch');
    }
 
-    public static function getUsers($rolesData,$triggerType,$data){
+    public static function getUsers($rolesData,$triggerType,$data,$admin,$authProvider=false){
 
        
         //booking type
@@ -317,19 +318,38 @@ class NotificationService{
             }
             elseif($role['role_id']==2){
                 //provider
-                $providerIds = User::whereIn('id', function ($query) use ($data) {
-                    $query->select('user_id')
-                        ->from('role_user')
-                        ->where('role_id', 2);
-                        
-                })
-                ->whereIn('id', function ($query) use ($data) {
-                    $query->select('provider_id')
-                        ->from('booking_providers')
-                        ->where('booking_id', $data['id']);
-                })
-                ->where('status', 1)->with('roles')
-                ->get();
+                if(!$authProvider){
+                    $providerIds = User::whereIn('id', function ($query) use ($data) {
+                        $query->select('user_id')
+                            ->from('role_user')
+                            ->where('role_id', 2);
+                            
+                    })
+                    ->whereIn('id', function ($query) use ($data) {
+                        $query->select('provider_id')
+                            ->from('booking_providers')
+                            ->where('booking_id', $data['id']);
+                    })
+                    ->where('status', 1)->with('roles')
+                    ->get();
+                }
+                else
+                {
+                    $providerIds = User::whereIn('id', function ($query) use ($data) {
+                        $query->select('user_id')
+                            ->from('role_user')
+                            ->where('role_id', 2);
+                            
+                    })
+                    ->whereIn('id', function ($query) use ($data) {
+                        $query->select('provider_id')
+                            ->from('booking_providers')
+                            ->where('provider_id', Auth::user()->id);
+                    })
+                    ->where('status', 1)->with('roles')
+                    ->get();
+                }
+
                 $role['user_information']=$providerIds;
                 
          
