@@ -174,7 +174,7 @@
                                                     {{-- End of update by Shanila --}}
                                                     View Assigned Admin-staff
                                                 </a>
-                                                @if (!session()->get('isCustomer') && $booking->status == 2 && $data['show_close_button'])
+                                                @if (!session()->get('isCustomer')  && $data['show_close_button'])
                                                     <a href="#"
                                                         class="btn btn-has-icon btn-outline-dark rounded"
                                                         @click="closeOutBooking = true"
@@ -188,7 +188,7 @@
                                                         @if ($booking->is_closed == 0)
                                                             Close Assignment
                                                         @else
-                                                            Closed
+                                                           Edit Close Out
                                                         @endif
                                                     </a>
                                                 @endif
@@ -1623,7 +1623,7 @@
                                 </div>
                                 @if (!session()->get('isCustomer'))
                                     <div class="col-12 mt-5 ">
-                                        @if ($booking->status == 2 && $data['show_close_button'])
+                                        @if ( $data['show_close_button'])
                                                 <div class="d-flex justify-content-end">
                                                     <a href="#" class="btn btn-has-icon btn-primary rounded"
                                                         @click="closeOutBooking = true"
@@ -1637,7 +1637,7 @@
                                                         @if ($booking->is_closed == 0)
                                                             Close Assignment
                                                         @else
-                                                            Closed
+                                                            Edit Close Out
                                                         @endif
                                                     </a>
                                             </div>
@@ -1646,33 +1646,7 @@
                                             <div class="d-flex justify-content-between gap-2">
                                                 <h2>Check-In and Close-Out for Service - {{ $service['service_name'] }}
                                                 </h2>
-                                                {{-- @if (!$service['is_closed'])
-                                                    <a href="#"
-                                                        wire:click="$emit('openConfirmCompletionModal','{{ $service['id'] }}')"
-                                                        data-bs-toggle="modal" data-bs-target="#confirmCompletion"
-                                                        class="btn btn-has-icon  btn-primary  rounded justify-content-end">
-
-                                                        <svg width="30" height="30" viewBox="0 0 30 30"
-                                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <use
-                                                                xlink:href="/css/customer.svg#confirm-completion-icon">
-                                                            </use>
-                                                        </svg>
-                                                        Close Out
-                                                    </a>
-                                                @else
-                                                    <a href="#"
-                                                        class="btn btn-has-icon rounded justify-content-end">
-
-                                                        <svg width="30" height="30" viewBox="0 0 30 30"
-                                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <use
-                                                                xlink:href="/css/customer.svg#confirm-completion-icon">
-                                                            </use>
-                                                        </svg>
-                                                        Closed
-                                                    </a>
-                                                @endif --}}
+                                              
 
                                             </div>
                                             @livewire('app.common.bookings.provider-completed-booking-services', ['service_id' => $service['service_id'], 'booking_id' => $booking_id], key(time()))
