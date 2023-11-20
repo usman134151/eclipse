@@ -497,7 +497,7 @@
                                                     </div>
                                                     <div class="col-lg-7 align-self-center">
                                                         <div class="font-family-tertiary">
-                                                            {{ $booking['phone'] ? $booking['phone'] : 'N/A' }}
+                                                            {{ $booking['poc_phone'] ? $booking['poc_phone'] : 'N/A' }}
                                                         </div>
                                                     </div>
                                                 </div>

@@ -41,7 +41,7 @@
                         <h2 class="font-family-tertiary text-center mb-0">
                             Requester Detail
                         </h2>
-                        
+
                     </div>
                     <div class="col-auto ms-2 mt-2">
                         <div class="d-flex flex-column flex-md-row gap-2">
@@ -135,7 +135,7 @@
                                     <span>Running Late</span>
                                 </button>
                             @endif
-                            @if (!$data['isPast'] && $this->data['providerStatus']->return_status == 0)
+                            @if (!$data['isPast'] && $this->data['providerStatus']['return_status'] == 0)
                                 <button type="button"
                                     class="btn btn-primary rounded text-sm d-inline-flex gap-1 align-items-center px-3"
                                     wire:click="$emit('openReturnAssignmentModal',{{ $booking['id'] }}, {{ $booking['service_id'] }})"
@@ -151,15 +151,15 @@
                             @endif
                         </div>
                     </div>
-                     @if ($this->data['providerStatus']->return_status == 2)
-                                <div class="col-lg-12 flex items-end mt-3">
-                                    <span class="bg-muted rounded p-1">Return Assignment Request Pending Approval</span>
-                                </div>
-                            @endif
+                    @if ($this->data['providerStatus']['return_status'] == 2)
+                        <div class="col-lg-12 flex items-end mt-3">
+                            <span class="bg-muted rounded p-1">Return Assignment Request Pending Approval</span>
+                        </div>
+                    @endif
                 </div>
             @endif
             <div class="row my-5">
-             
+
                 <div class="col-lg-6 mb-3">
                     <div class="row">
                         <div class="col-lg-5">
@@ -170,9 +170,9 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-6 mb-3">
-              
+
                     <div class="d-flex justify-content-end me-4">
                         <div class="dropdown">
                             <button class="btn btn-outline-primary dropdown-toggle" type="button"
@@ -288,16 +288,18 @@
                         </div>
                     </div>
                 </div>
+                @if($booking->requester_information == 0)
                 <div class="col-lg-12 mb-3">
                     <div class="row">
                         <div class="col-lg-5">
                             <label class="col-form-label">Requester:</label>
                         </div>
                         <div class="col-lg-7 align-self-center">
-                            <div>{{ $booking->contact_point ? $booking->contact_point : 'N/A' }}</div>
+                            <div>{{ $booking->customer ? $booking->customer->name : 'N/A' }}</div>
                         </div>
                     </div>
                 </div>
+                @else
                 <div class="col-lg-12 mb-3">
                     <div class="row">
                         <div class="col-lg-5">
@@ -314,10 +316,11 @@
                             <label class="col-form-label">Phone Number:</label>
                         </div>
                         <div class="col-lg-7 align-self-center">
-                            <div>{{ $booking->phone ? $booking->phone : 'N/A' }}</div>
+                            <div>{{ $booking->poc_phone ? $booking->poc_phone : 'N/A' }}</div>
                         </div>
                     </div>
                 </div>
+                @endif
             </div>
             @foreach ($data['booking_services'] as $index => $service)
                 <div class="row">
@@ -356,8 +359,8 @@
                                         <label class="col-form-label">Specialization:</label>
                                     </div>
                                     <div class="col-lg-7 align-self-center">
-                                        <div class="font-family-tertiary">Legal
-                                            <small>(coming soon)</small>
+                                        <div class="font-family-tertiary">
+                                            {{ $service['specialization'] ? implode(', ', $service['specialization']) : 'N/A' }}
 
                                         </div>
                                     </div>
@@ -403,10 +406,14 @@
                                         </label>
                                     </div>
                                     <div class="col-lg-7 align-self-center">
-                                        <div class="font-family-tertiary">
-                                            <a
-                                                href="#">{{ $service['service_consumer_user'] ? $service['service_consumer_user']['name'] : 'N/A' }}</a>
-                                        </div>
+                                        @if ($service['is_manual_consumer'])
+                                            {{ $service['service_consumer_manual'] }}
+                                        @else
+                                            <div class="font-family-tertiary">
+                                                <a target="_blank"
+                                                    href="#">{{ $service['service_consumer_user'] ? $service['service_consumer_user']['name'] : 'N/A' }}</a>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -418,18 +425,23 @@
                                         </label>
                                     </div>
                                     <div class="col-lg-7 align-self-center">
-                                        <div class="font-family-tertiary">
-                                            @if (isset($service['participants']))
-                                                @foreach ($service['participants'] as $key => $user)
-                                                    <a href="">{{ $user['name'] }}</a>
-                                                    @if (0 != count($service['participants']) - 1)
-                                                        ,
-                                                    @endif
-                                                @endforeach
-                                            @else
-                                                N/A
-                                            @endif
-                                        </div>
+                                        @if ($service['is_manual_attendees'])
+                                            {{ $service['attendees_manual'] }}
+                                        @else
+                                            <div class="font-family-tertiary">
+                                                @if (isset($service['participants']))
+                                                    @foreach ($service['participants'] as $key => $user)
+                                                        <a target="_blank"
+                                                            href="{{ route('tenant.customer-profile', ['customerID' => encrypt($user['id'])]) }}">{{ $user['name'] }}</a>
+                                                        @if ($key != count($service['participants']) - 1)
+                                                            ,
+                                                        @endif
+                                                    @endforeach
+                                                @else
+                                                    N/A
+                                                @endif
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -654,34 +666,57 @@
             @endforeach
             @if (count($data['serviceFormDetails']))
 
-                <div class="col-lg-12">
+                <!-- Service Form Detail -->
+                <div class="row between-section-segment-spacing">
+                    <div class="d-lg-flex justify-content-between align-items-center">
+                        <h2 class="">Booking Forms</h2>
+                    </div>
 
-                    <div class="row my-4">
+                    @foreach ($data['serviceFormDetails'] as $key => $form)
+                        <div class="col-lg-12">
 
-                        <div class="d-lg-flex justify-content-between align-items-center mb-5">
-                            <h2 class="mb-lg-0">Service Form Detail</h2>
-                        </div>
-                        @foreach ($data['serviceFormDetails'] as $index => $serviceDetail)
-                            <div class="row">
-                                <div class="col-lg-12 mb-3">
-                                    <div class="row">
-                                        <div class="col-lg-5">
-                                            <label
-                                                class="col-form-label">{{ $serviceDetail['field_name'] ? $serviceDetail['field_name'] : 'N/A' }}:</label>
-                                        </div>
-                                        <div class="col-lg-7 align-self-center">
-                                            <div class="d-flex align-items-center gap-2">
-                                                <div class="font-family-tertiary">
-                                                    {{ $serviceDetail['data_value'] ? $serviceDetail['data_value'] : 'N/A' }}
+                            <div class="d-lg-flex  justify-content-between align-items-center">
+                                <h3 class="bg-muted rounded p-1">
+                                    {{ $form[0]['request_form_name'] ? $form[0]['request_form_name'] : 'Form ' }}
+                                </h3>
+                            </div>
+                            @foreach ($form as $i => $field)
+                                <div class="row">
+                                    <div class="col-lg-8 mb-3">
+
+                                        <div class="row">
+                                            <div class="col-lg-5">
+                                                <label
+                                                    class="col-form-label">{{ $field['field_name'] ? $field['field_name'] : 'N/A' }}:
+                                                </label>
+                                            </div>
+                                            <div class="col-lg-7 align-self-center">
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <div class="font-family-tertiary">
+                                                        {{ $field['data_value'] ? $field['data_value'] : 'N/A' }}
+                                                    </div>
+                                                    {{-- <a href="#"
+                                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
+
+                                                                            <svg aria-label="Edit" width="20"
+                                                                                height="20" viewBox="0 0 20 20">
+                                                                                <use
+                                                                                    xlink:href="/css/common-icons.svg#pencil">
+                                                                                </use>
+                                                                            </svg>
+
+                                                                        </a> --}}
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                            </div>
-                        @endforeach
-                    </div>
+
+                                </div>
+                            @endforeach
+                        </div>
+                    @endforeach
+
                 </div>
             @endif
 
