@@ -93,7 +93,7 @@ class UserService
     ]);
     
     $data['userData']=$user;
-    // NotificationService::sendNotification('Account: Created', $data);
+    // NotificationService::sendNotification('Account: Created', $data, 5);
 
     return $user;
   }
@@ -220,9 +220,9 @@ class UserService
 
     $data['userData']=User::where('id', $userId);
     if($status == 0){
-      // NotificationService::sendNotification('Account: Deactivated', $data);
+      // NotificationService::sendNotification('Account: Deactivated', $data, 5);
     } elseif ($status == 1){
-      // NotificationService::sendNotification('Account: Reactivated', $data);
+      // NotificationService::sendNotification('Account: Reactivated', $data, 5);
     }
   }
 
@@ -234,9 +234,9 @@ class UserService
 
     $data['userData']=User::where('id', $userId);
     if($status == 0){
-      // NotificationService::sendNotification('Account: Locked', $data);
+      // NotificationService::sendNotification('Account: Locked', $data, 5);
     } elseif ($status == 1){
-      // NotificationService::sendNotification('Account: Unlocked', $data);
+      // NotificationService::sendNotification('Account: Unlocked', $data, 5);
     }
   }
 }
