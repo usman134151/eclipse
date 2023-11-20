@@ -75,7 +75,6 @@
                             info.event.setProp('backgroundColor', eventData.eventColor);
                         }
 
-                        $(info.el).attr('@click', 'assignmentDetails = true');  //update to open assignment-details panel in provider-dashboard -- Maarooshaa Asim
 
                         $(info.el).attr('tabindex', '0');
                         // $(info.el).attr('data-id',info.event.id); // When off canvas panel will be dynamic
@@ -83,6 +82,10 @@
                         startDate = moment(event.start).format('MMMM DD, YYYY');
                         let curr_date_moment = moment(event.start).format('YYYY-MM-DD');
                         $(info.el).attr('data-date', curr_date_moment);
+
+                        if (eventData.isProvider) 
+                        $(info.el).attr('@click', 'assignmentDetails = true');  //update to open assignment-details panel in provider-dashboard -- Maarooshaa Asim
+
                         // var tooltip = new bootstrap.Popover(info.el, {
                         // 	title: startDate,
                         // 	content: info.event.extendedProps.description,
