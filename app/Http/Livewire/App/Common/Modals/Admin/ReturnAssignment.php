@@ -67,6 +67,7 @@ class ReturnAssignment extends Component
     public function unassign()
     {
         $data['bookingData'] = $this->booking;
+       
 
         if ($this->requireApproval == true) {
             //send approval request to admin 
@@ -74,7 +75,7 @@ class ReturnAssignment extends Component
              $this->bookingProvider->provider_response = $this->provider_response ?? '';
              $this->bookingProvider->save();
              $message = "Return Request submitted to Admin successfully";
-             NotificationService::sendNotification('Booking: Provider Return Request', $data);
+             NotificationService::sendNotification('Booking: Provider Return Request', $data,7,true);
 
         } else {       
              //delete booking_provider record
