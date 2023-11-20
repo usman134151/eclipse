@@ -166,7 +166,7 @@ class AssignProviders extends Component
         if ($this->search) {
             $query->where('users.name', 'LIKE', "%" . $this->search . "%");
         }
-        if (count($this->tag_names)) {
+        if (!is_null($this->tag_names) && count($this->tag_names)) {
             $query->whereJsonContains('tags', $this->tag_names);
         }
         if (count($this->provider_ids)) {
