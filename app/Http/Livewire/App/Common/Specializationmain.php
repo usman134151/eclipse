@@ -86,6 +86,7 @@ class Specializationmain extends Component
     {
         // delete the record from the database using the Specialization model
         Specialization::where('id', $this->recordId)->delete();
+        callLogs($this->recordId,'specialization',"delete");
         // emit an event to reset the form and display a confirmation message
         $this->emitSelf('showList', 'Record has been deleted');
     }

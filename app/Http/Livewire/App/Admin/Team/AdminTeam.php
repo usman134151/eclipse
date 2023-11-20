@@ -54,6 +54,7 @@ class AdminTeam extends Component
 	{
 		// Delete the record from the database using the model
 		AdminTeams::where('id', $this->recordId)->delete();
+        callLogs($this->recordId,'admin-team',"delete");
 		// Emit an event to reset the form and display a confirmation message
 		$this->emitSelf('showList', 'Record has been deleted');
 	}

@@ -136,6 +136,8 @@ class AddReimbursement extends Component
             ];
         }
 
+        $type = "create";
+
         $reimbursement = BookingReimbursement::insertGetId(
             [
                 'booking_id' => $this->reimbursement->booking_id,
@@ -158,6 +160,8 @@ class AddReimbursement extends Component
 
         $data['reimbursementRequestData']=BookingReimbursement::where('id',$reimbursement)->first();
         // NotificationService::sendNotification('Payments: Reimbursement Requested', $data);
+        
+		callLogs($reimbursement,'Reimbursement',$type);
         
        $this->emit('showList');
        $this->refreshForm();
