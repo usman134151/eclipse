@@ -256,7 +256,7 @@ class Calendar extends Component
 			}
 		}
 		$query = $this->applySearchFilter($query);
-		$events = $query->select('bookings.id', 'booking_number', 'booking_title', 'booking_start_at', 'booking_end_at','status', 'is_closed','provider_count')
+		$events = $query->select('bookings.id', 'booking_number', 'booking_title', 'booking_start_at', 'booking_end_at', 'status', 'is_closed', 'provider_count')
 			->get()
 			->toArray();
 		// $keys = ['title', 'start', 'end'];
@@ -266,7 +266,7 @@ class Calendar extends Component
 		if ($this->isCustomer)
 			$base = '/customer';
 
-		$colorCodes = SetupValue::where("setup_id",10)->pluck('setup_value_label','setup_value_alt_id');
+		$colorCodes = SetupValue::where("setup_id", 10)->pluck('setup_value_label', 'setup_value_alt_id');
 
 		foreach ($events as $key => $event) {
 			// Updated by Sohail Asghar to update calendar event title
@@ -278,14 +278,14 @@ class Calendar extends Component
 			}
 
 			$mappingCode = "";
-			
+
 			if ($is_closed == 1) {
 				$mappingCode = "Completed Assignment";
 			} elseif ($is_closed == 2) {
 				$mappingCode = "Cancelled";
 			} elseif ($status == 1 || $status == 2) {
 				$providers = BookingProvider::where("booking_id", $id)->get();
-				if(count($providers) == 0) {
+				if (count($providers) == 0) {
 					$mappingCode = "Unassigned";
 				} else {
 					if ($provider_count != count($providers)) {
@@ -293,7 +293,7 @@ class Calendar extends Component
 					} else {
 						$checked_in = $providers->contains('check_in_status', 1);
 						$running_late = $providers->contains('check_in_status', 2);
-					
+
 						if ($checked_in) {
 							$mappingCode = "Provider Checked-in";
 						} elseif ($running_late) {
@@ -312,10 +312,14 @@ class Calendar extends Component
 			$newEvents[$key]['bookingId'] = $id;
 			$newEvents[$key]['bookingNumber'] = $booking_number;
 			$newEvents[$key]['eventColor'] = ($mappingCode == "" || $mappingCode == "pending") ? '' : $colorCodes[$mappingCode];
-			if (!session()->get('isProvider'))
+			if (session()->get('isProvider')) {
+				$newEvents[$key]['isProvider'] = true;
+			} else {
 				// 	$newEvents[$key]['panel_call'] = "'setAssignmentDetails'," . $id . ",'" . $booking_number . "'";
-				// else
+				// else{
 				$newEvents[$key]['url'] = $base . '/bookings/view-booking/' . encrypt($id);
+				$newEvents[$key]['isProvider'] = false;
+			}
 
 
 			// End of update by Sohail Asghar
@@ -478,16 +482,16 @@ class Calendar extends Component
 			return;
 	}
 
-	public $booking_id,$bookingNumber,$ad_counter, $providerPanelType;
+	public $booking_id, $bookingNumber, $ad_counter, $providerPanelType;
 
 	public function openBookingDetails($booking_id = 0, $bookingNumber = null)
 	{
 		if ($bookingNumber)
 			$this->bookingNumber = $bookingNumber;
-			$this->booking_id = $booking_id;
-			$this->providerPanelType = 3;
-			$this->emit('setBookingId', $booking_id);
-			//$this->dispatchBrowserEvent('open-assignment-details-dashboard', ['booking_id' => $booking_id]);
-		 
+		$this->booking_id = $booking_id;
+		$this->providerPanelType = 3;
+		$this->emit('setBookingId', $booking_id);
+		//$this->dispatchBrowserEvent('open-assignment-details-dashboard', ['booking_id' => $booking_id]);
+
 	}
 }
