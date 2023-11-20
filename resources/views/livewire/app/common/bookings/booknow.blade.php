@@ -2176,11 +2176,13 @@
         
        
          Livewire.on('setModificationCharges', () => {
+                $('#modificationConfirmation').modal({
+                    backdrop: 'static',
+                    keyboard: false
+                    })
+
               setTimeout(() => {
-                      $('#modificationConfirmation').modal('show');
-
-
-        }, 8000);
+                      $('#modificationConfirmation').modal('show');}, 8000);
                
             });
                 Livewire.on('closeConfirmationModal', () => {
