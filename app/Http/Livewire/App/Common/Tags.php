@@ -83,6 +83,7 @@ class Tags extends Component
     {
         // delete the record from the database using the Specialization model
         Tag::where('id', $this->recordId)->delete();
+        callLogs($this->recordId,'tag',"delete");
         // emit an event to reset the form and display a confirmation message
         $this->emitSelf('showList', 'Record has been deleted');
     }

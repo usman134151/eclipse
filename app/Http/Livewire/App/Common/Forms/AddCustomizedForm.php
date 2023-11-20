@@ -72,6 +72,14 @@ class AddCustomizedForm extends Component
     {
 
         $this->validate();
+
+        if(!is_null($this->formId)){
+            $type = "update";
+        }
+        else{
+            $type = "create";
+        }
+
         $customizeService = new CustomizeForm;
         $formid = $customizeService->saveForm($this->custom_form_details, $this->questions, $this->formId);
         //delete existing relations
@@ -82,6 +90,8 @@ class AddCustomizedForm extends Component
             // foreach ($this->services as $serviceid) {
                 ServiceCategory::whereIn('id', $this->services)->update(['request_form_id'=> $formid]);
             // }
+    
+        callLogs($this->formId,'Customize Form',$type);
 
         $this->showList("Custom Form has been saved successfully");
         $this->clearFields();

@@ -82,6 +82,7 @@ class Industries extends Component
     {
         // delete the record from the database using the Industry model
         Industry::where('id', $this->recordId)->delete();
+        callLogs($this->recordId,'industry',"delete");
         // emit an event to reset the form and display a confirmation message
         $this->emitSelf('showList', 'Record has been deleted');
     }
