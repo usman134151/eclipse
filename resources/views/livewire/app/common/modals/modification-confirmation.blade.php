@@ -58,7 +58,7 @@
     <div class="modal-footer">
         <div class="row justify-content-center w-100 mb-2">
             <div class="col-lg-6">
-                <button type="button" class="btn rounded w-100 btn-outline-dark" data-bs-dismiss="modal">No, leave
+                <button type="button" class="btn rounded w-100 btn-outline-dark" wire:click="redirectUser">No, leave
                     booking as created! </button>
             </div>
             <div class="col-lg-6">

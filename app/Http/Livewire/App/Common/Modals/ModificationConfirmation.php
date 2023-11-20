@@ -21,6 +21,16 @@ class ModificationConfirmation extends Component
 
         $this->booking = $booking;
     }
+
+    public function redirectUser()
+    {
+        if (session()->get('isCustomer'))
+            $base = 'customer';
+        else
+            $base = 'admin';
+
+        return redirect()->to($base . '/bookings/view-booking/' . encrypt($this->booking['id']));
+    }
     public function rules()
     {
         return [
