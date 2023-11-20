@@ -7,6 +7,7 @@ use App\Models\Tenant\BookingCustomizeData;
 use App\Models\Tenant\BookingInvitationProvider;
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\BookingServices;
+use App\Models\Tenant\Specialization;
 use App\Models\Tenant\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -48,6 +49,7 @@ class AssignmentDetails extends Component
                 'booking_services.id', 'booking_services.service_types', 'booking_services.attendees',
                 'booking_services.service_consumer', 'booking_services.start_time',
                 'booking_services.meeting_link', 'booking_services.meetings',
+                'booking_services.attendees_manual', 'booking_services.service_consumer_manual', 'is_manual_consumer', 'is_manual_attendees',
                 'booking_services.attendees', 'booking_services.service_consumer', 'booking_services.specialization', 'booking_services.meeting_phone',
                 'booking_services.meeting_passcode', 'booking_services.provider_count', 'booking_services.created_at',
                 'booking_services.meeting_link', 'service_categories.name as service_name', 'service_categories.id as service_id',
@@ -60,6 +62,14 @@ class AssignmentDetails extends Component
             if ($service['attendees'])
                 $this->data['booking_services'][$key]['participants'] = User::whereIn('id', explode(',', $service['attendees']))->select('name', 'id')->get();
 
+            if ($service['specialization']) {
+
+                $spez = json_decode($service['specialization'], true) ? json_decode($service['specialization'], true) : null;
+                if ($spez && count($spez)) {
+                    $this->data['booking_services'][$key]['specialization']  = Specialization::whereIn('id', $spez)->pluck('name')->toArray();
+                } else
+                    $this->data['booking_services'][$key]['specialization']  = null;
+            }
             if ($service['meetings'] != null) {
 
                 $this->data['booking_services'][$key]['meeting_details'] = json_decode($service['meetings'], true) ? json_decode($service['meetings'], true)[0] : null;
@@ -78,18 +88,26 @@ class AssignmentDetails extends Component
                     $this->data['booking_services'][$key]['display_check_in'] = true;
             }
 
-             $provider = BookingProvider::where(['booking_service_id'=>$service['id'],'provider_id'=>Auth::id()])->first();
+            $provider = BookingProvider::where(['booking_service_id' => $service['id'], 'provider_id' => Auth::id()])->first();
             $this->data['booking_services'][$key]['provider'] = $provider ? $provider->toArray() : null;
-            }
+        }
         $this->data['assigned'] = $assigned;
         $this->data['isToday'] = Carbon::parse($service['start_time'])->isToday();
-        $this->data['isPast'] =  Carbon::parse($service['start_time']) <= Carbon::today() ? true : false; 
-        $this->data['providerStatus']  = BookingProvider::where(['provider_id'=>Auth::id(), 'booking_service_id'=>$service['id']])->select('return_status')->first();
-        $this->data['serviceFormDetails'] = BookingCustomizeData::where("booking_id", $this->booking->id)
+        $this->data['isPast'] =  Carbon::parse($service['start_time']) <= Carbon::today() ? true : false;
+        $this->data['providerStatus']  = BookingProvider::where(['provider_id' => Auth::id(), 'booking_service_id' => $service['id']])->select('return_status')->first()->toArray();
+
+        //custom forms associated with booking
+        $this->data['serviceFormDetails'] =  BookingCustomizeData::where("booking_id", $this->booking->id)
             ->join('customize_form_fields', 'booking_customize_data.customize_id', '=', 'customize_form_fields.id')
+            ->join('customize_forms', 'customize_form_fields.customize_form_id', 'customize_forms.id')
             ->whereNotNull('customize_form_fields.field_name')
-            ->get(['customize_form_fields.field_name', 'booking_customize_data.data_value'])->toArray();
+            ->get([
+                'customize_form_fields.field_name', 'booking_customize_data.data_value', 'customize_form_fields.customize_form_id',
+                'customize_form_fields.position', 'request_form_name'
+            ])
+            ->groupBy('customize_form_id')->sortby('position')->toArray();
     }
+
 
     protected $rules = [
         'booking.provider_notes' => 'nullable|string',

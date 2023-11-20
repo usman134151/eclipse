@@ -105,13 +105,15 @@
                                                     @endif
                                                 </td>
                                                 <td class="align-middle">
-                                                    @if (isset($provider->check_out_procedure_values['entry_notes']) && $provider->check_out_procedure_values['entry_notes']!=null &&
+                                                    @if (isset($provider->check_out_procedure_values['entry_notes']) &&
+                                                            $provider->check_out_procedure_values['entry_notes'] != null &&
                                                             trim($provider->check_out_procedure_values['entry_notes']) != '')
                                                         <a href="#" title="Notes" aria-label="Notes"
-                                                            wire:click="$emit('openProviderNotesModal', '{{ $provider->check_out_procedure_values['entry_notes']}}')"
+                                                            wire:click="$emit('openProviderNotesModal', '{{ $provider->check_out_procedure_values['entry_notes'] }}')"
                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                         @else
-                                                            <a href="#" title="No Notes Available" aria-label="Notes"
+                                                            <a href="#" title="No Notes Available"
+                                                                aria-label="Notes"
                                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                     @endif
                                                     <svg aria-label="Notes" width="28" height="29"
@@ -156,7 +158,7 @@
                                                                 {{-- End of update by Shanila --}}
                                                             </a>
                                                             <div class="tablediv dropdown-menu fadeIn">
-                                                                @if ( $in && key_exists('enable_button',$in) && $in['enable_button'] == 'true')
+                                                                @if ($in && key_exists('enable_button', $in) && $in['enable_button'] == 'true')
                                                                     <a @click="offcanvasOpenCheckIn = true"
                                                                         class="dropdown-item"
                                                                         wire:click="$emit('showCheckInPanel','{{ $booking_id }}','{{ $provider->booking_service_id }}','{{ $provider->booking->booking_number }}','{{ $provider->user->id }}' )"
@@ -165,7 +167,7 @@
                                                                         Edit Check In
                                                                     </a>
                                                                 @endif
-                                                                @if ($out &&  key_exists('enable_button_provider',$out) && $out['enable_button_provider'] == 'true' && $provider->check_in_status == 3)
+                                                                @if ($out && key_exists('enable_button_provider', $out) && $out['enable_button_provider'] == 'true')
                                                                     <a title="Edit Close Out"
                                                                         aria-label="Edit Close Out" href="#"
                                                                         class="dropdown-item"
@@ -189,20 +191,25 @@
                                                                     href="#" class="dropdown-item">
                                                                     Download Forms
                                                                 </a> --}}
+                                                                @if ($provider->return_status==2)
                                                                 <a title="Approve Time Extension"
                                                                     aria-label="Approve Time Extension" href="#"
-                                                                    class="dropdown-item">
-                                                                    {{-- <i class="fa fa-clone"></i> --}}
+                                                                    class="dropdown-item"   
+                                                                    @click="closeOutBooking = true"
+                                                                    wire:click="$emit('openBookingCloseOut',true)">
                                                                     Approve Time Extension
 
                                                                 </a>
 
                                                                 <a title="Deny Time Extension"
                                                                     aria-label="Deny Time Extension" href="#"
+                                                                      @click="closeOutBooking = true"
+                                                                    wire:click="$emit('openBookingCloseOut',true)"
                                                                     class="dropdown-item">
                                                                     {{-- <i class="fa fa-clone"></i> --}}
                                                                     Deny Time Extension
                                                                 </a>
+                                                                @endif
 
 
                                                             </div>

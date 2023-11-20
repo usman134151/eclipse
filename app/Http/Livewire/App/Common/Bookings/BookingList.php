@@ -193,7 +193,8 @@ class BookingList extends Component
 				$query->where('booking_status', 0)->orderBy('booking_start_at', 'DESC');
 				break;
 			case ('Pending Close-out'):
-				$query->where('type', 1)
+				$query
+				// ->where('type', 1)
 				->where('is_closed', 0)
 				// ->where('booking_status', '1')
 					->where(function ($q) use ($today) {
@@ -203,8 +204,11 @@ class BookingList extends Component
 						});
 							// ->orWhereIn('bookings.status', [3, 4]);
 					})
-					->whereHas('booking_services', function ($query) {
-						$query->where('is_closed', 0);
+					->orWhereHas('booking_services', function ($query) {
+						$query->where('is_closed', 1);
+					})
+					->whereHas('services',function($q){
+						$q->whereJsonContains('close_out_procedure',['enable_button_provider'=> true]);
 					})
 					->orderBy('booking_start_at', 'DESC');
 

@@ -169,6 +169,12 @@ class CheckOut extends Component
     {
 
         $this->validate();
+        //adding leading zeros if less than 10
+        if($this->checkout['actual_end_hour'] < 10)
+        $this->checkout['actual_end_hour'] =         sprintf('%02d', $this->checkout['actual_end_hour']);
+        if ($this->checkout['actual_end_min'] < 10)
+        $this->checkout['actual_end_min'] =         sprintf('%02d', $this->checkout['actual_end_min']);
+
         $this->checkout['actual_end_timestamp'] = Carbon::createFromFormat('m/d/Y H:i:s', $this->checkout['actual_end_date'] . ' ' . $this->checkout['actual_end_hour'] . ':' . $this->checkout['actual_end_min'] . ':00');
 
         $fileService = new UploadFileService();
