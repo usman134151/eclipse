@@ -2143,12 +2143,13 @@
     @include('modals.common.add-address')
     @include('modals.common.add-industry')
     @include('modals.common.add-department')
-    @include('modals.common.booking-modification-confirmation')
     
         @include('modals.common.add-new-customer')
     
     @include('modals.common.assign-admin-staff')
     @include('modals.common.assign-admin-staff-team')
+    @include('modals.common.booking-modification-confirmation')
+
     <!-- /Modal Request from User -->
     @if(!is_null($booking->id))
 
@@ -2156,6 +2157,7 @@
       
     @endif
     @include('panels.booking-details.assign-providers')
+
     @push('scripts')
 
     <script>
@@ -2164,12 +2166,7 @@
             Livewire.emit('updateVal', attrName, val);
 
         }
-        Livewire.on('confirmBookingModification', (type) => {
-            // Handle the event here
-           
-            // Open the modal
-            $('#modificationConfirmation').modal('show');
-        });
+    
         Livewire.on('updateAddressType', (type) => {
             // Handle the event here
            
@@ -2177,6 +2174,15 @@
             $('#addAddressModal').modal('show');
         });
         
+       
+         Livewire.on('setModificationCharges', () => {
+              setTimeout(() => {
+                      $('#modificationConfirmation').modal('show');
+
+
+        }, 8000);
+               
+            });
                 Livewire.on('closeConfirmationModal', () => {
             $('#modificationConfirmation').modal('hide');
                
@@ -2197,6 +2203,8 @@
 				var clickEvent = new Event("click");
 				elem.dispatchEvent(clickEvent);
             });
+            
+           
 
     function setAddressAndBooking(addressId) {
         $('#addressId').val(addressId);
@@ -2211,7 +2219,10 @@
             Livewire.emit('isBooking');
             Livewire.emit('setBookingDepartments', @json($selectedDepartments),{{$booking->company_id}});
             Livewire.emit('updateCompany',{{$booking->company_id}});
+            Livewire.emit('checkModificationCharges');
+
         }, 1000);
+
     });
 </script>
 @endif

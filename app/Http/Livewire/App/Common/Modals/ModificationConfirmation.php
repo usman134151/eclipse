@@ -16,11 +16,10 @@ class ModificationConfirmation extends Component
         return view('livewire.app.common.modals.modification-confirmation');
     }
 
-    public function setModificationCharges($booking, $redirect, $draft, $step)
+    public function setModificationCharges($booking)
     {
 
         $this->booking = $booking;
-        $this->params = [$redirect, $draft, $step];
     }
     public function rules()
     {
@@ -41,7 +40,6 @@ class ModificationConfirmation extends Component
             $charges = null;
 
         Payment::where('booking_id', $this->booking['id'])->update(['modification_fee' => $charges]);
-        $this->emit('confirmedModificationFee', true, $this->params[0], $this->params[1], $this->params[2]);
         $this->emit('closeConfirmationModal');
     }
     function showForm()
