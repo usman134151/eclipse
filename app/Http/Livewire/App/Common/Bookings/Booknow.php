@@ -41,7 +41,7 @@ class Booknow extends Component
         'updateSelectedIndustries' => 'selectIndustries',
         'updateSelectedDepartments', 'confirmation','showConfirmation',
         'saveCustomFormData' => 'save', 'switch', 'updateAddress' => 'addAddress',
-        'confirmedModificationFee'=>'checkCharges','updateUsers','openAssignProvidersPanel'
+        'checkModificationCharges','updateUsers','openAssignProvidersPanel'
     ];
 
     public $dates = [], $isCustomer = false, $customerDetails = [], $cantRequest = false;
@@ -107,9 +107,6 @@ class Booknow extends Component
 
     public function mount(Booking $booking)
     {
-
-
-
 
         $this->booking = $booking;
         $this->payment = new Payment;
@@ -312,11 +309,21 @@ class Booknow extends Component
         return view('livewire.app.common.bookings.booknow');
     }
 
-    public function checkCharges($confirmed = false, $redirect = 1, $draft = 0, $step = 1)
+    public function checkModificationCharges()
     {
-       
-        $this->confirmed = true;
-        $this->save($redirect, $draft, $step);
+        //making sure modification charges are checked at step 1 before editing booking
+        if ($this->confirmed == false && $this->isEdit) {
+            $mod_booking = BookingOperationsService::getBookingDetails($this->booking->id, $this->serviceTypes, 'modifications', 'cancellation_hour1');
+            if (!is_null($mod_booking->payment) && isset($mod_booking->payment->modification_fee) && $mod_booking->payment->modification_fee > 0) {
+                $this->emit('setModificationCharges', $mod_booking);
+            } else {
+                // no charges hence save func called again
+                $this->confirmed = true;
+                // $this->save($redirect = 1, $draft = 0, $step = 1);
+            }
+        }
+
+        
     }
 
 
@@ -329,19 +336,7 @@ class Booknow extends Component
         if ($this->isCustomer)
             $base = '/customer';
             
-        //making sure modification charges are checked at step 1 before editing booking
-        if ($this->confirmed == false && $step == 1 && $this->isEdit) {
-            $mod_booking = BookingOperationsService::getBookingDetails($this->booking->id, $this->serviceTypes, 'modifications', 'cancellation_hour1');
-            if (!is_null($mod_booking->payment) && isset($mod_booking->payment->modification_fee) && $mod_booking->payment->modification_fee > 0) {
-                $this->emit('setModificationCharges', $mod_booking, $redirect, $draft, $step);
-                $this->emit('confirmBookingModification');
-            } else {
-                // no charges hence save func called again
-                $this->confirmed = true;
-               // $this->save($redirect = 1, $draft = 0, $step = 1);
-            }
-        }
-
+        
             if ($step == 1) {
                 $this->validate();
                 if (!is_null($this->booking->recurring_end_at) && $this->booking->recurring_end_at != '') {
