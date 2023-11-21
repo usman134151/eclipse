@@ -20,6 +20,7 @@ use App\Models\Tenant\BookingProvider;
 use Auth;
 use Carbon\Carbon;
 use App\Helpers\GlobalFunctions;
+use App\Models\Tenant\RescheduleBookingLog;
 use DateTime;
 use Log;
 use DB;
@@ -994,12 +995,31 @@ class BookingOperationsService
     }
     $r_bookings[] = $booking;
     foreach ($r_bookings as $booking) {
+
+
       // set $booking->reschedule_date according to admin/customer permissions
       $booking->booking_reschedule_at = Carbon::now();
       $booking->reschedule_start_at = Carbon::parse($reschedule_details['booking_start_at'] . ' ' . $reschedule_details['booking_start_hour'] . ':' . $reschedule_details['booking_start_min']);
       $booking->reschedule_end_at = Carbon::parse($reschedule_details['booking_end_at'] . ' ' . $reschedule_details['booking_end_hour'] . ':' . $reschedule_details['booking_end_min']);
-     
+
+      $message = "Booking reschduled from (" . formatDateTime($booking->booking_start_at) . " - " . formatDateTime($booking->booking_end_at) . ") to (" . formatDateTime($booking->reschedule_start_at) . " - " . formatDateTime($booking->reschedule_start_at) . ") by '" . Auth::user()->name . "'";
+
       $booking->reschedule_by = Auth::id();
+
+      //to maintain reschedule booking logs
+
+      $curr_log['previous_start_time'] = $booking->booking_start_at;
+      $curr_log['previous_end_time'] = $booking->booking_end_at;
+
+      $curr_log['current_start_time'] = $booking->reschedule_start_at;
+      $curr_log['current_end_time'] = $booking->reschedule_end_at;
+      $curr_log['booking_id'] = $booking->id;
+      $curr_log['reschedule_by'] = Auth::id();
+      $curr_log['charges'] = $reschedule_details['charges'];  //sum of all existing reschedule displayed 
+      RescheduleBookingLog::create($curr_log);
+
+
+
       //  if customer and not company admin/ supervisor move booking to pending-review
       if (session()->get('isCustomer') && (!in_array(10, session()->get('customerRoles')))) {
         $booking->reschedule_status = 2;
@@ -1009,10 +1029,16 @@ class BookingOperationsService
         $booking->booking_start_at = $booking->reschedule_start_at;
         $booking->booking_end_at = $booking->reschedule_end_at;
         $booking->reschedule_status = 1;
+
+        //update time for all booking services
+        
       }
-      $booking->payment->reschedule_booking_charges = $reschedule_details['charges'];
+      $booking->payment->reschedule_booking_charges = $reschedule_details['charges'] + $reschedule_details['prev_charges'];
       $booking->save();
       $booking->payment->save();
+
+      callLogs($booking->id, 'reschdule', 'rescheduled', $message);
+               
     }
     return;
   }

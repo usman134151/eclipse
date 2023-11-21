@@ -710,7 +710,7 @@
                                         <div class="d-flex justify-content-between">
                                         <h3 class="text-primary">Date & Time {{ $loop->index + 1 }}</h3>
                                         <div class="align-items-center gap-2">
-                                            @if($index>=1 || $isEdit)
+                                            @if($index>=1 || ($isEdit && $booking->type==2))
                                             <a wire:click.prevent="removeDate({{$index}})" href="#" title="Delete" aria-label="Delete"
                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                 <svg class="delete-icon" width="20" height="20"
@@ -727,7 +727,7 @@
                                             <div class="col-lg-3 col-md-6 pe-md-2 pe-lg-0 mb-4">
                                                 <label class="form-label-sm" for="set_time_zone">Set Time Zone <span
                                                         class="mandatory">*</span></label>
-                                               <select class="form-select select2 mb-2 " wire:model.defer='dates.{{ $index }}.time_zone'  id="timezone_{{$index}}" name="timezone_{{$index}}">
+                                               <select {{(($this->isEdit && $this->booking->type==1) ? 'disabled' :'')}} class="form-select select2 mb-2 " wire:model.defer='dates.{{ $index }}.time_zone'  id="timezone_{{$index}}" name="timezone_{{$index}}">
                                                  @foreach($timezones as $zone)
                                                   <option value="{{$zone['id']}}">{{$zone['setup_value_label']}}</option>
                                                  @endforeach
@@ -738,7 +738,7 @@
                                                 <label class="form-label-sm" for="start_date_{{$index}}">Start Date <span
                                                         class="mandatory">*</span></label>
                                                 <div class="position-relative">
-                                                    <input type="" name=""
+                                                    <input type="" name="" {{(($this->isEdit && $this->booking->type==1) ? 'disabled' :'')}}
                                                         class="form-control js-single-date" 
                                                         placeholder="MM/DD/YYYY" id="start_date_{{$index}}" value="{{$dates[0]['start_date']}}"
                                                         aria-label="Set Start Date" wire:model="dates.{{$index}}.start_date" style="width:200px">
@@ -761,7 +761,7 @@
                                                     <label class="form-label-sm" for="set_start_time">Start Time</label>
                                                     <div class="d-md-flex d-lg-inline">
                                                         <div class="time d-flex align-items-center gap-1" style="margin-top:2px;">
-                                                            <select class="form-select form-select-sm custom-padding" wire:model.defer="dates.{{$index}}.start_hour"  wire:change="updateDurations({{ $index }})">
+                                                            <select  {{(($this->isEdit && $this->booking->type==1) ? 'disabled' :'')}} class="form-select form-select-sm custom-padding" wire:model.defer="dates.{{$index}}.start_hour"  wire:change="updateDurations({{ $index }})">
                                                                 @for($i=0;$i<24;$i++)
                                                                  <option value="{{str_pad($i, 2, '0', STR_PAD_LEFT)}}">{{str_pad($i, 2, '0', STR_PAD_LEFT)}}</option>
                                                                 @endfor
@@ -774,7 +774,7 @@
                                                                 </use>
                                                             </svg>
                                                             
-                                                            <select class="form-select form-select-sm custom-padding"  wire:model.defer="dates.{{$index}}.start_min"  wire:change="updateDurations({{ $index }})">
+                                                            <select {{(($this->isEdit && $this->booking->type==1) ? 'disabled' :'')}} class="form-select form-select-sm custom-padding"  wire:model.defer="dates.{{$index}}.start_min"  wire:change="updateDurations({{ $index }})">
                                                                 @for($i=0;$i<59;$i++)
                                                                  <option value="{{str_pad($i, 2, '0', STR_PAD_LEFT)}}">{{str_pad($i, 2, '0', STR_PAD_LEFT)}}</option>
                                                                 @endfor
@@ -796,7 +796,7 @@
                                                 <label class="form-label-sm" for="end_date_{{$index}}">End Date<span
                                                         class="mandatory">*</span></label>
                                                 <div class="position-relative">
-                                                    <input type="" name=""
+                                                    <input type="" name="" {{(($this->isEdit && $this->booking->type==1) ? 'disabled' :'')}}
                                                         class="form-control js-single-date"
                                                         placeholder="MM/DD/YYYY" id="end_date_{{$index}}"
                                                         aria-label="Set End Date" wire:key="endtime-{{ $index }}" wire:model="dates.{{$index}}.end_date"  style="width:200px">
@@ -819,7 +819,7 @@
                                                     <label class="form-label-sm" for="set_start_time">End Time</label>
                                                     <div class="d-flex">
                                                         <div class="time d-flex align-items-center gap-1">
-                                                            <select class="form-select form-select-sm custom-padding" wire:model.defer="dates.{{$index}}.end_hour"  wire:change="updateDurations({{ $index }})">
+                                                            <select {{(($this->isEdit && $this->booking->type==1) ? 'disabled' :'')}} class="form-select form-select-sm custom-padding" wire:model.defer="dates.{{$index}}.end_hour"  wire:change="updateDurations({{ $index }})">
                                                                 @for($i=0;$i<24;$i++)
                                                                  <option value="{{str_pad($i, 2, '0', STR_PAD_LEFT)}}">{{str_pad($i, 2, '0', STR_PAD_LEFT)}}</option>
                                                                 @endfor
@@ -832,7 +832,7 @@
                                                                 </use>
                                                             </svg>
                                                             
-                                                            <select class="form-select form-select-sm custom-padding" wire:model.defer="dates.{{$index}}.end_min"  wire:change="updateDurations({{ $index }})">
+                                                            <select {{(($this->isEdit && $this->booking->type==1) ? 'disabled' :'')}} class="form-select form-select-sm custom-padding" wire:model.defer="dates.{{$index}}.end_min"  wire:change="updateDurations({{ $index }})">
                                                                 @for($i=0;$i<59;$i++)
                                                                  <option value="{{str_pad($i, 2, '0', STR_PAD_LEFT)}}">{{str_pad($i, 2, '0', STR_PAD_LEFT)}}</option>
                                                                 @endfor
@@ -861,12 +861,12 @@
                                                 <label class="form-label-sm"
                                                     for="total_billable_service_duration_days">Days</label>
                                                 <input type="" class="form-control form-control-md text-center"
-                                                    aria-label="Days" placeholder="0"
+                                                    aria-label="Days" placeholder="0" {{(($this->isEdit && $this->booking->type==1) ? 'disabled' :'')}}
                                                     id="dates.{{$index}}.duration_day" wire:key="total-{{ $index }}" wire:model="dates.{{$index}}.duration_day" style="width:100px">
                                             </div>
                                             <div>
                                                 <label class="form-label-sm">Hours</label>
-                                                <input type=""
+                                                <input type="" {{(($this->isEdit && $this->booking->type==1) ? 'disabled' :'')}}
                                                     class="form-control form-control-sm text-center"
                                                     aria-label="Hours" placeholder="00"
                                                     id="dates.{{$index}}.duration_hour" wire:key="total-{{ $index }}" wire:model="dates.{{$index}}.duration_hour" style="width:100px" >
@@ -874,7 +874,7 @@
                                             <div>
                                                 <label class="form-label-sm">Minutes</label>
                                                 <input type="" class="form-control form-control-sm text-center"
-                                                    aria-label="Minutes" placeholder="00"
+                                                    aria-label="Minutes" placeholder="00" {{(($this->isEdit && $this->booking->type==1) ? 'disabled' :'')}}
                                                     id="dates.{{$index}}.duration_minute" wire:key="total-{{ $index }}" wire:model="dates.{{$index}}.duration_minute" style="width:100px">
                                             </div>
                                         </div>
