@@ -155,7 +155,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($providers as $provider)
+                                    @forelse ($providers as $provider)
                                         <tr role="row" class="odd">
                                             <td class="text-center align-middle">
                                                 <input class="form-check-input" type="checkbox" value=""
@@ -208,7 +208,9 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    @empty
+                                        No Record Available
+                                    @endforelse
                                     {{-- <tr role="row" class="even">
                                         <td class="text-center align-middle">
                                             <input class="form-check-input" type="checkbox" value=""
