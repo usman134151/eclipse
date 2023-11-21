@@ -12,7 +12,9 @@ use App\Models\Tenant\RoleUserDetail;
 use App\Models\Tenant\Schedule;
 use App\Models\Tenant\Tag;
 use App\Models\Tenant\User;
+use App\Models\Tenant\UserAddress;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -162,29 +164,10 @@ class Calendar extends Component
 		$this->dispatchBrowserEvent('refreshSelects2');
 	}
 
-	// Updated by Sohail Asghar to get booking events for dashboard calendar
+	// Updated by Maarooshaa Asim to get booking events for dashboard calendar
 	private function getCalendarEvents()
 	{
-		// $description = '';
-		// $tooltipData = [
-		// 	[
-		// 		'label' => 'English to French Interpreting',
-		// 		'time' => '11:00 AM To 05:00 PM'
-		// 	],
-		// 	[
-		// 		'label' => 'English to German Interpreting',
-		// 		'time' => ''
-		// 	],
-		// 	[
-		// 		'label' => 'English to Arabic Sign Language',
-		// 		'time' => ''
-		// 	],
-		// 	[
-		// 		'label' => 'Inperson Dayrate (new)',
-		// 		'time' => '11:00 AM To 05:00 PM'
-		// 	],
-		// ];
-
+	
 		$query = Booking::query();
 		$query->where('bookings.type', 1);
 
@@ -228,7 +211,6 @@ class Calendar extends Component
 				});
 			}
 		}
-		// dd($this->user_id ,$this->providerProfile ,$this->isCustomer);
 		if ($this->user_id && !$this->providerProfile && !$this->isCustomer)
 			$query->join('booking_providers', function ($join) {
 				$join->where('booking_providers.provider_id', $this->user_id);
@@ -256,12 +238,11 @@ class Calendar extends Component
 			}
 		}
 		$query = $this->applySearchFilter($query);
-		$events = $query->select('bookings.id', 'booking_number', 'booking_title', 'booking_start_at', 'booking_end_at', 'status', 'is_closed', 'provider_count')
+		$events = $query->select('bookings.id', 'booking_number', 'booking_title', 'customer_id', 'physical_address_id', 'booking_start_at', 'booking_end_at', 'status', 'is_closed', 'provider_count')
+			->with(['physicalAddress','customer'])
 			->get()
 			->toArray();
-		// $keys = ['title', 'start', 'end'];
 		$newEvents = [];
-		// $count = 0;
 		$base = '/admin';
 		if ($this->isCustomer)
 			$base = '/customer';
@@ -269,7 +250,6 @@ class Calendar extends Component
 		$colorCodes = SetupValue::where("setup_id", 10)->pluck('setup_value_label', 'setup_value_alt_id');
 
 		foreach ($events as $key => $event) {
-			// Updated by Sohail Asghar to update calendar event title
 			extract($events[$key]);
 			if (!empty($booking_title)) {
 				$newEvents[$key]['title'] = $booking_number . ': ' . $booking_title;
@@ -315,44 +295,29 @@ class Calendar extends Component
 			if (session()->get('isProvider')) {
 				$newEvents[$key]['isProvider'] = true;
 			} else {
-				// 	$newEvents[$key]['panel_call'] = "'setAssignmentDetails'," . $id . ",'" . $booking_number . "'";
-				// else{
 				$newEvents[$key]['url'] = $base . '/bookings/view-booking/' . encrypt($id);
 				$newEvents[$key]['isProvider'] = false;
-				$newEvents[$key]['description'] =' <div>'.'<p class="mb-1">Booking Number </p><p class="mb-0">Booking details</p></div>';
 			}
 
+			$newEvents[$key]['timeSlot'] =  formatTime($booking_start_at) . ' - ' . formatTime($booking_end_at);
+			$description = '<div class="pe-3">';
+			$description .= '<p class="mb-3 mt-2">Assignment No.: ' . $booking_number . ' </p>';
+			$description .= '<p class="my-3">Customer: ' . ($customer!=null ? $customer['name'] : 'N/A') . ' </p>';
+			$description .= '<p class="my-3">No. of Providers: ' . $provider_count . ' </p>';
+			// $description .= '<p class="mb-1">Assign To.: ' . $booking_number . ' </p>';
+			if($physical_address)
+			$description .= '<p class="my-3 ">Location: ' .  $physical_address['address_line1'] . ', ' . $physical_address['address_line2'] . ', ' . $physical_address['city'] . ', ' . $physical_address['state'] . ', ' . $physical_address['country']   . ' </p>';
+			$description .= '<p class="my-3">Status: ' . $mappingCode . ' </p>';
+			$description .= "</div>";
+			$newEvents[$key]['description'] = $description;
 
-			// End of update by Sohail Asghar
-
-			// $newEvent = collect($event);
-			// foreach($newEvent as $item)
-			// {
-			// $newKey = $keys[$count++];
-			// $newEvents[$key][$newKey] = $item;
-			// }
-			// $count = 0;
+			
 		}
 
-		// foreach($newEvents as $key => $item)
-		// {
-		// 	$date = Carbon::parse($newEvents[$key]['start'])->format('F d, Y');
-		// 	$description .= '<div class="card" style="width: 18rem;">';
-		// 	$description .= '<div class="card-header text-black fw-semibold">' . $date . '</div>';
-		// 	$description .= ' <ul class="list-group">';
-		// 	foreach($tooltipData as $tooltip)
-		// 	{
-		// 		$description .= '<li class="list-group-item fw-semibold rounded mb-2" style="color: purple;"><p class="mb-1">'. $tooltip["label"] .'</p><p class="mb-0">'. $tooltip["time"] .'</p></li>';
-		// 	}
-		// 	$description .= '</ul></div>';
-		// 	$newEvents[$key]['description'] = $description;
-		// 	$newEvents[$key]['backgroundColor'] = '#567ABF';
-		// 	$description = '';
-		// }
+		
 
 		return json_encode($newEvents);
 	}
-	// End of update by Sohail Asghar
 
 	public function refreshEvents($month = null)
 	{
