@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\App\Common\Panels\BookingDetails;
 
 use App\Models\Tenant\Booking;
+use App\Models\Tenant\RescheduleBookingLog;
 use App\Services\App\BookingOperationsService;
 use Carbon\Carbon;
 use Livewire\Component;
@@ -28,7 +29,9 @@ class RescheduleBooking extends Component
         //fetch booking with rescheduling charges
         $this->booking = BookingOperationsService::getBookingDetails($booking_id, $this->serviceTypes, 'rescheduling', 'cancellation_hour1');
         if(!is_null($this->booking->payment)){
-            $this->override_charges = round($this->booking->payment->reschedule_booking_charges,1);
+            $prev_charges = RescheduleBookingLog::where('booking_id', $this->booking->id)->sum('charges');
+
+            $this->override_charges = round($this->booking->payment->reschedule_booking_charges + $prev_charges,1);
             $start = Carbon::parse($this->booking->booking_start_at);
             $end = Carbon::parse($this->booking->booking_end_at);
             $this->reschedule_details['booking_start_at'] = $start->format('m/d/Y');
