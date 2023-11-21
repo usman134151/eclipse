@@ -86,15 +86,15 @@
                         if (eventData.isProvider) 
                         $(info.el).attr('@click', 'assignmentDetails = true');  //update to open assignment-details panel in provider-dashboard -- Maarooshaa Asim
 
-                        // var tooltip = new bootstrap.Popover(info.el, {
-                        // 	title: startDate,
-                        // 	content: info.event.extendedProps.description,
-                        // 	placement: 'right',
-                        // 	trigger: 'hover',
-                        // 	container: 'body',
-                        // 	html: true,
-                        // 	// delay: {"show":0, "hide":1000}
-                        // });
+                         var tooltip = new bootstrap.Popover(info.el, {
+                         	title: startDate,
+                         	content: info.event.extendedProps.description,
+                         	placement: 'right',
+                         	trigger: 'hover',
+                         	container: 'body',
+                         	html: true,
+                        delay: {"show":100, "hide":750}
+                        });
                     },
 
                     //editable: true,
