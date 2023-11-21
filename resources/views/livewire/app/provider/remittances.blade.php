@@ -106,8 +106,8 @@
                       </tr>
                     </thead>
                       <tbody>
-                        <td>Coming Soon</td>
-                        {{-- <tr role="row" class="odd">
+                       
+                       <tr role="row" class="odd">
                           <td>
                             <div class="form-check">
                             <input class="form-check-input" aria-label="Select Remittance" id="" name="" type="checkbox" tabindex="">
@@ -467,7 +467,7 @@
                                  </a>      
                                </div>
                              </td>
-                          </tr> --}}
+                          </tr> 
 
                           </tbody>
                       </table>
