@@ -1031,6 +1031,12 @@ class BookingOperationsService
         $booking->reschedule_status = 1;
 
         //update time for all booking services
+        foreach($booking->booking_services as $bookingService){
+          $bookingService->start_time = $booking->booking_start_at;
+          $bookingService->end_time = $booking->booking_end_at;
+          // TODO :: recalculate duration and calculcations according 
+          $bookingService->save();
+        }
         
       }
       $booking->payment->reschedule_booking_charges = $reschedule_details['charges'] + $reschedule_details['prev_charges'];
