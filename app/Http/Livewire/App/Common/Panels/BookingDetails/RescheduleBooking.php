@@ -71,7 +71,8 @@ class RescheduleBooking extends Component
         }
         $prev_charges = $this->previousReschedulings->count() ?  $this->previousReschedulings->sum('charges') : 0;
 
-        $this->reschedule_details['charges'] = $this->booking->payment->reschedule_booking_charges + $prev_charges;
+        $this->reschedule_details['charges'] = $this->booking->payment->reschedule_booking_charges ;
+        $this->reschedule_details['prev_charges']= $prev_charges;
 
         $this->reschedule_details['setting'] = "only_this_booking"; // limiting for this phase only
         
