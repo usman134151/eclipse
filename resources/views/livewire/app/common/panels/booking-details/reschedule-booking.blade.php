@@ -10,18 +10,64 @@
                         </h2>
                     </div>
                 </div>
+                @if ($previousReschedulings->count())
+
+                    <div class="col-lg-12  p-5">
+                        <div class="table-responsive text-nowrap">
+                            <h3> Rescheduling Logs </h3>
+                            <table id="unassigned_data" class="table table-hover border" aria-label="List of Providers">
+                                <thead>
+                                    <tr role="row">
+                                        <th scope="col"></th>
+                                        <th scope="col">From</th>
+                                        <th scope="col">To</th>
+                                        <th scope="col">Charges</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($previousReschedulings as $i => $prevBooking)
+                                        <tr role="row" class="{{ $i % 2 == 0 ? 'even' : 'odd' }}">
+                                            <td class="align-middle fw-bold">
+                                                {{ $i + 1 }}
+                                            </td>
+                                            <td class="align-middle">
+                                                <div class="time-date ">
+                                                    {{ formatDateTime($prevBooking->previous_start_time) }}
+                                                    to
+                                                    {{ formatDateTime($prevBooking->previous_end_time) }}
+                                                </div>
+                                            </td>
+                                            <td class="align-middle">
+                                                <div class="time-date ">
+                                                    {{ formatDateTime($prevBooking->current_start_time) }}
+                                                    to
+                                                    {{ formatDateTime($prevBooking->current_end_time) }}
+                                                </div>
+                                            </td>
+                                            <td class="align-middle">{{ numberFormat($prevBooking->charges) }}</td>
+                                        </tr>
+                                    @endforeach
+
+                                </tbody>
+                            </table>
+                        <small>*All previous charges will be included </small>
+
+                        </div>
+                    </div>
+                @endif
+
                 <div class="col-lg-12 my-4">
                     <div class="position-relative mb-3">
                         <label class="form-label-sm" for="override_charges">Override Rescheduling Charges</label>
 
                         <input type="" class="form-control " id="override_charges" name="override_charges"
                             placeholder="$0.00" wire:model="override_charges">
-                            
-                    @error('override_charges')
-                        <span class="d-inline-block invalid-feedback mt-2">
-                            {{ $message }}
-                        </span>
-                    @enderror
+
+                        @error('override_charges')
+                            <span class="d-inline-block invalid-feedback mt-2">
+                                {{ $message }}
+                            </span>
+                        @enderror
                     </div>
                     <div
                         class="d-flex flex-column flex-lg-row gap-lg-3 gap-2 align-items-lg-center justify justify-content-between">
@@ -134,7 +180,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     @error('reschedule_details.booking_end_at')
                         <span class="d-inline-block invalid-feedback mt-2">
                             {{ $message }}
