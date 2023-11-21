@@ -56,21 +56,21 @@
                     <label class="form-label" for="set_date">Date Range</label>
                     <div class="d-flex gap-3">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="Issued">
-                            <label class="form-check-label" for="Issued">
+                            <input wire:model="filterRadio" wire:click="applyRadiofilter('filterRadio','issued')" value="issued" class="form-check-input" type="radio" name="filter_selectedRadio" id="filterIssued">
+                            <label class="form-check-label" for="filterIssued">
                                 Issued
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="Due">
-                            <label class="form-check-label" for="Due">
+                            <input wire:model="filterRadio" wire:click="applyRadiofilter('filterRadio','due')" value="due" class="form-check-input" type="radio" name="filter_selectedRadio" id="filterDue">
+                            <label class="form-check-label" for="filterDue">
                                 Due
                             </label>
                         </div>
                     </div>
                     <div class="position-relative">
-                        <input type="" name="" class="form-control js-single-date"
-                            placeholder="Select Date" id="set_date">
+                        <input wire:model="filter_select_Date" type="" name="filter_select_Date" class="form-control js-single-date"
+                            placeholder="Select Date" id="filter_select_Date">
                         <svg class="icon-date" width="20" height="20" viewBox="0 0 20 20" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -81,10 +81,12 @@
                 </div>
                 <div class="col-lg-5 pe-lg-3 mb-5">
                     <label class="form-label" for="payment-status">Payment Status</label>
-                    <select class="select2 form-select" id="payment-status">
+                    <select wire:model='filter_payment_status' name="filter_payment_status" class="select2 form-select" id="filter_payment_status">
                         <option>Select Payment Status</option>
-                        <option>Payment Status-1</option>
-                        <option>Payment Status-2</option>
+                        <option value="1">Issued</option>
+                        <option value="2">Paid</option>
+                        <option value="3">Overdue</option>
+                        <option value="4">Partial</option>
                     </select>
                 </div>
             @else

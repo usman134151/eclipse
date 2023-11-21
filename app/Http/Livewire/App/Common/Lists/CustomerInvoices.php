@@ -15,7 +15,7 @@ final class CustomerInvoices extends PowerGridComponent
     public $status = [2 => ['code' => '/css/provider.svg#green-dot', 'title' => 'Paid'], 1 => ['code' => '/css/common-icons.svg#blue-dot', 'title' => 'Issued'], 3 => ['code' => '/css/provider.svg#red-dot', 'title' => 'Overdue'], 4 => ['code' => '/css/provider.svg#yellow-dot', 'title' => 'Partial']];
     protected $listeners = ['refresh' => 'setUp'];
     public $invoice_status = '', $company_id = null , $supervisor_id , $billing_manager_id;
-    public $filter_bmanager, $filter_companies;
+    public $filter_bmanager, $filter_companies, $filter_payment_status, $filter_select_Date, $filterRadio;
 
     /*
     |--------------------------------------------------------------------------
@@ -59,6 +59,10 @@ final class CustomerInvoices extends PowerGridComponent
     {
         $this->filter_bmanager = null;
         $this->filter_companies = null;
+        $this->filter_payment_status = null;
+        $this->filter_select_Date = null;
+        $this->$filterRadio = null;
+
     }
   
 
@@ -108,6 +112,19 @@ final class CustomerInvoices extends PowerGridComponent
 
         if ($this->filter_bmanager)
             $query->where('billing_manager_id', $this->filter_bmanager);
+        
+        if ($this->filter_payment_status)
+            $query->where('invoice_status', $this->filter_payment_status);
+        
+        if ($this->filter_select_Date)
+        {
+            $formattedDate = \Carbon\Carbon::createFromFormat('m/d/Y', $this->filter_select_Date)->format('Y-m-d');
+            if($this->filterRadio == "issued")
+                $query->whereDate('invoice_date',"=", $formattedDate);
+            else if($this->filterRadio == "due")
+                $query->whereDate('invoice_due_date',"=", $formattedDate);
+
+        }
 
         
         
@@ -194,7 +211,7 @@ final class CustomerInvoices extends PowerGridComponent
                 return '<div class="d-flex align-items-center gap-2"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><use xlink:href="' . $this->status[$model->invoice_status]['code'] . '"></use></svg><p>' . $this->status[$model->invoice_status]['title'] . '</p></div>';
             })
             ->addColumn('edit', function (Invoice $model) {
-                $view_b = '<a href="#" title="back" aria-label="back"
+                $view_b = '<a href="#" title="Revert" aria-label="back"
                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="$emit(\'revertInvoice\',' . $model->id . ')"
                                                         data-bs-toggle="modal" data-bs-target="#revertBackModal">
                                                         <svg aria-label="Revert" class="fill-stroke" width="22"
