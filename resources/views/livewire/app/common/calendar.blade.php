@@ -87,8 +87,8 @@
                         $(info.el).attr('@click', 'assignmentDetails = true');  //update to open assignment-details panel in provider-dashboard -- Maarooshaa Asim
 
                          var tooltip = new bootstrap.Popover(info.el, {
-                         	title: startDate,
-                         	content: info.event.extendedProps.description,
+                         	title: eventData.timeSlot,
+                         	content: eventData.description,
                          	placement: 'right',
                          	trigger: 'hover',
                          	container: 'body',
