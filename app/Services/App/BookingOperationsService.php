@@ -996,15 +996,6 @@ class BookingOperationsService
     $r_bookings[] = $booking;
     foreach ($r_bookings as $booking) {
 
-      //to maintain reschedule booking logs
-
-      $curr_log['previous_start_time']= $booking->booking_start_at;
-      $curr_log['previous_end_time'] = $booking->booking_start_at;
-      $curr_log['booking_id'] = $booking->id;
-      $curr_log['reschedule_by'] = Auth::id();
-      $curr_log['charges'] = $reschedule_details['charges'];  //sum of all existing reschedule displayed 
-      RescheduleBookingLog::create($curr_log);
-
 
       // set $booking->reschedule_date according to admin/customer permissions
       $booking->booking_reschedule_at = Carbon::now();
@@ -1014,6 +1005,21 @@ class BookingOperationsService
       $message = "Booking reschduled from (" . formatDateTime($booking->booking_start_at) . " - " . formatDateTime($booking->booking_end_at) . ") to (" . formatDateTime($booking->reschedule_start_at) . " - " . formatDateTime($booking->reschedule_start_at) . ") by '" . Auth::user()->name . "'";
 
       $booking->reschedule_by = Auth::id();
+
+      //to maintain reschedule booking logs
+
+      $curr_log['previous_start_time'] = $booking->booking_start_at;
+      $curr_log['previous_end_time'] = $booking->booking_end_at;
+
+      $curr_log['current_start_time'] = $booking->reschedule_start_at;
+      $curr_log['current_end_time'] = $booking->reschedule_end_at;
+      $curr_log['booking_id'] = $booking->id;
+      $curr_log['reschedule_by'] = Auth::id();
+      $curr_log['charges'] = $reschedule_details['charges'];  //sum of all existing reschedule displayed 
+      RescheduleBookingLog::create($curr_log);
+
+
+
       //  if customer and not company admin/ supervisor move booking to pending-review
       if (session()->get('isCustomer') && (!in_array(10, session()->get('customerRoles')))) {
         $booking->reschedule_status = 2;

@@ -11,7 +11,7 @@ use App\Services\App\NotificationService;
 
 class RescheduleBooking extends Component
 {
-    public $showForm, $booking, $reschedule_details = [], $override_charges='';
+    public $showForm, $booking, $reschedule_details = [], $override_charges='', $previousReschedulings=null;
     protected $listeners = ['showList' => 'resetForm', 'getRescheduleBookingData', 'updateVal'];
     public $serviceTypes = [
         '1' => ['class' => 'inperson-rate', 'postfix' => '', 'title' => 'In-Person'],
@@ -29,9 +29,11 @@ class RescheduleBooking extends Component
         //fetch booking with rescheduling charges
         $this->booking = BookingOperationsService::getBookingDetails($booking_id, $this->serviceTypes, 'rescheduling', 'cancellation_hour1');
         if(!is_null($this->booking->payment)){
-            $prev_charges = RescheduleBookingLog::where('booking_id', $this->booking->id)->sum('charges');
+            //fetch rescheduling history
+            $this->previousReschedulings = RescheduleBookingLog::where('booking_id', $this->booking->id)->get();
+            //sum charges if found
 
-            $this->override_charges = round($this->booking->payment->reschedule_booking_charges + $prev_charges,1);
+            $this->override_charges = round($this->booking->payment->reschedule_booking_charges ,1);
             $start = Carbon::parse($this->booking->booking_start_at);
             $end = Carbon::parse($this->booking->booking_end_at);
             $this->reschedule_details['booking_start_at'] = $start->format('m/d/Y');
@@ -67,7 +69,9 @@ class RescheduleBooking extends Component
         if ($this->override_charges != '' && is_numeric($this->override_charges)) {
             $this->booking->payment->reschedule_booking_charges = (float)$this->override_charges;
         }
-        $this->reschedule_details['charges'] = $this->booking->payment->reschedule_booking_charges;
+        $prev_charges = $this->previousReschedulings->count() ?  $this->previousReschedulings->sum('charges') : 0;
+
+        $this->reschedule_details['charges'] = $this->booking->payment->reschedule_booking_charges + $prev_charges;
 
         $this->reschedule_details['setting'] = "only_this_booking"; // limiting for this phase only
         

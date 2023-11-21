@@ -11,6 +11,6 @@ class RescheduleBookingLog extends Model
     protected $table = 'reschedule_booking_log';
 
     protected $fillable = [
-        'booking_id', 'previous_start_time', 'previous_end_time', 'reschedule_by', 'charges'
+        'booking_id', 'previous_start_time', 'previous_end_time', 'current_start_time', 'current_end_time', 'reschedule_by', 'charges'
     ];
 }
