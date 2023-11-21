@@ -300,14 +300,14 @@ class Calendar extends Component
 			}
 
 			$newEvents[$key]['timeSlot'] =  formatTime($booking_start_at) . ' - ' . formatTime($booking_end_at);
-			$description = '<div>';
-			$description .= '<p class="mb-1">Assignment No.: ' . $booking_number . ' </p>';
-			$description .= '<p class="mb-1">Customer: ' . ($customer!=null ? $customer['name'] : 'N/A') . ' </p>';
-			$description .= '<p class="mb-1">No. of Providers: ' . $provider_count . ' </p>';
+			$description = '<div class="pe-3">';
+			$description .= '<p class="mb-3 mt-2">Assignment No.: ' . $booking_number . ' </p>';
+			$description .= '<p class="my-3">Customer: ' . ($customer!=null ? $customer['name'] : 'N/A') . ' </p>';
+			$description .= '<p class="my-3">No. of Providers: ' . $provider_count . ' </p>';
 			// $description .= '<p class="mb-1">Assign To.: ' . $booking_number . ' </p>';
 			if($physical_address)
-			$description .= '<p class="mb-1">Location: ' .  $physical_address['address_line1'] . ', ' . $physical_address['address_line2'] . ', ' . $physical_address['city'] . ', ' . $physical_address['state'] . ', ' . $physical_address['country']   . ' </p>';
-			$description .= '<p class="mb-1">Status: ' . $mappingCode . ' </p>';
+			$description .= '<p class="my-3 ">Location: ' .  $physical_address['address_line1'] . ', ' . $physical_address['address_line2'] . ', ' . $physical_address['city'] . ', ' . $physical_address['state'] . ', ' . $physical_address['country']   . ' </p>';
+			$description .= '<p class="my-3">Status: ' . $mappingCode . ' </p>';
 			$description .= "</div>";
 			$newEvents[$key]['description'] = $description;
 
