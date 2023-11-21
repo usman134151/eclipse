@@ -319,6 +319,7 @@ class Calendar extends Component
 				// else{
 				$newEvents[$key]['url'] = $base . '/bookings/view-booking/' . encrypt($id);
 				$newEvents[$key]['isProvider'] = false;
+				$newEvents[$key]['description'] =' <div>'.'<p class="mb-1">Booking Number </p><p class="mb-0">Booking details</p></div>';
 			}
 
 

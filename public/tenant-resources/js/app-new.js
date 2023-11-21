@@ -57,9 +57,9 @@
     });
 
     // Tooltip Initialization
-    // $('[data-bs-toggle="tooltip"]').tooltip({
-    //   container: 'body'
-    // });
+     $('[data-bs-toggle="tooltip"]').tooltip({
+       container: 'body'
+     });
 
     // Collapsible Card
     $('a[data-action="collapse"]').on('click', function (e) {
