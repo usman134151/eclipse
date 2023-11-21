@@ -1,9 +1,9 @@
 <div>
     <div class="row">
-                                        <h3>Notes</h3>
+                                        <h3>{{$note['record_type'] == 5 ? "Assignment Discussions" : "Notes"}}</h3>
                                         <div class="col-md-6 col-12 mb-4">
                                             <label class="form-label" for="notes-column">
-                                                {{$label}} Notes
+                                                {{$label}} {{$note['record_type'] == 5 ? "Comments" : "Notes"}}
                                             </label>
                                             <textarea class="form-control" rows="3" placeholder="" wire:model.defer="note.notes_text" name="notesColumn"
                                                 id="notes-column"></textarea>

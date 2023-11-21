@@ -203,7 +203,16 @@ final class CustomerInvoices extends PowerGridComponent
             })
 
             ->addColumn('payment_method', function (Invoice $model) {
-                return 'Direct Deposit';
+                $payment_method = [
+                    1 => 'Direct Deposit',
+                    2 => 'Cash payment',
+                    3 => 'Check',
+                    4 => 'Bank Transfer',
+                ];
+                if($model->invoice_status == 2)
+                    return array_key_exists($model->payment_method, $payment_method) ? $payment_method[$model->payment_method] : 'N/A';
+                else
+                    return 'N/A';
             })
 
 

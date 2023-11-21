@@ -160,9 +160,10 @@ final class DraftInvoices extends PowerGridComponent
 				return $modal->pending_invoices;
 			})->addColumn('bookings', function (Company $modal) {
 				return $modal->booking_total;
-			})->addColumn('method', function () {
-				return 'Direct Deposit';
 			})
+			// ->addColumn('method', function () {
+			// 	return 'Direct Deposit';
+			// })
 
 			// ->addColumn('chat', function (Company $modal) {
 			// 	return '
@@ -218,7 +219,7 @@ final class DraftInvoices extends PowerGridComponent
 				->searchable(),
 			Column::make('TOTAL PENDING', 'pending'),
 			Column::make('No. OF BOOKINGS', 'bookings'),
-			Column::make('PREFERRED PAYMENT METHOD', 'method'),
+			// Column::make('PREFERRED PAYMENT METHOD', 'method'),
 			// Column::make('CHAT', 'chat'),
 			Column::make('<svg width="12" height="15" viewBox="0 0 12 15" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path d="M5.875 1L10.75 7.5L5.875 14" stroke="white" stroke-width="1.625" stroke-linecap="round" stroke-linejoin="round"/>
