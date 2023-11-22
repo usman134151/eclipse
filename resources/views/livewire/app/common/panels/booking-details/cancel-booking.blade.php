@@ -56,7 +56,7 @@
                                 <li class="list-group-item border-0 ps-0">
                                     <div class="form-check">
                                         <input class="form-check-input me-1" type="radio" name="dateRangeRadio"
-                                            id="onlyThisBooking" {{-- wire:model="reschedule_details.setting" --}} value="only_this_booking">
+                                            id="onlyThisBooking" wire:model="setting.type" value="only_this_booking">
                                         <label class="form-check-label" for="onlyThisBooking">
                                             Cancel only this booking.
                                         </label>
@@ -64,20 +64,19 @@
                                 </li>
                                 <li class="list-group-item border-0 ps-0">
                                     <div class="form-check">
-                                        <input disabled class="form-check-input me-1" type="radio"
-                                            name="dateRangeRadio" {{-- wire:model="reschedule_details.setting" --}} value="bookings_until"
-                                            id="thisAndFutureBookings">
+                                        <input class="form-check-input me-1" type="radio" name="dateRangeRadio"
+                                            wire:model="setting.type" value="bookings_until" id="thisAndFutureBookings">
                                         <label class="form-check-label" for="thisAndFutureBookings">
-                                            Cancel this booking and all future bookings until. <small>(coming
-                                                soon)</small>
+                                            Cancel this booking and all future bookings until.
                                         </label>
                                     </div>
-                                    <div class="position-relative ">
+                                    <div
+                                        class="position-relative {{ $setting['type'] == 'bookings_until' ?: 'hidden' }}">
                                         <div class="input-group w-50 ">
-                                            {{-- {{ $reschedule_details['setting'] == 'bookings_until' ?: 'hidden' }} --}}
+
                                             <input type="" class="form-control  js-single-date"
-                                                placeholder="MM/DD/YYYY" {{-- wire:model.defer="reschedule_details.reschedule_until" --}} id="reschedule_until"
-                                                name="reschedule_until">
+                                                placeholder="MM/DD/YYYY" wire:model.defer="setting.reschedule_until"
+                                                id="reschedule_until" name="reschedule_until">
                                             <svg class="icon-date cursor-pointer" width="20" height="20"
                                                 viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -85,15 +84,21 @@
                                                     fill="black" />
                                             </svg>
                                         </div>
+
+                                        @error('setting.reschedule_until')
+                                            <span class="d-inline-block invalid-feedback mt-2">
+                                                {{ $message }}
+                                            </span>
+                                        @enderror
                                     </div>
                                 </li>
                                 <li class="list-group-item border-0 ps-0">
                                     <div class="form-check">
-                                        <input disabled class="form-check-input me-1" type="radio"
-                                            name="dateRangeRadio" {{-- wire:model="reschedule_details.setting" --}} value="subsequent_bookings"
+                                        <input class="form-check-input me-1" type="radio" name="dateRangeRadio"
+                                            wire:model="setting.type" value="subsequent_bookings"
                                             id="allSubsequentBookings">
                                         <label class="form-check-label" for="allSubsequentBookings">
-                                            Cancel all subsequent bookings. <small>(coming soon)</small>
+                                            Cancel all subsequent bookings.
                                         </label>
                                     </div>
 
@@ -159,9 +164,9 @@
                             </div>
                             <div class="col-lg-7 align-self-center">
                                 <div>
-                                    {{ $booking['booking_start_at'] ? date_format(date_create($booking['booking_start_at']), 'h:i A') : '' }}
+                                    {{ $booking['booking_start_at'] ? formatDateTime($booking['booking_start_at']) : '' }}
                                     to
-                                    {{ $booking['booking_end_at'] ? date_format(date_create($booking['booking_end_at']), 'h:i A') : '' }}
+                                    {{ $booking['booking_end_at'] ? formatDateTime($booking['booking_end_at']) : '' }}
                                 </div>
                             </div>
                         </div>
@@ -206,7 +211,7 @@
                 </a>
 
                 <button type="button" class="btn btn-primary rounded" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false" wire:click="cancelBooking" x-on:click="cancelBooking = !cancelBooking">
+                    aria-expanded="false" wire:click="cancelBooking" x-on:close-cancel.window="cancelBooking = !cancelBooking">
                     Cancel Booking
                 </button>
 

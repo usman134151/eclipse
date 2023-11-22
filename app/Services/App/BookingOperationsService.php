@@ -969,7 +969,6 @@ class BookingOperationsService
 
   public static function cancelBooking($booking)
   {
-
     $booking->cancelled_by = Auth::user()->id;
     $booking->booking_cancelled_at = now();
     $booking->save();
