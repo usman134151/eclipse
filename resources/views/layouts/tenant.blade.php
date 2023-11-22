@@ -18,23 +18,32 @@
 		<link rel="stylesheet" href="/tenant-resources/css/font-awesome.min.css" type="text/css"/>
 		<link rel="stylesheet" href="/tenant-resources/css/bootstrap.min.css">
 		<link rel="stylesheet" href="/tenant-resources/css/perfect-scrollbar.css">
-			<link rel="stylesheet" href="/tenant-resources/css/colors.css">
-		<link rel="stylesheet" href="/tenant-resources/css/components.css">
-		<link rel="stylesheet" href="/tenant-resources/css/bootstrap-extended.css">
 		<link rel="stylesheet" href="/tenant-resources/css/vertical-menu.css">
 		<link rel="stylesheet" href="/tenant-resources/css/daterangepicker.css">
 		<link rel="stylesheet" href="/tenant-resources/css/select2.min.css"/>
 		<link rel="stylesheet" href="/tenant-resources/css/pikaday.css">
-		{{-- <link rel="stylesheet" href="/tenant-resources/css/dark-layout.css"> --}}
-		<link id="dark_mode" rel="stylesheet" href="/tenant-resources/css/dark-mode.css" >
-		<link rel="stylesheet" href="/tenant-resources/css/style.css">
+
+		@if (session()->has('theme') && !session('theme'))
+			<link id="theme" rel="stylesheet" href="/tenant-resources/css/colors.css">
+			<link id="theme" rel="stylesheet" href="/tenant-resources/css/components.css">
+			<link id="theme" rel="stylesheet" href="/tenant-resources/css/bootstrap-extended.css">
+			<link id="theme" rel="stylesheet" href="/tenant-resources/css/style.css">
+			<link id="theme" rel="stylesheet" href="/tenant-resources/css/fixes.css">
+		@elseif(session()->has('theme') && session('theme'))
+			<link id="theme" rel="stylesheet" href="/tenant-resources/css/dark-colors.css">
+			<link id="theme" rel="stylesheet" href="/tenant-resources/css/dark-components.css">
+			<link id="theme" rel="stylesheet" href="/tenant-resources/css/dark-bootstrap-extended.css">
+			<link id="theme" rel="stylesheet" href="/tenant-resources/css/dark-style.css">
+			<link id="theme" rel="stylesheet" href="/tenant-resources/css/dark-fixes.css">
+			<link id="dark_mode" rel="stylesheet" href="/tenant-resources/css/dark-mode.css" >
+		@endif
+			{{-- <link rel="stylesheet" href="/tenant-resources/css/dark-layout.css"> --}}
 		<link rel="stylesheet" href='/tenant-resources/css/bootstrap-icons.css'/>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="/tenant-resources/css/fixes.css">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <style>
             :root {
@@ -109,7 +118,7 @@
 		<script src="/tenant-resources/js/select2.min.js"></script>
 		<script src="/tenant-resources/js/sweetalert.min.js"></script>
 		<script src="/tenant-resources/js/common.js"></script>
-		<script src="/tenant-resources/js/app-theme.js" ></script>
+		{{-- <script src="/tenant-resources/js/app-theme.js" ></script> --}}
 
 		<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyAANwmAq3UQc8j5GkJgzF9AglzF7XLfPxI&libraries=places&language=en-AU"></script>
 		@auth
