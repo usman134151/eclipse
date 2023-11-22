@@ -2180,7 +2180,7 @@
 
 
               setTimeout(() => {
-                      $('#displayMessage').modal('show');}, 8000);
+                      $('#displayMessage').modal('show');}, 2000);
                
             });
        
