@@ -238,20 +238,22 @@
                                                     </svg>
                                                     {{-- End of update by Shanila --}}
                                                     Reschedule
-                                                </a>
+                                                </a>    
+                                                {{-- START : Update to hide edit for past bookings from customer by Maarooshaa  --}}
+                                                @if((!$data['isPast'] && $isCustomer)|| !$isCustomer)
                                                 <a href="{{ route('tenant.booking-edit', ['bookingID' => encrypt($booking['id'])]) }}"
                                                     class="btn btn-has-icon btn-primary rounded">
-                                                    {{-- Updated by Shanila to Add
-                                            svg icon --}}
+                                                 
                                                     <svg aria-label="Edit" width="20" height="20"
                                                         viewBox="0 0 20 20">
                                                         <use xlink:href="/css/common-icons.svg#pencil-white">
                                                         </use>
                                                     </svg>
-                                                    {{-- End of update by Shanila
-                                            --}}
+                                                    
                                                     Edit
                                                 </a>
+                                                @endif
+                                                {{-- END : Update to hide edit for past bookings from customer by Maarooshaa  --}}
                                                 @if ($booking->status == 3 || $booking->status == 4)
                                                     <a href="#" wire:click="reinstate({{ $booking->id }})"
                                                         class="btn btn-has-icon btn-primary rounded">
