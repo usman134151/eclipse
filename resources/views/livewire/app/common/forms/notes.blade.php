@@ -1,6 +1,6 @@
 <div>
     <div class="row">
-                                        <h3>{{$note['record_type'] == 5 ? "Assignment Discussions" : "Notes"}}</h3>
+                                        {{$note['record_type'] == 5 ? '' :'<h3>Notes</h3>' }}
                                         <div class="col-md-6 col-12 mb-4">
                                             <label class="form-label" for="notes-column">
                                                 {{$label}} {{$note['record_type'] == 5 ? "Comments" : "Notes"}}
@@ -41,22 +41,26 @@
                                                     </div>
                                                 </div>
                                                 <div class="d-flex actions mx-2">
-                                                    <a href="#" title="Inactive" aria-label="Inactive" wire:click="editNote({{$note->id}})"
-                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon ">
-                                                        <svg width="20" height="20" viewBox="0 0 20 20">
-                                                            <use xlink:href="/css/common-icons.svg#pencil">
-                                                            </use>
-                                                        </svg>
-                                                    </a>
-                                                    <a href="#" title="Inactive" aria-label="Inactive" wire:click="deleteNote({{$note->id}})"
-                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon mx-2">
-                                                        {{-- Updated by Shanila to Add svg icon--}}
-                                                        <svg aria-label="Inactive" width="21" height="21" viewBox="0 0 21 21">
-                                                            <use xlink:href="/css/common-icons.svg#recycle-bin">
-                                                            </use>
-                                                        </svg>
-                                                        {{-- End of update by Shanila --}}
-                                                    </a>
+                                                    @if ($this->canEdit($note))
+                                                        <a href="#" title="Inactive" aria-label="Inactive" wire:click="editNote({{$note->id}})"
+                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon ">
+                                                            <svg width="20" height="20" viewBox="0 0 20 20">
+                                                                <use xlink:href="/css/common-icons.svg#pencil">
+                                                                </use>
+                                                            </svg>
+                                                        </a>
+                                                    @endif
+                                                    @if($this->canDelete($note))
+                                                        <a href="#" title="Inactive" aria-label="Inactive" wire:click="deleteNote({{$note->id}})"
+                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon mx-2">
+                                                            {{-- Updated by Shanila to Add svg icon--}}
+                                                            <svg aria-label="Inactive" width="21" height="21" viewBox="0 0 21 21">
+                                                                <use xlink:href="/css/common-icons.svg#recycle-bin">
+                                                                </use>
+                                                            </svg>
+                                                            {{-- End of update by Shanila --}}
+                                                        </a>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>

@@ -5,6 +5,7 @@ namespace App\Http\Livewire\App\Common\Forms;
 use App\Models\Tenant\Note;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use App\Services\App\NotificationService;
 
 class Notes extends Component
 {
@@ -56,6 +57,11 @@ class Notes extends Component
         if($this->noteId==null){
             //save
             Note::create($this->note);
+            if($this->note['record_type'] == 5)
+            {
+                $data['bookingComment'] = $this->note;
+                // NotificationService::sendNotification('Booking: New Comment', $data);
+            }
         }else{ //edit
             unset($this->note['id']);
             Note::where('id', $this->noteId)->update($this->note);
@@ -70,6 +76,25 @@ class Notes extends Component
 
 
     }
+
+    public function canEdit($note)
+    {
+        if($note['user_id'] == Auth::id())
+            return true;
+        else if(session()->get('isSuperAdmin'))
+            return true;
+        return false;
+    }
+
+    public function canDelete($note)
+    {
+        if($note['user_id'] == Auth::id())
+            return true;
+        else if(session()->get('isSuperAdmin'))
+            return true;
+        return false;
+    }
+
 
     function showForm()
     {     
