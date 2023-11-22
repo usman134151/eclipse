@@ -90,9 +90,9 @@ class BookingOperationsService
       $service['time_zone'] =  $dates[0]['time_zone'];
 
       if (key_exists('id', $service)) {
-        $serviceData='';
-        if(key_exists('service_data',$service)){
-          $serviceData=$service['service_data'];
+        $serviceData = '';
+        if (key_exists('service_data', $service)) {
+          $serviceData = $service['service_data'];
           unset($service['service_data']); // Remove the 'service_data' column
         }
 
@@ -100,9 +100,8 @@ class BookingOperationsService
         BookingServices::where('id', $service['id'])
           ->update($service);
         // Now you can add 'service_data' back to the array
-        if($serviceData!='')
+        if ($serviceData != '')
           $service['service_data'] = $serviceData;
-           
       } else {
         $service['created_at'] = now();
         BookingServices::updateOrCreate(
@@ -337,8 +336,8 @@ class BookingOperationsService
       $service['billed_total'] = $service['total_charges'];
     }
 
-    if($service['billed_total']==''){
-      $service['billed_total']=0;
+    if ($service['billed_total'] == '') {
+      $service['billed_total'] = 0;
     }
 
     return $service;
@@ -363,7 +362,7 @@ class BookingOperationsService
 
     $interval = $currentDateTime->diff($bookingStartDateTime);
     $hoursDifference = $interval->h + ($interval->days * 24); // Convert days to hours and add to hour difference
-    $md =false;
+    $md = false;
     // Step 4: Check if the hoursDifference matches with any 'hour' value and add respective charges
     foreach ($expeditedData as $expeditedItemArray) {
       foreach ($expeditedItemArray as $expeditedItem) {
@@ -879,62 +878,58 @@ class BookingOperationsService
       $serviceCharge = 0;
       if (!is_null($booking['services'][$index][$dataColumn . $postFix])) {
         $cancellationCharges = json_decode($booking['services'][$index][$dataColumn . $postFix], true);
-        
+
         $charges = SELF::getCharges($cancellationCharges, $bookingService['start_time'], $parameter);
-       
+
         $bookingServiceData = (json_decode($bookingService['service_calculations'], true));
         $serviceCharge = $charges['charges'];
-        if($charges['price_type']=="$"){
-        
+        if ($charges['price_type'] == "$") {
+
           if ($charges['multiply_duration']) {
-           
-            
-            if(!is_null( $bookingServiceData) && key_exists('total_duration',$bookingServiceData))
+
+
+            if (!is_null($bookingServiceData) && key_exists('total_duration', $bookingServiceData))
               $serviceCharge = $serviceCharge * (($bookingServiceData['total_duration']['days'] * 24) + $bookingServiceData['total_duration']['hours'] + ($bookingServiceData['total_duration']['mins'] / 60));
             else
-              $serviceCharge=0;
+              $serviceCharge = 0;
           }
           if ($charges['multiply_providers']) {
             $serviceCharge = $serviceCharge * $bookingService['provider_count'];
           }
           $totalCharges += $serviceCharge;
-        }
-        else{ //for percentage - will be calculated on booking
-          $addtionalCharge=0;
-          $bookingTotal=0;
-         if(!is_null($booking->payment->additional_charge) && isset($booking->payment->additional_charge)){
-          $addtionalCharge=$booking->payment->additional_charge;
-         }
-         if(!is_null($booking->payment->total_amount) && isset($booking->payment->total_amount)){
-          $bookingTotal=$booking->payment->total_amount;
-         }
-          $total=($bookingTotal-$addtionalCharge);
-        
-          $totalCharges=($total*($serviceCharge/100));
-         
+        } else { //for percentage - will be calculated on booking
+          $addtionalCharge = 0;
+          $bookingTotal = 0;
+          if (!is_null($booking->payment->additional_charge) && isset($booking->payment->additional_charge)) {
+            $addtionalCharge = $booking->payment->additional_charge;
+          }
+          if (!is_null($booking->payment->total_amount) && isset($booking->payment->total_amount)) {
+            $bookingTotal = $booking->payment->total_amount;
+          }
+          $total = ($bookingTotal - $addtionalCharge);
+
+          $totalCharges = ($total * ($serviceCharge / 100));
+
           if ($charges['multiply_providers']) {
             $totalCharges =  $totalCharges * $bookingService['provider_count'];
           }
         }
-
       }
-       
     }
-   
-    if($booking->payment !== null){
-      if ($parameter == 'rescheduling')
-      $booking->payment->reschedule_booking_charges = $totalCharges;
 
-    elseif ($parameter == 'modifications')
-      $booking->payment->modification_fee = $totalCharges;
-    else{
-      
-      $booking->status = 3; //default cancel billable
-      if($totalCharges>0)
-        $booking->status = 4;
-      $booking->payment->cancellation_charges = $totalCharges;
-    }
-     
+    if ($booking->payment !== null) {
+      if ($parameter == 'rescheduling')
+        $booking->payment->reschedule_booking_charges = $totalCharges;
+
+      elseif ($parameter == 'modifications')
+        $booking->payment->modification_fee = $totalCharges;
+      else {
+
+        $booking->status = 3; //default cancel billable
+        if ($totalCharges > 0)
+          $booking->status = 4;
+        $booking->payment->cancellation_charges = $totalCharges;
+      }
     }
 
 
@@ -980,19 +975,38 @@ class BookingOperationsService
   {
     // check if recurring
     if ($booking->is_recurring && $reschedule_details['setting'] != "only_this_booking") {
+      if ($booking->parent_id == 0)
+        $parent_id = $booking->id;
+      else
+        $parent_id = $booking->parent_id;
+      $start_date          = Carbon::parse($booking->booking_start_at)->toDateString();
+
       if ($reschedule_details['setting'] == "bookings_until") {
-        // dd('fetch all up-until bookings');
+        // fetch all up-until bookings
+        $end_date = Carbon::parse($reschedule_details['reschedule_until'])->toDateString();
+        $r_bookings = Booking::where('parent_id', $parent_id)
+          ->whereRaw("booking_start_at  Between  DATE('$start_date') AND DATE('$end_date')")
+
+          ->get();
       } else {
         // fetch all subsequent bookings with parent_id == booking_id
-        // we need 
         if ($booking->parent_id == 0)
           $parent_id = $booking->id;
         else
           $parent_id = $booking->parent_id;
-        $r_bookings = Booking::where('parent_id', $parent_id)->get();
+        $r_bookings = Booking::where('parent_id', $parent_id)->whereRaw("DATE(booking_start_at) >= '$start_date'")->get();
       }
+      //difference between existing start_date 
+      $currentStartDate = Carbon::parse($booking->booking_start_at);
+      $currentEndDate = Carbon::parse($booking->booking_end_at);
+      $rescheduledStartDate = Carbon::parse($reschedule_details['booking_start_at'] . ' ' . $reschedule_details['booking_start_hour'] . ':' . $reschedule_details['booking_start_min']);
+      $rescheduledEndDate = Carbon::parse($reschedule_details['booking_end_at'] . ' ' . $reschedule_details['booking_end_hour'] . ':' . $reschedule_details['booking_end_min']);
+
+      // $diffInSecondsStartDate = $rescheduledStartDate->diffInSeconds($currentStartDate);
+      // $diffInSecondsEndDate = $rescheduledEndDate->diffInSeconds($currentEndDate);
     }
     $r_bookings[] = $booking;
+
     foreach ($r_bookings as $booking) {
 
 
@@ -1013,7 +1027,7 @@ class BookingOperationsService
       $curr_log['current_end_time'] = $booking->reschedule_end_at;
       $curr_log['booking_id'] = $booking->id;
       $curr_log['reschedule_by'] = Auth::id();
-      $curr_log['charges'] = $reschedule_details['charges'];  //sum of all existing reschedule displayed 
+      $curr_log['charges'] = $reschedule_details['charges'];   
       RescheduleBookingLog::create($curr_log);
 
       $message = "Booking reschduled from (" . formatDateTime($curr_log['previous_start_time']) . " - " . formatDateTime($curr_log['previous_end_time']) . ") to (" . formatDateTime($curr_log['current_start_time']) . " - " . formatDateTime($curr_log['current_end_time']) . ") by '" . Auth::user()->name . "'";
@@ -1030,20 +1044,18 @@ class BookingOperationsService
         $booking->reschedule_status = 1;
 
         //update time for all booking services
-        foreach($booking->booking_services as $bookingService){
+        foreach ($booking->booking_services as $bookingService) {
           $bookingService->start_time = $booking->booking_start_at;
           $bookingService->end_time = $booking->booking_end_at;
           // TODO :: recalculate duration and calculcations according 
           $bookingService->save();
         }
-        
       }
       $booking->payment->reschedule_booking_charges = $reschedule_details['charges'] + $reschedule_details['prev_charges'];
       $booking->save();
       $booking->payment->save();
 
       callLogs($booking->id, 'reschdule', 'rescheduled', $message);
-               
     }
     return;
   }
@@ -1055,7 +1067,7 @@ class BookingOperationsService
     usort($cancellationData, function ($a, $b) {
       return $b[0]['hour'] - $a[0]['hour']; // Sort in descending order to check the larger hours first
     });
-     
+
     // Step 3: Get the time difference in hours
     $currentDateTime = new DateTime();
     $bookingStartDateTime = new DateTime($bookingStartTime); // Assuming $bookingStartTime is in a format supported by DateTime
@@ -1068,19 +1080,19 @@ class BookingOperationsService
       foreach ($cancelItemArray as $cancelItem) {
 
         if (key_exists($parameter, $cancelItem) && $cancelItem[$parameter] == true &&  $hoursDifference <= intval($cancelItem['hour'])) {
-          
+
           if (key_exists('multiply_duration', $cancelItem)) {
             $md = $cancelItem['multiply_duration'];
           }
           if (key_exists('multiply_providers', $cancelItem)) {
             $mp = $cancelItem['multiply_providers'];
           }
-          return ['charges' => floatval($cancelItem['price']), 'hour' => $cancelItem['hour'], 'multiply_duration' => $md, 'multiply_providers' => $mp,'price_type'=>$cancelItem['price_type']]; // Returning the price to be added as expedited charges
+          return ['charges' => floatval($cancelItem['price']), 'hour' => $cancelItem['hour'], 'multiply_duration' => $md, 'multiply_providers' => $mp, 'price_type' => $cancelItem['price_type']]; // Returning the price to be added as expedited charges
         }
       }
     }
 
-    return ['charges' => 0, 'hour' => 'n/a', 'multiply_duration' => false, 'multiply_providers' => false,'price_type'=>'$']; // No charges applicable
+    return ['charges' => 0, 'hour' => 'n/a', 'multiply_duration' => false, 'multiply_providers' => false, 'price_type' => '$']; // No charges applicable
   }
 
 
@@ -1107,58 +1119,56 @@ class BookingOperationsService
     ];
     $serviceCalculations = json_encode($serviceCalculations);
 
-    if($service['billed_total']==''){
-      $service['billed_total']=0;
+    if ($service['billed_total'] == '') {
+      $service['billed_total'] = 0;
     }
     BookingServices::where('id', $service['id'])->where('booking_id', $bookingId)->update(['billed_total' => $service['billed_total'], 'service_total' => $service['total_charges'], 'service_calculations' => $serviceCalculations]);
     return $service;
   }
 
-  
+
   public static function updateTags($booking, $properties, $tags)
   {
-    if(!$booking)
+    if (!$booking)
       return $tags;
 
     $propertyTags = []; // Create an empty array to store tags for each property
-    $propertyIds = []; 
+    $propertyIds = [];
     $options = ['Consumer', 'Participant', 'Requester'];
 
     foreach ($options as $propertyName) {
-        if ($propertyName === 'Requester') {
-            $propertyIds = [$booking->customer_id];
-        } elseif ($propertyName === 'Consumer' || $propertyName === 'Participant') {
-            $service = Booking::where('id', $booking->id)->with('booking_services')->first();
+      if ($propertyName === 'Requester') {
+        $propertyIds = [$booking->customer_id];
+      } elseif ($propertyName === 'Consumer' || $propertyName === 'Participant') {
+        $service = Booking::where('id', $booking->id)->with('booking_services')->first();
 
-            if ($service) {
-                $service = $service->booking_services->first();
-                $column = ($propertyName === 'Consumer') ? 'service_consumer' : 'attendees';
-                $propertyIds = explode(",", $service->$column);
-            }
+        if ($service) {
+          $service = $service->booking_services->first();
+          $column = ($propertyName === 'Consumer') ? 'service_consumer' : 'attendees';
+          $propertyIds = explode(",", $service->$column);
         }
+      }
 
-        // Collect user tags for the current property
-        $propertyUserTags = [];
-        foreach ($propertyIds as $propertyId) {
-            if ($propertyId) {
-                $user = User::where('id', $propertyId)->with('userdetail')->first();
-                if ($user && $user->userdetail) {
-                    $userTags = json_decode($user->userdetail->tags, true) ?? [];
-                    $propertyUserTags = array_merge($propertyUserTags, $userTags);
-                }
-            }
+      // Collect user tags for the current property
+      $propertyUserTags = [];
+      foreach ($propertyIds as $propertyId) {
+        if ($propertyId) {
+          $user = User::where('id', $propertyId)->with('userdetail')->first();
+          if ($user && $user->userdetail) {
+            $userTags = json_decode($user->userdetail->tags, true) ?? [];
+            $propertyUserTags = array_merge($propertyUserTags, $userTags);
+          }
         }
-        $propertyTags[$propertyName] = $propertyUserTags;
+      }
+      $propertyTags[$propertyName] = $propertyUserTags;
     }
 
     foreach ($options as $propertyName) {
-        if (in_array($propertyName, $properties)) {
-            $tags = array_merge($tags, $propertyTags[$propertyName]);
-        }
-        else
-           $tags = array_diff($tags, $propertyTags[$propertyName]);
+      if (in_array($propertyName, $properties)) {
+        $tags = array_merge($tags, $propertyTags[$propertyName]);
+      } else
+        $tags = array_diff($tags, $propertyTags[$propertyName]);
     }
     return array_values(array_unique(array_filter($tags)));
   }
-
 }
