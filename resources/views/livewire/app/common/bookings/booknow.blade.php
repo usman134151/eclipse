@@ -2182,7 +2182,7 @@
                     })
 
               setTimeout(() => {
-                      $('#modificationConfirmation').modal('show');}, 8000);
+                      $('#modificationConfirmation').modal('show');}, 2000);
                
             });
                 Livewire.on('closeConfirmationModal', () => {
