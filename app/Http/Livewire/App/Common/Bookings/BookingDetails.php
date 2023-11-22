@@ -24,8 +24,8 @@ class BookingDetails extends Component
 {
 	public $gender, $service_id = 0, $provider_id = 0, $form_id = 0;
 	public $ethnicity, $booking_id = 0, $booking_services, $data, $status, $isCustomer = false, $closeOut = false;
-	public $hideBilling = false, $tags, $allTags ;
-	public $Requester = false, $Consumer = false, $Participant = false; 
+	public $hideBilling = false, $tags, $allTags;
+	public $Requester = false, $Consumer = false, $Participant = false;
 
 	public $component = 'booking-details';
 	protected $listeners = [
@@ -62,7 +62,7 @@ class BookingDetails extends Component
 		}
 		$this->booking = Booking::where('id', $this->booking_id)->with('payment')->first();
 		$this->allTags = Tag::pluck('name')->toArray();
-        $this->tags = [];
+		$this->tags = [];
 
 		$this->getServiceDetails();	//fetching custom form data
 
@@ -80,7 +80,7 @@ class BookingDetails extends Component
 			}
 		}
 		if (!is_array($this->tags))
-            $this->tags = [];
+			$this->tags = [];
 	}
 
 	function fetchData()
@@ -104,11 +104,11 @@ class BookingDetails extends Component
 				'booking_services.attendees', 'booking_services.service_consumer', 'booking_services.specialization', 'booking_services.meeting_phone',
 				'booking_services.meeting_passcode', 'booking_services.provider_count', 'booking_services.created_at',
 				'service_categories.name as service_name', 'service_categories.id as service_id',
-				'accommodations.name as accommodation_name','booking_services.auto_assign','booking_services.auto_notify','booking_services.accommodation_id'
+				'accommodations.name as accommodation_name', 'booking_services.auto_assign', 'booking_services.auto_notify', 'booking_services.accommodation_id'
 			])
 			->toArray();
 
-			
+
 		foreach ($this->booking_services as $key => $service) {
 			if ($service['attendees'])
 				$this->booking_services[$key]['participants'] = User::whereIn('id', explode(',', $service['attendees']))->select('name', 'id')->get();
@@ -160,62 +160,63 @@ class BookingDetails extends Component
 		}
 
 		$start_date = Carbon::parse($this->booking->booking_start_at);
+		
+		$this->data['isPast'] = $start_date->isPast();
+		// dd($start_date, $this->booking->booking_start_at);
 		if ($start_date->isPast() || $start_date->isToday() || $this->booking->checked_in_providers->count())
 			$this->data['show_close_button'] = true;
 		else
 			$this->data['show_close_button'] = false;
 
-			if ($this->booking->tags != null)
-				$this->tags = json_decode($this->booking->tags, true);
-			else
-				$this->tags = [];
+		if ($this->booking->tags != null)
+			$this->tags = json_decode($this->booking->tags, true);
+		else
+			$this->tags = [];
 
-			$providers = BookingProvider::where('booking_id',$this->booking_id)->get();
-			$this->data['providerPayments'] = 0;
-			$this->data['additionalProviderPayments'] = 0;
-			foreach ($providers as $provider){
-				$this->data['providerPayments'] = $this->data['providerPayments'] + $provider['total_amount'];
-				$this->data['additionalProviderPayments'] = $this->data['additionalProviderPayments'] + $provider['additional_charge_provider'];
-			}
-			$this->data['profitMargin'] = $this->booking['payment'] ? ((
-				($this->booking['payment']['total_amount'] ?? 0) +
-				($this->booking['payment']['cancellation_charges'] ?? 0) +
-				($this->booking['payment']['outstanding_amount'] ?? 0) +
-				($this->booking['payment']['modification_fee'] ?? 0)
-			)- $this->data['providerPayments'] - $this->data['additionalProviderPayments']) : 0;
-			
-			$totalCost=(
-				($this->booking['payment']['total_amount'] ?? 0) +
-				($this->booking['payment']['cancellation_charges'] ?? 0) +
-				($this->booking['payment']['outstanding_amount'] ?? 0) +
-				($this->booking['payment']['modification_fee'] ?? 0)
-			);
-			if($totalCost>0)	
-				{   $this->data['profitMarginPercent'] = $this->booking['payment'] ? ( $this->data['profitMargin'] / $totalCost * 100 ): 0;
-					$this->data['profitMarginPercent'] = number_format($this->data['profitMarginPercent'], 2);
-				}
-			else{
-				$this->data['profitMarginPercent']='';
-				
-			}
-			
-
-			// dd($this->data,$this->booking['payment']['total_amount']);
-			// dd($providers);
-
-			$endDate = Carbon::parse($this->booking['booking_end_at']);
-			$currentDate = Carbon::today();
-			$daysUntilService = $endDate->diffInDays($currentDate);
-			$datePassed= $endDate < $currentDate ? 1 : 0;
-			$this->booking['days_until_service'] = $datePassed ? 0 : $daysUntilService;
-
-
-			$creationDate = Carbon::parse($this->booking['booking_start_at']);
-			$daysPending = $creationDate->diffInDays($currentDate);
-			$this->booking['daysPending'] = $this->booking['is_closed'] ? 0 : $daysPending;
-						
-			// dd($this->data['providerPayments']);
+		$providers = BookingProvider::where('booking_id', $this->booking_id)->get();
+		$this->data['providerPayments'] = 0;
+		$this->data['additionalProviderPayments'] = 0;
+		foreach ($providers as $provider) {
+			$this->data['providerPayments'] = $this->data['providerPayments'] + $provider['total_amount'];
+			$this->data['additionalProviderPayments'] = $this->data['additionalProviderPayments'] + $provider['additional_charge_provider'];
 		}
+		$this->data['profitMargin'] = $this->booking['payment'] ? ((
+			($this->booking['payment']['total_amount'] ?? 0) +
+			($this->booking['payment']['cancellation_charges'] ?? 0) +
+			($this->booking['payment']['outstanding_amount'] ?? 0) +
+			($this->booking['payment']['modification_fee'] ?? 0)
+		) - $this->data['providerPayments'] - $this->data['additionalProviderPayments']) : 0;
+
+		$totalCost = (
+			($this->booking['payment']['total_amount'] ?? 0) +
+			($this->booking['payment']['cancellation_charges'] ?? 0) +
+			($this->booking['payment']['outstanding_amount'] ?? 0) +
+			($this->booking['payment']['modification_fee'] ?? 0)
+		);
+		if ($totalCost > 0) {
+			$this->data['profitMarginPercent'] = $this->booking['payment'] ? ($this->data['profitMargin'] / $totalCost * 100) : 0;
+			$this->data['profitMarginPercent'] = number_format($this->data['profitMarginPercent'], 2);
+		} else {
+			$this->data['profitMarginPercent'] = '';
+		}
+
+
+		// dd($this->data,$this->booking['payment']['total_amount']);
+		// dd($providers);
+
+		$endDate = Carbon::parse($this->booking['booking_end_at']);
+		$currentDate = Carbon::today();
+		$daysUntilService = $endDate->diffInDays($currentDate);
+		$datePassed = $endDate < $currentDate ? 1 : 0;
+		$this->booking['days_until_service'] = $datePassed ? 0 : $daysUntilService;
+
+
+		$creationDate = Carbon::parse($this->booking['booking_start_at']);
+		$daysPending = $creationDate->diffInDays($currentDate);
+		$this->booking['daysPending'] = $this->booking['is_closed'] ? 0 : $daysPending;
+
+		// dd($this->data['providerPayments']);
+	}
 	//so a fuction which can then be used for editing the fields aswell.
 	public function getServiceDetails()
 	{
@@ -261,7 +262,7 @@ class BookingDetails extends Component
 		$this->updateTags();    //save newly added tags to table
 		$booking = $this->booking;
 		$booking->save();
-		callLogs($this->booking->id,"Booking Notes/Tags","Update");
+		callLogs($this->booking->id, "Booking Notes/Tags", "Update");
 		$this->showConfirmation('Booking notes updated');
 	}
 
@@ -297,36 +298,34 @@ class BookingDetails extends Component
 	public function reinstate($bookingId)
 	{
 		BookingOperationsService::reinstateBooking($bookingId);
-		callLogs($this->booking->id,"Booking","Reinstate");
+		callLogs($this->booking->id, "Booking", "Reinstate");
 		$this->emit('showConfirmation', 'Booking status updated successfully');
 	}
 
 	public function updateTags()
-    {
-        foreach ($this->allTags as $tag) {
-            Tag::firstOrCreate(['name' => $tag]);
-        }
-    }
-
-	public function updateBookingTags()
-    {
-		// dd($this->Requester,$this->Consumer,$this->Participant);
-		$properties = [ $this->Requester ? 'Requester' : '', $this->Consumer ? 'Consumer' : '', $this->Participant ? 'Participant' : ''];
-        $this->tags = BookingOperationsService::updateTags($this->booking, $properties, $this->tags);
-    }
-
-	public function updateServiceSettings($propertyName,$index){
-		
-		$value=$this->booking_services[$index][$propertyName];
-		BookingServices::where('id',$this->booking_services[$index]['id'])->update([$propertyName=>$this->booking_services[$index][$propertyName]]);
-		if($value==1 && $propertyName=="auto_notify"){
-			BookingAssignmentService::getAvailableProviders($this->booking,$this->booking_services,$propertyName);
-			$this->dispatchBrowserEvent('close-assign-providers');
-            
-            $this->emit('showConfirmation', 'Providers have been '.str_replace("_"," ",$propertyName).' successfully');
-
-
+	{
+		foreach ($this->allTags as $tag) {
+			Tag::firstOrCreate(['name' => $tag]);
 		}
 	}
 
+	public function updateBookingTags()
+	{
+		// dd($this->Requester,$this->Consumer,$this->Participant);
+		$properties = [$this->Requester ? 'Requester' : '', $this->Consumer ? 'Consumer' : '', $this->Participant ? 'Participant' : ''];
+		$this->tags = BookingOperationsService::updateTags($this->booking, $properties, $this->tags);
+	}
+
+	public function updateServiceSettings($propertyName, $index)
+	{
+
+		$value = $this->booking_services[$index][$propertyName];
+		BookingServices::where('id', $this->booking_services[$index]['id'])->update([$propertyName => $this->booking_services[$index][$propertyName]]);
+		if ($value == 1 && $propertyName == "auto_notify") {
+			BookingAssignmentService::getAvailableProviders($this->booking, $this->booking_services, $propertyName);
+			$this->dispatchBrowserEvent('close-assign-providers');
+
+			$this->emit('showConfirmation', 'Providers have been ' . str_replace("_", " ", $propertyName) . ' successfully');
+		}
+	}
 }

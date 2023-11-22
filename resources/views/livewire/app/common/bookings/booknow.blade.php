@@ -2144,11 +2144,13 @@
     @include('modals.common.add-industry')
     @include('modals.common.add-department')
     
-        @include('modals.common.add-new-customer')
+    @include('modals.common.add-new-customer')
     
     @include('modals.common.assign-admin-staff')
     @include('modals.common.assign-admin-staff-team')
     @include('modals.common.booking-modification-confirmation')
+    @include('modals.common.display-message')
+
 
     <!-- /Modal Request from User -->
     @if(!is_null($booking->id))
@@ -2174,6 +2176,14 @@
             $('#addAddressModal').modal('show');
         });
         
+         Livewire.on('modificationClosed', () => {
+
+
+              setTimeout(() => {
+                      $('#displayMessage').modal('show');}, 2000);
+               
+            });
+       
        
          Livewire.on('setModificationCharges', () => {
                 $('#modificationConfirmation').modal({
@@ -2185,6 +2195,7 @@
                       $('#modificationConfirmation').modal('show');}, 2000);
                
             });
+
                 Livewire.on('closeConfirmationModal', () => {
             $('#modificationConfirmation').modal('hide');
                
@@ -2221,7 +2232,9 @@
             Livewire.emit('isBooking');
             Livewire.emit('setBookingDepartments', @json($selectedDepartments),{{$booking->company_id}});
             Livewire.emit('updateCompany',{{$booking->company_id}});
-            Livewire.emit('checkModificationCharges');
+            @if($isEdit)
+                Livewire.emit('checkModificationCharges');
+            @endif
 
         }, 1000);
 
