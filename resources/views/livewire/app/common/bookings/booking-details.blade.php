@@ -240,7 +240,7 @@
                                                     Reschedule
                                                 </a>    
                                                 {{-- START : Update to hide edit for past bookings from customer by Maarooshaa  --}}
-                                                @if(!$data['isPast'] && !$isCustomer)
+                                                @if((!$data['isPast'] && $isCustomer)|| !$isCustomer)
                                                 <a href="{{ route('tenant.booking-edit', ['bookingID' => encrypt($booking['id'])]) }}"
                                                     class="btn btn-has-icon btn-primary rounded">
                                                  
