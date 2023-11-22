@@ -210,11 +210,9 @@
                                                                                 $code = 'Provider Running Late';
                                                                             }
                                                                         }
-                                                                    }
-                                                                    elseif ($bookingType == 'Pending Close-out') 
-                                                                            $code = 'none';
-
-                                                                    else {
+                                                                    } elseif ($bookingType == 'Pending Close-out') {
+                                                                        $code = 'none';
+                                                                    } else {
                                                                         if ($booking['status'] == 2) {
                                                                             $code = 'Fully assigned';
                                                                         } elseif ($booking['status'] == 1) {
@@ -357,21 +355,49 @@
 
                                                                                 </a>
                                                                             @else
-                                                                                <a href="{{ $isCustomer ? route('tenant.customer-booking-edit', ['bookingID' => encrypt($booking->id)]) : route('tenant.booking-edit', ['bookingID' => encrypt($booking->id)]) }}"
-                                                                                    title="Edit"
-                                                                                    aria-label="Edit Booking"
-                                                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon {{ $cssClass }}">
-                                                                                    <svg aria-label="Edit"
-                                                                                        class="fill" width="20"
-                                                                                        height="28"
-                                                                                        viewBox="0 0 20 28"
-                                                                                        fill="none"
-                                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                                        <use
-                                                                                            xlink:href="/css/sprite.svg#edit-icon">
-                                                                                        </use>
-                                                                                    </svg>
-                                                                                </a>
+
+                                                                                @if ($isCustomer && $bookingType == 'Past')
+                                                                                   
+                                                                                    <a  href="{{ $isCustomer ? route('tenant.customer-booking-view', ['bookingID' => encrypt($booking['id'])]) : route('tenant.booking-view', ['bookingID' => encrypt($booking['id'])]) }}"
+                                                                                        title="View Assignment"
+                                                                                        aria-label="View Assignment"
+                                                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                                        <svg aria-label="View Assignment"
+                                                                                            aria-label=""
+                                                                                            width="20"
+                                                                                            height="20"
+                                                                                            viewBox="0 0 20 20"
+                                                                                            fill="none"
+                                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                                            <path
+                                                                                                d="M14.2857 17.1462C15.0747 17.1462 15.7143 16.5066 15.7143 15.7176C15.7143 14.9287 15.0747 14.2891 14.2857 14.2891C13.4967 14.2891 12.8571 14.9287 12.8571 15.7176C12.8571 16.5066 13.4967 17.1462 14.2857 17.1462Z"
+                                                                                                fill="black" />
+                                                                                            <path
+                                                                                                d="M19.8407 15.341C19.3994 14.2167 18.6378 13.2465 17.6503 12.5509C16.6629 11.8552 15.493 11.4646 14.2857 11.4275C13.0784 11.4646 11.9085 11.8552 10.9211 12.5509C9.93363 13.2465 9.17204 14.2167 8.7307 15.341L8.57141 15.7132L8.7307 16.0853C9.17204 17.2097 9.93363 18.1798 10.9211 18.8755C11.9085 19.5711 13.0784 19.9618 14.2857 19.9989C15.493 19.9618 16.6629 19.5711 17.6503 18.8755C18.6378 18.1798 19.3994 17.2097 19.8407 16.0853L20 15.7132L19.8407 15.341ZM14.2857 18.5703C13.7206 18.5703 13.1682 18.4027 12.6984 18.0888C12.2285 17.7748 11.8623 17.3286 11.646 16.8066C11.4298 16.2845 11.3732 15.71 11.4835 15.1558C11.5937 14.6015 11.8658 14.0924 12.2654 13.6929C12.665 13.2933 13.1741 13.0212 13.7283 12.9109C14.2825 12.8007 14.857 12.8573 15.3791 13.0735C15.9012 13.2898 16.3474 13.656 16.6613 14.1258C16.9753 14.5957 17.1428 15.1481 17.1428 15.7132C17.1419 16.4706 16.8406 17.1968 16.305 17.7324C15.7693 18.268 15.0432 18.5694 14.2857 18.5703ZM3.57141 10.7132H7.14284V12.1417H3.57141V10.7132ZM3.57141 7.14174H12.1428V8.57031H3.57141V7.14174ZM3.57141 3.57031H12.1428V4.99888H3.57141V3.57031Z"
+                                                                                                fill="black" />
+                                                                                            <path
+                                                                                                d="M14.2857 0H1.42857C1.05004 0.00113052 0.687332 0.152003 0.419668 0.419668C0.152003 0.687332 0.00113052 1.05004 0 1.42857V18.5714C0.00113052 18.95 0.152003 19.3127 0.419668 19.5803C0.687332 19.848 1.05004 19.9989 1.42857 20H7.14286V18.5714H1.42857V1.42857H14.2857V9.28571H15.7143V1.42857C15.7132 1.05004 15.5623 0.687332 15.2946 0.419668C15.027 0.152003 14.6642 0.00113052 14.2857 0Z"
+                                                                                                fill="black" />
+                                                                                        </svg>
+                                                                                    </a>
+                                                                                    @else
+                                                                                     <a href="{{ $isCustomer ? route('tenant.customer-booking-edit', ['bookingID' => encrypt($booking->id)]) : route('tenant.booking-edit', ['bookingID' => encrypt($booking->id)]) }}"
+                                                                                        title="Edit"
+                                                                                        aria-label="Edit Booking"
+                                                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon {{ $cssClass }}">
+                                                                                        <svg aria-label="Edit"
+                                                                                            class="fill"
+                                                                                            width="20"
+                                                                                            height="28"
+                                                                                            viewBox="0 0 20 28"
+                                                                                            fill="none"
+                                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                                            <use
+                                                                                                xlink:href="/css/sprite.svg#edit-icon">
+                                                                                            </use>
+                                                                                        </svg>
+                                                                                    </a>
+                                                                                @endif
                                                                             @endif
 
                                                                             @if (
