@@ -60,7 +60,7 @@ class RescheduleBooking extends Component
             'override_charges' => 'nullable|numeric'
         ];
 
-        if ($this->setting['type'] == 'bookings_until')
+        if ($this->reschedule_details['setting'] == 'bookings_until')
             $rules['reschedule_details.reschedule_until'] = 'required|date';
         return $rules;
     }
