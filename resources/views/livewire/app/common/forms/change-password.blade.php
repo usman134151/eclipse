@@ -9,7 +9,7 @@
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item">
 									<a href="javascript:void(0)" title="Go to Dashboard" aria-label="Go to Dashboard">
-										<svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<svg width="22" height="23" viewBox="0 0 22 23" fill="currentColor" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
 											<use xlink:href="/css/sprite.svg#home"></use>
 										</svg>
 									</a>

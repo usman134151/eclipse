@@ -212,7 +212,7 @@
                                     href="#">
                         @endif
                         <svg aria-label="Upcoming Assignments" aria-label="Upcoming Assignments" width="15"
-                            height="20" viewBox="0 0 15 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            height="20" viewBox="0 0 15 20" fill="currentColor" stroke="currentColor" stroke-width="0.3" xmlns="http://www.w3.org/2000/svg">
                             <use xlink:href="/css/common-icons.svg#upcoming-assignment-icons"></use>
                         </svg>
                         Assignments
@@ -221,7 +221,7 @@
                             <a href="{{ session()->get('isCustomer') ? url('/customer/pending-reviews') : url('/admin/bookings/pending-approval') }}" class="dropdown-item"
                                 href="#">
                                 <svg aria-label="Pending Assignments" aria-label="Pending Assignments" width="18"
-                                    height="18" viewBox="0 0 18 18" fill="none"
+                                    height="18" viewBox="0 0 18 18" fill="currentColor" stroke="currentColor" stroke-width="0.3"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <use xlink:href="/css/common-icons.svg#pending-assignments-icon"></use>
                                 </svg>
@@ -249,7 +249,7 @@
                             @if (!session()->get('isCustomer'))
                             <a href="{{ url('/admin/business-setup') }}" class="dropdown-item" href="#">
                                 <svg aria-label="Business Setup" aria-label="Business Setup" width="20"
-                                    height="20" viewBox="0 0 20 20" fill="none"
+                                    height="20" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <use xlink:href="/css/common-icons.svg#business-setup-icon"></use>
                                 </svg>
@@ -258,14 +258,14 @@
                             @endif
                             <a href="{{session()->get('isCustomer') ? url('/customer/reports') : url('/admin/reports') }}" class="dropdown-item" href="#">
                                 <svg aria-label="Reports" aria-label="Business Setup" width="13" height="19"
-                                    viewBox="0 0 13 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    viewBox="0 0 13 19" fill="currentColor" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <use xlink:href="/css/common-icons.svg#reports-header-icons"></use>
                                 </svg>
                                 Reports
                             </a>
                             <a href="{{ session()->get('isCustomer')? url('/customer/jira-status'): url('/admin/jira-status') }}" class="dropdown-item" href="#">
                                 <svg aria-label="Support Tickets" aria-label="Support Tickets" width="19"
-                                    height="19" viewBox="0 0 19 19" fill="none"
+                                    height="19" viewBox="0 0 19 19" fill="currentColor" stroke="currentColor"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <use xlink:href="/css/common-icons.svg#support-ticket"></use>
                                 </svg>

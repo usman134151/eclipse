@@ -11,7 +11,7 @@
                             <li class="breadcrumb-item">
                                 <a href="#">
                                     {{-- Updated by Shanila to Add svg icon--}}
-                                    <svg aria-label="home" width="22" height="23" viewBox="0 0 22 23">
+                                    <svg aria-label="home" width="22" height="23" viewBox="0 0 22 23" fill="currentColor" stroke="currentColor">
                                         <use xlink:href="/css/common-icons.svg#home"></use>
                                     </svg>
                                      {{-- End of update by Shanila --}}

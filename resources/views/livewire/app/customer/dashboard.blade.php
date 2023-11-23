@@ -9,7 +9,7 @@
                             <li class="breadcrumb-item">
                                 <a href="#" title="Go to Dashboard" aria-label="Go to Dashboard">
                                     {{-- updated Sana to change x-icon to svg --}}
-                                    <svg aria-label="Home" width="22" height="23" viewBox="0 0 22 23">
+                                    <svg aria-label="Home" width="22" height="23" viewBox="0 0 22 23" fill="currentColor" stroke="currentColor">
                                         <use xlink:href="/css/common-icons.svg#home"></use>
                                     </svg>
                                     {{-- end updated by Sana --}}

@@ -22,7 +22,7 @@
                             <li class="breadcrumb-item">
                                 <a href="javascript:void(0)" title="Go to Dashboard" aria-label="Go to Dashboard">
                                     <svg aria-label="Home" width="22" height="23"viewBox="0 0 22 23"
-                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    fill="currentColor" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <use xlink:href="/css/sprite.svg#home"></use>
                                     </svg>
                                 </a>
@@ -67,7 +67,7 @@
                                             data-bs-target="#dashboard-tab-pane" type="button" role="tab"
                                             aria-controls="dashboard-tab-pane" aria-selected="true">
                                             <svg aria-label="Dashboard" width="31" height="29"
-                                                viewBox="0 0 31 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                viewBox="0 0 31 29" fill="currentColor" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                 <use xlink:href="/css/sprite.svg#tablet"></use>
                                             </svg>
                                             <span>Dashboard</span>

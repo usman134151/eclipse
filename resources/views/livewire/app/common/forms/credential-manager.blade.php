@@ -21,7 +21,7 @@ $videoUrl = 'https://www.youtube.com/embed/KvjnuVlXhgo?si=I183B4d-L_MvRbQ2';
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
                                 <a href="#">
-                                    <svg width="22" height="23" viewBox="0 0 22 23" fill="none"
+                                    <svg width="22" height="23" viewBox="0 0 22 23" fill="currentColor" stroke="currentColor"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <use xlink:href="/css/sprite.svg#home"></use>
                                     </svg>
@@ -434,7 +434,7 @@ $videoUrl = 'https://www.youtube.com/embed/KvjnuVlXhgo?si=I183B4d-L_MvRbQ2';
                     <div class="d-flex justify-content-end col-6 p-0">
                         <button class="btn btn-secondary btn-custom rounded" wire:click.prevent="addDocumentType">
                             <svg class="mx-1" aria-label="Add Message" width="15" height="15" viewBox="0 0 20 20">
-                                <use xlink:href="/css/common-icons.svg#blueplus">
+                                <use xlink:href="/css/common-icons.svg#blueplus" fill="currentColor" stroke="currentColor">
                                 </use>
                             </svg>
                             <span class="btn-text me-1"> Add Document</span>

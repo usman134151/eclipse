@@ -10,7 +10,7 @@
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item">
 								<a href="#">
-									<svg aria-label="dashboard" width="22" height="23" viewBox="0 0 22 23">
+									<svg aria-label="dashboard" width="22" height="23" viewBox="0 0 22 23" fill="currentColor" stroke="currentColor">
 										<use xlink:href="/css/common-icons.svg#home"></use>
 									</svg>
 								</a>
@@ -2283,7 +2283,7 @@
 													<td>
 														<div class="d-flex actions">
 															<a href="#" title="view" aria-label="view" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																<svg title="View" width="24" height="17" viewBox="0 0 24 17">
+																<svg title="View" width="24" height="17" viewBox="0 0 24 17" fill="currentColor">
 																	<use xlink:href="/css/common-icons.svg#eye-icon">
 																	</use>
 															</svg>
@@ -2359,7 +2359,7 @@
 													<td>
 														<div class="d-flex actions">
 															<a href="#" title="view" aria-label="view" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																<svg title="View" width="24" height="17" viewBox="0 0 24 17">
+																<svg title="View" width="24" height="17" viewBox="0 0 24 17" fill="currentColor">
 																	<use xlink:href="/css/common-icons.svg#eye-icon">
 																	</use>
 															</svg>
@@ -2435,7 +2435,7 @@
 													<td>
 														<div class="d-flex actions">
 															<a href="#" title="view" aria-label="view" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																<svg title="View" width="24" height="17" viewBox="0 0 24 17">
+																<svg title="View" width="24" height="17" viewBox="0 0 24 17" fill="currentColor">
 																	<use xlink:href="/css/common-icons.svg#eye-icon">
 																	</use>
 															</svg>
@@ -2512,7 +2512,7 @@
 														<div class="d-flex actions">
 															<a href="#" title="view" aria-label="view" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																<svg title="View" width="24" height="17" viewBox="0 0 24 17">
-																	<use xlink:href="/css/common-icons.svg#eye-icon">
+																	<use xlink:href="/css/common-icons.svg#eye-icon" fill="currentColor">
 																	</use>
 															</svg>
 															</a>
@@ -2588,7 +2588,7 @@
 														<div class="d-flex actions">
 															<a href="#" title="view" aria-label="view" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																<svg title="View" width="24" height="17" viewBox="0 0 24 17">
-																	<use xlink:href="/css/common-icons.svg#eye-icon">
+																	<use xlink:href="/css/common-icons.svg#eye-icon" fill="currentColor">
 																	</use>
 															</svg>
 															</a>
@@ -2663,7 +2663,7 @@
 													<td>
 														<div class="d-flex actions">
 															<a href="#" title="view" aria-label="view" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																<svg title="View" width="24" height="17" viewBox="0 0 24 17">
+																<svg title="View" width="24" height="17" viewBox="0 0 24 17" fill="currentColor">
 																	<use xlink:href="/css/common-icons.svg#eye-icon">
 																	</use>
 															</svg>
@@ -2739,7 +2739,7 @@
 													<td>
 														<div class="d-flex actions">
 															<a href="#" title="view" aria-label="view" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																<svg title="View" width="24" height="17" viewBox="0 0 24 17">
+																<svg title="View" width="24" height="17" viewBox="0 0 24 17" fill="currentColor">
 																	<use xlink:href="/css/common-icons.svg#eye-icon">
 																	</use>
 															</svg>
@@ -2815,7 +2815,7 @@
 													<td>
 														<div class="d-flex actions">
 															<a href="#" title="view" aria-label="view" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																<svg title="View" width="24" height="17" viewBox="0 0 24 17">
+																<svg title="View" width="24" height="17" viewBox="0 0 24 17" fill="currentColor">
 																	<use xlink:href="/css/common-icons.svg#eye-icon">
 																	</use>
 															</svg>
@@ -2891,7 +2891,7 @@
 													<td>
 														<div class="d-flex actions">
 															<a href="#" title="view" aria-label="view" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																<svg title="View" width="24" height="17" viewBox="0 0 24 17">
+																<svg title="View" width="24" height="17" viewBox="0 0 24 17" fill="currentColor">
 																	<use xlink:href="/css/common-icons.svg#eye-icon">
 																	</use>
 															</svg>
@@ -2967,7 +2967,7 @@
 													<td>
 														<div class="d-flex actions">
 															<a href="#" title="view" aria-label="view" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																<svg title="View" width="24" height="17" viewBox="0 0 24 17">
+																<svg title="View" width="24" height="17" viewBox="0 0 24 17" fill="currentColor">
 																	<use xlink:href="/css/common-icons.svg#eye-icon">
 																	</use>
 															</svg>
@@ -3038,7 +3038,7 @@
                                     <div class="d-flex actions gap-3 justify-content-end mb-2">
 										<div class="d-flex gap-2 align-items-center">
 										  <a href="#" title="View Receipt" aria-label="View Receipt" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-											<svg title="View" width="24" height="17" viewBox="0 0 24 17">
+											<svg title="View" width="24" height="17" viewBox="0 0 24 17" fill="currentColor">
 												<use xlink:href="/css/common-icons.svg#eye-icon">
 												</use>
 										    </svg>

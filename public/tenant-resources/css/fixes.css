@@ -75,4 +75,15 @@ li.page-item {
         width: 3rem;
     }
 }
+
+.popover .popover-header{
+    border: none !important;
+    font-size: medium;
+}
+
+.popover .popover-body{
+    font-size: medium;
+    background-color: #d4d4d4;
+}
+
 /* } */

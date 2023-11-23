@@ -12,7 +12,7 @@
                             <li class="breadcrumb-item">
                                 <a href="javascript:void(0)" title="Go to Dashboard" aria-label="Go to Dashboard">
                                     {{-- Updated by Shanila to Add svg icon --}}
-                                    <svg aria-label="home" width="22" height="23" viewBox="0 0 22 23">
+                                    <svg aria-label="home" width="22" height="23" viewBox="0 0 22 23" fill="currentColor" stroke="currentColor">
                                         <use xlink:href="/css/common-icons.svg#home"></use>
                                     </svg>
                                     {{-- End of update by Shanila --}}
@@ -903,7 +903,7 @@
                 <input type="" name="" class="form-control js-single-date"
                     placeholder="Jan 1, 2022 - Oct 1, 2022" id="set_date-column">
                 {{-- Updated by Shanila to Add svg icon --}}
-                <svg aria-label="Date" class="icon-date" width="20" height="20" viewBox="0 0 20 20">
+                <svg aria-label="Date" class="icon-date" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
                     <use xlink:href="/css/common-icons.svg#datefield-icon">
                     </use>
                 </svg>
@@ -950,7 +950,7 @@
                 <div class="position-relative">
                     <input type="" name="" class="form-control js-single-date"
                         placeholder="Jan 1, 2022 - Oct 1, 2022" id="date-range">
-                    <svg aria-label="Date" class="icon-date" width="20" height="20" viewBox="0 0 20 20">
+                    <svg aria-label="Date" class="icon-date" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
                         <use xlink:href="/css/common-icons.svg#datefield-icon">
                         </use>
                     </svg>
@@ -1364,7 +1364,7 @@
                         placeholder="Jan 1, 2022 - Oct 1, 2022" id="">
                     {{-- Updated by Shanila to Add svg icon --}}
                     <svg aria-label="Date" class="icon-date" width="20" height="20"
-                        viewBox="0 0 20 20">
+                        viewBox="0 0 20 20" fill="currentColor">
                         <use xlink:href="/css/common-icons.svg#datefield-icon">
                         </use>
                     </svg>
@@ -1487,7 +1487,7 @@
                             <a href="#" title="view" aria-label="view"
                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                 {{-- Updated by Shanila to Add svg icon --}}
-                                <svg aria-label="view" width="24" height="17" viewBox="0 0 24 17">
+                                <svg aria-label="view" width="24" height="17" viewBox="0 0 24 17" fill="currentColor">
                                     <use xlink:href="/css/common-icons.svg#eye-icon">
                                     </use>
                                 </svg>
@@ -1579,7 +1579,7 @@
                             <a href="#" title="view" aria-label="view"
                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                 {{-- Updated by Shanila to Add svg icon --}}
-                                <svg aria-label="view" width="24" height="17" viewBox="0 0 24 17">
+                                <svg aria-label="view" width="24" height="17" viewBox="0 0 24 17" fill="currentColor">
                                     <use xlink:href="/css/common-icons.svg#eye-icon">
                                     </use>
                                 </svg>
@@ -1671,7 +1671,7 @@
                             <a href="#" title="view" aria-label="view"
                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                 {{-- Updated by Shanila to Add svg icon --}}
-                                <svg aria-label="view" width="24" height="17" viewBox="0 0 24 17">
+                                <svg aria-label="view" width="24" height="17" viewBox="0 0 24 17" fill="currentColor">
                                     <use xlink:href="/css/common-icons.svg#eye-icon">
                                     </use>
                                 </svg>
@@ -1762,7 +1762,7 @@
                             <a href="#" title="view" aria-label="view"
                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                 {{-- Updated by Shanila to Add svg icon --}}
-                                <svg aria-label="view" width="24" height="17" viewBox="0 0 24 17">
+                                <svg aria-label="view" width="24" height="17" viewBox="0 0 24 17" fill="currentColor">
                                     <use xlink:href="/css/common-icons.svg#eye-icon">
                                     </use>
                                 </svg>
@@ -1853,7 +1853,7 @@
                             <a href="#" title="view" aria-label="view"
                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                 {{-- Updated by Shanila to Add svg icon --}}
-                                <svg aria-label="view" width="24" height="17" viewBox="0 0 24 17">
+                                <svg aria-label="view" width="24" height="17" viewBox="0 0 24 17" fill="currentColor">
                                     <use xlink:href="/css/common-icons.svg#eye-icon">
                                     </use>
                                 </svg>
@@ -1944,7 +1944,7 @@
                             <a href="#" title="view" aria-label="view"
                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                 {{-- Updated by Shanila to Add svg icon --}}
-                                <svg aria-label="view" width="24" height="17" viewBox="0 0 24 17">
+                                <svg aria-label="view" width="24" height="17" viewBox="0 0 24 17" fill="currentColor">
                                     <use xlink:href="/css/common-icons.svg#eye-icon">
                                     </use>
                                 </svg>
@@ -2035,7 +2035,7 @@
                             <a href="#" title="view" aria-label="view"
                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                 {{-- Updated by Shanila to Add svg icon --}}
-                                <svg aria-label="view" width="24" height="17" viewBox="0 0 24 17">
+                                <svg aria-label="view" width="24" height="17" viewBox="0 0 24 17" fill="currentColor">
                                     <use xlink:href="/css/common-icons.svg#eye-icon">
                                     </use>
                                 </svg>
@@ -2126,7 +2126,7 @@
                             <a href="#" title="view" aria-label="view"
                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                 {{-- Updated by Shanila to Add svg icon --}}
-                                <svg aria-label="view" width="24" height="17" viewBox="0 0 24 17">
+                                <svg aria-label="view" width="24" height="17" viewBox="0 0 24 17" fill="currentColor">
                                     <use xlink:href="/css/common-icons.svg#eye-icon">
                                     </use>
                                 </svg>
@@ -2216,7 +2216,7 @@
                             <a href="#" title="view" aria-label="view"
                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                 {{-- Updated by Shanila to Add svg icon --}}
-                                <svg aria-label="view" width="24" height="17" viewBox="0 0 24 17">
+                                <svg aria-label="view" width="24" height="17" viewBox="0 0 24 17" fill="currentColor">
                                     <use xlink:href="/css/common-icons.svg#eye-icon">
                                     </use>
                                 </svg>
@@ -2307,7 +2307,7 @@
                             <a href="#" title="view" aria-label="view"
                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                 {{-- Updated by Shanila to Add svg icon --}}
-                                <svg aria-label="view" width="24" height="17" viewBox="0 0 24 17">
+                                <svg aria-label="view" width="24" height="17" viewBox="0 0 24 17" fill="currentColor">
                                     <use xlink:href="/css/common-icons.svg#eye-icon">
                                     </use>
                                 </svg>
@@ -2385,7 +2385,7 @@
         <div class="d-flex gap-2 align-items-center">
             <a href="#" title="View Receipt" aria-label="View Receipt"
                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                <svg aria-label="view Receipt" width="24" height="17" viewBox="0 0 24 17">
+                <svg aria-label="view Receipt" width="24" height="17" viewBox="0 0 24 17" fill="currentColor">
                     <use xlink:href="/css/common-icons.svg#eye-icon">
                     </use>
                 </svg>

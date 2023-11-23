@@ -24,7 +24,7 @@
                                             <i class="fa fa-star fa-2x text-warning"></i>
                                         @endfor
                                         @for ($i = $fb['rating']; $i < 5; $i++)
-                                            <i class="fa fa-star-o fa-2x text-warning"></i>
+                                            <i class="fa fa-star fa-2x text-warning"></i>
                                         @endfor
                                     @endif
                                 </span>
