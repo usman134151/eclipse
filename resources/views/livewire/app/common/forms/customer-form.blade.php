@@ -28,7 +28,7 @@
                                     <a href="javascript:void(0)" title="Go to Dashboard" aria-label="Go to Dashboard">
                                         {{-- Updated by Shanila to Add svg icon --}}
                                         <svg aria-label="Go to Dashboard" width="22" height="23"
-                                            viewBox="0 0 22 23">
+                                            viewBox="0 0 22 23" fill="currentColor" stroke="currentColor">
                                             <use xlink:href="/css/common-icons.svg#home"></use>
                                         </svg>
                                         {{-- End of update by Shanila --}}
@@ -217,7 +217,7 @@
                                                                 data-bs-target="#industryModal">
                                                                 {{-- Updated by Shanila to Add svg icon --}}
                                                                 <svg aria-label="Select Industry" width="25"
-                                                                    height="18" viewBox="0 0 25 18">
+                                                                    height="18" viewBox="0 0 25 18" fill="currentColor" stroke="currentColor">
                                                                     <use
                                                                         xlink:href="/css/common-icons.svg#right-color-arrow">
                                                                     </use>
@@ -269,7 +269,7 @@
                                                                     data-bs-target="#departmentModal">
                                                                     {{-- Updated by Shanila to Add svg icon --}}
                                                                     <svg aria-label="Select Department" width="25"
-                                                                        height="18" viewBox="0 0 25 18">
+                                                                        height="18" viewBox="0 0 25 18" fill="currentColor" stroke="currentColor">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#right-color-arrow">
                                                                         </use>
@@ -722,7 +722,7 @@
                                                             data-bs-target="#assignedSupervisorModal">
                                                             {{-- Updated by Shanila to Add svg icon --}}
                                                             <svg aria-label="Assigned Supervisor(s)" width="25"
-                                                                height="18" viewBox="0 0 25 18">
+                                                                height="18" viewBox="0 0 25 18" fill="currentColor" stroke="currentColor">
                                                                 <use
                                                                     xlink:href="/css/common-icons.svg#right-color-arrow">
                                                                 </use>
@@ -788,7 +788,7 @@
                                                     data-bs-toggle="modal" data-bs-target="#supervisingModal">
                                                     {{-- Updated by Shanila to Add svg icon --}}
                                                     <svg aria-label="Supervising" width="25" height="18"
-                                                        viewBox="0 0 25 18">
+                                                        viewBox="0 0 25 18" fill="currentColor" stroke="currentColor">
                                                         <use xlink:href="/css/common-icons.svg#right-color-arrow">
                                                         </use>
                                                     </svg>
@@ -833,7 +833,7 @@
                                                             data-bs-target="#assignedBillingManagerModal">
                                                             {{-- Updated by Shanila to Add svg icon --}}
                                                             <svg aria-label="Assigned Billing Manager" width="25"
-                                                                height="18" viewBox="0 0 25 18">
+                                                                height="18" viewBox="0 0 25 18" fill="currentColor" stroke="currentColor">
                                                                 <use
                                                                     xlink:href="/css/common-icons.svg#right-color-arrow">
                                                                 </use>
@@ -944,7 +944,7 @@
                                                         data-bs-toggle="modal" data-bs-target="#billManagingModal">
                                                         {{-- Updated by Shanila to Add svg icon --}}
                                                         <svg aria-label="Billing Manager" width="25"
-                                                            height="18" viewBox="0 0 25 18">
+                                                            height="18" viewBox="0 0 25 18" fill="currentColor" stroke="currentColor">
                                                             <use xlink:href="/css/common-icons.svg#right-color-arrow">
                                                             </use>
                                                         </svg>
@@ -1125,7 +1125,7 @@
                                                             data-bs-toggle="modal" data-bs-target="#adminStaffModal">
                                                             {{-- Updated by Shanila to Add svg icon --}}
                                                             <svg aria-label="Assigned Admin-Staff" width="25"
-                                                                height="18" viewBox="0 0 25 18">
+                                                                height="18" viewBox="0 0 25 18" fill="currentColor" stroke="currentColor">
                                                                 <use
                                                                     xlink:href="/css/common-icons.svg#right-color-arrow">
                                                                 </use>
