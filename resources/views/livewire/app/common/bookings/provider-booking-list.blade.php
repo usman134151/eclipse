@@ -267,7 +267,7 @@
                                                                         </a>
                                                                     @endif
                                                                     {{-- check out --}}
-                                                                    @if ($booking['display_check_out'] && ($booking['check_in_status'] == 1 || $booking['check_in_status'] == 3))
+                                                                    @if ($booking['display_check_out'] && (!$booking['display_check_in'] || $booking['check_in_status'] == 1 || $booking['check_in_status'] == 3))
                                                                         <a href="#"
                                                                             @click="offcanvasOpenCheckOut = true"
                                                                             wire:click="showCheckOutPanel('{{ $booking['id'] }}','{{ $booking['booking_service_id'] }}','{{ $booking['booking_number'] }}')"
