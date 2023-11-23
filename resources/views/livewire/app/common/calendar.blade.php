@@ -1,4 +1,4 @@
-<div x-data="{ bookingDetails: false, providerSavedForms: false, assignmentDetails: false , addReimbursement: false, step: 1}">
+<div x-data="{ bookingDetails: false, providerSavedForms: false, assignmentDetails: false, addReimbursement: false, step: 1 }">
     @if ($providerProfile && !$providerProfile)
         <div class="" wire:ignore>
             <x-advancefilters type="" :filterProviders="$filterProviders" :hideProvider=$hideProvider />
@@ -8,8 +8,10 @@
         <div id='{{ $providerProfile ? 'avail_calendar' : 'calendar' }}'></div>
     </div>
     @include('panels.booking-details.admin-booking-details')
-    @include('panels.common.assignment-details')
-
+    {{-- update by Maarooshaa to include panel only if provider is logged in --}}
+    @if (session()->get('isProvider'))  
+        @include('panels.common.assignment-details')
+    @endif
     <template x-if="bookingDetails">
         <div>
             @include('modals.admin-staff')
@@ -62,14 +64,14 @@
                             var bookingNumber = eventData.event.extendedProps.bookingNumber;
 
 
-                             Livewire.emit('openBookingDetails', bookingId, bookingNumber); 
+                            Livewire.emit('openBookingDetails', bookingId, bookingNumber);
                             //end of updates by Amna Bilal to trigger livewire on click
                         }
                     },
                     eventDisplay: 'block',
                     eventDidMount: function(info) {
 
-                        var eventData = info.event.extendedProps; 
+                        var eventData = info.event.extendedProps;
 
                         if (eventData.eventColor != "") {
                             info.event.setProp('backgroundColor', eventData.eventColor);
@@ -83,17 +85,21 @@
                         let curr_date_moment = moment(event.start).format('YYYY-MM-DD');
                         $(info.el).attr('data-date', curr_date_moment);
 
-                        if (eventData.isProvider) 
-                        $(info.el).attr('@click', 'assignmentDetails = true');  //update to open assignment-details panel in provider-dashboard -- Maarooshaa Asim
+                        if (eventData.isProvider)
+                            $(info.el).attr('@click',
+                            'assignmentDetails = true'); //update to open assignment-details panel in provider-dashboard -- Maarooshaa Asim
 
-                         var tooltip = new bootstrap.Popover(info.el, {
-                         	title: eventData.timeSlot,
-                         	content: eventData.description,
-                         	placement: 'right',
-                         	trigger: 'hover',
-                         	container: 'body',
-                         	html: true,
-                        delay: {"show":100, "hide":750}
+                        var tooltip = new bootstrap.Popover(info.el, {
+                            title: eventData.timeSlot,
+                            content: eventData.description,
+                            placement: 'right',
+                            trigger: 'hover',
+                            container: 'body',
+                            html: true,
+                            delay: {
+                                "show": 100,
+                                "hide": 750
+                            }
                         });
                     },
 
