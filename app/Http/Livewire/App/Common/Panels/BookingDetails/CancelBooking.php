@@ -83,7 +83,7 @@ class CancelBooking extends Component
     public function cancelBooking()
     {
         $this->validate();
-        if ($this->booking->is_recurring && $this->setting != "only_this_booking") {
+        if ($this->booking->is_recurring && $this->setting['type'] != "only_this_booking") {
             // we need 
             if ($this->booking->parent_id == 0)
                 $parent_id = $this->booking->id;
