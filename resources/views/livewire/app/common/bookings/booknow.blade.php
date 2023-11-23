@@ -30,7 +30,7 @@
                             <li class="breadcrumb-item">
                                 <a href="http://127.0.0.1:8000" title="Go to Dashboard" aria-label="Go to Dashboard">
                                    
-                                    <svg aria-label="Go to Dashboard" width="22" height="23" viewBox="0 0 22 23">
+                                    <svg aria-label="Go to Dashboard" width="22" height="23" viewBox="0 0 22 23" fill="currentColor" stroke="currentColor">
                                         <use xlink:href="/css/common-icons.svg#home"></use>
                                     </svg>
                                      </a>
@@ -165,7 +165,7 @@
                                             data-bs-toggle="modal" data-bs-target="#departmentModal" aria-label="Department">
                                            
                                             <svg aria-label=" Select Department" width="25" height="18"
-                                                viewBox="0 0 25 18">
+                                                viewBox="0 0 25 18" fill="currentColor" stroke="currentColor">
                                                 <use xlink:href="/css/common-icons.svg#right-color-arrow">
                                                 </use>
                                             </svg>
@@ -200,7 +200,7 @@
                                                     <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup"
                                                     data-bs-toggle="modal" data-bs-target="#addNewCustomer" aria-label="Requester">
                                                 <svg aria-label="Requester" width="25" height="18"
-                                                    viewBox="0 0 25 18">
+                                                    viewBox="0 0 25 18" fill="currentColor" stroke="currentColor">
                                                     <use xlink:href="/css/common-icons.svg#right-color-arrow">
                                                     </use>
                                                 </svg>
@@ -238,7 +238,7 @@
                                             data-bs-toggle="modal" data-bs-target="#industryModal" aria-label="Industry">
                                            
                                             <svg aria-label=" Select Industry" width="25" height="18"
-                                                viewBox="0 0 25 18">
+                                                viewBox="0 0 25 18" fill="currentColor" stroke="currentColor">
                                                 <use xlink:href="/css/common-icons.svg#right-color-arrow">
                                                 </use>
                                             </svg>
@@ -685,7 +685,7 @@
                                             <span class="p-0 d-flex align-item-center">
 
                                                 <svg aria-label=" Add Service" width="15" height="15"
-                                                        viewBox="0 0 20 20">
+                                                        viewBox="0 0 20 20" fill="currentColor" stroke="currentColor">
                                                         <use xlink:href="/css/common-icons.svg#blueplus">
                                                         </use>
                                                     </svg>

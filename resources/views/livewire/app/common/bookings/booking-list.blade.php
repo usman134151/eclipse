@@ -20,7 +20,7 @@
                                     <a href="#">
                                         {{-- Updated by Shanila to Add svg icon --}}
                                         <svg aria-label="Go to Dashboard" width="22" height="23"
-                                            viewBox="0 0 22 23">
+                                            viewBox="0 0 22 23" fill="currentColor" stroke="currentColor">
                                             <use xlink:href="/css/common-icons.svg#home"></use>
                                         </svg>
                                         {{-- End of update by Shanila --}} </a>
@@ -67,7 +67,7 @@
                                         <li class="breadcrumb-item">
                                             <a href="#">
                                                 <svg aria-label="Home" width="22" height="23" viewBox="0 0 22 23"
-                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                fill="currentColor" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                     <use xlink:href="/css/sprite.svg#home"></use>
                                                 </svg>
                                             </a>
