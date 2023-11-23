@@ -10,7 +10,7 @@
                         </h2>
                     </div>
                 </div>
-                @if ($previousReschedulings->count())
+                @if ($previousReschedulings && $previousReschedulings->count())
 
                     <div class="col-lg-12  p-5">
                         <div class="table-responsive text-nowrap">
