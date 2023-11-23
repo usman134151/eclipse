@@ -176,7 +176,7 @@
                                                 </a>
                                                 @if (!session()->get('isCustomer')  && $data['show_close_button'])
                                                     <a href="#"
-                                                        class="btn btn-has-icon btn-outline-dark rounded"
+                                                        class="btn btn-has-icon btn-primary rounded"
                                                         @click="closeOutBooking = true"
                                                         wire:click="$emit('openBookingCloseOut',true)">
                                                         <svg width="30" height="30" viewBox="0 0 30 30"
@@ -217,7 +217,7 @@
                                                         (Auth::id() == $booking['customer_id'] ||
                                                             Auth::id() == $booking['supervisor'] ||
                                                             session()->get('companyAdmin'))))
-                                                <a href="#" class="btn btn-has-icon btn-outline-dark rounded">
+                                                <a href="#" class="btn btn-has-icon btn-primary rounded">
                                                     {{-- Updated by Shanila to Add svg icon --}}
                                                     <svg aria-label="Duplicate" width="19" height="19"
                                                         viewBox="0 0 19 19">
