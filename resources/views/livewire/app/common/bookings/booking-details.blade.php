@@ -1620,7 +1620,7 @@
                             id="assignment-log" role="tabpanel" aria-labelledby="assignment-log-tab" tabindex="0">
                             <div class="row">
 
-                                @if ($booking)
+                                @if ($booking && (session()->get('isSuperAdmin') || session()->get('companyAdmin')))
                                     <div class="d-flex justify-content-between gap-2">
                                         <h2>Assignment Discussions</h2>
                                     </div>
