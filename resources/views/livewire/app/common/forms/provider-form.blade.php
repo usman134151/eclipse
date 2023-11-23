@@ -228,7 +228,7 @@
                                                     <!-- Begin : it will be replaced with livewire module-->
                                                     {{-- Updated by Shanila to Add svg icon --}}
                                                     <svg aria-label="Date of Birth" class="icon-date" width="20"
-                                                        height="21" viewBox="0 0 20 21">
+                                                        height="21" viewBox="0 0 20 21" fill="currentColor">
                                                         <use xlink:href="/css/common-icons.svg#datefield-icon">
                                                         </use>
                                                     </svg>
@@ -238,7 +238,7 @@
 
                                                 <button type="button" class="btn px-2">
                                                     <svg aria-label="show" width="24" height="17"
-                                                        viewBox="0 0 24 17">
+                                                        viewBox="0 0 24 17" fill="currentColor">
                                                         <use xlink:href="/css/common-icons.svg#eye-icon">
                                                         </use>
                                                     </svg>
@@ -472,7 +472,7 @@
                                                         aria-label="Start Date" aria-describedby="" id="start_date">
                                                     {{-- Updated by Shanila to Add svg icon --}}
                                                     <svg aria-label="Start Date" class="icon-date" width="20"
-                                                        height="21" viewBox="0 0 20 21">
+                                                        height="21" viewBox="0 0 20 21" fill="currentColor">
                                                         <use xlink:href="/css/common-icons.svg#datefield-icon">
                                                         </use>
                                                     </svg>
@@ -491,7 +491,7 @@
                                                         aria-label="End Date" aria-describedby="" id="end-date-">
                                                     {{-- Updated by Shanila to Add svg icon --}}
                                                     <svg aria-label="End Date" class="icon-date" width="20"
-                                                        height="21" viewBox="0 0 20 21">
+                                                        height="21" viewBox="0 0 20 21" fill="currentColor">
                                                         <use xlink:href="/css/common-icons.svg#datefield-icon">
                                                         </use>
                                                     </svg>

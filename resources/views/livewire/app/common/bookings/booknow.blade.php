@@ -744,7 +744,7 @@
                                                         aria-label="Set Start Date" wire:model="dates.{{$index}}.start_date" style="width:200px">
                                                    
                                                     <svg aria-label="Date" class="icon-date lg pb-1" width="20" height="20"
-                                                        viewBox="0 0 20 20">
+                                                        viewBox="0 0 20 20" fill="currentColor">
                                                         <use xlink:href="/css/common-icons.svg#datefield-icon">
                                                         </use>
                                                     </svg>
@@ -802,7 +802,7 @@
                                                         aria-label="Set End Date" wire:key="endtime-{{ $index }}" wire:model="dates.{{$index}}.end_date"  style="width:200px">
                                                    
                                                     <svg aria-label="Date" class="icon-date lg pb-1" width="20" height="20"
-                                                        viewBox="0 0 20 20">
+                                                        viewBox="0 0 20 20" fill="currentColor">
                                                         <use xlink:href="/css/common-icons.svg#datefield-icon">
                                                         </use>
                                                     </svg>

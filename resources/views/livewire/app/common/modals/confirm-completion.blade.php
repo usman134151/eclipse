@@ -29,7 +29,7 @@
                                 @else --}}
                             <div class="position-relative">
                                 <svg aria-label="Date" class="icon-date md cursor-pointer" width="20" height="20"
-                                    viewBox="0 0 20 20">
+                                    viewBox="0 0 20 20" fill="currentColor">
                                     <use xlink:href="/css/common-icons.svg#datefield-icon">
                                     </use>
                                 </svg>
@@ -67,7 +67,7 @@
                         <div class="col-lg-4 align-self-center">
                             <div class="position-relative">
                                 <svg aria-label="Date" class="icon-date md cursor-pointer" width="20" height="20"
-                                    viewBox="0 0 20 20">
+                                    viewBox="0 0 20 20" fill="currentColor">
                                     <use xlink:href="/css/common-icons.svg#datefield-icon">
                                     </use>
                                 </svg>

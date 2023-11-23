@@ -231,7 +231,8 @@ input.form-control,
 select.form-select,
 textarea.form-control {
     background-color: #283046;
-    color: #b4b7bd;
+    color: #b4b7bd !important;
+    border-color: #b4b7bd !important ;
 }
 input.form-control::placeholder,
 select.form-select::placeholder,
@@ -1469,7 +1470,7 @@ svg[aria-label="View"] path {
 }
 
 .btn-multiselect-popup {
-    color: #7aa7ff;
+    color: #b2c9f7 !important;
 }
 
 .nav-tabs.nav-steps li.nav-item:has(.nav-link.active) .number {
@@ -1732,3 +1733,19 @@ input[type="radio"].form-check-input:checked {
     color: #676d7d;
 }
 
+.popover .popover-header{
+    background-color: gray !important;
+    border: none !important;
+}
+.popover .popover-header h3{
+    font-size: medium;
+}
+
+.popover .popover-body{
+    font-size: medium;
+}
+
+#collapseAssignmentNo{
+    background: #343d55;
+    color: whitesmoke;
+}

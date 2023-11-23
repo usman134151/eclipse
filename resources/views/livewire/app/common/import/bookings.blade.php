@@ -249,7 +249,7 @@
 
                                                                     <svg aria-label="Date" class="icon-date md"
                                                                         width="20" height="20"
-                                                                        viewBox="0 0 20 20">
+                                                                        viewBox="0 0 20 20" fill="currentColor">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#datefield-icon">
                                                                         </use>
@@ -318,7 +318,7 @@
 
                                                                     <svg aria-label="Date" class="icon-date md"
                                                                         width="20" height="20"
-                                                                        viewBox="0 0 20 20">
+                                                                        viewBox="0 0 20 20" fill="currentColor">
                                                                         <use
                                                                             xlink:href="/css/common-icons.svg#datefield-icon">
                                                                         </use>

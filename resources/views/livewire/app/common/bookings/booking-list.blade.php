@@ -421,7 +421,7 @@
                                                                                     data-bs-target="#confirmCompletion">
                                                                                     <svg width="30" height="30"
                                                                                         viewBox="0 0 30 30"
-                                                                                        fill="none"
+                                                                                        fill="currentColor" stroke="currentColor"
                                                                                         xmlns="http://www.w3.org/2000/svg">
                                                                                         <use
                                                                                             xlink:href="/css/customer.svg#confirm-completion-icon">

@@ -470,7 +470,7 @@
                                                     <!-- Begin : it will be replaced with livewire module-->
                                                     {{-- Updated by Shanila to Add svg icon--}}
                                                     <svg aria-label="Date" class="icon-date sm cursor-pointer"
-                                                        width="20" height="20" viewBox="0 0 20 20">
+                                                        width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
                                                         <use xlink:href="/css/common-icons.svg#datefield-icon">
                                                         </use>
                                                     </svg>

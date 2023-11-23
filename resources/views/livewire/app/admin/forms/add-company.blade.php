@@ -244,7 +244,7 @@
                                                                 aria-describedby="" id="company_service_start_date" wire:model="company.company_service_start_date">
                                                             {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="Service Start Date" class="icon-date" width="20"
-                                                                height="21" viewBox="0 0 20 21">
+                                                                height="21" viewBox="0 0 20 21" fill="currentColor">
                                                                 <use xlink:href="/css/common-icons.svg#datefield-icon">
                                                                 </use>
                                                             </svg>
@@ -271,7 +271,7 @@
                                                                 aria-describedby="" id="company_service_end_date"  wire:model="company.company_service_end_date">
                                                             {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="Service End Date" class="icon-date" width="20"
-                                                                height="21" viewBox="0 0 20 21">
+                                                                height="21" viewBox="0 0 20 21" fill="currentColor">
                                                                 <use xlink:href="/css/common-icons.svg#datefield-icon">
                                                                 </use>
                                                             </svg>
