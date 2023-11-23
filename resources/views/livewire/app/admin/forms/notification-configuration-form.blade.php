@@ -263,7 +263,7 @@
                               <div class="btn btn-secondary rounded btn-custom">
                                 {{-- Updated by Shanila to Add svg icon--}}
                                 <svg aria-label="Add New" class="me-1" width="15" height="15"
-                                    viewBox="0 0 20 21">
+                                    viewBox="0 0 20 21" fill="currentColor" stroke="currentColor">
                                     <use xlink:href="/css/common-icons.svg#blueplus"></use>
                                 </svg>
                                 {{-- End of update by Shanila --}}
