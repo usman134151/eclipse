@@ -13,7 +13,7 @@
             {{-- <div class="row"> --}}
             {{--  changes to move display to bottom right in pane -- Maarooshaa Asim --}}
             <div class="d-inline-flex p-2 row"
-                style="position: fixed;bottom: 24px;right: 44px;text-align: right;z-index:-10000">
+                style="position: fixed;bottom: 24px;right: 44px;text-align: right;z-index:100000">
                 <div class="col-12 justify-content-start ">
                     <label for="amount" class="bg-muted">
                         Total Assignment Charges
@@ -169,7 +169,7 @@
                                                                                 id="actual_start_hour"
                                                                                 aria-label="Start Time"
                                                                                 name="actual_start_hour" type="text"
-                                                                                tabindex=""
+                                                                                wire:blur="updateDuration({{ $bookingService->id }},{{ $provider['provider_id'] }})"
                                                                                 wire:model.defer="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.actual_start_hour"
                                                                                 maxlength="2">
                                                                         </div>
@@ -186,7 +186,7 @@
                                                                                 aria-label="Start Minutes"
                                                                                 id="actual_start_min"
                                                                                 name="actual_start_min" type="text"
-                                                                                tabindex=""
+                                                                                wire:blur="updateDuration({{ $bookingService->id }},{{ $provider['provider_id'] }})"
                                                                                 wire:model.defer="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.actual_start_min"
                                                                                 maxlength="2">
                                                                         </div>
@@ -218,7 +218,8 @@
                                                                                 id="actual_start_hour"
                                                                                 aria-label="Start Time"
                                                                                 name="actual_start_hour"
-                                                                                type="text" tabindex=""
+                                                                                wire:blur="updateDuration({{ $bookingService->id }},{{ $provider['provider_id'] }})"
+                                                                                type="text" 
                                                                                 wire:model.defer="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.actual_end_hour"
                                                                                 maxlength="2">
                                                                         </div>
@@ -234,6 +235,8 @@
                                                                                 class="form-control form-control-sm text-center  mins"
                                                                                 aria-label="Start Minutes"
                                                                                 id="actual_start_min"
+                                                                                wire:blur="updateDuration({{ $bookingService->id }},{{ $provider['provider_id'] }})"
+
                                                                                 name="actual_start_min" type="text"
                                                                                 tabindex=""
                                                                                 wire:model.defer="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.actual_end_min"
