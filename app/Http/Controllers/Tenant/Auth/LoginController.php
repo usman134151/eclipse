@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Tenant\Helper\Helper;
 use App\Models\Tenant\BusinessSetup;
 use App\Models\Tenant\RoleUser;
+use App\Models\Tenant\UserDetail;
 use App\Models\Tenant\UserLoginAddress;
 use App\Services\App\UserService;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -153,6 +154,11 @@ class LoginController extends Controller
 					Session::put('companyAdmin', false);
 
 				}
+
+				// user theme 0 -> light theme 1-> dark theme
+				$userTheme = UserDetail::where('user_id', auth()->user()->id)->value('user_theme');
+				Session::put('theme', $userTheme);
+
 				//save ip from where user logged in
 				UserLoginAddress::create(['user_id' => Auth::id(), 'ip_address' => request()->ip()]);
 
