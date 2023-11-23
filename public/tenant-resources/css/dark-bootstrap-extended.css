@@ -156,7 +156,7 @@ a:focus {
   
   .form-label {
     font-size: 1.25rem;
-    color: #000;
+    color: #fff;
   }
   
   .form-control::placeholder {
