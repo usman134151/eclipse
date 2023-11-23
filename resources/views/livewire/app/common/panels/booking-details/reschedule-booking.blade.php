@@ -10,7 +10,7 @@
                         </h2>
                     </div>
                 </div>
-                @if ($previousReschedulings->count())
+                @if ($previousReschedulings && $previousReschedulings->count())
 
                     <div class="col-lg-12  p-5">
                         <div class="table-responsive text-nowrap">
@@ -221,12 +221,11 @@
                             </li>
                             <li class="list-group-item border-0 ps-0">
                                 <div class="form-check">
-                                    <input disabled class="form-check-input me-1" type="radio"
+                                    <input class="form-check-input me-1" type="radio"
                                         name="dateRangeRadio" wire:model="reschedule_details.setting"
                                         value="bookings_until" id="thisAndFutureBookings">
                                     <label class="form-check-label" for="thisAndFutureBookings">
-                                        Reschedule this booking and all future bookings until. <small>(coming
-                                            soon)</small>
+                                        Reschedule this booking and all future bookings until. 
                                     </label>
                                 </div>
                                 <div
@@ -247,11 +246,11 @@
                             </li>
                             <li class="list-group-item border-0 ps-0">
                                 <div class="form-check">
-                                    <input disabled class="form-check-input me-1" type="radio"
+                                    <input class="form-check-input me-1" type="radio"
                                         name="dateRangeRadio" wire:model="reschedule_details.setting"
                                         value="subsequent_bookings" id="allSubsequentBookings">
                                     <label class="form-check-label" for="allSubsequentBookings">
-                                        Reschedule all subsequent bookings. <small>(coming soon)</small>
+                                        Reschedule all subsequent bookings. 
                                     </label>
                                 </div>
 

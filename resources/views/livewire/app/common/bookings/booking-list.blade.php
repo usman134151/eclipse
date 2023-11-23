@@ -219,6 +219,15 @@
                                                                             $code = 'Unassigned';
                                                                         }
                                                                     }
+                                                                    // START : Update by Maarooshaa to display closed/cancelled assignment colors if assignment has been closed
+                                                                    if ($booking['is_closed'] == 1) {
+                                                                        $code = 'Completed Assignment';
+                                                                    }
+                                                                    if ($booking['is_closed'] == 2) {
+                                                                        $code = 'Cancelled';
+                                                                    }
+                                                                    // END: Update by Maarooshaa to display closed/cancelled assignment colors if assignment has been closed
+
                                                                     $cssClass = str_replace([' ', '/'], '_', strtolower($code));
                                                                 @endphp
                                                                 <tr role="row"
@@ -355,10 +364,8 @@
 
                                                                                 </a>
                                                                             @else
-
                                                                                 @if ($isCustomer && $bookingType == 'Past')
-                                                                                   
-                                                                                    <a  href="{{ $isCustomer ? route('tenant.customer-booking-view', ['bookingID' => encrypt($booking['id'])]) : route('tenant.booking-view', ['bookingID' => encrypt($booking['id'])]) }}"
+                                                                                    <a href="{{ $isCustomer ? route('tenant.customer-booking-view', ['bookingID' => encrypt($booking['id'])]) : route('tenant.booking-view', ['bookingID' => encrypt($booking['id'])]) }}"
                                                                                         title="View Assignment"
                                                                                         aria-label="View Assignment"
                                                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
@@ -380,8 +387,8 @@
                                                                                                 fill="black" />
                                                                                         </svg>
                                                                                     </a>
-                                                                                    @else
-                                                                                     <a href="{{ $isCustomer ? route('tenant.customer-booking-edit', ['bookingID' => encrypt($booking->id)]) : route('tenant.booking-edit', ['bookingID' => encrypt($booking->id)]) }}"
+                                                                                @else
+                                                                                    <a href="{{ $isCustomer ? route('tenant.customer-booking-edit', ['bookingID' => encrypt($booking->id)]) : route('tenant.booking-edit', ['bookingID' => encrypt($booking->id)]) }}"
                                                                                         title="Edit"
                                                                                         aria-label="Edit Booking"
                                                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon {{ $cssClass }}">
