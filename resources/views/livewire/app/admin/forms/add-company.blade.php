@@ -18,7 +18,7 @@
                             <li class="breadcrumb-item">
                                 <a href="http://127.0.0.1:8000" title="Go to Dashboard" aria-label="Home">
                                     {{-- Updated by Shanila to Add svg icon--}}
-                                    <svg aria-label="Go to Dashboard" width="22" height="23" viewBox="0 0 22 23">
+                                    <svg aria-label="Go to Dashboard" width="22" height="23" viewBox="0 0 22 23" fill="currentColor" stroke="currentColor">
                                         <use xlink:href="/css/common-icons.svg#home"></use>
                                     </svg>
                                     {{-- End of update by Shanila --}}
@@ -244,7 +244,7 @@
                                                                 aria-describedby="" id="company_service_start_date" wire:model="company.company_service_start_date">
                                                             {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="Service Start Date" class="icon-date" width="20"
-                                                                height="21" viewBox="0 0 20 21">
+                                                                height="21" viewBox="0 0 20 21" fill="currentColor">
                                                                 <use xlink:href="/css/common-icons.svg#datefield-icon">
                                                                 </use>
                                                             </svg>
@@ -271,7 +271,7 @@
                                                                 aria-describedby="" id="company_service_end_date"  wire:model="company.company_service_end_date">
                                                             {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="Service End Date" class="icon-date" width="20"
-                                                                height="21" viewBox="0 0 20 21">
+                                                                height="21" viewBox="0 0 20 21" fill="currentColor">
                                                                 <use xlink:href="/css/common-icons.svg#datefield-icon">
                                                                 </use>
                                                             </svg>
@@ -481,7 +481,7 @@
                                                                 <button type="button" onclick="newElement($('#formRow'), $('#elementRow'),{{count($phoneNumbers)}})"
                                                                     class="d-inline-flex align-items-center btn btn-secondary btn-custom rounded px-3 py-2 gap-1">
                                                                     <svg aria-label="Add Phone Number" width="15"
-                                                                        height="15" viewBox="0 0 20 20">
+                                                                        height="15" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor">
                                                                         <use xlink:href="/css/common-icons.svg#blueplus">
                                                                         </use>
                                                                     </svg>

@@ -108,7 +108,7 @@ final class ServiceCatagories extends PowerGridComponent
                 </svg>
             </a>
             <a href="#" wire:click="copyService('.$model->id.')" class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Duplicate Service" aria-label="Duplicate Service">
-            <svg aria-label="Duplicate Service" width="19" height="19" viewBox="0 0 19 19">
+            <svg aria-label="Duplicate Service" width="19" height="19" viewBox="0 0 19 19" fill="currentColor" stroke="currentColor">
                 <use xlink:href="/css/common-icons.svg#duplicate">
                 </use>
             </svg>

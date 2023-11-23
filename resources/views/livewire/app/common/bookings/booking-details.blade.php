@@ -180,7 +180,7 @@
                                                         @click="closeOutBooking = true"
                                                         wire:click="$emit('openBookingCloseOut',true)">
                                                         <svg width="30" height="30" viewBox="0 0 30 30"
-                                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        fill="currentColor" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                             <use
                                                                 xlink:href="/css/customer.svg#confirm-completion-icon">
                                                             </use>
@@ -220,7 +220,7 @@
                                                 <a href="#" class="btn btn-has-icon btn-outline-dark rounded">
                                                     {{-- Updated by Shanila to Add svg icon --}}
                                                     <svg aria-label="Duplicate" width="19" height="19"
-                                                        viewBox="0 0 19 19">
+                                                        viewBox="0 0 19 19" fill="currentColor" stroke="currentColor">
                                                         <use xlink:href="/css/common-icons.svg#duplicate"></use>
                                                     </svg>
                                                     {{-- End of update by Shanila --}}
@@ -232,7 +232,7 @@
                                                     @click="rescheduleBooking = true">
                                                     {{-- Updated by Shanila to Add svg icon --}}
                                                     <svg aria-label="Reschedule" width="20" height="20"
-                                                        viewBox="0 0 20 20">
+                                                        viewBox="0 0 20 20" fill="currentColor">
                                                         <use xlink:href="/css/common-icons.svg#datefield-icon-white">
                                                         </use>
                                                     </svg>
@@ -1639,7 +1639,7 @@
                                                         @click="closeOutBooking = true"
                                                         wire:click="$emit('openBookingCloseOut',true)">
                                                         <svg width="30" height="30" viewBox="0 0 30 30"
-                                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            fill="currentColor" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                             <use
                                                                 xlink:href="/css/customer.svg#confirm-completion-icon">
                                                             </use>

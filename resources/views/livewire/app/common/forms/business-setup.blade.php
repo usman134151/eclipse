@@ -15,7 +15,7 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
                                 <a href="javascript:void(0)" title="Go to Dashboard" aria-label="Go to Dashboard">
-                                    <svg aria-label="Home" width="22" height="23" viewBox="0 0 22 23">
+                                    <svg aria-label="Home" width="22" height="23" viewBox="0 0 22 23" fill="currentColor" stroke="currentColor">
                                         <use xlink:href="/css/common-icons.svg#home"></use>
                                     </svg>
                                 </a>
@@ -506,7 +506,7 @@
                                         <div class="col-lg-8 mt-3">
                                             <a class="btn btn-secondary btn-custom btn-sm rounded" wire:click.prevent="addMessage">
                                                 <svg class="me-1" aria-label="Add Message" width="15"
-                                                    height="15" viewBox="0 0 20 20">
+                                                    height="15" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor">
                                                     <use xlink:href="/css/common-icons.svg#blueplus">
                                                     </use>
                                                 </svg>
@@ -1703,7 +1703,7 @@
                                                                         class="btn btn-secondary btn-custom rounded"
                                                                         wire:click.prevent="addPolicy">
                                                                         <svg class="me-1" aria-hidden="true" aria-label="Add Policy" width="15"
-                                                    height="15" viewBox="0 0 20 20">
+                                                    height="15" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor">
                                                     <use xlink:href="/css/common-icons.svg#blueplus">
                                                     </use>
                                                 </svg>

@@ -923,7 +923,7 @@
     .\32 xl\:grid-cols-6 {
       grid-template-columns: repeat(6, minmax(0, 1fr)); } }
   .text-primary {
-    color: #7aa7ff !important; }
+    color: #b2c9f7 !important; }
   
   small {
     font-size: 0.75rem; }
@@ -1349,7 +1349,7 @@
       color: #000 !important; }
   
   .header-navbar .navbar-container .dropdown-menu-media {
-    background: #ffffff; }
+    background: #171e31; }
   
   .btn.btn-primary.dropdown-toggle {
     background: linear-gradient(90deg, #213969 50%, #204387 90.12%) !important;
@@ -1623,7 +1623,7 @@
     display: block; }
   
   .dropdown.dropdown-user .dropdown-menu {
-    background: #ffffff;
+    background: #171e31;
     box-shadow: 0 5px 25px rgba(34, 41, 47, 0.1); }
   
   .table-hover > tbody > tr.js-selected-row.selected .js-tick,

@@ -15,7 +15,7 @@
 							<li class="breadcrumb-item">
 								<a href="javascript:void(0)" title="Go to Dashboard" aria-label="Go to Dashboard">
 									{{-- Updated by Shanila to Add svg icon--}}
-									<svg aria-label="Go to Dashboard" width="22" height="23" viewBox="0 0 22 23">
+									<svg aria-label="Go to Dashboard" width="22" height="23" viewBox="0 0 22 23" fill="currentColor" stroke="currentColor">
 										<use xlink:href="/css/common-icons.svg#home"></use>
 									</svg>
 									{{-- End of update by Shanila --}}
