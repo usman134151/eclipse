@@ -628,41 +628,7 @@
                                                                                     Expedition
                                                                                     Charges</strong></label>
                                                                         </div>
-                                                                        <div class="row">
-                                                                            <div class="col-3 mt-1">
-                                                                                <label
-                                                                                    class="form-label-sm">Duration:</label>
-                                                                            </div>
-                                                                            <div class="col-7">
-                                                                                <div class="input-group">
-                                                                                    <input type=""
-                                                                                        name=""
-                                                                                        wire:model.lazy="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.service_payment_details.expedited_duration"
-                                                                                        class="form-control form-control-sm text-center"
-                                                                                        placeholder="0"
-                                                                                        aria-label="Hours">
-
-                                                                                    <div class="input-group-text p-0">
-                                                                                        <select
-                                                                                            class="form-select form-select-sm"
-                                                                                            aria-label="Hours"
-                                                                                            disabled>
-                                                                                            <option>hour(s)</option>
-                                                                                        </select>
-                                                                                    </div>
-
-                                                                                    @error('closeOut.' .
-                                                                                        $bookingService->id . '.' .
-                                                                                        $provider['provider_id'] .
-                                                                                        '.service_payment_details.expedited_duration')
-                                                                                        <span
-                                                                                            class="d-inline invalid-feedback">
-                                                                                            {{ $message }}
-                                                                                        </span>
-                                                                                    @enderror
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
+                                                                       
                                                                     </div>
 
                                                                     <div class="col col-12 mt-2">
@@ -672,8 +638,7 @@
                                                                                 <div class="col-5 mt-1"
                                                                                     style="margin-right: -15px;">
                                                                                     <label for="average-rate"
-                                                                                        class="form-label-sm">Average
-                                                                                        Rate:</label>
+                                                                                        class="form-label-sm">Charges:</label>
                                                                                 </div>
                                                                                 <div class="col-6 "
                                                                                     style=" width:47%;">
