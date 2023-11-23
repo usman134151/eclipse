@@ -223,14 +223,13 @@ class BookingCloseOut extends Component
                         $end = Carbon::parse(($provider['check_out_procedure_values']  && isset($provider['check_out_procedure_values']['actual_end_timestamp']) && $provider['check_out_procedure_values']['actual_end_timestamp']) ? $provider['check_out_procedure_values']['actual_end_timestamp'] : $bookingService->end_time);
                         $this->closeOut[$bookingService->id][$provider['provider_id']]['actual_end_hour'] = $end->format('H');
                         $this->closeOut[$bookingService->id][$provider['provider_id']]['actual_end_min'] = $end->format('i');
-
                         if (!isset($provider['admin_approved_payment_detail']['actual_duration_hour']))
                             $this->closeOut[$bookingService->id][$provider['provider_id']]['actual_duration_hour'] = abs($this->closeOut[$bookingService->id][$provider['provider_id']]['actual_end_hour'] - $this->closeOut[$bookingService->id][$provider['provider_id']]['actual_start_hour']);
                         else
                             $this->closeOut[$bookingService->id][$provider['provider_id']]['actual_duration_hour'] = $provider['admin_approved_payment_detail']['actual_duration_hour'];
 
                         if (!isset($provider['admin_approved_payment_detail']['actual_duration_min']))
-                            $this->closeOut[$bookingService->id][$provider['provider_id']]['actual_duration_min'] = abs($this->closeOut[$bookingService->id][$provider['provider_id']]['actual_end_min'] - $this->closeOut[$bookingService->id][$provider['provider_id']]['actual_start_min']);
+                            $this->closeOut[$bookingService->id][$provider['provider_id']]['actual_duration_min'] = abs((int)$this->closeOut[$bookingService->id][$provider['provider_id']]['actual_end_min'] - (int)$this->closeOut[$bookingService->id][$provider['provider_id']]['actual_start_min']);
                         else
                             $this->closeOut[$bookingService->id][$provider['provider_id']]['actual_duration_min'] = $provider['admin_approved_payment_detail']['actual_duration_min'];
 
@@ -298,7 +297,7 @@ class BookingCloseOut extends Component
             $subTotal = (float)($this->closeOut[$bookingServiceId][$provider_id]['service_payment_details']['b_hours_rate'] * $this->closeOut[$bookingServiceId][$provider_id]['service_payment_details']['b_hours_duration']) + (float)($this->closeOut[$bookingServiceId][$provider_id]['service_payment_details']['a_hours_rate'] * $this->closeOut[$bookingServiceId][$provider_id]['service_payment_details']['a_hours_duration']);
         }
 
-        $this->closeOut[$bookingServiceId][$provider_id]['total_amount'] =  number_format($subTotal + (float)($this->closeOut[$bookingServiceId][$provider_id]['service_payment_details']['expedited_rate'] * (float)$this->closeOut[$bookingServiceId][$provider_id]['service_payment_details']['expedited_duration']), 2, '.', '');
+        $this->closeOut[$bookingServiceId][$provider_id]['total_amount'] =  number_format($subTotal + (float)($this->closeOut[$bookingServiceId][$provider_id]['service_payment_details']['expedited_rate'] ), 2, '.', '');
 
         // adding specialization charges to total_amount
         if (key_exists('specialization_charges', $this->closeOut[$bookingServiceId][$provider_id]['service_payment_details'])) {
@@ -324,6 +323,11 @@ class BookingCloseOut extends Component
         $this->closeOut[$bookingServiceId][$provider_id]['actual_duration_min'] = abs($this->closeOut[$bookingServiceId][$provider_id]['actual_end_min'] - $this->closeOut[$bookingServiceId][$provider_id]['actual_start_min']);
     }
 
+    public function updateDuration($bookingServiceId, $provider_id)
+    {
+        $this->closeOut[$bookingServiceId][$provider_id]['actual_duration_hour'] = abs($this->closeOut[$bookingServiceId][$provider_id]['actual_end_hour'] - $this->closeOut[$bookingServiceId][$provider_id]['actual_start_hour']);
+        $this->closeOut[$bookingServiceId][$provider_id]['actual_duration_min'] = abs($this->closeOut[$bookingServiceId][$provider_id]['actual_end_min'] - $this->closeOut[$bookingServiceId][$provider_id]['actual_start_min']);
+    }
 
     function showForm()
     {

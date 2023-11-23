@@ -13,7 +13,7 @@
             {{-- <div class="row"> --}}
             {{--  changes to move display to bottom right in pane -- Maarooshaa Asim --}}
             <div class="d-inline-flex p-2 row"
-                style="position: fixed;bottom: 24px;right: 44px;text-align: right;z-index:-10000">
+                style="position: fixed;bottom: 24px;right: 44px;text-align: right;z-index:100000">
                 <div class="col-12 justify-content-start ">
                     <label for="amount" class="bg-muted">
                         Total Assignment Charges
@@ -169,7 +169,7 @@
                                                                                 id="actual_start_hour"
                                                                                 aria-label="Start Time"
                                                                                 name="actual_start_hour" type="text"
-                                                                                tabindex=""
+                                                                                wire:blur="updateDuration({{ $bookingService->id }},{{ $provider['provider_id'] }})"
                                                                                 wire:model.defer="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.actual_start_hour"
                                                                                 maxlength="2">
                                                                         </div>
@@ -186,7 +186,7 @@
                                                                                 aria-label="Start Minutes"
                                                                                 id="actual_start_min"
                                                                                 name="actual_start_min" type="text"
-                                                                                tabindex=""
+                                                                                wire:blur="updateDuration({{ $bookingService->id }},{{ $provider['provider_id'] }})"
                                                                                 wire:model.defer="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.actual_start_min"
                                                                                 maxlength="2">
                                                                         </div>
@@ -218,7 +218,8 @@
                                                                                 id="actual_start_hour"
                                                                                 aria-label="Start Time"
                                                                                 name="actual_start_hour"
-                                                                                type="text" tabindex=""
+                                                                                wire:blur="updateDuration({{ $bookingService->id }},{{ $provider['provider_id'] }})"
+                                                                                type="text" 
                                                                                 wire:model.defer="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.actual_end_hour"
                                                                                 maxlength="2">
                                                                         </div>
@@ -234,6 +235,8 @@
                                                                                 class="form-control form-control-sm text-center  mins"
                                                                                 aria-label="Start Minutes"
                                                                                 id="actual_start_min"
+                                                                                wire:blur="updateDuration({{ $bookingService->id }},{{ $provider['provider_id'] }})"
+
                                                                                 name="actual_start_min" type="text"
                                                                                 tabindex=""
                                                                                 wire:model.defer="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.actual_end_min"
@@ -628,41 +631,7 @@
                                                                                     Expedition
                                                                                     Charges</strong></label>
                                                                         </div>
-                                                                        <div class="row">
-                                                                            <div class="col-3 mt-1">
-                                                                                <label
-                                                                                    class="form-label-sm">Duration:</label>
-                                                                            </div>
-                                                                            <div class="col-7">
-                                                                                <div class="input-group">
-                                                                                    <input type=""
-                                                                                        name=""
-                                                                                        wire:model.lazy="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.service_payment_details.expedited_duration"
-                                                                                        class="form-control form-control-sm text-center"
-                                                                                        placeholder="0"
-                                                                                        aria-label="Hours">
-
-                                                                                    <div class="input-group-text p-0">
-                                                                                        <select
-                                                                                            class="form-select form-select-sm"
-                                                                                            aria-label="Hours"
-                                                                                            disabled>
-                                                                                            <option>hour(s)</option>
-                                                                                        </select>
-                                                                                    </div>
-
-                                                                                    @error('closeOut.' .
-                                                                                        $bookingService->id . '.' .
-                                                                                        $provider['provider_id'] .
-                                                                                        '.service_payment_details.expedited_duration')
-                                                                                        <span
-                                                                                            class="d-inline invalid-feedback">
-                                                                                            {{ $message }}
-                                                                                        </span>
-                                                                                    @enderror
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
+                                                                       
                                                                     </div>
 
                                                                     <div class="col col-12 mt-2">
@@ -672,8 +641,7 @@
                                                                                 <div class="col-5 mt-1"
                                                                                     style="margin-right: -15px;">
                                                                                     <label for="average-rate"
-                                                                                        class="form-label-sm">Average
-                                                                                        Rate:</label>
+                                                                                        class="form-label-sm">Charges:</label>
                                                                                 </div>
                                                                                 <div class="col-6 "
                                                                                     style=" width:47%;">

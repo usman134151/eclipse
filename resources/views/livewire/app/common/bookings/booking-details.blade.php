@@ -87,11 +87,12 @@
                                                     {{ $booking['booking_title'] ? $booking['booking_title'] : 'N/A' }}
                                                 </div>
                                             </div>
-                                            
+
 
                                             <div>
                                                 <label class="form-label text-primary">Days Pending</label>
-                                                <div class="font-family-tertiary value">{{$booking['daysPending']}} Days</div>
+                                                <div class="font-family-tertiary value">{{ $booking['daysPending'] }}
+                                                    Days</div>
                                             </div>
                                         </div>
                                         <div class="col-lg col-12 mb-4">
@@ -99,7 +100,8 @@
 
                                             <div class="mb-4">
                                                 <label class="form-label text-primary">Days Until Service</label>
-                                                <div class="font-family-tertiary value">{{$booking['days_until_service']}} Days</div>
+                                                <div class="font-family-tertiary value">
+                                                    {{ $booking['days_until_service'] }} Days</div>
                                             </div>
 
                                             <div class="d-flex gap-3 align-items-center">
@@ -174,9 +176,8 @@
                                                     {{-- End of update by Shanila --}}
                                                     View Assigned Admin-staff
                                                 </a>
-                                                @if (!session()->get('isCustomer')  && $data['show_close_button'])
-                                                    <a href="#"
-                                                        class="btn btn-has-icon btn-outline-dark rounded"
+                                                @if (!session()->get('isCustomer') && $data['show_close_button'])
+                                                    <a href="#" class="btn btn-has-icon btn-primary rounded"
                                                         @click="closeOutBooking = true"
                                                         wire:click="$emit('openBookingCloseOut',true)">
                                                         <svg width="30" height="30" viewBox="0 0 30 30"
@@ -188,7 +189,7 @@
                                                         @if ($booking->is_closed == 0)
                                                             Close Assignment
                                                         @else
-                                                           Edit Close Out
+                                                            Edit Close Out
                                                         @endif
                                                     </a>
                                                 @endif
@@ -217,7 +218,7 @@
                                                         (Auth::id() == $booking['customer_id'] ||
                                                             Auth::id() == $booking['supervisor'] ||
                                                             session()->get('companyAdmin'))))
-                                                <a href="#" class="btn btn-has-icon btn-outline-dark rounded">
+                                                <a href="#" class="btn btn-has-icon btn-primary rounded">
                                                     {{-- Updated by Shanila to Add svg icon --}}
                                                     <svg aria-label="Duplicate" width="19" height="19"
                                                         viewBox="0 0 19 19" fill="currentColor" stroke="currentColor">
@@ -227,8 +228,7 @@
                                                     Duplicate
                                                 </a>
                                                 <a href="#" class="btn btn-has-icon btn-primary rounded"
-                                                        wire:click="$emit('getRescheduleBookingData','{{ $booking->id }}')"
-
+                                                    wire:click="$emit('getRescheduleBookingData','{{ $booking->id }}')"
                                                     @click="rescheduleBooking = true">
                                                     {{-- Updated by Shanila to Add svg icon --}}
                                                     <svg aria-label="Reschedule" width="20" height="20"
@@ -238,20 +238,20 @@
                                                     </svg>
                                                     {{-- End of update by Shanila --}}
                                                     Reschedule
-                                                </a>    
-                                                {{-- START : Update to hide edit for past bookings from customer by Maarooshaa  --}}
-                                                @if((!$data['isPast'] && $isCustomer)|| !$isCustomer)
-                                                <a href="{{ route('tenant.booking-edit', ['bookingID' => encrypt($booking['id'])]) }}"
-                                                    class="btn btn-has-icon btn-primary rounded">
-                                                 
-                                                    <svg aria-label="Edit" width="20" height="20"
-                                                        viewBox="0 0 20 20">
-                                                        <use xlink:href="/css/common-icons.svg#pencil-white">
-                                                        </use>
-                                                    </svg>
-                                                    
-                                                    Edit
                                                 </a>
+                                                {{-- START : Update to hide edit for past bookings from customer by Maarooshaa  --}}
+                                                @if ((!$data['isPast'] && $isCustomer) || !$isCustomer)
+                                                    <a href="{{ route('tenant.booking-edit', ['bookingID' => encrypt($booking['id'])]) }}"
+                                                        class="btn btn-has-icon btn-primary rounded">
+
+                                                        <svg aria-label="Edit" width="20" height="20"
+                                                            viewBox="0 0 20 20">
+                                                            <use xlink:href="/css/common-icons.svg#pencil-white">
+                                                            </use>
+                                                        </svg>
+
+                                                        Edit
+                                                    </a>
                                                 @endif
                                                 {{-- END : Update to hide edit for past bookings from customer by Maarooshaa  --}}
                                                 @if ($booking->status == 3 || $booking->status == 4)
@@ -510,195 +510,199 @@
                                 <!-- /Requester Detail -->
                                 @foreach ($booking_services as $index => $service)
                                     <!-- Service 1 -->
-                                    <div class="row between-section-segment-spacing">
-                                        <div class="col-lg-12">
-                                            <div class="d-lg-flex justify-content-between align-items-center">
-                                                <h2 class="">Service {{ $index + 1 }}</h2>
-                                                <div class="row">
-                                                    <div class="col-lg-5 col-md-6 mb-4">
-                                                        <div class="d-flex gap-3">
-                                                            <label class="form-label-sm">
-                                                                Broadcast
-                                                            </label>
-                                                            <div class="form-check form-switch form-switch-column">
-                                                                <input class="form-check-input" type="checkbox"
-                                                                    role="switch" id="AutoNotifyBroadcast"
-                                                                    checked="" aria-label="Auto-notify Broadcast"
-                                                                    value="1"
-                                                                    wire:model.defer="booking_services.{{$index}}.auto_notify" wire:click="updateServiceSettings('auto_notify',{{$index}})">
-                                                                <label class="form-check-label"
-                                                                    for="AutoNotifyBroadcast">Manual-notify</label>
-                                                                <label class="form-check-label"
-                                                                    for="AutoNotifyBroadcast">Auto-notify</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-7 col-md-6 mb-4">
-                                                        <div class="d-flex gap-3">
-                                                            <label class="form-label-sm">
-                                                                Assign
-                                                            </label>
-                                                            <div class="form-check form-switch form-switch-column">
-                                                                <input class="form-check-input" type="checkbox"
-                                                                    role="switch" id="ManualAssignAssign"
-                                                                    checked="" aria-label="Auto assign"
-                                                                    value="1"
-                                                                    wire:model.defer="booking_services.{{$index}}.auto_assign" wire:click="updateServiceSettings('auto_assign',{{$index}})">
-                                                                <label class="form-check-label"
-                                                                    for="ManualAssignAssign">Manual-assign</label>
-                                                                <label class="form-check-label"
-                                                                    for="ManualAssignAssign">Auto-assign</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
+                                    <div class="row">
+                                        <div class="col-12 d-lg-flex justify-content-between align-items-center">
+                                            <h2 class="">Service {{ $index + 1 }}</h2>
                                             <div class="row">
-                                                <div class="col-lg-8 mb-3">
-                                                    <div class="row">
-                                                        <div class="col-lg-5">
-                                                            <label class="col-form-label">Accommodation:</label>
-                                                        </div>
-                                                        <div class="col-lg-7 align-self-center">
-                                                            <div class="font-family-tertiary">
-                                                                {{ $service['accommodation_name'] }}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-8 mb-3">
-                                                    <div class="row">
-                                                        <div class="col-lg-5">
-                                                            <label class="col-form-label">Service:</label>
-                                                        </div>
-                                                        <div class="col-lg-7 align-self-center">
-                                                            <div class="font-family-tertiary">
-                                                                {{ $service['service_name'] }}
-                                                            </div>
+                                                <div class="col-lg-5 col-md-6 mb-4">
+                                                    <div class="d-flex gap-3">
+                                                        <label class="form-label-sm">
+                                                            Broadcast
+                                                        </label>
+                                                        <div class="form-check form-switch form-switch-column">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                role="switch" id="AutoNotifyBroadcast"
+                                                                checked="" aria-label="Auto-notify Broadcast"
+                                                                value="1"
+                                                                wire:model.defer="booking_services.{{ $index }}.auto_notify"
+                                                                wire:click="updateServiceSettings('auto_notify',{{ $index }})">
+                                                            <label class="form-check-label"
+                                                                for="AutoNotifyBroadcast">Manual-notify</label>
+                                                            <label class="form-check-label"
+                                                                for="AutoNotifyBroadcast">Auto-notify</label>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-8 mb-3">
-                                                    <div class="row">
-                                                        <div class="col-lg-5">
-                                                            <label class="col-form-label">Specialization:</label>
-                                                        </div>
-                                                        <div class="col-lg-7 align-self-center">
-                                                            <div class="font-family-tertiary">
-                                                                {{ $service['specialization'] ? implode(', ', $service['specialization']) : 'N/A' }}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-8 mb-3">
-                                                    <div class="row">
-                                                        <div class="col-lg-5">
-                                                            <label class="col-form-label">Service Type:</label>
-                                                        </div>
-                                                        <div class="col-lg-7 align-self-center">
-                                                            <div class="font-family-tertiary">
-                                                                @if ($service['service_types'] == 1)
-                                                                    In-Person
-                                                                @elseif($service['service_types'] == 2)
-                                                                    Virtual
-                                                                @elseif($service['service_types'] == 4)
-                                                                    Phone
-                                                                @elseif($service['service_types'] == 5)
-                                                                    Teleconference
-                                                                @endif
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-8 mb-3">
-                                                    <div class="row">
-                                                        <div class="col-lg-5">
-                                                            <label class="col-form-label">
-                                                                Number of Providers:
-                                                            </label>
-                                                        </div>
-                                                        <div class="col-lg-7 align-self-center">
-                                                            <div class="font-family-tertiary">
-                                                                {{ $service['provider_count'] }}</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-8 mb-3">
-                                                    <div class="row">
-                                                        <div class="col-lg-5">
-                                                            <label class="col-form-label">
-                                                                Service Consumer:
-                                                            </label>
-                                                        </div>
-                                                        <div class="col-lg-7 align-self-center">
-                                                            @if ($service['is_manual_consumer'])
-                                                                {{ $service['service_consumer_manual'] }}
-                                                            @else
-                                                                <div class="font-family-tertiary">
-                                                                    <a target="_blank"
-                                                                        href="{{ $service['service_consumer_user'] ? route('tenant.customer-profile', ['customerID' => encrypt($service['service_consumer_user']['id'])]) : '' }}">{{ $service['service_consumer_user'] ? $service['service_consumer_user']['name'] : 'N/A' }}</a>
-                                                                </div>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-8 mb-3">
-                                                    <div class="row">
-                                                        <div class="col-lg-5">
-                                                            <label class="col-form-label">
-                                                                Participants:
-                                                            </label>
-                                                        </div>
-                                                        <div class="col-lg-7 align-self-center">
-                                                            @if ($service['is_manual_attendees'])
-                                                                {{ $service['attendees_manual'] }}
-                                                            @else
-                                                                <div class="font-family-tertiary">
-                                                                    @if (isset($service['participants']))
-                                                                        @foreach ($service['participants'] as $key => $user)
-                                                                            <a target="_blank"
-                                                                                href="{{ route('tenant.customer-profile', ['customerID' => encrypt($user['id'])]) }}">{{ $user['name'] }}</a>
-                                                                            @if ($key != count($service['participants']) - 1)
-                                                                                ,
-                                                                            @endif
-                                                                        @endforeach
-                                                                    @else
-                                                                        N/A
-                                                                    @endif
-                                                                </div>
-                                                            @endif
+                                                <div class="col-lg-7 col-md-6 mb-4">
+                                                    <div class="d-flex gap-3">
+                                                        <label class="form-label-sm">
+                                                            Assign
+                                                        </label>
+                                                        <div class="form-check form-switch form-switch-column">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                role="switch" id="ManualAssignAssign" checked=""
+                                                                aria-label="Auto assign" value="1"
+                                                                wire:model.defer="booking_services.{{ $index }}.auto_assign"
+                                                                wire:click="updateServiceSettings('auto_assign',{{ $index }})">
+                                                            <label class="form-check-label"
+                                                                for="ManualAssignAssign">Manual-assign</label>
+                                                            <label class="form-check-label"
+                                                                for="ManualAssignAssign">Auto-assign</label>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!-- /Service 1 -->
-                                    @if ($service['service_types'] == 1)
-                                        <!-- In-Person Meeting Detail -->
-                                        <div class="row between-section-segment-spacing has-map">
+                                        <div class="row col-6 between-section-segment-spacing">
                                             <div class="col-lg-12">
-                                                <div class="d-lg-flex justify-content-between align-items-center">
-                                                    <h2 class="">Service {{ $index + 1 }} Meeting Detail</h2>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-10 mb-3">
-                                                        <div class="row">
-                                                            <div class="col-lg-4">
-                                                                <label class="col-form-label">Location:</label>
-                                                            </div>
 
+
+                                                <div class="row">
+                                                    <div class="col-lg-12 mb-3">
+                                                        <div class="row">
+                                                            <div class="col-lg-5">
+                                                                <label class="col-form-label">Accommodation:</label>
+                                                            </div>
                                                             <div class="col-lg-7 align-self-center">
-                                                                <div class="d-flex gap-2">
+                                                                <div class="font-family-tertiary">
+                                                                    {{ $service['accommodation_name'] }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12 mb-3">
+                                                        <div class="row">
+                                                            <div class="col-lg-5">
+                                                                <label class="col-form-label">Service:</label>
+                                                            </div>
+                                                            <div class="col-lg-7 align-self-center">
+                                                                <div class="font-family-tertiary">
+                                                                    {{ $service['service_name'] }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12 mb-3">
+                                                        <div class="row">
+                                                            <div class="col-lg-5">
+                                                                <label class="col-form-label">Specialization:</label>
+                                                            </div>
+                                                            <div class="col-lg-7 align-self-center">
+                                                                <div class="font-family-tertiary">
+                                                                    {{ $service['specialization'] ? implode(', ', $service['specialization']) : 'N/A' }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12 mb-3">
+                                                        <div class="row">
+                                                            <div class="col-lg-5">
+                                                                <label class="col-form-label">Service Type:</label>
+                                                            </div>
+                                                            <div class="col-lg-7 align-self-center">
+                                                                <div class="font-family-tertiary">
+                                                                    @if ($service['service_types'] == 1)
+                                                                        In-Person
+                                                                    @elseif($service['service_types'] == 2)
+                                                                        Virtual
+                                                                    @elseif($service['service_types'] == 4)
+                                                                        Phone
+                                                                    @elseif($service['service_types'] == 5)
+                                                                        Teleconference
+                                                                    @endif
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12 mb-3">
+                                                        <div class="row">
+                                                            <div class="col-lg-5">
+                                                                <label class="col-form-label">
+                                                                    Number of Providers:
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-lg-7 align-self-center">
+                                                                <div class="font-family-tertiary">
+                                                                    {{ $service['provider_count'] }}</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12 mb-3">
+                                                        <div class="row">
+                                                            <div class="col-lg-5">
+                                                                <label class="col-form-label">
+                                                                    Service Consumer:
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-lg-7 align-self-center">
+                                                                @if ($service['is_manual_consumer'])
+                                                                    {{ $service['service_consumer_manual'] }}
+                                                                @else
                                                                     <div class="font-family-tertiary">
-                                                                        @if ($booking->physicalAddress)
-                                                                            {{ $booking->physicalAddress->address_name }}:{{ $booking->physicalAddress->address_line1 . ', ' . $booking->physicalAddress->address_line2 }}
+                                                                        <a target="_blank"
+                                                                            href="{{ $service['service_consumer_user'] ? route('tenant.customer-profile', ['customerID' => encrypt($service['service_consumer_user']['id'])]) : '' }}">{{ $service['service_consumer_user'] ? $service['service_consumer_user']['name'] : 'N/A' }}</a>
+                                                                    </div>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12 mb-3">
+                                                        <div class="row">
+                                                            <div class="col-lg-5">
+                                                                <label class="col-form-label">
+                                                                    Participants:
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-lg-7 align-self-center">
+                                                                @if ($service['is_manual_attendees'])
+                                                                    {{ $service['attendees_manual'] }}
+                                                                @else
+                                                                    <div class="font-family-tertiary">
+                                                                        @if (isset($service['participants']))
+                                                                            @foreach ($service['participants'] as $key => $user)
+                                                                                <a target="_blank"
+                                                                                    href="{{ route('tenant.customer-profile', ['customerID' => encrypt($user['id'])]) }}">{{ $user['name'] }}</a>
+                                                                                @if ($key != count($service['participants']) - 1)
+                                                                                    ,
+                                                                                @endif
+                                                                            @endforeach
                                                                         @else
                                                                             N/A
                                                                         @endif
                                                                     </div>
-                                                                    {{-- <a href="#"
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /Service 1 -->
+                                        @if ($service['service_types'] == 1)
+                                            <!-- In-Person Meeting Detail -->
+                                            <div class="col-6 row between-section-segment-spacing has-map">
+                                                <div class="col-lg-12">
+                                                    {{-- <div class="d-lg-flex justify-content-between align-items-center">
+                                                        <h2 class="">Service {{ $index + 1 }} Meeting Detail
+                                                        </h2>
+                                                    </div> --}}
+                                                    <div class="row">
+                                                        <div class="col-lg-12 mb-3">
+                                                            <div class="row">
+                                                                <div class="col-lg-4">
+                                                                    <label class="col-form-label">Location:</label>
+                                                                </div>
+
+                                                                <div class="col-lg-7 align-self-center">
+                                                                    <div class="d-flex gap-2">
+                                                                        <div class="font-family-tertiary">
+                                                                            @if ($booking->physicalAddress)
+                                                                                {{ $booking->physicalAddress->address_name }}:{{ $booking->physicalAddress->address_line1 . ', ' . $booking->physicalAddress->address_line2 }}
+                                                                            @else
+                                                                                N/A
+                                                                            @endif
+                                                                        </div>
+                                                                        {{-- <a href="#"
                                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                         <svg aria-label="Edit" width="20"
                                                                             height="20" viewBox="0 0 20 20">
@@ -708,116 +712,116 @@
                                                                         </svg>
 
                                                                     </a> --}}
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-lg-10 mb-3">
-                                                        <div class="row">
-                                                            <div class="col-lg-4">
-                                                                <label class="col-form-label">City:</label>
-                                                            </div>
-                                                            <div class="col-lg-7 align-self-center">
-                                                                <div class="font-family-tertiary">
-                                                                    @if ($booking->physicalAddress)
-                                                                        {{ $booking->physicalAddress->city }}
-                                                                    @else
-                                                                        N/A
-                                                                    @endif
+                                                        <div class="col-lg-12 mb-3">
+                                                            <div class="row">
+                                                                <div class="col-lg-4">
+                                                                    <label class="col-form-label">City:</label>
                                                                 </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-10 mb-3">
-                                                        <div class="row">
-                                                            <div class="col-lg-4">
-                                                                <label class="col-form-label">State:</label>
-                                                            </div>
-                                                            <div class="col-lg-7 align-self-center">
-                                                                <div class="font-family-tertiary">
-                                                                    @if ($booking->physicalAddress)
-                                                                        {{ $booking->physicalAddress->state }}
-                                                                    @else
-                                                                        N/A
-                                                                    @endif
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-10 mb-3">
-                                                        <div class="row">
-                                                            <div class="col-lg-4">
-                                                                <label class="col-form-label">Zip Code:</label>
-                                                            </div>
-                                                            <div class="col-lg-7 align-self-center">
-                                                                <div class="font-family-tertiary">
-                                                                    @if ($booking->physicalAddress)
-                                                                        {{ $booking->physicalAddress->zip }}
-                                                                    @else
-                                                                        N/A
-                                                                    @endif
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-10 mb-3">
-                                                        <div class="row">
-                                                            <div class="col-lg-4">
-                                                                <label class="col-form-label">Arrival Notes:</label>
-                                                            </div>
-                                                            <div class="col-lg-7 align-self-center">
-                                                                <div class="font-family-tertiary">
-                                                                    @if ($booking->physicalAddress)
-                                                                        {{ $booking->physicalAddress->notes }}
-                                                                    @else
-                                                                        N/A
-                                                                    @endif
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                {{-- pb=!1m14!1m8!1m3!1d96779.59535015929!2d-74.00126600000002!3d40.710039!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1676478925644!5m2!1sen!2sus" --}}
-
-                                                {{-- <!-- Map --><div style="height:100%; width: 100%;" wire:ignore> 
-                                                <div id="map-canvas"></div>
-                                                </div> --}}
-                                                {{-- {{ str_replace(' ', '+', $booking->physicalAddress->address_line1 . ' ' . $booking->physicalAddress->address_line2 . ' ' . $booking->physicalAddress->city . ' ' . $booking->physicalAddress->state . ' ' . $booking->physicalAddress->country) }} --}}
-                                                <iframe {{-- src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d96779.59535015929!2d-74.00126600000002!3d40.710039!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1676478925644!5m2!1sen!2sus" --}}
-                                                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d96779.59535015929!2d-74.00126600000002!3d40.710039!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1676478925644!5m2!1sen!2sus"
-                                                    width="304" height="228" style="border:0;"
-                                                    allowfullscreen="" loading="lazy"
-                                                    referrerpolicy="no-referrer-when-downgrade" class="map">
-                                                </iframe>
-
-
-
-                                            </div>
-                                        </div>
-                                        <!-- /In-Person Meeting Detail -->
-                                    @else
-                                        <!-- Phone / Teleconference / Virtual Meeting Detail -->
-                                        <div class="row between-section-segment-spacing">
-                                            <div class="col-lg-12">
-                                                <div class="d-lg-flex justify-content-between align-items-center">
-                                                    <h2 class="">Service {{ $index + 1 }} Meeting Detail</h2>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-8 mb-3">
-                                                        <div class="row">
-                                                            <div class="col-lg-5">
-                                                                <label class="col-form-label">Meeting Name:</label>
-                                                            </div>
-                                                            <div class="col-lg-7 align-self-center">
-                                                                <div class="d-flex align-items-center gap-2">
+                                                                <div class="col-lg-7 align-self-center">
                                                                     <div class="font-family-tertiary">
-                                                                        @if (isset($service['meeting_details']))
-                                                                            {{ $service['meeting_details']['meeting_name'] ? $service['meeting_details']['meeting_name'] : 'N/A' }}
+                                                                        @if ($booking->physicalAddress)
+                                                                            {{ $booking->physicalAddress->city }}
                                                                         @else
                                                                             N/A
                                                                         @endif
                                                                     </div>
-                                                                    {{-- <a href="#"
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-12 mb-3">
+                                                            <div class="row">
+                                                                <div class="col-lg-4">
+                                                                    <label class="col-form-label">State:</label>
+                                                                </div>
+                                                                <div class="col-lg-7 align-self-center">
+                                                                    <div class="font-family-tertiary">
+                                                                        @if ($booking->physicalAddress)
+                                                                            {{ $booking->physicalAddress->state }}
+                                                                        @else
+                                                                            N/A
+                                                                        @endif
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-12 mb-3">
+                                                            <div class="row">
+                                                                <div class="col-lg-4">
+                                                                    <label class="col-form-label">Zip Code:</label>
+                                                                </div>
+                                                                <div class="col-lg-7 align-self-center">
+                                                                    <div class="font-family-tertiary">
+                                                                        @if ($booking->physicalAddress)
+                                                                            {{ $booking->physicalAddress->zip }}
+                                                                        @else
+                                                                            N/A
+                                                                        @endif
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-12 mb-3">
+                                                            <div class="row">
+                                                                <div class="col-lg-4">
+                                                                    <label class="col-form-label">Arrival
+                                                                        Notes:</label>
+                                                                </div>
+                                                                <div class="col-lg-7 align-self-center">
+                                                                    <div class="font-family-tertiary">
+                                                                        @if ($booking->physicalAddress)
+                                                                            {{ $booking->physicalAddress->notes }}
+                                                                        @else
+                                                                            N/A
+                                                                        @endif
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                    <div class="col-lg-12 mb-3">
+                                                    <iframe
+                                                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d96779.59535015929!2d-74.00126600000002!3d40.710039!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1676478925644!5m2!1sen!2sus"
+                                                        {{-- width="304" height="228" --}}
+                                                         style="border:0;"
+                                                        allowfullscreen="" loading="lazy"
+                                                        referrerpolicy="no-referrer-when-downgrade" class="map">
+                                                    </iframe>
+                                                    </div>
+
+
+
+                                            </div>
+                                            <!-- /In-Person Meeting Detail -->
+                                        @else
+                                            <!-- Phone / Teleconference / Virtual Meeting Detail -->
+                                            <div class="col-6 row between-section-segment-spacing">
+                                                <div class="col-lg-12">
+                                                    {{-- <div class="d-lg-flex justify-content-between align-items-center">
+                                                        <h2 class="">Service {{ $index + 1 }} Meeting Detail
+                                                        </h2>
+                                                    </div> --}}
+                                                    <div class="row">
+                                                        <div class="col-lg-12 mb-3">
+                                                            <div class="row">
+                                                                <div class="col-lg-5">
+                                                                    <label class="col-form-label">Meeting Name:</label>
+                                                                </div>
+                                                                <div class="col-lg-7 align-self-center">
+                                                                    <div class="d-flex align-items-center gap-2">
+                                                                        <div class="font-family-tertiary">
+                                                                            @if (isset($service['meeting_details']))
+                                                                                {{ $service['meeting_details']['meeting_name'] ? $service['meeting_details']['meeting_name'] : 'N/A' }}
+                                                                            @else
+                                                                                N/A
+                                                                            @endif
+                                                                        </div>
+                                                                        {{-- <a href="#"
                                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon"
                                                                         data-bs-toggle="modal"
                                                                         data-bs-target="#MeetingLinksModal">
@@ -828,27 +832,27 @@
                                                                             </use>
                                                                         </svg>
                                                                     </a> --}}
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-lg-8 mb-3">
-                                                        <div class="row">
-                                                            <div class="col-lg-5">
-                                                                <label class="col-form-label">Meeting Link:</label>
-                                                            </div>
-                                                            <div class="col-lg-7 align-self-center">
-                                                                <div class="d-flex align-items-center gap-2">
-                                                                    <div class="font-family-tertiary text-primary">
-                                                                        @if (isset($service['meeting_details']))
-                                                                            N/A
-                                                                        @else
-                                                                            {{ $service['meeting_link'] ? $service['meeting_link'] : 'N/A' }}
-                                                                        @endif
+                                                        <div class="col-lg-12 mb-3">
+                                                            <div class="row">
+                                                                <div class="col-lg-5">
+                                                                    <label class="col-form-label">Meeting Link:</label>
+                                                                </div>
+                                                                <div class="col-lg-7 align-self-center">
+                                                                    <div class="d-flex align-items-center gap-2">
+                                                                        <div class="font-family-tertiary text-primary">
+                                                                            @if (isset($service['meeting_details']))
+                                                                                N/A
+                                                                            @else
+                                                                                {{ $service['meeting_link'] ? $service['meeting_link'] : 'N/A' }}
+                                                                            @endif
 
 
-                                                                    </div>
-                                                                    {{-- <a href="#"
+                                                                        </div>
+                                                                        {{-- <a href="#"
                                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                         
                                                                         <svg aria-label="Edit" width="20"
@@ -859,73 +863,89 @@
                                                                         </svg>
                                                                 
                                                                     </a> --}}
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-lg-8 mb-3">
-                                                        <div class="row">
-                                                            <div class="col-lg-5">
-                                                                <label class="col-form-label">
-                                                                    Meeting Phone Number:
-                                                                </label>
-                                                            </div>
-                                                            <div class="col-lg-7 align-self-center">
-                                                                <div class="font-family-tertiary">
-                                                                    @if (isset($service['meeting_details']))
-                                                                        {{ $service['meeting_details']['phone_number'] ? $service['meeting_details']['phone_number'] : 'N/A' }}
-                                                                    @else
-                                                                        {{ $service['meeting_phone'] ? $service['meeting_phone'] : 'N/A' }}
-                                                                    @endif
+                                                        <div class="col-lg-12 mb-3">
+                                                            <div class="row">
+                                                                <div class="col-lg-5">
+                                                                    <label class="col-form-label">
+                                                                        Meeting Phone Number:
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-lg-7 align-self-center">
+                                                                    <div class="font-family-tertiary">
+                                                                        @if (isset($service['meeting_details']))
+                                                                            {{ $service['meeting_details']['phone_number'] ? $service['meeting_details']['phone_number'] : 'N/A' }}
+                                                                        @else
+                                                                            {{ $service['meeting_phone'] ? $service['meeting_phone'] : 'N/A' }}
+                                                                        @endif
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-lg-8 mb-3">
-                                                        <div class="row">
-                                                            <div class="col-lg-5">
-                                                                <label class="col-form-label">
-                                                                    Meeting Passcode:
-                                                                </label>
-                                                            </div>
-                                                            <div class="col-lg-7 align-self-center">
-                                                                <div class="font-family-tertiary">
-                                                                    @if (isset($service['meeting_details']))
-                                                                        {{ $service['meeting_details']['access_code'] ? $service['meeting_details']['access_code'] : 'N/A' }}
-                                                                    @else
-                                                                        {{ $service['meeting_passcode'] ? $service['meeting_passcode'] : 'N/A' }}
-                                                                    @endif
+                                                        <div class="col-lg-12 mb-3">
+                                                            <div class="row">
+                                                                <div class="col-lg-5">
+                                                                    <label class="col-form-label">
+                                                                        Meeting Passcode:
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-lg-7 align-self-center">
+                                                                    <div class="font-family-tertiary">
+                                                                        @if (isset($service['meeting_details']))
+                                                                            {{ $service['meeting_details']['access_code'] ? $service['meeting_details']['access_code'] : 'N/A' }}
+                                                                        @else
+                                                                            {{ $service['meeting_passcode'] ? $service['meeting_passcode'] : 'N/A' }}
+                                                                        @endif
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-lg-8 mb-3">
-                                                        <div class="row">
-                                                            <div class="col-lg-5">
-                                                                <label class="col-form-label">Status:</label>
-                                                            </div>
-                                                            <div class="col-lg-7 align-self-center">
-                                                                <div class="font-family-tertiary">Active</div>
+                                                        <div class="col-lg-12 mb-3">
+                                                            <div class="row">
+                                                                <div class="col-lg-5">
+                                                                    <label class="col-form-label">Status:</label>
+                                                                </div>
+                                                                <div class="col-lg-7 align-self-center">
+                                                                    <div class="font-family-tertiary">Active</div>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-lg-8 mb-3">
-                                                        <div class="row">
-                                                            <div class="col-lg-5">
-                                                                <label class="col-form-label">Created:</label>
-                                                            </div>
-                                                            <div class="col-lg-7 align-self-center">
-                                                                <div class="font-family-tertiary">
-                                                                    {{ date_format(date_create($service['created_at']), 'd/m/Y h:i A') }}
+                                                        <div class="col-lg-12 mb-3">
+                                                            <div class="row">
+                                                                <div class="col-lg-5">
+                                                                    <label class="col-form-label">Created:</label>
+                                                                </div>
+                                                                <div class="col-lg-7 align-self-center">
+                                                                    <div class="font-family-tertiary">
+                                                                        {{ date_format(date_create($service['created_at']), 'd/m/Y h:i A') }}
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <!-- /Phone / Teleconference / Virtual Meeting Detail -->
-                                    @endif
+                                            <!-- /Phone / Teleconference / Virtual Meeting Detail -->
+                                        @endif
+
+                                        @if (!session()->get('isCustomer'))
+                                            <div class="col-12 mt-5 ">
+
+                                                <div class="d-flex justify-content-between gap-2">
+                                                    <h4>Check-In and Close-Out for Service -
+                                                        {{ $service['service_name'] }}
+                                                    </h4>
+
+
+                                                </div>
+                                                @livewire('app.common.bookings.provider-completed-booking-services', ['service_id' => $service['service_id'], 'booking_id' => $booking_id], key(time()))
+
+                                            </div>
+                                        @endif
+                                    </div>
                                 @endforeach
                                 <!-- Booking Forms Detail -->
 
@@ -1036,16 +1056,17 @@
                                                         Tags
                                                     </label>
 
-                                                    <select multiple class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="tags-select" aria-label="Select Tags">
+                                                    <select multiple
+                                                        class="form-select  select2 form-select select2-hidden-accessible"
+                                                        tabindex="" id="tags-select" aria-label="Select Tags">
                                                         @foreach ($allTags as $tag)
-                                                            <option
-                                                                {{ in_array($tag, $tags) ? 'selected' : '' }}
+                                                            <option {{ in_array($tag, $tags) ? 'selected' : '' }}
                                                                 value="{{ $tag }}">
                                                                 {{ $tag }}</option>
                                                         @endforeach
                                                     </select>
-                                                    <input type="hidden" name="tags-holder"
-                                                        id="tags-holder" wire:model.defer="tags">
+                                                    <input type="hidden" name="tags-holder" id="tags-holder"
+                                                        wire:model.defer="tags">
 
                                                     {{-- <select x-cloak="" id="select">
                                                         <option value="1">Option 1</option>
@@ -1274,7 +1295,7 @@
                                                     </div>
                                                 </div>-->
                                                     <div class="d-lg-flex flex-wrap gap-3 mb-3">
-                                                        {{-- @if(!is_null($tags))
+                                                        {{-- @if (!is_null($tags))
                                                             @foreach ($tags as $tag)
                                                                 <div class="tag">{{$tag}}</div>    
                                                             @endforeach
@@ -1282,22 +1303,28 @@
                                                     </div>
                                                     <div>
                                                         <div class="form-check form-check-inline">
-                                                            <input wire:model="Requester" wire:change="updateBookingTags" class="form-check-input" id="Requester"
-                                                                name="" type="checkbox" tabindex="" >
+                                                            <input wire:model="Requester"
+                                                                wire:change="updateBookingTags"
+                                                                class="form-check-input" id="Requester"
+                                                                name="" type="checkbox" tabindex="">
                                                             <label class="form-check-label" for="Requester">
                                                                 Requester
                                                             </label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
-                                                            <input wire:model="Consumer"  wire:change="updateBookingTags" class="form-check-input" id="ServiceConsumers"
-                                                                name="" type="checkbox" tabindex="" >
+                                                            <input wire:model="Consumer"
+                                                                wire:change="updateBookingTags"
+                                                                class="form-check-input" id="ServiceConsumers"
+                                                                name="" type="checkbox" tabindex="">
                                                             <label class="form-check-label" for="ServiceConsumers">
                                                                 Service Consumer(s)
                                                             </label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
-                                                            <input wire:model="Participant" wire:change="updateBookingTags" class="form-check-input" id="Participants"
-                                                                name="" type="checkbox" tabindex="" >
+                                                            <input wire:model="Participant"
+                                                                wire:change="updateBookingTags"
+                                                                class="form-check-input" id="Participants"
+                                                                name="" type="checkbox" tabindex="">
                                                             <label class="form-check-label" for="Participants">
                                                                 Participant(s)
                                                             </label>
@@ -1536,10 +1563,10 @@
                                                 </div>
                                                 <div class="col-md-3 align-self-center">
                                                     <div class="font-family-tertiary">
-                                                        @if(!is_null($data['providerPayments']))
-                                                        {{ formatPayment($data['providerPayments']) }}
+                                                        @if (!is_null($data['providerPayments']))
+                                                            {{ formatPayment($data['providerPayments']) }}
                                                         @else
-                                                            N/A 
+                                                            N/A
                                                         @endif
                                                     </div>
                                                 </div>
@@ -1556,10 +1583,10 @@
                                                 </div>
                                                 <div class="col-md-3 align-self-center">
                                                     <div class="font-family-tertiary">
-                                                        @if(!is_null($data['additionalProviderPayments']))
-                                                        {{ formatPayment($data['additionalProviderPayments']) }}
+                                                        @if (!is_null($data['additionalProviderPayments']))
+                                                            {{ formatPayment($data['additionalProviderPayments']) }}
                                                         @else
-                                                            N/A 
+                                                            N/A
                                                         @endif
                                                     </div>
                                                 </div>
@@ -1575,10 +1602,11 @@
                                                 </div>
                                                 <div class="col-md-3 align-self-center">
                                                     <div class="font-family-tertiary">
-                                                        @if(!is_null($data['profitMargin']))
-                                                        {{ formatPayment($data['profitMargin']) }} ({{$data['profitMarginPercent']}}%)
+                                                        @if (!is_null($data['profitMargin']))
+                                                            {{ formatPayment($data['profitMargin']) }}
+                                                            ({{ $data['profitMarginPercent'] }}%)
                                                         @else
-                                                            N/A 
+                                                            N/A
                                                         @endif
                                                     </div>
                                                 </div>
@@ -1624,46 +1652,14 @@
                                     <div class="d-flex justify-content-between gap-2">
                                         <h2>Assignment Discussions</h2>
                                     </div>
-                                            <!-- 1 ->company, 2 -> provider, 3->customer , 4-departments, 5-assignment -->
-                                        @livewire('app.common.forms.notes', ['showForm' => true, 'record_id' => $booking['id'], 'record_type' => 5])
+                                    <!-- 1 ->company, 2 -> provider, 3->customer , 4-departments, 5-assignment -->
+                                    @livewire('app.common.forms.notes', ['showForm' => true, 'record_id' => $booking['id'], 'record_type' => 5])
                                 @endif
 
                                 <div class="col-12">
                                     <livewire:app.common.bookings.assignment-logs :booking_id="$booking_id" />
                                 </div>
-                                @if (!session()->get('isCustomer'))
-                                    <div class="col-12 mt-5 ">
-                                        @if ( $data['show_close_button'])
-                                                <div class="d-flex justify-content-end">
-                                                    <a href="#" class="btn btn-has-icon btn-primary rounded"
-                                                        @click="closeOutBooking = true"
-                                                        wire:click="$emit('openBookingCloseOut',true)">
-                                                        <svg width="30" height="30" viewBox="0 0 30 30"
-                                                            fill="currentColor" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                            <use
-                                                                xlink:href="/css/customer.svg#confirm-completion-icon">
-                                                            </use>
-                                                        </svg>
-                                                        @if ($booking->is_closed == 0)
-                                                            Close Assignment
-                                                        @else
-                                                            Edit Close Out
-                                                        @endif
-                                                    </a>
-                                            </div>
-                                        @endif
-                                        @foreach ($booking_services as $index => $service)
-                                            <div class="d-flex justify-content-between gap-2">
-                                                <h2>Check-In and Close-Out for Service - {{ $service['service_name'] }}
-                                                </h2>
-                                              
 
-                                            </div>
-                                            @livewire('app.common.bookings.provider-completed-booking-services', ['service_id' => $service['service_id'], 'booking_id' => $booking_id], key(time()))
-                                        @endforeach
-
-                                    </div>
-                                @endif
                             </div>
                             <!--  <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                             <button type="" class="btn btn-outline-dark rounded"
@@ -1794,14 +1790,15 @@
             $('#reviewFeedbackModal').modal('hide');
 
         });
-        document.addEventListener("livewire:load", function () {
-        $('#tags-select').select2({tags: false});
+        document.addEventListener("livewire:load", function() {
+            $('#tags-select').select2({
+                tags: false
+            });
 
-        $('#tags-select').on('change', function () {
-        @this.set('tags', $(this).val());
+            $('#tags-select').on('change', function() {
+                @this.set('tags', $(this).val());
             });
         });
-
     </script>
 @endpush
 {{-- @if ($booking->physicalAddress)
