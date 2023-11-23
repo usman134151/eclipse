@@ -11,7 +11,7 @@ use App\Services\App\NotificationService;
 
 class RescheduleBooking extends Component
 {
-    public $showForm, $booking, $reschedule_details = [], $override_charges='', $previousReschedulings=null;
+    public $showForm, $booking, $reschedule_details = ['setting' => "only_this_booking"], $override_charges = '', $previousReschedulings = null;
     protected $listeners = ['showList' => 'resetForm', 'getRescheduleBookingData', 'updateVal'];
     public $serviceTypes = [
         '1' => ['class' => 'inperson-rate', 'postfix' => '', 'title' => 'In-Person'],
@@ -28,12 +28,12 @@ class RescheduleBooking extends Component
     {
         //fetch booking with rescheduling charges
         $this->booking = BookingOperationsService::getBookingDetails($booking_id, $this->serviceTypes, 'rescheduling', 'cancellation_hour1');
-        if(!is_null($this->booking->payment)){
+        if (!is_null($this->booking->payment)) {
             //fetch rescheduling history
             $this->previousReschedulings = RescheduleBookingLog::where('booking_id', $this->booking->id)->get();
             //sum charges if found
 
-            $this->override_charges = round($this->booking->payment->reschedule_booking_charges ,1);
+            $this->override_charges = round($this->booking->payment->reschedule_booking_charges, 1);
             $start = Carbon::parse($this->booking->booking_start_at);
             $end = Carbon::parse($this->booking->booking_end_at);
             $this->reschedule_details['booking_start_at'] = $start->format('m/d/Y');
@@ -43,23 +43,26 @@ class RescheduleBooking extends Component
             $this->reschedule_details['booking_end_hour'] = $end->format('H');
             $this->reschedule_details['booking_end_min'] = $end->format('i');
             $this->reschedule_details['setting'] = "only_this_booking";
-            // $this->reschedule_details['reschedule_until'] = Carbon::parse($this->booking->recurring_end_at)->format('m/d/Y');
+            $this->reschedule_details['reschedule_until'] = Carbon::parse($this->booking->recurring_end_at)->format('m/d/Y');
             $this->resetValidation();
         }
-
     }
 
     public function rules()
     {
-        return [
+        $rules =  [
             'reschedule_details.booking_start_at' => 'required|date',
             'reschedule_details.booking_start_hour' => 'required|numeric|between:0,23',
             'reschedule_details.booking_start_min' => 'required|numeric|between:0,59',
             'reschedule_details.booking_end_at' => 'required|date|after_or_equal:reschedule_details.booking_start_at',
             'reschedule_details.booking_end_hour' => 'required|numeric|between:0,23',
             'reschedule_details.booking_end_min' => 'required|numeric|between:0,59',
-            'override_charges'=>'nullable|numeric'
+            'override_charges' => 'nullable|numeric'
         ];
+
+        if ($this->reschedule_details['setting'] == 'bookings_until')
+            $rules['reschedule_details.reschedule_until'] = 'required|date';
+        return $rules;
     }
 
     public function saveBooking()
@@ -71,17 +74,15 @@ class RescheduleBooking extends Component
         }
         $prev_charges = $this->previousReschedulings->count() ?  $this->previousReschedulings->sum('charges') : 0;
 
-        $this->reschedule_details['charges'] = $this->booking->payment->reschedule_booking_charges ;
-        $this->reschedule_details['prev_charges']= $prev_charges;
+        $this->reschedule_details['charges'] = $this->booking->payment->reschedule_booking_charges;
+        $this->reschedule_details['prev_charges'] = $prev_charges;
 
-        $this->reschedule_details['setting'] = "only_this_booking"; // limiting for this phase only
-        
-        BookingOperationsService::rescheduleBooking($this->booking,$this->reschedule_details);
-        $data['bookingData']=$this->booking;
-        $data['rescheduleData']=$this->reschedule_details;
+        BookingOperationsService::rescheduleBooking($this->booking, $this->reschedule_details);
+        $data['bookingData'] = $this->booking;
+        $data['rescheduleData'] = $this->reschedule_details;
         NotificationService::sendNotification('Booking: Reschedule Request (after service parameter)', $data);
         $this->emit('showConfirmation', 'Booking status updated successfully');
-       
+
         $this->dispatchBrowserEvent('close-reschedule');
     }
 
