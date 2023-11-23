@@ -1624,10 +1624,8 @@
                                     <div class="d-flex justify-content-between gap-2">
                                         <h2>Assignment Discussions</h2>
                                     </div>
-                                    <div class="tab-pane fade" id="notes-tab-pane" role="tabpanel" aria-labelledby="notes-tab" tabindex="0">
                                             <!-- 1 ->company, 2 -> provider, 3->customer , 4-departments, 5-assignment -->
                                         @livewire('app.common.forms.notes', ['showForm' => true, 'record_id' => $booking['id'], 'record_type' => 5])
-                                    </div>    
                                 @endif
 
                                 <div class="col-12">
