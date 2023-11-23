@@ -3,9 +3,11 @@
 namespace App\Http\Livewire\App\Common\Forms;
 
 use App\Models\Tenant\Note;
+use App\Models\Tenant\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Services\App\NotificationService;
+use Carbon\Carbon;
 
 class Notes extends Component
 {
@@ -53,18 +55,38 @@ class Notes extends Component
 
     public function addNote(){
         $this->validate();
-        $this->note['user_id'] = Auth::id();
         if($this->noteId==null){
             //save
+            $this->note['user_id'] = Auth::id();
             Note::create($this->note);
             if($this->note['record_type'] == 5)
             {
                 $data['bookingComment'] = $this->note;
                 // NotificationService::sendNotification('Booking: New Comment', $data);
             }
-        }else{ //edit
-            unset($this->note['id']);
-            Note::where('id', $this->noteId)->update($this->note);
+        }else{ //edit            
+            $existingNote = Note::findOrFail($this->noteId);
+
+            // Construct the edit log
+            $editLog = [
+                'edited_by' => Auth::user()->id,
+                'edited_at' => Carbon::now()->toDateTimeString()
+            ];
+    
+            // Update note_edit_log in the existing note
+            $existingNote->note_edit_log = json_encode(
+                array_merge(json_decode($existingNote->note_edit_log, true) ?: [], [$editLog])
+            );
+    
+            // Update other fields if needed
+            unset($this->note['id']); // Remove the 'id' from $this->note array to avoid updating it
+            $authorId = Note::with('author:id')->where('id',$this->noteId)->first();
+            $this->note['user_id'] = $authorId->author->id;
+            $existingNote->fill($this->note);
+    
+            // Save the changes
+            $existingNote->save();
+
         }
         $this->refreshData();
 
@@ -93,6 +115,15 @@ class Notes extends Component
         else if(session()->get('isSuperAdmin'))
             return true;
         return false;
+    }
+
+    function getEditDetails($editRecord)
+    {
+        $latestEdit = collect(json_decode($editRecord, true))->last();
+        $editor = User::find($latestEdit['edited_by']);
+        $data['editorName'] = $editor ? $editor->name : null;
+        $data['edited_at'] = $latestEdit['edited_at'];
+        return $data;
     }
 
 
