@@ -76,11 +76,11 @@
                 <div class="col-lg-8 align-self-center">
                     <div class="mb-2">
                         <label class="form-label mb-0">Provider Name:</label>
-                        <div class="text-xs"><small>{{ $provider->name }}</small></div>
+                        <div class="text-xs"><small>{{ $provider['name'] }}</small></div>
                     </div>
                     <div>
                         <label class="form-label mb-0">Email:</label>
-                        <div><a class="text-xs text-dark"><small>{{ $provider->email }}</small></a></div>
+                        <div><a class="text-xs text-dark"><small>{{ $provider['email'] }}</small></a></div>
                     </div>
                 </div>
             </div>
@@ -88,11 +88,11 @@
         <div class="col-lg-4 mb-4 mb-lg-0 align-self-center">
             <div class="mb-2">
                 <label class="form-label mb-0">Phone Number:</label>
-                <div class="text-xs"><small>(176) 361-8176</small></div>
+                <div class="text-xs"><small>{{$provider['userdetail']['phone'] ? $provider['userdetail']['phone'] : 'N/A'}}</small></div>
             </div>
             <div>
                 <label class="form-label mb-0">Address:</label>
-                <div><a class="text-xs text-dark"><small>Velit aut dicta min Utah</small></a></div>
+                <div><a class="text-xs text-dark"><small>{{$provider['userdetail']['address_line1'].', '.$provider['userdetail']['address_line2'].', '.$provider['userdetail']['city'].', '.$provider['userdetail']['state'].', '.$provider['userdetail']['country']}}</small></a></div>
             </div>
         </div>
         <div class="col-lg-4 mb-4 mb-lg-0 align-self-center">

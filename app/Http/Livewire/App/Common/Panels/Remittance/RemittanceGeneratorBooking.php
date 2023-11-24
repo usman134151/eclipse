@@ -17,7 +17,7 @@ class RemittanceGeneratorBooking extends Component
 
     public function mount($providerId)
     {
-       $this->provider = User::where('id',$providerId)->with('userdetail')->first();
+       $this->provider = User::where('id',$providerId)->with('userdetail')->first()->toArray();
        
     }
 
