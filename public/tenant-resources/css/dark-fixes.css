@@ -352,7 +352,7 @@ select.form-select:not([multiple="multiple"]) {
 .table tbody tr:not([class*="table-"]) th,
 .table tbody tr:not([class*="table-"]) td {
     border-color: #3b4253;
-    color: #b4b7bd;
+    color: #fff !important;
 }
 
 .table .thead tr:not([class*="table-"]) th code,
@@ -364,7 +364,7 @@ select.form-select:not([multiple="multiple"]) {
 
 .table thead tr th,
 .table tfoot tr th {
-    background-color: #49536c  !important;
+    background-color: #343d55  !important;
     border-color: white !important;
     color: #d0d2d6 !important;
 }
@@ -433,7 +433,7 @@ svg.me-1 path {
 
 .table.table-hover tbody tr th,
 .table.table-hover tbody tr td {
-    background-color: #49536c !important;
+    background-color: #343d55 !important;
 }
 
 .table.table-striped tbody tr:nth-of-type(odd) {
@@ -1755,4 +1755,19 @@ input[type="radio"].form-check-input:checked {
 }
 .table-responsive{
     background-color: white;
+}
+.form-control#country{
+    background: #283046;
+    color: #5c6373;
+    font-weight: bold;
+}
+
+select.form-control{
+    background: #283046 !important;
+    color: #5c6373 !important;
+    font-weight: bold !important;
+}
+
+.text-black{
+    color: darkgray !important;
 }
