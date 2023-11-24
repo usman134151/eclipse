@@ -260,90 +260,25 @@
 	                            </div>
 	                            <div class="overflow-y-auto px-3 max-h-17rem">
 	                                <div class="row">
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="fw-semibold text-sm">Total Revenue</div>
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="fw-semibold text-sm text-lg-end">$696,531.25</div>
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm">Total Services Rate</div>
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm text-lg-end">$695,571.29</div>
-	                                    </div>
-	                                    <div class="col-lg-12">
-	                                        <hr class="mt-0 mb-2">
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm">Total Services Rate</div>
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm text-lg-end">$695,571.29</div>
-	                                    </div>
-	                                    <div class="col-lg-12">
-	                                        <hr class="mt-0 mb-2">
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm">Total Services Rate</div>
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm text-lg-end">$695,571.29</div>
-	                                    </div>
-	                                    <div class="col-lg-12">
-	                                        <hr class="mt-0 mb-2">
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm">Total Services Rate</div>
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm text-lg-end">$695,571.29</div>
-	                                    </div>
-	                                    <div class="col-lg-12">
-	                                        <hr class="mt-0 mb-2">
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm">Total Services Rate</div>
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm text-lg-end">$695,571.29</div>
-	                                    </div>
-	                                    <div class="col-lg-12">
-	                                        <hr class="mt-0 mb-2">
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm">Total Services Rate</div>
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm text-lg-end">$695,571.29</div>
-	                                    </div>
-	                                    <div class="col-lg-12">
-	                                        <hr class="mt-0 mb-2">
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm">Total Services Rate</div>
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm text-lg-end">$695,571.29</div>
-	                                    </div>
-	                                    <div class="col-lg-12">
-	                                        <hr class="mt-0 mb-2">
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm">Total Services Rate</div>
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm text-lg-end">$695,571.29</div>
-	                                    </div>
-	                                    <div class="col-lg-12">
-	                                        <hr class="mt-0 mb-2">
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="fw-semibold text-sm">Total Payments</div>
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="fw-semibold text-sm text-lg-end">-$45,224.46</div>
-	                                    </div>
+	                                   @forelse ($topServices as $topService)
+									   		<div class="col-md-6 mb-2">
+												<div class="text-sm">{{$topService}}</div>
+											</div>
+											<div class="col-md-6 mb-2">
+												<div class="text-sm text-lg-end">$695,571.29</div>
+											</div>
+											<div class="col-lg-12">
+												<hr class="mt-0 mb-2">
+											</div>
+									   @empty
+										No Record Available
+									   @endforelse
+									   	<div class="col-md-6 mb-2">
+	                                    	<div class="fw-semibold text-sm">Total Payments</div>
+	                                	</div>
+	                                	<div class="col-md-6 mb-2">
+	                                    	<div class="fw-semibold text-sm text-lg-end">-$45,224.46</div>
+	                                	</div>
 	                                </div>
 	                            </div>
 	                            <a href="" class="btn btn-primary w-100">View Detail</a>
@@ -457,71 +392,26 @@
 	                                <canvas id="jsChartInvoice" style="width:100%;"></canvas>
 	                            </div>
 	                            <div class="row">
-	                                <div class="col-md-6 mb-2">
+	                                
+									@forelse ($topInvoices as $topInvoice)
+										<div class="col-md-6 mb-2">
+	                                	    <div class="text-sm">{{$topInvoice['name']}}</div>
+	                                	</div>
+	                                	<div class="col-md-6 mb-2">
+	                                	    <div class="text-sm text-lg-end">{{formatPayment($topInvoice['invoices_total'])}}</div>
+	                                	</div>
+	                                	<div class="col-lg-12">
+	                                	    <hr class="mt-0 mb-2">
+	                                	</div>
+									@empty
+										No Record Available
+									@endforelse
+	                                
+									<div class="col-md-6 mb-2">
 	                                    <div class="fw-semibold text-sm">Total Revenue</div>
 	                                </div>
 	                                <div class="col-md-6 mb-2">
-	                                    <div class="fw-semibold text-sm text-lg-end">$696,531.25</div>
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm">Total Services Rate</div>
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm text-lg-end">$695,571.29</div>
-	                                </div>
-	                                <div class="col-lg-12">
-	                                    <hr class="mt-0 mb-2">
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm">Total Services Rate</div>
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm text-lg-end">$695,571.29</div>
-	                                </div>
-	                                <div class="col-lg-12">
-	                                    <hr class="mt-0 mb-2">
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm">Total Services Rate</div>
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm text-lg-end">$695,571.29</div>
-	                                </div>
-	                                <div class="col-lg-12">
-	                                    <hr class="mt-0 mb-2">
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm">Total Services Rate</div>
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm text-lg-end">$695,571.29</div>
-	                                </div>
-	                                <div class="col-lg-12">
-	                                    <hr class="mt-0 mb-2">
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm">Total Services Rate</div>
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm text-lg-end">$695,571.29</div>
-	                                </div>
-	                                <div class="col-lg-12">
-	                                    <hr class="mt-0 mb-2">
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm">Total Services Rate</div>
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm text-lg-end">$695,571.29</div>
-	                                </div>
-	                                <div class="col-lg-12">
-	                                    <hr class="mt-0 mb-2">
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="fw-semibold text-sm">Total Payments</div>
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="fw-semibold text-sm text-lg-end">-$45,224.46</div>
+	                                    <div class="fw-semibold text-sm text-lg-end">{{formatPayment($totalInvoiceRevenue)}}</div>
 	                                </div>
 	                            </div>
 	                            <a href="" class="btn btn-primary w-100">View Detail</a>
