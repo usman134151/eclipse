@@ -1,4 +1,4 @@
-<div class="">
+<div class="" x-data="{  issueRemittance: false}">
     <div class="bg-muted rounded p-4 mb-3">
         <div class="d-lg-flex gap-5 align-items-center mb-4">
             <div class="mb-4 mb-lg-0">
@@ -96,6 +96,8 @@
             </div>
         </div>
         <div class="col-lg-4 mb-4 mb-lg-0 align-self-center">
+                <small>(coming soon)</small>
+
             <div class="d-grid grid-cols-2 gap-2">
                 <div class="fw-semibold text-sm">Total Invoiced:</div>
                 <div class="text-sm">$3000</div>
@@ -117,39 +119,34 @@
                                 <input class="form-check-input" type="checkbox" value=""
                                     aria-label="Select All Teams">
                             </th>
-                            <th scope="col" width="25%" class="align-middle">Invoice/Booking ID</th>
-                            <th scope="col" class="text-center">Invoice Date</th>
-                            <th scope="col" class="text-center align-middle">Due Date</th>
+                            <th scope="col" width="25%" class="align-middle">ID</th>
+                            <th scope="col" class="text-center">Type</th>
+                            {{-- <th scope="col" class="text-center align-middle">Due Date</th> --}}
                             <th scope="col" class="text-center align-middle">Total Pay</th>
-                            <th class="text-center">Action</th>
+                            {{-- <th class="text-center">Action</th> --}}
                         </tr>
                     </thead>
                     <tbody>
-                        @php
-                            $status = ['1', '2', '3'];
-                            $statusCode = ['bg-success', 'bg-gray', 'bg-warning'];
-                        @endphp
-                        @for ($i = 1; $i <= 7; $i++)
-                            <tr role="row"
-                                class="{{ $i % 2 == 0 ? 'even' : 'odd' }} {{ $statusCode[array_rand($status)] }}">
+                        @foreach ($data as $row)
+                            <tr role="row" class="">
                             <tr role="row" class="odd ivp">
                                 <td class="text-center align-middle">
                                     <input class="form-check-input" type="checkbox" value=""
                                         aria-label="Select Team">
                                 </td>
                                 <td class="align-middle">
-                                    <a href="javascript:void(0)">INP-89-23-001</a>
+                                    <a href="javascript:void(0)">{{isset($row['reimbursement_id']) ? $row['reimbursement_id'] : $row['booking']['booking_number']}}</a>
                                 </td>
                                 <td class="text-center align-middle">
+                                    {{isset($row['reimbursement_id']) ? "Reimbursment" : "Booking"}}
+                                </td>
+                                {{-- <td class="text-center align-middle">
                                     11/23/2022
-                                </td>
+                                </td> --}}
                                 <td class="text-center align-middle">
-                                    11/23/2022
+                                   {{numberFormat($row['amount'])}}
                                 </td>
-                                <td class="text-center align-middle">
-                                    $150.00
-                                </td>
-                                <td class="align-middle">
+                                {{-- <td class="align-middle">
                                     <div class="d-flex actions justify-content-center">
                                         <a href="#" title="View" aria-label="View"
                                             class="btn btn-sm btn-secondary rounded btn-hs-icon">
@@ -191,9 +188,9 @@
                                             </svg>
                                         </a>
                                     </div>
-                                </td>
+                                </td> --}}
                             </tr>
-                        @endfor
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -201,7 +198,7 @@
     </div>
     <!-- Hoverable rows end -->
     <!-- Icon Help -->
-    <div class="d-flex actions gap-3 justify-content-end mb-2">
+    {{-- <div class="d-flex actions gap-3 justify-content-end mb-2">
         <div class="d-flex gap-2 align-items-center">
             <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
@@ -255,9 +252,9 @@
                 Objection
             </span>
         </div>
-    </div>
+    </div> --}}
     <!-- /Icon Help -->
-    <div class="d-flex justify-content-between">
+    {{-- <div class="d-flex justify-content-between">
         <div>
             <p class="fw-semibold mb-lg-0 text-sm font-family-secondary">Showing 1 to 5 of 100 entries</p>
         </div>
@@ -279,7 +276,7 @@
                 </li>
             </ul>
         </nav>
-    </div>
+    </div> --}}
     <!-- Total -->
     <div class="bg-muted py-2 mb-4">
         <div class="row justify-content-center">
