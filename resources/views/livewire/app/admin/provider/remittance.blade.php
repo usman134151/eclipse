@@ -105,18 +105,8 @@
                         </label>
                     </div>
                 </div>
-                <div class="d-flex flex-column flex-md-row justify-content-md-between justify-content-center mb-2 gap-2 align-items-center">
-                    <div class="d-inline-flex align-items-center gap-4">
-                        <div class="d-inline-flex align-items-center gap-4">
-                            {{-- <label for="show_records_number" class="form-label-sm mb-0">Show</label>
-                            <select class="form-select form-select-sm" id="show_records_number">
-                                <option>10</option>
-                                <option>15</option>
-                                <option>20</option>
-                                <option>25</option>
-                            </select> --}}
-                        </div>
-                    </div>
+                <div class="d-flex flex-column flex-md-row justify-content-end mb-2 gap-2 align-items-center">
+                 
                     <div class="">
                         <a href="javascript:void(0)" @click="addNewPayment = true"
                             class="btn btn-primary btn-sm px-4 btn-has-icon rounded">
@@ -133,7 +123,7 @@
                 <!-- Hoverable rows start -->
                 <div class="row" id="table-hover-row">
                     <div class="col-12">
-                        <div class="table-responsive border mb-4">
+                        {{-- <div class="table-responsive border mb-4">
                             <table id="" class="table table-fs-md table-hover" aria-label="">
                                 <thead>
                                     <tr role="row">
@@ -155,270 +145,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($providers as $provider)
-                                        <tr role="row" class="odd">
-                                            <td class="text-center align-middle">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    aria-label="Select Provider">
-                                            </td>
-                                            <td class="align-middle">
-                                                <div class="d-flex gap-2 align-items-center">
-                                                    <div>
-                                                        <img width="50" height="50"
-                                                            src={{$provider['userdetail']['profile_pic']}}
-                                                            class="rounded-circle" alt="Provider Profile Image">
-                                                    </div>
-                                                    <div class="pt-2">
-                                                        <div class="font-family-secondary leading-none">{{$provider['name']}}</div>
-                                                        <a href="#"
-                                                            class="font-family-secondary"><small>{{$provider['email']}}</small></a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="text-center align-middle">
-                                                $00.00
-                                            </td>
-                                            <td class="text-center align-middle">
-                                                10
-                                            </td>
-                                            <td class="text-center align-middle">
-                                                10
-                                            </td>
-                                            <td class="text-center align-middle">
-                                                Direct Deposit
-                                            </td>
-                                            <td class="align-middle">
-                                                <div class="d-flex actions justify-content-center">
-                                                    <a href="/chat/{{ $provider['id'] }}" title="Chat" aria-label="Chat"
-                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                        <svg aria-label="Chat" width="20" height="20" viewBox="0 0 20 20" fill="none"
-									                    	xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#chat"></use>
-								                     	</svg>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                            <td class="align-middle">
-                                                <div class="d-flex actions justify-content-center">
-                                                    <a href="javascript:void(0)" @click="remittanceGeneratorBooking = true"
-                                                        title="Booking" aria-label="Booking" class="btn btn-hs-icon p-0">
-                                                        <svg aria-label="Bookings" class="fill-stroke" width="12" height="15" viewBox="0 0 12 14" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#bookings"></use>
-                                                        </svg>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @empty
-                                        No Record Available
-                                    @endforelse
-                                    {{-- <tr role="row" class="even">
-                                        <td class="text-center align-middle">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                aria-label="Select Provider">
-                                        </td>
-                                        <td class="align-middle">
-                                            <div class="d-flex gap-2 align-items-center">
-                                                <div>
-                                                    <img width="50" height="50"
-                                                        src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                                        class="rounded-circle" alt="Provider Profile Image">
-                                                </div>
-                                                <div class="pt-2">
-                                                    <div class="font-family-secondary leading-none">Dori Griffiths</div>
-                                                    <a href="#"
-                                                        class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="text-center align-middle">
-                                            $00.00
-                                        </td>
-                                        <td class="text-center align-middle">
-                                            10
-                                        </td>
-                                        <td class="text-center align-middle">
-                                            10
-                                        </td>
-                                        <td class="text-center align-middle">
-                                            Direct Deposit
-                                        </td>
-                                        <td class="align-middle">
-                                            <div class="d-flex actions justify-content-center">
-                                                <a href="#" title="Chat" aria-label="Chat"
-                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <svg aria-label="Chat" width="20" height="20" viewBox="0 0 20 20" fill="none"
-									                	xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#chat"></use>
-								                 	</svg>
-                                                </a>
-                                            </div>
-                                        </td>
-                                        <td class="align-middle">
-                                            <div class="d-flex actions justify-content-center">
-                                                <a href="javascript:void(0)" @click="remittanceGeneratorBooking = true"
-                                                    title="Booking" aria-label="Booking" class="btn btn-hs-icon p-0">
-                                                    <svg aria-label="Bookings" class="fill-stroke" width="12" height="15" viewBox="0 0 12 14" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#bookings"></use>
-                                                    </svg>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr role="row" class="odd">
-                                        <td class="text-center align-middle">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                aria-label="Select Provider">
-                                        </td>
-                                        <td class="align-middle">
-                                            <div class="d-flex gap-2 align-items-center">
-                                                <div>
-                                                    <img width="50" height="50"
-                                                        src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                                        class="rounded-circle" alt="Provider Profile Image">
-                                                </div>
-                                                <div class="pt-2">
-                                                    <div class="font-family-secondary leading-none">Dori Griffiths</div>
-                                                    <a href="#"
-                                                        class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="text-center align-middle">
-                                            $00.00
-                                        </td>
-                                        <td class="text-center align-middle">
-                                            10
-                                        </td>
-                                        <td class="text-center align-middle">
-                                            10
-                                        </td>
-                                        <td class="text-center align-middle">
-                                            Direct Deposit
-                                        </td>
-                                        <td class="align-middle">
-                                            <div class="d-flex actions justify-content-center">
-                                                <a href="#" title="Chat" aria-label="Chat"
-                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <svg aria-label="Chat" width="20" height="20" viewBox="0 0 20 20" fill="none"
-									                	xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#chat"></use>
-								                 	</svg>
-                                                </a>
-                                            </div>
-                                        </td>
-                                        <td class="align-middle">
-                                            <div class="d-flex actions justify-content-center">
-                                                <a href="javascript:void(0)" @click="remittanceGeneratorBooking = true"
-                                                    title="Booking" aria-label="Booking" class="btn btn-hs-icon p-0">
-                                                    <svg aria-label="Bookings" class="fill-stroke" width="12" height="15" viewBox="0 0 12 14" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#bookings"></use>
-                                                    </svg>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr role="row" class="even">
-                                        <td class="text-center align-middle">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                aria-label="Select Provider">
-                                        </td>
-                                        <td class="align-middle">
-                                            <div class="d-flex gap-2 align-items-center">
-                                                <div>
-                                                    <img width="50" height="50"
-                                                        src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                                        class="rounded-circle" alt="Provider Profile Image">
-                                                </div>
-                                                <div class="pt-2">
-                                                    <div class="font-family-secondary leading-none">Dori Griffiths</div>
-                                                    <a href="#"
-                                                        class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="text-center align-middle">
-                                            $00.00
-                                        </td>
-                                        <td class="text-center align-middle">
-                                            10
-                                        </td>
-                                        <td class="text-center align-middle">
-                                            10
-                                        </td>
-                                        <td class="text-center align-middle">
-                                            Direct Deposit
-                                        </td>
-                                        <td class="align-middle">
-                                            <div class="d-flex actions justify-content-center">
-                                                <a href="#" title="Chat" aria-label="Chat"
-                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <svg aria-label="Chat" width="20" height="20" viewBox="0 0 20 20" fill="none"
-									                	xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#chat"></use>
-								                 	</svg>
-                                                </a>
-                                            </div>
-                                        </td>
-                                        <td class="align-middle">
-                                            <div class="d-flex actions justify-content-center">
-                                                <a href="javascript:void(0)" @click="remittanceGeneratorBooking = true"
-                                                    title="Booking" aria-label="Booking" class="btn btn-hs-icon p-0">
-                                                    <svg aria-label="Bookings" class="fill-stroke" width="12" height="15" viewBox="0 0 12 14" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#bookings"></use>
-                                                    </svg>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr role="row" class="odd">
-                                        <td class="text-center align-middle">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                aria-label="Select Provider">
-                                        </td>
-                                        <td class="align-middle">
-                                            <div class="d-flex gap-2 align-items-center">
-                                                <div>
-                                                    <img width="50" height="50"
-                                                        src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                                        class="rounded-circle" alt="Provider Profile Image">
-                                                </div>
-                                                <div class="pt-2">
-                                                    <div class="font-family-secondary leading-none">Dori Griffiths</div>
-                                                    <a href="#"
-                                                        class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="text-center align-middle">
-                                            $00.00
-                                        </td>
-                                        <td class="text-center align-middle">
-                                            10
-                                        </td>
-                                        <td class="text-center align-middle">
-                                            10
-                                        </td>
-                                        <td class="text-center align-middle">
-                                            Direct Deposit
-                                        </td>
-                                        <td class="align-middle">
-                                            <div class="d-flex actions justify-content-center">
-                                                <a href="#" title="Chat" aria-label="Chat"
-                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <svg aria-label="Chat" width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#chat"></use>
-                                                 </svg>
-                                                </a>
-                                            </div>
-                                        </td>
-                                        <td class="align-middle">
-                                            <div class="d-flex actions justify-content-center">
-                                                <a href="javascript:void(0)" @click="remittanceGeneratorBooking = true"
-                                                    title="Booking" aria-label="Booking" class="btn btn-hs-icon p-0">
-                                                    <svg aria-label="Bookings" class="fill-stroke" width="12" height="15" viewBox="0 0 12 14" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#bookings"></use>
-                                                    </svg>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                   
                                     <tr role="row" class="even">
                                         <td class="text-center align-middle">
                                             <input class="form-check-input" type="checkbox" value=""
@@ -470,33 +197,16 @@
                                                 </a>
                                             </div>
                                         </td>
-                                    </tr> --}}
+                                    </tr>
                                 </tbody>
-                            </table>
-                        </div>
+                            </table> 
+                        </div>--}}
+                                    @livewire('app.common.lists.draft-remittances')
+
                     </div>
                 </div>
 
-                <!-- Hoverable rows end -->
-                <div class="d-flex flex-column flex-md-row justify-content-between">
-                    <div class="col-auto overflow-auto my-sm-2 my-md-0 ms-sm-0">
-                        <div class="d-flex flex-lg-row align-items-center">
-                            <label class="w-auto">
-                                <select wire:model="limit" class="form-select form-select-sm"
-                                    id="limit">
-                                    <option>10</option>
-                                    <option>25</option>
-                                    <option>50</option>
-                                    <option>100</option>
-                                </select>
-                            </label>
-                            <small class="ms-2 text-muted">
-                                Records per page
-                            </small>
-                        </div>
-                    </div>
-                    {{ $providers->links('livewire.app.common.bookings.booking-nav') }}
-                </div>
+            
                 {{-- icon legend bar start --}}
                 <div class="d-flex actions gap-3 justify-content-md-end mb-2">
                     <div class="d-flex gap-2 align-items-center">
