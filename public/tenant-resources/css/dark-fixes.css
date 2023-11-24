@@ -4,7 +4,7 @@ h3,
 h4,
 h5,
 h6 {
-    color: #d0d2d6;
+    color: #d0d2d6 !important;
 }
 a,
 a .time-date.none {
@@ -1770,4 +1770,20 @@ select.form-control{
 
 .text-black{
     color: darkgray !important;
+}
+
+.swal-modal{
+    background: #283046;
+}
+
+.swal-icon.swal-icon--success{
+    background: #283046;
+}
+
+.swal-title, .swal-text{
+    color: white;
+}
+
+.swal-icon--success:before,.swal-icon--success:after, .swal-icon--success__hide-corners{
+    background: none;
 }
