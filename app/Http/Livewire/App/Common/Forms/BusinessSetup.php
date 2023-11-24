@@ -16,7 +16,7 @@ class BusinessSetup extends Component
     use WithFileUploads;
 
 	public $component = 'configuration-setting';
-	public $showForm, $configuration, $company_logo, $login_screen;
+	public $showForm, $configuration, $company_logo, $login_screen, $dark_company_logo;
     public $staffProviders=[], $contractProviders = [];
         
 	protected $listeners = ['showList'=>'resetForm'];
@@ -33,6 +33,7 @@ class BusinessSetup extends Component
             'configuration.dark_foreground_colour' => ['required'],
             'configuration.portal_url' => ['nullable','max:255'],
             'configuration.company_logo' => ['nullable'],
+            'configuration.dark_company_logo' => ['nullable'],
             'configuration.login_screen' => ['nullable'],
             'configuration.welcome_text' => ['nullable'],
             'configuration.notification_email' => ['nullable', 'max:255','email'],
@@ -76,6 +77,7 @@ class BusinessSetup extends Component
 
             'login_screen' => 'nullable|image|mimes:png,jpg,jpeg,gif,bmp,svg',
             'company_logo' => 'nullable|image|mimes:png,jpg,jpeg,gif,bmp,svg',
+            'dark_company_logo' => 'nullable|image|mimes:png,jpg,jpeg,gif,bmp,svg',
 
 
         ];
@@ -201,6 +203,9 @@ class BusinessSetup extends Component
 
         if($this->company_logo)
         $this->configuration->company_logo = $fileService->saveFile('setup', $this->company_logo, $this->configuration->company_logo);
+        
+        if($this->dark_company_logo)
+        $this->configuration->dark_company_logo = $fileService->saveFile('setup', $this->dark_company_logo, $this->configuration->dark_company_logo);
 
         if ($this->login_screen)
         $this->configuration->login_screen = $fileService->saveFile('setup', $this->login_screen, $this->configuration->login_screen);;
@@ -256,6 +261,7 @@ class BusinessSetup extends Component
 
             $this->configuration->save();
         session(['company_logo'=>$this->configuration->company_logo]);
+        session(['dark_company_logo'=>$this->configuration->dark_company_logo]);
 
         AnnouncementMessage::truncate();
         foreach($this->messages as $m){
