@@ -9,8 +9,8 @@ use Livewire\Component;
 class Remittance extends Component
 {
 	use WithPagination;
-	public $showForm, $limit = 10;
-	protected $listeners = ['showList' => 'resetForm'];
+	public $showForm, $limit = 10, $providerId=null,$counter=0;
+	protected $listeners = ['showList' => 'resetForm', 'openRemittanceGeneratorPanel'];
 
 	function showForm()
 	{
@@ -27,20 +27,18 @@ class Remittance extends Component
 
 	public function render()
 	{
-		return view('livewire.app.admin.provider.remittance',['providers' => $this->fetchData()]);
+		return view('livewire.app.admin.provider.remittance');
 	}
 
-	public function fetchData()
-	{
-		$providers = User::where('status',1)->whereHas('roles', function ($query) {
-			$query->where('role_id', 2);
-		}) 
-		->with(['userdetail' => function ($query) {
-			$query->select('user_id', \DB::raw("COALESCE(profile_pic, '/tenant-resources/images/portrait/small/avatar-s-20.jpg') AS profile_pic"));
-		}])
-		->select('id', 'name', 'email')
-		->paginate($this->limit);
-
-		return $providers;
+	public function openRemittanceGeneratorPanel($providerId){
+		if ($this->counter == 0) {
+			$this->providerId = 0;
+			$this->dispatchBrowserEvent('open-provider-remittances', ['providerId' => $providerId]);
+			$this->counter = 1;
+		} else {
+			$this->providerId = $providerId;
+			$this->counter = 0;
+		}
 	}
+
 }
