@@ -1802,3 +1802,7 @@ select.form-control{
 .bg-light{
     background-color: #343d55 !important;
 }
+
+nav[aria-label="Page Navigation"]{
+    overflow: auto;
+}
