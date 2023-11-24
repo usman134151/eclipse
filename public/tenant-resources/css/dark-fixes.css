@@ -364,7 +364,7 @@ select.form-select:not([multiple="multiple"]) {
 
 .table thead tr th,
 .table tfoot tr th {
-    background-color: #343d55 !important;
+    background-color: #49536c  !important;
     border-color: white !important;
     color: #d0d2d6 !important;
 }
@@ -433,7 +433,7 @@ svg.me-1 path {
 
 .table.table-hover tbody tr th,
 .table.table-hover tbody tr td {
-    background-color: unset;
+    background-color: #49536c !important;
 }
 
 .table.table-striped tbody tr:nth-of-type(odd) {
@@ -1748,4 +1748,11 @@ input[type="radio"].form-check-input:checked {
 #collapseAssignmentNo{
     background: #343d55;
     color: whitesmoke;
+}
+
+.invalid-feedback{
+    color: #ff4343;
+}
+.table-responsive{
+    background-color: white;
 }
