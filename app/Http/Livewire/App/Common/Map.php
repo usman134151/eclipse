@@ -59,7 +59,7 @@ class Map extends Component
     }
 
     $locations = null;
-        if ($this->bookingFilter || $this->selectedAddress || $this->selectDate) {
+        // if ($this->bookingFilter || $this->selectedAddress || $this->selectDate) {
             $locations = $query->select([
                 'bookings.id',
                 'bookings.booking_number',
@@ -73,7 +73,7 @@ class Map extends Component
                 'user_addresses.country',
                 'user_addresses.zip',
             ])->get();
-        }
+        // }
 
         $locationsArray = [];
         if($locations) {
