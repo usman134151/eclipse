@@ -866,7 +866,7 @@
   
    .table thead tr th,
    .table tfoot tr th {
-    background-color: #343d55 !important;
+    background-color: #343d55;
     border-color: white !important;
     color: #d0d2d6 !important; }
   
