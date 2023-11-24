@@ -4,10 +4,12 @@
         <ul class="nav navbar-nav flex-row">
           <li class="nav-item me-auto">
             <a class="navbar-brand" href="/admin/dashboard" aria-label="Eclipse Scheduling Brand Logo">
-              <span class="brand-logo">
-                @if(session()->has('company_logo') && session()->get('company_logo')!=null)
-                  <img src="{{session()->get('company_logo')}}" alt="">
-                @else
+            @if(session()->has('company_logo') && session()->get('company_logo')!=null)
+              
+            <span class="brand-logo">
+                  <img src="{{session()->get('company_logo')}}" alt="" style="max-width:90%"></span>
+                @elseif (session()->has('theme') && !session('theme'))
+                <span class="brand-logo">
                 <svg aria-label="Eclipse Scheduling Logo" height="38" viewBox="0 0 49 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M24.596 0.0127934C23.5834 0.128856 22.932 0.341638 22.2096 0.799441C20.0361 2.17285 19.2944 4.95836 20.4811 7.27317C21.1777 8.63368 22.3966 9.54929 23.9381 9.86524C26.06 10.3037 28.3303 9.19465 29.3236 7.22158C29.7234 6.43494 29.8202 5.97068 29.8137 4.93901C29.8137 4.05565 29.8008 3.97182 29.6073 3.43665C29.1172 2.06324 28.311 1.14763 27.0468 0.52218C26.3245 0.167544 25.2538 -0.0581339 24.596 0.0127934Z" fill="black"/>
                   <path d="M35.2505 2.06994C35.3343 2.31496 35.3601 2.6567 35.3601 3.52072C35.3666 4.52015 35.3472 4.70714 35.2182 5.16495C35.0248 5.81619 34.5152 6.8543 34.1411 7.35079C33.6445 8.02138 31.8386 9.89128 28.33 13.3861L24.9375 16.7712L24.9826 17.8996C25.0794 20.4788 25.189 22.4776 25.2213 22.5099C25.2664 22.5615 31.7032 17.2032 32.4255 16.5133C33.4381 15.5526 35.5407 13.3022 35.9535 12.7477C37.2305 11.0326 37.8948 8.77579 37.7143 6.75758C37.5659 5.10047 36.8113 3.46914 35.6181 2.23758L35.1473 1.74754L35.2505 2.06994Z" fill="black"/>
@@ -29,7 +31,7 @@
                     </radialGradient>
                   </defs>
                 </svg>
-                @endif
+              
               </span>
               <h2 class="brand-text align-self-center">
                 <svg aria-label="Eclipse Scheduling Logo" width="124" height="19" viewBox="0 0 124 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -42,6 +44,10 @@
                   <path d="M106.844 9.5086V18.3745H114.861H122.878L123.413 16.582C123.716 15.6019 123.968 14.7572 123.987 14.7121C124.006 14.6541 122.697 14.6347 117.557 14.6347H111.101V13.0227V11.4107H116.583H122.065V9.54084V7.67094H116.583H111.101V6.02672V4.3825H116.989H122.884L123.013 3.94404C123.484 2.40298 124 0.687832 124 0.668489C124 0.655592 120.143 0.642696 115.422 0.642696H106.844V9.5086Z" fill="black"/>
                 </svg>
               </h2>
+              @else
+              <span class="brand-logo"><img src="/tenant-resources/images/dark-logo-text.svg"></span>
+              <h2 class="brand-text align-self-center"><img src="/tenant-resources/images/dark-logo-icon.svg"></h2>  
+              @endif
             </a>
           </li>
           <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pe-0" data-bs-toggle="collapse"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x d-block d-xl-none text-primary toggle-icon font-medium-4"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-disc d-none d-xl-block collapse-toggle-icon primary font-medium-4"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="3"></circle></svg></a></li>
