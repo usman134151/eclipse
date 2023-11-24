@@ -1,4 +1,4 @@
-<div x-data="{ remittanceGeneratorBooking: false, issueRemittance: false, addNewPayment: false,  addReimbursement: false}">
+<div x-data="{ remittanceGeneratorBooking: false, issueRemittance: false, addNewPayment: false, addReimbursement: false }">
     <div id="loader-section" class="loader-section" wire:loading>
         <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
             <div class="spinner-border" role="status" aria-live="polite">
@@ -44,50 +44,59 @@
                                 <label class="form-label-sm" for="search-column">Search</label>
                                 <div class="d-flex gap-2 align-items-center">
                                     <div class="position-relative">
-                                        <input type="text" class="form-control form-control-md is-search" id="search-column" aria-describedby="search-column" placeholder="Provider Name or Email">
-                                        <svg aria-label="Cancel" class="icon-search position-absolute" width="1024" height="1024" viewBox="0 0 1024 1024"fill="none"
-										xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#cancel"></use>
-										</svg>
+                                        <input type="text" class="form-control form-control-md is-search"
+                                            id="search-column" aria-describedby="search-column"
+                                            placeholder="Provider Name or Email">
+                                        <svg aria-label="Cancel" class="icon-search position-absolute" width="1024"
+                                            height="1024" viewBox="0 0 1024 1024"fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <use xlink:href="/css/common-icons.svg#cancel"></use>
+                                        </svg>
                                     </div>
                                     <button class="btn btn-secondary rounded btn-sm btn-hs-icon">
-                                        <svg aria-label="Search" class="mt-2" width="20" height="28" viewBox="0 0 20 28"fill="none"
-										xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#search"></use>
-										</svg>
+                                        <svg aria-label="Search" class="mt-2" width="20" height="28"
+                                            viewBox="0 0 20 28"fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <use xlink:href="/css/common-icons.svg#search"></use>
+                                        </svg>
                                     </button>
                                 </div>
                             </div>
                             <div class="mb-4 mb-lg-0">
                                 <label class="form-label-sm">Date Range</label>
-                                <div class="d-md-flex gap-2" >
+                                <div class="d-md-flex gap-2">
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="dateRange" id="issued">
                                         <label class="form-check-label-sm" for="issued">
-                                        Issued
+                                            Issued
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="dateRange" id="scheduledPayment">
+                                        <input class="form-check-input" type="radio" name="dateRange"
+                                            id="scheduledPayment">
                                         <label class="form-check-label-sm" for="scheduledPayment">
-                                        Scheduled Payment
+                                            Scheduled Payment
                                         </label>
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="dateRange" id="piad">
                                         <label class="form-check-label-sm" for="piad">
-                                        Paid
+                                            Paid
                                         </label>
                                     </div>
                                 </div>
                                 <div class="mb-4 mb-lg-0 position-relative has-date-icon-left-side">
-                                    <svg aria-label="Select Date" class="icon-date md left cursor-pointer" width="20" height="20" viewBox="0 0 20 20"fill="none"
-										xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#input-calender"></use>
-									</svg>
-                                    <input type="" class="form-control form-control-md js-single-date" placeholder="MM/DD/YYYY" name="selectDate" aria-label="Select Date">
+                                    <svg aria-label="Select Date" class="icon-date md left cursor-pointer"
+                                        width="20" height="20" viewBox="0 0 20 20"fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <use xlink:href="/css/common-icons.svg#input-calender"></use>
+                                    </svg>
+                                    <input type="" class="form-control form-control-md js-single-date"
+                                        placeholder="MM/DD/YYYY" name="selectDate" aria-label="Select Date">
                                 </div>
                             </div>
                             <div class="mb-4 mb-lg-0">
                                 <label class="form-label-sm" for="payment-status-column">
-                                Payment Status
+                                    Payment Status
                                 </label>
                                 <select class="select2 form-select form-select-md" id="payment-status-column">
                                     <option>Pending</option>
@@ -95,7 +104,7 @@
                             </div>
 
                         </div>
-                        <x-advancefilters/>
+                        <x-advancefilters />
                     </div>
                     <!-- END: Filters -->
                     <div class="form-check">
@@ -106,12 +115,12 @@
                     </div>
                 </div>
                 <div class="d-flex flex-column flex-md-row justify-content-end mb-2 gap-2 align-items-center">
-                 
+
                     <div class="">
                         <a href="javascript:void(0)" @click="addNewPayment = true"
                             class="btn btn-primary btn-sm px-4 btn-has-icon rounded">
-                            <svg aria-label="Add Payment" width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
+                            <svg aria-label="Add Payment" width="20" height="20" viewBox="0 0 20 20"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd"
                                     d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z"
                                     fill="white"></path>
@@ -200,21 +209,22 @@
                                     </tr>
                                 </tbody>
                             </table> 
-                        </div>--}}
-                                    @livewire('app.common.lists.draft-remittances')
+                        </div> --}}
+                        @livewire('app.common.lists.draft-remittances')
 
                     </div>
                 </div>
 
-            
+
                 {{-- icon legend bar start --}}
                 <div class="d-flex actions gap-3 justify-content-md-end mb-2">
                     <div class="d-flex gap-2 align-items-center">
                         <a href="#" title="Edit Provider" aria-label="Edit Provider"
                             class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                            <svg aria-label="Bookings" class="fill-stroke" width="12" height="15" viewBox="0 0 12 14" fill="none"
-                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#bookings"></use>
-                             </svg>
+                            <svg aria-label="Bookings" class="fill-stroke" width="12" height="15"
+                                viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <use xlink:href="/css/common-icons.svg#bookings"></use>
+                            </svg>
                         </a>
                         <span class="text-sm">
                             Booking
@@ -247,9 +257,9 @@
     @include('panels.common.add-reimbursement')
 </div>
 <script>
-	function updateVal(attrName,val){
+    function updateVal(attrName, val) {
 
-		Livewire.emit('updateVal', attrName, val);
+        Livewire.emit('updateVal', attrName, val);
 
-	}
+    }
 </script>

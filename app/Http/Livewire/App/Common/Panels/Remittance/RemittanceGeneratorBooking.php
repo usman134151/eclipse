@@ -2,11 +2,12 @@
 
 namespace App\Http\Livewire\App\Common\Panels\Remittance;
 
+use App\Models\Tenant\User;
 use Livewire\Component;
 
 class RemittanceGeneratorBooking extends Component
 {
-    public $showForm;
+    public $showForm, $provider;
     protected $listeners = ['showList' => 'resetForm'];
 
     public function render()
@@ -14,9 +15,9 @@ class RemittanceGeneratorBooking extends Component
         return view('livewire.app.common.panels.remittance.remittance-generator-booking');
     }
 
-    public function mount()
+    public function mount($providerId)
     {
-       
+       $this->provider = User::where('id',$providerId)->with('userdetail')->first();
        
     }
 

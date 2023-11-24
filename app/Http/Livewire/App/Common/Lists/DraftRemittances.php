@@ -146,7 +146,7 @@ final class DraftRemittances extends PowerGridComponent
             ->addColumn('next', function (User $modal) {
                 return '
 				<div class="d-flex actions justify-content-center">
-					<a  @click="remittanceGeneratorBooking = true" title="Booking" aria-label="Booking" class="btn btn-hs-icon p-0">
+					<a  @click="remittanceGeneratorBooking = true"  wire:click="$emit(\'openRemittanceGeneratorPanel\',\'' . $modal->id . '\')" title="Generate Remittance" aria-label="Booking" class="btn btn-hs-icon p-0">
 						<svg aria-label="Bookings" class="fill-stroke" width="12" height="15" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<use xlink:href="/css/common-icons.svg#bookings"></use>
 						</svg>
@@ -180,7 +180,7 @@ final class DraftRemittances extends PowerGridComponent
             // Column::make('No. OF Invoices', 'invoices'),
             Column::make('Pending Bookings', 'pending_bookings'),
             Column::make('PREFERRED PAYMENT METHOD', 'method'),
-            Column::make('<svg width="12" height="15" viewBox="0 0 12 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            Column::make('<svg  width="12" height="15" viewBox="0 0 12 15" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path d="M5.875 1L10.75 7.5L5.875 14" stroke="white" stroke-width="1.625" stroke-linecap="round" stroke-linejoin="round"/>
 								<path d="M1 1L5.875 7.5L1 14" stroke="white" stroke-width="1.625" stroke-linecap="round" stroke-linejoin="round"/>
 							</svg>', 'next',)
