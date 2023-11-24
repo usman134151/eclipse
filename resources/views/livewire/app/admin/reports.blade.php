@@ -852,6 +852,7 @@
 	                                <canvas id="jsChartTopProviders" style="width:100%;"></canvas>
 	                            </div>
 	                            <div class="row">
+									@if($topProviders != null)
 									@forelse ($topProviders as $topProvider)
 										<div class="col-md-6 mb-2">
 	                                	    <div class="text-sm">{{$topProvider}}</div>
@@ -866,6 +867,7 @@
 									@empty
 										No Data Available
 									@endforelse
+									@endif
 	                                <div class="col-md-6 mb-2">
 	                                    <div class="fw-semibold text-sm">Total Payments</div>
 	                                </div>
