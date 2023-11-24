@@ -353,6 +353,7 @@ select.form-select:not([multiple="multiple"]) {
 .table tbody tr:not([class*="table-"]) td {
     border-color: #3b4253;
     color: #fff !important;
+    background: #5c6373;
 }
 
 .table .thead tr:not([class*="table-"]) th code,
@@ -1786,4 +1787,18 @@ select.form-control{
 
 .swal-icon--success:before,.swal-icon--success:after, .swal-icon--success__hide-corners{
     background: none;
+}
+
+.swal-button.swal-button--cancel {
+    background-color: transparent !important;
+    color: darkgray!important;
+    border: 2px solid darkgray !important;
+}
+
+.show{
+    display:contents;
+}
+
+.bg-light{
+    background-color: #343d55 !important;
 }
