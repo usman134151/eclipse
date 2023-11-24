@@ -290,6 +290,60 @@
                                             <div class="col-md-7 col-lg-5">
                                                 <div class="row">
                                                     <div class="col-lg-12">
+                                                        <label class="form-label" for="add-dark-company-logo"> Add Company
+                                                            Dark Theme Logo</label>
+                                                        <input aria-label="Dark Company Logo" type="file"
+                                                            name="" accept="image/*"
+                                                            wire:model.defer="dark_company_logo" class="form-control"
+                                                            placeholder="Name">
+                                                        @error('dark_company_logo')
+                                                            <span class="d-inline-block invalid-feedback mt-2">
+                                                                {{ $message }}
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="col-md-3 col-lg-6 mb-4 align-self-end ps-lg-5 position-relative">
+                                                @if ($dark_company_logo != null)
+                                                    <img class="user_img w-50"
+                                                        src="{{ '/tenant' . tenant('id') . '/app/livewire-tmp/' . $dark_company_logo->getFilename() }}">
+                                                    <div class="position-absolute top-0">
+                                                        <a wire:click.prevent="deleteFile('dark_company_logo')"
+                                                            href="#" title="Delete" aria-label="Delete"
+                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon mx-0">
+                                                            <svg aria-label="Delete" class="delete-icon"
+                                                                width="20" height="20" viewBox="0 0 20 20"
+                                                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <use xlink:href="/css/sprite.svg#delete-icon">
+                                                                </use>
+                                                            </svg>
+                                                        </a>
+                                                    </div>
+                                                @elseif($configuration->dark_company_logo != null && $configuration->dark_company_logo != '')
+                                                    <img class="user_img w-50"
+                                                        src="{{ $configuration->dark_company_logo == null ? '' : url($configuration->dark_company_logo) }}">
+                                                    <div class="position-absolute top-0">
+                                                        <a wire:click.prevent="deleteFile('dark_company_logo')"
+                                                            href="#" title="Delete" aria-label="Delete"
+                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon mx-0">
+                                                            <svg aria-label="Delete" class="delete-icon"
+                                                                width="20" height="20" viewBox="0 0 20 20"
+                                                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <use xlink:href="/css/sprite.svg#delete-icon">
+                                                                </use>
+                                                            </svg>
+                                                        </a>
+                                                    </div>
+                                                @endif
+
+                                            </div>
+                                        </div>
+                                        <div class="row inner-section-segment-spacing">
+                                            <div class="col-md-7 col-lg-5">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
                                                         <h3 class="mb-3">Login Screen Image</h3>
                                                     </div>
                                                     <div class="col-lg-12">
