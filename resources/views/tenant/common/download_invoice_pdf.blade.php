@@ -63,6 +63,7 @@
                         <div class="flex justify-between gap-10">
                             <div></div>
                             <div class="items-end">
+                                <img src="{{$orderData['company_logo']}}" alt="Company Logo" width="80" height="80">
                                 <h3 class="">Invoice</h3>
                                 <div class="flex justify-between border-b border-black pb-3">
                                     <p class="pr-16">Invoice# {{ $orderData['invoice']->invoice_number }} </p>

@@ -61,7 +61,7 @@ final class CustomerInvoices extends PowerGridComponent
         $this->filter_companies = null;
         $this->filter_payment_status = null;
         $this->filter_select_Date = null;
-        $this->$filterRadio = null;
+        $this->filterRadio = null;
 
     }
   

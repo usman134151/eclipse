@@ -47,6 +47,7 @@ class PaymentsReceipts extends Component
             $bookings = Booking::whereIn('id', $invoice->bookings->pluck('id'))->get();
             $orderData['invoice'] = $invoice;
             $orderData['bookings'] = $bookings ?? [];
+            $orderData['company_logo'] = public_path($invoice->company->company_logo != null ? $invoice->company->company_logo : '/tenant-resources/images/portrait/small/avatar-s-20.jpg');
 
             $pdfContent = PDF::loadView('tenant.common.download_invoice_pdf', ['orderData' => $orderData])->output();
             return response()->streamDownload(
