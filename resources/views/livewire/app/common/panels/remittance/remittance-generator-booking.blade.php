@@ -1,4 +1,4 @@
-<div class="">
+<div class="" x-data="{issueRemittance: false}">
     <div class="bg-muted rounded p-4 mb-3">
         <div class="d-lg-flex gap-5 align-items-center mb-4">
             <div class="mb-4 mb-lg-0">
@@ -70,7 +70,7 @@
         <div class="col-lg-4 mb-4 mb-lg-0">
             <div class="row">
                 <div class="col-lg-4 mb-4 mb-lg-0">
-                    <img src="/tenant-resources/images/portrait/small/avatar-s-9.jpg" class="img-fluid rounded-circle"
+                    <img src="{{ $provider['userdetail']['profile_pic'] ? $provider['userdetail']['profile_pic'] :  '/tenant-resources/images/portrait/small/avatar-s-9.jpg'}}" class="img-fluid rounded-circle"
                         alt="Provider Image">
                 </div>
                 <div class="col-lg-8 align-self-center">
@@ -120,7 +120,7 @@
                     <thead>
                         <tr role="row">
                             <th scope="col" class="text-center align-middle">
-                                <input class="form-check-input" type="checkbox" value=""
+                                <input id="check-all" class="form-check-input" type="checkbox" value=""
                                     aria-label="Select All Teams">
                             </th>
                             <th scope="col" width="25%" class="align-middle">ID</th>
@@ -135,8 +135,9 @@
                             <tr role="row" class="">
                             <tr role="row" class="odd ivp">
                                 <td class="text-center align-middle">
-                                    <input class="form-check-input" type="checkbox" value=""
-                                        aria-label="Select Team">
+                                    <input class="form-check-input booking-checkbox" value="{{ $loop->index }}" wire:key='{{ $loop->index }}' 
+                                    wire:model.defer="selectedBookings" data-price="{{ $row['amount'] }}"
+                                             type="checkbox"      aria-label="Select Team">
                                 </td>
                                 <td class="align-middle">
                                     <a
@@ -291,7 +292,7 @@
             <div class="col-lg-4">
                 <div class="d-flex justify-content-between">
                     <div class="fw-bold text-sm">Booking Total</div>
-                    <div class="fw-bold text-sm text-lg-end">$675</div>
+                    <div  class="fw-bold text-sm text-lg-end"> $<span id="total-price"></span></div>
                 </div>
             </div>
         </div>
@@ -312,5 +313,43 @@
             </label>
         </div>
     </div>
+    <script>
+            $(document).ready(function() {
+            let totalPrice = 0;
+            updateTotalPrice();
+
+            $('.booking-checkbox').change(function() {
+                const price = parseFloat($(this).data('price'));
+
+                if ($(this).is(':checked')) {
+                    totalPrice += price;
+                } else {
+                    totalPrice -= price;
+                }
+                updateTotalPrice();
+            });
+
+            function updateTotalPrice() {
+                $('#total-price').text(totalPrice.toFixed(2)); // Format to two decimal places
+            }
+
+            $('#check-all').change(function() {
+                const isChecked = $(this).is(':checked');
+                $('.booking-checkbox').prop('checked', isChecked);
+
+                calculateTotalPrice();
+            });
+
+            function calculateTotalPrice() {
+                totalPrice = 0.00;
+
+                $('.booking-checkbox:checked').each(function() {
+                    const price = parseFloat($(this).data('price'));
+                    totalPrice += price;
+                });
+                updateTotalPrice();
+            }
+        });
+    </script>
 
 </div>
