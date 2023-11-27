@@ -340,9 +340,9 @@
             <button type="button"  x-on:click="createInvoices = !createInvoices" class="btn btn-outline-primary rounded">
                 Cancel
             </button>
-            <button type="submit" class="btn btn-primary rounded">
+            {{-- <button type="submit" class="btn btn-primary rounded">
                 Preview Invoices
-            </button>
+            </button> --}}
             <button type="submit"  x-on:close-create-invoice.window="createInvoices = !createInvoices;invoiceGeneratorbookings=!invoiceGeneratorbookings" class="btn btn-primary rounded" wire:click='createInvoice'>
                 Create
             </button>
