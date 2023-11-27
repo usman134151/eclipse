@@ -301,7 +301,7 @@
     <!-- /Total -->
     <div class="row justify-content-center mb-2">
         <div class="col-lg-3">
-            <a @click="issueRemittance = true" href="#" class="btn btn-primary rounded w-100">Add to
+            <a @click="issueRemittance = true" wire:click="addToRemittance" href="#" class="btn btn-primary rounded w-100">Add to
                 Remittance</a>
         </div>
     </div>

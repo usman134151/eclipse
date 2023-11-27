@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class RemittanceGeneratorBooking extends Component
 {
-    public $showForm, $provider, $data = [];
+    public $showForm, $provider, $data = [], $selectedBookings=[];
     protected $listeners = ['showList' => 'resetForm'];
 
     public function render()
@@ -31,6 +31,14 @@ class RemittanceGeneratorBooking extends Component
         //fetching unassociated reimbursements
         $reimbursements = BookingReimbursement::where(['provider_id' => $providerId, 'booking_id' => null, 'payment_status' => 0])->select(['id as reimbursement_id', 'reimbursement_number', 'amount', 'booking_id'])->get()->toArray();
         $this->data = array_merge($bookings, $reimbursements);
+    }
+
+    public function addToRemittance(){
+        $selectedRows =[];
+        foreach($this->selectedBookings as $index=> $rowIndex){
+            $selectedRows[$index] = $this->data[$rowIndex];
+        }
+        // dd($selectedRows);
     }
 
     function showForm()
