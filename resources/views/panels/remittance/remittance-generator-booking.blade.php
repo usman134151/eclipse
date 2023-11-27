@@ -18,7 +18,7 @@
         </div>
         <div class="row justify-content-center mb-2">
             <div class="col-lg-3">
-                <a x-on:create-remittance-panel.window="issueRemittance = true" wire:click="$emit('addToRemittance')"
+                <a x-on:open-issue-remittance-panel.window="issueRemittance = true" wire:click="$emit('addToRemittance')"
                     href="#" class="btn btn-primary rounded w-100">Add to
                     Remittance</a>
             </div>

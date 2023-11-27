@@ -6,8 +6,8 @@ use Livewire\Component;
 
 class IssueRemittance extends Component
 {
-    public $showForm;
-    protected $listeners = ['showList' => 'resetForm'];
+    public $showForm, $selectedRows=[];
+    protected $listeners = ['showList' => 'resetForm', 'issueRemittances'];
 
     public function render()
     {
@@ -16,7 +16,7 @@ class IssueRemittance extends Component
 
     public function mount()
     {
-       
+       dd($this->selectedRows);
        
     }
 

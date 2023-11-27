@@ -9,8 +9,8 @@ use Livewire\Component;
 class Remittance extends Component
 {
 	use WithPagination;
-	public $showForm, $limit = 10, $providerId=null,$counter=0;
-	protected $listeners = ['showList' => 'resetForm', 'openRemittanceGeneratorPanel'];
+	public $showForm, $limit = 10, $providerId=null,$counter=0, $rem_counter, $selectedBookings=[];
+	protected $listeners = ['showList' => 'resetForm', 'openRemittanceGeneratorPanel', 'openIssueRemitancesPanel'];
 
 	function showForm()
 	{
@@ -41,4 +41,18 @@ class Remittance extends Component
 		}
 	}
 
+	public function openIssueRemitancesPanel($selectedBookings)
+	{
+
+		if ($this->rem_counter == 0) {
+			$this->selectedBookings = [];
+			$this->dispatchBrowserEvent('refresh-issue-remittances', ['ids' => $selectedBookings]);
+			$this->rem_counter = 1;
+		} else {
+			$this->selectedBookings = $selectedBookings;
+			$this->rem_counter = 0;
+			$this->dispatchBrowserEvent('refreshSelects');
+			$this->dispatchBrowserEvent('refreshSelects2');
+		}
+	}
 }

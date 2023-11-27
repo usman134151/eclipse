@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class RemittanceGeneratorBooking extends Component
 {
-    public $showForm, $provider, $data = [], $selectedBookings=[];
+    public $showForm, $provider, $data = [], $selectedBookings = [], $showError = false;
     protected $listeners = ['showList' => 'resetForm', 'addToRemittance'];
 
     public function render()
@@ -33,12 +33,20 @@ class RemittanceGeneratorBooking extends Component
         $this->data = array_merge($bookings, $reimbursements);
     }
 
-    public function addToRemittance(){
-        $selectedRows =[];
-        foreach($this->selectedBookings as $index=> $rowIndex){
-            $selectedRows[$index] = $this->data[$rowIndex];
-        }
-        $this->dispatchBrowserEvent('create-remittance-panel');
+    public function addToRemittance()
+    {
+        if (count($this->selectedBookings)) {
+            $this->showError = false;
+
+
+            $selectedRows = [];
+            foreach ($this->selectedBookings as $index => $rowIndex) {
+                $selectedRows[$index] = $this->data[$rowIndex];
+            }
+            $this->dispatchBrowserEvent('open-issue-remittance-panel');
+            $this->emit('openIssueRemitancesPanel', $selectedRows);
+        } else
+            $this->showError = true;
         // dd($selectedRows);
     }
 

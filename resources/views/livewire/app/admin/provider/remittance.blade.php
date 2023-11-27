@@ -177,9 +177,9 @@
         @include('panels.remittance.issue-remittance')
         @include('panels.remittance.add-new-payment')
         @include('panels.common.add-reimbursement')
-        
-@include('modals.objection-remittance')
-@include('modals.accept-remittance')
+
+        @include('modals.objection-remittance')
+        @include('modals.accept-remittance')
     </div>
 
     <script>

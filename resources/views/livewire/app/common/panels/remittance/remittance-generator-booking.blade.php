@@ -277,6 +277,15 @@
             </ul>
         </nav>
     </div> --}}
+        <div class="text-center">
+
+            @if ($showError)
+                <div style="position: fixed;bottom: 48px;right: 44px;text-align: center;z-index:-10000">
+
+                    <span class="d-inline-block invalid-feedback my-1">No bookings or reimbursements are selected.</span>
+                </div>
+            @endif
+        </div>
 
 </div>
     <script>
