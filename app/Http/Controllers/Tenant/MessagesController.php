@@ -347,8 +347,29 @@ class MessagesController extends Controller
     {
         $getRecords = null;
         $input = trim(filter_var($request['input']));
-        $records = User::where('id', '!=', Auth::user()->id)
-            ->where('name', 'LIKE', "%{$input}%")
+        $records = User::where('id', '!=', Auth::user()->id);
+        
+        if(session()->get('isCustomer'))
+        {
+            $user = User::where('id', Auth::user()->id)->first();
+            $companyId = $user->company_name;
+            $records = $records->where(function($query) use ($companyId) {
+                $query->where('company_name', $companyId)
+                      ->orWhere('id', "1");
+            });
+        }
+
+        if(session()->get('isProvider'))
+        {
+            $records = $records->where(function ($query) {
+                $query->whereHas('roles', function ($subQuery) {
+                    $subQuery->where('role_id', 10);
+                })
+                ->orWhere('id', 1);
+            });
+        }
+
+        $records = $records->where('name', 'LIKE', "%{$input}%")
             ->paginate($request->per_page ?? $this->perPage);
         foreach ($records->items() as $record) {
             $getRecords .= view('Chatify::layouts.listItem', [
