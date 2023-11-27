@@ -1,4 +1,4 @@
-<div class="" x-data="{issueRemittance: false}">
+<div class="" id="issue_remittance">
     <div class="row mb-lg-4">
         <div class="col-lg-4 mb-4 mb-lg-0">
             <div class="row">

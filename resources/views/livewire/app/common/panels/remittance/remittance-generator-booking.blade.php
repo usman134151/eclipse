@@ -1,4 +1,4 @@
-<div class="" x-data="{issueRemittance: false}">
+<div class="" id="remittance_generator">
     <div class="bg-muted rounded p-4 mb-3">
         <div class="d-lg-flex gap-5 align-items-center mb-4">
             <div class="mb-4 mb-lg-0">
@@ -8,31 +8,25 @@
                         <input type="text" class="form-control form-control-md is-search" id="search"
                             aria-describedby="search" placeholder="Provider Name or Email">
 
-                        {{-- updated Sana to change x-icon to svg --}}
                         <svg aria-label="Cancel" class="icon-search position-absolute" width="1024" height="1024"
                             viewBox="0 0 1024 1024">
                             <use xlink:href="/css/common-icons.svg#cancel"></use>
                         </svg>
-                        {{-- end updated by Sana --}}
                     </div>
                     <button class="btn btn-secondary rounded btn-sm btn-hs-icon">
-                        {{-- updated Sana to change x-icon to svg --}}
                         <svg aria-label="Search" width="22" height="20" viewBox="0 0 22 20">
                             <use xlink:href="/css/common-icons.svg#search"></use>
                         </svg>
-                        {{-- end updated by Sana --}}
                     </button>
                 </div>
             </div>
             <div class="mb-4 mb-lg-0">
                 <label class="form-label-sm">Date Range</label>
                 <div class="mb-4 mb-lg-0 position-relative has-date-icon-left-side">
-                    {{-- updated Sana to change x-icon to svg --}}
                     <svg aria-label="Input-calender" class="icon-date md left cursor-pointer" width="20"
                         height="20" viewBox="0 0 20 20">
                         <use xlink:href="/css/common-icons.svg#input-calender"></use>
                     </svg>
-                    {{-- end updated by Sana --}}
                     <input type="" class="form-control form-control-md js-single-date" placeholder="MM/DD/YYYY"
                         name="selectDate" aria-label="Select Date">
                 </div>
@@ -40,12 +34,10 @@
             <div class="mb-4 mb-lg-0">
                 <label class="form-label-sm">scheduled payment</label>
                 <div class="mb-4 mb-lg-0 position-relative has-date-icon-left-side">
-                    {{-- updated Sana to change x-icon to svg --}}
                     <svg aria-label="Input-calender" class="icon-date md left cursor-pointer" width="20"
                         height="20" viewBox="0 0 20 20">
                         <use xlink:href="/css/common-icons.svg#input-calender"></use>
                     </svg>
-                    {{-- end updated by Sana --}}
                     <input type="" class="form-control form-control-md js-single-date" placeholder="MM/DD/YYYY"
                         aria-label="scheduled payment">
                 </div>
@@ -70,8 +62,8 @@
         <div class="col-lg-4 mb-4 mb-lg-0">
             <div class="row">
                 <div class="col-lg-4 mb-4 mb-lg-0">
-                    <img src="{{ $provider['userdetail']['profile_pic'] ? $provider['userdetail']['profile_pic'] :  '/tenant-resources/images/portrait/small/avatar-s-9.jpg'}}" class="img-fluid rounded-circle"
-                        alt="Provider Image">
+                    <img src="{{ $provider['userdetail']['profile_pic'] ? $provider['userdetail']['profile_pic'] : '/tenant-resources/images/portrait/small/avatar-s-9.jpg' }}"
+                        class="img-fluid rounded-circle" alt="Provider Image">
                 </div>
                 <div class="col-lg-8 align-self-center">
                     <div class="mb-2">
@@ -132,12 +124,11 @@
                     </thead>
                     <tbody>
                         @foreach ($data as $row)
-                            <tr role="row" class="">
                             <tr role="row" class="odd ivp">
                                 <td class="text-center align-middle">
-                                    <input class="form-check-input booking-checkbox" value="{{ $loop->index }}" wire:key='{{ $loop->index }}' 
-                                    wire:model.defer="selectedBookings" data-price="{{ $row['amount'] }}"
-                                             type="checkbox"      aria-label="Select Team">
+                                    <input class="form-check-input booking-checkbox" value="{{ $loop->index }}"
+                                        wire:key='{{ $loop->index }}' wire:model.defer="selectedBookings"
+                                        data-price="{{ $row['amount'] }}" type="checkbox" aria-label="Select Team">
                                 </td>
                                 <td class="align-middle">
                                     <a
@@ -192,7 +183,7 @@
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path
                                                         d="M11.0201 1.12891C5.52343 1.12891 1.07983 5.58648 1.07983 11.1003C1.07983 16.6135 5.52343 21.0711 11.0201 21.0711C16.5168 21.0711 20.9611 16.6135 20.9611 11.1003C20.9611 5.58648 16.5168 1.12891 11.0201 1.12891ZM11.0201 19.898C6.19607 19.898 2.24917 15.939 2.24917 11.1003C2.24917 9.25264 2.83352 7.52245 3.79897 6.1143L17.5109 16.9946C15.9033 18.7839 13.5932 19.898 11.0201 19.898ZM18.2419 16.0857L4.5294 5.20538C6.13763 3.41676 8.44772 2.30205 11.0201 2.30205C15.8442 2.30205 19.7917 6.26102 19.7917 11.1003C19.7917 12.948 19.2067 14.6782 18.2419 16.0857Z" />
-                                                    </g>
+
                                                 </svg>
                                             </a>
                                         @endif
@@ -292,19 +283,14 @@
             <div class="col-lg-4">
                 <div class="d-flex justify-content-between">
                     <div class="fw-bold text-sm">Booking Total</div>
-                    <div  class="fw-bold text-sm text-lg-end"> $<span id="total-price"></span></div>
+                    <div class="fw-bold text-sm text-lg-end"> $<span id="total-price"></span></div>
                 </div>
             </div>
         </div>
 
     </div>
     <!-- /Total -->
-    <div class="row justify-content-center mb-2">
-        <div class="col-lg-3">
-            <a @click="issueRemittance = true" wire:click="addToRemittance" href="#" class="btn btn-primary rounded w-100">Add to
-                Remittance</a>
-        </div>
-    </div>
+
     <div class="justify-content-center d-flex mb-4">
         <div class="form-check mx-auto">
             <input class="form-check-input" type="checkbox" value="" id="ExcludeNotification">
@@ -313,8 +299,11 @@
             </label>
         </div>
     </div>
+
+</div>
+@push('scripts')
     <script>
-            $(document).ready(function() {
+        $(document).ready(function() {
             let totalPrice = 0;
             updateTotalPrice();
 
@@ -351,5 +340,4 @@
             }
         });
     </script>
-
-</div>
+@endpush

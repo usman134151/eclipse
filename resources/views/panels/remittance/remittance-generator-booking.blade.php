@@ -4,6 +4,12 @@
     @if ($providerId)
         @livewire('app.common.panels.remittance.remittance-generator-booking', ['providerId'=>$providerId])
     @endif
+    <div class="row justify-content-center mb-2">
+        <div class="col-lg-3">
+            <a x-on:create-remittance-panel.window="issueRemittance = true"  wire:click="$emit('addToRemittance')" href="#" class="btn btn-primary rounded w-100">Add to
+                Remittance</a>
+        </div>
+    </div>
 </x-off-canvas>
 @include('modals.objection-remittance')
 @include('modals.accept-remittance')
