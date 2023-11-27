@@ -135,7 +135,7 @@
                                         aria-label="Select Team">
                                 </td>
                                 <td class="align-middle">
-                                    <a href="javascript:void(0)">{{isset($row['reimbursement_id']) ? $row['reimbursement_id'] : $row['booking']['booking_number']}}</a>
+                                    <a href="javascript:void(0)">{{isset($row['reimbursement_id']) ? $row['reimbursement_number'] : $row['booking']['booking_number']}}</a>
                                 </td>
                                 <td class="text-center align-middle">
                                     {{isset($row['reimbursement_id']) ? "Reimbursment" : "Booking"}}

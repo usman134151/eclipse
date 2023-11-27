@@ -28,7 +28,7 @@ class RemittanceGeneratorBooking extends Component
                ELSE total_amount
           END AS amount')
        ->get()->toArray();
-       $reimbursements = BookingReimbursement::where(['provider_id'=>$providerId,'payment_status'=>0])->select(['id as reimbursement_id','amount','booking_id'])->get()->toArray();
+       $reimbursements = BookingReimbursement::where(['provider_id'=>$providerId,'payment_status'=>0])->select(['id as reimbursement_id', 'reimbursement_number','amount','booking_id'])->get()->toArray();
        $this->data = array_merge($bookings,$reimbursements);
 
     
