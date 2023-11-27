@@ -56,11 +56,19 @@
                 <div class="text-sm {{ $status[$invoice->invoice_status]['class'] }}">
                     {{ $status[$invoice->invoice_status]['title'] }}
                 </div>
+                <div class="fw-semibold text-sm">Due Date: </div>
+                <div class="text-sm">{{date_format(date_create($invoice->invoice_due_date), 'd/m/Y')}}</div>
             </div>
         </div>
     </div>
 
     <div class="d-flex justify-content-end">
+        @if($this->invoice->attachment_path)
+        <button wire:click="downloadAttachment({{$invoice->id}})" class="btn btn-primary rounded">
+            <span class="mx-2">Download Attachment
+            </span>
+        </button>
+        @endif
         <button class="btn btn-primary rounded">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
