@@ -513,45 +513,47 @@
                                     <div class="row">
                                         <div class="col-12 d-lg-flex justify-content-between align-items-center">
                                             <h2 class="">Service {{ $index + 1 }}</h2>
-                                            <div class="row">
-                                                <div class="col-lg-5 col-md-6 mb-4">
-                                                    <div class="d-flex gap-3">
-                                                        <label class="form-label-sm">
-                                                            Broadcast
-                                                        </label>
-                                                        <div class="form-check form-switch form-switch-column">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                role="switch" id="AutoNotifyBroadcast"
-                                                                checked="" aria-label="Auto-notify Broadcast"
-                                                                value="1"
-                                                                wire:model.defer="booking_services.{{ $index }}.auto_notify"
-                                                                wire:click="updateServiceSettings('auto_notify',{{ $index }})">
-                                                            <label class="form-check-label"
-                                                                for="AutoNotifyBroadcast">Manual-notify</label>
-                                                            <label class="form-check-label"
-                                                                for="AutoNotifyBroadcast">Auto-notify</label>
+                                            @if(!session()->get('isCustomer'))
+                                                <div class="row">
+                                                    <div class="col-lg-5 col-md-6 mb-4">
+                                                        <div class="d-flex gap-3">
+                                                            <label class="form-label-sm">
+                                                                Broadcast
+                                                            </label>
+                                                            <div class="form-check form-switch form-switch-column">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    role="switch" id="AutoNotifyBroadcast"
+                                                                    checked="" aria-label="Auto-notify Broadcast"
+                                                                    value="1"
+                                                                    wire:model.defer="booking_services.{{ $index }}.auto_notify"
+                                                                    wire:click="updateServiceSettings('auto_notify',{{ $index }})">
+                                                                <label class="form-check-label"
+                                                                    for="AutoNotifyBroadcast">Manual-notify</label>
+                                                                <label class="form-check-label"
+                                                                    for="AutoNotifyBroadcast">Auto-notify</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-7 col-md-6 mb-4">
+                                                        <div class="d-flex gap-3">
+                                                            <label class="form-label-sm">
+                                                                Assign
+                                                            </label>
+                                                            <div class="form-check form-switch form-switch-column">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    role="switch" id="ManualAssignAssign" checked=""
+                                                                    aria-label="Auto assign" value="1"
+                                                                    wire:model.defer="booking_services.{{ $index }}.auto_assign"
+                                                                    wire:click="updateServiceSettings('auto_assign',{{ $index }})">
+                                                                <label class="form-check-label"
+                                                                    for="ManualAssignAssign">Manual-assign</label>
+                                                                <label class="form-check-label"
+                                                                    for="ManualAssignAssign">Auto-assign</label>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-7 col-md-6 mb-4">
-                                                    <div class="d-flex gap-3">
-                                                        <label class="form-label-sm">
-                                                            Assign
-                                                        </label>
-                                                        <div class="form-check form-switch form-switch-column">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                role="switch" id="ManualAssignAssign" checked=""
-                                                                aria-label="Auto assign" value="1"
-                                                                wire:model.defer="booking_services.{{ $index }}.auto_assign"
-                                                                wire:click="updateServiceSettings('auto_assign',{{ $index }})">
-                                                            <label class="form-check-label"
-                                                                for="ManualAssignAssign">Manual-assign</label>
-                                                            <label class="form-check-label"
-                                                                for="ManualAssignAssign">Auto-assign</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            @endif
                                         </div>
                                         <div class="row col-6 between-section-segment-spacing">
                                             <div class="col-lg-12">
