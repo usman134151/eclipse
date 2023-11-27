@@ -2,7 +2,7 @@
 <x-off-canvas show="issueRemittance" :allowBackdrop="false" size="fullscreen">
     <x-slot name="title">Issue Remittance</x-slot>
     @if(count($selectedBookings)>0)
-    @livewire('app.common.panels.remittance.issue-remittance',['selectedRows'=>$selectedBookings])
+    @livewire('app.common.panels.remittance.issue-remittance',['selectedRows'=>$selectedBookings, 'providerId'=>$providerId])
     @endif
 </x-off-canvas>
 <script>

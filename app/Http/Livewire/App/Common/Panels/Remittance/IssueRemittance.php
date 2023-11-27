@@ -2,11 +2,12 @@
 
 namespace App\Http\Livewire\App\Common\Panels\Remittance;
 
+use App\Models\Tenant\User;
 use Livewire\Component;
 
 class IssueRemittance extends Component
 {
-    public $showForm, $selectedRows=[];
+    public $showForm, $selectedRows=[], $provider;
     protected $listeners = ['showList' => 'resetForm', 'issueRemittances'];
 
     public function render()
@@ -14,9 +15,9 @@ class IssueRemittance extends Component
         return view('livewire.app.common.panels.remittance.issue-remittance');
     }
 
-    public function mount()
+    public function mount($providerId)
     {
-       dd($this->selectedRows);
+        $this->provider = User::find($providerId);
        
     }
 
