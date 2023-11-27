@@ -313,7 +313,7 @@
                                                     </td>
                                                     <td class="align-middle border-end-2">
                                                         <div class="d-grid grid-cols-1 gap-3 mb-3">
-                                                            @if (!$provider['service_payment_details']['day_rate'] && !$provider['service_payment_details']['fixed_rate'])
+                                                            @if ((!key_exists('day_rate',$provider['service_payment_details']) || !$provider['service_payment_details']['day_rate']) && (!key_exists('fixed_rate',$provider['service_payment_details']) || !$provider['service_payment_details']['fixed_rate']))
                                                                 <div class="row">
                                                                     <div class="  mt-1">
                                                                         <div class="col col-12">
