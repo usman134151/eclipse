@@ -9,8 +9,8 @@ use Livewire\Component;
 
 class RemittanceGeneratorBooking extends Component
 {
-    public $showForm, $provider,$data=[];
-    protected $listeners = ['showList' => 'resetForm'];
+    public $showForm, $provider, $data = [], $selectedBookings = [], $showError = false;
+    protected $listeners = ['showList' => 'resetForm', 'addToRemittance'];
 
     public function render()
     {
@@ -19,28 +19,43 @@ class RemittanceGeneratorBooking extends Component
 
     public function mount($providerId)
     {
-       $this->provider = User::where('id',$providerId)->with('userdetail')->first()->toArray();
-       $bookings = BookingProvider::where(['provider_id'=>$providerId,'payment_status'=>0])
-       ->with('booking')
-       ->select('booking_id')
-       ->selectRaw('CASE WHEN is_override_price = 1
+        $this->provider = User::where('id', $providerId)->with('userdetail')->first()->toArray();
+        $bookings = BookingProvider::where(['provider_id' => $providerId, 'payment_status' => 0])
+            ->with('booking')
+            ->select('booking_id')
+            ->selectRaw('CASE WHEN is_override_price = 1
                THEN override_price
                ELSE total_amount
           END AS amount')
-       ->get()->toArray();
-       $reimbursements = BookingReimbursement::where(['provider_id'=>$providerId,'payment_status'=>0])->select(['id as reimbursement_id','amount','booking_id'])->get()->toArray();
-       $this->data = array_merge($bookings,$reimbursements);
+            ->get()->toArray();
+        //fetching unassociated reimbursements
+        $reimbursements = BookingReimbursement::where(['provider_id' => $providerId, 'booking_id' => null, 'payment_status' => 0])->select(['id as reimbursement_id', 'reimbursement_number', 'amount', 'booking_id'])->get()->toArray();
+        $this->data = array_merge($bookings, $reimbursements);
+    }
 
-    
+    public function addToRemittance()
+    {
+        if (count($this->selectedBookings)) {
+            $this->showError = false;
+
+
+            $selectedRows = [];
+            foreach ($this->selectedBookings as $index => $rowIndex) {
+                $selectedRows[$index] = $this->data[$rowIndex];
+            }
+            $this->dispatchBrowserEvent('open-issue-remittance-panel');
+            $this->emit('openIssueRemitancesPanel', $selectedRows);
+        } else
+            $this->showError = true;
+        // dd($selectedRows);
     }
 
     function showForm()
-    {     
-       $this->showForm=true;
+    {
+        $this->showForm = true;
     }
     public function resetForm()
     {
-        $this->showForm=false;
+        $this->showForm = false;
     }
-
 }

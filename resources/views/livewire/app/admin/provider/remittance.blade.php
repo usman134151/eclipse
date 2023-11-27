@@ -132,84 +132,7 @@
                 <!-- Hoverable rows start -->
                 <div class="row" id="table-hover-row">
                     <div class="col-12">
-                        {{-- <div class="table-responsive border mb-4">
-                            <table id="" class="table table-fs-md table-hover" aria-label="">
-                                <thead>
-                                    <tr role="row">
-                                        <th scope="col" class="text-center align-middle">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                aria-label="Select All Providers">
-                                        </th>
-                                        <th scope="col" class="align-middle">Provider</th>
-                                        <th scope="col">Total pending</th>
-                                        <th scope="col" class="text-center align-middle">No. of invoices</th>
-                                        <th scope="col" class="text-center align-middle">Pending Bookings</th>
-                                        <th scope="col" class="text-center align-middle">Preferred Payment Method</th>
-                                        <th class="text-center align-middle">Chat</th>
-                                        <th class="text-center align-middle">
-                                            <svg aria-label="Bookings" class="fill-stroke" width="12" height="15" viewBox="0 0 12 14" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#bookings"></use>
-                                            </svg>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                   
-                                    <tr role="row" class="even">
-                                        <td class="text-center align-middle">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                aria-label="Select Provider">
-                                        </td>
-                                        <td class="align-middle">
-                                            <div class="d-flex gap-2 align-items-center">
-                                                <div>
-                                                    <img width="50" height="50"
-                                                        src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
-                                                        class="rounded-circle" alt="Provider Profile Image">
-                                                </div>
-                                                <div class="pt-2">
-                                                    <div class="font-family-secondary leading-none">Dori Griffiths</div>
-                                                    <a href="#"
-                                                        class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="text-center align-middle">
-                                            $00.00
-                                        </td>
-                                        <td class="text-center align-middle">
-                                            10
-                                        </td>
-                                        <td class="text-center align-middle">
-                                            10
-                                        </td>
-                                        <td class="text-center align-middle">
-                                            Direct Deposit
-                                        </td>
-                                        <td class="align-middle">
-                                            <div class="d-flex actions justify-content-center">
-                                                <a href="#" title="Chat" aria-label="Chat"
-                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <svg aria-label="Chat" width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#chat"></use>
-                                                    </svg>
-                                                </a>
-                                            </div>
-                                        </td>
-                                        <td class="align-middle">
-                                            <div class="d-flex actions justify-content-center">
-                                                <a href="javascript:void(0)" @click="remittanceGeneratorBooking = true"
-                                                    title="Booking" aria-label="Booking" class="btn btn-hs-icon p-0">
-                                                    <svg aria-label="Bookings" class="fill-stroke" width="12" height="15" viewBox="0 0 12 14" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#bookings"></use>
-                                                    </svg>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table> 
-                        </div> --}}
+
                         @livewire('app.common.lists.draft-remittances')
 
                     </div>
@@ -250,16 +173,25 @@
         </div>
         <!-- ...card-body... -->
         <!-- END: Steps -->
+
+        @include('panels.remittance.remittance-generator-booking')
+        @include('modals.booking-reimbursements')
+
+        @include('panels.remittance.issue-remittance')
+        @include('panels.remittance.add-new-payment')
+        @include('panels.common.add-reimbursement')
+
+        @include('modals.objection-remittance')
+        @include('modals.accept-remittance')
+
     </div>
-    @include('panels.remittance.remittance-generator-booking')
-    @include('panels.remittance.issue-remittance')
-    @include('panels.remittance.add-new-payment')
-    @include('panels.common.add-reimbursement')
+
+    <script>
+        function updateVal(attrName, val) {
+
+            Livewire.emit('updateVal', attrName, val);
+
+        }
+    </script>
+
 </div>
-<script>
-    function updateVal(attrName, val) {
-
-        Livewire.emit('updateVal', attrName, val);
-
-    }
-</script>
