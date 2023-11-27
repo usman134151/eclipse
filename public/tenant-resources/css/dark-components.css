@@ -3859,7 +3859,7 @@ tr.group {
 }
 .form-group label {
       font-size: 1.25rem;
-    color: #000;
+    color: #fff;
     align-self: center;
     line-height: 1.45;
     padding-top: calc(0.571rem + 1px);

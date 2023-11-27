@@ -86,4 +86,7 @@ li.page-item {
     background-color: #d4d4d4;
 }
 
+nav[aria-label="Page Navigation"]{
+    overflow: auto;
+}
 /* } */

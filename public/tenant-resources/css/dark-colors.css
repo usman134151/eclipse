@@ -484,7 +484,7 @@ input:focus ~ .bg-light {
 .btn-outline-primary {
   border: 1px solid #0A1E46 !important;
   background-color: transparent;
-  color: #0A1E46; }
+  color: #fff; }
 
 .btn-outline-primary:hover:not(.disabled):not(:disabled) {
   background-color: rgba(10, 30, 70, 0.04);
