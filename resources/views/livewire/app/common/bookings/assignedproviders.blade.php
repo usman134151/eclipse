@@ -91,7 +91,7 @@
                                               aria-label="Select All Teams">
                                       </th>
                                       <th scope="col">Provider</th>
-                                      @if (!$isProviderPanel)
+                                      @if (!$isProviderPanel && !session()->get('isCustomer'))
                                           {{-- <th scope="col">Additional Pay</th> --}}
                                           <th scope="col" class="text-center">Additional Pay</th>
                                           <th scope="col" class="text-center">Time Paid</th>
@@ -125,7 +125,7 @@
                                                       </div>
                                                   </div>
                                               </td>
-                                              @if (!$isProviderPanel)
+                                              @if (!$isProviderPanel && !session()->get('isCustomer'))
                                                   {{-- <td class="align-middle">
                                                       {{ $provider['additional_label_provider'] ?? 'N/A' }}
                                                   </td> --}}
