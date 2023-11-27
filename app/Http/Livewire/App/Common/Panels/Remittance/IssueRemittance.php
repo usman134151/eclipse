@@ -24,7 +24,7 @@ class IssueRemittance extends Component
                 // fetch reimbursement data
             } else {
                 //fetch booking details + associated reimbursements
-                // $this->list = BookingProvider::where(['provider_id'=>$provider, 'booking_id'])
+                $this->list[] = BookingProvider::where(['provider_id'=>$providerId, 'booking_id'=>$row['booking_id']])->first();
             }
         }
     }
