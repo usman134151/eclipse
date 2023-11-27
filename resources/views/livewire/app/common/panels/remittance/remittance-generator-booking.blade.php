@@ -277,31 +277,8 @@
             </ul>
         </nav>
     </div> --}}
-    <!-- Total -->
-    <div class="bg-muted py-2 mb-4">
-        <div class="row justify-content-center">
-            <div class="col-lg-4">
-                <div class="d-flex justify-content-between">
-                    <div class="fw-bold text-sm">Booking Total</div>
-                    <div class="fw-bold text-sm text-lg-end"> $<span id="total-price"></span></div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <!-- /Total -->
-
-    <div class="justify-content-center d-flex mb-4">
-        <div class="form-check mx-auto">
-            <input class="form-check-input" type="checkbox" value="" id="ExcludeNotification">
-            <label class="form-check-label" for="ExcludeNotification">
-                Exclude Notification
-            </label>
-        </div>
-    </div>
 
 </div>
-@push('scripts')
     <script>
         $(document).ready(function() {
             let totalPrice = 0;
@@ -340,4 +317,3 @@
             }
         });
     </script>
-@endpush
