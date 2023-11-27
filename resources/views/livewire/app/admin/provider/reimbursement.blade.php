@@ -1,5 +1,5 @@
 <div>
-    <div x-data="{ addReimbursement: false}">
+    <div x-data="{ addReimbursement: false }">
         <div id="loader-section" class="loader-section" wire:loading>
             <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
                 <div class="spinner-border" role="status" aria-live="polite">
@@ -17,8 +17,9 @@
                                 <li class="breadcrumb-item">
                                     <a href="http://127.0.0.1:8000" title="Go to Dashboard"
                                         aria-label="Go to Dashboard">
-                                        {{-- Updated by Shanila to Add svg icon--}}
-                                        <svg aria-label="dashboard" width="22" height="23" viewBox="0 0 22 23" fill="currentColor" stroke="currentColor">
+                                        {{-- Updated by Shanila to Add svg icon --}}
+                                        <svg aria-label="dashboard" width="22" height="23" viewBox="0 0 22 23"
+                                            fill="currentColor" stroke="currentColor">
                                             <use xlink:href="/css/common-icons.svg#home"></use>
                                         </svg>
                                         {{-- End of update by Shanila --}}
@@ -57,15 +58,17 @@
                                                 <div class="bg-muted rounded p-4 mb-1">
                                                     <div class="d-lg-flex gap-5 align-items-center mb-4">
                                                         <div class="mb-4 mb-lg-0">
-                                                            <label class="form-label-sm" for="search-column">Search</label>
+                                                            <label class="form-label-sm"
+                                                                for="search-column">Search</label>
                                                             <div class="d-flex gap-2 align-items-center">
                                                                 <div class="position-relative">
                                                                     <input type="text"
                                                                         class="form-control form-control-md is-search"
-                                                                         aria-describedby="search"
-                                                                        placeholder="Provider Name or Email" id="search-column">
+                                                                        aria-describedby="search"
+                                                                        placeholder="Provider Name or Email"
+                                                                        id="search-column">
                                                                     {{-- Updated by Shanila to Add
-                                                                    svg icon--}}
+                                                                    svg icon --}}
                                                                     <svg aria-label="search"
                                                                         class="icon-search position-absolute"
                                                                         viewBox="0 0 1024 1024" version="1.1">
@@ -78,9 +81,9 @@
                                                                 <button
                                                                     class="btn btn-secondary rounded btn-sm btn-hs-icon">
                                                                     {{-- Updated by Shanila to Add
-                                                                    svg icon--}}
-                                                                    <svg aria-label="search" width="22" height="20"
-                                                                        viewBox="0 0 22 20">
+                                                                    svg icon --}}
+                                                                    <svg aria-label="search" width="22"
+                                                                        height="20" viewBox="0 0 22 20">
                                                                         <use xlink:href="/css/common-icons.svg#search">
                                                                         </use>
                                                                     </svg>
@@ -117,10 +120,10 @@
                                                             <div
                                                                 class="mb-4 mb-lg-0 position-relative has-date-icon-left-side">
                                                                 {{-- Updated by Shanila to Add
-                                                                svg icon--}}
+                                                                svg icon --}}
                                                                 <svg aria-label="input-calender"
-                                                                    class="icon-date md left cursor-pointer" width="20"
-                                                                    height="20" viewBox="0 0 20 20">
+                                                                    class="icon-date md left cursor-pointer"
+                                                                    width="20" height="20" viewBox="0 0 20 20">
                                                                     <use
                                                                         xlink:href="/css/common-icons.svg#input-calender">
                                                                     </use>
@@ -169,8 +172,9 @@
                                             <div class="col-lg-6 mb-4">
                                                 <div class="dropdown">
                                                     <button class="btn btn-outline-primary dropdown-toggle"
-                                                        type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        {{-- Updated by Shanila to Add svg icon--}}
+                                                        type="button" data-bs-toggle="dropdown"
+                                                        aria-expanded="false">
+                                                        {{-- Updated by Shanila to Add svg icon --}}
                                                         <svg aria-label="Export" width="23" height="26"
                                                             viewBox="0 0 23 26">
                                                             <use xlink:href="/css/common-icons.svg#document-dropdown">
@@ -180,16 +184,19 @@
                                                     </button>
                                                     <ul class="dropdown-menu">
                                                         <li><a class="dropdown-item" href="#">Action</a></li>
-                                                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                        <li><a class="dropdown-item" href="#">Something else here</a>
+                                                        <li><a class="dropdown-item" href="#">Another action</a>
+                                                        </li>
+                                                        <li><a class="dropdown-item" href="#">Something else
+                                                                here</a>
                                                         </li>
                                                     </ul>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 text-end mb-4">
                                                 <a @click="addReimbursement = true" class="btn btn-primary rounded ">
-                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                    <svg class="mx-2" aria-label="Add Reimbursement" width="20" height="20" viewBox="0 0 20 20">
+                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                    <svg class="mx-2" aria-label="Add Reimbursement" width="20"
+                                                        height="20" viewBox="0 0 20 20">
                                                         <use xlink:href="/css/common-icons.svg#plus">
                                                         </use>
                                                     </svg>
@@ -222,8 +229,8 @@
                                             <tr role="row">
                                                 <th scope="col">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" id="" name="" type="checkbox"
-                                                            tabindex="" aria-label="checkbox">
+                                                        <input class="form-check-input" id="" name=""
+                                                            type="checkbox" tabindex="" aria-label="checkbox">
                                                     </div>
                                                 </th>
                                                 <th scope="col">BOOKING ID</th>
@@ -238,91 +245,125 @@
                                         </thead>
                                         <tbody>
                                             @forelse ($reimbursementData as  $index => $reimbursement)
-                                            <tr role="row" class="odd">
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" aria-label="List Checkbox" id="" name="" type="checkbox" tabindex="">
-                                                    </div>
-                                                </td>
-                                                <td><p>{{$reimbursement['reimbursement_number']}}</p>
-                                                <a href="#" @click="offcanvasOpen = true">{{$reimbursement["booking_number"]}}<br />{{
-                                                        date_format(date_create($reimbursement['booking_start_at']), 'm/d/Y') }} <br>
-                                                        {{ $reimbursement['booking_start_at'] ? date_format(date_create($reimbursement['booking_start_at']), 'h:i
-                                                        A') : 'N/A' }} to {{ $reimbursement['booking_end_at'] ?
-                                                        date_format(date_create($reimbursement['booking_end_at']), 'h:i A') : 'N/A' }}</p></a></td>
-                                                <td>
-                                                    <div class="row g-2">
-                                                        <div class="col-md-3">
-                                                            
-                                                            @if ($reimbursement['provider_profilePic']!= null)
-                                                                <img  width="50" height="50" src={{$reimbursement['provider_profilePic']}} class="img-fluid rounded-circle"
-                                                                    alt="Provider Profile Image">
-                                                            @else
-                                                                <img  width="50" height="50"     src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle"
-                                                                    alt="Provider Profile Image">
-                                                            @endif
+                                                <tr role="row" class="odd">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" aria-label="List Checkbox"
+                                                                id="" name="" type="checkbox"
+                                                                tabindex="">
                                                         </div>
-                                                        <div class="col-md-9">
-                                                            <h6 class="fw-semibold">{{$reimbursement['provider_name']}}</h6>
-                                                            <p>{{$reimbursement['provider_email']}}</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>{{ $reimbursement['reimbursement_number'] }}</p>
+                                                        @if ($reimbursement['booking_id'])
+                                                            <a href="#"
+                                                                @click="offcanvasOpen = true">{{ $reimbursement['booking_number'] }}<br />{{ date_format(date_create($reimbursement['booking_start_at']), 'm/d/Y') }}
+                                                                <br>
+                                                                {{ $reimbursement['booking_start_at']
+                                                                    ? date_format(
+                                                                        date_create($reimbursement['booking_start_at']),
+                                                                        'h:i
+                                                                                                                        A',
+                                                                    )
+                                                                    : 'N/A' }}
+                                                                to
+                                                                {{ $reimbursement['booking_end_at']
+                                                                    ? date_format(date_create($reimbursement['booking_end_at']), 'h:i A')
+                                                                    : 'N/A' }}
+                                                                </p></a>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        <div class="row g-2">
+                                                            <div class="col-md-3">
+
+                                                                @if ($reimbursement['provider_profilePic'] != null)
+                                                                    <img width="50" height="50"
+                                                                        src={{ $reimbursement['provider_profilePic'] }}
+                                                                        class="img-fluid rounded-circle"
+                                                                        alt="Provider Profile Image">
+                                                                @else
+                                                                    <img width="50" height="50"
+                                                                        src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
+                                                                        class="img-fluid rounded-circle"
+                                                                        alt="Provider Profile Image">
+                                                                @endif
+                                                            </div>
+                                                            <div class="col-md-9">
+                                                                <h6 class="fw-semibold">
+                                                                    {{ $reimbursement['provider_name'] }}</h6>
+                                                                <p>{{ $reimbursement['provider_email'] }}</p>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                                <td>{{$reimbursement['reason']}}<br>
-                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                    @if($reimbursement['file'])
-                                                    <button wire:click="downloadFile({{ $reimbursement }})" class="btn btn-link">
-                                                        <svg class="mx-2" aria-label="document" width="17" height="21" viewBox="0 0 17 21">
-                                                            <use xlink:href="/css/common-icons.svg#doc"></use>
-                                                        </svg>
-                                                    </button>
-                                                    @endif
-                                                    
-                                                    {{-- End of update by Shanila --}}
-                                                </td>
-                                                <td>{{formatPayment($reimbursement['amount'])}}</td>
-                                                <td>{{$reimbursement['review_status']}}</td>
-                                                <td>{{ $reimbursement['issued_at'] ? date_format(date_create($reimbursement['issued_at']), 'm/d/Y') : 'N/A' }} <br> 
-                                                {{ $reimbursement['paid_at'] ? date_format(date_create($reimbursement['paid_at']), 'm/d/Y') : 'N/A' }}</td>
-                                                <td>{{$reimbursement['payment_method']}}</td>
-                                                <td>
-                                                    <div class="d-flex actions">
-                                                        <a href="javascript:void(0)" title="Edit" aria-label="Edit"
-                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                            {{-- Updated by Shanila to Add svg icon--}}
-                                                            <svg title="Edit" width="20" height="20" viewBox="0 0 20 20">
-                                                                <use xlink:href="/css/common-icons.svg#pencil">
-                                                                </use>
-                                                            </svg>
-                                                            {{-- End of update by Shanila --}}
-                                                        </a>
-                                                        <a href="javascript:void(0)" title="Check" aria-label="Check"
-                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal"
-                                                            data-bs-target="#reimbursementReview">
-                                                            {{-- Updated by Shanila to Add svg icon--}}
-                                                            <svg aria-label="Check" width="22" height="20" viewBox="0 0 22 20">
-                                                                <use xlink:href="/css/common-icons.svg#check">
-                                                                </use>
-                                                            </svg>
-                                                            {{-- End of update by Shanila --}}
-                                                        </a>
-                                                        <a href="javascript:void(0)" title="cross" aria-label="cross"
-                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal"
-                                                            data-bs-target="#denyReimbursement">
-                                                            {{-- Updated by Shanila to Add svg icon--}}
-                                                            <svg aria-label="cancel" width="20" height="20" viewBox="0 0 20 20">
-                                                                <use xlink:href="/css/common-icons.svg#cross">
-                                                                </use>
-                                                            </svg>
-                                                            {{-- End of update by Shanila --}}
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>    
+                                                    </td>
+                                                    <td>{{ $reimbursement['reason'] }}<br>
+                                                        {{-- Updated by Shanila to Add svg icon --}}
+                                                        @if ($reimbursement['file'])
+                                                            <button wire:click="downloadFile({{ $reimbursement }})"
+                                                                class="btn btn-link">
+                                                                <svg class="mx-2" aria-label="document"
+                                                                    width="17" height="21"
+                                                                    viewBox="0 0 17 21">
+                                                                    <use xlink:href="/css/common-icons.svg#doc"></use>
+                                                                </svg>
+                                                            </button>
+                                                        @endif
+
+                                                        {{-- End of update by Shanila --}}
+                                                    </td>
+                                                    <td>{{ formatPayment($reimbursement['amount']) }}</td>
+                                                    <td>{{ $reimbursement['review_status'] }}</td>
+                                                    <td>{{ $reimbursement['issued_at'] ? date_format(date_create($reimbursement['issued_at']), 'm/d/Y') : 'N/A' }}
+                                                        <br>
+                                                        {{ $reimbursement['paid_at'] ? date_format(date_create($reimbursement['paid_at']), 'm/d/Y') : 'N/A' }}
+                                                    </td>
+                                                    <td>{{ $reimbursement['payment_method'] }}</td>
+                                                    <td>
+                                                        <div class="d-flex actions">
+                                                            <a href="javascript:void(0)" title="Edit"
+                                                                aria-label="Edit"
+                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                {{-- Updated by Shanila to Add svg icon --}}
+                                                                <svg title="Edit" width="20" height="20"
+                                                                    viewBox="0 0 20 20">
+                                                                    <use xlink:href="/css/common-icons.svg#pencil">
+                                                                    </use>
+                                                                </svg>
+                                                                {{-- End of update by Shanila --}}
+                                                            </a>
+                                                            <a href="javascript:void(0)" title="Check"
+                                                                aria-label="Check"
+                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#reimbursementReview">
+                                                                {{-- Updated by Shanila to Add svg icon --}}
+                                                                <svg aria-label="Check" width="22" height="20"
+                                                                    viewBox="0 0 22 20">
+                                                                    <use xlink:href="/css/common-icons.svg#check">
+                                                                    </use>
+                                                                </svg>
+                                                                {{-- End of update by Shanila --}}
+                                                            </a>
+                                                            <a href="javascript:void(0)" title="cross"
+                                                                aria-label="cross"
+                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#denyReimbursement">
+                                                                {{-- Updated by Shanila to Add svg icon --}}
+                                                                <svg aria-label="cancel" width="20"
+                                                                    height="20" viewBox="0 0 20 20">
+                                                                    <use xlink:href="/css/common-icons.svg#cross">
+                                                                    </use>
+                                                                </svg>
+                                                                {{-- End of update by Shanila --}}
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
                                             @empty
                                                 No Data
                                             @endforelse
-                                            
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -377,12 +418,13 @@
                                     <div class="d-flex gap-2 align-items-center">
                                         <a href="#" title="Edit Provider" aria-label="Edit Provider"
                                             class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                           {{-- Updated by Shanila to Add svg icon--}}
-                                           <svg title="Edit Provider" width="20" height="20" viewBox="0 0 20 20">
-                                            <use xlink:href="/css/common-icons.svg#pencil">
-                                            </use>
-                                        </svg>
-                                        {{-- End of update by Shanila --}}
+                                            {{-- Updated by Shanila to Add svg icon --}}
+                                            <svg title="Edit Provider" width="20" height="20"
+                                                viewBox="0 0 20 20">
+                                                <use xlink:href="/css/common-icons.svg#pencil">
+                                                </use>
+                                            </svg>
+                                            {{-- End of update by Shanila --}}
                                         </a>
                                         <span class="text-sm">
                                             Edit Provider
@@ -391,12 +433,13 @@
                                     <div class="d-flex gap-2 align-items-center">
                                         <a href="#" title="approve" aria-label="approve"
                                             class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                           {{-- Updated by Shanila to Add svg icon--}}
-                                           <svg aria-label="approve" width="22" height="20" viewBox="0 0 22 20">
-                                            <use xlink:href="/css/common-icons.svg#check">
-                                            </use>
-                                        </svg>
-                                        {{-- End of update by Shanila --}}
+                                            {{-- Updated by Shanila to Add svg icon --}}
+                                            <svg aria-label="approve" width="22" height="20"
+                                                viewBox="0 0 22 20">
+                                                <use xlink:href="/css/common-icons.svg#check">
+                                                </use>
+                                            </svg>
+                                            {{-- End of update by Shanila --}}
                                         </a>
                                         <span class="text-sm">
                                             Approve </span>
@@ -404,8 +447,9 @@
                                     <div class="d-flex gap-2 align-items-center">
                                         <a href="#" title="cross" aria-label="cross "
                                             class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                            {{-- Updated by Shanila to Add svg icon--}}
-                                            <svg aria-label=" Deny " width="20" height="20" viewBox="0 0 20 20">
+                                            {{-- Updated by Shanila to Add svg icon --}}
+                                            <svg aria-label=" Deny " width="20" height="20"
+                                                viewBox="0 0 20 20">
                                                 <use xlink:href="/css/common-icons.svg#cross">
                                                 </use>
                                             </svg>
@@ -436,8 +480,10 @@
                                     </div>
                                     <div
                                         class="d-flex form-actions flex-lg-row flex-column justify-content-center gap-2">
-                                        <a href="#" class="btn btn-primary rounded" data-bs-toggle="modal" data-bs-target="#reimbursementReview">Approve Reimbursement</a>
-                                        <button type="button"  class="btn btn-primary rounded" data-bs-toggle="modal" data-bs-target="#denyReimbursement">Decline Reimburement</button>
+                                        <a href="#" class="btn btn-primary rounded" data-bs-toggle="modal"
+                                            data-bs-target="#reimbursementReview">Approve Reimbursement</a>
+                                        <button type="button" class="btn btn-primary rounded" data-bs-toggle="modal"
+                                            data-bs-target="#denyReimbursement">Decline Reimburement</button>
                                     </div>
                                 </div>
                             </div><!-- END: Card Body -->
@@ -452,7 +498,7 @@
         @include('modals.common.reimbursement-review')
     </div>
     <script>
-        function updateVal(attrName,val){
+        function updateVal(attrName, val) {
 
             Livewire.emit('updateVal', attrName, val);
 

@@ -147,6 +147,7 @@
                                     <div class="d-flex actions justify-content-center">
                                         @if (!isset($row['reimbursement_id']))
                                             <a href="#" title="View" aria-label="View" data-bs-toggle="modal" data-bs-target="#bookingReimbursementsModal"
+                                            wire:click='$emit("showReimbursemetDetails","{{$row['booking_id']}}","{{$provider['id']}}")'
                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                 <svg width="20" height="20" viewBox="0 0 20 20"
                                                     fill="none" xmlns="http://www.w3.org/2000/svg">
