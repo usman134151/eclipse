@@ -244,7 +244,8 @@
                                                         <input class="form-check-input" aria-label="List Checkbox" id="" name="" type="checkbox" tabindex="">
                                                     </div>
                                                 </td>
-                                                <td><a @click="offcanvasOpen = true">{{$reimbursement["booking_number"]}}<br />{{
+                                                <td><p>{{$reimbursement['reimbursement_number']}}</p>
+                                                <a href="#" @click="offcanvasOpen = true">{{$reimbursement["booking_number"]}}<br />{{
                                                         date_format(date_create($reimbursement['booking_start_at']), 'm/d/Y') }} <br>
                                                         {{ $reimbursement['booking_start_at'] ? date_format(date_create($reimbursement['booking_start_at']), 'h:i
                                                         A') : 'N/A' }} to {{ $reimbursement['booking_end_at'] ?
@@ -254,10 +255,10 @@
                                                         <div class="col-md-3">
                                                             
                                                             @if ($reimbursement['provider_profilePic']!= null)
-                                                                <img src={{$reimbursement['provider_profilePic']}} class="img-fluid rounded-circle"
+                                                                <img  width="50" height="50" src={{$reimbursement['provider_profilePic']}} class="img-fluid rounded-circle"
                                                                     alt="Provider Profile Image">
                                                             @else
-                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle"
+                                                                <img  width="50" height="50"     src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle"
                                                                     alt="Provider Profile Image">
                                                             @endif
                                                         </div>
