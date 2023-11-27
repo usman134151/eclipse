@@ -93,7 +93,7 @@
                                     </div>
                                 </th>
                                 <th scope="col">Booking Number</th>
-                                <th scope="col">Reason Documnet</th>
+                                <th scope="col">Reason Document</th>
                                 <th scope="col">AMOUNT</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Payment Status</th>

@@ -137,7 +137,8 @@ class AddReimbursement extends Component
         }
 
         $type = "create";
-
+        $reim_number = genetrateReimbursementNumber($this->reimbursement->provider_id);
+        
         $reimbursement = BookingReimbursement::insertGetId(
             [
                 'booking_id' => $this->reimbursement->booking_id,
@@ -145,7 +146,8 @@ class AddReimbursement extends Component
                 'amount' => $this->reimbursement->amount,
                 'reason' => $reasonData != null ? json_encode($reasonData): null,
                 'charge_to_customer' => $this->reimbursement->charge_to_customer == true  ? 1 : 0,
-                'added_by' => Auth::user()->id 
+                'added_by' => Auth::user()->id ,
+                'reimbursement_number'=>$reim_number
             ]
         );
         
