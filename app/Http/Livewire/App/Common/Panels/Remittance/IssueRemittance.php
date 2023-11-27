@@ -19,7 +19,7 @@ class IssueRemittance extends Component
     public function mount($selectedRows,$providerId)
     {
         $this->provider = User::find($providerId);
-        foreach ($this->selectedRows as $row) {
+        foreach ($selectedRows as $row) {
             if (key_exists('reimbursement_id', $row)) {
                 // fetch reimbursement data
             } else {
