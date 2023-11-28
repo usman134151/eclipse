@@ -107,8 +107,8 @@
                         @foreach ($list as $row)
                             <tr role="row" class="even">
                                 <td class="text-center">
-                                    <input class="form-check-input" type="checkbox" value=""
-                                        aria-label="Select Team">
+                                    <input class="form-check-input" wire:model="selectedBookings" type="checkbox" value="{{$row->first()->booking->id}}"
+                                        aria-label="Select Booking" wire:click="updateSelectedBookings('{{$row->first()->booking->id}}')">
                                 </td>
                                 <td>
                                     <div class="fw-semibold">{{ $row->first()->booking->booking_number }}</div>
@@ -120,35 +120,23 @@
                                             {{ formatTime($row->first()->booking->booking_start_at) }} to
                                             {{ formatTime($row->first()->booking->booking_end_at) }}</div>
                                     </div>
-                                    <div class="my-1">
-                                    <strong>
-                                    Booking Reimbursements </strong></div>
                                     @if ($row->first()->reimbursements && $row->first()->reimbursements->count())
+                                        <div class="my-1">
+                                            <strong>
+                                                Booking Reimbursements </strong>
+                                        </div>
                                         <div class=" mt-2 ">
                                             <div class="">
                                                 <table id="" class="table table-sm text-sm" aria-label="">
-                                                    {{-- <thead>
-                                                        <tr role="row">
-                                                            <th>
 
-                                                                <input class="form-check-input" type="checkbox"
-                                                                    value="" aria-label="Select All">
-                                                            </th>
-                                                            <th scope="col" class="text-center align-middle">
-                                                                ID</th>
-                                                            <th scope="col" class="text-center align-middle">Reason
-                                                            </th>
-                                                            <th scope="col" class="text-center align-middle">Total
-                                                                Amount</th>
-                                                        </tr>
-                                                    </thead> --}}
                                                     <tbody>
                                                         @foreach ($row->first()->reimbursements as $rmb)
                                                             <tr role="row" class="odd">
                                                                 <td class="text-center align-middle">
 
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        value="" aria-label="Select Team">
+                                                                    <input class="form-check-input" type="checkbox" wire:model="selectedRMB"
+                                                                        wire:click="updateSelectedRMB('{{$rmb['id']}}')"
+                                                                        value="{{$rmb['id']}}" aria-label="Select Team">
                                                                 </td>
                                                                 <td class="text-center align-middle">
                                                                     {{ $rmb['reimbursement_number'] }}
