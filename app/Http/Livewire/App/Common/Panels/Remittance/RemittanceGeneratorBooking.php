@@ -21,7 +21,7 @@ class RemittanceGeneratorBooking extends Component
     {
         $this->provider = User::where('id', $providerId)->with('userdetail')->first()->toArray();
         $bookings = BookingProvider::where(['provider_id' => $providerId, 'payment_status' => 0])
-            ->with('booking')
+            ->with(['booking','reimbursements'])
             ->select('booking_id')
             ->selectRaw('CASE WHEN is_override_price = 1
                THEN override_price

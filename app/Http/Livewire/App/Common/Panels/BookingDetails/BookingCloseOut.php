@@ -147,6 +147,20 @@ class BookingCloseOut extends Component
                 $closingDetails['service_payment_details']['actual_duration_min'] = $closingDetails['actual_duration_min'];
                 $booking_provider->service_payment_details = $closingDetails['service_payment_details'];
 
+                $details['actual_start_hour'] = $closingDetails['actual_start_hour'];
+                $details['actual_start_min'] = $closingDetails['actual_start_min'];
+                $details['actual_start_timestamp'] = Carbon::createFromFormat('m/d/Y H:i', date_format(date_create($bookingService->start_time), 'm/d/Y') . ' ' . $closingDetails['actual_start_hour'] . ':' . $closingDetails['actual_start_min']);
+
+                $details['actual_end_hour'] = $closingDetails['actual_end_hour'];
+                $details['actual_end_min'] = $closingDetails['actual_end_min'];
+                $details['actual_end_timestamp'] = Carbon::createFromFormat('m/d/Y H : i', date_format(date_create($bookingService->end_time), 'm/d/Y') . ' ' . $closingDetails['actual_end_hour'] . ' : ' . $closingDetails['actual_end_min']);
+
+                $details['actual_duration_hour'] = $closingDetails['actual_duration_hour'];
+                $details['actual_duration_min'] = $closingDetails['actual_duration_min'];
+                $details['time_extension_status'] = 0;
+
+                $booking_provider->admin_approved_payment_detail = $details;        //saving approved payment details
+
 
                 $booking_provider->total_amount = $closingDetails['total_amount'];
                 $booking_provider->is_override_price = 1;

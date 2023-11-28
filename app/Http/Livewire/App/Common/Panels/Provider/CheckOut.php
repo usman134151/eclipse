@@ -38,7 +38,6 @@ class CheckOut extends Component
     {
         $this->booking_provider->check_out_procedure_values = $this->checkout;
         $this->booking_provider->check_in_status = 3;
-        $this->booking_provider->return_status = 2;
 
         $this->booking_provider->save();
         //refresh booking service data
