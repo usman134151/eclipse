@@ -59,7 +59,7 @@ final class DraftRemittances extends PowerGridComponent
         )
            
             ->join('booking_providers', 'booking_providers.provider_id', 'users.id')
-            ->where('payment_status', '=', 0)
+            ->where(['payment_status'=> 0,'check_in_status'=>3])
             ->join('user_details', function ($userdetails) {
                 $userdetails->on('user_details.user_id', '=', 'users.id');
             })
