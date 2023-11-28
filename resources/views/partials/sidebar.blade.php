@@ -399,7 +399,7 @@
                   <svg aria-label="Business Profile & Settings" width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/admin-menu.svg#business-profile-settings-icon"></use>
                 </svg>
-                  <span class="menu-item">Business Profile & Settings</span>
+                  <span class="menu-item">Business Profile & &nbsp Settings</span>
                 </a>
                 <ul role="menu" class="menu-content " id="Business-rofile-settings">
                   <li role="menuitem" class="nav-item  " id="profile">

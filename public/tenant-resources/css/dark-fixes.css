@@ -74,7 +74,7 @@ table tbody tr td {
 .nav-tabs .nav-item .nav-link,
 .nav-pills .nav-item .nav-link,
 .nav-tabs.nav-justified .nav-item .nav-link {
-    color: #d0d2d6;
+    color: #bbbbbb !important;
 }
 
 .nav-tabs .nav-item .nav-link.active,
@@ -460,7 +460,7 @@ svg.me-1 path {
     .dt-buttons
     .dt-button-collection
     [class*="buttons-"]:active {
-    background-color: #7367f0 !important;
+    background-color: #315399 !important;
     color: #fff;
 }
 
@@ -1445,7 +1445,7 @@ svg.me-1 path {
 }
 
 .app-user-view .plan-card {
-    border-color: #7367f0 !important;
+    border-color: #315399 !important;
 }
 .icon-date path {
     fill: gray;
@@ -1496,7 +1496,7 @@ input[type="radio"].form-check-input:checked {
 .blank-page .card.bg-transparent h3,
 .blank-page .card.bg-transparent h4,
 .blank-page .card.bg-transparent h5,
-.blank-page .card.bg-transparent h6 {
+.blank-4page .card.bg-transparent h6 {
     color: #283046;
 }
 
@@ -1647,7 +1647,7 @@ input[type="radio"].form-check-input:checked {
 }
 
 .btn-group label[class*="btn-outline-"] {
-    color: #7367f0 !important;
+    color: #315399 !important;
 }
 
 .dropdown-menu {
@@ -1805,4 +1805,12 @@ select.form-control{
 
 nav[aria-label="Page Navigation"]{
     overflow: auto;
+}
+
+.main-menu.menu-light{
+    background: #070f27;
+}
+
+.main-menu.menu-light .navigation{
+    background: #070f27;
 }
