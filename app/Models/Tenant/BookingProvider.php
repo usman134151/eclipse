@@ -32,6 +32,11 @@ class BookingProvider extends Model
     {
         return $this->hasOne(Booking::class, 'id', 'booking_service_id');
     }
+
+    public function reimbursements()
+    {
+        return $this->hasManyThrough(BookingReimbursement::class, Booking::class, 'id','booking_id','booking_id','id');
+    }
     protected $casts = [
         'check_out_procedure_values' => 'array',
         'check_in_procedure_values' => 'array',
