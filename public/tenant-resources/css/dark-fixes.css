@@ -280,9 +280,9 @@ textarea.form-control[readonly="readonly"] {
     border-color: #1b2337;
 }
 
-select.form-select:not([multiple="multiple"]) {
+/* select.form-select:not([multiple="multiple"]) {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b4b7bd' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-chevron-down'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-}
+} */
 
 .was-validated .form-control:invalid,
 .was-validated .form-control.is-invalid,
@@ -1496,7 +1496,7 @@ input[type="radio"].form-check-input:checked {
 .blank-page .card.bg-transparent h3,
 .blank-page .card.bg-transparent h4,
 .blank-page .card.bg-transparent h5,
-.blank-4page .card.bg-transparent h6 {
+.blank-page .card.bg-transparent h6 {
     color: #283046;
 }
 
