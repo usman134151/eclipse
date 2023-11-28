@@ -357,7 +357,7 @@ class MessagesController extends Controller
                 $query->where('company_name', $companyId)
                     ->orWhere(function ($subQuery) {
                         $subQuery->whereHas('roles', function ($roleQuery) {
-                            $roleQuery->whereIn('role_id', [1,10]);
+                            $roleQuery->whereIn('role_id', [1]);
                         });
                     });
             });
@@ -367,7 +367,7 @@ class MessagesController extends Controller
         {
             $records = $records->where(function ($query) {
                 $query->whereHas('roles', function ($subQuery) {
-                    $subQuery->whereIn('role_id', [1,10]);
+                    $subQuery->whereIn('role_id', [1]);
                 });
             });
         }
