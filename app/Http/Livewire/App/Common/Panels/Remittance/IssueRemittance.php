@@ -19,12 +19,16 @@ class IssueRemittance extends Component
     public function mount($selectedRows,$providerId)
     {
         $this->provider = User::find($providerId);
-        foreach ($selectedRows as $row) {
+        foreach ($selectedRows as $index=> $row) {
             if (key_exists('reimbursement_id', $row)) {
                 // fetch reimbursement data
             } else {
                 //fetch booking details + associated reimbursements
-                $this->list[] = BookingProvider::where(['provider_id'=>$providerId, 'booking_id'=>$row['booking_id']])->get();
+                 $this->list[] = BookingProvider::where(['provider_id'=>$providerId, 'booking_id'=>$row['booking_id']])->get();
+                //  foreach($bookingRecords as $record){
+                // }
+                // dd()
+                // $this->list[$index]
             }
         }
         // dd($this->list);

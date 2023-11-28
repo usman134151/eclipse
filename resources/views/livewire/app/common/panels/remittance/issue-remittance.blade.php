@@ -142,6 +142,8 @@
                                     </div>
                                 </td>
                                 <td class="position-relative">
+                                    @php
+                                    $total = 0; @endphp
                                     @foreach ($row as $providerDetails)
                                         <div class="d-flex gap-2 align-items-center">
                                             <div>
@@ -155,28 +157,90 @@
                                         <div class="d-flex gap-2 align-items-center mb-1">
 
                                             <div>Duration:</div>
-                                            <div class="text-sm">5 Hours, 10 Mints</div>
-                                        </div>
-                                        <div class="d-flex gap-2 align-items-center mb-1">
+                                            <div class="text-sm">
+                                                {{ $providerDetails['admin_approved_payment_detail'] ? $providerDetails['admin_approved_payment_detail']['actual_duration_hour'] . ' hour(s), ' : '' }}
 
-                                            <div>Hour/Day/Fixed Rate:</div>
-                                            <div class="text-sm">$50</div>
+                                                {{ $providerDetails['admin_approved_payment_detail'] ? $providerDetails['admin_approved_payment_detail']['actual_duration_min'] . ' min(s) ' : '' }}
+                                            </div>
                                         </div>
-                                        <div class="d-flex gap-2 align-items-center mb-1">
+                                        @if (isset($providerDetails['service_payment_details']['fixed_rate']) &&
+                                                $providerDetails['service_payment_details']['fixed_rate'] == true)
+                                            <div class="d-flex gap-2 align-items-center mb-1">
 
-                                            <div>Expedition Charges:</div>
-                                            <div class="text-sm">$50</div>
-                                        </div>
-                                        <div class="text-primary">
-                                            Specialization Charges
+                                                <div> Fixed Rate:
+                                                </div>
+                                                <div class="text-sm">
+                                                    {{ numberFormat($providerDetails['service_payment_details']['rate']) }}
 
-                                        </div>
-                                        <div class="d-flex gap-2 align-items-center mb-1">
-                                            <div class="">Fuel Charges: </div>
-                                            <div class="text-sm">$100</div>
+                                                </div>
+                                            </div>
+                                        @elseif(isset($providerDetails['service_payment_details']['day_rate']) &&
+                                                $providerDetails['service_payment_details']['day_rate'] == true)
+                                            <div class="d-flex gap-2 align-items-center mb-1">
 
-                                        </div>
+                                                <div> Day Rate:
+                                                </div>
+                                                <div class="text-sm">
+                                                    {{ numberFormat($providerDetails['service_payment_details']['rate']) }}
+                                                </div>
+                                            </div>
+                                        @else
+                                            <div class="d-flex gap-2 align-items-center mb-1">
+                                                <div>
+                                                    Business Hour(s):</div>
+                                                <div class="text-sm">
+                                                    {{ $providerDetails['service_payment_details']['b_hours_duration'] }}
+                                                </div>
+                                            </div>
+                                            <div class="d-flex gap-2 align-items-center mb-1">
+                                                <div>
+                                                    Business Hour Rate:</div>
+                                                <div class="text-sm">
+                                                    {{ numberFormat($providerDetails['service_payment_details']['b_hours_rate']) }}
+                                                </div>
+                                            </div>
 
+                                            <div class="d-flex gap-2 align-items-center mb-1">
+                                                <div>
+                                                    After Business Hour(s):</div>
+                                                <div class="text-sm">
+                                                    {{ $providerDetails['service_payment_details']['a_hours_duration'] }}
+                                                </div>
+                                            </div>
+                                            <div class="d-flex gap-2 align-items-center mb-1">
+
+                                                <div>
+                                                    After-Business Hour Rate:</div>
+                                                <div class="text-sm">
+                                                    {{ numberFormat($providerDetails['service_payment_details']['a_hours_rate']) }}
+                                                </div>
+                                            </div>
+                                        @endif
+                                        @if (isset($providerDetails['service_payment_details']['expedited_rate']) &&
+                                                $providerDetails['service_payment_details']['expedited_rate'] > 0)
+                                            <div class="d-flex gap-2 align-items-center mb-1">
+
+                                                <div>Expedition Charges:</div>
+                                                <div class="text-sm">
+                                                    {{ numberFormat($providerDetails['service_payment_details']['expedited_rate']) }}
+
+                                                </div>
+                                            </div>
+                                        @endif
+                                        @if (count($providerDetails['service_payment_details']['specialization_charges']))
+                                            <div class="text-primary">
+                                                Specialization Charges
+
+                                            </div>
+                                            @foreach ($providerDetails['service_payment_details']['specialization_charges'] as $spCharges)
+                                                <div class="d-flex gap-2 align-items-center mb-1">
+                                                    <div class="">{{ $spCharges['label'] }}: </div>
+                                                    <div class="text-sm">
+                                                        {{ numberFormat($spCharges['provider_charges']) }}</div>
+
+                                                </div>
+                                            @endforeach
+                                        @endif
                                         @if (isset($providerDetails['additional_payments']['additional_label_provider']) &&
                                                 !is_null($providerDetails['additional_payments']['additional_label_provider']))
                                             <div class="text-primary">
@@ -184,26 +248,36 @@
 
                                             </div>
                                             <div class="d-flex gap-2 align-items-center mb-1">
-                                                <div class="">{{$providerDetails['additional_payments']['additional_label_provider']}}: </div>
-                                                <div class="text-sm">{{numberFormat($providerDetails['additional_payments']['additional_charge_provider'])}}</div>
+                                                <div class="">
+                                                    {{ $providerDetails['additional_payments']['additional_label_provider'] }}:
+                                                </div>
+                                                <div class="text-sm">
+                                                    {{ numberFormat($providerDetails['additional_payments']['additional_charge_provider']) }}
+                                                </div>
 
                                             </div>
                                         @endif
                                         <div class="d-flex gap-2 align-items-center mb-1">
-                                            <div class="">(Override) Service Charges</div>
-                                            <div class="text-sm">$100</div>
-
+                                            <div class="">
+                                                {{ $providerDetails['is_override_price'] == 1 ? '(Override)' : '' }}
+                                                Service Charges</div>
+                                            <div class="text-sm">
+                                                {{ $providerDetails['is_override_price'] == 1 ? numberFormat($providerDetails['override_price']) : numberFormat($providerDetails['total_amount']) }}
+                                            </div>
+                                            @php
+                                                $total = $total + ($providerDetails['is_override_price'] == 1 ? $providerDetails['override_price'] : $providerDetails['total_amount']);
+                                            @endphp
                                         </div>
                                         <hr>
                                     @endforeach
 
-                                    <div class="d-flex gap-2 align-items-center mb-1">
+                                    {{-- <div class="d-flex gap-2 align-items-center mb-1">
                                         <div class="fw-medium">Total Service Rate:</div>
                                         <div class="fw-medium">$100</div>
-                                    </div>
+                                    </div> --}}
                                 </td>
                                 <td class="">
-                                    <div>$135</div>
+                                    <div>{{ numberFormat($total) }}</div>
                                 </td>
                                 {{-- <td>
                                 <div class="d-flex align-items-center gap-1">
