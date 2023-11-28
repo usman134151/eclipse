@@ -13,6 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
+            Schema::table('booking_reimbursements', function (Blueprint $table) {
+            $table->dropForeign(['booking_id']);
+        });
         Schema::table('booking_reimbursements', function (Blueprint $table) {
             $table->unsignedBigInteger('booking_id')->nullable()->default(null)->change();
 
