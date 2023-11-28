@@ -107,20 +107,20 @@
                         @foreach ($list as $row)
                             <tr role="row" class="even">
                                 <td class="text-center">
-                                    <input class="form-check-input" wire:model="selectedBookings" type="checkbox" value="{{$row->first()->booking->id}}"
-                                        aria-label="Select Booking" wire:click="updateSelectedBookings('{{$row->first()->booking->id}}')">
+                                    <input class="form-check-input" wire:model="selectedBookings" type="checkbox" value="{{$row[0]['booking']['id']}}"
+                                        aria-label="Select Booking" >
                                 </td>
                                 <td>
-                                    <div class="fw-semibold">{{ $row->first()->booking->booking_number }}</div>
+                                    <div class="fw-semibold">{{ $row[0]['booking']['booking_number'] }}</div>
                                     {{-- display separate time for each service --}}
                                     <div>
-                                        <div>{{ formatDate($row->first()->booking->booking_start_at) }}</div>
+                                        <div>{{ formatDate($row[0]['booking']['booking_start_at']) }}</div>
                                         <div class="d-inline-flex" data-bs-toggle="tooltip" data-bs-html="true"
                                             data-bs-title="<div><b>Payment Notes</b></div> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor sit amet</p>">
-                                            {{ formatTime($row->first()->booking->booking_start_at) }} to
-                                            {{ formatTime($row->first()->booking->booking_end_at) }}</div>
+                                            {{ formatTime($row[0]['booking']['booking_start_at']) }} to
+                                            {{ formatTime($row[0]['booking']['booking_end_at']) }}</div>
                                     </div>
-                                    @if ($row->first()->reimbursements && $row->first()->reimbursements->count())
+                                    @if ($row[0]['reimbursements'] && count($row[0]['reimbursements']))
                                         <div class="my-1">
                                             <strong>
                                                 Booking Reimbursements </strong>
@@ -130,12 +130,12 @@
                                                 <table id="" class="table table-sm text-sm" aria-label="">
 
                                                     <tbody>
-                                                        @foreach ($row->first()->reimbursements as $rmb)
+                                                        @foreach ($row[0]['reimbursements'] as $rmb)
                                                             <tr role="row" class="odd">
                                                                 <td class="text-center align-middle">
 
                                                                     <input class="form-check-input" type="checkbox" wire:model="selectedRMB"
-                                                                        wire:click="updateSelectedRMB('{{$rmb['id']}}')"
+                                                                        {{-- wire:click="updateSelectedRMB('{{$rmb['id']}}')" --}}
                                                                         value="{{$rmb['id']}}" aria-label="Select Team">
                                                                 </td>
                                                                 <td class="text-center align-middle">
@@ -173,19 +173,19 @@
                                 </td>
                                 <td>
                                     <div class="text-sm">
-                                        {{ $row->first()->booking->company ? $row->first()->booking->company->name : 'N/A' }}
+                                        {{ $row[0]['booking']['company'] ? $row[0]['booking']['company']['name'] : 'N/A' }}
                                     </div>
                                     <div class="text-sm">
                                         Requester:
-                                        {{ $row->first()->booking->customer ? $row->first()->booking->customer->name : 'N/A' }}
+                                        {{ $row[0]['booking']['customer'] ? $row[0]['booking']['customer']['name'] : 'N/A' }}
                                     </div>
                                     <div class="text-sm">
                                         Supervisor:
-                                        {{ $row->first()->booking->booking_supervisor ? $row->first()->booking->booking_supervisor->name : 'N/A' }}
+                                        {{ $row[0]['booking']['booking_supervisor'] ? $row[0]['booking']['booking_supervisor']['name'] : 'N/A' }}
                                     </div>
                                     <div class="text-sm">
                                         Billing Manager:
-                                        {{ $row->first()->booking->billing_manager ? $row->first()->booking->billing_manager->name : 'N/A' }}
+                                        {{ $row[0]['booking']['billing_manager'] ? $row[0]['booking']['billing_manager']['name'] : 'N/A' }}
                                     </div>
                                     <div class="text-sm">
                                         Service Consumer(s):
@@ -198,7 +198,7 @@
                                         <div class="d-flex gap-2 align-items-center">
                                             <div>
                                                 <strong>
-                                                    {{ $providerDetails->booking_service->service->name }}
+                                                    {{ $providerDetails['booking_service']['service']['name'] }}
                                                 </strong>
                                             </div>
 

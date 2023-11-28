@@ -24,13 +24,13 @@ class IssueRemittance extends Component
                 // fetch reimbursement data
             } else {
                 //fetch booking details + associated reimbursements
-                $bookingRecords = BookingProvider::where(['provider_id' => $providerId, 'booking_id' => $row['booking_id']])->get();
+                $bookingRecords = BookingProvider::where(['provider_id' => $providerId, 'booking_id' => $row['booking_id']])->with(['reimbursements', 'booking_service', 'booking_service.service','booking','booking.company', 'booking.customer', 'booking.booking_supervisor', 'booking.billing_manager'])->get()->toArray();
                 //accesing reimbursement reason 
-                foreach ($bookingRecords->first()->reimbursements as $rmb) {
+                foreach ($bookingRecords[0]['reimbursements'] as $index=> $rmb) {
                     $reason = '';
-                    if (!empty($rmb->reason)) {
+                    if (!empty($rmb['reason'])) {
                         $reason = json_decode($rmb['reason'], true);
-                        $rmb->reason = $reason['type'] === 'Other' ? $reason['details'] : $reason['type'];
+                        $bookingRecords[0]['reimbursements'][$index]['reason'] = $reason['type'] === 'Other' ? $reason['details'] : $reason['type'];
                     }
                     $this->selectedRMB[] = $rmb['id'];
                 }
@@ -41,25 +41,25 @@ class IssueRemittance extends Component
         // dd($this->list);
     }
 
-    public function updateSelectedBookings($bookingId)
-    {
-        if (in_array($bookingId, $this->selectedBookings)) {
-            unset($this->selectedBookings[$bookingId]);
-            $this->selectedBookings = array_values($this->selectedBookings);
-        } else {
-            $this->selectedBookings[] = $bookingId;
-        }
-    }
+    // public function updateSelectedBookings($bookingId)
+    // {
+    //     if (in_array($bookingId, $this->selectedBookings)) {
+    //         unset($this->selectedBookings[$bookingId]);
+    //         $this->selectedBookings = array_values($this->selectedBookings);
+    //     } else {
+    //         $this->selectedBookings[] = $bookingId;
+    //     }
+    // }
 
-    public function updateSelectedRMB($rmbId)
-    {
-        if (in_array($rmbId, $this->selectedRMB)) {
-            unset($this->selectedRMB[$rmbId]);
-            $this->selectedBookings = array_values($this->selectedRMB);
-        } else {
-            $this->selectedRMB[] = $rmbId;
-        }
-    }
+    // public function updateSelectedRMB($rmbId)
+    // {
+    //     if (in_array($rmbId, $this->selectedRMB)) {
+    //         unset($this->selectedRMB[$rmbId]);
+    //         $this->selectedBookings = array_values($this->selectedRMB);
+    //     } else {
+    //         $this->selectedRMB[] = $rmbId;
+    //     }
+    // }
 
     function showForm()
     {
