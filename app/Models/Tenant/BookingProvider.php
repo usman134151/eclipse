@@ -30,7 +30,7 @@ class BookingProvider extends Model
     }
     public function booking_service()
     {
-        return $this->hasOne(Booking::class, 'id', 'booking_service_id');
+        return $this->hasOne(BookingServices::class, 'id', 'booking_service_id');
     }
 
     public function reimbursements()

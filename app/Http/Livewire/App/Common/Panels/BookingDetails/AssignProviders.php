@@ -816,7 +816,7 @@ class AssignProviders extends Component
             'provider_id' => $provider_id,
             'additional_label_provider' => $this->providersPayment[$index]['additional_payments']['additional_label_provider'],
             'additional_charge_provider' => $this->providersPayment[$index]['additional_payments']['additional_charge_provider'],
-            "is_override_price" => 1,
+            "is_override_price" => 0,   //changed to 0 as initial price  
             "additional_payments" => $this->providersPayment[$index]['additional_payments'],
             "service_payment_details" => $this->providersPayment[$index]['service_payment_details'],
             "total_amount" => $this->providersPayment[$index]['total_amount']
