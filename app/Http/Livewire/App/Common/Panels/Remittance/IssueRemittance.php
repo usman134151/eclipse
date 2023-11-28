@@ -24,11 +24,16 @@ class IssueRemittance extends Component
                 // fetch reimbursement data
             } else {
                 //fetch booking details + associated reimbursements
-                 $this->list[] = BookingProvider::where(['provider_id'=>$providerId, 'booking_id'=>$row['booking_id']])->get();
-                //  foreach($bookingRecords as $record){
-                // }
-                // dd()
-                // $this->list[$index]
+                $bookingRecords = BookingProvider::where(['provider_id'=>$providerId, 'booking_id'=>$row['booking_id']])->get();
+                //accesing reimbursement reason 
+                 foreach($bookingRecords->first()->reimbursements as $rmb){
+                    $reason = '';
+                    if (!empty($rmb->reason)) {
+                        $reason = json_decode($rmb['reason'], true);
+                        $rmb->reason = $reason['type'] === 'Other' ? $reason['details'] : $reason['type'];
+                    }
+                }
+                $this->list[$index] = $bookingRecords; 
             }
         }
         // dd($this->list);

@@ -120,6 +120,68 @@
                                             {{ formatTime($row->first()->booking->booking_start_at) }} to
                                             {{ formatTime($row->first()->booking->booking_end_at) }}</div>
                                     </div>
+                                    <div class="my-1">
+                                    <strong>
+                                    Booking Reimbursements </strong></div>
+                                    @if ($row->first()->reimbursements && $row->first()->reimbursements->count())
+                                        <div class=" mt-2 ">
+                                            <div class="">
+                                                <table id="" class="table table-sm text-sm" aria-label="">
+                                                    {{-- <thead>
+                                                        <tr role="row">
+                                                            <th>
+
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    value="" aria-label="Select All">
+                                                            </th>
+                                                            <th scope="col" class="text-center align-middle">
+                                                                ID</th>
+                                                            <th scope="col" class="text-center align-middle">Reason
+                                                            </th>
+                                                            <th scope="col" class="text-center align-middle">Total
+                                                                Amount</th>
+                                                        </tr>
+                                                    </thead> --}}
+                                                    <tbody>
+                                                        @foreach ($row->first()->reimbursements as $rmb)
+                                                            <tr role="row" class="odd">
+                                                                <td class="text-center align-middle">
+
+                                                                    <input class="form-check-input" type="checkbox"
+                                                                        value="" aria-label="Select Team">
+                                                                </td>
+                                                                <td class="text-center align-middle">
+                                                                    {{ $rmb['reimbursement_number'] }}
+                                                                </td>
+                                                                <td class="text-center align-middle">
+                                                                    {{ $rmb['reason'] }}
+                                                                </td>
+                                                                <td class="align-middle text-center">
+                                                                    {{ numberFormat($rmb['amount']) }}
+                                                                </td>
+                                                                {{-- <td class="align-middle text-center">
+                                                                    <svg width="13" height="12"
+                                                                        viewBox="0 0 13 12" fill="none"
+                                                                        xmlns="http://www.w3.org/2000/svg">
+                                                                        <circle cx="6.5" cy="6" r="6"
+                                                                            fill="#F4D115" />
+                                                                    </svg>
+                                                                    @if ($rmb['status'] == 0)
+                                                                        Pending
+                                                                    @elseif($rmb['status'] == 1)
+                                                                        Approved
+                                                                    @else
+                                                                        Declined
+                                                                    @endif
+                                                                </td> --}}
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    @endif
                                 </td>
                                 <td>
                                     <div class="text-sm">
@@ -189,14 +251,14 @@
                                                 <div>
                                                     Business Hour(s):</div>
                                                 <div class="text-sm">
-                                                    {{ $providerDetails['service_payment_details']['b_hours_duration'] }}
+                                                    {{ isset($providerDetails['service_payment_details']['b_hours_duration']) ? $providerDetails['service_payment_details']['b_hours_duration'] : 'N/A' }}
                                                 </div>
                                             </div>
                                             <div class="d-flex gap-2 align-items-center mb-1">
                                                 <div>
                                                     Business Hour Rate:</div>
                                                 <div class="text-sm">
-                                                    {{ numberFormat($providerDetails['service_payment_details']['b_hours_rate']) }}
+                                                    {{ isset($providerDetails['service_payment_details']['b_hours_rate']) ? numberFormat($providerDetails['service_payment_details']['b_hours_rate']) : 'N/A' }}
                                                 </div>
                                             </div>
 
@@ -204,7 +266,7 @@
                                                 <div>
                                                     After Business Hour(s):</div>
                                                 <div class="text-sm">
-                                                    {{ $providerDetails['service_payment_details']['a_hours_duration'] }}
+                                                    {{ isset($providerDetails['service_payment_details']['a_hours_duration']) ? $providerDetails['service_payment_details']['a_hours_duration'] : 'N/A' }}
                                                 </div>
                                             </div>
                                             <div class="d-flex gap-2 align-items-center mb-1">
@@ -212,7 +274,7 @@
                                                 <div>
                                                     After-Business Hour Rate:</div>
                                                 <div class="text-sm">
-                                                    {{ numberFormat($providerDetails['service_payment_details']['a_hours_rate']) }}
+                                                    {{ isset($providerDetails['service_payment_details']['a_hours_rate']) ? numberFormat($providerDetails['service_payment_details']['a_hours_rate']) : 'N/A' }}
                                                 </div>
                                             </div>
                                         @endif
@@ -227,7 +289,8 @@
                                                 </div>
                                             </div>
                                         @endif
-                                        @if (count($providerDetails['service_payment_details']['specialization_charges']))
+                                        @if (isset($providerDetails['service_payment_details']['specialization_charges']) &&
+                                                count($providerDetails['service_payment_details']['specialization_charges']))
                                             <div class="text-primary">
                                                 Specialization Charges
 
