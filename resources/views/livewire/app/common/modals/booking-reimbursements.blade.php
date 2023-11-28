@@ -49,9 +49,9 @@
         </div>
         <div class="bg-muted py-2 mb-4">
             <div class="row justify-content-center">
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                     <div class="d-flex justify-content-between">
-                        <div class="fw-bold text-sm">Total</div>
+                        <div class="fw-bold text-sm">Reimbursement(s) Total</div>
                         <div class="fw-bold text-sm text-lg-end">{{numberFormat($sum)}}</div>
                     </div>
                 </div>
