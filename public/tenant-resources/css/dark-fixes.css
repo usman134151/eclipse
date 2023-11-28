@@ -1496,7 +1496,7 @@ input[type="radio"].form-check-input:checked {
 .blank-page .card.bg-transparent h3,
 .blank-page .card.bg-transparent h4,
 .blank-page .card.bg-transparent h5,
-.blank-4page .card.bg-transparent h6 {
+.blank-page .card.bg-transparent h6 {
     color: #283046;
 }
 
@@ -1813,4 +1813,8 @@ nav[aria-label="Page Navigation"]{
 
 .main-menu.menu-light .navigation{
     background: #070f27;
+}
+
+select.form-select:not([multiple="multiple"])[aria-label="Days"]{
+    background:none !important;
 }
