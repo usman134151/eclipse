@@ -353,9 +353,13 @@ class MessagesController extends Controller
         {
             $user = User::where('id', Auth::user()->id)->first();
             $companyId = $user->company_name;
-            $records = $records->where(function($query) use ($companyId) {
+            $records = $records->where(function ($query) use ($companyId) {
                 $query->where('company_name', $companyId)
-                      ->orWhere('id', "1");
+                    ->orWhere(function ($subQuery) {
+                        $subQuery->whereHas('roles', function ($roleQuery) {
+                            $roleQuery->whereIn('role_id', [1]);
+                        });
+                    });
             });
         }
 
@@ -363,9 +367,8 @@ class MessagesController extends Controller
         {
             $records = $records->where(function ($query) {
                 $query->whereHas('roles', function ($subQuery) {
-                    $subQuery->where('role_id', 10);
-                })
-                ->orWhere('id', 1);
+                    $subQuery->whereIn('role_id', [1]);
+                });
             });
         }
 
