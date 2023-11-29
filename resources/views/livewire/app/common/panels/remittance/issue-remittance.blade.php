@@ -90,8 +90,7 @@
                     <thead>
                         <tr role="row">
                             <th scope="col" class="text-center">
-                                <input class="form-check-input" type="checkbox" value=""
-                                    id="check-all"
+                                <input class="form-check-input" type="checkbox" value="" id="check-all"
                                     aria-label="Select All Teams">
                             </th>
                             <th scope="col" width="25%" class="">Booking ID</th>
@@ -973,7 +972,9 @@
         </div>
     </div>
     <div class="justify-content-center d-flex mb-4">
-        <a href="#" class="btn btn-primary rounded">Issue Remittance</a>
+        <a href="#"
+            x-on:issued-remittance.window="issueRemittance = !issueRemittance;remittanceGeneratorBooking=!remittanceGeneratorBooking"
+            wire:click="createRemittance" class="btn btn-primary rounded">Issue Remittance</a>
     </div>
 </div>
 
@@ -982,7 +983,7 @@
         let grandTotalPrice = 0;
         calculateRowsTotal();
         calculateGrandTotal();
-        
+
         $('.booking-rmb-checkbox').change(function() {
             const id = parseFloat($(this).data('id'));
             const price = parseFloat($(this).data('price'));
@@ -1037,6 +1038,7 @@
             updateGrandTotalPrice();
 
         }
+
         function updateBookingPrice(id, price) {
             $('#booking-total-' + id).text(price.toFixed(2)); // Format to two decimal places
         }
