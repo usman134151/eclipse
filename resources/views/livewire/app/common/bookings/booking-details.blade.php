@@ -156,6 +156,13 @@
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="d-flex flex-lg-row flex-column gap-3 justify-content-center">
+                                                <a href="#" wire:click="$emit('messageTeamModal','{{ $booking['id'] }}')" class="btn btn-has-icon btn-primary rounded" data-bs-toggle="modal" data-bs-target="#MessageTeamModal">
+                                                    <svg aria-label="Team Chat" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                                        <use xlink:href="/css/common-icons.svg#message-icon">
+                                                        </use>
+                                                    </svg>
+                                                    Message Team
+                                                </a>
                                                 <a href="#" class="btn btn-has-icon btn-primary rounded"
                                                     data-bs-toggle="modal" data-bs-target="#ProviderMessageModal">
                                                     {{-- Updated by Shanila to Add svg icon --}}
@@ -1639,7 +1646,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--  <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
+                            <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                             <button type="" class="btn btn-outline-dark rounded"
                                 x-on:click="$wire.switch('attachments')">Back</button>
                             <button type="" class="btn btn-primary rounded"
@@ -1663,7 +1670,7 @@
                                 </div>
 
                             </div>
-                            <!--  <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
+                            <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                             <button type="" class="btn btn-outline-dark rounded"
                                 x-on:click="$wire.switch('payment-details')">Back</button>
                             <button type="" class="btn btn-primary rounded"
@@ -1675,9 +1682,9 @@
                 </div>
             </div>
         </div>
-        {{-- Updated by Sohail Asghar to comment out duplicate modals code --}}
+        
         <!-- Modal - Provider Message -->
-        {{-- <div class="modal fade" id="ProviderMessageModal" tabindex="-1" aria-labelledby="ProviderMessageModalLabel"
+        <div class="modal fade" id="ProviderMessageModal" tabindex="-1" aria-labelledby="ProviderMessageModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -1701,34 +1708,8 @@
                 </div>
             </div>
         </div>
-    </div> --}}
-        <!-- /Modal - Provider Message -->
-        <!-- Modal - Provider Message -->
-        {{-- <div class="modal fade" id="ProviderMessageModal" tabindex="-1" aria-labelledby="ProviderMessageModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title fs-5" id="ProviderMessageModalLabel">Provider Message</h2>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor
-                        sit amet</p>
-                    <div class="d-flex gap-3 justify-content-center mb-5">
-                        <a href="#" class="btn btn-sm btn-outline-dark">Deny</a>
-                        <a href="#" class="btn btn-sm btn-primary">Approve</a>
-                    </div>
-                    <div class="d-flex gap-3 justify-content-center mb-3">
-                        <a href="#" class="btn rounded btn-outline-dark" data-bs-dismiss="modal">Cancel</a>
-                        <a href="#" class="btn rounded btn-primary">Submit</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
+    </div>
+
         <!-- /Modal - Provider Message -->
         <!-- Modal - Meeting Links -->
         {{-- <div class="modal fade" id="MeetingLinksModal" tabindex="-1" aria-labelledby="MeetingLinksModalLabel"
@@ -1773,7 +1754,7 @@
         @include('panels.booking-details.reschedule-booking')
         @include('panels.common.add-documents', ['booking_id' => $booking_id])
         @include('panels.booking-details.provider-saved-forms')
-
+        @include('modals.message-team')
 
         {{-- @include('panels.booking-details.assign-providers') --}}
     @endif
@@ -1790,6 +1771,10 @@
         });
         Livewire.on('closeFeedbackModal', () => {
             $('#reviewFeedbackModal').modal('hide');
+
+        });
+        Livewire.on('closeMessageTeamModal', () => {
+            $('#MessageTeamModal').modal('hide');
 
         });
         document.addEventListener("livewire:load", function() {
