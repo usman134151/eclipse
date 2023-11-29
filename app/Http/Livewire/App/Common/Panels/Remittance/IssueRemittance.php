@@ -34,16 +34,32 @@ class IssueRemittance extends Component
                 $this->list[$index][0] = $rmb;
             } else {
                 //fetch booking details + associated reimbursements
-                $bookingRecords = BookingProvider::where(['provider_id' => $providerId, 'booking_id' => $row['booking_id']])->with(['reimbursements', 'booking_service', 'booking_service.service','booking','booking.company', 'booking.customer', 'booking.booking_supervisor', 'booking.billing_manager'])->get()->toArray();
+                $bookingRecords = BookingProvider::where(['provider_id' => $providerId, 'booking_id' => $row['booking_id']])->with([
+                    'reimbursements', 'booking_service', 'booking_service.service', 'booking', 'booking.company',
+                    'booking.customer', 'booking.booking_supervisor', 'booking.billing_manager'
+                ])->get()->toArray();
+                $sum = 0;
+                foreach ($bookingRecords as $record) {
+                    if ($record['is_override_price'])
+                        $sum = $sum + $record['override_price'];
+                    else
+                        $sum = $sum + $record['total_amount'];
+                }
+                
                 //accesing reimbursement reason 
-                foreach ($bookingRecords[0]['reimbursements'] as $index=> $rmb) {
+                foreach ($bookingRecords[0]['reimbursements'] as $index => $rmb) {
                     $reason = '';
                     if (!empty($rmb['reason'])) {
                         $reason = json_decode($rmb['reason'], true);
                         $bookingRecords[0]['reimbursements'][$index]['reason'] = $reason['type'] === 'Other' ? $reason['details'] : $reason['type'];
                     }
                     $this->selectedRMB[] = $rmb['id'];
+                    // $sum = $sum + $rmb['amount'];
+
                 }
+
+                $bookingRecords[0]['sum'] = $sum;
+
                 $this->list[$index] = $bookingRecords;
                 $this->selectedBookings[] = $row['booking_id'];
             }
