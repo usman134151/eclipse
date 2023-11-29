@@ -104,50 +104,74 @@
                     </thead>
                     <tbody>
                         {{-- updated by shanila to reduce extra duplicate rows --}}
-                        @foreach ($list as $row)
+                        @foreach ($list as $key => $row)
                             <tr role="row" class="even">
-                                <td class="text-center">
-                                    <input class="form-check-input" wire:model="selectedBookings" type="checkbox" value="{{$row[0]['booking']['id']}}"
-                                        aria-label="Select Booking" >
-                                </td>
-                                <td>
-                                    <div class="fw-semibold">{{ $row[0]['booking']['booking_number'] }}</div>
-                                    {{-- display separate time for each service --}}
-                                    <div>
-                                        <div>{{ formatDate($row[0]['booking']['booking_start_at']) }}</div>
-                                        <div class="d-inline-flex" data-bs-toggle="tooltip" data-bs-html="true"
-                                            data-bs-title="<div><b>Payment Notes</b></div> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor sit amet</p>">
-                                            {{ formatTime($row[0]['booking']['booking_start_at']) }} to
-                                            {{ formatTime($row[0]['booking']['booking_end_at']) }}</div>
-                                    </div>
-                                    @if ($row[0]['reimbursements'] && count($row[0]['reimbursements']))
-                                        <div class="my-1">
-                                            <strong>
-                                                Booking Reimbursements </strong>
+                                @if (key_exists('reimbursement_number',$row[0]))
+                                    <td class="text-center">
+                                        <input class="form-check-input" wire:model="selectedRMB" type="checkbox"
+                                            value="{{ $row[0]['id'] }}" aria-label="Select Reimbursement">
+                                    </td>
+                                    <td>
+                                        <div class="fw-semibold">{{ $row[0]['reimbursement_number'] }}</div>
+
+                                    </td>
+                                    <td colSpan=2>
+                                        <div class="fw-semibold">Reason:</div>
+                                        <div class="">{{ $row[0]['reason'] }}</div>
+
+                                    </td>
+                                    </td>
+                                    <td>
+                                        <div class="fw-semibold">{{ numberFormat($row[0]['amount']) }}</div>
+
+                                    </td>
+                                    <td> </td>
+                                @else
+                                    <td class="text-center">
+                                        <input class="form-check-input" wire:model="selectedBookings" type="checkbox"
+                                            value="{{ $row[0]['booking']['id'] }}" aria-label="Select Booking">
+                                    </td>
+                                    <td>
+                                        <div class="fw-semibold">{{ $row[0]['booking']['booking_number'] }}</div>
+                                        {{-- display separate time for each service --}}
+                                        <div>
+                                            <div>{{ formatDate($row[0]['booking']['booking_start_at']) }}</div>
+                                            <div class="d-inline-flex" data-bs-toggle="tooltip" data-bs-html="true"
+                                                data-bs-title="<div><b>Payment Notes</b></div> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor sit amet</p>">
+                                                {{ formatTime($row[0]['booking']['booking_start_at']) }} to
+                                                {{ formatTime($row[0]['booking']['booking_end_at']) }}</div>
                                         </div>
-                                        <div class=" mt-2 ">
-                                            <div class="">
-                                                <table id="" class="table table-sm text-sm" aria-label="">
+                                        @if ($row[0]['reimbursements'] && count($row[0]['reimbursements']))
+                                            <div class="my-1">
+                                                <strong>
+                                                    Booking Reimbursements </strong>
+                                            </div>
+                                            <div class=" mt-2 ">
+                                                <div class="">
+                                                    <table id="" class="table table-sm text-sm"
+                                                        aria-label="">
 
-                                                    <tbody>
-                                                        @foreach ($row[0]['reimbursements'] as $rmb)
-                                                            <tr role="row" class="odd">
-                                                                <td class="text-center align-middle">
+                                                        <tbody>
+                                                            @foreach ($row[0]['reimbursements'] as $rmb)
+                                                                <tr role="row" class="odd">
+                                                                    <td class="text-center align-middle">
 
-                                                                    <input class="form-check-input" type="checkbox" wire:model="selectedRMB"
-                                                                        {{-- wire:click="updateSelectedRMB('{{$rmb['id']}}')" --}}
-                                                                        value="{{$rmb['id']}}" aria-label="Select Team">
-                                                                </td>
-                                                                <td class="text-center align-middle">
-                                                                    {{ $rmb['reimbursement_number'] }}
-                                                                </td>
-                                                                <td class="text-center align-middle">
-                                                                    {{ $rmb['reason'] }}
-                                                                </td>
-                                                                <td class="align-middle text-center">
-                                                                    {{ numberFormat($rmb['amount']) }}
-                                                                </td>
-                                                                {{-- <td class="align-middle text-center">
+                                                                        <input class="form-check-input"
+                                                                            type="checkbox" wire:model="selectedRMB"
+                                                                            {{-- wire:click="updateSelectedRMB('{{$rmb['id']}}')" --}}
+                                                                            value="{{ $rmb['id'] }}"
+                                                                            aria-label="Select Team">
+                                                                    </td>
+                                                                    <td class="text-center align-middle">
+                                                                        {{ $rmb['reimbursement_number'] }}
+                                                                    </td>
+                                                                    <td class="text-center align-middle">
+                                                                        {{ $rmb['reason'] }}
+                                                                    </td>
+                                                                    <td class="align-middle text-center">
+                                                                        {{ numberFormat($rmb['amount']) }}
+                                                                    </td>
+                                                                    {{-- <td class="align-middle text-center">
                                                                     <svg width="13" height="12"
                                                                         viewBox="0 0 13 12" fill="none"
                                                                         xmlns="http://www.w3.org/2000/svg">
@@ -162,200 +186,200 @@
                                                                         Declined
                                                                     @endif
                                                                 </td> --}}
-                                                            </tr>
-                                                        @endforeach
-                                                    </tbody>
-                                                </table>
-                                            </div>
-
-                                        </div>
-                                    @endif
-                                </td>
-                                <td>
-                                    <div class="text-sm">
-                                        {{ $row[0]['booking']['company'] ? $row[0]['booking']['company']['name'] : 'N/A' }}
-                                    </div>
-                                    <div class="text-sm">
-                                        Requester:
-                                        {{ $row[0]['booking']['customer'] ? $row[0]['booking']['customer']['name'] : 'N/A' }}
-                                    </div>
-                                    <div class="text-sm">
-                                        Supervisor:
-                                        {{ $row[0]['booking']['booking_supervisor'] ? $row[0]['booking']['booking_supervisor']['name'] : 'N/A' }}
-                                    </div>
-                                    <div class="text-sm">
-                                        Billing Manager:
-                                        {{ $row[0]['booking']['billing_manager'] ? $row[0]['booking']['billing_manager']['name'] : 'N/A' }}
-                                    </div>
-                                    <div class="text-sm">
-                                        Service Consumer(s):
-                                    </div>
-                                </td>
-                                <td class="position-relative">
-                                    @php
-                                    $total = 0; @endphp
-                                    @foreach ($row as $providerDetails)
-                                        <div class="d-flex gap-2 align-items-center">
-                                            <div>
-                                                <strong>
-                                                    {{ $providerDetails['booking_service']['service']['name'] }}
-                                                </strong>
-                                            </div>
-
-
-                                        </div>
-                                        <div class="d-flex gap-2 align-items-center mb-1">
-
-                                            <div>Duration:</div>
-                                            <div class="text-sm">
-                                                {{ $providerDetails['admin_approved_payment_detail'] ? $providerDetails['admin_approved_payment_detail']['actual_duration_hour'] . ' hour(s), ' : '' }}
-
-                                                {{ $providerDetails['admin_approved_payment_detail'] ? $providerDetails['admin_approved_payment_detail']['actual_duration_min'] . ' min(s) ' : '' }}
-                                            </div>
-                                        </div>
-                                        @if (isset($providerDetails['service_payment_details']['fixed_rate']) &&
-                                                $providerDetails['service_payment_details']['fixed_rate'] == true)
-                                            <div class="d-flex gap-2 align-items-center mb-1">
-
-                                                <div> Fixed Rate:
+                                                                </tr>
+                                                            @endforeach
+                                                        </tbody>
+                                                    </table>
                                                 </div>
-                                                <div class="text-sm">
-                                                    {{ numberFormat($providerDetails['service_payment_details']['rate']) }}
 
-                                                </div>
-                                            </div>
-                                        @elseif(isset($providerDetails['service_payment_details']['day_rate']) &&
-                                                $providerDetails['service_payment_details']['day_rate'] == true)
-                                            <div class="d-flex gap-2 align-items-center mb-1">
-
-                                                <div> Day Rate:
-                                                </div>
-                                                <div class="text-sm">
-                                                    {{ numberFormat($providerDetails['service_payment_details']['rate']) }}
-                                                </div>
-                                            </div>
-                                        @else
-                                            <div class="d-flex gap-2 align-items-center mb-1">
-                                                <div>
-                                                    Business Hour(s):</div>
-                                                <div class="text-sm">
-                                                    {{ isset($providerDetails['service_payment_details']['b_hours_duration']) ? $providerDetails['service_payment_details']['b_hours_duration'] : 'N/A' }}
-                                                </div>
-                                            </div>
-                                            <div class="d-flex gap-2 align-items-center mb-1">
-                                                <div>
-                                                    Business Hour Rate:</div>
-                                                <div class="text-sm">
-                                                    {{ isset($providerDetails['service_payment_details']['b_hours_rate']) ? numberFormat($providerDetails['service_payment_details']['b_hours_rate']) : 'N/A' }}
-                                                </div>
-                                            </div>
-
-                                            <div class="d-flex gap-2 align-items-center mb-1">
-                                                <div>
-                                                    After Business Hour(s):</div>
-                                                <div class="text-sm">
-                                                    {{ isset($providerDetails['service_payment_details']['a_hours_duration']) ? $providerDetails['service_payment_details']['a_hours_duration'] : 'N/A' }}
-                                                </div>
-                                            </div>
-                                            <div class="d-flex gap-2 align-items-center mb-1">
-
-                                                <div>
-                                                    After-Business Hour Rate:</div>
-                                                <div class="text-sm">
-                                                    {{ isset($providerDetails['service_payment_details']['a_hours_rate']) ? numberFormat($providerDetails['service_payment_details']['a_hours_rate']) : 'N/A' }}
-                                                </div>
                                             </div>
                                         @endif
-                                        @if (isset($providerDetails['service_payment_details']['expedited_rate']) &&
-                                                $providerDetails['service_payment_details']['expedited_rate'] > 0)
+                                    </td>
+                                    <td>
+                                        <div class="text-sm">
+                                            {{ $row[0]['booking']['company'] ? $row[0]['booking']['company']['name'] : 'N/A' }}
+                                        </div>
+                                        <div class="text-sm">
+                                            Requester:
+                                            {{ $row[0]['booking']['customer'] ? $row[0]['booking']['customer']['name'] : 'N/A' }}
+                                        </div>
+                                        <div class="text-sm">
+                                            Supervisor:
+                                            {{ $row[0]['booking']['booking_supervisor'] ? $row[0]['booking']['booking_supervisor']['name'] : 'N/A' }}
+                                        </div>
+                                        <div class="text-sm">
+                                            Billing Manager:
+                                            {{ $row[0]['booking']['billing_manager'] ? $row[0]['booking']['billing_manager']['name'] : 'N/A' }}
+                                        </div>
+                                        <div class="text-sm">
+                                            Service Consumer(s):
+                                        </div>
+                                    </td>
+                                    <td class="position-relative">
+                                        @php
+                                        $total = 0; @endphp
+                                        @foreach ($row as $providerDetails)
+                                            <div class="d-flex gap-2 align-items-center">
+                                                <div>
+                                                    <strong>
+                                                        {{ $providerDetails['booking_service']['service']['name'] }}
+                                                    </strong>
+                                                </div>
+
+
+                                            </div>
                                             <div class="d-flex gap-2 align-items-center mb-1">
 
-                                                <div>Expedition Charges:</div>
+                                                <div>Duration:</div>
                                                 <div class="text-sm">
-                                                    {{ numberFormat($providerDetails['service_payment_details']['expedited_rate']) }}
+                                                    {{ $providerDetails['admin_approved_payment_detail'] ? $providerDetails['admin_approved_payment_detail']['actual_duration_hour'] . ' hour(s), ' : '' }}
 
+                                                    {{ $providerDetails['admin_approved_payment_detail'] ? $providerDetails['admin_approved_payment_detail']['actual_duration_min'] . ' min(s) ' : '' }}
                                                 </div>
                                             </div>
-                                        @endif
-                                        @if (isset($providerDetails['service_payment_details']['specialization_charges']) &&
-                                                count($providerDetails['service_payment_details']['specialization_charges']))
-                                            <div class="text-primary">
-                                                Specialization Charges
-
-                                            </div>
-                                            @foreach ($providerDetails['service_payment_details']['specialization_charges'] as $spCharges)
+                                            @if (isset($providerDetails['service_payment_details']['fixed_rate']) &&
+                                                    $providerDetails['service_payment_details']['fixed_rate'] == true)
                                                 <div class="d-flex gap-2 align-items-center mb-1">
-                                                    <div class="">{{ $spCharges['label'] }}: </div>
+
+                                                    <div> Fixed Rate:
+                                                    </div>
                                                     <div class="text-sm">
-                                                        {{ numberFormat($spCharges['provider_charges']) }}</div>
+                                                        {{ numberFormat($providerDetails['service_payment_details']['rate']) }}
+
+                                                    </div>
+                                                </div>
+                                            @elseif(isset($providerDetails['service_payment_details']['day_rate']) &&
+                                                    $providerDetails['service_payment_details']['day_rate'] == true)
+                                                <div class="d-flex gap-2 align-items-center mb-1">
+
+                                                    <div> Day Rate:
+                                                    </div>
+                                                    <div class="text-sm">
+                                                        {{ numberFormat($providerDetails['service_payment_details']['rate']) }}
+                                                    </div>
+                                                </div>
+                                            @else
+                                                <div class="d-flex gap-2 align-items-center mb-1">
+                                                    <div>
+                                                        Business Hour(s):</div>
+                                                    <div class="text-sm">
+                                                        {{ isset($providerDetails['service_payment_details']['b_hours_duration']) ? $providerDetails['service_payment_details']['b_hours_duration'] : 'N/A' }}
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex gap-2 align-items-center mb-1">
+                                                    <div>
+                                                        Business Hour Rate:</div>
+                                                    <div class="text-sm">
+                                                        {{ isset($providerDetails['service_payment_details']['b_hours_rate']) ? numberFormat($providerDetails['service_payment_details']['b_hours_rate']) : 'N/A' }}
+                                                    </div>
+                                                </div>
+
+                                                <div class="d-flex gap-2 align-items-center mb-1">
+                                                    <div>
+                                                        After Business Hour(s):</div>
+                                                    <div class="text-sm">
+                                                        {{ isset($providerDetails['service_payment_details']['a_hours_duration']) ? $providerDetails['service_payment_details']['a_hours_duration'] : 'N/A' }}
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex gap-2 align-items-center mb-1">
+
+                                                    <div>
+                                                        After-Business Hour Rate:</div>
+                                                    <div class="text-sm">
+                                                        {{ isset($providerDetails['service_payment_details']['a_hours_rate']) ? numberFormat($providerDetails['service_payment_details']['a_hours_rate']) : 'N/A' }}
+                                                    </div>
+                                                </div>
+                                            @endif
+                                            @if (isset($providerDetails['service_payment_details']['expedited_rate']) &&
+                                                    $providerDetails['service_payment_details']['expedited_rate'] > 0)
+                                                <div class="d-flex gap-2 align-items-center mb-1">
+
+                                                    <div>Expedition Charges:</div>
+                                                    <div class="text-sm">
+                                                        {{ numberFormat($providerDetails['service_payment_details']['expedited_rate']) }}
+
+                                                    </div>
+                                                </div>
+                                            @endif
+                                            @if (isset($providerDetails['service_payment_details']['specialization_charges']) &&
+                                                    count($providerDetails['service_payment_details']['specialization_charges']))
+                                                <div class="text-primary">
+                                                    Specialization Charges
 
                                                 </div>
-                                            @endforeach
-                                        @endif
-                                        @if (isset($providerDetails['additional_payments']['additional_label_provider']) &&
-                                                !is_null($providerDetails['additional_payments']['additional_label_provider']))
-                                            <div class="text-primary">
-                                                Additional Charges
+                                                @foreach ($providerDetails['service_payment_details']['specialization_charges'] as $spCharges)
+                                                    <div class="d-flex gap-2 align-items-center mb-1">
+                                                        <div class="">{{ $spCharges['label'] }}: </div>
+                                                        <div class="text-sm">
+                                                            {{ numberFormat($spCharges['provider_charges']) }}</div>
 
-                                            </div>
+                                                    </div>
+                                                @endforeach
+                                            @endif
+                                            @if (isset($providerDetails['additional_payments']['additional_label_provider']) &&
+                                                    !is_null($providerDetails['additional_payments']['additional_label_provider']))
+                                                <div class="text-primary">
+                                                    Additional Charges
+
+                                                </div>
+                                                <div class="d-flex gap-2 align-items-center mb-1">
+                                                    <div class="">
+                                                        {{ $providerDetails['additional_payments']['additional_label_provider'] }}:
+                                                    </div>
+                                                    <div class="text-sm">
+                                                        {{ numberFormat($providerDetails['additional_payments']['additional_charge_provider']) }}
+                                                    </div>
+
+                                                </div>
+                                            @endif
                                             <div class="d-flex gap-2 align-items-center mb-1">
                                                 <div class="">
-                                                    {{ $providerDetails['additional_payments']['additional_label_provider'] }}:
-                                                </div>
+                                                    {{ $providerDetails['is_override_price'] == 1 ? '(Override)' : '' }}
+                                                    Service Charges</div>
                                                 <div class="text-sm">
-                                                    {{ numberFormat($providerDetails['additional_payments']['additional_charge_provider']) }}
+                                                    {{ $providerDetails['is_override_price'] == 1 ? numberFormat($providerDetails['override_price']) : numberFormat($providerDetails['total_amount']) }}
                                                 </div>
-
+                                                @php
+                                                    $total = $total + ($providerDetails['is_override_price'] == 1 ? $providerDetails['override_price'] : $providerDetails['total_amount']);
+                                                @endphp
                                             </div>
-                                        @endif
-                                        <div class="d-flex gap-2 align-items-center mb-1">
-                                            <div class="">
-                                                {{ $providerDetails['is_override_price'] == 1 ? '(Override)' : '' }}
-                                                Service Charges</div>
-                                            <div class="text-sm">
-                                                {{ $providerDetails['is_override_price'] == 1 ? numberFormat($providerDetails['override_price']) : numberFormat($providerDetails['total_amount']) }}
-                                            </div>
-                                            @php
-                                                $total = $total + ($providerDetails['is_override_price'] == 1 ? $providerDetails['override_price'] : $providerDetails['total_amount']);
-                                            @endphp
-                                        </div>
-                                        <hr>
-                                    @endforeach
+                                            <hr>
+                                        @endforeach
 
-                                    {{-- <div class="d-flex gap-2 align-items-center mb-1">
+                                        {{-- <div class="d-flex gap-2 align-items-center mb-1">
                                         <div class="fw-medium">Total Service Rate:</div>
                                         <div class="fw-medium">$100</div>
                                     </div> --}}
-                                </td>
-                                <td class="">
-                                    <div>{{ numberFormat($total) }}</div>
-                                </td>
-                                {{-- <td>
-                                <div class="d-flex align-items-center gap-1">
-                                    <svg class="fill-danger" xmlns="http://www.w3.org/2000/svg" width="12"
-                                        height="12" viewBox="0 0 512 512">
-                                        <!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                                        <path
-                                            d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512z">
-                                        </path>
-                                    </svg>
-                                    Pending
-                                </div>
-                            </td> --}}
-                                <td>
-                                    <div class="d-flex actions justify-content-center">
-                                        <a href="#" title="View" aria-label="View"
-                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                            <svg class="fill-stroke" width="17" height="18"
-                                                viewBox="0 0 17 18" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M8.3125 16.8125H1.4375V1.1875H14.5625V9.3125M15.8125 12.4375L11.4375 16.8125M5.1875 8.6875H10.8125M5.1875 12.4375H7.0625M5.1875 4.9375H10.8125M11.4375 12.4375L15.8125 16.8125"
-                                                    stroke="black" stroke-width="1.5" stroke-linecap="round"
-                                                    stroke-linejoin="round" />
-                                            </svg>
-                                        </a>
-                                        {{-- <a href="#" title="Accept" aria-label="Accept"
+                                    </td>
+                                    <td class="">
+                                        <div>{{ numberFormat($total) }}</div>
+                                    </td>
+                                    {{-- <td>
+                                    <div class="d-flex align-items-center gap-1">
+                                        <svg class="fill-danger" xmlns="http://www.w3.org/2000/svg" width="12"
+                                            height="12" viewBox="0 0 512 512">
+                                            <!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                            <path
+                                                d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512z">
+                                            </path>
+                                        </svg>
+                                        Pending
+                                    </div>
+                                </td> --}}
+                                    <td>
+                                        <div class="d-flex actions justify-content-center">
+                                            <a href="#" title="View" aria-label="View"
+                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                <svg class="fill-stroke" width="17" height="18"
+                                                    viewBox="0 0 17 18" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M8.3125 16.8125H1.4375V1.1875H14.5625V9.3125M15.8125 12.4375L11.4375 16.8125M5.1875 8.6875H10.8125M5.1875 12.4375H7.0625M5.1875 4.9375H10.8125M11.4375 12.4375L15.8125 16.8125"
+                                                        stroke="black" stroke-width="1.5" stroke-linecap="round"
+                                                        stroke-linejoin="round" />
+                                                </svg>
+                                            </a>
+                                            {{-- <a href="#" title="Accept" aria-label="Accept"
                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                         <svg width="19" height="20" viewBox="0 0 19 20" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -363,8 +387,9 @@
                                                 d="M0 0V18.5714H11.6923V17.1429H1.46154V1.42857H8.76923V5.71429H13.1538V7.14286H14.6154V4.71429L14.3962 4.5L10.0115 0.214286L9.79231 0H0ZM10.2308 2.42857L12.1308 4.28571H10.2308V2.42857ZM2.92308 7.14286V8.57143H11.6923V7.14286H2.92308ZM15.3462 8.57143V10C14.1038 10.2143 13.1538 11.2143 13.1538 12.5C13.1538 13.9286 14.25 15 15.7115 15H16.4423C17.0269 15 17.5385 15.5 17.5385 16.0714C17.5385 16.6429 17.0269 17.1429 16.4423 17.1429H13.8846V18.5714H15.3462V20H16.8077V18.5714C18.05 18.3571 19 17.3571 19 16.0714C19 14.6429 17.9038 13.5714 16.4423 13.5714H15.7115C15.1269 13.5714 14.6154 13.0714 14.6154 12.5C14.6154 11.9286 15.1269 11.4286 15.7115 11.4286H18.2692V10H16.8077V8.57143H15.3462ZM2.92308 10.7143V12.1429H8.03846V10.7143H2.92308ZM9.5 10.7143V12.1429H11.6923V10.7143H9.5ZM2.92308 13.5714V15H8.03846V13.5714H2.92308ZM9.5 13.5714V15H11.6923V13.5714H9.5Z" />
                                         </svg>
                                     </a> --}}
-                                    </div>
-                                </td>
+                                        </div>
+                                    </td>
+                                @endif
                             </tr>
                         @endforeach
                         {{-- START : rows for future implementation --}}

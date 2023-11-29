@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\App\Common\Panels\Remittance;
 
 use App\Models\Tenant\BookingProvider;
+use App\Models\Tenant\BookingReimbursement;
 use App\Models\Tenant\User;
 use Livewire\Component;
 
@@ -20,8 +21,17 @@ class IssueRemittance extends Component
     {
         $this->provider = User::find($providerId);
         foreach ($selectedRows as $index => $row) {
+            // dd(key_exists('reimbursement_id', $row));
             if (key_exists('reimbursement_id', $row)) {
                 // fetch reimbursement data
+                $rmb =  BookingReimbursement::where('id', $row['reimbursement_id'])->first()->toArray();
+                $reason = '';
+                if (!empty($rmb['reason'])) {
+                    $reason = json_decode($rmb['reason'], true);
+                    $rmb['reason'] = $reason['type'] === 'Other' ? $reason['details'] : $reason['type'];
+                }
+                $this->selectedRMB[] = $rmb['id'];
+                $this->list[$index][0] = $rmb;
             } else {
                 //fetch booking details + associated reimbursements
                 $bookingRecords = BookingProvider::where(['provider_id' => $providerId, 'booking_id' => $row['booking_id']])->with(['reimbursements', 'booking_service', 'booking_service.service','booking','booking.company', 'booking.customer', 'booking.booking_supervisor', 'booking.billing_manager'])->get()->toArray();
