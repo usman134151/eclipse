@@ -91,6 +91,7 @@
                         <tr role="row">
                             <th scope="col" class="text-center">
                                 <input class="form-check-input" type="checkbox" value=""
+                                    id="check-all"
                                     aria-label="Select All Teams">
                             </th>
                             <th scope="col" width="25%" class="">Booking ID</th>
@@ -979,102 +980,83 @@
 <script>
     $(document).ready(function() {
         let grandTotalPrice = 0;
-
-        $('.booking-rmb-checkbox:checked').each(function() {
+        calculateRowsTotal();
+        calculateGrandTotal();
+        
+        $('.booking-rmb-checkbox').change(function() {
             const id = parseFloat($(this).data('id'));
             const price = parseFloat($(this).data('price'));
-            var bookingtotalPrice = parseFloat($('#booking-total-' + id).text());
-            bookingtotalPrice += price;
-            updateBookingPrice(id, bookingtotalPrice);
-
-        });
-
-        $('.booking-checkbox:checked').each(function() {
-            const id = parseFloat($(this).data('id'));
-            if (!isNaN(id)) {
-                const price = parseFloat($('#booking-total-' + id).text());
-
-                grandTotalPrice += price;
-            }
-        });
-        updateGrandTotalPrice();
-
-
-
-    $('.booking-rmb-checkbox').change(function() {
-        const id = parseFloat($(this).data('id'));
-        const price = parseFloat($(this).data('price'));
-        let bookingtotalPrice = parseFloat($('#booking-total-' + id).text());
-
-        if ($(this).is(':checked')) {
-            bookingtotalPrice += price;
-        } else {
-            bookingtotalPrice -= price;
-        }
-        updateBookingPrice(id, bookingtotalPrice);
-    });
-
-    $('.booking-checkbox').change(function() {
-        const id = parseFloat($(this).data('id'));
-        if (!isNaN(id)) {
-
-            const price = parseFloat($('#booking-total-' + id).text());
+            let bookingtotalPrice = parseFloat($('#booking-total-' + id).text());
 
             if ($(this).is(':checked')) {
-                grandTotalPrice += price;
+                bookingtotalPrice += price;
             } else {
-                grandTotalPrice -= price;
+                bookingtotalPrice -= price;
             }
-            updateGrandTotalPrice();
+            updateBookingPrice(id, bookingtotalPrice);
+            calculateGrandTotal();
+        });
+
+        $('.booking-checkbox').change(function() {
+            const id = parseFloat($(this).data('id'));
+            if (!isNaN(id)) {
+
+                const price = parseFloat($('#booking-total-' + id).text());
+
+                if ($(this).is(':checked')) {
+                    grandTotalPrice += price;
+                } else {
+                    grandTotalPrice -= price;
+                }
+                updateGrandTotalPrice();
+            }
+        });
+
+
+
+        function calculateRowsTotal() {
+            $('.booking-rmb-checkbox:checked').each(function() {
+                const id = parseFloat($(this).data('id'));
+                const price = parseFloat($(this).data('price'));
+                var bookingtotalPrice = parseFloat($('#booking-total-' + id).text());
+                bookingtotalPrice += price;
+                updateBookingPrice(id, bookingtotalPrice);
+
+            });
         }
-    });
+
+        function calculateGrandTotal() {
+            $('.booking-checkbox:checked').each(function() {
+                const id = parseFloat($(this).data('id'));
+                if (!isNaN(id)) {
+                    const price = parseFloat($('#booking-total-' + id).text());
+
+                    grandTotalPrice += price;
+                }
+            });
+            updateGrandTotalPrice();
+
+        }
+        function updateBookingPrice(id, price) {
+            $('#booking-total-' + id).text(price.toFixed(2)); // Format to two decimal places
+        }
+
+        function updateGrandTotalPrice() {
+            $('#grand-total').text(grandTotalPrice.toFixed(2)); // Format to two decimal places
+            @this.set('totalAmount', grandTotalPrice);
 
 
-    function updateBookingPrice(id, price) {
-        $('#booking-total-' + id).text(price.toFixed(2)); // Format to two decimal places
-    }
-
-    function updateGrandTotalPrice() {
-        $('#grand-total').text(grandTotalPrice.toFixed(2)); // Format to two decimal places
-
-        //livewire emit remittance_total
-    }
+            //livewire emit remittance_total
+        }
 
 
-    $('#check-all').change(function() {
-        const isChecked = $(this).is(':checked');
-        $('.booking-checkbox').prop('checked', isChecked);
+        $('#check-all').change(function() {
+            const isChecked = $(this).is(':checked');
+            $('.booking-checkbox').prop('checked', isChecked);
+            $('.booking-rmb-checkbox').prop('checked', isChecked);
 
-        calculateTotalPrice();
-    });
-
-    function calculateTotalPrice() {
-        totalPrice = 0.00;
-
-        $('.booking-checkbox:checked').each(function() {
-            const price = parseFloat($(this).data('price'));
-            totalPrice += price;
-        });
-        updateTotalPrice();
-    }
-
-    function updateRowTotal(id) {
-
-        // fetch and sum checked service charges -> .service-charges-{id}
-        $('.booking-charges-' + id + ':checked').each(function() {
-            const price = parseFloat($(this).data('price'));
-            rowtotalPrice += price;
-        });
-        // fetch and sum checked reimbursement charges -> .rmb-charges-{id}
-        $('.rmb-charges-' + id + ':checked').each(function() {
-            const price = parseFloat($(this).data('price'));
-            rowtotalPrice += price;
+            calculateTotalPrice();
         });
 
-
-        $('#booking-total-' + id).text(rowtotalPrice.toFixed(2)); // Format to two decimal places
-
-    }
     });
-
 </script>

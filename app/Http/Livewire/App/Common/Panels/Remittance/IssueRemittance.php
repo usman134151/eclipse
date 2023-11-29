@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class IssueRemittance extends Component
 {
-    public $showForm, $list = [], $provider, $selectedBookings = [], $selectedRMB = [];
+    public $showForm, $list = [], $provider, $selectedBookings = [], $selectedRMB = [], $totalAmount=0;
     protected $listeners = ['showList' => 'resetForm', 'issueRemittances'];
 
     public function render()
