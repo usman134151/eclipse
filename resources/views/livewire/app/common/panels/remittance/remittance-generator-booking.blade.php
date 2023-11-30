@@ -1,5 +1,6 @@
 <div class="" id="remittance_generator">
     <div class="bg-muted rounded p-4 mb-3">
+        (Coming Soon)
         <div class="d-lg-flex gap-5 align-items-center mb-4">
             <div class="mb-4 mb-lg-0">
                 <label class="form-label-sm">Search</label>
