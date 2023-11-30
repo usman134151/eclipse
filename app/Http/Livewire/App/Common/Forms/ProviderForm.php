@@ -136,7 +136,7 @@ class ProviderForm extends Component
         'hide_from_providers' => "",
         'duration' => ''
     ]];
-    public $step = 1, $email_invitation;
+    public $step = 1, $email_invitation = 1;
     protected $listeners = [
         'updateVal' => 'updateVal',
         'editRecord' => 'edit', 'stepIncremented',
@@ -370,7 +370,7 @@ class ProviderForm extends Component
             $this->userdetail['user_introduction_file'] = $fileService->saveFile('files', $this->media_file, $this->userdetail['user_introduction_file']);
         }
         $userService = new UserService;
-        $this->user = $userService->createUser($this->user, $this->userdetail, 2, 1, [], $this->isAdd);
+        $this->user = $userService->createUser($this->user, $this->userdetail, 2, $this->email_invitation, [], $this->isAdd);
 
         if (!$this->isProvider)  //cant update teams from provider panel
             $userService->addProviderTeams($this->selectedTeams, $this->user);

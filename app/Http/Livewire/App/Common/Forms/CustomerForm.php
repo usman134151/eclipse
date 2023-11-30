@@ -43,7 +43,7 @@ class CustomerForm extends Component
 	public $driveActive, $serviceActive, $permissionActive, $customerActive;
 
 
-	public $step = 1, $email_invitation, $limit, $allTags = [];
+	public $step = 1, $email_invitation = 1, $limit, $allTags = [];
 	protected $listeners = [
 		'updateVal' => 'updateVal', 'stepIncremented', 'updateSelectedIndustries' => 'selectIndustries',
 		'updateSelectedDepartments' => 'selectDepartments', 'updateSelectedSupervisors', 'updateSelectedBManagers', 'updateSelectedSupervising', 'updateSelectedUsersToManager',

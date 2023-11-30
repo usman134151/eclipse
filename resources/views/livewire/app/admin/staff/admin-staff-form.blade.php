@@ -293,7 +293,17 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                <div class="col-lg-12 d-lg-flex gap-5 justify-content-center between-section-segment-spacing">
+                                    <div class="form-check mb-lg-0">
+                                        <input class="form-check-input" type="checkbox" 
+                                            value="1" id="email_invitation"
+                                            wire:model.defer="email_invitation">
+                                        <label class="form-check-label"
+                                            for="email_invitation">
+                                            Send Invitation Email to the Staff
+                                        </label>
+                                    </div>
+                                </div>
                                 <div class="col-12 justify-content-center form-actions d-flex">
                                     <button type="button" class="btn btn-outline-dark rounded mx-2"
                                         wire:click.prevent="showList">

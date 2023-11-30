@@ -46,6 +46,13 @@ class Profile extends Component
 		$this->emit('showList');
 	}
 
+	public function resendWelcomeEmail()
+	{
+		$user = User::find($this->user['id']);
+		sendWelcomeMail($user);
+		$this->showConfirmation("Welcome Email Send Successfully");
+	}
+	
     public function showConfirmation($message=""){
 		if ($message) {
 			// Emit an event to display a success message using the SweetAlert package
