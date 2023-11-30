@@ -11,6 +11,7 @@ use App\Models\Tenant\User;
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingReimbursement;
 use App\Models\Tenant\Invoice;
+use App\Models\Tenant\Remittance;
 use App\Models\Tenant\UserAddress;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -471,6 +472,28 @@ if (!function_exists('genetrateReimbursementNumber')) {
         $name = strtoupper('RMB') . date('y');
         $reimId = $name . '-' . str_pad($num + 1, 3, "0", STR_PAD_LEFT);
         return $reimId;
+      }
+    } catch (\Exception $e) {
+      dd($e->getMessage());
+    }
+  }
+}
+if (!function_exists('genetrateRemittanceNumber')) {
+
+  function genetrateRemittanceNumber($provider)
+  {
+    try {
+      if ($provider) {
+
+          $latestRemittance = Remittance::where('provider_id', $provider->id)->count();
+          if ($latestRemittance != 0)
+            $remittanceNum = $latestRemittance;
+          else
+            $remittanceNum = 0;
+
+          $providerName = strtoupper(substr($provider->name, 0, 3)) . date('y');
+          $number = $providerName . '-' . str_pad($remittanceNum + 1, 3, "0", STR_PAD_LEFT);
+          return $number;
       }
     } catch (\Exception $e) {
       dd($e->getMessage());
