@@ -57,13 +57,14 @@ final class DraftRemittances extends PowerGridComponent
                 $query->where('role_id', 2);
             }
         )
-           
+
             ->join('booking_providers', 'booking_providers.provider_id', 'users.id')
-            ->where(['payment_status'=> 0,'check_in_status'=>3,'remittance_id'=>0])
+            ->leftJoin('payment_preferences', 'payment_preferences.provider_id', 'users.id')
+            ->where(['payment_status' => 0, 'check_in_status' => 3, 'remittance_id' => 0])
             ->join('user_details', function ($userdetails) {
                 $userdetails->on('user_details.user_id', '=', 'users.id');
             })
-            ->select('users.id', 'users.name', 'user_details.profile_pic')
+            ->select('users.id', 'users.name', 'user_details.profile_pic', 'payment_preferences.method')
 
             ->selectRaw('
 			COUNT(booking_providers.id) AS pending_bookings,
@@ -74,10 +75,10 @@ final class DraftRemittances extends PowerGridComponent
 				END
 			) AS pending_total
 		')
-			// SUM(CASE WHEN bookings.invoice_status = "0" THEN 1 ELSE 0 END) AS pending_invoices,
+            // SUM(CASE WHEN bookings.invoice_status = "0" THEN 1 ELSE 0 END) AS pending_invoices,
 
-            ->groupBy('users.id', 'users.name','profile_pic') ;
-      
+            ->groupBy('users.id', 'users.name', 'profile_pic', 'method');
+
         // dd($query->get());
         return $query;
     }
@@ -123,7 +124,7 @@ final class DraftRemittances extends PowerGridComponent
 							</div>
 							<div class="pt-2">
 								<div class="font-family-secondary leading-none">
-								<a @click="remittanceGeneratorBooking = true"  wire:click="$emit(\'openRemittanceGeneratorPanel\',\'' . $modal->id . '\')" title="'.$modal->name.'" aria-label="Booking" class="btn btn-hs-icon p-0">
+								<a @click="remittanceGeneratorBooking = true"  wire:click="$emit(\'openRemittanceGeneratorPanel\',\'' . $modal->id . '\')" title="' . $modal->name . '" aria-label="Booking" class="btn btn-hs-icon p-0">
 									' . $modal->name . '
 								</a>
 								</div>
@@ -138,11 +139,14 @@ final class DraftRemittances extends PowerGridComponent
             // ->addColumn('invoices', function (User $modal) {
             //     return "10";
             // })
-            ->addColumn('method', function () {
-            	return 'Direct Deposit';
+            ->addColumn('method', function (User $modal) {
+                if (isset($modal->method) && $modal->method == 2)
+                    return 'Mail a Cheque';
+                else
+                    return 'Direct Deposit';
             })
 
-           
+
             ->addColumn('next', function (User $modal) {
                 return '
 				<div class="d-flex actions justify-content-center">
