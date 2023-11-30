@@ -90,8 +90,8 @@
                     <thead>
                         <tr role="row">
                             <th scope="col" class="text-center">
-                                <input class="form-check-input" type="checkbox" value="" id="check-all"
-                                    aria-label="Select All Teams">
+                                <input class="form-check-input" type="checkbox"  id="check-all"
+                                    aria-label="Select All">
                             </th>
                             <th scope="col" width="25%" class="">Booking ID</th>
                             <th scope="col">Company</th>
@@ -1013,6 +1013,16 @@
             }
         });
 
+         $('#check-all').change(function() {
+            console.log('here');
+            const isChecked = $(this).is(':checked');
+            $('.booking-checkbox').prop('checked', isChecked);
+
+            calculateRowsTotal();
+            calculateGrandTotal();
+        });
+
+
 
 
         function calculateRowsTotal() {
@@ -1027,6 +1037,7 @@
         }
 
         function calculateGrandTotal() {
+             grandTotalPrice=0;
             $('.booking-checkbox:checked').each(function() {
                 const id = parseFloat($(this).data('id'));
                 if (!isNaN(id)) {
@@ -1047,18 +1058,9 @@
             $('#grand-total').text(grandTotalPrice.toFixed(2)); // Format to two decimal places
             @this.set('totalAmount', grandTotalPrice);
 
-
-            //livewire emit remittance_total
         }
 
 
-        $('#check-all').change(function() {
-            const isChecked = $(this).is(':checked');
-            $('.booking-checkbox').prop('checked', isChecked);
-            $('.booking-rmb-checkbox').prop('checked', isChecked);
-
-            calculateTotalPrice();
-        });
-
+       
     });
 </script>
