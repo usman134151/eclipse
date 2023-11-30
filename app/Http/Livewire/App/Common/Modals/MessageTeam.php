@@ -5,13 +5,14 @@ namespace App\Http\Livewire\App\Common\Modals;
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingChMessage;
 use App\Models\Tenant\BookingProvider;
+use App\Models\Tenant\ChMessage;
 use App\Models\Tenant\User;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 
 class MessageTeam extends Component
 {
-    public $showForm, $bookingId, $message, $bookingData, $userIds;
+    public $showForm, $bookingId, $message, $bookingData, $userIds, $historyMessages;
     protected $listeners = ['showList' => 'resetForm', 'messageTeamModal' => 'messageTeam', 'messageTeamResponse'];
 
     public function render()
@@ -54,7 +55,32 @@ class MessageTeam extends Component
         }
 
         $providers = BookingProvider::where('booking_id', $bookingId)->pluck('provider_id')->toArray();
-        $this->userIds = array_merge($this->userIds, $providers, $superAdmins);
+        // $this->userIds = array_merge($this->userIds, $providers, $superAdmins);
+        $this->userIds = array_values(array_unique(array_merge($this->userIds, $providers, $superAdmins)));
+
+
+        $chatIds = BookingChMessage::where('booking_id', $this->bookingId)->pluck('ch_message_id')->toArray();
+
+        $messages = ChMessage::whereIn('id', $chatIds)
+            ->select('body', 'from_id', 'created_at')
+            ->get();
+
+        $groupedMessages = $messages->groupBy('body');
+
+        $messageData = [];
+
+        foreach ($groupedMessages as $body => $messages) {
+            $firstMessage = $messages->first();
+            $user = User::find($firstMessage->from_id);
+            if ($user) {
+                $sentBy = $user->name; 
+                $sentAt = $firstMessage->created_at;
+                $messageData[] = $body . ". Sent by " . $sentBy . " at " . formatDateTime($sentAt);
+            }
+        }
+
+        $this->historyMessages = $messageData;
+
         $this->bookingData = "With reference to booking number: " . $booking_number;
     }
 

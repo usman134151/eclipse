@@ -13,9 +13,14 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body">
+        @if ($historyMessages)
+            @foreach ($historyMessages as $message)
+                <div>{!! nl2br(e($message)) !!}</div>
+            @endforeach
+        @endif
         <div class="mb-4">
             <label class="form-label" >Message</label>
-            <textarea id="messageData" class="form-control" rows="5" cols="5" wire:model.defer="message"></textarea>
+            <textarea id="messageData" class="form-control" rows="3" cols="5" wire:model.defer="message"></textarea>
         </div>
 
         <div class="d-flex gap-3 justify-content-center mb-3">
