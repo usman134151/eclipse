@@ -30,42 +30,60 @@
 
 @push('scripts')
 <script>
-    document.addEventListener('livewire:load', function () {
-        Livewire.on('sendMessageTeamEvent', ({ userIds, message }) => {
-            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+document.addEventListener('livewire:load', function () {
+    Livewire.on('sendMessageTeamEvent', async ({ userIds, message }) => {
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        let responses = [];
+        
+        try {
+            document.getElementById('loader-section').style.display = 'block';
 
-            userIds.forEach(userId => {
-                // Create FormData object
+            for (const userId of userIds) {
                 const formData = new FormData();
-                formData.append('id', userId); 
+                formData.append('id', userId);
                 formData.append('message', message);
 
-                // Send AJAX request
-                $.ajax({
-                    url: '/chat/sendMessage', 
+                const response = await $.ajax({
+                    url: '/chat/sendMessage',
                     method: 'POST',
                     headers: {
-                        'X-CSRF-TOKEN':  csrfToken 
+                        'X-CSRF-TOKEN': csrfToken
                     },
                     data: formData,
                     contentType: false,
-                    processData: false,
-                    success: function(response) {
-                        // Handle success response
-                        
-                        Livewire.emit('messageTeamResponse', { 
-                            type: 'success',
-                            title: 'Success',
-                            message: 'Message sent successfully',
-                            response: response 
-                        });
-                    },
-                    error: function(xhr, status, error) {
-                        // Handle error response
-                    }
+                    processData: false
                 });
+
+                responses.push(response);
+            }
+
+            let res = [];
+            for (const response of responses)
+            {
+                const message = response.message;
+                const regex = /data-id="([^"]+)"/;
+                const match = message.match(regex);
+                
+                if (match && match.length > 1) {
+                    const dataId = match[1];
+                    res.push(dataId);
+                }
+            }
+
+            document.getElementById('loader-section').style.display = 'none';
+
+
+            Livewire.emit('messageTeamResponse', {
+                type: 'success',
+                title: 'Success',
+                message: 'Message sent successfully',
+                response: res
             });
-        });
+        } catch (error) {
+            console.error('Error:', error);
+            // Handle error if needed
+        }
     });
+});
 </script>
 @endpush

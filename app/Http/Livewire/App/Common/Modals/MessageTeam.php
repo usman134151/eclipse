@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\App\Common\Modals;
 
 use App\Models\Tenant\Booking;
+use App\Models\Tenant\BookingChMessage;
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\User;
 use Livewire\Component;
@@ -67,6 +68,18 @@ class MessageTeam extends Component
 
     public function messageTeamResponse($payload)
     {
+        $messagesIds = $payload['response'];
+
+
+        $insertData = collect($messagesIds)->map(function ($messageId) {
+            return [
+                'booking_id' => $this->bookingId,
+                'ch_message_id' => $messageId,
+            ];
+        })->toArray();
+
+        BookingChMessage::insert($insertData);
+
         $this->emit('closeMessageTeamModal');
         $this->message = '';
         $this->dispatchBrowserEvent('swal:modal', [
