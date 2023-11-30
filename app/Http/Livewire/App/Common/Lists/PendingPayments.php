@@ -118,7 +118,7 @@ final class PendingPayments extends PowerGridComponent
 							</div>
 							<div class="pt-2">
 								<div class="font-family-secondary leading-none">
-								<a @click="remittanceGeneratorBooking = true"  wire:click="$emit(\'openRemittanceGeneratorPanel\',\'' . $modal->id . '\')" title="' . $modal->name . '" aria-label="Booking" class="btn btn-hs-icon p-0">
+								<a @click="payment=true" wire:click="$emit(\'openRemittancePaymentsPanel\',\'' . $modal->id . '\')" title="' . $modal->name . '" aria-label="Booking" class="btn btn-hs-icon p-0">
 									' . $modal->name . '
 								</a>
 								</div>
@@ -158,13 +158,13 @@ final class PendingPayments extends PowerGridComponent
             ->addColumn('next', function (User $modal) {
                 return '
 				<div class="d-flex actions justify-content-center">
-					<a   @click="payment=true"  title="Generate Remittance" aria-label="Booking" class="btn btn-hs-icon p-0">
+					<a   @click="payment=true" wire:click="$emit(\'openRemittancePaymentsPanel\',\'' . $modal->id . '\')" title="Generate Remittance" aria-label="Booking" class="btn btn-hs-icon p-0">
 						<svg aria-label="Bookings" class="fill-stroke" width="12" height="15" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<use xlink:href="/css/common-icons.svg#bookings"></use>
 						</svg>
 					</a>
 				</div>';
-                // wire:click="$emit(\'openRemittanceGeneratorPanel\',\'' . $modal->id . '\')"
+                
             });
     }
 
