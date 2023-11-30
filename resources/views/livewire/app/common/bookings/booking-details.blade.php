@@ -156,15 +156,18 @@
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="d-flex flex-lg-row flex-column gap-3 justify-content-center">
-                                                <a href="#" wire:click="$emit('messageTeamModal','{{ $booking['id'] }}')" class="btn btn-has-icon btn-primary rounded" data-bs-toggle="modal" data-bs-target="#MessageTeamModal">
-                                                    <svg aria-label="Team Chat" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                                        <use xlink:href="/css/common-icons.svg#message-icon">
-                                                        </use>
-                                                    </svg>
-                                                    Message Team
-                                                </a>
-                                                <a href="#" class="btn btn-has-icon btn-primary rounded"
-                                                    data-bs-toggle="modal" data-bs-target="#ProviderMessageModal">
+                                                @if (session()->get('isSuperAdmin'))
+                                                    <a href="#" wire:click="$emit('deleteTeamMessageModal','{{ $booking['id'] }}')" class="btn btn-has-icon btn-primary rounded" data-bs-toggle="modal" data-bs-target="#DeleteTeamMessageModal">
+                                                        <svg aria-label="Team Chat" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                                            <use xlink:href="/css/common-icons.svg#message-icon">
+                                                            </use>
+                                                        </svg>
+                                                        Delete Booking Chat
+                                                    </a>
+                                                @endif
+                                                @if($data['assigned_providers'])
+                                                <a href="#" wire:click="$emit('providerChatMessageModal','{{ $booking['id'] }}')" class="btn btn-has-icon btn-primary rounded"
+                                                    data-bs-toggle="modal" data-bs-target="#ProviderChatMessageModal">
                                                     {{-- Updated by Shanila to Add svg icon --}}
                                                     <svg aria-label="Message Providers" width="18" height="18"
                                                         viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
@@ -173,6 +176,7 @@
                                                     {{-- End of update by Shanila --}}
                                                     Message Providers
                                                 </a>
+                                                @endif
                                                 <a href="#" class="btn btn-has-icon btn-primary rounded"
                                                     data-bs-toggle="modal" data-bs-target="#adminStaffModal">
                                                     {{-- Updated by Shanila to Add svg icon --}}
@@ -210,6 +214,13 @@
                                 <div class="row between-section-segment-spacing">
                                     <div class="col-lg-12">
                                         <div class="d-flex flex-lg-row flex-column gap-3 justify-content-center">
+                                            <a href="#" wire:click="$emit('messageTeamModal','{{ $booking['id'] }}')" class="btn btn-has-icon btn-primary rounded" data-bs-toggle="modal" data-bs-target="#MessageTeamModal">
+                                                <svg aria-label="Team Chat" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                                    <use xlink:href="/css/common-icons.svg#message-icon">
+                                                    </use>
+                                                </svg>
+                                                Message Team
+                                            </a>
                                             <a href="#" class="btn btn-has-icon btn-primary rounded">
                                                 {{-- Updated by Shanila to Add svg icon --}}
                                                 <svg aria-label="Message Requester" width="18" height="18"
@@ -1755,6 +1766,8 @@
         @include('panels.common.add-documents', ['booking_id' => $booking_id])
         @include('panels.booking-details.provider-saved-forms')
         @include('modals.message-team')
+        @include('modals.delete-team-message')
+        @include('modals.provider-chat-message')
 
         {{-- @include('panels.booking-details.assign-providers') --}}
     @endif
@@ -1775,6 +1788,14 @@
         });
         Livewire.on('closeMessageTeamModal', () => {
             $('#MessageTeamModal').modal('hide');
+
+        });
+        Livewire.on('closeProviderChatMessageModal', () => {
+            $('#ProviderChatMessageModal').modal('hide');
+
+        });
+        Livewire.on('closeDeleteTeamMessageModal', () => {
+            $('#DeleteTeamMessageModal').modal('hide');
 
         });
         document.addEventListener("livewire:load", function() {

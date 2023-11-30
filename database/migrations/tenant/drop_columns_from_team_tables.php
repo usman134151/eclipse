@@ -13,6 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
+        return;
         Schema::table('team_tables', function (Blueprint $table) {
             // {
             Schema::table('team_specializations', function (Blueprint $table) {

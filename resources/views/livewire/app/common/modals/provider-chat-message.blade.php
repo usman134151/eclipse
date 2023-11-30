@@ -7,20 +7,15 @@
         </div>
     </div>
     <div class="modal-header">
-        <h2 class="modal-title fs-5" id="MessageTeamModalLabel">
-            Message Team
+        <h2 class="modal-title fs-5" id="ProviderChatMessageModalLabel">
+            Message Providers
         </h2>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body">
-        @if ($historyMessages)
-            @foreach ($historyMessages as $message)
-                <div>{!! nl2br(e($message)) !!}</div>
-            @endforeach
-        @endif
         <div class="mb-4">
             <label class="form-label" >Message</label>
-            <textarea id="messageData" class="form-control" rows="3" cols="5" wire:model.defer="message"></textarea>
+            <textarea id="messageData" class="form-control" rows="5" cols="5" wire:model.defer="message"></textarea>
         </div>
 
         <div class="d-flex gap-3 justify-content-center mb-3">
@@ -36,7 +31,7 @@
 @push('scripts')
 <script>
 document.addEventListener('livewire:load', function () {
-    Livewire.on('sendMessageTeamEvent', async ({ userIds, message }) => {
+    Livewire.on('sendProviderChatMessageEvent', async ({ userIds, message }) => {
         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
         let responses = [];
         
@@ -62,27 +57,27 @@ document.addEventListener('livewire:load', function () {
                 responses.push(response);
             }
 
-            let res = [];
-            for (const response of responses)
-            {
-                const message = response.message;
-                const regex = /data-id="([^"]+)"/;
-                const match = message.match(regex);
+            // let res = [];
+            // for (const response of responses)
+            // {
+            //     const message = response.message;
+            //     const regex = /data-id="([^"]+)"/;
+            //     const match = message.match(regex);
                 
-                if (match && match.length > 1) {
-                    const dataId = match[1];
-                    res.push(dataId);
-                }
-            }
+            //     if (match && match.length > 1) {
+            //         const dataId = match[1];
+            //         res.push(dataId);
+            //     }
+            // }
 
             document.getElementById('loader-section').style.display = 'none';
 
 
-            Livewire.emit('messageTeamResponse', {
+            Livewire.emit('providerChatMessageResponse', {
                 type: 'success',
                 title: 'Success',
                 message: 'Message sent successfully',
-                response: res
+                // response: res
             });
         } catch (error) {
             console.error('Error:', error);
