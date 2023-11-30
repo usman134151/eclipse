@@ -15,8 +15,11 @@
     <div class="modal-body">
         <div class="mb-4">
             <label class="form-label" >Messages</label>
-            <textarea disabled id="messageData" class="form-control" rows="5" cols="5" wire:model.defer="message"></textarea>
-        </div>
+            @if ($message)
+            @foreach ($message as $mes)
+                <div>{!! nl2br(e($mes)) !!}</div>
+            @endforeach
+        @endif        </div>
 
         <div class="d-flex gap-3 justify-content-center mb-3">
             <a href="#" class="btn rounded btn-outline-dark" data-bs-dismiss="modal">
