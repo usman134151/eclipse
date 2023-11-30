@@ -163,6 +163,15 @@
                                                     </svg>
                                                     Message Team
                                                 </a>
+                                                @if (session()->get('isSuperAdmin'))
+                                                    <a href="#" wire:click="$emit('deleteTeamMessageModal','{{ $booking['id'] }}')" class="btn btn-has-icon btn-primary rounded" data-bs-toggle="modal" data-bs-target="#DeleteTeamMessageModal">
+                                                        <svg aria-label="Team Chat" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                                            <use xlink:href="/css/common-icons.svg#message-icon">
+                                                            </use>
+                                                        </svg>
+                                                        Delete Booking Chat
+                                                    </a>
+                                                @endif
                                                 <a href="#" class="btn btn-has-icon btn-primary rounded"
                                                     data-bs-toggle="modal" data-bs-target="#ProviderMessageModal">
                                                     {{-- Updated by Shanila to Add svg icon --}}
@@ -1755,6 +1764,7 @@
         @include('panels.common.add-documents', ['booking_id' => $booking_id])
         @include('panels.booking-details.provider-saved-forms')
         @include('modals.message-team')
+        @include('modals.delete-team-message')
 
         {{-- @include('panels.booking-details.assign-providers') --}}
     @endif
@@ -1775,6 +1785,10 @@
         });
         Livewire.on('closeMessageTeamModal', () => {
             $('#MessageTeamModal').modal('hide');
+
+        });
+        Livewire.on('closeDeleteTeamMessageModal', () => {
+            $('#DeleteTeamMessageModal').modal('hide');
 
         });
         document.addEventListener("livewire:load", function() {
