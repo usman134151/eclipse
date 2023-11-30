@@ -172,8 +172,8 @@
                                                         Delete Booking Chat
                                                     </a>
                                                 @endif
-                                                <a href="#" class="btn btn-has-icon btn-primary rounded"
-                                                    data-bs-toggle="modal" data-bs-target="#ProviderMessageModal">
+                                                <a href="#" wire:click="$emit('providerChatMessageModal','{{ $booking['id'] }}')" class="btn btn-has-icon btn-primary rounded"
+                                                    data-bs-toggle="modal" data-bs-target="#ProviderChatMessageModal">
                                                     {{-- Updated by Shanila to Add svg icon --}}
                                                     <svg aria-label="Message Providers" width="18" height="18"
                                                         viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
@@ -1765,6 +1765,7 @@
         @include('panels.booking-details.provider-saved-forms')
         @include('modals.message-team')
         @include('modals.delete-team-message')
+        @include('modals.provider-chat-message')
 
         {{-- @include('panels.booking-details.assign-providers') --}}
     @endif
@@ -1785,6 +1786,10 @@
         });
         Livewire.on('closeMessageTeamModal', () => {
             $('#MessageTeamModal').modal('hide');
+
+        });
+        Livewire.on('closeProviderChatMessageModal', () => {
+            $('#ProviderChatMessageModal').modal('hide');
 
         });
         Livewire.on('closeDeleteTeamMessageModal', () => {
