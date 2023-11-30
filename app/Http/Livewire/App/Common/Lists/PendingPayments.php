@@ -64,14 +64,14 @@ final class PendingPayments extends PowerGridComponent
             ->join('user_details', function ($userdetails) {
                 $userdetails->on('user_details.user_id', '=', 'users.id');
             })
-            ->select('users.id', 'users.name', 'user_details.profile_pic', 'payment_preferences.method')
+            ->select('users.id', 'users.name', 'users.email', 'user_details.profile_pic', 'payment_preferences.method')
 
             ->selectRaw('
 			COUNT(remittances.id) AS pending_remittances,
 			SUM(remittances.amount) AS pending_total
 		')
 
-            ->groupBy('users.id', 'users.name', 'profile_pic', 'method');
+            ->groupBy('users.id', 'users.name', 'users.email', 'profile_pic', 'method');
 
         // dd($query->get());
         return $query;
@@ -122,17 +122,16 @@ final class PendingPayments extends PowerGridComponent
 									' . $modal->name . '
 								</a>
 								</div>
-                                <a href="#"
-                                                            class="font-family-secondary">' . $modal->email . '</small></a>
+                                <a href="#" class="font-family-secondary">' . $modal->email . '</small></a>
 							</div>
 						</div>';
             })
             ->addColumn('pending_total', function (User $modal) {
-            return '<div class="text-center">' . numberFormat($modal->pending_total) . '</div>';
+                return '<div class="text-center">' . numberFormat($modal->pending_total) . '</div>';
             })
 
             ->addColumn('pending_remittances', function (User $modal) {
-                return '<div class="text-center">'.$modal->pending_remittances.'</div>';
+                return '<div class="text-center">' . $modal->pending_remittances . '</div>';
             })->addColumn('no_of_invoices', function (User $modal) {
                 return 'N/A';
             })
@@ -159,12 +158,13 @@ final class PendingPayments extends PowerGridComponent
             ->addColumn('next', function (User $modal) {
                 return '
 				<div class="d-flex actions justify-content-center">
-					<a   @click="payment wire:click="$emit(\'openRemittanceGeneratorPanel\',\'' . $modal->id . '\')" title="Generate Remittance" aria-label="Booking" class="btn btn-hs-icon p-0">
+					<a   @click="payment=true"  title="Generate Remittance" aria-label="Booking" class="btn btn-hs-icon p-0">
 						<svg aria-label="Bookings" class="fill-stroke" width="12" height="15" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<use xlink:href="/css/common-icons.svg#bookings"></use>
 						</svg>
 					</a>
 				</div>';
+                // wire:click="$emit(\'openRemittanceGeneratorPanel\',\'' . $modal->id . '\')"
             });
     }
 
