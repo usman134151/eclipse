@@ -75,6 +75,10 @@ class User extends Authenticatable
 	{
 		return $this->belongsTo(Company::class, 'company_name');
 	}
+	public function paymentPreference()
+	{
+		return $this->hasOne(PaymentPreference::class, 'provider_id');
+	}
 	public function userdetail(): HasOne
 	{
 		return $this->hasOne(UserDetail::class, 'user_id');
