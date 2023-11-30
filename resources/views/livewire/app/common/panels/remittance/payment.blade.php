@@ -95,161 +95,45 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr role="row" class="odd">
-                        <td class="text-center align-middle">
-                            <input class="form-check-input" type="checkbox" value=""
-                                aria-label="Select Remittance">
-                        </td>
-                        <td class="align-middle">
-                            <a href="javascript:void(0)">100995-6 <br> 08/24/2022 <br> 9:59 AM</a>
-                        </td>
-                        <td class="text-center align-middle">
-                            $100.00
-                        </td>
-                        <td class="text-center align-middle">
-                            11/23/2022
-                        </td>
-                        <td class="text-center align-middle">
-                            10/11/2022 <br>
-                            11:15 PM
-                        </td>
-                        <td class="text-center align-middle">Direct Deposit</td>
-                        <td class="text-center align-middle">
-                            <svg aria-label="Paid" width="12" height="12" viewBox="0 0 12 12" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <use xlink:href="/css/provider.svg#green-dot"></use>
-                            </svg>
-                            Paid
-                        </td>
-                        <td class="align-middle">
-                            <div class="d-flex actions justify-content-center">
-                                <a href="javascript:void(0)" title="View" aria-label="View"
-                                    class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal"
-                                    data-bs-target="#remittanceDetailModal">
-                                    <svg aria-label="View Company" width="20" height="20"
-                                        viewBox="0 0 20 20">
-                                        <use xlink:href="/css/common-icons.svg#view">
-                                        </use>
-                                    </svg>
-                                </a>
-                                <a href="javascript:void(0)" title="Return" aria-label="Return"
-                                    class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal"
-                                    data-bs-target="#revertBackModal">
-                                    <svg aria-label="back" class="fill-stroke" width="22" height="20"
-                                        viewBox="0 0 22 20">
-                                        <use xlink:href="/css/common-icons.svg#round-arrow">
-                                        </use>
-                                    </svg>
-                                </a>
-                                <a href="javascript:void(0)" title="Objection" aria-label="Objection"
-                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                    <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"
-                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <use xlink:href="/css/provider.svg#download-file"></use>
-                                    </svg>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr role="row" class="odd">
-                        <td class="text-center align-middle">
-                            <input class="form-check-input" type="checkbox" value=""
-                                aria-label="Select Remittance">
-                        </td>
-                        <td class="align-middle">
-                            <a href="javascript:void(0)">100995-6 <br> 08/24/2022 <br> 9:59 AM</a>
-                        </td>
-                        <td class="text-center align-middle">
-                            $100.00
-                        </td>
-                        <td class="text-center align-middle">
-                            11/23/2022
-                        </td>
-                        <td class="text-center align-middle">
-                            10/11/2022 <br>
-                            11:15 PM
-                        </td>
-                        <td class="text-center align-middle">Direct Deposit</td>
-                        <td class="text-center align-middle">
-                            <svg aria-label="Paid" width="12" height="12" viewBox="0 0 12 12" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <use xlink:href="/css/provider.svg#green-dot"></use>
-                            </svg>
-                            Paid
-                        </td>
-                        <td class="align-middle">
-                            <div class="d-flex actions justify-content-center">
-                                <a href="javascript:void(0)" title="View" aria-label="View"
-                                    class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal"
-                                    data-bs-target="#remittanceDetailModal">
-                                    <svg aria-label="View Company" width="20" height="20"
-                                        viewBox="0 0 20 20">
-                                        <use xlink:href="/css/common-icons.svg#view">
-                                        </use>
-                                    </svg>
-                                </a>
-                                <a href="javascript:void(0)" title="Return" aria-label="Return"
-                                    class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal"
-                                    data-bs-target="#revertBackModal">
-                                    <svg aria-label="back" class="fill-stroke" width="22" height="20"
-                                        viewBox="0 0 22 20">
-                                        <use xlink:href="/css/common-icons.svg#round-arrow">
-                                        </use>
-                                    </svg>
-                                </a>
-                                <a href="javascript:void(0)" title="Objection" aria-label="Objection"
-                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                    <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"
-                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <use xlink:href="/css/provider.svg#download-file"></use>
-                                    </svg>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                    {{-- updated by shanila to loop rows --}}
-                    @php
-                        $status = ['1', '2', '3'];
-                        $statusCode = ['bg-success', 'bg-gray', 'bg-warning'];
-                    @endphp
-                    @for ($i = 1; $i <= 7; $i++)
-                        <tr role="row"
-                            class="{{ $i % 2 == 0 ? 'even' : 'odd' }} {{ $statusCode[array_rand($status)] }}">
+                    @foreach ($remittances as $remittance)
                         <tr role="row" class="odd">
                             <td class="text-center align-middle">
                                 <input class="form-check-input" type="checkbox" value=""
                                     aria-label="Select Remittance">
                             </td>
                             <td class="align-middle">
-                                <a href="javascript:void(0)">100995-6 <br> 08/24/2022 <br> 9:59 AM</a>
+                                <a href="javascript:void(0)">{{ $remittance['number'] }} <br>
+                                    {{ formatDate($remittance['issued_at']) }} <br>
+                                    {{ formatTime($remittance['issued_at']) }}</a>
                             </td>
                             <td class="text-center align-middle">
-                                $100.00
+                                {{ numberFormat($remittance['amount']) }}
                             </td>
                             <td class="text-center align-middle">
-                                11/23/2022
+                                {{ $remittance['payment_scheduled_at'] ? formatDate($remittance['payment_scheduled_at']) : 'N/A' }}
                             </td>
                             <td class="text-center align-middle">
-                                10/11/2022 <br>
-                                11:15 PM
+                                @if ($remittance['paid_at'])
+                                    {{ formatDate($remittance['paid_at']) }} <br>
+                                    {{ formatTime($remittance['paid_at']) }}
+                                @else
+                                    N/A
+                                @endif
                             </td>
-                            <td class="text-center align-middle">Direct Deposit</td>
                             <td class="text-center align-middle">
-                                {{-- updated by shanila to add conditon in rows  --}}
-                                <?php if ($i % 2 == 0): ?>
-                                <svg aria-label="Paid" width="12" height="12" viewBox="0 0 12 12"
-                                    fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <use xlink:href="/css/provider.svg#green-dot"></use>
-                                </svg>
-                                Paid
-                                <?php else: ?>
-                                <svg aria-label="Issued" width="10" height="10" viewBox="0 0 10 10"
-                                    fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <use xlink:href="/css/provider.svg#yellow-dot"></use>
-                                </svg>
-                                Issued
-                                <?php endif; ?>
-                                {{-- ended updated by shanila --}}
+                                @if ($provider['paymentPreference'] && $provider['paymentPreference']['method'] == 2)
+                                    Mail a Cheque
+                                @else
+                                    Direct Deposit
+                                @endif
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="d-flex align-items-center gap-2"><svg width="12" height="12"
+                                        viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <use xlink:href="{{$status[$remittance['payment_status']]['code'] }}"></use>
+                                    </svg>
+                                    <p>{{$status[$remittance['payment_status']]['title'] }}</p>
+                                </div>
                             </td>
                             <td class="align-middle">
                                 <div class="d-flex actions justify-content-center">
@@ -281,8 +165,7 @@
                                 </div>
                             </td>
                         </tr>
-                    @endfor
-                    {{-- ended updated by shanila --}}
+                    @endforeach
                 </tbody>
             </table>
             <div class="d-flex actions gap-3 justify-content-end mb-2">
