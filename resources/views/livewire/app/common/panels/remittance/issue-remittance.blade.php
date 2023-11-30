@@ -90,7 +90,7 @@
                     <thead>
                         <tr role="row">
                             <th scope="col" class="text-center">
-                                <input class="form-check-input" type="checkbox"  id="check-all"
+                                <input class="form-check-input" type="checkbox"  id="check-all-bookings"
                                     aria-label="Select All">
                             </th>
                             <th scope="col" width="25%" class="">Booking ID</th>
@@ -108,7 +108,7 @@
                             <tr role="row" class="even">
                                 @if (key_exists('reimbursement_number', $row[0]))
                                     <td class="text-center">
-                                        <input class="form-check-input booking-checkbox" wire:model="selectedRMB"
+                                        <input class="form-check-input booking-checkbox" wire:model.defer="selectedRMB"
                                             type="checkbox" data-id="{{ $row[0]['id'] }}"
                                             data-price="{{ $row[0]['amount'] }}" value="{{ $row[0]['id'] }}"
                                             aria-label="Select Reimbursement">
@@ -133,7 +133,7 @@
                                 @else
                                     <td class="text-center">
                                         <input class="form-check-input booking-checkbox"
-                                            data-id="{{ $row[0]['booking']['id'] }}" wire:model="selectedBookings"
+                                            data-id="{{ $row[0]['booking']['id'] }}" wire:model.defer="selectedBookings"
                                             type="checkbox" value="{{ $row[0]['booking']['id'] }}"
                                             aria-label="Select Booking">
                                     </td>
@@ -165,7 +165,7 @@
                                                                         <input
                                                                             class="form-check-input booking-rmb-checkbox"
                                                                             data-id="{{ $rmb['booking_id'] }}"
-                                                                            type="checkbox" wire:model="selectedRMB"
+                                                                            type="checkbox" wire:model.defer="selectedRMB"
                                                                             data-price="{{ $rmb['amount'] }}"
                                                                             {{-- wire:click="updateSelectedRMB('{{$rmb['id']}}')" --}}
                                                                             value="{{ $rmb['id'] }}"
@@ -1013,8 +1013,7 @@
             }
         });
 
-         $('#check-all').change(function() {
-            console.log('here');
+         $('#check-all-bookings').change(function() {
             const isChecked = $(this).is(':checked');
             $('.booking-checkbox').prop('checked', isChecked);
 
