@@ -4,13 +4,13 @@ namespace App\Http\Livewire\App\Common\Lists;
 
 use App\Models\Tenant\User;
 use Illuminate\Support\Carbon;
+use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\DB;
 use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Header, PowerGrid, PowerGridComponent, PowerGridEloquent};
 
-final class DraftRemittances extends PowerGridComponent
+final class PendingPayments extends PowerGridComponent
 {
     use ActionButton;
 
@@ -58,26 +58,20 @@ final class DraftRemittances extends PowerGridComponent
             }
         )
 
-            ->join('booking_providers', 'booking_providers.provider_id', 'users.id')
+            ->join('remittances', 'remittances.provider_id', 'users.id')
             ->leftJoin('payment_preferences', 'payment_preferences.provider_id', 'users.id')
-            ->where(['payment_status' => 0, 'check_in_status' => 3, 'remittance_id' => 0])
+            ->where('payment_status', '<', 2)
             ->join('user_details', function ($userdetails) {
                 $userdetails->on('user_details.user_id', '=', 'users.id');
             })
-            ->select('users.id', 'users.name', 'user_details.profile_pic', 'payment_preferences.method')
+            ->select('users.id', 'users.name', 'users.email', 'user_details.profile_pic', 'payment_preferences.method')
 
             ->selectRaw('
-			COUNT(booking_providers.id) AS pending_bookings,
-			SUM(
-				CASE
-					WHEN booking_providers.is_override_price = 1 THEN override_price
-					ELSE booking_providers.total_amount 
-				END
-			) AS pending_total
+			COUNT(remittances.id) AS pending_remittances,
+			SUM(remittances.amount) AS pending_total
 		')
-            // SUM(CASE WHEN bookings.invoice_status = "0" THEN 1 ELSE 0 END) AS pending_invoices,
 
-            ->groupBy('users.id', 'users.name', 'profile_pic', 'method');
+            ->groupBy('users.id', 'users.name', 'users.email', 'profile_pic', 'method');
 
         // dd($query->get());
         return $query;
@@ -124,39 +118,53 @@ final class DraftRemittances extends PowerGridComponent
 							</div>
 							<div class="pt-2">
 								<div class="font-family-secondary leading-none">
-								<a @click="remittanceGeneratorBooking = true"  wire:click="$emit(\'openRemittanceGeneratorPanel\',\'' . $modal->id . '\')" title="' . $modal->name . '" aria-label="Booking" class="btn btn-hs-icon p-0">
+								<a @click="payment=true" wire:click="$emit(\'openRemittancePaymentsPanel\',\'' . $modal->id . '\')" title="' . $modal->name . '" aria-label="Booking" class="btn btn-hs-icon p-0">
 									' . $modal->name . '
 								</a>
 								</div>
+                                <a href="#" class="font-family-secondary">' . $modal->email . '</small></a>
 							</div>
 						</div>';
             })
             ->addColumn('pending_total', function (User $modal) {
-                return numberFormat($modal->pending_total);
-            })->addColumn('pending_bookings', function (User $modal) {
-                return $modal->pending_bookings;
+                return '<div class="text-center">' . numberFormat($modal->pending_total) . '</div>';
             })
-            // ->addColumn('invoices', function (User $modal) {
-            //     return "10";
-            // })
+
+            ->addColumn('pending_remittances', function (User $modal) {
+                return '<div class="text-center">' . $modal->pending_remittances . '</div>';
+            })->addColumn('no_of_invoices', function (User $modal) {
+                return 'N/A';
+            })
             ->addColumn('method', function (User $modal) {
                 if (isset($modal->method) && $modal->method == 2)
                     return 'Mail a Cheque';
                 else
                     return 'Direct Deposit';
             })
+            ->addColumn('chat', function (User $modal) {
+                return '<div class="d-flex actions justify-content-center">
+                                                    <a href="#" title="Chat" aria-label="Chat"
+                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                        <svg aria-label="Chat" width="18" height="18"
+                                                            viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                                                            <use xlink:href="/css/common-icons.svg#chat-icon">
+                                                            </use>
+                                                        </svg>
+                                                    </a>
+                                                </div>';
+            })
 
 
             ->addColumn('next', function (User $modal) {
                 return '
 				<div class="d-flex actions justify-content-center">
-					<a  @click="remittanceGeneratorBooking = true"  wire:click="$emit(\'openRemittanceGeneratorPanel\',\'' . $modal->id . '\')" title="Generate Remittance" aria-label="Booking" class="btn btn-hs-icon p-0">
+					<a   @click="payment=true" wire:click="$emit(\'openRemittancePaymentsPanel\',\'' . $modal->id . '\')" title="Generate Remittance" aria-label="Booking" class="btn btn-hs-icon p-0">
 						<svg aria-label="Bookings" class="fill-stroke" width="12" height="15" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<use xlink:href="/css/common-icons.svg#bookings"></use>
 						</svg>
 					</a>
 				</div>';
-                // wire:click="openCompanyBookingsPanel(' . $modal->id . ')" 
+                
             });
     }
 
@@ -181,9 +189,10 @@ final class DraftRemittances extends PowerGridComponent
                 ->field('provider_name', 'name')
                 ->searchable(),
             Column::make('TOTAL PENDING', 'pending_total'),
-            // Column::make('No. OF Invoices', 'invoices'),
-            Column::make('Pending Bookings', 'pending_bookings'),
+            Column::make('Remittances', 'pending_remittances'),
+            Column::make('No. oF Invoices', 'no_of_invoices'),
             Column::make('PREFERRED PAYMENT METHOD', 'method'),
+            Column::make('Chat', 'chat'),
             Column::make('<svg  width="12" height="15" viewBox="0 0 12 15" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path d="M5.875 1L10.75 7.5L5.875 14" stroke="white" stroke-width="1.625" stroke-linecap="round" stroke-linejoin="round"/>
 								<path d="M1 1L5.875 7.5L1 14" stroke="white" stroke-width="1.625" stroke-linecap="round" stroke-linejoin="round"/>
