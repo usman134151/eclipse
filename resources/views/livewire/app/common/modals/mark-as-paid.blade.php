@@ -11,15 +11,15 @@
                 Payment Manager
             </label>
             <div class="col-lg-0 d-flex gap-3">
-                <button type="button" class="btn btn-primary w-auto text-sm d-inline-flex justify-content-center align-items-center fw-semibold gap-1">
+                <button wire:click="$set('payment.method',0)" type="button" class="btn  w-auto text-sm d-inline-flex justify-content-center align-items-center fw-semibold gap-1 {{$payment['method'] == 0 ? 'btn-primary ' : 'btn-outline-dark text-primary'}}">
                     <x-icon name="payment"/>
                     Provider's Payment Preference
                 </button>
-                <button type="button" class="btn btn-outline-dark w-auto text-sm d-inline-flex justify-content-center align-items-center fw-semibold gap-1 text-primary">
+                <button wire:click="$set('payment.method',2)" type="button" class="btn w-auto text-sm d-inline-flex justify-content-center align-items-center fw-semibold gap-1 {{$payment['method'] == 2 ? 'btn-primary ' : 'btn-outline-dark text-primary'}} ">
                     <x-icon name="dollar-card"/>
                     Check
                 </button>
-                <button type="button" class="btn btn-outline-dark w-auto text-sm d-inline-flex justify-content-center align-items-center fw-semibold gap-1 text-primary">
+                <button wire:click="$set('payment.method',1)" type="button" class="btn w-auto text-sm d-inline-flex justify-content-center align-items-center fw-semibold gap-1 {{$payment['method'] == 1 ? 'btn-primary ' : 'btn-outline-dark text-primary'}}">
                     <x-icon name="dollar-deposit"/>
                     Direct Deposit
                 </button>
@@ -31,7 +31,7 @@
                     <label class="form-label" for="paymentAmount">
                         Payment Amount
                     </label>
-                    <input type="text" id="paymentAmount" class="form-control form-control-md" name="paymentAmount" placeholder="$420" required aria-required="true" />
+                    <input wire:model="payment.amount" disabled type="text" id="paymentAmount" class="form-control form-control-md" name="paymentAmount" required aria-required="true" />
                 </div>
                 <div>
                     <label class="form-label" for="paymentDate">
@@ -39,7 +39,7 @@
                     </label>
                     <div class="position-relative has-date-icon-left-side">
                         <x-icon name="input-calender"/>
-                        <input type="" id="paymentDate" class="form-control form-control-md js-single-date" placeholder="MM/DD/YYYY" name="paymentDate" aria-label="Payment Date">
+                        <input type="" wire:model="payment.date" id="paymentDate" class="form-control form-control-md js-single-date" placeholder="MM/DD/YYYY" name="paymentDate" aria-label="Payment Date">
                     </div>
                 </div>
             </div>
@@ -54,7 +54,7 @@
                 </button>
             </div>
             <div class="col-lg-3">
-                <button type="button" class="btn rounded w-100 btn-primary">
+                <button type="button" wire:click="save" class="btn rounded w-100 btn-primary">
                     Submit
                 </button>
             </div>
