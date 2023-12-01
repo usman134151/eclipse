@@ -75,7 +75,7 @@ class IssueRemittance extends Component
             'number' => genetrateRemittanceNumber($this->provider),
             'provider_id' => $this->provider->id,
             'amount' => $this->totalAmount,
-            'payment_status' => 0, 'payment_method' => null, 
+            'payment_status' => 1, 'payment_method' => null, 
             'issued_at' => Carbon::now(),
         ];
         $remittance = Remittance::create($remittanceArr);
