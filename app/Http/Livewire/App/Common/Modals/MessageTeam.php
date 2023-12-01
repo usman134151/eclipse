@@ -28,11 +28,15 @@ class MessageTeam extends Component
     {
         $this->userIds = [];
         $this->bookingId = $bookingId;
-        $booking = Booking::where('id', $bookingId)
-            ->select(['booking_number', 'user_id', 'customer_id', 'supervisor', 'billing_manager_id'])
+        $booking = Booking::where('bookings.id', $bookingId)
+            ->join('booking_services', 'booking_services.booking_id', '=', 'bookings.id')
+            ->select('bookings.booking_number as booking_number', 'bookings.user_id as user_id', 'bookings.customer_id as customer_id', 'bookings.supervisor as supervisor', 'bookings.billing_manager_id as billing_manager_id', 'booking_services.attendees as attendees', 'booking_services.service_consumer as service_consumer')
             ->first();
 
         $booking_number = $booking->booking_number;
+
+        $attendees = $booking->attendees !== '' ? explode(',', $booking->attendees) : [];
+        $service_consumer = $booking->service_consumer !== '' ? explode(',', $booking->service_consumer) : [];
 
         $userIdsToCheck = [
             $booking->user_id,
@@ -41,12 +45,12 @@ class MessageTeam extends Component
             $booking->billing_manager_id,
         ];
 
-        $superAdmins = User::where('id', '!=', Auth::user()->id)
-            ->whereHas('roles', function ($query) {
-                $query->whereIn('role_id', [1]); // role id 1 is super admin
-            })
-            ->pluck('id')
-            ->toArray();
+        // $superAdmins = User::where('id', '!=', Auth::user()->id)
+        //     ->whereHas('roles', function ($query) {
+        //         $query->whereIn('role_id', [1]); // role id 1 is super admin
+        //     })
+        //     ->pluck('id')
+        //     ->toArray();
 
         foreach ($userIdsToCheck as $userId) {
             if ($this->containsId($userId)) {
@@ -54,11 +58,9 @@ class MessageTeam extends Component
             }
         }
 
+        $this->userIds[] = 1;
         $providers = BookingProvider::where('booking_id', $bookingId)->pluck('provider_id')->toArray();
-        // $this->userIds = array_merge($this->userIds, $providers, $superAdmins);
-        $this->userIds = array_values(array_unique(array_merge($this->userIds, $providers, $superAdmins)));
-
-
+        $this->userIds = array_values(array_unique(array_merge($this->userIds, $providers, $attendees, $service_consumer)));
         $chatIds = BookingChMessage::where('booking_id', $this->bookingId)->pluck('ch_message_id')->toArray();
 
         $messages = ChMessage::whereIn('id', $chatIds)
@@ -73,7 +75,7 @@ class MessageTeam extends Component
             $firstMessage = $messages->first();
             $user = User::find($firstMessage->from_id);
             if ($user) {
-                $sentBy = $user->name; 
+                $sentBy = $user->name;
                 $sentAt = $firstMessage->created_at;
                 $messageData[] = $body . ". Sent by " . $sentBy . " at " . formatDateTime($sentAt);
             }
