@@ -80,6 +80,7 @@ class UserService
 
       //$request->request->add(['data' => $user]); //add invoice id into request
       $subject = 'Welcome ' . $user->first_name . '! Set up your Eclipse account.';
+  		sendWelcomeMail($user);
       //$mail = Helper::sendmail($request->email,'',$subject,['data' => $user,'type'=>'1'],'emails.welcome_email_on');
     }
 
