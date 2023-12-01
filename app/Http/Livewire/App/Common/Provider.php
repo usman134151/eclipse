@@ -4,6 +4,7 @@ namespace App\Http\Livewire\App\Common;
 
 use App\Models\Tenant\Tag;
 use App\Models\Tenant\User;
+use App\Services\App\UserService;
 use Livewire\Component;
 use App\Services\ExportDataFile;
 use App\Helpers\SetupHelper;
@@ -73,7 +74,7 @@ class Provider extends Component
 	public function deleteRecord()
 	{
 		// Delete the record from the database using the model
-		User::where('id', $this->recordId)->update(['status' => 2]);
+		UserService::deleteAccount($this->recordId);
 		// Emit an event to reset the form and display a confirmation message
 		$this->emitSelf('showList', 'Record has been deleted');
 	}

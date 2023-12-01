@@ -287,6 +287,14 @@ class Calendar extends Component
 				$mappingCode = "pending";
 			}
 
+			if(session()->get('isProvider'))
+			{
+				if($mappingCode === "Partially Assigned")
+				{
+					$mappingCode = "Fully assigned";
+				}
+			}
+
 			$newEvents[$key]['start'] = $booking_start_at;
 			$newEvents[$key]['end'] = $booking_end_at;
 			$newEvents[$key]['bookingId'] = $id;
