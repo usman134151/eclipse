@@ -240,4 +240,21 @@ class UserService
       // NotificationService::sendNotification('Account: Unlocked', $data, 5);
     }
   }
+
+  public static function deleteAccount($userId)
+  {
+    $user = User::find($userId);
+		$email = $user->email; // Retrieve the email
+		// Generate a unique identifier (e.g., a timestamp or random string)
+		$uniqueIdentifier = uniqid();
+		// Create the new email address with the "delete-" prefix and unique identifier
+		$newEmail = 'delete-' . $uniqueIdentifier . '-' . $email;
+		
+		// Delete the record from the database using the model
+		User::where('id', $userId)->update([
+			'email' => $newEmail,
+			'status' => 2,
+		]);
+    callLogs($userId, 'User',$user->name . ' Account has been delete');
+  }
 }
