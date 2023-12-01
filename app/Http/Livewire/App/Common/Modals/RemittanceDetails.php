@@ -21,8 +21,8 @@ class RemittanceDetails extends Component
         
         $rmb = BookingReimbursement::where(['remittance_id' => $remittanceId, 'booking_id' => null])->select(['reimbursement_number as number', 'amount', 'payment_status'])->get()->toArray();
         $bookings = BookingProvider::where(['remittance_id' => $remittanceId])
-        ->select(['total_amount', 'override_price', 'is_override_price', 'payment_status','booking_id'])
-        ->with(['booking','booking.customer'])->get()->toArray();
+        ->select(['total_amount', 'override_price', 'is_override_price', 'payment_status','booking_id','booking_service_id'])
+        ->with(['booking','booking.customer','booking_service', 'booking_service.service'])->get()->toArray();
         $this->list=array_merge($rmb,$bookings);
         // dd($this->list);
     }

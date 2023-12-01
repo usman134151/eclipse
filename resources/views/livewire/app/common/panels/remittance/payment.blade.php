@@ -123,7 +123,9 @@
                                 @endif
                             </td>
                             <td class="text-center align-middle">
-                                @if ($provider['paymentPreference'] && $provider['paymentPreference']['method'] == 2)
+                                @if ($remittance['payment_method'] == null)
+                                    N/A
+                                @elseif($remittance['payment_method'] == 2)
                                     Mail a Cheque
                                 @else
                                     Direct Deposit
@@ -149,16 +151,27 @@
                                             </use>
                                         </svg>
                                     </a>
+                                    <a href="#" title="Record Payment" aria-label="Record Payment"
+                                        data-bs-toggle="modal" data-bs-target="#markAsPaidModal"
+                                        wire:click="$emit('makeIndvidualPayment','{{ $remittance['id'] }}')"
+                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                        <svg aria-label="Record Payment" width="19" height="20"
+                                            viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <use xlink:href="/css/sprite.svg#dollar-assignment"></use>
+                                        </svg>
+                                    </a>
+                                    @if($remittance['payment_status']==2)
                                     <a href="javascript:void(0)" title="Return" aria-label="Return"
                                         class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal"
-                                        data-bs-target="#revertBackModal">
+                                        data-bs-target="#revertBackModal" wire:click="$emit('revertRemittance','{{$remittance['id']}}')">
                                         <svg aria-label="back" class="fill-stroke" width="22" height="20"
                                             viewBox="0 0 22 20">
                                             <use xlink:href="/css/common-icons.svg#round-arrow">
                                             </use>
                                         </svg>
                                     </a>
-                                    <a href="javascript:void(0)" title="Objection" aria-label="Objection"
+                                    @endif
+                                    <a href="javascript:void(0)" title="Download File" aria-label="Download File"
                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                         <svg aria-label="Download PDF" width="16" height="20"
                                             viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -185,7 +198,7 @@
                     </span>
                 </div>
                 <div class="d-flex gap-2 align-items-center">
-                    <a href="#" title="Revert" aria-label="Revert"
+                    <a href="#" title="Revert" aria-label="Revert" 
                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
                         <svg aria-label="back" class="fill-stroke" width="22" height="20"
                             viewBox="0 0 22 20">
@@ -234,8 +247,8 @@
         </div>
     </div>
     <div class="col-12 form-actions mb-4">
-        <a href="#" class="btn btn-primary rounded ">Revert Selected Remittances</a>
-        <a href="#" class="btn btn-primary rounded" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
+        <a href="#" wire:click="revertAll" class="btn btn-primary rounded " data-bs-toggle="modal" data-bs-target="#revertBackModal">Revert Selected Remittances</a>
+        <a href="#" wire:click="markAsPaidAll" class="btn btn-primary rounded" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
             Mark Selected Remittances as Paid
         </a>
     </div>
@@ -275,6 +288,9 @@
                 totalPrice += price;
             });
             updateTotalPrice();
+            @this.set('total', totalPrice);
+
         }
+
     });
 </script>

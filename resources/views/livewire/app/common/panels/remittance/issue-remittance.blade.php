@@ -318,7 +318,7 @@
                                                 </div>
                                                 @foreach ($providerDetails['service_payment_details']['specialization_charges'] as $spCharges)
                                                     <div class="d-flex gap-2 align-items-center mb-1">
-                                                        <div class="">{{ $spCharges['label'] }}: </div>
+                                                        <div class="">{{ isset($spCharges['label']) ? $spCharges['label'] :'' }}: </div>
                                                         <div class="text-sm">
                                                             {{ numberFormat($spCharges['provider_charges']) }}</div>
 

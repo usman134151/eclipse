@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class Payment extends Component
 {
-    public $showForm, $provider, $remittances;
+    public $showForm, $provider, $remittances, $total=0;
     protected $listeners = ['showList' => 'resetForm'];
     public $status = [2 => ['code' => '/css/provider.svg#green-dot', 'title' => 'Paid'], 1 => ['code' => '/css/common-icons.svg#blue-dot', 'title' => 'Issued'], 0 => ['code' => '/css/provider.svg#red-dot', 'title' => 'Pending']];
     public $selectedRemittance = [], $isSelectAll = false;
@@ -18,6 +18,13 @@ class Payment extends Component
         return view('livewire.app.common.panels.remittance.payment');
     }
 
+    public function revertAll(){
+        $this->emit('revertMultipleRemittances',$this->selectedRemittance);
+    }
+
+    public function markAsPaidAll(){
+        $this->emit('markAsPaidMultipleRemittances', $this->selectedRemittance, $this->total);
+    }
     public function selectAll()
     {
         if ($this->isSelectAll)
