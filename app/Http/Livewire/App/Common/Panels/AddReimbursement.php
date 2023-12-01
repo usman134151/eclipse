@@ -11,8 +11,7 @@ use Livewire\WithFileUploads;
 use App\Services\App\UploadFileService;
 use Illuminate\Support\Facades\Auth;
 use App\Services\App\NotificationService;
-
-
+use Carbon\Carbon;
 
 class AddReimbursement extends Component
 {
@@ -148,7 +147,10 @@ class AddReimbursement extends Component
                 'charge_to_customer' => $this->reimbursement->charge_to_customer == true  ? 1 : 0,
                 'added_by' => Auth::user()->id ,
                 'reimbursement_number'=>$reim_number,
-                'status'=> (session()->get('isProvider')? 0 : 1)    //require approval if added by admin
+                'status'=> (session()->get('isProvider')? 0 : 1),    //require approval if added by admin
+                'approved_by' => (session()->get('isProvider') ? null : Auth::id()),    //require approval if added by admin
+                'approved_at' => (session()->get('isProvider') ? null : Carbon::now()),    //require approval if added by admin
+
             ]
         );
         

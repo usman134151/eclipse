@@ -67,7 +67,7 @@ final class DraftRemittances extends PowerGridComponent
             ->select('users.id', 'users.name', 'user_details.profile_pic', 'payment_preferences.method')
 
             ->selectRaw('
-			COUNT(booking_providers.id) AS pending_bookings,
+			COUNT(booking_providers.provider_id) AS pending_bookings,
 			SUM(
 				CASE
 					WHEN booking_providers.is_override_price = 1 THEN override_price
