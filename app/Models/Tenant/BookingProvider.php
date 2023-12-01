@@ -35,7 +35,7 @@ class BookingProvider extends Model
 
     public function reimbursements()
     {
-        return $this->hasManyThrough(BookingReimbursement::class, Booking::class, 'id','booking_id','booking_id','id');
+        return $this->hasManyThrough(BookingReimbursement::class, Booking::class, 'id','booking_id','booking_id','id')->where('booking_reimbursements.status',1);
     }
     protected $casts = [
         'check_out_procedure_values' => 'array',
