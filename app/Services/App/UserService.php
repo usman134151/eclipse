@@ -80,6 +80,7 @@ class UserService
 
       //$request->request->add(['data' => $user]); //add invoice id into request
       $subject = 'Welcome ' . $user->first_name . '! Set up your Eclipse account.';
+  		sendWelcomeMail($user);
       //$mail = Helper::sendmail($request->email,'',$subject,['data' => $user,'type'=>'1'],'emails.welcome_email_on');
     }
 
@@ -238,5 +239,22 @@ class UserService
     } elseif ($status == 1){
       // NotificationService::sendNotification('Account: Unlocked', $data, 5);
     }
+  }
+
+  public static function deleteAccount($userId)
+  {
+    $user = User::find($userId);
+		$email = $user->email; // Retrieve the email
+		// Generate a unique identifier (e.g., a timestamp or random string)
+		$uniqueIdentifier = uniqid();
+		// Create the new email address with the "delete-" prefix and unique identifier
+		$newEmail = 'delete-' . $uniqueIdentifier . '-' . $email;
+		
+		// Delete the record from the database using the model
+		User::where('id', $userId)->update([
+			'email' => $newEmail,
+			'status' => 2,
+		]);
+    callLogs($userId, 'User',$user->name . ' Account has been delete');
   }
 }
