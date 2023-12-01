@@ -23,7 +23,7 @@
 		<link rel="stylesheet" href="/tenant-resources/css/select2.min.css"/>
 		<link rel="stylesheet" href="/tenant-resources/css/pikaday.css">
 
-		@if (session()->has('theme') && !session('theme'))
+		@if ((session()->has('theme') && !session('theme'))|| (is_null(session()->has('theme') )) )
 			<link id="theme" rel="stylesheet" href="/tenant-resources/css/colors.css">
 			<link id="theme" rel="stylesheet" href="/tenant-resources/css/components.css">
 			<link id="theme" rel="stylesheet" href="/tenant-resources/css/bootstrap-extended.css">
