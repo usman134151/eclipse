@@ -9,7 +9,7 @@
                 <button type="button" class="btn rounded btn-outline-dark" data-bs-dismiss="modal">
                     Cancel
                 </button>
-                <button type="button" class="btn rounded btn-primary" wire:click="revert">
+                <button type="button" class="btn rounded btn-primary" wire:click="{{$type==2 ? 'confirmedRevertRemittance' :'revert'}}">
                     Yes Revert Invoice
                 </button>
             </div>

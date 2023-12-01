@@ -70,20 +70,21 @@ class IssueRemittance extends Component
         // dd($this->list);
     }
     public function createRemittance()
-    {
+    {   $now = Carbon::now();
         $remittanceArr = [
             'number' => genetrateRemittanceNumber($this->provider),
             'provider_id' => $this->provider->id,
             'amount' => $this->totalAmount,
-            'payment_status' => 1, 'payment_method' => null, 
-            'issued_at' => Carbon::now(),
+            'outstanding_amount' => $this->totalAmount,
+            'payment_status' => 1, 'payment_method' =>null, 
+            'issued_at' => $now,
         ];
         $remittance = Remittance::create($remittanceArr);
         foreach($this->selectedBookings as $bookingId){
             BookingProvider::where(['provider_id'=>$this->provider->id, 'booking_id'=>$bookingId])->update(['remittance_id'=>$remittance->id]);
         }
         foreach ($this->selectedRMB as $rmbId) {
-            BookingReimbursement::where(['provider_id' => $this->provider->id, 'id' => $rmbId])->update(['remittance_id' => $remittance->id]);
+            BookingReimbursement::where(['provider_id' => $this->provider->id, 'id' => $rmbId])->update(['remittance_id' => $remittance->id,'issued_at'=>$now]);
         }
 
         $this->dispatchBrowserEvent('issued-remittance');

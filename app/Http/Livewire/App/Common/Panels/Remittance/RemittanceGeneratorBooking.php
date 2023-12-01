@@ -20,7 +20,7 @@ class RemittanceGeneratorBooking extends Component
     public function mount($providerId)
     {
         $this->provider = User::where('id', $providerId)->with('userdetail')->first()->toArray();
-        $bookings = BookingProvider::where(['provider_id' => $providerId, 'payment_status' => 0, 'remittance_id' => 0])
+        $bookings = BookingProvider::where(['provider_id' => $providerId, 'payment_status' => 0,'check_in_status'=>3, 'remittance_id' => 0])
             ->with(['booking', 'reimbursements'])
             ->select('booking_id')
             ->selectRaw('SUM( CASE WHEN is_override_price = 1

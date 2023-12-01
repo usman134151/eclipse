@@ -15,6 +15,10 @@ class Remittance extends Model
      * @var array
      */
     protected $fillable = [
-        'qb_bill_id', 'number', 'provider_id', 'amount', 'payment_status', 'payment_method', 'issued_at', 'payment_scheduled_at', 'paid_at'
+        'qb_bill_id', 'number', 'provider_id', 'amount', 'payment_status', 'payment_method', 'issued_at', 'payment_scheduled_at', 'paid_at', 'outstanding_amount'
     ];
+    public function paymentPreference()
+    {
+        return $this->hasOne(PaymentPreference::class, 'provider_id','provider_id');
+    }
 }
