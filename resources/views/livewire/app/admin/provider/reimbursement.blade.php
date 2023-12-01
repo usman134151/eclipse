@@ -331,6 +331,7 @@
                                                                 </svg>
                                                                 {{-- End of update by Shanila --}}
                                                             </a>
+                                                            @if($reimbursement['status']==0)
                                                             <a href="javascript:void(0)" title="Check"
                                                                 aria-label="Check"
                                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon"
@@ -357,6 +358,7 @@
                                                                 </svg>
                                                                 {{-- End of update by Shanila --}}
                                                             </a>
+                                                            @endif
                                                         </div>
                                                     </td>
                                                 </tr>

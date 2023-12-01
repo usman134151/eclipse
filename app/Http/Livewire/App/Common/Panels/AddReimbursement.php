@@ -147,7 +147,8 @@ class AddReimbursement extends Component
                 'reason' => $reasonData != null ? json_encode($reasonData): null,
                 'charge_to_customer' => $this->reimbursement->charge_to_customer == true  ? 1 : 0,
                 'added_by' => Auth::user()->id ,
-                'reimbursement_number'=>$reim_number
+                'reimbursement_number'=>$reim_number,
+                'status'=> (session()->get('isProvider')? 0 : 1)    //require approval if added by admin
             ]
         );
         
