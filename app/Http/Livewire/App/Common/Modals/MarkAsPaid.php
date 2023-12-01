@@ -10,14 +10,23 @@ use Livewire\Component;
 
 class MarkAsPaid extends Component
 {
-    public $showForm, $payment = ['method' => 0], $totalPrice = 0, $remittance;
-    protected $listeners = ['makeIndvidualPayment'];
+    public $showForm, $payment = ['method' => 0], $totalPrice = 0, $remittance, $isMultiple = false, $remittances ;
+    protected $listeners = ['makeIndvidualPayment', 'markAsPaidMultipleRemittances'];
 
     public function makeIndvidualPayment($remittanceId)
     {
         $this->remittance = Remittance::find($remittanceId);
         $this->payment['amount'] = $this->remittance->amount;
         $this->payment['method'] = 0;
+    }
+
+    public function markAsPaidMultipleRemittances($selectedValues, $total)
+    {
+        $this->isMultiple = true;
+        $this->remittances = Remittance::whereIn('id', $selectedValues)->get();
+        $this->payment['amount'] = $total;
+        $this->payment['method'] = 0;
+        // dd($total);
     }
     protected $rules = [
         'payment.method' => 'required',
@@ -31,23 +40,47 @@ class MarkAsPaid extends Component
 
     public function save()
     {
-
-        $this->remittance->payment_status = 2;
         $date = Carbon::parse($this->payment['date']);
-        if ($this->payment['method'] == 0)
-            if ($this->remittance->paymentPreference)
-                $this->remittance->payment_method = $this->remittance->paymentPreference->method;
+
+        if ($this->isMultiple) {
+            if (count($this->remittances)) {
+                $method = 0;
+                if ($this->payment['method'] == 0)
+                    if ($this->remittances->first()->paymentPreference)
+                        $method = $this->remittances->first()->paymentPreference->method;
+                    else
+                        $method = 0;
+                else
+                    $method = $this->payment['method'];
+                foreach ($this->remittances as $remittance) {
+
+                    $remittance->payment_status = 2;
+
+                    $remittance->paid_at = $date;
+                    $remittance->payment_method = $method;
+
+                    $remittance->save();
+
+                    BookingProvider::where('remittance_id', $remittance->id)->update(['paid_at' => $date, 'paid_amount' => $remittance->amount, 'payment_method' => $method, 'payment_status' => 2]);
+                    BookingReimbursement::where('remittance_id', $remittance->id)->update(['paid_at' => $date, 'payment_method' => $method, 'payment_status' => 2]);
+                }
+            }
+        } else {
+            $this->remittance->payment_status = 2;
+            if ($this->payment['method'] == 0)
+                if ($this->remittance->paymentPreference)
+                    $this->remittance->payment_method = $this->remittance->paymentPreference->method;
+                else
+                    $this->remittance->payment_method = 0;
             else
-                $this->remittance->payment_method = 0;
-        else
-            $this->remittance->payment_method = $this->payment['method'];
-        $this->remittance->paid_at = $date;
+                $this->remittance->payment_method = $this->payment['method'];
+            $this->remittance->paid_at = $date;
 
-        $this->remittance->save();
+            $this->remittance->save();
 
-        BookingProvider::where('remittance_id', $this->remittance->id)->update(['paid_at' => $date, 'paid_amount' => $this->payment['amount'], 'payment_method' => $this->remittance->payment_method, 'payment_status' => 2]);
-        BookingReimbursement::where('remittance_id', $this->remittance->id)->update(['paid_at' => $date, 'payment_method' => $this->remittance->payment_method, 'payment_status' => 2]);
-
+            BookingProvider::where('remittance_id', $this->remittance->id)->update(['paid_at' => $date, 'paid_amount' => $this->payment['amount'], 'payment_method' => $this->remittance->payment_method, 'payment_status' => 2]);
+            BookingReimbursement::where('remittance_id', $this->remittance->id)->update(['paid_at' => $date, 'payment_method' => $this->remittance->payment_method, 'payment_status' => 2]);
+        }
         $this->emit('close-mark-as-paid');
 
         $this->dispatchBrowserEvent('close-remittances-panel');

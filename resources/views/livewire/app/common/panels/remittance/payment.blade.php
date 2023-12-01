@@ -248,7 +248,7 @@
     </div>
     <div class="col-12 form-actions mb-4">
         <a href="#" wire:click="revertAll" class="btn btn-primary rounded " data-bs-toggle="modal" data-bs-target="#revertBackModal">Revert Selected Remittances</a>
-        <a href="#" wire:click="" class="btn btn-primary rounded" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
+        <a href="#" wire:click="markAsPaidAll" class="btn btn-primary rounded" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
             Mark Selected Remittances as Paid
         </a>
     </div>

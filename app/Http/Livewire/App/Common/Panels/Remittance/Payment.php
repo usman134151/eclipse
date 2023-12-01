@@ -22,6 +22,9 @@ class Payment extends Component
         $this->emit('revertMultipleRemittances',$this->selectedRemittance);
     }
 
+    public function markAsPaidAll(){
+        $this->emit('markAsPaidMultipleRemittances', $this->selectedRemittance, $this->total);
+    }
     public function selectAll()
     {
         if ($this->isSelectAll)
