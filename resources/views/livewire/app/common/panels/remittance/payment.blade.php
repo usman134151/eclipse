@@ -82,8 +82,8 @@
                 <thead>
                     <tr role="row">
                         <th scope="col" class="text-center align-middle">
-                            <input class="form-check-input" type="checkbox" wire:model="isSelectAll" wire:click="selectAll"
-                                aria-label="Select Remittances">
+                            <input id="check-all-remittances" class="form-check-input" type="checkbox"
+                                wire:model="isSelectAll" wire:click="selectAll" aria-label="Select Remittances">
                         </th>
                         <th scope="col" width="25%" class="align-middle">Remittance. NO</th>
                         <th scope="col" class="text-center">Total Pay</th>
@@ -98,8 +98,9 @@
                     @foreach ($remittances as $remittance)
                         <tr role="row" class="odd">
                             <td class="text-center align-middle">
-                                <input class="form-check-input" type="checkbox" value="{{$remittance['id']}}" 
-                                    wire:model='selectedRemittance'
+                                <input class="form-check-input remittances-checkbox"
+                                    data-price="{{ $remittance['amount'] }}" type="checkbox"
+                                    value="{{ $remittance['id'] }}" wire:model='selectedRemittance'
                                     aria-label="Select Remittance">
                             </td>
                             <td class="align-middle">
@@ -131,15 +132,15 @@
                             <td class="text-center align-middle">
                                 <div class="d-flex align-items-center gap-2"><svg width="12" height="12"
                                         viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <use xlink:href="{{$status[$remittance['payment_status']]['code'] }}"></use>
+                                        <use xlink:href="{{ $status[$remittance['payment_status']]['code'] }}"></use>
                                     </svg>
-                                    <p>{{$status[$remittance['payment_status']]['title'] }}</p>
+                                    <p>{{ $status[$remittance['payment_status']]['title'] }}</p>
                                 </div>
                             </td>
                             <td class="align-middle">
                                 <div class="d-flex actions justify-content-center">
                                     <a href="javascript:void(0)" title="View" aria-label="View"
-                                        wire:click="$emit('openRemittanceDetails','{{$remittance['id']}}')"
+                                        wire:click="$emit('openRemittanceDetails','{{ $remittance['id'] }}')"
                                         class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal"
                                         data-bs-target="#remittanceDetailModal">
                                         <svg aria-label="View Company" width="20" height="20"
@@ -218,7 +219,7 @@
             <div class="col-lg-4">
                 <div class="d-flex justify-content-between">
                     <div class="fw-bold text-sm">Total</div>
-                    <div class="fw-bold text-sm text-lg-end">$675</div>
+                    <div class="fw-bold text-sm text-lg-end">$ <span wire:ignore id="total-price"></span></div>
                 </div>
             </div>
         </div>
@@ -239,3 +240,41 @@
         </a>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        let totalPrice = 0;
+        updateTotalPrice();
+
+        $('.remittances-checkbox').change(function() {
+            const price = parseFloat($(this).data('price'));
+
+            if ($(this).is(':checked')) {
+                totalPrice += price;
+            } else {
+                totalPrice -= price;
+            }
+            updateTotalPrice();
+        });
+
+        function updateTotalPrice() {
+            $('#total-price').text(totalPrice.toFixed(2)); // Format to two decimal places
+        }
+
+        $('#check-all-remittances').change(function() {
+            const isChecked = $(this).is(':checked');
+            $('.remittances-checkbox').prop('checked', isChecked);
+
+            calculateTotalPrice();
+        });
+
+        function calculateTotalPrice() {
+            totalPrice = 0.00;
+
+            $('.remittances-checkbox:checked').each(function() {
+                const price = parseFloat($(this).data('price'));
+                totalPrice += price;
+            });
+            updateTotalPrice();
+        }
+    });
+</script>
