@@ -11,10 +11,19 @@ class Payment extends Component
     public $showForm, $provider, $remittances;
     protected $listeners = ['showList' => 'resetForm'];
     public $status = [2 => ['code' => '/css/provider.svg#green-dot', 'title' => 'Paid'], 1 => ['code' => '/css/common-icons.svg#blue-dot', 'title' => 'Issued'], 0 => ['code' => '/css/provider.svg#red-dot', 'title' => 'Pending']];
+    public $selectedRemittance = [], $isSelectAll = false;
 
     public function render()
     {
         return view('livewire.app.common.panels.remittance.payment');
+    }
+
+    public function selectAll()
+    {
+        if ($this->isSelectAll)
+            $this->selectedRemittance   = array_column($this->remittances, 'id'); 
+        else
+            $this->selectedRemittance = [];
     }
 
     public function mount($providerId)

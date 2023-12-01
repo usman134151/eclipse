@@ -82,7 +82,7 @@
                 <thead>
                     <tr role="row">
                         <th scope="col" class="text-center align-middle">
-                            <input class="form-check-input" type="checkbox" value=""
+                            <input class="form-check-input" type="checkbox" wire:model="isSelectAll" wire:click="selectAll"
                                 aria-label="Select Remittances">
                         </th>
                         <th scope="col" width="25%" class="align-middle">Remittance. NO</th>
@@ -98,7 +98,8 @@
                     @foreach ($remittances as $remittance)
                         <tr role="row" class="odd">
                             <td class="text-center align-middle">
-                                <input class="form-check-input" type="checkbox" value=""
+                                <input class="form-check-input" type="checkbox" value="{{$remittance['id']}}" 
+                                    wire:model='selectedRemittance'
                                     aria-label="Select Remittance">
                             </td>
                             <td class="align-middle">
