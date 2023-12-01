@@ -49,10 +49,11 @@
                                        {{$row['booking']['booking_number']}} <br> {{formatDateTime($row['booking']['booking_start_at'])}} <br> {{formatDateTime($row['booking']['booking_end_at'])}}
                                     </td>
                                     <td class="text-center align-middle">
-                                        Booking
+                                        Booking<br>
+                                       <span class="text-primary"> Service: {{$row['booking_service']['service'] ? $row['booking_service']['service']['name'] :''}} </span>
                                     </td>
                                     <td class="text-center align-middle">
-                                        {{$row['booking']['customer']['name']}}
+                                        {{$row['booking']['customer'] ? $row['booking']['customer']['name']:'N/A'}}
                                     </td>
                                     <td class="align-middle">
                                         {{numberFormat($row['total_amount'])}}
