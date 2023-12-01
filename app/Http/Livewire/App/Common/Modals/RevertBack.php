@@ -12,13 +12,20 @@ use App\Services\App\NotificationService;
 
 class RevertBack extends Component
 {
-    public $showForm, $invoice = null, $invoices, $isMultiple, $type = 1, $remittance;
+    public $showForm, $invoice = null, $invoices, $isMultiple, $type = 1, $remittance, $remittances;
 
-    protected $listeners = ['revertInvoice', 'revertMultipleInvoice', 'revertRemittance'];
+    protected $listeners = ['revertInvoice', 'revertMultipleInvoice', 'revertRemittance', 'revertMultipleRemittances'];
 
     public function render()
     {
         return view('livewire.app.common.modals.revert-back');
+    }
+
+    public function revertMultipleRemittances($selectedValues = [])
+    {
+        $this->type = 2;
+        $this->isMultiple = true;
+        $this->remittances = Remittance::whereIn('id', $selectedValues)->get();
     }
 
     public function revertMultipleInvoice($selectedValues)
@@ -62,19 +69,33 @@ class RevertBack extends Component
         $this->remittance = Remittance::find($remittanceId);
     }
 
+
     public function confirmedRevertRemittance()
     {
-        $this->remittance->payment_status = 1;
-        $this->remittance->payment_method = null;
-        $this->remittance->paid_at = null;
-        $this->remittance->save();
+        if ($this->isMultiple) {
+            if (count($this->remittances))
+                foreach ($this->remittances as $remittance) {
+                    if ($remittance->payment_status == 2) { //if paid, only revert then
+                        $remittance->payment_status = 1;
+                        $remittance->payment_method = null;
+                        $remittance->paid_at = null;
+                        $remittance->save();
 
-        BookingProvider::where('remittance_id', $this->remittance->id)->update(['paid_at' => null, 'paid_amount' => null, 'payment_method' => null, 'payment_status' => 1]);
-        BookingReimbursement::where('remittance_id', $this->remittance->id)->update(['paid_at' => null, 'payment_method' => null, 'payment_status' => 1]);
+                        BookingProvider::where('remittance_id', $remittance->id)->update(['paid_at' => null, 'paid_amount' => null, 'payment_method' => null, 'payment_status' => 1]);
+                        BookingReimbursement::where('remittance_id', $remittance->id)->update(['paid_at' => null, 'payment_method' => null, 'payment_status' => 1]);
+                    }
+                }
+        } else {
+            $this->remittance->payment_status = 1;
+            $this->remittance->payment_method = null;
+            $this->remittance->paid_at = null;
+            $this->remittance->save();
 
+            BookingProvider::where('remittance_id', $this->remittance->id)->update(['paid_at' => null, 'paid_amount' => null, 'payment_method' => null, 'payment_status' => 1]);
+            BookingReimbursement::where('remittance_id', $this->remittance->id)->update(['paid_at' => null, 'payment_method' => null, 'payment_status' => 1]);
+        }
         $this->emit('close-revert-modal');
         $this->dispatchBrowserEvent('close-remittances-panel');
         $this->emit('showList', 'Remittance reverted successfully');
-
     }
 }
