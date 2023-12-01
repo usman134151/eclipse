@@ -31,7 +31,7 @@
                                         Reimbursement
                                     </td>
                                     <td></td>
-                                    <td class="text-center align-middle">
+                                    <td class=" align-middle">
                                         {{ numberFormat($row['amount']) }}
 
                                     </td>
@@ -46,16 +46,16 @@
                                 @else
                                     <td class="text-center align-middle" x-on:click="assignmentDetails = true">
 
-                                        101359-As-2 <br> 08/24/2022 9:59 AM <br> 08/24/2022 9:59 AM
+                                       {{$row['booking']['booking_number']}} <br> {{formatDateTime($row['booking']['booking_start_at'])}} <br> {{formatDateTime($row['booking']['booking_end_at'])}}
                                     </td>
                                     <td class="text-center align-middle">
-                                        Reimbursement
+                                        Booking
                                     </td>
                                     <td class="text-center align-middle">
-                                        Bilal S. Siddiq
+                                        {{$row['booking']['customer']['name']}}
                                     </td>
                                     <td class="align-middle">
-                                        $100.00
+                                        {{numberFormat($row['total_amount'])}}
                                     </td>
 
                                     <td class="align-middle">
