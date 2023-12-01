@@ -34,7 +34,7 @@
 
             <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box">
                 <div class="featured-image mb-3" >
-                  @if($login_screen)
+                  @if(isset($login_screen) && $login_screen)
                     <img src="{{$login_screen}}" alt="">
                   @else
                     <object data="/tenant-resources/images/eclipse_logo.svg" type="image/svg+xml" width="100%">

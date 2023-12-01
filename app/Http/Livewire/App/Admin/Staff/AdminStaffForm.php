@@ -21,7 +21,7 @@ class AdminStaffForm extends Component
     use WithFileUploads;
 
     public $component = 'profile',$label='Add';
-    public $user,$isAdd=true,$user_roles=[],$image =null;
+    public $user,$isAdd=true,$user_roles=[],$image =null, $email_invitation = 1;
     
     public $userdetail=['gender_id','country'=>"",'timezone_id','ethnicity_id','title','user_position','address_line1'=>"",'address_line2'=>"",'zip','permission','city'=>"",'state'=>'','phone','roles','profile_pic'=>null];
     public $setupValues = [
@@ -140,7 +140,7 @@ class AdminStaffForm extends Component
 
 		$userService = new UserService;
        
-        $this->user = $userService->createUser($this->user,$this->userdetail,1,1,[],$this->isAdd);
+        $this->user = $userService->createUser($this->user,$this->userdetail,1,$this->email_invitation ? 1 : null,[],$this->isAdd);
      //   dd($this->user_roles);
         $userService->storeAdminRoles($this->user_roles,$this->user->id);
 		if($redirect){

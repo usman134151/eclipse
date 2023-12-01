@@ -395,6 +395,12 @@
 
                                                         <span>Navigate</span>
                                                     </button>
+                                                    <button type="button" wire:click="resendWelcomeEmail"
+                                                        class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
+                                                        <span>
+                                                            Resend Welcome Email
+                                                        </span>
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
