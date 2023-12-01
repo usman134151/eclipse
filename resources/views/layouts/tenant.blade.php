@@ -23,19 +23,21 @@
 		<link rel="stylesheet" href="/tenant-resources/css/select2.min.css"/>
 		<link rel="stylesheet" href="/tenant-resources/css/pikaday.css">
 
-		@if ((session()->has('theme') && !session('theme'))|| (is_null(session()->has('theme') )) )
-			<link id="theme" rel="stylesheet" href="/tenant-resources/css/colors.css">
-			<link id="theme" rel="stylesheet" href="/tenant-resources/css/components.css">
-			<link id="theme" rel="stylesheet" href="/tenant-resources/css/bootstrap-extended.css">
-			<link id="theme" rel="stylesheet" href="/tenant-resources/css/style.css">
-			<link id="theme" rel="stylesheet" href="/tenant-resources/css/fixes.css">
-		@elseif(session()->has('theme') && session('theme'))
+	
+
+		@if(session()->has('theme') && session('theme'))
 			<link id="theme" rel="stylesheet" href="/tenant-resources/css/dark-colors.css">
 			<link id="theme" rel="stylesheet" href="/tenant-resources/css/dark-components.css">
 			<link id="theme" rel="stylesheet" href="/tenant-resources/css/dark-bootstrap-extended.css">
 			<link id="theme" rel="stylesheet" href="/tenant-resources/css/dark-style.css">
 			<link id="theme" rel="stylesheet" href="/tenant-resources/css/dark-fixes.css">
 			<link id="dark_mode" rel="stylesheet" href="/tenant-resources/css/dark-mode.css" >
+		@else
+			<link id="theme" rel="stylesheet" href="/tenant-resources/css/colors.css">
+			<link id="theme" rel="stylesheet" href="/tenant-resources/css/components.css">
+			<link id="theme" rel="stylesheet" href="/tenant-resources/css/bootstrap-extended.css">
+			<link id="theme" rel="stylesheet" href="/tenant-resources/css/style.css">
+			<link id="theme" rel="stylesheet" href="/tenant-resources/css/fixes.css">	
 		@endif
 			{{-- <link rel="stylesheet" href="/tenant-resources/css/dark-layout.css"> --}}
 		<link rel="stylesheet" href='/tenant-resources/css/bootstrap-icons.css'/>
