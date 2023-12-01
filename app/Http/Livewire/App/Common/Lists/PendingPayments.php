@@ -60,7 +60,7 @@ final class PendingPayments extends PowerGridComponent
 
             ->join('remittances', 'remittances.provider_id', 'users.id')
             ->leftJoin('payment_preferences', 'payment_preferences.provider_id', 'users.id')
-            ->where('payment_status', '<', 2)
+            // ->where('payment_status', '<', 2)
             ->join('user_details', function ($userdetails) {
                 $userdetails->on('user_details.user_id', '=', 'users.id');
             })

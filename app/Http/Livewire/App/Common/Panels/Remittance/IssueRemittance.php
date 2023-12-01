@@ -75,6 +75,7 @@ class IssueRemittance extends Component
             'number' => genetrateRemittanceNumber($this->provider),
             'provider_id' => $this->provider->id,
             'amount' => $this->totalAmount,
+            'outstanding_amount' => $this->totalAmount,
             'payment_status' => 1, 'payment_method' =>null, 
             'issued_at' => $now,
         ];

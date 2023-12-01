@@ -123,7 +123,9 @@
                                 @endif
                             </td>
                             <td class="text-center align-middle">
-                                @if ($provider['paymentPreference'] && $provider['paymentPreference']['method'] == 2)
+                                @if ($remittance['payment_method'] == null)
+                                    N/A
+                                @elseif($remittance['payment_method'] == 2)
                                     Mail a Cheque
                                 @else
                                     Direct Deposit
@@ -147,6 +149,15 @@
                                             viewBox="0 0 20 20">
                                             <use xlink:href="/css/common-icons.svg#view">
                                             </use>
+                                        </svg>
+                                    </a>
+                                    <a href="#" title="Record Payment" aria-label="Record Payment"
+                                        data-bs-toggle="modal" data-bs-target="#markAsPaidModal"
+                                        wire:click="$emit('makeIndvidualPayment','{{ $remittance['id'] }}')"
+                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                        <svg aria-label="Record Payment" width="19" height="20"
+                                            viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <use xlink:href="/css/sprite.svg#dollar-assignment"></use>
                                         </svg>
                                     </a>
                                     <a href="javascript:void(0)" title="Return" aria-label="Return"
@@ -276,5 +287,6 @@
             });
             updateTotalPrice();
         }
+
     });
 </script>

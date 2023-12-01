@@ -1,5 +1,5 @@
     <div class="">
-        <div x-data="{ payment: false }">
+        <div x-data="{ payment: false }" x-on:close-remittances-panel.window="payment=false">
             <div id="loader-section" class="loader-section" wire:loading>
                 <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
                     <div class="spinner-border" role="status" aria-live="polite">
@@ -181,7 +181,16 @@
 
             {{-- Revert Back - Modal --}}
             @include('modals.common.revert-back')
-            {{-- Revert Back - Modal --}}
-            @include('modals.mark-as-paid')
+
         </div>
+        {{-- Revert Back - Modal --}}
+        @include('modals.mark-as-paid')
+
     </div>
+
+    <script>
+        Livewire.on('close-mark-as-paid', () => {
+            $('#markAsPaidModal').modal('hide');
+
+        });
+    </script>
