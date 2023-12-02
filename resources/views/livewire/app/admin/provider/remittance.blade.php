@@ -118,7 +118,7 @@
                 <div class="d-flex flex-column flex-md-row justify-content-end mb-2 gap-2 align-items-center">
 
                     <div class="">
-                        <a href="javascript:void(0)" @click="addNewPayment = true"
+                        <a href="javascript:void(0)" @click="addNewPayment = true" wire:click="$emit('refreshPanel')"
                             class="btn btn-primary btn-sm px-4 btn-has-icon rounded">
                             <svg aria-label="Add Payment" width="20" height="20" viewBox="0 0 20 20"
                                 fill="none" xmlns="http://www.w3.org/2000/svg">
