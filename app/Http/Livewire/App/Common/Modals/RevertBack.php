@@ -5,6 +5,7 @@ namespace App\Http\Livewire\App\Common\Modals;
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\BookingReimbursement;
 use App\Models\Tenant\Invoice;
+use App\Models\Tenant\ProviderRemittancePayment;
 use App\Models\Tenant\Remittance;
 use App\Services\App\InvoiceService;
 use Livewire\Component;
@@ -83,6 +84,7 @@ class RevertBack extends Component
 
                         BookingProvider::where('remittance_id', $remittance->id)->update(['paid_at' => null, 'paid_amount' => null, 'payment_method' => null, 'payment_status' => 1]);
                         BookingReimbursement::where('remittance_id', $remittance->id)->update(['paid_at' => null, 'payment_method' => null, 'payment_status' => 1]);
+                        ProviderRemittancePayment::where('remittance_id', $remittance->id)->update(['paid_at' => null, 'payment_method' => null, 'payment_status' => 1]);
                     }
                 }
         } else {
