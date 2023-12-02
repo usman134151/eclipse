@@ -508,7 +508,7 @@ if (!function_exists('genetratePaymentNumber')) {
     try {
       if ($provider) {
 
-        $latestPayment = ProviderRemittancePayment::where('provider_id', $provider)->count();
+        $latestPayment = ProviderRemittancePayment::count();
         if ($latestPayment != 0)
           $Num = $latestPayment;
         else
