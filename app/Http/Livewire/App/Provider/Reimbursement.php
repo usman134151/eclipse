@@ -79,9 +79,9 @@ class Reimbursement extends Component
 
 			// Store the provider name in your data array or do whatever you need with it
 
-			$reimbursement->booking_number = $booking->booking_number;
-			$reimbursement->booking_start_at = $booking->booking_start_at;
-			$reimbursement->booking_end_at = $booking->booking_end_at;
+			$reimbursement->booking_number = $booking ? $booking->booking_number : null;
+			$reimbursement->booking_start_at = $booking ? $booking->booking_start_at:null;
+			$reimbursement->booking_end_at = $booking ? $booking->booking_end_at:null;
 			$reimbursement->amount = $reimbursement->amount;
 			$reimbursement->reason = $reason;
 			$reimbursement->review_status = $statusLabels[$reimbursement->status];
