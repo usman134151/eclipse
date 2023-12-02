@@ -857,6 +857,7 @@
 
 </div>
 <!-- Dashboard tab end -->
+@if (!$isCustomer)
 <div class="tab-pane fade" id="schedule-tab-pane" role="tabpanel" aria-labelledby="schedule-tab" tabindex="0">
     <div class="row mb-2">
         <h3>Schedule 
@@ -874,7 +875,6 @@
 
     </div>
 </div>
-@if (!$isCustomer)
 
 <!-- Schedule tab end -->
 <div class="tab-pane fade" id="customer-feedback-tab-pane" role="tabpanel" aria-labelledby="customer-feedback-tab"
