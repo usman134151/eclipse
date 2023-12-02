@@ -85,7 +85,32 @@
                         {{-- updated by shanila to reduce extra duplicate rows --}}
                         @foreach ($list as $key => $row)
                             <tr role="row" class="even">
-                                @if (key_exists('reimbursement_number', $row[0]))
+                              @if (key_exists('payment', $row[0]))
+                                    <td class="text-center">
+                                        <input class="form-check-input booking-checkbox" wire:model.defer="selectedPayments"
+                                            type="checkbox" data-id="{{ $row[0]['id'] }}"
+                                            data-price="{{ $row[0]['total_amount'] }}" value="{{ $row[0]['id'] }}"
+                                            aria-label="Select Payment">
+                                    </td>
+                                    <td>
+                                        <div class="fw-semibold">{{ $row[0]['number'] }}</div>
+
+                                    </td>
+                                    <td colSpan=2>
+                                        <div class="fw-semibold">Reason:</div>
+                                        <div class="">{{ $row[0]['reason'] }}</div>
+
+                                    </td>
+                                    </td>
+                                    <td>
+                                        <div class="fw-semibold"> $<span
+                                                id="booking-total-{{ $row[0]['id'] }}">{{ $row[0]['total_amount'] }}</span>
+                                        </div>
+
+                                    </td>
+                                    <td> </td>
+                               
+                                @elseif (key_exists('reimbursement_number', $row[0]))
                                     <td class="text-center">
                                         <input class="form-check-input booking-checkbox" wire:model.defer="selectedRMB"
                                             type="checkbox" data-id="{{ $row[0]['id'] }}"
