@@ -48,7 +48,10 @@ class AddNewPayment extends Component
         $this->payment['number']= genetratePaymentNumber($this->payment['provider_id']);
         $this->payment['added_by'] = Auth::id();
 
-        ProviderRemittancePayment::create($this->payment);
+        $payment = ProviderRemittancePayment::create($this->payment);
+
+        callLogs($this->payment['provider_id'], 'New Payment', 'create');
+
         $this->dispatchBrowserEvent('close-add-new-payment');
         $this->emit('showList','Payment added successfully');
     }
