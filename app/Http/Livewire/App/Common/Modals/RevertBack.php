@@ -95,6 +95,8 @@ class RevertBack extends Component
 
             BookingProvider::where('remittance_id', $this->remittance->id)->update(['paid_at' => null, 'paid_amount' => null, 'payment_method' => null, 'payment_status' => 1]);
             BookingReimbursement::where('remittance_id', $this->remittance->id)->update(['paid_at' => null, 'payment_method' => null, 'payment_status' => 1]);
+            ProviderRemittancePayment::where('remittance_id', $this->remittance->id)->update(['paid_at' => null, 'payment_method' => 0, 'payment_status' => 1]);
+       
         }
         $this->emit('close-revert-modal');
         $this->dispatchBrowserEvent('close-remittances-panel');

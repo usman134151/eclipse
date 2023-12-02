@@ -83,6 +83,8 @@ class MarkAsPaid extends Component
 
             BookingProvider::where('remittance_id', $this->remittance->id)->update(['paid_at' => $date, 'paid_amount' => $this->payment['amount'], 'payment_method' => $this->remittance->payment_method, 'payment_status' => 2]);
             BookingReimbursement::where('remittance_id', $this->remittance->id)->update(['paid_at' => $date, 'payment_method' => $this->remittance->payment_method, 'payment_status' => 2]);
+            ProviderRemittancePayment::where('remittance_id', $this->remittance->id)->update(['paid_at' => $date, 'payment_method' =>  $this->remittance->payment_method, 'payment_status' => 2]);
+        
         }
         $this->emit('close-mark-as-paid');
 
