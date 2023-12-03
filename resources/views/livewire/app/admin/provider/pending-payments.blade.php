@@ -1,4 +1,3 @@
-<div class="">
     <div x-data="{ payment: false }" x-on:close-remittances-panel.window="payment=false">
         <div id="loader-section" class="loader-section" wire:loading>
             <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
@@ -185,17 +184,16 @@
         </div>
 
     </div>
-
-</div>
-
+@push('scripts')
 <script>
-    Livewire.on('close-mark-as-paid', () => {
-        $('#markAsPaidModal').modal('hide');
+        Livewire.on('close-mark-as-paid', () => {
+            $('#markAsPaidModal').modal('hide');
 
-    });
+        });
 
-    Livewire.on('close-revert-modal', () => {
-        $('#revertBackModal').modal('hide');
+        Livewire.on('close-revert-modal', () => {
+            $('#revertBackModal').modal('hide');
 
-    });
-</script>
+        });
+    </script>
+@endpush

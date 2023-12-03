@@ -132,21 +132,33 @@
                                         data-price="{{ $row['amount'] }}" type="checkbox" aria-label="Select Team">
                                 </td>
                                 <td class="align-middle">
-                                    <a
-                                        href="javascript:void(0)">{{ isset($row['reimbursement_id']) ? $row['reimbursement_number'] : $row['booking']['booking_number'] }}</a>
+                                    <a href="javascript:void(0)">
+                                        @if (isset($row['payment_id']))
+                                            {{ $row['number'] }}
+                                        @else
+                                            {{ isset($row['reimbursement_id']) ? $row['reimbursement_number'] : $row['booking']['booking_number'] }}
+                                        @endif
+                                    </a>
+
                                 </td>
                                 <td class="text-center align-middle">
-                                    {{ isset($row['reimbursement_id']) ? 'Reimbursment' : 'Booking' }}
+                                    @if (isset($row['payment_id']))
+                                        Payment
+                                    @else
+                                        {{ isset($row['reimbursement_id']) ? 'Reimbursment' : 'Booking' }}
+                                    @endif
                                 </td>
                                 <td class="text-center align-middle">
-                                    {{ !isset($row['reimbursement_id']) ? count($row['reimbursements']) : '' }}
+                                    @if (!isset($row['payment_id']))
+                                        {{ !isset($row['reimbursement_id']) ? count($row['reimbursements']) : '' }}
+                                    @endif
                                 </td>
                                 <td class="text-center align-middle">
                                     {{ numberFormat($row['amount']) }}
                                 </td>
                                 <td class="align-middle">
                                     <div class="d-flex actions justify-content-center">
-                                        @if (!isset($row['reimbursement_id']))
+                                        @if (isset($row['reimbursements']))
                                             @if (count($row['reimbursements']) > 0)
                                                 <a href="#" title="View" aria-label="View"
                                                     data-bs-toggle="modal"
@@ -171,7 +183,7 @@
                                                     fill="black" />
                                             </svg>
                                             </a>
-                                        {{-- @else --}}
+                                            {{-- @else --}}
                                             {{-- <a href="#" title="Accept" aria-label="Accept"
                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon"
                                                 data-bs-toggle="modal" data-bs-target="#acceptModal">

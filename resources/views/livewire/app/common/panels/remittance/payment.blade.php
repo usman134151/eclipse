@@ -271,6 +271,8 @@
 
         function updateTotalPrice() {
             $('#total-price').text(totalPrice.toFixed(2)); // Format to two decimal places
+            @this.set('total', totalPrice);
+
         }
 
         $('#check-all-remittances').change(function() {
@@ -288,7 +290,6 @@
                 totalPrice += price;
             });
             updateTotalPrice();
-            @this.set('total', totalPrice);
 
         }
 

@@ -5,6 +5,7 @@ namespace App\Http\Livewire\App\Common\Panels\Remittance;
 use App\Http\Livewire\App\Common\Modals\BookingReimbursements;
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\BookingReimbursement;
+use App\Models\Tenant\ProviderRemittancePayment;
 use App\Models\Tenant\Remittance;
 use App\Models\Tenant\User;
 use Carbon\Carbon;
@@ -12,7 +13,7 @@ use Livewire\Component;
 
 class IssueRemittance extends Component
 {
-    public $showForm, $list = [], $provider, $selectedBookings = [], $selectedRMB = [], $totalAmount = 0;
+    public $showForm, $list = [], $provider, $selectedBookings = [], $selectedRMB = [], $selectedPayments, $totalAmount = 0;
     protected $listeners = ['showList' => 'resetForm', 'issueRemittances'];
 
     public function render()
@@ -35,7 +36,16 @@ class IssueRemittance extends Component
                 }
                 $this->selectedRMB[] = $rmb['id'];
                 $this->list[$index][0] = $rmb;
-            } else {
+            }
+            elseif (key_exists('payment_id', $row)) {
+                // fetch payment data
+                $payment =  ProviderRemittancePayment::where('id', $row['payment_id'])->first()->toArray();
+               $payment['payment'] =true;
+               
+                $this->selectedPayments[] = $payment['id'];
+                $this->list[$index][0] = $payment;
+            }
+             else {
                 //fetch booking details + associated reimbursements
                 $bookingRecords = BookingProvider::where(['provider_id' => $providerId, 'booking_id' => $row['booking_id']])->with([
                     'reimbursements', 'booking_service', 'booking_service.service', 'booking', 'booking.company',
@@ -85,6 +95,9 @@ class IssueRemittance extends Component
         }
         foreach ($this->selectedRMB as $rmbId) {
             BookingReimbursement::where(['provider_id' => $this->provider->id, 'id' => $rmbId])->update(['remittance_id' => $remittance->id,'issued_at'=>$now]);
+        }
+        foreach ($this->selectedPayments as $paymentId) {
+            ProviderRemittancePayment::where(['id' => $paymentId])->update(['remittance_id' => $remittance->id, 'payment_status' => 1]);
         }
 
         $this->dispatchBrowserEvent('issued-remittance');

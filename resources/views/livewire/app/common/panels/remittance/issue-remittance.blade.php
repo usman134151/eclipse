@@ -59,28 +59,7 @@
                 </span>
             </button>
         </div>
-        <div class="col-lg-6">
-            <div class="d-flex gap-2 justify-content-end">
-                <a @click="addNewPayment = true" class="btn btn-sm btn-primary btn-has-icon rounded px-4">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z"
-                            fill="white"></path>
-                    </svg>
-                    Add Payment
-                </a>
-                <a @click="addReimbursement = true" class="btn btn-sm btn-primary btn-has-icon rounded px-4">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z"
-                            fill="white"></path>
-                    </svg>
-                    Add Reimbursement
-                </a>
-            </div>
-        </div>
+        {{-- update to move add-payment and add-reimbursement on remittance main page - Maarooshaa --}}
     </div>
     <!-- Hoverable rows start -->
     <div class="row" id="table-hover-row">
@@ -106,7 +85,32 @@
                         {{-- updated by shanila to reduce extra duplicate rows --}}
                         @foreach ($list as $key => $row)
                             <tr role="row" class="even">
-                                @if (key_exists('reimbursement_number', $row[0]))
+                              @if (key_exists('payment', $row[0]))
+                                    <td class="text-center">
+                                        <input class="form-check-input booking-checkbox" wire:model.defer="selectedPayments"
+                                            type="checkbox" data-id="{{ $row[0]['id'] }}"
+                                            data-price="{{ $row[0]['total_amount'] }}" value="{{ $row[0]['id'] }}"
+                                            aria-label="Select Payment">
+                                    </td>
+                                    <td>
+                                        <div class="fw-semibold">{{ $row[0]['number'] }}</div>
+
+                                    </td>
+                                    <td colSpan=2>
+                                        <div class="fw-semibold">Reason:</div>
+                                        <div class="">{{ $row[0]['reason'] }}</div>
+
+                                    </td>
+                                    </td>
+                                    <td>
+                                        <div class="fw-semibold"> $<span
+                                                id="booking-total-{{ $row[0]['id'] }}">{{ $row[0]['total_amount'] }}</span>
+                                        </div>
+
+                                    </td>
+                                    <td> </td>
+                               
+                                @elseif (key_exists('reimbursement_number', $row[0]))
                                     <td class="text-center">
                                         <input class="form-check-input booking-checkbox" wire:model.defer="selectedRMB"
                                             type="checkbox" data-id="{{ $row[0]['id'] }}"
