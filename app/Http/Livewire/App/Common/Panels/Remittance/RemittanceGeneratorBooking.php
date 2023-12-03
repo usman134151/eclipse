@@ -4,6 +4,7 @@ namespace App\Http\Livewire\App\Common\Panels\Remittance;
 
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\BookingReimbursement;
+use App\Models\Tenant\ProviderRemittancePayment;
 use App\Models\Tenant\User;
 use Livewire\Component;
 
@@ -31,7 +32,8 @@ class RemittanceGeneratorBooking extends Component
             ->get()->toArray();
         //fetching unassociated approved reimbursements
         $reimbursements = BookingReimbursement::where(['provider_id' => $providerId,'status'=>1, 'booking_id' => null, 'payment_status' => 0, 'remittance_id' => 0])->select(['id as reimbursement_id', 'reimbursement_number', 'amount', 'booking_id'])->get()->toArray();
-        $this->data = array_merge($bookings, $reimbursements);
+        $payments = ProviderRemittancePayment::where(['provider_id' => $providerId, 'payment_status' => 0, 'remittance_id' => null])->select(['id as payment_id', 'number', 'total_amount as amount'])->get()->toArray();
+        $this->data = array_merge($bookings, $reimbursements,$payments);
     }
 
     public function addToRemittance()

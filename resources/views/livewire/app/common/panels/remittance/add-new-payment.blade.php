@@ -1,15 +1,11 @@
 <div>
-    <form class="form">
-        {{-- updated by shanila to add csrf --}}
-        @csrf
-        {{-- update ended by shanila --}}
-        <div class="inner-section-segment-spacing">
-            <p>Add new payment for an individual provider, multiple providers and or for a team. When adding a new
-                payment for the team you can split the amount equally in the team or pay the same to each team member.
-            </p>
-        </div>
-        <div class="row ">
-            <div class="mb-4">
+    <div class="inner-section-segment-spacing">
+        <p>Add new payment for an individual provider, multiple providers and or for a team. When adding a new
+            payment for the team you can split the amount equally in the team or pay the same to each team member.
+        </p>
+    </div>
+    <div class="row ">
+        {{-- <div class="mb-4">
                 <label class="form-label" for="">
                     Select Providers Or Team <span class="mandatory">*</span>
                 </label>
@@ -30,29 +26,55 @@
                         Providers Or Team
                     </div>
                 </button>
-            </div>
-            <div class="mb-4">
-                <label class="form-label" for="ReasonforPayment">
-                    Reason for Payment
+            </div> --}}
+        <div class="mb-4">
+            <label class="form-label" for="provider_id">
+                Provider
+            </label>
+            {{-- <input type="text" class="form-control" name="provider" placeholder="Imogene Guthrie"
+                    aria-label="Provider" /> --}}
+            <select wire:model.defer="payment.provider_id" data-placeholder="Select Provider" class="select2 form-select"
+                tabindex="" id="provider_id">
+                <option value=""></option>
+                @foreach ($providers as $provider)
+                    <option value="{{ $provider->id }}">{{ $provider->name }}</option>
+                @endforeach
+            </select>
+            @error('payment.provider_id')
+                <span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="mb-4">
+            <label class="form-label" for="ReasonforPayment">
+                Reason for Payment
+            </label>
+            <input wire:model.defer="payment.reason" class="form-control" id="ReasonforPayment"
+                placeholder="Reason for Payment">
+
+            @error('payment.reason')
+                <span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="between-section-segment-spacing">
+            <label class="form-label" for="Amount">
+                Amount <span class="mandatory">*</span>
+            </label>
+            <input wire:model.defer="payment.total_amount" class="form-control" id="Amount" placeholder="$00.00">
+
+            @error('payment.total_amount')
+                <span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="mb-4">
+            <div class="form-check">
+                <input class="form-check-input" disabled type="checkbox" value="" id="ChargetoCustomer">
+                <label class="form-check-label" for="ChargetoCustomer">
+                    Charge to Customer (coming soon)
                 </label>
-                <input type="email" class="form-control" id="ReasonforPayment" placeholder="Reason for Payment">
-            </div>
-            <div class="between-section-segment-spacing">
-                <label class="form-label" for="Amount">
-                    Amount <span class="mandatory">*</span>
-                </label>
-                <input type="email" class="form-control" id="Amount" placeholder="$00.00">
-            </div>
-            <div class="mb-4">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="ChargetoCustomer">
-                    <label class="form-check-label" for="ChargetoCustomer">
-                        Charge to Customer
-                    </label>
-                </div>
             </div>
         </div>
-        <div class="mb-5">
+    </div>
+    {{-- <div class="mb-5">
             <label class="form-label" for="PaymentOptions">
                 Payment Options
             </label>
@@ -74,11 +96,12 @@
             <div>Teams: 1</div>
             <div>Providers: 10</div>
             <div>Payable Amount: $00.00</div>
-        </div>
-        <div class="form-actions d-flex gap-3">
-            <button type="button" class="btn btn-outline-dark rounded">CANCEL</button>
-            <button type="submit" class="btn btn-primary rounded">ADD</button>
-        </div>
-    </form>
-    @include('modals.provider-team-modal')
+        </div> --}}
+    <div class="form-actions d-flex gap-3">
+        <button type="button" x-on:click="addNewPayment = !addNewPayment"
+            class="btn btn-outline-dark rounded">CANCEL</button>
+        <button x-on:close-add-new-payment.window="addNewPayment = !addNewPayment" wire:click.prevent="addPayment"
+            type="submit" class="btn btn-primary rounded">ADD</button>
+    </div>
+    {{-- @include('modals.provider-team-modal') --}}
 </div>
