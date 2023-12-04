@@ -7,6 +7,7 @@ use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\BookingServices;
 use App\Models\Tenant\FeedbackRating;
 use App\Models\Tenant\User;
+use App\Services\App\NotificationService;
 use App\Services\App\UploadFileService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -70,14 +71,21 @@ class CheckOut extends Component
             'comments' => $this->checkout['feedback_comments'],
         ]);
 
-        addLogs([
-            'action_by'     => $this->provider_id,
-            'action_to'     => $this->assignment->id,
-            'item_type'     => 'booking',
-            'type'          => 'update',
-            'message'         => "Booking checkout details updated by " . User::find($this->provider_id)->name,
-            'ip_address'     => \request()->ip(),
-        ]);
+        // addLogs([
+        //     'action_by'     => $this->provider_id,
+        //     'action_to'     => $this->assignment->id,
+        //     'item_type'     => 'booking',
+        //     'type'          => 'update',
+        //     'message'         => "Booking checkout details updated by " . User::find($this->provider_id)->name,
+        //     'ip_address'     => \request()->ip(),
+        // ]);
+        callLogs($this->assignment->id, 'booking', "update", "Booking checkout details updated by " . User::find($this->provider_id)->name);
+        if(session()->get('isProvider')){
+            $data['bookingData'] = $this->assignment;
+
+            NotificationService::sendNotification('Booking: Provider Checked Out', $data);
+
+        }
 
         $this->dispatchBrowserEvent('close-check-out');
         $this->emit('showConfirmation', 'Successfull Checkout at : ' .  date_format(date_create($this->checkout['actual_end_timestamp']), 'm/d/Y h:i A'));
