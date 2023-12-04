@@ -21,4 +21,9 @@ class Remittance extends Model
     {
         return $this->hasOne(PaymentPreference::class, 'provider_id','provider_id');
     }
+
+    public function booking()
+    {
+        return $this->hasOne(Booking::class, 'id', 'booking_id');
+    }
 }
