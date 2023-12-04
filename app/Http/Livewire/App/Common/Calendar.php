@@ -261,7 +261,7 @@ class Calendar extends Component
 
 			if ($is_closed == 1) {
 				$mappingCode = "Completed Assignment";
-			} elseif ($is_closed == 2) {
+			} elseif ($status >= 3) {
 				$mappingCode = "Cancelled";
 			} elseif ($status == 1 || $status == 2) {
 				$providers = BookingProvider::where("booking_id", $id)->get();
