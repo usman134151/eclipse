@@ -1,4 +1,11 @@
 <div >
+  <div id="loader-section" class="loader-section" wire:loading>
+    <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
+        <div class="spinner-border" role="status" aria-live="polite">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+  </div>
     <div class="content-header row">
         <div class="content-header-left col-md-9 col-12 mb-2">
             <div class="row breadcrumbs-top">
@@ -87,14 +94,15 @@
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
-                    <div class="mb-4">
-                        <label class="form-label">Team Tags</label>
-                        <select data-placeholder="" multiple
-                            class="form-select  select2 form-select select2-hidden-accessible" tabindex="">
-                            <option value=""></option>
-                            <option selected>@admin_company</option>
-                            <option selected>@booking_start_at</option>
-                        </select>
+                   <div class="mb-4">
+                      <label class="form-label" for="tags">Team Tags</label>
+                      <select data-placeholder="" multiple class="form-select  select2 form-select select2-hidden-accessible" tabindex=""
+                        id="tags" aria-label="Select Tags">
+                        @foreach ($allTags as $tag)
+                        <option {{ in_array($tag, $tags) ? 'selected' : '' }} value="{{ $tag }}">{{ $tag }}</option>
+                        @endforeach
+                      </select>
+                      <input type="hidden" name="tags-holder" id="tags-holder" wire:model="tags">
                     </div>
                   </div>
                   <div class="col-md-6 col-12">

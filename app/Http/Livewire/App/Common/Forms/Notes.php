@@ -11,6 +11,7 @@ use Carbon\Carbon;
 
 class Notes extends Component
 {
+    //  1 ->company, 2 -> provider, 3->customer , 4-departments, 5-assignment, 6 -> provider team 
     public $showForm, $note= ['record_type'=>null, 'record_id'=>null,'notes_text'=>null],   $notesArr=[],$label="Add",$noteId=null;
     protected $listeners = ['showList' => 'resetForm'];
 
