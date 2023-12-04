@@ -23,4 +23,9 @@ class BookingReimbursement extends Model
     {
         return $this->belongsTo(Booking::class, 'booking_id', 'id');
     }
+
+    public function provider()
+    {
+        return $this->hasOne(User::class, 'id', 'provider_id');
+    }
 }

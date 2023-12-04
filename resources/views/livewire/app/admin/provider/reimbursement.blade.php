@@ -349,6 +349,8 @@
                                                                 <a href="javascript:void(0)" title="cross"
                                                                     aria-label="cross"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon"
+                                                                    wire:click="$emit('denyReimbursement','{{$reimbursement['id']}}')"
+                                                                    
                                                                     data-bs-toggle="modal"
                                                                     data-bs-target="#denyReimbursement">
                                                                     {{-- Updated by Shanila to Add svg icon --}}
@@ -504,6 +506,10 @@
     <script>
        Livewire.on('close-accept-modal', () => {
             $('#reimbursementReview').modal('hide');
+
+        });
+          Livewire.on('close-deny-modal', () => {
+            $('#denyReimbursement').modal('hide');
 
         });
     </script>
