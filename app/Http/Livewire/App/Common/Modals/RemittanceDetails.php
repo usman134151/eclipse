@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class RemittanceDetails extends Component
 {
-    public $showForm, $list = [];
+    public $showForm, $list = [], $total = 0;
     protected $listeners = ['showList' => 'resetForm', 'openRemittanceDetails'];
 
     public function render()
@@ -17,9 +17,9 @@ class RemittanceDetails extends Component
         return view('livewire.app.common.modals.remittance-details');
     }
 
-    public function openRemittanceDetails($remittanceId)
+    public function openRemittanceDetails($remittanceId, $total)
     {
-        
+        $this->total=$total;
         $rmb = BookingReimbursement::where(['remittance_id' => $remittanceId, 'booking_id' => null])->select(['reimbursement_number as number', 'amount', 'payment_status'])->get()->toArray();
         $bookings = BookingProvider::where(['remittance_id' => $remittanceId])
         ->select(['total_amount', 'override_price', 'is_override_price', 'payment_status','booking_id','booking_service_id'])

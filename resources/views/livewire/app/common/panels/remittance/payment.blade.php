@@ -142,7 +142,7 @@
                             <td class="align-middle">
                                 <div class="d-flex actions justify-content-center">
                                     <a href="javascript:void(0)" title="View" aria-label="View"
-                                        wire:click="$emit('openRemittanceDetails','{{ $remittance['id'] }}')"
+                                        wire:click="$emit('openRemittanceDetails','{{ $remittance['id'] }}','{{ $remittance['amount'] }}')"
                                         class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal"
                                         data-bs-target="#remittanceDetailModal">
                                         <svg aria-label="View Company" width="20" height="20"

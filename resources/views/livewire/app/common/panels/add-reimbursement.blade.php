@@ -201,7 +201,6 @@
 
             // Call the Livewire component function getProviderAssignments
             Livewire.emit('getProviderAssignments', $(this).val());
-            console.log('emitted');
         });
         $('#booking_id').on('change', function() {
             @this.set('reimbursement.booking_id', $(this).val());
