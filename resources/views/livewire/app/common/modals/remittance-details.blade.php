@@ -45,11 +45,13 @@
                                     </td>
                                 @elseif (isset($row['number']))
                                     <td class="text-center align-middle">
-
+                                            {{$row['booking'] ? $row['booking']['booking_number'] : ''}}<br>
                                         {{ $row['number'] }}
                                     </td>
 
                                     <td class="text-center align-middle">
+                                            {{$row['booking'] ? 'Booking' : ''}}
+
                                         Reimbursement
                                     </td>
                                     <td></td>
