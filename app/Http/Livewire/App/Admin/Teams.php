@@ -7,7 +7,7 @@ use App\Models\Tenant\Team;
 
 class Teams extends Component
 {
-    public $showForm;
+    public $showForm, $teamID;
     public $showProfile;
     public $listTitle="Provider Teams";
     protected $listeners = [
@@ -24,8 +24,7 @@ class Teams extends Component
 
     public function mount()
     {
-
-
+		$this->teamID = intval(request()->teamID);
     }
     // Reset the form and display a confirmation message
 	public function resetForm($message)

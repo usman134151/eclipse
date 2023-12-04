@@ -34,6 +34,6 @@ class Team extends Model
     }
     public function services(): BelongsToMany
     {
-        return $this->belongsToMany(Service::class, 'team_services')->withTimestamps();
+        return $this->belongsToMany(ServiceCategory::class, 'team_services', 'team_id', 'service_id')->withTimestamps();
     }
 }
