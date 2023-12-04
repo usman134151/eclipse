@@ -20,7 +20,7 @@ class RemittanceDetails extends Component
     public function openRemittanceDetails($remittanceId, $total)
     {
         $this->total=$total;
-        $rmb = BookingReimbursement::where(['remittance_id' => $remittanceId, 'booking_id' => null])->select(['reimbursement_number as number', 'amount', 'payment_status'])->get()->toArray();
+        $rmb = BookingReimbursement::where(['remittance_id' => $remittanceId])->with('booking')->select(['reimbursement_number as number', 'amount', 'payment_status','booking_id'])->get()->toArray();
         $bookings = BookingProvider::where(['remittance_id' => $remittanceId])
         ->select(['total_amount', 'override_price', 'is_override_price', 'payment_status','booking_id','booking_service_id'])
         ->with(['booking','booking.customer','booking_service', 'booking_service.service'])->get()->toArray();
