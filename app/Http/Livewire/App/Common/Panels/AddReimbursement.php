@@ -72,6 +72,7 @@ class AddReimbursement extends Component
 
     public function getProviderAssignments($id)
     {
+        dd('hwere');
         $this->assignments = [];
         // $this->reimbursement->provider_id = null;
         if (!empty($id)) {
