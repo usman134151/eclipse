@@ -332,7 +332,8 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="row mb-4">
+                            
+                            <div class="row mb-4 {{isset($checkout['digital_signature']) && $checkout['digital_signature']['customer_type']=="other" ? '' : 'hidden'}}">
                                 <div class="col-lg-6">
                                     <label class="form-label" for="signer-name">Signer’s Name</label>
                                     <input type="" name="" class="form-control" {{($this->booking_provider->check_in_status == 3 && !$isAdmin ) ? 'disabled' : ''}}
