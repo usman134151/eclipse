@@ -263,7 +263,7 @@
                                                                     ? date_format(
                                                                         date_create($reimbursement['booking_start_at']),
                                                                         'h:i
-                                                                                                                        A',
+                                                                                                                                                                                        A',
                                                                     )
                                                                     : 'N/A' }}
                                                                 to
@@ -331,33 +331,33 @@
                                                                 </svg>
                                                                 {{-- End of update by Shanila --}}
                                                             </a>
-                                                            @if($reimbursement['status']==0)
-                                                            <a href="javascript:void(0)" title="Check"
-                                                                aria-label="Check"
-                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#reimbursementReview">
-                                                                {{-- Updated by Shanila to Add svg icon --}}
-                                                                <svg aria-label="Check" width="22" height="20"
-                                                                    viewBox="0 0 22 20">
-                                                                    <use xlink:href="/css/common-icons.svg#check">
-                                                                    </use>
-                                                                </svg>
-                                                                {{-- End of update by Shanila --}}
-                                                            </a>
-                                                            <a href="javascript:void(0)" title="cross"
-                                                                aria-label="cross"
-                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#denyReimbursement">
-                                                                {{-- Updated by Shanila to Add svg icon --}}
-                                                                <svg aria-label="cancel" width="20"
-                                                                    height="20" viewBox="0 0 20 20">
-                                                                    <use xlink:href="/css/common-icons.svg#cross">
-                                                                    </use>
-                                                                </svg>
-                                                                {{-- End of update by Shanila --}}
-                                                            </a>
+                                                            @if ($reimbursement['status'] == 0)
+                                                                <a href="javascript:void(0)" title="Check"
+                                                                    aria-label="Check"
+                                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#reimbursementReview">
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="Check" width="22"
+                                                                        height="20" viewBox="0 0 22 20">
+                                                                        <use xlink:href="/css/common-icons.svg#check">
+                                                                        </use>
+                                                                    </svg>
+                                                                    {{-- End of update by Shanila --}}
+                                                                </a>
+                                                                <a href="javascript:void(0)" title="cross"
+                                                                    aria-label="cross"
+                                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#denyReimbursement">
+                                                                    {{-- Updated by Shanila to Add svg icon --}}
+                                                                    <svg aria-label="cancel" width="20"
+                                                                        height="20" viewBox="0 0 20 20">
+                                                                        <use xlink:href="/css/common-icons.svg#cross">
+                                                                        </use>
+                                                                    </svg>
+                                                                    {{-- End of update by Shanila --}}
+                                                                </a>
                                                             @endif
                                                         </div>
                                                     </td>
@@ -499,10 +499,3 @@
         @include('modals.common.deny-reimbursement')
         @include('modals.common.reimbursement-review')
     </div>
-    <script>
-        function updateVal(attrName, val) {
-
-            Livewire.emit('updateVal', attrName, val);
-
-        }
-    </script>

@@ -19,8 +19,7 @@ class AddReimbursement extends Component
     public $selectedValue;
 
     public $showForm;
-    protected $listeners = ['showList' => 'resetForm', 'getProviderAssignments','updateSelectedValue'];
-    // protected $listeners = ['showList' => 'resetForm', 'getProviderAssignments', 'updateVal' => 'updateVal'];
+    protected $listeners = ['showList' => 'resetForm', 'getProviderAssignments',  'updateVal'];
     public $providers = [], $assignments = [], $reimbursement, $file = null;
 
     public $other = [
@@ -30,22 +29,18 @@ class AddReimbursement extends Component
         'hours' => '',
         'mins' => '',
     ];
-    
+
     // Validation Rules
     public $rules = [
         'reimbursement.provider_id' => 'required',
         'reimbursement.booking_id' => 'nullable',
-        'reimbursement.reason' => 'nullable',
+        'reimbursement.reason' => 'required',
         'reimbursement.file' => 'nullable',
-        'reimbursement.amount' => 'nullable',
+        'reimbursement.amount' => 'nullable|numeric',
         'reimbursement.charge_to_customer' => 'nullable',
         'file' => 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv',
     ];
 
-    public function updateSelectedValue($value)
-    {
-        $this->selectedValue = $value;
-    }
 
     public function render()
     {
@@ -56,27 +51,23 @@ class AddReimbursement extends Component
     {
         $this->reimbursement = $reimbursement;
 
-        if(session()->get('isProvider'))
-        {
+        if (session()->get('isProvider')) {
             $this->reimbursement->provider_id = Auth::user()->id;
             $this->assignments = BookingProvider::where('provider_id', Auth::user()->id)
                 ->join('bookings', 'bookings.id', '=', 'booking_providers.booking_id')
                 ->select('bookings.id', 'bookings.booking_number')
                 ->distinct()
                 ->get();
-        }
-        else
-        {
+        } else {
             $this->providers = User::where('status', 1)
-            ->whereHas('roles', function ($query) {
-                $query->wherein('role_id', [2]);
-            })->select([
-                'users.id',
-                'users.name',
-            ])->get();
+                ->whereHas('roles', function ($query) {
+                    $query->wherein('role_id', [2]);
+                })->select([
+                    'users.id',
+                    'users.name',
+                ])->get();
         }
-
-        
+        $this->dispatchBrowserEvent('refreshSelects');
     }
 
     public function getProviderAssignments($id)
@@ -90,33 +81,22 @@ class AddReimbursement extends Component
                 ->select('bookings.id', 'bookings.booking_number')
                 ->distinct()
                 ->get();
+            $this->selectedValue = null;
         }
-        
     }
 
-    // public function updateVal($attrName, $val)
-    // {
-    //     if ($attrName === 'booking_id' || $attrName === 'provider_id') {
-    //         $this->reimbursement->$attrName = $val;
-    //     } else {
-    //         $this->reimbursement->$attrName = $val;
-    //     }
-        
-    //     // Update the $bookingId variable separately
-    //     if ($attrName === 'booking_id') {
-    //         $this->bookingId = $val;
-    //     }
-
-    // }
+    public function updateVal($attrName, $val)
+    {
+        $this->reimbursement->$attrName = $val;
+    }
 
 
     public function save()
     {
         $this->reimbursement->booking_id = $this->selectedValue;
-        // $a= $this->validate();
-        // dd($this->reimbursement,$this->other,$this->time);
         $this->validate();
-        $reasonData = null; 
+
+        $reasonData = null;
 
         if ($this->reimbursement->reason === "compensated-travel-time") {
             $reasonData = [
@@ -137,23 +117,23 @@ class AddReimbursement extends Component
 
         $type = "create";
         $reim_number = genetrateReimbursementNumber($this->reimbursement->provider_id);
-        
+
         $reimbursement = BookingReimbursement::insertGetId(
             [
                 'booking_id' => $this->reimbursement->booking_id,
                 'provider_id' => $this->reimbursement->provider_id,
                 'amount' => $this->reimbursement->amount,
-                'reason' => $reasonData != null ? json_encode($reasonData): null,
+                'reason' => $reasonData != null ? json_encode($reasonData) : null,
                 'charge_to_customer' => $this->reimbursement->charge_to_customer == true  ? 1 : 0,
-                'added_by' => Auth::user()->id ,
-                'reimbursement_number'=>$reim_number,
-                'status'=> (session()->get('isProvider')? 0 : 1),    //require approval if added by admin
+                'added_by' => Auth::user()->id,
+                'reimbursement_number' => $reim_number,
+                'status' => (session()->get('isProvider') ? 0 : 1),    //require approval if added by admin
                 'approved_by' => (session()->get('isProvider') ? null : Auth::id()),    //require approval if added by admin
                 'approved_at' => (session()->get('isProvider') ? null : Carbon::now()),    //require approval if added by admin
 
             ]
         );
-        
+
         if ($this->file != null) {
             $fileService = new UploadFileService();
             $attachmentPath  = $fileService->saveFile('reimbursement/' . $reimbursement, $this->file);
@@ -163,20 +143,21 @@ class AddReimbursement extends Component
             ]);
         }
 
-        $data['reimbursementRequestData']=BookingReimbursement::where('id',$reimbursement)->first();
+        $data['reimbursementRequestData'] = BookingReimbursement::where('id', $reimbursement)->first();
         // NotificationService::sendNotification('Payments: Reimbursement Requested', $data, 8);
-        
-		callLogs($reimbursement,'Reimbursement',$type);
-        
-       $this->emit('showList');
-       $this->refreshForm();
+
+        callLogs($reimbursement, 'Reimbursement', $type);
+
+        $this->emit('showList', 'Reimbursement added successfully');
+        $this->dispatchBrowserEvent('close-add-reimbursement');
+        $this->refreshForm();
     }
 
     function showForm()
     {
         $this->showForm = true;
     }
-    
+
     public function resetForm()
     {
         $this->showForm = false;
@@ -186,7 +167,7 @@ class AddReimbursement extends Component
     {
         $this->reimbursement = new BookingReimbursement(); // Reset to a new instance
         $this->other = [
-         'details' => '',
+            'details' => '',
         ];
         $this->time = [
             'hours' => '',
@@ -195,5 +176,4 @@ class AddReimbursement extends Component
         $this->selectedValue = null;
         $this->file = null;
     }
-
 }

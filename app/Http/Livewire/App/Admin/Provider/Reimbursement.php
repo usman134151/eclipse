@@ -20,9 +20,17 @@ class Reimbursement extends Component
 		$this->showForm = true;
 	}
 
-	public function resetForm()
+	public function resetForm($message)
 	{
 		$this->showForm = false;
+		if ($message) {
+			// Emit an event to display a success message using the SweetAlert package
+			$this->dispatchBrowserEvent('swal:modal', [
+				'type' => 'success',
+				'title' => 'Success',
+				'text' => $message,
+			]);
+		}
 	}
 
 	public function mount()
