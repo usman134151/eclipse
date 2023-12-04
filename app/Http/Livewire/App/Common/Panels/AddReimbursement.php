@@ -34,7 +34,7 @@ class AddReimbursement extends Component
     // Validation Rules
     public $rules = [
         'reimbursement.provider_id' => 'required',
-        'reimbursement.booking_id' => 'required',
+        'reimbursement.booking_id' => 'nullable',
         'reimbursement.reason' => 'nullable',
         'reimbursement.file' => 'nullable',
         'reimbursement.amount' => 'nullable',

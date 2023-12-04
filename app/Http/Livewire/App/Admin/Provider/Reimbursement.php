@@ -37,7 +37,7 @@ class Reimbursement extends Component
 	public function fetchData()
 	{
 		$reimbursements = BookingReimbursement::with('booking')->paginate($this->limit);
-
+		// dd($reimbursements);
 		$statusLabels = [
 			0 => 'Pending',
 			1 => 'Approved',
