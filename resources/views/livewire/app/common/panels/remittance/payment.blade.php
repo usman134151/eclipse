@@ -38,18 +38,16 @@
                 <div class="col-lg-4 mb-4 mb-lg-0 align-self-center d-flex gap-5">
                     <div class="mb-2">
                         <div class="form-label-sm">Total Paid:
-                            <small>(coming soon)</small>
                         </div>
                         <div class="form-label-sm">Total Pending:
-                            <small>(coming soon)</small>
                         </div>
                         <div class="form-label-sm">Total Overdue:
                             <small>(coming soon)</small>
                         </div>
                     </div>
                     <div>
-                        <div class="">$3000</div>
-                        <div class="">$1500</div>
+                        <div class="">{{numberFormat($stats['totalPaid'])}}</div>
+                        <div class="">{{numberFormat($stats['totalPending'])}}</div>
                         <div class="">$500</div>
                     </div>
                 </div>
@@ -142,7 +140,7 @@
                             <td class="align-middle">
                                 <div class="d-flex actions justify-content-center">
                                     <a href="javascript:void(0)" title="View" aria-label="View"
-                                        wire:click="$emit('openRemittanceDetails','{{ $remittance['id'] }}')"
+                                        wire:click="$emit('openRemittanceDetails','{{ $remittance['id'] }}','{{ $remittance['amount'] }}')"
                                         class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal"
                                         data-bs-target="#remittanceDetailModal">
                                         <svg aria-label="View Company" width="20" height="20"

@@ -78,7 +78,7 @@
                                         {{$row['booking']['customer'] ? $row['booking']['customer']['name']:'N/A'}}
                                     </td>
                                     <td class="align-middle">
-                                        {{numberFormat($row['total_amount'])}}
+                                        {{$row['is_override_price']==1 ? numberFormat($row['override_price']) : numberFormat($row['total_amount'])}}
                                     </td>
 
                                     <td class="align-middle">
@@ -101,7 +101,7 @@
                 <div class="col-lg-4">
                     <div class="d-flex justify-content-between">
                         <div class="fw-bold text-sm">Total</div>
-                        <div class="fw-bold text-sm text-lg-end">$675</div>
+                        <div class="fw-bold text-sm text-lg-end">{{numberFormat($total)}}</div>
                     </div>
                 </div>
             </div>
