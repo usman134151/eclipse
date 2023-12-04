@@ -38,18 +38,16 @@
                 <div class="col-lg-4 mb-4 mb-lg-0 align-self-center d-flex gap-5">
                     <div class="mb-2">
                         <div class="form-label-sm">Total Paid:
-                            <small>(coming soon)</small>
                         </div>
                         <div class="form-label-sm">Total Pending:
-                            <small>(coming soon)</small>
                         </div>
                         <div class="form-label-sm">Total Overdue:
                             <small>(coming soon)</small>
                         </div>
                     </div>
                     <div>
-                        <div class="">$3000</div>
-                        <div class="">$1500</div>
+                        <div class="">{{numberFormat($stats['totalPaid'])}}</div>
+                        <div class="">{{numberFormat($stats['totalPending'])}}</div>
                         <div class="">$500</div>
                     </div>
                 </div>

@@ -20,6 +20,8 @@ class PendingPayments extends Component
             $this->counter = 0;
         }
     }
+
+    
     public function render()
     {
         return view('livewire.app.admin.provider.pending-payments');
