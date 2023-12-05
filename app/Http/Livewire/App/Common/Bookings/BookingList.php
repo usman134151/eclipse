@@ -192,26 +192,27 @@ class BookingList extends Component
 			case ('Pending Approval'):
 				$query->where('booking_status', 0)->orderBy('booking_start_at', 'DESC');
 				break;
-			case ('Active Assignments'):
-				$query
-				// ->where('type', 1)
-				->where('is_closed', 0)
-				// ->where('booking_status', '1')
-					->where(function ($q) use ($today) {
-						$q->where(function ($ca) use ($today) {
-							$ca->whereRaw("DATE(booking_start_at) <= '$today'")
-								->whereIn('bookings.status', [1, 2]);
-						});
+			case ('Active'):
+				if (!session()->get('isProvider')) {
+					$query
+						// ->where('type', 1)
+						->where('is_closed', 0)
+						// ->where('booking_status', '1')
+						->where(function ($q) use ($today) {
+							$q->where(function ($ca) use ($today) {
+								$ca->whereRaw("DATE(booking_start_at) <= '$today'")
+									->whereIn('bookings.status', [1, 2]);
+							});
 							// ->orWhereIn('bookings.status', [3, 4]);
-					})
-					->orWhereHas('booking_services', function ($query) {
-						$query->where('is_closed', 1);
-					})
-					->whereHas('services',function($q){
-						$q->whereJsonContains('close_out_procedure',['enable_button_provider'=> true]);
-					})
-					->orderBy('booking_start_at', 'DESC');
-
+						})
+						->orWhereHas('booking_services', function ($query) {
+							$query->where('is_closed', 1);
+						})
+						->whereHas('services', function ($q) {
+							$q->whereJsonContains('close_out_procedure', ['enable_button_provider' => true]);
+						})
+						->orderBy('booking_start_at', 'DESC');
+				}
 				break;
 			case ('Draft'):
 				$query->where(['type' => 2])
