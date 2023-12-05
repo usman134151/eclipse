@@ -31,15 +31,24 @@ class ProviderCompletedBookingServices extends Component
             'parts' => 2,
             'syntax' => CarbonInterface::DIFF_ABSOLUTE,
         ];
+        $bookingService = BookingServices::where(['booking_id' => $this->booking_id, 'services' => $this->service_id])->first();
+        $bookingStart = Carbon::parse($bookingService->start_time);
+        $bookingEnd = Carbon::parse($bookingService->end_time);
+        foreach ($this->data['attendingProviders'] as $key => $provider) {
+            $this->data['attendingProviders'][$key]->time_extension_status = 0;
 
-        foreach ($this->data['attendingProviders'] as $key=> $provider) {
             if ($provider->check_out_procedure_values && isset($provider->check_out_procedure_values['actual_end_timestamp'])) {
                 $start_time = Carbon::parse($provider->check_in_procedure_values['actual_start_timestamp']);
                 $end_time = Carbon::parse($provider->check_out_procedure_values['actual_end_timestamp']);
                 $this->data['attendingProviders'][$key]->duration =  $end_time->diffForHumans($start_time, $options);
-            }
-            else
-            $this->data['attendingProviders'][$key]->duration = "N/A";
+
+
+                //checking difference between assignment duration and provider duration 
+                if ($bookingEnd->diffInSeconds($bookingStart) - $end_time->diffInSeconds($start_time) < 0)
+                    //requires time extension
+                    $this->data['attendingProviders'][$key]->time_extension_status = 1;
+            } else
+                $this->data['attendingProviders'][$key]->duration = "N/A";
         }
 
 
