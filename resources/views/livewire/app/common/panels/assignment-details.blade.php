@@ -135,7 +135,7 @@
                                     <span>Running Late</span>
                                 </button>
                             @endif
-                            @if (!$data['isPast'] && $this->data['providerStatus']['return_status'] == 0)
+                            @if (!$data['isPast'] && $this->data['providerStatus'] && $this->data['providerStatus']['return_status'] == 0)
                                 <button type="button"
                                     class="btn btn-primary rounded text-sm d-inline-flex gap-1 align-items-center px-3"
                                     wire:click="$emit('openReturnAssignmentModal',{{ $booking['id'] }}, {{ $booking['service_id'] }})"
@@ -755,7 +755,6 @@
                     <div class="col-lg-12">
                         <div class="d-lg-flex justify-content-between align-items-center mb-5">
                             <h2 class="mb-lg-0">Payment Detail
-                                <small>(coming soon)</small>
                             </h2>
                             <button type="button"
                                 class="btn btn-primary rounded d-inline-flex align-items-center gap-1"
@@ -775,7 +774,7 @@
                                     </div>
                                     <div class="col-lg-7 align-self-center">
                                         <div class="d-flex align-items-center gap-2">
-                                            <div class="font-family-tertiary">$00.00</div>
+                                            <div class="font-family-tertiary">{{numberFormat(isset($data['rateSum']) ? $data['rateSum'] : 0)}}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -787,7 +786,7 @@
                                     </div>
                                     <div class="col-lg-7 align-self-center">
                                         <div class="d-flex align-items-center gap-2">
-                                            <div class="font-family-tertiary">$00.00</div>
+                                            <div class="font-family-tertiary">{{numberFormat(isset($data['additionalPayment']) ? $data['additionalPayment'] : 0)}}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -799,7 +798,7 @@
                                     </div>
                                     <div class="col-lg-7 align-self-center">
                                         <div class="d-flex align-items-center gap-2">
-                                            <div class="font-family-tertiary">$00.00</div>
+                                            <div class="font-family-tertiary">{{numberFormat(isset($data['totalPayment']) ? $data['totalPayment'] : 0)}}</div>
                                         </div>
                                     </div>
                                 </div>
