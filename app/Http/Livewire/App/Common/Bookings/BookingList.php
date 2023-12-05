@@ -147,9 +147,11 @@ class BookingList extends Component
 						$q->where(function ($ca) use ($today) {
 							$ca->whereRaw("DATE(booking_start_at) < '$today'")
 								->whereIn('bookings.status', [1, 2]);
-						})
-							->orWhereIn('bookings.status', [3, 4]);
-					});
+
+							})
+							->orWhereIn('bookings.status', [3, 4]);	//shows cancelled-unbillable
+
+						});
 
 				$query->orderBy('booking_start_at', 'DESC');
 
@@ -287,7 +289,7 @@ class BookingList extends Component
 
 					$u_dept = $customer->supervised_departments ? $customer->supervised_departments->pluck('id')->toArray() : null;
 					if ($u_dept && count($u_dept)) {
-						$query->orWhereHas('bookingDepartments', function ($q) use ($u_dept) {
+						$g->orWhereHas('bookingDepartments', function ($q) use ($u_dept) {
 							$q->whereIn('booking_departments.department_id', $u_dept);
 						});
 					}
