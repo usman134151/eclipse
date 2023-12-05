@@ -192,7 +192,7 @@ class BookingList extends Component
 			case ('Pending Approval'):
 				$query->where('booking_status', 0)->orderBy('booking_start_at', 'DESC');
 				break;
-			case ('Pending Close-out'):
+			case ('Active Assignments'):
 				$query
 				// ->where('type', 1)
 				->where('is_closed', 0)
