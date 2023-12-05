@@ -125,14 +125,14 @@
                   <span class="menu-item">Pending Review</span>
                 </a>
               </li>
-              <li class="nav-item  " id="pending-closeout">
-                <a class="nav-link" href="/admin/bookings/pending-closeout">
+              <li class="nav-item  " id="active-assignments">
+                <a class="nav-link" href="/admin/bookings/active-assignments">
                   <svg aria-label="Check-Out-Sidebar" width="23" height="21" viewBox="0 0 23 21"
                   fill="currentColor" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                   <use xlink:href="/css/common-icons.svg#Check-Out-Sidebar">
                   </use>
                     </svg>
-                  <span class="menu-item">Pending Closeout</span>
+                  <span class="menu-item">Active</span>
                 </a>
               </li>
               @endif

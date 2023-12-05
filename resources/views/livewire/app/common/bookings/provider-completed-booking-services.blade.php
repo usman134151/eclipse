@@ -125,7 +125,11 @@
                                                     </a>
                                                 </td>
                                                 <td class="align-middle">
-                                                    No Change
+                                                    @if ($provider->time_extension_status == 1)
+                                                        Extension Requested
+                                                    @else
+                                                        No Change
+                                                    @endif
                                                 </td>
                                                 <td class="align-middle">
                                                     <a href="#" title="Feedback" aria-label="Feedback"
@@ -191,24 +195,24 @@
                                                                     href="#" class="dropdown-item">
                                                                     Download Forms
                                                                 </a> --}}
-                                                                @if ($provider->return_status==2)
-                                                                <a title="Approve Time Extension"
-                                                                    aria-label="Approve Time Extension" href="#"
-                                                                    class="dropdown-item"   
-                                                                    @click="closeOutBooking = true"
-                                                                    wire:click="$emit('openBookingCloseOut',true)">
-                                                                    Approve Time Extension
+                                                                @if ($provider->time_extension_status == 2)
+                                                                    <a title="Approve Time Extension"
+                                                                        aria-label="Approve Time Extension"
+                                                                        href="#" class="dropdown-item"
+                                                                        @click="closeOutBooking = true"
+                                                                        wire:click="$emit('openBookingCloseOut',true)">
+                                                                        Approve Time Extension
 
-                                                                </a>
+                                                                    </a>
 
-                                                                <a title="Deny Time Extension"
-                                                                    aria-label="Deny Time Extension" href="#"
-                                                                      @click="closeOutBooking = true"
-                                                                    wire:click="$emit('openBookingCloseOut',true)"
-                                                                    class="dropdown-item">
-                                                                    {{-- <i class="fa fa-clone"></i> --}}
-                                                                    Deny Time Extension
-                                                                </a>
+                                                                    <a title="Deny Time Extension"
+                                                                        aria-label="Deny Time Extension"
+                                                                        href="#" @click="closeOutBooking = true"
+                                                                        wire:click="$emit('openBookingCloseOut',true)"
+                                                                        class="dropdown-item">
+                                                                        {{-- <i class="fa fa-clone"></i> --}}
+                                                                        Deny Time Extension
+                                                                    </a>
                                                                 @endif
 
 
