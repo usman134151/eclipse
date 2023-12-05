@@ -138,7 +138,7 @@ Route::group([
 			Route::view('/admin/bookings/upcoming', 'tenant/common/bookings/booking-list', ["bookingType"=>"Upcoming"]);
 			Route::view('/admin/bookings/past', 'tenant/common/bookings/booking-list', ["bookingType"=>"Past"]);
 			Route::view('/admin/bookings/pending-approval', 'tenant/common/bookings/booking-list', ["bookingType"=>"Pending Approval"]);
-			Route::view('/admin/bookings/active-assignments', 'tenant/common/bookings/booking-list', ["bookingType" => "Active Assignments"]);
+			Route::view('/admin/bookings/active-assignments', 'tenant/common/bookings/booking-list', ["bookingType" => "Active"]);
 
 			Route::view('/admin/bookings/drafts', 'tenant/common/bookings/booking-list', ["bookingType"=>"Draft"]);
 			Route::view('/admin/bookings/unassigned', 'tenant/common/bookings/booking-list', ["bookingType"=>"Unassigned"]);
