@@ -188,7 +188,7 @@ class BookingDetails extends Component
 		) - $this->data['providerPayments'] - $this->data['additionalProviderPayments']) : 0;
 
 		$totalCost = (
-			($this->booking['payment']['is_override'] ? $this->booking['payment']['override_price'] : ($this->booking['payment']['total_amount'] ?? 0)) +
+			($this->booking['payment'] && $this->booking['payment']['is_override'] ? $this->booking['payment']['override_price'] : ($this->booking['payment']['total_amount'] ?? 0)) +
 			($this->booking['payment']['cancellation_charges'] ?? 0) +
 			($this->booking['payment']['outstanding_amount'] ?? 0) +
 			($this->booking['payment']['modification_fee'] ?? 0)
