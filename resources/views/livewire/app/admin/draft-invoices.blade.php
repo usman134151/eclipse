@@ -42,7 +42,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="mb-4">
-                            <p>
+                            {{-- <p>
                                 Here you will manage your Providers' payment based on the assignments they work. Select
                                 the
                                 bookings you wish to include on the remittance and when remittances are ready, issue one
@@ -50,7 +50,7 @@
                                 all remittances to the respective Providers. Once issued, you can manage remittance
                                 payments
                                 from "Payment Manager."
-                            </p>
+                            </p> --}}
                             <!-- BEGIN: Filters -->
                             {{-- <div class="bg-muted rounded p-4 mb-1"> --}}
 

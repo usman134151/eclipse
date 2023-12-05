@@ -768,13 +768,13 @@
                                                 </div>
 
                                                     <div class="col-lg-12 mb-3">
-                                                    <iframe
+                                                    <!-- <iframe
                                                         src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d96779.59535015929!2d-74.00126600000002!3d40.710039!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1676478925644!5m2!1sen!2sus"
                                                         {{-- width="304" height="228" --}}
                                                          style="border:0;"
                                                         allowfullscreen="" loading="lazy"
                                                         referrerpolicy="no-referrer-when-downgrade" class="map">
-                                                    </iframe>
+                                                    </iframe> -->
                                                     </div>
 
 

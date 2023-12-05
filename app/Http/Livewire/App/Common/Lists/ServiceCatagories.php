@@ -152,8 +152,8 @@ final class ServiceCatagories extends PowerGridComponent
 
 		// Copy the relations
 		foreach ($originalService->specializations as $specialization) {
-			$newSpecialization = $specialization->replicate();
-			$newSpecialization->save();
+			// $newSpecialization = $specialization->replicate();
+			// $newSpecialization->save();
 		
 			// Copy additional fields in the relationship
 			$pivotData = DB::table('service_specializations')
@@ -168,7 +168,7 @@ final class ServiceCatagories extends PowerGridComponent
 		
 			DB::table('service_specializations')
 				->insert(array_merge($pivotData, [
-					'specialization_id' => $newSpecialization->id
+					'specialization_id' => $specialization->id
 				]));
 		}
 		

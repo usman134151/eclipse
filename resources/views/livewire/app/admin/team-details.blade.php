@@ -300,7 +300,7 @@
                             </div>
                             <!-- Dashboard tab end -->
                             <!-- Providers tab start -->
-                            <div class="provider-pane fade" id="provider-tab-pane" role="tabpanel"
+                            <div class="tab-pane fade" id="provider-tab-pane" role="tabpanel"
                                 aria-labelledby="provider-tab" tabindex="0">
 
                                 <div class="between-section-segment-spacing">

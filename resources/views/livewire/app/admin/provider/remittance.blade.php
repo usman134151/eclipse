@@ -33,10 +33,10 @@
         <div class="card">
             <div class="card-body">
                 <div class="between-section-segment-spacing">
-                    <p>Here you will manage your Providers' payment based on the assignments they work. Select the
+                    {{-- <p>Here you will manage your Providers' payment based on the assignments they work. Select the
                         bookings you wish to include on the remittance and when remittances are ready, issue one or all
                         remittances to the respective Providers. Once issued, you can manage remittance payments from
-                        "Payment Manager."</p>
+                        "Payment Manager."</p> --}}
                     <!-- BEGIN: Filters -->
                     <div class="bg-muted rounded p-4 mb-1">
                         (Coming Soon)
