@@ -26,7 +26,7 @@
                 </div>
                 <div class="col-12 w-20 d-flex justify-content-end mt-1">
                     <input type="number" name="amount" class="form-control form-control-sm " style="width:20%"
-                        placeholder="$00:00" wire:model.lazy="override_amount" id="total-service-payment">
+                        placeholder="$00:00" wire:model.defer="override_amount" id="total-service-payment">
                     <button type="button" wire:click="overrideBookingAmount"
                         class=" self_end btn btn-sm mx-1 btn-outline-dark rounded  align-end">Override</button>
                 </div>
@@ -84,7 +84,7 @@
                                             Service Charges</label>
                                         <input type="number" name="" class="form-control form-control-sm"
                                             placeholder="$00:00"
-                                            wire:model.lazy="service_charges.{{ $bookingService->id }}.charges"
+                                            wire:model.defer="service_charges.{{ $bookingService->id }}.charges"
                                             id="service_charges">
 
                                     </div>
