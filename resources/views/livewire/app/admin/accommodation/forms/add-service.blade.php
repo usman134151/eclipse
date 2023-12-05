@@ -1411,41 +1411,50 @@
                             <input type="text" class="form-control text-center" placeholder="00.00"
                                 aria-label="" aria-describedby=""
                                 wire:model.defer="serviceSpecialization.{{ $index }}.{{ $type }}.price" />
+                            </div>
+                        @endforeach
                     </div>
-            @endforeach
-        </div>
-        <div class="">
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" id="" name="" type="checkbox" tabindex=""
-                    wire:model.defer="serviceSpecialization.{{ $index }}.common.hide_from_customers" />
-                <label class="form-check-label" for="">Hide from
-                    Customers</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" id="" name="" type="checkbox" tabindex=""
-                    wire:model.defer="serviceSpecialization.{{ $index }}.common.multiply_provider" />
-                <label class="form-check-label" for="">X by No. of
-                    Providers</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" id="" name="" type="checkbox" tabindex=""
-                    wire:model.defer="serviceSpecialization.{{ $index }}.common.hide_from_providers" />
-                <label class="form-check-label" for="">Hide from
-                    Providers</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" id="" name="" type="checkbox" tabindex=""
-                    wire:model.defer="serviceSpecialization.{{ $index }}.common.multiply_service_duration" />
-                <label class="form-check-label" for="">X by Duration</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" id="" name="" type="checkbox" tabindex=""
-                    wire:model.defer="serviceSpecialization.{{ $index }}.common.disable" />
-                <label class="form-check-label" for="">Disable</label>
-            </div>
-        </div>
-
-    </div>
+                     <div class="">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" id="" name="" type="checkbox" tabindex=""
+                                wire:model.defer="serviceSpecialization.{{ $index }}.common.hide_from_customers" />
+                            <label class="form-check-label" for="">Hide from
+                                Customers</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" id="" name="" type="checkbox" tabindex=""
+                                wire:model.defer="serviceSpecialization.{{ $index }}.common.multiply_provider" />
+                            <label class="form-check-label" for="">X by No. of
+                                Providers</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" id="" name="" type="checkbox" tabindex=""
+                                wire:model.defer="serviceSpecialization.{{ $index }}.common.hide_from_providers" />
+                            <label class="form-check-label" for="">Hide from
+                                Providers</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" id="" name="" type="checkbox" tabindex=""
+                                wire:model.defer="serviceSpecialization.{{ $index }}.common.multiply_service_duration" />
+                            <label class="form-check-label" for="">X by Duration</label>
+                        </div>
+                        {{-- <div class="form-check form-check-inline">
+                            <input class="form-check-input" id="" name="" type="checkbox" tabindex=""
+                                wire:model.defer="serviceSpecialization.{{ $index }}.common.disable" />
+                            <label class="form-check-label" for="">Disable</label>
+                        </div> --}}
+                    </div>
+                    @if (count($serviceSpecialization) > 1)                        
+                        <div class="text-end">
+                            <a href="#" class="text-danger fw-bold"
+                                wire:click.prevent="removeSpecialization({{ $index }})">
+                                <small>
+                                    Remove Specialization
+                                </small>
+                            </a>
+                        </div>
+                    @endif
+                </div>
     @endforeach
     <div class="text-end">
         <a href="#" class="fw-bold" wire:click.prevent="addSpecialization">

@@ -815,6 +815,16 @@ class AddService extends Component
         ];
     }
 
+    public function removeSpecialization($index)
+    {
+        if (isset($this->serviceSpecialization[$index])) {
+            unset($this->serviceSpecialization[$index]); // Remove the specialization at the specified index
+    
+            // Reindex the array to ensure consecutive numerical indexes
+            $this->serviceSpecialization = array_values($this->serviceSpecialization);
+        }
+    }
+
     public function updateFields($values)
     {
         dd($values);
