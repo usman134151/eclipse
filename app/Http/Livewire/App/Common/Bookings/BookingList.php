@@ -147,9 +147,11 @@ class BookingList extends Component
 						$q->where(function ($ca) use ($today) {
 							$ca->whereRaw("DATE(booking_start_at) < '$today'")
 								->whereIn('bookings.status', [1, 2]);
-						})
-							->orWhereIn('bookings.status', [3, 4]);
-					});
+
+							})
+							->orWhereIn('bookings.status', [3, 4]);	//shows cancelled-unbillable
+
+						});
 
 				$query->orderBy('booking_start_at', 'DESC');
 
