@@ -174,7 +174,6 @@ class BookingCloseOut extends Component
             if ($bookingService->provider_count == $checkedout_providers) {
                 $bookingService->is_closed = true;
             }
-
             if ($this->service_charges[$bookingServiceId]['override'] == true) {
                 $bookingService->billed_total = $this->service_charges[$bookingServiceId]['charges'] != "" ? $this->service_charges[$bookingServiceId]['charges'] : 0;
             }
@@ -202,6 +201,7 @@ class BookingCloseOut extends Component
     public function overrideServiceCharges($bookingServiceId)
     {
         $this->service_charges[$bookingServiceId]['override'] = true;
+
         $sum = 0;
         foreach ($this->service_charges as $sc) {
             if ($sc['charges'] == '')
