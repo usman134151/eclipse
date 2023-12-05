@@ -125,16 +125,37 @@ class BusinessHoursSetup extends Component
             // You can handle the validation error here, e.g., show an error message or perform some other action
             $this->addError('timeValidation', 'Invalid time range. The start time must be before the end time.');
             return;
-        } elseif ($startHour === $endHour && $startMin > $endMin) {
+        } elseif (($startHour === $endHour) && ($startMin >= $endMin)) {
             // If start hour is equal to end hour, start minute cannot be greater than end minute
             // You can handle the validation error here, e.g., show an error message or perform some other action
             $this->addError('timeValidation', 'Invalid time range. The start time must be before the end time.');
             return;
-        }
-    
+        } 
+
         // Create Carbon instances for start time and end time
         $startTime = Carbon::createFromTime($startHour, $startMin);
         $endTime = Carbon::createFromTime($endHour, $endMin);
+
+         // Check if the new timeslot overlaps with any existing timeslots in the schedule
+         $existingSlots = ScheduleTimeslot::where('schedule_id', $this->schedule->id)->where('timeslot_day', $this->timeslot['timeslot_day'])->get();
+
+         foreach ($existingSlots as $existingSlot) {
+             $existingStartTime = $existingSlot->timeslot_start_time;
+             $existingEndTime = $existingSlot->timeslot_end_time;
+         
+             // Check for overlap: If new timeslot's start time falls between an existing timeslot's start and end time
+             if ($startTime->between($existingStartTime, $existingEndTime) || $endTime->between($existingStartTime, $existingEndTime)) {
+                 $this->addError('timeValidation', 'Time parameters should not overlap with existing slots.');
+                 return;
+             }
+         
+             // Check for complete overlap: If new timeslot completely overlaps with an existing timeslot
+             if ($startTime >= $existingStartTime && $endTime <= $existingEndTime) {
+                 $this->addError('timeValidation', 'Time parameters should not overlap with existing slots.');
+                 return;
+             }
+         }
+     
     
         // Insert the timeslot into the database
         ScheduleTimeslot::create([
@@ -146,8 +167,19 @@ class BusinessHoursSetup extends Component
         ]);
     
         // Reset the timeslot array
-        $this->resetTimeSlot();
+        // $this->resetTimeSlot();
     }
+
+    public function addTimeParametersToAllDays()
+    {
+        $daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+        foreach ($daysOfWeek as $day) {
+            $this->timeslot['timeslot_day'] = $day;
+            $this->addSlot();
+        }
+    }
+    
     public function updateVal($attrName, $val)
 	{
        $this->schedule[$attrName]=$val;

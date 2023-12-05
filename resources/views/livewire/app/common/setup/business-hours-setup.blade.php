@@ -148,6 +148,10 @@
                         <span class="btn-text">
                             Add slots
                         </span></button>
+                      <button class="btn btn-secondary btn-custom btn-sm rounded" wire:click="addTimeParametersToAllDays">
+                        <span class="btn-text">
+                            Set for All Days 
+                        </span></button>
                   </div>
               </div>
                 <div class="row mb-4">
