@@ -171,7 +171,8 @@
                                                         @click="closeOutBooking = true"
                                                         wire:click="$emit('openBookingCloseOut',true)">
                                                         <svg width="30" height="30" viewBox="0 0 30 30"
-                                                        fill="currentColor" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                            fill="currentColor" stroke="currentColor"
+                                                            xmlns="http://www.w3.org/2000/svg">
                                                             <use
                                                                 xlink:href="/css/customer.svg#confirm-completion-icon">
                                                             </use>
@@ -202,7 +203,8 @@
                                                 <a href="#" class="btn btn-has-icon btn-primary rounded">
                                                     {{-- Updated by Shanila to Add svg icon --}}
                                                     <svg aria-label="Duplicate" width="19" height="19"
-                                                        viewBox="0 0 19 19" fill="currentColor" stroke="currentColor">
+                                                        viewBox="0 0 19 19" fill="currentColor"
+                                                        stroke="currentColor">
                                                         <use xlink:href="/css/common-icons.svg#duplicate"></use>
                                                     </svg>
                                                     {{-- End of update by Shanila --}}
@@ -494,7 +496,7 @@
                                     <div class="row">
                                         <div class="col-12 d-lg-flex justify-content-between align-items-center">
                                             <h2 class="">Service {{ $index + 1 }}</h2>
-                                            @if(!session()->get('isCustomer'))
+                                            @if (!session()->get('isCustomer'))
                                                 <div class="row">
                                                     <div class="col-lg-5 col-md-6 mb-4">
                                                         <div class="d-flex gap-3">
@@ -522,8 +524,9 @@
                                                             </label>
                                                             <div class="form-check form-switch form-switch-column">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    role="switch" id="ManualAssignAssign" checked=""
-                                                                    aria-label="Auto assign" value="1"
+                                                                    role="switch" id="ManualAssignAssign"
+                                                                    checked="" aria-label="Auto assign"
+                                                                    value="1"
                                                                     wire:model.defer="booking_services.{{ $index }}.auto_assign"
                                                                     wire:click="updateServiceSettings('auto_assign',{{ $index }})">
                                                                 <label class="form-check-label"
@@ -767,15 +770,14 @@
                                                     </div>
                                                 </div>
 
-                                                    <div class="col-lg-12 mb-3">
-                                                    <!-- <iframe
+                                                <div class="col-lg-12 mb-3">
+                                                    <iframe
                                                         src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d96779.59535015929!2d-74.00126600000002!3d40.710039!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1676478925644!5m2!1sen!2sus"
-                                                        {{-- width="304" height="228" --}}
-                                                         style="border:0;"
-                                                        allowfullscreen="" loading="lazy"
-                                                        referrerpolicy="no-referrer-when-downgrade" class="map">
-                                                    </iframe> -->
-                                                    </div>
+                                                        {{-- width="304" height="228" --}} style="border:0;" allowfullscreen=""
+                                                        loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                                                        class="map">
+                                                    </iframe>
+                                                </div>
 
 
 
@@ -1466,7 +1468,7 @@
                                             <div class="col-md-3 align-self-center">
                                                 <div class="font-family-tertiary">
                                                     @if (!is_null($booking['payment']))
-                                                        {{ formatPayment($booking['payment']['total_amount']) }}
+                                                        {{ $booking['payment']['is_override'] ? formatPayment($booking['payment']['override_amount']) : formatPayment($booking['payment']['total_amount']) }}
                                                     @else
                                                         N/A
                                                     @endif
@@ -1620,58 +1622,65 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
-                            <button type="" class="btn btn-outline-dark rounded"
-                                x-on:click="$wire.switch('attachments')">Back</button>
-                            <button type="" class="btn btn-primary rounded"
-                                x-on:click="$wire.switch('assignment-log')">Next</button>
-                        </div>-->
+                            <div
+                                class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
+                                <button type="" class="btn btn-outline-dark rounded"
+                                    x-on:click="$wire.switch('attachments')">Back</button>
+                                <button type="" class="btn btn-primary rounded"
+                                    x-on:click="$wire.switch('assignment-log')">Next</button>
+                            </div>
                         </div><!-- END: payment-details-tab -->
                         <div class="tab-pane fade {{ $component == 'assignment-log' ? 'active show' : '' }}"
                             id="assignment-log" role="tabpanel" aria-labelledby="assignment-log-tab" tabindex="0">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="d-flex flex-lg-row flex-column gap-3 justify-content-center mb-4">
-                                        <a href="#" wire:click="$emit('messageTeamModal','{{ $booking['id'] }}')"
-                                            class="btn btn-has-icon btn-primary rounded" data-bs-toggle="modal" data-bs-target="#MessageTeamModal">
-                                            <svg aria-label="Team Chat" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                        <a href="#"
+                                            wire:click="$emit('messageTeamModal','{{ $booking['id'] }}')"
+                                            class="btn btn-has-icon btn-primary rounded" data-bs-toggle="modal"
+                                            data-bs-target="#MessageTeamModal">
+                                            <svg aria-label="Team Chat" width="20" height="20"
+                                                viewBox="0 0 20 20" fill="none">
                                                 <use xlink:href="/css/common-icons.svg#message-icon">
                                                 </use>
                                             </svg>
                                             Broadcast Booking Update
                                         </a>
-                                        @if($data['assigned_providers'])
-                                        <a href="#" wire:click="$emit('providerChatMessageModal','{{ $booking['id'] }}')"
-                                            class="btn btn-has-icon btn-primary rounded" data-bs-toggle="modal"
-                                            data-bs-target="#ProviderChatMessageModal">
-                                            {{-- Updated by Shanila to Add svg icon --}}
-                                            <svg aria-label="Message Providers" width="18" height="18" viewBox="0 0 18 18"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <use xlink:href="/css/common-icons.svg#message-icon"></use>
-                                            </svg>
-                                            {{-- End of update by Shanila --}}
-                                            Message Providers
-                                        </a>
+                                        @if ($data['assigned_providers'])
+                                            <a href="#"
+                                                wire:click="$emit('providerChatMessageModal','{{ $booking['id'] }}')"
+                                                class="btn btn-has-icon btn-primary rounded" data-bs-toggle="modal"
+                                                data-bs-target="#ProviderChatMessageModal">
+                                                {{-- Updated by Shanila to Add svg icon --}}
+                                                <svg aria-label="Message Providers" width="18" height="18"
+                                                    viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                                                    <use xlink:href="/css/common-icons.svg#message-icon"></use>
+                                                </svg>
+                                                {{-- End of update by Shanila --}}
+                                                Message Providers
+                                            </a>
                                         @endif
                                         <a href="#" class="btn btn-has-icon btn-primary rounded">
                                             {{-- Updated by Shanila to Add svg icon --}}
-                                            <svg aria-label="Message Requester" width="18" height="18" viewBox="0 0 18 18"
-                                                xmlns="http://www.w3.org/2000/svg">
+                                            <svg aria-label="Message Requester" width="18" height="18"
+                                                viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
                                                 <use xlink:href="/css/common-icons.svg#message-icon"></use>
                                             </svg>
                                             {{-- End of update by Shanila --}}
                                             Message Coordinator
                                         </a>
                                         @if (session()->get('isSuperAdmin'))
-                                        <a href="#" wire:click="$emit('deleteTeamMessageModal','{{ $booking['id'] }}')"
-                                            class="btn btn-has-icon btn-primary rounded" data-bs-toggle="modal"
-                                            data-bs-target="#DeleteTeamMessageModal">
-                                            <svg aria-label="Team Chat" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                                <use xlink:href="/css/common-icons.svg#message-icon">
-                                                </use>
-                                            </svg>
-                                            Delete Booking Chat
-                                        </a>
+                                            <a href="#"
+                                                wire:click="$emit('deleteTeamMessageModal','{{ $booking['id'] }}')"
+                                                class="btn btn-has-icon btn-primary rounded" data-bs-toggle="modal"
+                                                data-bs-target="#DeleteTeamMessageModal">
+                                                <svg aria-label="Team Chat" width="20" height="20"
+                                                    viewBox="0 0 20 20" fill="none">
+                                                    <use xlink:href="/css/common-icons.svg#message-icon">
+                                                    </use>
+                                                </svg>
+                                                Delete Booking Chat
+                                            </a>
                                         @endif
                                     </div>
                                 </div>
@@ -1689,45 +1698,48 @@
                                 </div>
 
                             </div>
-                            <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
-                            <button type="" class="btn btn-outline-dark rounded"
-                                x-on:click="$wire.switch('payment-details')">Back</button>
-                            <button type="" class="btn btn-primary rounded"
-                                wire:click.prevent="showList">Exit</button>
-                        </div>-->
+                            <div
+                                class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
+                                <button type="" class="btn btn-outline-dark rounded"
+                                    x-on:click="$wire.switch('payment-details')">Back</button>
+                                <button type="" class="btn btn-primary rounded"
+                                    wire:click.prevent="showList">Exit</button>
+                            </div>-->
                         </div><!-- END: assignment-log-tab -->
                     </div>
                     <!-- END: Assignment Booking Form -->
                 </div>
             </div>
         </div>
-        
+
         <!-- Modal - Provider Message -->
         <div class="modal fade" id="ProviderMessageModal" tabindex="-1" aria-labelledby="ProviderMessageModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title fs-5" id="ProviderMessageModalLabel">Provider Message</h2>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor
-                        sit amet</p>
-                    <div class="d-flex gap-3 justify-content-center mb-5">
-                        <a href="#" class="btn btn-sm btn-outline-dark">Deny</a>
-                        <a href="#" class="btn btn-sm btn-primary">Approve</a>
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title fs-5" id="ProviderMessageModalLabel">Provider Message</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
-                    <div class="d-flex gap-3 justify-content-center mb-3">
-                        <a href="#" class="btn rounded btn-outline-dark" data-bs-dismiss="modal">Cancel</a>
-                        <a href="#" class="btn rounded btn-primary">Submit</a>
+                    <div class="modal-body">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet, consectetur
+                            adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum
+                            dolor
+                            sit amet</p>
+                        <div class="d-flex gap-3 justify-content-center mb-5">
+                            <a href="#" class="btn btn-sm btn-outline-dark">Deny</a>
+                            <a href="#" class="btn btn-sm btn-primary">Approve</a>
+                        </div>
+                        <div class="d-flex gap-3 justify-content-center mb-3">
+                            <a href="#" class="btn rounded btn-outline-dark" data-bs-dismiss="modal">Cancel</a>
+                            <a href="#" class="btn rounded btn-primary">Submit</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
         <!-- /Modal - Provider Message -->
         <!-- Modal - Meeting Links -->

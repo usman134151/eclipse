@@ -177,18 +177,18 @@ class BookingDetails extends Component
 		$this->data['providerPayments'] = 0;
 		$this->data['additionalProviderPayments'] = 0;
 		foreach ($providers as $provider) {
-			$this->data['providerPayments'] = $this->data['providerPayments'] + $provider['total_amount'];
-			$this->data['additionalProviderPayments'] = $this->data['additionalProviderPayments'] + $provider['additional_charge_provider'];
+			$this->data['providerPayments'] = $this->data['providerPayments'] + ($provider['is_override_price'] ? $provider['override_price']: $provider['total_amount']);
+			$this->data['additionalProviderPayments'] = $this->data['additionalProviderPayments'] + $provider['additional_payments']['additional_charge_provider'];
 		}
 		$this->data['profitMargin'] = $this->booking['payment'] ? ((
-			($this->booking['payment']['total_amount'] ?? 0) +
+			($this->booking['payment']['is_override'] ? $this->booking['payment']['override_price'] : ($this->booking['payment']['total_amount'] ?? 0)) +
 			($this->booking['payment']['cancellation_charges'] ?? 0) +
 			($this->booking['payment']['outstanding_amount'] ?? 0) +
 			($this->booking['payment']['modification_fee'] ?? 0)
 		) - $this->data['providerPayments'] - $this->data['additionalProviderPayments']) : 0;
 
 		$totalCost = (
-			($this->booking['payment']['total_amount'] ?? 0) +
+			($this->booking['payment']['is_override'] ? $this->booking['payment']['override_price'] : ($this->booking['payment']['total_amount'] ?? 0)) +
 			($this->booking['payment']['cancellation_charges'] ?? 0) +
 			($this->booking['payment']['outstanding_amount'] ?? 0) +
 			($this->booking['payment']['modification_fee'] ?? 0)

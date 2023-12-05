@@ -70,7 +70,7 @@ class CheckIn extends Component
             'actual_start_min' => $this->mins ?? null,
             'provider_signature_path' => $this->files['provider_signature'],
             'customer_signature_path' => $this->files['customer_signature'],
-            'actual_start_timestamp' => Carbon::createFromTime($this->hours, $this->mins),
+            'actual_start_timestamp' => Carbon::createFromFormat('m/d/Y H:i:s', formatDate($this->assignment->booking_start_at)." {$this->hours}:{$this->mins}:00"),
             'added_at' => 'checkin'
 
 
