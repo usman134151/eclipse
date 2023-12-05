@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\App\Admin\Forms;
 
 use App\Helpers\SetupHelper;
+use App\Models\Tenant\Tag;
 use App\Models\Tenant\Team;
 use App\Models\Tenant\User;
 use Illuminate\Validation\Rule;
@@ -11,7 +12,7 @@ use Livewire\Component;
 
 class TeamsForm extends Component
 {
-    public $showForm;
+    public $showForm , $allTags = [], $tags = [];
     public $log_type;
 	public $component = 'Team';
     public $specializations=[], $accommodations=[], $services = [], $selected_providers=[];
@@ -35,10 +36,16 @@ class TeamsForm extends Component
         })
             ->select('id', 'name')
             ->get();
+        
+        $this->allTags = Tag::pluck('name')->toArray();
     }
 
     public function render()
     {
+        //null check to avoid break
+        if (!is_array($this->tags))
+            $this->tags = [];
+        
         return view('livewire.app.admin.forms.teams-form');
     }
 
@@ -54,18 +61,16 @@ class TeamsForm extends Component
                 Rule::unique('teams','name')->ignore($this->team->id)],
                 'team.description' => ['max:255','nullable'],
                 'team.team_notes' => ['max:255','nullable'],
+                'team.tags' => ['nullable'],
             ];
     }
     // functions
 
     public function save(){
+        
         $this->validate();
-        if(!is_null($this->team->id)){
-            $this->log_type = 'update';
-        }
-        else{
-            $this->log_type = 'create';
-        }
+        $this->log_type = !is_null($this->team->id) ? 'update' : 'create';
+        $this->team->tags = json_encode($this->tags);
         $this->team->provider_count = count($this->selected_providers);
         $this->team->save();
 
@@ -76,21 +81,14 @@ class TeamsForm extends Component
         $this->team->services()->sync($this->services);
 
         $this->showList("Record saved successfully");
-        addLogs([
-            'action_by' => \Auth::id(),
-            'action_to' => $this->team->id,
-            'item_type' => 'provider-team',
-            'type' => $this->log_type,
-            'message' => 'Provider-team '. $this->log_type . 'd by '. \Auth::user()->name,
-            'ip_address' => \request()->ip(),
-        ]);
+        callLogs($this->team->id,'Provider-team '.$this->team->name." ",$this->log_type);
         $this->team=new Team;
     }
 
     public function edit(Team $team){
         $this->label="Edit";
         $this->team=$team;
-
+        $this->tags = json_decode($this->team->tags);
         // read team information
         $this->selected_providers = $this->team->providers()->allRelatedIds()->toArray();
         $this->accommodations = $this->team->accommodations()->allRelatedIds()->toArray();
@@ -117,6 +115,7 @@ class TeamsForm extends Component
 
     public function updateVal($attrName, $val)
 	{
+        // dump($attrName,$val);
        
 		 $this->$attrName=$val;
 

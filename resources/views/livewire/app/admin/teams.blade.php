@@ -11,7 +11,7 @@
     @if ($showForm)
         @livewire('app.admin.forms.teams-form')
     @elseif($showProfile)
-        @livewire('app.admin.team-details')
+        @livewire('app.admin.team-details',['teamID'=>$teamID])
     @else
     <div class="content-header row">
         <div class="content-header-left col-12 mb-4">
