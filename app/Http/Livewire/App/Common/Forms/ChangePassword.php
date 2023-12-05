@@ -102,12 +102,12 @@ class ChangePassword extends Component
 		do {
 			$password = array();
 
-			for ($i = 0; $i <= $length; $i++) {
+			for ($i = 0; $i < $length; $i++) {
 				$int = rand(0, count($chars) - 1);
 				array_push($password, $chars[$int]);
 			}
 
-		} while (empty(array_intersect($special, $password)));
+		} while (empty(array_intersect($special, $password)) || empty(array_intersect($uppercase, $password)) || empty(array_intersect($digits, $password)));
 
 		$generatedPassword = implode('', $password);
 		$this->setPasswords($generatedPassword);

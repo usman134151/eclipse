@@ -532,7 +532,7 @@
                                                             <div class="form-check">
                                                                 <input class="form-check-input"
                                                                     id="DisplayToCustomers-{{ $index }}"
-                                                                    wire:model.defer="messages.{{ $index }}.display_to_providers"
+                                                                    wire:model.defer="messages.{{ $index }}.display_to_customers"
                                                                     name="DisplayToCustomers-{{ $index }}"
                                                                     type="checkbox" tabindex="" />
                                                                 <label class="form-check-label"
