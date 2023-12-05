@@ -580,8 +580,9 @@
     @include('panels.provider.check-out')
     @include('panels.common.assignment-details')
     @include('panels.common.add-documents', ['booking_id' => $booking_id])
+     @include('panels.common.add-reimbursement')
 
-    @include('panels.provider.add-reimbursement')
+    {{-- @include('panels.provider.add-reimbursement') --}}
     @include('modals.common.assignment-invitation')
     @include('modals.common.confirm-invitation')
     @include('modals.common.running-late')

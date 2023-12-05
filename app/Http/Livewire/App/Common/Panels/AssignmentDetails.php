@@ -48,6 +48,7 @@ class AssignmentDetails extends Component
             ->get([
                 'booking_services.id', 'booking_services.service_types', 'booking_services.attendees',
                 'booking_services.service_consumer', 'booking_services.start_time',
+                'booking_services.end_time',
                 'booking_services.meeting_link', 'booking_services.meetings',
                 'booking_services.attendees_manual', 'booking_services.service_consumer_manual', 'is_manual_consumer', 'is_manual_attendees',
                 'booking_services.attendees', 'booking_services.service_consumer', 'booking_services.specialization', 'booking_services.meeting_phone',
@@ -92,9 +93,17 @@ class AssignmentDetails extends Component
             $this->data['booking_services'][$key]['provider'] = $provider ? $provider->toArray() : null;
         }
         $this->data['assigned'] = $assigned;
-        $this->data['isToday'] = Carbon::parse($service['start_time'])->isToday();
-        $this->data['isPast'] =  Carbon::parse($service['start_time']) <= Carbon::today() ? true : false;
-        $this->data['providerStatus']  = BookingProvider::where(['provider_id' => Auth::id(), 'booking_service_id' => $service['id']])->select('return_status')->first()->toArray();
+        $this->data['isToday'] = Carbon::parse($this->data['booking_services'][0]['start_time'])->isToday();
+        $this->data['isPast'] =  Carbon::parse($this->data['booking_services'][0]['end_time']) <= Carbon::today() ? true : false;
+
+        $provider = BookingProvider::where(['provider_id' => Auth::id(), 'booking_service_id' => $this->data['booking_services'][0]['id']])->first();
+        $this->data['providerStatus']  =        ['return_status' => $provider ? $provider->return_status : 0];
+        if ($provider) {
+            // rateSum = total/override + additional charges
+            $this->data['rateSum'] =  $provider->is_override_price ? $provider->override_price  : $provider->total_amount;
+            $this->data['additionalPayment'] = $provider->additional_payments->additional_charge_provider ?? 0;
+            $this->data['totalPayment'] = $this->data['rateSum'] + $this->data['additionalPayment'];
+        }
 
         //custom forms associated with booking
         $this->data['serviceFormDetails'] =  BookingCustomizeData::where("booking_id", $this->booking->id)
