@@ -27,10 +27,10 @@ class BusinessSetup extends Component
     {
         return [
             'configuration.business_name' => ['nullable'],
-            'configuration.default_colour' => ['required'],
-            'configuration.foreground_colour' => ['required'],
-            'configuration.dark_default_colour' => ['required'],
-            'configuration.dark_foreground_colour' => ['required'],
+            'configuration.default_colour' => ['nullable'],
+            'configuration.foreground_colour' => ['nullable'],
+            'configuration.dark_default_colour' => ['nullable'],
+            'configuration.dark_foreground_colour' => ['nullable'],
             'configuration.portal_url' => ['nullable','max:255'],
             'configuration.company_logo' => ['nullable'],
             'configuration.dark_company_logo' => ['nullable'],
