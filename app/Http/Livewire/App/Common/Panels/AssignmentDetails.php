@@ -15,7 +15,7 @@ use Livewire\Component;
 
 class AssignmentDetails extends Component
 {
-    public $showForm, $booking, $data = [],$bookingNumber,$checkin_booking_id = 0,$ci_counter = 0,$selectedProvider, $booking_service_id;
+    public $showForm, $booking, $data = [],$bookingNumber,$checkin_booking_id = 0,$ci_counter = 0,$selectedProvider, $booking_service_id, $isCalendar=false;
     protected $listeners = ['showList' => 'resetForm','setBookingId', 'openProviderCheckIn'=>'showCheckInPanel'];
 
     public function render()
@@ -25,6 +25,7 @@ class AssignmentDetails extends Component
 
     public function setBookingId($booking_id){
         $this->booking = Booking::where('id', $booking_id)->first();
+        $this->isCalendar =true;
         $this->fetchData();
     }
     public function mount($booking_id)
