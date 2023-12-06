@@ -270,7 +270,7 @@
                                                                     @if ($booking['display_check_out'] && (!$booking['display_check_in'] || $booking['check_in_status'] == 1 || $booking['check_in_status'] == 3))
                                                                         <a href="#"
                                                                             @click="offcanvasOpenCheckOut = true"
-                                                                            wire:click="showCheckOutPanel('{{ $booking['id'] }}','{{ $booking['booking_service_id'] }}','{{ $booking['booking_number'] }}')"
+                                                                            wire:click="$emit('showCheckOutPanel','{{ $booking['id'] }}','{{ $booking['booking_service_id'] }}','{{ $booking['booking_number'] }}')"
                                                                             title="Check Out" aria-label="Check Out"
                                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                             <svg aria-label="Check Out" width="23"
