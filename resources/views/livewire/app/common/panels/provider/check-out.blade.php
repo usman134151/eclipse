@@ -654,10 +654,3 @@
     </div>
     <!-- END: Step 4 -->
 </div>
-
-<script>
-            function rating() {
-                console.log('here')
-        }
-
-</script>
