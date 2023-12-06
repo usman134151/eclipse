@@ -16,13 +16,17 @@ use Livewire\Component;
 class AssignmentDetails extends Component
 {
     public $showForm, $booking, $data = [];
-    protected $listeners = ['showList' => 'resetForm'];
+    protected $listeners = ['showList' => 'resetForm','setBookingId'];
 
     public function render()
     {
         return view('livewire.app.common.panels.assignment-details');
     }
 
+    public function setBookingId($booking_id){
+        $this->booking = Booking::where('id', $booking_id)->first();
+        $this->fetchData();
+    }
     public function mount($booking_id)
     {
         // dd($booking_id);
@@ -100,9 +104,9 @@ class AssignmentDetails extends Component
             $this->data['providerStatus']  =        ['return_status' => $provider ? $provider->return_status : 0];
             if ($provider) {
                 // rateSum = total/override + additional charges
-                $this->data['rateSum'] =  $provider->is_override_price ? $provider->override_price  : $provider->total_amount;
-                $this->data['additionalPayment'] = $provider->additional_payments->additional_charge_provider ?? 0;
-                $this->data['totalPayment'] = $this->data['rateSum'] + $this->data['additionalPayment'];
+                $this->data['totalPayment'] =  $provider->is_override_price ? $provider->override_price  : $provider->total_amount;
+                $this->data['additionalPayment'] = $provider->additional_payments['additional_charge_provider'] ?? 0;
+                $this->data['rateSum'] = $this->data['totalPayment'] - $this->data['additionalPayment'];
             }
         }
         //custom forms associated with booking
