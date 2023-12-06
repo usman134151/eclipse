@@ -468,4 +468,17 @@ class Calendar extends Component
 		//$this->dispatchBrowserEvent('open-assignment-details-dashboard', ['booking_id' => $booking_id]);
 
 	}
+
+	// public $checkin_booking_id, $ch_counter;
+
+	// public function openBookingDetails($booking_id = 0, $bookingNumber = null)
+	// {
+	// 	if ($bookingNumber)
+	// 		$this->bookingNumber = $bookingNumber;
+	// 	$this->booking_id = $booking_id;
+	// 	$this->providerPanelType = 3;
+	// 	$this->emit('setBookingId', $booking_id);
+	// 	//$this->dispatchBrowserEvent('open-assignment-details-dashboard', ['booking_id' => $booking_id]);
+
+	// }
 }

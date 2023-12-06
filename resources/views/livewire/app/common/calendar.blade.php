@@ -9,8 +9,11 @@
     </div>
     @include('panels.booking-details.admin-booking-details')
     {{-- update by Maarooshaa to include panel only if provider is logged in --}}
-    @if (session()->get('isProvider'))  
+    @if (session()->get('isProvider'))
         @include('panels.common.assignment-details')
+        @include('modals.common.running-late')
+        @include('modals.return-assignment')
+        {{-- @include('panels.provider.check-in') --}}
     @endif
     <template x-if="bookingDetails">
         <div>
@@ -87,7 +90,8 @@
 
                         if (eventData.isProvider)
                             $(info.el).attr('@click',
-                            'assignmentDetails = true'); //update to open assignment-details panel in provider-dashboard -- Maarooshaa Asim
+                                'assignmentDetails = true'
+                                ); //update to open assignment-details panel in provider-dashboard -- Maarooshaa Asim
 
                         var tooltip = new bootstrap.Popover(info.el, {
                             title: eventData.timeSlot,
