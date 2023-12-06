@@ -15,8 +15,8 @@ use Livewire\Component;
 
 class AssignmentDetails extends Component
 {
-    public $showForm, $booking, $data = [],$bookingNumber,$checkin_booking_id = 0,$ci_counter = 0,$selectedProvider;
-    protected $listeners = ['showList' => 'resetForm','setBookingId','showCheckInPanel'];
+    public $showForm, $booking, $data = [],$bookingNumber,$checkin_booking_id = 0,$ci_counter = 0,$selectedProvider, $booking_service_id;
+    protected $listeners = ['showList' => 'resetForm','setBookingId', 'openProviderCheckIn'=>'showCheckInPanel'];
 
     public function render()
     {
@@ -132,7 +132,7 @@ class AssignmentDetails extends Component
 		// dd($booking_id, $booking_service_id);
 		if ($this->ci_counter == 0) {
 			$this->checkin_booking_id = 0;
-			$this->dispatchBrowserEvent('open-check-in', ['booking_id' => $booking_id, 'booking_service_id' => $booking_service_id]);
+			$this->dispatchBrowserEvent('open-provider-check-in', ['booking_id' => $booking_id, 'booking_service_id' => $booking_service_id]);
 			$this->ci_counter = 1;
 		} else {
 			$this->checkin_booking_id = $booking_id;

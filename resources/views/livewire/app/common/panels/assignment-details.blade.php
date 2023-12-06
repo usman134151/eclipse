@@ -71,8 +71,10 @@
                                 <span>Message Coordinator</span>
                             </button>
                             @if ($data['booking_services'][0]['display_check_in'] && $data['isToday'])
-                                <button type="button" @click="offcanvasOpenCheckIn = true"
-                                    wire:click="$emit('showCheckInPanel','{{ $booking['id'] }}','{{ $data['booking_services'][0]['id'] }}','{{ $booking['booking_number'] }}')"
+                                <button type="button" @click="offcanvasOpenCheckIn = true" 
+                                    wire:click="$emit('openProviderCheckIn','{{ $booking['id'] }}','{{ $data['booking_services'][0]['id'] }}','{{ $booking['booking_number'] }}')"
+
+                                    {{-- wire:click="$emit('showCheckInPanel','{{ $booking['id'] }}','{{ $data['booking_services'][0]['id'] }}','{{ $booking['booking_number'] }}')" --}}
                                     title="Check In" aria-label="Check In"
                                     class="btn btn-primary rounded text-sm d-inline-flex gap-1 align-items-center px-3">
                                     <svg aria-label="Check In" width="22" height="22" viewBox="0 0 22 22"
