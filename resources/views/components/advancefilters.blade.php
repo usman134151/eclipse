@@ -103,14 +103,15 @@
 
                     </div>
                 @endif
-                <div class="col-lg-5 pe-lg-3 mb-5">
+                {{-- START: update to hide company and provider filter fields from customer panel -- Maarooshaa --}}
+                <div class="col-lg-5 pe-lg-3 mb-5 {{ session()->get('isCustomer') ? 'hidden' : '' }}">
                     <label class="form-label" for="OrgDeptUser">Company </span>
 
                     </label>
                     <input type="text" class="form-control" name="name_seacrh_filter" id="name_seacrh_filter"
                         placeholder="Enter Company Name " wire:model.defer="name_seacrh_filter">
                 </div>
-                <div class="col-lg-5 ps-lg-3 mb-5 {{ $hideProvider ? 'hidden' : '' }}">
+                <div class="col-lg-5 ps-lg-3 mb-5 {{ $hideProvider || session()->get('isCustomer') ? 'hidden' : '' }}">
                     <label class="form-label" for="provider_ids">Provider</label>
                     <select wire:model.defer="provider_ids" name="provider_ids" id="provider_ids"
                         data-placeholder="Select Provider" multiple class="select2 form-select" tabindex="">
@@ -122,6 +123,8 @@
                         @endif
                     </select>
                 </div>
+                {{-- END: update to hide company and provider filter fields from customer panel -- Maarooshaa --}}
+
                 <div class="col-lg-5 pe-lg-3 mb-5">
                     <label class="form-label" for="tags">Tags
                         {{-- <small>(coming soon)</small> --}}
