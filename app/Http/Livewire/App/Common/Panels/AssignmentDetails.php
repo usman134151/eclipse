@@ -15,18 +15,23 @@ use Livewire\Component;
 
 class AssignmentDetails extends Component
 {
-    public $showForm, $booking, $data = [];
-    protected $listeners = ['showList' => 'resetForm'];
+    public $showForm, $booking, $data = [],$bookingNumber,$checkin_booking_id = 0,$ci_counter = 0,$selectedProvider;
+    protected $listeners = ['showList' => 'resetForm','setBookingId','showCheckInPanel'];
 
     public function render()
     {
         return view('livewire.app.common.panels.assignment-details');
     }
 
+    public function setBookingId($booking_id){
+        $this->booking = Booking::where('id', $booking_id)->first();
+        $this->fetchData();
+    }
     public function mount($booking_id)
     {
         // dd($booking_id);
         $this->booking = Booking::where('id', $booking_id)->first();
+        $this->bookingNumber=$this->booking->booking_number;
         $this->fetchData();
     }
 
@@ -100,9 +105,9 @@ class AssignmentDetails extends Component
             $this->data['providerStatus']  =        ['return_status' => $provider ? $provider->return_status : 0];
             if ($provider) {
                 // rateSum = total/override + additional charges
-                $this->data['rateSum'] =  $provider->is_override_price ? $provider->override_price  : $provider->total_amount;
-                $this->data['additionalPayment'] = $provider->additional_payments->additional_charge_provider ?? 0;
-                $this->data['totalPayment'] = $this->data['rateSum'] + $this->data['additionalPayment'];
+                $this->data['totalPayment'] =  $provider->is_override_price ? $provider->override_price  : $provider->total_amount;
+                $this->data['additionalPayment'] = $provider->additional_payments['additional_charge_provider'] ?? 0;
+                $this->data['rateSum'] = $this->data['totalPayment'] - $this->data['additionalPayment'];
             }
         }
         //custom forms associated with booking
@@ -117,7 +122,25 @@ class AssignmentDetails extends Component
             ->groupBy('customize_form_id')->sortby('position')->toArray();
     }
 
+	public function showCheckInPanel($booking_id, $booking_service_id, $bookingNumber = null, $selectedProvider = null)
+	{
 
+		if ($bookingNumber)
+			$this->bookingNumber = $bookingNumber;
+		if ($selectedProvider)
+			$this->selectedProvider = $selectedProvider;
+		// dd($booking_id, $booking_service_id);
+		if ($this->ci_counter == 0) {
+			$this->checkin_booking_id = 0;
+			$this->dispatchBrowserEvent('open-check-in', ['booking_id' => $booking_id, 'booking_service_id' => $booking_service_id]);
+			$this->ci_counter = 1;
+		} else {
+			$this->checkin_booking_id = $booking_id;
+			$this->booking_service_id = $booking_service_id;
+			$this->ci_counter = 0;
+			// $this->providerPanelType = 1;
+		}
+	}
     protected $rules = [
         'booking.provider_notes' => 'nullable|string',
     ];

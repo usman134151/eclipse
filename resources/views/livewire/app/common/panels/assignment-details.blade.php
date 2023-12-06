@@ -1,4 +1,4 @@
-<div>
+<div x-data="{ addDocuments: false, offcanvasOpenCheckIn: false, offcanvasOpenCheckOut: false, assignmentDetails: false, addReimbursement: false, step: 1 }">
     <ul class="nav nav-tabs border-0 mt-4" id="assignment-details-tab" role="tablist">
         <li class="nav-item" role="presentation">
             <button class="nav-link active btn rounded p-3" :class="(step == 1) ? 'active' : 'btn-secondary border-0'"
@@ -864,4 +864,5 @@
             </div>
         @endif
     </div>
+    @include('panels.provider.check-in')
 </div>
