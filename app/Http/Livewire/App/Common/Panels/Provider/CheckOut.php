@@ -94,6 +94,7 @@ class CheckOut extends Component
     public function mount($booking_service_id, $provider_id = null)
     {
 
+        // dd($this->booking_id,$booking_service_id,$provider_id);
         if ($provider_id == null)  //pass provider id when called from admin, else use auth::id
             $this->provider_id = Auth::id();
 
