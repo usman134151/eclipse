@@ -109,6 +109,14 @@ class BusinessHoursSetup extends Component
         $endMin = $this->timeslot['timeslot_end_min'];
         $endType = $this->timeslot_end_type;
         if($this->schedule->time_format==1){
+
+            if ($startHour > 12 || $endHour > 12) {
+                // Start hour &  end hour cannot be greater than 12
+                // You can handle the validation error here, e.g., show an error message or perform some other action
+                $this->addError('timeValidation', 'Invalid time range. Time should be in a 12-hour format and within valid range.');
+                return;
+            }
+
             // Convert start and end hours to 24-hour format if the start type or end type is set to PM
             if (strtolower($startType) === 'pm') {
                 $startHour = ($startHour % 12) + 12;
@@ -194,7 +202,7 @@ class BusinessHoursSetup extends Component
 
     public function refreshSlots()
     {
-      $this->timeslots=ScheduleService::getSlots($this->schedule->id);
+      $this->timeslots=ScheduleService::getSlots($this->schedule->id,$this->schedule->time_format);
     }
     public function deleteSlot($timeslotId)
     {
