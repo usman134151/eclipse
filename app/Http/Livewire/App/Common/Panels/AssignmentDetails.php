@@ -15,8 +15,8 @@ use Livewire\Component;
 
 class AssignmentDetails extends Component
 {
-    public $showForm, $booking, $data = [],$bookingNumber,$checkin_booking_id = 0,$ci_counter = 0,$selectedProvider;
-    protected $listeners = ['showList' => 'resetForm','setBookingId','showCheckInPanel'];
+    public $showForm, $booking, $data = [],$bookingNumber, $providerPanelType,$co_counter, $checkout_booking_id=0,$checkin_booking_id = 0,$ci_counter = 0,$selectedProvider, $booking_service_id, $isCalendar=false;
+    protected $listeners = ['showList' => 'resetForm','setBookingId', 'openProviderCheckIn'=>'showCheckInPanel'];
 
     public function render()
     {
@@ -25,6 +25,7 @@ class AssignmentDetails extends Component
 
     public function setBookingId($booking_id){
         $this->booking = Booking::where('id', $booking_id)->first();
+        $this->isCalendar =true;
         $this->fetchData();
     }
     public function mount($booking_id)
@@ -132,7 +133,7 @@ class AssignmentDetails extends Component
 		// dd($booking_id, $booking_service_id);
 		if ($this->ci_counter == 0) {
 			$this->checkin_booking_id = 0;
-			$this->dispatchBrowserEvent('open-check-in', ['booking_id' => $booking_id, 'booking_service_id' => $booking_service_id]);
+			$this->dispatchBrowserEvent('open-provider-check-in', ['booking_id' => $booking_id, 'booking_service_id' => $booking_service_id]);
 			$this->ci_counter = 1;
 		} else {
 			$this->checkin_booking_id = $booking_id;
@@ -141,6 +142,27 @@ class AssignmentDetails extends Component
 			// $this->providerPanelType = 1;
 		}
 	}
+
+    // public function showCheckOutPanel($booking_id, $booking_service_id, $bookingNumber = null, $selectedProvider = null)
+    // {
+    //     if ($bookingNumber)
+    //     $this->bookingNumber = $bookingNumber;
+
+    //     if ($selectedProvider)
+    //     $this->selectedProvider = $selectedProvider;
+    //     if ($this->co_counter == 0) {
+    //         $this->checkout_booking_id = 0;
+    //         $this->dispatchBrowserEvent('open-check-out', ['booking_id' => $booking_id, 'booking_service_id' => $booking_service_id]);
+    //         $this->co_counter = 1;
+    //     } else {
+    //         $this->checkout_booking_id = $booking_id;
+    //         $this->booking_service_id = $booking_service_id;
+    //         $this->co_counter = 0;
+    //         $this->providerPanelType = 2;
+    //         $this->dispatchBrowserEvent('refreshSelects');
+    //     }
+    // }
+
     protected $rules = [
         'booking.provider_notes' => 'nullable|string',
     ];

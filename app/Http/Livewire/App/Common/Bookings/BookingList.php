@@ -54,7 +54,7 @@ class BookingList extends Component
 	public $accommodation_search_filter = [], $booking_service_filter = [], $booking_specialization_search_filter = [], $provider_ids = [], $name_seacrh_filter = '',
 		$service_type_search_filter = [], $tag_names = [], $industry_filter = [], $booking_status_filter = null, $booking_number_filter = null;
 	public $tags = [], $filterProviders = [], $hideProvider = false;
-	public $selectedBookingIds = [];
+	public $selectedBookingIds = [], $checkout_booking_id=0;
 
 
 	public $isCustomer = false;
@@ -635,11 +635,11 @@ class BookingList extends Component
 		if ($selectedProvider)
 			$this->selectedProvider = $selectedProvider;
 		if ($this->co_counter == 0) {
-			$this->booking_id = 0;
+			$this->checkout_booking_id = 0;
 			$this->dispatchBrowserEvent('open-check-out', ['booking_id' => $booking_id, 'booking_service_id' => $booking_service_id]);
 			$this->co_counter = 1;
 		} else {
-			$this->booking_id = $booking_id;
+			$this->checkout_booking_id = $booking_id;
 			$this->booking_service_id = $booking_service_id;
 			$this->co_counter = 0;
 			$this->providerPanelType = 2;
