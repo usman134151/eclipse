@@ -14,7 +14,7 @@ class ScheduleService{
        return $schedule->save();
     }
 
-    public static function getSlots($scheduleId){
+    public static function getSlots($scheduleId,$timeFormat){
         $timeslots=[
             'business_hours'=>[],
             'after_business_hours'=>[]
@@ -24,8 +24,16 @@ class ScheduleService{
        
 
         foreach ($timeslotsData as $timeslot) {
-            $startTime = Carbon::parse($timeslot->timeslot_start_time)->format('g:i A');
-            $endTime = Carbon::parse($timeslot->timeslot_end_time)->format('g:i A');
+            $startTime = '';
+            $endTime = '';
+
+            if ($timeFormat == 1) {
+                $startTime = Carbon::parse($timeslot->timeslot_start_time)->format('g:i A');
+                $endTime = Carbon::parse($timeslot->timeslot_end_time)->format('g:i A');
+            } else if ($timeFormat == 2) {
+                $startTime = Carbon::parse($timeslot->timeslot_start_time)->format('H:i');
+                $endTime = Carbon::parse($timeslot->timeslot_end_time)->format('H:i');
+            }
 
             $slot = [
                 'day' => $timeslot->timeslot_day,
