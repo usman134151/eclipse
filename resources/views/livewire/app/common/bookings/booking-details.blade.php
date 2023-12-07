@@ -1456,25 +1456,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <hr class="border-separate-sm">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-9">
-                                                <label class="form-label mb-md-0">Net Total:</label>
-                                            </div>
-                                            <div class="col-md-3 align-self-center">
-                                                <div class="font-family-tertiary">
-                                                    @if (!is_null($booking['payment']))
-                                                        {{ $booking['payment']['is_override'] ? formatPayment($booking['payment']['override_amount']) : formatPayment($booking['payment']['total_amount']) }}
-                                                    @else
-                                                        N/A
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        </div>
                                         @if (
                                             !$isCustomer ||
                                                 (($isCustomer && (Auth::id() == $booking['billing_manager_id'] || Auth::id() == $booking['supervisor'])) ||
@@ -1537,6 +1518,26 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                        @endif
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <hr class="border-separate-sm">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                <label class="form-label mb-md-0">Net Total:</label>
+                                            </div>
+                                            <div class="col-md-3 align-self-center">
+                                                <div class="font-family-tertiary">
+                                                    @if (!is_null($booking['payment']))
+                                                        {{ $booking['payment']['is_override'] ? formatPayment($booking['payment']['override_amount']) : formatPayment($booking['payment']['total_amount']) }}
+                                                    @else
+                                                        N/A
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <hr class="border-separate-sm">
@@ -1596,7 +1597,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        @endif
+                                        
                                     </div>
                                 </div>
                                 <div class="col-lg-6  @if ($isCustomer) hidden @endif"">
