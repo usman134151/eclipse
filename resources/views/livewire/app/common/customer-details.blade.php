@@ -799,7 +799,7 @@
         <div class="col-md-12 d-flex mb-md-2">
             <div class="col-md-1 mb-md-2 font-family-tertiary fw-medium">
                 Time</div>
-            <div class="col-md-6 mb-md-2 font-family-secondary">{{formatTime($this->user['login_time'])}}
+            <div class="col-md-6 mb-md-2 font-family-secondary">{{$this->user['login_time'] != 'N/A' ? formatTime($this->user['login_time']) : $this->user['login_time']}}
             </div>
         </div>
     </div>

@@ -19,6 +19,7 @@ final class DraftInvoices extends PowerGridComponent
 	protected $listeners = ['refresh' => 'setUp'];
 	public $name;
 	// public $status, $filter_companies=null, $filter_specialization=[], $filter_service_type_ids=[], $filter_bmanager=null;
+    public $filter_bmanager, $filter_companies;
 
 	// for adv search filters
 	public function updateVal($attrName, $val)
@@ -99,6 +100,12 @@ final class DraftInvoices extends PowerGridComponent
 			->groupBy('companies.id', 'companies.name', 'companies.company_logo')  // <-- Add companies.name here
 			->having('pending_invoices', '>', 0);
 
+			if ($this->filter_companies)
+            $subQuery->where('companies.id', $this->filter_companies);
+
+        	if ($this->filter_bmanager)
+            	$subQuery->where('bookings.billing_manager_id', $this->filter_bmanager);
+        
 		// if($this->filter_companies){
 		// 	$subQuery->where('bookings.company_id',$this->filter_companies);
 		// }
