@@ -82,6 +82,8 @@
                                     </svg>
                                     {{-- <span>Check In</span> --}}
                                 </button>
+                            @endif
+                            @if ($data['booking_services'][0]['display_check_out'] && $data['isToday'] && $data['checked_in'])
                                 <button type="button" @click="offcanvasOpenCheckOut = true"
                                     wire:click="$emit('openProviderCheckOut','{{ $booking['id'] }}','{{ $data['booking_services'][0]['id'] }}','{{ $booking['booking_number'] }}')"
                                     title="Check Out" aria-label="Check Out"
@@ -95,12 +97,7 @@
 
                                 </button>
                             @endif
-                            @if (
-                                $data['booking_services'][0]['display_running_late'] &&
-                                    ($this->data['booking_services'][0]['provider'] &&
-                                        $this->data['booking_services'][0]['provider']['check_in_status'] == 0) &&
-                                    $data['isToday']
-                            )
+                            @if ($data['booking_services'][0]['display_running_late'] && !$data['checked_in'] && $data['isToday'])
                                 <button type="button"
                                     class="btn btn-primary rounded text-sm d-inline-flex gap-1 align-items-center px-3"
                                     data-bs-toggle="modal" data-bs-target="#runningLateModal"
