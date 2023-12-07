@@ -54,7 +54,7 @@ class BookingList extends Component
 	public $accommodation_search_filter = [], $booking_service_filter = [], $booking_specialization_search_filter = [], $provider_ids = [], $name_seacrh_filter = '',
 		$service_type_search_filter = [], $tag_names = [], $industry_filter = [], $booking_status_filter = null, $booking_number_filter = null;
 	public $tags = [], $filterProviders = [], $hideProvider = false;
-	public $selectedBookingIds = [], $checkout_booking_id=0;
+	public $selectedBookingIds = [], $checkout_booking_id = 0;
 
 
 	public $isCustomer = false;
@@ -147,17 +147,19 @@ class BookingList extends Component
 						$q->where(function ($ca) use ($today) {
 							$ca->whereRaw("DATE(booking_start_at) < '$today'")
 								->whereIn('bookings.status', [1, 2]);
-
-							})
+						})
 							->orWhereIn('bookings.status', [3, 4]);	//shows cancelled-unbillable
 
-						});
+					});
 
 				$query->orderBy('booking_start_at', 'DESC');
 
 				break;
 			case ("Today's"):
-				$query->where(['bookings.status' => 2, 'type' => 1, 'booking_status' => '1'])
+				$conditions = ['type' => 1, 'booking_status' => '1'];
+				if (!session()->get('isProvider'))
+				$conditions['bookings.status'] = 2;
+				$query->where($conditions)
 
 					// ->when($addressCheck, function ($query) {
 					// 	$query->where('isCompleted', 0);
@@ -180,9 +182,11 @@ class BookingList extends Component
 
 				break;
 			case ('Upcoming'):
-
+				$conditions = ['type' => 1, 'booking_status' => '1'];
+				if (!session()->get('isProvider'))
+					$conditions['bookings.status'] = 2;
 				$query->whereDate('booking_start_at', '>', Carbon::today())
-					->where(['bookings.status' => 2, 'type' => 1, 'booking_status' => '1'])
+					->where($conditions)
 
 					// ->when($addressCheck, function ($query) {
 					// 	$query->where('isCompleted', 0);
