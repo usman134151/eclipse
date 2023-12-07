@@ -123,7 +123,7 @@
                                     </div>
 
                                 </div> --}}
-                                {{-- <x-advancefilters wire:ignore.self type="invoice-filters" :bmanagers="$bmanagers" :setupValues="$setupValues"/> --}}
+                                <x-advancefilters type="invoice-filters" isPendingInvoices="1" :bmanagers="$bmanagers" :setupValues="$setupValues"/>
                             {{-- </div> --}}
                             <!-- END: Filters -->
 
@@ -159,7 +159,7 @@
                                 <span>Create Invoice</span>
                             </a> --}}
                         </div>
-                        @livewire('app.common.lists.draft-invoices', [], key(Str::random(10)))
+                        @livewire('app.common.lists.draft-invoices', ['filter_companies' => $filter_companies,'filter_bmanager' => $filter_bmanager ], key(Str::random(10)))
 
                         {{-- <div class="row" id="table-hover-row"> 
 						<div class="col-12">
