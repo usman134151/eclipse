@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Tenant\Helper\Helper;
 use App\Models\Tenant\BusinessSetup;
 use App\Models\Tenant\RoleUser;
+use App\Models\Tenant\Schedule;
 use App\Models\Tenant\UserDetail;
 use App\Models\Tenant\UserLoginAddress;
 use App\Services\App\UserService;
@@ -42,6 +43,13 @@ class LoginController extends Controller
 
 
 		$businessSetup = BusinessSetup::first();
+		$systemTimeDetails = Schedule::where('model_type','1')->first(); 
+
+		if($systemTimeDetails)
+		{
+			$data['business_timezone_id'] = $systemTimeDetails->timezone_id ? $systemTimeDetails->timezone_id : 61;
+			$data['business_time_format'] = $systemTimeDetails->time_format == 1 ? 12 : 24;
+		}
 
 		if ($businessSetup) {
 			$welcome_text = $businessSetup->welcome_text;
