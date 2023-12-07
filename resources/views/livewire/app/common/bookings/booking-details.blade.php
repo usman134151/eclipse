@@ -116,6 +116,10 @@
                                                         <option value="pending">Pending</option>
                                                         <option value='assigned'>Assigned</option>
                                                         <option value='unassigned'>Un-assigned</option>
+                                                        <option value='cancelled'>Cancelled</option>
+                                                        <option value='unbill-cancelled'>Unbillable-Cancelled</option>
+
+
 
                                                     </select>
                                                 </div>
