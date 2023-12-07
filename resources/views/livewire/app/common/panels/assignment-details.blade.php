@@ -80,10 +80,12 @@
                                         <use xlink:href="/css/provider.svg#check-in">
                                         </use>
                                     </svg>
-                                    <span>Check In</span>
+                                    {{-- <span>Check In</span> --}}
                                 </button>
-                                {{-- <button type="button" @click="offcanvasOpenCheckOut = true"
-                                    wire:click="$emit('showCheckOutPanel','{{ $booking['id'] }}','{{ $data['booking_services'][0]['id'] }}','{{ $booking['booking_number'] }}')"
+                            @endif
+                            @if ($data['booking_services'][0]['display_check_out'] && $data['isToday'] && $data['checked_in'])
+                                <button type="button" @click="offcanvasOpenCheckOut = true"
+                                    wire:click="$emit('openProviderCheckOut','{{ $booking['id'] }}','{{ $data['booking_services'][0]['id'] }}','{{ $booking['booking_number'] }}')"
                                     title="Check Out" aria-label="Check Out"
                                     class="btn btn-primary btn-hs-icon rounded text-sm d-inline-flex gap-1 align-items-center px-3">
                                     <svg aria-label="Check In" width="22" height="22" viewBox="0 0 22 22"
@@ -91,14 +93,11 @@
                                         <use xlink:href="/css/provider.svg#check-out">
                                         </use>
                                     </svg>
-                                </button> --}}
+                                    {{-- <span>Check Out</span> --}}
+
+                                </button>
                             @endif
-                            @if (
-                                $data['booking_services'][0]['display_running_late'] &&
-                                    ($this->data['booking_services'][0]['provider'] &&
-                                        $this->data['booking_services'][0]['provider']['check_in_status'] == 0) &&
-                                    $data['isToday']
-                            )
+                            @if ($data['booking_services'][0]['display_running_late'] && !$data['checked_in'] && $data['isToday'])
                                 <button type="button"
                                     class="btn btn-primary rounded text-sm d-inline-flex gap-1 align-items-center px-3"
                                     data-bs-toggle="modal" data-bs-target="#runningLateModal"
@@ -881,6 +880,6 @@
         @endif
     </div>
     @include('panels.provider.check-in')
-    {{-- @include('panels.provider.check-out') --}}
+    @include('panels.provider.check-out')
 
 </div>

@@ -748,7 +748,7 @@
                                             <input class="form-check-input" type="checkbox" value="1" id="email_invitation"
                                                 wire:model.defer="email_invitation">
                                             <label class="form-check-label" for="email_invitation">
-                                                Send Invitation Email to the Customer
+                                                Send Invitation Email to the Provider
                                             </label>
                                         </div>
                                     </div>

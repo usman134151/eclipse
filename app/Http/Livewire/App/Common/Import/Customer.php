@@ -21,6 +21,7 @@ class Customer extends Component
     public $file;
     public $users = [];
     public $warningMessage='',$errorMessage='';
+    public $email_invitation = 1;
     protected $listeners = ['updateVal' => 'updateVal'];
     
     //setup values
@@ -131,7 +132,6 @@ class Customer extends Component
 
     public function save()
     {
-       
         $this->resetValidation();
 
         $validationRules = [
@@ -179,7 +179,7 @@ class Customer extends Component
             }
             $user->name=$user->first_name.' '.$user->last_name;
             // Call the createUser method of UserService and pass the user model along with other parameters
-            $savedUser= $userService->createUser($user, $userData['userDetails'], 4, 0, [], 1);
+            $savedUser= $userService->createUser($user, $userData['userDetails'], 4, $this->email_invitation, [], 1);
 
             $userService->storeCustomerRoles($userData['userRoles'],$savedUser->id);
            
