@@ -1,4 +1,4 @@
-<div>
+<div x-data="{ bookingDetails: false, providerSavedForms: false, assignmentDetails: false, addReimbursement: false, step: 1 }">
     <style>
         #map {
             height: 500px;
@@ -96,6 +96,23 @@
     <!-- /Filters -->
     <div id="map" wire:ignore></div>
 
+    @if (session()->get('isProvider'))
+        @include('panels.common.assignment-details')
+        @include('modals.common.running-late')
+        @include('modals.return-assignment')
+        {{-- @include('panels.provider.check-in') --}}
+    @endif
+    <template x-if="bookingDetails">
+        <div>
+            @include('modals.admin-staff')
+            @include('modals.assign-provider-team')
+            @include('modals.meeting-links')
+            @include('modals.provider-message')
+            @include('modals.unassign')
+            @include('modals.common.review-feedback')
+            @include('modals.common.available-timeslot')
+        </div>
+    </template>
 
     <script type="text/javascript">
         document.addEventListener('livewire:load', function() {
@@ -171,6 +188,11 @@
 
             //  var content = '<div class="marker-label"><strong>' + location.address + '</strong><br>' + location.detail +
             //   '</div>';
+    //         var content = '<div class="marker-label"><p><strong>Assignment Number: ' + location.title + '</strong></p><p>' +
+    //             location.service + '</p><p>Address: ' + location.address +
+    //             '</p><a href="https://www.google.com/maps/place/' + encodeURIComponent(location.address) +
+    //             '" target="_blank">Get Directions</a>&nbsp;&nbsp;&nbsp; <a href="#" class="booking-details-link" data-booking-id="' +
+    // location.booking_id + '">Booking Details</a></div>';
             var content = '<div class="marker-label"><p><strong>Assignment Number: ' + location.title + '</strong></p><p>' +
                 location.service + '</p><p>Address: ' + location.address +
                 '</p><a href="https://www.google.com/maps/place/' + encodeURIComponent(location.address) +
@@ -203,13 +225,18 @@
                         }
                     });
 
-                    // var content = '<a href="https://www.google.com/maps/place/'+location.address+'">View on Google Maps</a>';
+                    var content = '<a href="https://www.google.com/maps/place/'+location.address+'">View on Google Maps</a>';
                     var content = '<div class="marker-label"><p><strong>Assignment Number: ' + location.title +
                         '</strong></p><p>' + location.service + '</p><p>Address: ' + location.address +
                         '</p><a href="https://www.google.com/maps/place/' + encodeURIComponent(location.address) +
                         '" target="_blank">Get Directions</a>&nbsp;&nbsp;&nbsp; <a  style="float:right;" target="_blank" href="/admin/bookings/view-booking/' +
                         location.booking_id + '">Booking Details</a></div>';
 
+                    //                 var content = '<div class="marker-label"><p><strong>Assignment Number: ' + location.title + '</strong></p><p>' +
+                    //             location.service + '</p><p>Address: ' + location.address +
+                    //             '</p><a href="https://www.google.com/maps/place/' + encodeURIComponent(location.address) +
+                    //             '" target="_blank">Get Directions</a>&nbsp;&nbsp;&nbsp; <a href="#" class="booking-details-link" data-booking-id="' +
+                    // location.booking_id + '">Booking Details</a></div>';
 
                     var infoWindow = new google.maps.InfoWindow({
                         content: content
@@ -239,6 +266,19 @@
                 // Call the Livewire method to update the value
                 @this.call('updateVal', inputId, inputValue);
             });
+        }
+
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('booking-details-link')) {
+                event.preventDefault(); // Prevent the default action of the anchor tag
+
+                var bookingID = event.target.getAttribute('data-booking-id');
+                bookingDetails(bookingID);
+            }
+        });
+        
+        function bookingDetails(bookingID) {
+            Livewire.emit('openBookingDetails', bookingID);
         }
     </script>
 {{-- update to fix multiple root element issue --}}
