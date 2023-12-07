@@ -9,8 +9,7 @@ use App\Models\Tenant\ScheduleTimeslot;
 use App\Models\Tenant\ScheduleHoliday;
 use App\Services\App\ScheduleService;
 use Carbon\Carbon;
-
-
+use Illuminate\Support\Facades\Session;
 
 class BusinessHoursSetup extends Component
 {
@@ -225,7 +224,11 @@ class BusinessHoursSetup extends Component
     public function saveSchedule(){
        
         $this->schedule->save();
-       
+        if($this->schedule)
+        {
+            Session::put('business_timezone_id' , $this->schedule->timezone_id  ?  $this->schedule->timezone_id: 61); // 61 => us
+			Session::put('business_time_format' , $this->schedule->time_format == 1 ? 12 : 24);       
+        }
         $model=null;
         if ($this->model_type == 1)
             $model = "system";
