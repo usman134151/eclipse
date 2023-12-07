@@ -635,9 +635,9 @@ class BookingList extends Component
 	{
 		if ($bookingNumber)
 			$this->bookingNumber = $bookingNumber;
-
 		if ($selectedProvider)
 			$this->selectedProvider = $selectedProvider;
+		
 		if ($this->co_counter == 0) {
 			$this->checkout_booking_id = 0;
 			$this->dispatchBrowserEvent('open-check-out', ['booking_id' => $booking_id, 'booking_service_id' => $booking_service_id]);
@@ -646,8 +646,8 @@ class BookingList extends Component
 			$this->checkout_booking_id = $booking_id;
 			$this->booking_service_id = $booking_service_id;
 			$this->co_counter = 0;
-			$this->providerPanelType = 2;
-			$this->dispatchBrowserEvent('refreshSelects');
+			// $this->providerPanelType = 2;
+			// $this->dispatchBrowserEvent('refreshSelects');
 		}
 	}
 	public function setAssignmentDetails($booking_id = 0, $bookingNumber = null)
