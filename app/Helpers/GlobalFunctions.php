@@ -75,6 +75,7 @@ const DECLINED = '2';
       if(empty($date)){
         return "-";
       }
+      return $date;
       return Carbon::parse($date)->format('g:i A');
 
     }

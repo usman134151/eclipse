@@ -204,6 +204,7 @@ class Calendar extends Component
 						$q->where('attendees', 'LIKE', '%' . $user->id . '%')
 							->orWhere('service_consumer', 'LIKE', '%' . $user->id . '%');
 					});
+
 					// check if the user is supervisor or booking manager of a customer of the booking
 					$associated_user = RoleUserDetail::whereIn('role_id', [5, 9])->where('user_id', $this->user_id)->get()->pluck('associated_user');
 					$g->orWhereIn('customer_id', $associated_user);
@@ -306,7 +307,7 @@ class Calendar extends Component
 				$newEvents[$key]['isProvider'] = false;
 			}
 
-			$newEvents[$key]['timeSlot'] =   $booking_start_at . ' - ' .$booking_end_at; // formatTime($booking_start_at) . ' - ' . formatTime($booking_end_at);
+			$newEvents[$key]['timeSlot'] =  formatTime($booking_start_at) . ' - ' . formatTime($booking_end_at);
 			$description = '<div class="pe-3">';
 			$description .= '<p class="mb-3 mt-2">Assignment No.: ' . $booking_number . ' </p>';
 			$description .= '<p class="my-3">Customer: ' . ($customer!=null ? $customer['name'] : 'N/A') . ' </p>';
