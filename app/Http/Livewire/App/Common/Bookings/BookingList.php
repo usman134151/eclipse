@@ -284,6 +284,14 @@ class BookingList extends Component
 				$query->where(function ($g) use ($customer, $query) {
 					$g->where('customer_id', $customer->id);
 					$g->orWhere('supervisor', $customer->id);
+
+					//fetch relevent bookings where user is consumer or participant
+					$g->orWhereIn('bookings.id',function($sc_query)use ($customer){
+						$sc_query->from('booking_services')->select('booking_id')
+						->where('booking_services.service_consumer', 'LIKE', "%" . $customer->id . "%")
+						->orWhere('booking_services.attendees', 'LIKE', "%" . $customer->id . "%");
+					});
+
 					if ($this->bookingType == "Draft")
 						$g->orWhere('user_id', $customer->id);
 					else

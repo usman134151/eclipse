@@ -646,7 +646,7 @@
                         <button x-on:click="offcanvasOpenCheckOut = !offcanvasOpenCheckOut" type="button"
                             class="btn btn-outline-dark rounded">Cancel</button>
                         <button type="submit" class="btn btn-primary rounded"
-                            x-on:close-check-out.window="offcanvasOpenCheckOut = !offcanvasOpenCheckOut">Submit</button>
+                            x-on:close-check-out.window="offcanvasOpenCheckOut = !offcanvasOpenCheckOut;assignmentDetails=false">Submit</button>
                     @endif
                 </div>
             </div>
