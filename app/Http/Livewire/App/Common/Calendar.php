@@ -306,7 +306,7 @@ class Calendar extends Component
 				$newEvents[$key]['isProvider'] = false;
 			}
 
-			$newEvents[$key]['timeSlot'] =  formatTime($booking_start_at) . ' - ' . formatTime($booking_end_at);
+			$newEvents[$key]['timeSlot'] =   $booking_start_at . ' - ' .$booking_end_at; // formatTime($booking_start_at) . ' - ' . formatTime($booking_end_at);
 			$description = '<div class="pe-3">';
 			$description .= '<p class="mb-3 mt-2">Assignment No.: ' . $booking_number . ' </p>';
 			$description .= '<p class="my-3">Customer: ' . ($customer!=null ? $customer['name'] : 'N/A') . ' </p>';
