@@ -7,11 +7,12 @@ use App\Models\Tenant\User;
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\UserAddress;
 use DB;
+use Illuminate\Support\Facades\Auth;
 
 class Map extends Component
 {
     public $showForm;
-    protected $listeners = ['showList' => 'resetForm', 'apply' => 'applyFilters','updateVal'];
+    protected $listeners = ['showList' => 'resetForm', 'apply' => 'applyFilters','updateVal','openBookingDetails'];
     public $locations = [];
     public $selectDate;
     public $selectedBookingNo;
@@ -20,6 +21,7 @@ class Map extends Component
     public $addressList;
     public $selectedBooking;
     public $bookingFilter;    
+    public $booking_id, $providerPanelType;
 
     public function render()
     {
@@ -30,7 +32,17 @@ class Map extends Component
 
     public function mount()
     {
-        $this->bookingList = Booking::select('id', 'booking_number')->whereNotNull('physical_address_id')->get();
+        if(session()->get('isProvider'))
+        {
+            $this->bookingList = Booking::select('id', 'booking_number')->with('booking_provider')->whereNotNull('physical_address_id')
+            ->whereHas('booking_provider', function ($query) {
+                $query->where('provider_id', Auth::user()->id);
+            })->get();
+        }
+        else
+        {
+            $this->bookingList = Booking::select('id', 'booking_number')->whereNotNull('physical_address_id')->get();
+        }
         $this->addressList = UserAddress::select([
             DB::raw("CONCAT(address_line1,', ', city, ', ', state, ', ', country) as full_address")
         ])->get();
@@ -46,6 +58,14 @@ class Map extends Component
         ->join('booking_services', 'bookings.id', '=', 'booking_id')
         ->join('service_categories', 'booking_services.services', '=', 'service_categories.id');
 
+        if(session()->get('isProvider'))
+        {
+            $query->with('booking_provider')
+            ->whereHas('booking_provider', function ($query) {
+            $query->where('provider_id', Auth::user()->id);
+            });
+        }
+        
     if ($this->selectDate) {
         $query->whereDate('bookings.booking_start_at', date("Y-m-d", strtotime($this->selectDate)));
     }
@@ -146,6 +166,14 @@ class Map extends Component
         $this->addressList = UserAddress::select([
             DB::raw("CONCAT(address_line1,', ', city, ', ', state, ', ', country) as full_address")
         ])->get();
+    }
+
+    public function openBookingDetails($bookingID)
+    {
+        // $decryptedID = decrypt($bookingID);
+        // $this->booking_id = $decryptedID;
+		// $this->providerPanelType = 3;
+		// $this->emit('setBookingId', $this->booking_id);
     }
 
 }
