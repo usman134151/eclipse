@@ -72,6 +72,7 @@ const DECLINED = '2';
 
     function formatTime($date)
     {
+      dd($date);
         if (empty($date)) {
             return "-";
         }
