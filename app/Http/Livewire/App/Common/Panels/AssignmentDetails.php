@@ -16,7 +16,7 @@ use Livewire\Component;
 class AssignmentDetails extends Component
 {
     public $showForm, $booking, $data = [],$bookingNumber, $providerPanelType,$co_counter, $checkout_booking_id=0,$checkin_booking_id = 0,$ci_counter = 0,$selectedProvider, $booking_service_id, $isCalendar=false;
-    protected $listeners = ['showList' => 'resetForm','setBookingId', 'openProviderCheckIn'=>'showCheckInPanel'];
+    protected $listeners = ['showList' => 'resetForm','setBookingId', 'openProviderCheckIn'=>'showCheckInPanel', 'openProviderCheckOut' => 'showCheckOutPanel'];
 
     public function render()
     {
@@ -83,6 +83,7 @@ class AssignmentDetails extends Component
             }
             $this->data['booking_services'][$key]['display_running_late'] = false;
             $this->data['booking_services'][$key]['display_check_in'] = false;
+            $this->data['booking_services'][$key]['display_check_out'] = false;
 
             $val = $service['running_late_procedure'] ? json_decode($service['running_late_procedure'], true) : null;
             if ($val) {
@@ -94,6 +95,11 @@ class AssignmentDetails extends Component
                 if (isset($val['enable_button']) && ($val['enable_button']))
                     $this->data['booking_services'][$key]['display_check_in'] = true;
             }
+            $val = json_decode($service['close_out_procedure'], true);
+            if ($val) {
+                if (isset($val['enable_button_provider']) && ($val['enable_button_provider']))
+                $this->data['booking_services'][$key]['display_check_out'] = true;
+            }
 
             $provider = BookingProvider::where(['booking_service_id' => $service['id'], 'provider_id' => Auth::id()])->first();
             $this->data['booking_services'][$key]['provider'] = $provider ? $provider->toArray() : null;
@@ -104,6 +110,8 @@ class AssignmentDetails extends Component
         if (isset($this->data['booking_services'][0])) {
             $provider = BookingProvider::where(['provider_id' => Auth::id(), 'booking_service_id' => $this->data['booking_services'][0]['id']])->first();
             $this->data['providerStatus']  =        ['return_status' => $provider ? $provider->return_status : 0];
+            $this->data['checked_in']  =$provider && $provider->check_in_status == 1 ? true  : false;
+
             if ($provider) {
                 // rateSum = total/override + additional charges
                 $this->data['totalPayment'] =  $provider->is_override_price ? $provider->override_price  : $provider->total_amount;
@@ -143,25 +151,25 @@ class AssignmentDetails extends Component
 		}
 	}
 
-    // public function showCheckOutPanel($booking_id, $booking_service_id, $bookingNumber = null, $selectedProvider = null)
-    // {
-    //     if ($bookingNumber)
-    //     $this->bookingNumber = $bookingNumber;
+    public function showCheckOutPanel($booking_id, $booking_service_id, $bookingNumber = null, $selectedProvider = null)
+    {
+        if ($bookingNumber)
+        $this->bookingNumber = $bookingNumber;
 
-    //     if ($selectedProvider)
-    //     $this->selectedProvider = $selectedProvider;
-    //     if ($this->co_counter == 0) {
-    //         $this->checkout_booking_id = 0;
-    //         $this->dispatchBrowserEvent('open-check-out', ['booking_id' => $booking_id, 'booking_service_id' => $booking_service_id]);
-    //         $this->co_counter = 1;
-    //     } else {
-    //         $this->checkout_booking_id = $booking_id;
-    //         $this->booking_service_id = $booking_service_id;
-    //         $this->co_counter = 0;
-    //         $this->providerPanelType = 2;
-    //         $this->dispatchBrowserEvent('refreshSelects');
-    //     }
-    // }
+        if ($selectedProvider)
+        $this->selectedProvider = $selectedProvider;
+        if ($this->co_counter == 0) {
+            $this->checkout_booking_id = 0;
+            $this->dispatchBrowserEvent('open-provider-check-out', ['booking_id' => $booking_id, 'booking_service_id' => $booking_service_id]);
+            $this->co_counter = 1;
+        } else {
+            $this->checkout_booking_id = $booking_id;
+            $this->booking_service_id = $booking_service_id;
+            $this->co_counter = 0;
+            // $this->providerPanelType = 2;
+            $this->dispatchBrowserEvent('refreshSelects');
+        }
+    }
 
     protected $rules = [
         'booking.provider_notes' => 'nullable|string',

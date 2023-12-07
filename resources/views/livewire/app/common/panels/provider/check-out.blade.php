@@ -597,13 +597,13 @@
                             </label>
                             @if (isset($checkout['rating']))
                                 @for ($i = 0; $i < $checkout['rating']; $i++)
-                                <span wire:click="setRating({{ $i + 1 }})">
-                                    <i class="fa fa-star fa-2x text-warning rating" ></i>
+                                    <span wire:click="setRating({{ $i + 1 }})">
+                                        <i class="fa fa-star fa-2x text-warning rating"></i>
                                     </span>
                                 @endfor
                                 @for ($i = $checkout['rating']; $i < 5; $i++)
                                     <span wire:click="setRating({{ $i + 1 }})">
-                                    <i class="far fa-star fa-2x text-warning rating" ></i>
+                                        <i class="far fa-star fa-2x text-warning rating"></i>
                                     </span>
                                 @endfor
                             @endif
