@@ -91,7 +91,9 @@ final class ProviderScreenings extends PowerGridComponent
             ->addColumn('first_name')
             ->addColumn('last_name')
             ->addColumn('email')
-            ->addColumn('created_at')
+            ->addColumn('created_at_formatted', function (User $model) {
+                return formatDateTime($model->created_at);
+            })
             ->addColumn('status', function (User $model) {
                 return ($model->status);
             })
@@ -126,7 +128,7 @@ final class ProviderScreenings extends PowerGridComponent
             Column::make('Frist Name', 'first_name', ''),
             Column::make('Last Name', 'last_name', ''),
             Column::make('Email', 'email', ''),
-            Column::make('Date Submitted', 'created_at', ''),
+            Column::make('Date Submitted', 'created_at_formatted', 'created_at'),
             Column::make('Status', 'status', '')->toggleable(1, 'Denied', 'Approved'),
             Column::make('Actions', 'edit')->visibleInExport(false) //updated by Amna Bilal to hide action column from export
         ];

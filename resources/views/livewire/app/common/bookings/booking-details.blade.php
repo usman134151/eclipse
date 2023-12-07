@@ -905,7 +905,7 @@
                                                                 </div>
                                                                 <div class="col-lg-7 align-self-center">
                                                                     <div class="font-family-tertiary">
-                                                                        {{ date_format(date_create($service['created_at']), 'd/m/Y h:i A') }}
+                                                                        {{ formatDateTime(date_create($service['created_at'])) }}
                                                                     </div>
                                                                 </div>
                                                             </div>
