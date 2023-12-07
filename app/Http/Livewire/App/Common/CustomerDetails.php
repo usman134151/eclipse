@@ -148,8 +148,8 @@ class CustomerDetails extends Component
 
 		$lastLogin = UserLoginAddress::where('user_id', $this->userid)->latest('created_at')->first();
 		if ($lastLogin) {
-			$createdAt = $lastLogin->value('created_at');
-			$this->user['login_date'] = $createdAt->format('d-m-Y');
+			$createdAt = $lastLogin->created_at;
+			$this->user['login_date'] = $createdAt->format('m-d-Y');
 			$this->user['login_time'] = $createdAt->format('H:i A');
 			$this->user['login_ip'] = $lastLogin->ip_address;
 		} else {

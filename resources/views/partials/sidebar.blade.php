@@ -671,7 +671,7 @@
                 </ul>
               </li>
               @endif
-              @if(userHasPermission(12,1))
+              --}}
               <li role="menuitem" class="nav-item has-sub">
                 <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
                   <svg aria-label="Platform Integrations"  width="21" height="21" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
@@ -717,7 +717,7 @@
 
                 </ul>
               </li>
-              --}}
+            
               @endif
               @if(userHasPermission(13,1))
               <li role="menuitem" class="nav-item has-sub">

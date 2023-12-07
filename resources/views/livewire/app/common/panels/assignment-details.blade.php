@@ -481,7 +481,7 @@
                                                         N/A
                                                     @endif
                                                 </div>
-                                                <a href="#"
+                                                {{-- <a href="#"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                     <svg aria-label="Edit" width="20" height="20"
                                                         viewBox="0 0 20 20">
@@ -489,7 +489,7 @@
                                                         </use>
                                                     </svg>
 
-                                                </a>
+                                                </a> --}}
                                             </div>
                                         </div>
                                     </div>
@@ -738,15 +738,16 @@
                                 <label class="form-label" for="provider_notes">
                                     Provider Notes
                                 </label>
-                                <textarea class="form-control" name="provider_notes" id="provider_notes" wire:model.defer="booking.provider_notes"
-                                    rows="4" cols="4"></textarea>
+                                {{-- <textarea class="form-control" name="provider_notes" id="provider_notes" wire:model.defer="booking.provider_notes"
+                                    rows="4" cols="4"></textarea> --}}<br/>
+                                    {{$booking->provider_notes ? $booking->provider_notes : 'N/A'}}
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-12">
+                {{-- <div class="col-lg-12">
                     <a href="#" class="btn btn-primary rounded" wire:click="updateNotes">Save Notes</a>
-                </div>
+                </div> --}}
             </div>
             <div class="row mt-4">
                 <div class="col-12 d-flex form-actions">

@@ -103,7 +103,7 @@
                             <td>
                                 <div class="fw-semibold">{{ $booking->booking_number }}</div>
                                 <div>
-                                    {{ $booking->booking_start_at ? date_format(date_create($booking->booking_start_at), 'd/m/Y') : '' }}
+                                    {{ $booking->booking_start_at ? formatDate(date_create($booking->booking_start_at)) : '' }}
                                     <div>
                                         {{ $booking->booking_start_at ? date_format(date_create($booking->booking_start_at), 'h:i A ') : '' }}
                                         to
