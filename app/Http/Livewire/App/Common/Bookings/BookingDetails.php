@@ -193,6 +193,10 @@ class BookingDetails extends Component
 			($this->booking['payment']['outstanding_amount'] ?? 0) +
 			($this->booking['payment']['modification_fee'] ?? 0)
 		);
+
+		if($this->booking['payment'])
+			$this->booking['payment']['is_override'] ? $this->booking['payment']['override_price'] = $totalCost : $this->booking['payment']['total_amount'] = $totalCost;
+
 		if ($totalCost > 0) {
 			$this->data['profitMarginPercent'] = $this->booking['payment'] ? ($this->data['profitMargin'] / $totalCost * 100) : 0;
 			$this->data['profitMarginPercent'] = number_format($this->data['profitMarginPercent'], 2);

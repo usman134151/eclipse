@@ -495,7 +495,7 @@
                                                                             class="col-form-label"
                                                                             for="s-date">Start Date:</label></div>
                                                                     <div class="col-md-8 align-self-center">
-                                                                        <div class="font-family-secondary">17/01/2023
+                                                                        <div class="font-family-secondary">01/17/2023
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -572,7 +572,7 @@
                                                                             for="date">Date:</label></div>
                                                                     <div class="col-md-5 align-self-center">
                                                                         <div class="font-family-secondary">
-                                                                            {{ $user['last_login'] ? date_format(date_create($user['last_login']['created_at']), 'd/m/Y') : 'N/A' }}
+                                                                            {{ $user['last_login'] ? formatDate(date_create($user['last_login']['created_at'])) : 'N/A' }}
                                                                         </div>
                                                                     </div>
                                                                 </div>
