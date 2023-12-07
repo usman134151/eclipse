@@ -204,7 +204,6 @@ class Calendar extends Component
 						$q->where('attendees', 'LIKE', '%' . $user->id . '%')
 							->orWhere('service_consumer', 'LIKE', '%' . $user->id . '%');
 					});
-
 					// check if the user is supervisor or booking manager of a customer of the booking
 					$associated_user = RoleUserDetail::whereIn('role_id', [5, 9])->where('user_id', $this->user_id)->get()->pluck('associated_user');
 					$g->orWhereIn('customer_id', $associated_user);
