@@ -158,6 +158,13 @@ class BookingDetails extends Component
 		if ($this->booking->status == 2) {
 			$this->status = 'assigned';
 		}
+		if ($this->booking->status ==3) {	//cancelled 
+			$this->status = 'unbill-cancelled';
+		}
+
+		if ($this->booking->status == 4) {	//cancelled 
+			$this->status = 'cancelled';
+		}
 
 		$start_date = Carbon::parse($this->booking->booking_start_at);
 		
