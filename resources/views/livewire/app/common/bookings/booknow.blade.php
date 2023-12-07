@@ -1116,25 +1116,27 @@
                                                         <div class="font-family-tertiary">{{formatPayment($service['additional_charges_total'])}}</div>
                                                     </div>
                                                 </div> 
-                                                <div class="mt-3"><h3 style="color:#023DB0">Additional Payment </h3></div>
-                                                @foreach($service['additional_payments'] as $payment)
-                                                <div class="row">
-                                                    <div class="col-lg-4">
-                                                        <label class="col-form-label">{{$payment['label']}}</label>
-                                                    </div>
-                                                    <div class="col-lg-8 align-self-center">
-                                                        <div class="font-family-tertiary">{{formatPayment($payment['charges'])}}</div>
-                                                    </div>
-                                                </div> 
-                                               @endforeach
-                                                <div class="row border-top">
-                                                    <div class="col-lg-4">
-                                                        <label class="col-form-label">Total:</label>
-                                                    </div>
-                                                    <div class="col-lg-8 align-self-center">
-                                                        <div class="font-family-tertiary">{{formatPayment($service['service_payment_total'])}}</div>
-                                                    </div>
-                                                </div> 
+                                                 @if(!$isCustomer) 
+                                                    <div class="mt-3"><h3 style="color:#023DB0">Additional Payment </h3></div>
+                                                    @foreach($service['additional_payments'] as $payment)
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <label class="col-form-label">{{$payment['label']}}</label>
+                                                        </div>
+                                                        <div class="col-lg-8 align-self-center">
+                                                            <div class="font-family-tertiary">{{formatPayment($payment['charges'])}}</div>
+                                                        </div>
+                                                    </div> 
+                                                @endforeach
+                                                    <div class="row border-top">
+                                                        <div class="col-lg-4">
+                                                            <label class="col-form-label">Total:</label>
+                                                        </div>
+                                                        <div class="col-lg-8 align-self-center">
+                                                            <div class="font-family-tertiary">{{formatPayment($service['service_payment_total'])}}</div>
+                                                        </div>
+                                                    </div> 
+                                                 @endif
 
                   
                                             </div>
