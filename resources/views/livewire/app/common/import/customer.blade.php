@@ -237,6 +237,16 @@
         </table>
       </div>
 
+	  	<div class="col-lg-12 d-lg-flex gap-5 justify-content-center between-section-segment-spacing">
+			<div class="form-check mb-lg-0">
+				<input class="form-check-input" type="checkbox" value="1" id="email_invitation"
+					wire:model.defer="email_invitation">
+				<label class="form-check-label" for="email_invitation">
+					Send Invitation Email to the Customers
+				</label>
+			</div>
+		</div>
+
 	  <button wire:click="save" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">Import Data</button>
 	  <span class="d-inline-block invalid-feedback mt-2">{{ $errorMessage }}</span>
     @endif
