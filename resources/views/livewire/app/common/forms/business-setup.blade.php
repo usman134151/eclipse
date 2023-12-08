@@ -199,7 +199,7 @@
                                             </div>
                                             <div class="col-lg-8 mt-3">
                                                 <button class="btn btn-secondary btn-custom btn-sm rounded" wire:click.prevent="resetColours">
-                                                    <span class="btn-text">Reset Colours</span>
+                                                    <span class="btn-text">Reset Colors</span>
                                                 </button>
                                             </div>
                                         </div>
