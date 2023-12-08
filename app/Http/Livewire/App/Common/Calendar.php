@@ -167,7 +167,7 @@ class Calendar extends Component
 	// Updated by Maarooshaa Asim to get booking events for dashboard calendar
 	private function getCalendarEvents()
 	{
-	
+
 		$query = Booking::query();
 		$query->where('bookings.type', 1);
 
@@ -204,18 +204,20 @@ class Calendar extends Component
 						$q->where('attendees', 'LIKE', '%' . $user->id . '%')
 							->orWhere('service_consumer', 'LIKE', '%' . $user->id . '%');
 					});
-
 					// check if the user is supervisor or booking manager of a customer of the booking
 					$associated_user = RoleUserDetail::whereIn('role_id', [5, 9])->where('user_id', $this->user_id)->get()->pluck('associated_user');
 					$g->orWhereIn('customer_id', $associated_user);
 				});
 			}
 		}
-		if ($this->user_id && !$this->providerProfile && !$this->isCustomer)
+		if ($this->user_id && !$this->providerProfile && !$this->isCustomer) {
+			
 			$query->join('booking_providers', function ($join) {
 				$join->where('booking_providers.provider_id', $this->user_id);
 				$join->on('booking_providers.booking_id', 'bookings.id');
 			});
+			
+		}
 		if ($this->user_id && $this->isCustomer) {
 			$query->where('bookings.company_id', Auth::user()->company_name);
 
@@ -244,10 +246,27 @@ class Calendar extends Component
 			}
 		}
 		$query = $this->applySearchFilter($query);
-		$events = $query->select('bookings.id', 'booking_number', 'booking_title', 'customer_id', 'physical_address_id', 'booking_start_at', 'booking_end_at', 'status', 'is_closed', 'provider_count')
-			->with(['physicalAddress','customer'])
+		$events = $query->select('bookings.id', 'booking_number', 'booking_title', 'customer_id', 'physical_address_id', 'booking_start_at', 'booking_end_at', 'bookings.status', 'is_closed', 'provider_count')
+			->groupBy([ 'bookings.id', 'booking_number', 'booking_title', 'customer_id', 'physical_address_id', 'booking_start_at', 'booking_end_at', 'bookings.status', 'is_closed', 'provider_count'])
+			->with(['physicalAddress', 'customer'])
 			->get()
 			->toArray();
+		//adding bookings that user has been invited to  -- Maarooshaa
+		$inv_bookings = Booking::join('booking_invitation_providers', function ($join) {
+			$join->where('booking_invitation_providers.provider_id', $this->user_id);
+			$join->on('booking_invitation_providers.booking_id', 'bookings.id');
+			$join->where('booking_invitation_providers.status', '<', 2);
+			$join->whereNotIn('booking_invitation_providers.booking_id', function ($q) {
+				//removing bookings with invitations that have already been assigned 
+				$q->select('booking_providers.booking_id')->from('booking_providers')->where('booking_providers.provider_id', $this->user_id);
+			});
+		})->select('booking_invitation_providers.status as invitation_status','bookings.id', 'booking_number', 'booking_title', 'customer_id', 'physical_address_id', 'booking_start_at', 'booking_end_at', 'bookings.status', 'is_closed', 'provider_count')
+			->groupBy(['invitation_status','bookings.id', 'booking_number', 'booking_title', 'customer_id', 'physical_address_id', 'booking_start_at', 'booking_end_at', 'bookings.status', 'is_closed', 'provider_count'])
+			->with(['physicalAddress', 'customer'])
+			->get()
+			->toArray();;
+
+		$events = array_merge($events , $inv_bookings);
 		$newEvents = [];
 		$base = '/admin';
 		if ($this->isCustomer)
@@ -264,39 +283,39 @@ class Calendar extends Component
 			}
 
 			$mappingCode = "";
-
-			if ($is_closed == 1) {
-				$mappingCode = "Completed Assignment";
-			} elseif ($status >= 3) {
-				$mappingCode = "Cancelled";
-			} elseif ($status == 1 || $status == 2) {
-				$providers = BookingProvider::where("booking_id", $id)->get();
-				if (count($providers) == 0) {
-					$mappingCode = "Unassigned";
-				} else {
-					if ($provider_count != count($providers)) {
-						$mappingCode = "Partially Assigned";
+			if (isset($invitation_status) && !is_null($invitation_status))
+				$mappingCode = "Invitation";
+			else {
+				if ($is_closed == 1) {
+					$mappingCode = "Completed Assignment";
+				} elseif ($status >= 3) {
+					$mappingCode = "Cancelled";
+				} elseif ($status == 1 || $status == 2) {
+					$providers = BookingProvider::where("booking_id", $id)->get();
+					if (count($providers) == 0) {
+						$mappingCode = "Unassigned";
 					} else {
-						$checked_in = $providers->contains('check_in_status', 1);
-						$running_late = $providers->contains('check_in_status', 2);
-
-						if ($checked_in) {
-							$mappingCode = "Provider Checked-in";
-						} elseif ($running_late) {
-							$mappingCode = "Provider Running Late";
+						if ($provider_count != count($providers)) {
+							$mappingCode = "Partially Assigned";
 						} else {
-							$mappingCode = "Fully assigned";
+							$checked_in = $providers->contains('check_in_status', 1);
+							$running_late = $providers->contains('check_in_status', 2);
+
+							if ($checked_in) {
+								$mappingCode = "Provider Checked-in";
+							} elseif ($running_late) {
+								$mappingCode = "Provider Running Late";
+							} else {
+								$mappingCode = "Fully assigned";
+							}
 						}
 					}
+				} else {
+					$mappingCode = "pending";
 				}
-			} else {
-				$mappingCode = "pending";
 			}
-
-			if(session()->get('isProvider'))
-			{
-				if($mappingCode === "Partially Assigned")
-				{
+			if (session()->get('isProvider')) {
+				if ($mappingCode === "Partially Assigned") {
 					$mappingCode = "Fully assigned";
 				}
 			}
@@ -316,19 +335,17 @@ class Calendar extends Component
 			$newEvents[$key]['timeSlot'] =  formatTime($booking_start_at) . ' - ' . formatTime($booking_end_at);
 			$description = '<div class="pe-3">';
 			$description .= '<p class="mb-3 mt-2">Assignment No.: ' . $booking_number . ' </p>';
-			$description .= '<p class="my-3">Customer: ' . ($customer!=null ? $customer['name'] : 'N/A') . ' </p>';
+			$description .= '<p class="my-3">Customer: ' . ($customer != null ? $customer['name'] : 'N/A') . ' </p>';
 			$description .= '<p class="my-3">No. of Providers: ' . $provider_count . ' </p>';
 			// $description .= '<p class="mb-1">Assign To.: ' . $booking_number . ' </p>';
-			if($physical_address)
-			$description .= '<p class="my-3 ">Location: ' .  $physical_address['address_line1'] . ', ' . $physical_address['address_line2'] . ', ' . $physical_address['city'] . ', ' . $physical_address['state'] . ', ' . $physical_address['country']   . ' </p>';
+			if ($physical_address)
+				$description .= '<p class="my-3 ">Location: ' .  $physical_address['address_line1'] . ', ' . $physical_address['address_line2'] . ', ' . $physical_address['city'] . ', ' . $physical_address['state'] . ', ' . $physical_address['country']   . ' </p>';
 			$description .= '<p class="my-3">Status: ' . $mappingCode . ' </p>';
 			$description .= "</div>";
 			$newEvents[$key]['description'] = $description;
-
-			
 		}
 
-		
+
 
 		return json_encode($newEvents);
 	}
