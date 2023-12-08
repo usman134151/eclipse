@@ -264,7 +264,7 @@
                     <button type="button" class="btn btn-outline-dark rounded"
                         x-on:click="offcanvasOpenCheckIn = !offcanvasOpenCheckIn">Back</button>
                     <button type="submit" class="btn btn-primary rounded" wire:loading.attr="disabled"
-                        x-on:close-check-in-panel.window="offcanvasOpenCheckIn = !offcanvasOpenCheckIn; assignmentDetails=!assignmentDetails">Submit</button>
+                        x-on:close-check-in-panel.window="offcanvasOpenCheckIn = !offcanvasOpenCheckIn; assignmentDetails=false">Submit</button>
                 @endif
             </div>
         </div>
