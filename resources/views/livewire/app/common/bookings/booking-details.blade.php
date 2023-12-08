@@ -1464,6 +1464,46 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <hr class="border-separate-sm">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                <label class="form-label mb-md-0">Booking Total:</label>
+                                            </div>
+                                            <div class="col-md-3 align-self-center">
+                                                <div class="font-family-tertiary">
+                                                    @if (!is_null($booking['payment']) && !is_null($booking['payment']['total_amount']))
+                                                        {{ formatPayment($booking['payment']['total_amount']) }}
+                                                    @else
+                                                        $00.00
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @if(!is_null($booking['payment']) && !is_null($booking['payment']['override_amount']))
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <hr class="border-separate-sm">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                <label class="form-label mb-md-0">Over-rider Total:</label>
+                                            </div>
+                                            <div class="col-md-3 align-self-center">
+                                                <div class="font-family-tertiary">
+                                                    @if (!is_null($booking['payment']) && !is_null($booking['payment']['override_amount']))
+                                                        {{ formatPayment($booking['payment']['override_amount']) }}
+                                                    @else
+                                                        $00.00
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endif
                                         @if (
                                             !$isCustomer ||
                                                 (($isCustomer && (Auth::id() == $booking['billing_manager_id'] || Auth::id() == $booking['supervisor'])) ||

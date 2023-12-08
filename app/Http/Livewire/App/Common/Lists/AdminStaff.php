@@ -124,16 +124,31 @@ final class AdminStaff extends PowerGridComponent
 		})
 
 		->addColumn('edit', function(User $model) {
+			$deleteButton = ($model->id != 1) ? "<a href='#' title='Delete Provider' aria-label='Delete Provider' wire:click='deleteItem(".$model->id.")' class='btn btn-sm btn-secondary rounded btn-hs-icon'><svg aria-label='Delete Accommodation' width='21' height='21' viewBox='0 0 21 21' fill='none' xmlns='http://www.w3.org/2000/svg'><use xlink:href='/css/sprite.svg#delete-icon'></use></svg></a>" : "";
+		
 			return "<div class='d-flex actions'>
-            <a href='".route('tenant.edit-staff',['userID'=>encrypt($model->id)]). "' title='Edit Team' aria-label='Edit Team' class='btn btn-sm btn-secondary rounded btn-hs-icon'><svg title='Edit Team' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#pencil'></use></svg></a>
-            <a href='" . route('tenant.profile-staff', ['userID' => encrypt($model->id)]) . "' title='View Team' aria-label='View Team' class='btn btn-sm btn-secondary rounded btn-hs-icon' ><svg aria-label='View Team' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#view'><use></svg></a>
-            </div>";
+				<a href='".route('tenant.edit-staff',['userID'=>encrypt($model->id)]). "' title='Edit Team' aria-label='Edit Team' class='btn btn-sm btn-secondary rounded btn-hs-icon'><svg title='Edit Team' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#pencil'></use></svg></a>
+				<a href='" . route('tenant.profile-staff', ['userID' => encrypt($model->id)]) . "' title='View Team' aria-label='View Team' class='btn btn-sm btn-secondary rounded btn-hs-icon' ><svg aria-label='View Team' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#view'><use></svg></a>" .
+				$deleteButton .
+				"</div>";
 		});
 	}
     function edit($id){
         // Emits an event to show the form for editing a record
         $this->emit('showForm', User::with(['userdetail'])->find($id));
     }
+
+	public function deleteItem($id)
+	{
+		$this->emit('updateRecordId', $id);
+
+		// Dispatches a browser event to show a confirmation modal
+		$this->dispatchBrowserEvent('swal:confirm', [
+			'type' => 'warning',
+			'title' => 'Delete Operation',
+			'text' => 'Are you sure you want to delete this record?',
+		]);
+	}
 
 	/*
 	|--------------------------------------------------------------------------
