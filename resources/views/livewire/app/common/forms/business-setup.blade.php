@@ -197,6 +197,11 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col-lg-8 mt-3">
+                                                <button class="btn btn-secondary btn-custom btn-sm rounded" wire:click.prevent="resetColours">
+                                                    <span class="btn-text">Reset Colours</span>
+                                                </button>
+                                            </div>
                                         </div>
                                         <div class="row inner-section-segment-spacing">
                                             <div class="col-lg-6">
@@ -1919,6 +1924,14 @@
                 updateVal($(this).attr('id'), $(this).val());
             });
 
+        });
+
+        document.addEventListener('livewire:load', function () {
+            Livewire.on('refreshPage', function () {
+                window.location.reload(); // Reloads the entire page
+                // Or use Livewire's `$refresh()` method to refresh just the component
+                // Livewire.emit('refresh');
+            });
         });
     </script>
 @endpush
