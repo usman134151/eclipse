@@ -101,7 +101,7 @@ class LoginController extends Controller
 
 		$credentials = $request->only('email', 'password');
 		if (Auth::attempt($credentials)) {
-			// if (Auth::user()->status == 1) {
+			if (Auth::user()->status == 1) {
 			if (!$request->cookie('savedBrowser') && !Helper::checkUserSavedBrowser() && env('2FA')) {
 
 				####Task:OPT Add Services (Sakhawat Kamran) ####
@@ -172,11 +172,10 @@ class LoginController extends Controller
 
 				return redirect('home');
 			}
-			// } else {
-			//   Auth::logout();
-			// return redirect("login")->withErrors(['loginError' => __('auth.notActiveError')]);
-			// die();
-			//}
+			} else {
+			  Auth::logout();
+			return redirect("login")->withErrors(['loginError' => __('auth.notActiveError')]);
+			}
 		}
 
 		return redirect("login")->withErrors(['loginError' => __('auth.loginError')]);
