@@ -157,7 +157,7 @@
 
                     </div>
                     <div class="col-lg-3 gap-2 d-flex form-check">
-                        <input class="form-check-input" type="checkbox" wire:model.defer="permissions" value="4">
+                        <input class="form-check-input" type="checkbox" wire:click="selectAllCustomers" wire:model.defer="permissions" value="4">
 
                         <p>Customers</p>
                     </div>
