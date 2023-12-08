@@ -30,6 +30,19 @@ class AddDocuments extends Component
             $this->isProviderPanel = true;
     }
 
+    public function selectAllCustomers()
+    {
+        $customers = ["5", "6", "7", "8", "9"];
+
+        if (in_array(4, $this->permissions))
+            $this->permissions = array_merge($this->permissions, $customers);
+        else {
+            $this->permissions = array_diff($this->permissions, $customers);
+        }
+
+        $this->permissions = array_values(array_unique($this->permissions));
+    }
+
     public function rules()
     {
         return [
@@ -63,7 +76,7 @@ class AddDocuments extends Component
         $this->document['booking_id'] = $this->booking_id;
         BookingDocument::create($this->document);
 
-        $data['newAttachmentData']=$this->document;
+        $data['newAttachmentData'] = $this->document;
         // NotificationService::sendNotification('Booking: New Attachment Upload', $data);
 
         $this->dispatchBrowserEvent('close-add-documents');
