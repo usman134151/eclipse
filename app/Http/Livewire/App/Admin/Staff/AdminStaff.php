@@ -3,18 +3,20 @@
 namespace App\Http\Livewire\App\Admin\Staff;
 
 use App\Models\Tenant\User;
+use App\Services\App\UserService;
 use Livewire\Component;
 
 class AdminStaff extends Component
 {
 	public $showForm;
-	public $showProfile,$user=null;
+	public $showProfile,$user=null, $recordId;
 
     protected $listeners = [
 		'showList' => 'resetForm',
 		'showProfile' => 'showProfile',
 		'showForm' => 'showForm', // show form when the parent component requests it
 		'updateRecordId' => 'updateRecordId', // update the ID of the record being edited/deleted
+		'delete'=> 'deleteRecord',
 	];
 
 	public function mount($showProfile)
@@ -97,5 +99,12 @@ class AdminStaff extends Component
 	public function updateRecordId($id)
 	{
 		$this->recordId = $id;
+	}
+
+	public function deleteRecord()
+	{
+		UserService::deleteAccount($this->recordId);
+		// Emit an event to reset the form and display a confirmation message
+		$this->emitSelf('showList', 'Record has been deleted');
 	}
 }
