@@ -278,7 +278,7 @@ class Calendar extends Component
 
 			$mappingCode = "";
 			if (isset($invitation_status) && !is_null($invitation_status))
-				$mappingCode = "pending";
+				$mappingCode = "Invitation";
 			else {
 				if ($is_closed == 1) {
 					$mappingCode = "Completed Assignment";
