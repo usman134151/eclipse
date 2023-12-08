@@ -226,6 +226,12 @@ class Calendar extends Component
 					$g->where('customer_id', $this->user_id);
 					$g->orWhere('supervisor', $this->user_id);
 					$g->orWhere('billing_manager_id', 'LIKE', "%" . $this->user_id . "%");
+					$g->orWhereIn('bookings.id',function($sc_query)use ($user){
+						$sc_query->from('booking_services')->select('booking_id')
+						->where('booking_services.service_consumer', 'LIKE', "%" . $this->user_id . "%")
+						->orWhere('booking_services.attendees', 'LIKE', "%" . $this->user_id . "%");
+					});
+
 					// if dept supervisor, then show all dept related bookings
 					$u_dept = $user->supervised_departments ? $user->supervised_departments->pluck('id')->toArray() : null;
 					if ($u_dept && count($u_dept)) {
