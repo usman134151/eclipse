@@ -738,13 +738,13 @@
                                 <label class="form-label" for="provider_notes">
                                     Provider Notes
                                 </label>
-                                <textarea class="form-control" name="provider_notes" id="provider_notes" wire:model.defer="booking.provider_notes"
+                                <textarea {{session()->get('isProvider') ? 'disabled':''}} class="form-control" name="provider_notes" id="provider_notes" wire:model.defer="booking.provider_notes"
                                     rows="4" cols="4"></textarea>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-12">
+                <div class="col-lg-12 {{session()->get('isProvider') ? 'hidden':''}}">
                     <a href="#" class="btn btn-primary rounded" wire:click="updateNotes">Save Notes</a>
                 </div>
             </div>
