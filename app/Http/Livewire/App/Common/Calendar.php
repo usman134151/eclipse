@@ -249,7 +249,7 @@ class Calendar extends Component
 		$inv_bookings = Booking::join('booking_invitation_providers', function ($join) {
 			$join->where('booking_invitation_providers.provider_id', $this->user_id);
 			$join->on('booking_invitation_providers.booking_id', 'bookings.id');
-			$join->where('booking_invitation_providers.status', 0);	//only pending ones shown here
+			$join->where('booking_invitation_providers.status', '<', 2);
 			$join->whereNotIn('booking_invitation_providers.booking_id', function ($q) {
 				//removing bookings with invitations that have already been assigned 
 				$q->select('booking_providers.booking_id')->from('booking_providers')->where('booking_providers.provider_id', $this->user_id);
