@@ -1,4 +1,4 @@
-@props(['type' => '', 'hideProvider' => false, 'filterProviders' => [], 'bmanagers' => [], 'setupValues' => [], 'tags'=>[]])
+@props(['type' => '', 'hideProvider' => false, 'filterProviders' => [], 'bmanagers' => [], 'setupValues' => [], 'tags'=>[], 'isPendingInvoices' => false])
 <div class="row">
     @if ($type == 'invoice-filters')
         <div class="col-lg-5 pe-lg-3 ">
@@ -37,6 +37,8 @@
             </div>
         @endif
     @endif
+    @if(!$isPendingInvoices)
+
     <div class="col-lg-2 d-flex text-nowrap align-items-center align-self-end " style="margin-left: -10px;">
 
         <a class="btn btn-inactive dropdown-toggle rounded" data-bs-toggle="collapse" href="#collapseAdvanceFilter"
@@ -169,6 +171,7 @@
         </div>
     </div>
 </div>
+@endif
 <div class="row">
     <div class="col-lg-4 d-flex mb-5  mt-1">
         <div class="text-start my-1 mb-lg-0 me-1 ">

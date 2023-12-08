@@ -2,7 +2,7 @@
 <x-off-canvas show="invoiceGeneratorbookings" :allowBackdrop="false" size="fullscreen">
     <x-slot name="title">Create Invoice</x-slot>
     @if ($company_id > 0)
-        @livewire('app.common.panels.invoices.invoice-generator-bookings', ['company_id' => $company_id])
+        @livewire('app.common.panels.invoices.invoice-generator-bookings', ['company_id' => $company_id, 'filter_bmanager' => $filter_bmanager])
     @endif
     <x-slot name="outsideBody">
 

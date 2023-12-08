@@ -72,10 +72,25 @@ const DECLINED = '2';
 
     function formatTime($date)
     {
-      if(empty($date)){
+      if (empty($date)) {
         return "-";
-      }
-      return Carbon::parse($date)->format('g:i A');
+       }
+    // Try to determine if the time is in a 12-hour or 24-hour format
+    if (preg_match('/\b(?:[01]?[0-9]|2[0-3]):[0-5][0-9]\b/', $date)) {
+      // 24-hour format
+      $date=explode(' ',$date);
+      if(count($date)>0)
+      return $date[1];
+      else
+       return $date;
+      //return Carbon::createFromFormat('H:i', $date)->format('g:i');
+    } elseif (preg_match('/\b(?:[01]?[0-9]|2[0-3]):[0-5][0-9] (AM|PM)\b/i', $date)) {
+      // 12-hour format with AM/PM
+      return Carbon::createFromFormat('g:i A', $date)->format('g:i A');
+    } else {
+      // Invalid format
+      return $date;
+    }
 
     }
 
