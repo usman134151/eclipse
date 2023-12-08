@@ -108,11 +108,13 @@
                                                 <label class="col-form-label text-primary mb-lg-0"
                                                     for="status-column">
                                                     Status:
-                                                </label>
+                                                </label><br />
+                                               
 
                                                 <div>
                                                     <select class="form-select form-select-sm" id="status"
-                                                        name="status" wire:model.defer="status">
+                                                        name="status"  disabled>
+                                                        <option value="pending">Update status</option>
                                                         <option value="pending">Pending</option>
                                                         <option value='assigned'>Assigned</option>
                                                         <option value='unassigned'>Un-assigned</option>
@@ -121,10 +123,12 @@
 
 
 
-                                                    </select>
+                                                    </select> <small>(coming soon)</small>
+                                                    
                                                 </div>
-
+                                              
                                             </div>
+                                          
                                         </div>
                                         <div class="col-lg col-12 mb-4">
                                             <div class="mb-4">
