@@ -53,6 +53,40 @@
             }
         </style>
 
+	@if(session()->has('theme'))
+		@php
+			$fgcolor = '';
+			$bgcolor = '';
+
+			if(session('theme')) {
+				if(session()->has('dark_foreground_colour') && session()->has('dark_default_colour')) {
+					$fgcolor = session('dark_foreground_colour');
+					$bgcolor = session('dark_default_colour');
+				}
+			} else {
+				if(session()->has('foreground_colour') && session()->has('default_colour')) {
+					$fgcolor = session('foreground_colour');
+					$bgcolor = session('default_colour');
+				}
+			}
+		@endphp
+
+		@if(!empty($fgcolor) && !empty($bgcolor))
+			<style>
+				body {
+					color: {{ $fgcolor }}; /* Default text color */
+					background-color: {{ $bgcolor }} !important; /* Default background color */
+				}
+				label, div, a {
+					color: {{$fgcolor}} !important
+				}
+				.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+					color: {{$fgcolor}}
+				}
+			</style>
+		@endif
+	@endif
+
         <style>
 		[x-cloak]
 		{

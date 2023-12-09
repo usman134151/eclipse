@@ -12,4 +12,11 @@
     Livewire.emit('showCheckInPanel', booking_id, booking_service_id); 
   });
 
+    window.addEventListener('open-provider-check-in', function(event) {
+    var booking_id = event.detail.booking_id;
+    var booking_service_id = event.detail.booking_service_id;
+
+    Livewire.emit('openProviderCheckIn', booking_id, booking_service_id); 
+  });
+
 </script>

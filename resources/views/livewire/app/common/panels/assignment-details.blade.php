@@ -1,4 +1,4 @@
-<div>
+<div x-data="{ addDocuments: false, offcanvasOpenCheckIn: false, offcanvasOpenCheckOut: false, assignmentDetails: false, addReimbursement: false, step: 1 }">
     <ul class="nav nav-tabs border-0 mt-4" id="assignment-details-tab" role="tablist">
         <li class="nav-item" role="presentation">
             <button class="nav-link active btn rounded p-3" :class="(step == 1) ? 'active' : 'btn-secondary border-0'"
@@ -72,23 +72,32 @@
                             </button>
                             @if ($data['booking_services'][0]['display_check_in'] && $data['isToday'])
                                 <button type="button" @click="offcanvasOpenCheckIn = true"
-                                    wire:click="$emit('showCheckInPanel','{{ $booking['id'] }}','{{ $data['booking_services'][0]['id'] }}','{{ $booking['booking_number'] }}')"
+                                    wire:click="$emit('{{ $isCalendar ? 'openProviderCheckIn' : 'showCheckInPanel' }}','{{ $booking['id'] }}','{{ $data['booking_services'][0]['id'] }}','{{ $booking['booking_number'] }}')"
                                     title="Check In" aria-label="Check In"
-                                    class="btn btn-primary rounded text-sm d-inline-flex gap-1 align-items-center px-3">
+                                    class="btn btn-primary btn-hs-icon rounded text-sm d-inline-flex gap-1 align-items-center px-3">
                                     <svg aria-label="Check In" width="22" height="22" viewBox="0 0 22 22"
                                         fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <use xlink:href="/css/provider.svg#check-in">
                                         </use>
                                     </svg>
-                                    <span>Check In</span>
+                                    {{-- <span>Check In</span> --}}
                                 </button>
                             @endif
-                            @if (
-                                $data['booking_services'][0]['display_running_late'] &&
-                                    ($this->data['booking_services'][0]['provider'] &&
-                                        $this->data['booking_services'][0]['provider']['check_in_status'] == 0) &&
-                                    $data['isToday']
-                            )
+                            @if ($data['booking_services'][0]['display_check_out'] && $data['isToday'] && $data['checked_in'])
+                                <button type="button" @click="offcanvasOpenCheckOut = true"
+                                    wire:click="$emit('openProviderCheckOut','{{ $booking['id'] }}','{{ $data['booking_services'][0]['id'] }}','{{ $booking['booking_number'] }}')"
+                                    title="Check Out" aria-label="Check Out"
+                                    class="btn btn-primary btn-hs-icon rounded text-sm d-inline-flex gap-1 align-items-center px-3">
+                                    <svg aria-label="Check In" width="22" height="22" viewBox="0 0 22 22"
+                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <use xlink:href="/css/provider.svg#check-out">
+                                        </use>
+                                    </svg>
+                                    {{-- <span>Check Out</span> --}}
+
+                                </button>
+                            @endif
+                            @if ($data['booking_services'][0]['display_running_late'] && !$data['checked_in'] && $data['isToday'])
                                 <button type="button"
                                     class="btn btn-primary rounded text-sm d-inline-flex gap-1 align-items-center px-3"
                                     data-bs-toggle="modal" data-bs-target="#runningLateModal"
@@ -135,7 +144,7 @@
                                     <span>Running Late</span>
                                 </button>
                             @endif
-                            @if (!$data['isPast'] && $this->data['providerStatus'] && $this->data['providerStatus']['return_status'] == 0)
+                            @if (!$data['isPast'] && $this->data['providerStatus'] && $this->data['providerStatus']['return_status'] == 0 && !$data['checked_in'])
                                 <button type="button"
                                     class="btn btn-primary rounded text-sm d-inline-flex gap-1 align-items-center px-3"
                                     wire:click="$emit('openReturnAssignmentModal',{{ $booking['id'] }}, {{ $booking['service_id'] }})"
@@ -288,38 +297,38 @@
                         </div>
                     </div>
                 </div>
-                @if($booking->requester_information == 0)
-                <div class="col-lg-12 mb-3">
-                    <div class="row">
-                        <div class="col-lg-5">
-                            <label class="col-form-label">Requester:</label>
-                        </div>
-                        <div class="col-lg-7 align-self-center">
-                            <div>{{ $booking->customer ? $booking->customer->name : 'N/A' }}</div>
+                @if ($booking->requester_information == 0)
+                    <div class="col-lg-12 mb-3">
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <label class="col-form-label">Requester:</label>
+                            </div>
+                            <div class="col-lg-7 align-self-center">
+                                <div>{{ $booking->customer ? $booking->customer->name : 'N/A' }}</div>
+                            </div>
                         </div>
                     </div>
-                </div>
                 @else
-                <div class="col-lg-12 mb-3">
-                    <div class="row">
-                        <div class="col-lg-5">
-                            <label class="col-form-label">Point of contact:</label>
-                        </div>
-                        <div class="col-lg-7 align-self-center">
-                            <a href="#">{{ $booking->contact_point ? $booking->contact_point : 'N/A' }}</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-12 mb-3">
-                    <div class="row">
-                        <div class="col-lg-5">
-                            <label class="col-form-label">Phone Number:</label>
-                        </div>
-                        <div class="col-lg-7 align-self-center">
-                            <div>{{ $booking->poc_phone ? $booking->poc_phone : 'N/A' }}</div>
+                    <div class="col-lg-12 mb-3">
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <label class="col-form-label">Point of contact:</label>
+                            </div>
+                            <div class="col-lg-7 align-self-center">
+                                <a href="#">{{ $booking->contact_point ? $booking->contact_point : 'N/A' }}</a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <div class="col-lg-12 mb-3">
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <label class="col-form-label">Phone Number:</label>
+                            </div>
+                            <div class="col-lg-7 align-self-center">
+                                <div>{{ $booking->poc_phone ? $booking->poc_phone : 'N/A' }}</div>
+                            </div>
+                        </div>
+                    </div>
                 @endif
             </div>
             @foreach ($data['booking_services'] as $index => $service)
@@ -472,7 +481,7 @@
                                                         N/A
                                                     @endif
                                                 </div>
-                                                <a href="#"
+                                                {{-- <a href="#"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                     <svg aria-label="Edit" width="20" height="20"
                                                         viewBox="0 0 20 20">
@@ -480,7 +489,7 @@
                                                         </use>
                                                     </svg>
 
-                                                </a>
+                                                </a> --}}
                                             </div>
                                         </div>
                                     </div>
@@ -729,15 +738,16 @@
                                 <label class="form-label" for="provider_notes">
                                     Provider Notes
                                 </label>
-                                <textarea class="form-control" name="provider_notes" id="provider_notes" wire:model.defer="booking.provider_notes"
-                                    rows="4" cols="4"></textarea>
+                                {{-- <textarea class="form-control" name="provider_notes" id="provider_notes" wire:model.defer="booking.provider_notes"
+                                    rows="4" cols="4"></textarea> --}}<br/>
+                                    {{$booking->provider_notes ? $booking->provider_notes : 'N/A'}}
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-12">
+                {{-- <div class="col-lg-12">
                     <a href="#" class="btn btn-primary rounded" wire:click="updateNotes">Save Notes</a>
-                </div>
+                </div> --}}
             </div>
             <div class="row mt-4">
                 <div class="col-12 d-flex form-actions">
@@ -774,7 +784,9 @@
                                     </div>
                                     <div class="col-lg-7 align-self-center">
                                         <div class="d-flex align-items-center gap-2">
-                                            <div class="font-family-tertiary">{{numberFormat(isset($data['rateSum']) ? $data['rateSum'] : 0)}}</div>
+                                            <div class="font-family-tertiary">
+                                                {{ numberFormat(isset($data['rateSum']) ? $data['rateSum'] : 0) }}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -786,7 +798,9 @@
                                     </div>
                                     <div class="col-lg-7 align-self-center">
                                         <div class="d-flex align-items-center gap-2">
-                                            <div class="font-family-tertiary">{{numberFormat(isset($data['additionalPayment']) ? $data['additionalPayment'] : 0)}}</div>
+                                            <div class="font-family-tertiary">
+                                                {{ numberFormat(isset($data['additionalPayment']) ? $data['additionalPayment'] : 0) }}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -798,7 +812,9 @@
                                     </div>
                                     <div class="col-lg-7 align-self-center">
                                         <div class="d-flex align-items-center gap-2">
-                                            <div class="font-family-tertiary">{{numberFormat(isset($data['totalPayment']) ? $data['totalPayment'] : 0)}}</div>
+                                            <div class="font-family-tertiary">
+                                                {{ numberFormat(isset($data['totalPayment']) ? $data['totalPayment'] : 0) }}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -864,4 +880,7 @@
             </div>
         @endif
     </div>
+    @include('panels.provider.check-in')
+    @include('panels.provider.check-out')
+
 </div>

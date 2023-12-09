@@ -597,13 +597,13 @@
                             </label>
                             @if (isset($checkout['rating']))
                                 @for ($i = 0; $i < $checkout['rating']; $i++)
-                                <span wire:click="setRating({{ $i + 1 }})">
-                                    <i class="fa fa-star fa-2x text-warning rating" ></i>
+                                    <span wire:click="setRating({{ $i + 1 }})">
+                                        <i class="fa fa-star fa-2x text-warning rating"></i>
                                     </span>
                                 @endfor
                                 @for ($i = $checkout['rating']; $i < 5; $i++)
                                     <span wire:click="setRating({{ $i + 1 }})">
-                                    <i class="far fa-star fa-2x text-warning rating" ></i>
+                                        <i class="far fa-star fa-2x text-warning rating"></i>
                                     </span>
                                 @endfor
                             @endif
@@ -646,7 +646,7 @@
                         <button x-on:click="offcanvasOpenCheckOut = !offcanvasOpenCheckOut" type="button"
                             class="btn btn-outline-dark rounded">Cancel</button>
                         <button type="submit" class="btn btn-primary rounded"
-                            x-on:close-check-out.window="offcanvasOpenCheckOut = !offcanvasOpenCheckOut">Submit</button>
+                            x-on:close-check-out.window="offcanvasOpenCheckOut = !offcanvasOpenCheckOut;assignmentDetails=false">Submit</button>
                     @endif
                 </div>
             </div>
@@ -654,10 +654,3 @@
     </div>
     <!-- END: Step 4 -->
 </div>
-
-<script>
-            function rating() {
-                console.log('here')
-        }
-
-</script>

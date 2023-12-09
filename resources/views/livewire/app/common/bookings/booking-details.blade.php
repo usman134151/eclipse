@@ -108,19 +108,27 @@
                                                 <label class="col-form-label text-primary mb-lg-0"
                                                     for="status-column">
                                                     Status:
-                                                </label>
+                                                </label><br />
+                                               
 
                                                 <div>
                                                     <select class="form-select form-select-sm" id="status"
-                                                        name="status" wire:model.defer="status">
+                                                        name="status"  disabled>
+                                                        <option value="pending">Update status</option>
                                                         <option value="pending">Pending</option>
                                                         <option value='assigned'>Assigned</option>
                                                         <option value='unassigned'>Un-assigned</option>
+                                                        <option value='cancelled'>Cancelled</option>
+                                                        <option value='unbill-cancelled'>Unbillable-Cancelled</option>
 
-                                                    </select>
+
+
+                                                    </select> <small>(coming soon)</small>
+                                                    
                                                 </div>
-
+                                              
                                             </div>
+                                          
                                         </div>
                                         <div class="col-lg col-12 mb-4">
                                             <div class="mb-4">
@@ -905,7 +913,7 @@
                                                                 </div>
                                                                 <div class="col-lg-7 align-self-center">
                                                                     <div class="font-family-tertiary">
-                                                                        {{ date_format(date_create($service['created_at']), 'd/m/Y h:i A') }}
+                                                                        {{ formatDateTime(date_create($service['created_at'])) }}
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1463,18 +1471,39 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-9">
-                                                <label class="form-label mb-md-0">Net Total:</label>
+                                                <label class="form-label mb-md-0">Booking Total:</label>
                                             </div>
                                             <div class="col-md-3 align-self-center">
                                                 <div class="font-family-tertiary">
-                                                    @if (!is_null($booking['payment']))
-                                                        {{ $booking['payment']['is_override'] ? formatPayment($booking['payment']['override_amount']) : formatPayment($booking['payment']['total_amount']) }}
+                                                    @if (!is_null($booking['payment']) && !is_null($booking['payment']['total_amount']))
+                                                        {{ formatPayment($booking['payment']['total_amount']) }}
                                                     @else
-                                                        N/A
+                                                        $00.00
                                                     @endif
                                                 </div>
                                             </div>
                                         </div>
+                                        @if(!is_null($booking['payment']) && !is_null($booking['payment']['override_amount']))
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <hr class="border-separate-sm">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                <label class="form-label mb-md-0">Over-rider Total:</label>
+                                            </div>
+                                            <div class="col-md-3 align-self-center">
+                                                <div class="font-family-tertiary">
+                                                    @if (!is_null($booking['payment']) && !is_null($booking['payment']['override_amount']))
+                                                        {{ formatPayment($booking['payment']['override_amount']) }}
+                                                    @else
+                                                        $00.00
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endif
                                         @if (
                                             !$isCustomer ||
                                                 (($isCustomer && (Auth::id() == $booking['billing_manager_id'] || Auth::id() == $booking['supervisor'])) ||
@@ -1537,6 +1566,26 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                        @endif
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <hr class="border-separate-sm">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                <label class="form-label mb-md-0">Net Total:</label>
+                                            </div>
+                                            <div class="col-md-3 align-self-center">
+                                                <div class="font-family-tertiary">
+                                                    @if (!is_null($booking['payment']))
+                                                        {{ $booking['payment']['is_override'] ? formatPayment($booking['payment']['override_amount']) : formatPayment($booking['payment']['total_amount']) }}
+                                                    @else
+                                                        N/A
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <hr class="border-separate-sm">
@@ -1596,7 +1645,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        @endif
+                                        
                                     </div>
                                 </div>
                                 <div class="col-lg-6  @if ($isCustomer) hidden @endif"">

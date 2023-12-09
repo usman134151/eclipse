@@ -12,16 +12,7 @@
 <script>
   window.addEventListener('open-assignment-details', function(event) {
     var booking_id = event.detail.booking_id;
-    {{-- console.log('in init func '+ booking_id); --}}
-
     Livewire.emit('setAssignmentDetails', booking_id); 
   });
-
-    window.addEventListener('open-assignment-details-dashboard', function(event) {
-    var booking_id = event.detail.booking_id;
-    {{-- console.log('in base '+ booking_id); --}}
-    Livewire.emit('openBookingDetails', booking_id); 
-  });
-
 
 </script>

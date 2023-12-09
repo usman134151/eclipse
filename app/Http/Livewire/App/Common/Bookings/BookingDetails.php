@@ -158,6 +158,13 @@ class BookingDetails extends Component
 		if ($this->booking->status == 2) {
 			$this->status = 'assigned';
 		}
+		if ($this->booking->status ==3) {	//cancelled 
+			$this->status = 'unbill-cancelled';
+		}
+
+		if ($this->booking->status == 4) {	//cancelled 
+			$this->status = 'cancelled';
+		}
 
 		$start_date = Carbon::parse($this->booking->booking_start_at);
 		
@@ -193,6 +200,10 @@ class BookingDetails extends Component
 			($this->booking['payment']['outstanding_amount'] ?? 0) +
 			($this->booking['payment']['modification_fee'] ?? 0)
 		);
+
+		if($this->booking['payment'])
+			$this->booking['payment']['is_override'] ? $this->booking['payment']['override_price'] = $totalCost : $this->booking['payment']['total_amount'] = $totalCost;
+
 		if ($totalCost > 0) {
 			$this->data['profitMarginPercent'] = $this->booking['payment'] ? ($this->data['profitMargin'] / $totalCost * 100) : 0;
 			$this->data['profitMarginPercent'] = number_format($this->data['profitMarginPercent'], 2);

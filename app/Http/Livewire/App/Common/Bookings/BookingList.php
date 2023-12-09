@@ -54,7 +54,7 @@ class BookingList extends Component
 	public $accommodation_search_filter = [], $booking_service_filter = [], $booking_specialization_search_filter = [], $provider_ids = [], $name_seacrh_filter = '',
 		$service_type_search_filter = [], $tag_names = [], $industry_filter = [], $booking_status_filter = null, $booking_number_filter = null;
 	public $tags = [], $filterProviders = [], $hideProvider = false;
-	public $selectedBookingIds = [];
+	public $selectedBookingIds = [], $checkout_booking_id = 0;
 
 
 	public $isCustomer = false;
@@ -147,17 +147,19 @@ class BookingList extends Component
 						$q->where(function ($ca) use ($today) {
 							$ca->whereRaw("DATE(booking_start_at) < '$today'")
 								->whereIn('bookings.status', [1, 2]);
-
-							})
+						})
 							->orWhereIn('bookings.status', [3, 4]);	//shows cancelled-unbillable
 
-						});
+					});
 
 				$query->orderBy('booking_start_at', 'DESC');
 
 				break;
 			case ("Today's"):
-				$query->where(['bookings.status' => 2, 'type' => 1, 'booking_status' => '1'])
+				$conditions = ['type' => 1, 'booking_status' => '1'];
+				if (!session()->get('isProvider'))
+				$conditions['bookings.status'] = 2;
+				$query->where($conditions)
 
 					// ->when($addressCheck, function ($query) {
 					// 	$query->where('isCompleted', 0);
@@ -180,9 +182,11 @@ class BookingList extends Component
 
 				break;
 			case ('Upcoming'):
-
+				$conditions = ['type' => 1, 'booking_status' => '1'];
+				if (!session()->get('isProvider'))
+					$conditions['bookings.status'] = 2;
 				$query->whereDate('booking_start_at', '>', Carbon::today())
-					->where(['bookings.status' => 2, 'type' => 1, 'booking_status' => '1'])
+					->where($conditions)
 
 					// ->when($addressCheck, function ($query) {
 					// 	$query->where('isCompleted', 0);
@@ -280,6 +284,14 @@ class BookingList extends Component
 				$query->where(function ($g) use ($customer, $query) {
 					$g->where('customer_id', $customer->id);
 					$g->orWhere('supervisor', $customer->id);
+
+					//fetch relevent bookings where user is consumer or participant
+					$g->orWhereIn('bookings.id',function($sc_query)use ($customer){
+						$sc_query->from('booking_services')->select('booking_id')
+						->where('booking_services.service_consumer', 'LIKE', "%" . $customer->id . "%")
+						->orWhere('booking_services.attendees', 'LIKE', "%" . $customer->id . "%");
+					});
+
 					if ($this->bookingType == "Draft")
 						$g->orWhere('user_id', $customer->id);
 					else
@@ -631,19 +643,19 @@ class BookingList extends Component
 	{
 		if ($bookingNumber)
 			$this->bookingNumber = $bookingNumber;
-
 		if ($selectedProvider)
 			$this->selectedProvider = $selectedProvider;
+		
 		if ($this->co_counter == 0) {
-			$this->booking_id = 0;
+			$this->checkout_booking_id = 0;
 			$this->dispatchBrowserEvent('open-check-out', ['booking_id' => $booking_id, 'booking_service_id' => $booking_service_id]);
 			$this->co_counter = 1;
 		} else {
-			$this->booking_id = $booking_id;
+			$this->checkout_booking_id = $booking_id;
 			$this->booking_service_id = $booking_service_id;
 			$this->co_counter = 0;
-			$this->providerPanelType = 2;
-			$this->dispatchBrowserEvent('refreshSelects');
+			// $this->providerPanelType = 2;
+			// $this->dispatchBrowserEvent('refreshSelects');
 		}
 	}
 	public function setAssignmentDetails($booking_id = 0, $bookingNumber = null)

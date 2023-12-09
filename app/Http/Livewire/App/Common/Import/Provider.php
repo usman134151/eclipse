@@ -21,7 +21,7 @@ class Provider extends Component
     public $warningMessage='',$errorMessage='';
     protected $listeners = ['updateVal' => 'updateVal'];
     //setup values
-    public $languages, $ethnicities, $genders;
+    public $languages, $ethnicities, $genders, $email_invitation = 1;
     public function render()
     {
         return view('livewire.app.common.import.provider');
@@ -163,7 +163,7 @@ class Provider extends Component
             }
             $user->name=$user->first_name.' '.$user->last_name;
             // Call the createUser method of UserService and pass the user model along with other parameters
-            $userService->createUser($user, $userData['userDetails'], 2, 0, [], 1);
+            $userService->createUser($user, $userData['userDetails'], 2, $this->email_invitation, [], 1);
 
         }
         $this->showList("Provider data has been imported successfully");

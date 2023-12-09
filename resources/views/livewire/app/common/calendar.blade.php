@@ -9,8 +9,11 @@
     </div>
     @include('panels.booking-details.admin-booking-details')
     {{-- update by Maarooshaa to include panel only if provider is logged in --}}
-    @if (session()->get('isProvider'))  
+    @if (session()->get('isProvider'))
         @include('panels.common.assignment-details')
+        @include('modals.common.running-late')
+        @include('modals.return-assignment')
+        {{-- @include('panels.provider.check-in') --}}
     @endif
     <template x-if="bookingDetails">
         <div>
@@ -28,6 +31,39 @@
     <script src="/tenant-resources/js/bs-index.global.min.js"></script>
     @if (!$providerProfile)
         <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                document.addEventListener('click', function(event) {
+                    if (event.target.classList.contains('fc-more-link')) {
+                        setTimeout(function() {
+                            var moreBtn = event.target;
+                            var btnRect = moreBtn.getBoundingClientRect();
+                        
+                            var calendar = document.querySelector('.fc-scrollgrid-liquid');
+                            var calendarRect = calendar.getBoundingClientRect();
+                        
+                            // Get the coordinates of the .fc-more-link element relative to the viewport
+                            var posX = btnRect.left;
+                            var posY = btnRect.bottom;
+                        
+                            // Find or create the element with the class .fc-popover
+                            var element = document.querySelector('.fc-popover');
+                            if (!element) {
+                                // Create the element if it doesn't exist
+                                element = document.createElement('div');
+                                element.className = 'fc-popover';
+                                document.body.appendChild(element);
+                            }
+                        
+                            // Set the position of the .fc-popover element
+                            element.style.position = 'absolute';
+                            element.style.top = posY - calendarRect.top + 'px';
+                            element.style.left = posX - calendarRect.left + 'px';
+                        
+                        }, 0); // Adjust the delay as needed
+                    }
+                });
+            });
+
             document.addEventListener('livewire:load', function() {
                 var Calendar = FullCalendar.Calendar;
                 var Draggable = FullCalendar.Draggable;
@@ -50,7 +86,7 @@
                         list: 'List'
                     },
                     // weekNumbers: true, // shows weeknumber
-                    dayMaxEvents: true, // allow "more" link when too many events
+                    dayMaxEvents: 10, // allow "more" link when too many events will show 10 events then more option will appear
                     events: JSON.parse(data),
                     eventClick: function(event, jsEvent, view) {
                         if (event.url) {
@@ -87,7 +123,8 @@
 
                         if (eventData.isProvider)
                             $(info.el).attr('@click',
-                            'assignmentDetails = true'); //update to open assignment-details panel in provider-dashboard -- Maarooshaa Asim
+                                'assignmentDetails = true'
+                                ); //update to open assignment-details panel in provider-dashboard -- Maarooshaa Asim
 
                         var tooltip = new bootstrap.Popover(info.el, {
                             title: eventData.timeSlot,

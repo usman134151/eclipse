@@ -47,15 +47,15 @@ class CheckOut extends Component
         if ($this->booking_service->provider_count == $checkedout_providers) {
             // $service_permission = $this->booking_service->service->close_out_procedure ?  json_decode($this->booking_service->service->close_out_procedure, true) : null;
             // if ($service_permission['enable_button_customer'] != "true") {
-                $this->booking_service->is_closed = true;
-                $this->booking_service->save();
+            $this->booking_service->is_closed = true;
+            $this->booking_service->save();
 
-                //close assignment booking if service setting does not require customer approval. 
-                // logic changed to allow Admin to close assignment after review ( Phase 1).
-                // if (count($this->assignment->booking_services) == count($this->assignment->closed_booking_services)) {
-                //     $this->assignment->is_closed = true;
-                //     $this->assignment->save();
-                // }
+            //close assignment booking if service setting does not require customer approval. 
+            // logic changed to allow Admin to close assignment after review ( Phase 1).
+            // if (count($this->assignment->booking_services) == count($this->assignment->closed_booking_services)) {
+            //     $this->assignment->is_closed = true;
+            //     $this->assignment->save();
+            // }
             // }
         }
 
@@ -80,11 +80,10 @@ class CheckOut extends Component
         //     'ip_address'     => \request()->ip(),
         // ]);
         callLogs($this->assignment->id, 'booking', "update", "Booking checkout details updated by " . User::find($this->provider_id)->name);
-        if(session()->get('isProvider')){
+        if (session()->get('isProvider')) {
             $data['bookingData'] = $this->assignment;
 
             NotificationService::sendNotification('Booking: Provider Checked Out', $data);
-
         }
 
         $this->dispatchBrowserEvent('close-check-out');
@@ -177,10 +176,10 @@ class CheckOut extends Component
 
         $this->validate();
         //adding leading zeros if less than 10
-        if($this->checkout['actual_end_hour'] < 10)
-        $this->checkout['actual_end_hour'] =         sprintf('%02d', $this->checkout['actual_end_hour']);
+        if ($this->checkout['actual_end_hour'] < 10)
+            $this->checkout['actual_end_hour'] =         sprintf('%02d', $this->checkout['actual_end_hour']);
         if ($this->checkout['actual_end_min'] < 10)
-        $this->checkout['actual_end_min'] =         sprintf('%02d', $this->checkout['actual_end_min']);
+            $this->checkout['actual_end_min'] =         sprintf('%02d', $this->checkout['actual_end_min']);
 
         $this->checkout['actual_end_timestamp'] = Carbon::createFromFormat('m/d/Y H:i:s', $this->checkout['actual_end_date'] . ' ' . $this->checkout['actual_end_hour'] . ':' . $this->checkout['actual_end_min'] . ':00');
 

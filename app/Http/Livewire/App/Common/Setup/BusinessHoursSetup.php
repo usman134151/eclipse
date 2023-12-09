@@ -9,8 +9,7 @@ use App\Models\Tenant\ScheduleTimeslot;
 use App\Models\Tenant\ScheduleHoliday;
 use App\Services\App\ScheduleService;
 use Carbon\Carbon;
-
-
+use Illuminate\Support\Facades\Session;
 
 class BusinessHoursSetup extends Component
 {
@@ -109,6 +108,14 @@ class BusinessHoursSetup extends Component
         $endMin = $this->timeslot['timeslot_end_min'];
         $endType = $this->timeslot_end_type;
         if($this->schedule->time_format==1){
+
+            if ($startHour > 12 || $endHour > 12) {
+                // Start hour &  end hour cannot be greater than 12
+                // You can handle the validation error here, e.g., show an error message or perform some other action
+                $this->addError('timeValidation', 'Invalid time range. Time should be in a 12-hour format and within valid range.');
+                return;
+            }
+
             // Convert start and end hours to 24-hour format if the start type or end type is set to PM
             if (strtolower($startType) === 'pm') {
                 $startHour = ($startHour % 12) + 12;
@@ -194,7 +201,7 @@ class BusinessHoursSetup extends Component
 
     public function refreshSlots()
     {
-      $this->timeslots=ScheduleService::getSlots($this->schedule->id);
+      $this->timeslots=ScheduleService::getSlots($this->schedule->id,$this->schedule->time_format);
     }
     public function deleteSlot($timeslotId)
     {
@@ -217,7 +224,11 @@ class BusinessHoursSetup extends Component
     public function saveSchedule(){
        
         $this->schedule->save();
-       
+        if($this->schedule)
+        {
+            Session::put('business_timezone_id' , $this->schedule->timezone_id  ?  $this->schedule->timezone_id: 61); // 61 => us
+			Session::put('business_time_format' , $this->schedule->time_format == 1 ? 12 : 24);       
+        }
         $model=null;
         if ($this->model_type == 1)
             $model = "system";

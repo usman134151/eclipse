@@ -135,11 +135,12 @@
                                                         @if ($closeOut[$bookingService->id][$provider['provider_id']]['time_extension_status'] != 0)
                                                             <div class="pt-2">
                                                                 <p class=" bg-muted p-1">Time Extension Request
-                                                                    @if ($closeOut[$bookingService->id][$provider['provider_id']]['time_extension_status'] == 1)
-                                                                        :<strong> Approved </strong>
+                                                                @if ($closeOut[$bookingService->id][$provider['provider_id']]['time_extension_status'] == 1)
+                                                                        :<strong> Approved </strong> 
                                                                     @elseif($closeOut[$bookingService->id][$provider['provider_id']]['time_extension_status'] == 2)
-                                                                        :<strong> Denied </strong>
+                                                                        :<strong> Denied </strong> 
                                                                     @endif
+                                                                    <span wire:click="undo({{ $bookingService->id }},{{ $provider['provider_id'] }})">| Undo</span>
                                                                 </p>
                                                             </div>
                                                             @if ($closeOut[$bookingService->id][$provider['provider_id']]['time_extension_status'] == 2)

@@ -17,6 +17,6 @@ return [
     'password' => 'The provided password is incorrect.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
     'loginError' => 'These credentials do not match our records.', // custom messages
-    'notActiveError' => 'Account is not active please contact with admin.',
+    'notActiveError' => 'Your account has been deactivated by admin, please contact your system admin.',
     'loginFailedError' => 'Login faield please try again.'
 ];

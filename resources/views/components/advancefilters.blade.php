@@ -1,4 +1,4 @@
-@props(['type' => '', 'hideProvider' => false, 'filterProviders' => [], 'bmanagers' => [], 'setupValues' => [], 'tags'=>[]])
+@props(['type' => '', 'hideProvider' => false, 'filterProviders' => [], 'bmanagers' => [], 'setupValues' => [], 'tags'=>[], 'isPendingInvoices' => false])
 <div class="row">
     @if ($type == 'invoice-filters')
         <div class="col-lg-5 pe-lg-3 ">
@@ -37,6 +37,8 @@
             </div>
         @endif
     @endif
+    @if(!$isPendingInvoices)
+
     <div class="col-lg-2 d-flex text-nowrap align-items-center align-self-end " style="margin-left: -10px;">
 
         <a class="btn btn-inactive dropdown-toggle rounded" data-bs-toggle="collapse" href="#collapseAdvanceFilter"
@@ -103,14 +105,15 @@
 
                     </div>
                 @endif
-                <div class="col-lg-5 pe-lg-3 mb-5">
+                {{-- START: update to hide company and provider filter fields from customer panel -- Maarooshaa --}}
+                <div class="col-lg-5 pe-lg-3 mb-5 {{ session()->get('isCustomer') ? 'hidden' : '' }}">
                     <label class="form-label" for="OrgDeptUser">Company </span>
 
                     </label>
                     <input type="text" class="form-control" name="name_seacrh_filter" id="name_seacrh_filter"
                         placeholder="Enter Company Name " wire:model.defer="name_seacrh_filter">
                 </div>
-                <div class="col-lg-5 ps-lg-3 mb-5 {{ $hideProvider ? 'hidden' : '' }}">
+                <div class="col-lg-5 ps-lg-3 mb-5 {{ $hideProvider || session()->get('isCustomer') ? 'hidden' : '' }}">
                     <label class="form-label" for="provider_ids">Provider</label>
                     <select wire:model.defer="provider_ids" name="provider_ids" id="provider_ids"
                         data-placeholder="Select Provider" multiple class="select2 form-select" tabindex="">
@@ -122,6 +125,8 @@
                         @endif
                     </select>
                 </div>
+                {{-- END: update to hide company and provider filter fields from customer panel -- Maarooshaa --}}
+
                 <div class="col-lg-5 pe-lg-3 mb-5">
                     <label class="form-label" for="tags">Tags
                         {{-- <small>(coming soon)</small> --}}
@@ -166,6 +171,7 @@
         </div>
     </div>
 </div>
+@endif
 <div class="row">
     <div class="col-lg-4 d-flex mb-5  mt-1">
         <div class="text-start my-1 mb-lg-0 me-1 ">

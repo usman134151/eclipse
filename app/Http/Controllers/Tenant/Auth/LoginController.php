@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Tenant\Helper\Helper;
 use App\Models\Tenant\BusinessSetup;
 use App\Models\Tenant\RoleUser;
+use App\Models\Tenant\Schedule;
 use App\Models\Tenant\UserDetail;
 use App\Models\Tenant\UserLoginAddress;
 use App\Services\App\UserService;
@@ -42,6 +43,13 @@ class LoginController extends Controller
 
 
 		$businessSetup = BusinessSetup::first();
+		$systemTimeDetails = Schedule::where('model_type','1')->first(); 
+
+		if($systemTimeDetails)
+		{
+			$data['business_timezone_id'] = $systemTimeDetails->timezone_id ? $systemTimeDetails->timezone_id : 61;
+			$data['business_time_format'] = $systemTimeDetails->time_format == 1 ? 12 : 24;
+		}
 
 		if ($businessSetup) {
 			$welcome_text = $businessSetup->welcome_text;
@@ -56,6 +64,8 @@ class LoginController extends Controller
 			}
 			$data['default_colour'] = $businessSetup->default_colour;
 			$data['foreground_colour'] = $businessSetup->foreground_colour;
+			$data['dark_default_colour'] = $businessSetup->dark_default_colour;
+			$data['dark_foreground_colour'] = $businessSetup->dark_foreground_colour;
 		}
 		session($data);	//storing setup details 
 
@@ -93,7 +103,7 @@ class LoginController extends Controller
 
 		$credentials = $request->only('email', 'password');
 		if (Auth::attempt($credentials)) {
-			// if (Auth::user()->status == 1) {
+			if (Auth::user()->status == 1) {
 			if (!$request->cookie('savedBrowser') && !Helper::checkUserSavedBrowser() && env('2FA')) {
 
 				####Task:OPT Add Services (Sakhawat Kamran) ####
@@ -164,11 +174,10 @@ class LoginController extends Controller
 
 				return redirect('home');
 			}
-			// } else {
-			//   Auth::logout();
-			// return redirect("login")->withErrors(['loginError' => __('auth.notActiveError')]);
-			// die();
-			//}
+			} else {
+			  Auth::logout();
+			return redirect("login")->withErrors(['loginError' => __('auth.notActiveError')]);
+			}
 		}
 
 		return redirect("login")->withErrors(['loginError' => __('auth.loginError')]);

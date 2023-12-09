@@ -144,7 +144,7 @@
                                               <td class="align-middle">
                                                   <div class="d-flex actions justify-content-center">
                                                       @if (!$isProviderPanel && !session()->get('isCustomer'))
-                                                          <a href="#" title="Revoke" aria-label="Revoke"
+                                                          <a href="#" title="Unassign" aria-label="Revoke"
                                                               data-bs-toggle="modal" data-bs-target="#UnassignModal"
                                                               wire:click="$emit('openUnassignModal','{{ $provider['booking_service_id'] ? $provider['booking_service_id'] : 'null' }}',{{ $provider['provider_id'] }},{{ $provider['booking_id'] }})"
                                                               class="btn btn-sm btn-secondary rounded btn-hs-icon">
@@ -195,7 +195,7 @@
 
                                                           </a>
                                                       @endif
-                                                      @if ($provider['return_status'] == 2)
+                                                      @if ($provider['return_status'] == 2 && !session()->get('isCustomer'))
                                                           <a  title="Approve Return Request"
                                                                  data-bs-toggle="modal" data-bs-target="#approveReturnAssignmentModal"
                                                               wire:click="$emit('openApproveReturnAssignmentModal','{{ $provider['booking_service_id'] ? $provider['booking_service_id'] : 'null' }}',{{ $provider['provider_id'] }},{{ $provider['booking_id'] }})"
