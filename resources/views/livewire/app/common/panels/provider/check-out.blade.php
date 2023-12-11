@@ -135,10 +135,19 @@
                                                         id="actual_start_hour" aria-label="Start Time"
                                                         name="actual_start_hour" tabindex=""
                                                         wire:model.defer="checkout.actual_start_hour">
-                                                        @for ($i = 0; $i < 24; $i++)
-                                                            <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}">
-                                                                {{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</option>
-                                                        @endfor
+                                                        @if ($timeFormat == 12)
+                                                            @for ($i = 1; $i < 13; $i++)
+                                                                <option
+                                                                    value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}">
+                                                                    {{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</option>
+                                                            @endfor
+                                                        @else
+                                                            @for ($i = 0; $i < 24; $i++)
+                                                                <option
+                                                                    value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}">
+                                                                    {{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</option>
+                                                            @endfor
+                                                        @endif
 
                                                     </select>
 
@@ -159,6 +168,14 @@
                                                         @endfor
 
                                                     </select>
+                                                    @if ($timeFormat == 12)
+                                                        <select class="form-select form-select-sm"
+                                                            {{ ($this->booking_provider->check_in_status == 3) && !$isAdmin ? 'disabled' : '' }}
+                                                            wire:model.defer="timeSlots.start">
+                                                            <option value="am">AM</option>
+                                                            <option value="pm">PM</option>
+                                                        </select>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
@@ -184,7 +201,7 @@
                         @error('timestamps.start')
                             <span class="d-inline-block invalid-feedback mt-2">
                                 {{-- {{ $message }} --}}
-                                The start time can not be greater than now. 
+                                The start time can not be greater than now.
                             </span>
                         @enderror
                     </div>
@@ -233,12 +250,27 @@
                                                     {{ $this->booking_provider->check_in_status == 3 && !$isAdmin ? 'disabled' : '' }}
                                                     aria-label="Start Minutes" id="actual_end_min"
                                                     name="actual_end_min" wire:model.defer="checkout.actual_end_min">
-                                                    @for ($i = 0; $i < 59; $i++)
-                                                        <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}">
-                                                            {{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</option>
-                                                    @endfor
+                                                    @if ($timeFormat == 12)
+                                                        @for ($i = 1; $i < 13; $i++)
+                                                            <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}">
+                                                                {{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</option>
+                                                        @endfor
+                                                    @else
+                                                        @for ($i = 0; $i < 24; $i++)
+                                                            <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}">
+                                                                {{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</option>
+                                                        @endfor
+                                                    @endif
 
                                                 </select>
+                                                @if ($timeFormat == 12)
+                                                    <select class="form-select form-select-sm"
+                                                        {{ ( $this->booking_provider->check_in_status == 3) && !$isAdmin ? 'disabled' : '' }}
+                                                        wire:model.defer="timeSlots.end">
+                                                        <option value="am">AM</option>
+                                                        <option value="pm">PM</option>
+                                                    </select>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>

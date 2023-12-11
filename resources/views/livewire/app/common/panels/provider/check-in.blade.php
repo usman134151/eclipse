@@ -150,8 +150,8 @@
                                                     <select class="form-select form-select-sm"
                                                         {{ ($this->booking_provider->check_in_status == 1 || $this->booking_provider->check_in_status == 3) && !$isAdmin ? 'disabled' : '' }}
                                                         wire:model.defer="time_slot">
-                                                        <option value="AM">AM</option>
-                                                        <option value="PM">PM</option>
+                                                        <option value="am">AM</option>
+                                                        <option value="pm">PM</option>
                                                     </select>
 
                                                 @endif
