@@ -188,7 +188,7 @@ class CheckOut extends Component
     {
         if ($this->timeFormat == 12) {
             $this->timestamps['start'] = Carbon::createFromFormat('d/m/Y h:i A', $this->checkout['actual_start_date'] . ' ' . $this->checkout['actual_start_hour'] . ':' . $this->checkout['actual_start_min'] . ' '. $this->timeSlots['start']);
-            $this->timestamps['end'] = Carbon::createFromFormat('m/d/Y h:i: A', $this->checkout['actual_end_date'] . ' ' . $this->checkout['actual_end_hour'] . ':' . $this->checkout['actual_end_min'] .  ' ' . $this->timeSlots['end']);
+            $this->timestamps['end'] = Carbon::createFromFormat('m/d/Y h:i A', $this->checkout['actual_end_date'] . ' ' . $this->checkout['actual_end_hour'] . ':' . $this->checkout['actual_end_min'] .  ' ' . $this->timeSlots['end']);
     
         } else {
             $this->timestamps['start'] = Carbon::createFromFormat('d/m/Y H:i:s', $this->checkout['actual_start_date'] . ' ' . $this->checkout['actual_start_hour'] . ':' . $this->checkout['actual_start_min'] . ':00');
