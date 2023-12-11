@@ -882,5 +882,6 @@
     </div>
     @include('panels.provider.check-in')
     @include('panels.provider.check-out')
+     @include('panels.common.add-reimbursement')
 
 </div>

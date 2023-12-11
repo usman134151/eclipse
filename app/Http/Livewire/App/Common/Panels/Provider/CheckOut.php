@@ -21,7 +21,7 @@ class CheckOut extends Component
     public $showForm, $checkout = [], $isAdmin = false;
     protected $listeners = ['showList' => 'resetForm', 'updateVal'];
     public $booking_id = 0, $assignment = null, $step = 1, $booking_service = null, $checkout_details = null, $checked_in_details = null;
-    public $upload_timesheet = null, $upload_signature = null, $booking_provider = null, $provider_id = null;
+    public $upload_timesheet = null, $upload_signature = null, $booking_provider = null, $provider_id = null, $timestamps, $timeFormat = 24, $timeSlots = [];
 
 
 
@@ -92,6 +92,7 @@ class CheckOut extends Component
 
     public function mount($booking_service_id, $provider_id = null)
     {
+        $this->timeFormat = session()->get('business_time_format');
 
         if ($provider_id == null)  //pass provider id when called from admin, else use auth::id
             $this->provider_id = Auth::id();
@@ -113,8 +114,11 @@ class CheckOut extends Component
         $this->booking_service = BookingServices::where('id', $booking_service_id)->first();
         $this->checkout['actual_start_timestamp'] = Carbon::parse($this->booking_service->start_time);
         $this->checkout['actual_start_date'] = Carbon::parse($this->booking_service->start_time)->format('m/d/Y');
-        $this->checkout['actual_start_hour'] = date_format(date_create($this->booking_service->start_time), 'H');
+        $this->checkout['actual_start_hour'] = date_format(date_create($this->booking_service->start_time), $this->timeFormat == 12 ? 'h' : 'H');
         $this->checkout['actual_start_min'] = date_format(date_create($this->booking_service->start_time), 'i');
+        if ($this->timeFormat == 12) {
+            $this->timeSlots['start'] = date_format(date_create($this->booking_service->start_time), 'a');
+        }
 
 
         if ($this->booking_service) {
@@ -126,9 +130,10 @@ class CheckOut extends Component
                     $this->checkout['confirmation_upload_type'] = 'print_and_sign';
                 $this->checkout['actual_start_timestamp'] = $this->checkout['actual_start_timestamp'] ?? Carbon::parse($this->booking_service->start_time);
                 $this->checkout['actual_start_date'] = $this->checkout['actual_start_date'] ?? Carbon::parse($this->booking_service->start_time)->format('m/d/Y');
-                $this->checkout['actual_start_hour'] = $this->checkout['actual_start_hour']  ?? date_format(date_create($this->booking_service->start_time), 'H');
+                $this->checkout['actual_start_hour'] = $this->checkout['actual_start_hour']  ?? date_format(date_create($this->booking_service->start_time),'H');
                 $this->checkout['actual_start_min'] =  $this->checkout['actual_start_min'] ?? date_format(date_create($this->booking_service->start_time), 'i');
                 $this->checkout['feedback_comments'] =  $this->checkout['feedback_comments'] ?? '';
+                
             } else {
                 //check if booking-service has check-in procedure enabled
                 $check_in_procedure = json_decode($this->booking_service->service->check_in_procedure, true);
@@ -148,8 +153,11 @@ class CheckOut extends Component
                 }
             }
             $this->checkout['actual_end_date'] = $this->checkout['actual_end_date'] ??  Carbon::now()->format('m/d/Y');
-            $this->checkout['actual_end_hour'] = $this->checkout['actual_end_hour'] ??      date_format(date_create($this->booking_service->end_time), 'H');
+            $this->checkout['actual_end_hour'] = $this->checkout['actual_end_hour'] ??      date_format(date_create($this->booking_service->end_time),$this->timeFormat == 12 ? 'h' : 'H');
             $this->checkout['actual_end_min'] = $this->checkout['actual_end_min'] ??     date_format(date_create($this->booking_service->end_time), 'i');
+            if ($this->timeFormat == 12) {
+                $this->timeSlots['end'] = date_format(date_create($this->booking_service->end_time), 'a');
+            }
         }
         if (!isset($this->checkout['rating']))
             $this->checkout['rating'] = 0;
@@ -168,20 +176,28 @@ class CheckOut extends Component
             $rules['upload_timesheet'] = 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv';
         if ($this->checkout['confirmation_upload_type'] == "digital_signature")
             $rules['upload_signature'] = 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv';
+
+        if (session()->get('isProvider')) {
+            $rules['timestamps.start'] = "required|before_or_equal:now";
+            $rules['timestamps.end'] = "required|before_or_equal:now";
+        }
         return $rules;
     }
 
     public function saveStepOne()
     {
-
+        if ($this->timeFormat == 12) {
+            $this->timestamps['start'] = Carbon::createFromFormat('d/m/Y h:i A', $this->checkout['actual_start_date'] . ' ' . $this->checkout['actual_start_hour'] . ':' . $this->checkout['actual_start_min'] . ' '. $this->timeSlots['start']);
+            $this->timestamps['end'] = Carbon::createFromFormat('m/d/Y h:i A', $this->checkout['actual_end_date'] . ' ' . $this->checkout['actual_end_hour'] . ':' . $this->checkout['actual_end_min'] .  ' ' . $this->timeSlots['end']);
+    
+        } else {
+            $this->timestamps['start'] = Carbon::createFromFormat('d/m/Y H:i:s', $this->checkout['actual_start_date'] . ' ' . $this->checkout['actual_start_hour'] . ':' . $this->checkout['actual_start_min'] . ':00');
+            $this->timestamps['end'] = Carbon::createFromFormat('m/d/Y H:i:s', $this->checkout['actual_end_date'] . ' ' . $this->checkout['actual_end_hour'] . ':' . $this->checkout['actual_end_min'] . ':00');
+        }
         $this->validate();
-        //adding leading zeros if less than 10
-        if ($this->checkout['actual_end_hour'] < 10)
-            $this->checkout['actual_end_hour'] =         sprintf('%02d', $this->checkout['actual_end_hour']);
-        if ($this->checkout['actual_end_min'] < 10)
-            $this->checkout['actual_end_min'] =         sprintf('%02d', $this->checkout['actual_end_min']);
 
-        $this->checkout['actual_end_timestamp'] = Carbon::createFromFormat('m/d/Y H:i:s', $this->checkout['actual_end_date'] . ' ' . $this->checkout['actual_end_hour'] . ':' . $this->checkout['actual_end_min'] . ':00');
+        $this->checkout['actual_end_timestamp'] = $this->timestamps['end'];
+        // Carbon::createFromFormat('m/d/Y H:i:s', $this->checkout['actual_end_date'] . ' ' . $this->checkout['actual_end_hour'] . ':' . $this->checkout['actual_end_min'] . ':00');
 
         $fileService = new UploadFileService();
         if ($this->checkout['confirmation_upload_type'] == "print_and_sign") {
@@ -204,7 +220,7 @@ class CheckOut extends Component
                 'actual_start_min' => $this->checkout['actual_start_min'],
                 'provider_signature_path' => null,
                 'customer_signature_path' => null,
-                'actual_start_timestamp' => Carbon::createFromFormat('d/m/Y H:i:s', $this->checkout['actual_start_date'] . ' ' . $this->checkout['actual_start_hour'] . ':' . $this->checkout['actual_start_min'] . ':00'),
+                'actual_start_timestamp' => $this->timestamps['start'],
                 'added_at' => 'checkout'
             ];
             $this->booking_provider->check_in_procedure_values = $values;
