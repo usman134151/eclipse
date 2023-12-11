@@ -118,11 +118,17 @@
                                                     aria-label="Start Time"
                                                     {{ ($this->booking_provider->check_in_status == 1 || $this->booking_provider->check_in_status == 3) && !$isAdmin ? 'disabled' : '' }}
                                                     wire:model.defer="hours">
-                                                    @for ($i = 0; $i < 24; $i++)
-                                                        <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}">
-                                                            {{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</option>
-                                                    @endfor
-
+                                                    @if ($timeFormat == 12)
+                                                        @for ($i = 1; $i < 13; $i++)
+                                                            <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}">
+                                                                {{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</option>
+                                                        @endfor
+                                                    @else
+                                                        @for ($i = 0; $i < 24; $i++)
+                                                            <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}">
+                                                                {{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</option>
+                                                        @endfor
+                                                    @endif
                                                 </select>
 
                                                 <svg aria-label="colon" width="20" height="19"
@@ -140,6 +146,15 @@
                                                     @endfor
 
                                                 </select>
+                                                @if ($timeFormat == 12)
+                                                    <select class="form-select form-select-sm"
+                                                        {{ ($this->booking_provider->check_in_status == 1 || $this->booking_provider->check_in_status == 3) && !$isAdmin ? 'disabled' : '' }}
+                                                        wire:model.defer="time_slot">
+                                                        <option value="AM">AM</option>
+                                                        <option value="PM">PM</option>
+                                                    </select>
+
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
