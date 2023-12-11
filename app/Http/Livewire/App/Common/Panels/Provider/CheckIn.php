@@ -17,7 +17,7 @@ class CheckIn extends Component
 
     public $showForm, $checkIn = true, $hours = null, $mins = null, $provider_signature = null, $customer_signature = null, $form_id = null, $files = ['provider_signature' => null, 'customer_signature' => null];
     protected $listeners = ['showList' => 'resetForm', 'setCheckInBookingId' => 'setBookingId'];
-    public $booking_id = 0, $assignment = null, $booking_service = null, $checkin_details = [], $booking_provider = null;
+    public $booking_id = 0, $assignment = null, $booking_service = null, $checkin_details = [], $booking_provider = null,$timestamp;
     public $isAdmin = false, $provider_id = null;
     public function render()
     {
@@ -43,16 +43,20 @@ class CheckIn extends Component
 
     public function rules()
     {
-        return [
+        $rules = [
             'provider_signature' => 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv',
             'customer_signature' => 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv',
             'hours' => 'required|numeric|between:0,23',
             'mins' => 'required|numeric|between:0,59'
 
         ];
+        if (session()->get('isProvider'))
+            $rules['timestamp'] = "required|before_or_equal:now";
+        return $rules;
     }
     public function save()
     {
+        $this->timestamp = Carbon::createFromFormat('m/d/Y H:i:s', formatDate($this->assignment->booking_start_at) . " {$this->hours}:{$this->mins}:00");
         $this->validate();
         $this->emit('saveCustomForm');
         $fileService = new UploadFileService();
@@ -70,7 +74,7 @@ class CheckIn extends Component
             'actual_start_min' => $this->mins ?? null,
             'provider_signature_path' => $this->files['provider_signature'],
             'customer_signature_path' => $this->files['customer_signature'],
-            'actual_start_timestamp' => Carbon::createFromFormat('m/d/Y H:i:s', formatDate($this->assignment->booking_start_at)." {$this->hours}:{$this->mins}:00"),
+            'actual_start_timestamp' => $this->timestamp,
             'added_at' => 'checkin'
 
 

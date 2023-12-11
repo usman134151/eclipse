@@ -159,6 +159,11 @@
                                 {{ $message }}
                             </span>
                         @enderror
+                        @error('timestamp')
+                            <span class="d-inline-block invalid-feedback mt-2">
+                                {{ $message }}
+                            </span>
+                        @enderror
                     </div>
                 </div>
             </div>
