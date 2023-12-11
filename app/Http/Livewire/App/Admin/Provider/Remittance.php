@@ -10,7 +10,8 @@ class Remittance extends Component
 {
 	use WithPagination;
 	public $showForm, $limit = 10, $providerId=null,$counter=0, $rem_counter, $selectedBookings=[];
-	protected $listeners = ['showList' => 'resetForm', 'openRemittanceGeneratorPanel', 'openIssueRemitancesPanel'];
+	protected $listeners = ['showList' => 'resetForm', 'openRemittanceGeneratorPanel', 'openIssueRemitancesPanel', 'updateVal'];
+	public $filterProviders , $name_seacrh_filter ,$provider_ids = [], $filter_payment_method;
 
 	function showForm()
 	{
@@ -31,7 +32,14 @@ class Remittance extends Component
 	}
 
 	public function mount()
-	{}
+	{
+		$this->filterProviders = User::where('status', 1)
+		->whereHas('roles', function ($query) {
+			$query->whereIn('role_id', [2]);
+		})->select([
+			'users.id',
+			'users.name',
+		])->get()->toArray();	}
 
 	public function render()
 	{
@@ -63,4 +71,24 @@ class Remittance extends Component
 			$this->dispatchBrowserEvent('refreshSelects2');
 		}
 	}
+
+	public function applyFilters()
+    {
+        $this->emit('updateVal', "name_seacrh_filter", $this->name_seacrh_filter);
+        $this->emit('updateVal', "filter_payment_method", $this->filter_payment_method);
+        $this->emit('updateVal', "provider_ids", $this->provider_ids);
+        
+    }
+
+	public function resetFilters(){
+        $this->emit('updateVal', "name_seacrh_filter", null);
+        $this->emit('updateVal', "filter_payment_method", null);
+        $this->emit('updateVal', "provider_ids", []);
+    }
+
+	public function updateVal($attrName, $val){
+		$this->$attrName = $val;
+    }
+  
+
 }

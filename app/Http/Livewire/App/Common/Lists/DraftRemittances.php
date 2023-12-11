@@ -13,6 +13,8 @@ use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Heade
 final class DraftRemittances extends PowerGridComponent
 {
     use ActionButton;
+    public $provider_ids, $name_seacrh_filter, $filter_payment_method;
+
 
     /*
     |--------------------------------------------------------------------------
@@ -80,8 +82,45 @@ final class DraftRemittances extends PowerGridComponent
             ->groupBy('users.id', 'users.name', 'profile_pic', 'method');
 
         // dd($query->get());
+
+        if($this->provider_ids)
+        {
+            $query->whereIn('users.id', $this->provider_ids);
+        }
+        
+        if($this->filter_payment_method)
+        {
+            $query->where('payment_preferences.method', $this->filter_payment_method);
+        }
+
+        if ($this->name_seacrh_filter) {
+            $name = $this->name_seacrh_filter;
+            $query->whereHas('company', function ($query) use ($name) {
+                $query->where('name', 'LIKE', '%' . $name . '%');
+            });
+        }
+        
+        
+
         return $query;
     }
+
+    protected function getListeners(): array
+    {
+        return array_merge(
+            parent::getListeners(),
+            [
+                'updateVal'   => 'updateVal',
+
+            ]
+        );
+    }
+
+    public function updateVal($attrName, $val)
+    {
+        $this->$attrName = $val;
+    }
+
 
     /*
     |--------------------------------------------------------------------------

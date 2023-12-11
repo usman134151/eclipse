@@ -173,6 +173,14 @@
 												</button>
 											</div>
 										</div>
+										<div class="row justify-content-end">
+											<div class="col-auto form-check form-switch">
+												<input wire:click="excludeNotificationToggle" wire:model="toggleNotification" class="form-check-input" type="checkbox">
+											</div>
+											<div class="col-auto">
+												Exclude all notifications
+											</div>
+										</div>
 									</div>
 								<!-- ...... -->
 								@livewire('app.common.lists.notification-configuration', ['notification_type'=>$type,'selectedRoleId' => $selectedRoleId,'typeId' => $typeId], key(Str::random(10)))
