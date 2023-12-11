@@ -123,32 +123,48 @@
                                         {{ $checkout['actual_start_timestamp'] ? date_format(date_create($checkout['actual_start_timestamp']), 'h:i A') : '' }}</label>
                                     </div>
                                 @else
-                                    <div class="d-flex gap-2">
-                                        <div class="time d-flex align-items-center gap-2">
-                                            <div>
-                                                <input class="form-control form-control-sm text-center hours"
-                                                    {{ $this->booking_provider->check_in_status == 3 && !$isAdmin ? 'disabled' : '' }}
-                                                    id="actual_start_hour" aria-label="Start Time"
-                                                    name="actual_start_hour" placeholder="00" type="text"
-                                                    tabindex="" wire:model.defer="checkout.actual_start_hour"
-                                                    maxlength="2">
-                                            </div>
-                                            <svg width="5" height="19" viewBox="0 0 5 19" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M0.652588 16.6132C0.652588 16.1098 0.807878 15.6868 1.11846 15.3441C1.43975 14.9907 1.90026 14.814 2.5 14.814C3.09974 14.814 3.5549 14.9907 3.86548 15.3441C4.18677 15.6868 4.34741 16.1098 4.34741 16.6132C4.34741 17.1058 4.18677 17.5235 3.86548 17.8662C3.5549 18.2089 3.09974 18.3803 2.5 18.3803C1.90026 18.3803 1.43975 18.2089 1.11846 17.8662C0.807878 17.5235 0.652588 17.1058 0.652588 16.6132ZM0.668652 2.42827C0.668652 1.92492 0.823942 1.50189 1.13452 1.15918C1.45581 0.805761 1.91632 0.629052 2.51606 0.629052C3.1158 0.629052 3.57096 0.805761 3.88154 1.15918C4.20283 1.50189 4.36348 1.92492 4.36348 2.42827C4.36348 2.92091 4.20283 3.33859 3.88154 3.6813C3.57096 4.02401 3.1158 4.19536 2.51606 4.19536C1.91632 4.19536 1.45581 4.02401 1.13452 3.6813C0.823942 3.33859 0.668652 2.92091 0.668652 2.42827Z"
-                                                    fill="black" />
-                                            </svg>
-                                            <div>
-                                                <input class="form-control form-control-sm text-center  mins"
-                                                    {{ $this->booking_provider->check_in_status == 3 && !$isAdmin ? 'disabled' : '' }}
-                                                    aria-label="Start Minutes" id="actual_start_min"
-                                                    name="actual_start_min" placeholder="00" type="text"
-                                                    tabindex="" wire:model.defer="checkout.actual_start_min"
-                                                    maxlength="2">
+                                    {{-- START : update to change time fields to dropdown - Maarooshaa --}}
+
+                                    <div class="d-flex">
+                                        <div class="d-flex flex-column">
+                                            <div class="d-md-flex d-lg-inline">
+                                                <div class="time d-flex align-items-center gap-1  hours"
+                                                    style="margin-top:2px;">
+                                                    <select class="form-select form-select-sm "
+                                                        {{ $this->booking_provider->check_in_status == 3 && !$isAdmin ? 'disabled' : '' }}
+                                                        id="actual_start_hour" aria-label="Start Time"
+                                                        name="actual_start_hour" tabindex=""
+                                                        wire:model.defer="checkout.actual_start_hour">
+                                                        @for ($i = 0; $i < 24; $i++)
+                                                            <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}">
+                                                                {{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</option>
+                                                        @endfor
+
+                                                    </select>
+
+                                                    <svg aria-label="colon" width="20" height="19"
+                                                        viewBox="0 0 5 19">
+                                                        <use xlink:href="/css/common-icons.svg#date-colon">
+                                                        </use>
+                                                    </svg>
+
+                                                    <select class="form-select form-select-sm"
+                                                        {{ $this->booking_provider->check_in_status == 3 && !$isAdmin ? 'disabled' : '' }}
+                                                        aria-label="Start Minutes" id="actual_start_min"
+                                                        name="actual_start_min" tabindex=""
+                                                        wire:model.defer="checkout.actual_start_min">
+                                                        @for ($i = 0; $i < 59; $i++)
+                                                            <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}">
+                                                                {{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</option>
+                                                        @endfor
+
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    {{-- END: update to change time fields to dropdown - Maarooshaa --}}
+
                                 @endif
                             </div>
                         </div>
@@ -180,30 +196,49 @@
                                 <label class="form-label-sm fw-semibold mb-lg-0">Actual End Time:</label>
                             </div>
                             <div class="col-lg-4 align-self-center">
-                                <div class="d-flex gap-2">
-                                    <div class="time d-flex align-items-center gap-2">
-                                        <div>
-                                            <input class="form-control form-control-sm text-center hours"
-                                                {{ $this->booking_provider->check_in_status == 3 && !$isAdmin ? 'disabled' : '' }}
-                                                id="actual_end_hour" aria-label="Start Time" name="actual_end_hour"
-                                                placeholder="00" type="text" tabindex=""
-                                                wire:model.defer="checkout.actual_end_hour" maxlength="2">
-                                        </div>
-                                        <svg width="5" height="19" viewBox="0 0 5 19" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M0.652588 16.6132C0.652588 16.1098 0.807878 15.6868 1.11846 15.3441C1.43975 14.9907 1.90026 14.814 2.5 14.814C3.09974 14.814 3.5549 14.9907 3.86548 15.3441C4.18677 15.6868 4.34741 16.1098 4.34741 16.6132C4.34741 17.1058 4.18677 17.5235 3.86548 17.8662C3.5549 18.2089 3.09974 18.3803 2.5 18.3803C1.90026 18.3803 1.43975 18.2089 1.11846 17.8662C0.807878 17.5235 0.652588 17.1058 0.652588 16.6132ZM0.668652 2.42827C0.668652 1.92492 0.823942 1.50189 1.13452 1.15918C1.45581 0.805761 1.91632 0.629052 2.51606 0.629052C3.1158 0.629052 3.57096 0.805761 3.88154 1.15918C4.20283 1.50189 4.36348 1.92492 4.36348 2.42827C4.36348 2.92091 4.20283 3.33859 3.88154 3.6813C3.57096 4.02401 3.1158 4.19536 2.51606 4.19536C1.91632 4.19536 1.45581 4.02401 1.13452 3.6813C0.823942 3.33859 0.668652 2.92091 0.668652 2.42827Z"
-                                                fill="black" />
-                                        </svg>
-                                        <div>
-                                            <input class="form-control form-control-sm text-center  mins"
-                                                {{ $this->booking_provider->check_in_status == 3 && !$isAdmin ? 'disabled' : '' }}
-                                                aria-label="Start Minutes" id="actual_end_min" name="actual_end_min"
-                                                placeholder="00" type="text" tabindex=""
-                                                wire:model.defer="checkout.actual_end_min" maxlength="2">
+                                {{-- START : update to change time fields to dropdown - Maarooshaa --}}
+
+                                <div class="d-flex">
+                                    <div class="d-flex flex-column">
+                                        <div class="d-md-flex d-lg-inline">
+                                            <div class="time d-flex align-items-center gap-1  hours"
+                                                style="margin-top:2px;">
+                                                <select class="form-select form-select-sm " id="hour"
+                                                    aria-label="End Time"
+                                                    {{ $this->booking_provider->check_in_status == 3 && !$isAdmin ? 'disabled' : '' }}
+                                                    id="actual_end_hour" aria-label="Start Time"
+                                                    name="actual_end_hour"
+                                                    wire:model.defer="checkout.actual_end_hour">
+                                                    @for ($i = 0; $i < 24; $i++)
+                                                        <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}">
+                                                            {{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</option>
+                                                    @endfor
+
+                                                </select>
+
+                                                <svg aria-label="colon" width="20" height="19"
+                                                    viewBox="0 0 5 19">
+                                                    <use xlink:href="/css/common-icons.svg#date-colon">
+                                                    </use>
+                                                </svg>
+
+                                                <select class="form-select form-select-sm"
+                                                    {{ $this->booking_provider->check_in_status == 3 && !$isAdmin ? 'disabled' : '' }}
+                                                    aria-label="Start Minutes" id="actual_end_min"
+                                                    name="actual_end_min" wire:model.defer="checkout.actual_end_min">
+                                                    @for ($i = 0; $i < 59; $i++)
+                                                        <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}">
+                                                            {{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</option>
+                                                    @endfor
+
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                {{-- END : update to change time fields to dropdown - Maarooshaa --}}
+
+
                             </div>
                         </div>
                     </div>
