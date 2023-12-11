@@ -135,12 +135,17 @@
                                                         @if ($closeOut[$bookingService->id][$provider['provider_id']]['time_extension_status'] != 0)
                                                             <div class="pt-2">
                                                                 <p class=" bg-muted p-1">Time Extension Request
-                                                                @if ($closeOut[$bookingService->id][$provider['provider_id']]['time_extension_status'] == 1)
-                                                                        :<strong> Approved </strong> 
+                                                                    @if ($closeOut[$bookingService->id][$provider['provider_id']]['time_extension_status'] == 1)
+                                                                        :<strong> Approved </strong>
+                                                                        <span
+                                                                            wire:click="undo({{ $bookingService->id }},{{ $provider['provider_id'] }})">|
+                                                                            Undo</span>
                                                                     @elseif($closeOut[$bookingService->id][$provider['provider_id']]['time_extension_status'] == 2)
-                                                                        :<strong> Denied </strong> 
+                                                                        :<strong> Denied </strong>
+                                                                        <span
+                                                                            wire:click="undo({{ $bookingService->id }},{{ $provider['provider_id'] }})">|
+                                                                            Undo</span>
                                                                     @endif
-                                                                    <span wire:click="undo({{ $bookingService->id }},{{ $provider['provider_id'] }})">| Undo</span>
                                                                 </p>
                                                             </div>
                                                             @if ($closeOut[$bookingService->id][$provider['provider_id']]['time_extension_status'] == 2)
@@ -150,8 +155,12 @@
                                                                         <p class="p-1">Provider End Time: </p>
                                                                     </div>
                                                                     <div class="col-6">
-                                                                        <p class="p-1">{{$provider['check_in_procedure_values'] ? formatDateTime($provider['check_in_procedure_values']['actual_start_timestamp']): 'N/A'}}</p>
-                                                                        <p class="p-1">{{$provider['check_out_procedure_values'] ? formatDateTime($provider['check_out_procedure_values']['actual_end_timestamp']) : 'N/A'}}</p>
+                                                                        <p class="p-1">
+                                                                            {{ $provider['check_in_procedure_values'] ? formatDateTime($provider['check_in_procedure_values']['actual_start_timestamp']) : 'N/A' }}
+                                                                        </p>
+                                                                        <p class="p-1">
+                                                                            {{ $provider['check_out_procedure_values'] ? formatDateTime($provider['check_out_procedure_values']['actual_end_timestamp']) : 'N/A' }}
+                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                             @endif
@@ -220,7 +229,7 @@
                                                                                 aria-label="Start Time"
                                                                                 name="actual_start_hour"
                                                                                 wire:blur="updateDuration({{ $bookingService->id }},{{ $provider['provider_id'] }})"
-                                                                                type="text" 
+                                                                                type="text"
                                                                                 wire:model.defer="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.actual_end_hour"
                                                                                 maxlength="2">
                                                                         </div>
@@ -237,7 +246,6 @@
                                                                                 aria-label="Start Minutes"
                                                                                 id="actual_start_min"
                                                                                 wire:blur="updateDuration({{ $bookingService->id }},{{ $provider['provider_id'] }})"
-
                                                                                 name="actual_start_min" type="text"
                                                                                 tabindex=""
                                                                                 wire:model.defer="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.actual_end_min"
@@ -298,14 +306,14 @@
                                                                 @error('closeOut.' . $bookingService->id . '.' .
                                                                     $provider['provider_id'] . '.actual_duration_hour')
                                                                     <span class="d-inline-block invalid-feedback mt-2">
-                                                                       Duration hours must be a number
+                                                                        Duration hours must be a number
                                                                     </span>
                                                                 @enderror
 
                                                                 @error('closeOut.' . $bookingService->id . '.' .
                                                                     $provider['provider_id'] . '.actual_duration_min')
                                                                     <span class="d-inline-block invalid-feedback mt-2">
-                                                                       Duration minutes must be a number
+                                                                        Duration minutes must be a number
                                                                     </span>
                                                                 @enderror
                                                             </div>
@@ -314,7 +322,11 @@
                                                     </td>
                                                     <td class="align-middle border-end-2">
                                                         <div class="d-grid grid-cols-1 gap-3 mb-3">
-                                                            @if ((!key_exists('day_rate',$provider['service_payment_details']) || !$provider['service_payment_details']['day_rate']) && (!key_exists('fixed_rate',$provider['service_payment_details']) || !$provider['service_payment_details']['fixed_rate']))
+                                                            @if (
+                                                                (!key_exists('day_rate', $provider['service_payment_details']) ||
+                                                                    !$provider['service_payment_details']['day_rate']) &&
+                                                                    (!key_exists('fixed_rate', $provider['service_payment_details']) ||
+                                                                        !$provider['service_payment_details']['fixed_rate']))
                                                                 <div class="row">
                                                                     <div class="  mt-1">
                                                                         <div class="col col-12">
@@ -632,7 +644,7 @@
                                                                                     Expedition
                                                                                     Charges</strong></label>
                                                                         </div>
-                                                                       
+
                                                                     </div>
 
                                                                     <div class="col col-12 mt-2">
