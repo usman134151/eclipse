@@ -64,6 +64,8 @@ class LoginController extends Controller
 			}
 			$data['default_colour'] = $businessSetup->default_colour;
 			$data['foreground_colour'] = $businessSetup->foreground_colour;
+			$data['dark_default_colour'] = $businessSetup->dark_default_colour;
+			$data['dark_foreground_colour'] = $businessSetup->dark_foreground_colour;
 		}
 		session($data);	//storing setup details 
 

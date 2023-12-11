@@ -21,7 +21,7 @@ class BusinessSetup extends Component
         
 	protected $listeners = ['showList'=>'resetForm'];
     public $messages=[], $policies = [], $feedback = [];
-    public $schedule;
+    public $schedule , $coloursReset = false;
 
     public function rules()
     {
@@ -259,9 +259,16 @@ class BusinessSetup extends Component
         } else
             $this->configuration['contract_providers'] = null;
 
+            if($this->coloursReset)
+                $this->resetColours();
+
             $this->configuration->save();
         session(['company_logo'=>$this->configuration->company_logo]);
         session(['dark_company_logo'=>$this->configuration->dark_company_logo]);
+        session(['foreground_colour'=>$this->configuration->foreground_colour]);
+        session(['default_colour'=>$this->configuration->default_colour]);
+        session(['dark_foreground_colour'=>$this->configuration->dark_foreground_colour]);
+        session(['dark_default_colour'=>$this->configuration->dark_default_colour]);
 
         AnnouncementMessage::truncate();
         foreach($this->messages as $m){
@@ -292,6 +299,7 @@ class BusinessSetup extends Component
                     'title' => 'Success',
                     'text' => "Business setup has been saved successfully",
                 ]);
+                $this->emit('refreshPage');  // refresh page to implement colors and logo
         }
         else{
             $this->dispatchBrowserEvent('refreshSelects');
@@ -410,5 +418,15 @@ class BusinessSetup extends Component
     public function removePolicy($index){
         unset($this->policies[$index]);
         $this->policies = array_values($this->policies);
+    }
+    public function resetColours()
+    {
+        $this->coloursReset = true;
+        $this->configuration->foreground_colour = '';
+        $this->configuration->default_colour = '';
+        $this->configuration->dark_foreground_colour = '';
+        $this->configuration->dark_default_colour = '';
+
+
     }
 }

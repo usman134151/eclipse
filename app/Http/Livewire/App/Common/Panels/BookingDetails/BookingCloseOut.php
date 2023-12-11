@@ -320,7 +320,7 @@ class BookingCloseOut extends Component
         }
         return $this->closeOut[$bookingServiceId][$provider_id]['total_amount'];
     }
-    public function undo($bookingServiceId, $provider_id, $type)
+    public function undo($bookingServiceId, $provider_id, $type=0)
     {
         $bookingService = BookingServices::find($bookingServiceId);
         $provider = $this->providers[$bookingServiceId][array_search($provider_id, array_column($this->providers[$bookingServiceId], 'provider_id'))];
