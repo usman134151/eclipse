@@ -161,7 +161,8 @@
                         @enderror
                         @error('timestamp')
                             <span class="d-inline-block invalid-feedback mt-2">
-                                {{ $message }}
+                                {{-- {{ $message }} --}}
+                                The start time can not be greater than now.
                             </span>
                         @enderror
                     </div>

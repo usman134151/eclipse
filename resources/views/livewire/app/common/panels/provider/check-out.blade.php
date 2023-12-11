@@ -180,6 +180,13 @@
                                 {{ $message }}
                             </span>
                         @enderror
+
+                        @error('timestamps.start')
+                            <span class="d-inline-block invalid-feedback mt-2">
+                                {{-- {{ $message }} --}}
+                                The start time can not be greater than now. 
+                            </span>
+                        @enderror
                     </div>
                     <div class="border-bottom border-dark border-start-0 border-end-0 border-top-0 py-3">
                         <div class="row">
@@ -251,6 +258,12 @@
                         @error('checkout.actual_end_min')
                             <span class="d-inline-block invalid-feedback mt-2">
                                 {{ $message }}
+                            </span>
+                        @enderror
+                        @error('timestamps.end')
+                            <span class="d-inline-block invalid-feedback mt-2">
+                                {{-- {{ $message }} --}}
+                                The end time can not be greater than now.
                             </span>
                         @enderror
                     </div>
