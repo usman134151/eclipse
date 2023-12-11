@@ -38,7 +38,7 @@
                         remittances to the respective Providers. Once issued, you can manage remittance payments from
                         "Payment Manager."</p> --}}
                     <!-- BEGIN: Filters -->
-                    <div class="bg-muted rounded p-4 mb-1">
+                    {{-- <div class="bg-muted rounded p-4 mb-1">
                         (Coming Soon)
                         <div class="d-lg-flex gap-5 align-items-center mb-4">
                             <div class="mb-4 mb-lg-0">
@@ -106,8 +106,10 @@
 
                         </div>
                         <x-advancefilters />
-                    </div>
+                    </div> --}}
                     <!-- END: Filters -->
+                    <x-advancefilters type="payment-filters" :filterProviders="$filterProviders" isRemittance=true />
+
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="SelectAllProviders">
                         <label class="form-check-label" for="SelectAllProviders">
@@ -142,8 +144,7 @@
                 <!-- Hoverable rows start -->
                 <div class="row" id="table-hover-row">
                     <div class="col-12">
-
-                        @livewire('app.common.lists.draft-remittances')
+                        @livewire('app.common.lists.draft-remittances', ['name_seacrh_filter' => $name_seacrh_filter,'provider_ids' => $provider_ids, 'filter_payment_method' => $filter_payment_method ])
 
                     </div>
                 </div>
@@ -199,3 +200,28 @@
 
 
 </div>
+@push('scripts')
+<script>
+     function updateVal(attrName, val) {
+        Livewire.emit('updateVal', attrName, val);
+    }
+    document.addEventListener('refreshSelects2', function(event) {
+            $('.select2').select2();
+            $('.select2').off('change').on('change', function(e) {
+                let attrName = $(this).attr('id');
+                updateVal(attrName, $(this).select2("val"));
+            });
+        });
+
+        function refreshSelectsEvent() {
+            $('.select2').select2();
+            $('.select2').off('change').on('change', function(e) {
+                let attrName = $(this).attr('id');
+                updateVal(attrName, $(this).select2("val"));
+            });
+        }
+
+
+</script>
+    
+@endpush
