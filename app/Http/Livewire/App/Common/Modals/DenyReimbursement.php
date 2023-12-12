@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire\App\Common\Modals;
 
+use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingReimbursement;
+use App\Services\App\NotificationService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -32,6 +34,13 @@ class DenyReimbursement extends Component
         $this->rmb->save();
         $this->emit('close-accept-modal');
         $this->emit('showList', 'Reimbursement denied successfully');
+
+        
+        // $booking = Booking::find($this->rmb->booking_id);
+        // $data['bookingData'] =  $booking ? $booking : [];
+        // $data['reimbursementRequestData'] = $this->rmb;
+        // NotificationService::sendNotification('Payments: Reimbursement Declined', $data);
+        
     }
     public function render()
     {
