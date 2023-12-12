@@ -25,7 +25,7 @@
                     <div class="row d-flex">
                         <div class="col-lg-12 d-flex text-center">
                             <label class="form-label" for="first-name-column">
-                                Upload File</label>
+                                Upload File(s)</label>
                             {{-- <p class="mt-5 fw-medium">
                             Upload File
                             </p> --}}
@@ -89,8 +89,8 @@
                                     </svg>
                                     <p class="text-primary mb-0 fw-medium"> Attach from Device </p>
                                 </label>
-                                <input style=" opacity: 0; z-index: -1; position: absolute;" id="file"
-                                    class="" wire:model="file" type="file">
+                                <input style=" opacity: 0; z-index: -1; position: absolute;" id="file" multiple
+                                    class="" wire:model="files" type="file">
 
 
 
@@ -102,12 +102,14 @@
                                 <progress max="100" x-bind:value="progress"></progress>
                             </div>
                             <div class="">
-                                @if ($file)
-                                    {{ $this->file->getClientOriginalName() }}
+                                @if (count($files))
+                                    @foreach ($files as $file)
+                                        {{ $file->getClientOriginalName() }}
+                                    @endforeach
                                 @endif
                             </div>
                         </div>
-                        @error('file')
+                        @error('files.*')
                             <span class="d-inline-block invalid-feedback mt-2">
                                 {{ $message }}
                             </span>
@@ -157,7 +159,8 @@
 
                     </div>
                     <div class="col-lg-3 gap-2 d-flex form-check">
-                        <input class="form-check-input" type="checkbox" wire:click="selectAllCustomers" wire:model.defer="permissions" value="4">
+                        <input class="form-check-input" type="checkbox" wire:click="selectAllCustomers"
+                            wire:model.defer="permissions" value="4">
 
                         <p>Customers</p>
                     </div>
