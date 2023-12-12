@@ -89,4 +89,42 @@ li.page-item {
 nav[aria-label="Page Navigation"]{
     overflow: auto;
 }
+
+/* #collapseDetails .accordion-item h2 .accordion-button::after{
+    display: none !important;
+} */
+
+.custom-dropdown-btn{
+    margin-top: 31px;
+}
+
+#accordionDetails .accordion-item{
+    border: none !important ;
+}
+
+.custom-collapse{
+    padding: 0 !important;
+}
+.custom-collapse th{
+    background-color: gray !important;
+}
+.custom-collapse td{
+    background-color: #F2F2F2 !important;
+}
+.custom-collapse > div {
+    margin-bottom: -16px !important;    
+}
+
+.custom-dropdown-btn svg {
+    transition: transform 0.3s ease;
+    transform: rotate(0deg);
+}
+
+/* Rotate the SVG by 180 degrees when the button is in the "expanded" state */
+.custom-dropdown-btn[aria-expanded="true"] svg {
+    transform: rotate(180deg);
+}
+.selected-provider :has(.custom-dropdown-btn[aria-expanded="true"]) td{
+    background-color: #F2F2F2 !important;
+}
 /* } */
