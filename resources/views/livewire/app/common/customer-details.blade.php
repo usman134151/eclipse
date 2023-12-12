@@ -61,7 +61,6 @@
                                             <span>Dashboard</span>
                                         </button>
                                     </li>
-                                    @if (!$isCustomer)
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="schedule-tab" data-bs-toggle="tab"
                                             data-bs-target="#schedule-tab-pane" type="button" role="tab"
@@ -75,7 +74,7 @@
                                             <span>Schedule</span>
                                         </button>
                                     </li>
-
+                                    @if (!$isCustomer)
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="service-requests-tab" data-bs-toggle="tab"
                                             data-bs-target="#service-requests-tab-pane" type="button" role="tab"
@@ -857,7 +856,6 @@
 
 </div>
 <!-- Dashboard tab end -->
-@if (!$isCustomer)
 <div class="tab-pane fade" id="schedule-tab-pane" role="tabpanel" aria-labelledby="schedule-tab" tabindex="0">
     <div class="row mb-2">
         <h3>Schedule 
@@ -877,6 +875,7 @@
 </div>
 
 <!-- Schedule tab end -->
+@if (!$isCustomer)
 <div class="tab-pane fade" id="customer-feedback-tab-pane" role="tabpanel" aria-labelledby="customer-feedback-tab"
     tabindex="0">
     <div class="row mb-2">
