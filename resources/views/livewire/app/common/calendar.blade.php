@@ -112,7 +112,7 @@
                         if (eventData.eventColor != "") {
                             info.event.setProp('backgroundColor', eventData.eventColor);
                             if(eventData.darkText)
-                                info.event.setProp('color', '#ff0000');
+                                info.attr('id', 'invited');
                         }
 
 
