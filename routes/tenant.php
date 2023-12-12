@@ -238,7 +238,8 @@ Route::group([
                 Route::view('/add-team', 'tenant/customer/add-team');
 				Route::view('/edit-team/{customerID}', 'tenant/customer/add-team')->name('customer-edit-team')->middleware(DecryptRouteParamater::class);
 
-				Route::view('/team-members', 'tenant/customer/team-members');
+				Route::view('/team-members', 'tenant/customer/team-members',["showProfile" => false]);
+				Route::view('/team-members/profile/{customerID}', 'tenant/customer/team-members',["showProfile" => true])->name('team-member-profile')->middleware(DecryptRouteParamater::class);
 
 				Route::view('/payments-setting', 'tenant/customer/payment-setting');
                 Route::view('/myprofile', 'tenant/customer/myprofile');
