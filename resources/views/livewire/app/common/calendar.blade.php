@@ -112,7 +112,7 @@
                         if (eventData.eventColor != "") {
                             info.event.setProp('backgroundColor', eventData.eventColor);
                             if(eventData.darkText)
-                                $(info.el).attr('id', 'invited');
+                                $(info.el).attr('id', 'dark-color-text-event');
                         }
 
 
@@ -259,5 +259,5 @@
             });
         </script>
     @endif
-
+<style>dark-color-text-event .fc-event-main-frame{color:#000}</style>
 </div>
