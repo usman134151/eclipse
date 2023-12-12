@@ -74,6 +74,10 @@ class ReturnAssignment extends Component
              $this->bookingProvider->return_status = 2;
              $this->bookingProvider->provider_response = $this->provider_response ?? '';
              $this->bookingProvider->save();
+
+            $logMessage = "Provider '" . Auth::user()->name . "' requested to surrender from booking";
+            callLogs($this->booking->id, 'surrender', 'surrendered', $logMessage);
+
              $message = "Return Request submitted to Admin successfully";
              NotificationService::sendNotification('Booking: Provider Return Request', $data,7,true);
 
