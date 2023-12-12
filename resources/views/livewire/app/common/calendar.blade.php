@@ -259,5 +259,5 @@
             });
         </script>
     @endif
-<style>dark-color-text-event .fc-event-main-frame{color:#000}</style>
+<style>#dark-color-text-event .fc-event-main{color:#000 !important}</style>
 </div>
