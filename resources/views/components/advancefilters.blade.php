@@ -48,8 +48,8 @@
             </div>
         @else
             <div class="col-lg-5 pe-lg-3 mb-5">
-                <label class="form-label" for="payment-status">Payment Status</label>
-                <select wire:model='filter_payment_status' name="filter_payment_status" class="select2 form-select" id="filter_payment_status">
+                <label class="form-label" for="payment_status_filter">Payment Status</label>
+                <select wire:model='payment_status_filter' name="payment_status_filter" class="select2 form-select" id="payment_status_filter">
                     <option>Select Payment Status</option>
                     <option value="0">Pending</option>
                     <option value="1">Issued</option>
@@ -148,9 +148,9 @@
                     </div>
                     <div class="col-lg-5 ps-lg-3 mb-5">
                         <label class="form-label">Payment Method</label>
-                        <select data-placeholder="Select Payment Method" wire:model.defer="filter_payment_status"
-                            class="select2 form-select" tabindex="" id="filter_payment_status"
-                            name="filter_payment_status">
+                        <select data-placeholder="Select Payment Method" wire:model.defer="filter_payment_method"
+                            class="select2 form-select" tabindex="" id="filter_payment_method"
+                            name="filter_payment_method">
                             <option value=""></option>
                             <option value=1>Direct Deposit</option>
                             <option value=2>Mail a Cheque</option>
