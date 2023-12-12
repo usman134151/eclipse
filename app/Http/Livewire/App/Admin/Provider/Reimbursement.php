@@ -17,7 +17,7 @@ class Reimbursement extends Component
 
 	// filters
 	public $provider_ids=[], $filterProviders, $booking_number_filter, $name_seacrh_filter, $tag_names =[], $review_status_filter,
-	$filter_payment_status, $filter_payment_method;
+	$payment_status_filter, $filter_payment_method;
 
 	function showForm()
 	{
@@ -150,8 +150,8 @@ class Reimbursement extends Component
 		if (!is_null($this->review_status_filter)) {
 				$query->where('status', 'LIKE', "%" . $this->review_status_filter . "%");
 		}
-		if (!is_null($this->filter_payment_status)) {
-				$query->where('payment_status', 'LIKE', "%" . $this->filter_payment_status . "%");
+		if (!is_null($this->payment_status_filter)) {
+				$query->where('payment_status', 'LIKE', "%" . $this->payment_status_filter . "%");
 		}
 		if (!is_null($this->filter_payment_method)) {
 				$query->where('payment_method', 'LIKE', "%" . $this->filter_payment_method . "%");
@@ -170,7 +170,7 @@ class Reimbursement extends Component
 		$this->booking_number_filter = null;
 		$this->name_seacrh_filter = null;
 		$this->review_status_filter = null;
-		$this->filter_payment_status = null;
+		$this->payment_status_filter = null;
 		$this->filter_payment_method = null;
 
 		$this->dispatchBrowserEvent('refreshSelects2');
