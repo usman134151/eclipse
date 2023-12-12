@@ -178,7 +178,7 @@
 												<input wire:click="excludeNotificationToggle" wire:model="toggleNotification" class="form-check-input" type="checkbox">
 											</div>
 											<div class="col-auto">
-												Exclude all notifications
+												Enable all notifications
 											</div>
 										</div>
 									</div>
