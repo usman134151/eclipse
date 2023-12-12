@@ -1,6 +1,6 @@
 <div class="col-lg-12 between-section-segment-spacing">
     <div class="mb-3 position-relative">
-        <button @click.prevent="addDocuments = true" class="btn btn-primary d-block"></a>
+        <button @click.prevent="addDocuments = true" class="btn btn-primary d-block" wire:click="$emit('initFields')" ></a>
             Add Documents</button>
     </div>
     <div class="row mb-4">
@@ -18,6 +18,19 @@
                                 fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <use xlink:href="/css/sprite.svg#delete-icon"></use>
                             </svg>
+                        </a>
+                    </div>
+                    
+                    <div class="position-absolute top-0" style="right: {{$isProviderPanel ? "0" : '25'}}px;" >
+                        <a  href="{{$document['document_name']}}" download 
+                            title="Download" aria-label="Download" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-0">
+                           <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    <div class="position-absolute top-0" style="right: {{$isProviderPanel ? "25" : '50'}}px;" >
+                        <a href="{{$document['document_name']}}" target="_blank"
+                            title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-0">
+                           <i class="far fa-eye"></i>
                         </a>
                     </div>
                 </div>

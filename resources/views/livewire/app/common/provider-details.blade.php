@@ -85,8 +85,6 @@
                                     </li>
 
 
-                                    {{-- dont display on self profile --}}
-                                    @if (!$isProvider)
                                         <li class="nav-item" role="presentation">
                                             <button class="nav-link" id="schedule-tab" data-bs-toggle="tab"
                                                 data-bs-target="#schedule-tab-pane" type="button" role="tab"
@@ -99,7 +97,8 @@
                                                 <span>Schedule</span>
                                             </button>
                                         </li>
-
+                                    {{-- dont display on self profile --}}
+                                    @if (!$isProvider)
                                         <li class="nav-item" role="presentation">
                                             <button class="nav-link" id="availability-tab" data-bs-toggle="tab"
                                                 data-bs-target="#availability-tab-pane" type="button" role="tab"

@@ -15,8 +15,8 @@ class AddDocuments extends Component
 {
     use WithFileUploads;
 
-    public $showForm, $booking_id = 0, $document = [], $file = null, $request_from_user = false, $permissions = [], $notification = [], $selectAll = false, $isProviderPanel = false;
-    protected $listeners = ['showList' => 'resetForm', 'setBookingId'];
+    public $showForm, $booking_id = 0, $document = [], $files = [], $request_from_user = false, $permissions = [], $notification = [], $selectAll = false, $isProviderPanel = false;
+    protected $listeners = ['showList' => 'resetForm', 'setBookingId', 'initFields'];
 
     public function render()
     {
@@ -52,7 +52,7 @@ class AddDocuments extends Component
                 'max:255',
             ],
             'document.description' => 'nullable',
-            'file' => 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv',
+            'files.*' => 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv',
             'document.permissions' => 'nullable',
         ];
     }
@@ -60,27 +60,32 @@ class AddDocuments extends Component
     public function save()
     {
         $this->validate();
-        if ($this->file != null) {
-            $fileService = new UploadFileService();
-            $this->document['document_name'] = $fileService->saveFile('bookings/' . $this->booking_id, $this->file);
-            $this->document['document_type'] = $this->file->getClientOriginalExtension();
+        foreach ($this->files as $file) {
+            if ($file != null) {
+                $fileService = new UploadFileService();
+                $this->document['document_name'] = $fileService->saveFile('bookings/' . $this->booking_id, $file);
+                $this->document['document_type'] = $file->getClientOriginalExtension();
+            }
+            // dd($this->permissions);
+            $this->document['permissions'] = null;
+            if ($this->isProviderPanel) {
+                $this->document['permissions']['attach_to_provider_confirmation'] = true;
+                $this->document['permissions']['attach_to_customer_confirmation'] = true;
+                $this->document['permissions']['customer_permissions'] = ['2', '4', '5', '6', '7', '8', '9'];
+            } else
+                $this->document['permissions']['customer_permissions'] = $this->permissions;
+
+            $this->document['permissions'] = json_encode($this->document['permissions']);
+            $this->document['booking_id'] = $this->booking_id;
+            BookingDocument::create($this->document);
         }
-        if ($this->isProviderPanel) {
-            $this->document['permissions']['attach_to_provider_confirmation'] = true;
-            $this->document['permissions']['attach_to_customer_confirmation'] = true;
-            $this->document['permissions']['customer_permissions'] = ['2', '4', '5', '6', '7', '8', '9'];
-        } else
-            $this->document['permissions']['customer_permissions'] = $this->permissions;
-
-        $this->document['permissions'] = json_encode($this->document['permissions']);
-        $this->document['booking_id'] = $this->booking_id;
-        BookingDocument::create($this->document);
-
+        
+        $data['bookingData'] = Booking::find($this->booking_id);
         $data['newAttachmentData'] = $this->document;
-        // NotificationService::sendNotification('Booking: New Attachment Upload', $data);
+        NotificationService::sendNotification('Booking: New Attachment Upload', $data);
 
         $this->dispatchBrowserEvent('close-add-documents');
-        $this->emit('showConfirmation', 'Document added successfully');
+        $this->emit('showConfirmation', 'Document(s) added successfully');
         $this->initFields();
     }
 
@@ -121,7 +126,7 @@ class AddDocuments extends Component
             'repeat_notify_value' => null,
             'message_to_requestee' => null
         ];
-        $this->file = null;
+        $this->files = [];
         $this->selectAll = false;
     }
 

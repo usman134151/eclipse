@@ -17,7 +17,7 @@ class AssignmentDetails extends Component
 {
     public $showForm, $booking, $data = [],$bookingNumber, $providerPanelType,$co_counter, $checkout_booking_id=0,$checkin_booking_id = 0,$ci_counter = 0,$selectedProvider, $booking_service_id, $isCalendar=false;
     protected $listeners = ['showList' => 'resetForm','setBookingId', 'openProviderCheckIn'=>'showCheckInPanel', 'openProviderCheckOut' => 'showCheckOutPanel'];
-
+    public $booking_id;
     public function render()
     {
         return view('livewire.app.common.panels.assignment-details');
@@ -33,6 +33,7 @@ class AssignmentDetails extends Component
         // dd($booking_id);
         $this->booking = Booking::where('id', $booking_id)->first();
         $this->bookingNumber=$this->booking->booking_number;
+        $this->booking_id = $booking_id ; // for add-documents panel
         $this->fetchData();
     }
 

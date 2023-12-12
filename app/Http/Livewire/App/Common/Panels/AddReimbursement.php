@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\App\Common\Panels;
 
+use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\BookingReimbursement;
 use App\Models\Tenant\ReimbursementAttachment;
@@ -31,15 +32,21 @@ class AddReimbursement extends Component
     ];
 
     // Validation Rules
-    public $rules = [
-        'reimbursement.provider_id' => 'required',
-        'reimbursement.booking_id' => 'nullable',
-        'reimbursement.reason' => 'required',
-        'reimbursement.file' => 'nullable',
-        'reimbursement.amount' => 'nullable|numeric',
-        'reimbursement.charge_to_customer' => 'nullable',
-        'file' => 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv',
-    ];
+    public function rules()
+    {
+        $rules = [
+            'reimbursement.provider_id' => 'required',
+            'reimbursement.booking_id' => 'nullable',
+            'reimbursement.reason' => 'required',
+            'reimbursement.file' => 'nullable',
+            'reimbursement.amount' => 'nullable|numeric',
+            'reimbursement.charge_to_customer' => 'nullable',
+            'file' => 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv',
+        ];
+        if (session()->get('isProvider'))
+            $rules["reimbursement.booking_id"] = 'required';
+        return $rules;
+    }
 
 
     public function render()
@@ -147,10 +154,13 @@ class AddReimbursement extends Component
             ]);
         }
 
-        $data['reimbursementRequestData'] = BookingReimbursement::where('id', $reimbursement)->first();
-        // NotificationService::sendNotification('Payments: Reimbursement Requested', $data, 8);
-
-        callLogs($reimbursement, 'Reimbursement', $type);
+        if (session()->get('isProvider')) {
+            $booking = Booking::find($this->reimbursement->booking_id);
+            $data['bookingData'] =  $booking ? $booking : [];
+            $data['reimbursementRequestData'] = BookingReimbursement::where('id', $reimbursement)->first();
+            NotificationService::sendNotification('Payments: Reimbursement Requested', $data, 6, true);
+        } else
+            callLogs($reimbursement, 'Reimbursement', $type);
 
         $this->emit('showList', 'Reimbursement added successfully');
         $this->dispatchBrowserEvent('close-add-reimbursement');

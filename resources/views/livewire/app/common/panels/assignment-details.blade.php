@@ -883,5 +883,6 @@
     @include('panels.provider.check-in')
     @include('panels.provider.check-out')
      @include('panels.common.add-reimbursement')
+    @include('panels.common.add-documents', ['booking_id' => $booking_id])
 
 </div>

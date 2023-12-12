@@ -98,8 +98,9 @@
                 </a>
             </li>
             <li class="" role="presentation">
-                <a class="dashborad-block" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"
-                    type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">
+                <a href='/customer/myprofile' class="dashborad-block" id="profile-tab" 
+                {{-- data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false" --}}
+                    >
                     <div class="text-center block-text">My Profile</div>
                     <div class="text-center block-icon">
                         <svg aria-label="My Profile" class="fill" width="55" height="55"
@@ -202,12 +203,12 @@
                     @livewire('app.common.bookings.booknow')
                 </div>
             </div>
-            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
+            <!-- <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
                 tabindex="0">
 
-                <!-- Filters -->
-                @livewire('app.customer.profile')
-            </div>
+                {{-- <!-- Filters --> --}}
+                {{-- @livewire('app.customer.profile') --}}
+            </div> -->
         </div>
     </div>
     <style>

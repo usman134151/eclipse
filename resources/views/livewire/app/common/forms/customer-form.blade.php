@@ -974,8 +974,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                             <div class="row between-section-segment-spacing">
+                                                @if(!$isCustomer)
                                                 <div class="col-lg-6 mb-4 pe-lg-5">
                                                     <label class="form-label" for="preffered-providers">
                                                         Preferred Providers
@@ -1004,6 +1004,7 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
+                                                @endif
 
                                                 <div class="col-lg-6 mb-4 pe-lg-5">
                                                     <label class="form-label">
@@ -1114,6 +1115,7 @@
                                                 </div>
                                             </div>
 
+                                            @if (!$isCustomer)                                                
                                             <div class="col-lg-12 between-section-segment-spacing">
                                                 <label class="form-label" for="industry-column">
                                                     Assigned Admin-Staff
@@ -1157,6 +1159,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            @endif
                                             {{-- Action Buttons Start --}}
                                             <div class="col-12 form-actions">
                                                 <button type="button" class="btn btn-outline-dark rounded"
