@@ -5,7 +5,7 @@
             <div class="row breadcrumbs-top">
                 <div class="col-12">
                     <h1 class="content-header-title float-start mb-0">
-                        {{ $isCustomer ? 'My Profile' : 'Customers' }}
+                        {{ $isTeamMember ? 'Team Members' : ($isCustomer ? 'My Profile' : 'Customers') }}
                     </h1>
                     <div class="breadcrumb-wrapper">
                         <ol class="breadcrumb">
@@ -19,10 +19,10 @@
                                 </a>
                             </li>
                             <li class="breadcrumb-item">
-                                {{ $isCustomer ? 'Home' : 'Customers' }}
+                                {{ $isTeamMember ? 'Profile' : ($isCustomer ? 'Home' : 'Customers') }}
                             </li>
                             <li class="breadcrumb-item">
-                                {{ $isCustomer ? 'My Profile' : 'Customer Details' }}
+                                {{ $isTeamMember ? 'Team Member Details' : ($isCustomer ? 'My Profile' : 'Customer Details') }}
                             </li>
                         </ol>
                     </div>
@@ -101,7 +101,7 @@
                                             <span>My Drive</span>
                                         </button>
                                     </li>
-
+                                    @if(!$isTeamMember)
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="customer-feedback-tab" data-bs-toggle="tab"
                                             data-bs-target="#customer-feedback-tab-pane" type="button"
@@ -201,7 +201,7 @@
                                             <span>Notifications</span>
                                         </button>
                                     </li>
-
+                                    @endif
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="log-tab" data-bs-toggle="tab"
                                             data-bs-target="#log-tab-pane" type="button" role="tab"

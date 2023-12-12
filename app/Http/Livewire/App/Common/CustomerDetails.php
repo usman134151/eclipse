@@ -20,6 +20,7 @@ class CustomerDetails extends Component
 		'showDetails', 'showConfirmation' , 'openInvoiceDetails', 'downloadInvoice'=> 'createInvoicePDF', 'updateVal' => 'showDetails'
 	];
 
+	public $isTeamMember = false;
 	public $filter_companies, $filter_bmanager;
         public $setupValues = [
         'companies' => ['parameters' => ['Company', 'id', 'name', 'status', 1, 'name', false, 'filter_companies', '', 'filter_companies', 2]],
