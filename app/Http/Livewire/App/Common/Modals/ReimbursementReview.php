@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire\App\Common\Modals;
 
+use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingReimbursement;
+use App\Services\App\NotificationService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -15,6 +17,7 @@ class ReimbursementReview extends Component
     public function selectedReimbursement($reimbursementId)
     {
         $this->rmb = BookingReimbursement::find($reimbursementId);
+        $this->admin_response='';
     }
     public function render()
     {
@@ -30,6 +33,12 @@ class ReimbursementReview extends Component
         $this->rmb->save();
         $this->emit('close-accept-modal');
         $this->emit('showList','Reimbursement accepted successfully');
+
+        // $booking = Booking::find($this->rmb->booking_id);
+        // $data['bookingData'] =  $booking ? $booking : [];
+        // $data['reimbursementRequestData'] = $this->rmb;
+        // NotificationService::sendNotification('Payments: Reimbursement Approved', $data);
+        
     }
 
     function showForm()

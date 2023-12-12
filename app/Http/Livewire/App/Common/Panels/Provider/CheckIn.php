@@ -5,6 +5,7 @@ namespace App\Http\Livewire\App\Common\Panels\Provider;
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\BookingServices;
+use App\Services\App\NotificationService;
 use App\Services\App\UploadFileService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -88,6 +89,14 @@ class CheckIn extends Component
         $bookingProvider->check_in_procedure_values = $values;
         $bookingProvider->save();
         // dd($bookingProvider);
+
+        // if(session()->get('isProvider')){
+            // send notification 
+
+            // $data['bookingData'] = $this->assignment;
+            // NotificationService::sendNotification('Booking: New Attachment Upload', $data);
+
+        // }
 
         $this->dispatchBrowserEvent('close-check-in-panel');
         $this->emit('showConfirmation', 'Checked in successfully');
