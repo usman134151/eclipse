@@ -112,7 +112,7 @@
                         if (eventData.eventColor != "") {
                             info.event.setProp('backgroundColor', eventData.eventColor);
                             if(eventData.darkText)
-                                info.attr('id', 'invited');
+                                $(info.el).attr('id', 'invited');
                         }
 
 
