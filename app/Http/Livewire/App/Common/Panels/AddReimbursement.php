@@ -32,15 +32,21 @@ class AddReimbursement extends Component
     ];
 
     // Validation Rules
-    public $rules = [
-        'reimbursement.provider_id' => 'required',
-        'reimbursement.booking_id' => 'nullable',
-        'reimbursement.reason' => 'required',
-        'reimbursement.file' => 'nullable',
-        'reimbursement.amount' => 'nullable|numeric',
-        'reimbursement.charge_to_customer' => 'nullable',
-        'file' => 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv',
-    ];
+    public function rules()
+    {
+        $rules = [
+            'reimbursement.provider_id' => 'required',
+            'reimbursement.booking_id' => 'nullable',
+            'reimbursement.reason' => 'required',
+            'reimbursement.file' => 'nullable',
+            'reimbursement.amount' => 'nullable|numeric',
+            'reimbursement.charge_to_customer' => 'nullable',
+            'file' => 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv',
+        ];
+        if (session()->get('isProvider'))
+            $rules["reimbursement.booking_id"] = 'required';
+        return $rules;
+    }
 
 
     public function render()
