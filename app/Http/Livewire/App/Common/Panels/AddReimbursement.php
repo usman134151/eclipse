@@ -152,9 +152,9 @@ class AddReimbursement extends Component
             $booking = Booking::find($this->reimbursement->booking_id);
             $data['bookingData'] =  $booking ? $booking : [];
             $data['reimbursementRequestData'] = BookingReimbursement::where('id', $reimbursement)->first();
-            NotificationService::sendNotification('Payments: Reimbursement Requested', $data,6,true);
-        }
-        callLogs($reimbursement, 'Reimbursement', $type);
+            NotificationService::sendNotification('Payments: Reimbursement Requested', $data, 6, true);
+        } else
+            callLogs($reimbursement, 'Reimbursement', $type);
 
         $this->emit('showList', 'Reimbursement added successfully');
         $this->dispatchBrowserEvent('close-add-reimbursement');
