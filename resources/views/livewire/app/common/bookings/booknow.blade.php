@@ -1385,7 +1385,6 @@
                             <div class="row border-top pt-5 ">
                             <h2 class="mt-3">Booking Documents </h2>
                                 <div class="col-lg-12">
-                                  
                                     <!-- Add Document -->
                                     @if(!is_null($booking->id))
                                    
@@ -2155,11 +2154,12 @@
 
 
     <!-- /Modal Request from User -->
-    @if(!is_null($booking->id))
+    {{-- update to allow add-documents when creating booking - Maarooshaa --}}
+    {{-- @if(!is_null($booking->id)) --}}
 
         @include('panels.common.add-documents', ['booking_id' => $booking->id])
       
-    @endif
+    {{-- @endif --}}
     @include('panels.booking-details.assign-providers')
 
     @push('scripts')
