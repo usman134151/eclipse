@@ -20,7 +20,7 @@ class BusinessSetup extends Model
         'staff_providers', 'contract_providers', 'feedback', 'deposit_form_file', 'require_provider_approval', 'rate_for_providers', 'measurement_providers',
         'rate_for_travel_time', 'currency', 'billing_days', 'service_agreements_file', 'service_url_link', 'send_qoutes',
         'customer_approve_on_login', 'policy_file', 'policy_link', 'customer_drive', '	cd_show_policy_customer', 'provider_drive', 'pd_show_policy_customer',
-        'payment_payroll', 'customer_billing', 'enable_staff_providers', 'enable_contract_providers'
+        'payment_payroll', 'customer_billing', 'enable_staff_providers', 'enable_contract_providers', 'dark_default_colour', 'dark_foreground_colour', 'dark_company_logo', 'email_notifications', 'sms_notifications' ,'system_notifications'
 
     ];
 }

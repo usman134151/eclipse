@@ -66,7 +66,8 @@ class NotificationConfiguration extends PowerGridComponent
             'notification_templates.notification_type',
             // 'notification_template_roles.customer_roles'
         ]);
-        $query->where('notification_templates.notification_type', $this->notification_type);
+        $query->where('notification_templates.notification_type', $this->notification_type)
+        ->with('notificationTemplateRoles.role');
         if ($this->typeId !== null) {
             $query->where('trigger_types.id', $this->typeId);
         }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\App\Admin;
 
+use App\Models\Tenant\BusinessSetup;
 use Livewire\Component;
 use App\Models\Tenant\NotificationTemplates;
 use App\Models\Tenant\TriggerType;
@@ -18,6 +19,12 @@ class NotificationConfiguration extends Component
     public $selectedRoleId;
     public $typeId;
 	public $triggerTypes;
+	public $toggleNotification = 1;
+	public $notificationType = [
+        1 => 'email_notifications',
+        2 => 'system_notifications',
+        3 => 'sms_notifications'
+    ];
 
     public $confirmationMessage;
     public $recordId;
@@ -76,10 +83,15 @@ class NotificationConfiguration extends Component
         $this->recordId = $id;
     }
 
+    public function excludeNotificationToggle()
+    {
+        BusinessSetup::first()->update([$this->notificationType[$this->type] => $this->toggleNotification ? 1 : 0]);
+    }
+
     public function mount()
     {
 		$this->triggerTypes=TriggerType::all();
-
+        $this->toggleNotification = BusinessSetup::first()->pluck($this->notificationType[$this->type])[0];
     }
 
     public function render()

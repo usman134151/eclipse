@@ -56,7 +56,7 @@
                                                     the provider's payroll in "Remittances."</p>
                                                 <!-- BEGIN: Filters -->
                                                 <div class="bg-muted rounded p-4 mb-1">
-                                                    <div class="d-lg-flex gap-5 align-items-center mb-4">
+                                                    <!-- <div class="d-lg-flex gap-5 align-items-center mb-4">
                                                         <div class="mb-4 mb-lg-0">
                                                             <label class="form-label-sm"
                                                                 for="search-column">Search</label>
@@ -154,8 +154,8 @@
                                                                 <option>Pending</option>
                                                             </select>
                                                         </div>
-                                                    </div>
-                                                    <x-advancefilters />
+                                                    </div> -->
+                                                    <x-advancefilters type="payment-filters" :filterProviders="$filterProviders" />
                                                 </div>
                                                 <!-- END: Filters -->
                                                 <div class="form-check mb-4">
@@ -512,5 +512,25 @@
             $('#denyReimbursement').modal('hide');
 
         });
+
+        function updateVal(attrName, val) {
+                Livewire.emit('updateVal', attrName, val);
+        }
+        document.addEventListener('refreshSelects2', function(event) {
+            $('.select2').select2();
+            $('.select2').off('change').on('change', function(e) {
+                let attrName = $(this).attr('id');
+                updateVal(attrName, $(this).select2("val"));
+            });
+        });
+
+        function refreshSelectsEvent() {
+            $('.select2').select2();
+            $('.select2').off('change').on('change', function(e) {
+                let attrName = $(this).attr('id');
+                updateVal(attrName, $(this).select2("val"));
+            });
+        }
+
     </script>
     @endpush
