@@ -146,9 +146,9 @@ final class CompanyTeamMembers extends PowerGridComponent
             ->addColumn('name')
             ->addColumn('user', function (User $model) {
                 if ($model->profile_pic == null)
-                    $col = '<div class="row g-2 align-items-center"><div class="col-md-2"><img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Customer Profile Image"></div><div class="col-md-10"><h6 class="fw-semibold"><a href="' . route('tenant.customer-edit-team', ['customerID' => encrypt($model->id)]) . '">' . $model->name . '</a></h6><p>' . $model->email . '</p></div></div>';
+                    $col = '<div class="row g-2 align-items-center"><div class="col-md-2"><img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Customer Profile Image"></div><div class="col-md-10"><h6 class="fw-semibold"><a href="' . route('tenant.team-member-profile', ['customerID' => encrypt($model->id)]) . '">' . $model->name . '</a></h6><p>' . $model->email . '</p></div></div>';
                 else
-                    $col = '<div class="row g-2 align-items-center"><div class="col-md-2"><img style="width:64px;height:64px;top:1rem"  src="' . $model->profile_pic . '" class="img-fluid rounded-circle" alt="Customer Profile Image"></div><div class="col-md-10"><h6 class="fw-semibold"><a href="' . route('tenant.customer-edit-team', ['customerID' => encrypt($model->id)]) . '">' . $model->name . '</a></h6><p>' . $model->email . '</p></div></div>';
+                    $col = '<div class="row g-2 align-items-center"><div class="col-md-2"><img style="width:64px;height:64px;top:1rem"  src="' . $model->profile_pic . '" class="img-fluid rounded-circle" alt="Customer Profile Image"></div><div class="col-md-10"><h6 class="fw-semibold"><a href="' . route('tenant.team-member-profile', ['customerID' => encrypt($model->id)]) . '">' . $model->name . '</a></h6><p>' . $model->email . '</p></div></div>';
                 return $col;
             })
             ->addColumn('phone', function (User $model) {
@@ -194,7 +194,17 @@ final class CompanyTeamMembers extends PowerGridComponent
                 if ((in_array(6, session()->get('customerRoles')) || in_array(7, session()->get('customerRoles')) || in_array(8, session()->get('customerRoles')) || in_array(9, session()->get('customerRoles')))&&  !in_array(10, session()->get('customerRoles'))) 
                     return "";
                 else
-                    return "<div class='d-flex actions'><a href='" . route('tenant.customer-edit-team', ['customerID' => encrypt($model->id)]) . "'  title='Edit Customer' aria-label='Edit Team' class='btn btn-sm btn-secondary rounded btn-hs-icon'><svg title='Edit Customer' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#pencil'></use></svg></a></div>";
+                    return 
+                "<div class='d-flex actions'>
+                <a href='" . route('tenant.customer-edit-team', ['customerID' => encrypt($model->id)]) . "'  title='Edit Customer' aria-label='Edit Team' class='btn btn-sm btn-secondary rounded btn-hs-icon'><svg title='Edit Customer' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#pencil'></use></svg></a>
+                <a href='" . route('tenant.team-member-profile', ['customerID' => encrypt($model->id)]) 
+				. "' title='View Customer' aria-label='View Customer' class='btn btn-sm btn-secondary rounded btn-hs-icon'  >
+				<svg aria-label='View Customer' width='20' height='20' viewBox='0 0 20 20'>
+				<use xlink:href='/css/common-icons.svg#view'>
+				<use>
+				</svg>
+				</a>
+                </div>";
             });
     }
 
