@@ -207,10 +207,18 @@ class Calendar extends Component
 					// check if the user is supervisor or booking manager of a customer of the booking
 					$associated_user = RoleUserDetail::whereIn('role_id', [5, 9])->where('user_id', $this->user_id)->get()->pluck('associated_user');
 					$g->orWhereIn('customer_id', $associated_user);
+
+					// if dept supervisor, then show all dept related bookings
+					$u_dept = $user->supervised_departments ? $user->supervised_departments->pluck('id')->toArray() : null;
+					if ($u_dept && count($u_dept)) {
+						$g->orWhereHas('bookingDepartments', function ($q) use ($u_dept) {
+							$q->whereIn('booking_departments.department_id', $u_dept);
+						});
+					}
 				});
 			}
 		}
-		if ($this->user_id && !$this->providerProfile && !$this->isCustomer) {
+		if ($this->user_id && !$this->providerProfile && !$this->isCustomer && !$this->customerProfile) {
 			
 			$query->join('booking_providers', function ($join) {
 				$join->where('booking_providers.provider_id', $this->user_id);
@@ -332,7 +340,8 @@ class Calendar extends Component
 				$newEvents[$key]['isProvider'] = false;
 			}
 
-			$newEvents[$key]['timeSlot'] =  formatTime($booking_start_at) . ' - ' . formatTime($booking_end_at);
+			$newEvents[$key]['timeSlot'] =  date('h:i A', strtotime($booking_start_at)) . ' - ' . date('h:i A', strtotime($booking_end_at));
+			// dd($newEvents[$key]['timeSlot']);
 			$description = '<div class="pe-3">';
 			$description .= '<p class="mb-3 mt-2">Assignment No.: ' . $booking_number . ' </p>';
 			$description .= '<p class="my-3">Customer: ' . ($customer != null ? $customer['name'] : 'N/A') . ' </p>';
