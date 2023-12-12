@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\App\Common\Panels;
 
+use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\BookingReimbursement;
 use App\Models\Tenant\ReimbursementAttachment;
@@ -147,9 +148,12 @@ class AddReimbursement extends Component
             ]);
         }
 
-        $data['reimbursementRequestData'] = BookingReimbursement::where('id', $reimbursement)->first();
-        // NotificationService::sendNotification('Payments: Reimbursement Requested', $data, 8);
-
+        if (session()->get('isProvider')) {
+            $booking = Booking::find($this->reimbursement->booking_id);
+            $data['bookingData'] =  $booking ? $booking : [];
+            $data['reimbursementRequestData'] = BookingReimbursement::where('id', $reimbursement)->first();
+            NotificationService::sendNotification('Payments: Reimbursement Requested', $data,6,true);
+        }
         callLogs($reimbursement, 'Reimbursement', $type);
 
         $this->emit('showList', 'Reimbursement added successfully');
