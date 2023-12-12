@@ -17,8 +17,8 @@ class CheckIn extends Component
 
     public $showForm, $checkIn = true, $hours = null, $mins = null, $provider_signature = null, $customer_signature = null, $form_id = null, $files = ['provider_signature' => null, 'customer_signature' => null];
     protected $listeners = ['showList' => 'resetForm', 'setCheckInBookingId' => 'setBookingId'];
-    public $booking_id = 0, $assignment = null, $booking_service = null, $checkin_details = [], $booking_provider = null;
-    public $isAdmin = false, $provider_id = null;
+    public $booking_id = 0, $assignment = null, $booking_service = null, $checkin_details = [], $booking_provider = null,$timestamp;
+    public $isAdmin = false, $provider_id = null, $timeFormat=24, $time_slot=null;
     public function render()
     {
 
@@ -30,6 +30,8 @@ class CheckIn extends Component
         $this->checkIn = true;
         $this->hours = null;
         $this->mins = null;
+        $this->timestamp =null;
+        $this->time_slot = null;
         $this->provider_signature = null;
         $this->customer_signature = null;
         $this->booking_id = 0;
@@ -43,16 +45,23 @@ class CheckIn extends Component
 
     public function rules()
     {
-        return [
+        $rules = [
             'provider_signature' => 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv',
             'customer_signature' => 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv',
             'hours' => 'required|numeric|between:0,23',
             'mins' => 'required|numeric|between:0,59'
 
         ];
+        if (session()->get('isProvider'))
+            $rules['timestamp'] = "required|before_or_equal:now";
+        return $rules;
     }
     public function save()
     {
+        if($this->timeFormat==12)
+        $this->timestamp = Carbon::createFromFormat('m/d/Y h:i A', formatDate($this->assignment->booking_start_at) . " {$this->hours}:{$this->mins} {$this->time_slot}");
+        else
+        $this->timestamp = Carbon::createFromFormat('m/d/Y H:i:s', formatDate($this->assignment->booking_start_at) . " {$this->hours}:{$this->mins}:00");
         $this->validate();
         $this->emit('saveCustomForm');
         $fileService = new UploadFileService();
@@ -70,7 +79,7 @@ class CheckIn extends Component
             'actual_start_min' => $this->mins ?? null,
             'provider_signature_path' => $this->files['provider_signature'],
             'customer_signature_path' => $this->files['customer_signature'],
-            'actual_start_timestamp' => Carbon::createFromFormat('m/d/Y H:i:s', formatDate($this->assignment->booking_start_at)." {$this->hours}:{$this->mins}:00"),
+            'actual_start_timestamp' => $this->timestamp,
             'added_at' => 'checkin'
 
 
@@ -86,6 +95,7 @@ class CheckIn extends Component
 
     public function mount($booking_service_id, $provider_id = null)
     {
+        $this->timeFormat = session()->get('business_time_format');
 
         if ($provider_id == null)  //pass provider id when called from admin, else use auth::id
             $this->provider_id = Auth::id();
@@ -99,9 +109,13 @@ class CheckIn extends Component
             $this->booking_service = BookingServices::where('id', $booking_service_id)->first();
             if ($this->booking_service)
                 $this->checkin_details = json_decode($this->booking_service->service->check_in_procedure, true);
+            $startDate = date_create($this->assignment->booking_start_at);
 
-            $this->hours =      date_format(date_create($this->assignment->booking_start_at), 'H');
-            $this->mins =      date_format(date_create($this->assignment->booking_start_at), 'i');
+            $this->hours =      date_format($startDate, $this->timeFormat==12 ? 'h' :'H');
+            $this->mins =      date_format($startDate, 'i');
+            if($this->timeFormat == 12){
+                $this->time_slot = date_format($startDate, 'a'); 
+            }
             if (isset($this->checkin_details['customize_form_id']))
                 $this->form_id = $this->checkin_details['customize_form_id'];
             $this->booking_provider = BookingProvider::where(['booking_service_id' => $booking_service_id, 'provider_id' => $this->provider_id])->first();

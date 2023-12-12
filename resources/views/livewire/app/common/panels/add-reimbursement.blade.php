@@ -172,7 +172,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-check mb-4">
+        <div class="form-check mb-4 {{session()->get('isProvider') ? 'hidden' : ''}}">
             <input wire:model.defer="reimbursement.charge_to_customer" class="form-check-input" type="checkbox"
                 value="" id="charge-To-customer" checked>
             <label class="form-check-label" for="charge-To-customer">
@@ -187,7 +187,7 @@
             </button>
             {{-- <button type="submit" class="btn btn-primary rounded"
                     x-on:click="addReimbursement = !addReimbursement"> --}}
-            <button x-on:close-add-reimbursement.window="addReimbursement = !addReimbursement"
+            <button x-on:close-add-reimbursement.window="addReimbursement = false; assignmentDetails = false;"
                 wire:click.prevent="save" type="submit" class="btn btn-primary rounded">
                 ADD
             </button>

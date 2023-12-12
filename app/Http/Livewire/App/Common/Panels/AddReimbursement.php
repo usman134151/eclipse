@@ -51,6 +51,7 @@ class AddReimbursement extends Component
     {
         $this->reimbursement = $reimbursement;
 
+        $this->reimbursement->reason = 'other';
         if (session()->get('isProvider')) {
             $this->reimbursement->provider_id = Auth::user()->id;
             $this->assignments = BookingProvider::where('provider_id', Auth::user()->id)

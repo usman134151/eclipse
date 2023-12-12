@@ -13,7 +13,11 @@ class Reimbursement extends Component
 {
 	use WithPagination;
 	public $showForm, $limit = 10;
-	protected $listeners = ['showList' => 'resetForm'];
+	protected $listeners = ['showList' => 'resetForm', 'updateVal'];
+
+	// filters
+	public $provider_ids=[], $filterProviders, $booking_number_filter, $name_seacrh_filter, $tag_names =[], $review_status_filter,
+	$payment_status_filter, $filter_payment_method;
 
 	function showForm()
 	{
@@ -35,6 +39,13 @@ class Reimbursement extends Component
 
 	public function mount()
 	{
+		$this->filterProviders = User::where('status', 1)
+			->whereHas('roles', function ($query) {
+				$query->whereIn('role_id', [2]);
+			})->select([
+				'users.id',
+				'users.name',
+			])->get()->toArray();
 	}
 
 	public function render()
@@ -44,8 +55,6 @@ class Reimbursement extends Component
 
 	public function fetchData()
 	{
-		$reimbursements = BookingReimbursement::with('booking')->paginate($this->limit);
-		// dd($reimbursements);
 		$statusLabels = [
 			0 => 'Pending',
 			1 => 'Approved',
@@ -53,11 +62,14 @@ class Reimbursement extends Component
 		];
 		$paymentLabels = [
 			1 => 'Direct Deposit',
-			2 => 'Mail a Check',
+			2 => 'Mail a Cheque',
 		];
 
+		$reimbursements = BookingReimbursement::with('booking');
+		$reimbursements = $this->applySearchFilter($reimbursements);
+		$reimbursements = $reimbursements->paginate($this->limit);
+
 		foreach ($reimbursements as $index => $reimbursement) {
-			
 			// Access the booking relationship for each reimbursement
 			$booking = $reimbursement->booking;
 			$file = ReimbursementAttachment::where('reimbursement_id', $reimbursement->id)->get()->first();
@@ -113,5 +125,60 @@ class Reimbursement extends Component
 			
 			abort(404, 'File not found');
 		}
+	}
+
+	public function applySearchFilter($query)
+	{
+		if ($this->booking_number_filter) {
+			$bookingNumber = $this->booking_number_filter;
+			$query->whereHas('booking', function ($query) use ($bookingNumber) {
+				$query->where('bookings.booking_number', 'LIKE', "%" . $bookingNumber . "%");
+			});
+		}
+		if ($this->name_seacrh_filter) {
+			$name = $this->name_seacrh_filter;
+			$query->whereHas('booking', function ($query) use ($name) {
+				$query->whereHas('company', function ($query) use ($name) {
+					$query->where('companies.name', 'LIKE', "%" . $name . "%");
+				});
+			});
+		}
+		if (count($this->provider_ids)) {
+			$provider_ids = $this->provider_ids;
+			$query->whereIn('provider_id', $provider_ids);
+		}
+		if (!is_null($this->review_status_filter)) {
+				$query->where('status', 'LIKE', "%" . $this->review_status_filter . "%");
+		}
+		if (!is_null($this->payment_status_filter)) {
+				$query->where('payment_status', 'LIKE', "%" . $this->payment_status_filter . "%");
+		}
+		if (!is_null($this->filter_payment_method)) {
+				$query->where('payment_method', 'LIKE', "%" . $this->filter_payment_method . "%");
+		}
+		return $query;
+	}
+
+	public function applyFilters()
+	{
+		$this->render();
+	}
+
+	public function resetFilters()
+	{
+		$this->provider_ids = [];
+		$this->booking_number_filter = null;
+		$this->name_seacrh_filter = null;
+		$this->review_status_filter = null;
+		$this->payment_status_filter = null;
+		$this->filter_payment_method = null;
+
+		$this->dispatchBrowserEvent('refreshSelects2');
+	}
+
+	public function updateVal($attrName, $val)
+	{
+		$this->$attrName = $val;
+		$this->dispatchBrowserEvent('refreshSelects2');
 	}
 }

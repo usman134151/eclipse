@@ -1,4 +1,4 @@
-@props(['type' => '', 'hideProvider' => false, 'filterProviders' => [], 'bmanagers' => [], 'setupValues' => [], 'tags'=>[], 'isPendingInvoices' => false])
+@props(['type' => '', 'hideProvider' => false, 'filterProviders' => [], 'bmanagers' => [], 'setupValues' => [], 'tags'=>[], 'isPendingInvoices' => false, 'isRemittance' => false])
 <div class="row">
     @if ($type == 'invoice-filters')
         <div class="col-lg-5 pe-lg-3 ">
@@ -23,6 +23,40 @@
                 </select>
             </div>
         </div>
+    @elseif ($type == 'payment-filters')
+        <div class="col-lg-5 ps-lg-3 mb-5 {{ $hideProvider || session()->get('isCustomer') ? 'hidden' : '' }}">
+            <label class="form-label" for="provider_ids">Provider</label>
+            <select wire:model.defer="provider_ids" name="provider_ids" id="provider_ids"
+                data-placeholder="Select Provider" multiple class="select2 form-select" tabindex="">
+                <option value=""></option>
+                @if (isset($filterProviders))
+                    @foreach ($filterProviders as $provider)
+                        <option value="{{ $provider['id'] }}">{{ $provider['name'] }}</option>
+                    @endforeach
+                @endif
+            </select>
+        </div>
+
+        @if ($isRemittance)
+            <div class="col-lg-5 pe-lg-3 mb-5">
+                <label class="form-label" for="payment-status">Payment Method</label>
+                <select wire:model='filter_payment_method' name="filter_payment_method" class="select2 form-select" id="filter_payment_method">
+                    <option>Select Payment Method</option>
+                    <option value="1">Direct Deposit</option>
+                    <option value="2">Mail a Cheque</option>
+                </select>
+            </div>
+        @else
+            <div class="col-lg-5 pe-lg-3 mb-5">
+                <label class="form-label" for="payment_status_filter">Payment Status</label>
+                <select wire:model='payment_status_filter' name="payment_status_filter" class="select2 form-select" id="payment_status_filter">
+                    <option>Select Payment Status</option>
+                    <option value="0">Pending</option>
+                    <option value="1">Issued</option>
+                    <option value="2">Paid</option>
+                </select>
+            </div>
+        @endif
     @else
         @if (isset($setupValues['accommodations']))
             <div class="col-lg-5 pe-lg-3 ">
@@ -91,6 +125,47 @@
                         <option value="4">Partial</option>
                     </select>
                 </div>
+            @elseif ($type == 'payment-filters')
+                <div class="col-lg-5 pe-lg-3 mb-5 {{ session()->get('isCustomer') ? 'hidden' : '' }}">
+                    <label class="form-label" for="OrgDeptUser">Company </span>
+
+                    </label>
+                    <input type="text" class="form-control" name="name_seacrh_filter" id="name_seacrh_filter"
+                        placeholder="Enter Company Name " wire:model.defer="name_seacrh_filter">
+                </div>
+                @if (!$isRemittance)
+                    <div class="col-lg-5 ps-lg-3 mb-5">
+                        <label class="form-label">Review Status</label>
+                        <select data-placeholder="Select Review Status" wire:model.defer="review_status_filter"
+                            class="select2 form-select" tabindex="" id="review_status_filter"
+                            name="review_status_filter">
+                            <option value=""></option>
+                            <option value=1>Approved</option>
+                            <option value=0>Pending</option>
+                            <option value=2>Declined</option>
+
+                        </select>
+                    </div>
+                    <div class="col-lg-5 ps-lg-3 mb-5">
+                        <label class="form-label">Payment Method</label>
+                        <select data-placeholder="Select Payment Method" wire:model.defer="filter_payment_method"
+                            class="select2 form-select" tabindex="" id="filter_payment_method"
+                            name="filter_payment_method">
+                            <option value=""></option>
+                            <option value=1>Direct Deposit</option>
+                            <option value=2>Mail a Cheque</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-5 ps-lg-3 mb-5">
+                        <label class="form-label">Booking Number</label>
+                        <input type="text" class="form-control" name="booking_number_filter"
+                        id="booking_number_filter" placeholder="Enter Booking Number"
+                        wire:model.defer="booking_number_filter">
+                    </div>
+                @endif
+
+
+
             @else
                 @if (isset($setupValues['specializations']))
                     <div class="col-lg-5 pe-lg-3 mb-5">
