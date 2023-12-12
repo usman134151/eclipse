@@ -20,6 +20,19 @@
                             </svg>
                         </a>
                     </div>
+                    
+                    <div class="position-absolute top-0" style="right: {{$isProviderPanel ? "0" : '25'}}px;" >
+                        <a  href="{{$document['document_name']}}" download 
+                            title="Download" aria-label="Download" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-0">
+                           <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    <div class="position-absolute top-0" style="right: {{$isProviderPanel ? "25" : '50'}}px;" >
+                        <a href="{{$document['document_name']}}" target="_blank"
+                            title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-0">
+                           <i class="far fa-eye"></i>
+                        </a>
+                    </div>
                 </div>
             @endforeach
         @else
