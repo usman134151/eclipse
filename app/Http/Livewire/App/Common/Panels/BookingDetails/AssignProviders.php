@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
 use Illuminate\Support\Collection;
 use App\Helpers\SetupHelper;
+use app\Services\App\NotificationService;
 
 class AssignProviders extends Component
 {
@@ -748,8 +749,11 @@ class AssignProviders extends Component
                 $status = 2;
             Booking::where('id', $this->booking_id)->update(['status' => $status]);
 
+            // if($status != 2){
+            //     $data['bookingData'] = $this->booking;
+            //     NotificationService::sendNotification('Booking: Booking Filled (only applies to providers who reply "available" but are not assigned)', $data);
+            // }
             $this->dispatchBrowserEvent('close-assign-providers');
-            
             $this->emit('showConfirmation', 'Providers have been assigned successfully');
         }
     }
