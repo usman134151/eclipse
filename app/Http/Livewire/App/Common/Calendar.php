@@ -333,6 +333,9 @@ class Calendar extends Component
 			$newEvents[$key]['bookingId'] = $id;
 			$newEvents[$key]['bookingNumber'] = $booking_number;
 			$newEvents[$key]['eventColor'] = ($mappingCode == "" || $mappingCode == "pending") ? '' : $colorCodes[$mappingCode];
+			$newEvents[$key]['darkText'] = false;
+			if($mappingCode=="Invitation")
+				$newEvents[$key]['darkText'] = true;
 			if (session()->get('isProvider')) {
 				$newEvents[$key]['isProvider'] = true;
 			} else {
