@@ -79,7 +79,7 @@ class CheckOut extends Component
         //     'message'         => "Booking checkout details updated by " . User::find($this->provider_id)->name,
         //     'ip_address'     => \request()->ip(),
         // ]);
-        callLogs($this->assignment->id, 'booking', "update", "Booking checkout details updated by " . User::find($this->provider_id)->name);
+        callLogs($this->assignment->id, 'Booking', "update", "Booking checkout details updated by " . User::find($this->provider_id)->name);
         if (session()->get('isProvider')) {
             $data['bookingData'] = $this->assignment;
 

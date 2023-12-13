@@ -84,8 +84,19 @@ class Specializationmain extends Component
     // function to delete the record with the specified ID
     public function deleteRecord()
     {
-        // delete the record from the database using the Specialization model
-        Specialization::where('id', $this->recordId)->delete();
+        $specialization = Specialization::find($this->recordId);
+		$name = $specialization->name; // Retrieve the name
+		// Generate a unique identifier (e.g., a timestamp or random string)
+		$uniqueIdentifier = uniqid();
+		// Create the new name with the "delete-" prefix and unique identifier
+		$newName = 'delete-' . $uniqueIdentifier . '-' . $name;
+
+		// Delete the record from the database using the model
+		Specialization::where('id', $this->recordId)->update([
+			'name' => $newName,
+			'status' => 2,
+		]);
+       
         callLogs($this->recordId,'specialization',"delete");
         // emit an event to reset the form and display a confirmation message
         $this->emitSelf('showList', 'Record has been deleted');

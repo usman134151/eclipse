@@ -694,7 +694,9 @@ class AssignProviders extends Component
                         ];
 
                         sendTemplatemail($params);
-                        callLogs($this->booking->id,'assign','assigned',"Provider '".$user->name."' assigned to booking");
+                        
+                        $message = "Provider '".$user->name."' assigned to booking '" . $this->booking->booking_number . "' by ". Auth::user()->name;
+                        callLogs($this->booking->id,'Booking','assigned',$message);
                     }
                 }
 
@@ -735,7 +737,8 @@ class AssignProviders extends Component
                     ];
 
                     sendTemplatemail($params);
-                    callLogs($this->booking->id,'assign','assigned',"Provider '".$user->name."' unassigned from booking");
+                    $message = "Provider '".$user->name."' unassigned from booking '" . $this->booking->booking_number . "' by ". Auth::user()->name;
+                    callLogs($this->booking->id,'Booking','unassigned',$message);
                 }
             }
             BookingProvider::whereIn('provider_id', $previousAssigned)->where('booking_id',$this->booking_id)->where('booking_service_id',$booking_service->id)->delete();
@@ -792,7 +795,7 @@ class AssignProviders extends Component
                 BookingInvitationProvider::updateOrCreate($invData, $invData);
             }
 
-            $message = "Booking Invitations sent by" . Auth::user()->name;
+            $message = "Booking Invitations sent by " . Auth::user()->name;
             $logs = array(
                 'action_by' => Auth::user()->id,
                 'action_to' => $this->booking_id,

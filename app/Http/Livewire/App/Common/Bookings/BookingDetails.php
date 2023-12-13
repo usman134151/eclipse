@@ -273,7 +273,8 @@ class BookingDetails extends Component
 		$this->updateTags();    //save newly added tags to table
 		$booking = $this->booking;
 		$booking->save();
-		callLogs($this->booking->id, "Booking Notes/Tags", "Update");
+		$message = "Booking '". $this->booking->booking_number ."' Notes/Tags updated by ". Auth::user()->name;
+		callLogs($this->booking->id, "Booking", " Notes/Tags Update",$message);
 		$this->showConfirmation('Booking notes updated');
 	}
 
@@ -309,7 +310,8 @@ class BookingDetails extends Component
 	public function reinstate($bookingId)
 	{
 		BookingOperationsService::reinstateBooking($bookingId);
-		callLogs($this->booking->id, "Booking", "Reinstate");
+		$message = "Booking '". $this->booking->booking_number ."' reinstated by ". Auth::user()->name;
+		callLogs($this->booking->id, "Booking", "Reinstate",$message);
 		$this->emit('showConfirmation', 'Booking status updated successfully');
 	}
 
