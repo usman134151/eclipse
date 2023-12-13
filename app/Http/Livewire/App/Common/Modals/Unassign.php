@@ -10,6 +10,7 @@ use App\Models\Tenant\User;
 use Carbon\Carbon;
 use Livewire\Component;
 use App\Services\App\BookingAssignmentService;
+use Illuminate\Support\Facades\Auth;
 
 class Unassign extends Component
 {
@@ -77,11 +78,15 @@ class Unassign extends Component
 
             sendTemplatemail($params);
 
-        Booking::where(['id' => $this->booking_id])->update(['status' => 1]);
-        $message="Provider '".$user->name."' unassigned from booking";
+        $booking = Booking::findOrFail($this->booking_id);
+        $booking->update(['status' => 1]);    
+        $bookingNumber = $booking->booking_number;
+            
+        $message="Provider '".$user->name."' unassigned from booking '".$bookingNumber;
         if($this->data['unassign_reason'])
-           $message.=' (Reason: '.$this->data['unassign_reason'].')';
-        callLogs($this->booking_id,'unassign','unassigned',$message);
+           $message.="' (Reason: ".$this->data['unassign_reason'].')';
+        $message .= ' by '. Auth::user()->name;
+        callLogs($this->booking_id,'Booking','unassigned',$message);
         BookingAssignmentService::reTriggerAutoAssign( $this->booking_id,$this->booking_service_id);
         //add check for booking_status update
         $this->emit('showConfirmation', 'Provider Assignment has been revoked successfully');

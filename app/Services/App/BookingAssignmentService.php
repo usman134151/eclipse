@@ -346,7 +346,7 @@ class BookingAssignmentService
                         ];
 
                         sendTemplatemail($params);
-                        callLogs($booking->id,'auto-assign','auto-assigned',"Provider '".$user->name."' auto-assigned to booking");
+                        callLogs($booking->id,'Booking','auto-assigned',"Provider '".$user->name."' auto-assigned to booking");
                     
                 }
 
@@ -412,7 +412,7 @@ class BookingAssignmentService
 
                         $invData['provider_id']     = $provider_id;
                         $invData['invitation_id']   = $bookingInv->id;
-                        callLogs($booking->id,'auto-notified','auto-notified',"Provider '".$user->name."' auto-notified");
+                        callLogs($booking->id,'Booking','auto-notified',"Provider '".$user->name."' auto-notified");
                         BookingInvitationProvider::updateOrCreate($invData, $invData);
                     }
                 }
