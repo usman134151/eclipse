@@ -52,7 +52,7 @@ final class Specializations extends PowerGridComponent
      */
     public function datasource(): Builder
     {
-        return Specialization::query();
+        return Specialization::query()->whereIn('status',[0,1]);
     }
 
     /*
