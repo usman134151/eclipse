@@ -41,14 +41,15 @@ class Booknow extends Component
         'updateSelectedIndustries' => 'selectIndustries',
         'updateSelectedDepartments', 'confirmation', 'showConfirmation',
         'saveCustomFormData' => 'save', 'switch', 'updateAddress' => 'addAddress',
-        'checkModificationCharges', 'updateUsers', 'openAssignProvidersPanel'
+        'checkModificationCharges', 'updateUsers', 'openAssignProvidersPanel',
+        'reloadFalse'
     ];
 
     public $dates = [], $isCustomer = false, $customerDetails = [], $cantRequest = false;
     public $foundService = ['default_providers' => 2];
     public $payment, $discountedAmount = 0, $totalAmount = 0;
     public $allTags = [], $tags = [], $confirmed = false, $currentServiceId, $panelType = 1;
-    public $Requester = false, $Consumer = false, $Participant = false;
+    public $Requester = false, $Consumer = false, $Participant = false, $reload = true;
 
 
     public $setupValues = [
@@ -416,7 +417,7 @@ class Booknow extends Component
                 $data['bookingData'] = Booking::where('id', $this->booking->id)->with('booking_services', 'services', 'payment', 'company', 'customer', 'booking_provider')->first();
 
                 NotificationService::sendNotification('Booking: Dynamic Details Updated (Step 1 details)', $data);
-		        $message = "Booking '". $this->booking->booking_number ."' modified by ". Auth::user()->name;
+                $message = "Booking '" . $this->booking->booking_number . "' modified by " . Auth::user()->name;
                 callLogs($this->booking->id, "Booking", "Modified", $message);
             }
         } //step 1 end
@@ -486,7 +487,7 @@ class Booknow extends Component
 
                 $data['bookingData'] = Booking::where('id', $this->booking->id)->with('booking_services', 'services', 'payment', 'company', 'customer', 'booking_provider')->first();
                 NotificationService::sendNotification('Booking: Created', $data);
-		        $message = "Booking '". $this->booking->booking_number ."' created by ". Auth::user()->name;
+                $message = "Booking '" . $this->booking->booking_number . "' created by " . Auth::user()->name;
                 callLogs($this->booking->id, "Booking", "Create", $message);
             }
 
@@ -1258,8 +1259,13 @@ class Booknow extends Component
                 'title' => 'Success',
                 'text' => $message,
             ]);
-            $this->save(1, 1, 3);
+            if ($this->reload)
+                $this->save(1, 1, 3);
         }
+    }
+    public function reloadFalse()
+    {
+        $this->reload = false;
     }
 
     public function updateBookingTags()

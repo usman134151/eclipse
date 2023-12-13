@@ -88,6 +88,8 @@ class AddDocuments extends Component
         NotificationService::sendNotification('Booking: New Attachment Upload', $data);
 
         $this->dispatchBrowserEvent('close-add-documents');
+        $this->emit('reloadFalse'); 
+
         $this->emit('showConfirmation', 'Document(s) added successfully');
         $this->initFields();
     }

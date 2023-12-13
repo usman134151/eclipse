@@ -43,6 +43,7 @@ class BookingAttachments extends Component
         $fileService = new UploadFileService();
         $fileService->deleteFile($path);
         BookingDocument::where('id', $file_record_id)->delete();
+        $this->emit('reloadFalse'); 
         $this->emit('showConfirmation', 'Document has been successfully deleted');
     }
 
