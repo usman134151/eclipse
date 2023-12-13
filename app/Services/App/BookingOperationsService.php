@@ -1037,7 +1037,7 @@ class BookingOperationsService
         $curr_log['charges'] = $reschedule_details['charges'];
         RescheduleBookingLog::create($curr_log);
 
-        $message = "Booking '". $booking->booking_number ."' rescheduled from (" . formatDateTime($curr_log['previous_start_time']) . " - " . formatDateTime($curr_log['previous_end_time']) . ") to (" . formatDateTime($curr_log['current_start_time']) . " - " . formatDateTime($curr_log['current_end_time']) . ") by '" . Auth::user()->name . "'";
+        $message = "Booking '". $booking->booking_number ."' rescheduled from (" . formatDateTime($curr_log['previous_start_time']) . " - " . formatDateTime($curr_log['previous_end_time']) . ") to (" . formatDateTime($curr_log['current_start_time']) . " - " . formatDateTime($curr_log['current_end_time']) . ") by " . Auth::user()->name ;
 
 
         //  if customer and not company admin/ supervisor move booking to pending-review
@@ -1088,7 +1088,7 @@ class BookingOperationsService
       $curr_log['charges'] = $reschedule_details['charges'];
       RescheduleBookingLog::create($curr_log);
 
-      $message = "Booking '". $booking->booking_number ."' reschduled from (" . formatDateTime($curr_log['previous_start_time']) . " - " . formatDateTime($curr_log['previous_end_time']) . ") to (" . formatDateTime($curr_log['current_start_time']) . " - " . formatDateTime($curr_log['current_end_time']) . ") by '" . Auth::user()->name . "'";
+      $message = "Booking '". $booking->booking_number ."' reschduled from (" . formatDateTime($curr_log['previous_start_time']) . " - " . formatDateTime($curr_log['previous_end_time']) . ") to (" . formatDateTime($curr_log['current_start_time']) . " - " . formatDateTime($curr_log['current_end_time']) . ") by " . Auth::user()->name;
 
 
       //  if customer and not company admin/ supervisor move booking to pending-review
