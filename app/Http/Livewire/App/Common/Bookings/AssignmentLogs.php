@@ -54,7 +54,7 @@ final class AssignmentLogs extends PowerGridComponent
     {
         $query = Log::query()->where("action_to",$this->booking_id)->where('item_type','Booking');
         if(session()->get('isCustomer'))
-            $query->whereNotIn('type',['Booking Invitation','Assignment Invitation','auto-assigned','auto-notified']);
+            $query->whereNotIn('type',['Booking Invitation','Assignment Invitation','auto-assigned','auto-notified','assigned','unassigned']);
         $query->latest(); 
         return $query;
     }
