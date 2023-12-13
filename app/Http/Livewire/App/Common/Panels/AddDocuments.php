@@ -60,28 +60,31 @@ class AddDocuments extends Component
     public function save()
     {
         $this->validate();
+        $document = [];
         foreach ($this->files as $file) {
+            $document = [];
+
             if ($file != null) {
                 $fileService = new UploadFileService();
-                $this->document['document_name'] = $fileService->saveFile('bookings/' . $this->booking_id, $file);
-                $this->document['document_type'] = $file->getClientOriginalExtension();
+                $document['document_name'] = $fileService->saveFile('bookings/' . $this->booking_id, $file);
+                $document['document_type'] = $file->getClientOriginalExtension();
             }
             // dd($this->permissions);
-            $this->document['permissions'] = null;
+            $document['permissions'] = null;
             if ($this->isProviderPanel) {
-                $this->document['permissions']['attach_to_provider_confirmation'] = true;
-                $this->document['permissions']['attach_to_customer_confirmation'] = true;
-                $this->document['permissions']['customer_permissions'] = ['2', '4', '5', '6', '7', '8', '9'];
+                $document['permissions']['attach_to_provider_confirmation'] = true;
+                $document['permissions']['attach_to_customer_confirmation'] = true;
+                $document['permissions']['customer_permissions'] = ['2', '4', '5', '6', '7', '8', '9'];
             } else
-                $this->document['permissions']['customer_permissions'] = $this->permissions;
+                $document['permissions']['customer_permissions'] = $this->permissions;
 
-            $this->document['permissions'] = json_encode($this->document['permissions']);
-            $this->document['booking_id'] = $this->booking_id;
-            BookingDocument::create($this->document);
+            $document['permissions'] = json_encode($document['permissions']);
+            $document['booking_id'] = $this->booking_id;
+            BookingDocument::create($document);
         }
         
         $data['bookingData'] = Booking::find($this->booking_id);
-        $data['newAttachmentData'] = $this->document;
+        $data['newAttachmentData'] = $document; // send email with ref to last file uploaded.
         NotificationService::sendNotification('Booking: New Attachment Upload', $data);
 
         $this->dispatchBrowserEvent('close-add-documents');

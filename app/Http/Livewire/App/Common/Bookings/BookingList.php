@@ -237,9 +237,8 @@ class BookingList extends Component
 				break;
 			case ('Invitations'):
 				// 
-				$query->
-					// whereDate('booking_start_at', '>', Carbon::now())
-					where(['bookings.status' => 1, 'type' => 1, 'booking_status' => '1'])
+				$query->whereDate('booking_start_at', '>', Carbon::now())
+					->where(['bookings.status' => 1, 'type' => 1, 'booking_status' => '1'])
 					->orderBy('booking_start_at', 'ASC');
 				$query->whereHas('invitation');
 

@@ -200,8 +200,8 @@
 
                         @error('timestamps.start')
                             <span class="d-inline-block invalid-feedback mt-2">
-                                {{-- {{ $message }} --}}
-                                The start time can not be greater than now.
+                                {{ $message }}
+                                {{-- The start time can not be greater than now. --}}
                             </span>
                         @enderror
                     </div>
@@ -297,8 +297,8 @@
                         @enderror
                         @error('timestamps.end')
                             <span class="d-inline-block invalid-feedback mt-2">
-                                {{-- {{ $message }} --}}
-                                The end time can not be greater than now.
+                                {{ $message }}
+                                {{-- The end time can not be greater than now. --}}
                             </span>
                         @enderror
                     </div>
