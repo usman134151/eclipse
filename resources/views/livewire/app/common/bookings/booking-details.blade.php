@@ -777,17 +777,17 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                                <div class="col-lg-12 mb-3">
-                                                    <!-- <iframe
+                                                @if($booking && ($service['service_types'] == 1) && $booking->physicalAddress)
+                                                    <div class="col-lg-12 mb-3">
+                                                        <!-- <iframe
                                                         src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d96779.59535015929!2d-74.00126600000002!3d40.710039!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1676478925644!5m2!1sen!2sus"
                                                         {{-- width="304" height="228" --}} style="border:0;" allowfullscreen=""
                                                         loading="lazy" referrerpolicy="no-referrer-when-downgrade"
                                                         class="map">
                                                     </iframe> -->
-                                                </div>
-
-
+                                                        <div id="map" wire:ignore style="width: 90%; height: 0; padding-bottom: 40%; position: relative;"></div>
+                                                    </div>
+                                                @endif
 
                                             </div>
                                             <!-- /In-Person Meeting Detail -->
@@ -838,12 +838,10 @@
                                                                     <div class="d-flex align-items-center gap-2">
                                                                         <div class="font-family-tertiary text-primary">
                                                                             @if (isset($service['meeting_details']))
-                                                                                N/A
-                                                                            @else
+                                                                            <a href="{{ $service['meeting_link'] ? $service['meeting_link'] : '#' }}" target="_blank">
                                                                                 {{ $service['meeting_link'] ? $service['meeting_link'] : 'N/A' }}
+                                                                            </a>
                                                                             @endif
-
-
                                                                         </div>
                                                                         {{-- <a href="#"
                                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
@@ -870,10 +868,15 @@
                                                                 <div class="col-lg-7 align-self-center">
                                                                     <div class="font-family-tertiary">
                                                                         @if (isset($service['meeting_details']))
+                                                                        <a href="{{ $service['meeting_details']['phone_number'] ? $service['meeting_details']['phone_number'] : '#' }}" target="_blank">
                                                                             {{ $service['meeting_details']['phone_number'] ? $service['meeting_details']['phone_number'] : 'N/A' }}
-                                                                        @else
+                                                                        </a>    
+                                                                    @else
+                                                                        <a href="{{ $service['meeting_phone'] ? $service['meeting_phone'] : '#' }}" target="_blank">
                                                                             {{ $service['meeting_phone'] ? $service['meeting_phone'] : 'N/A' }}
-                                                                        @endif
+                                                                        </a>
+                                                                    @endif
+                                                                                                                                                                                         
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1876,6 +1879,48 @@
                 @this.set('tags', $(this).val());
             });
         });
+
+        document.addEventListener('livewire:load', function() {
+
+            var locations = @json($locations);
+            console.log(locations);
+            var map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 5,
+                center: {
+                    lat: {{$default_lat}},
+                    lng: {{$default_lng}}
+                }, // Set a default center
+            });
+
+            var geocoder = new google.maps.Geocoder();
+            createMarkerWithDetail(map, locations[0]);
+        });
+        
+        function createMarkerWithDetail(map, location) {
+            var latLng = new google.maps.LatLng(location.lat, location.long);
+
+            var marker = new google.maps.Marker({
+                position: latLng,
+                map: map,
+                label: {
+                    text: location.title,
+                    fontWeight: 'bold',
+                    fontSize: '14px',
+                    color: 'black',
+                }
+            });
+
+            var content = '<div class="marker-label"><p><strong>Assignment Number: ' + location.title + '</strong></p><p>Address: ' + location.address +
+                '</p><a href="https://www.google.com/maps/place/' + encodeURIComponent(location.address) +
+                '" target="_blank">Get Directions</a>&nbsp;&nbsp;&nbsp;</div>';
+
+            var infoWindow = new google.maps.InfoWindow({
+                content: content
+            });
+            marker.addListener("click", function() {
+                infoWindow.open(map, marker);
+            });
+        }
     </script>
 @endpush
 {{-- @if ($booking->physicalAddress)

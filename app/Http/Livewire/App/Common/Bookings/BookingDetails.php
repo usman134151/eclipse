@@ -32,7 +32,7 @@ class BookingDetails extends Component
 		'showConfirmation', 'openCustomSavedFroms', 'openBookingCloseOut'
 	];
 	public $booking;
-	public $serviceDetails;
+	public $serviceDetails, $locations, $default_lat = 37.7749, $default_lng = -122.4194;
 
 
 	//panel
@@ -81,6 +81,23 @@ class BookingDetails extends Component
 		}
 		if (!is_array($this->tags))
 			$this->tags = [];
+
+		if($this->booking->physicalAddress)
+		{
+			$this->default_lat = $this->booking->physicalAddress->latitude ? $this->booking->physicalAddress->latitude : 37.7749;
+			$this->default_lng = $this->booking->physicalAddress->longitude ? $this->booking->physicalAddress->longitude : -122.4194;
+			$locationData = [
+				'booking_id' => $this->booking->id,
+				'title' => $this->booking->booking_number,
+				'service' => "abc",
+				'address' => $this->booking->physicalAddress->address_line1 . ', ' . $this->booking->physicalAddress->city . ', ' . $this->booking->physicalAddress->state . ', ' . $this->booking->physicalAddress->country . ', ' . $this->booking->physicalAddress->zip,
+				'lat' => $this->booking->physicalAddress->latitude,
+				'long' => $this->booking->physicalAddress->longitude
+			];
+			$locationsArray[] = $locationData;
+			$this->locations = $locationsArray;
+
+		}
 	}
 
 	function fetchData()
