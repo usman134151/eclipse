@@ -75,8 +75,8 @@ class ReturnAssignment extends Component
              $this->bookingProvider->provider_response = $this->provider_response ?? '';
              $this->bookingProvider->save();
 
-            $logMessage = "Provider '" . Auth::user()->name . "' requested to surrender from booking";
-            callLogs($this->booking->id, 'surrender', 'surrendered', $logMessage);
+            $logMessage = "Provider '" . Auth::user()->name . "' requested to surrender from booking '" . $this->booking->booking_number ."'";
+            callLogs($this->booking->id, 'Booking', 'surrendered', $logMessage);
 
              $message = "Return Request submitted to Admin successfully";
              NotificationService::sendNotification('Booking: Provider Return Request', $data,7,true);
@@ -92,8 +92,8 @@ class ReturnAssignment extends Component
                 $this->booking->status = 1;
                 $this->booking->save();
                 
-                $message = "Provider '" . Auth::user()->name . "' surrendered from booking";
-                callLogs($this->booking->id, 'unassign', 'unassigned', $message);
+                $message = "Provider '" . Auth::user()->name . "' surrendered from booking '" . $this->booking->booking_number ."'";
+                callLogs($this->booking->id, 'Booking', 'unassigned', $message);
                 BookingAssignmentService::reTriggerAutoAssign($this->booking->id, $this->bookingService->id);
 
                 $message = "Unassigned from booking successfully";

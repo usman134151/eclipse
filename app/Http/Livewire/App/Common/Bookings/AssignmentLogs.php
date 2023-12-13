@@ -52,7 +52,11 @@ final class AssignmentLogs extends PowerGridComponent
     */
     public function datasource(): Builder
     {
-        return Log::query()->where("action_to",$this->booking_id)->latest();
+        $query = Log::query()->where("action_to",$this->booking_id)->where('item_type','Booking');
+        if(session()->get('isCustomer'))
+            $query->whereNotIn('type',['Booking Invitation','Assignment Invitation','auto-assigned','auto-notified']);
+        $query->latest(); 
+        return $query;
     }
 
     /*

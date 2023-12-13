@@ -2,9 +2,11 @@
 
 namespace App\Http\Livewire\App\Common\Modals;
 
+use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingChMessage;
 use App\Models\Tenant\ChMessage;
 use App\Models\Tenant\User;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class DeleteTeamMessage extends Component
@@ -49,7 +51,9 @@ class DeleteTeamMessage extends Component
     {
         ChMessage::whereIn('id', $this->chatIds)->delete();
         BookingChMessage::where('booking_id', $this->bookingId)->delete();
-        callLogs($this->bookingId, "Booking", "Team Chat Messages delete");
+        $booking = Booking::where('id',$this->bookingId)->first();
+        $message = "Booking '". $booking->booking_number ."' Team Chat Messages deleted by ". Auth::user()->name;
+        callLogs($this->bookingId, "Booking", "Team Chat Messages delete",$message);
         $this->emit('closeDeleteTeamMessageModal');
         $this->emit('showConfirmation', 'Messages deleted successfully');
     }
