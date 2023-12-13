@@ -259,7 +259,9 @@ class Calendar extends Component
 			->get()
 			->toArray();
 		//adding bookings that user has been invited to  -- Maarooshaa
-		$inv_bookings = Booking::join('booking_invitation_providers', function ($join) {
+		$inv_bookings = Booking::where(['bookings.status'=>1, 'type'=>1, 'booking_status' => '1'])	// only upcoming, unassigned and actives bookings,  
+			->whereDate('booking_start_at', '>=', Carbon::today())
+		->join('booking_invitation_providers', function ($join) {
 			$join->where('booking_invitation_providers.provider_id', $this->user_id);
 			$join->on('booking_invitation_providers.booking_id', 'bookings.id');
 			$join->where('booking_invitation_providers.status', '<', 2);
