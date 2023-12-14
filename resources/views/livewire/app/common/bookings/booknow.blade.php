@@ -648,7 +648,7 @@
                                                                 placeholder="Enter Meeting Name" id="meeting-name" wire:key="name-{{$index}}-{{ $meetingIndex }}" wire:model.lazy="services.{{$index}}.meetings.{{$meetingIndex}}.meeting_name" >
                                                         </div>
                                                         <div class="col-lg-4 mb-3">
-                                                            <label class="form-label" for="phone-number">Phone Number</label>
+                                                            <label class="form-label" for="phone-number">Phone Number / Meeting Link</label>
                                                             <input type="" class="form-control"
                                                                 placeholder="Enter Phone Number" id="phone-number" wire:key="phone-{{$index}}-{{ $meetingIndex }}" wire:model.lazy="services.{{$index}}.meetings.{{$meetingIndex}}.phone_number">
                                                         </div>

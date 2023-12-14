@@ -168,20 +168,18 @@ class BookingCloseOut extends Component
                 $booking_provider->save();
             }
 
-            $checkedout_providers = BookingProvider::where('booking_service_id', $bookingServiceId)->where('check_in_status', 3)->count();
-            //check if all providers have checked out -> then close service
-            if ($bookingService->provider_count == $checkedout_providers) {
-                $bookingService->is_closed = true;
-            }
+            // close assignment service 
+            $bookingService->is_closed = true;
+
             if ($this->service_charges[$bookingServiceId]['override'] == true) {
                 $bookingService->billed_total = $this->service_charges[$bookingServiceId]['charges'] != "" ? $this->service_charges[$bookingServiceId]['charges'] : 0;
             }
             $bookingService->save();
         }
 
-        if (count($this->booking->booking_services) == count($this->booking->closed_booking_services)) {
+        // if (count($this->booking->booking_services) == count($this->booking->closed_booking_services)) {
             $this->booking->is_closed = true;
-        }
+        // }
         //override booking total amound
         if ($this->override) {
             Payment::where('booking_id', $this->booking->id)->update(['is_override' => '1', 'override_amount' => $this->override_amount != "" ? $this->override_amount : 0]);
@@ -320,7 +318,7 @@ class BookingCloseOut extends Component
         }
         return $this->closeOut[$bookingServiceId][$provider_id]['total_amount'];
     }
-    public function undo($bookingServiceId, $provider_id, $type=0)
+    public function undo($bookingServiceId, $provider_id, $type = 0)
     {
         $bookingService = BookingServices::find($bookingServiceId);
         $provider = $this->providers[$bookingServiceId][array_search($provider_id, array_column($this->providers[$bookingServiceId], 'provider_id'))];
