@@ -438,7 +438,7 @@
                      <tr>
     <td colspan="4" class="custom-collapse"> <!-- Use colspan to span across all columns in the row -->
         <div id="collapseDetails{{ $index }}" class="accordion-collapse collapse " aria-labelledby="headingDetails{{ $index }}"
-            data-bs-parent="#accordionDetails">
+            data-bs-parent="#accordionDetails" wire:ignore>
             <div class="accordion-body">
                 <table class="table table-fs-md" aria-label="">
                     <thead>
