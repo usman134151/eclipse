@@ -85,7 +85,7 @@
                                 <x-advancefilters type="invoice-filters" :bmanagers="$bmanagers" :setupValues="$setupValues"/>
                             </div>
                             @if (!$showForm)
-                                @livewire('app.common.lists.customer-invoices', ['filter_companies' => $filter_companies,'filter_bmanager' => $filter_bmanager, 'filter_payment_status' => $filter_payment_status, 'filter_select_Date' => $filter_select_Date, 'filterRadio' => $filterRadio ])
+                                @livewire('app.common.lists.customer-invoices', ['filter_companies' => $filter_companies,'filter_bmanager' => $filter_bmanager, 'filter_payment_status' => $filter_payment_status, 'filter_select_Date' => $filter_select_Date, 'filter_end_Date' => $filter_end_Date, 'filterRadio' => $filterRadio ])
                             @endif
 
                             {{-- icon bar start --}}
