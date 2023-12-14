@@ -109,11 +109,11 @@
                                                     for="status-column">
                                                     Status:
                                                 </label><br />
-                                               
+
 
                                                 <div>
                                                     <select class="form-select form-select-sm" id="status"
-                                                        name="status"  disabled>
+                                                        name="status" disabled>
                                                         <option value="pending">Update status</option>
                                                         <option value="pending">Pending</option>
                                                         <option value='assigned'>Assigned</option>
@@ -124,11 +124,11 @@
 
 
                                                     </select> <small>(coming soon)</small>
-                                                    
+
                                                 </div>
-                                              
+
                                             </div>
-                                          
+
                                         </div>
                                         <div class="col-lg col-12 mb-4">
                                             <div class="mb-4">
@@ -777,7 +777,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                @if($booking && ($service['service_types'] == 1) && $booking->physicalAddress)
+                                                @if ($booking && $service['service_types'] == 1 && $booking->physicalAddress)
                                                     <div class="col-lg-12 mb-3">
                                                         <!-- <iframe
                                                         src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d96779.59535015929!2d-74.00126600000002!3d40.710039!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1676478925644!5m2!1sen!2sus"
@@ -785,7 +785,9 @@
                                                         loading="lazy" referrerpolicy="no-referrer-when-downgrade"
                                                         class="map">
                                                     </iframe> -->
-                                                        <div id="bookingmap" wire:ignore style="width: 90%; height: 0; padding-bottom: 40%; position: relative;"></div>
+                                                        <div id="map" wire:ignore
+                                                            style="width: 90%; height: 0; padding-bottom: 40%; position: relative;">
+                                                        </div>
                                                     </div>
                                                 @endif
 
@@ -838,9 +840,10 @@
                                                                     <div class="d-flex align-items-center gap-2">
                                                                         <div class="font-family-tertiary text-primary">
                                                                             @if (isset($service['meeting_details']))
-                                                                            <a href="{{ $service['meeting_link'] ? $service['meeting_link'] : '#' }}" target="_blank">
-                                                                                {{ $service['meeting_link'] ? $service['meeting_link'] : 'N/A' }}
-                                                                            </a>
+                                                                                <a href="{{ $service['meeting_link'] ? $service['meeting_link'] : '#' }}"
+                                                                                    target="_blank">
+                                                                                    {{ $service['meeting_link'] ? $service['meeting_link'] : 'N/A' }}
+                                                                                </a>
                                                                             @endif
                                                                         </div>
                                                                         <a href="#"
@@ -868,23 +871,18 @@
                                                                 <div class="col-lg-7 align-self-center">
                                                                     <div class="font-family-tertiary">
                                                                         @if (isset($service['meeting_details']))
-                                                                            @php
-                                                                                $phone_number = $service['meeting_details']['phone_number'];
-                                                                                $is_numeric = is_numeric($phone_number);
-                                                                            @endphp
-                                                                            <a href="{{ $is_numeric ? 'tel:' . $phone_number : ($phone_number && filter_var($phone_number, FILTER_VALIDATE_URL) ? $phone_number : '#') }}" target="_blank">
-                                                                                {{ $is_numeric ? $phone_number : ($phone_number && filter_var($phone_number, FILTER_VALIDATE_URL) ? $phone_number : 'N/A') }}
+                                                                            <a href="{{ $service['meeting_details']['phone_number'] ? $service['meeting_details']['phone_number'] : '#' }}"
+                                                                                target="_blank">
+                                                                                {{ $service['meeting_details']['phone_number'] ? $service['meeting_details']['phone_number'] : 'N/A' }}
                                                                             </a>
                                                                         @else
-                                                                            @php
-                                                                                $meeting_phone = $service['meeting_phone'];
-                                                                                $is_numeric = is_numeric($meeting_phone);
-                                                                            @endphp
-                                                                            <a href="{{ $is_numeric ? 'tel:' . $meeting_phone : ($meeting_phone && filter_var($meeting_phone, FILTER_VALIDATE_URL) ? $meeting_phone : '#') }}" target="_blank">
-                                                                                {{ $is_numeric ? $meeting_phone : ($meeting_phone && filter_var($meeting_phone, FILTER_VALIDATE_URL) ? $meeting_phone : 'N/A') }}
+                                                                            <a href="{{ $service['meeting_phone'] ? $service['meeting_phone'] : '#' }}"
+                                                                                target="_blank">
+                                                                                {{ $service['meeting_phone'] ? $service['meeting_phone'] : 'N/A' }}
                                                                             </a>
                                                                         @endif
-                                                                    </div>                                                                    
+
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1415,22 +1413,7 @@
                                         </div>
 
 
-                                        <div class="row">
-                                            <div class="col-md-9">
-                                                <label class="form-label mb-md-0">Total Additional Charges:</label>
-                                            </div>
-                                            <div class="col-md-3 align-self-center">
-                                                <div class="font-family-tertiary">
-                                                    {{ formatPayment($data['service_additional_charges']) }}
-                                                </div>
-                                            </div>
-                                        </div>
 
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <hr class="border-separate-sm">
-                                            </div>
-                                        </div>
 
                                         <div class="row">
                                             <div class="col-md-9">
@@ -1462,6 +1445,26 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-9">
+                                                <label class="form-label mb-md-0">Total Additional Charges:</label>
+                                            </div>
+                                            <div class="col-md-3 align-self-center">
+                                                <div class="font-family-tertiary">
+                                                    @if (!is_null($booking['payment']) && !is_null($booking['payment']['additional_charge']))
+                                                        {{ formatPayment($booking['payment']['additional_charge']) }}
+                                                    @else
+                                                        $00.00
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <hr class="border-separate-sm">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-9">
                                                 <label class="form-label mb-md-0">Discount:</label>
                                             </div>
                                             <div class="col-md-3 align-self-center">
@@ -1481,7 +1484,12 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-9">
-                                                <label class="form-label mb-md-0">Booking Total:</label>
+                                                <label class="form-label mb-md-0">Booking Total:
+                                                    
+                                                </label>
+                                                @if (!is_null($booking['payment']) && !is_null($booking['payment']['override_amount']))
+                                                    <small>(override)</small>
+                                                @endif  
                                             </div>
                                             <div class="col-md-3 align-self-center">
                                                 <div class="font-family-tertiary">
@@ -1493,26 +1501,26 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        @if(!is_null($booking['payment']) && !is_null($booking['payment']['override_amount']))
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <hr class="border-separate-sm">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-9">
-                                                <label class="form-label mb-md-0">Over-rider Total:</label>
-                                            </div>
-                                            <div class="col-md-3 align-self-center">
-                                                <div class="font-family-tertiary">
-                                                    @if (!is_null($booking['payment']) && !is_null($booking['payment']['override_amount']))
-                                                        {{ formatPayment($booking['payment']['override_amount']) }}
-                                                    @else
-                                                        $00.00
-                                                    @endif
+                                        @if (!is_null($booking['payment']) && !is_null($booking['payment']['is_override']) && $booking['payment']['is_override'])
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <hr class="border-separate-sm">
                                                 </div>
                                             </div>
-                                        </div>
+                                            <div class="row">
+                                                <div class="col-md-9">
+                                                    <label class="form-label mb-md-0">Over-rider Total:</label>
+                                                </div>
+                                                <div class="col-md-3 align-self-center">
+                                                    <div class="font-family-tertiary">
+                                                        @if (!is_null($booking['payment']) && !is_null($booking['payment']['override_amount']))
+                                                            {{ formatPayment($booking['payment']['override_amount']) }}
+                                                        @else
+                                                            $00.00
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </div>
                                         @endif
                                         @if (
                                             !$isCustomer ||
@@ -1589,73 +1597,73 @@
                                             <div class="col-md-3 align-self-center">
                                                 <div class="font-family-tertiary">
                                                     @if (!is_null($booking['payment']))
-                                                        {{ $booking['payment']['is_override'] ? formatPayment($booking['payment']['override_amount']) : formatPayment($booking['payment']['total_amount']) }}
+                                                        {{ formatPayment($data['netTotal']) }}
                                                     @else
                                                         N/A
                                                     @endif
                                                 </div>
                                             </div>
                                         </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <hr class="border-separate-sm">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <hr class="border-separate-sm">
+                                            </div>
+                                        </div>
+                                        <div class="row @if ($isCustomer) hidden @endif">
+                                            <div class="col-md-9">
+                                                <label class="form-label mb-md-0">Provider Rate Sum:</label>
+                                            </div>
+                                            <div class="col-md-3 align-self-center">
+                                                <div class="font-family-tertiary">
+                                                    @if (!is_null($data['providerPayments']))
+                                                        {{ formatPayment($data['providerPayments']) }}
+                                                    @else
+                                                        N/A
+                                                    @endif
                                                 </div>
                                             </div>
-                                            <div class="row @if ($isCustomer) hidden @endif">
-                                                <div class="col-md-9">
-                                                    <label class="form-label mb-md-0">Provider Rate Sum:</label>
-                                                </div>
-                                                <div class="col-md-3 align-self-center">
-                                                    <div class="font-family-tertiary">
-                                                        @if (!is_null($data['providerPayments']))
-                                                            {{ formatPayment($data['providerPayments']) }}
-                                                        @else
-                                                            N/A
-                                                        @endif
-                                                    </div>
+                                        </div>
+                                        <div class="row @if ($isCustomer) hidden @endif">
+                                            <div class="col-md-12">
+                                                <hr class="border-separate-sm">
+                                            </div>
+                                        </div>
+                                        <div class="row @if ($isCustomer) hidden @endif">
+                                            <div class="col-md-9">
+                                                <label class="form-label mb-md-0">Additional Provider
+                                                    Payments:</label>
+                                            </div>
+                                            <div class="col-md-3 align-self-center">
+                                                <div class="font-family-tertiary">
+                                                    @if (!is_null($data['additionalProviderPayments']))
+                                                        {{ formatPayment($data['additionalProviderPayments']) }}
+                                                    @else
+                                                        N/A
+                                                    @endif
                                                 </div>
                                             </div>
-                                            <div class="row @if ($isCustomer) hidden @endif">
-                                                <div class="col-md-12">
-                                                    <hr class="border-separate-sm">
+                                        </div>
+                                        <div class="row @if ($isCustomer) hidden @endif">
+                                            <div class="col-md-12">
+                                                <hr class="border-separate-sm">
+                                            </div>
+                                        </div>
+                                        <div class="row @if ($isCustomer) hidden @endif">
+                                            <div class="col-md-9">
+                                                <label class="form-label mb-md-0">Profit Margin:</label>
+                                            </div>
+                                            <div class="col-md-3 align-self-center">
+                                                <div class="font-family-tertiary">
+                                                    @if (!is_null($data['profitMargin']))
+                                                        {{ formatPayment($data['profitMargin']) }}
+                                                        ({{ $data['profitMarginPercent'] }}%)
+                                                    @else
+                                                        N/A
+                                                    @endif
                                                 </div>
                                             </div>
-                                            <div class="row @if ($isCustomer) hidden @endif">
-                                                <div class="col-md-9">
-                                                    <label class="form-label mb-md-0">Additional Provider
-                                                        Payments:</label>
-                                                </div>
-                                                <div class="col-md-3 align-self-center">
-                                                    <div class="font-family-tertiary">
-                                                        @if (!is_null($data['additionalProviderPayments']))
-                                                            {{ formatPayment($data['additionalProviderPayments']) }}
-                                                        @else
-                                                            N/A
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row @if ($isCustomer) hidden @endif">
-                                                <div class="col-md-12">
-                                                    <hr class="border-separate-sm">
-                                                </div>
-                                            </div>
-                                            <div class="row @if ($isCustomer) hidden @endif">
-                                                <div class="col-md-9">
-                                                    <label class="form-label mb-md-0">Profit Margin:</label>
-                                                </div>
-                                                <div class="col-md-3 align-self-center">
-                                                    <div class="font-family-tertiary">
-                                                        @if (!is_null($data['profitMargin']))
-                                                            {{ formatPayment($data['profitMargin']) }}
-                                                            ({{ $data['profitMarginPercent'] }}%)
-                                                        @else
-                                                            N/A
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        
+                                        </div>
+
                                     </div>
                                 </div>
                                 <div class="col-lg-6  @if ($isCustomer) hidden @endif"">
@@ -1894,15 +1902,15 @@
             var map = new google.maps.Map(document.getElementById("bookingmap"), {
                 zoom: 5,
                 center: {
-                    lat: {{$default_lat}},
-                    lng: {{$default_lng}}
+                    lat: {{ $default_lat }},
+                    lng: {{ $default_lng }}
                 }, // Set a default center
             });
 
             var geocoder = new google.maps.Geocoder();
             createMarkerWithDetail(map, locations[0]);
         });
-        
+
         function createMarkerWithDetail(map, location) {
             var latLng = new google.maps.LatLng(location.lat, location.long);
 
@@ -1917,7 +1925,8 @@
                 }
             });
 
-            var content = '<div class="marker-label"><p><strong>Assignment Number: ' + location.title + '</strong></p><p>Address: ' + location.address +
+            var content = '<div class="marker-label"><p><strong>Assignment Number: ' + location.title +
+                '</strong></p><p>Address: ' + location.address +
                 '</p><a href="https://www.google.com/maps/place/' + encodeURIComponent(location.address) +
                 '" target="_blank">Get Directions</a>&nbsp;&nbsp;&nbsp;</div>';
 
