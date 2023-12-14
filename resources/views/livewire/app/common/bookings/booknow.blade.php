@@ -775,7 +775,7 @@
                                                             </svg>
                                                             
                                                             <select {{(($this->isEdit && $this->booking->type==1) ? 'disabled' :'')}} class="form-select form-select-sm custom-padding"  wire:model.defer="dates.{{$index}}.start_min"  wire:change="updateDurations({{ $index }})">
-                                                                @for($i=0;$i<59;$i++)
+                                                                @for($i=0;$i<=59;$i++)
                                                                  <option value="{{str_pad($i, 2, '0', STR_PAD_LEFT)}}">{{str_pad($i, 2, '0', STR_PAD_LEFT)}}</option>
                                                                 @endfor
 
@@ -833,7 +833,7 @@
                                                             </svg>
                                                             
                                                             <select {{(($this->isEdit && $this->booking->type==1) ? 'disabled' :'')}} class="form-select form-select-sm custom-padding" wire:model.defer="dates.{{$index}}.end_min"  wire:change="updateDurations({{ $index }})">
-                                                                @for($i=0;$i<59;$i++)
+                                                                @for($i=0;$i<=59;$i++)
                                                                  <option value="{{str_pad($i, 2, '0', STR_PAD_LEFT)}}">{{str_pad($i, 2, '0', STR_PAD_LEFT)}}</option>
                                                                 @endfor
 
