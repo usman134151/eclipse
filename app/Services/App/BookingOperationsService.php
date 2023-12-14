@@ -1244,7 +1244,7 @@ class BookingOperationsService
       // check if  Require "Check-in" for Provider to Invoice
       if (!is_null($checkIn) && key_exists('require_provider_invoice', $checkIn) && $checkIn['require_provider_invoice'])
         return true;
-      // check if Require "Authorize & Close-out" for Provider Payment
+      // check if Require "Authorize & Close-out" for Provider Payment - fixed
       if (!is_null($closeout) && key_exists('provider_payment', $closeOut) && $closeOut['provider_payment'])
         return true;
       // check if Require "Authorize & Close-out" for Customer Invoicing
