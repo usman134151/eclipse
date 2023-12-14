@@ -998,10 +998,10 @@ class BookingOperationsService
       }
 
       //difference between existing and rescheduled
-       $rescheduledStartDate = Carbon::parse($reschedule_details['booking_start_at'] . ' ' . $reschedule_details['booking_start_hour'] . ':' . $reschedule_details['booking_start_min']);
+      $rescheduledStartDate = Carbon::parse($reschedule_details['booking_start_at'] . ' ' . $reschedule_details['booking_start_hour'] . ':' . $reschedule_details['booking_start_min']);
       $rescheduledEndDate = Carbon::parse($reschedule_details['booking_end_at'] . ' ' . $reschedule_details['booking_end_hour'] . ':' . $reschedule_details['booking_end_min']);
 
-     
+
 
       $startTimeExisting  = strtotime($booking->booking_start_at);
       $startTimeRescheduled = strtotime($rescheduledStartDate->toDateTimeString());
@@ -1009,7 +1009,7 @@ class BookingOperationsService
       $endTimeExisting  = strtotime($booking->booking_end_at);
       $endTimeRescheduled = strtotime($rescheduledEndDate->toDateTimeString());
       $endDifferenceInSeconds = $endTimeRescheduled - $endTimeExisting;
-      
+
 
       foreach ($r_bookings as $booking) {
 
@@ -1037,7 +1037,7 @@ class BookingOperationsService
         $curr_log['charges'] = $reschedule_details['charges'];
         RescheduleBookingLog::create($curr_log);
 
-        $message = "Booking '". $booking->booking_number ."' rescheduled from (" . formatDateTime($curr_log['previous_start_time']) . " - " . formatDateTime($curr_log['previous_end_time']) . ") to (" . formatDateTime($curr_log['current_start_time']) . " - " . formatDateTime($curr_log['current_end_time']) . ") by " . Auth::user()->name ;
+        $message = "Booking '" . $booking->booking_number . "' rescheduled from (" . formatDateTime($curr_log['previous_start_time']) . " - " . formatDateTime($curr_log['previous_end_time']) . ") to (" . formatDateTime($curr_log['current_start_time']) . " - " . formatDateTime($curr_log['current_end_time']) . ") by " . Auth::user()->name;
 
 
         //  if customer and not company admin/ supervisor move booking to pending-review
@@ -1088,7 +1088,7 @@ class BookingOperationsService
       $curr_log['charges'] = $reschedule_details['charges'];
       RescheduleBookingLog::create($curr_log);
 
-      $message = "Booking '". $booking->booking_number ."' reschduled from (" . formatDateTime($curr_log['previous_start_time']) . " - " . formatDateTime($curr_log['previous_end_time']) . ") to (" . formatDateTime($curr_log['current_start_time']) . " - " . formatDateTime($curr_log['current_end_time']) . ") by " . Auth::user()->name;
+      $message = "Booking '" . $booking->booking_number . "' reschduled from (" . formatDateTime($curr_log['previous_start_time']) . " - " . formatDateTime($curr_log['previous_end_time']) . ") to (" . formatDateTime($curr_log['current_start_time']) . " - " . formatDateTime($curr_log['current_end_time']) . ") by " . Auth::user()->name;
 
 
       //  if customer and not company admin/ supervisor move booking to pending-review
@@ -1228,5 +1228,30 @@ class BookingOperationsService
         $tags = array_diff($tags, $propertyTags[$propertyName]);
     }
     return array_values(array_unique(array_filter($tags)));
+  }
+
+  //   close out is needed or not for this booking
+  // true => can be auto closed , false => required admin approval
+  public static function checkAutoCloseOut($bookingId, $bookingServices)
+  {
+    foreach($bookingServices as $bService){
+      // fetch service
+      $service  = $bService['service'];
+
+      $checkIn = $service['check_in_procedure'] !=null ? json_decode($service['check_in_procedure'],true) :[];
+      $closeOut = $service['close_out_procedure']!=null ? json_decode($service['close_out_procedure'], true):[];
+
+      // check if  Require "Check-in" for Provider to Invoice
+      if(key_exists('require_provider_invoice',$checkIn) && $checkIn['require_provider_invoice'])
+        return false;
+      // check if Require "Authorize & Close-out" for Provider Payment
+      if (key_exists('provider_payment', $closeOut) && $closeOut['provider_payment'])
+      return false;
+      // check if Require "Authorize & Close-out" for Customer Invoicing
+      if (key_exists('customer_invoice', $closeOut) && $closeOut['customer_invoice'])
+      return false;
+
+    }
+    return true;
   }
 }
