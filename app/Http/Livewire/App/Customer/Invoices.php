@@ -4,6 +4,8 @@ namespace App\Http\Livewire\App\Customer;
 
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\Invoice;
+use App\Models\Tenant\User;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use PDF;
 
@@ -11,8 +13,18 @@ use PDF;
 class Invoices extends Component
 {
     public $showForm, $invoice_id = 0, $counter = 0, $confirmationMessage = null;
+    public $filter_bmanager, $filterRadio, $filter_select_Date, $filter_end_Date;
+    protected $listeners = ['showList' => 'resetForm','openInvoiceDetails', 'downloadInvoice' => 'createInvoicePDF','resetFilters','updateVal'];
 
-    protected $listeners = ['showList' => 'resetForm','openInvoiceDetails', 'downloadInvoice' => 'createInvoicePDF'];
+    public $bmanagers = [];
+
+    public function mount()
+    {
+        $this->bmanagers = User::where('company_name', Auth::user()->company_name)->whereHas('roles', function ($query) {
+            $query->where('role_id', 9);
+        })->select(['users.name', 'users.id'])->get();
+
+    }
 
     public function render()
     {
@@ -57,6 +69,32 @@ class Invoices extends Component
     public function resetForm()
     {
         $this->showForm=false;
+    }
+
+    public function resetFilters(){
+        $this->emit('updateVal', "filter_bmanager", null);
+        $this->emit('updateVal', "filter_select_Date", null);
+        $this->emit('updateVal', "filter_end_Date", null);
+        $this->emit('updateVal', "filterRadio", null);
+    }
+
+    public function applyFilters()
+    {
+        $this->emit('updateVal', "filter_bmanager", $this->filter_bmanager);
+        $this->emit('updateVal', "filter_select_Date", $this->filter_select_Date);
+        $this->emit('updateVal', "filter_end_Date", $this->filter_end_Date);
+        $this->emit('updateVal', "filterRadio", $this->filterRadio);
+    }
+
+    public function applyRadiofilter($name,$val)
+    {
+        // dd($name,$val);
+        $this->emit('updateVal', $name, $val);
+    }
+
+    public function updateVal($attrName, $val)
+    {
+        $this->$attrName = $val;
     }
 
 }

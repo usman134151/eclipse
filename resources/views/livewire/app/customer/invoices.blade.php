@@ -48,7 +48,11 @@
                                     </div>
                                 </div>
                             </div>
-                            @livewire('app.common.lists.customer-invoices', ['company_id'=>Auth::user()->company_name, 'invoice_status'=>'pending'])
+                            <div class="row between-section-segment-spacing  rounded p-4 mb-1 bg-muted">
+                                {{-- <small>(coming soon)</small> --}}
+                                <x-advancefilters type="invoice-filters" :bmanagers="$bmanagers" />
+                            </div>
+                            @livewire('app.common.lists.customer-invoices', ['company_id'=>Auth::user()->company_name, 'invoice_status'=>'pending', 'filter_bmanager' => $filter_bmanager, 'filter_select_Date' => $filter_select_Date, 'filter_end_Date' => $filter_end_Date, 'filterRadio' => $filterRadio])
 
                             {{-- icon bar start--}}
                             <div class="d-flex actions gap-3 justify-content-end mb-2">
@@ -76,3 +80,11 @@
     </div>
     @include('panels.common.invoice-details')
 </div>
+
+@push('scripts')
+    <script>
+        function updateVal(attrName, val) {
+            Livewire.emit('updateVal', attrName, val);
+        }
+    </script>
+@endpush

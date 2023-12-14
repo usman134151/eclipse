@@ -15,7 +15,7 @@ final class CustomerInvoices extends PowerGridComponent
     public $status = [2 => ['code' => '/css/provider.svg#green-dot', 'title' => 'Paid'], 1 => ['code' => '/css/common-icons.svg#blue-dot', 'title' => 'Issued'], 3 => ['code' => '/css/provider.svg#red-dot', 'title' => 'Overdue'], 4 => ['code' => '/css/provider.svg#yellow-dot', 'title' => 'Partial']];
     protected $listeners = ['refresh' => 'setUp'];
     public $invoice_status = '', $company_id = null , $supervisor_id , $billing_manager_id;
-    public $filter_bmanager, $filter_companies, $filter_payment_status, $filter_select_Date, $filterRadio;
+    public $filter_bmanager, $filter_companies, $filter_payment_status, $filter_select_Date, $filterRadio , $filter_end_Date;
 
     /*
     |--------------------------------------------------------------------------
@@ -61,6 +61,7 @@ final class CustomerInvoices extends PowerGridComponent
         $this->filter_companies = null;
         $this->filter_payment_status = null;
         $this->filter_select_Date = null;
+        $this->filter_end_Date = null;
         $this->filterRadio = null;
 
     }
@@ -119,10 +120,11 @@ final class CustomerInvoices extends PowerGridComponent
         if ($this->filter_select_Date)
         {
             $formattedDate = \Carbon\Carbon::createFromFormat('m/d/Y', $this->filter_select_Date)->format('Y-m-d');
+            $endDate = $this->filter_end_Date == '' ?  $formattedDate : \Carbon\Carbon::createFromFormat('m/d/Y', $this->filter_end_Date)->format('Y-m-d');
             if($this->filterRadio == "issued")
-                $query->whereDate('invoice_date',"=", $formattedDate);
+                $query->whereDate('invoice_date',">=", $formattedDate)->whereDate('invoice_date',"<=", $endDate);
             else if($this->filterRadio == "due")
-                $query->whereDate('invoice_due_date',"=", $formattedDate);
+                $query->whereDate('invoice_due_date',">=", $formattedDate)->whereDate('invoice_due_date',"<=", $endDate);
 
         }
 

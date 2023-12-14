@@ -16,7 +16,7 @@ class CustomerInvoices extends Component
     public $showForm, $invoice_id = 0, $counter = 0, $confirmationMessage = null;
     public $overDueAmount = 0, $comingAmount = 0, $avgPaymentDays = 0;
     protected $listeners = ['showList' => 'resetForm', 'openInvoiceDetails', 'downloadInvoice'=> 'createInvoicePDF', 'updateVal' => 'setCompanyDetails' , 'resetFilters'];
-    public $filter_companies, $filter_bmanager, $filter_payment_status, $filterRadio, $filter_select_Date;
+    public $filter_companies, $filter_bmanager, $filter_payment_status, $filterRadio, $filter_select_Date, $filter_end_Date;
         public $setupValues = [
         'companies' => ['parameters' => ['Company', 'id', 'name', 'status', 1, 'name', false, 'filter_companies', '', 'filter_companies', 2]],
         // 'specializations' => ['parameters' => ['Specialization', 'id', 'name', 'status', 1, 'name', true, 'filter_specialization', '', 'filter_specialization', 4]],
@@ -45,6 +45,7 @@ class CustomerInvoices extends Component
         $this->emit('updateVal', "filter_companies", null);
         $this->emit('updateVal', "filter_payment_status", null);
         $this->emit('updateVal', "filter_select_Date", null);
+        $this->emit('updateVal', "filter_end_Date", null);
         $this->emit('updateVal', "filterRadio", null);
     }
   
@@ -120,6 +121,7 @@ class CustomerInvoices extends Component
         $this->emit('updateVal', "filter_companies", $this->filter_companies);
         $this->emit('updateVal', "filter_payment_status", $this->filter_payment_status);
         $this->emit('updateVal', "filter_select_Date", $this->filter_select_Date);
+        $this->emit('updateVal', "filter_end_Date", $this->filter_end_Date);
         $this->emit('updateVal', "filterRadio", $this->filterRadio);
     }
 
