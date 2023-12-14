@@ -94,7 +94,7 @@
                                       @if (!$isProviderPanel && !session()->get('isCustomer'))
                                           {{-- <th scope="col">Additional Pay</th> --}}
                                           <th scope="col" class="text-center">Additional Pay</th>
-                                          <th scope="col" class="text-center">Time Paid</th>
+                                          {{-- <th scope="col" class="text-center">Time Paid</th> --}}
                                           <th scope="col" class="text-center">Total Payment</th>
                                       @endif
                                       <th class="text-center">Action</th>
@@ -134,9 +134,9 @@
                                                           {{ $provider['additional_label_provider'] ?? '' }}</div>
                                                       {{ $provider['additional_charge_provider'] ? numberFormat($provider['additional_charge_provider']) : 'N/A' }}
                                                   </td>
-                                                  <td class="text-center align-middle">
-                                                      {{-- {{ $provider['paid_at'] ?? 'N/A' }} --}}
-                                                  </td>
+                                                  {{-- <td class="text-center align-middle">
+                                                      {{ $provider['paid_at'] ?? 'N/A' }}
+                                                  </td> --}}
                                                   <td class="text-center align-middle">
                                                       {{ numberFormat($provider['total_amount']) }}
                                                   </td>
