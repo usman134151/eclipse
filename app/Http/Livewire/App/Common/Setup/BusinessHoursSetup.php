@@ -149,6 +149,16 @@ class BusinessHoursSetup extends Component
          foreach ($existingSlots as $existingSlot) {
              $existingStartTime = $existingSlot->timeslot_start_time;
              $existingEndTime = $existingSlot->timeslot_end_time;
+
+             $existingStartTimeCarbon = Carbon::parse($existingStartTime);
+             $existingEndTimeCarbon = Carbon::parse($existingEndTime);
+         
+             // Check for overlapping conditions
+             if (($startTime < $existingEndTimeCarbon && $endTime > $existingStartTimeCarbon)
+                 || ($endTime > $existingStartTimeCarbon && $startTime < $existingEndTimeCarbon)) {
+                 $this->addError('timeValidation', 'Time parameters should not overlap with existing slots.');
+                 return;
+             }
          
              // Check for overlap: If new timeslot's start time falls between an existing timeslot's start and end time
              if ($startTime->between($existingStartTime, $existingEndTime) || $endTime->between($existingStartTime, $existingEndTime)) {
