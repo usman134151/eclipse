@@ -23,13 +23,14 @@ use App\Models\Tenant\BookingInvitation;
 use App\Models\Tenant\BookingInvitationProvider;
 use App\Models\Tenant\Specialization;
 
-use Auth;
+
 use Carbon\Carbon;
 use App\Helpers\GlobalFunctions;
 use DateTime;
 use Log;
 use DB;
 use Arr;
+use Illuminate\Support\Facades\Auth;
 
 class BookingAssignmentService
 {
@@ -346,7 +347,8 @@ class BookingAssignmentService
                         ];
 
                         sendTemplatemail($params);
-                        callLogs($booking->id,'auto-assign','auto-assigned',"Provider '".$user->name."' auto-assigned to booking");
+                        $message = "Provider '".$user->name."' auto-assigned to booking '" . $booking->booking_number ."' by ". Auth::user()->name;
+                        callLogs($booking->id,'Booking','auto-assigned',$message);
                     
                 }
 
@@ -412,7 +414,8 @@ class BookingAssignmentService
 
                         $invData['provider_id']     = $provider_id;
                         $invData['invitation_id']   = $bookingInv->id;
-                        callLogs($booking->id,'auto-notified','auto-notified',"Provider '".$user->name."' auto-notified");
+                        $message = "Provider '".$user->name."' auto-notified of booking '". $booking->booking_number ."' by ". Auth::user()->name;
+                        callLogs($booking->id,'Booking','auto-notified',$message);
                         BookingInvitationProvider::updateOrCreate($invData, $invData);
                     }
                 }

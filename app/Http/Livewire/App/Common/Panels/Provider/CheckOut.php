@@ -79,7 +79,7 @@ class CheckOut extends Component
         //     'message'         => "Booking checkout details updated by " . User::find($this->provider_id)->name,
         //     'ip_address'     => \request()->ip(),
         // ]);
-        callLogs($this->assignment->id, 'booking', "update", "Booking checkout details updated by " . User::find($this->provider_id)->name);
+        callLogs($this->assignment->id, 'Booking', "update", "Booking checkout details updated by " . User::find($this->provider_id)->name);
         if (session()->get('isProvider')) {
             $data['bookingData'] = $this->assignment;
 
@@ -178,8 +178,8 @@ class CheckOut extends Component
             $rules['upload_signature'] = 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv';
 
         if (session()->get('isProvider')) {
-            $rules['timestamps.start'] = "required|before_or_equal:now";
-            $rules['timestamps.end'] = "required|before_or_equal:now";
+            // $rules['timestamps.start'] = "required|date|before_or_equal:now";    // since value is uneditable rn, remove the check
+            $rules['timestamps.end'] = "required|date|before_or_equal:now";
         }
         return $rules;
     }
@@ -187,14 +187,18 @@ class CheckOut extends Component
     public function saveStepOne()
     {
         if ($this->timeFormat == 12) {
-            $this->timestamps['start'] = Carbon::createFromFormat('d/m/Y h:i A', $this->checkout['actual_start_date'] . ' ' . $this->checkout['actual_start_hour'] . ':' . $this->checkout['actual_start_min'] . ' '. $this->timeSlots['start']);
-            $this->timestamps['end'] = Carbon::createFromFormat('m/d/Y h:i A', $this->checkout['actual_end_date'] . ' ' . $this->checkout['actual_end_hour'] . ':' . $this->checkout['actual_end_min'] .  ' ' . $this->timeSlots['end']);
+            $this->timestamps['start'] = Carbon::createFromFormat('m/d/Y h:i A', $this->checkout['actual_start_date'] . ' ' . ($this->checkout['actual_start_hour'] > 12 ? ($this->checkout['actual_start_hour']-12) : $this->checkout['actual_start_hour']) . ':' . $this->checkout['actual_start_min'] . ' '. $this->timeSlots['start']);
+            $this->timestamps['end'] = Carbon::createFromFormat('m/d/Y h:i A', $this->checkout['actual_end_date'] . ' ' . ($this->checkout['actual_end_hour'] > 12 ? ($this->checkout['actual_end_hour']-12): $this->checkout['actual_end_hour']) . ':' . $this->checkout['actual_end_min'] .  ' ' . $this->timeSlots['end']);
     
         } else {
-            $this->timestamps['start'] = Carbon::createFromFormat('d/m/Y H:i:s', $this->checkout['actual_start_date'] . ' ' . $this->checkout['actual_start_hour'] . ':' . $this->checkout['actual_start_min'] . ':00');
+            $this->timestamps['start'] = Carbon::createFromFormat('m/d/Y H:i:s', $this->checkout['actual_start_date'] . ' ' . $this->checkout['actual_start_hour'] . ':' . $this->checkout['actual_start_min'] . ':00');
             $this->timestamps['end'] = Carbon::createFromFormat('m/d/Y H:i:s', $this->checkout['actual_end_date'] . ' ' . $this->checkout['actual_end_hour'] . ':' . $this->checkout['actual_end_min'] . ':00');
         }
+
+        // dd($this->timestamps, $this->checkout['actual_start_date']);
+
         $this->validate();
+
 
         $this->checkout['actual_end_timestamp'] = $this->timestamps['end'];
         // Carbon::createFromFormat('m/d/Y H:i:s', $this->checkout['actual_end_date'] . ' ' . $this->checkout['actual_end_hour'] . ':' . $this->checkout['actual_end_min'] . ':00');

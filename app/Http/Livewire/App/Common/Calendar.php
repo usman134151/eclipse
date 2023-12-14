@@ -219,12 +219,11 @@ class Calendar extends Component
 			}
 		}
 		if ($this->user_id && !$this->providerProfile && !$this->isCustomer && !$this->customerProfile) {
-			
+
 			$query->join('booking_providers', function ($join) {
 				$join->where('booking_providers.provider_id', $this->user_id);
 				$join->on('booking_providers.booking_id', 'bookings.id');
 			});
-			
 		}
 		if ($this->user_id && $this->isCustomer) {
 			$query->where('bookings.company_id', Auth::user()->company_name);
@@ -237,10 +236,10 @@ class Calendar extends Component
 					$g->where('customer_id', $this->user_id);
 					$g->orWhere('supervisor', $this->user_id);
 					$g->orWhere('billing_manager_id', 'LIKE', "%" . $this->user_id . "%");
-					$g->orWhereIn('bookings.id',function($sc_query)use ($user){
+					$g->orWhereIn('bookings.id', function ($sc_query) use ($user) {
 						$sc_query->from('booking_services')->select('booking_id')
-						->where('booking_services.service_consumer', 'LIKE', "%" . $this->user_id . "%")
-						->orWhere('booking_services.attendees', 'LIKE', "%" . $this->user_id . "%");
+							->where('booking_services.service_consumer', 'LIKE', "%" . $this->user_id . "%")
+							->orWhere('booking_services.attendees', 'LIKE', "%" . $this->user_id . "%");
 					});
 
 					// if dept supervisor, then show all dept related bookings
@@ -255,12 +254,14 @@ class Calendar extends Component
 		}
 		$query = $this->applySearchFilter($query);
 		$events = $query->select('bookings.id', 'booking_number', 'booking_title', 'customer_id', 'physical_address_id', 'booking_start_at', 'booking_end_at', 'bookings.status', 'is_closed', 'provider_count')
-			->groupBy([ 'bookings.id', 'booking_number', 'booking_title', 'customer_id', 'physical_address_id', 'booking_start_at', 'booking_end_at', 'bookings.status', 'is_closed', 'provider_count'])
+			->groupBy(['bookings.id', 'booking_number', 'booking_title', 'customer_id', 'physical_address_id', 'booking_start_at', 'booking_end_at', 'bookings.status', 'is_closed', 'provider_count'])
 			->with(['physicalAddress', 'customer'])
 			->get()
 			->toArray();
 		//adding bookings that user has been invited to  -- Maarooshaa
-		$inv_bookings = Booking::join('booking_invitation_providers', function ($join) {
+		$inv_bookings = Booking::where(['bookings.status'=>1, 'type'=>1, 'booking_status' => '1'])	// only upcoming, unassigned and actives bookings,  
+			->whereDate('booking_start_at', '>=', Carbon::today())
+		->join('booking_invitation_providers', function ($join) {
 			$join->where('booking_invitation_providers.provider_id', $this->user_id);
 			$join->on('booking_invitation_providers.booking_id', 'bookings.id');
 			$join->where('booking_invitation_providers.status', '<', 2);
@@ -268,13 +269,13 @@ class Calendar extends Component
 				//removing bookings with invitations that have already been assigned 
 				$q->select('booking_providers.booking_id')->from('booking_providers')->where('booking_providers.provider_id', $this->user_id);
 			});
-		})->select('booking_invitation_providers.status as invitation_status','bookings.id', 'booking_number', 'booking_title', 'customer_id', 'physical_address_id', 'booking_start_at', 'booking_end_at', 'bookings.status', 'is_closed', 'provider_count')
-			->groupBy(['invitation_status','bookings.id', 'booking_number', 'booking_title', 'customer_id', 'physical_address_id', 'booking_start_at', 'booking_end_at', 'bookings.status', 'is_closed', 'provider_count'])
+		})->select('booking_invitation_providers.status as invitation_status', 'bookings.id', 'booking_number', 'booking_title', 'customer_id', 'physical_address_id', 'booking_start_at', 'booking_end_at', 'bookings.status', 'is_closed', 'provider_count')
+			->groupBy(['invitation_status', 'bookings.id', 'booking_number', 'booking_title', 'customer_id', 'physical_address_id', 'booking_start_at', 'booking_end_at', 'bookings.status', 'is_closed', 'provider_count'])
 			->with(['physicalAddress', 'customer'])
 			->get()
 			->toArray();;
 
-		$events = array_merge($events , $inv_bookings);
+		$events = array_merge($events, $inv_bookings);
 		$newEvents = [];
 		$base = '/admin';
 		if ($this->isCustomer)
@@ -284,7 +285,12 @@ class Calendar extends Component
 
 		foreach ($events as $key => $event) {
 			extract($events[$key]);
-			if (!empty($booking_title)) {
+			if (isset($invitation_status) && !is_null($invitation_status)) {
+				if ($invitation_status == 0)
+					$newEvents[$key]['title'] = "Invitation: " . $booking_number;
+				elseif ($invitation_status == 1)
+					$newEvents[$key]['title'] = "Pending: " . $booking_number;
+			} elseif (!empty($booking_title)) {
 				$newEvents[$key]['title'] = $booking_number . ': ' . $booking_title;
 			} else {
 				$newEvents[$key]['title'] = $booking_number;
@@ -334,7 +340,7 @@ class Calendar extends Component
 			$newEvents[$key]['bookingNumber'] = $booking_number;
 			$newEvents[$key]['eventColor'] = ($mappingCode == "" || $mappingCode == "pending") ? '' : $colorCodes[$mappingCode];
 			$newEvents[$key]['darkText'] = false;
-			if($mappingCode=="Invitation")
+			if ($mappingCode == "Invitation")
 				$newEvents[$key]['darkText'] = true;
 			if (session()->get('isProvider')) {
 				$newEvents[$key]['isProvider'] = true;

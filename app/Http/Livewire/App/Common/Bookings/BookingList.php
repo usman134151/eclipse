@@ -158,7 +158,7 @@ class BookingList extends Component
 			case ("Today's"):
 				$conditions = ['type' => 1, 'booking_status' => '1'];
 				if (!session()->get('isProvider'))
-				$conditions['bookings.status'] = 2;
+					$conditions['bookings.status'] = 2;
 				$query->where($conditions)
 
 					// ->when($addressCheck, function ($query) {
@@ -237,9 +237,8 @@ class BookingList extends Component
 				break;
 			case ('Invitations'):
 				// 
-				$query->
-					// whereDate('booking_start_at', '>', Carbon::now())
-					where(['bookings.status' => 1, 'type' => 1, 'booking_status' => '1'])
+				$query->whereDate('booking_start_at', '>', Carbon::now())
+					->where(['bookings.status' => 1, 'type' => 1, 'booking_status' => '1'])
 					->orderBy('booking_start_at', 'ASC');
 				$query->whereHas('invitation');
 
@@ -286,10 +285,10 @@ class BookingList extends Component
 					$g->orWhere('supervisor', $customer->id);
 
 					//fetch relevent bookings where user is consumer or participant
-					$g->orWhereIn('bookings.id',function($sc_query)use ($customer){
+					$g->orWhereIn('bookings.id', function ($sc_query) use ($customer) {
 						$sc_query->from('booking_services')->select('booking_id')
-						->where('booking_services.service_consumer', 'LIKE', "%" . $customer->id . "%")
-						->orWhere('booking_services.attendees', 'LIKE', "%" . $customer->id . "%");
+							->where('booking_services.service_consumer', 'LIKE', "%" . $customer->id . "%")
+							->orWhere('booking_services.attendees', 'LIKE', "%" . $customer->id . "%");
 					});
 
 					if ($this->bookingType == "Draft")
@@ -315,7 +314,9 @@ class BookingList extends Component
 					$join->on('booking_available_providers.booking_id', 'bookings.id');
 					$join->where('booking_available_providers.provider_id', $this->provider_id);
 				});
-
+				$query->whereHas('booking_services', function ($q) {
+					$q->where('auto_notify', 1);
+				});
 				$query->select([
 					'bookings.*', 'bookings.status as status',
 					'booking_available_providers.status as avail_status'
@@ -645,7 +646,7 @@ class BookingList extends Component
 			$this->bookingNumber = $bookingNumber;
 		if ($selectedProvider)
 			$this->selectedProvider = $selectedProvider;
-		
+
 		if ($this->co_counter == 0) {
 			$this->checkout_booking_id = 0;
 			$this->dispatchBrowserEvent('open-check-out', ['booking_id' => $booking_id, 'booking_service_id' => $booking_service_id]);
