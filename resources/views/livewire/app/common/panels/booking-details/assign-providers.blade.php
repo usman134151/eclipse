@@ -166,102 +166,7 @@
                                          {{ $provider->notes }}
                                      </div>
                                  @endif
-                                 <div class="d-inline-flex mb-2">
-                                     <h6 class="mt-1">Standard Rates</h6>
-                                 </div>
-                                 <div class="col-12  mb-1">
-                                     <div class="d-inline-flex">
-                                        
-                                             <div>
-                                                 <svg aria-label="In-Person" width="25" height="24"
-                                                     viewBox="0 0 25 24" fill="none"
-                                                     xmlns="http://www.w3.org/2000/svg">
-                                                     <use xlink:href="/css/provider.svg#">
-                                                     </use>
-                                                 </svg>
-                                             </div>
-                                             <div class="mx-3 fw-semibold">{{$serviceTypes[$bookingService->service_types]['title']}}:
-                                             </div>
 
-                                         <div class="mx-3">
-                                             {{ isset($custom_rates[$provider['id']]['standard']['price']) ? numberFormat($custom_rates[$provider['id']]['standard']['price']) : 'N/A' }}
-                                         </div>
-                                     </div>
-                                 </div>
-
-                              
-                                 {{-- Standandard Rates -End --}}
-                                 {{-- InPerson Expedited Service -Start --}}
-                                 <div class="row">
-                                     <div class="d-inline-flex mb-2" style="margin: 20px 0;">
-                                         <h6>Expedited Hours </h6>
-                                     </div>
-                                     <div class="row mb-1">
-                                         <div class="d-inline-flex">
-
-                                             @if (isset($custom_rates[$provider['id']]['standard']['emergency']) &&
-                                                     !is_null($custom_rates[$provider['id']]['standard']['emergency']) &&
-                                                     is_array($custom_rates[$provider['id']]['standard']['emergency']))
-                                                 <div class="row">
-
-                                                     @foreach ($custom_rates[$provider['id']]['standard']['emergency'] as $index => $param)
-                                                         {{-- <div class=" col-2 mb-1">
-                                                                                    <span
-                                                                                        class="bg-muted rounded fw-semibold px-1">Parameter
-                                                                                        {{ $index + 1 }}</span>
-                                                                                </div> --}}
-                                                         <div class="col-7"><span class="fw-semibold">Hours
-                                                                 Notice:
-                                                             </span><span
-                                                                 class="mx-1">{{ $param[0]['hour'] ? $param[0]['hour'] : 'N/A' }}</span>
-                                                         </div>
-                                                         <div class="col-5">
-                                                             <div class="d-inline-flex">
-                                                                 <span class="fw-semibold">Rate:
-                                                                 </span><span class="mx-1">
-                                                                     @if ($param[0]['price'])
-                                                                         @if ($param[0]['price_type'] == "$")
-                                                                             {{ formatPayment($param[0]['price']) }}
-                                                                         @else
-                                                                             {{ $param[0]['price'] }}
-                                                                         @endif
-                                                                     @else
-                                                                         N/A
-                                                                     @endif
-                                                                 </span>
-                                                             </div>
-                                                         </div>
-                                                     @endforeach
-                                                 </div>
-                                             @else
-                                                 N/A
-                                             @endif
-                                         </div>
-                                     </div>
-                                     @if (isset($custom_rates[$provider['id']]['specialization']))
-                                         <div class="row">
-                                            
-                                         </div>
-                                         <div class="row mb-2">
-                                             <div class="d-inline-flex mb-3" style="margin: 20px 0;">
-                                                 <h6>Specialization Rates</h6>
-                                             </div>
-                                             @foreach ($custom_rates[$provider['id']]['specialization'] as $row)
-                                                 <div class="d-inline-flex">
-                                                     <div class="bg-muted p-1 col-12  mb-2">
-                                                         {{ $row['s_name'] ?? 'N/A' }}
-                                                         <span
-                                                             class="mx-1">{{ isset($row['price']) ? numberFormat($row['price']) : 'N/A' }}</span>
-
-                                                     </div>
-
-                                                 </div>
-                                             @endforeach
-                                         </div>
-                                     @endif
-
-
-                                 </div>
                                  <!-- <div class="d-inline-flex mb-2">
                                      <h6 class="mt-1">Standard Rates</h6>
                                  </div>
@@ -388,9 +293,96 @@
                                        
 
                                  </td>
-                                 <td class="text-center  border-end-2">
-                                     <div class="d-grid grid-cols-4 gap-3 mb-3">
-                                        <b>NA</b>
+                                 <td class="border-end-2">
+                                 <div class="d-inline-flex mb-2">
+                                     <h6 class="mt-1">Standard Rates</h6>
+                                 </div>
+                                 <div class="col-12  mb-1">
+                                     <div class="d-inline-flex">
+                                        
+
+                                             <div class="mx-3 fw-semibold">{{$serviceTypes[$bookingService->service_types]['title']}}:
+                                             </div>
+
+                                         <div class="mx-3">
+                                             {{ isset($custom_rates[$provider['id']]['standard']['price']) ? numberFormat($custom_rates[$provider['id']]['standard']['price']) : 'N/A' }}
+                                         </div>
+                                     </div>
+                                 </div>
+
+                              
+                                 {{-- Standandard Rates -End --}}
+                                 {{-- InPerson Expedited Service -Start --}}
+                                 <div class="row">
+                                     <div class="d-inline-flex mb-2" style="margin: 20px 0;">
+                                         <h6>Expedited Hours </h6>
+                                     </div>
+                                     <div class="row mb-1">
+                                         <div class="d-inline-flex">
+
+                                             @if (isset($custom_rates[$provider['id']]['standard']['emergency']) &&
+                                                     !is_null($custom_rates[$provider['id']]['standard']['emergency']) &&
+                                                     is_array($custom_rates[$provider['id']]['standard']['emergency']))
+                                                 <div class="row">
+
+                                                     @foreach ($custom_rates[$provider['id']]['standard']['emergency'] as $index => $param)
+                                                         {{-- <div class=" col-2 mb-1">
+                                                                                    <span
+                                                                                        class="bg-muted rounded fw-semibold px-1">Parameter
+                                                                                        {{ $index + 1 }}</span>
+                                                                                </div> --}}
+                                                         <div class="col-7"><span class="fw-semibold">Hours
+                                                                 Notice:
+                                                             </span><span
+                                                                 class="mx-1">{{ $param[0]['hour'] ? $param[0]['hour'] : 'N/A' }}</span>
+                                                         </div>
+                                                         <div class="col-5">
+                                                             <div class="d-inline-flex">
+                                                                 <span class="fw-semibold">Rate:
+                                                                 </span><span class="mx-1">
+                                                                     @if ($param[0]['price'])
+                                                                         @if ($param[0]['price_type'] == "$")
+                                                                             {{ formatPayment($param[0]['price']) }}
+                                                                         @else
+                                                                             {{ $param[0]['price'] }}
+                                                                         @endif
+                                                                     @else
+                                                                         N/A
+                                                                     @endif
+                                                                 </span>
+                                                             </div>
+                                                         </div>
+                                                     @endforeach
+                                                 </div>
+                                             @else
+                                                 N/A
+                                             @endif
+                                         </div>
+                                     </div>
+                                     @if (isset($custom_rates[$provider['id']]['specialization']))
+                                         <div class="row">
+                                            
+                                         </div>
+                                         <div class="row mb-2">
+                                             <div class="d-inline-flex mb-3" style="margin: 20px 0;">
+                                                 <h6>Specialization Rates</h6>
+                                             </div>
+                                             @foreach ($custom_rates[$provider['id']]['specialization'] as $row)
+                                                 <div class="d-inline-flex">
+                                                     <div class="bg-muted p-1 col-12  mb-2">
+                                                         {{ $row['s_name'] ?? 'N/A' }}
+                                                         <span
+                                                             class="mx-1">{{ isset($row['price']) ? numberFormat($row['price']) : 'N/A' }}</span>
+
+                                                     </div>
+
+                                                 </div>
+                                             @endforeach
+                                         </div>
+                                     @endif
+
+
+                                 </div>
                                  </td>
                                  <td>
                                      <div class="d-inline-flex">
