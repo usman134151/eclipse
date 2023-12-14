@@ -50,7 +50,7 @@
 
                                 </tbody>
                             </table>
-                        <small>*All previous charges will be included </small>
+                            <small>*All previous charges will be included </small>
 
                         </div>
                     </div>
@@ -58,16 +58,26 @@
 
                 <div class="col-lg-12 my-4">
                     <div class="position-relative mb-3">
-                        <label class="form-label-sm" for="override_charges">Override Rescheduling Charges</label>
+                        @if (session()->get('isCustomer'))
+                            <div class="d-flex inline">
+                                <div class=""> Rescheduling Charges</div>
+                            </div>
 
-                        <input type="" class="form-control " id="override_charges" name="override_charges"
-                            placeholder="$0.00" wire:model="override_charges">
-
-                        @error('override_charges')
-                            <span class="d-inline-block invalid-feedback mt-2">
-                                {{ $message }}
+                            <span class="items-end">
+                                {{ numberFormat($override_charges) }}
                             </span>
-                        @enderror
+                        @else
+                            <label class="form-label-sm" for="override_charges">Override Rescheduling Charges</label>
+                            <input type="" class="form-control " id="override_charges" name="override_charges"
+                                placeholder="$0.00" wire:model="override_charges">
+
+                            @error('override_charges')
+                                <span class="d-inline-block invalid-feedback mt-2">
+                                    {{ $message }}
+                                </span>
+                            @enderror
+                        @endif
+
                     </div>
                     <div
                         class="d-flex flex-column flex-lg-row gap-lg-3 gap-2 align-items-lg-center justify justify-content-between">
@@ -197,7 +207,7 @@
                         </span>
                     @enderror
                 </div>
-                <div class="col-lg-12 my-4">
+                <div class="col-lg-12 my-4 {{session()->get('isCustomer') ? 'hidden' : ''}}">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="keep-same-providers"
                             name="keep-same-providers" disabled checked>
@@ -221,11 +231,11 @@
                             </li>
                             <li class="list-group-item border-0 ps-0">
                                 <div class="form-check">
-                                    <input class="form-check-input me-1" type="radio"
-                                        name="dateRangeRadio" wire:model="reschedule_details.setting"
-                                        value="bookings_until" id="thisAndFutureBookings">
+                                    <input class="form-check-input me-1" type="radio" name="dateRangeRadio"
+                                        wire:model="reschedule_details.setting" value="bookings_until"
+                                        id="thisAndFutureBookings">
                                     <label class="form-check-label" for="thisAndFutureBookings">
-                                        Reschedule this booking and all future bookings until. 
+                                        Reschedule this booking and all future bookings until.
                                     </label>
                                 </div>
                                 <div
@@ -246,11 +256,11 @@
                             </li>
                             <li class="list-group-item border-0 ps-0">
                                 <div class="form-check">
-                                    <input class="form-check-input me-1" type="radio"
-                                        name="dateRangeRadio" wire:model="reschedule_details.setting"
-                                        value="subsequent_bookings" id="allSubsequentBookings">
+                                    <input class="form-check-input me-1" type="radio" name="dateRangeRadio"
+                                        wire:model="reschedule_details.setting" value="subsequent_bookings"
+                                        id="allSubsequentBookings">
                                     <label class="form-check-label" for="allSubsequentBookings">
-                                        Reschedule all subsequent bookings. 
+                                        Reschedule all subsequent bookings.
                                     </label>
                                 </div>
 
@@ -259,7 +269,7 @@
                     </div>
                 @endif
 
-                <div class="col-lg-12 my-4">
+                <div class="col-lg-12 my-4 {{session()->get('isCustomer') ? 'hidden' : ''}}">
                     <div class="table-responsive text-nowrap">
                         <table id="unassigned_data" class="table table-hover border" aria-label="List of Providers">
                             <thead>

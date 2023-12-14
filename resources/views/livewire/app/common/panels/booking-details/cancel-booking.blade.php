@@ -14,12 +14,19 @@
                 </div>
                 <div class="col-lg-12 my-4">
                     <div class="">
-                        <label class="form-label">
-                            Override charges
-                        </label>
-                        <input type="text" class="form-control" rows="4" cols="4"
-                            wire:model.lazy="override_charges" wire:blur="updateBillable">
-
+                        @if (session()->get('isCustomer'))
+                            <div class="form-label"> Cancellation Charges 
+                            </div>
+                            <div class="">
+                            {{numberFormat($override_charges)}}
+                            </div>
+                        @else
+                            <label class="form-label">
+                                Override charges
+                            </label>
+                            <input type="text" class="form-control" rows="4" cols="4"
+                                wire:model.lazy="override_charges" wire:blur="updateBillable">
+                        @endif
                     </div>
                 </div>
                 <div class="col-lg-12 my-4">
@@ -31,7 +38,7 @@
 												</textarea>
                     </div>
                 </div>
-                <div class="col-lg-12 my-4">
+                <div class="col-lg-12 my-4  {{session()->get('isCustomer') ? 'hidden' : ''}}">
                     <div class="flex d-flex gap-3">
                         <div class="form-check">
                             <input class="form-check-input position-static" type="checkbox"
@@ -211,7 +218,8 @@
                 </a>
 
                 <button type="button" class="btn btn-primary rounded" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false" wire:click="cancelBooking" x-on:close-cancel.window="cancelBooking = !cancelBooking">
+                    aria-expanded="false" wire:click="cancelBooking"
+                    x-on:close-cancel.window="cancelBooking = !cancelBooking">
                     Cancel Booking
                 </button>
 
