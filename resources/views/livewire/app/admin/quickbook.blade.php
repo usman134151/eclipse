@@ -7,32 +7,33 @@
 		</div>
 	</div>
           <!-- Basic multiple Column Form section start -->
-          <section id="multiple-column-form">
-            <div class="row">
-              <div class="col-12">
+    <section id="multiple-column-form">
+        <div class="row">
+            <div class="col-12">
                 <div class="card">
-                  <div class="card-body">
-                    <form class="form">
-                      <div class="row">
-                        <div class="col-md-12 mb-md-2">
-                          <h1 class="mt-2 ">Quickbook Setup</h1>
-                         
-                          <div class="row">
-                            <div class="col-md-12 m-4">
-                              <h2 class="">Connect QB's Company</h2>
-                              <button class="btn btn-primary">Connect to Quickbooks</button> 
+                    <div class="card-body">
+                        <form class="form">
+                            <div class="row">
+                                <div class="col-md-12 mb-md-2">
+                                    <h1 class="mt-2 ">Quickbook Setup</h1>
+                                    <div class="row">
+                                        <div class="col-md-12 m-4">
+                                            {{-- <button class="btn btn-primary">Connect to Quickbooks</button>  --}}
+                                            @if ($chkQbAuth)
+                                                <h2 class="">Your QuickBooks Integration is already done.</h2>
+                                            @else
+                                                <h2 class="">Connect QB's Company</h2>
+                                                <a href="{{ $authUrl }}" target="_blank" class="btn btn-primary">Connect to Quickbooks</a>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                          </div>
-                         
-                          </div>
-                        </div>                        
-                        </div>
-                      </div>
-                    </form>
-                  </div>
+                        </form>
+                    </div>
                 </div>
-              </div>
             </div>
-          </section>
+        </div>
+    </section>
           <!-- Basic Floating Label Form section end -->
 </div>
