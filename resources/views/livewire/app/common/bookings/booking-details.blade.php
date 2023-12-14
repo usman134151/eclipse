@@ -1907,7 +1907,13 @@
         document.addEventListener('livewire:load', function() {
 
             var locations = @json($locations);
-            console.log(locations);
+            document.addEventListener('DOMContentLoaded', function() {
+            // Ensure the 'bookingmap' div exists and is loaded
+            var bookingMapElem = document.getElementById('bookingmap');
+            if (!bookingMapElem) {
+                console.error('The bookingmap div was not found.');
+                return;
+            }
             var map = new google.maps.Map(document.getElementById("bookingmap"), {
                 zoom: 5,
                 center: {
