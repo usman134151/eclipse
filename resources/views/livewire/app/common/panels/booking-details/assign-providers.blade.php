@@ -443,7 +443,7 @@
                     <tbody>
                         <tr>
                             <td class="border-start border-end">
-                            @if(is_array($providersPayment) && count($providersPayment)>=$index && !$providersPayment[$index]['service_payment_details']['day_rate'] && !$providersPayment[$index]['service_payment_details']['fixed_rate'])   
+                            @if(is_array($providersPayment) && isset($providersPayment[$index]) && !$providersPayment[$index]['service_payment_details']['day_rate'] && !$providersPayment[$index]['service_payment_details']['fixed_rate'])   
                                          <div class="row">
                                              <div class="  mt-1">
                                                  <div class="col col-12">
