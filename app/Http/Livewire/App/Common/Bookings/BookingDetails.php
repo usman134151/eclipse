@@ -149,10 +149,10 @@ class BookingDetails extends Component
 				if (key_exists('service_charges', $serviceCharges) && !is_null($serviceCharges['service_charges']) && is_numeric($serviceCharges['service_charges'])) {
 					$this->data['service_charges'] += $serviceCharges['service_charges'];
 				}
-				if (key_exists('additional_charges_total', $serviceCharges) && !is_null($serviceCharges['additional_charges_total']) && is_numeric($serviceCharges['additional_charges_total'])) {
+				// if (key_exists('additional_charges_total', $serviceCharges) && !is_null($serviceCharges['additional_charges_total']) && is_numeric($serviceCharges['additional_charges_total'])) {
 
-					$this->data['service_additional_charges'] += $serviceCharges['additional_charges_total'];
-				}
+				// 	$this->data['service_additional_charges'] += $serviceCharges['additional_charges_total'];
+				// }
 				if (key_exists('specialization_total', $serviceCharges) && !is_null($serviceCharges['specialization_total']) && is_numeric($serviceCharges['specialization_total'])) {
 
 					$this->data['specialization_total'] += $serviceCharges['specialization_total'];
@@ -218,8 +218,10 @@ class BookingDetails extends Component
 			($this->booking['payment']['modification_fee'] ?? 0)
 		);
 
-		if($this->booking['payment'])
-			$this->booking['payment']['is_override'] ? $this->booking['payment']['override_price'] = $totalCost : $this->booking['payment']['total_amount'] = $totalCost;
+		// dd($this->booking['payment']);
+		$this->data['netTotal'] = $totalCost;
+		// if($this->booking['payment'])
+			// $this->booking['payment']['is_override'] ? $this->booking['payment']['override_price'] = $totalCost : $this->booking['payment']['total_amount'] = $totalCost;
 
 		if ($totalCost > 0) {
 			$this->data['profitMarginPercent'] = $this->booking['payment'] ? ($this->data['profitMargin'] / $totalCost * 100) : 0;
