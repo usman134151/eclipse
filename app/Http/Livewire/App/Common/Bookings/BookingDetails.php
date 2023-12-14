@@ -111,10 +111,10 @@ class BookingDetails extends Component
 		$this->booking_services = BookingServices::where('booking_id', $this->booking_id)
 			->join('service_categories', 'booking_services.services', 'service_categories.id')
 			->join('accommodations', 'accommodations.id', 'service_categories.accommodations_id')
-			->with('serviceConsumerUser')
+			->with('serviceConsumerUser','service')
 			->get([
 				'booking_services.id', 'booking_services.service_types', 'booking_services.attendees',
-				'booking_services.service_consumer',
+				'booking_services.service_consumer', 'booking_services.services',
 				'booking_services.meeting_link',
 				'booking_services.meetings', 'booking_services.service_calculations', 'service_total', 'billed_total',
 				'booking_services.is_closed', 'booking_services.attendees_manual', 'booking_services.service_consumer_manual', 'is_manual_consumer', 'is_manual_attendees',
@@ -187,8 +187,11 @@ class BookingDetails extends Component
 		
 		$this->data['isPast'] = $start_date->isPast();
 		// dd($start_date, $this->booking->booking_start_at);
+		
+		// shifting this close out check to generic function
 		if ($start_date->isPast() || $start_date->isToday() || $this->booking->checked_in_providers->count())
-			$this->data['show_close_button'] = true;
+			// show button if all booking services are NOT auto-close-able 
+			$this->data['show_close_button'] = BookingOperationsService::checkCloseOutRequired( $this->booking_services);
 		else
 			$this->data['show_close_button'] = false;
 
