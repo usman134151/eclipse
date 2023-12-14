@@ -785,7 +785,7 @@
                                                         loading="lazy" referrerpolicy="no-referrer-when-downgrade"
                                                         class="map">
                                                     </iframe> -->
-                                                        <div id="map" wire:ignore style="width: 90%; height: 0; padding-bottom: 40%; position: relative;"></div>
+                                                        <div id="bookingmap" wire:ignore style="width: 90%; height: 0; padding-bottom: 40%; position: relative;"></div>
                                                     </div>
                                                 @endif
 
@@ -1879,12 +1879,12 @@
                 @this.set('tags', $(this).val());
             });
         });
-
+@if($booking->physicalAddress)
         document.addEventListener('livewire:load', function() {
 
             var locations = @json($locations);
             console.log(locations);
-            var map = new google.maps.Map(document.getElementById("map"), {
+            var map = new google.maps.Map(document.getElementById("bookingmap"), {
                 zoom: 5,
                 center: {
                     lat: {{$default_lat}},
@@ -1921,6 +1921,7 @@
                 infoWindow.open(map, marker);
             });
         }
+    @endif
     </script>
 @endpush
 {{-- @if ($booking->physicalAddress)
