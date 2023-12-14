@@ -139,6 +139,12 @@ class BusinessHoursSetup extends Component
             return;
         } 
 
+        if($startHour < 0 || $startHour > 23 || $startMin < 0 || $startMin > 59 || $endHour < 0 || $endHour > 23 || $endMin < 0 || $endMin > 59){
+            $this->addError('timeValidation', 'Invalid time range. Time should be in a 24-hour format and within valid range');
+            return;
+        }
+
+
         // Create Carbon instances for start time and end time
         $startTime = Carbon::createFromTime($startHour, $startMin);
         $endTime = Carbon::createFromTime($endHour, $endMin);
@@ -159,6 +165,11 @@ class BusinessHoursSetup extends Component
                  $this->addError('timeValidation', 'Time parameters should not overlap with existing slots.');
                  return;
              }
+
+             if ($startTime <= $existingStartTimeCarbon && $endTime >= $existingEndTimeCarbon) {
+                $this->addError('timeValidation', 'Time parameters should not overlap with existing slots.');
+                return;
+            }        
          
              // Check for overlap: If new timeslot's start time falls between an existing timeslot's start and end time
              if ($startTime->between($existingStartTime, $existingEndTime) || $endTime->between($existingStartTime, $existingEndTime)) {
