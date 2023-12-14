@@ -2,9 +2,9 @@
 <x-off-canvas show="closeOutBooking" size="fullscreen">
     <x-slot name="title">Close Booking # {{ $booking->booking_number }}
     </x-slot>
-    @if ($closeOut)
+
         @livewire('app.common.panels.booking-details.booking-close-out', ['booking' => $booking])
-    @endif
+   
     <x-slot name="outsideBody">
 
         <div class="col-12 justify-content-center form-actions d-flex gap-3">
