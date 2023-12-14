@@ -10,7 +10,7 @@ use Livewire\Component;
 class AddNewPayment extends Component
 {
     public $showForm;
-    protected $listeners = ['showList' => 'resetForm', 'refreshPanel'];
+    protected $listeners = ['showList' => 'resetForm', 'refreshPanel', 'updateVal'];
     public $providers, $payment = [];
 
     public function render()
@@ -62,5 +62,10 @@ class AddNewPayment extends Component
     public function resetForm()
     {
         $this->showForm = false;
+    }
+    public function updateVal($attrName, $val)
+    {
+        if($attrName == 'provider_id2')
+            $this->payment['provider_id'] = $val;
     }
 }
