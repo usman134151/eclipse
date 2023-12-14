@@ -582,7 +582,7 @@
 
                                              </div>
                                          </div>
-                                         @elseif($providersPayment[$index]['service_payment_details']['day_rate'])
+                                         @elseif(is_array($providersPayment) && isset($providersPayment[$index]) &&  $providersPayment[$index]['service_payment_details']['day_rate'])
                                          <div class="row">
                                              <div class="  mt-1">
                                                  <div class="col col-12">
