@@ -1231,8 +1231,8 @@ class BookingOperationsService
   }
 
   //   close out is needed or not for this booking
-  // true => can be auto closed , false => required admin approval
-  public static function checkAutoCloseOut($bookingId, $bookingServices)
+  // false => can be auto closed , true => required admin approval
+  public static function checkCloseOutRequired($bookingId, $bookingServices)
   {
     foreach($bookingServices as $bService){
       // fetch service
@@ -1243,15 +1243,15 @@ class BookingOperationsService
 
       // check if  Require "Check-in" for Provider to Invoice
       if(key_exists('require_provider_invoice',$checkIn) && $checkIn['require_provider_invoice'])
-        return false;
+        return true;
       // check if Require "Authorize & Close-out" for Provider Payment
       if (key_exists('provider_payment', $closeOut) && $closeOut['provider_payment'])
-      return false;
+      return true;
       // check if Require "Authorize & Close-out" for Customer Invoicing
       if (key_exists('customer_invoice', $closeOut) && $closeOut['customer_invoice'])
-      return false;
+      return true;
 
     }
-    return true;
+    return false;
   }
 }
