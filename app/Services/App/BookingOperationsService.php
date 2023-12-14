@@ -1261,6 +1261,7 @@ class BookingOperationsService
     $endDate = Carbon::parse($endDate);
     if (!$booking->is_closed && $endDate > today()) {
       // if booking is_closed == false and endDate>current date 
+      dd($bookingServices);
 
       if (!SELF::checkCloseOutRequired($bookingServices)) { // then call function to check if it needs to be manually closed or not
         // can auto close
@@ -1326,9 +1327,15 @@ class BookingOperationsService
   public static function closeAllActiveBookings()
   {
     // loop to get all open bookings that needs to be checked (route will call this function) 
-    $bookings = Booking::where('is_closed', false)->whereDate('booking_end_at', '<', Carbon::now())->with('booking_services')->get()->toArray();
+    $bookings = Booking::where(['is_closed' => 0, 'type' => 1, 'booking_status' => 1])->where('status', '<', 3)
+    // ->whereHas('booking_services', function ($q) {
+    //   $q->where('id', '>',1);
+    // })
+      ->whereDate('booking_end_at', '<', Carbon::now())->with('booking_services')->limit(10)->get()->toArray();
+      // dd($bookings);
     foreach ($bookings as $booking) {
       SELF::closeActiveBooking($booking['id'], $booking['booking_end_at'], $booking['booking_services']);
     }
+    
   }
 }
