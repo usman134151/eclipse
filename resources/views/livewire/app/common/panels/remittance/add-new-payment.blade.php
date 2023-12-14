@@ -28,13 +28,13 @@
                 </button>
             </div> --}}
         <div class="mb-4">
-            <label class="form-label" for="provider_id">
+            <label class="form-label" for="provider_id2">
                 Provider
             </label>
             {{-- <input type="text" class="form-control" name="provider" placeholder="Imogene Guthrie"
                     aria-label="Provider" /> --}}
             <select wire:model.defer="payment.provider_id" data-placeholder="Select Provider" class="select2 form-select"
-                tabindex="" id="provider_id">
+                tabindex="" id="provider_id2">
                 <option value=""></option>
                 @foreach ($providers as $provider)
                     <option value="{{ $provider->id }}">{{ $provider->name }}</option>
@@ -105,3 +105,11 @@
     </div>
     {{-- @include('modals.provider-team-modal') --}}
 </div>
+
+@push('scripts')
+    <script>
+        function updateVal(attrName, val) {
+            Livewire.emit('updateVal', attrName, val);
+        }
+    </script>
+@endpush
