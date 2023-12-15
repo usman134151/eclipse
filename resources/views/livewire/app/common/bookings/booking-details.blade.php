@@ -1485,11 +1485,11 @@
                                         <div class="row">
                                             <div class="col-md-9">
                                                 <label class="form-label mb-md-0">Booking Total:
-                                                    
+
                                                 </label>
                                                 @if (!is_null($booking['payment']) && !is_null($booking['payment']['override_amount']))
                                                     <small>(override)</small>
-                                                @endif  
+                                                @endif
                                             </div>
                                             <div class="col-md-3 align-self-center">
                                                 <div class="font-family-tertiary">
@@ -1848,7 +1848,9 @@
             </div>
         </div>
     </div> --}}
-        @include('panels.booking-details.admin-close-out')
+        @if ($data['show_close_button'])
+            @include('panels.booking-details.admin-close-out')
+        @endif
         @include('panels.booking-details.reschedule-booking')
         @include('panels.common.add-documents', ['booking_id' => $booking_id])
         @include('panels.booking-details.provider-saved-forms')
@@ -1894,50 +1896,50 @@
                 @this.set('tags', $(this).val());
             });
         });
-@if($booking->physicalAddress)
-        document.addEventListener('livewire:load', function() {
+        @if ($booking->physicalAddress)
+            document.addEventListener('livewire:load', function() {
 
-            var locations = @json($locations);
-            console.log(locations);
-            var map = new google.maps.Map(document.getElementById("bookingmap"), {
-                zoom: 5,
-                center: {
-                    lat: {{ $default_lat }},
-                    lng: {{ $default_lng }}
-                }, // Set a default center
+                var locations = @json($locations);
+                console.log(locations);
+                var map = new google.maps.Map(document.getElementById("bookingmap"), {
+                    zoom: 5,
+                    center: {
+                        lat: {{ $default_lat }},
+                        lng: {{ $default_lng }}
+                    }, // Set a default center
+                });
+
+                var geocoder = new google.maps.Geocoder();
+                createMarkerWithDetail(map, locations[0]);
             });
 
-            var geocoder = new google.maps.Geocoder();
-            createMarkerWithDetail(map, locations[0]);
-        });
+            function createMarkerWithDetail(map, location) {
+                var latLng = new google.maps.LatLng(location.lat, location.long);
 
-        function createMarkerWithDetail(map, location) {
-            var latLng = new google.maps.LatLng(location.lat, location.long);
+                var marker = new google.maps.Marker({
+                    position: latLng,
+                    map: map,
+                    label: {
+                        text: location.title,
+                        fontWeight: 'bold',
+                        fontSize: '14px',
+                        color: 'black',
+                    }
+                });
 
-            var marker = new google.maps.Marker({
-                position: latLng,
-                map: map,
-                label: {
-                    text: location.title,
-                    fontWeight: 'bold',
-                    fontSize: '14px',
-                    color: 'black',
-                }
-            });
+                var content = '<div class="marker-label"><p><strong>Assignment Number: ' + location.title +
+                    '</strong></p><p>Address: ' + location.address +
+                    '</p><a href="https://www.google.com/maps/place/' + encodeURIComponent(location.address) +
+                    '" target="_blank">Get Directions</a>&nbsp;&nbsp;&nbsp;</div>';
 
-            var content = '<div class="marker-label"><p><strong>Assignment Number: ' + location.title +
-                '</strong></p><p>Address: ' + location.address +
-                '</p><a href="https://www.google.com/maps/place/' + encodeURIComponent(location.address) +
-                '" target="_blank">Get Directions</a>&nbsp;&nbsp;&nbsp;</div>';
-
-            var infoWindow = new google.maps.InfoWindow({
-                content: content
-            });
-            marker.addListener("click", function() {
-                infoWindow.open(map, marker);
-            });
-        }
-    @endif
+                var infoWindow = new google.maps.InfoWindow({
+                    content: content
+                });
+                marker.addListener("click", function() {
+                    infoWindow.open(map, marker);
+                });
+            }
+        @endif
     </script>
 @endpush
 {{-- @if ($booking->physicalAddress)
