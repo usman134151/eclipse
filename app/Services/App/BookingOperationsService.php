@@ -1265,7 +1265,7 @@ class BookingOperationsService
       // if booking is_closed == false and endDate>current date 
 
 
-      if (!SELF::checkCloseOutRequired($bookingServices)) { // then call function to check if it needs to be manually closed or not
+      if (SELF::checkCloseOutRequired($bookingServices)==false) { // then call function to check if it needs to be manually closed or not
         // can auto close
 
         foreach ($bookingServices as $bookingService) {
