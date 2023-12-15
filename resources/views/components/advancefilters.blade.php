@@ -1,7 +1,7 @@
 @props(['type' => '', 'hideProvider' => false, 'filterProviders' => [], 'bmanagers' => [], 'setupValues' => [], 'tags'=>[], 'isPendingInvoices' => false, 'isRemittance' => false])
 <div class="row">
     @if ($type == 'invoice-filters')
-        @if(!session()->get('isCustomer'))
+        @if(!session()->get('isCustomer') && !session()->get('isProvider'))
             <div class="col-lg-5 pe-lg-3 ">
                 <div>
                     <label class="form-label" for="company-column-1">Company</label>
@@ -195,6 +195,7 @@
                     </div>
                 @endif
                 {{-- START: update to hide company and provider filter fields from customer panel -- Maarooshaa --}}
+                @if(!session()->get('isProvider'))
                 <div class="col-lg-5 pe-lg-3 mb-5 {{ session()->get('isCustomer') ? 'hidden' : '' }}">
                     <label class="form-label" for="OrgDeptUser">Company </span>
 
@@ -214,8 +215,10 @@
                         @endif
                     </select>
                 </div>
+                @endif
                 {{-- END: update to hide company and provider filter fields from customer panel -- Maarooshaa --}}
 
+                @if(!session()->get('isCustomer') && !session()->get('isProvider'))
                 <div class="col-lg-5 pe-lg-3 mb-5">
                     <label class="form-label" for="tags">Tags
                         {{-- <small>(coming soon)</small> --}}
@@ -230,6 +233,21 @@
                         @endif
                     </select>
                 </div>
+                @endif
+                {{-- @if(session()->get('isCustomer'))
+                    <div class="col-lg-5 ps-lg-3 mb-5">
+                        <label class="form-label" for="user_ids">Users</label>
+                        <select wire:model.defer="user_ids" name="user_ids" id="user_ids"
+                            data-placeholder="Select Provider" multiple class="select2 form-select" tabindex="">
+                            <option value=""></option>
+                            @if (isset($filterUsers))
+                                @foreach ($filterUsers as $user)
+                                    <option value="{{ $user['id'] }}">{{ $user['name'] }}</option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
+                @endif --}}
                 @if (isset($setupValues['industries']))
                     <div class="col-lg-5 ps-lg-3 mb-5">
                         <label class="form-label">Industry</label>

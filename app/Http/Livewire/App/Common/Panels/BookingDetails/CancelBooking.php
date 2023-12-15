@@ -133,8 +133,8 @@ class CancelBooking extends Component
                 $curr_booking->payment->cancellation_charges = $cancellation_charges;
 
 
-            BookingOperationsService::cancelBooking($curr_booking);
-            $message = "Booking cancelled by " . Auth::user()->name . " as " . $billingStatus;
+                BookingOperationsService::cancelBooking($curr_booking);
+            $message = "Booking '". $curr_booking->booking_number . "' cancelled by " . Auth::user()->name . " as " . $billingStatus;
             if ($curr_booking->cancellation_notes) {
                 $message .= ' (Notes: ' . $curr_booking->cancellation_notes . ")";
             }

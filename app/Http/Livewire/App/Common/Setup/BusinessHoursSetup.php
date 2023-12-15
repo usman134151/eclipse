@@ -153,36 +153,22 @@ class BusinessHoursSetup extends Component
          $existingSlots = ScheduleTimeslot::where('schedule_id', $this->schedule->id)->where('timeslot_day', $this->timeslot['timeslot_day'])->get();
 
          foreach ($existingSlots as $existingSlot) {
-             $existingStartTime = $existingSlot->timeslot_start_time;
-             $existingEndTime = $existingSlot->timeslot_end_time;
-
-             $existingStartTimeCarbon = Carbon::parse($existingStartTime);
-             $existingEndTimeCarbon = Carbon::parse($existingEndTime);
-         
-             // Check for overlapping conditions
-             if (($startTime < $existingEndTimeCarbon && $endTime > $existingStartTimeCarbon)
-                 || ($endTime > $existingStartTimeCarbon && $startTime < $existingEndTimeCarbon)) {
-                 $this->addError('timeValidation', 'Time parameters should not overlap with existing slots.');
-                 return;
-             }
-
-             if ($startTime <= $existingStartTimeCarbon && $endTime >= $existingEndTimeCarbon) {
+            $existingStartTime = Carbon::parse($existingSlot->timeslot_start_time)->toTimeString();
+            $existingEndTime = Carbon::parse($existingSlot->timeslot_end_time)->toTimeString();
+        
+            $startTimeCarbon = Carbon::createFromTime($startHour, $startMin)->toTimeString();
+            $endTimeCarbon = Carbon::createFromTime($endHour, $endMin)->toTimeString();
+        
+            // Check for overlapping conditions considering only time, not date
+            if (
+                ($startTimeCarbon <= $existingEndTime && $endTimeCarbon >= $existingStartTime) ||
+                ($endTimeCarbon > $existingStartTime && $startTimeCarbon < $existingEndTime)
+            ) {
                 $this->addError('timeValidation', 'Time parameters should not overlap with existing slots.');
                 return;
-            }        
-         
-             // Check for overlap: If new timeslot's start time falls between an existing timeslot's start and end time
-             if ($startTime->between($existingStartTime, $existingEndTime) || $endTime->between($existingStartTime, $existingEndTime)) {
-                 $this->addError('timeValidation', 'Time parameters should not overlap with existing slots.');
-                 return;
-             }
-         
-             // Check for complete overlap: If new timeslot completely overlaps with an existing timeslot
-             if ($startTime >= $existingStartTime && $endTime <= $existingEndTime) {
-                 $this->addError('timeValidation', 'Time parameters should not overlap with existing slots.');
-                 return;
-             }
-         }
+            }
+        }
+        
      
     
         // Insert the timeslot into the database
