@@ -60,7 +60,7 @@
             </span>
             </button></div></div>
                 <div class="row mb-4">
-                  <h3>Add Hours Slot In Schedule</h3>
+                  <h3>Set Your Operating Schedule</h3>
                   <label class="form-label">Type Of Slot</label>
                     <div class="col-lg-3">
 
@@ -144,13 +144,13 @@
 
                       </div>
 
-                      <button class="btn btn-secondary btn-custom btn-sm rounded" wire:click="addSlot">
+                      <button class="btn btn-secondary btn-custom rounded" wire:click="addSlot">
                         <span class="btn-text">
-                            Add slots
+                            Apply Hours Slot
                         </span></button>
-                      <button class="btn btn-secondary btn-custom btn-sm rounded" wire:click="addTimeParametersToAllDays">
+                      <button class="btn btn-secondary btn-custom rounded" wire:click="addTimeParametersToAllDays">
                         <span class="btn-text">
-                            Set for All Days 
+                            Apply to All Days 
                         </span></button>
                   </div>
               </div>
