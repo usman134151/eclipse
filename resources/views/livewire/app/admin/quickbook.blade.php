@@ -20,10 +20,10 @@
                                         <div class="col-md-12 m-4">
                                             {{-- <button class="btn btn-primary">Connect to Quickbooks</button>  --}}
                                             @if ($chkQbAuth)
-                                                <h2 class="">Your QuickBooks Integration is already done.</h2>
+                                                <h2 class="">Your QuickBooks Integration is already done.</h2>
                                             @else
                                                 <h2 class="">Connect QB's Company</h2>
-                                                <a href="{{ $authUrl }}" target="_blank" class="btn btn-primary">Connect to Quickbooks</a>
+                                                <a href="{{ $authUrl }}" class="btn btn-primary">Connect to Quickbooks</a>
                                             @endif
                                         </div>
                                     </div>

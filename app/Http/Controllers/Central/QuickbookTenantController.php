@@ -3,19 +3,10 @@
 namespace App\Http\Controllers\central;
 
 use App\Http\Controllers\Controller;
-use App\Models\Tenant;
-use App\Models\Tenant\Domain;
-use App\Models\Tenant\Qbauthdetail;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
-use PhpOffice\PhpSpreadsheet\Calculation\MathTrig\Trig\Tangent;
 use QuickBooksOnline\API\DataService\DataService;
-use Laravel\Dusk\Browser;
-use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 
 class QuickbookTenantController extends Controller
 {
@@ -45,7 +36,6 @@ class QuickbookTenantController extends Controller
         Config::set('database.connections.business.database', 'tenant'.$tenantId);
         DB::connection('business')->table('qbauthdetails')->insert($qbData);
         // End QB data store in qbauthdetails table
-        echo "<script>alert('successfully added.')</script>";
-        echo "<script>setInterval(window.close(), 100000);</script>";
+        return redirect()->away('https://' . $domain . '.' . Config::get('app.url') . '/admin/quickbook-connect');
     }
 }
