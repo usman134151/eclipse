@@ -150,7 +150,7 @@ class AssignProviders extends Component
         ];
         $query = User::where('users.status', 1)
             ->whereHas('roles', function ($query) {
-                $query->wherein('role_id', [2]);
+                $query->where('role_id', 2);
             })->join('user_details', function ($userdetails) {
                 $userdetails->on('user_details.user_id', '=', 'users.id');
             });
@@ -168,9 +168,14 @@ class AssignProviders extends Component
             $query->where('users.name', 'LIKE', "%" . $this->search . "%");
         }
         if (!is_null($this->tag_names) && count($this->tag_names)) {
-            // $query->where('tags', 'LIKE', "%" . json_encode($this->tag_names) . "%");
 
-            // $query->whereJsonContains('tags',[$this->tag_names]);
+            $query->whereIn('users.id', function ($q) {
+                $q->from('user_details')->select('users.id');
+                foreach ($this->tag_names as $tag) {
+                    $q->orWhereJsonContains('tags', $tag);
+                }
+            });
+            // update to enable tags search with bookings -- Maarooshaa
         }
         if (count($this->provider_ids)) {
             $query->whereIn('users.id', $this->provider_ids);
@@ -504,6 +509,7 @@ class AssignProviders extends Component
         $this->reMount($service_id, $panelType);
     }
 
+    public $bookingTags = [];
     public function reMount($service_id, $panelType)
     {
         $this->panelType = $panelType;
@@ -511,7 +517,7 @@ class AssignProviders extends Component
 
         $this->tags = Tag::all();
         $this->booking = Booking::where('id', $this->booking_id)->with('payment', 'services')->first();
-        $this->booking->tags = $this->booking->tags ? json_decode($this->booking->tags) : []; 
+        $this->bookingTags = $this->booking->tags ? json_decode($this->booking->tags) : [];
         $booking_service = $this->booking->booking_services->where('services', $this->service_id)->first();
         $this->serviceData = $this->booking->services->where('id', $this->service_id)->first();
 
@@ -528,7 +534,7 @@ class AssignProviders extends Component
             $this->services = [$this->service_id];
             $this->accommodations = $service ? [$service->accommodations_id] : [];
             $this->booking_service = $booking_service;
-            $this->tag_names = $this->booking->tags;
+            $this->tag_names = json_decode($this->booking->tags);
         }
 
         if (!is_null($this->booking->payment)) {
