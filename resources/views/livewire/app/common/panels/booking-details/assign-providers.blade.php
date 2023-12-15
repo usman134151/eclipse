@@ -263,19 +263,28 @@
                                 <td colSpan=4>Rejected by Admin</td>
                             @endif
                             @if ($panelType == 1 || ($panelType == 3 && $provider->invitation_response($booking_id) == 1))
-                                <td class="border-end-2" style="min-width:340px">
+                                <td wire:ignore class="border-end-2" style="min-width:340px">
                                     <div class="d-grid grid-cols-1 gap-3 mb-3">
 
                                         <!-- TAGS -->
                                         <div class=" position-relative mb-3">
-                                            <div class="" id="servicePanel-{{ $provider->id }}"
-                                                style="width: 300px; max-height:60px; overflow-y:hidden;">
-                                                @foreach ($provider->services as $key => $service)
-                                                    <a href="#">{{ $service->name }}</a>
-                                                    @if ($key != $provider->services->count() - 1)
-                                                        <span>,</span>
-                                                    @endif
-                                                @endforeach
+                                            <div class="" id="servicePanel-{{ $provider->id }}">
+                                                @if ($provider['tags'])
+                                                    @foreach ($provider['tags'] as $key => $tag)
+                                                        <button type="button"
+                                                            class="{{ in_array($tag, $bookingTags) ? 'bg-success text-white ' : 'bg-muted' }}  btn-outline-dark rounded m-1">
+                                                            <p>{{ $tag }} </p>
+                                                        </button>
+                                                    @endforeach
+                                                @endif
+                                                @if ($bookingTags && count($bookingTags))
+                                                    @foreach ($provider['tags'] ? array_diff($bookingTags, $provider['tags']) : $bookingTags as $key => $tag)
+                                                        <button type="button" style="background:red"
+                                                            class="text-white btn-outline-dark rounded m-1">
+                                                            <p>{{ $tag }} </p>
+                                                        </button>
+                                                    @endforeach
+                                                @endif
                                             </div>
                                         </div>
                                         <!-- TAGS END -->
@@ -284,9 +293,9 @@
 
                                 </td>
                                 <td class="border-end-2">
-                                   <div class="text-center mt-4">
-                                   {{numberFormat($providersPayment[$index ]['total_amount'])}}
-                                   </div>
+                                    <div class="text-center mt-4" wire:ignore>
+                                        {{ numberFormat($providersPayment[$index]['total_amount']) }}
+                                    </div>
                                 </td>
                                 <td>
                                     <div class="d-inline-flex">
