@@ -268,13 +268,18 @@
 
                                         <!-- TAGS -->
                                         <div class=" position-relative mb-3">
-                                            <div class="" id="servicePanel-{{ $provider->id }}"
-                                                style="width: 300px; max-height:60px; overflow-y:hidden;">
-                                                @foreach ($provider->services as $key => $service)
-                                                    <a href="#">{{ $service->name }}</a>
-                                                    @if ($key != $provider->services->count() - 1)
-                                                        <span>,</span>
-                                                    @endif
+                                            <div class="" id="servicePanel-{{ $provider->id }}">
+                                                @foreach ($provider->tags as $key => $tag)
+                                                    <button type="button"
+                                                        class="{{in_array($tag,$booking->tags) ? 'bg-success text-white ' : 'bg-muted'}}  btn-outline-dark rounded m-1">
+                                                        <p>{{ $tag }} </p>
+                                                    </button>
+                                                @endforeach
+                                                 @foreach (array_diff($booking->tags, $provider->tags) as $key => $tag)
+                                                    <button type="button" style="background:red"
+                                                        class="text-white btn-outline-dark rounded m-1">
+                                                        <p>{{ $tag }} </p>
+                                                    </button>
                                                 @endforeach
                                             </div>
                                         </div>
@@ -284,9 +289,9 @@
 
                                 </td>
                                 <td class="border-end-2">
-                                   <div class="text-center mt-4">
-                                   {{numberFormat($providersPayment[$index ]['total_amount'])}}
-                                   </div>
+                                    <div class="text-center mt-4">
+                                        {{ numberFormat($providersPayment[$index]['total_amount']) }}
+                                    </div>
                                 </td>
                                 <td>
                                     <div class="d-inline-flex">
