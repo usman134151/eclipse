@@ -1241,15 +1241,14 @@ class BookingOperationsService
         $checkIn = is_null($service['check_in_procedure']) ?  [] : json_decode($service['check_in_procedure'], true);
         $closeOut = $service['close_out_procedure'] != null ? json_decode($service['close_out_procedure'], true) : [];
 
-
         // check if  Require "Check-in" for Provider to Invoice
-        if (!is_null($checkIn) && key_exists('require_provider_invoice', $checkIn) && $checkIn['require_provider_invoice'])
+        if (!is_null($checkIn) && key_exists('require_provider_invoice', $checkIn) && ($checkIn['require_provider_invoice']==true || $checkIn['require_provider_invoice'] == "true"))
           return true;
         // check if Require "Authorize & Close-out" for Provider Payment - fixed
-        if (!is_null($closeOut) && key_exists('provider_payment', $closeOut) && $closeOut['provider_payment'])
+        if (!is_null($closeOut) && key_exists('provider_payment', $closeOut) && ($closeOut['provider_payment']==true || $closeOut['provider_payment'] == "true") )
           return true;
         // check if Require "Authorize & Close-out" for Customer Invoicing
-        if (!is_null($closeOut) && key_exists('customer_invoice', $closeOut) && $closeOut['customer_invoice'])
+        if (!is_null($closeOut) && key_exists('customer_invoice', $closeOut) && ($closeOut['customer_invoice']==true || $closeOut['customer_invoice'] == "true"))
           return true;
       }
     }
@@ -1261,7 +1260,7 @@ class BookingOperationsService
 
     $booking = Booking::find($bookingId);
     $endDate = Carbon::parse($endDate);
-    if (!$booking->is_closed && $endDate < today()) {
+    if ($booking->is_closed == 0 && $endDate < today()) {
       // if booking is_closed == false and endDate>current date 
 
 
