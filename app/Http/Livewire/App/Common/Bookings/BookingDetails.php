@@ -82,8 +82,7 @@ class BookingDetails extends Component
 		if (!is_array($this->tags))
 			$this->tags = [];
 
-		if($this->booking->physicalAddress)
-		{
+		if ($this->booking->physicalAddress) {
 			$this->default_lat = $this->booking->physicalAddress->latitude ? $this->booking->physicalAddress->latitude : 37.7749;
 			$this->default_lng = $this->booking->physicalAddress->longitude ? $this->booking->physicalAddress->longitude : -122.4194;
 			$locationData = [
@@ -96,7 +95,6 @@ class BookingDetails extends Component
 			];
 			$locationsArray[] = $locationData;
 			$this->locations = $locationsArray;
-
 		}
 	}
 
@@ -111,7 +109,7 @@ class BookingDetails extends Component
 		$this->booking_services = BookingServices::where('booking_id', $this->booking_id)
 			->join('service_categories', 'booking_services.services', 'service_categories.id')
 			->join('accommodations', 'accommodations.id', 'service_categories.accommodations_id')
-			->with('serviceConsumerUser','service')
+			->with('serviceConsumerUser', 'service')
 			->get([
 				'booking_services.id', 'booking_services.service_types', 'booking_services.attendees',
 				'booking_services.service_consumer', 'booking_services.services',
@@ -175,7 +173,7 @@ class BookingDetails extends Component
 		if ($this->booking->status == 2) {
 			$this->status = 'assigned';
 		}
-		if ($this->booking->status ==3) {	//cancelled 
+		if ($this->booking->status == 3) {	//cancelled 
 			$this->status = 'unbill-cancelled';
 		}
 
@@ -184,14 +182,14 @@ class BookingDetails extends Component
 		}
 
 		$start_date = Carbon::parse($this->booking->booking_start_at);
-		
+
 		$this->data['isPast'] = $start_date->isPast();
 		// dd($start_date, $this->booking->booking_start_at);
-		
+
 		// shifting this close out check to generic function
 		if ($start_date->isPast() || $start_date->isToday() || $this->booking->checked_in_providers->count())
 			// show button if all booking services are NOT auto-close-able 
-			$this->data['show_close_button'] = BookingOperationsService::checkCloseOutRequired( $this->booking_services);
+			$this->data['show_close_button'] = BookingOperationsService::checkCloseOutRequired($this->booking_services);
 		else
 			$this->data['show_close_button'] = false;
 
@@ -204,8 +202,8 @@ class BookingDetails extends Component
 		$this->data['providerPayments'] = 0;
 		$this->data['additionalProviderPayments'] = 0;
 		foreach ($providers as $provider) {
-			$this->data['providerPayments'] = $this->data['providerPayments'] + ($provider['is_override_price'] ? $provider['override_price']: $provider['total_amount']);
-			$this->data['additionalProviderPayments'] = $this->data['additionalProviderPayments'] + $provider['additional_payments']['additional_charge_provider'];
+			$this->data['providerPayments'] = $this->data['providerPayments'] + ($provider['is_override_price'] ? $provider['override_price'] : $provider['total_amount']);
+			$this->data['additionalProviderPayments'] = $this->data['additionalProviderPayments'] + (!is_null($provider['additional_payments']) ? $provider['additional_payments']['additional_charge_provider'] : 0);
 		}
 		$this->data['profitMargin'] = $this->booking['payment'] ? ((
 			($this->booking['payment']['is_override'] ? $this->booking['payment']['override_price'] : ($this->booking['payment']['total_amount'] ?? 0)) +
@@ -224,7 +222,7 @@ class BookingDetails extends Component
 		// dd($this->booking['payment']);
 		$this->data['netTotal'] = $totalCost;
 		// if($this->booking['payment'])
-			// $this->booking['payment']['is_override'] ? $this->booking['payment']['override_price'] = $totalCost : $this->booking['payment']['total_amount'] = $totalCost;
+		// $this->booking['payment']['is_override'] ? $this->booking['payment']['override_price'] = $totalCost : $this->booking['payment']['total_amount'] = $totalCost;
 
 		if ($totalCost > 0) {
 			$this->data['profitMarginPercent'] = $this->booking['payment'] ? ($this->data['profitMargin'] / $totalCost * 100) : 0;
@@ -295,8 +293,8 @@ class BookingDetails extends Component
 		$this->updateTags();    //save newly added tags to table
 		$booking = $this->booking;
 		$booking->save();
-		$message = "Booking '". $this->booking->booking_number ."' Notes/Tags updated by ". Auth::user()->name;
-		callLogs($this->booking->id, "Booking", " Notes/Tags Update",$message);
+		$message = "Booking '" . $this->booking->booking_number . "' Notes/Tags updated by " . Auth::user()->name;
+		callLogs($this->booking->id, "Booking", " Notes/Tags Update", $message);
 		$this->showConfirmation('Booking notes updated');
 	}
 
@@ -332,8 +330,8 @@ class BookingDetails extends Component
 	public function reinstate($bookingId)
 	{
 		BookingOperationsService::reinstateBooking($bookingId);
-		$message = "Booking '". $this->booking->booking_number ."' reinstated by ". Auth::user()->name;
-		callLogs($this->booking->id, "Booking", "Reinstate",$message);
+		$message = "Booking '" . $this->booking->booking_number . "' reinstated by " . Auth::user()->name;
+		callLogs($this->booking->id, "Booking", "Reinstate", $message);
 		$this->emit('showConfirmation', 'Booking status updated successfully');
 	}
 
