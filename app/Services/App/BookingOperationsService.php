@@ -1242,13 +1242,13 @@ class BookingOperationsService
       $closeOut = $service['close_out_procedure'] != null ? json_decode($service['close_out_procedure'], true) : [];
 
       // check if  Require "Check-in" for Provider to Invoice
-      if (key_exists('require_provider_invoice', $checkIn) && $checkIn['require_provider_invoice'])
+      if (!is_null($checkIn) && key_exists('require_provider_invoice', $checkIn) && $checkIn['require_provider_invoice'])
         return true;
-      // check if Require "Authorize & Close-out" for Provider Payment
-      if (key_exists('provider_payment', $closeOut) && $closeOut['provider_payment'])
+      // check if Require "Authorize & Close-out" for Provider Payment - fixed
+      if (!is_null($closeOut) && key_exists('provider_payment', $closeOut) && $closeOut['provider_payment'])
         return true;
       // check if Require "Authorize & Close-out" for Customer Invoicing
-      if (key_exists('customer_invoice', $closeOut) && $closeOut['customer_invoice'])
+      if (!is_null($closeOut) && key_exists('customer_invoice', $closeOut) && $closeOut['customer_invoice'])
         return true;
     }
     return false;

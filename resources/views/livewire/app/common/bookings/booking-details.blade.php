@@ -785,7 +785,7 @@
                                                         loading="lazy" referrerpolicy="no-referrer-when-downgrade"
                                                         class="map">
                                                     </iframe> -->
-                                                        <div id="map" wire:ignore
+                                                        <div id="bookingmap" wire:ignore
                                                             style="width: 90%; height: 0; padding-bottom: 40%; position: relative;">
                                                         </div>
                                                     </div>
@@ -831,7 +831,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        {{-- <div class="col-lg-12 mb-3">
+                                                        <div class="col-lg-12 mb-3">
                                                             <div class="row">
                                                                 <div class="col-lg-5">
                                                                     <label class="col-form-label">Meeting Link:</label>
@@ -846,7 +846,7 @@
                                                                                 </a>
                                                                             @endif
                                                                         </div>
-                                                                        <a href="#"
+                                                                        {{-- <a href="#"
                                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                         
                                                                         <svg aria-label="Edit" width="20"
@@ -856,41 +856,32 @@
                                                                             </use>
                                                                         </svg>
                                                                 
-                                                                    </a>
+                                                                    </a> --}}
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div> --}}
+                                                        </div>
                                                         <div class="col-lg-12 mb-3">
                                                             <div class="row">
                                                                 <div class="col-lg-5">
                                                                     <label class="col-form-label">
-                                                                        Meeting Link/Phone Number:
+                                                                        Meeting Phone Number:
                                                                     </label>
                                                                 </div>
                                                                 <div class="col-lg-7 align-self-center">
                                                                     <div class="font-family-tertiary">
                                                                         @if (isset($service['meeting_details']))
-                                                                        @php
-                                                                        $phone_number = $service['meeting_details']['phone_number'];
-                                                                        $is_numeric = is_numeric($phone_number);
-                                                                        @endphp
-                                                                        <a href="{{ $is_numeric ? 'tel:' . $phone_number : ($phone_number && filter_var($phone_number, FILTER_VALIDATE_URL) ? $phone_number : '#') }}"
-                                                                            target="_blank">
-                                                                            {{ $is_numeric ? $phone_number : ($phone_number && filter_var($phone_number, FILTER_VALIDATE_URL) ?
-                                                                            $phone_number : 'N/A') }}
-                                                                        </a>
+                                                                            <a href="{{ $service['meeting_details']['phone_number'] ? $service['meeting_details']['phone_number'] : '#' }}"
+                                                                                target="_blank">
+                                                                                {{ $service['meeting_details']['phone_number'] ? $service['meeting_details']['phone_number'] : 'N/A' }}
+                                                                            </a>
                                                                         @else
-                                                                        @php
-                                                                        $meeting_phone = $service['meeting_phone'];
-                                                                        $is_numeric = is_numeric($meeting_phone);
-                                                                        @endphp
-                                                                        <a href="{{ $is_numeric ? 'tel:' . $meeting_phone : ($meeting_phone && filter_var($meeting_phone, FILTER_VALIDATE_URL) ? $meeting_phone : '#') }}"
-                                                                            target="_blank">
-                                                                            {{ $is_numeric ? $meeting_phone : ($meeting_phone && filter_var($meeting_phone, FILTER_VALIDATE_URL) ?
-                                                                            $meeting_phone : 'N/A') }}
-                                                                        </a>
+                                                                            <a href="{{ $service['meeting_phone'] ? $service['meeting_phone'] : '#' }}"
+                                                                                target="_blank">
+                                                                                {{ $service['meeting_phone'] ? $service['meeting_phone'] : 'N/A' }}
+                                                                            </a>
                                                                         @endif
+
                                                                     </div>
                                                                 </div>
                                                             </div>
