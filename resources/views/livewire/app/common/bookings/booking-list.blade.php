@@ -121,10 +121,12 @@
                             @if ($bookingSection != 'customer')
                             @endif
                             <div>
+                                @if($showHeader)
                                 <div class="" wire:ignore>
                                     <x-advancefilters type="" :filterProviders="$filterProviders" :hideProvider="false"
                                         :setupValues="$setupValues" :tags="$tags" />
                                 </div>
+                                @endif
                                 <div class="d-flex flex-column flex-md-row justify-content-between mb-2">
 
                                     <div

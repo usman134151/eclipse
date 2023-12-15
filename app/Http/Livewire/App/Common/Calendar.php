@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\App\Common;
 
+use App\Helpers\SetupHelper;
 use App\Models\Tenant\SetupValue;
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\Booking;
@@ -28,6 +29,19 @@ class Calendar extends Component
 		$service_type_search_filter = [], $tag_names = [], $industry_filter = [], $booking_status_filter = null, $booking_number_filter = null;
 	public $tags = [], $filterProviders = [], $isCustomer = false;
 
+	public $setupValues = [
+		'accommodations' => ['parameters' => ['Accommodation', 'id', 'name', 'status', 1, 'name', true, 'accommodation_search_filter', '', 'accommodation_search_filter', 2]],
+		'specializations' => ['parameters' => ['Specialization', 'id', 'name', 'status', 1, 'name', true, 'booking_specialization_search_filter', '', 'booking_specialization_search_filter', 4]],
+		'services' => ['parameters' => ['ServiceCategory', 'id', 'name', 'status', 1, 'name', true, 'booking_service_filter', '', 'booking_service_filter', 3]],
+		"service_type_ids" => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 5, 'setup_value_label', true, 'service_type_search_filter', '', 'service_type_search_filter', 4]],
+
+		// 'tags' => ['parameters' => ['Tag', 'id', 'name', null, null, 'name', true, 'tags', '', 'tag_names', 6]],
+		'industries' => ['parameters' => ['Industry', 'id', 'name', 'status', 1, 'name', true, 'industry_filter', '', 'industry_filter', 7]],
+		// 'certifications' => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 8, 'setup_value_label', true, ' certifications', '', ' certificationsassignProvider', 9]],
+
+	];
+
+
 	protected $listeners = ['refreshCalendar' => 'refreshEvents', 'updateVal', 'openBookingDetails'];
 
 	public function render()
@@ -39,6 +53,7 @@ class Calendar extends Component
 
 	public function mount()
 	{
+		$this->setupValues = SetupHelper::loadSetupValues($this->setupValues);
 		$this->filterProviders = User::where('status', 1)
 			->whereHas('roles', function ($query) {
 				$query->whereIn('role_id', [2]);
