@@ -35,7 +35,7 @@ class InvoiceGeneratorBookings extends Component
             }
             $query->where('bookings.type', '=', 1)
                 ->where('bookings.booking_status', '=', '1')
-                ->where('bookings.status', '!=', '3')
+                ->where('bookings.status', '<', '3')
                 ->where('bookings.invoice_status', '=', '0')
                 ->where('bookings.is_closed', '>', '0')
                 ->leftJoin('payments', 'bookings.id', '=', 'payments.booking_id')
