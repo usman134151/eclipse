@@ -625,5 +625,12 @@
             $('#submitAvailability').modal('hide');
 
         });
+        
+        Livewire.on('closeConfirmInvitationModal', () => {
+            $('#confirmInvitation').modal('hide');
+
+        });
+
+        
     </script>
 @endpush
