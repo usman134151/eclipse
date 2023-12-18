@@ -127,4 +127,18 @@ nav[aria-label="Page Navigation"]{
 .selected-provider :has(.custom-dropdown-btn[aria-expanded="true"]) td{
     background-color: #F2F2F2 !important;
 }
-/* } */
+:has(.selected-provider) .table {
+    
+    --bs-table-hover-bg: inherit !important; 
+    --bs-table-hover-color: inherit !important; 
+}
+:has(.selected-provider) .table-hover tbody [aria-label="Days"]{
+    color:white !important;
+}
+:has(.selected-provider) label{
+    display: inline !important;
+}
+
+.table-headers th{
+    text-align: center !important;
+}
