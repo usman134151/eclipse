@@ -13,7 +13,7 @@ use Illuminate\Validation\Rule;
 class AddNewCustomer extends Component
 {
     public $companyId;
-    public $user;
+    public $user, $email_invitation = 1;
     public $rolesArr = [];
     public $userdetail = [
 		'industry' => null, 'phone' => null, 'gender_id' => null, 'language_id' => null, 'timezone_id' => null, 'ethnicity_id' => null,
@@ -84,7 +84,7 @@ class AddNewCustomer extends Component
             $roles[$role]=1;
         }
       
-		$this->user = $userService->createUser($this->user, $this->userdetail, 4, false, $this->selectedIndustries, 1);
+		$this->user = $userService->createUser($this->user, $this->userdetail, 4, $this->email_invitation, $this->selectedIndustries, 1);
         $userService->storeCustomerRoles($roles, $this->user->id);
         $this->emit('updateUsers');
         $this->emit('customerModalDismissed');  // emit to close modal
