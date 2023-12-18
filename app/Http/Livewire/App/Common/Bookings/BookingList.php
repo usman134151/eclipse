@@ -156,17 +156,15 @@ class BookingList extends Component
 
 				break;
 			case ("Today's"):
-				$conditions = ['type' => 1, 'booking_status' => '1'];
-				if (!session()->get('isProvider'))
-					$conditions['bookings.status'] = 2;
+				$conditions = ['type' => 1, 'booking_status' => '1', 'bookings.status'=>2];
+				// if (!session()->get('isProvider'))
+					// $conditions[] = 2;
 				$query->where($conditions)
-
-					// ->when($addressCheck, function ($query) {
-					// 	$query->where('isCompleted', 0);
-					// })
 					->whereRaw("'$today'  Between  DATE(booking_start_at) AND DATE(booking_end_at)")
 					->orderBy('booking_start_at', 'ASC');
-				if (!$this->provider_id) {
+
+
+				if (!$this->provider_id) { //getting checkin / running late
 					$query->leftJoin('booking_providers', function ($join) {
 						$join->on('booking_providers.booking_id', 'bookings.id');
 					});
@@ -182,15 +180,11 @@ class BookingList extends Component
 
 				break;
 			case ('Upcoming'):
-				$conditions = ['type' => 1, 'booking_status' => '1'];
-				if (!session()->get('isProvider'))
-					$conditions['bookings.status'] = 2;
+				$conditions = ['type' => 1, 'booking_status' => '1', 'bookings.status' => 2];
+				// if (!session()->get('isProvider'))
+					// $conditions['bookings.status'] = 2;
 				$query->whereDate('booking_start_at', '>', Carbon::today())
 					->where($conditions)
-
-					// ->when($addressCheck, function ($query) {
-					// 	$query->where('isCompleted', 0);
-					// })
 					->whereRaw("DATE(booking_start_at) > '$today'")
 					->orderBy('booking_start_at', 'ASC');
 
@@ -222,21 +216,15 @@ class BookingList extends Component
 				break;
 			case ('Draft'):
 				$query->where(['type' => 2])
-
-					// ->when($addressCheck, function ($query) {
-					// 	$query->where('isCompleted', 0);
-					// })
 					->orderBy('booking_start_at', 'DESC');
 				break;
 			case ('Unassigned'):
 
 				$query->where(['bookings.status' => 1, 'type' => 1, 'booking_status' => '1'])
-
 					->whereRaw("DATE(booking_start_at) > '$yesterday'")
 					->orderBy('booking_start_at', 'ASC');
 				break;
 			case ('Invitations'):
-				// 
 				$query->whereDate('booking_start_at', '>', Carbon::now())
 					->where(['bookings.status' => 1, 'type' => 1, 'booking_status' => '1'])
 					->orderBy('booking_start_at', 'ASC');
@@ -244,22 +232,14 @@ class BookingList extends Component
 
 				break;
 			case ('Cancelled'):
-				// 
 				$query->
-					// whereDate('booking_start_at', '>', Carbon::now())
-					where('bookings.status', '>=', 3)
+					whereDate('booking_start_at', '>=', Carbon::now())
+					->where('bookings.status', '>=', 3)
 					->orderBy('booking_start_at', 'ASC');
 
 				break;
 
-			case ('Cancelled'):
-				// 
-				$query->
-					// whereDate('booking_start_at', '>', Carbon::now())
-					where('bookings.status', '>=', 3)
-					->orderBy('booking_start_at', 'ASC');
-
-				break;
+			
 			default:
 				$query->where('booking_end_at', '<>', null)->orderBy('booking_start_at', 'DESC');
 				break;
