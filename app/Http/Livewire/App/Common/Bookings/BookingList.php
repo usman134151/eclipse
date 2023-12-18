@@ -535,7 +535,7 @@ class BookingList extends Component
 			$query->whereHas('booking_services', function ($query) use ($filterArray) {
 				$query->where(function ($query) use ($filterArray) {
 					foreach ($filterArray as $item) {
-						$query->where('services', 'LIKE', "%$item%");
+						$query->where('service_types', 'LIKE', "%$item%");
 					}
 				});
 			});
