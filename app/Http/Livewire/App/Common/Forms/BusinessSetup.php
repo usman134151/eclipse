@@ -10,13 +10,14 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\Tenant\Schedule;
 use App\Services\App\UploadFileService;
+use Illuminate\Support\Facades\File;
 
 class BusinessSetup extends Component
 {
     use WithFileUploads;
 
 	public $component = 'configuration-setting';
-	public $showForm, $configuration, $company_logo, $login_screen, $dark_company_logo;
+	public $showForm, $configuration, $company_logo, $login_screen, $dark_company_logo, $deposit_form_file;
     public $staffProviders=[], $contractProviders = [];
         
 	protected $listeners = ['showList'=>'resetForm'];
@@ -78,7 +79,7 @@ class BusinessSetup extends Component
             'login_screen' => 'nullable|image|mimes:png,jpg,jpeg,gif,bmp,svg',
             'company_logo' => 'nullable|image|mimes:png,jpg,jpeg,gif,bmp,svg',
             'dark_company_logo' => 'nullable|image|mimes:png,jpg,jpeg,gif,bmp,svg',
-
+            'deposit_form_file' => 'nullable|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx',
 
         ];
     }
@@ -216,7 +217,15 @@ class BusinessSetup extends Component
             $this->configuration->feedback = json_encode($this->feedback);
         }
 
+        if($this->deposit_form_file && $this->configuration->payment_payroll)
+            $this->configuration->deposit_form_file = $fileService->saveFile('setup', $this->deposit_form_file, $this->configuration->deposit_form_file);
+
         if(!$this->configuration->payment_payroll){ //remove data if checkbox false
+            if ($this->configuration->deposit_form_file != null) {
+                //delete existing file
+                if (File::exists(public_path($this->configuration->deposit_form_file)))
+                    File::delete(public_path($this->configuration->deposit_form_file));
+            }
             $this->configuration->deposit_form_file = null;
             $this->configuration->require_provider_approval = false;
             $this->configuration->rate_for_providers = null;
