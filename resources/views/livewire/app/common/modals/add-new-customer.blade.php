@@ -68,6 +68,17 @@
 
 
         </div>
+        <div class="col-lg-12 d-lg-flex gap-5 justify-content-center between-section-segment-spacing">
+            <div class="form-check mb-lg-0">
+                <input class="form-check-input" type="checkbox"
+                    value="1" id="email_invitation"
+                    wire:model.defer="email_invitation">
+                <label class="form-check-label"
+                    for="email_invitation">
+                    Send Invitation Email to the Customer
+                </label>
+            </div>
+        </div>
     </div>
     <div class="modal-footer">
         <div class="row justify-content-center w-100 mb-2">
