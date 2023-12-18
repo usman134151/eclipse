@@ -146,7 +146,7 @@
                     aria-labelledby="calendar-tab" tabindex="0">
                     <h3>Assignment Calendar</h3>
                     <!-- Filters -->
-                    <div class="d-flex justify-content-start gap-4 mb-4">
+                    {{-- <div class="d-flex justify-content-start gap-4 mb-4">
                         <div class="d-flex justify-content-start gap-2">
                             <div class="mb-4 mb-lg-0 position-relative">
                                 <!-- Begin : it will be replaced with livewire module-->
@@ -172,7 +172,7 @@
                             </div>
                         </div>
 
-                    </div>
+                    </div> --}}
                     <!-- /Filters -->
                     @livewire('app.common.calendar', ['providerProfile' => false, 'user_id' => Auth::id(), 'hideProvider' => true], key(time()))
                     {{-- <div>

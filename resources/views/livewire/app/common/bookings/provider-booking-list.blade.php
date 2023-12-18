@@ -8,10 +8,11 @@
     </div>
     <div class="card">
         <div class="card-body">
+            @if($showHeader)
             <div class="mt-3" wire:ignore>
                 <x-advancefilters type="" :filterProviders="$filterProviders" :hideProvider="true" :setupValues="$setupValues" />
             </div>
-
+            @endif
             <div class="row mb-5">
                 <div class="col-lg-12">
 
