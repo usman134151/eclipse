@@ -82,7 +82,7 @@ final class DraftInvoices extends PowerGridComponent
 					->where('bookings.booking_status', '=', '1')
 					->where('bookings.is_closed', '>', '0')
 
-					->where('bookings.status', '!=', '3');
+					->where('bookings.status', '<', '3');
 			})
 			->leftJoin('payments', 'bookings.id', '=', 'payments.booking_id')
 			->where('companies.status', '=', 1)
