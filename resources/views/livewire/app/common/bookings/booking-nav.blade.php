@@ -51,6 +51,33 @@
                                             </a>
                                         </li>
                                     </ul>
+                                    <ul class="input-group input-group-sm mb-2 gap-2">
+                                        <input type="text" id="pageNumberInput" class="form-control form-control-sm text-center" placeholder="Enter page number">
+                                        <button onclick="gotoLivewirePage()" class="btn btn-primary btn-sm">Go to Page</button>
+                                    </ul>
+                                    <ul>
+                                        <small id="errorMessage" class="text-danger" style="display: none;"></small>
+                                    </ul>
                                 </nav>
                     @endif
                     </div>
+@push('scripts')                        
+    <script>
+        function gotoLivewirePage() {
+            // Get the value from the text field
+            let pageNumber = document.getElementById('pageNumberInput').value; 
+            if (pageNumber > {{$paginator->lastPage()}}){
+                let errorMessage = document.getElementById('errorMessage');
+                errorMessage.textContent = 'Page number exceeds the last page.';
+                errorMessage.style.display = 'block';
+            } else  if (pageNumber < 1 || isNaN(pageNumber)) {
+                let errorMessage = document.getElementById('errorMessage');
+                errorMessage.textContent = 'Please enter a valid page number.';
+                errorMessage.style.display = 'block';
+            } else {
+                // Call Livewire method using wire:click and pass the page number
+                @this.call('gotoPage', pageNumber);
+            }
+        }
+    </script>
+@endpush
