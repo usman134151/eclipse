@@ -136,9 +136,7 @@ class Calendar extends Component
 			}, $this->service_type_search_filter);
 			$query->whereHas('booking_services', function ($query) use ($filterArray) {
 				$query->where(function ($query) use ($filterArray) {
-					foreach ($filterArray as $item) {
-						$query->where('service_types', 'LIKE', "%$item%");
-					}
+					$query->whereIn('service_types', $filterArray);
 				});
 			});
 		}
