@@ -11,6 +11,7 @@
             <button type="button" class="btn btn-outline-dark rounded"
                 x-on:click="closeOutBooking = !closeOutBooking">Cancel</button>
                 <button type="" x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });"
+                    style="z-index:100000"
                     x-on:close-out-booking.window="closeOutBooking = !closeOutBooking" wire:click="$emit('closeBooking')"
                     class="btn btn-primary rounded">Close Booking</button>
         </div>
