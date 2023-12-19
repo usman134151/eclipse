@@ -74,7 +74,8 @@
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="schedule-tab" data-bs-toggle="tab"
                                         data-bs-target="#schedule-tab-pane" type="button" role="tab"
-                                        aria-controls="schedule-tab-pane" aria-selected="false">
+                                        aria-controls="schedule-tab-pane" aria-selected="false"
+                                        onclick="window.dispatchEvent(new Event('resize'))">
                                         <svg aria-label="Schedule" width="30" height="29" viewBox="0 0 30 29"
                                             fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <use xlink:href="/css/sprite.svg#gray-calender"></use>
