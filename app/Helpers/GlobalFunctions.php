@@ -16,6 +16,7 @@ use App\Models\Tenant\Remittance;
 use App\Models\Tenant\UserAddress;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use phpDocumentor\Reflection\DocBlock\StandardTagFactory;
 
 const PENDING = '0';
@@ -62,6 +63,21 @@ const DECLINED = '2';
       }
       return Carbon::parse($date)->format('m/d/Y');
 
+    }
+
+    function modifyTimeFormat($date)
+    {
+      if(empty($date) || $date == 'N/A') {
+        return "-";
+      }
+
+      if(Session::get('business_time_format') == 12) {
+        return date("g:i A", strtotime($date));
+      } else if(Session::get('business_time_format') == 24) {
+        return date("G:i", strtotime($date));
+      } else {
+        return date("g:i A", strtotime($date));
+      }
     }
 
     function formatDateNew($date)

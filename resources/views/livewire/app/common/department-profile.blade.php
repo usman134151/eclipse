@@ -60,7 +60,7 @@
 									</button>
 								</li>
 								<li class="nav-item" role="presentation">
-									<button class="nav-link" id="schedule-tab" data-bs-toggle="tab" data-bs-target="#schedule-tab-pane" type="button" role="tab" aria-controls="schedule-tab-panel" aria-selected="false">
+									<button class="nav-link" id="schedule-tab" data-bs-toggle="tab" data-bs-target="#schedule-tab-pane" type="button" role="tab" aria-controls="schedule-tab-panel" aria-selected="false" onclick="window.dispatchEvent(new Event('resize'))">
 										<svg aria-label="schedule" width="30" height="29" viewBox="0 0 30 29">
                                             <use xlink:href="/css/common-icons.svg#gray-calendar"></use>
                                         </svg>
