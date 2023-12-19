@@ -41,7 +41,8 @@
                 <li class="" role="presentation">
                     <a class="dashborad-block active" id="calendar-tab" data-bs-toggle="tab"
                         data-bs-target="#calendar-tab-pane" type="button" role="tab"
-                        aria-controls="calendar-tab-pane" aria-selected="true">
+                        aria-controls="calendar-tab-pane" aria-selected="true"
+                        onclick="window.dispatchEvent(new Event('resize'))">
                         <div class="text-center block-text">Assignments Calendar</div>
                         <div class="text-center block-icon">
                             <svg aria-label="Assignments Calendar" class="fill" width="57" height="57"
