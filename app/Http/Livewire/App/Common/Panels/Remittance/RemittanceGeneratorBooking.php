@@ -6,6 +6,7 @@ use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\BookingReimbursement;
 use App\Models\Tenant\ProviderRemittancePayment;
 use App\Models\Tenant\User;
+use Carbon\Carbon;
 use Livewire\Component;
 
 class RemittanceGeneratorBooking extends Component
@@ -21,7 +22,13 @@ class RemittanceGeneratorBooking extends Component
     public function mount($providerId)
     {
         $this->provider = User::where('id', $providerId)->with('userdetail')->first()->toArray();
-        $bookings = BookingProvider::where(['provider_id' => $providerId, 'payment_status' => 0,'check_in_status'=>3, 'remittance_id' => 0])
+        // 'check_in_status'=>3, TODO :: ADD CONDITION WHEN AUTO-CLOSE ENABLED
+        // TODO :: Add check to include bookings that have been added to a remittance, yet reimbursement is added later
+        $bookings = BookingProvider::where(['provider_id' => $providerId, 'payment_status' => 0, 'remittance_id' => 0])
+            ->whereHas('booking', function ($query) {
+                $query->where('is_paid', 0)
+                    ->whereRaw("DATE(booking_end_at) < '" . Carbon::now()->toDateString() . "'");
+            })
             ->with(['booking', 'reimbursements'])
             ->select('booking_id')
             ->selectRaw('SUM( CASE WHEN is_override_price = 1
@@ -31,9 +38,9 @@ class RemittanceGeneratorBooking extends Component
             ->groupBy('booking_id')
             ->get()->toArray();
         //fetching unassociated approved reimbursements
-        $reimbursements = BookingReimbursement::where(['provider_id' => $providerId,'status'=>1, 'booking_id' => null, 'payment_status' => 0, 'remittance_id' => 0])->select(['id as reimbursement_id', 'reimbursement_number', 'amount', 'booking_id'])->get()->toArray();
+        $reimbursements = BookingReimbursement::where(['provider_id' => $providerId, 'status' => 1, 'booking_id' => null, 'payment_status' => 0, 'remittance_id' => 0])->select(['id as reimbursement_id', 'reimbursement_number', 'amount', 'booking_id'])->get()->toArray();
         $payments = ProviderRemittancePayment::where(['provider_id' => $providerId, 'payment_status' => 0, 'remittance_id' => null])->select(['id as payment_id', 'number', 'total_amount as amount'])->get()->toArray();
-        $this->data = array_merge($bookings, $reimbursements,$payments);
+        $this->data = array_merge($bookings, $reimbursements, $payments);
     }
 
     public function addToRemittance()
