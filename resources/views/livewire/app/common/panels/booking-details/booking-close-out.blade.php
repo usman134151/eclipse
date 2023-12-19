@@ -10,8 +10,7 @@
     <div class="between-section-segment-spacing">
         @if (count($booking->booking_services))
 
-            {{-- <div class="row"> --}}
-            {{--  changes to move display to bottom right in pane -- Maarooshaa Asim --}}
+            {{--  START : changes to move display to bottom right in pane -- Maarooshaa Asim --}}
             <div class="d-inline-flex p-2 row"
                 style="position: fixed;bottom: 24px;right: 44px;text-align: right;z-index:100000">
                 <div class="col-12 justify-content-start ">
@@ -31,7 +30,8 @@
                         class=" self_end btn btn-sm mx-1 btn-outline-dark rounded  align-end">Override</button>
                 </div>
             </div>
-            {{-- </div> --}}
+            {{-- END : changes to move display to bottom right in pane -- Maarooshaa Asim --}}
+
             @foreach ($booking->booking_services as $bookingService)
                 <!-- Hoverable rows start -->
                 <div class="mt-3">
@@ -100,11 +100,6 @@
                                     <thead>
                                         <tr role="row" class=" table-headers">
                                             <th scope="col" style="width:20%;">Provider</th>
-                                            <!-- <th scope="col">Pay Duration & Rates</th>
-                                            <th scope="col">Final Payment</th>
-                                            <th scope="col">Billable Duration<br>
-                                                <small>(coming soon)</small>
-                                            </th> -->
                                             <th scope="col" style="width:10%;">CHECK IN</th>
                                             <th scope="col" style="width:10%;">CHECK OUT</th>
                                             <th scope="col" style="width:20%;">DURATION</th>
@@ -361,7 +356,7 @@
                                                         <div id="collapse_close_booking{{ $provider['provider_id'] }}"
                                                             class="accordion-collapse collapse "
                                                             aria-labelledby="heading_close_booking{{ $provider['provider_id'] }}"
-                                                            data-bs-parent="#accordion_close_booking" wire:ignore>
+                                                            data-bs-parent="#accordion_close_booking" wire:ignore.self>
                                                             <div class="accordion-body">
                                                                 <table class="table table-fs-md" aria-label="">
                                                                     <thead>
@@ -419,29 +414,33 @@
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
-                                                                                        @error('closeOut.' .
-                                                                                            $bookingService->id . '.' .
-                                                                                            $provider['provider_id'] .
-                                                                                            '.actual_start_hour')
-                                                                                            <span
-                                                                                                class="d-inline-block invalid-feedback mt-2">
-                                                                                                Hour field is required to be
-                                                                                                between 0 and 24.
-                                                                                            </span>
-                                                                                        @enderror
-                                                                                        @error('closeOut.' .
-                                                                                            $bookingService->id . '.' .
-                                                                                            $provider['provider_id'] .
-                                                                                            '.actual_start_min')
-                                                                                            <span
-                                                                                                class="d-inline-block invalid-feedback mt-2">
-                                                                                                Minute field is required to
-                                                                                                be between 0 and 59.
-                                                                                            </span>
-                                                                                        @enderror
-                                                                                    </div>
-                                                                                </div>
 
+                                                                                    </div>
+
+                                                                                </div>
+                                                                                <div class="">
+                                                                                    @error('closeOut.' .
+                                                                                        $bookingService->id . '.' .
+                                                                                        $provider['provider_id'] .
+                                                                                        '.actual_start_hour')
+                                                                                        <span
+                                                                                            class="d-inline-block invalid-feedback mt-2">
+                                                                                            Hour field is required to be
+                                                                                            between 0 and 24.
+                                                                                        </span>
+                                                                                    @enderror
+                                                                                    @error('closeOut.' .
+                                                                                        $bookingService->id . '.' .
+                                                                                        $provider['provider_id'] .
+                                                                                        '.actual_start_min')
+                                                                                        <span
+                                                                                            class="d-inline-block invalid-feedback mt-2">
+                                                                                            Minute field is required to
+                                                                                            be between 0 and 59.
+                                                                                        </span>
+                                                                                    @enderror
+
+                                                                                </div>
                                                                                 <div class="d-inline-flex my-4">
                                                                                     <p class="inline-block pe-5">Check
                                                                                         Out</p>
@@ -483,29 +482,37 @@
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
-                                                                                        @error('closeOut.' .
-                                                                                            $bookingService->id . '.' .
-                                                                                            $provider['provider_id'] .
-                                                                                            '.actual_end_hour')
-                                                                                            <span
-                                                                                                class="d-inline-block invalid-feedback mt-2">
-                                                                                                Hour field is required to be
-                                                                                                between 0 and 24.
-                                                                                            </span>
-                                                                                        @enderror
-
-                                                                                        @error('closeOut.' .
-                                                                                            $bookingService->id . '.' .
-                                                                                            $provider['provider_id'] .
-                                                                                            '.actual_end_min')
-                                                                                            <span
-                                                                                                class="d-inline-block invalid-feedback mt-2">
-                                                                                                Minute field is required to
-                                                                                                be between 0 and 59.
-                                                                                            </span>
-                                                                                        @enderror
                                                                                     </div>
                                                                                 </div>
+                                                                                <div class="">
+                                                                                    @error('closeOut.' .
+                                                                                        $bookingService->id . '.' .
+                                                                                        $provider['provider_id'] .
+                                                                                        '.actual_end_hour')
+                                                                                        <span
+                                                                                            class="d-inline-block invalid-feedback mt-2">
+                                                                                            Hour field is
+                                                                                            required
+                                                                                            to be
+                                                                                            between 0 and 24.
+                                                                                        </span>
+                                                                                    @enderror
+
+                                                                                    @error('closeOut.' .
+                                                                                        $bookingService->id . '.' .
+                                                                                        $provider['provider_id'] .
+                                                                                        '.actual_end_min')
+                                                                                        <span
+                                                                                            class="d-inline-block invalid-feedback mt-2">
+                                                                                            Minute field is
+                                                                                            required
+                                                                                            to
+                                                                                            be between 0 and 59.
+                                                                                        </span>
+                                                                                    @enderror
+
+                                                                                </div>
+
                                                                             </td>
                                                                             <td class="align-middle border-end-2">
                                                                                 <div class="">
@@ -1003,29 +1010,25 @@
                                                                                                                         placeholder="$00:00"
                                                                                                                         wire:blur="updateTotal({{ $bookingService->id }},{{ $provider['provider_id'] }})"
                                                                                                                         wire:model.lazy="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.service_payment_details.specialization_charges.{{ $key }}.provider_charges">
-                                                                                                                    @error('closeOut.'
-                                                                                                                        .
-                                                                                                                        $bookingService->id
-                                                                                                                        .
-                                                                                                                        '.'
-                                                                                                                        .
-                                                                                                                        $provider['provider_id']
-                                                                                                                        .
-                                                                                                                        '.service_payment_details.specialization_charges.'
-                                                                                                                        .
-                                                                                                                        $key
-                                                                                                                        .
-                                                                                                                        'provider_charges')
-                                                                                                                        <span
-                                                                                                                            class="d-inline invalid-feedback">
-                                                                                                                            {{ $message }}
-                                                                                                                        </span>
-                                                                                                                    @enderror
 
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
                                                                                                     </div>
+                                                                                                    @error('closeOut.' .
+                                                                                                        $bookingService->id
+                                                                                                        . '.' .
+                                                                                                        $provider['provider_id']
+                                                                                                        .
+                                                                                                        '.service_payment_details.specialization_charges.'
+                                                                                                        . $key .
+                                                                                                        'provider_charges')
+                                                                                                        <span
+                                                                                                            class="d-inline invalid-feedback">
+                                                                                                            {{ $message }}
+                                                                                                        </span>
+                                                                                                    @enderror
+
                                                                                                 </div>
                                                                                             @endforeach
 

@@ -568,7 +568,7 @@
                                                                                         wire:blur="updateTotal({{ $index }})"
                                                                                         class="form-control form-control-sm text-center"
                                                                                         placeholder="0"
-                                                                                        aria-label="Days">
+                                                                                       >
 
                                                                                     <div class="input-group-text p-0">
                                                                                         <select
