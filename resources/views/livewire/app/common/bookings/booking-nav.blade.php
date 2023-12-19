@@ -82,19 +82,19 @@
 @push('scripts')
 <script>
     function gotoLivewirePage() {
-            let lastPage = document.getElementById('lastPage').value;
+            let lastPage = parseInt(document.getElementById('lastPage').value);
             // Get the value from the text field
-            let pageNumber = document.getElementById('pageNumberInput').value; 
-            if (pageNumber > lastPage ){
-                console.log(lastPage);
-                let errorMessage = document.getElementById('errorMessage');
-                errorMessage.textContent = 'Page number exceeds the last page.';
-                errorMessage.style.display = 'block';
-            } else  if (pageNumber < 1 || isNaN(pageNumber)) {
+            let pageNumber = parseInt(document.getElementById('pageNumberInput').value); 
+            if (pageNumber < 1 || isNaN(pageNumber)) {
                 let errorMessage = document.getElementById('errorMessage');
                 errorMessage.textContent = 'Please enter a valid page number.';
                 errorMessage.style.display = 'block';
+            } else if (pageNumber > lastPage ){
+                let errorMessage = document.getElementById('errorMessage');
+                errorMessage.textContent = 'Page number exceeds the last page.';
+                errorMessage.style.display = 'block';
             } else {
+                console.log(pageNumber,lastPage,pageNumber>lastPage);
                 // Call Livewire method using wire:click and pass the page number
                 @this.call('gotoPage', pageNumber);
             }
