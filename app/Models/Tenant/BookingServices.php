@@ -3,6 +3,7 @@
 namespace App\Models\Tenant;
 
 use App\Models\User;
+use Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,10 +17,10 @@ class BookingServices extends Model
      * @var array
      */
     protected $fillable = [
-        'booking_log_id', 'booking_id', 'accommodation_id', 'attendees','attendees_manual','is_closed',
-         'service_consumer','service_consumer_manual', 'is_manual_consumer', 'is_manual_attendees', 'services', 'service_types', 'specialization', 'meeting_link', 'meeting_phone', 'meeting_passcode', 
-         'day_rate', 'duration_day', 'duration_hour', 'duration_minute', 'start_time', 
-         'end_time', 'provider_count', 'time_zone', 'status', 'meetings','auto_assign','auto_notify'
+        'booking_log_id', 'booking_id', 'accommodation_id', 'attendees', 'attendees_manual', 'is_closed',
+        'service_consumer', 'service_consumer_manual', 'is_manual_consumer', 'is_manual_attendees', 'services', 'service_types', 'specialization', 'meeting_link', 'meeting_phone', 'meeting_passcode',
+        'day_rate', 'duration_day', 'duration_hour', 'duration_minute', 'start_time',
+        'end_time', 'provider_count', 'time_zone', 'status', 'meetings', 'auto_assign', 'auto_notify'
     ];
 
     public function service()
@@ -27,7 +28,7 @@ class BookingServices extends Model
         return $this->hasOne(ServiceCategory::class, 'id', 'services');
     }
 
-   
+
 
     public function services_data()
     {
@@ -44,7 +45,7 @@ class BookingServices extends Model
     }
     public function checked_out_providers()
     {
-        return $this->hasMany(BookingProvider::class, 'id', 'booking_service_id')->where(['check_in_status'=>3]);
+        return $this->hasMany(BookingProvider::class, 'id', 'booking_service_id')->where(['check_in_status' => 3]);
     }
 
     public function serviceConsumerUser()
@@ -53,4 +54,13 @@ class BookingServices extends Model
     }
 
 
+    public function specializationsArray()
+    {
+        $val = [];
+        $s = json_decode($this->attributes['specialization']);
+        if (count($s) && !is_array($s[0]))
+            $val = Specialization::whereIn('id', $s)->where('status', 1)->select('name', 'id')->get()->toArray();
+        // dd($val);
+        return $val;
+    }
 }
