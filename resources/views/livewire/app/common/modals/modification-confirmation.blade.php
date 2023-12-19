@@ -8,18 +8,21 @@
             <div class="col-12">
                 Are you sure you want to update this Booking? Booking is outside it’s modification window.
                 If you’d like to modify this booking, you will be charged
-                {{ $booking ? numberFormat($booking['payment']['modification_fee']) : '' }}. Would you like to proceed
+               <strong> {{ $booking ? numberFormat($booking['payment']['modification_fee']) : '' }} </strong>. Would you like to proceed
                 with
                 modification?
             </div>
             @if (!session()->get('isCustomer'))
                 <div class="col-lg-12 mt-2">
+                <div class="mb-1">
+                    Modification Charges : {{ $booking ? numberFormat($booking['payment']['modification_fee']) : '' }} 
+                </div>
 
 
                     <div class="mb-4">
                         <label class="form-label" for="first-name-column">Override Charges</label>
                         <input type="text" id="charges" wire:model.defer="override_charges" class="form-control"
-                            placeholder="$0.00" name="charges" />
+                            placeholder="{{ $booking ? numberFormat($booking['payment']['modification_fee']) : '$0.00' }}" name="charges" />
                         @error('override_charges')
                             <span class="d-inline-block invalid-feedback mt-2">
                                 {{ $message }}

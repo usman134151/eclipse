@@ -63,4 +63,17 @@ class BookingServices extends Model
         // dd($val);
         return $val;
     }
+
+
+
+    public function specializationsNameString()
+    {
+        $str = null;
+        $s = json_decode($this->attributes['specialization']);
+        if (count($s) && !is_array($s[0])) {
+            $val = Specialization::whereIn('id', $s)->where('status', 1)->pluck('name')->toArray();
+            $str = count($val) ? implode(', ', $val) : null;
+        } // dd($val);
+        return $str;
+    }
 }
