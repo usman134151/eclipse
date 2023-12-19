@@ -1,11 +1,11 @@
 <div x-data="{ bookingDetails: false, providerSavedForms: false, assignmentDetails: false, addReimbursement: false, step: 1 }">
-    {{-- @if ($providerProfile && !$providerProfile) --}}
+    @if (!$providerProfile)
         <div class="" wire:ignore>
             {{-- <x-advancefilters type="" :filterProviders="$filterProviders" :hideProvider=$hideProvider /> --}}
             <x-advancefilters type="" :filterProviders="$filterProviders" :hideProvider="false"
                                         :setupValues="$setupValues" :tags="$tags" />
         </div>
-    {{-- @endif --}}
+    @endif
     <div wire:ignore id='calendar-container' class="w-100">
         <div id='{{ $providerProfile ? 'avail_calendar' : 'calendar' }}'></div>
     </div>
