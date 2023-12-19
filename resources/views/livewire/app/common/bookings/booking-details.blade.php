@@ -1902,7 +1902,7 @@
                 var locations = @json($locations);
                 console.log(locations);
                 var map = new google.maps.Map(document.getElementById("bookingmap"), {
-                    zoom: 5,
+                    zoom: 16,
                     center: {
                         lat: {{ $default_lat }},
                         lng: {{ $default_lng }}
