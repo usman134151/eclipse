@@ -215,7 +215,7 @@ class BookingList extends Component
 							$query->where('is_closed', 1);
 						})
 						->whereHas('services', function ($q) {
-							$q->whereJsonContains('close_out_procedure1', ['enable_button_provider' => true]);
+							$q->whereJsonContains('close_out_procedure', ['enable_button_provider' => true]);
 						})
 						->orderBy('booking_start_at', 'DESC');
 				}
