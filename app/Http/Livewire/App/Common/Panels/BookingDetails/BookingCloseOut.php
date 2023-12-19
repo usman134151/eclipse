@@ -283,6 +283,7 @@ class BookingCloseOut extends Component
 
     public function updateTotal($bookingServiceId, $provider_id)
     {
+
         $this->validate();
         //checking for null values
         if (!isset($this->closeOut[$bookingServiceId][$provider_id]['service_payment_details']['b_hours_rate']) || trim($this->closeOut[$bookingServiceId][$provider_id]['service_payment_details']['b_hours_rate']) == '')
@@ -369,8 +370,15 @@ class BookingCloseOut extends Component
 
     public function updateDuration($bookingServiceId, $provider_id)
     {
-        $this->closeOut[$bookingServiceId][$provider_id]['actual_duration_hour'] = abs($this->closeOut[$bookingServiceId][$provider_id]['actual_end_hour'] - $this->closeOut[$bookingServiceId][$provider_id]['actual_start_hour']);
-        $this->closeOut[$bookingServiceId][$provider_id]['actual_duration_min'] = abs($this->closeOut[$bookingServiceId][$provider_id]['actual_end_min'] - $this->closeOut[$bookingServiceId][$provider_id]['actual_start_min']);
+        $this->validate();
+        $startTime = strtotime("{$this->closeOut[$bookingServiceId][$provider_id]['actual_start_hour']}:{$this->closeOut[$bookingServiceId][$provider_id]['actual_start_min']}:00");
+        $endTime = strtotime("{$this->closeOut[$bookingServiceId][$provider_id]['actual_end_hour']}:{$this->closeOut[$bookingServiceId][$provider_id]['actual_end_min']}:00"); 
+        $diff = $endTime - $startTime;
+        $this->closeOut[$bookingServiceId][$provider_id]['actual_duration_hour'] = date('H', $diff);
+        $this->closeOut[$bookingServiceId][$provider_id]['actual_duration_min'] = date('i', $diff);
+
+        // abs($this->closeOut[$bookingServiceId][$provider_id]['actual_end_hour'] - $this->closeOut[$bookingServiceId][$provider_id]['actual_start_hour']);
+        // $this->closeOut[$bookingServiceId][$provider_id]['actual_duration_min'] = abs($this->closeOut[$bookingServiceId][$provider_id]['actual_end_min'] - $this->closeOut[$bookingServiceId][$provider_id]['actual_start_min']);
     }
 
     function showForm()
