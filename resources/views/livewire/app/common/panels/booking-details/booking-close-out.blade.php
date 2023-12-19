@@ -771,7 +771,7 @@
                                                                                                                     wire:blur="updateTotal({{ $bookingService->id }},{{ $provider['provider_id'] }})"
                                                                                                                     class="form-control form-control-sm text-center"
                                                                                                                     placeholder="0"
-                                                                                                                    aria-label="Days">
+                                                                                                                    aria-label="">
 
                                                                                                                 <div
                                                                                                                     class="input-group-text p-0">
