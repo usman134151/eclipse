@@ -37,7 +37,7 @@
 	<div class="row mb-5">
 	<ul class="d-grid 2xl:grid-cols-6 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 list-unstyled mb-5" id="myTab" role="tablist">
 	  <li class="" role="presentation">
-		<a class="dashborad-block active" id="calendar-tab" data-bs-toggle="tab" data-bs-target="#calendar-tab-pane" type="button" role="tab" aria-controls="calendar-tab-pane" aria-selected="true">
+		<a class="dashborad-block active" id="calendar-tab" data-bs-toggle="tab" data-bs-target="#calendar-tab-pane" type="button" role="tab" aria-controls="calendar-tab-pane" aria-selected="true" onclick="window.dispatchEvent(new Event('resize'))">
 		  <div class="text-center block-text">Calendar</div>
 		  <div class="text-center block-icon">
 			<svg class="fill" width="57" height="57" viewBox="0 0 57 57" fill="none" xmlns="http://www.w3.org/2000/svg">
