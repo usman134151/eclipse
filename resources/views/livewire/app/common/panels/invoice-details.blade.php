@@ -120,12 +120,11 @@
                                         {{ $booking->services->count() ? $booking->services->first()->name : 'N/A' }}
                                     </div>
                                     <div class="text-sm">
-                                        @if (count($booking->booking_services->first()->specializationsArray()))
+                                        @if ($booking->booking_services->first()->specializationsNameString())
                                             Specialization :
-                                            @foreach ($booking->booking_services->first()->specializationsArray() as $key => $sp)
-                                                {{ $sp['name'] }},
-                                            @endforeach
-                                        @endif  
+                                            {{ $booking->booking_services->first()->specializationsNameString() }}
+                                        @endif
+
                                     </div>
                                 </td>
                                 <td> {{ $booking->booking_provider ? $booking->booking_provider->count() : 'N/A' }}
