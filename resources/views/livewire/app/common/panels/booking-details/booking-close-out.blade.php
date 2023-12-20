@@ -40,7 +40,7 @@
                             <div class=" row">
                                 <div class="col-12">
                                     <h2 class="pl-2 pt-3">
-                                        {{ $bookingService->service->name }} </h2>
+                                        {{ $bookingService->service ? $bookingService->service->name : 'N/A' }} </h2>
                                 </div>
                                 <div class="col-4  d-inline-flex">
                                     <div class="">
@@ -971,7 +971,7 @@
 
                                                                                     </div>
                                                                                 </div>
-                                                                                @if (count($provider['service_payment_details']['specialization_charges']))
+                                                                                @if (key_exists('specialization_charges',$provider['service_payment_details']) && count($provider['service_payment_details']['specialization_charges']))
                                                                                     <div class="row my-2">
                                                                                         <div class="  mt-1">
                                                                                             <div class="col col-12">
