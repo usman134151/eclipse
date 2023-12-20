@@ -1251,15 +1251,24 @@ class BookingOperationsService
         // check if Require "Authorize & Close-out" for Customer Invoicing
         if (!is_null($closeOut) && key_exists('customer_invoice', $closeOut) && ($closeOut['customer_invoice'] == true || $closeOut['customer_invoice'] == "true"))
           return true;
+
+        // check if time extension is NOT auto-approve
+        if (!is_null($closeOut) && key_exists('time_extension', $closeOut) && ($closeOut['time_extension'] == false || $closeOut['time_extension'] == "false")) {
+          // fetch total resolved time extensions VS total providers
+          $timeExtensions =  BookingProvider::where('booking_service_id', $bService['id'])
+            ->selectRAW('SUM(CASE WHEN booking_providers.time_extension_status < "3" THEN 1 ELSE 0 END) AS resolved, 
+          COUNT(booking_providers.id) as total_providers')->first()->toArray();
+          if ($timeExtensions['resolved'] != $timeExtensions['total_providers'])
+            return true;
+        }
       }
     }
     return false;
   }
 
-  public static function closeActiveBooking($bookingId, $endDate, $bookingServices)
+  public static function closeActiveBooking($booking, $endDate, $bookingServices)
   {
 
-    $booking = Booking::find($bookingId);
     $endDate = Carbon::parse($endDate);
     if ($booking->is_closed == 0 && $endDate < today()) {
       // if booking is_closed == false and endDate>current date 
@@ -1323,7 +1332,7 @@ class BookingOperationsService
     $bookings = Booking::where(['is_closed' => 0, 'type' => 1, 'booking_status' => 1])->where('status', '<', 3)
       ->whereDate('booking_end_at', '<', Carbon::now())->with('booking_services', 'booking_services.service')->get();
     foreach ($bookings as $booking) {
-      SELF::closeActiveBooking($booking->id, $booking->booking_end_at, $booking->booking_services);
+      SELF::closeActiveBooking($booking, $booking->booking_end_at, $booking->booking_services);
     }
   }
 
