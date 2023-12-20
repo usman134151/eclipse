@@ -37,7 +37,7 @@ final class SystemLogs extends PowerGridComponent
 			Footer::make()
 				->showPerPage()
 				->showRecordCount()
-				->showPerPage(config('app.per_page_big')),
+				->showPerPage(config('app.per_page_big'))->pagination('livewire.app.common.bookings.booking-nav'), //updated by Hammad to add custom pagination
 		];
 	}
 

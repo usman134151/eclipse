@@ -95,8 +95,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="table-responsive">
-                                <table id="unassigned_data" class="table table-fs-md table-hover" aria-label="">
+                            <div class="mt-3">
+                                <table id="unassigned_data" class="table table-fs-md" aria-label="">
                                     <thead>
                                         <tr role="row" class=" table-headers">
                                             <th scope="col" style="width:20%;">Provider</th>
@@ -771,7 +771,7 @@
                                                                                                                     wire:blur="updateTotal({{ $bookingService->id }},{{ $provider['provider_id'] }})"
                                                                                                                     class="form-control form-control-sm text-center"
                                                                                                                     placeholder="0"
-                                                                                                                    aria-label="Days">
+                                                                                                                    aria-label="">
 
                                                                                                                 <div
                                                                                                                     class="input-group-text p-0">

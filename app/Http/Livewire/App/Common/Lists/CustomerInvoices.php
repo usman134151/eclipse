@@ -34,7 +34,7 @@ final class CustomerInvoices extends PowerGridComponent
             Header::make()->showSearchInput(),
             Footer::make()
                 ->showPerPage(config('app.per_page'))
-                ->showRecordCount(),
+                ->showRecordCount()->pagination('livewire.app.common.bookings.booking-nav'), //updated by Hammad to add custom pagination
         ];
     }
 
