@@ -102,7 +102,7 @@ class Calendar extends Component
 				$query->whereIn('booking_providers.provider_id', $provider_ids);
 			});
 		}
-		if ($this->booking_status_filter) {
+		if ($this->booking_status_filter != null) {
 			$query->where('bookings.booking_status', 'LIKE', "%" . $this->booking_status_filter . "%");
 		}
 		if (count($this->industry_filter)) {
@@ -143,10 +143,13 @@ class Calendar extends Component
 		if (count($this->booking_specialization_search_filter)) {
 			$specializations = $this->booking_specialization_search_filter;
 			// dd($specializations);
-			foreach ($specializations as $specilization)
-				$query->whereHas('booking_services', function ($query) use ($specilization) {
-					$query->whereJsonContains('specialization', [0 => $specilization]);
+			$query->whereHas('booking_services', function ($query) use ($specializations) {
+				$query->where(function ($query) use ($specializations) {
+					foreach ($specializations as $specialization) {
+						$query->orWhereJsonContains('specialization', $specialization);
+					}
 				});
+			});
 		}
 
 		return $query;
