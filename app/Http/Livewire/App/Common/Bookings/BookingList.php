@@ -211,12 +211,16 @@ class BookingList extends Component
 							});
 							// ->orWhereIn('bookings.status', [3, 4]);
 						})
-						->orWhereHas('booking_services', function ($query) {
-							$query->where('is_closed', 1);
-						})
-						->whereHas('services', function ($q) {
-							$q->whereJsonContains('close_out_procedure', ['enable_button_provider' => true]);
-						})
+						->where(function ($q) {
+							$q->orWhereHas('booking_services', function ($query) {
+									$query->where('is_closed', 1);
+								})
+								->orWhere(function ($innerQ) {
+									$innerQ->whereHas('services', function ($q) {
+										$q->whereJsonContains('close_out_procedure', ['enable_button_provider' => true]);
+									});
+								});
+							})
 						->orderBy('booking_start_at', 'DESC');
 				}
 				break;
