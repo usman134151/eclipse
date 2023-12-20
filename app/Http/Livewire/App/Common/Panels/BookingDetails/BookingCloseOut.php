@@ -112,6 +112,8 @@ class BookingCloseOut extends Component
         $booking_provider->total_amount = $this->closeOut[$bookingServiceId][$providerId]['total_amount'];
         // $booking_provider->is_override_price = 1;
         $booking_provider->override_price = $this->closeOut[$bookingServiceId][$providerId]['total_amount'];
+        $booking_provider->time_extension_status = $status;
+
         $booking_provider->save();
         $this->closeOut[$bookingServiceId][$providerId]['saved'] = true;
     }
@@ -346,7 +348,6 @@ class BookingCloseOut extends Component
             $this->closeOut[$bookingServiceId][$provider['provider_id']]['actual_duration_min'] = $provider['admin_approved_payment_detail']['actual_duration_min'];
 
 
-        $this->closeOut[$bookingServiceId][$provider_id]['time_extension_status'] = 3;
         $this->updateTimeExtension($bookingServiceId, $provider_id, 3);
     }
 

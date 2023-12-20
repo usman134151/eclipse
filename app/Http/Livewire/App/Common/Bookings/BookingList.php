@@ -211,12 +211,16 @@ class BookingList extends Component
 							});
 							// ->orWhereIn('bookings.status', [3, 4]);
 						})
-						->orWhereHas('booking_services', function ($query) {
-							$query->where('is_closed', 1);
-						})
-						->whereHas('services', function ($q) {
-							$q->whereJsonContains('close_out_procedure', ['enable_button_provider' => true]);
-						})
+						->where(function ($q) {
+							$q->orWhereHas('booking_services', function ($query) {
+									$query->where('is_closed', 1);
+								})
+								->orWhere(function ($innerQ) {
+									$innerQ->whereHas('services', function ($q) {
+										$q->whereJsonContains('close_out_procedure', ['enable_button_provider' => true]);
+									});
+								});
+							})
 						->orderBy('booking_start_at', 'DESC');
 				}
 				break;
@@ -486,7 +490,7 @@ class BookingList extends Component
 				$query->whereIn('booking_providers.provider_id', $provider_ids);
 			});
 		}
-		if ($this->booking_status_filter) {
+		if ($this->booking_status_filter != null) {
 			$query->where('bookings.booking_status', 'LIKE', "%" . $this->booking_status_filter . "%");
 		}
 		if (count($this->industry_filter)) {
@@ -527,10 +531,13 @@ class BookingList extends Component
 		if (count($this->booking_specialization_search_filter)) {
 			$specializations = $this->booking_specialization_search_filter;
 			// dd($specializations);
-			foreach ($specializations as $specilization)
-				$query->whereHas('booking_services', function ($query) use ($specilization) {
-					$query->whereJsonContains('specialization', [0 => $specilization]);
+			$query->whereHas('booking_services', function ($query) use ($specializations) {
+				$query->where(function ($query) use ($specializations) {
+					foreach ($specializations as $specialization) {
+						$query->orWhereJsonContains('specialization', $specialization);
+					}
 				});
+			});
 		}
 
 		return $query;
