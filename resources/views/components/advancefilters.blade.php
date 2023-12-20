@@ -263,7 +263,7 @@
                         <option value=""></option>
                         <option value=1>Approved</option>
                         <option value=0>Pending</option>
-                        <option selected=2>Declined</option>
+                        <option value=2>Declined</option>
 
                     </select>
                 </div>

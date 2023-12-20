@@ -3,8 +3,10 @@
 namespace App\Http\Livewire\app\common\lists;
 
 use App\Models\Tenant\Accommodation;
+use App\Models\Tenant\ServiceCategory;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
 use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Header, PowerGrid, PowerGridComponent, PowerGridEloquent};
@@ -33,7 +35,7 @@ final class Accommodations extends PowerGridComponent
 			Header::make()->showSearchInput()->showToggleColumns(), //updated by Amna Bilal to add toggle column option
 			Footer::make()
                 ->showPerPage(config('app.per_page'))
-				->showRecordCount(),
+				->showRecordCount()->pagination('livewire.app.common.bookings.booking-nav'), //updated by Hammad to add custom pagination
 		];
 	}
 
@@ -99,6 +101,12 @@ final class Accommodations extends PowerGridComponent
 			<use xlink:href="/css/sprite.svg#edit-icon"></use>
 			</svg>
 			</a>
+			<a href="#" wire:click="copyAccommodation('.$model->id.')" class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Duplicate Accommodation" aria-label="Duplicate Accommodation">
+            <svg aria-label="Duplicate Accommodation" width="19" height="19" viewBox="0 0 19 19" fill="currentColor" stroke="currentColor">
+                <use xlink:href="/css/common-icons.svg#duplicate">
+                </use>
+            </svg>
+        	</a>
 			<a href="#" title="Delete Accommodation" aria-label="Delete Accommodation" wire:click="deleteRecord('.$model->id.')" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 			<svg aria-label="Delete Accommodation" width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 			<use xlink:href="/css/sprite.svg#delete-icon"></use>
@@ -144,6 +152,57 @@ final class Accommodations extends PowerGridComponent
 		// Emits an event to show the form for editing a record
 		$this->emit('showForm', Accommodation::find($id));
 	}
+
+	// A method to handle the copy button click event
+	public function copyAccommodation($accommodationId)
+    {
+        // Find the original service record
+        $originalAccommodation = Accommodation::with('services')->findOrFail($accommodationId);
+        // Create a copy of the service record
+        $newAccommodation = $originalAccommodation->replicate();
+		$newAccommodation->name=$newAccommodation->name.'_copy';
+        $newAccommodation->save();
+
+		// Loop through original services and make a copy of them for new accommodation
+		foreach ($originalAccommodation->services as $service) {
+            $this->copyService($service->id, $newAccommodation->id);
+        }
+        
+		$this->edit($newAccommodation->id);
+    }
+
+	public function copyService($serviceId, $accommodationId)
+    {
+        // Find the original service record
+        $originalService = ServiceCategory::with('specializations')->findOrFail($serviceId);
+        
+        // Create a copy of the service record
+        $newService = $originalService->replicate();
+		$newService->name=$newService->name.'_copy';
+		$newService->accommodations_id=$accommodationId;
+
+        $newService->save();
+        
+		// Copy the relations
+		foreach ($originalService->specializations as $specialization) {
+			// Copy additional fields in the relationship
+			$pivotData = DB::table('service_specializations')
+				->where('service_id', $originalService->id)
+				->where('specialization_id', $specialization->id)
+				->first();
+		
+			$pivotData = (array) $pivotData;
+			unset($pivotData['id']); // Remove the primary key if present
+		
+			$pivotData['service_id'] = $newService->id;
+		
+			DB::table('service_specializations')
+				->insert(array_merge($pivotData, [
+					'specialization_id' => $specialization->id
+				]));
+		}
+		
+    }
 
 	// A method to handle the delete button click event
 	public function deleteRecord($id) {

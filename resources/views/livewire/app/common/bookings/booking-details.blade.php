@@ -72,10 +72,31 @@
                                 <span>Assignment Log</span>
                             </button>
                         </li>
+                        @if (!session()->get('isCustomer') && $data['show_close_button'])
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link {{ $component == 'close-assignment' ? 'active' : '' }}"
+                                    id="close-assignment-tab" data-bs-toggle="tab" data-bs-target="#close-assignment"
+                                    type="button" role="tab" aria-controls="close-assignment"
+                                    aria-selected="false">
+                                    <svg width="30" height="30" viewBox="0 0 30 30" fill="currentColor"
+                                        stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <use xlink:href="/css/customer.svg#confirm-completion-icon">
+                                        </use>
+                                    </svg><span>
+                                        @if ($booking->is_closed == 0)
+                                            Close Assignment
+                                        @else
+                                            Edit Close Out
+                                        @endif
+                                    </span>
+                                </button>
+                            </li>
+                        @endif
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane fade {{ $component == 'booking-details' ? 'active show' : '' }}"
-                            id="booking-details" role="tabpanel" aria-labelledby="booking-details-tab" tabindex="0">
+                            id="booking-details" role="tabpanel" aria-labelledby="booking-details-tab"
+                            tabindex="0">
 
                             @if (session()->get('isCustomer') == null && session()->get('isProvider') == null)
                                 <div class="p-4 border border-dark rounded bg-lighter between-section-segment-spacing">
@@ -135,7 +156,8 @@
                                                 <label class="form-label text-primary">Total Provider Count</label>
                                                 <div class="d-flex flex-column gap-1">
                                                     <div class="font-family-tertiary value">
-                                                        Total Assigned: {{ number_format($data['assigned_providers']) }}
+                                                        Total Assigned:
+                                                        {{ number_format($data['assigned_providers']) }}
                                                     </div>
                                                     <div class="font-family-tertiary value">
                                                         Total Requested: {{ number_format($data['total_providers']) }}
@@ -174,7 +196,7 @@
                                                     {{-- End of update by Shanila --}}
                                                     View Assigned Admin-staff
                                                 </a>
-                                                @if (!session()->get('isCustomer') && $data['show_close_button'])
+                                                {{-- @if (!session()->get('isCustomer') && $data['show_close_button'])
                                                     <a href="#" class="btn btn-has-icon btn-primary rounded"
                                                         @click="closeOutBooking = true"
                                                         wire:click="$emit('openBookingCloseOut',true)">
@@ -191,7 +213,7 @@
                                                             Edit Close Out
                                                         @endif
                                                     </a>
-                                                @endif
+                                                @endif --}}
 
                                             </div>
                                         </div>
@@ -1769,10 +1791,42 @@
                                 class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                                 <button type="" class="btn btn-outline-dark rounded"
                                     x-on:click="$wire.switch('payment-details')">Back</button>
-                                <button type="" class="btn btn-primary rounded"
-                                    wire:click.prevent="showList">Exit</button>
+                                @if (!session()->get('isCustomer') && $data['show_close_button'])
+                                    <button type="" class="btn btn-outline-dark rounded"
+                                        x-on:click="$wire.switch('close-assignment')">Next</button>
+                                @else
+                                    <button type="" class="btn btn-primary rounded"
+                                        wire:click.prevent="showList">Exit</button>
+                                @endif
                             </div>-->
                         </div><!-- END: assignment-log-tab -->
+                        @if (!session()->get('isCustomer') && $data['show_close_button'])
+                            <div class="tab-pane fade {{ $component == 'close-assignment' ? 'active show' : '' }}"
+                                id="close-assignment" role="tabpanel" aria-labelledby="close-assignment-tab"
+                                tabindex="0">
+                                <div class="row">
+                                    <div class="col-lg-12">
+
+                                        @livewire('app.common.panels.booking-details.booking-close-out', ['booking' => $booking])
+
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="col-12 justify-content-center form-actions d-flex gap-3">
+                                            <button type="button" class="btn btn-outline-dark rounded"
+                                                {{-- x-on:click="closeOutBooking = !closeOutBooking" --}}>Cancel</button>
+                                            <button type=""
+                                                x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });"
+                                                style="z-index:100000" {{-- x-on:close-out-booking.window="closeOutBooking = !closeOutBooking" --}}
+                                                wire:click="$emit('closeBooking')" class="btn btn-primary rounded">
+                                                {{ $booking->is_closed == 0 ? 'Close Booking' : 'Save Changes' }}
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div><!-- END: assignment-log-tab -->
+                        @endif
                     </div>
                     <!-- END: Assignment Booking Form -->
                 </div>
@@ -1848,9 +1902,9 @@
             </div>
         </div>
     </div> --}}
-        @if ($data['show_close_button'])
+        {{-- @if ($data['show_close_button'])
             @include('panels.booking-details.admin-close-out')
-        @endif
+        @endif --}}
         @include('panels.booking-details.reschedule-booking')
         @include('panels.common.add-documents', ['booking_id' => $booking_id])
         @include('panels.booking-details.provider-saved-forms')
@@ -1902,7 +1956,7 @@
                 var locations = @json($locations);
                 console.log(locations);
                 var map = new google.maps.Map(document.getElementById("bookingmap"), {
-                    zoom: 5,
+                    zoom: 16,
                     center: {
                         lat: {{ $default_lat }},
                         lng: {{ $default_lng }}

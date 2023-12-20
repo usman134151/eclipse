@@ -647,7 +647,7 @@
                                                                         Direct Deposit Form Upload
                                                                     </label>
                                                                     <input class="form-control" type="file"
-                                                                        wire:model.defer="configuration.deposit_form_file"
+                                                                        wire:model.defer="deposit_form_file"
                                                                         id="directDepositFormUpload">
                                                                 </div>
                                                                 <div class="col-lg-12 mb-4">

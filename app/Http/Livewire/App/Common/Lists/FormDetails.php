@@ -35,7 +35,7 @@ final class FormDetails extends PowerGridComponent
             Header::make()->showSearchInput()->showToggleColumns(), //updated by Maarooshaa to add column toggle
             Footer::make()
                 ->showPerPage()
-                ->showRecordCount(),
+                ->showRecordCount()->pagination('livewire.app.common.bookings.booking-nav'), //updated by Hammad to add custom pagination
         ];
     }
 

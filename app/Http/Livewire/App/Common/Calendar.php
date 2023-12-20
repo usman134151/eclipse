@@ -102,7 +102,7 @@ class Calendar extends Component
 				$query->whereIn('booking_providers.provider_id', $provider_ids);
 			});
 		}
-		if ($this->booking_status_filter) {
+		if ($this->booking_status_filter != null) {
 			$query->where('bookings.booking_status', 'LIKE', "%" . $this->booking_status_filter . "%");
 		}
 		if (count($this->industry_filter)) {
@@ -136,19 +136,20 @@ class Calendar extends Component
 			}, $this->service_type_search_filter);
 			$query->whereHas('booking_services', function ($query) use ($filterArray) {
 				$query->where(function ($query) use ($filterArray) {
-					foreach ($filterArray as $item) {
-						$query->where('services', 'LIKE', "%$item%");
-					}
+					$query->whereIn('service_types', $filterArray);
 				});
 			});
 		}
 		if (count($this->booking_specialization_search_filter)) {
 			$specializations = $this->booking_specialization_search_filter;
 			// dd($specializations);
-			foreach ($specializations as $specilization)
-				$query->whereHas('booking_services', function ($query) use ($specilization) {
-					$query->whereJsonContains('specialization', [0 => $specilization]);
+			$query->whereHas('booking_services', function ($query) use ($specializations) {
+				$query->where(function ($query) use ($specializations) {
+					foreach ($specializations as $specialization) {
+						$query->orWhereJsonContains('specialization', $specialization);
+					}
 				});
+			});
 		}
 
 		return $query;
@@ -364,7 +365,7 @@ class Calendar extends Component
 				$newEvents[$key]['isProvider'] = false;
 			}
 
-			$newEvents[$key]['timeSlot'] =  date('h:i A', strtotime($booking_start_at)) . ' - ' . date('h:i A', strtotime($booking_end_at));
+			$newEvents[$key]['timeSlot'] =  modifyTimeFormat($booking_start_at) . ' - ' . modifyTimeFormat($booking_end_at);
 			// dd($newEvents[$key]['timeSlot']);
 			$description = '<div class="pe-3">';
 			$description .= '<p class="mb-3 mt-2">Assignment No.: ' . $booking_number . ' </p>';

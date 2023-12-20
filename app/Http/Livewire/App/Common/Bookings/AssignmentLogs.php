@@ -33,7 +33,7 @@ final class AssignmentLogs extends PowerGridComponent
             Header::make()->showSearchInput(),
             Footer::make()
                 ->showPerPage()
-                ->showRecordCount(),
+                ->showRecordCount()->pagination('livewire.app.common.bookings.booking-nav'), //updated by Hammad to add custom pagination,
         ];
     }
 
@@ -54,7 +54,7 @@ final class AssignmentLogs extends PowerGridComponent
     {
         $query = Log::query()->where("action_to",$this->booking_id)->where('item_type','Booking');
         if(session()->get('isCustomer'))
-            $query->whereNotIn('type',['Booking Invitation','Assignment Invitation','auto-assigned','auto-notified','assigned','unassigned']);
+            $query->whereNotIn('type',['Booking Invitation','Assignment Invitation','auto-assigned','auto-notified','assigned','unassigned','checkout update']);
         $query->latest(); 
         return $query;
     }

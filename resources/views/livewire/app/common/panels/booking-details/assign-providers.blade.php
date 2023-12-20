@@ -161,7 +161,13 @@
                                 @if (isset($provider->notes) && $provider->notes != null && $panelType == 3)
                                     <div class=" mt-3"
                                         style="{{ $panelType == 1 || $panelType == 3 ? 'width:300px' : '' }}">
-                                        <strong>Invitation Response :</strong>
+                                        <strong>
+                                            @if ($provider->invitation_response($booking_id) == 1)
+                                                Available
+                                            @elseif($provider->invitation_response($booking_id) == 2)
+                                                Unavailable
+                                            @endif :
+                                        </strong>
                                         {{ $provider->notes }}
                                     </div>
                                 @endif
@@ -562,7 +568,7 @@
                                                                                         wire:blur="updateTotal({{ $index }})"
                                                                                         class="form-control form-control-sm text-center"
                                                                                         placeholder="0"
-                                                                                        aria-label="Days">
+                                                                                       >
 
                                                                                     <div class="input-group-text p-0">
                                                                                         <select

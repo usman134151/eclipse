@@ -7,6 +7,7 @@ use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\BookingServices;
 use App\Models\Tenant\FeedbackRating;
 use App\Models\Tenant\User;
+use App\Services\App\BookingOperationsService;
 use App\Services\App\NotificationService;
 use App\Services\App\UploadFileService;
 use Carbon\Carbon;
@@ -44,23 +45,19 @@ class CheckOut extends Component
         //refresh booking service data
         $checkedout_providers = BookingProvider::where('booking_service_id', $this->booking_service->id)->where('check_in_status', 3)->count();
         //check if all other providers have checked out -> then close service
-        if ($this->booking_service->provider_count == $checkedout_providers) {
-            // $service_permission = $this->booking_service->service->close_out_procedure ?  json_decode($this->booking_service->service->close_out_procedure, true) : null;
-            // if ($service_permission['enable_button_customer'] != "true") {
-            $this->booking_service->is_closed = true;
-            $this->booking_service->save();
+        $actualDuration = strtotime(Carbon::parse($this->assignment->booking_end_at)->format('Y-m-d H:i:s')) - strtotime(Carbon::parse($this->assignment->booking_start_at)->format('Y-m-d H:i:s'));
+        $providerDuration = strtotime(Carbon::parse($this->checkout['actual_end_timestamp'])->format('Y-m-d H:i:s')) - strtotime(Carbon::parse($this->checkout['actual_start_timestamp'])->format('Y-m-d H:i:s'));
 
-            //close assignment booking if service setting does not require customer approval. 
-            // logic changed to allow Admin to close assignment after review ( Phase 1).
-            // if (count($this->assignment->booking_services) == count($this->assignment->closed_booking_services)) {
-            //     $this->assignment->is_closed = true;
-            //     $this->assignment->save();
-            // }
-            // }
+        if ($providerDuration - $actualDuration > 0) {
+            //time extension is requested 
+            BookingOperationsService::timeExtensionRequest($this->booking_provider, $this->booking_service);
         }
 
+        if ($this->booking_service->provider_count == $checkedout_providers) {
 
-
+            $this->booking_service->is_closed = true;
+            $this->booking_service->save();
+        }
 
         FeedBackRating::updateOrCreate([
             'feedback_to' => $this->assignment->customer_id,
@@ -71,15 +68,9 @@ class CheckOut extends Component
             'comments' => $this->checkout['feedback_comments'],
         ]);
 
-        // addLogs([
-        //     'action_by'     => $this->provider_id,
-        //     'action_to'     => $this->assignment->id,
-        //     'item_type'     => 'booking',
-        //     'type'          => 'update',
-        //     'message'         => "Booking checkout details updated by " . User::find($this->provider_id)->name,
-        //     'ip_address'     => \request()->ip(),
-        // ]);
-        callLogs($this->assignment->id, 'Booking', "update", "Booking checkout details updated by " . User::find($this->provider_id)->name);
+
+        $message = "Booking '" . $this->assignment->booking_number . "' checkout details updated by " . User::find($this->provider_id)->name;
+        callLogs($this->assignment->id, 'Booking', "checkout update", $message);
         if (session()->get('isProvider')) {
             $data['bookingData'] = $this->assignment;
 
@@ -130,10 +121,9 @@ class CheckOut extends Component
                     $this->checkout['confirmation_upload_type'] = 'print_and_sign';
                 $this->checkout['actual_start_timestamp'] = $this->checkout['actual_start_timestamp'] ?? Carbon::parse($this->booking_service->start_time);
                 $this->checkout['actual_start_date'] = $this->checkout['actual_start_date'] ?? Carbon::parse($this->booking_service->start_time)->format('m/d/Y');
-                $this->checkout['actual_start_hour'] = $this->checkout['actual_start_hour']  ?? date_format(date_create($this->booking_service->start_time),'H');
+                $this->checkout['actual_start_hour'] = $this->checkout['actual_start_hour']  ?? date_format(date_create($this->booking_service->start_time), 'H');
                 $this->checkout['actual_start_min'] =  $this->checkout['actual_start_min'] ?? date_format(date_create($this->booking_service->start_time), 'i');
                 $this->checkout['feedback_comments'] =  $this->checkout['feedback_comments'] ?? '';
-                
             } else {
                 //check if booking-service has check-in procedure enabled
                 $check_in_procedure = json_decode($this->booking_service->service->check_in_procedure, true);
@@ -153,7 +143,7 @@ class CheckOut extends Component
                 }
             }
             $this->checkout['actual_end_date'] = $this->checkout['actual_end_date'] ??  Carbon::now()->format('m/d/Y');
-            $this->checkout['actual_end_hour'] = $this->checkout['actual_end_hour'] ??      date_format(date_create($this->booking_service->end_time),$this->timeFormat == 12 ? 'h' : 'H');
+            $this->checkout['actual_end_hour'] = $this->checkout['actual_end_hour'] ??      date_format(date_create($this->booking_service->end_time), $this->timeFormat == 12 ? 'h' : 'H');
             $this->checkout['actual_end_min'] = $this->checkout['actual_end_min'] ??     date_format(date_create($this->booking_service->end_time), 'i');
             if ($this->timeFormat == 12) {
                 $this->timeSlots['end'] = date_format(date_create($this->booking_service->end_time), 'a');
@@ -187,9 +177,8 @@ class CheckOut extends Component
     public function saveStepOne()
     {
         if ($this->timeFormat == 12) {
-            $this->timestamps['start'] = Carbon::createFromFormat('m/d/Y h:i A', $this->checkout['actual_start_date'] . ' ' . ($this->checkout['actual_start_hour'] > 12 ? ($this->checkout['actual_start_hour']-12) : $this->checkout['actual_start_hour']) . ':' . $this->checkout['actual_start_min'] . ' '. $this->timeSlots['start']);
-            $this->timestamps['end'] = Carbon::createFromFormat('m/d/Y h:i A', $this->checkout['actual_end_date'] . ' ' . ($this->checkout['actual_end_hour'] > 12 ? ($this->checkout['actual_end_hour']-12): $this->checkout['actual_end_hour']) . ':' . $this->checkout['actual_end_min'] .  ' ' . $this->timeSlots['end']);
-    
+            $this->timestamps['start'] = Carbon::createFromFormat('m/d/Y h:i A', $this->checkout['actual_start_date'] . ' ' . ($this->checkout['actual_start_hour'] > 12 ? ($this->checkout['actual_start_hour'] - 12) : $this->checkout['actual_start_hour']) . ':' . $this->checkout['actual_start_min'] . ' ' . $this->timeSlots['start']);
+            $this->timestamps['end'] = Carbon::createFromFormat('m/d/Y h:i A', $this->checkout['actual_end_date'] . ' ' . ($this->checkout['actual_end_hour'] > 12 ? ($this->checkout['actual_end_hour'] - 12) : $this->checkout['actual_end_hour']) . ':' . $this->checkout['actual_end_min'] .  ' ' . $this->timeSlots['end']);
         } else {
             $this->timestamps['start'] = Carbon::createFromFormat('m/d/Y H:i:s', $this->checkout['actual_start_date'] . ' ' . $this->checkout['actual_start_hour'] . ':' . $this->checkout['actual_start_min'] . ':00');
             $this->timestamps['end'] = Carbon::createFromFormat('m/d/Y H:i:s', $this->checkout['actual_end_date'] . ' ' . $this->checkout['actual_end_hour'] . ':' . $this->checkout['actual_end_min'] . ':00');

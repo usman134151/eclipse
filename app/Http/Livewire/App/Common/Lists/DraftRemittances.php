@@ -34,7 +34,7 @@ final class DraftRemittances extends PowerGridComponent
             Header::make()->showSearchInput()->showToggleColumns(),
             Footer::make()
                 ->showPerPage(config('app.per_page'))
-                ->showRecordCount(),
+                ->showRecordCount()->pagination('livewire.app.common.bookings.booking-nav'), //updated by Hammad to add custom pagination
         ];
     }
 
@@ -59,7 +59,7 @@ final class DraftRemittances extends PowerGridComponent
                 $query->where('role_id', 2);
             }
         )
-
+            // TODO :: ADD checks like in remGen
             ->join('booking_providers', 'booking_providers.provider_id', 'users.id')
             ->leftJoin('payment_preferences', 'payment_preferences.provider_id', 'users.id')
             ->where(['payment_status' => 0, 'check_in_status' => 3, 'remittance_id' => 0])
@@ -83,13 +83,11 @@ final class DraftRemittances extends PowerGridComponent
 
         // dd($query->get());
 
-        if($this->provider_ids)
-        {
+        if ($this->provider_ids) {
             $query->whereIn('users.id', $this->provider_ids);
         }
-        
-        if($this->filter_payment_method)
-        {
+
+        if ($this->filter_payment_method) {
             $query->where('payment_preferences.method', $this->filter_payment_method);
         }
 
@@ -99,8 +97,8 @@ final class DraftRemittances extends PowerGridComponent
                 $query->where('name', 'LIKE', '%' . $name . '%');
             });
         }
-        
-        
+
+
 
         return $query;
     }

@@ -8,10 +8,10 @@
     </div>
     <div class="card">
         <div class="card-body">
-            @if($showHeader)
-            <div class="mt-3" wire:ignore>
-                <x-advancefilters type="" :filterProviders="$filterProviders" :hideProvider="true" :setupValues="$setupValues" />
-            </div>
+            @if ($showHeader)
+                <div class="mt-3" wire:ignore>
+                    <x-advancefilters type="" :filterProviders="$filterProviders" :hideProvider="true" :setupValues="$setupValues" />
+                </div>
             @endif
             <div class="row mb-5">
                 <div class="col-lg-12">
@@ -143,7 +143,9 @@
                                                         <td class="{{ $cssClass }}"
                                                             style="background-color:{{ $colorCodes[$code] }}">
                                                             @if ($bookingType != 'Unassigned' && $bookingType != 'Invitations')
-                                                                @if ($booking['check_in_status'] == 0)
+                                                                @if ($booking['status'] > 2)
+                                                                    Cancelled
+                                                                @elseif ($booking['check_in_status'] == 0)
                                                                     On Time
                                                                 @elseif($booking['check_in_status'] == 1)
                                                                     Checked In
@@ -155,6 +157,7 @@
                                                             @else
                                                                 Unassigned
                                                             @endif
+
                                                         </td>
                                                         <td class="{{ $cssClass }}"
                                                             style="background-color:{{ $colorCodes[$code] }}">
@@ -251,7 +254,7 @@
                                                                     @if (
                                                                         $booking['display_check_in'] &&
                                                                             ($bookingType == "Today's" || $bookingType == 'Active') &&
-                                                                            ($booking['check_in_status'] == 0 || $booking['check_in_status'] ==2) )
+                                                                            ($booking['check_in_status'] == 0 || $booking['check_in_status'] == 2))
                                                                         <a href="javascript:void(0)"
                                                                             @click="offcanvasOpenCheckIn = true"
                                                                             wire:click="showCheckInPanel('{{ $booking['id'] }}','{{ $booking['booking_service_id'] }}','{{ $booking['booking_number'] }}')"
@@ -268,7 +271,9 @@
                                                                         </a>
                                                                     @endif
                                                                     {{-- check out --}}
-                                                                    @if ($booking['display_check_out'] && (!$booking['display_check_in'] || $booking['check_in_status'] == 1 || $booking['check_in_status'] == 3))
+                                                                    @if (
+                                                                        $booking['display_check_out'] &&
+                                                                            (!$booking['display_check_in'] || $booking['check_in_status'] == 1 || $booking['check_in_status'] == 3))
                                                                         <a href="#"
                                                                             @click="offcanvasOpenCheckOut = true"
                                                                             wire:click="$emit('showCheckOutPanel','{{ $booking['id'] }}','{{ $booking['booking_service_id'] }}','{{ $booking['booking_number'] }}')"
@@ -581,7 +586,7 @@
     @include('panels.provider.check-out')
     @include('panels.common.assignment-details')
     @include('panels.common.add-documents', ['booking_id' => $booking_id])
-     @include('panels.common.add-reimbursement')
+    @include('panels.common.add-reimbursement')
 
     {{-- @include('panels.provider.add-reimbursement') --}}
     @include('modals.common.assignment-invitation')
@@ -610,7 +615,7 @@
             $('#runningLateModal').modal('hide');
 
         });
-        
+
         Livewire.on('closeReturnAssignmentModal', () => {
             $('#returnAssignmentModal').modal('hide');
 
@@ -620,5 +625,12 @@
             $('#submitAvailability').modal('hide');
 
         });
+        
+        Livewire.on('closeConfirmInvitationModal', () => {
+            $('#confirmInvitation').modal('hide');
+
+        });
+
+        
     </script>
 @endpush

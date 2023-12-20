@@ -39,13 +39,13 @@
             <div class="col-lg-4 mb-4 mb-lg-0 align-self-center">
                 <div class="d-grid grid-cols-2 gap-2">
                     <div class="fw-semibold text-sm">Total Paid:</div>
-                    <div class="text-sm">{{numberFormat($totalPaidAmount)}}</div>
+                    <div class="text-sm">{{ numberFormat($totalPaidAmount) }}</div>
                     <div class="fw-semibold text-sm">Pending Payment:</div>
-                    <div class="text-sm">{{numberFormat($totalPendingAmount)}}</div>
+                    <div class="text-sm">{{ numberFormat($totalPendingAmount) }}</div>
                     <div class="fw-semibold text-sm">Overdue Payment:</div>
-                    <div class="text-sm">{{numberFormat($totalOverDueAmount)}}</div>
+                    <div class="text-sm">{{ numberFormat($totalOverDueAmount) }}</div>
                     <div class="fw-semibold text-sm">Not Invoiced Payment:</div>
-                    <div class="text-sm">{{numberFormat($totalNotInvoiceAmount)}}</div>
+                    <div class="text-sm">{{ numberFormat($totalNotInvoiceAmount) }}</div>
                 </div>
             </div>
         </div>
@@ -434,8 +434,10 @@
                             @foreach ($bookings as $booking)
                                 <tr role="row" class="odd">
                                     <td class="text-center">
-                                        <input class="form-check-input booking-checkbox" type="checkbox" value="{{ $booking->id }}"
-                                            wire:key='{{ $loop->index }}' wire:model.defer="selectedBookings" data-price="{{ $booking->payment ? $booking->payment->total_amount : 0 }}"
+                                        <input class="form-check-input booking-checkbox" type="checkbox"
+                                            value="{{ $booking->id }}" wire:key='{{ $loop->index }}'
+                                            wire:model.defer="selectedBookings"
+                                            data-price="{{ $booking->payment ? $booking->payment->total_amount : 0 }}"
                                             aria-label="Select Booking">
                                     </td>
                                     <td>
@@ -464,7 +466,10 @@
                                             {{ $booking->services->count() ? $booking->services->first()->name : 'N/A' }}
                                         </div>
                                         <div class="text-sm">
-                                            Specialization: Closed-Captioning
+                                            @if ($booking->booking_services->first()->specializationsNameString())
+                                                Specialization :
+                                                {{$booking->booking_services->first()->specializationsNameString()}}
+                                            @endif
                                         </div>
                                     </td>
                                     <td>{{ $booking->booking_provider ? $booking->booking_provider->count() : 'N/A' }}
@@ -539,8 +544,8 @@
                                         @endif
                                         <div>
                                             <a href="#" class="btn btn-primary btn-xxs rounded btn-has-icon">
-                                                <svg width="14" height="14" viewBox="0 0 20 20"
-                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <svg width="14" height="14" viewBox="0 0 20 20" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
                                                     <path fill-rule="evenodd" clip-rule="evenodd"
                                                         d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z"
                                                         fill="white"></path>
@@ -592,7 +597,7 @@
             </div>
         </div>
         <!-- Total -->
-        
+
         {{-- <!-- /Total --> --}}
 
         <div class="text-center">

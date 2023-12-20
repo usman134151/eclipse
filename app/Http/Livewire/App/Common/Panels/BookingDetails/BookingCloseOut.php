@@ -112,6 +112,8 @@ class BookingCloseOut extends Component
         $booking_provider->total_amount = $this->closeOut[$bookingServiceId][$providerId]['total_amount'];
         // $booking_provider->is_override_price = 1;
         $booking_provider->override_price = $this->closeOut[$bookingServiceId][$providerId]['total_amount'];
+        $booking_provider->time_extension_status = $status;
+
         $booking_provider->save();
         $this->closeOut[$bookingServiceId][$providerId]['saved'] = true;
     }
@@ -178,7 +180,7 @@ class BookingCloseOut extends Component
         }
 
         // if (count($this->booking->booking_services) == count($this->booking->closed_booking_services)) {
-            $this->booking->is_closed = true;
+        $this->booking->is_closed = true;
         // }
         //override booking total amound
         if ($this->override) {
@@ -229,9 +231,11 @@ class BookingCloseOut extends Component
 
                     if ($provider['admin_approved_payment_detail'] == null) {
                         $start = Carbon::parse(($provider['check_in_procedure_values'] && isset($provider['check_in_procedure_values']['actual_start_timestamp']) && $provider['check_in_procedure_values']['actual_start_timestamp']) ? $provider['check_in_procedure_values']['actual_start_timestamp'] : $bookingService->start_time);
+                        $this->closeOut[$bookingService->id][$provider['provider_id']]['actual_start_timestamp'] = $start;
                         $this->closeOut[$bookingService->id][$provider['provider_id']]['actual_start_hour'] = $start->format('H');
                         $this->closeOut[$bookingService->id][$provider['provider_id']]['actual_start_min'] = $start->format('i');
                         $end = Carbon::parse(($provider['check_out_procedure_values']  && isset($provider['check_out_procedure_values']['actual_end_timestamp']) && $provider['check_out_procedure_values']['actual_end_timestamp']) ? $provider['check_out_procedure_values']['actual_end_timestamp'] : $bookingService->end_time);
+                        $this->closeOut[$bookingService->id][$provider['provider_id']]['actual_end_timestamp'] = $end;
                         $this->closeOut[$bookingService->id][$provider['provider_id']]['actual_end_hour'] = $end->format('H');
                         $this->closeOut[$bookingService->id][$provider['provider_id']]['actual_end_min'] = $end->format('i');
                         if (!isset($provider['admin_approved_payment_detail']['actual_duration_hour']))
@@ -281,6 +285,7 @@ class BookingCloseOut extends Component
 
     public function updateTotal($bookingServiceId, $provider_id)
     {
+
         $this->validate();
         //checking for null values
         if (!isset($this->closeOut[$bookingServiceId][$provider_id]['service_payment_details']['b_hours_rate']) || trim($this->closeOut[$bookingServiceId][$provider_id]['service_payment_details']['b_hours_rate']) == '')
@@ -323,9 +328,13 @@ class BookingCloseOut extends Component
         $bookingService = BookingServices::find($bookingServiceId);
         $provider = $this->providers[$bookingServiceId][array_search($provider_id, array_column($this->providers[$bookingServiceId], 'provider_id'))];
         $start = Carbon::parse(($provider['check_in_procedure_values'] && isset($provider['check_in_procedure_values']['actual_start_timestamp']) && $provider['check_in_procedure_values']['actual_start_timestamp']) ? $provider['check_in_procedure_values']['actual_start_timestamp'] : $bookingService->start_time);
+        $this->closeOut[$bookingService->id][$provider['provider_id']]['actual_start_timestamp'] = $start;
+
         $this->closeOut[$bookingServiceId][$provider['provider_id']]['actual_start_hour'] = $start->format('H');
         $this->closeOut[$bookingServiceId][$provider['provider_id']]['actual_start_min'] = $start->format('i');
         $end = Carbon::parse(($provider['check_out_procedure_values']  && isset($provider['check_out_procedure_values']['actual_end_timestamp']) && $provider['check_out_procedure_values']['actual_end_timestamp']) ? $provider['check_out_procedure_values']['actual_end_timestamp'] : $bookingService->end_time);
+        $this->closeOut[$bookingService->id][$provider['provider_id']]['actual_end_timestamp'] = $end;
+
         $this->closeOut[$bookingServiceId][$provider['provider_id']]['actual_end_hour'] = $end->format('H');
         $this->closeOut[$bookingServiceId][$provider['provider_id']]['actual_end_min'] = $end->format('i');
         if (!isset($provider['admin_approved_payment_detail']['actual_duration_hour']))
@@ -339,7 +348,6 @@ class BookingCloseOut extends Component
             $this->closeOut[$bookingServiceId][$provider['provider_id']]['actual_duration_min'] = $provider['admin_approved_payment_detail']['actual_duration_min'];
 
 
-        $this->closeOut[$bookingServiceId][$provider_id]['time_extension_status'] = 3;
         $this->updateTimeExtension($bookingServiceId, $provider_id, 3);
     }
 
@@ -348,9 +356,12 @@ class BookingCloseOut extends Component
     {
         $bookingService = $this->booking->booking_services->where('id', $bookingServiceId)->first();
         $start = Carbon::parse($bookingService->start_time);
+        $this->closeOut[$bookingService->id][$provider_id]['actual_start_timestamp'] = $start;
+
         $this->closeOut[$bookingServiceId][$provider_id]['actual_start_hour'] = $start->format('H');
         $this->closeOut[$bookingServiceId][$provider_id]['actual_start_min'] = $start->format('i');
         $end = Carbon::parse($bookingService->end_time);
+        $this->closeOut[$bookingService->id][$provider_id]['actual_end_timestamp'] = $end;
         $this->closeOut[$bookingServiceId][$provider_id]['actual_end_hour'] = $end->format('H');
         $this->closeOut[$bookingServiceId][$provider_id]['actual_end_min'] = $end->format('i');
 
@@ -360,8 +371,15 @@ class BookingCloseOut extends Component
 
     public function updateDuration($bookingServiceId, $provider_id)
     {
-        $this->closeOut[$bookingServiceId][$provider_id]['actual_duration_hour'] = abs($this->closeOut[$bookingServiceId][$provider_id]['actual_end_hour'] - $this->closeOut[$bookingServiceId][$provider_id]['actual_start_hour']);
-        $this->closeOut[$bookingServiceId][$provider_id]['actual_duration_min'] = abs($this->closeOut[$bookingServiceId][$provider_id]['actual_end_min'] - $this->closeOut[$bookingServiceId][$provider_id]['actual_start_min']);
+        $this->validate();
+        $startTime = strtotime("{$this->closeOut[$bookingServiceId][$provider_id]['actual_start_hour']}:{$this->closeOut[$bookingServiceId][$provider_id]['actual_start_min']}:00");
+        $endTime = strtotime("{$this->closeOut[$bookingServiceId][$provider_id]['actual_end_hour']}:{$this->closeOut[$bookingServiceId][$provider_id]['actual_end_min']}:00"); 
+        $diff = $endTime - $startTime;
+        $this->closeOut[$bookingServiceId][$provider_id]['actual_duration_hour'] = date('H', $diff);
+        $this->closeOut[$bookingServiceId][$provider_id]['actual_duration_min'] = date('i', $diff);
+
+        // abs($this->closeOut[$bookingServiceId][$provider_id]['actual_end_hour'] - $this->closeOut[$bookingServiceId][$provider_id]['actual_start_hour']);
+        // $this->closeOut[$bookingServiceId][$provider_id]['actual_duration_min'] = abs($this->closeOut[$bookingServiceId][$provider_id]['actual_end_min'] - $this->closeOut[$bookingServiceId][$provider_id]['actual_start_min']);
     }
 
     function showForm()

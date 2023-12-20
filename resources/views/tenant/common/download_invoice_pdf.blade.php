@@ -4,10 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>INVOICE#{{ $orderData['invoice']->invoice_number }} - Print Version</title>
-          <link rel="stylesheet" href="pdf_file.css">
+    <link rel="stylesheet" href="pdf_file.css">
 
     <style>
-    
         .invoice-border {
             border: 2px solid;
             border-width: 1px;
@@ -34,13 +33,17 @@
         td,
         p {
             font-family: Arial, Helvetica, sans-serif;
-            font-size: 1rem;
+            font-size: .75rem;
 
         }
 
         thead {
             background-color: #0A1E46;
             color: white;
+        }
+
+        table td {
+            border-bottom: thin solid;
         }
 
         .bg-muted {
@@ -57,21 +60,24 @@
     <section class="invoice max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-20">
 
         <div class="">
-            <table width=100% >
+            <table width=100%>
                 <tr>
                     <td>
                         <div class="flex justify-between gap-10">
                             <div></div>
                             <div class="items-end">
-                                <img src="{{$orderData['company_logo']}}" alt="Company Logo" width="80" height="80">
+                                <img src="{{ $orderData['company_logo'] }}" alt="Company Logo" width="80"
+                                    height="80">
                                 <h3 class="">Invoice</h3>
                                 <div class="flex justify-between border-b border-black pb-3">
                                     <p class="pr-16">Invoice# {{ $orderData['invoice']->invoice_number }} </p>
+                                    <p class="pr-16">PO# {{ $orderData['invoice']->po_number }} </p>
+
                                     <p class="pl-4 my-1">
-                                        Issue Date:{{ date('d/M/Y', strtotime($orderData['invoice']->invoice_date)) }}
+                                        Issue Date:{{ date('m/d/Y', strtotime($orderData['invoice']->invoice_date)) }}
                                     </p>
                                     <p>
-                                        Due Date:{{ date('d/M/Y', strtotime($orderData['invoice']->invoice_due_date)) }}
+                                        Due Date:{{ date('m/d/Y', strtotime($orderData['invoice']->invoice_due_date)) }}
                                     </p>
 
                                 </div>
@@ -94,7 +100,7 @@
                                 <p class="mt-1">
                                     {{ $orderData['invoice']->billingAddress['state'] . ', ' . $orderData['invoice']->billingAddress['country'] . ', ' . $orderData['invoice']->billingAddress['zip'] }}
                                 </p>
-                            @else 
+                            @else
                                 <p class="mt-1">N/A</p>
                             @endif
 
@@ -107,10 +113,10 @@
 
         <table width=100%>
             <thead class="">
-            <th width=30%>Comapany Name</th>
-            <th width=30%>Billing Manager</th>
-            {{-- <th>Billing Address</th> --}}
-            <th width=30%>Pending Amount</th>
+                <th width=30%>Comapany Name</th>
+                <th width=30%>Billing Manager</th>
+                {{-- <th>Billing Address</th> --}}
+                <th width=30%>Pending Amount</th>
             </thead>
             <tbody>
                 <tr>
@@ -133,20 +139,20 @@
                         <th class=" pl-3">Accommodation</th>
                         <th class=" pl-3">No. of Providers</th>
                         <th class=" pl-3">Total Additional Charges</th>
-                        <th class=" pl-3">Total Service</th>
+                        <th class=" pl-3">Total Duration</th>
                         <th class=" pl-3">Booking Total</th>
 
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($orderData['bookings'] as $booking)
-                        <tr class="text-center">
-                            <td class="  m-10 ">
+                        <tr class="text-center ">
+                            <td class="  m-10  ">
                                 <div class="flex ">
 
-                                    <div class="">{{ $booking->booking_number }}</div>
+                                    <div class="">{{ $booking->booking_number }}</div><br>
                                     <div>
-                                        {{ $booking->booking_start_at ? date_format(date_create($booking->booking_start_at), 'd/m/Y') : '' }}
+                                        {{ $booking->booking_start_at ? date_format(date_create($booking->booking_start_at), 'm/d/Y') : '' }}
                                         <div>
                                             {{ $booking->booking_start_at ? date_format(date_create($booking->booking_start_at), 'h:i A ') : '' }}
                                             to
@@ -166,7 +172,11 @@
                                     {{ $booking->services->count() ? $booking->services->first()->name : 'N/A' }}
                                 </div>
                                 <div class="text-sm">
-                                    Specialization: Closed-Captioning
+                                    @if ($booking->booking_services->first()->specializationsNameString())
+                                        Specialization :
+                                        {{ $booking->booking_services->first()->specializationsNameString() }}
+                                    @endif
+
                                 </div>
                             </td>
                             <td class="  m-10 ">
@@ -194,15 +204,15 @@
 
                             </td>
                             <td class="  m-10 ">
-                                <div class="mb-2">Duration: {{ $booking->duration_hours }} Hours
-                                    {{ $booking->duration_minute }} mins</div>
+                                <div class="mb-2">Hours: {{ $booking->duration_hours }} </div>
+                                <div class="mb-2">Mins: {{ $booking->duration_minute }}</div>
                                 {{-- <div class="mb-2">Avg Rate: $10.00</div>
                                     <div class="mb-2">Total Rate: $100.00</div> --}}
                                 @if ($booking->payment && $booking->payment->discounted_amount && $booking->payment->discounted_amount > 0)
                                     <div class="text-primary mb-2">Discount:
                                         {{ numberFormat($booking->payment->discounted_amount) }} </div>
                                 @endif
-                                <div class="mb-2">Grand Total: {{ numberFormat($booking->getInvoicePrice()) }}
+                                <div class="mb-2">Service Total: {{ numberFormat($booking->getInvoicePrice()) }}
                                 </div>
 
                             </td>
