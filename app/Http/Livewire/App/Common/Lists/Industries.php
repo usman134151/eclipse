@@ -33,7 +33,7 @@ final class Industries extends PowerGridComponent
             Header::make()->showSearchInput()->showToggleColumns(), //updated by Amna Bilal to add column toggle
             Footer::make()
                 ->showPerPage(config('app.per_page'))
-                ->showRecordCount(),
+                ->showRecordCount()->pagination('livewire.app.common.bookings.booking-nav'), //updated by Hammad to add custom pagination
         ];
     }
 

@@ -95,8 +95,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="table-responsive">
-                                <table id="unassigned_data" class="table table-fs-md table-hover" aria-label="">
+                            <div class="mt-3">
+                                <table id="unassigned_data" class="table table-fs-md" aria-label="">
                                     <thead>
                                         <tr role="row" class=" table-headers">
                                             <th scope="col" style="width:20%;">Provider</th>
