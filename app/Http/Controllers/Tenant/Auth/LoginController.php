@@ -13,6 +13,7 @@ use App\Models\Tenant\RoleUser;
 use App\Models\Tenant\Schedule;
 use App\Models\Tenant\UserDetail;
 use App\Models\Tenant\UserLoginAddress;
+use App\Services\App\BookingOperationsService;
 use App\Services\App\UserService;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -172,6 +173,8 @@ class LoginController extends Controller
 				//save ip from where user logged in
 				UserLoginAddress::create(['user_id' => Auth::id(), 'ip_address' => request()->ip()]);
 
+				// temp fix till cron-job is enabled to close all bookings -- Maarooshaa
+				BookingOperationsService::closeAllActiveBookings();
 				return redirect('home');
 			}
 			} else {
