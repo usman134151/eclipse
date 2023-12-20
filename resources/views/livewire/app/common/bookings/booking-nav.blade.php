@@ -32,6 +32,12 @@
 
     @if ($paginator->hasPages())
 
+    @if($paginator->currentPage() > $paginator->lastPage())
+        {{$this->gotoPage(1)}}
+        <script>
+            @this.call('gotoPage', 1);
+        </script>
+    @endif
     @php
         $isDisabled = ($paginator->currentPage() == 1) ? ' disabled' : '';
     @endphp
