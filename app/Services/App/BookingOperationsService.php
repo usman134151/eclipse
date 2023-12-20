@@ -1345,7 +1345,7 @@ class BookingOperationsService
       $details['actual_end_min'] = $checkout['actual_end_min'];
       $details['actual_end_timestamp'] = $checkout['actual_end_timestamp'];
       // Carbon::createFromFormat('m/d/Y H : i', date_format(date_create($bookingService->end_time), 'm/d/Y') . ' ' . $this->closeOut[$bookingServiceId][$providerId]['actual_end_hour'] . ' : ' . $this->closeOut[$bookingServiceId][$providerId]['actual_end_min']);
-      
+
       $startTime = strtotime("{$checkout['actual_start_hour']}:{$checkout['actual_start_min']}:00");
       $endTime = strtotime("{$checkout['actual_end_hour']}:{$checkout['actual_end_min']}:00");
       $diff = $endTime - $startTime;
@@ -1353,9 +1353,11 @@ class BookingOperationsService
       $details['actual_duration_min'] = date('i', $diff);
 
       $bookingProvider->admin_approved_payment_detail = $details;        //saving approved extension details
-
-      $bookingProvider->save();
+      $bookingProvider->time_extension_status = 1;
+    } else {
+      // admin will approve time extension on close out 
+      $bookingProvider->time_extension_status = 3;
     }
-    // else admin will approve time extension on close out 
+    $bookingProvider->save();
   }
 }
