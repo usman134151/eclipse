@@ -187,9 +187,11 @@ class BookingDetails extends Component
 		// dd($start_date, $this->booking->booking_start_at);
 
 		// shifting this close out check to generic function
-		if ($start_date->isPast() || $start_date->isToday() || $this->booking->checked_in_providers->count())
+		if ($start_date->isPast() || $start_date->isToday() )
+		// || $this->booking->checked_in_providers->count() -- commented out to enable for unassigned bookings
 			// show button if all booking services are NOT auto-close-able 
-			$this->data['show_close_button'] = BookingOperationsService::checkCloseOutRequired($this->booking_services);
+			$this->data['show_close_button'] = true;
+			// BookingOperationsService::checkCloseOutRequired($this->booking_services);	--commented out to show for all past bookings as per client requirements
 		else
 			$this->data['show_close_button'] = false;
 
