@@ -1230,6 +1230,7 @@ class BookingOperationsService
     return array_values(array_unique(array_filter($tags)));
   }
 
+
   //   close out is needed or not for this booking
   // false => can be auto closed , true => required admin approval
   public static function checkCloseOutRequired($bookingServices)
@@ -1242,13 +1243,13 @@ class BookingOperationsService
         $closeOut = $service['close_out_procedure'] != null ? json_decode($service['close_out_procedure'], true) : [];
 
         // check if  Require "Check-in" for Provider to Invoice
-        if (!is_null($checkIn) && key_exists('require_provider_invoice', $checkIn) && ($checkIn['require_provider_invoice']==true || $checkIn['require_provider_invoice'] == "true"))
+        if (!is_null($checkIn) && key_exists('require_provider_invoice', $checkIn) && ($checkIn['require_provider_invoice'] == true || $checkIn['require_provider_invoice'] == "true"))
           return true;
         // check if Require "Authorize & Close-out" for Provider Payment - fixed
-        if (!is_null($closeOut) && key_exists('provider_payment', $closeOut) && ($closeOut['provider_payment']==true || $closeOut['provider_payment'] == "true") )
+        if (!is_null($closeOut) && key_exists('provider_payment', $closeOut) && ($closeOut['provider_payment'] == true || $closeOut['provider_payment'] == "true"))
           return true;
         // check if Require "Authorize & Close-out" for Customer Invoicing
-        if (!is_null($closeOut) && key_exists('customer_invoice', $closeOut) && ($closeOut['customer_invoice']==true || $closeOut['customer_invoice'] == "true"))
+        if (!is_null($closeOut) && key_exists('customer_invoice', $closeOut) && ($closeOut['customer_invoice'] == true || $closeOut['customer_invoice'] == "true"))
           return true;
       }
     }
@@ -1264,7 +1265,7 @@ class BookingOperationsService
       // if booking is_closed == false and endDate>current date 
 
 
-      if (SELF::checkCloseOutRequired($bookingServices)==false) { // then call function to check if it needs to be manually closed or not
+      if (SELF::checkCloseOutRequired($bookingServices) == false) { // then call function to check if it needs to be manually closed or not
         // can auto close
 
         foreach ($bookingServices as $bookingService) {
@@ -1324,5 +1325,37 @@ class BookingOperationsService
     foreach ($bookings as $booking) {
       SELF::closeActiveBooking($booking->id, $booking->booking_end_at, $booking->booking_services);
     }
+  }
+
+  public static function timeExtensionRequest($bookingProvider, $bookingService)
+  {
+    $service_permission = $bookingService->service->close_out_procedure ?  json_decode($bookingService->service->close_out_procedure, true) : null;
+    if (key_exists('time_extension', $service_permission) && ($service_permission['time_extension'] == "true" || $service_permission['time_extension'] == true)) {
+      // service auto-approve time extension enabled
+
+      $details['time_extension_status'] = 1;
+
+      $checkout = $bookingProvider->check_out_procedure_values;
+      $details['actual_start_hour'] = $checkout['actual_start_hour'];
+      $details['actual_start_min'] = $checkout['actual_start_min'];
+      $details['actual_start_timestamp'] =  $checkout['actual_start_timestamp'];
+      // Carbon::createFromFormat('m/d/Y H:i', date_format(date_create($bookingService->start_time), 'm/d/Y') . ' ' . $this->closeOut[$bookingServiceId][$providerId]['actual_start_hour'] . ':' . $this->closeOut[$bookingServiceId][$providerId]['actual_start_min']);
+
+      $details['actual_end_hour'] = $checkout['actual_end_hour'];
+      $details['actual_end_min'] = $checkout['actual_end_min'];
+      $details['actual_end_timestamp'] = $checkout['actual_end_timestamp'];
+      // Carbon::createFromFormat('m/d/Y H : i', date_format(date_create($bookingService->end_time), 'm/d/Y') . ' ' . $this->closeOut[$bookingServiceId][$providerId]['actual_end_hour'] . ' : ' . $this->closeOut[$bookingServiceId][$providerId]['actual_end_min']);
+      
+      $startTime = strtotime("{$checkout['actual_start_hour']}:{$checkout['actual_start_min']}:00");
+      $endTime = strtotime("{$checkout['actual_end_hour']}:{$checkout['actual_end_min']}:00");
+      $diff = $endTime - $startTime;
+      $details['actual_duration_hour'] = date('H', $diff);
+      $details['actual_duration_min'] = date('i', $diff);
+
+      $bookingProvider->admin_approved_payment_detail = $details;        //saving approved extension details
+
+      $bookingProvider->save();
+    }
+    // else admin will approve time extension on close out 
   }
 }
