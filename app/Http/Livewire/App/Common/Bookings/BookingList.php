@@ -156,11 +156,13 @@ class BookingList extends Component
 
 				break;
 			case ("Today's"):
-				$conditions = ['type' => 1, 'booking_status' => '1', 'bookings.status' => 2];
-				// if (!session()->get('isProvider'))
-				// $conditions[] = 2;
+				$conditions = ['type' => 1, 'booking_status' => '1',];
+				// if (!session()->get('isProvider'))	 
+				// 	$conditions['bookings.status'] = 2;
+
 				$query->where($conditions)
 					->whereRaw("'$today'  Between  DATE(booking_start_at) AND DATE(booking_end_at)")
+					->where('bookings.status','<',3) // to show partially assigned bookings to provider
 					->orderBy('booking_start_at', 'ASC');
 
 
@@ -201,9 +203,9 @@ class BookingList extends Component
 			case ('Active'):
 				if (!session()->get('isProvider')) {
 					$query
-						// ->where('type', 1)
+						->where('type', 1)	// removing drafts
 						->where('is_closed', 0)
-						// ->where('booking_status', '1')
+						->where('booking_status', '1')	// approved bookings 
 						->where(function ($q) use ($today) {
 							$q->where(function ($ca) use ($today) {
 								$ca->whereRaw("DATE(booking_start_at) <= '$today'")
@@ -211,16 +213,19 @@ class BookingList extends Component
 							});
 							// ->orWhereIn('bookings.status', [3, 4]);
 						})
-						->where(function ($q) {
-							$q->orWhereHas('booking_services', function ($query) {
-									$query->where('is_closed', 1);
-								})
-								->orWhere(function ($innerQ) {
-									$innerQ->whereHas('services', function ($q) {
-										$q->whereJsonContains('close_out_procedure', ['enable_button_provider' => true]);
-									});
-								});
-							})
+						// commented out to display partially assigned bookings here => their services with not be closed 
+						// ->where(function ($q) {
+						// 	$q->orWhereHas('booking_services', function ($query) {
+						// 		$query->where('is_closed', 1);
+						// 	})
+						// 		->orWhere(function ($innerQ) {
+						// 			$innerQ->whereHas('services', function ($q) {
+						// 				// changing condition to 'Require "Authorize & Close-out" for Customer Invoicing'
+						// 				$q->whereJsonContains('close_out_procedure', ['customer_invoice' => true]);
+						// 				// $q->whereJsonContains('close_out_procedure', ['enable_button_provider' => true]);
+						// 			});
+						// 		});
+						// })
 						->orderBy('booking_start_at', 'DESC');
 				}
 				break;

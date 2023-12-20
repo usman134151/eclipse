@@ -1253,12 +1253,13 @@ class BookingOperationsService
           return true;
 
         // check if time extension is NOT auto-approve
-        if (!is_null($closeOut) && key_exists('time_extension', $closeOut) && ($closeOut['time_extension'] == false || $closeOut['time_extension'] == "false")) {
+        if (!is_null($closeOut) && (!key_exists('time_extension', $closeOut) || (key_exists('time_extension', $closeOut) && ($closeOut['time_extension'] == false || $closeOut['time_extension'] == "false")))) {
           // fetch total resolved time extensions VS total providers
           $timeExtensions =  BookingProvider::where('booking_service_id', $bService['id'])
-            ->selectRAW('SUM(CASE WHEN booking_providers.time_extension_status < "3" THEN 1 ELSE 0 END) AS resolved, 
+            ->selectRAW('SUM(CASE WHEN booking_providers.time_extension_status < 3 THEN 1 ELSE 0 END) AS resolved, 
           COUNT(booking_providers.id) as total_providers')->first()->toArray();
-          if ($timeExtensions['resolved'] != $timeExtensions['total_providers'])
+
+          if ($timeExtensions['resolved'] ? $timeExtensions['resolved'] : 0 != $timeExtensions['total_providers'])
             return true;
         }
       }
@@ -1266,73 +1267,74 @@ class BookingOperationsService
     return false;
   }
 
-  public static function closeActiveBooking($booking, $endDate, $bookingServices)
+  public static function closeActiveBooking($booking,  $bookingServices)
   {
 
-    $endDate = Carbon::parse($endDate);
-    if ($booking->is_closed == 0 && $endDate < today()) {
-      // if booking is_closed == false and endDate>current date 
+    //  check if all booking services  needs to be manually closed or not
+    if (SELF::checkCloseOutRequired($bookingServices) == false) {
+      // can auto close
+
+      foreach ($bookingServices as $bookingService) {
+        $bookingProviders = BookingProvider::where('booking_service_id', $bookingService->id)->get();
+        if (count($bookingProviders)) {
+          foreach ($bookingProviders as $booking_provider) {
+            $booking_provider->check_in_status = 3;
+            $startTime = Carbon::parse($bookingService->start_time);
+            $endTime = Carbon::parse($bookingService->end_time);
+
+            $checkin = $booking_provider->check_in_procedure_values;
+            $checkout = $booking_provider->check_out_procedure_values;
+
+            // fetch provider checkin checkout times if added , IF Not default to booking time
+            $duration_hour = abs((isset($checkout['actual_end_hour']) ? $checkout['actual_end_hour'] : $endTime->format('H')) - (isset($checkin['actual_start_hour']) ? $checkin['actual_start_hour'] : $startTime->format('H')));
+            $duration_min = abs((isset($checkout['actual_end_min']) ? $checkout['actual_end_min'] : $endTime->format('i')) - (isset($checkin['actual_start_min']) ? $checkin['actual_start_min'] : $startTime->format('i')));
+
+            $closingDetails['service_payment_details']['actual_duration_hour'] = $duration_hour;
+            $closingDetails['service_payment_details']['actual_duration_min'] = $duration_min;
+            $booking_provider->service_payment_details = $closingDetails['service_payment_details'];
+            $details['actual_start_hour'] = isset($checkin['actual_start_hour']) ? $checkin['actual_start_hour'] : $startTime->format('H');
+            $details['actual_start_min'] = (isset($checkin['actual_start_min']) ? $checkin['actual_start_min'] : $startTime->format('i'));
+            $details['actual_start_timestamp'] = !is_null($checkin) && key_exists('actual_start_timestamp', $checkin) ? $checkin['actual_start_timestamp'] : $startTime;
 
 
-      if (SELF::checkCloseOutRequired($bookingServices) == false) { // then call function to check if it needs to be manually closed or not
-        // can auto close
+            $details['actual_end_hour'] = isset($checkout['actual_end_hour']) ? $checkout['actual_end_hour'] : $endTime->format('H');
+            $details['actual_end_min'] = isset($checkout['actual_end_min']) ? $checkout['actual_end_min'] : $endTime->format('H');;
+            $details['actual_end_timestamp'] = !is_null($checkout) && key_exists('actual_end_timestamp', $checkout) ? $checkout['actual_end_timestamp'] : $endTime;
 
-        foreach ($bookingServices as $bookingService) {
-          $bookingProviders = BookingProvider::where('booking_service_id', $bookingService->id)->get();
-          if (count($bookingProviders)) {
-            foreach ($bookingProviders as $booking_provider) {
-              $booking_provider->check_in_status = 3;
-              $startTime = Carbon::parse($bookingService->start_time);
-              $endTime = Carbon::parse($bookingService->end_time);
+            $details['actual_duration_hour'] = abs($details['actual_end_hour'] - $details['actual_start_hour']);
+            $details['actual_duration_min'] = abs($details['actual_end_min'] - $details['actual_start_min']);
+            $details['time_extension_status'] = 0;
 
-              $checkin = $booking_provider->check_in_procedure_values;
-              $checkout = $booking_provider->check_out_procedure_values;
-
-              // fetch provider checkin checkout times if added , IF Not default to booking time
-              $duration_hour = abs((isset($checkout['actual_end_hour']) ? $checkout['actual_end_hour'] : $endTime->format('H')) - (isset($checkin['actual_start_hour']) ? $checkin['actual_start_hour'] : $startTime->format('H')));
-              $duration_min = abs((isset($checkout['actual_end_min']) ? $checkout['actual_end_min'] : $endTime->format('i')) - (isset($checkin['actual_start_min']) ? $checkin['actual_start_min'] : $startTime->format('i')));
-
-              $closingDetails['service_payment_details']['actual_duration_hour'] = $duration_hour;
-              $closingDetails['service_payment_details']['actual_duration_min'] = $duration_min;
-              $booking_provider->service_payment_details = $closingDetails['service_payment_details'];
-              $details['actual_start_hour'] = isset($checkin['actual_start_hour']) ? $checkin['actual_start_hour'] : $startTime->format('H');
-              $details['actual_start_min'] = (isset($checkin['actual_start_min']) ? $checkin['actual_start_min'] : $startTime->format('i'));
-              $details['actual_start_timestamp'] = !is_null($checkin) && key_exists('actual_start_timestamp', $checkin) ? $checkin['actual_start_timestamp'] : $startTime;
-
-
-              $details['actual_end_hour'] = isset($checkout['actual_end_hour']) ? $checkout['actual_end_hour'] : $endTime->format('H');
-              $details['actual_end_min'] = isset($checkout['actual_end_min']) ? $checkout['actual_end_min'] : $endTime->format('H');;
-              $details['actual_end_timestamp'] = !is_null($checkout) && key_exists('actual_end_timestamp', $checkout) ? $checkout['actual_end_timestamp'] : $endTime;
-
-              $details['actual_duration_hour'] = abs($details['actual_end_hour'] - $details['actual_start_hour']);
-              $details['actual_duration_min'] = abs($details['actual_end_min'] - $details['actual_start_min']);
-              $details['time_extension_status'] = 0;
-
-              $booking_provider->admin_approved_payment_detail = $details;        //saving approved payment details
-              $booking_provider->save();
-            }
+            $booking_provider->admin_approved_payment_detail = $details;        //saving approved payment details
+            $booking_provider->save();
           }
-
-          // close assignment service 
-          $bookingService->is_closed = true;
-          $bookingService->save();
         }
-        // close booking
-        $booking->is_closed = true;
-        $booking->save();
+
+        // close assignment service 
+        $bookingService->is_closed = true;
+        $bookingService->save();
       }
-      // else booking will be closed manually 
+      // close booking
+      $booking->is_closed = true;
+      $booking->save();
     }
+    // else booking will be closed manually 
+
   }
 
   // the function will get all open bookings, with bookingServices and service end date and call closeActiveBooking function.
   public static function closeAllActiveBookings()
   {
     // loop to get all open bookings that needs to be checked (route will call this function) 
-    $bookings = Booking::where(['is_closed' => 0, 'type' => 1, 'booking_status' => 1])->where('status', '<', 3)
-      ->whereDate('booking_end_at', '<', Carbon::now())->with('booking_services', 'booking_services.service')->get();
+    // only close bookings where 
+    // booking is_closed == false and fully assigned and endDate>current date 
+
+    $bookings = Booking::where(['is_closed' => 0, 'type' => 1, 'booking_status' => 1])
+      ->where('status', 2)
+      ->whereDate('booking_end_at', '<=', today())->with('booking_services', 'booking_services.service')->get();
     foreach ($bookings as $booking) {
-      SELF::closeActiveBooking($booking, $booking->booking_end_at, $booking->booking_services);
+
+      SELF::closeActiveBooking($booking, $booking->booking_services);
     }
   }
 
