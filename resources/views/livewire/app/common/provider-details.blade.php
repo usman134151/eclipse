@@ -324,8 +324,9 @@
                                                                         </p>
                                                                     @endif
                                                                 @endif
-
-                                                                <div class="mb-3">
+                                                                
+                                                                {{-- The dummy data has been commented out. --}}
+                                                                {{-- <div class="mb-3">
                                                                     <svg width="18" height="16"
                                                                         viewBox="0 0 18 16" fill="none"
                                                                         xmlns="http://www.w3.org/2000/svg">
@@ -355,7 +356,7 @@
                                                                         <use xlink:href="/css/sprite.svg#star"></use>
                                                                     </svg>
                                                                 </div>
-                                                                <p>10 Feedback 3 Stars</p>
+                                                                <p>10 Feedback 3 Stars</p> --}}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -489,7 +490,8 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="row mb-1 mx-2">
+                                                            {{-- The dummy data has been commented out. --}}
+                                                            <!-- <div class="row mb-1 mx-2">
                                                                 <div class="col-md-12 d-flex">
                                                                     <div class="col-md-4 "><label
                                                                             class="col-form-label"
@@ -512,7 +514,7 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
+                                                            </div> -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -525,8 +527,9 @@
                                                 <!-- Assigned Teams colums (start) -->
                                                 <div class="col-md-11 d-flex mb-md-2 gap-5 mt-4 bg-light p-4 mx-3">
                                                     <div class="row mb-4 mt-3">
+                                                        {{-- The dummy data has been commented out. --}}
                                                         <div class="col-md-6">
-                                                            <div class="row mb-1">
+                                                            {{-- <div class="row mb-1">
                                                                 <small>(coming soon)</small>
                                                                 <h2 class="text-primary">Service Statistics</h2>
                                                                 <div class="col-md-12 d-flex">
@@ -560,9 +563,9 @@
                                                                         <div class="font-family-secondary">10</div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
+                                                            </div> --}}
                                                         </div>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-12">  {{-- change class to col-md-6 when uncomment above data --}}
                                                             <div class="row mb-1">
 
                                                                 <h2 class="text-primary">Last Login:</h2>
