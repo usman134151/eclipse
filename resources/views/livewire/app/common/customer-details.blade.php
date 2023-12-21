@@ -133,19 +133,17 @@
                                         </button>
                                     </li>
 
-                                    <li class="nav-item" role="presentation">
+                                    {{-- <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="payments-tab" data-bs-toggle="tab"
                                             data-bs-target="#payments-tab-pane" type="button" role="tab"
                                             aria-controls="payments-tab-pane" aria-selected="false">
-                                            {{-- Updated by Shanila to Add svg icon --}}
                                             <svg aria-label="payments" width="27" height="31"
                                                 viewBox="0 0 27 31">
                                                 <use xlink:href="/css/common-icons.svg#gray-payment"></use>
                                             </svg>
-                                            {{-- End of update by Shanila --}}
                                             <span>Payments</span>
                                         </button>
-                                    </li>
+                                    </li> --}}
 
                                     @endif
 
