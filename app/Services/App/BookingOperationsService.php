@@ -1266,7 +1266,7 @@ class BookingOperationsService
         if (!is_null($closeOut) && key_exists('customer_invoice', $closeOut) && ($closeOut['customer_invoice'] == true || $closeOut['customer_invoice'] == "true")) {
           // fetch total checked out VS total providers
           $check =  BookingProvider::where('booking_service_id', $bService['id'])
-            ->selectRAW('SUM(CASE WHEN booking_providers.check_in_status == 3 THEN 1 ELSE 0 END) AS resolved, 
+            ->selectRAW('SUM(CASE WHEN booking_providers.check_in_status = 3 THEN 1 ELSE 0 END) AS resolved, 
           COUNT(booking_providers.id) as total_providers')->first()->toArray();
 
           if ($check['resolved'] ? $check['resolved'] : 0 != $check['total_providers'])
@@ -1351,7 +1351,7 @@ class BookingOperationsService
 
     $bookings = Booking::where(['is_closed' => 0, 'type' => 1, 'booking_status' => 1])
       ->where('status', 2)
-      ->whereDate('booking_end_at', '<=', today())->with('booking_services', 'booking_services.service')->get();
+      ->whereDate('booking_end_at', '<', today())->with('booking_services', 'booking_services.service')->get();
     foreach ($bookings as $booking) {
 
       SELF::closeActiveBooking($booking, $booking->booking_services);
