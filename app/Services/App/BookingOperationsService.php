@@ -1246,7 +1246,7 @@ class BookingOperationsService
         if (!is_null($checkIn) && key_exists('require_provider_invoice', $checkIn) && ($checkIn['require_provider_invoice'] == true || $checkIn['require_provider_invoice'] == "true")) {
           // fetch total checked out VS total providers
           $check =  BookingProvider::where('booking_service_id', $bService['id'])
-            ->selectRAW('SUM(CASE WHEN booking_providers.check_in_status == 1 THEN 1 ELSE 0 END) AS resolved, 
+            ->selectRAW('SUM(CASE WHEN booking_providers.check_in_status = 1 THEN 1 ELSE 0 END) AS resolved, 
           COUNT(booking_providers.id) as total_providers')->first()->toArray();
 
           if ($check['resolved'] ? $check['resolved'] : 0 != $check['total_providers'])
@@ -1256,7 +1256,7 @@ class BookingOperationsService
 
           // fetch total checked out VS total providers
           $check =  BookingProvider::where('booking_service_id', $bService['id'])
-            ->selectRAW('SUM(CASE WHEN booking_providers.check_in_status == 3 THEN 1 ELSE 0 END) AS resolved, 
+            ->selectRAW('SUM(CASE WHEN booking_providers.check_in_status = 3 THEN 1 ELSE 0 END) AS resolved, 
           COUNT(booking_providers.id) as total_providers')->first()->toArray();
 
           if ($check['resolved'] ? $check['resolved'] : 0 != $check['total_providers'])
