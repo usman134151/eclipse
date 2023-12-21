@@ -12,4 +12,13 @@ class RoleUserDetail extends Model
     protected $fillable = [
         'role_id', 'user_id', 'associated_user','is_default','permission_type',
     ];
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
+    public function associatedUser()
+    {
+        return $this->hasOne(User::class, 'id', 'associated_user');
+    }
 }
