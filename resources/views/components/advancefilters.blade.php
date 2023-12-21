@@ -1,4 +1,4 @@
-@props(['type' => '', 'hideProvider' => false, 'filterProviders' => [], 'bmanagers' => [], 'setupValues' => [], 'tags'=>[], 'isPendingInvoices' => false, 'isRemittance' => false])
+@props(['type' => '', 'hideProvider' => false, 'filterProviders' => [], 'bmanagers' => [], 'setupValues' => [], 'tags'=>[], 'isPendingInvoices' => false, 'isRemittance' => false, 'filterUsers' => []])
 <div class="row">
     @if ($type == 'invoice-filters')
         @if(!session()->get('isCustomer') && !session()->get('isProvider'))
@@ -234,11 +234,11 @@
                     </select>
                 </div>
                 @endif
-                {{-- @if(session()->get('isCustomer'))
+                @if(session()->get('isCustomer'))
                     <div class="col-lg-5 ps-lg-3 mb-5">
                         <label class="form-label" for="user_ids">Users</label>
                         <select wire:model.defer="user_ids" name="user_ids" id="user_ids"
-                            data-placeholder="Select Provider" multiple class="select2 form-select" tabindex="">
+                            data-placeholder="Select User" multiple class="select2 form-select" tabindex="">
                             <option value=""></option>
                             @if (isset($filterUsers))
                                 @foreach ($filterUsers as $user)
@@ -247,7 +247,7 @@
                             @endif
                         </select>
                     </div>
-                @endif --}}
+                @endif
                 @if (isset($setupValues['industries']))
                     <div class="col-lg-5 ps-lg-3 mb-5">
                         <label class="form-label">Industry</label>
