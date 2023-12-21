@@ -1038,10 +1038,21 @@ class BookingOperationsService
         RescheduleBookingLog::create($curr_log);
 
         $message = "Booking '" . $booking->booking_number . "' rescheduled from (" . formatDateTime($curr_log['previous_start_time']) . " - " . formatDateTime($curr_log['previous_end_time']) . ") to (" . formatDateTime($curr_log['current_start_time']) . " - " . formatDateTime($curr_log['current_end_time']) . ") by " . Auth::user()->name;
+        $shiftToPending = false;
 
+        if(session()->get('isCustomer')){
+          //check if bookings auto-approved 
+          $customer = User::where('id',Auth::id())->with('userdetail')->first()->toArray();
+          if (key_exists('user_configuration', $customer['userdetail']) && !is_null($customer['userdetail']['user_configuration'])) {
+            $configurations = json_decode($customer['userdetail']['user_configuration'], true);
+            if (!is_null($configurations) && key_exists('require_approval', $configurations) && $configurations['require_approval'] == "true") {
+                $shiftToPending = true;
+            }
+          }
+        }
 
         //  if customer and not company admin/ supervisor move booking to pending-review
-        if (session()->get('isCustomer') && (!in_array(10, session()->get('customerRoles')))) {
+        if ($shiftToPending) {
           $booking->reschedule_status = 2;
           $booking->booking_status = 0; //move booking to pending review
         } else {
