@@ -1243,15 +1243,35 @@ class BookingOperationsService
         $closeOut = $service['close_out_procedure'] != null ? json_decode($service['close_out_procedure'], true) : [];
 
         // check if  Require "Check-in" for Provider to Invoice
-        if (!is_null($checkIn) && key_exists('require_provider_invoice', $checkIn) && ($checkIn['require_provider_invoice'] == true || $checkIn['require_provider_invoice'] == "true"))
-          return true;
-        // check if Require "Authorize & Close-out" for Provider Payment - fixed
-        if (!is_null($closeOut) && key_exists('provider_payment', $closeOut) && ($closeOut['provider_payment'] == true || $closeOut['provider_payment'] == "true"))
-          return true;
-        // check if Require "Authorize & Close-out" for Customer Invoicing
-        if (!is_null($closeOut) && key_exists('customer_invoice', $closeOut) && ($closeOut['customer_invoice'] == true || $closeOut['customer_invoice'] == "true"))
-          return true;
+        if (!is_null($checkIn) && key_exists('require_provider_invoice', $checkIn) && ($checkIn['require_provider_invoice'] == true || $checkIn['require_provider_invoice'] == "true")) {
+          // fetch total checked out VS total providers
+          $check =  BookingProvider::where('booking_service_id', $bService['id'])
+            ->selectRAW('SUM(CASE WHEN booking_providers.check_in_status == 1 THEN 1 ELSE 0 END) AS resolved, 
+          COUNT(booking_providers.id) as total_providers')->first()->toArray();
 
+          if ($check['resolved'] ? $check['resolved'] : 0 != $check['total_providers'])
+            return true;
+        } // check if Require "Authorize & Close-out" for Provider Payment - fixed
+        if (!is_null($closeOut) && key_exists('provider_payment', $closeOut) && ($closeOut['provider_payment'] == true || $closeOut['provider_payment'] == "true")) {
+
+          // fetch total checked out VS total providers
+          $check =  BookingProvider::where('booking_service_id', $bService['id'])
+            ->selectRAW('SUM(CASE WHEN booking_providers.check_in_status == 3 THEN 1 ELSE 0 END) AS resolved, 
+          COUNT(booking_providers.id) as total_providers')->first()->toArray();
+
+          if ($check['resolved'] ? $check['resolved'] : 0 != $check['total_providers'])
+            return true;
+        }
+        // check if Require "Authorize & Close-out" for Customer Invoicing
+        if (!is_null($closeOut) && key_exists('customer_invoice', $closeOut) && ($closeOut['customer_invoice'] == true || $closeOut['customer_invoice'] == "true")) {
+          // fetch total checked out VS total providers
+          $check =  BookingProvider::where('booking_service_id', $bService['id'])
+            ->selectRAW('SUM(CASE WHEN booking_providers.check_in_status == 3 THEN 1 ELSE 0 END) AS resolved, 
+          COUNT(booking_providers.id) as total_providers')->first()->toArray();
+
+          if ($check['resolved'] ? $check['resolved'] : 0 != $check['total_providers'])
+            return true;
+        }
         // check if time extension is NOT auto-approve
         if (!is_null($closeOut) && (!key_exists('time_extension', $closeOut) || (key_exists('time_extension', $closeOut) && ($closeOut['time_extension'] == false || $closeOut['time_extension'] == "false")))) {
           // fetch total resolved time extensions VS total providers
