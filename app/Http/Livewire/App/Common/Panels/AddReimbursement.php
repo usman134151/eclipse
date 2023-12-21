@@ -20,8 +20,8 @@ class AddReimbursement extends Component
     public $selectedValue;
 
     public $showForm;
-    protected $listeners = ['showList' => 'resetForm', 'getProviderAssignments',  'updateVal'];
-    public $providers = [], $assignments = [], $reimbursement, $file = null;
+    protected $listeners = ['showList' => 'resetForm', 'getProviderAssignments',  'updateVal','setBookingIdR'];
+    public $providers = [], $assignments = [], $reimbursement, $file = null, $booking_id;
 
     public $other = [
         'details' => '',
@@ -189,5 +189,12 @@ class AddReimbursement extends Component
         ];
         $this->selectedValue = null;
         $this->file = null;
+    }
+
+    public function setBookingIdR($data)
+    {
+        $bookingId = intval($data[0]);
+        $this->selectedValue = $bookingId;
+        $this->booking_id=$data[1];
     }
 }

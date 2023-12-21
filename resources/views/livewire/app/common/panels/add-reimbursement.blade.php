@@ -40,6 +40,9 @@
                 </label>
                 {{-- <input type="text" id="assignment-no" class="form-control" name="assignment-no"
                     placeholder="100995-6" /> --}}
+                @if($booking_id)
+                    <input  type="text" id="" class="form-control" name="" value="{{$booking_id}}" disabled >
+                @else
                 <select wire:model.defer="selectedValue" class="form-select" tabindex="" name="selectedValue"
                     id="selectedValue">
                     <option value=""></option>
@@ -47,6 +50,7 @@
                         <option value="{{ $assign->id }}">{{ $assign->booking_number }}</option>
                     @endforeach
                 </select>
+                @endif
                 @error('reimbursement.booking_id')
                     <span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span>
                 @enderror

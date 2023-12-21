@@ -766,7 +766,7 @@
                         <div class="d-lg-flex justify-content-between align-items-center mb-5">
                             <h2 class="mb-lg-0">Payment Detail
                             </h2>
-                            <button type="button"
+                            <button type="button" wire:click="$emit('setBookingIdR', [{{$booking->id}},'{{$booking->booking_number}}'])"
                                 class="btn btn-primary rounded d-inline-flex align-items-center gap-1"
                                 x-on:click="addReimbursement = true">
                                 <svg aria-label="Add Reimbursement" width="20" height="21"
