@@ -93,7 +93,7 @@ class CancelBooking extends Component
 
             if ($this->setting['type'] == "bookings_until") {
                 // dd('fetch all up-until bookings');
-                $end_date = Carbon::parse($this->setting['reschedule_until'])->toDateString();
+                $end_date = Carbon::parse($this->setting['reschedule_until'])->addDay()->toDateString();
                 // dd($end_date)
                 $all_bookings = Booking::where('parent_id', $parent_id)
 					->whereRaw("booking_start_at  Between  DATE('$start_date') AND DATE('$end_date')")
