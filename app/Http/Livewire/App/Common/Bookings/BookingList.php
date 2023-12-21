@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Services\ExportDataFile;
-
+use Illuminate\Support\Facades\Session;
 
 class BookingList extends Component
 {
@@ -54,7 +54,7 @@ class BookingList extends Component
 	//adv filter variables
 	public $accommodation_search_filter = [], $booking_service_filter = [], $booking_specialization_search_filter = [], $provider_ids = [], $name_seacrh_filter = '',
 		$service_type_search_filter = [], $tag_names = [], $industry_filter = [], $booking_status_filter = null, $booking_number_filter = null;
-	public $tags = [], $filterProviders = [], $hideProvider = false;
+	public $tags = [], $filterProviders = [], $hideProvider = false,  $filterUsers, $user_ids = [];
 	public $selectedBookingIds = [], $checkout_booking_id = 0;
 
 
@@ -482,6 +482,35 @@ class BookingList extends Component
 				'users.id',
 				'users.name',
 			])->get()->toArray();
+
+		if (Session::get('isCustomer')) {
+			// query to filter customers users 
+			$userQuery = User::where('status', 1)
+			->whereNot('id', Auth::user()->id) // Exclude the current user
+			->select(['users.id', 'users.name']);
+
+			if (Session::get('companyAdmin')) {
+				$userQuery->whereNotNull('company_name')
+				->where('company_name', Auth::user()->company_name);
+			} elseif (in_array(5, Session::get('customerRoles')) || in_array(9, Session::get('customerRoles'))) {
+				$userIds = collect(); // Initialize an empty collection
+
+				if (in_array(9, Session::get('customerRoles'))) {
+					$userIds = $userIds->merge(Booking::where('billing_manager_id', Auth::user()->id)->pluck('customer_id'));
+				}
+
+				if (in_array(5, Session::get('customerRoles'))) {
+					$userIds = $userIds->merge(Booking::where('supervisor', Auth::user()->id)->pluck('customer_id'));
+				}
+
+				$userQuery->whereIn('id', $userIds->flatten()->unique());
+			}
+
+			// Common filter for roles exclusion
+			$userQuery->whereHas('roles', fn ($query) => $query->whereNotIn('role_id', [1, 2, 3]));
+
+			$this->filterUsers = $userQuery->get()->toArray();
+		}
 		$this->dispatchBrowserEvent('refreshSelects2');
 
 
@@ -512,6 +541,10 @@ class BookingList extends Component
 			$query->whereHas('booking_provider', function ($query) use ($provider_ids) {
 				$query->whereIn('booking_providers.provider_id', $provider_ids);
 			});
+		}
+		if (count($this->user_ids)) {
+			$user_ids = $this->user_ids;
+			$query->whereIn('bookings.customer_id', $user_ids);
 		}
 		if ($this->booking_status_filter != null) {
 			$query->where('bookings.booking_status', 'LIKE', "%" . $this->booking_status_filter . "%");
@@ -579,6 +612,7 @@ class BookingList extends Component
 		$this->booking_number_filter = null;
 		$this->booking_status_filter = null;
 		$this->name_seacrh_filter = null;
+		$this->user_ids = [];
 		if (!$this->hideProvider)
 			$this->provider_ids = [];
 
