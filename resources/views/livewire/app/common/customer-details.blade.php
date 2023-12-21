@@ -2455,7 +2455,7 @@
 <div class="tab-pane fade" id="reports-tab-pane" role="tabpanel" aria-labelledby="reports-tab" tabindex="0">
     <div class="row mb-3">
         <h3>
-            Reports <small>(coming soon)</small>
+            Reports (coming soon)
         </h3>
     </div>
     <div class="row mb-4">
