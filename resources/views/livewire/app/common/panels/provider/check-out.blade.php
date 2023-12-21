@@ -162,7 +162,7 @@
                                                         aria-label="Start Minutes" id="actual_start_min"
                                                         name="actual_start_min" tabindex=""
                                                         wire:model.defer="checkout.actual_start_min">
-                                                        @for ($i = 0; $i < 59; $i++)
+                                                        @for ($i = 0; $i <= 59; $i++)
                                                             <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}">
                                                                 {{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</option>
                                                         @endfor
@@ -260,7 +260,7 @@
                                                     aria-label="Start Minutes" id="actual_end_min"
                                                     name="actual_end_min" wire:model.defer="checkout.actual_end_min">
 
-                                                    @for ($i = 0; $i < 59; $i++)
+                                                    @for ($i = 0; $i <= 59; $i++)
                                                         <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}">
                                                             {{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</option>
                                                     @endfor
