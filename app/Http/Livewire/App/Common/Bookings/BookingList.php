@@ -15,6 +15,7 @@ use App\Models\Tenant\Tag;
 use App\Models\Tenant\User;
 use App\Models\Tenant\UserAddress;
 use App\Services\App\BookingOperationsService;
+use App\Services\App\UserService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -271,13 +272,30 @@ class BookingList extends Component
 		if ($this->isCustomer) {
 			$customer = User::find(Auth::id());
 			$query->where('company_id', $customer->company_name);
+			$customerIds = [];
+
+			// showing all bookings for users that current user (customer) supervises
+			if($this->bookingType == "Pending Approval"){
+				if(in_array(5, session()->get('customerRoles'))){
+					//user is supervisor
+					$userService = new UserService;
+
+					$data = $userService->getUserRolesDetails($customer->id, 5, 0);	//fetches users who customer supervise
+					$customerIds = $data->count() ? $data->pluck('associated_user')->toArray() :[];
+				}
+
+			}
+			$customerIds[] = $customer->id;
+
 			// if not admin
 			if (!in_array(10, session()->get('customerRoles'))) {
 
+
+
 				//display only of booking is associated with customer 
-				$query->where(function ($g) use ($customer, $query) {
-					$g->where('customer_id', $customer->id);
-					$g->orWhere('supervisor', $customer->id);
+				$query->where(function ($g) use ($customer, $customerIds) {
+					$g->whereIn('customer_id', $customerIds);
+					$g->orWhereIn('supervisor', $customerIds);
 
 					//fetch relevent bookings where user is consumer or participant
 					$g->orWhereIn('bookings.id', function ($sc_query) use ($customer) {
@@ -287,7 +305,7 @@ class BookingList extends Component
 					});
 
 					if ($this->bookingType == "Draft")
-						$g->orWhere('user_id', $customer->id);
+						$g->orWhereIn('user_id', $customerIds);
 					else
 						$g->orWhere('billing_manager_id', 'LIKE', "%" . $customer->id . "%");
 
