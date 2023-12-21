@@ -1,4 +1,5 @@
 <div>
+    @if(!Session::get('isProvider'))
     <div class="row">
         <h3>Invoices & Remittances</h3>
     </div>
@@ -64,6 +65,7 @@
             </div>
         </div>
     </div>
+    @endif
     <div class="d-inline-flex align-items-center align-self-end gap-4 mb-2">
         <div class="dropdown">
 
@@ -160,6 +162,7 @@
                                             </use>
                                         </svg>
                                     </a>
+                                    @if(!Session::get('isProvider'))
                                     <a href="#" title="Record Payment" aria-label="Record Payment"
                                         data-bs-toggle="modal" data-bs-target="#markAsPaidModal"
                                         wire:click="$emit('makeIndvidualPayment','{{ $remittance['id'] }}')"
@@ -187,6 +190,7 @@
                                             <use xlink:href="/css/provider.svg#download-file"></use>
                                         </svg>
                                     </a>
+                                    @endif
                                 </div>
                             </td>
                         </tr>
@@ -222,7 +226,7 @@
             </div>
             <div class="d-flex actions gap-3 justify-content-end mb-2">
                 <div class="d-flex gap-2 align-items-center">
-                    <a href="#" title="Revert" aria-label="Revert"
+                    <a href="#" title="View" aria-label="Revert"
                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
                         <svg aria-label="View Company" width="20" height="20" viewBox="0 0 20 20">
                             <use xlink:href="/css/common-icons.svg#view">
@@ -233,6 +237,7 @@
                         View
                     </span>
                 </div>
+                @if(!Session::get('isProvider'))
                 <div class="d-flex gap-2 align-items-center">
                     <a href="#" title="Revert" aria-label="Revert" 
                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
@@ -258,6 +263,7 @@
                         Download PDF
                     </span>
                 </div>
+                @endif
             </div>
         </div>
     </div>
