@@ -100,7 +100,10 @@
                                     <thead>
                                         <tr role="row" class=" table-headers">
                                             <th scope="col" style="width:20%;">Provider</th>
+<<<<<<<<< Temporary merge branch 1
                                             
+=========
+>>>>>>>>> Temporary merge branch 2
                                             <th scope="col" style="width:10%;">CHECK IN</th>
                                             <th scope="col" style="width:10%;">CHECK OUT</th>
                                             <th scope="col" style="width:20%;">DURATION</th>
@@ -169,8 +172,11 @@
                                                                 </div>
                                                             @endif
                                                         @endif
+<<<<<<<<< Temporary merge branch 1
                                                         
                                                     </td>
+=========
+>>>>>>>>> Temporary merge branch 2
 
                                                     </td>
                                                     <td class="align-middle border-end-2">
