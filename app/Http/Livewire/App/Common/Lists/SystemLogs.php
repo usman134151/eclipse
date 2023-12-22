@@ -2,11 +2,15 @@
 
 namespace App\Http\Livewire\app\common\lists;
 
+use App\Models\Tenant\Booking;
+use App\Models\Tenant\BookingProvider;
 use Carbon\Carbon;
 
 
 use App\Models\Tenant\Log;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Header, PowerGrid, PowerGridComponent, PowerGridEloquent};
@@ -56,7 +60,39 @@ final class SystemLogs extends PowerGridComponent
 	*/
 	public function datasource(): Builder
 	{
-		return Log::query()->orderByDesc('created_at');
+		$query = Log::query()->orderByDesc('created_at');
+		if(Session::get('isProvider')){
+            $bookingIds = BookingProvider::where('provider_id',Auth::user()->id)->pluck('booking_id');
+            $query->where(function ($query) use ($bookingIds) {
+                $query->where('action_by', Auth::user()->id)
+                    ->orWhere(function ($query) use ($bookingIds) {
+                        $query->where('action_to', Auth::user()->id)
+                            ->where('item_type', 'user');
+                    })
+                    ->orWhere(function ($query) use ($bookingIds) {
+                        $query->whereIn('action_to', $bookingIds)
+                            ->where('item_type', 'Booking');
+                    });
+            });
+        } else if(Session::get('isCustomer')){
+            $bookingIds = Booking::where('customer_id',Auth::user()->id)->pluck('id');
+            $query->where(function ($query) use ($bookingIds) {
+                $query->where('action_by', Auth::user()->id)
+                    ->orWhere(function ($query) use ($bookingIds) {
+                        $query->where('action_to', Auth::user()->id)
+                            ->where('item_type', 'user');
+                    })
+                    ->orWhere(function ($query) use ($bookingIds) {
+                        $query->whereIn('action_to', $bookingIds)
+                            ->where('item_type', 'Booking')
+                            ->whereNotIn('type',['Booking Invitation','Assignment Invitation','auto-assigned','auto-notified','assigned','unassigned','checkout update']);
+
+                    });
+            });
+            
+        }
+		return $query;
+
 	}
 
 	/*
@@ -94,7 +130,7 @@ public function addColumns(): PowerGridEloquent
 {
     return PowerGrid::eloquent()
         ->addColumn('created_at_formatted', function (Log $model) {
-            return Carbon::parse($model->created_at)->format('d/m/Y H:i');
+            return modifyDateTimeFormat($model->created_at);
         })
 	
         ->addColumn('message', function (Log $model) {

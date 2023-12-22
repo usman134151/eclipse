@@ -80,6 +80,18 @@ const DECLINED = '2';
       }
     }
 
+    function modifyDateTimeFormat($date)
+    {
+      if(empty($date) || $date == 'N/A' || !strtotime($date)) {
+        return "-";
+    }
+
+      $timeFormat = Session::get('business_time_format');
+      $dateFormat = ($timeFormat == 24) ? "m/d/Y G:i" : "m/d/Y g:i A";
+    
+      return date($dateFormat, strtotime($date));
+    }
+
     function formatDateNew($date)
     {
       return Carbon::parse($date)->format('F d, Y');
