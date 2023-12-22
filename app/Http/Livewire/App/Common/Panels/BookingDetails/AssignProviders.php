@@ -287,6 +287,7 @@ class AssignProviders extends Component
     public function updateTotal($index)
     {
         $this->validate();
+        $this->providersPayment[$index]['total_amount']=0;
         // dd($this->providersPayment[$index]['override_price']);
         if (!isset($this->providersPayment[$index]['service_payment_details']['b_hours_rate']) || trim($this->providersPayment[$index]['service_payment_details']['b_hours_rate']) == '')
             $this->providersPayment[$index]['service_payment_details']['b_hours_rate'] = 0;
