@@ -43,7 +43,7 @@
             @endforelse
 
         </li>
-        <li class="dropdown-menu-footer"><a href="{{ url($userType . '/system-logs') }}" aria-label="Read All Notifications"
+        <li class="dropdown-menu-footer"><a href="{{ url($userType . '/dashboard') }}" aria-label="Read All Notifications"
                 class="btn btn-primary w-100 all_notify">Read all
                 notifications</a></li>
     </ul>
