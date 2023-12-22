@@ -136,7 +136,7 @@ class AssignProviders extends Component
     }
     public function refreshProviders()
     {
-
+        $this->providers = [];
         $returnCols = [
             'users.id',
             'users.name',
@@ -515,6 +515,7 @@ class AssignProviders extends Component
     public $bookingTags = [];
     public function reMount($service_id, $panelType)
     {
+        $this->providers=[];
         $this->panelType = $panelType;
         $this->service_id = $service_id;
 
