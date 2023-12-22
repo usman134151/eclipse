@@ -204,21 +204,28 @@ class BookingDetails extends Component
 		$this->data['providerPayments'] = 0;
 		$this->data['additionalProviderPayments'] = 0;
 		foreach ($providers as $provider) {
-			$this->data['providerPayments'] = $this->data['providerPayments'] + ($provider['is_override_price'] ? $provider['override_price'] : $provider['total_amount']);
-			$this->data['additionalProviderPayments'] = $this->data['additionalProviderPayments'] + (!is_null($provider['additional_payments']) ? $provider['additional_payments']['additional_charge_provider'] : 0);
+			$additionalPayment=(!is_null($provider['additional_payments']) ? $provider['additional_payments']['additional_charge_provider'] : 0);
+			$this->data['providerPayments'] = $this->data['providerPayments'] + ($provider['is_override_price'] ? $provider['override_price'] : $provider['total_amount'])-$additionalPayment;
+			$this->data['additionalProviderPayments'] = $this->data['additionalProviderPayments'] + $additionalPayment;
 		}
 		$this->data['profitMargin'] = $this->booking['payment'] ? ((
 			($this->booking['payment']['is_override'] ? $this->booking['payment']['override_price'] : ($this->booking['payment']['total_amount'] ?? 0)) +
 			($this->booking['payment']['cancellation_charges'] ?? 0) +
 			($this->booking['payment']['outstanding_amount'] ?? 0) +
 			($this->booking['payment']['modification_fee'] ?? 0)
-		) - $this->data['providerPayments'] - $this->data['additionalProviderPayments']) : 0;
+		) - $this->data['providerPayments']) : 0;
 
+		//reschedulling charges were not added
+		if(!is_null($this->booking['payment']) && !is_null($this->booking['payment']['reschedule_booking_charges']))
+            $reschedullingCharges=$this->booking['payment']['reschedule_booking_charges'];
+		else 
+		$reschedullingCharges=0;
+		//end of reschedulling charges check
 		$totalCost = (
 			($this->booking['payment'] && $this->booking['payment']['is_override'] ? $this->booking['payment']['override_price'] : ($this->booking['payment']['total_amount'] ?? 0)) +
 			($this->booking['payment']['cancellation_charges'] ?? 0) +
 			($this->booking['payment']['outstanding_amount'] ?? 0) +
-			($this->booking['payment']['modification_fee'] ?? 0)
+			($this->booking['payment']['modification_fee'] ?? 0) +  $reschedullingCharges
 		);
 
 		// dd($this->booking['payment']);
