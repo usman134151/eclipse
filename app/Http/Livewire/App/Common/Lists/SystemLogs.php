@@ -94,7 +94,7 @@ public function addColumns(): PowerGridEloquent
 {
     return PowerGrid::eloquent()
         ->addColumn('created_at_formatted', function (Log $model) {
-            return Carbon::parse($model->created_at)->format('d/m/Y H:i');
+            return modifyDateTimeFormat($model->created_at);
         })
 	
         ->addColumn('message', function (Log $model) {
