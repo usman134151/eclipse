@@ -369,6 +369,7 @@ class AssignProviders extends Component
 
             $this->providersPayment = [];
             foreach ($providers as $index => &$provider) {
+                $this->providersPayment[$index] = [];
                 $this->providersPayment[$index]['total_amount']=0;
                 //check if provider is assigned provider
                 $assigned = false;
