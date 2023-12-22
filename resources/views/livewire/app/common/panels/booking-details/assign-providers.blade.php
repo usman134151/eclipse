@@ -301,7 +301,7 @@
                                 </td>
                                 <td class="border-end-2">
                                     <div class="text-center mt-4" wire:ignore>
-                                        {{ numberFormat($providersPayment[$index]['total_amount']) }}
+                                       @if( isset($providersPayment[$index])) {{ numberFormat($providersPayment[$index]['total_amount']) }} @endif
                                     </div>
                                 </td>
                                 <td>
