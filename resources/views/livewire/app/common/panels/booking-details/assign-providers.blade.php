@@ -105,6 +105,7 @@
                         $assignedProvidersCollection = new \Illuminate\Support\Collection($assignedProviders);
                     @endphp
                     @foreach ($providers as $index => $provider)
+                      @if(isset($providersPayment[$index]))
                         <tr>
                             @if ($panelType == 2)
                                 <td>
@@ -1008,6 +1009,7 @@
         </td>
 
         </tr>
+         @endif
         @endif
         @if ($panelType == 3 && $provider->invitation_response($booking_id) == 2)
             <td colSpan=4> Declined</td>
