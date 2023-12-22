@@ -30,14 +30,14 @@ class Quickbook extends Component
             $getDomainName = $getDomainExplode[0];
             $getDomainData = DB::connection('central')->table('domains')->select('domain', 'tenant_id')->where('domain', $getDomainName)->first();
             $dataService = DataService::Configure([
-                'authorizationRequestUrl' => 'https://appcenter.intuit.com/connect/oauth2',
-                'tokenEndPointUrl' => 'https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer',
-                'auth_mode' => 'oauth2',
-                'ClientID' => 'AB9hIKwPY2It8mBL5iYuG6xPU3Dwt6jMnDXCE8KrHWtxBi7NHD',
-                'ClientSecret' => '77T6t56aCx14GR5nzS40B4cF0CumhWIM7EgoU7tX',
-                'RedirectURI' => 'http://localhost:8000/quickbooks',
-                'scope' => 'com.intuit.quickbooks.accounting',
-                'baseUrl' => 'development',
+                'authorizationRequestUrl' => env('QBAUTHORIZATIONREQUESTURL'),
+                'tokenEndPointUrl' => env('QBTOKENENDPOINTURL'),
+                'auth_mode' => env('QBAUTHMODE'),
+                'ClientID' => env('QBCLIENTID'),
+                'ClientSecret' => env('QBCLIENTSECRET'),
+                'RedirectURI' => env('QBREDIRECTURI'),
+                'scope' => env('QBSCOPE'),
+                'baseUrl' => env('QBBASEURL'),
                 'state' => (string) $getDomainData->domain.'/'.$getDomainData->tenant_id
             ]);
             $OAuth2LoginHelper = $dataService->getOAuth2LoginHelper();
