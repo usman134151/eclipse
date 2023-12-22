@@ -10,6 +10,7 @@ use App\Models\Tenant\BookingIndustry;
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\BookingServiceCharges;
 use App\Models\Tenant\BookingServices;
+use App\Models\Tenant\ProviderAccommodationServices;
 use App\Models\Tenant\SetupValue;
 use App\Models\Tenant\Tag;
 use App\Models\Tenant\User;
@@ -163,7 +164,7 @@ class BookingList extends Component
 
 				$query->where($conditions)
 					->whereRaw("'$today'  Between  DATE(booking_start_at) AND DATE(booking_end_at)")
-					->where('bookings.status','<',3) // to show partially assigned bookings to provider
+					->where('bookings.status', '<', 3) // to show partially assigned bookings to provider
 					->orderBy('booking_start_at', 'ASC');
 
 
@@ -268,6 +269,12 @@ class BookingList extends Component
 		});
 		$query->whereHas('services', function ($q) {
 			$q->where('service_categories.status', '1');
+			// if ($this->bookingType == "Unassigned" && $this->provider_id) {
+			// 	//apply check to show bookings only with provider services
+			// 	$q->whereIn('service_categories.id', function ($squery) {
+			// 		$squery->select('service_id')->from('provider_accommodation_services')->where(['user_id' => Auth::id(), 'status' => 1]);
+			// 	});
+			// }
 		});
 		if ($this->isCustomer) {
 			$customer = User::find(Auth::id());
@@ -275,15 +282,14 @@ class BookingList extends Component
 			$customerIds = [];
 
 			// showing all bookings for users that current user (customer) supervises
-			if($this->bookingType == "Pending Approval"){
-				if(in_array(5, session()->get('customerRoles'))){
+			if ($this->bookingType == "Pending Approval") {
+				if (in_array(5, session()->get('customerRoles'))) {
 					//user is supervisor
 					$userService = new UserService;
 
 					$data = $userService->getUserRolesDetails($customer->id, 5, 0);	//fetches users who customer supervise
-					$customerIds = $data->count() ? $data->pluck('associated_user')->toArray() :[];
+					$customerIds = $data->count() ? $data->pluck('associated_user')->toArray() : [];
 				}
-
 			}
 			$customerIds[] = $customer->id;
 
@@ -334,6 +340,9 @@ class BookingList extends Component
 					'bookings.*', 'bookings.status as status',
 					'booking_available_providers.status as avail_status'
 				]);
+
+
+				
 			} elseif ($this->bookingType == "Invitations") {
 				//  subquery to remove already assigned bookings
 				$query->whereNotIn('bookings.id', function ($query) {
@@ -465,6 +474,14 @@ class BookingList extends Component
 				$this->provider_ids = [];
 			else
 				$this->provider_ids = [$this->provider_id];
+
+			if($this->bookingType=="Unassigned"){
+				// match the provider’s profile to displayed bookings
+
+				$pServices = ProviderAccommodationServices::where(['user_id' => Auth::id(), 'status' => 1])->select('accommodation_id', 'service_id')->get();
+				$this->booking_service_filter = $pServices->count() ? $pServices->pluck('service_id')->toArray() : [];
+				$this->accommodation_search_filter = $pServices->count() ? $pServices->pluck('accommodation_id')->toArray() : [];
+			}
 		}
 		$serviceTypeLabels = SetupValue::where('setup_id', 5)->pluck('setup_value_label')->toArray();
 		for ($i = 0, $j = 1; $i < 4; $i++, $j++) {
@@ -486,12 +503,12 @@ class BookingList extends Component
 		if (Session::get('isCustomer')) {
 			// query to filter customers users 
 			$userQuery = User::where('status', 1)
-			->whereNot('id', Auth::user()->id) // Exclude the current user
-			->select(['users.id', 'users.name']);
+				->whereNot('id', Auth::user()->id) // Exclude the current user
+				->select(['users.id', 'users.name']);
 
 			if (Session::get('companyAdmin')) {
 				$userQuery->whereNotNull('company_name')
-				->where('company_name', Auth::user()->company_name);
+					->where('company_name', Auth::user()->company_name);
 			} elseif (in_array(5, Session::get('customerRoles')) || in_array(9, Session::get('customerRoles'))) {
 				$userIds = collect(); // Initialize an empty collection
 
