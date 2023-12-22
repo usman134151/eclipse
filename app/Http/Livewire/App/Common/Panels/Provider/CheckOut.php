@@ -107,6 +107,7 @@ class CheckOut extends Component
         $this->checkout['actual_start_date'] = Carbon::parse($this->booking_service->start_time)->format('m/d/Y');
         $this->checkout['actual_start_hour'] = date_format(date_create($this->booking_service->start_time), $this->timeFormat == 12 ? 'h' : 'H');
         $this->checkout['actual_start_min'] = date_format(date_create($this->booking_service->start_time), 'i');
+        
         if ($this->timeFormat == 12) {
             $this->timeSlots['start'] = date_format(date_create($this->booking_service->start_time), 'a');
         }
@@ -141,10 +142,11 @@ class CheckOut extends Component
                         }
                     }
                 }
-            }
-            $this->checkout['actual_end_date'] = $this->checkout['actual_end_date'] ??  Carbon::now()->format('m/d/Y');
-            $this->checkout['actual_end_hour'] = $this->checkout['actual_end_hour'] ??      date_format(date_create($this->booking_service->end_time), $this->timeFormat == 12 ? 'h' : 'H');
-            $this->checkout['actual_end_min'] = $this->checkout['actual_end_min'] ??     date_format(date_create($this->booking_service->end_time), 'i');
+            }// LBT 130 -> show current time on initial load
+            $currTime = Carbon::now();
+            $this->checkout['actual_end_date'] = $this->checkout['actual_end_date'] ??  $currTime->format('m/d/Y');
+            $this->checkout['actual_end_hour'] = $this->checkout['actual_end_hour'] ??      date_format($currTime, $this->timeFormat == 12 ? 'h' : 'H');
+            $this->checkout['actual_end_min'] = $this->checkout['actual_end_min'] ??     date_format($currTime, 'i');
             if ($this->timeFormat == 12) {
                 $this->timeSlots['end'] = date_format(date_create($this->booking_service->end_time), 'a');
             }
