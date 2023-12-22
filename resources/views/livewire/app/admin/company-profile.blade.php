@@ -1498,7 +1498,7 @@
     <div class="tab-pane fade" id="invoices-tab-pane" role="tabpanel" aria-labelledby="invoices-tab"
         tabindex="0">
         <h3>
-            Company Invoices <small>(coming soon)</small>
+            Company Invoices
         </h3>
 
         <div class="d-flex justify-content-between">

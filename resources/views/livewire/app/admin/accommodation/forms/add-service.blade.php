@@ -2121,13 +2121,11 @@
                             name="RequestStartTimeforServices" type="checkbox" tabindex=""
                             wire:model.defer="checkOut.enable_button_provider" value="true">
                         <label class="form-check-label" for="EnableAuthorizeandCloseButtonforProviders">Enable
-                            “Authorize
-                            and Close” Button for Providers</label>
+                            “Check-out” Button for Providers</label>
                     </div>
                     <div class="form-check">
                         <label class="form-check-label" for="EnableAuthorizeandCloseButtonforCustomers">Enable
-                            “Authorize
-                            and Close” Button for Customers <small>(coming soon)</small></label>
+                            “Check-out” Button for Customers <small>(coming soon)</small></label>
                         <input disabled class="form-check-input show-hidden-content"
                             id="EnableAuthorizeandCloseButtonforCustomers" name="RequestStartTimeforServices"
                             type="checkbox" tabindex="" wire:model.defer="checkOut.enable_button_customer"
@@ -2144,15 +2142,14 @@
                     </div>
                     <div class="form-check">
                         <label class="form-check-label" for="RequireAuthorizeCloseOutforProviderPayment">Require
-                            "Authorize
-                            & Close-out" for Provider Payment</label>
+                            Admin "Close Out" for Provider Payment</label>
                         <input class="form-check-input" id="RequireAuthorizeCloseOutforProviderPayment"
                             name="RequestStartTimeforServices" type="checkbox" tabindex=""
                             wire:model.defer="checkOut.provider_payment" value="true">
                     </div>
                     <div class="form-check">
                         <label class="form-check-label" for="RequireAuthorizeCloseOutforCustomerInvoicing">Require
-                            "Authorize & Close-out" for Customer Invoicing</label>
+                            Admin "Close Out" for Customer Invoicing</label>
                         <input class="form-check-input" id="RequireAuthorizeCloseOutforCustomerInvoicing"
                             name="RequestStartTimeforServices" type="checkbox" tabindex=""
                             wire:model.defer="checkOut.customer_invoice" value="true">
@@ -2166,7 +2163,7 @@
                     </div>
                     <div class="form-check">
                         <label class="form-check-label" for="AddCustomizedCloseOutForm">Add
-                            Customized “Close-Out” Form</label>
+                            Customized “Check-out” Form</label>
                         <input  class="form-check-input show-hidden-content" id="AddCustomizedCloseOutForm"
                             name="RequestStartTimeforServices" type="checkbox" tabindex=""
                             wire:model.defer="checkOut.customize_form" value="true">
