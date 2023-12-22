@@ -169,8 +169,6 @@
                                                             @endif
                                                         @endif
                                                     </td>
-
-                                                    
                                                     </td>
                                                     <td class="align-middle border-end-2">
                                                         {{ key_exists('actual_start_timestamp', $closeOut[$bookingService->id][$provider['provider_id']]) ? formatDateTime($closeOut[$bookingService->id][$provider['provider_id']]['actual_start_timestamp']) : 'N/A' }}
