@@ -34,6 +34,7 @@ use Session;
 class Booknow extends Component
 {
     public $component = 'requester-info';
+    public $allowAddUser = false;
 
     public $booking_id, $showForm, $booking, $requesters = [], $bManagers = [], $supervisors = [], $consumers = [], $participants = [], $step = 1, $userAddresses = [], $timezone, $schedule, $timezones, $formIds, $selectedAddressId, $bookingDetails, $selectedServices = [], $changesLog = [];
     protected $listeners = [
@@ -108,7 +109,10 @@ class Booknow extends Component
 
     public function mount(Booking $booking)
     {
+        if (session()->get('isCustomer') == false || (session()->get('isCustomer') == true && (in_array(10, session()->get('customerRoles')) || in_array(5, session()->get('customerRoles')))))
+            $this->allowAddUser = true;
 
+        // dd(session()->get('isCustomer'),$this->allowAddUser);
         $this->booking = $booking;
         $this->payment = new Payment;
         $this->payment['discounted_amount'] = 0;
