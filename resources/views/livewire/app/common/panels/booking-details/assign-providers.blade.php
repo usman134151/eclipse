@@ -275,7 +275,7 @@
                                         <!-- TAGS -->
                                         <div class=" position-relative mb-3">
                                             <div class="" id="servicePanel-{{ $provider->id }}">
-                                                @if ($provider['tags'])
+                                                @if ($provider['tags'] && is_array($provider['tags']))
                                                     @foreach ($provider['tags'] as $key => $tag)
                                                         <button type="button"
                                                             class="{{ in_array($tag, $bookingTags) ? 'bg-success text-white ' : 'bg-muted' }}  btn-outline-dark rounded m-1">
