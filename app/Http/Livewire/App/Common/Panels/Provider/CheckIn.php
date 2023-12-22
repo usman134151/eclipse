@@ -118,7 +118,8 @@ class CheckIn extends Component
             $this->booking_service = BookingServices::where('id', $booking_service_id)->first();
             if ($this->booking_service)
                 $this->checkin_details = json_decode($this->booking_service->service->check_in_procedure, true);
-            $startDate = date_create($this->assignment->booking_start_at);
+            $startDate = now(); // LBT 130 -> show current time on initial load 
+            // date_create($this->assignment->booking_start_at);
 
             $this->hours =      date_format($startDate, $this->timeFormat==12 ? 'h' :'H');
             $this->mins =      date_format($startDate, 'i');
