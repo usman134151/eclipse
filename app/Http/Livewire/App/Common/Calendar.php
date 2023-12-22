@@ -269,7 +269,7 @@ class Calendar extends Component
 				});
 			}
 		}
-		if ($this->user_id && !$this->providerProfile && !$this->isCustomer && !$this->customerProfile) {
+		if ($this->user_id && !$this->providerProfile && !$this->isCustomer && !$this->customerProfile && !$this->companyProfile) {
 
 			$query->join('booking_providers', function ($join) {
 				$join->where('booking_providers.provider_id', $this->user_id);
