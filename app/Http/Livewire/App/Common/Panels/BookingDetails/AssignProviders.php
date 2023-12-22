@@ -369,6 +369,7 @@ class AssignProviders extends Component
 
             $this->providersPayment = [];
             foreach ($providers as $index => &$provider) {
+                $this->providersPayment[$index]['total_amount']=0;
                 //check if provider is assigned provider
                 $assigned = false;
                 $specializationRate = SpecializationRate::where('user_id', $provider['id'])->where('accommodation_service_id', $serviceId)->get();
