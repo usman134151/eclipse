@@ -10,7 +10,7 @@
         <div class="card-body">
             @if ($showHeader)
                 <div class="mt-3" wire:ignore>
-                    <x-advancefilters type="" :filterProviders="$filterProviders" :hideProvider="true" :setupValues="$setupValues" />
+                    <x-advancefilters type="" :filterProviders="$filterProviders" :hideProvider="true" :setupValues="$setupValues" :bookingType="$bookingType" />
                 </div>
             @endif
             <div class="row mb-5">
