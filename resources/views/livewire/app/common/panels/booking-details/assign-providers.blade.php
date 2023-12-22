@@ -300,7 +300,7 @@
                                 </td>
                                 <td class="border-end-2">
                                     <div class="text-center mt-4" wire:ignore>
-                                        {{ numberFormat($providersPayment[$index]['total_amount']) }}
+                                        @if(!is_null($providersPayment[$index]) && key_exists('total_amount',$providersPayment[$index])) {{ numberFormat($providersPayment[$index]['total_amount']) }} @else $0.00 @endif
                                     </div>
                                 </td>
                                 <td>
