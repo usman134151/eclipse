@@ -1354,11 +1354,12 @@
                                 {{-- Updated by Shanila to fix remove Two search bars are added and edit name of heading add placeholder in date range input  --}}
 								<div class="tab-pane fade" id="invoices-tab-pane" role="tabpanel" aria-labelledby="invoices-tab" tabindex="0">
 									<h3>
-										Department Invoices <small>(coming soon)</small>
+										Department Invoices 
 									</h3>
+									@livewire('app.common.lists.customer-invoices', ['filter_department' => $department->id])
+									<!--
 									<div class="col-md-12 d-flex col-12 gap-4 mb-4">
 
-										{{-- Date Range --}}
 										<div class="col-md-3 col-12">
 											<div>
 												<label class="form-label" for="set_set_date" >
@@ -2117,6 +2118,7 @@
 											</ul>
 										</nav>
 									</div>
+									-->
                                     <div class="d-flex actions gap-3 justify-content-end mb-2">
 										<div class="d-flex gap-2 align-items-center">
 										  <a href="#" title="Revert" aria-label="Revert" class="btn btn-sm btn-secondary rounded btn-hs-icon">
@@ -3771,6 +3773,8 @@
             @include('modals.mark-as-paid')
             {{-- End of update by Shanila --}}
 			@include('panels.common.add-document')
+    		@include('modals.common.revert-back')
+    		@include('panels.common.invoice-details')
 		</section>
 		@endif
 	</div>
