@@ -2,16 +2,19 @@
 
 namespace App\Http\Livewire\App\Common;
 
+use App\Models\Tenant\Booking;
 use App\Models\Tenant\Department;
+use App\Models\Tenant\Invoice;
 use App\Models\Tenant\Schedule;
 use Livewire\Component;
-
+use PDF;
 class DepartmentProfile extends Component
 {
 	public $showForm;
 	public $department, $schedule, $timeslots=null;
+	public $invoice_id = 0, $counter = 0;
 	protected $listeners = [
-		'showDepartmentDetails', 'showConfirmation'
+		'showDepartmentDetails', 'showConfirmation','openInvoiceDetails','downloadInvoice'=> 'createInvoicePDF'
 	];
 
 	public function render()
@@ -101,6 +104,38 @@ class DepartmentProfile extends Component
 		$this->showConfirmation("Department has been saved successfully");
 		
 	}
+
+	public function openInvoiceDetails($invoice_id)
+    {
+        if ($this->counter == 0) {
+            $this->invoice_id = 0;
+            $this->dispatchBrowserEvent('refresh-invoice-details', ['invoice_id' => $invoice_id]);
+            $this->counter = 1;
+        } else {
+            $this->invoice_id = $invoice_id;
+            $this->counter = 0;
+        }
+    }
+
+	function createInvoicePDF($invoice_id = 0)
+    {
+        // $orderData = [];
+        $invoice = Invoice::where('id', $invoice_id)->with(['company', 'billing_manager', 'billingAddress',])->first();
+        if ($invoice) {
+
+            $bookings = Booking::whereIn('id', $invoice->bookings->pluck('id'))->get();
+            $orderData['invoice'] = $invoice;
+            $orderData['bookings'] = $bookings ?? [];
+			$orderData['company_logo'] = public_path($invoice->company->company_logo != null ? $invoice->company->company_logo : '/tenant-resources/images/portrait/small/avatar-s-20.jpg');
+
+            $pdfContent = PDF::loadView('tenant.common.download_invoice_pdf', ['orderData' => $orderData])->output();
+            return response()->streamDownload(
+                fn () => print($pdfContent),
+                "invoice_" . $invoice->invoice_number . ".pdf"
+            );
+        }
+    }
+
 
 
 

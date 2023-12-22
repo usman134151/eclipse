@@ -15,7 +15,7 @@ final class CustomerInvoices extends PowerGridComponent
     public $status = [2 => ['code' => '/css/provider.svg#green-dot', 'title' => 'Paid'], 1 => ['code' => '/css/common-icons.svg#blue-dot', 'title' => 'Issued'], 3 => ['code' => '/css/provider.svg#red-dot', 'title' => 'Overdue'], 4 => ['code' => '/css/provider.svg#yellow-dot', 'title' => 'Partial']];
     protected $listeners = ['refresh' => 'setUp'];
     public $invoice_status = '', $company_id = null , $supervisor_id , $billing_manager_id;
-    public $filter_bmanager, $filter_companies, $filter_payment_status, $filter_select_Date, $filterRadio , $filter_end_Date;
+    public $filter_bmanager, $filter_companies, $filter_payment_status, $filter_select_Date, $filterRadio , $filter_end_Date, $filter_department;
 
     /*
     |--------------------------------------------------------------------------
@@ -110,6 +110,12 @@ final class CustomerInvoices extends PowerGridComponent
 
         if ($this->filter_companies)
             $query->where('company_id', $this->filter_companies);
+
+        if ($this->filter_department){
+            $query->whereHas('booking.departments', function ($query) {
+                $query->where('departments.id', $this->filter_department);
+            });
+        }
 
         if ($this->filter_bmanager)
             $query->where('billing_manager_id', $this->filter_bmanager);

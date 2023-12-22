@@ -42,5 +42,9 @@ class Invoice extends Model
     public function totalPaid(){
         return $this->total_price - $this->outstanding_amount;
     }
+    public function booking(): HasMany
+    {
+        return $this->hasMany(Booking::class,'invoice_id');
+    }
 
 }
