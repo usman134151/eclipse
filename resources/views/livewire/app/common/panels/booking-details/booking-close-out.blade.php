@@ -24,7 +24,7 @@
                     </label>
                 </div>
                 <div class="col-12 w-20 d-flex justify-content-end mt-1">
-                    <input type="number" name="amount" class="form-control form-control-sm " style="width:20%"
+                    <input type="number" name="amount" class="form-control text-center form-control-sm " style="width:20%"
                         placeholder="$00:00" wire:model.defer="override_amount" id="total-service-payment">
                     <button type="button" wire:click="overrideBookingAmount"
                         class=" self_end btn btn-sm mx-1 btn-outline-dark rounded  align-end">Override</button>
@@ -82,7 +82,7 @@
                                     <div class="flex align-self-end">
                                         <label class="form-label-sm" for="service_charges">
                                             Service Charges</label>
-                                        <input type="number" name="" class="form-control form-control-sm"
+                                        <input type="number" name="" class="form-control text-center form-control-sm"
                                             placeholder="$00:00"
                                             wire:model.defer="service_charges.{{ $bookingService->id }}.charges"
                                             id="service_charges">
@@ -362,13 +362,13 @@
                                                                 <table class="table table-fs-md" aria-label="">
                                                                     <thead>
                                                                         <tr>
-                                                                            <th class="text-center" width="10%">
+                                                                            <th class="text-center" width="25%">
                                                                                 CHECKIN & CHECKOUT</th>
-                                                                            <th class="text-center" width="35%">
+                                                                            <th class="text-center" width="30%">
                                                                                 BUSINESS / AFTER HOURS</th>
-                                                                            <th class="text-center" width="28%">
+                                                                            <th class="text-center" width="25%">
                                                                                 MORE CHARGES</th>
-                                                                            <th class="text-center" width="22%">
+                                                                            <th class="text-center" width="20%">
                                                                                 FINAL PAYMENT</th>
                                                                         </tr>
                                                                     </thead>
@@ -376,8 +376,8 @@
                                                                         <tr>
                                                                             <td
                                                                                 class="align-middle text-center border-end-2">
-                                                                                <div class="d-inline-flex my-2">
-                                                                                    <p class="pe-5">Check In</p>
+                                                                                <div class="d-inline-flex align-items-center my-2">
+                                                                                    <p class="" style="margin-right:1.2rem;">Check In</p>
                                                                                     <div class="">
                                                                                         <div class="d-flex gap-2">
                                                                                             <div
@@ -442,8 +442,8 @@
                                                                                     @enderror
 
                                                                                 </div>
-                                                                                <div class="d-inline-flex my-4">
-                                                                                    <p class="inline-block pe-5">Check
+                                                                                <div class="d-inline-flex align-items-center my-4">
+                                                                                    <p class="inline-block pe-2">Check
                                                                                         Out</p>
                                                                                     <div class="">
                                                                                         <div class="d-flex gap-2">
@@ -537,14 +537,14 @@
                                                                                                     <div
                                                                                                         class="row">
                                                                                                         <div
-                                                                                                            class="col-4 mt-1" style="margin-right: 11px;">
+                                                                                                            class="col-6 mt-1" style="margin-right: -15px;">
                                                                                                             <label
                                                                                                                 class="form-label-sm">Duration:</label>
                                                                                                         </div>
-                                                                                                        <div class="col-7"
+                                                                                                        <div class="col-6"
                                                                                                             style="flex: 1 1 auto;">
                                                                                                             <div
-                                                                                                                class="input-group">
+                                                                                                                class="input-group" style="width:83%">
                                                                                                                 <input
                                                                                                                     type=""
                                                                                                                     wire:blur="updateTotal({{ $bookingService->id }},{{ $provider['provider_id'] }})"
@@ -557,6 +557,7 @@
                                                                                                                     class="input-group-text p-0">
                                                                                                                     <select
                                                                                                                         class="form-select form-select-sm"
+                                                                                                                        style="padding:4px;"
                                                                                                                         aria-label="Days"
                                                                                                                         disabled>
                                                                                                                         <option>
@@ -588,7 +589,7 @@
                                                                                                         <div
                                                                                                             class="row">
 
-                                                                                                            <div class="col-5 mt-1"
+                                                                                                            <div class="col-6 mt-1"
                                                                                                                 style="margin-right: -15px;">
                                                                                                                 <label
                                                                                                                     for="average-rate"
@@ -604,7 +605,7 @@
                                                                                                                         type=""
                                                                                                                         id="average-rate"
                                                                                                                         name="average-rate"
-                                                                                                                        class="form-control form-control-sm  w-25%"
+                                                                                                                        class="form-control text-center form-control-sm  w-25%"
                                                                                                                         placeholder="$00:00"
                                                                                                                         wire:blur="updateTotal({{ $bookingService->id }},{{ $provider['provider_id'] }})"
                                                                                                                         wire:model.lazy="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.service_payment_details.b_hours_rate">
@@ -647,14 +648,14 @@
                                                                                                     <div
                                                                                                         class="row">
                                                                                                         <div
-                                                                                                            class="col-4 mt-1" style="margin-right: 11px;">
+                                                                                                            class="col-6 mt-1" style="margin-right: -15px;">
                                                                                                             <label
                                                                                                                 class="form-label-sm">Duration:</label>
                                                                                                         </div>
-                                                                                                        <div class="col-7"
+                                                                                                        <div class="col-6"
                                                                                                             style="flex: 1 1 auto;">
                                                                                                             <div
-                                                                                                                class="input-group">
+                                                                                                                class="input-group" style="width:83%">
                                                                                                                 <input
                                                                                                                     type=""
                                                                                                                     name=""
@@ -667,6 +668,7 @@
                                                                                                                 <div
                                                                                                                     class="input-group-text p-0">
                                                                                                                     <select
+                                                                                                                        style="padding:4px;"
                                                                                                                         class="form-select form-select-sm"
                                                                                                                         aria-label="Days"
                                                                                                                         disabled>
@@ -699,7 +701,7 @@
                                                                                                         <div
                                                                                                             class="row">
 
-                                                                                                            <div class="col-5 mt-1"
+                                                                                                            <div class="col-6 mt-1"
                                                                                                                 style="margin-right: -15px;">
                                                                                                                 <label
                                                                                                                     for="average-rate"
@@ -714,7 +716,7 @@
                                                                                                                         type=""
                                                                                                                         id="average-rate"
                                                                                                                         name="average-rate"
-                                                                                                                        class="form-control form-control-sm  w-25%"
+                                                                                                                        class="form-control form-control-sm text-center  w-25%"
                                                                                                                         placeholder="$00:00"
                                                                                                                         wire:blur="updateTotal({{ $bookingService->id }},{{ $provider['provider_id'] }})"
                                                                                                                         wire:model.lazy="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.service_payment_details.a_hours_rate">
@@ -757,11 +759,11 @@
                                                                                                     <div
                                                                                                         class="row">
                                                                                                         <div
-                                                                                                            class="col-4 mt-1" style="margin-right: 11px;">
+                                                                                                            class="col-6 mt-1" style="margin-right: -15px;">
                                                                                                             <label
                                                                                                                 class="form-label-sm">Duration:</label>
                                                                                                         </div>
-                                                                                                        <div class="col-7"
+                                                                                                        <div class="col-6"
                                                                                                             style="flex: 1 1 auto;">
                                                                                                             <div
                                                                                                                 class="input-group">
@@ -778,6 +780,7 @@
                                                                                                                     class="input-group-text p-0">
                                                                                                                     <select
                                                                                                                         class="form-select form-select-sm"
+                                                                                                                        style="padding:4px;"
                                                                                                                         aria-label="Days"
                                                                                                                         disabled>
                                                                                                                         <option>
@@ -809,7 +812,7 @@
                                                                                                         <div
                                                                                                             class="row">
 
-                                                                                                            <div class="col-5 mt-1"
+                                                                                                            <div class="col-6 mt-1"
                                                                                                                 style="margin-right: -15px;">
                                                                                                                 <label
                                                                                                                     for="average-rate"
@@ -824,7 +827,7 @@
                                                                                                                         type=""
                                                                                                                         id="average-rate"
                                                                                                                         name="average-rate"
-                                                                                                                        class="form-control form-control-sm  w-25%"
+                                                                                                                        class="form-control form-control-sm text-center w-25%"
                                                                                                                         placeholder="$00:00"
                                                                                                                         wire:blur="updateTotal({{ $bookingService->id }},{{ $provider['provider_id'] }})"
                                                                                                                         wire:model.lazy="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.service_payment_details.rate">
@@ -865,7 +868,7 @@
                                                                                                         <div
                                                                                                             class="row">
 
-                                                                                                            <div class="col-5 mt-1"
+                                                                                                            <div class="col-6 mt-1"
                                                                                                                 style="margin-right: -15px;">
                                                                                                                 <label
                                                                                                                     for="average-rate"
@@ -880,7 +883,7 @@
                                                                                                                         type=""
                                                                                                                         id="average-rate"
                                                                                                                         name="average-rate"
-                                                                                                                        class="form-control form-control-sm  w-25%"
+                                                                                                                        class="form-control form-control-sm text-center w-25%"
                                                                                                                         placeholder="$00:00"
                                                                                                                         wire:blur="updateTotal({{ $bookingService->id }},{{ $provider['provider_id'] }})"
                                                                                                                         wire:model.lazy="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.service_payment_details.rate">
@@ -946,7 +949,7 @@
                                                                                                                 type=""
                                                                                                                 id="average-rate"
                                                                                                                 name="average-rate"
-                                                                                                                class="form-control form-control-sm  w-25%"
+                                                                                                                class="form-control form-control-sm text-center  w-25%"
                                                                                                                 placeholder="$00:00"
                                                                                                                 wire:blur="updateTotal({{ $bookingService->id }},{{ $provider['provider_id'] }})"
                                                                                                                 wire:model.lazy="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.service_payment_details.expedited_rate">
@@ -996,7 +999,7 @@
                                                                                                             <input
                                                                                                                 type="text"
                                                                                                                 name=""
-                                                                                                                class="form-control form-control-sm"
+                                                                                                                class="form-control text-center form-control-sm"
                                                                                                                 placeholder=" Label"
                                                                                                                 aria-label=" Label"
                                                                                                                 wire:model.defer="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.additional_payments.additional_label_provider">
@@ -1014,7 +1017,7 @@
                                                                                                                 type=""
                                                                                                                 id="average-rate"
                                                                                                                 name="average-rate"
-                                                                                                                class="form-control form-control-sm  w-25%"
+                                                                                                                class="form-control form-control-sm text-center  w-25%"
                                                                                                                 placeholder="$00:00"
                                                                                                                 wire:blur="updateTotal({{ $bookingService->id }},{{ $provider['provider_id'] }})"
                                                                                                                 wire:model.lazy="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.additional_payments.additional_charge_provider">
@@ -1059,7 +1062,7 @@
                                                                                                         <div
                                                                                                             class="row">
 
-                                                                                                            <div class="col-5 mt-1"
+                                                                                                            <div class="col-6 mt-1"
                                                                                                                 style="margin-right: -15px;">
                                                                                                                 <label
                                                                                                                     for="average-rate"
@@ -1076,7 +1079,7 @@
                                                                                                                         type=""
                                                                                                                         id="average-rate"
                                                                                                                         name="average-rate"
-                                                                                                                        class="form-control form-control-sm  w-25%"
+                                                                                                                        class="form-control form-control-sm text-center w-25%"
                                                                                                                         placeholder="$00:00"
                                                                                                                         wire:blur="updateTotal({{ $bookingService->id }},{{ $provider['provider_id'] }})"
                                                                                                                         wire:model.lazy="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.service_payment_details.specialization_charges.{{ $key }}.provider_charges">
@@ -1116,7 +1119,7 @@
                                                                                         Payment :</label>
                                                                                     <input type="number"
                                                                                         name=""
-                                                                                        class="form-control form-control-sm"
+                                                                                        class="form-control text-center form-control-sm"
                                                                                         placeholder="$00:00"
                                                                                         wire:model.lazy="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.total_amount"
                                                                                         id="total-service-payment"
