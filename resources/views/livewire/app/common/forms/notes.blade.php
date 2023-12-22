@@ -39,7 +39,7 @@
                             alt="avatar" height="25" width="25">
                         <small>{{$note->author->name}}</small> -
                         @endif
-                        <small>{{date_format(date_create($note->created_at), "d/m/Y h:i A")}}</small>
+                        <small>{{modifyDateTimeFormat($note->created_at)}}</small>
 
                     </div>
                     <div class="d-flex gap-2 align-items-center mt-2">
