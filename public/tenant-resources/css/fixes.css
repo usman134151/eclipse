@@ -142,3 +142,7 @@ nav[aria-label="Page Navigation"]{
 .table-headers th{
     text-align: center !important;
 }
+
+.custom-dropdown-btn:hover:not(.disabled):not(:disabled) svg{
+    fill: black !important;
+}

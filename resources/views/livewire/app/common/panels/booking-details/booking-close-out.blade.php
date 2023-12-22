@@ -168,7 +168,7 @@
                                                                 </div>
                                                             @endif
                                                         @endif
-
+                                                    </td>
                                                     </td>
                                                     <td class="align-middle border-end-2">
                                                         {{ key_exists('actual_start_timestamp', $closeOut[$bookingService->id][$provider['provider_id']]) ? formatDateTime($closeOut[$bookingService->id][$provider['provider_id']]['actual_start_timestamp']) : 'N/A' }}
@@ -179,8 +179,8 @@
 
                                                     </td>
                                                     <td class="align-middle text-center border-end-2">
-                                                        <div class="d-inline-flex my-2">
-                                                            <p class="pe-5">Duration</p>
+                                                        <div class="d-inline-flex my-2 align-items-center">
+                                                            <p class="pe-3">Duration</p>
                                                             <div class="">
                                                                 <div class="d-flex gap-2">
                                                                     <div class="time d-flex align-items-center gap-2">
@@ -228,6 +228,7 @@
                                                                 @enderror
                                                             </div>
                                                         </div>
+
 
 
                                                     </td>
@@ -361,13 +362,13 @@
                                                                 <table class="table table-fs-md" aria-label="">
                                                                     <thead>
                                                                         <tr>
-                                                                            <th class="text-center" width="25%">
+                                                                            <th class="text-center" width="10%">
                                                                                 CHECKIN & CHECKOUT</th>
-                                                                            <th class="text-center" width="25%">
+                                                                            <th class="text-center" width="35%">
                                                                                 BUSINESS / AFTER HOURS</th>
-                                                                            <th class="text-center" width="25%">
+                                                                            <th class="text-center" width="28%">
                                                                                 MORE CHARGES</th>
-                                                                            <th class="text-center" width="25%">
+                                                                            <th class="text-center" width="22%">
                                                                                 FINAL PAYMENT</th>
                                                                         </tr>
                                                                     </thead>
@@ -536,7 +537,7 @@
                                                                                                     <div
                                                                                                         class="row">
                                                                                                         <div
-                                                                                                            class="col-4 mt-1">
+                                                                                                            class="col-4 mt-1" style="margin-right: 11px;">
                                                                                                             <label
                                                                                                                 class="form-label-sm">Duration:</label>
                                                                                                         </div>
@@ -646,7 +647,7 @@
                                                                                                     <div
                                                                                                         class="row">
                                                                                                         <div
-                                                                                                            class="col-4 mt-1">
+                                                                                                            class="col-4 mt-1" style="margin-right: 11px;">
                                                                                                             <label
                                                                                                                 class="form-label-sm">Duration:</label>
                                                                                                         </div>
@@ -756,7 +757,7 @@
                                                                                                     <div
                                                                                                         class="row">
                                                                                                         <div
-                                                                                                            class="col-4 mt-1">
+                                                                                                            class="col-4 mt-1" style="margin-right: 11px;">
                                                                                                             <label
                                                                                                                 class="form-label-sm">Duration:</label>
                                                                                                         </div>
@@ -1107,9 +1108,9 @@
                                                                                 @endif
                                                                             </td>
                                                                             <td class="align-middle text-center border-end-2"
-                                                                                style="padding-left: 3rem;">
+                                                                                style="padding-left: 0.75rem;">
                                                                                 <div
-                                                                                    class="d-flex justify-content-center">
+                                                                                    class="d-flex justify-content-center align-items-center">
                                                                                     <label for="total-service-payment"
                                                                                         class="me-2">Final
                                                                                         Payment :</label>
