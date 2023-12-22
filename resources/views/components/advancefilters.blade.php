@@ -1,7 +1,18 @@
-@props(['type' => '', 'hideProvider' => false, 'filterProviders' => [], 'bmanagers' => [], 'setupValues' => [], 'tags'=>[], 'isPendingInvoices' => false, 'isRemittance' => false])
+@props([
+    'type' => '',
+    'hideProvider' => false,
+    'filterProviders' => [],
+    'bmanagers' => [],
+    'setupValues' => [],
+    'tags' => [],
+    'isPendingInvoices' => false,
+    'isRemittance' => false,
+    'filterUsers' => [],
+    'bookingType' => '',
+])
 <div class="row">
     @if ($type == 'invoice-filters')
-        @if(!session()->get('isCustomer') && !session()->get('isProvider'))
+        @if (!session()->get('isCustomer') && !session()->get('isProvider'))
             <div class="col-lg-5 pe-lg-3 ">
                 <div>
                     <label class="form-label" for="company-column-1">Company</label>
@@ -42,7 +53,8 @@
         @if ($isRemittance)
             <div class="col-lg-5 pe-lg-3 mb-5">
                 <label class="form-label" for="payment-status">Payment Method</label>
-                <select wire:model='filter_payment_method' name="filter_payment_method" class="select2 form-select" id="filter_payment_method">
+                <select wire:model='filter_payment_method' name="filter_payment_method" class="select2 form-select"
+                    id="filter_payment_method">
                     <option>Select Payment Method</option>
                     <option value="1">Direct Deposit</option>
                     <option value="2">Mail a Cheque</option>
@@ -51,7 +63,8 @@
         @else
             <div class="col-lg-5 pe-lg-3 mb-5">
                 <label class="form-label" for="payment_status_filter">Payment Status</label>
-                <select wire:model='payment_status_filter' name="payment_status_filter" class="select2 form-select" id="payment_status_filter">
+                <select wire:model='payment_status_filter' name="payment_status_filter" class="select2 form-select"
+                    id="payment_status_filter">
                     <option>Select Payment Status</option>
                     <option value="0">Pending</option>
                     <option value="1">Issued</option>
@@ -67,23 +80,25 @@
             </div>
         @endif
         @if (isset($setupValues['services']))
-            <div class="col-lg-5 ps-lg-3">
-                <label class="form-label" for="service">Filter by Service</label>
-                {!! $setupValues['services']['rendered'] !!}
+            <div class="col-lg-5 ps-lg-3 ">
+                <div class="{{ session()->get('isProvider') && $bookingType == 'Unassigned' ? 'hidden' : '' }}">
+                    <label class="form-label" for="service">Filter by Service</label>
+                    {!! $setupValues['services']['rendered'] !!}
+                </div>
             </div>
         @endif
     @endif
-    @if(!$isPendingInvoices)
+    @if (!$isPendingInvoices)
 
-    <div class="col-lg-2 d-flex text-nowrap align-items-center align-self-end " style="margin-left: -10px;">
+        <div class="col-lg-2 d-flex text-nowrap align-items-center align-self-end " style="margin-left: -10px;">
 
-        <a class="btn btn-inactive dropdown-toggle rounded" data-bs-toggle="collapse" href="#collapseAdvanceFilter"
-            role="button" aria-expanded="false" aria-controls="collapseAdvanceFilter">
-            <span class="">Advance Filter</span>
-        </a>
+            <a class="btn btn-inactive dropdown-toggle rounded" data-bs-toggle="collapse" href="#collapseAdvanceFilter"
+                role="button" aria-expanded="false" aria-controls="collapseAdvanceFilter">
+                <span class="">Advance Filter</span>
+            </a>
 
 
-    </div>
+        </div>
 
 </div>
 <div class="collapse" id="collapseAdvanceFilter" wire:ignore>
@@ -94,21 +109,25 @@
                     <label class="form-label" for="set_date">Date Range</label>
                     <div class="d-flex gap-3">
                         <div class="form-check">
-                            <input wire:model="filterRadio" wire:click="applyRadiofilter('filterRadio','issued')" value="issued" class="form-check-input" type="radio" name="filter_selectedRadio" id="filterIssued">
+                            <input wire:model="filterRadio" wire:click="applyRadiofilter('filterRadio','issued')"
+                                value="issued" class="form-check-input" type="radio" name="filter_selectedRadio"
+                                id="filterIssued">
                             <label class="form-check-label" for="filterIssued">
                                 Issued
                             </label>
                         </div>
                         <div class="form-check">
-                            <input wire:model="filterRadio" wire:click="applyRadiofilter('filterRadio','due')" value="due" class="form-check-input" type="radio" name="filter_selectedRadio" id="filterDue">
+                            <input wire:model="filterRadio" wire:click="applyRadiofilter('filterRadio','due')"
+                                value="due" class="form-check-input" type="radio" name="filter_selectedRadio"
+                                id="filterDue">
                             <label class="form-check-label" for="filterDue">
                                 Due
                             </label>
                         </div>
                     </div>
                     <div class="position-relative">
-                        <input wire:model="filter_select_Date" type="" name="filter_select_Date" class="form-control js-single-date"
-                            placeholder="Select Start Date" id="filter_select_Date">
+                        <input wire:model="filter_select_Date" type="" name="filter_select_Date"
+                            class="form-control js-single-date" placeholder="Select Start Date" id="filter_select_Date">
                         <svg class="icon-date" width="20" height="20" viewBox="0 0 20 20" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -117,8 +136,8 @@
                         </svg>
                     </div>
                     <div class="position-relative mt-3">
-                        <input wire:model="filter_end_Date" type="" name="filter_end_Date" class="form-control js-single-date"
-                            placeholder="Select End Date" id="filter_end_Date">
+                        <input wire:model="filter_end_Date" type="" name="filter_end_Date"
+                            class="form-control js-single-date" placeholder="Select End Date" id="filter_end_Date">
                         <svg class="icon-date" width="20" height="20" viewBox="0 0 20 20" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -127,10 +146,11 @@
                         </svg>
                     </div>
                 </div>
-                @if(!session()->get('isCustomer'))
+                @if (!session()->get('isCustomer'))
                     <div class="col-lg-5 pe-lg-3 mb-5">
                         <label class="form-label" for="payment-status">Payment Status</label>
-                        <select wire:model='filter_payment_status' name="filter_payment_status" class="select2 form-select" id="filter_payment_status">
+                        <select wire:model='filter_payment_status' name="filter_payment_status"
+                            class="select2 form-select" id="filter_payment_status">
                             <option>Select Payment Status</option>
                             <option value="1">Issued</option>
                             <option value="2">Paid</option>
@@ -173,13 +193,10 @@
                     <div class="col-lg-5 ps-lg-3 mb-5">
                         <label class="form-label">Booking Number</label>
                         <input type="text" class="form-control" name="booking_number_filter"
-                        id="booking_number_filter" placeholder="Enter Booking Number"
-                        wire:model.defer="booking_number_filter">
+                            id="booking_number_filter" placeholder="Enter Booking Number"
+                            wire:model.defer="booking_number_filter">
                     </div>
                 @endif
-
-
-
             @else
                 @if (isset($setupValues['specializations']))
                     <div class="col-lg-5 pe-lg-3 mb-5">
@@ -195,50 +212,51 @@
                     </div>
                 @endif
                 {{-- START: update to hide company and provider filter fields from customer panel -- Maarooshaa --}}
-                @if(!session()->get('isProvider'))
-                <div class="col-lg-5 pe-lg-3 mb-5 {{ session()->get('isCustomer') ? 'hidden' : '' }}">
-                    <label class="form-label" for="OrgDeptUser">Company </span>
+                @if (!session()->get('isProvider'))
+                    <div class="col-lg-5 pe-lg-3 mb-5 {{ session()->get('isCustomer') ? 'hidden' : '' }}">
+                        <label class="form-label" for="OrgDeptUser">Company </span>
 
-                    </label>
-                    <input type="text" class="form-control" name="name_seacrh_filter" id="name_seacrh_filter"
-                        placeholder="Enter Company Name " wire:model.defer="name_seacrh_filter">
-                </div>
-                <div class="col-lg-5 ps-lg-3 mb-5 {{ $hideProvider || session()->get('isCustomer') ? 'hidden' : '' }}">
-                    <label class="form-label" for="provider_ids">Provider</label>
-                    <select wire:model.defer="provider_ids" name="provider_ids" id="provider_ids"
-                        data-placeholder="Select Provider" multiple class="select2 form-select" tabindex="">
-                        <option value=""></option>
-                        @if (isset($filterProviders))
-                            @foreach ($filterProviders as $provider)
-                                <option value="{{ $provider['id'] }}">{{ $provider['name'] }}</option>
-                            @endforeach
-                        @endif
-                    </select>
-                </div>
+                        </label>
+                        <input type="text" class="form-control" name="name_seacrh_filter" id="name_seacrh_filter"
+                            placeholder="Enter Company Name " wire:model.defer="name_seacrh_filter">
+                    </div>
+                    <div
+                        class="col-lg-5 ps-lg-3 mb-5 {{ $hideProvider || session()->get('isCustomer') ? 'hidden' : '' }}">
+                        <label class="form-label" for="provider_ids">Provider</label>
+                        <select wire:model.defer="provider_ids" name="provider_ids" id="provider_ids"
+                            data-placeholder="Select Provider" multiple class="select2 form-select" tabindex="">
+                            <option value=""></option>
+                            @if (isset($filterProviders))
+                                @foreach ($filterProviders as $provider)
+                                    <option value="{{ $provider['id'] }}">{{ $provider['name'] }}</option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
                 @endif
                 {{-- END: update to hide company and provider filter fields from customer panel -- Maarooshaa --}}
 
-                @if(!session()->get('isCustomer') && !session()->get('isProvider'))
-                <div class="col-lg-5 pe-lg-3 mb-5">
-                    <label class="form-label" for="tags">Tags
-                        {{-- <small>(coming soon)</small> --}}
-                    </label>
-                    <select wire:model.defer="tag_names" data-placeholder="Select Tags" multiple
-                        class="select2 form-select" tabindex="" id="tags_selected">
-                        <option value=""></option>
-                        @if (isset($tags))
-                            @foreach ($tags as $tag)
-                                <option value="{{ $tag->name }}">{{ $tag->name }}</option>
-                            @endforeach
-                        @endif
-                    </select>
-                </div>
+                @if (!session()->get('isCustomer') && !session()->get('isProvider'))
+                    <div class="col-lg-5 pe-lg-3 mb-5">
+                        <label class="form-label" for="tags">Tags
+                            {{-- <small>(coming soon)</small> --}}
+                        </label>
+                        <select wire:model.defer="tag_names" data-placeholder="Select Tags" multiple
+                            class="select2 form-select" tabindex="" id="tags_selected">
+                            <option value=""></option>
+                            @if (isset($tags))
+                                @foreach ($tags as $tag)
+                                    <option value="{{ $tag->name }}">{{ $tag->name }}</option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
                 @endif
-                {{-- @if(session()->get('isCustomer'))
+                @if (session()->get('isCustomer'))
                     <div class="col-lg-5 ps-lg-3 mb-5">
                         <label class="form-label" for="user_ids">Users</label>
                         <select wire:model.defer="user_ids" name="user_ids" id="user_ids"
-                            data-placeholder="Select Provider" multiple class="select2 form-select" tabindex="">
+                            data-placeholder="Select User" multiple class="select2 form-select" tabindex="">
                             <option value=""></option>
                             @if (isset($filterUsers))
                                 @foreach ($filterUsers as $user)
@@ -247,7 +265,7 @@
                             @endif
                         </select>
                     </div>
-                @endif --}}
+                @endif
                 @if (isset($setupValues['industries']))
                     <div class="col-lg-5 ps-lg-3 mb-5">
                         <label class="form-label">Industry</label>

@@ -233,6 +233,7 @@
                                                         </div>
 
 
+
                                                     </td>
                                                     <td class="align-middle text-center border-end-2">
                                                         1 hours, 2 mins
@@ -974,7 +975,76 @@
 
                                                                                     </div>
                                                                                 </div>
-                                                                                @if (key_exists('specialization_charges',$provider['service_payment_details']) && count($provider['service_payment_details']['specialization_charges']))
+                                                                                {{-- Additional Payment --}}
+                                                                                <div class="row mb-1">
+                                                                                    <div class="  mt-1">
+                                                                                        <div class="col col-12">
+                                                                                            <div class="col-12">
+                                                                                                <label
+                                                                                                    class="form-label-sm"><strong>
+                                                                                                        Additional
+                                                                                                        Payment</strong></label>
+                                                                                            </div>
+
+                                                                                        </div>
+
+                                                                                        <div class="col col-12 mt-2">
+                                                                                            <div class="d-flex ">
+                                                                                                <div class="row">
+
+                                                                                                    <div class="col-5 "
+                                                                                                        style="margin-right: -15px;">
+                                                                                                        <div
+                                                                                                            class="input-group">
+                                                                                                            <input
+                                                                                                                type="text"
+                                                                                                                name=""
+                                                                                                                class="form-control form-control-sm"
+                                                                                                                placeholder=" Label"
+                                                                                                                aria-label=" Label"
+                                                                                                                wire:model.defer="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.additional_payments.additional_label_provider">
+
+                                                                                                        </div>
+                                                                                                        {{-- <label
+                                                                                                            for="average-rate"
+                                                                                                            class="form-label-sm">{{$closeOut[$bookingService->id][$provider['provider_id']]['additional_payments']['additional_label_provider'] ? $closeOut[$bookingService->id][$provider['provider_id']]['additional_payments']['additional_label_provider'] : 'Payment'}}:</label> --}}
+                                                                                                    </div>
+                                                                                                    <div class="col-6 "
+                                                                                                        style=" width:47%;">
+                                                                                                        <div
+                                                                                                            class="input-group ">
+                                                                                                            <input
+                                                                                                                type=""
+                                                                                                                id="average-rate"
+                                                                                                                name="average-rate"
+                                                                                                                class="form-control form-control-sm  w-25%"
+                                                                                                                placeholder="$00:00"
+                                                                                                                wire:blur="updateTotal({{ $bookingService->id }},{{ $provider['provider_id'] }})"
+                                                                                                                wire:model.lazy="closeOut.{{ $bookingService->id }}.{{ $provider['provider_id'] }}.additional_payments.additional_charge_provider">
+                                                                                                            @error('closeOut.'
+                                                                                                                .
+                                                                                                                $bookingService->id
+                                                                                                                . '.' .
+                                                                                                                $provider['provider_id']
+                                                                                                                .
+                                                                                                                '.service_payment_details.expedited_rate')
+                                                                                                                <span
+                                                                                                                    class="d-inline invalid-feedback">
+                                                                                                                    {{ $message }}
+                                                                                                                </span>
+                                                                                                            @enderror
+
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+
+
+                                                                                    </div>
+                                                                                </div>
+                                                                                @if (key_exists('specialization_charges', $provider['service_payment_details']) &&
+                                                                                        count($provider['service_payment_details']['specialization_charges']))
                                                                                     <div class="row my-2">
                                                                                         <div class="  mt-1">
                                                                                             <div class="col col-12">

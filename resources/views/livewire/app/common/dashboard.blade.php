@@ -197,7 +197,8 @@
 		@livewire('app.common.map')
 	  </div>
 	  <div class="tab-pane fade" id="notifications-tab-pane" role="tabpanel" aria-labelledby="notifications-tab" tabindex="0">
-		@livewire('app.common.notifications')
+		@livewire('app.common.lists.system-logs',key(Str::random(10)))
+		{{-- @livewire('app.common.notifications') --}}
 	  </div>
 	  <div class="tab-pane fade" id="navigator-tab-pane" role="tabpanel" aria-labelledby="navigator-tab" tabindex="0">
 		@livewire('app.common.navigator')

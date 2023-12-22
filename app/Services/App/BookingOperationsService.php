@@ -1038,10 +1038,21 @@ class BookingOperationsService
         RescheduleBookingLog::create($curr_log);
 
         $message = "Booking '" . $booking->booking_number . "' rescheduled from (" . formatDateTime($curr_log['previous_start_time']) . " - " . formatDateTime($curr_log['previous_end_time']) . ") to (" . formatDateTime($curr_log['current_start_time']) . " - " . formatDateTime($curr_log['current_end_time']) . ") by " . Auth::user()->name;
+        $shiftToPending = false;
 
+        if (session()->get('isCustomer')) {
+          //check if bookings auto-approved 
+          $customer = User::where('id', Auth::id())->with('userdetail')->first()->toArray();
+          if (key_exists('user_configuration', $customer['userdetail']) && !is_null($customer['userdetail']['user_configuration'])) {
+            $configurations = json_decode($customer['userdetail']['user_configuration'], true);
+            if (!is_null($configurations) && key_exists('require_approval', $configurations) && $configurations['require_approval'] == "true") {
+              $shiftToPending = true;
+            }
+          }
+        }
 
         //  if customer and not company admin/ supervisor move booking to pending-review
-        if (session()->get('isCustomer') && (!in_array(10, session()->get('customerRoles')))) {
+        if ($shiftToPending) {
           $booking->reschedule_status = 2;
           $booking->booking_status = 0; //move booking to pending review
         } else {
@@ -1243,24 +1254,51 @@ class BookingOperationsService
         $closeOut = $service['close_out_procedure'] != null ? json_decode($service['close_out_procedure'], true) : [];
 
         // check if  Require "Check-in" for Provider to Invoice
-        if (!is_null($checkIn) && key_exists('require_provider_invoice', $checkIn) && ($checkIn['require_provider_invoice'] == true || $checkIn['require_provider_invoice'] == "true"))
-          return true;
-        // check if Require "Authorize & Close-out" for Provider Payment - fixed
-        if (!is_null($closeOut) && key_exists('provider_payment', $closeOut) && ($closeOut['provider_payment'] == true || $closeOut['provider_payment'] == "true"))
-          return true;
-        // check if Require "Authorize & Close-out" for Customer Invoicing
-        if (!is_null($closeOut) && key_exists('customer_invoice', $closeOut) && ($closeOut['customer_invoice'] == true || $closeOut['customer_invoice'] == "true"))
-          return true;
+        if (!is_null($checkIn) && key_exists('require_provider_invoice', $checkIn) && ($checkIn['require_provider_invoice'] == true || $checkIn['require_provider_invoice'] == "true")) {
+          // fetch total checked out VS total providers
+          $check =  BookingProvider::where('booking_service_id', $bService['id'])
+            ->selectRAW('SUM(CASE WHEN (booking_providers.check_in_status = 1 OR booking_providers.check_in_status = 3)  THEN 1 ELSE 0 END) AS resolved, 
+          COUNT(booking_providers.id) as total_providers')->first()->toArray();
+          $check['resolved'] = !is_null($check['resolved']) ? $check['resolved'] : 0;
+          if ($check['resolved'] != $check['total_providers'])
+            return true;
+        }
 
+
+        // check if Require "Authorize & Close-out" for Provider Payment - fixed
+        if (!is_null($closeOut) && key_exists('provider_payment', $closeOut) && ($closeOut['provider_payment'] == true || $closeOut['provider_payment'] == "true")) {
+
+          // fetch total checked out VS total providers
+          $check =  BookingProvider::where('booking_service_id', $bService['id'])
+            ->selectRAW('SUM(CASE WHEN booking_providers.check_in_status = 3 THEN 1 ELSE 0 END) AS resolved, 
+          COUNT(booking_providers.id) as total_providers')->first()->toArray();
+
+          $check['resolved'] = !is_null($check['resolved']) ? $check['resolved'] : 0;
+          if ($check['resolved'] != $check['total_providers'])
+            return true;
+        }
+        // check if Require "Authorize & Close-out" for Customer Invoicing
+        if (!is_null($closeOut) && key_exists('customer_invoice', $closeOut) && ($closeOut['customer_invoice'] == true || $closeOut['customer_invoice'] == "true")) {
+          // fetch total checked out VS total providers
+
+          $check =  BookingProvider::where('booking_service_id', $bService['id'])
+            ->selectRAW('SUM(CASE WHEN booking_providers.check_in_status = 3 THEN 1 ELSE 0 END) AS resolved, 
+          COUNT(booking_providers.id) as total_providers')->first()->toArray();
+          $check['resolved'] = !is_null($check['resolved']) ? $check['resolved'] : 0;
+          if ($check['resolved'] != $check['total_providers'])
+            return true;
+        }
         // check if time extension is NOT auto-approve
         if (!is_null($closeOut) && (!key_exists('time_extension', $closeOut) || (key_exists('time_extension', $closeOut) && ($closeOut['time_extension'] == false || $closeOut['time_extension'] == "false")))) {
           // fetch total resolved time extensions VS total providers
           $timeExtensions =  BookingProvider::where('booking_service_id', $bService['id'])
             ->selectRAW('SUM(CASE WHEN booking_providers.time_extension_status < 3 THEN 1 ELSE 0 END) AS resolved, 
           COUNT(booking_providers.id) as total_providers')->first()->toArray();
+          $timeExtensions['resolved'] = !is_null($timeExtensions['resolved']) ? $timeExtensions['resolved'] : 0;
+          if ($timeExtensions['resolved'] != $timeExtensions['total_providers'])
 
-          if ($timeExtensions['resolved'] ? $timeExtensions['resolved'] : 0 != $timeExtensions['total_providers'])
-            return true;
+            if ($timeExtensions['resolved'] != $timeExtensions['total_providers'])
+              return true;
         }
       }
     }
@@ -1331,7 +1369,7 @@ class BookingOperationsService
 
     $bookings = Booking::where(['is_closed' => 0, 'type' => 1, 'booking_status' => 1])
       ->where('status', 2)
-      ->whereDate('booking_end_at', '<=', today())->with('booking_services', 'booking_services.service')->get();
+      ->whereDate('booking_end_at', '<', today())->with('booking_services', 'booking_services.service')->get();
     foreach ($bookings as $booking) {
 
       SELF::closeActiveBooking($booking, $booking->booking_services);

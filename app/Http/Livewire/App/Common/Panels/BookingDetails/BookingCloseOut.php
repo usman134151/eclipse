@@ -93,6 +93,7 @@ class BookingCloseOut extends Component
 
         $booking_provider->admin_approved_payment_detail = $details;        //saving approved extension details
         $booking_provider->service_payment_details = $this->closeOut[$bookingServiceId][$providerId]['service_payment_details'];
+        $booking_provider->additional_payments = $this->closeOut[$bookingServiceId][$providerId]['additional_payments'];
 
         if ($booking_provider->check_in_procedure_values == null) {
             //provider has not checked in, add values from admin entered values
@@ -147,6 +148,8 @@ class BookingCloseOut extends Component
                 $closingDetails['service_payment_details']['actual_duration_hour'] = $closingDetails['actual_duration_hour'];
                 $closingDetails['service_payment_details']['actual_duration_min'] = $closingDetails['actual_duration_min'];
                 $booking_provider->service_payment_details = $closingDetails['service_payment_details'];
+                $booking_provider->additional_payments = $closingDetails['additional_payments'];
+
 
                 $details['actual_start_hour'] = $closingDetails['actual_start_hour'];
                 $details['actual_start_min'] = $closingDetails['actual_start_min'];
@@ -264,6 +267,7 @@ class BookingCloseOut extends Component
                     }
                     $this->closeOut[$bookingService->id][$provider['provider_id']]['total_amount'] = $provider['total_amount'];
                     $this->closeOut[$bookingService->id][$provider['provider_id']]['service_payment_details'] = $provider['service_payment_details'];
+                    $this->closeOut[$bookingService->id][$provider['provider_id']]['additional_payments'] = $provider['additional_payments'];
 
 
 
@@ -315,6 +319,13 @@ class BookingCloseOut extends Component
 
         $this->closeOut[$bookingServiceId][$provider_id]['total_amount'] =  number_format($subTotal + (float)($this->closeOut[$bookingServiceId][$provider_id]['service_payment_details']['expedited_rate']), 2, '.', '');
 
+
+        if (count($this->closeOut[$bookingServiceId][$provider_id]['additional_payments']) && key_exists('additional_charge_provider', $this->closeOut[$bookingServiceId][$provider_id]['additional_payments'])) {
+            //foreach ($this->providersPayment[$index]['additional_payments'] as $key => $payment) {
+            $this->closeOut[$bookingServiceId][$provider_id]['total_amount'] = (float)$this->closeOut[$bookingServiceId][$provider_id]['total_amount']
+            + (float)$this->closeOut[$bookingServiceId][$provider_id]['additional_payments']['additional_charge_provider'] ?? 0;
+            //}
+        }
         // adding specialization charges to total_amount
         if (key_exists('specialization_charges', $this->closeOut[$bookingServiceId][$provider_id]['service_payment_details'])) {
             foreach ($this->closeOut[$bookingServiceId][$provider_id]['service_payment_details']['specialization_charges'] as $key => $specialization) {

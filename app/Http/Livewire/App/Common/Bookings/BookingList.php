@@ -10,17 +10,19 @@ use App\Models\Tenant\BookingIndustry;
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\BookingServiceCharges;
 use App\Models\Tenant\BookingServices;
+use App\Models\Tenant\ProviderAccommodationServices;
 use App\Models\Tenant\SetupValue;
 use App\Models\Tenant\Tag;
 use App\Models\Tenant\User;
 use App\Models\Tenant\UserAddress;
 use App\Services\App\BookingOperationsService;
+use App\Services\App\UserService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Services\ExportDataFile;
-
+use Illuminate\Support\Facades\Session;
 
 class BookingList extends Component
 {
@@ -53,7 +55,7 @@ class BookingList extends Component
 	//adv filter variables
 	public $accommodation_search_filter = [], $booking_service_filter = [], $booking_specialization_search_filter = [], $provider_ids = [], $name_seacrh_filter = '',
 		$service_type_search_filter = [], $tag_names = [], $industry_filter = [], $booking_status_filter = null, $booking_number_filter = null;
-	public $tags = [], $filterProviders = [], $hideProvider = false;
+	public $tags = [], $filterProviders = [], $hideProvider = false,  $filterUsers, $user_ids = [];
 	public $selectedBookingIds = [], $checkout_booking_id = 0;
 
 
@@ -162,7 +164,7 @@ class BookingList extends Component
 
 				$query->where($conditions)
 					->whereRaw("'$today'  Between  DATE(booking_start_at) AND DATE(booking_end_at)")
-					->where('bookings.status','<',3) // to show partially assigned bookings to provider
+					->where('bookings.status', '<', 3) // to show partially assigned bookings to provider
 					->orderBy('booking_start_at', 'ASC');
 
 
@@ -267,17 +269,39 @@ class BookingList extends Component
 		});
 		$query->whereHas('services', function ($q) {
 			$q->where('service_categories.status', '1');
+			// if ($this->bookingType == "Unassigned" && $this->provider_id) {
+			// 	//apply check to show bookings only with provider services
+			// 	$q->whereIn('service_categories.id', function ($squery) {
+			// 		$squery->select('service_id')->from('provider_accommodation_services')->where(['user_id' => Auth::id(), 'status' => 1]);
+			// 	});
+			// }
 		});
 		if ($this->isCustomer) {
 			$customer = User::find(Auth::id());
 			$query->where('company_id', $customer->company_name);
+			$customerIds = [];
+
+			// showing all bookings for users that current user (customer) supervises
+			if ($this->bookingType == "Pending Approval") {
+				if (in_array(5, session()->get('customerRoles'))) {
+					//user is supervisor
+					$userService = new UserService;
+
+					$data = $userService->getUserRolesDetails($customer->id, 5, 0);	//fetches users who customer supervise
+					$customerIds = $data->count() ? $data->pluck('associated_user')->toArray() : [];
+				}
+			}
+			$customerIds[] = $customer->id;
+
 			// if not admin
 			if (!in_array(10, session()->get('customerRoles'))) {
 
+
+
 				//display only of booking is associated with customer 
-				$query->where(function ($g) use ($customer, $query) {
-					$g->where('customer_id', $customer->id);
-					$g->orWhere('supervisor', $customer->id);
+				$query->where(function ($g) use ($customer, $customerIds) {
+					$g->whereIn('customer_id', $customerIds);
+					$g->orWhereIn('supervisor', $customerIds);
 
 					//fetch relevent bookings where user is consumer or participant
 					$g->orWhereIn('bookings.id', function ($sc_query) use ($customer) {
@@ -287,7 +311,7 @@ class BookingList extends Component
 					});
 
 					if ($this->bookingType == "Draft")
-						$g->orWhere('user_id', $customer->id);
+						$g->orWhereIn('user_id', $customerIds);
 					else
 						$g->orWhere('billing_manager_id', 'LIKE', "%" . $customer->id . "%");
 
@@ -316,6 +340,9 @@ class BookingList extends Component
 					'bookings.*', 'bookings.status as status',
 					'booking_available_providers.status as avail_status'
 				]);
+
+
+				
 			} elseif ($this->bookingType == "Invitations") {
 				//  subquery to remove already assigned bookings
 				$query->whereNotIn('bookings.id', function ($query) {
@@ -447,6 +474,14 @@ class BookingList extends Component
 				$this->provider_ids = [];
 			else
 				$this->provider_ids = [$this->provider_id];
+
+			if($this->bookingType=="Unassigned"){
+				// match the provider’s profile to displayed bookings
+
+				$pServices = ProviderAccommodationServices::where(['user_id' => Auth::id(), 'status' => 1])->select('accommodation_id', 'service_id')->get();
+				$this->booking_service_filter = $pServices->count() ? $pServices->pluck('service_id')->toArray() : [];
+				$this->accommodation_search_filter = $pServices->count() ? $pServices->pluck('accommodation_id')->toArray() : [];
+			}
 		}
 		$serviceTypeLabels = SetupValue::where('setup_id', 5)->pluck('setup_value_label')->toArray();
 		for ($i = 0, $j = 1; $i < 4; $i++, $j++) {
@@ -464,6 +499,35 @@ class BookingList extends Component
 				'users.id',
 				'users.name',
 			])->get()->toArray();
+
+		if (Session::get('isCustomer')) {
+			// query to filter customers users 
+			$userQuery = User::where('status', 1)
+				->whereNot('id', Auth::user()->id) // Exclude the current user
+				->select(['users.id', 'users.name']);
+
+			if (Session::get('companyAdmin')) {
+				$userQuery->whereNotNull('company_name')
+					->where('company_name', Auth::user()->company_name);
+			} elseif (in_array(5, Session::get('customerRoles')) || in_array(9, Session::get('customerRoles'))) {
+				$userIds = collect(); // Initialize an empty collection
+
+				if (in_array(9, Session::get('customerRoles'))) {
+					$userIds = $userIds->merge(Booking::where('billing_manager_id', Auth::user()->id)->pluck('customer_id'));
+				}
+
+				if (in_array(5, Session::get('customerRoles'))) {
+					$userIds = $userIds->merge(Booking::where('supervisor', Auth::user()->id)->pluck('customer_id'));
+				}
+
+				$userQuery->whereIn('id', $userIds->flatten()->unique());
+			}
+
+			// Common filter for roles exclusion
+			$userQuery->whereHas('roles', fn ($query) => $query->whereNotIn('role_id', [1, 2, 3]));
+
+			$this->filterUsers = $userQuery->get()->toArray();
+		}
 		$this->dispatchBrowserEvent('refreshSelects2');
 
 
@@ -494,6 +558,10 @@ class BookingList extends Component
 			$query->whereHas('booking_provider', function ($query) use ($provider_ids) {
 				$query->whereIn('booking_providers.provider_id', $provider_ids);
 			});
+		}
+		if (count($this->user_ids)) {
+			$user_ids = $this->user_ids;
+			$query->whereIn('bookings.customer_id', $user_ids);
 		}
 		if ($this->booking_status_filter != null) {
 			$query->where('bookings.booking_status', 'LIKE', "%" . $this->booking_status_filter . "%");
@@ -561,6 +629,7 @@ class BookingList extends Component
 		$this->booking_number_filter = null;
 		$this->booking_status_filter = null;
 		$this->name_seacrh_filter = null;
+		$this->user_ids = [];
 		if (!$this->hideProvider)
 			$this->provider_ids = [];
 

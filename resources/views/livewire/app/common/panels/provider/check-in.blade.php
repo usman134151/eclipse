@@ -140,7 +140,7 @@
                                                 <select class="form-select form-select-sm"
                                                     {{ ($this->booking_provider->check_in_status == 1 || $this->booking_provider->check_in_status == 3) && !$isAdmin ? 'disabled' : '' }}
                                                     wire:model.defer="mins">
-                                                    @for ($i = 0; $i < 59; $i++)
+                                                    @for ($i = 0; $i <= 59; $i++)
                                                         <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}">
                                                             {{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</option>
                                                     @endfor

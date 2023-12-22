@@ -66,7 +66,10 @@
                 </div>
             </div>
             <x-advancefilters />
-            <div class="d-flex justify-content-between mb-2">
+
+            @livewire('app.admin.provider.remittance-invoices', ['providerId' => Auth::user()->id])
+
+            {{-- <div class="d-flex justify-content-between mb-2">
                 <div class="d-inline-flex align-items-center gap-4">
                     <label for="show_records" class="form-label">Show</label>
                     <select class="form-select" id="show_records">
@@ -574,7 +577,6 @@
                     </ul>
                 </nav>
             </div>
-            <!-- Icon Help -->
             <div class="d-flex actions gap-3 justify-content-end mb-2">
                 <div class="d-flex gap-2 align-items-center">
                     <a href="#" title="View" aria-label="View"
@@ -612,8 +614,7 @@
                         Download PDF
                     </span>
                 </div>
-            </div>
-            <!-- /Icon Help -->
+            </div> --}}
         </div>
     </div>
     @include('panels.common.assignment-details')
