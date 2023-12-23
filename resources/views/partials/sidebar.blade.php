@@ -7,7 +7,7 @@
             @if(session()->has('company_logo') && session()->get('company_logo')!=null)
               
             <span class="brand-logo">
-                  <img src="{{session()->get('company_logo')}}" alt="" style="max-width:90%"></span>
+                  <img src="{{session()->get('company_logo')}}" alt="" style="max-width:90%;max-height: 58px !important;"></span>
                 @elseif (session()->has('theme') && !session('theme'))
                 <span class="brand-logo">
                 <svg aria-label="Eclipse Scheduling Logo" height="38" viewBox="0 0 49 50" fill="none" xmlns="http://www.w3.org/2000/svg">
