@@ -22,9 +22,9 @@ class Quickbook extends Component
         $authUrl = '';
 
         //Check QB connection status
-        $chkQbAuth = Qbauthdetail::where("user_id", Auth::user()->id)->first();
+        $chkQbAuth = Qbauthdetail::count();
 
-        if($chkQbAuth == null) {
+        if ($chkQbAuth == 0) {
             //Start QB connection
             $getDomainExplode = explode('.', Request::getHost());
             $getDomainName = $getDomainExplode[0];
@@ -38,7 +38,7 @@ class Quickbook extends Component
                 'RedirectURI' => env('QBREDIRECTURI'),
                 'scope' => env('QBSCOPE'),
                 'baseUrl' => env('QBBASEURL'),
-                'state' => (string) $getDomainData->domain.'/'.$getDomainData->tenant_id
+                'state' => (string) ($getDomainData->domain . '/' . $getDomainData->tenant_id)
             ]);
             $OAuth2LoginHelper = $dataService->getOAuth2LoginHelper();
             $authUrl = $OAuth2LoginHelper->getAuthorizationCodeURL();
@@ -50,17 +50,14 @@ class Quickbook extends Component
 
     public function mount()
     {
-
-
     }
 
     function showForm()
     {
-       $this->showForm=true;
+        $this->showForm = true;
     }
     public function resetForm()
     {
-        $this->showForm=false;
+        $this->showForm = false;
     }
-
 }
