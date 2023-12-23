@@ -24,7 +24,7 @@ class NotificationService{
 
     public static function sendNotification($triggerName,$data,$triggerType=6,$authProvider=false){
         //get notification trigger 
-        return;
+        
         
         $admin            = User::find(1);
         $notificationData=NotificationTemplates::where('trigger',$triggerName)->with('notificationTemplateRoles')->orderBy('notification_type')->get()->toArray();
