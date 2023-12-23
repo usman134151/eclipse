@@ -136,7 +136,7 @@ class AssignProviders extends Component
     }
     public function refreshProviders()
     {
-        $this->providers = [];
+        $this->providers = 
         $returnCols = [
             'users.id',
             'users.name',
@@ -524,7 +524,7 @@ class AssignProviders extends Component
         $this->bookingTags = $this->booking->tags ? json_decode($this->booking->tags) : [];
         $booking_service = $this->booking->booking_services->where('services', $this->service_id)->first();
         $this->serviceData = $this->booking->services->where('id', $this->service_id)->first();
-        dd($this->serviceData);
+
         if (is_null($booking_service))
             $booking_service = $this->booking->booking_services->first();
 
