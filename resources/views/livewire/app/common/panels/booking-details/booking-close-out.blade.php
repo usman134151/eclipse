@@ -233,7 +233,10 @@
 
                                                     </td>
                                                     <td class="align-middle text-center border-end-2">
-                                                        1 hours, 2 mins
+                                                    {{ $bookingService['service_details'] ? $bookingService['service_details']['total_duration']['hours'] : '0' }}
+                                            Hours,
+                                            {{ $bookingService['service_details'] ? $bookingService['service_details']['total_duration']['mins'] : '0' }}
+                                            mins
                                                     </td>
                                                     <td class="align-middle text-center border-end-2">
                                                         {{ isset($closeOut[$bookingService->id][$provider['provider_id']]['total_amount']) ? numberFormat($closeOut[$bookingService->id][$provider['provider_id']]['total_amount']) : 'N/A' }}

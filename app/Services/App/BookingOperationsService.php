@@ -407,10 +407,10 @@ class BookingOperationsService
 
     if (!is_null($duration) && ($duration['days'] == 0 &&  $duration['hours'] < 24)) {
       //single day booking 
-
+   
       foreach ($schedule->timeslots as $timeSlot) {
 
-        if ($timeSlot->timeslot_day == $startDayOfWeek && $timeSlot->timeslot_type == 1) {
+        if ($timeSlot->timeslot_day == $startDayOfWeek && $timeSlot->timeslot_type == 1  && $service['business_hours']==0) {
 
           // Check if the duration falls between business hours
           $slotStart = Carbon::parse($timeSlot['timeslot_start_time'])->format('H:i:s');
@@ -432,7 +432,7 @@ class BookingOperationsService
 
           if ($overlapEnd > $overlapStart) {
 
-
+          
             // Calculate the duration of the overlapping period in hours and minutes
             $overlapInterval = $overlapEnd->diff($overlapStart);
             $service['business_hours'] += $overlapInterval->h;
@@ -460,6 +460,7 @@ class BookingOperationsService
           }
         }
       }
+    
     } else {
 
       $days = SELF::getDaysInBetween($startDayOfWeek, $endDayOfWeek);
