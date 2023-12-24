@@ -19,7 +19,7 @@
                                     <div class="row">
                                         <div class="col-md-12 m-4">
                                             {{-- <button class="btn btn-primary">Connect to Quickbooks</button>  --}}
-                                            @if ($chkQbAuth)
+                                            @if ($chkQbAuth > 0)
                                                 <h2 class="">Your QuickBooks Integration is already done.</h2>
                                             @else
                                                 <h2 class="">Connect QB's Company</h2>

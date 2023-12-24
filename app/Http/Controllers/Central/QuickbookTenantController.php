@@ -11,7 +11,8 @@ use QuickBooksOnline\API\DataService\DataService;
 class QuickbookTenantController extends Controller
 {
 
-    function quickbooks(Request $request) {
+    function quickbooks(Request $request)
+    {
         // Start QB data store in qbauthdetails table
         $explodeState = explode('/', $request->state);
         $domain = $explodeState[0];
@@ -33,9 +34,9 @@ class QuickbookTenantController extends Controller
             'refresh_token' => $accessToken->getRefreshToken(),
             'realm_id' => $request->realmId,
         ];
-        Config::set('database.connections.business.database', 'tenant'.$tenantId);
+        Config::set('database.connections.business.database', 'tenant' . $tenantId);
         DB::connection('business')->table('qbauthdetails')->insert($qbData);
         // End QB data store in qbauthdetails table
-        return redirect()->away('https://' . $domain . '.' . Config::get('app.url') . '/admin/quickbook-connect');
+        return redirect()->away('https://' . $domain . '.' . env('CENTRAL_DOMAIN') . '/admin/quickbook-connect');
     }
 }
