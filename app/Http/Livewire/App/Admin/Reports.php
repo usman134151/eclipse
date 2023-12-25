@@ -61,7 +61,7 @@ class Reports extends Component
             ->orderByDesc('service_count')
             ->pluck('service_count', 'service_category');
 
-        $topServices = ServiceCategory::whereIn('id', $serviceCounts->keys())->pluck('name');
+        $topServices = ServiceCategory::whereIn('id', $serviceCounts->keys())->where('status',1)->pluck('name');
 
         return $topServices;
     }
