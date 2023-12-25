@@ -120,7 +120,7 @@
 	                                <div class="col-lg-6 mb-4 text-center">
 	                                    <div class="text-center">
 	                                        <label class="form-label">Revenue by Company</label>
-	                                        <div class="text-muted text-sm mb-2">$29,488.01</div>
+	                                        <div class="text-muted text-sm mb-2">{{formatPayment($totalInvoiceRevenue)}}</div>
 	                                    </div>
 	                                    <div class="mb-4">
 	                                        <canvas id="RevenueByCompanyChart" style="width:100%;max-width:700px"></canvas>
