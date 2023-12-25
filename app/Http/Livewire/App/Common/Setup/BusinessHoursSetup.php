@@ -214,6 +214,7 @@ class BusinessHoursSetup extends Component
         else    
             $this->timeslot=['timeslot_type'=>2,'timeslot_day'=>'Monday','timeslot_end_min'=>'00','timeslot_start_hour'=>"9",'timeslot_start_min'=>'00','timeslot_end_hour'=>"18"];
       $this->timeslots=ScheduleService::getSlots($this->schedule->id,$this->schedule->time_format);
+      $this->sortSlots();
     }
     public function deleteSlot($timeslotId)
     {
@@ -304,6 +305,20 @@ class BusinessHoursSetup extends Component
     }
 
 
+    public function sortSlots()
+    {
+        $businessHours = $this->timeslots['business_hours'];
+
+        // Custom sorting function based on 'start_time'
+        usort($businessHours, function ($a, $b) {
+            $timeA = strtotime($a['start_time']);
+            $timeB = strtotime($b['start_time']);
+
+            return $timeA <=> $timeB; // Comparison for ascending order
+        });
+
+        $this->timeslots['business_hours'] = $businessHours;
+    }
     
 
 }
