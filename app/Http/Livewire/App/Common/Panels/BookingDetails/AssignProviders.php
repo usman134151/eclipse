@@ -597,7 +597,8 @@ class AssignProviders extends Component
                 if (isset($booking_service['service_calculations']['day_rate']) && $booking_service['service_calculations']['day_rate'] == true) {
                     // dd($booking_service['service_calculations']['total_duration']);
                     $this->durationLabel = 'day(s)';
-                    $this->durationTotal = $booking_service['service_calculations']['total_duration']['days'] + ($booking_service['service_calculations']['total_duration']['hours'] / 24) + ($booking_service['service_calculations']['total_duration']['mins'] / 24 / 60);
+                    // round off total days if days <= then display 1 etc -- Maarooshaa 25/12/2023 
+                    $this->durationTotal = ceil($booking_service['service_calculations']['total_duration']['days'] + ($booking_service['service_calculations']['total_duration']['hours'] / 24) + ($booking_service['service_calculations']['total_duration']['mins'] / 24 / 60));
                     $this->b_hours_duration = 0;
                     $this->a_hours_duration = 0;
                 } elseif ($this->serviceData['rate_status'] == 4) {
