@@ -1289,7 +1289,6 @@
     <h2>Booking Services</h2>
     <div class="row mb-5">
 
-
         @foreach ($services as $index => $service)
             <div class="row border-bottom pb-4 mt-3">
                 <h3>Services {{ $index + 1 }} - {{ $service['service_data']['name'] }}</h3>
