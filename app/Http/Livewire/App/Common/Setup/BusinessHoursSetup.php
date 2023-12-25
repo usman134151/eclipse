@@ -209,7 +209,7 @@ class BusinessHoursSetup extends Component
             $this->timeslot_end_type = 'pm';
         }
         else
-            $this->timeslot=['timeslot_type'=>2,'timeslot_day'=>'Monday','timeslot_end_min'=>'00','timeslot_start_hour'=>"9",'timeslot_start_min'=>'00','timeslot_end_hour'=>"18"];
+            $this->timeslot=['timeslot_type'=>1,'timeslot_day'=>'Monday','timeslot_end_min'=>'00','timeslot_start_hour'=>"9",'timeslot_start_min'=>'00','timeslot_end_hour'=>"18"];
             
     }
 
@@ -217,7 +217,7 @@ class BusinessHoursSetup extends Component
     {
         $startHour = $this->timeslot['timeslot_start_hour'];
         $startType = $this->timeslot_start_type;
-    
+        $timeslotType = $this->timeslot['timeslot_type'] != null ? $this->timeslot['timeslot_type'] : 1;
         $endHour = $this->timeslot['timeslot_end_hour'];
         $endType = $this->timeslot_end_type;
        
@@ -226,7 +226,7 @@ class BusinessHoursSetup extends Component
             $this->timeslot_start_type = ($startHour >= 12) ? 'pm' : 'am'; 
             $hour12end = ($endHour % 12 === 0) ? 12 : $endHour % 12;
             $this->timeslot_end_type = ($endHour >= 12) ? 'pm' : 'am'; 
-            $this->timeslot=['timeslot_type'=>2,'timeslot_day'=>'Monday','timeslot_end_min'=>'00','timeslot_start_hour'=>$hour12start,'timeslot_start_min'=>'00','timeslot_end_hour'=>$hour12end];
+            $this->timeslot=['timeslot_type'=>$timeslotType,'timeslot_day'=>'Monday','timeslot_end_min'=>'00','timeslot_start_hour'=>$hour12start,'timeslot_start_min'=>'00','timeslot_end_hour'=>$hour12end];
         }        
         else {
             if (strtolower($startType) === 'pm') {
@@ -235,10 +235,11 @@ class BusinessHoursSetup extends Component
             if (strtolower($endType) === 'pm') {
                 $endHour = ($endHour % 12) + 12;
             }
-            $this->timeslot=['timeslot_type'=>2,'timeslot_day'=>'Monday','timeslot_end_min'=>'00','timeslot_start_hour'=>$startHour,'timeslot_start_min'=>'00','timeslot_end_hour'=>$endHour];
+            $this->timeslot=['timeslot_type'=>$timeslotType,'timeslot_day'=>'Monday','timeslot_end_min'=>'00','timeslot_start_hour'=>$startHour,'timeslot_start_min'=>'00','timeslot_end_hour'=>$endHour];
         }    
       $this->timeslots=ScheduleService::getSlots($this->schedule->id,$this->schedule->time_format);
-      $this->sortSlots();
+      $this->timeslots['business_hours'] = $this->sortSlots($this->timeslots['business_hours']);
+      $this->timeslots['after_business_hours'] = $this->sortSlots($this->timeslots['after_business_hours']);
     }
     public function deleteSlot($timeslotId)
     {
@@ -329,20 +330,15 @@ class BusinessHoursSetup extends Component
     }
 
 
-    public function sortSlots()
+    public function sortSlots($hours)
     {
-        $businessHours = $this->timeslots['business_hours'];
-
-        // Custom sorting function based on 'start_time'
-        usort($businessHours, function ($a, $b) {
+        usort($hours, function ($a, $b) {
             $timeA = strtotime($a['start_time']);
             $timeB = strtotime($b['start_time']);
 
             return $timeA <=> $timeB; // Comparison for ascending order
         });
 
-        $this->timeslots['business_hours'] = $businessHours;
+        return $hours;
     }
-    
-
 }
