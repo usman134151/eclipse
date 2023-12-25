@@ -14,6 +14,8 @@ class Reports extends Component
 {
     public $showForm, $topProviders, $topServices, $topInvoices, $totalInvoiceRevenue;
     protected $listeners = ['showList' => 'resetForm'];
+    public $companyLabeldata= [];
+    public $companydata= [];
 
     public function render()
     {
@@ -25,6 +27,8 @@ class Reports extends Component
         $this->topInvoices = $this->getTopInvoices();
         $this->topProviders = $this->getTopProviders();
         $this->topServices = $this->getTopServices();
+        
+        $this->getCompanyGraphData();
     }
 
     public function getTopProviders()
@@ -51,7 +55,7 @@ class Reports extends Component
     }
 
     public function getTopServices()
-    {
+    { // services with most bookings
         $serviceCounts = Booking::selectRaw('service_category, COUNT(*) as service_count')
             ->groupBy('service_category')
             ->orderByDesc('service_count')
@@ -88,6 +92,24 @@ class Reports extends Component
 
 
         return $companiesWithInvoices;
+    }
+
+    public function getCompanyGraphData()
+    {
+        $this->companyLabeldata = collect($this->topInvoices)->take(4)->pluck('name')->toArray();
+        $this->companydata = collect($this->topInvoices)->take(4)->pluck('invoices_total')->toArray();
+        // Calculate contribution percentages for each data point
+        $total = array_sum($this->companydata);
+        $percentages = array_map(function ($data) use ($total) {
+            return number_format(($data / $total) * 100, 2) . '%';
+        }, $this->companydata);
+
+        // Concatenate company labels with percentages
+        $labelsWithPercentages = array_map(function ($label, $percentage) {
+            return $label . ' ' . $percentage;
+        }, $this->companyLabeldata, $percentages);
+
+        $this->companyLabeldata = $labelsWithPercentages;
     }
 
     function showForm()

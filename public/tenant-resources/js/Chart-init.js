@@ -3,15 +3,15 @@
 const RevenueByCompanyChart = new Chart("RevenueByCompanyChart", {
   type: "doughnut",
   data : {
-  labels: [
-    'Microsoft Inc 72%',
-    'Ministry of Education 14%',
-    'LA Hospital 28%',
-    'Adobe Cooperative 36%',
-  ],
+  // labels: [
+  //   'Microsoft Inc 72%',
+  //   'Ministry of Education 14%',
+  //   'LA Hospital 28%',
+  //   'Adobe Cooperative 36%',
+  // ],
   datasets: [{
     label: 'My First Dataset',
-    data: [72, 14, 28, 36],
+    // data: [72, 14, 28, 36],
     backgroundColor: [
       'rgb(10, 30, 70)',
       'rgb(136, 133, 117)',

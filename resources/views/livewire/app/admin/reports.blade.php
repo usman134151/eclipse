@@ -779,3 +779,27 @@
 
 <script src="/tenant-resources/js/Chart.js"></script>
 <script src="/tenant-resources/js/Chart-init.js"></script>
+@push('scripts')
+<script>
+	function updateCharts() {
+		updateCompanyChart();
+	}
+	// Function to update chart data and labels
+	function updateCompanyChart() {
+    // New data and labels
+    const newLabels = @json($companyLabeldata);  
+    const newData = @json($companydata);
+  
+    // Update chart data and labels
+    RevenueByCompanyChart.data.labels = newLabels;
+    RevenueByCompanyChart.data.datasets[0].data = newData;
+  
+    // Finally, update the chart
+    RevenueByCompanyChart.update();
+  }
+
+  // Call the updateCharts function to update the chart data and labels
+  updateCharts();
+</script>
+@endpush
+	
