@@ -96,14 +96,16 @@ class BookingOperationsService
           unset($service['service_data']); // Remove the 'service_data' column
         }
 
-        $service['updated_at'] = now();
+        $service['updated_at'] = date('Y-m-d H:i:s');
+        $service['created_at'] = date('Y-m-d H:i:s');
         BookingServices::where('id', $service['id'])
           ->update($service);
         // Now you can add 'service_data' back to the array
         if ($serviceData != '')
           $service['service_data'] = $serviceData;
       } else {
-        $service['created_at'] = now();
+        $service['created_at'] = date('Y-m-d H:i:s');
+      
         BookingServices::updateOrCreate(
           ['booking_id' => $booking->id, 'services' => $service['services']],
           $service

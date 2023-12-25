@@ -668,7 +668,7 @@
                                                                 <input type="" name=""
                                                                     class="form-control mb-2  js-form-input-manual-entry mt-2"
                                                                     placeholder="Enter Service Consumer(s)"
-                                                                    wire:model="services.{{ $index }}.service_consumer_manual">
+                                                                    wire:model.defer="services.{{ $index }}.service_consumer_manual">
                                                             @else
                                                                 <select id="service_consumer_{{ $index }}"
                                                                     name="service_consumer_{{ $index }}"
