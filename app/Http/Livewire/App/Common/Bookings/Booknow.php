@@ -495,7 +495,7 @@ class Booknow extends Component
                 callLogs($this->booking->id, "Booking", "Create", $message);
             }
 
-            return redirect()->to($base . '/bookings/view-booking/' . encrypt($this->booking->id));
+            // return redirect()->to($base . '/bookings/view-booking/' . encrypt($this->booking->id));
         }
 
         if ($redirect) {
@@ -1248,6 +1248,8 @@ class Booknow extends Component
     public function assignServiceProviders($service_id)
     {
 
+        if ($this->panelType == 1 && !$this->isEdit)      // save assignment service-calculations before assigning a provider -- Maarooshaa 
+            $this->save(0, 1, 3);
         $this->booking_id = $this->booking->id;
         $this->currentServiceId = $service_id;
         $this->emit('reMount', $service_id, $this->panelType);
