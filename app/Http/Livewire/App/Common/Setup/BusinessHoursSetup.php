@@ -216,9 +216,12 @@ class BusinessHoursSetup extends Component
     public function refreshSlots()
     {
         $startHour = $this->timeslot['timeslot_start_hour'];
+        $startMin = $this->timeslot['timeslot_start_min'];
         $startType = $this->timeslot_start_type;
         $timeslotType = $this->timeslot['timeslot_type'] != null ? $this->timeslot['timeslot_type'] : 1;
+        $timeslotDay = $this->timeslot['timeslot_day'] != null ? $this->timeslot['timeslot_day'] : 'Monday';
         $endHour = $this->timeslot['timeslot_end_hour'];
+        $endMin = $this->timeslot['timeslot_end_min'];
         $endType = $this->timeslot_end_type;
        
         if($this->schedule->time_format == 1) {
@@ -226,7 +229,7 @@ class BusinessHoursSetup extends Component
             $this->timeslot_start_type = ($startHour >= 12) ? 'pm' : 'am'; 
             $hour12end = ($endHour % 12 === 0) ? 12 : $endHour % 12;
             $this->timeslot_end_type = ($endHour >= 12) ? 'pm' : 'am'; 
-            $this->timeslot=['timeslot_type'=>$timeslotType,'timeslot_day'=>'Monday','timeslot_end_min'=>'00','timeslot_start_hour'=>$hour12start,'timeslot_start_min'=>'00','timeslot_end_hour'=>$hour12end];
+            $this->timeslot=['timeslot_type'=>$timeslotType,'timeslot_day'=>$timeslotDay,'timeslot_end_min'=>$endMin,'timeslot_start_hour'=>$hour12start,'timeslot_start_min'=>$startMin,'timeslot_end_hour'=>$hour12end];
         }        
         else {
             if (strtolower($startType) === 'pm') {
@@ -235,7 +238,7 @@ class BusinessHoursSetup extends Component
             if (strtolower($endType) === 'pm') {
                 $endHour = ($endHour % 12) + 12;
             }
-            $this->timeslot=['timeslot_type'=>$timeslotType,'timeslot_day'=>'Monday','timeslot_end_min'=>'00','timeslot_start_hour'=>$startHour,'timeslot_start_min'=>'00','timeslot_end_hour'=>$endHour];
+            $this->timeslot=['timeslot_type'=>$timeslotType,'timeslot_day'=>$timeslotDay,'timeslot_end_min'=>$endMin,'timeslot_start_hour'=>$startHour,'timeslot_start_min'=>$startMin,'timeslot_end_hour'=>$endHour];
         }    
       $this->timeslots=ScheduleService::getSlots($this->schedule->id,$this->schedule->time_format);
       $this->timeslots['business_hours'] = $this->sortSlots($this->timeslots['business_hours']);
