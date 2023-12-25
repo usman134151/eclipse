@@ -62,8 +62,18 @@ class Reports extends Component
             ->pluck('service_count', 'service_category');
 
         $topServices = ServiceCategory::whereIn('id', $serviceCounts->keys())->where('status',1)->pluck('name');
-
-        return $topServices;
+        
+        $servicesWithBookingCount = $serviceCounts->map(function ($count, $serviceCategory) use ($topServices) {
+            $serviceName = $topServices->get($serviceCategory); // Get service name for the current service category
+            if($serviceName) {
+                return [
+                    'name' => $serviceName,
+                    'booking_count' => $count // Assign the booking count for the current service category
+                ];
+            }
+        })->filter();
+            
+        return $servicesWithBookingCount;
     }
 
     public function getTopInvoices()

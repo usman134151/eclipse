@@ -260,12 +260,18 @@
 	                            </div>
 	                            <div class="overflow-y-auto px-3 max-h-17rem">
 	                                <div class="row">
+										<div class="col-md-6 mb-2">
+											<div class="fw-semibold text-sm">Services</div>
+										</div>
+										<div class="col-md-6 mb-2">
+											<div class="fw-semibold text-sm text-lg-end">No. of Bookings</div>
+										</div>
 	                                   @forelse ($topServices as $topService)
 									   		<div class="col-md-6 mb-2">
-												<div class="text-sm">{{$topService}}</div>
+												<div class="text-sm">{{$topService['name']}}</div>
 											</div>
 											<div class="col-md-6 mb-2">
-												<div class="text-sm text-lg-end">$695,571.29</div>
+												<div class="text-sm text-lg-end">{{$topService['booking_count']}}</div>
 											</div>
 											<div class="col-lg-12">
 												<hr class="mt-0 mb-2">
@@ -273,12 +279,6 @@
 									   @empty
 										No Record Available
 									   @endforelse
-									   	<div class="col-md-6 mb-2">
-	                                    	<div class="fw-semibold text-sm">Total Payments</div>
-	                                	</div>
-	                                	<div class="col-md-6 mb-2">
-	                                    	<div class="fw-semibold text-sm text-lg-end">-$45,224.46</div>
-	                                	</div>
 	                                </div>
 	                            </div>
 	                            <a href="" class="btn btn-primary w-100">View Detail</a>
@@ -392,7 +392,12 @@
 	                                <canvas id="jsChartInvoice" style="width:100%;"></canvas>
 	                            </div>
 	                            <div class="row">
-	                                
+	                                <div class="col-md-6 mb-2">
+	                                    <div class="fw-semibold text-sm">Companies</div>
+	                                </div>
+	                                <div class="col-md-6 mb-2">
+	                                    <div class="fw-semibold text-sm text-lg-end">Revenue</div>
+	                                </div>
 									@forelse ($topInvoices as $topInvoice)
 										<div class="col-md-6 mb-2">
 	                                	    <div class="text-sm">{{$topInvoice['name']}}</div>
