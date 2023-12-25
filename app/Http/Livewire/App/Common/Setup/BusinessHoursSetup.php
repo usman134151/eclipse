@@ -208,6 +208,11 @@ class BusinessHoursSetup extends Component
 
     public function refreshSlots()
     {
+        // dd($this->schedule->time_format);
+        if($this->schedule->time_format == 1)
+            $this->timeslot=['timeslot_type'=>1,'timeslot_day'=>'Monday','timeslot_end_min'=>'00','timeslot_start_hour'=>"9",'timeslot_start_min'=>'00','timeslot_end_hour'=>"6"];
+        else    
+            $this->timeslot=['timeslot_type'=>2,'timeslot_day'=>'Monday','timeslot_end_min'=>'00','timeslot_start_hour'=>"9",'timeslot_start_min'=>'00','timeslot_end_hour'=>"18"];
       $this->timeslots=ScheduleService::getSlots($this->schedule->id,$this->schedule->time_format);
     }
     public function deleteSlot($timeslotId)
