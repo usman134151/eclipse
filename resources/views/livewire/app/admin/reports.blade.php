@@ -647,14 +647,20 @@
 	                                <canvas id="jsChartTopProviders" style="width:100%;"></canvas>
 	                            </div>
 	                            <div class="row">
+									<div class="col-md-6 mb-2">
+	                                    <div class="fw-semibold text-sm">Providers</div>
+	                                </div>
+	                                <div class="col-md-6 mb-2">
+	                                    <div class="fw-semibold text-sm text-lg-end">No. of Closed Bookings</div>
+	                                </div>
 									@if($topProviders != null)
 									@forelse ($topProviders as $topProvider)
 										<div class="col-md-6 mb-2">
-	                                	    <div class="text-sm">{{$topProvider}}</div>
+	                                	    <div class="text-sm">{{$topProvider['name']}}</div>
 
 	                                	</div>
 	                                	<div class="col-md-6 mb-2">
-	                                	    <div class="text-sm text-lg-end">$695,571.29</div>
+	                                	    <div class="text-sm text-lg-end">{{$topProvider['closed_bookings_count']}}</div>
 	                                	</div>
 	                                	<div class="col-lg-12">
 	                                	    <hr class="mt-0 mb-2">
@@ -663,12 +669,6 @@
 										No Data Available
 									@endforelse
 									@endif
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="fw-semibold text-sm">Total Payments</div>
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="fw-semibold text-sm text-lg-end">-$45,224.46</div>
-	                                </div>
 	                            </div>
 	                            {{-- <a href="" class="btn btn-primary w-100">View Detail</a> --}}
 	                        </div>

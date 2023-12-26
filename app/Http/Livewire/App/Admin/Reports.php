@@ -48,18 +48,22 @@ class Reports extends Component
             ->groupBy('provider_id')
             ->selectRaw('provider_id, count(*) as closed_bookings_count')
             ->orderByDesc('closed_bookings_count')
+            ->take(5)
             ->pluck('closed_bookings_count', 'provider_id');
 
-        // $topProviders = User::whereIn('id', $providerClosedBookingsCount->keys())->pluck('name', 'id');
-        $topProviders = User::whereIn('id', $providerClosedBookingsCount->keys())->pluck('name');
+        $topProviders = User::whereIn('id', $providerClosedBookingsCount->keys())->pluck('name', 'id');
 
         // Merge the closed bookings count with user names
-        // $providersWithCount = $topProviders->map(function ($name, $id) use ($providerClosedBookingsCount) {
-        //     $count = $providerClosedBookingsCount->get($id);
-        //     return ['name' => $name, 'closed_bookings_count' => $count];
-        // });
+        $providersWithCount = $topProviders->map(function ($name, $id) use ($providerClosedBookingsCount) {
+            $count = $providerClosedBookingsCount->get($id);
+            return ['name' => $name, 'closed_bookings_count' => $count];
+        })->toArray();
 
-        return $topProviders;
+        usort($providersWithCount, function ($a, $b) {
+            return $b['closed_bookings_count'] <=> $a['closed_bookings_count'];
+        });
+
+        return $providersWithCount;
     }
 
     public function getTopServices()
