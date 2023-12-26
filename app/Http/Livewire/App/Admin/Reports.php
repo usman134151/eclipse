@@ -13,7 +13,7 @@ use Livewire\Component;
 
 class Reports extends Component
 {
-    public $startDate , $endDate;
+    public $date;
     public $showForm, $topProviders, $topServices, $topInvoices, $totalInvoiceRevenue;
     protected $listeners = ['showList' => 'resetForm'];
     public $companyLabeldata= [];
@@ -27,6 +27,7 @@ class Reports extends Component
 
     public function mount()
     {
+        $this->getDateRange('last_30_days');
         $this->topInvoices = $this->getTopInvoices();
         $this->topProviders = $this->getTopProviders();
         $this->topServices = $this->getTopServices();
@@ -155,12 +156,12 @@ class Reports extends Component
                 break;
         }
 
-        return [
+        $this->date = [
             'start_date' => $startDate ? $startDate->toDateString() : null,
             'end_date' => $endDate ? $endDate->toDateString() : null,
         ];
     }
-    
+
     function showForm()
     {
         $this->showForm = true;

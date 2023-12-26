@@ -58,32 +58,32 @@
 	                                                <div class="text-lg fw-light">To:</div>
 	                                            </div>
 	                                            <div class="d-flex flex-column gap-3">
-	                                                <div class="text-lg fw-semibold">01 Aug, 2022</div>
-	                                                <div class="text-lg fw-semibold">10 Aug, 2022</div>
+	                                                <div class="text-lg fw-semibold">{{formatDateNew($date['start_date'])}}</div>
+	                                                <div class="text-lg fw-semibold">{{formatDateNew($date['end_date'])}}</div>
 	                                            </div>
 	                                        </div>
 	                                    </div>
 	                                    <div class="col-2 d-flex flex-column gap-4 align-self-center mb-4">
-	                                        <button class="btn btn-primary w-100" style="font-size:15px;">
+	                                        <button wire:click="getDateRange('last_7_days')" class="btn btn-primary w-100" style="font-size:15px;">
 	                                        Last 7 Days
 	                                        </button>
-	                                        <button class="btn btn-primary w-100" style="font-size:15px;">
+	                                        <button wire:click="getDateRange('last_month')" class="btn btn-primary w-100" style="font-size:15px;">
 	                                        Last Month
 	                                        </button>
 	                                    </div>
 	                                    <div class="col-2 d-flex flex-column gap-4 align-self-center mb-4">
-	                                        <button class="btn btn-primary w-100" style="font-size:15px;">
+	                                        <button wire:click="getDateRange('last_30_days')" class="btn btn-primary w-100" style="font-size:15px;">
 	                                        Last 30 Days
 	                                        </button>
-	                                        <button class="btn btn-primary w-100" style="font-size:15px;">
+	                                        <button wire:click="getDateRange('this_year')" class="btn btn-primary w-100" style="font-size:15px;">
 	                                        This Year
 	                                        </button>
 	                                    </div>
 	                                    <div class="col-2 d-flex flex-column gap-4 align-self-center mb-4" >
-	                                        <button class="btn btn-primary w-100" style="font-size:15px;">
+	                                        <button wire:click="getDateRange('this_month')" class="btn btn-primary w-100" style="font-size:15px;">
 	                                        This Month
 	                                        </button>
-	                                        <button class="btn btn-primary w-100" style="font-size:15px;">
+	                                        <button wire:click="getDateRange('last_year')" class="btn btn-primary w-100" style="font-size:15px;">
 	                                        Last Year
 	                                        </button>
 	                                    </div>
