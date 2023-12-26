@@ -6,6 +6,7 @@ use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\Company;
 use App\Models\Tenant\Invoice;
+use App\Models\Tenant\InvoicePayment;
 use App\Models\Tenant\ServiceCategory;
 use App\Models\Tenant\User;
 use Carbon\Carbon;
@@ -14,25 +15,27 @@ use Livewire\Component;
 class Reports extends Component
 {
     public $date;
-    public $showForm, $topProviders, $topServices, $topInvoices, $totalInvoiceRevenue;
+    public $showForm, $topProviders, $topServices, $topInvoices, $totalInvoiceRevenue, $revenues, $totalRevenue;
     protected $listeners = ['showList' => 'resetForm'];
-    public $companyLabeldata= [];
-    public $companydata= [];
-    
+    public $companyLabeldata = [];
+    public $companydata = [];
+
 
     public function render()
     {
+        $this->revenues = $this->getRevenue();
+        $this->topInvoices = $this->getTopInvoices();
+        $this->topProviders = $this->getTopProviders();
+        $this->topServices = $this->getTopServices();
+
+        $this->getCompanyGraphData();
+
         return view('livewire.app.admin.reports');
     }
 
     public function mount()
     {
         $this->getDateRange('last_30_days');
-        $this->topInvoices = $this->getTopInvoices();
-        $this->topProviders = $this->getTopProviders();
-        $this->topServices = $this->getTopServices();
-        
-        $this->getCompanyGraphData();
     }
 
     public function getTopProviders()
@@ -76,7 +79,7 @@ class Reports extends Component
                 ];
             }
         })->filter();
-            
+
         return $servicesWithBookingCount;
     }
 
@@ -124,6 +127,32 @@ class Reports extends Component
         }, $this->companyLabeldata, $percentages);
 
         $this->companyLabeldata = $labelsWithPercentages;
+    }
+
+
+    public function getRevenue()
+    {
+        // converted dates according to invoice payments table format
+        $startDate = Carbon::createFromFormat('Y-m-d', $this->date['start_date'])->format('m/d/Y');
+        $endDate = Carbon::createFromFormat('Y-m-d', $this->date['end_date'])->format('m/d/Y');
+
+        // getting amount paid based on date
+        $payments = InvoicePayment::select('paid_date')
+            ->selectRaw('SUM(paid_amount) as total_paid_amount')
+            ->where('paid_date', '>=', $startDate)
+            ->where('paid_date', '<=', $endDate)
+            ->groupBy('paid_date')
+            ->orderByDesc('paid_date')
+            ->take(5)
+            ->get()
+            ->toArray();
+        
+        // Extract 'total_paid_amount' values into a separate array
+        $totalPaidAmounts = array_column($payments, 'total_paid_amount');
+
+        // Calculate the sum of 'total_paid_amount' values
+        $this->totalRevenue = array_sum($totalPaidAmounts);
+        return $payments;
     }
 
     function getDateRange($range)
