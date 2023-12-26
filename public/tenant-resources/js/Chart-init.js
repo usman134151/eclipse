@@ -16,6 +16,7 @@ const RevenueByCompanyChart = new Chart("RevenueByCompanyChart", {
       'rgb(10, 30, 70)',
       'rgb(136, 133, 117)',
       'rgb(229, 179, 47)',
+      'rgb(191, 64, 64)',
       'rgb(21, 151, 79)'
     ],
     hoverOffset: 0
@@ -41,14 +42,16 @@ const RevenueByServices = new Chart("RevenueByServices", {
     'Ministry of Education 14%',
     'LA Hospital 28%',
     'Adobe Cooperative 36%',
+    'Meta 16%',
   ],
   datasets: [{
     label: 'My First Dataset',
-    data: [72, 14, 28, 36],
+    data: [72, 14, 28, 36, 16],
     backgroundColor: [
       'rgb(10, 30, 70)',
       'rgb(136, 133, 117)',
       'rgb(229, 179, 47)',
+      'rgb(191, 64, 64)',
       'rgb(21, 151, 79)'
     ],
     hoverOffset: 0

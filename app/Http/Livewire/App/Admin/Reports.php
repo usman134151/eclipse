@@ -118,8 +118,8 @@ class Reports extends Component
 
     public function getCompanyGraphData()
     {
-        $this->companyLabeldata = collect($this->topInvoices)->take(4)->pluck('name')->toArray();
-        $this->companydata = collect($this->topInvoices)->take(4)->pluck('invoices_total')->toArray();
+        $this->companyLabeldata = collect($this->topInvoices)->take(5)->pluck('name')->toArray();
+        $this->companydata = collect($this->topInvoices)->take(5)->pluck('invoices_total')->toArray();
         // Calculate contribution percentages for each data point
         $total = array_sum($this->companydata);
         $percentages = array_map(function ($data) use ($total) {
