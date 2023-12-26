@@ -254,88 +254,29 @@
 	                            <div class="overflow-y-auto px-3 max-h-17rem">
 	                                <div class="row">
 	                                    <div class="col-md-6 mb-2">
-	                                        <div class="fw-semibold text-sm">Total Revenue</div>
+	                                        <div class="fw-semibold text-sm">Booking Number</div>
 	                                    </div>
 	                                    <div class="col-md-6 mb-2">
-	                                        <div class="fw-semibold text-sm text-lg-end">$696,531.25</div>
+	                                        <div class="fw-semibold text-sm text-lg-end">Payments</div>
+	                                    </div>
+										@forelse ($assignments as $assignment)
+										<div class="col-md-6 mb-2">
+	                                        <div class="text-sm">{{$assignment['booking_number']}}</div>
 	                                    </div>
 	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm">Total Services Rate</div>
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm text-lg-end">$695,571.29</div>
+	                                        <div class="text-sm text-lg-end">{{formatpayment($assignment['total_amount'])}}</div>
 	                                    </div>
 	                                    <div class="col-lg-12">
 	                                        <hr class="mt-0 mb-2">
 	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm">Total Services Rate</div>
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm text-lg-end">$695,571.29</div>
-	                                    </div>
-	                                    <div class="col-lg-12">
-	                                        <hr class="mt-0 mb-2">
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm">Total Services Rate</div>
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm text-lg-end">$695,571.29</div>
-	                                    </div>
-	                                    <div class="col-lg-12">
-	                                        <hr class="mt-0 mb-2">
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm">Total Services Rate</div>
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm text-lg-end">$695,571.29</div>
-	                                    </div>
-	                                    <div class="col-lg-12">
-	                                        <hr class="mt-0 mb-2">
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm">Total Services Rate</div>
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm text-lg-end">$695,571.29</div>
-	                                    </div>
-	                                    <div class="col-lg-12">
-	                                        <hr class="mt-0 mb-2">
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm">Total Services Rate</div>
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm text-lg-end">$695,571.29</div>
-	                                    </div>
-	                                    <div class="col-lg-12">
-	                                        <hr class="mt-0 mb-2">
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm">Total Services Rate</div>
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm text-lg-end">$695,571.29</div>
-	                                    </div>
-	                                    <div class="col-lg-12">
-	                                        <hr class="mt-0 mb-2">
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm">Total Services Rate</div>
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm text-lg-end">$695,571.29</div>
-	                                    </div>
-	                                    <div class="col-lg-12">
-	                                        <hr class="mt-0 mb-2">
-	                                    </div>
+										@empty
+											No Records Available
+										@endforelse
 	                                    <div class="col-md-6 mb-2">
 	                                        <div class="fw-semibold text-sm">Total Payments</div>
 	                                    </div>
 	                                    <div class="col-md-6 mb-2">
-	                                        <div class="fw-semibold text-sm text-lg-end">-$45,224.46</div>
+	                                        <div class="fw-semibold text-sm text-lg-end">{{formatpayment($totalAssignmentPayments)}}</div>
 	                                    </div>
 	                                </div>
 	                            </div>

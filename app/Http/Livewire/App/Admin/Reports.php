@@ -15,7 +15,7 @@ use Livewire\Component;
 class Reports extends Component
 {
     public $date;
-    public $showForm, $topProviders, $topServices, $topInvoices, $totalInvoiceRevenue, $revenues, $totalRevenue;
+    public $showForm, $topProviders, $topServices, $topInvoices, $totalInvoiceRevenue, $revenues, $totalRevenue, $assignments, $totalAssignmentPayments;
     protected $listeners = ['showList' => 'resetForm'];
     public $companyLabeldata = [];
     public $companydata = [];
@@ -23,7 +23,7 @@ class Reports extends Component
 
     public function render()
     {
-        $this->getAssignments();
+        $this->assignments = $this->getAssignments();
         $this->revenues = $this->getRevenue();
         $this->topInvoices = $this->getTopInvoices();
         $this->topProviders = $this->getTopProviders();
@@ -184,6 +184,12 @@ class Reports extends Component
             ->values()
             ->take(5)
             ->all();
+        // Extract 'total_amount' values into a separate array
+        $totalAmounts = array_column($filteredBookings, 'total_amount');
+
+        // Calculate the sum of 'total_amount' values
+        $this->totalAssignmentPayments = array_sum($totalAmounts);
+
         return $filteredBookings;
     }
 
