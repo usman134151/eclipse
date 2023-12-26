@@ -687,34 +687,24 @@
 @push('scripts')
 <script>
 	function updateCharts() {
-		updateCompanyChart();
-		updateProviderChart();
+		// Update company chart
+		updateChart(RevenueByCompanyChart, @json($graph['companyGraph']));
+
+		// Update provider chart
+		updateChart(jsChartTopProviders, @json($graph['providerGraph']));
 	}
-	// Function to update chart data and labels
-	function updateCompanyChart() {
-    // New data and labels
-    const newLabels = @json($companyLabeldata);  
-    const newData = @json($companydata);
-  
-    // Update chart data and labels
-    RevenueByCompanyChart.data.labels = newLabels;
-    RevenueByCompanyChart.data.datasets[0].data = newData;
-  
-    // Finally, update the chart
-    RevenueByCompanyChart.update();
-  }
-	function updateProviderChart() {
-    // New data and labels
-    const newLabels1 = @json($providerGraph['label']);  
-    const newData1 = @json($providerGraph['data']);
-  
-    // Update chart data and labels
-    jsChartTopProviders.data.labels = newLabels1;
-    jsChartTopProviders.data.datasets[0].data = newData1;
-  
-    // Finally, update the chart
-    jsChartTopProviders.update();
-  }
+
+	function updateChart(chart, graphData) {
+		const newLabels = graphData.label;
+		const newData = graphData.data;
+		
+		// Update chart data and labels
+		chart.data.labels = newLabels;
+		chart.data.datasets[0].data = newData;
+		
+		// Finally, update the chart
+		chart.update();
+	}
 
   // Call the updateCharts function to update the chart data and labels
   updateCharts();
