@@ -688,6 +688,7 @@
 <script>
 	function updateCharts() {
 		updateCompanyChart();
+		updateProviderChart();
 	}
 	// Function to update chart data and labels
 	function updateCompanyChart() {
@@ -701,6 +702,18 @@
   
     // Finally, update the chart
     RevenueByCompanyChart.update();
+  }
+	function updateProviderChart() {
+    // New data and labels
+    const newLabels1 = @json($providerGraph['label']);  
+    const newData1 = @json($providerGraph['data']);
+  
+    // Update chart data and labels
+    jsChartTopProviders.data.labels = newLabels1;
+    jsChartTopProviders.data.datasets[0].data = newData1;
+  
+    // Finally, update the chart
+    jsChartTopProviders.update();
   }
 
   // Call the updateCharts function to update the chart data and labels

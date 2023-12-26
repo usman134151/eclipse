@@ -17,7 +17,7 @@ class Reports extends Component
     public $date;
     public $showForm, $topProviders, $topServices, $topInvoices, $totalInvoiceRevenue, $revenues, $totalRevenue, $assignments, $totalAssignmentPayments;
     protected $listeners = ['showList' => 'resetForm'];
-    public $companyLabeldata = [];
+    public $companyLabeldata = [], $providerGraph = [];
     public $companydata = [];
 
 
@@ -30,6 +30,7 @@ class Reports extends Component
         $this->topServices = $this->getTopServices();
 
         $this->getCompanyGraphData();
+        $this->getProviderGraphData();
 
         return view('livewire.app.admin.reports');
     }
@@ -116,25 +117,6 @@ class Reports extends Component
         return $companiesWithInvoices;
     }
 
-    public function getCompanyGraphData()
-    {
-        $this->companyLabeldata = collect($this->topInvoices)->take(5)->pluck('name')->toArray();
-        $this->companydata = collect($this->topInvoices)->take(5)->pluck('invoices_total')->toArray();
-        // Calculate contribution percentages for each data point
-        $total = array_sum($this->companydata);
-        $percentages = array_map(function ($data) use ($total) {
-            return number_format(($data / $total) * 100, 2) . '%';
-        }, $this->companydata);
-
-        // Concatenate company labels with percentages
-        $labelsWithPercentages = array_map(function ($label, $percentage) {
-            return $label . ' ' . $percentage;
-        }, $this->companyLabeldata, $percentages);
-
-        $this->companyLabeldata = $labelsWithPercentages;
-    }
-
-
     public function getRevenue()
     {
         // converted dates according to invoice payments table format
@@ -195,6 +177,43 @@ class Reports extends Component
         $this->totalAssignmentPayments = array_sum($totalAmounts);
 
         return $filteredBookings;
+    }
+
+    public function getCompanyGraphData()
+    {
+        $this->companyLabeldata = collect($this->topInvoices)->take(5)->pluck('name')->toArray();
+        $this->companydata = collect($this->topInvoices)->take(5)->pluck('invoices_total')->toArray();
+        // Calculate contribution percentages for each data point
+        $total = array_sum($this->companydata);
+        $percentages = array_map(function ($data) use ($total) {
+            return number_format(($data / $total) * 100, 2) . '%';
+        }, $this->companydata);
+
+        // Concatenate company labels with percentages
+        $labelsWithPercentages = array_map(function ($label, $percentage) {
+            return $label . ' ' . $percentage;
+        }, $this->companyLabeldata, $percentages);
+
+        $this->companyLabeldata = $labelsWithPercentages;
+    }
+
+    public function getProviderGraphData()
+    {
+
+        $this->providerGraph['label'] = array_column($this->topProviders, 'name');
+        $this->providerGraph['data'] = array_column($this->topProviders, 'closed_bookings_count');
+        // Calculate contribution percentages for each data point
+        $total = array_sum($this->providerGraph['data']);
+        $percentages = array_map(function ($data) use ($total) {
+            return number_format(($data / $total) * 100, 2) . '%';
+        }, $this->providerGraph['data']);
+
+        // Concatenate company labels with percentages
+        $labelsWithPercentages = array_map(function ($label, $percentage) {
+            return $label . ' ' . $percentage;
+        }, $this->providerGraph['label'], $percentages);
+
+        $this->providerGraph['label'] = $labelsWithPercentages;
     }
 
     function getDateRange($range)
