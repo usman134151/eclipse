@@ -123,6 +123,10 @@ class Booking extends Model
     {
         return $this->hasMany(ProviderPayment::class, 'booking_id', 'id');
     }
+    public function invoices()
+    {
+        return $this->hasOne(Invoice::class, 'id', 'invoice_id');
+    }
 
 
 

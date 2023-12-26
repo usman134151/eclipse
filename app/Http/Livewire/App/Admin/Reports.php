@@ -23,6 +23,7 @@ class Reports extends Component
 
     public function render()
     {
+        $this->getAssignments();
         $this->revenues = $this->getRevenue();
         $this->topInvoices = $this->getTopInvoices();
         $this->topProviders = $this->getTopProviders();
@@ -68,11 +69,11 @@ class Reports extends Component
             ->orderByDesc('service_count')
             ->pluck('service_count', 'service_category');
 
-        $topServices = ServiceCategory::whereIn('id', $serviceCounts->keys())->where('status',1)->pluck('name');
-        
+        $topServices = ServiceCategory::whereIn('id', $serviceCounts->keys())->where('status', 1)->pluck('name');
+
         $servicesWithBookingCount = $serviceCounts->map(function ($count, $serviceCategory) use ($topServices) {
             $serviceName = $topServices->get($serviceCategory); // Get service name for the current service category
-            if($serviceName) {
+            if ($serviceName) {
                 return [
                     'name' => $serviceName,
                     'booking_count' => $count // Assign the booking count for the current service category
@@ -146,13 +147,44 @@ class Reports extends Component
             ->take(5)
             ->get()
             ->toArray();
-        
+
         // Extract 'total_paid_amount' values into a separate array
         $totalPaidAmounts = array_column($payments, 'total_paid_amount');
 
         // Calculate the sum of 'total_paid_amount' values
         $this->totalRevenue = array_sum($totalPaidAmounts);
         return $payments;
+    }
+
+    public function getAssignments()
+    {
+        $bookings = Booking::where('invoice_status', 'LIKE', 2)
+            ->with(['payment', 'invoices.invoicePayments' => function ($query) {
+                $query->pluck('paid_date'); // Include 'paid_date' in the selection
+            }])
+            ->get();
+        $bookingDetails = $bookings->map(function ($booking) {
+            return [
+                'booking_number' => $booking->booking_number,
+                'paid_date' => $booking->invoices->invoicePayments->pluck('paid_date')->toArray()[0],
+                'total_amount' => optional($booking->payment)->total_amount,
+            ];
+        })->toArray();
+
+        // converted dates according to invoice payments table format
+        $startDate = Carbon::createFromFormat('Y-m-d', $this->date['start_date'])->format('m/d/Y');
+        $endDate = Carbon::createFromFormat('Y-m-d', $this->date['end_date'])->format('m/d/Y');
+
+        $filteredBookings = collect($bookingDetails)
+            ->filter(function ($booking) use ($startDate, $endDate) {
+                return isset($booking['paid_date']) &&
+                    ($booking['paid_date'] >= $startDate && $booking['paid_date'] <= $endDate);
+            })
+            ->sortByDesc('total_amount')
+            ->values()
+            ->take(5)
+            ->all();
+        return $filteredBookings;
     }
 
     function getDateRange($range)
