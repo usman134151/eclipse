@@ -3,13 +3,22 @@
 namespace App\Http\Livewire\App\Common\Panels\Provider;
 
 use App\Models\Tenant\Booking;
+use App\Models\Tenant\BookingProvider;
+use App\Models\Tenant\Invoice;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class InvoicesDetails extends Component
 {
-    public $showForm, $bookings;
+    public $showForm, $bookings, $data;
     protected $listeners = ['showList' => 'resetForm'];
+    public $serviceTypes = [
+        '1' => ['class' => 'inperson-rate', 'postfix' => '', 'title' => 'In-Person'],
+        '2' => ['class' => 'virtual-rate', 'postfix' => '_v', 'title' => 'Virtual'],
+        '4' => ['class' => 'phone-rate', 'postfix' => '_p', 'title' => 'Phone'],
+        '5' => ['class' => 'teleconference-rate', 'postfix' => '_t', 'title' => 'Teleconference'],
+    ];
 
     public function render()
     {
@@ -25,8 +34,62 @@ class InvoicesDetails extends Component
             ->join('booking_services', function ($q) {
                 $q->on('booking_services.id', 'booking_providers.booking_service_id');
             })->join('service_categories', 'booking_services.services', 'service_categories.id')
-            ->select('bookings.*', 'bookings.id as booking_id','booking_providers.*', 'service_categories.name as service_name')
+            ->select('bookings.*', 'bookings.id as booking_id', 'booking_providers.*','booking_services.service_types', 'service_categories.name as service_name')
             ->get();
+        $total = 0;
+        foreach ($this->bookings as $booking) {
+            $booking->total = ($booking->is_override_provider == 1 ? $booking->override_price : $booking->total_amount);
+            $total = $total + ($booking->is_override_provider == 1 ? $booking->override_price : $booking->total_amount);
+            $booking->additional_payments =  $booking->additional_payments ? json_decode($booking->additional_payments, true) : null;
+        }
+        $this->data['total'] = $total;
+        $this->data['invoice_number'] = genetrateInvoiceNumber($this->bookings->first()->company);
+        $this->data['provider_invoice_number'] = '';
+
+    }
+
+    public function submitInvoice()
+    {
+
+            $invoice = Invoice::insertGetId(
+                [
+                    'provider_id' => Auth::id(),
+                    'invoice_number' => $this->data['invoice_number'],
+                    'invoice_date' => now(),
+                    'po_number' =>  null,
+                    // 'invoice_due_date' => Carbon::createFromFormat('m/d/Y', $this->invoice['invoice_due_date']),
+                    'total_price' => $this->data['total'],
+                    'outstanding_amount' => $this->data['total'],
+                    // 'invoice_pdf' => $fileName,
+                    // 'billing_manager_id' => $this->invoice['billing_manager_id'],
+                    // 'billing_address_id' => $this->invoice['billing_address_id'],
+                    // 'payment_method' => $paymentMethod,
+                    'supervisor_payment_status' => "0",
+                    'invoice_status' => "0",
+                ]
+            );
+                BookingProvider::whereIn('id', $this->bookings->pluck('id')->toArray())->update(['invoice_id'=>$invoice]);
+
+            
+            // foreach ($this->bookings as $key => $booking) {
+
+            //     // $message = "New invoice " . $this->invoice['invoice_number'] . " created by " . Auth::user()->name;
+            //     // $logs = array(
+            //     //     'action_by' => Auth::user()->id,
+            //     //     'action_to' => $booking->id,
+            //     //     'item_type' => 'Booking',
+            //     //     'message' => $message,
+            //     //     'type' => 'Invoice created',
+            //     //     'request_to' => ''
+            //     // );
+            //     // addLogs($logs);
+            //     $booking->invoice_id = $invoice;
+            //     $booking->invoice_status = "1";
+            //     $booking->save();
+            // }
+
+        $this->dispatchBrowserEvent('close-invoice-details');
+        $this->emit('showConfirmation', 'Invoice created successfully');
     }
 
     function showForm()

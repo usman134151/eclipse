@@ -10,7 +10,7 @@
         <div class="content-header-left col-md-9 col-12 mb-2">
             <div class="row breadcrumbs-top">
                 <div class="col-12">
-                    <h1 class="content-header-title float-start mb-0">Invoice Generator (Coming Soon)</h1>
+                    <h1 class="content-header-title float-start mb-0">Invoice Generator</h1>
                     <div class="breadcrumb-wrapper">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
@@ -73,41 +73,16 @@
                 </div>
             </div>
             <x-advancefilters />
-            <div class="d-flex justify-content-between mb-2">
-                <div class="d-inline-flex align-items-center gap-4">
-                    <label for="show_records" class="form-label">Show</label>
-                    <select class="form-select" id="show_records">
-                        <option>10</option>
-                        <option>15</option>
-                        <option>20</option>
-                        <option>25</option>
-                    </select>
-                </div>
-                <div class="d-inline-flex align-items-center gap-4">
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <svg aria-label="Export" class="fill" width="23" height="26"
-                                viewBox="0 0 23 26"fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <use xlink:href="/css/common-icons.svg#export-dropdown"></use>
-                            </svg>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+
             <div class="table-responsive">
                 <table id="invoice-generator" class="table table-hover" aria-label="Invoice Generator">
                     <thead>
                         <tr role="row">
                             <th scope="col">
                                 <div class="form-check">
-                                    <input class="form-check-input" id="" name="" type="checkbox"
-                                        tabindex="" aria-label="Select All Bookings">
+                                    <input class="form-check-input" id="check-all-bookings" name=""
+                                        type="checkbox" wire:model="selectAll" tabindex=""
+                                        aria-label="Select All Bookings">
                                 </div>
                             </th>
                             <th scope="col">Booking id</th>
@@ -124,8 +99,10 @@
                             <tr role="row" class="odd">
                                 <td>
                                     <div class="form-check">
-                                        <input class="form-check-input" aria-label="Select Booking" id=""
-                                            name="" type="checkbox" tabindex="">
+                                        <input class="form-check-input booking-checkbox" aria-label="Select Booking"
+                                            id="" wire:model="selectedBookings"
+                                            value="{{ $booking->booking_id }}" data-value="{{ $booking->booking_id }}"
+                                            type="checkbox" tabindex="">
                                     </div>
                                 </td>
                                 <td x-on:click="assignmentDetails = true">
@@ -244,7 +221,8 @@
             </div>
             <!-- /Icon Help -->
             <div class="d-flex justify-content-center mt-4">
-                <button class="btn btn-primary rounded" @click="invoicesDetails = true">Generate Invoice</button>
+                <button class="btn btn-primary rounded" @click="invoicesDetails = true"
+                    wire:click="$emit('openInvoiceDetailsPanel',)">Generate Invoice</button>
             </div>
         </div>
     </div>
@@ -253,4 +231,24 @@
     @include('panels.provider.add-reimbursement')
     @include('modals.common.running-late')
     @include('modals.return-assignment')
+
+
 </div>
+@push('scripts')
+    <script>
+        $('#check-all-bookings').change(function() {
+            const isChecked = $(this).is(':checked');
+            $('.booking-checkbox').prop('checked', isChecked);
+
+            //update livewire variable
+            var booking_ids = [];
+            $('.booking-checkbox:checked').each(function() {
+                const booking_id = parseFloat($(this).data('value'));
+                booking_ids.push(booking_id);
+
+            });
+            @this.set('selectedBookings', booking_ids);
+
+        });
+    </script>
+@endpush
