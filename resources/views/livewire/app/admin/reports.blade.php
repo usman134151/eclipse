@@ -58,32 +58,32 @@
 	                                                <div class="text-lg fw-light">To:</div>
 	                                            </div>
 	                                            <div class="d-flex flex-column gap-3">
-	                                                <div class="text-lg fw-semibold">01 Aug, 2022</div>
-	                                                <div class="text-lg fw-semibold">10 Aug, 2022</div>
+	                                                <div class="text-lg fw-semibold">{{formatDateNew($date['start_date'])}}</div>
+	                                                <div class="text-lg fw-semibold">{{formatDateNew($date['end_date'])}}</div>
 	                                            </div>
 	                                        </div>
 	                                    </div>
 	                                    <div class="col-2 d-flex flex-column gap-4 align-self-center mb-4">
-	                                        <button class="btn btn-primary w-100" style="font-size:15px;">
+	                                        <button wire:click="getDateRange('last_7_days')" class="btn btn-primary w-100" style="font-size:15px;">
 	                                        Last 7 Days
 	                                        </button>
-	                                        <button class="btn btn-primary w-100" style="font-size:15px;">
+	                                        <button wire:click="getDateRange('last_month')" class="btn btn-primary w-100" style="font-size:15px;">
 	                                        Last Month
 	                                        </button>
 	                                    </div>
 	                                    <div class="col-2 d-flex flex-column gap-4 align-self-center mb-4">
-	                                        <button class="btn btn-primary w-100" style="font-size:15px;">
+	                                        <button wire:click="getDateRange('last_30_days')" class="btn btn-primary w-100" style="font-size:15px;">
 	                                        Last 30 Days
 	                                        </button>
-	                                        <button class="btn btn-primary w-100" style="font-size:15px;">
+	                                        <button wire:click="getDateRange('this_year')" class="btn btn-primary w-100" style="font-size:15px;">
 	                                        This Year
 	                                        </button>
 	                                    </div>
 	                                    <div class="col-2 d-flex flex-column gap-4 align-self-center mb-4" >
-	                                        <button class="btn btn-primary w-100" style="font-size:15px;">
+	                                        <button wire:click="getDateRange('this_month')" class="btn btn-primary w-100" style="font-size:15px;">
 	                                        This Month
 	                                        </button>
-	                                        <button class="btn btn-primary w-100" style="font-size:15px;">
+	                                        <button wire:click="getDateRange('last_year')" class="btn btn-primary w-100" style="font-size:15px;">
 	                                        Last Year
 	                                        </button>
 	                                    </div>
@@ -127,7 +127,7 @@
 	                                    </div>
 	                                    <div class="row justify-content-center">
 	                                        <div class="col-lg-5">
-	                                            <a href="" class="btn btn-primary w-100">View Detail</a>
+	                                            {{-- <a href="" class="btn btn-primary w-100">View Detail</a> --}}
 	                                        </div>
 	                                    </div>
 	                                </div>
@@ -141,7 +141,7 @@
 	                                    </div>
 	                                    <div class="row justify-content-center">
 	                                        <div class="col-lg-5">
-	                                            <a href="" class="btn btn-primary w-100">View Detail</a>
+	                                            {{-- <a href="" class="btn btn-primary w-100">View Detail</a> --}}
 	                                        </div>
 	                                    </div>
 	                                </div>
@@ -180,74 +180,33 @@
 	                                <canvas id="jsChartRevenue" style="width:100%;"></canvas>
 	                            </div>
 	                            <div class="row">
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="fw-semibold text-sm">Total Revenue</div>
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="fw-semibold text-sm text-lg-end">$696,531.25</div>
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm">Total Services Rate</div>
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm text-lg-end">$695,571.29</div>
-	                                </div>
-	                                <div class="col-lg-12">
-	                                    <hr class="mt-0 mb-2">
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm">Total Services Rate</div>
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm text-lg-end">$695,571.29</div>
-	                                </div>
-	                                <div class="col-lg-12">
-	                                    <hr class="mt-0 mb-2">
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm">Total Services Rate</div>
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm text-lg-end">$695,571.29</div>
-	                                </div>
-	                                <div class="col-lg-12">
-	                                    <hr class="mt-0 mb-2">
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm">Total Services Rate</div>
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm text-lg-end">$695,571.29</div>
-	                                </div>
-	                                <div class="col-lg-12">
-	                                    <hr class="mt-0 mb-2">
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm">Total Services Rate</div>
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm text-lg-end">$695,571.29</div>
-	                                </div>
-	                                <div class="col-lg-12">
-	                                    <hr class="mt-0 mb-2">
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm">Total Services Rate</div>
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm text-lg-end">$695,571.29</div>
-	                                </div>
-	                                <div class="col-lg-12">
-	                                    <hr class="mt-0 mb-2">
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="fw-semibold text-sm">Total Payments</div>
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="fw-semibold text-sm text-lg-end">-$45,224.46</div>
-	                                </div>
-	                            </div>
-	                            <a href="" class="btn btn-primary w-100">View Detail</a>
+									<div class="col-md-6 mb-2">
+										<div class="fw-semibold text-sm">Date</div>
+									</div>
+									<div class="col-md-6 mb-2">
+										<div class="fw-semibold text-sm text-lg-end">Payments</div>
+									</div>
+									@forelse ($revenues as $revenue)
+									<div class="col-md-6 mb-2">
+										<div class="text-sm">{{formatDate($revenue['paid_date'])}}</div>
+									</div>
+									<div class="col-md-6 mb-2">
+										<div class="text-sm text-lg-end">{{formatPayment($revenue['total_paid_amount'])}}</div>
+									</div>
+									<div class="col-lg-12">
+										<hr class="mt-0 mb-2">
+									</div>
+									@empty
+									No Record Available
+									@endforelse
+									<div class="col-md-6 mb-2">
+										<div class="fw-semibold text-sm">Total Revenue</div>
+									</div>
+									<div class="col-md-6 mb-2">
+										<div class="fw-semibold text-sm text-lg-end">{{formatPayment($totalRevenue)}}</div>
+									</div>
+								</div>
+	                            {{-- <a href="" class="btn btn-primary w-100">View Detail</a> --}}
 	                        </div>
 	                    </div>
 	                </div>
@@ -281,7 +240,7 @@
 									   @endforelse
 	                                </div>
 	                            </div>
-	                            <a href="" class="btn btn-primary w-100">View Detail</a>
+	                            {{-- <a href="" class="btn btn-primary w-100">View Detail</a> --}}
 	                        </div>
 	                    </div>
 	                </div>
@@ -295,92 +254,33 @@
 	                            <div class="overflow-y-auto px-3 max-h-17rem">
 	                                <div class="row">
 	                                    <div class="col-md-6 mb-2">
-	                                        <div class="fw-semibold text-sm">Total Revenue</div>
+	                                        <div class="fw-semibold text-sm">Booking Number</div>
 	                                    </div>
 	                                    <div class="col-md-6 mb-2">
-	                                        <div class="fw-semibold text-sm text-lg-end">$696,531.25</div>
+	                                        <div class="fw-semibold text-sm text-lg-end">Payments</div>
+	                                    </div>
+										@forelse ($assignments as $assignment)
+										<div class="col-md-6 mb-2">
+	                                        <div class="text-sm">{{$assignment['booking_number']}}</div>
 	                                    </div>
 	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm">Total Services Rate</div>
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm text-lg-end">$695,571.29</div>
+	                                        <div class="text-sm text-lg-end">{{formatpayment($assignment['total_amount'])}}</div>
 	                                    </div>
 	                                    <div class="col-lg-12">
 	                                        <hr class="mt-0 mb-2">
 	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm">Total Services Rate</div>
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm text-lg-end">$695,571.29</div>
-	                                    </div>
-	                                    <div class="col-lg-12">
-	                                        <hr class="mt-0 mb-2">
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm">Total Services Rate</div>
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm text-lg-end">$695,571.29</div>
-	                                    </div>
-	                                    <div class="col-lg-12">
-	                                        <hr class="mt-0 mb-2">
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm">Total Services Rate</div>
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm text-lg-end">$695,571.29</div>
-	                                    </div>
-	                                    <div class="col-lg-12">
-	                                        <hr class="mt-0 mb-2">
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm">Total Services Rate</div>
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm text-lg-end">$695,571.29</div>
-	                                    </div>
-	                                    <div class="col-lg-12">
-	                                        <hr class="mt-0 mb-2">
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm">Total Services Rate</div>
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm text-lg-end">$695,571.29</div>
-	                                    </div>
-	                                    <div class="col-lg-12">
-	                                        <hr class="mt-0 mb-2">
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm">Total Services Rate</div>
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm text-lg-end">$695,571.29</div>
-	                                    </div>
-	                                    <div class="col-lg-12">
-	                                        <hr class="mt-0 mb-2">
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm">Total Services Rate</div>
-	                                    </div>
-	                                    <div class="col-md-6 mb-2">
-	                                        <div class="text-sm text-lg-end">$695,571.29</div>
-	                                    </div>
-	                                    <div class="col-lg-12">
-	                                        <hr class="mt-0 mb-2">
-	                                    </div>
+										@empty
+											No Records Available
+										@endforelse
 	                                    <div class="col-md-6 mb-2">
 	                                        <div class="fw-semibold text-sm">Total Payments</div>
 	                                    </div>
 	                                    <div class="col-md-6 mb-2">
-	                                        <div class="fw-semibold text-sm text-lg-end">-$45,224.46</div>
+	                                        <div class="fw-semibold text-sm text-lg-end">{{formatpayment($totalAssignmentPayments)}}</div>
 	                                    </div>
 	                                </div>
 	                            </div>
-	                            <a href="" class="btn btn-primary w-100">View Detail</a>
+	                            {{-- <a href="" class="btn btn-primary w-100">View Detail</a> --}}
 	                        </div>
 	                    </div>
 	                </div>
@@ -419,7 +319,7 @@
 	                                    <div class="fw-semibold text-sm text-lg-end">{{formatPayment($totalInvoiceRevenue)}}</div>
 	                                </div>
 	                            </div>
-	                            <a href="" class="btn btn-primary w-100">View Detail</a>
+	                            {{-- <a href="" class="btn btn-primary w-100">View Detail</a> --}}
 	                        </div>
 	                    </div>
 	                </div>
@@ -498,14 +398,14 @@
 	                                    <div class="fw-semibold text-sm text-lg-end">-$45,224.46</div>
 	                                </div>
 	                            </div>
-	                            <a href="" class="btn btn-primary w-100">View Detail</a>
+	                            {{-- <a href="" class="btn btn-primary w-100">View Detail</a> --}}
 	                        </div>
 	                    </div>
 	                </div>
 	                <div class="col-md-6 col-lg-4 mb-4">
 	                    <div class="card">
 	                        <div class="card-body">
-	                            <h3>Referrals</h3>
+	                            <h3>Referrals <small>(Coming Soon)</small></h3>
 	                            <div class="mb-4">
 	                                <canvas id="jsChartReferrals" style="width:100%;"></canvas>
 	                            </div>
@@ -577,14 +477,14 @@
 	                                    <div class="fw-semibold text-sm text-lg-end">-$45,224.46</div>
 	                                </div>
 	                            </div>
-	                            <a href="" class="btn btn-primary w-100">View Detail</a>
+	                            {{-- <a href="" class="btn btn-primary w-100">View Detail</a> --}}
 	                        </div>
 	                    </div>
 	                </div>
 	                <div class="col-md-6 col-lg-4 mb-4">
 	                    <div class="card">
 	                        <div class="card-body">
-	                            <h3>Ratings (Pending)</h3>
+	                            <h3>Ratings (Pending) <small>(Coming Soon)</small></h3>
 	                            <div class="mb-4">
 	                                <canvas id="jsChartRatingsPending" style="width:100%;"></canvas>
 	                            </div>
@@ -656,7 +556,7 @@
 	                                    <div class="fw-semibold text-sm text-lg-end">-$45,224.46</div>
 	                                </div>
 	                            </div>
-	                            <a href="" class="btn btn-primary w-100">View Detail</a>
+	                            {{-- <a href="" class="btn btn-primary w-100">View Detail</a> --}}
 	                        </div>
 	                    </div>
 	                </div>
@@ -735,7 +635,7 @@
 	                                    <div class="fw-semibold text-sm text-lg-end">-$45,224.46</div>
 	                                </div>
 	                            </div>
-	                            <a href="" class="btn btn-primary w-100">View Detail</a>
+	                            {{-- <a href="" class="btn btn-primary w-100">View Detail</a> --}}
 	                        </div>
 	                    </div>
 	                </div>
@@ -747,14 +647,20 @@
 	                                <canvas id="jsChartTopProviders" style="width:100%;"></canvas>
 	                            </div>
 	                            <div class="row">
+									<div class="col-md-6 mb-2">
+	                                    <div class="fw-semibold text-sm">Providers</div>
+	                                </div>
+	                                <div class="col-md-6 mb-2">
+	                                    <div class="fw-semibold text-sm text-lg-end">No. of Closed Bookings</div>
+	                                </div>
 									@if($topProviders != null)
 									@forelse ($topProviders as $topProvider)
 										<div class="col-md-6 mb-2">
-	                                	    <div class="text-sm">{{$topProvider}}</div>
+	                                	    <div class="text-sm">{{$topProvider['name']}}</div>
 
 	                                	</div>
 	                                	<div class="col-md-6 mb-2">
-	                                	    <div class="text-sm text-lg-end">$695,571.29</div>
+	                                	    <div class="text-sm text-lg-end">{{$topProvider['closed_bookings_count']}}</div>
 	                                	</div>
 	                                	<div class="col-lg-12">
 	                                	    <hr class="mt-0 mb-2">
@@ -763,14 +669,8 @@
 										No Data Available
 									@endforelse
 									@endif
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="fw-semibold text-sm">Total Payments</div>
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="fw-semibold text-sm text-lg-end">-$45,224.46</div>
-	                                </div>
 	                            </div>
-	                            <a href="" class="btn btn-primary w-100">View Detail</a>
+	                            {{-- <a href="" class="btn btn-primary w-100">View Detail</a> --}}
 	                        </div>
 	                    </div>
 	                </div>
@@ -788,6 +688,7 @@
 <script>
 	function updateCharts() {
 		updateCompanyChart();
+		updateProviderChart();
 	}
 	// Function to update chart data and labels
 	function updateCompanyChart() {
@@ -801,6 +702,18 @@
   
     // Finally, update the chart
     RevenueByCompanyChart.update();
+  }
+	function updateProviderChart() {
+    // New data and labels
+    const newLabels1 = @json($providerGraph['label']);  
+    const newData1 = @json($providerGraph['data']);
+  
+    // Update chart data and labels
+    jsChartTopProviders.data.labels = newLabels1;
+    jsChartTopProviders.data.datasets[0].data = newData1;
+  
+    // Finally, update the chart
+    jsChartTopProviders.update();
   }
 
   // Call the updateCharts function to update the chart data and labels

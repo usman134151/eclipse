@@ -6,29 +6,38 @@ use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\Company;
 use App\Models\Tenant\Invoice;
+use App\Models\Tenant\InvoicePayment;
 use App\Models\Tenant\ServiceCategory;
 use App\Models\Tenant\User;
+use Carbon\Carbon;
 use Livewire\Component;
 
 class Reports extends Component
 {
-    public $showForm, $topProviders, $topServices, $topInvoices, $totalInvoiceRevenue;
+    public $date;
+    public $showForm, $topProviders, $topServices, $topInvoices, $totalInvoiceRevenue, $revenues, $totalRevenue, $assignments, $totalAssignmentPayments;
     protected $listeners = ['showList' => 'resetForm'];
-    public $companyLabeldata= [];
-    public $companydata= [];
+    public $companyLabeldata = [], $providerGraph = [];
+    public $companydata = [];
+
 
     public function render()
     {
+        $this->assignments = $this->getAssignments();
+        $this->revenues = $this->getRevenue();
+        $this->topInvoices = $this->getTopInvoices();
+        $this->topProviders = $this->getTopProviders();
+        $this->topServices = $this->getTopServices();
+
+        $this->getCompanyGraphData();
+        $this->getProviderGraphData();
+
         return view('livewire.app.admin.reports');
     }
 
     public function mount()
     {
-        $this->topInvoices = $this->getTopInvoices();
-        $this->topProviders = $this->getTopProviders();
-        $this->topServices = $this->getTopServices();
-        
-        $this->getCompanyGraphData();
+        $this->getDateRange('last_30_days');
     }
 
     public function getTopProviders()
@@ -40,18 +49,22 @@ class Reports extends Component
             ->groupBy('provider_id')
             ->selectRaw('provider_id, count(*) as closed_bookings_count')
             ->orderByDesc('closed_bookings_count')
+            ->take(5)
             ->pluck('closed_bookings_count', 'provider_id');
 
-        // $topProviders = User::whereIn('id', $providerClosedBookingsCount->keys())->pluck('name', 'id');
-        $topProviders = User::whereIn('id', $providerClosedBookingsCount->keys())->pluck('name');
+        $topProviders = User::whereIn('id', $providerClosedBookingsCount->keys())->pluck('name', 'id');
 
         // Merge the closed bookings count with user names
-        // $providersWithCount = $topProviders->map(function ($name, $id) use ($providerClosedBookingsCount) {
-        //     $count = $providerClosedBookingsCount->get($id);
-        //     return ['name' => $name, 'closed_bookings_count' => $count];
-        // });
+        $providersWithCount = $topProviders->map(function ($name, $id) use ($providerClosedBookingsCount) {
+            $count = $providerClosedBookingsCount->get($id);
+            return ['name' => $name, 'closed_bookings_count' => $count];
+        })->toArray();
 
-        return $topProviders;
+        usort($providersWithCount, function ($a, $b) {
+            return $b['closed_bookings_count'] <=> $a['closed_bookings_count'];
+        });
+
+        return $providersWithCount;
     }
 
     public function getTopServices()
@@ -61,18 +74,18 @@ class Reports extends Component
             ->orderByDesc('service_count')
             ->pluck('service_count', 'service_category');
 
-        $topServices = ServiceCategory::whereIn('id', $serviceCounts->keys())->where('status',1)->pluck('name');
-        
+        $topServices = ServiceCategory::whereIn('id', $serviceCounts->keys())->where('status', 1)->pluck('name');
+
         $servicesWithBookingCount = $serviceCounts->map(function ($count, $serviceCategory) use ($topServices) {
             $serviceName = $topServices->get($serviceCategory); // Get service name for the current service category
-            if($serviceName) {
+            if ($serviceName) {
                 return [
                     'name' => $serviceName,
                     'booking_count' => $count // Assign the booking count for the current service category
                 ];
             }
         })->filter();
-            
+
         return $servicesWithBookingCount;
     }
 
@@ -104,10 +117,72 @@ class Reports extends Component
         return $companiesWithInvoices;
     }
 
+    public function getRevenue()
+    {
+        // converted dates according to invoice payments table format
+        $startDate = Carbon::createFromFormat('Y-m-d', $this->date['start_date'])->format('m/d/Y');
+        $endDate = Carbon::createFromFormat('Y-m-d', $this->date['end_date'])->format('m/d/Y');
+
+        // getting amount paid based on date
+        $payments = InvoicePayment::select('paid_date')
+            ->selectRaw('SUM(paid_amount) as total_paid_amount')
+            ->where('paid_date', '>=', $startDate)
+            ->where('paid_date', '<=', $endDate)
+            ->groupBy('paid_date')
+            ->orderByDesc('paid_date')
+            ->take(5)
+            ->get()
+            ->toArray();
+
+        // Extract 'total_paid_amount' values into a separate array
+        $totalPaidAmounts = array_column($payments, 'total_paid_amount');
+
+        // Calculate the sum of 'total_paid_amount' values
+        $this->totalRevenue = array_sum($totalPaidAmounts);
+        return $payments;
+    }
+
+    public function getAssignments()
+    {
+        $bookings = Booking::where('invoice_status', 'LIKE', 2)
+            ->with(['payment', 'invoices.invoicePayments' => function ($query) {
+                $query->pluck('paid_date'); // Include 'paid_date' in the selection
+            }])
+            ->get();
+        $bookingDetails = $bookings->map(function ($booking) {
+            return [
+                'booking_number' => $booking->booking_number,
+                'paid_date' => $booking->invoices->invoicePayments->pluck('paid_date')->toArray()[0],
+                'total_amount' => optional($booking->payment)->total_amount,
+            ];
+        })->toArray();
+
+        // converted dates according to invoice payments table format
+        $startDate = Carbon::createFromFormat('Y-m-d', $this->date['start_date'])->format('m/d/Y');
+        $endDate = Carbon::createFromFormat('Y-m-d', $this->date['end_date'])->format('m/d/Y');
+
+        $filteredBookings = collect($bookingDetails)
+            ->filter(function ($booking) use ($startDate, $endDate) {
+                return isset($booking['paid_date']) &&
+                    ($booking['paid_date'] >= $startDate && $booking['paid_date'] <= $endDate);
+            })
+            ->sortByDesc('total_amount')
+            ->values()
+            ->take(5)
+            ->all();
+        // Extract 'total_amount' values into a separate array
+        $totalAmounts = array_column($filteredBookings, 'total_amount');
+
+        // Calculate the sum of 'total_amount' values
+        $this->totalAssignmentPayments = array_sum($totalAmounts);
+
+        return $filteredBookings;
+    }
+
     public function getCompanyGraphData()
     {
-        $this->companyLabeldata = collect($this->topInvoices)->take(4)->pluck('name')->toArray();
-        $this->companydata = collect($this->topInvoices)->take(4)->pluck('invoices_total')->toArray();
+        $this->companyLabeldata = collect($this->topInvoices)->take(5)->pluck('name')->toArray();
+        $this->companydata = collect($this->topInvoices)->take(5)->pluck('invoices_total')->toArray();
         // Calculate contribution percentages for each data point
         $total = array_sum($this->companydata);
         $percentages = array_map(function ($data) use ($total) {
@@ -120,6 +195,61 @@ class Reports extends Component
         }, $this->companyLabeldata, $percentages);
 
         $this->companyLabeldata = $labelsWithPercentages;
+    }
+
+    public function getProviderGraphData()
+    {
+
+        $this->providerGraph['label'] = array_column($this->topProviders, 'name');
+        $this->providerGraph['data'] = array_column($this->topProviders, 'closed_bookings_count');
+        // Calculate contribution percentages for each data point
+        $total = array_sum($this->providerGraph['data']);
+        $percentages = array_map(function ($data) use ($total) {
+            return number_format(($data / $total) * 100, 2) . '%';
+        }, $this->providerGraph['data']);
+
+        // Concatenate company labels with percentages
+        $labelsWithPercentages = array_map(function ($label, $percentage) {
+            return $label . ' ' . $percentage;
+        }, $this->providerGraph['label'], $percentages);
+
+        $this->providerGraph['label'] = $labelsWithPercentages;
+    }
+
+    function getDateRange($range)
+    {
+        $endDate = Carbon::today(); // Current date
+
+        switch ($range) {
+            case 'last_7_days':
+                $startDate = $endDate->copy()->subDays(6);
+                break;
+            case 'last_30_days':
+                $startDate = $endDate->copy()->subDays(29);
+                break;
+            case 'last_month':
+                $startDate = $endDate->copy()->subMonth()->startOfMonth();
+                $endDate = $endDate->copy()->subMonth()->endOfMonth();
+                break;
+            case 'this_month':
+                $startDate = $endDate->copy()->startOfMonth();
+                break;
+            case 'this_year':
+                $startDate = $endDate->copy()->startOfYear();
+                break;
+            case 'last_year':
+                $startDate = $endDate->copy()->subYear()->startOfYear();
+                $endDate = $endDate->copy()->subYear()->endOfYear();
+                break;
+            default:
+                $startDate = null;
+                break;
+        }
+
+        $this->date = [
+            'start_date' => $startDate ? $startDate->toDateString() : null,
+            'end_date' => $endDate ? $endDate->toDateString() : null,
+        ];
     }
 
     function showForm()

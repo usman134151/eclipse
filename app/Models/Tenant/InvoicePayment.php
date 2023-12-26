@@ -17,4 +17,9 @@ class InvoicePayment extends Model
     protected $fillable = [
         'invoice_id', 'paid_amount', 'payment_method', 'paid_date', 'outstanding_amount', 'approved_by_admin', 'created_by', 'approved_by'
     ];
+
+    public function invoice()
+    {
+        return $this->belongsTo(Invoice::class);
+    }
 }
