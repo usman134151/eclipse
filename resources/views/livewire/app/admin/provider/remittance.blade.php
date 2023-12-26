@@ -144,7 +144,7 @@
                 <!-- Hoverable rows start -->
                 <div class="row" id="table-hover-row">
                     <div class="col-12">
-                        @livewire('app.common.lists.draft-remittances', ['name_seacrh_filter' => $name_seacrh_filter,'provider_ids' => $provider_ids, 'filter_payment_method' => $filter_payment_method ])
+                        @livewire('app.common.lists.draft-remittances', ['name_seacrh_filter' => $name_seacrh_filter, 'provider_ids' => $provider_ids, 'filter_payment_method' => $filter_payment_method])
 
                     </div>
                 </div>
@@ -186,6 +186,7 @@
         <!-- ...card-body... -->
         <!-- END: Steps -->
 
+
         @include('panels.remittance.remittance-generator-booking')
         @include('modals.booking-reimbursements')
 
@@ -201,11 +202,11 @@
 
 </div>
 @push('scripts')
-<script>
-     function updateVal(attrName, val) {
-        Livewire.emit('updateVal', attrName, val);
-    }
-    document.addEventListener('refreshSelects2', function(event) {
+    <script>
+        function updateVal(attrName, val) {
+            Livewire.emit('updateVal', attrName, val);
+        }
+        document.addEventListener('refreshSelects2', function(event) {
             $('.select2').select2();
             $('.select2').off('change').on('change', function(e) {
                 let attrName = $(this).attr('id');
@@ -220,8 +221,5 @@
                 updateVal(attrName, $(this).select2("val"));
             });
         }
-
-
-</script>
-    
+    </script>
 @endpush

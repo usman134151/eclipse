@@ -13,13 +13,15 @@ class DraftInvoices extends Component
 {
     use WithPagination;
 
-    public $showForm, $bookingIds=[],$counter=0;
-    protected $listeners = ['showList' => 'resetForm', 'openInvoiceDetailsPanel'];
+    public $showForm, $bookingIds=[],$counter=0, $selectedBookings=[] , $selectAll=false;
+    protected $listeners = ['showList' => 'resetForm', 'openInvoiceDetailsPanel','showConfirmation'];
     public $provider, $limit = 10;
     public $type = [2 => ['code' => '/css/provider.svg#green-dot', 'title' => 'Completed'], 4 => ['code' => '/css/provider.svg#yellow-dot', 'title' => 'Cancelled-Billable'], 1 => ['code' => '/css/common-icons.svg#blue-dot', 'title' => 'Partial']];
 
-    public function openInvoiceDetailsPanel($bookingIds=[])
+    public function openInvoiceDetailsPanel($bookingIds=null)
     {
+        if($bookingIds == null)
+        $bookingIds = $this->selectedBookings;
         if ($this->counter == 0) {
             $this->bookingIds = [];
             $this->dispatchBrowserEvent('open-provider-invoice-details', ['bookingIds' => $bookingIds]);
@@ -28,6 +30,18 @@ class DraftInvoices extends Component
             $this->bookingIds = $bookingIds;
 
             $this->counter = 0;
+        }
+    }
+
+    public function showConfirmation($message = null)
+    {
+        if ($message) {
+            // Emit an event to display a success message using the SweetAlert package
+            $this->dispatchBrowserEvent('swal:modal', [
+                'type' => 'success',
+                'title' => 'Success',
+                'text' => $message,
+            ]);
         }
     }
     public function render()
@@ -50,7 +64,7 @@ class DraftInvoices extends Component
             ->whereIn('bookings.status', [1, 2, 4]) //partially assigned, fully assigned and cancelled-billable
             ->join('booking_providers', function ($q) {
                 $q->on('booking_providers.booking_id', 'bookings.id');
-                $q->where(['provider_id' => $this->provider->id, 'remittance_id' => 0]);
+                $q->where(['provider_id' => $this->provider->id, 'remittance_id' => 0,'booking_providers.invoice_id'=>null]);
                 // can add check for check in status but cancelled-billable might contradict.
             })
             ->join('booking_services', function ($q) {
@@ -64,7 +78,7 @@ class DraftInvoices extends Component
 
             ->paginate($this->limit);
 
-        // dd($data->toArray());
+        // dd($data->get()->count());
         return $data;
     }
     function showForm()

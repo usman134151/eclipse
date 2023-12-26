@@ -44,6 +44,8 @@ class IssueRemittance extends Component
                
                 $this->selectedPayments[] = $payment['id'];
                 $this->list[$index][0] = $payment;
+            }elseif (key_exists('invoice_id', $row)) {
+            
             }
              else {
                 //fetch booking details + associated reimbursements
