@@ -692,6 +692,9 @@
 
 		// Update provider chart
 		updateChart(jsChartTopProviders, @json($graph['providerGraph']));
+
+		// Update assignment chart
+		updateChart(jsChartAssignment, @json($graph['assignmentGraph']));
 	}
 
 	function updateChart(chart, graphData) {

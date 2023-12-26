@@ -30,6 +30,7 @@ class Reports extends Component
 
         $this->graph['companyGraph'] = $this->generateGraphData($this->topInvoices, 'name', 'invoices_total');
         $this->graph['providerGraph'] = $this->generateGraphData($this->topProviders, 'name', 'closed_bookings_count');
+        $this->graph['assignmentGraph'] = $this->generateGraphData($this->assignments, 'booking_number', 'total_amount');
 
         return view('livewire.app.admin.reports');
     }
@@ -179,25 +180,25 @@ class Reports extends Component
     }
 
     public function generateGraphData($data, $labelKey, $dataKey)
-{
-    $dataArray = [];
-    $dataArray['label'] = collect($data)->take(5)->pluck($labelKey)->toArray();
-    $dataArray['data'] = collect($data)->take(5)->pluck($dataKey)->toArray();
+    {
+        $dataArray = [];
+        $dataArray['label'] = collect($data)->take(5)->pluck($labelKey)->toArray();
+        $dataArray['data'] = collect($data)->take(5)->pluck($dataKey)->toArray();
 
-    // Calculate contribution percentages for each data point
-    $total = array_sum($dataArray['data']);
-    $percentages = array_map(function ($data) use ($total) {
-        return number_format(($data / $total) * 100, 2) . '%';
-    }, $dataArray['data']);
+        // Calculate contribution percentages for each data point
+        $total = array_sum($dataArray['data']);
+        $percentages = array_map(function ($data) use ($total) {
+            return number_format(($data / $total) * 100, 2) . '%';
+        }, $dataArray['data']);
 
-    // Concatenate labels with percentages
-    $labelsWithPercentages = array_map(function ($label, $percentage) {
-        return $label . ' ' . $percentage;
-    }, $dataArray['label'], $percentages);
+        // Concatenate labels with percentages
+        $labelsWithPercentages = array_map(function ($label, $percentage) {
+            return $label . ' ' . $percentage;
+        }, $dataArray['label'], $percentages);
 
-    $dataArray['label'] = $labelsWithPercentages;
-    return $dataArray;
-}
+        $dataArray['label'] = $labelsWithPercentages;
+        return $dataArray;
+    }
 
 
     function getDateRange($range)
