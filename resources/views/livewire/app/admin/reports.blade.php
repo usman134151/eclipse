@@ -127,7 +127,7 @@
 	                                    </div>
 	                                    <div class="row justify-content-center">
 	                                        <div class="col-lg-5">
-	                                            <a href="" class="btn btn-primary w-100">View Detail</a>
+	                                            {{-- <a href="" class="btn btn-primary w-100">View Detail</a> --}}
 	                                        </div>
 	                                    </div>
 	                                </div>
@@ -141,7 +141,7 @@
 	                                    </div>
 	                                    <div class="row justify-content-center">
 	                                        <div class="col-lg-5">
-	                                            <a href="" class="btn btn-primary w-100">View Detail</a>
+	                                            {{-- <a href="" class="btn btn-primary w-100">View Detail</a> --}}
 	                                        </div>
 	                                    </div>
 	                                </div>
@@ -206,7 +206,7 @@
 										<div class="fw-semibold text-sm text-lg-end">{{formatPayment($totalRevenue)}}</div>
 									</div>
 								</div>
-	                            <a href="" class="btn btn-primary w-100">View Detail</a>
+	                            {{-- <a href="" class="btn btn-primary w-100">View Detail</a> --}}
 	                        </div>
 	                    </div>
 	                </div>
@@ -240,7 +240,7 @@
 									   @endforelse
 	                                </div>
 	                            </div>
-	                            <a href="" class="btn btn-primary w-100">View Detail</a>
+	                            {{-- <a href="" class="btn btn-primary w-100">View Detail</a> --}}
 	                        </div>
 	                    </div>
 	                </div>
@@ -339,7 +339,7 @@
 	                                    </div>
 	                                </div>
 	                            </div>
-	                            <a href="" class="btn btn-primary w-100">View Detail</a>
+	                            {{-- <a href="" class="btn btn-primary w-100">View Detail</a> --}}
 	                        </div>
 	                    </div>
 	                </div>
@@ -378,7 +378,7 @@
 	                                    <div class="fw-semibold text-sm text-lg-end">{{formatPayment($totalInvoiceRevenue)}}</div>
 	                                </div>
 	                            </div>
-	                            <a href="" class="btn btn-primary w-100">View Detail</a>
+	                            {{-- <a href="" class="btn btn-primary w-100">View Detail</a> --}}
 	                        </div>
 	                    </div>
 	                </div>
@@ -457,7 +457,7 @@
 	                                    <div class="fw-semibold text-sm text-lg-end">-$45,224.46</div>
 	                                </div>
 	                            </div>
-	                            <a href="" class="btn btn-primary w-100">View Detail</a>
+	                            {{-- <a href="" class="btn btn-primary w-100">View Detail</a> --}}
 	                        </div>
 	                    </div>
 	                </div>
@@ -536,7 +536,7 @@
 	                                    <div class="fw-semibold text-sm text-lg-end">-$45,224.46</div>
 	                                </div>
 	                            </div>
-	                            <a href="" class="btn btn-primary w-100">View Detail</a>
+	                            {{-- <a href="" class="btn btn-primary w-100">View Detail</a> --}}
 	                        </div>
 	                    </div>
 	                </div>
@@ -615,7 +615,7 @@
 	                                    <div class="fw-semibold text-sm text-lg-end">-$45,224.46</div>
 	                                </div>
 	                            </div>
-	                            <a href="" class="btn btn-primary w-100">View Detail</a>
+	                            {{-- <a href="" class="btn btn-primary w-100">View Detail</a> --}}
 	                        </div>
 	                    </div>
 	                </div>
@@ -694,7 +694,7 @@
 	                                    <div class="fw-semibold text-sm text-lg-end">-$45,224.46</div>
 	                                </div>
 	                            </div>
-	                            <a href="" class="btn btn-primary w-100">View Detail</a>
+	                            {{-- <a href="" class="btn btn-primary w-100">View Detail</a> --}}
 	                        </div>
 	                    </div>
 	                </div>
@@ -729,7 +729,7 @@
 	                                    <div class="fw-semibold text-sm text-lg-end">-$45,224.46</div>
 	                                </div>
 	                            </div>
-	                            <a href="" class="btn btn-primary w-100">View Detail</a>
+	                            {{-- <a href="" class="btn btn-primary w-100">View Detail</a> --}}
 	                        </div>
 	                    </div>
 	                </div>
