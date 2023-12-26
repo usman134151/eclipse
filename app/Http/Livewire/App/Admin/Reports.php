@@ -8,14 +8,17 @@ use App\Models\Tenant\Company;
 use App\Models\Tenant\Invoice;
 use App\Models\Tenant\ServiceCategory;
 use App\Models\Tenant\User;
+use Carbon\Carbon;
 use Livewire\Component;
 
 class Reports extends Component
 {
+    public $startDate , $endDate;
     public $showForm, $topProviders, $topServices, $topInvoices, $totalInvoiceRevenue;
     protected $listeners = ['showList' => 'resetForm'];
     public $companyLabeldata= [];
     public $companydata= [];
+    
 
     public function render()
     {
@@ -122,6 +125,42 @@ class Reports extends Component
         $this->companyLabeldata = $labelsWithPercentages;
     }
 
+    function getDateRange($range)
+    {
+        $endDate = Carbon::today(); // Current date
+
+        switch ($range) {
+            case 'last_7_days':
+                $startDate = $endDate->copy()->subDays(6);
+                break;
+            case 'last_30_days':
+                $startDate = $endDate->copy()->subDays(29);
+                break;
+            case 'last_month':
+                $startDate = $endDate->copy()->subMonth()->startOfMonth();
+                $endDate = $endDate->copy()->subMonth()->endOfMonth();
+                break;
+            case 'this_month':
+                $startDate = $endDate->copy()->startOfMonth();
+                break;
+            case 'this_year':
+                $startDate = $endDate->copy()->startOfYear();
+                break;
+            case 'last_year':
+                $startDate = $endDate->copy()->subYear()->startOfYear();
+                $endDate = $endDate->copy()->subYear()->endOfYear();
+                break;
+            default:
+                $startDate = null;
+                break;
+        }
+
+        return [
+            'start_date' => $startDate ? $startDate->toDateString() : null,
+            'end_date' => $endDate ? $endDate->toDateString() : null,
+        ];
+    }
+    
     function showForm()
     {
         $this->showForm = true;
