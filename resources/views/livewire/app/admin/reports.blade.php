@@ -695,6 +695,9 @@
 
 		// Update assignment chart
 		updateChart(jsChartAssignment, @json($graph['assignmentGraph']));
+
+		// Update top invoices chart
+		updateChart(jsChartInvoice, @json($graph['companyGraph']));
 	}
 
 	function updateChart(chart, graphData) {
