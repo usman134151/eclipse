@@ -698,6 +698,9 @@
 
 		// Update top invoices chart
 		updateChart(jsChartInvoice, @json($graph['companyGraph']));
+
+		// Update top services chart
+		updateChart(jsChartServices, @json($graph['servicesGraph']));
 	}
 
 	function updateChart(chart, graphData) {
