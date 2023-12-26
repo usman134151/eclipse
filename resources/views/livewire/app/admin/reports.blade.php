@@ -405,7 +405,7 @@
 	                <div class="col-md-6 col-lg-4 mb-4">
 	                    <div class="card">
 	                        <div class="card-body">
-	                            <h3>Referrals</h3>
+	                            <h3>Referrals <small>(Coming Soon)</small></h3>
 	                            <div class="mb-4">
 	                                <canvas id="jsChartReferrals" style="width:100%;"></canvas>
 	                            </div>
@@ -484,7 +484,7 @@
 	                <div class="col-md-6 col-lg-4 mb-4">
 	                    <div class="card">
 	                        <div class="card-body">
-	                            <h3>Ratings (Pending)</h3>
+	                            <h3>Ratings (Pending) <small>(Coming Soon)</small></h3>
 	                            <div class="mb-4">
 	                                <canvas id="jsChartRatingsPending" style="width:100%;"></canvas>
 	                            </div>
