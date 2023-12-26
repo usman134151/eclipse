@@ -32,6 +32,7 @@ class Reports extends Component
         $this->graph['providerGraph'] = $this->generateGraphData($this->topProviders, 'name', 'closed_bookings_count');
         $this->graph['assignmentGraph'] = $this->generateGraphData($this->assignments, 'booking_number', 'total_amount');
         $this->graph['servicesGraph'] = $this->generateGraphData($this->topServices, 'name', 'booking_count');
+        $this->graph['revenuesGraph'] = $this->generateGraphData($this->revenues, 'paid_date', 'total_paid_amount');
 
         return view('livewire.app.admin.reports');
     }

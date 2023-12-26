@@ -701,6 +701,9 @@
 
 		// Update top services chart
 		updateChart(jsChartServices, @json($graph['servicesGraph']));
+
+		// Update revenue chart
+		updateChart(jsChartRevenue, @json($graph['revenuesGraph']));
 	}
 
 	function updateChart(chart, graphData) {
