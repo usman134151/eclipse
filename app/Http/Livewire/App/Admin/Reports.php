@@ -15,7 +15,7 @@ use Livewire\Component;
 class Reports extends Component
 {
     public $date;
-    public $showForm, $topProviders, $topServices, $topInvoices, $totalInvoiceRevenue, $revenues, $totalRevenue, $assignments, $totalAssignmentPayments;
+    public $showForm, $topProviders, $topServices, $topInvoices, $totalInvoiceRevenue, $revenues, $totalRevenue, $assignments, $totalAssignmentPayments, $cancellations;
     protected $listeners = ['showList' => 'resetForm'];
     public $graph = [];
 
@@ -171,6 +171,37 @@ class Reports extends Component
         return $filteredBookings;
     }
 
+    public function getCancellations()
+    {
+        $startDate = Carbon::createFromFormat('Y-m-d', $this->date['start_date'])->startOfDay()->addSeconds(1);
+        $endDate = Carbon::createFromFormat('Y-m-d', $this->date['end_date'])->endOfDay()->subSeconds(1);
+        $bookings = Booking::select('company_id')
+        ->selectRaw('COUNT(*) as canceled_bookings_count')
+        ->selectRaw('MAX(booking_cancelled_at) as cancellation_date') // getting the latest cancellation date
+        ->where('status', 3)
+            ->with('company')
+            ->groupBy('company_id')
+            ->orderByDesc('canceled_bookings_count')
+            ->take(5)
+            ->get();
+
+        // Process the result to build the desired array format
+        $bookingData = $bookings->map(function ($booking) {
+            return [
+                'company_name' => $booking->company->name,
+                'canceled_bookings_count' => $booking->canceled_bookings_count,
+                'cancellation_date' => $booking->cancellation_date,
+            ];
+        })->toArray();
+
+        $filteredBookingData = array_filter($bookingData, function ($booking) use ($startDate, $endDate) {
+            $cancellationDate = $booking['cancellation_date'];
+            return ($cancellationDate >= $startDate && $cancellationDate <= $endDate);
+        });
+
+        return $filteredBookingData;
+    }
+
     public function generateGraphData($data, $labelKey, $dataKey)
     {
         $dataArray = [];
@@ -231,6 +262,7 @@ class Reports extends Component
 
     public function refreshData()
     {
+        $this->cancellations = $this->getCancellations();
         $this->assignments = $this->getAssignments();
         $this->revenues = $this->getRevenue();
         $this->topInvoices = $this->getTopInvoices();
@@ -242,6 +274,7 @@ class Reports extends Component
         $this->graph['assignmentGraph'] = $this->generateGraphData($this->assignments, 'booking_number', 'total_amount');
         $this->graph['servicesGraph'] = $this->generateGraphData($this->topServices, 'name', 'booking_count');
         $this->graph['revenuesGraph'] = $this->generateGraphData($this->revenues, 'paid_date', 'total_paid_amount');
+        $this->graph['cancellationsGraph'] = $this->generateGraphData($this->cancellations, 'company_name', 'canceled_bookings_count');
 
         $this->emit('refreshCharts');
     }
