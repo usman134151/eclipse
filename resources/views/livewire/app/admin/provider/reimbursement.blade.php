@@ -263,7 +263,7 @@
                                                                     ? date_format(
                                                                         date_create($reimbursement['booking_start_at']),
                                                                         'h:i
-                                                                                                                                                                                        A',
+                                                                                                                                                                                                                                                                                                                        A',
                                                                     )
                                                                     : 'N/A' }}
                                                                 to
@@ -335,7 +335,7 @@
                                                                 <a href="javascript:void(0)" title="Check"
                                                                     aria-label="Check"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                                    wire:click="$emit('selectedReimbursement','{{$reimbursement['id']}}')"
+                                                                    wire:click="$emit('selectedReimbursement','{{ $reimbursement['id'] }}')"
                                                                     data-bs-toggle="modal"
                                                                     data-bs-target="#reimbursementReview">
                                                                     {{-- Updated by Shanila to Add svg icon --}}
@@ -349,8 +349,7 @@
                                                                 <a href="javascript:void(0)" title="cross"
                                                                     aria-label="cross"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                                    wire:click="$emit('denyReimbursement','{{$reimbursement['id']}}')"
-                                                                    
+                                                                    wire:click="$emit('denyReimbursement','{{ $reimbursement['id'] }}')"
                                                                     data-bs-toggle="modal"
                                                                     data-bs-target="#denyReimbursement">
                                                                     {{-- Updated by Shanila to Add svg icon --}}
@@ -502,19 +501,20 @@
         @include('modals.common.deny-reimbursement')
         @include('modals.common.reimbursement-review')
     </div>
-    @push('scripts')
+</div>
+@push('scripts')
     <script>
-       Livewire.on('close-accept-modal', () => {
+        Livewire.on('close-accept-modal', () => {
             $('#reimbursementReview').modal('hide');
 
         });
-          Livewire.on('close-deny-modal', () => {
+        Livewire.on('close-deny-modal', () => {
             $('#denyReimbursement').modal('hide');
 
         });
 
         function updateVal(attrName, val) {
-                Livewire.emit('updateVal', attrName, val);
+            Livewire.emit('updateVal', attrName, val);
         }
         document.addEventListener('refreshSelects2', function(event) {
             $('.select2').select2();
@@ -531,6 +531,5 @@
                 updateVal(attrName, $(this).select2("val"));
             });
         }
-
     </script>
-    @endpush
+@endpush

@@ -68,6 +68,8 @@ Route::group([
 			Route::view('/admin/teams/profile/{teamID}', 'tenant/admin/teams', ["showForm" => false, "showProfile" => true])->name('team-profile');
 			Route::view('/admin/reimbursement', 'tenant/admin/provider/reimbursement', ["showForm" => false]);
 			Route::view('/admin/provider/remittances', 'tenant/admin/provider/remittances', ["showForm" => false]);
+			Route::view('/admin/provider/pending-invoices', 'tenant/admin/provider/pending-invoices', ["showForm" => false]);
+
 			Route::view('/admin/provider/pending-payments', 'tenant/admin/provider/pending-payments', ["showForm" => false]);
 			Route::view('/admin/deactivated-provider', 'tenant/common/provider', ["showForm" => false, 'showProfile' => false, 'status' => 0]);
 			Route::view('/admin/provider-applications', 'tenant/admin/provider-applications', ["showForm" => false]);

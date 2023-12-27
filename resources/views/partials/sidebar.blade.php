@@ -296,6 +296,15 @@
                   <span class="menu-item">Deactivated Providers</span>
                 </a>
               </li>
+              
+              <li role="menuitem" class="nav-item  " id="pending-invoices">
+                <a class="nav-link" href="/admin/provider/pending-invoices">
+                  <svg aria-label="Pending Invoices" width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <use xlink:href="/css/admin-menu.svg#remittances-icon"></use>
+                  </svg>
+                  <span class="menu-item">Pending Invoices</span>
+                </a>
+              </li>
               <li role="menuitem" class="nav-item " id="reimbursement">
                 <a class="nav-link" href="/admin/reimbursement">
                   <svg aria-label="Reimbursements" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
