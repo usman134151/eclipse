@@ -7,10 +7,10 @@
     <div class="modal-body">
         <div><label class="form-label">Notes</label></div>
 
-        <textarea class="form-control" placeholder="Enter Text Here" name="" id="" cols="30" rows="5"></textarea>
+        <textarea wire:model="admin_response" class="form-control" placeholder="Enter Text Here" name="" id="" cols="30" rows="5"></textarea>
     </div>
     <div class="modal-footer">
-            <button type="button" class="btn btn-secondary">Cancel</button>
-            <button type="button" class="btn btn-primary">Accept</button>
+            <button data-bs-dismiss="modal" type="button" class="btn btn-secondary">Cancel</button>
+            <button type="button" data-bs-dismiss="modal" wire:click="accept" class="btn btn-primary">Accept</button>
     </div>
 </div>

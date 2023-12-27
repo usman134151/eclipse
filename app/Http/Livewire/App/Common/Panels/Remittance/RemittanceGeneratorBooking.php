@@ -5,6 +5,7 @@ namespace App\Http\Livewire\App\Common\Panels\Remittance;
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\BookingReimbursement;
 use App\Models\Tenant\Invoice;
+use App\Models\Tenant\ProviderInvoice;
 use App\Models\Tenant\ProviderRemittancePayment;
 use App\Models\Tenant\Remittance;
 use App\Models\Tenant\User;
@@ -31,6 +32,7 @@ class RemittanceGeneratorBooking extends Component
                 $query->where('is_paid', 0)
                     ->whereRaw("DATE(booking_end_at) < '" . Carbon::now()->toDateString() . "'");
             })
+            ->where('booking_providers.invoice_id', null)
             ->with(['booking', 'reimbursements'])
             ->select('booking_id')
             ->selectRaw('SUM( CASE WHEN is_override_price = 1
@@ -42,8 +44,8 @@ class RemittanceGeneratorBooking extends Component
         //fetching unassociated approved reimbursements
         $reimbursements = BookingReimbursement::where(['provider_id' => $providerId, 'status' => 1, 'booking_id' => null, 'payment_status' => 0, 'remittance_id' => 0])->select(['id as reimbursement_id', 'reimbursement_number', 'amount', 'booking_id'])->get()->toArray();
         $payments = ProviderRemittancePayment::where(['provider_id' => $providerId, 'payment_status' => 0, 'remittance_id' => null])->select(['id as payment_id', 'number', 'total_amount as amount'])->get()->toArray();
-        $invoices = Invoice::where(['provider_id' => $providerId, 'invoice_status' => '0'])
-            ->select(['id as invoice_id', 'invoice_number', 'total_price as amount'])->get()->toArray();
+        $invoices = ProviderInvoice::where(['provider_id' => $providerId, 'invoice_status' => 1])
+            ->select(['id as invoice_id', 'invoice_number', 'total_amount as amount'])->get()->toArray();
         // dd($invoices);
 
         $this->data = array_merge($bookings, $reimbursements, $payments, $invoices);

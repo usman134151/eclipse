@@ -11,6 +11,7 @@ use App\Models\Tenant\User;
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingReimbursement;
 use App\Models\Tenant\Invoice;
+use App\Models\Tenant\ProviderInvoice;
 use App\Models\Tenant\ProviderRemittancePayment;
 use App\Models\Tenant\Remittance;
 use App\Models\Tenant\UserAddress;
@@ -498,6 +499,30 @@ if (!function_exists('genetrateInvoiceNumber')) {
 				}
 			}
     }
+
+if (!function_exists('genetrateProviderInvoiceNumber')) {
+
+  function genetrateProviderInvoiceNumber($comp)
+  {
+    try {
+      if ($comp) {
+
+        $latestBooking = ProviderInvoice::where('provider_id', $comp->id)->count();
+        if ($latestBooking != 0)
+          $bookingNum = $latestBooking;
+        else
+          $bookingNum = 0;
+
+        $compName = strtoupper(substr($comp->name, 0, 3)) . date('y');
+        $bookId = 'INP-' . $compName . '-' . str_pad($bookingNum + 1, 3, "0", STR_PAD_LEFT);
+        return $bookId;
+      }
+    } catch (\Exception $e) {
+      dd($e->getMessage());
+    }
+  }
+}
+
 
 if (!function_exists('genetrateReimbursementNumber')) {
 
