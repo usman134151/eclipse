@@ -17,27 +17,19 @@ class Reports extends Component
     public $date;
     public $showForm, $topProviders, $topServices, $topInvoices, $totalInvoiceRevenue, $revenues, $totalRevenue, $assignments, $totalAssignmentPayments;
     protected $listeners = ['showList' => 'resetForm'];
-    public $companyLabeldata = [], $providerGraph = [];
-    public $companydata = [];
+    public $graph = [];
 
 
     public function render()
     {
-        $this->assignments = $this->getAssignments();
-        $this->revenues = $this->getRevenue();
-        $this->topInvoices = $this->getTopInvoices();
-        $this->topProviders = $this->getTopProviders();
-        $this->topServices = $this->getTopServices();
-
-        $this->getCompanyGraphData();
-        $this->getProviderGraphData();
-
+        $this->refreshData();
         return view('livewire.app.admin.reports');
     }
 
     public function mount()
     {
         $this->getDateRange('last_30_days');
+        $this->refreshData();
     }
 
     public function getTopProviders()
@@ -179,42 +171,27 @@ class Reports extends Component
         return $filteredBookings;
     }
 
-    public function getCompanyGraphData()
+    public function generateGraphData($data, $labelKey, $dataKey)
     {
-        $this->companyLabeldata = collect($this->topInvoices)->take(5)->pluck('name')->toArray();
-        $this->companydata = collect($this->topInvoices)->take(5)->pluck('invoices_total')->toArray();
+        $dataArray = [];
+        $dataArray['label'] = collect($data)->take(5)->pluck($labelKey)->toArray();
+        $dataArray['data'] = collect($data)->take(5)->pluck($dataKey)->toArray();
+
         // Calculate contribution percentages for each data point
-        $total = array_sum($this->companydata);
+        $total = array_sum($dataArray['data']);
         $percentages = array_map(function ($data) use ($total) {
             return number_format(($data / $total) * 100, 2) . '%';
-        }, $this->companydata);
+        }, $dataArray['data']);
 
-        // Concatenate company labels with percentages
+        // Concatenate labels with percentages
         $labelsWithPercentages = array_map(function ($label, $percentage) {
             return $label . ' ' . $percentage;
-        }, $this->companyLabeldata, $percentages);
+        }, $dataArray['label'], $percentages);
 
-        $this->companyLabeldata = $labelsWithPercentages;
+        $dataArray['label'] = $labelsWithPercentages;
+        return $dataArray;
     }
 
-    public function getProviderGraphData()
-    {
-
-        $this->providerGraph['label'] = array_column($this->topProviders, 'name');
-        $this->providerGraph['data'] = array_column($this->topProviders, 'closed_bookings_count');
-        // Calculate contribution percentages for each data point
-        $total = array_sum($this->providerGraph['data']);
-        $percentages = array_map(function ($data) use ($total) {
-            return number_format(($data / $total) * 100, 2) . '%';
-        }, $this->providerGraph['data']);
-
-        // Concatenate company labels with percentages
-        $labelsWithPercentages = array_map(function ($label, $percentage) {
-            return $label . ' ' . $percentage;
-        }, $this->providerGraph['label'], $percentages);
-
-        $this->providerGraph['label'] = $labelsWithPercentages;
-    }
 
     function getDateRange($range)
     {
@@ -250,6 +227,23 @@ class Reports extends Component
             'start_date' => $startDate ? $startDate->toDateString() : null,
             'end_date' => $endDate ? $endDate->toDateString() : null,
         ];
+    }
+
+    public function refreshData()
+    {
+        $this->assignments = $this->getAssignments();
+        $this->revenues = $this->getRevenue();
+        $this->topInvoices = $this->getTopInvoices();
+        $this->topProviders = $this->getTopProviders();
+        $this->topServices = $this->getTopServices();
+
+        $this->graph['companyGraph'] = $this->generateGraphData($this->topInvoices, 'name', 'invoices_total');
+        $this->graph['providerGraph'] = $this->generateGraphData($this->topProviders, 'name', 'closed_bookings_count');
+        $this->graph['assignmentGraph'] = $this->generateGraphData($this->assignments, 'booking_number', 'total_amount');
+        $this->graph['servicesGraph'] = $this->generateGraphData($this->topServices, 'name', 'booking_count');
+        $this->graph['revenuesGraph'] = $this->generateGraphData($this->revenues, 'paid_date', 'total_paid_amount');
+
+        $this->emit('refreshCharts');
     }
 
     function showForm()

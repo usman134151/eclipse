@@ -686,35 +686,64 @@
 <script src="/tenant-resources/js/Chart-init.js"></script>
 @push('scripts')
 <script>
+	document.addEventListener('livewire:load', function () {
+    	Livewire.on('refreshCharts', function () {
+        	// Call your JavaScript function here or perform actions based on newData
+        	updateCharts();
+    	});
+	});
 	function updateCharts() {
-		updateCompanyChart();
-		updateProviderChart();
+		
+		// Update company chart
+		const RevenueByCompanyChart = createDoughnutChart("RevenueByCompanyChart", @json($graph['companyGraph']));
+
+		// Update provider chart
+		const jsChartTopProviders = createDoughnutChart("jsChartTopProviders", @json($graph['providerGraph']),false);
+
+		// Update assignment chart
+		const jsChartAssignment = createDoughnutChart("jsChartAssignment", @json($graph['assignmentGraph']),false);
+
+		// Update top invoices chart
+		const jsChartInvoice = createDoughnutChart("jsChartInvoice", @json($graph['companyGraph']),false);
+
+		// Update top services chart
+		const jsChartServices = createDoughnutChart("jsChartServices", @json($graph['servicesGraph']),false);
+
+		// Update revenue chart
+		const jsChartRevenue = createDoughnutChart("jsChartRevenue", @json($graph['revenuesGraph']),false);
 	}
-	// Function to update chart data and labels
-	function updateCompanyChart() {
-    // New data and labels
-    const newLabels = @json($companyLabeldata);  
-    const newData = @json($companydata);
-  
-    // Update chart data and labels
-    RevenueByCompanyChart.data.labels = newLabels;
-    RevenueByCompanyChart.data.datasets[0].data = newData;
-  
-    // Finally, update the chart
-    RevenueByCompanyChart.update();
-  }
-	function updateProviderChart() {
-    // New data and labels
-    const newLabels1 = @json($providerGraph['label']);  
-    const newData1 = @json($providerGraph['data']);
-  
-    // Update chart data and labels
-    jsChartTopProviders.data.labels = newLabels1;
-    jsChartTopProviders.data.datasets[0].data = newData1;
-  
-    // Finally, update the chart
-    jsChartTopProviders.update();
-  }
+
+	function createDoughnutChart(chartId, chartData, lengendDisplay = true) {
+    return new Chart(chartId, {
+        type: "doughnut",
+        data: {
+			labels: chartData.label || [],
+            datasets: [{
+                label: 'My First Dataset',
+                data: chartData.data || [],
+                backgroundColor: [
+                    'rgb(10, 30, 70)',
+                    'rgb(136, 133, 117)',
+                    'rgb(229, 179, 47)',
+                    'rgb(191, 64, 64)',
+                    'rgb(21, 151, 79)'
+                ],
+                hoverOffset: 0
+            }]
+        },
+        options: {
+            aspectRatio: 1.2,
+            legend: {
+				display: lengendDisplay,
+                position: 'bottom',
+                labels: {
+                    padding: 50,
+                    boxWidth: 10,
+                }
+            }
+        }, 
+    });
+}
 
   // Call the updateCharts function to update the chart data and labels
   updateCharts();
