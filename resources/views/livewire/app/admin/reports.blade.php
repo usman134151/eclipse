@@ -376,83 +376,75 @@
 	                <div class="col-md-6 col-lg-4 mb-4">
 	                    <div class="card">
 	                        <div class="card-body">
-	                            <h3>Referrals <small>(Coming Soon)</small></h3>
+	                            <h3>Cancellations</h3>
 	                            <div class="mb-4">
-	                                <canvas id="jsChartReferrals" style="width:100%;"></canvas>
+	                                <canvas id="jsChartCancellations" style="width:100%;"></canvas>
 	                            </div>
 	                            <div class="row">
 	                                <div class="col-md-6 mb-2">
-	                                    <div class="fw-semibold text-sm">Total Revenue</div>
+	                                    <div class="fw-semibold text-sm">Companies</div>
 	                                </div>
 	                                <div class="col-md-6 mb-2">
-	                                    <div class="fw-semibold text-sm text-lg-end">$696,531.25</div>
+	                                    <div class="fw-semibold text-sm text-lg-end">No. of Cancelled Bookings</div>
+	                                </div>
+									@forelse ($cancellations as $cancellation)
+	                                <div class="col-md-6 mb-2">
+	                                    <div class="text-sm">{{$cancellation['company_name']}}</div>
 	                                </div>
 	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm">Total Services Rate</div>
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm text-lg-end">$695,571.29</div>
+	                                    <div class="text-sm text-lg-end">{{$cancellation['canceled_bookings_count']}}</div>
 	                                </div>
 	                                <div class="col-lg-12">
 	                                    <hr class="mt-0 mb-2">
 	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm">Total Services Rate</div>
+									@empty
+									<div class="col-lg-12">
+	                                    <small>No Records Available</small>
 	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm text-lg-end">$695,571.29</div>
-	                                </div>
-	                                <div class="col-lg-12">
-	                                    <hr class="mt-0 mb-2">
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm">Total Services Rate</div>
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm text-lg-end">$695,571.29</div>
-	                                </div>
-	                                <div class="col-lg-12">
-	                                    <hr class="mt-0 mb-2">
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm">Total Services Rate</div>
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm text-lg-end">$695,571.29</div>
-	                                </div>
-	                                <div class="col-lg-12">
-	                                    <hr class="mt-0 mb-2">
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm">Total Services Rate</div>
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm text-lg-end">$695,571.29</div>
-	                                </div>
-	                                <div class="col-lg-12">
-	                                    <hr class="mt-0 mb-2">
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm">Total Services Rate</div>
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm text-lg-end">$695,571.29</div>
-	                                </div>
-	                                <div class="col-lg-12">
-	                                    <hr class="mt-0 mb-2">
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="fw-semibold text-sm">Total Payments</div>
-	                                </div>
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="fw-semibold text-sm text-lg-end">-$45,224.46</div>
-	                                </div>
+									@endforelse
 	                            </div>
 	                            {{-- <a href="" class="btn btn-primary w-100">View Detail</a> --}}
 	                        </div>
 	                    </div>
 	                </div>
 	                <div class="col-md-6 col-lg-4 mb-4">
+	                    <div class="card">
+	                        <div class="card-body">
+	                            <h3>Top Providers</h3>
+	                            <div class="mb-4">
+	                                <canvas id="jsChartTopProviders" style="width:100%;"></canvas>
+	                            </div>
+	                            <div class="row">
+									<div class="col-md-6 mb-2">
+	                                    <div class="fw-semibold text-sm">Providers</div>
+	                                </div>
+	                                <div class="col-md-6 mb-2">
+	                                    <div class="fw-semibold text-sm text-lg-end">No. of Closed Bookings</div>
+	                                </div>
+									@if($topProviders != null)
+									@forelse ($topProviders as $topProvider)
+										<div class="col-md-6 mb-2">
+	                                	    <div class="text-sm">{{$topProvider['name']}}</div>
+
+	                                	</div>
+	                                	<div class="col-md-6 mb-2">
+	                                	    <div class="text-sm text-lg-end">{{$topProvider['closed_bookings_count']}}</div>
+	                                	</div>
+	                                	<div class="col-lg-12">
+	                                	    <hr class="mt-0 mb-2">
+	                                	</div>
+									@empty
+									<div class="col-lg-12">
+	                                    <small>No Records Available</small>
+	                                </div>
+									@endforelse
+									@endif
+	                            </div>
+	                            {{-- <a href="" class="btn btn-primary w-100">View Detail</a> --}}
+	                        </div>
+	                    </div>
+	                </div>
+					<div class="col-md-6 col-lg-4 mb-4">
 	                    <div class="card">
 	                        <div class="card-body">
 	                            <h3>Ratings (Pending) <small>(Coming Soon)</small></h3>
@@ -531,72 +523,80 @@
 	                        </div>
 	                    </div>
 	                </div>
-	                <div class="col-md-6 col-lg-4 mb-4">
+					<div class="col-md-6 col-lg-4 mb-4">
 	                    <div class="card">
 	                        <div class="card-body">
-	                            <h3>Cancellations</h3>
+	                            <h3>Referrals <small>(Coming Soon)</small></h3>
 	                            <div class="mb-4">
-	                                <canvas id="jsChartCancellations" style="width:100%;"></canvas>
+	                                <canvas id="jsChartReferrals" style="width:100%;"></canvas>
 	                            </div>
 	                            <div class="row">
 	                                <div class="col-md-6 mb-2">
-	                                    <div class="fw-semibold text-sm">Companies</div>
+	                                    <div class="fw-semibold text-sm">Total Revenue</div>
 	                                </div>
 	                                <div class="col-md-6 mb-2">
-	                                    <div class="fw-semibold text-sm text-lg-end">No. of Cancelled Bookings</div>
-	                                </div>
-									@forelse ($cancellations as $cancellation)
-	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm">{{$cancellation['company_name']}}</div>
+	                                    <div class="fw-semibold text-sm text-lg-end">$696,531.25</div>
 	                                </div>
 	                                <div class="col-md-6 mb-2">
-	                                    <div class="text-sm text-lg-end">{{$cancellation['canceled_bookings_count']}}</div>
+	                                    <div class="text-sm">Total Services Rate</div>
+	                                </div>
+	                                <div class="col-md-6 mb-2">
+	                                    <div class="text-sm text-lg-end">$695,571.29</div>
 	                                </div>
 	                                <div class="col-lg-12">
 	                                    <hr class="mt-0 mb-2">
 	                                </div>
-									@empty
-									<div class="col-lg-12">
-	                                    <small>No Records Available</small>
-	                                </div>
-									@endforelse
-	                            </div>
-	                            {{-- <a href="" class="btn btn-primary w-100">View Detail</a> --}}
-	                        </div>
-	                    </div>
-	                </div>
-	                <div class="col-md-6 col-lg-4 mb-4">
-	                    <div class="card">
-	                        <div class="card-body">
-	                            <h3>Top Providers</h3>
-	                            <div class="mb-4">
-	                                <canvas id="jsChartTopProviders" style="width:100%;"></canvas>
-	                            </div>
-	                            <div class="row">
-									<div class="col-md-6 mb-2">
-	                                    <div class="fw-semibold text-sm">Providers</div>
+	                                <div class="col-md-6 mb-2">
+	                                    <div class="text-sm">Total Services Rate</div>
 	                                </div>
 	                                <div class="col-md-6 mb-2">
-	                                    <div class="fw-semibold text-sm text-lg-end">No. of Closed Bookings</div>
+	                                    <div class="text-sm text-lg-end">$695,571.29</div>
 	                                </div>
-									@if($topProviders != null)
-									@forelse ($topProviders as $topProvider)
-										<div class="col-md-6 mb-2">
-	                                	    <div class="text-sm">{{$topProvider['name']}}</div>
-
-	                                	</div>
-	                                	<div class="col-md-6 mb-2">
-	                                	    <div class="text-sm text-lg-end">{{$topProvider['closed_bookings_count']}}</div>
-	                                	</div>
-	                                	<div class="col-lg-12">
-	                                	    <hr class="mt-0 mb-2">
-	                                	</div>
-									@empty
-									<div class="col-lg-12">
-	                                    <small>No Records Available</small>
+	                                <div class="col-lg-12">
+	                                    <hr class="mt-0 mb-2">
 	                                </div>
-									@endforelse
-									@endif
+	                                <div class="col-md-6 mb-2">
+	                                    <div class="text-sm">Total Services Rate</div>
+	                                </div>
+	                                <div class="col-md-6 mb-2">
+	                                    <div class="text-sm text-lg-end">$695,571.29</div>
+	                                </div>
+	                                <div class="col-lg-12">
+	                                    <hr class="mt-0 mb-2">
+	                                </div>
+	                                <div class="col-md-6 mb-2">
+	                                    <div class="text-sm">Total Services Rate</div>
+	                                </div>
+	                                <div class="col-md-6 mb-2">
+	                                    <div class="text-sm text-lg-end">$695,571.29</div>
+	                                </div>
+	                                <div class="col-lg-12">
+	                                    <hr class="mt-0 mb-2">
+	                                </div>
+	                                <div class="col-md-6 mb-2">
+	                                    <div class="text-sm">Total Services Rate</div>
+	                                </div>
+	                                <div class="col-md-6 mb-2">
+	                                    <div class="text-sm text-lg-end">$695,571.29</div>
+	                                </div>
+	                                <div class="col-lg-12">
+	                                    <hr class="mt-0 mb-2">
+	                                </div>
+	                                <div class="col-md-6 mb-2">
+	                                    <div class="text-sm">Total Services Rate</div>
+	                                </div>
+	                                <div class="col-md-6 mb-2">
+	                                    <div class="text-sm text-lg-end">$695,571.29</div>
+	                                </div>
+	                                <div class="col-lg-12">
+	                                    <hr class="mt-0 mb-2">
+	                                </div>
+	                                <div class="col-md-6 mb-2">
+	                                    <div class="fw-semibold text-sm">Total Payments</div>
+	                                </div>
+	                                <div class="col-md-6 mb-2">
+	                                    <div class="fw-semibold text-sm text-lg-end">-$45,224.46</div>
+	                                </div>
 	                            </div>
 	                            {{-- <a href="" class="btn btn-primary w-100">View Detail</a> --}}
 	                        </div>
