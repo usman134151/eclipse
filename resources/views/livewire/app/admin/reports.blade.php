@@ -686,37 +686,64 @@
 <script src="/tenant-resources/js/Chart-init.js"></script>
 @push('scripts')
 <script>
+	document.addEventListener('livewire:load', function () {
+    	Livewire.on('refreshCharts', function () {
+        	// Call your JavaScript function here or perform actions based on newData
+        	updateCharts();
+    	});
+	});
 	function updateCharts() {
+		
 		// Update company chart
-		updateChart(RevenueByCompanyChart, @json($graph['companyGraph']));
+		const RevenueByCompanyChart = createDoughnutChart("RevenueByCompanyChart", @json($graph['companyGraph']));
 
 		// Update provider chart
-		updateChart(jsChartTopProviders, @json($graph['providerGraph']));
+		const jsChartTopProviders = createDoughnutChart("jsChartTopProviders", @json($graph['providerGraph']),false);
 
 		// Update assignment chart
-		updateChart(jsChartAssignment, @json($graph['assignmentGraph']));
+		const jsChartAssignment = createDoughnutChart("jsChartAssignment", @json($graph['assignmentGraph']),false);
 
 		// Update top invoices chart
-		updateChart(jsChartInvoice, @json($graph['companyGraph']));
+		const jsChartInvoice = createDoughnutChart("jsChartInvoice", @json($graph['companyGraph']),false);
 
 		// Update top services chart
-		updateChart(jsChartServices, @json($graph['servicesGraph']));
+		const jsChartServices = createDoughnutChart("jsChartServices", @json($graph['servicesGraph']),false);
 
 		// Update revenue chart
-		updateChart(jsChartRevenue, @json($graph['revenuesGraph']));
+		const jsChartRevenue = createDoughnutChart("jsChartRevenue", @json($graph['revenuesGraph']),false);
 	}
 
-	function updateChart(chart, graphData) {
-		const newLabels = graphData.label;
-		const newData = graphData.data;
-		
-		// Update chart data and labels
-		chart.data.labels = newLabels;
-		chart.data.datasets[0].data = newData;
-		
-		// Finally, update the chart
-		chart.update();
-	}
+	function createDoughnutChart(chartId, chartData, lengendDisplay = true) {
+    return new Chart(chartId, {
+        type: "doughnut",
+        data: {
+			labels: chartData.label || [],
+            datasets: [{
+                label: 'My First Dataset',
+                data: chartData.data || [],
+                backgroundColor: [
+                    'rgb(10, 30, 70)',
+                    'rgb(136, 133, 117)',
+                    'rgb(229, 179, 47)',
+                    'rgb(191, 64, 64)',
+                    'rgb(21, 151, 79)'
+                ],
+                hoverOffset: 0
+            }]
+        },
+        options: {
+            aspectRatio: 1.2,
+            legend: {
+				display: lengendDisplay,
+                position: 'bottom',
+                labels: {
+                    padding: 50,
+                    boxWidth: 10,
+                }
+            }
+        }, 
+    });
+}
 
   // Call the updateCharts function to update the chart data and labels
   updateCharts();

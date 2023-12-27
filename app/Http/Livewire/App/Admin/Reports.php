@@ -22,24 +22,14 @@ class Reports extends Component
 
     public function render()
     {
-        $this->assignments = $this->getAssignments();
-        $this->revenues = $this->getRevenue();
-        $this->topInvoices = $this->getTopInvoices();
-        $this->topProviders = $this->getTopProviders();
-        $this->topServices = $this->getTopServices();
-
-        $this->graph['companyGraph'] = $this->generateGraphData($this->topInvoices, 'name', 'invoices_total');
-        $this->graph['providerGraph'] = $this->generateGraphData($this->topProviders, 'name', 'closed_bookings_count');
-        $this->graph['assignmentGraph'] = $this->generateGraphData($this->assignments, 'booking_number', 'total_amount');
-        $this->graph['servicesGraph'] = $this->generateGraphData($this->topServices, 'name', 'booking_count');
-        $this->graph['revenuesGraph'] = $this->generateGraphData($this->revenues, 'paid_date', 'total_paid_amount');
-
+        $this->refreshData();
         return view('livewire.app.admin.reports');
     }
 
     public function mount()
     {
         $this->getDateRange('last_30_days');
+        $this->refreshData();
     }
 
     public function getTopProviders()
@@ -237,6 +227,23 @@ class Reports extends Component
             'start_date' => $startDate ? $startDate->toDateString() : null,
             'end_date' => $endDate ? $endDate->toDateString() : null,
         ];
+    }
+
+    public function refreshData()
+    {
+        $this->assignments = $this->getAssignments();
+        $this->revenues = $this->getRevenue();
+        $this->topInvoices = $this->getTopInvoices();
+        $this->topProviders = $this->getTopProviders();
+        $this->topServices = $this->getTopServices();
+
+        $this->graph['companyGraph'] = $this->generateGraphData($this->topInvoices, 'name', 'invoices_total');
+        $this->graph['providerGraph'] = $this->generateGraphData($this->topProviders, 'name', 'closed_bookings_count');
+        $this->graph['assignmentGraph'] = $this->generateGraphData($this->assignments, 'booking_number', 'total_amount');
+        $this->graph['servicesGraph'] = $this->generateGraphData($this->topServices, 'name', 'booking_count');
+        $this->graph['revenuesGraph'] = $this->generateGraphData($this->revenues, 'paid_date', 'total_paid_amount');
+
+        $this->emit('refreshCharts');
     }
 
     function showForm()
