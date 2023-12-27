@@ -642,6 +642,9 @@
 
 		// Update cancellation chart
 		const jsChartCancellations = createDoughnutChart("jsChartCancellations", @json($graph['cancellationsGraph']),false);
+
+		// Update payment chart
+		const jsChartPayments = createDoughnutChart("jsChartPayments", @json($graph['paymentsGraph']),false);
 	}
 
 	function createDoughnutChart(chartId, chartData, lengendDisplay = true) {

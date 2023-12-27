@@ -305,6 +305,7 @@ class Reports extends Component
         $this->graph['servicesGraph'] = $this->generateGraphData($this->topServices, 'name', 'booking_count');
         $this->graph['revenuesGraph'] = $this->generateGraphData($this->revenues, 'paid_date', 'total_paid_amount');
         $this->graph['cancellationsGraph'] = $this->generateGraphData($this->cancellations, 'company_name', 'canceled_bookings_count');
+        $this->graph['paymentsGraph'] = $this->generateGraphData($this->payments, 'provider.name', 'total_amount');
 
         $this->emit('refreshCharts');
     }

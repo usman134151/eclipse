@@ -332,70 +332,70 @@ const RevenueVsPayment = new Chart("RevenueVsPayment", {
           }
     });
 
-    const jsChartPayments = new Chart("jsChartPayments", {
-      type: 'line',
-        data: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-            datasets: [{
-                label: '',
-                backgroundColor: 'rgb(10, 30, 70)',
-                borderColor: 'rgb(10, 30, 70)',
-                fill: false,
-                data: [
-                    0,
-                    300,
-                    300,
-                    450,
-                    300,
-                    450,
-                    300
-                ],
-            }]
-        },
-        options: {
-            elements: {
-                    point:{
-                        radius: 0
-                    }
-                },
-            legend: {
-              labels: {
-                display: false,
-                boxWidth: 0,
-            }
-            },
-            responsive: true,
-            title: {
-                display: false,
-                text: ''
-            },
-            scales: {
-                xAxes: [{
-                    display: false,
-          scaleLabel: {
-            display: true,
-            labelString: 'Date'
-          },
+    // const jsChartPayments = new Chart("jsChartPayments", {
+    //   type: 'line',
+    //     data: {
+    //         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    //         datasets: [{
+    //             label: '',
+    //             backgroundColor: 'rgb(10, 30, 70)',
+    //             borderColor: 'rgb(10, 30, 70)',
+    //             fill: false,
+    //             data: [
+    //                 0,
+    //                 300,
+    //                 300,
+    //                 450,
+    //                 300,
+    //                 450,
+    //                 300
+    //             ],
+    //         }]
+    //     },
+    //     options: {
+    //         elements: {
+    //                 point:{
+    //                     radius: 0
+    //                 }
+    //             },
+    //         legend: {
+    //           labels: {
+    //             display: false,
+    //             boxWidth: 0,
+    //         }
+    //         },
+    //         responsive: true,
+    //         title: {
+    //             display: false,
+    //             text: ''
+    //         },
+    //         scales: {
+    //             xAxes: [{
+    //                 display: false,
+    //       scaleLabel: {
+    //         display: true,
+    //         labelString: 'Date'
+    //       },
             
-                }],
-                yAxes: [{
-                    display: false,
-                    //type: 'logarithmic',
-          scaleLabel: {
-                            display: true,
-                            labelString: 'Index Returns'
-                        },
-                        ticks: {
-                            min: 0,
-                            max: 500,
+    //             }],
+    //             yAxes: [{
+    //                 display: false,
+    //                 //type: 'logarithmic',
+    //       scaleLabel: {
+    //                         display: true,
+    //                         labelString: 'Index Returns'
+    //                     },
+    //                     ticks: {
+    //                         min: 0,
+    //                         max: 500,
 
-                            // forces step size to be 5 units
-                            stepSize: 100
-                        }
-                }]
-            }
-        }
-    });
+    //                         // forces step size to be 5 units
+    //                         stepSize: 100
+    //                     }
+    //             }]
+    //         }
+    //     }
+    // });
 
     const jsChartReferrals = new Chart("jsChartReferrals", {
       type: 'line',
@@ -527,67 +527,67 @@ const RevenueVsPayment = new Chart("RevenueVsPayment", {
         }
     });
 
-    const jsChartCancellations = new Chart("jsChartCancellations", {
-      type: 'line',
-        data: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-            datasets: [{
-                label: '',
-                backgroundColor: 'rgb(10, 30, 70)',
-                borderColor: 'rgb(10, 30, 70)',
-                fill: false,
-                data: [
-                    0,
-                    300,
-                    300,
-                    450,
-                    300,
-                    450,
-                    300
-                ],
-            }]
-        },
-        options: {
-            elements: {
-                    point:{
-                        radius: 0
-                    }
-                },
-            legend: {
-              labels: {
-                display: false,
-                boxWidth: 0,
-            }
-            },
-            responsive: true,
-            title: {
-                display: false,
-                text: ''
-            },
-            scales: {
-                xAxes: [{
-                    display: false,
-          scaleLabel: {
-            display: true,
-            labelString: 'Date'
-          },
+    // const jsChartCancellations = new Chart("jsChartCancellations", {
+    //   type: 'line',
+    //     data: {
+    //         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    //         datasets: [{
+    //             label: '',
+    //             backgroundColor: 'rgb(10, 30, 70)',
+    //             borderColor: 'rgb(10, 30, 70)',
+    //             fill: false,
+    //             data: [
+    //                 0,
+    //                 300,
+    //                 300,
+    //                 450,
+    //                 300,
+    //                 450,
+    //                 300
+    //             ],
+    //         }]
+    //     },
+    //     options: {
+    //         elements: {
+    //                 point:{
+    //                     radius: 0
+    //                 }
+    //             },
+    //         legend: {
+    //           labels: {
+    //             display: false,
+    //             boxWidth: 0,
+    //         }
+    //         },
+    //         responsive: true,
+    //         title: {
+    //             display: false,
+    //             text: ''
+    //         },
+    //         scales: {
+    //             xAxes: [{
+    //                 display: false,
+    //       scaleLabel: {
+    //         display: true,
+    //         labelString: 'Date'
+    //       },
             
-                }],
-                yAxes: [{
-                    display: false,
-                    //type: 'logarithmic',
-          scaleLabel: {
-                            display: true,
-                            labelString: 'Index Returns'
-                        },
-                        ticks: {
-                            min: 0,
-                            max: 500,
+    //             }],
+    //             yAxes: [{
+    //                 display: false,
+    //                 //type: 'logarithmic',
+    //       scaleLabel: {
+    //                         display: true,
+    //                         labelString: 'Index Returns'
+    //                     },
+    //                     ticks: {
+    //                         min: 0,
+    //                         max: 500,
 
-                            // forces step size to be 5 units
-                            stepSize: 100
-                        }
-                }]
-            }
-        }
-    });
+    //                         // forces step size to be 5 units
+    //                         stepSize: 100
+    //                     }
+    //             }]
+    //         }
+    //     }
+    // });
