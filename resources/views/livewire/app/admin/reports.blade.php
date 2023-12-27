@@ -197,7 +197,9 @@
 										<hr class="mt-0 mb-2">
 									</div>
 									@empty
-									No Record Available
+									<div class="col-lg-12">
+	                                    <small>No Records Available</small>
+	                                </div>
 									@endforelse
 									<div class="col-md-6 mb-2">
 										<div class="fw-semibold text-sm">Total Revenue</div>
@@ -236,7 +238,9 @@
 												<hr class="mt-0 mb-2">
 											</div>
 									   @empty
-										No Record Available
+									   	<div class="col-lg-12">
+	                                    	<small>No Records Available</small>
+	                                	</div>
 									   @endforelse
 	                                </div>
 	                            </div>
@@ -270,7 +274,9 @@
 	                                        <hr class="mt-0 mb-2">
 	                                    </div>
 										@empty
-											No Records Available
+										<div class="col-lg-12">
+											<small>No Records Available</small>
+										</div>
 										@endforelse
 	                                    <div class="col-md-6 mb-2">
 	                                        <div class="fw-semibold text-sm">Total Payments</div>
@@ -309,7 +315,9 @@
 	                                	    <hr class="mt-0 mb-2">
 	                                	</div>
 									@empty
-										No Record Available
+									<div class="col-lg-12">
+	                                    <small>No Records Available</small>
+	                                </div>
 									@endforelse
 	                                
 									<div class="col-md-6 mb-2">
@@ -621,7 +629,9 @@
 	                                	    <hr class="mt-0 mb-2">
 	                                	</div>
 									@empty
-										No Data Available
+									<div class="col-lg-12">
+	                                    <small>No Records Available</small>
+	                                </div>
 									@endforelse
 									@endif
 	                            </div>
