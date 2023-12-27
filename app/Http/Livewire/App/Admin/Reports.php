@@ -7,6 +7,7 @@ use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\Company;
 use App\Models\Tenant\Invoice;
 use App\Models\Tenant\InvoicePayment;
+use App\Models\Tenant\Remittance;
 use App\Models\Tenant\ServiceCategory;
 use App\Models\Tenant\User;
 use Carbon\Carbon;
@@ -15,7 +16,7 @@ use Livewire\Component;
 class Reports extends Component
 {
     public $date;
-    public $showForm, $topProviders, $topServices, $topInvoices, $totalInvoiceRevenue, $revenues, $totalRevenue, $assignments, $totalAssignmentPayments, $cancellations;
+    public $showForm, $topProviders, $topServices, $topInvoices, $totalInvoiceRevenue, $revenues, $totalRevenue, $assignments, $totalAssignmentPayments, $cancellations, $payments, $totalPayments;
     protected $listeners = ['showList' => 'resetForm'];
     public $graph = [];
 
@@ -202,6 +203,34 @@ class Reports extends Component
         return $filteredBookingData;
     }
 
+    public function getPayments()
+    {
+        $startDate = Carbon::createFromFormat('Y-m-d', $this->date['start_date'])->startOfDay();
+        $endDate = Carbon::createFromFormat('Y-m-d', $this->date['end_date'])->endOfDay();
+        $payments = Remittance::selectRaw('provider_id, MAX(paid_at) as latest_paid_date, SUM(amount) as total_amount')
+        ->with(['provider' => function ($query) {
+            $query->select('id', 'name'); // Select only the 'id' and 'name' columns from 'providers' table
+        }])
+        ->where('payment_status', 2)
+        ->groupBy('provider_id')
+        ->orderByDesc('total_amount')
+        ->get()
+        ->toArray();
+
+        $filteredPayments = array_filter($payments, function ($payment) use ($startDate, $endDate) {
+            $paidDate = $payment['latest_paid_date'];
+            return ($paidDate >= $startDate && $paidDate <= $endDate);
+        });
+
+        // Extract 'total_amount' values into a separate array
+        $total_amounts = array_column($filteredPayments, 'total_amount');
+
+        // Calculate the sum of 'total_amount' values
+        $this->totalPayments = array_sum($total_amounts);
+
+        return $filteredPayments;
+    }
+
     public function generateGraphData($data, $labelKey, $dataKey)
     {
         $dataArray = [];
@@ -262,6 +291,7 @@ class Reports extends Component
 
     public function refreshData()
     {
+        $this->payments = $this->getPayments();
         $this->cancellations = $this->getCancellations();
         $this->assignments = $this->getAssignments();
         $this->revenues = $this->getRevenue();

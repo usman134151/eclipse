@@ -26,4 +26,9 @@ class Remittance extends Model
     {
         return $this->hasOne(Booking::class, 'id', 'booking_id');
     }
+
+    public function provider()
+    {
+        return $this->hasOne(User::class, 'id', 'provider_id');
+    }
 }
