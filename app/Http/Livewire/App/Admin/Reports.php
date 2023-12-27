@@ -319,7 +319,7 @@ class Reports extends Component
         $this->graph['revenueByService'] = $this->generateGraphData($this->getRevenueByService(), 'service_name', 'total_paid_amount');
         $this->graph['paymentsVsRevenue'] = $this->getPaymentVsRevenueGraphData();
 
-        $this->emit('refreshCharts');
+        $this->emit('refreshCharts',$this->graph);
     }
 
     public function getPaymentVsRevenueGraphData()

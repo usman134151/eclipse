@@ -615,12 +615,49 @@
 @push('scripts')
 <script>
 	document.addEventListener('livewire:load', function () {
-    	Livewire.on('refreshCharts', function () {
-        	// Call your JavaScript function here or perform actions based on newData
-        	updateCharts();
+    	Livewire.on('refreshCharts', newData => {
+
+		// Update company chart
+		updateChart(RevenueByCompanyChart,newData['companyGraph']);
+
+		// Update provider chart
+		updateChart(jsChartTopProviders,newData['providerGraph']);
+
+		// Update assignment chart
+		updateChart(jsChartAssignment,newData['assignmentGraph']);
+
+		// Update top invoices chart
+		updateChart(jsChartInvoice,newData['companyGraph']);
+
+		// Update top services chart
+		updateChart(jsChartServices,newData['servicesGraph']);
+
+		// Update revenue chart
+		updateChart(jsChartRevenue,newData['revenuesGraph']);
+
+		// Update cancellation chart
+		updateChart(jsChartCancellations,newData['cancellationsGraph']);
+
+		// Update payment chart
+		updateChart(jsChartPayments,newData['paymentsGraph']);
+
+		// Update revenueByService chart
+		updateChart(RevenueByServices,newData['revenueByService']);
+
+		//update line graph
+		RevenueVsPayment.data = newData['paymentsVsRevenue'];
+		RevenueVsPayment.update();
+
     	});
 	});
-	function updateCharts() {
+
+	function updateChart(chart,newData) {
+		
+		chart.data.labels = newData.label;
+    	chart.data.datasets[0].data = newData.data; // Assuming only one dataset
+    	chart.update();
+	}
+
 		
 		// Update company chart
 		const RevenueByCompanyChart = createDoughnutChart("RevenueByCompanyChart", @json($graph['companyGraph']));
@@ -650,8 +687,31 @@
 		const RevenueByServices = createDoughnutChart("RevenueByServices", @json($graph['revenueByService']));
 
 		// Update paymentVsRevenue chart
-		updatePaymentVsRevenueChart();
-	}
+		const RevenueVsPayment = new Chart("RevenueVsPayment", {
+		  type: 'line',
+		  data: @json($graph['paymentsVsRevenue']),
+		  options: {
+		    responsive: true,
+		    plugins: {
+		      legend: {
+		        position: 'top',
+		      },
+		      title: {
+		        display: true,
+		        text: 'Revenue vs Payment Line Chart'
+		      }
+		    },
+		    elements: {
+		      line: {
+		        tension: 0, // Make the lines straight (sharp)
+		        borderWidth: 5, // Adjust line width as needed
+		        fill: false, // Disable fill (remove highlighted area under the line)
+		      }
+		    }
+		  },
+		});
+	
+	
 
 	function createDoughnutChart(chartId, chartData, lengendDisplay = true) {
     	return new Chart(chartId, {
@@ -684,39 +744,7 @@
         }, 
     	});
 	}
-
-	function updatePaymentVsRevenueChart() {
-		const data = {
-		  labels: @json($graph['paymentsVsRevenue']['labels']),
-		  datasets: @json($graph['paymentsVsRevenue']['datasets'])
-		};
-		const RevenueVsPayment = new Chart("RevenueVsPayment", {
-		  type: 'line',
-		  data: data,
-		  options: {
-		    responsive: true,
-		    plugins: {
-		      legend: {
-		        position: 'top',
-		      },
-		      title: {
-		        display: true,
-		        text: 'Revenue vs Payment Line Chart'
-		      }
-		    },
-		    elements: {
-		      line: {
-		        tension: 0, // Make the lines straight (sharp)
-		        borderWidth: 5, // Adjust line width as needed
-		        fill: false, // Disable fill (remove highlighted area under the line)
-		      }
-		    }
-		  },
-		});
-	}
-
-  	// Call the updateCharts function to update the chart data and labels
- 	 updateCharts();
+		
 </script>
 @endpush
 	
