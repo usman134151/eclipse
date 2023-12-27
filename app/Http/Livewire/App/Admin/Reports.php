@@ -17,7 +17,7 @@ use Livewire\Component;
 class Reports extends Component
 {
     public $date;
-    public $showForm, $topProviders, $topServices, $topInvoices, $totalInvoiceRevenue, $revenues, $totalRevenue, $assignments, $totalAssignmentPayments, $cancellations, $payments, $totalPayments;
+    public $showForm, $topProviders, $topServices, $topInvoices, $totalInvoiceRevenue, $revenues, $totalRevenue, $assignments, $totalAssignmentPayments, $cancellations, $payments, $totalPayments, $totalRevenueByServices;
     protected $listeners = ['showList' => 'resetForm'];
     public $graph = [];
 
@@ -434,6 +434,14 @@ class Reports extends Component
                 'total_paid_amount' => $paidAmountSum,
             ];
         }
+
+        
+
+        // Extract 'total_amount' values into a separate array
+        $total_amounts = array_column($result, 'total_paid_amount');
+
+        // Calculate the sum of 'total_amount' values
+        $this->totalRevenueByServices = array_sum($total_amounts);
 
         return $result;
     }

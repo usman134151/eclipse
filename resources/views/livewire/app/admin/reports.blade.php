@@ -134,7 +134,7 @@
 	                                <div class="col-lg-6 mb-4 text-center">
 	                                    <div class="text-center">
 	                                        <label class="form-label">Revenue by Services</label>
-	                                        <div class="text-muted text-sm mb-2">$29,488.01</div>
+	                                        <div class="text-muted text-sm mb-2">{{formatpayment($totalRevenueByServices)}}</div>
 	                                    </div>
 	                                    <div class="mb-4">
 	                                        <canvas id="RevenueByServices" style="width:100%;max-width:700px"></canvas>
