@@ -646,6 +646,9 @@
 		// Update payment chart
 		const jsChartPayments = createDoughnutChart("jsChartPayments", @json($graph['paymentsGraph']),false);
 
+		// Update revenueByService chart
+		const RevenueByServices = createDoughnutChart("RevenueByServices", @json($graph['revenueByService']));
+
 		// Update paymentVsRevenue chart
 		updatePaymentVsRevenueChart();
 	}

@@ -175,40 +175,40 @@
 //   }
 // });
 
-const RevenueByServices = new Chart("RevenueByServices", {
-  type: "doughnut",
-  data : {
-  labels: [
-    'Microsoft Inc 72%',
-    'Ministry of Education 14%',
-    'LA Hospital 28%',
-    'Adobe Cooperative 36%',
-    'Meta 16%',
-  ],
-  datasets: [{
-    label: 'My First Dataset',
-    data: [72, 14, 28, 36, 16],
-    backgroundColor: [
-      'rgb(10, 30, 70)',
-      'rgb(136, 133, 117)',
-      'rgb(229, 179, 47)',
-      'rgb(191, 64, 64)',
-      'rgb(21, 151, 79)'
-    ],
-    hoverOffset: 0
-  }]
-},
-  options: {
-    aspectRatio: 1.2,
-    legend: {
-      position: 'bottom',
-      labels: {
-      padding: 50,
-      boxWidth: 10,
-    }
-            },
-  }
-});
+// const RevenueByServices = new Chart("RevenueByServices", {
+//   type: "doughnut",
+//   data : {
+//   labels: [
+//     'Microsoft Inc 72%',
+//     'Ministry of Education 14%',
+//     'LA Hospital 28%',
+//     'Adobe Cooperative 36%',
+//     'Meta 16%',
+//   ],
+//   datasets: [{
+//     label: 'My First Dataset',
+//     data: [72, 14, 28, 36, 16],
+//     backgroundColor: [
+//       'rgb(10, 30, 70)',
+//       'rgb(136, 133, 117)',
+//       'rgb(229, 179, 47)',
+//       'rgb(191, 64, 64)',
+//       'rgb(21, 151, 79)'
+//     ],
+//     hoverOffset: 0
+//   }]
+// },
+//   options: {
+//     aspectRatio: 1.2,
+//     legend: {
+//       position: 'bottom',
+//       labels: {
+//       padding: 50,
+//       boxWidth: 10,
+//     }
+//             },
+//   }
+// });
 
 
 // const RevenueVsPayment = new Chart("RevenueVsPayment", {

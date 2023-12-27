@@ -52,4 +52,14 @@ class ServiceCategory extends Model
     {
         return $this->belongsToMany(Team::class, 'team_services')->withTimestamps();
     }
+
+    public function booking()
+    {
+        return $this->belongsToMany(
+            Booking::class,
+            'booking_services',
+            'services',
+            'booking_id'
+        );
+    }
 }

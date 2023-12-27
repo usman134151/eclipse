@@ -4,6 +4,7 @@ namespace App\Http\Livewire\App\Admin;
 
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingProvider;
+use App\Models\Tenant\BookingServices;
 use App\Models\Tenant\Company;
 use App\Models\Tenant\Invoice;
 use App\Models\Tenant\InvoicePayment;
@@ -307,6 +308,7 @@ class Reports extends Component
         $this->graph['revenuesGraph'] = $this->generateGraphData($this->revenues, 'paid_date', 'total_paid_amount');
         $this->graph['cancellationsGraph'] = $this->generateGraphData($this->cancellations, 'company_name', 'canceled_bookings_count');
         $this->graph['paymentsGraph'] = $this->generateGraphData($this->payments, 'provider.name', 'total_amount');
+        $this->graph['revenueByService'] = $this->generateGraphData($this->getRevenueByService(), 'service_name', 'total_paid_amount');
         $this->graph['paymentsVsRevenue'] = $this->getPaymentVsRevenueGraphData();
 
         $this->emit('refreshCharts');
@@ -383,6 +385,49 @@ class Reports extends Component
             $amount = $item[$amountKey];
             return compact('date', 'amount');
         }, $dataArray);
+    }
+
+    public function getRevenueByService()
+    {
+        $startDate = Carbon::createFromFormat('Y-m-d', $this->date['start_date'])->format('m/d/Y');
+        $endDate = Carbon::createFromFormat('Y-m-d', $this->date['end_date'])->format('m/d/Y');
+        
+        $services = ServiceCategory::select('id', 'name')
+        ->with(['booking' => function ($query) use ($startDate, $endDate) {
+            $query->select('bookings.id', 'bookings.invoice_id')
+                ->whereHas('invoices', function ($subQuery) {
+                    $subQuery->where('invoice_status', 2);
+                })
+                ->with(['invoices' => function ($query) use ($startDate, $endDate) {
+                    $query->select('invoices.id')
+                        ->with(['invoicePayments' => function ($invoiceQuery) use ($startDate, $endDate) {
+                            $invoiceQuery->where('paid_date', '>=', $startDate)
+                                ->where('paid_date', '<=', $endDate);
+                        }]);
+                }]);
+        }])
+        ->whereHas('booking', function ($query) {
+            $query->whereHas('invoices', function ($subQuery) {
+                $subQuery->where('invoice_status', 2);
+            });
+        })
+        ->take(5)
+        ->get()
+        ->toArray();    
+
+        foreach ($services as $service) {
+            $serviceName = $service['name'];
+            $paidAmountSum = array_reduce($service['booking'], function ($carry, $booking) {
+                return $carry + array_sum(array_column($booking['invoices']['invoice_payments'], 'paid_amount'));
+            }, 0);
+            
+            $result[] = [
+                'service_name' => $serviceName,
+                'total_paid_amount' => $paidAmountSum,
+            ];
+        }
+
+        return $result;
     }
 
     function showForm()
