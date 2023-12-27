@@ -617,77 +617,89 @@
 	document.addEventListener('livewire:load', function () {
     	Livewire.on('refreshCharts', newData => {
 
-		// Update company chart
-		updateChart(RevenueByCompanyChart,newData['companyGraph']);
+		 	RevenueByCompanyChart = createDoughnutChart("RevenueByCompanyChart", newData['companyGraph']);
 
-		// Update provider chart
-		updateChart(jsChartTopProviders,newData['providerGraph']);
+			// Update provider chart
+			jsChartTopProviders = createDoughnutChart("jsChartTopProviders", newData['providerGraph'],false);
 
-		// Update assignment chart
-		updateChart(jsChartAssignment,newData['assignmentGraph']);
+			// Update assignment chart
+			jsChartAssignment = createDoughnutChart("jsChartAssignment", newData['assignmentGraph'],false);
 
-		// Update top invoices chart
-		updateChart(jsChartInvoice,newData['companyGraph']);
+			// Update top invoices chart
+			jsChartInvoice = createDoughnutChart("jsChartInvoice", newData['companyGraph'],false);
 
-		// Update top services chart
-		updateChart(jsChartServices,newData['servicesGraph']);
+			// Update top services chart
+			jsChartServices = createDoughnutChart("jsChartServices", newData['servicesGraph'],false);
 
-		// Update revenue chart
-		updateChart(jsChartRevenue,newData['revenuesGraph']);
+			// Update revenue chart
+			jsChartRevenue = createDoughnutChart("jsChartRevenue", newData['revenuesGraph'],false);
 
-		// Update cancellation chart
-		updateChart(jsChartCancellations,newData['cancellationsGraph']);
+			// Update cancellation chart
+			jsChartCancellations = createDoughnutChart("jsChartCancellations", newData['cancellationsGraph'],false);
 
-		// Update payment chart
-		updateChart(jsChartPayments,newData['paymentsGraph']);
+			// Update payment chart
+			jsChartPayments = createDoughnutChart("jsChartPayments", newData['paymentsGraph'],false);
 
-		// Update revenueByService chart
-		updateChart(RevenueByServices,newData['revenueByService']);
+			// Update revenueByService chart
+			RevenueByServices = createDoughnutChart("RevenueByServices", newData['revenueByService']);
 
-		//update line graph
-		RevenueVsPayment.data = newData['paymentsVsRevenue'];
-		RevenueVsPayment.update();
+			//update line graph
+			RevenueVsPayment = new Chart("RevenueVsPayment", {
+		 		type: 'line',
+		 		data: newData['paymentsVsRevenue'],
+		 		options: {
+		 		  responsive: true,
+		 		  plugins: {
+		 		    legend: {
+		 		      position: 'top',
+		 		    },
+		 		    title: {
+		 		      display: true,
+		 		      text: 'Revenue vs Payment Line Chart'
+		 		    }
+		 		  },
+		 		  elements: {
+		 		    line: {
+		 		      tension: 0, // Make the lines straight (sharp)
+		 		      borderWidth: 5, // Adjust line width as needed
+		 		      fill: false, // Disable fill (remove highlighted area under the line)
+		 		    }
+		 		  }
+		 		},
+			});
 
     	});
 	});
-
-	function updateChart(chart,newData) {
-		
-		chart.data.labels = newData.label;
-    	chart.data.datasets[0].data = newData.data; // Assuming only one dataset
-    	chart.update();
-	}
-
 		
 		// Update company chart
-		const RevenueByCompanyChart = createDoughnutChart("RevenueByCompanyChart", @json($graph['companyGraph']));
+		let RevenueByCompanyChart = createDoughnutChart("RevenueByCompanyChart", @json($graph['companyGraph']));
 
 		// Update provider chart
-		const jsChartTopProviders = createDoughnutChart("jsChartTopProviders", @json($graph['providerGraph']),false);
+		let jsChartTopProviders = createDoughnutChart("jsChartTopProviders", @json($graph['providerGraph']),false);
 
 		// Update assignment chart
-		const jsChartAssignment = createDoughnutChart("jsChartAssignment", @json($graph['assignmentGraph']),false);
+		let jsChartAssignment = createDoughnutChart("jsChartAssignment", @json($graph['assignmentGraph']),false);
 
 		// Update top invoices chart
-		const jsChartInvoice = createDoughnutChart("jsChartInvoice", @json($graph['companyGraph']),false);
+		let jsChartInvoice = createDoughnutChart("jsChartInvoice", @json($graph['companyGraph']),false);
 
 		// Update top services chart
-		const jsChartServices = createDoughnutChart("jsChartServices", @json($graph['servicesGraph']),false);
+		let jsChartServices = createDoughnutChart("jsChartServices", @json($graph['servicesGraph']),false);
 
 		// Update revenue chart
-		const jsChartRevenue = createDoughnutChart("jsChartRevenue", @json($graph['revenuesGraph']),false);
+		let jsChartRevenue = createDoughnutChart("jsChartRevenue", @json($graph['revenuesGraph']),false);
 
 		// Update cancellation chart
-		const jsChartCancellations = createDoughnutChart("jsChartCancellations", @json($graph['cancellationsGraph']),false);
+		let jsChartCancellations = createDoughnutChart("jsChartCancellations", @json($graph['cancellationsGraph']),false);
 
 		// Update payment chart
-		const jsChartPayments = createDoughnutChart("jsChartPayments", @json($graph['paymentsGraph']),false);
+		let jsChartPayments = createDoughnutChart("jsChartPayments", @json($graph['paymentsGraph']),false);
 
 		// Update revenueByService chart
-		const RevenueByServices = createDoughnutChart("RevenueByServices", @json($graph['revenueByService']));
+		let RevenueByServices = createDoughnutChart("RevenueByServices", @json($graph['revenueByService']));
 
 		// Update paymentVsRevenue chart
-		const RevenueVsPayment = new Chart("RevenueVsPayment", {
+		let RevenueVsPayment = new Chart("RevenueVsPayment", {
 		  type: 'line',
 		  data: @json($graph['paymentsVsRevenue']),
 		  options: {
