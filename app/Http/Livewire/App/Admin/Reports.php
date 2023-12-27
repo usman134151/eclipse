@@ -241,9 +241,17 @@ class Reports extends Component
 
         // Calculate contribution percentages for each data point
         $total = array_sum($dataArray['data']);
-        $percentages = array_map(function ($data) use ($total) {
-            return number_format(($data / $total) * 100, 2) . '%';
-        }, $dataArray['data']);
+        // Check if total is zero
+        if ($total !== 0) {
+            $percentages = array_map(function ($data) use ($total) {
+                return number_format(($data / $total) * 100, 2) . '%';
+            }, $dataArray['data']);
+        } else {
+            // If total is zero, assign equal percentages to each data point
+            $count = count($dataArray['data']);
+            $equalPercentage = ($count > 0) ? 100 / $count : 0;
+            $percentages = array_fill(0, $count, number_format($equalPercentage, 2) . '%');
+        }
 
         // Concatenate labels with percentages
         $labelsWithPercentages = array_map(function ($label, $percentage) {
