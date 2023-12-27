@@ -4,9 +4,11 @@ namespace App\Http\Livewire\App\Admin;
 
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingProvider;
+use App\Models\Tenant\BookingServices;
 use App\Models\Tenant\Company;
 use App\Models\Tenant\Invoice;
 use App\Models\Tenant\InvoicePayment;
+use App\Models\Tenant\Remittance;
 use App\Models\Tenant\ServiceCategory;
 use App\Models\Tenant\User;
 use Carbon\Carbon;
@@ -15,7 +17,7 @@ use Livewire\Component;
 class Reports extends Component
 {
     public $date;
-    public $showForm, $topProviders, $topServices, $topInvoices, $totalInvoiceRevenue, $revenues, $totalRevenue, $assignments, $totalAssignmentPayments;
+    public $showForm, $topProviders, $topServices, $topInvoices, $totalInvoiceRevenue, $revenues, $totalRevenue, $assignments, $totalAssignmentPayments, $cancellations, $payments, $totalPayments, $totalRevenueByServices;
     protected $listeners = ['showList' => 'resetForm'];
     public $graph = [];
 
@@ -109,7 +111,7 @@ class Reports extends Component
         return $companiesWithInvoices;
     }
 
-    public function getRevenue()
+    public function getRevenue($withLimit = true)
     {
         // converted dates according to invoice payments table format
         $startDate = Carbon::createFromFormat('Y-m-d', $this->date['start_date'])->format('m/d/Y');
@@ -121,10 +123,11 @@ class Reports extends Component
             ->where('paid_date', '>=', $startDate)
             ->where('paid_date', '<=', $endDate)
             ->groupBy('paid_date')
-            ->orderByDesc('paid_date')
-            ->take(5)
-            ->get()
-            ->toArray();
+            ->orderByDesc('paid_date');
+        if($withLimit){
+            $payments->take(5);
+        }
+        $payments = $payments->get()->toArray();
 
         // Extract 'total_paid_amount' values into a separate array
         $totalPaidAmounts = array_column($payments, 'total_paid_amount');
@@ -171,6 +174,65 @@ class Reports extends Component
         return $filteredBookings;
     }
 
+    public function getCancellations()
+    {
+        $startDate = Carbon::createFromFormat('Y-m-d', $this->date['start_date'])->startOfDay()->addSeconds(1);
+        $endDate = Carbon::createFromFormat('Y-m-d', $this->date['end_date'])->endOfDay()->subSeconds(1);
+        $bookings = Booking::select('company_id')
+            ->selectRaw('COUNT(*) as canceled_bookings_count')
+            ->selectRaw('MAX(booking_cancelled_at) as cancellation_date') // getting the latest cancellation date
+            ->where('status', 3)
+            ->with('company')
+            ->groupBy('company_id')
+            ->orderByDesc('canceled_bookings_count')
+            ->take(5)
+            ->get();
+
+        // Process the result to build the desired array format
+        $bookingData = $bookings->map(function ($booking) {
+            return [
+                'company_name' => $booking->company->name,
+                'canceled_bookings_count' => $booking->canceled_bookings_count,
+                'cancellation_date' => $booking->cancellation_date,
+            ];
+        })->toArray();
+
+        $filteredBookingData = array_filter($bookingData, function ($booking) use ($startDate, $endDate) {
+            $cancellationDate = $booking['cancellation_date'];
+            return ($cancellationDate >= $startDate && $cancellationDate <= $endDate);
+        });
+
+        return $filteredBookingData;
+    }
+
+    public function getPayments()
+    {
+        $startDate = Carbon::createFromFormat('Y-m-d', $this->date['start_date'])->startOfDay();
+        $endDate = Carbon::createFromFormat('Y-m-d', $this->date['end_date'])->endOfDay();
+        $payments = Remittance::selectRaw('provider_id, MAX(paid_at) as latest_paid_date, SUM(amount) as total_amount')
+            ->with(['provider' => function ($query) {
+                $query->select('id', 'name'); // Select only the 'id' and 'name' columns from 'providers' table
+            }])
+            ->where('payment_status', 2)
+            ->groupBy('provider_id')
+            ->orderByDesc('total_amount')
+            ->get()
+            ->toArray();
+
+        $filteredPayments = array_filter($payments, function ($payment) use ($startDate, $endDate) {
+            $paidDate = $payment['latest_paid_date'];
+            return ($paidDate >= $startDate && $paidDate <= $endDate);
+        });
+
+        // Extract 'total_amount' values into a separate array
+        $total_amounts = array_column($filteredPayments, 'total_amount');
+
+        // Calculate the sum of 'total_amount' values
+        $this->totalPayments = array_sum($total_amounts);
+
+        return $filteredPayments;
+    }
+
     public function generateGraphData($data, $labelKey, $dataKey)
     {
         $dataArray = [];
@@ -179,9 +241,17 @@ class Reports extends Component
 
         // Calculate contribution percentages for each data point
         $total = array_sum($dataArray['data']);
-        $percentages = array_map(function ($data) use ($total) {
-            return number_format(($data / $total) * 100, 2) . '%';
-        }, $dataArray['data']);
+        // Check if total is zero
+        if ($total !== 0) {
+            $percentages = array_map(function ($data) use ($total) {
+                return number_format(($data / $total) * 100, 2) . '%';
+            }, $dataArray['data']);
+        } else {
+            // If total is zero, assign equal percentages to each data point
+            $count = count($dataArray['data']);
+            $equalPercentage = ($count > 0) ? 100 / $count : 0;
+            $percentages = array_fill(0, $count, number_format($equalPercentage, 2) . '%');
+        }
 
         // Concatenate labels with percentages
         $labelsWithPercentages = array_map(function ($label, $percentage) {
@@ -231,6 +301,8 @@ class Reports extends Component
 
     public function refreshData()
     {
+        $this->payments = $this->getPayments();
+        $this->cancellations = $this->getCancellations();
         $this->assignments = $this->getAssignments();
         $this->revenues = $this->getRevenue();
         $this->topInvoices = $this->getTopInvoices();
@@ -242,8 +314,136 @@ class Reports extends Component
         $this->graph['assignmentGraph'] = $this->generateGraphData($this->assignments, 'booking_number', 'total_amount');
         $this->graph['servicesGraph'] = $this->generateGraphData($this->topServices, 'name', 'booking_count');
         $this->graph['revenuesGraph'] = $this->generateGraphData($this->revenues, 'paid_date', 'total_paid_amount');
+        $this->graph['cancellationsGraph'] = $this->generateGraphData($this->cancellations, 'company_name', 'canceled_bookings_count');
+        $this->graph['paymentsGraph'] = $this->generateGraphData($this->payments, 'provider.name', 'total_amount');
+        $this->graph['revenueByService'] = $this->generateGraphData($this->getRevenueByService(), 'service_name', 'total_paid_amount');
+        $this->graph['paymentsVsRevenue'] = $this->getPaymentVsRevenueGraphData();
 
-        $this->emit('refreshCharts');
+        $this->emit('refreshCharts',$this->graph);
+    }
+
+    public function getPaymentVsRevenueGraphData()
+    {
+        $startDate = Carbon::createFromFormat('Y-m-d', $this->date['start_date'])->startOfDay();
+        $endDate = Carbon::createFromFormat('Y-m-d', $this->date['end_date'])->endOfDay();
+        
+        $payments = Remittance::select('paid_at')
+            ->selectRaw('SUM(amount) as total_amount')
+            ->where('paid_at', '>=', $startDate)
+            ->where('paid_at', '<=', $endDate)
+            ->groupBy('paid_at')
+            ->orderByDesc('paid_at')
+            ->get()
+            ->toArray();
+
+
+        // Assuming $paymentData and $revenueData are arrays of payment and revenue data
+        $paymentDates = $this->extractData($payments, 'paid_at', 'total_amount');
+        $revenueDates = $this->extractData($this->getRevenue(false), 'paid_date', 'total_paid_amount');
+
+        // Merging and sorting dates
+        $allDates = array_unique(array_merge(array_column($paymentDates, 'date'), array_column($revenueDates, 'date')));
+        usort($allDates, function ($a, $b) {
+            return strtotime($a) - strtotime($b);
+        });
+
+        // Formatting dates to 'm/d/y' format
+        $formattedDates = array_map(function ($date) {
+            return date('m/d/y', strtotime($date));
+        }, $allDates);
+
+        // Generating datasets for the chart
+        $datasets = [
+            [
+                'label' => 'Payment',
+                'data' => array_map(function ($date) use ($paymentDates) {
+                    $found = array_values(array_filter($paymentDates, function ($item) use ($date) {
+                        return $item['date'] === $date;
+                    }));
+                    return !empty($found) ? $found[0]['amount'] : 0;
+                }, $allDates),
+                'borderColor' => 'rgb(255, 99, 132)',
+                'backgroundColor' => 'rgba(255, 99, 132, 0.5)',
+            ],
+            [
+                'label' => 'Revenue',
+                'data' => array_map(function ($date) use ($revenueDates) {
+                    $found = array_values(array_filter($revenueDates, function ($item) use ($date) {
+                        return $item['date'] === $date;
+                    }));
+                    return !empty($found) ? $found[0]['amount'] : 0;
+                }, $allDates),
+                'borderColor' => 'rgb(54, 162, 235)',
+                'backgroundColor' => 'rgba(54, 162, 235, 0.5)',
+            ],
+        ];
+
+        // Construct the data array for the chart with formatted dates
+        $data = [
+            'labels' => $formattedDates,
+            'datasets' => $datasets,
+        ];
+        return $data;
+    }
+
+    public function extractData($dataArray, $dateKey, $amountKey)
+    {
+        return array_map(function ($item) use ($dateKey, $amountKey) {
+            $date = $item[$dateKey];
+            $amount = $item[$amountKey];
+            return compact('date', 'amount');
+        }, $dataArray);
+    }
+
+    public function getRevenueByService()
+    {
+        $startDate = Carbon::createFromFormat('Y-m-d', $this->date['start_date'])->format('m/d/Y');
+        $endDate = Carbon::createFromFormat('Y-m-d', $this->date['end_date'])->format('m/d/Y');
+        
+        $services = ServiceCategory::select('id', 'name')
+        ->with(['booking' => function ($query) use ($startDate, $endDate) {
+            $query->select('bookings.id', 'bookings.invoice_id')
+                ->whereHas('invoices', function ($subQuery) {
+                    $subQuery->where('invoice_status', 2);
+                })
+                ->with(['invoices' => function ($query) use ($startDate, $endDate) {
+                    $query->select('invoices.id')
+                        ->with(['invoicePayments' => function ($invoiceQuery) use ($startDate, $endDate) {
+                            $invoiceQuery->where('paid_date', '>=', $startDate)
+                                ->where('paid_date', '<=', $endDate);
+                        }]);
+                }]);
+        }])
+        ->whereHas('booking', function ($query) {
+            $query->whereHas('invoices', function ($subQuery) {
+                $subQuery->where('invoice_status', 2);
+            });
+        })
+        ->take(5)
+        ->get()
+        ->toArray();    
+
+        foreach ($services as $service) {
+            $serviceName = $service['name'];
+            $paidAmountSum = array_reduce($service['booking'], function ($carry, $booking) {
+                return $carry + array_sum(array_column($booking['invoices']['invoice_payments'], 'paid_amount'));
+            }, 0);
+            
+            $result[] = [
+                'service_name' => $serviceName,
+                'total_paid_amount' => $paidAmountSum,
+            ];
+        }
+
+        
+
+        // Extract 'total_amount' values into a separate array
+        $total_amounts = array_column($result, 'total_paid_amount');
+
+        // Calculate the sum of 'total_amount' values
+        $this->totalRevenueByServices = array_sum($total_amounts);
+
+        return $result;
     }
 
     function showForm()
