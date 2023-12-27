@@ -93,15 +93,15 @@
             </div>
         </div>
         <div class="col-lg-4 mb-4 mb-lg-0 align-self-center">
-            <small>(coming soon)</small>
+            {{-- <small>(coming soon)</small> --}}
 
             <div class="d-grid grid-cols-2 gap-2">
                 <div class="fw-semibold text-sm">Total Invoiced:</div>
-                <div class="text-sm">$3000</div>
+                <div class="text-sm">{{formatpayment($this->providerData['total_invoiced'])}}</div>
                 <div class="fw-semibold text-sm">Total Pending:</div>
-                <div class="text-sm">$1500</div>
+                <div class="text-sm">{{formatpayment($this->providerData['total_pending'])}}</div>
                 <div class="fw-semibold text-sm">Next Payment Date:</div>
-                <div class="text-sm">$500</div>
+                <div class="text-sm">{{formatDate($this->providerData['payment_date'])}}</div>
             </div>
         </div>
     </div>

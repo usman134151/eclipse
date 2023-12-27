@@ -6,13 +6,14 @@ use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\BookingReimbursement;
 use App\Models\Tenant\Invoice;
 use App\Models\Tenant\ProviderRemittancePayment;
+use App\Models\Tenant\Remittance;
 use App\Models\Tenant\User;
 use Carbon\Carbon;
 use Livewire\Component;
 
 class RemittanceGeneratorBooking extends Component
 {
-    public $showForm, $provider, $data = [], $selectedBookings = [], $showError = false;
+    public $showForm, $provider, $data = [], $selectedBookings = [], $showError = false, $providerData =[];
     protected $listeners = ['showList' => 'resetForm', 'addToRemittance'];
 
     public function render()
@@ -46,6 +47,11 @@ class RemittanceGeneratorBooking extends Component
         // dd($invoices);
 
         $this->data = array_merge($bookings, $reimbursements, $payments, $invoices);
+
+        $this->providerData['total_invoiced'] = Remittance::where('provider_id' , $providerId)->where('payment_status',1)->sum('amount');
+        $this->providerData['total_pending'] = BookingReimbursement::where('provider_id' , $providerId)->where('status',0)->sum('amount');
+        $nextPayment = Remittance::where('provider_id' , $providerId)->where('payment_status',1)->where('payment_scheduled_at', '>', now())->orderBy('payment_scheduled_at')->first();
+        $this->providerData['payment_date'] = $nextPayment ? $nextPayment->payment_scheduled_at : null;
     }
 
     public function addToRemittance()
