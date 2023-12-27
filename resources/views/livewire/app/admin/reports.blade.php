@@ -645,10 +645,13 @@
 
 		// Update payment chart
 		const jsChartPayments = createDoughnutChart("jsChartPayments", @json($graph['paymentsGraph']),false);
+
+		// Update paymentVsRevenue chart
+		updatePaymentVsRevenueChart();
 	}
 
 	function createDoughnutChart(chartId, chartData, lengendDisplay = true) {
-    return new Chart(chartId, {
+    	return new Chart(chartId, {
         type: "doughnut",
         data: {
 			labels: chartData.label || [],
@@ -676,11 +679,41 @@
                 }
             }
         }, 
-    });
-}
+    	});
+	}
 
-  // Call the updateCharts function to update the chart data and labels
-  updateCharts();
+	function updatePaymentVsRevenueChart() {
+		const data = {
+		  labels: @json($graph['paymentsVsRevenue']['labels']),
+		  datasets: @json($graph['paymentsVsRevenue']['datasets'])
+		};
+		const RevenueVsPayment = new Chart("RevenueVsPayment", {
+		  type: 'line',
+		  data: data,
+		  options: {
+		    responsive: true,
+		    plugins: {
+		      legend: {
+		        position: 'top',
+		      },
+		      title: {
+		        display: true,
+		        text: 'Revenue vs Payment Line Chart'
+		      }
+		    },
+		    elements: {
+		      line: {
+		        tension: 0, // Make the lines straight (sharp)
+		        borderWidth: 5, // Adjust line width as needed
+		        fill: false, // Disable fill (remove highlighted area under the line)
+		      }
+		    }
+		  },
+		});
+	}
+
+  	// Call the updateCharts function to update the chart data and labels
+ 	 updateCharts();
 </script>
 @endpush
 	

@@ -110,7 +110,7 @@ class Reports extends Component
         return $companiesWithInvoices;
     }
 
-    public function getRevenue()
+    public function getRevenue($withLimit = true)
     {
         // converted dates according to invoice payments table format
         $startDate = Carbon::createFromFormat('Y-m-d', $this->date['start_date'])->format('m/d/Y');
@@ -122,10 +122,11 @@ class Reports extends Component
             ->where('paid_date', '>=', $startDate)
             ->where('paid_date', '<=', $endDate)
             ->groupBy('paid_date')
-            ->orderByDesc('paid_date')
-            ->take(5)
-            ->get()
-            ->toArray();
+            ->orderByDesc('paid_date');
+        if($withLimit){
+            $payments->take(5);
+        }
+        $payments = $payments->get()->toArray();
 
         // Extract 'total_paid_amount' values into a separate array
         $totalPaidAmounts = array_column($payments, 'total_paid_amount');
@@ -177,9 +178,9 @@ class Reports extends Component
         $startDate = Carbon::createFromFormat('Y-m-d', $this->date['start_date'])->startOfDay()->addSeconds(1);
         $endDate = Carbon::createFromFormat('Y-m-d', $this->date['end_date'])->endOfDay()->subSeconds(1);
         $bookings = Booking::select('company_id')
-        ->selectRaw('COUNT(*) as canceled_bookings_count')
-        ->selectRaw('MAX(booking_cancelled_at) as cancellation_date') // getting the latest cancellation date
-        ->where('status', 3)
+            ->selectRaw('COUNT(*) as canceled_bookings_count')
+            ->selectRaw('MAX(booking_cancelled_at) as cancellation_date') // getting the latest cancellation date
+            ->where('status', 3)
             ->with('company')
             ->groupBy('company_id')
             ->orderByDesc('canceled_bookings_count')
@@ -208,14 +209,14 @@ class Reports extends Component
         $startDate = Carbon::createFromFormat('Y-m-d', $this->date['start_date'])->startOfDay();
         $endDate = Carbon::createFromFormat('Y-m-d', $this->date['end_date'])->endOfDay();
         $payments = Remittance::selectRaw('provider_id, MAX(paid_at) as latest_paid_date, SUM(amount) as total_amount')
-        ->with(['provider' => function ($query) {
-            $query->select('id', 'name'); // Select only the 'id' and 'name' columns from 'providers' table
-        }])
-        ->where('payment_status', 2)
-        ->groupBy('provider_id')
-        ->orderByDesc('total_amount')
-        ->get()
-        ->toArray();
+            ->with(['provider' => function ($query) {
+                $query->select('id', 'name'); // Select only the 'id' and 'name' columns from 'providers' table
+            }])
+            ->where('payment_status', 2)
+            ->groupBy('provider_id')
+            ->orderByDesc('total_amount')
+            ->get()
+            ->toArray();
 
         $filteredPayments = array_filter($payments, function ($payment) use ($startDate, $endDate) {
             $paidDate = $payment['latest_paid_date'];
@@ -306,8 +307,82 @@ class Reports extends Component
         $this->graph['revenuesGraph'] = $this->generateGraphData($this->revenues, 'paid_date', 'total_paid_amount');
         $this->graph['cancellationsGraph'] = $this->generateGraphData($this->cancellations, 'company_name', 'canceled_bookings_count');
         $this->graph['paymentsGraph'] = $this->generateGraphData($this->payments, 'provider.name', 'total_amount');
+        $this->graph['paymentsVsRevenue'] = $this->getPaymentVsRevenueGraphData();
 
         $this->emit('refreshCharts');
+    }
+
+    public function getPaymentVsRevenueGraphData()
+    {
+        $startDate = Carbon::createFromFormat('Y-m-d', $this->date['start_date'])->startOfDay();
+        $endDate = Carbon::createFromFormat('Y-m-d', $this->date['end_date'])->endOfDay();
+        
+        $payments = Remittance::select('paid_at')
+            ->selectRaw('SUM(amount) as total_amount')
+            ->where('paid_at', '>=', $startDate)
+            ->where('paid_at', '<=', $endDate)
+            ->groupBy('paid_at')
+            ->orderByDesc('paid_at')
+            ->get()
+            ->toArray();
+
+
+        // Assuming $paymentData and $revenueData are arrays of payment and revenue data
+        $paymentDates = $this->extractData($payments, 'paid_at', 'total_amount');
+        $revenueDates = $this->extractData($this->getRevenue(false), 'paid_date', 'total_paid_amount');
+
+        // Merging and sorting dates
+        $allDates = array_unique(array_merge(array_column($paymentDates, 'date'), array_column($revenueDates, 'date')));
+        usort($allDates, function ($a, $b) {
+            return strtotime($a) - strtotime($b);
+        });
+
+        // Formatting dates to 'm/d/y' format
+        $formattedDates = array_map(function ($date) {
+            return date('m/d/y', strtotime($date));
+        }, $allDates);
+
+        // Generating datasets for the chart
+        $datasets = [
+            [
+                'label' => 'Payment',
+                'data' => array_map(function ($date) use ($paymentDates) {
+                    $found = array_values(array_filter($paymentDates, function ($item) use ($date) {
+                        return $item['date'] === $date;
+                    }));
+                    return !empty($found) ? $found[0]['amount'] : 0;
+                }, $allDates),
+                'borderColor' => 'rgb(255, 99, 132)',
+                'backgroundColor' => 'rgba(255, 99, 132, 0.5)',
+            ],
+            [
+                'label' => 'Revenue',
+                'data' => array_map(function ($date) use ($revenueDates) {
+                    $found = array_values(array_filter($revenueDates, function ($item) use ($date) {
+                        return $item['date'] === $date;
+                    }));
+                    return !empty($found) ? $found[0]['amount'] : 0;
+                }, $allDates),
+                'borderColor' => 'rgb(54, 162, 235)',
+                'backgroundColor' => 'rgba(54, 162, 235, 0.5)',
+            ],
+        ];
+
+        // Construct the data array for the chart with formatted dates
+        $data = [
+            'labels' => $formattedDates,
+            'datasets' => $datasets,
+        ];
+        return $data;
+    }
+
+    public function extractData($dataArray, $dateKey, $amountKey)
+    {
+        return array_map(function ($item) use ($dateKey, $amountKey) {
+            $date = $item[$dateKey];
+            $amount = $item[$amountKey];
+            return compact('date', 'amount');
+        }, $dataArray);
     }
 
     function showForm()

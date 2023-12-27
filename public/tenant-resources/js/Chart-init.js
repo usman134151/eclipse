@@ -211,126 +211,126 @@ const RevenueByServices = new Chart("RevenueByServices", {
 });
 
 
-const RevenueVsPayment = new Chart("RevenueVsPayment", {
-      type: 'line',
-        data: {
-    "datasets": [
-      {
-        "backgroundColor": "rgb(229, 179, 47)",
-        "borderColor": "rgb(229, 179, 47)",
-        "fill": false,
-        "data": [
-          10,
-          120,
-          80,
-          134
-        ],
-        "id": "amount",
-        "label": "Revenue",
-                "yAxisID":"left"
-      },
-      {
-        "backgroundColor": "rgb(10, 30, 70)",
-        "borderColor": "rgb(10, 30, 70)",
-        "fill": false,
-        "data": [
-          300,
-          -1200,
-          500,
-          -340
-        ],
-        "id": "amount",
-        "label": "Payment",
-                "yAxisID":"right"
+// const RevenueVsPayment = new Chart("RevenueVsPayment", {
+//       type: 'line',
+//         data: {
+//     "datasets": [
+//       {
+//         "backgroundColor": "rgb(229, 179, 47)",
+//         "borderColor": "rgb(229, 179, 47)",
+//         "fill": false,
+//         "data": [
+//           10,
+//           120,
+//           80,
+//           134
+//         ],
+//         "id": "amount",
+//         "label": "Revenue",
+//                 "yAxisID":"left"
+//       },
+//       {
+//         "backgroundColor": "rgb(10, 30, 70)",
+//         "borderColor": "rgb(10, 30, 70)",
+//         "fill": false,
+//         "data": [
+//           300,
+//           -1200,
+//           500,
+//           -340
+//         ],
+//         "id": "amount",
+//         "label": "Payment",
+//                 "yAxisID":"right"
 
-      }
-    ],
-    "labels": [
-      "2017-01-02",
-      "2017-04-02",
-      "2017-07-02",
-      "2018-01-02"
-    ]
-  },
-        options: {
-            "elements": {
-              "rectangle": {
-                "borderWidth": 2
-              },
-              point:{
-                                radius: 0
-                            }
-            },
-            "layout": {
-              "padding": 0
-            },
-            "legend": {
-              "display": true,
-              "labels": {
-                "boxWidth": 16
-              }
-            },
-            "maintainAspectRatio": false,
-            "responsive": true,
-            "scales": {
-              "xAxes": [
-                {
-                  "gridLines": {
-                    "display": false
-                  },
-                  "scaleLabel": {
-                    "display": false,
-                    "labelString": ""
-                  },
-                  "stacked": false,
-                  "ticks": {
-                    "autoSkip": true,
-                    "beginAtZero": true
-                  },
-                  "time": {
-                    "tooltipFormat": "[Q]Q - YYYY",
-                    "unit": "quarter"
-                  },
-                  "type": "time"
-                }
-              ],
-              "yAxes": [
-                {
-                  "scaleLabel": {
-                    "display": false,
-                    "labelString": ""
-                  },
-                            "id": "left",
-                  "stacked": false,
-                  "ticks": {
-                    "beginAtZero": true
-                  }
-                },
-                {
-                  "scaleLabel": {
-                    "display": false,
-                    "labelString": ""
-                  },
-                            "id": "right",
-                            "position": "right",
-                  "stacked": false,
-                  "ticks": {
-                    "beginAtZero": true
-                  }
-                }
-              ]
-            },
-            "title": {
-              "display": false
-            },
-            "tooltips": {
-              "intersect": false,
-              "mode": "index",
-              "position": "nearest",
-              "callbacks": {}
-            }
-          }
-    });
+//       }
+//     ],
+//     "labels": [
+//       "2017-01-02",
+//       "2017-04-02",
+//       "2017-07-02",
+//       "2018-01-02"
+//     ]
+//   },
+//         options: {
+//             "elements": {
+//               "rectangle": {
+//                 "borderWidth": 2
+//               },
+//               point:{
+//                                 radius: 0
+//                             }
+//             },
+//             "layout": {
+//               "padding": 0
+//             },
+//             "legend": {
+//               "display": true,
+//               "labels": {
+//                 "boxWidth": 16
+//               }
+//             },
+//             "maintainAspectRatio": false,
+//             "responsive": true,
+//             "scales": {
+//               "xAxes": [
+//                 {
+//                   "gridLines": {
+//                     "display": false
+//                   },
+//                   "scaleLabel": {
+//                     "display": false,
+//                     "labelString": ""
+//                   },
+//                   "stacked": false,
+//                   "ticks": {
+//                     "autoSkip": true,
+//                     "beginAtZero": true
+//                   },
+//                   "time": {
+//                     "tooltipFormat": "[Q]Q - YYYY",
+//                     "unit": "quarter"
+//                   },
+//                   "type": "time"
+//                 }
+//               ],
+//               "yAxes": [
+//                 {
+//                   "scaleLabel": {
+//                     "display": false,
+//                     "labelString": ""
+//                   },
+//                             "id": "left",
+//                   "stacked": false,
+//                   "ticks": {
+//                     "beginAtZero": true
+//                   }
+//                 },
+//                 {
+//                   "scaleLabel": {
+//                     "display": false,
+//                     "labelString": ""
+//                   },
+//                             "id": "right",
+//                             "position": "right",
+//                   "stacked": false,
+//                   "ticks": {
+//                     "beginAtZero": true
+//                   }
+//                 }
+//               ]
+//             },
+//             "title": {
+//               "display": false
+//             },
+//             "tooltips": {
+//               "intersect": false,
+//               "mode": "index",
+//               "position": "nearest",
+//               "callbacks": {}
+//             }
+//           }
+//     });
 
     // const jsChartPayments = new Chart("jsChartPayments", {
     //   type: 'line',
