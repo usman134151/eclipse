@@ -34,7 +34,7 @@ class Profile extends Component
 		} else 
 			$createdAt = null;
 		
-		$this->user['login_date'] = $createdAt ? $createdAt->format('d-m-Y') : 'N/A';
+		$this->user['login_date'] = $createdAt ? $createdAt->format('m-d-Y') : 'N/A';
 		$this->user['login_time'] = $createdAt ? $createdAt->format('H:i A') : 'N/A';
 		$this->user['login_ip'] = $lastLogin ? $lastLogin->ip_address : 'N/A';
 	}
