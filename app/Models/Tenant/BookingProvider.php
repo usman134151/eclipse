@@ -24,6 +24,10 @@ class BookingProvider extends Model
     {
         return $this->hasOne(User::class, 'id', 'provider_id');
     }
+    public function provider_invoice()
+    {
+        return $this->hasOne(ProviderInvoice::class, 'id', 'invoice_id');
+    }
     public function booking()
     {
         return $this->hasOne(Booking::class, 'id', 'booking_id');

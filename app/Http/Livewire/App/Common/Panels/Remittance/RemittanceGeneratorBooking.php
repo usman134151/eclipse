@@ -44,7 +44,7 @@ class RemittanceGeneratorBooking extends Component
         //fetching unassociated approved reimbursements
         $reimbursements = BookingReimbursement::where(['provider_id' => $providerId, 'status' => 1, 'booking_id' => null, 'payment_status' => 0, 'remittance_id' => 0])->select(['id as reimbursement_id', 'reimbursement_number', 'amount', 'booking_id'])->get()->toArray();
         $payments = ProviderRemittancePayment::where(['provider_id' => $providerId, 'payment_status' => 0, 'remittance_id' => null])->select(['id as payment_id', 'number', 'total_amount as amount'])->get()->toArray();
-        $invoices = ProviderInvoice::where(['provider_id' => $providerId, 'invoice_status' => 1])
+        $invoices = ProviderInvoice::where(['provider_id' => $providerId, 'invoice_status' => 1, 'remittance_id'=>null])
             ->select(['id as invoice_id', 'invoice_number', 'total_amount as amount'])->get()->toArray();
         // dd($invoices);
 

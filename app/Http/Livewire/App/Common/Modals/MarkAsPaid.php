@@ -4,6 +4,7 @@ namespace App\Http\Livewire\App\Common\Modals;
 
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\BookingReimbursement;
+use App\Models\Tenant\ProviderInvoice;
 use App\Models\Tenant\ProviderRemittancePayment;
 use App\Models\Tenant\Remittance;
 use Carbon\Carbon;
@@ -65,6 +66,7 @@ class MarkAsPaid extends Component
                     BookingProvider::where('remittance_id', $remittance->id)->update(['paid_at' => $date, 'paid_amount' => $remittance->amount, 'payment_method' => $method, 'payment_status' => 2]);
                     BookingReimbursement::where('remittance_id', $remittance->id)->update(['paid_at' => $date, 'payment_method' => $method, 'payment_status' => 2]);
                     ProviderRemittancePayment::where('remittance_id', $remittance->id)->update(['paid_at' => $date, 'payment_method' => $method, 'payment_status' => 2]);
+                    ProviderInvoice::where('remittance_id', $remittance->id)->update(['paid_at' => $date, 'payment_method' => $method, 'payment_status' => 2]);
                 
                 }
             }
@@ -84,6 +86,7 @@ class MarkAsPaid extends Component
             BookingProvider::where('remittance_id', $this->remittance->id)->update(['paid_at' => $date, 'paid_amount' => $this->payment['amount'], 'payment_method' => $this->remittance->payment_method, 'payment_status' => 2]);
             BookingReimbursement::where('remittance_id', $this->remittance->id)->update(['paid_at' => $date, 'payment_method' => $this->remittance->payment_method, 'payment_status' => 2]);
             ProviderRemittancePayment::where('remittance_id', $this->remittance->id)->update(['paid_at' => $date, 'payment_method' =>  $this->remittance->payment_method, 'payment_status' => 2]);
+            ProviderInvoice::where('remittance_id', $this->remittance->id)->update(['paid_at' => $date, 'payment_method' => $this->remittance->payment_method, 'payment_status' => 2]);
         
         }
         $this->emit('close-mark-as-paid');

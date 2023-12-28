@@ -69,7 +69,7 @@
                     <thead>
                         <tr role="row">
                             <th scope="col" class="text-center">
-                                <input class="form-check-input" type="checkbox"  id="check-all-bookings"
+                                <input class="form-check-input" type="checkbox" id="check-all-bookings"
                                     aria-label="Select All">
                             </th>
                             <th scope="col" width="25%" class="">Booking ID</th>
@@ -85,12 +85,12 @@
                         {{-- updated by shanila to reduce extra duplicate rows --}}
                         @foreach ($list as $key => $row)
                             <tr role="row" class="even">
-                              @if (key_exists('payment', $row[0]))
+                                @if (key_exists('payment', $row[0]))
                                     <td class="text-center">
-                                        <input class="form-check-input booking-checkbox" wire:model.defer="selectedPayments"
-                                            type="checkbox" data-id="{{ $row[0]['id'] }}"
-                                            data-price="{{ $row[0]['total_amount'] }}" value="{{ $row[0]['id'] }}"
-                                            aria-label="Select Payment">
+                                        <input class="form-check-input booking-checkbox"
+                                            wire:model.defer="selectedPayments" type="checkbox"
+                                            data-id="{{ $row[0]['id'] }}" data-price="{{ $row[0]['total_amount'] }}"
+                                            value="{{ $row[0]['id'] }}" aria-label="Select Payment">
                                     </td>
                                     <td>
                                         <div class="fw-semibold">{{ $row[0]['number'] }}</div>
@@ -109,7 +109,6 @@
 
                                     </td>
                                     <td> </td>
-                               
                                 @elseif (key_exists('reimbursement_number', $row[0]))
                                     <td class="text-center">
                                         <input class="form-check-input booking-checkbox" wire:model.defer="selectedRMB"
@@ -134,12 +133,194 @@
 
                                     </td>
                                     <td> </td>
+                                @elseif(key_exists('provider_invoice', $row) && !is_null($row['provider_invoice']))
+                                    <td class="text-center">
+                                        <input class="form-check-input booking-checkbox"
+                                            wire:model.defer="selectedInvoices" type="checkbox"
+                                            data-id="{{ $row['provider_invoice']['id'] }}"
+                                            data-price="{{ $row['provider_invoice']['total_amount'] }}"
+                                            value="{{ $row['provider_invoice']['id'] }}" aria-label="Select Invoice">
+                                    </td>
+                                    <td>
+                                        <div class="fw-semibold">{{ $row['provider_invoice']['invoice_number'] }}</div>
+
+                                    </td>
+                                    <td colSpan=2>
+                                        {{-- invoice bookings --}}
+                                        @foreach ($row[0] as $providerDetails)
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="text-sm">
+                                                        {{ $providerDetails['booking']['company'] ? $providerDetails['booking']['company']['name'] : 'N/A' }}
+                                                    </div>
+                                                    <div class="text-sm">
+                                                        Requester:
+                                                        {{ $providerDetails['booking']['customer'] ? $providerDetails['booking']['customer']['name'] : 'N/A' }}
+                                                    </div>
+                                                    <div class="text-sm">
+                                                        Supervisor:
+                                                        {{ $providerDetails['booking']['booking_supervisor'] ? $providerDetails['booking']['booking_supervisor']['name'] : 'N/A' }}
+                                                    </div>
+                                                    <div class="text-sm">
+                                                        Billing Manager:
+                                                        {{ $providerDetails['booking']['billing_manager'] ? $providerDetails['booking']['billing_manager']['name'] : 'N/A' }}
+                                                    </div>
+                                                    <div class="text-sm">
+                                                        Service Consumer(s):
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-6">
+
+                                                    <div class="d-flex gap-2 align-items-center">
+                                                        <div>
+                                                            <strong>
+                                                                {{ $providerDetails['booking']['booking_number'] }} -
+                                                                {{ $providerDetails['booking_service']['service']['name'] }}
+                                                            </strong>
+                                                        </div>
+
+
+                                                    </div>
+                                                    <div class="d-flex gap-2 align-items-center mb-1">
+
+                                                        <div>Duration:</div>
+                                                        <div class="text-sm">
+                                                            {{ $providerDetails['admin_approved_payment_detail'] ? $providerDetails['admin_approved_payment_detail']['actual_duration_hour'] . ' hour(s), ' : '' }}
+
+                                                            {{ $providerDetails['admin_approved_payment_detail'] ? $providerDetails['admin_approved_payment_detail']['actual_duration_min'] . ' min(s) ' : '' }}
+                                                        </div>
+                                                    </div>
+                                                    @if (isset($providerDetails['service_payment_details']['fixed_rate']) &&
+                                                            $providerDetails['service_payment_details']['fixed_rate'] == true)
+                                                        <div class="d-flex gap-2 align-items-center mb-1">
+
+                                                            <div> Fixed Rate:
+                                                            </div>
+                                                            <div class="text-sm">
+                                                                {{ numberFormat($providerDetails['service_payment_details']['rate']) }}
+
+                                                            </div>
+                                                        </div>
+                                                    @elseif(isset($providerDetails['service_payment_details']['day_rate']) &&
+                                                            $providerDetails['service_payment_details']['day_rate'] == true)
+                                                        <div class="d-flex gap-2 align-items-center mb-1">
+
+                                                            <div> Day Rate:
+                                                            </div>
+                                                            <div class="text-sm">
+                                                                {{ numberFormat($providerDetails['service_payment_details']['rate']) }}
+                                                            </div>
+                                                        </div>
+                                                    @else
+                                                        <div class="d-flex gap-2 align-items-center mb-1">
+                                                            <div>
+                                                                Business Hour(s):</div>
+                                                            <div class="text-sm">
+                                                                {{ isset($providerDetails['service_payment_details']['b_hours_duration']) ? $providerDetails['service_payment_details']['b_hours_duration'] : 'N/A' }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex gap-2 align-items-center mb-1">
+                                                            <div>
+                                                                Business Hour Rate:</div>
+                                                            <div class="text-sm">
+                                                                {{ isset($providerDetails['service_payment_details']['b_hours_rate']) ? numberFormat($providerDetails['service_payment_details']['b_hours_rate']) : 'N/A' }}
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="d-flex gap-2 align-items-center mb-1">
+                                                            <div>
+                                                                After Business Hour(s):</div>
+                                                            <div class="text-sm">
+                                                                {{ isset($providerDetails['service_payment_details']['a_hours_duration']) ? $providerDetails['service_payment_details']['a_hours_duration'] : 'N/A' }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex gap-2 align-items-center mb-1">
+
+                                                            <div>
+                                                                After-Business Hour Rate:</div>
+                                                            <div class="text-sm">
+                                                                {{ isset($providerDetails['service_payment_details']['a_hours_rate']) ? numberFormat($providerDetails['service_payment_details']['a_hours_rate']) : 'N/A' }}
+                                                            </div>
+                                                        </div>
+                                                    @endif
+                                                    @if (isset($providerDetails['service_payment_details']['expedited_rate']) &&
+                                                            $providerDetails['service_payment_details']['expedited_rate'] > 0)
+                                                        <div class="d-flex gap-2 align-items-center mb-1">
+
+                                                            <div>Expedition Charges:</div>
+                                                            <div class="text-sm">
+                                                                {{ numberFormat($providerDetails['service_payment_details']['expedited_rate']) }}
+
+                                                            </div>
+                                                        </div>
+                                                    @endif
+                                                    @if (isset($providerDetails['service_payment_details']['specialization_charges']) &&
+                                                            count($providerDetails['service_payment_details']['specialization_charges']))
+                                                        <div class="text-primary">
+                                                            Specialization Charges
+
+                                                        </div>
+                                                        @foreach ($providerDetails['service_payment_details']['specialization_charges'] as $spCharges)
+                                                            <div class="d-flex gap-2 align-items-center mb-1">
+                                                                <div class="">
+                                                                    {{ isset($spCharges['label']) ? $spCharges['label'] : '' }}:
+                                                                </div>
+                                                                <div class="text-sm">
+                                                                    {{ numberFormat($spCharges['provider_charges']) }}
+                                                                </div>
+
+                                                            </div>
+                                                        @endforeach
+                                                    @endif
+                                                    @if (isset($providerDetails['additional_payments']['additional_label_provider']) &&
+                                                            !is_null($providerDetails['additional_payments']['additional_label_provider']))
+                                                        <div class="text-primary">
+                                                            Additional Charges
+
+                                                        </div>
+                                                        <div class="d-flex gap-2 align-items-center mb-1">
+                                                            <div class="">
+                                                                {{ $providerDetails['additional_payments']['additional_label_provider'] }}:
+                                                            </div>
+                                                            <div class="text-sm">
+                                                                {{ numberFormat($providerDetails['additional_payments']['additional_charge_provider']) }}
+                                                            </div>
+
+                                                        </div>
+                                                    @endif
+                                                    <div class="d-flex gap-2 align-items-center mb-1">
+                                                        <div class="">
+                                                            {{ $providerDetails['is_override_price'] == 1 ? '(Override)' : '' }}
+                                                            Service Charges</div>
+                                                        <div class="text-sm "
+                                                            data-price="{{ $providerDetails['is_override_price'] == 1 ? $providerDetails['override_price'] : $providerDetails['total_amount'] }}">
+                                                            {{ $providerDetails['is_override_price'] == 1 ? numberFormat($providerDetails['override_price']) : numberFormat($providerDetails['total_amount']) }}
+                                                        </div>
+                                                        {{-- @php
+                                                        $total = $total + ($providerDetails['is_override_price'] == 1 ? $providerDetails['override_price'] : $providerDetails['total_amount']);
+                                                    @endphp --}}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+                                        @endforeach
+                                    </td>
+                                    </td>
+                                    <td>
+                                        <div class="fw-semibold"> $<span
+                                                id="booking-total-{{ $row['provider_invoice']['id'] }}">{{ $row['provider_invoice']['total_amount'] }}</span>
+                                        </div>
+
+                                    </td>
+                                    <td> </td>
                                 @else
                                     <td class="text-center">
                                         <input class="form-check-input booking-checkbox"
-                                            data-id="{{ $row[0]['booking']['id'] }}" wire:model.defer="selectedBookings"
-                                            type="checkbox" value="{{ $row[0]['booking']['id'] }}"
-                                            aria-label="Select Booking">
+                                            data-id="{{ $row[0]['booking']['id'] }}"
+                                            wire:model.defer="selectedBookings" type="checkbox"
+                                            value="{{ $row[0]['booking']['id'] }}" aria-label="Select Booking">
                                     </td>
                                     <td>
                                         <div class="fw-semibold">{{ $row[0]['booking']['booking_number'] }}</div>
@@ -169,7 +350,8 @@
                                                                         <input
                                                                             class="form-check-input booking-rmb-checkbox"
                                                                             data-id="{{ $rmb['booking_id'] }}"
-                                                                            type="checkbox" wire:model.defer="selectedRMB"
+                                                                            type="checkbox"
+                                                                            wire:model.defer="selectedRMB"
                                                                             data-price="{{ $rmb['amount'] }}"
                                                                             {{-- wire:click="updateSelectedRMB('{{$rmb['id']}}')" --}}
                                                                             value="{{ $rmb['id'] }}"
@@ -322,7 +504,9 @@
                                                 </div>
                                                 @foreach ($providerDetails['service_payment_details']['specialization_charges'] as $spCharges)
                                                     <div class="d-flex gap-2 align-items-center mb-1">
-                                                        <div class="">{{ isset($spCharges['label']) ? $spCharges['label'] :'' }}: </div>
+                                                        <div class="">
+                                                            {{ isset($spCharges['label']) ? $spCharges['label'] : '' }}:
+                                                        </div>
                                                         <div class="text-sm">
                                                             {{ numberFormat($spCharges['provider_charges']) }}</div>
 
@@ -1017,7 +1201,7 @@
             }
         });
 
-         $('#check-all-bookings').change(function() {
+        $('#check-all-bookings').change(function() {
             const isChecked = $(this).is(':checked');
             $('.booking-checkbox').prop('checked', isChecked);
 
@@ -1040,7 +1224,7 @@
         }
 
         function calculateGrandTotal() {
-             grandTotalPrice=0;
+            grandTotalPrice = 0;
             $('.booking-checkbox:checked').each(function() {
                 const id = parseFloat($(this).data('id'));
                 if (!isNaN(id)) {
@@ -1064,6 +1248,6 @@
         }
 
 
-       
+
     });
 </script>

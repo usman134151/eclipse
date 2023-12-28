@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
 use Illuminate\Support\Collection;
 use App\Helpers\SetupHelper;
-use app\Services\App\NotificationService;
+use App\Services\App\NotificationService;
 
 class AssignProviders extends Component
 {
@@ -136,18 +136,18 @@ class AssignProviders extends Component
     }
     public function refreshProviders()
     {
-        $this->providers = 
-        $returnCols = [
-            'users.id',
-            'users.name',
-            'user_details.city',
-            'user_details.state',
-            'user_details.country',
-            'users.email',
-            'user_details.phone', 'user_details.profile_pic', 'user_details.tags',
-            'users.status',
+        $this->providers =
+            $returnCols = [
+                'users.id',
+                'users.name',
+                'user_details.city',
+                'user_details.state',
+                'user_details.country',
+                'users.email',
+                'user_details.phone', 'user_details.profile_pic', 'user_details.tags',
+                'users.status',
 
-        ];
+            ];
         $query = User::where('users.status', 1)
             ->whereHas('roles', function ($query) {
                 $query->where('role_id', 2);
@@ -287,7 +287,7 @@ class AssignProviders extends Component
     public function updateTotal($index)
     {
         $this->validate();
-        $this->providersPayment[$index]['total_amount']=0;
+        $this->providersPayment[$index]['total_amount'] = 0;
         // dd($this->providersPayment[$index]['override_price']);
         if (!isset($this->providersPayment[$index]['service_payment_details']['b_hours_rate']) || trim($this->providersPayment[$index]['service_payment_details']['b_hours_rate']) == '')
             $this->providersPayment[$index]['service_payment_details']['b_hours_rate'] = 0;
@@ -371,7 +371,7 @@ class AssignProviders extends Component
             $this->providersPayment = [];
             foreach ($providers as $index => &$provider) {
                 $this->providersPayment[$index] = [];
-                $this->providersPayment[$index]['total_amount']=0;
+                $this->providersPayment[$index]['total_amount'] = 0;
                 //check if provider is assigned provider
                 $assigned = false;
                 $specializationRate = SpecializationRate::where('user_id', $provider['id'])->where('accommodation_service_id', $serviceId)->get();
@@ -515,7 +515,7 @@ class AssignProviders extends Component
     public $bookingTags = [];
     public function reMount($service_id, $panelType)
     {
-        $this->providers=[];
+        $this->providers = [];
         $this->panelType = $panelType;
         $this->service_id = $service_id;
 
@@ -648,6 +648,8 @@ class AssignProviders extends Component
                 $previousAssigned = [];
 
             $data = null;
+            $notifData['bookingData'] = $this->booking;
+
 
             foreach ($this->assignedProviders as $provider) {
                 $user          = User::find($provider['provider_id']);
@@ -662,22 +664,25 @@ class AssignProviders extends Component
                     $templateId = getTemplate('Booking: Provider Assigned (manual-assign)', 'email_template');
 
                     if (!in_array($provider['provider_id'], $previousAssigned)) {
-                        $params = [
-                            'email'       =>  $user->email, //
-                            'user'        =>  $user->name,
-                            'user_id'     =>  $user->id,
-                            'templateId'  =>  $templateId,
-                            'booking_id'     => $this->booking_id,
-                            'mail_type'   => 'booking',
-                            'templateName' => 'New Assignment',
-                            'bookingData' => $this->booking,
-                            'booking_service_id' => $booking_service->id,
+
+                        NotificationService::sendNotification('Booking: Provider Assigned (manual-assign)', $notifData, 7, true);
+
+                        // $params = [
+                        //     'email'       =>  $user->email, //
+                        //     'user'        =>  $user->name,
+                        //     'user_id'     =>  $user->id,
+                        //     'templateId'  =>  $templateId,
+                        //     'booking_id'     => $this->booking_id,
+                        //     'mail_type'   => 'booking',
+                        //     'templateName' => 'New Assignment',
+                        //     'bookingData' => $this->booking,
+                        //     'booking_service_id' => $booking_service->id,
 
 
 
-                        ];
+                        // ];
 
-                        sendTemplatemail($params);
+                        // sendTemplatemail($params);
 
                         $message = "Provider '" . $user->name . "' assigned to booking '" . $this->booking->booking_number . "' by " . Auth::user()->name;
                         callLogs($this->booking->id, 'Booking', 'assigned', $message);
@@ -701,26 +706,27 @@ class AssignProviders extends Component
             foreach ($previousAssigned as $unassign_prov) {
                 $user          = User::find($unassign_prov);
 
-                $templateId = getTemplate('Booking: Provider Unassigned', 'email_template');
+                // $templateId = getTemplate('Booking: Provider Unassigned', 'email_template');
 
-                if (isset($provider) && !in_array($provider['provider_id'], $previousAssigned)) {
+                if (isset($user) && !in_array($user->id, $previousAssigned)) {
+                    NotificationService::sendNotification('Booking: Provider Unassigned', $notifData, 7, true);
 
-                    $params = [
-                        'email'       =>  $user->email, //
-                        'user'        =>  $user->name,
-                        'user_id'     =>  $user->id,
-                        'templateId'  =>  $templateId,
-                        'booking_id'     => $this->booking_id,
-                        'mail_type'   => 'booking',
-                        'templateName' => 'Unassigned From Assignment',
-                        'bookingData' => $this->booking,
-                        'booking_service_id' => $booking_service->id,
+                    // $params = [
+                    //     'email'       =>  $user->email, //
+                    //     'user'        =>  $user->name,
+                    //     'user_id'     =>  $user->id,
+                    //     'templateId'  =>  $templateId,
+                    //     'booking_id'     => $this->booking_id,
+                    //     'mail_type'   => 'booking',
+                    //     'templateName' => 'Unassigned From Assignment',
+                    //     'bookingData' => $this->booking,
+                    //     'booking_service_id' => $booking_service->id,
 
 
 
-                    ];
+                    // ];
 
-                    sendTemplatemail($params);
+                    // sendTemplatemail($params);
                     $message = "Provider '" . $user->name . "' unassigned from booking '" . $this->booking->booking_number . "' by " . Auth::user()->name;
                     callLogs($this->booking->id, 'Booking', 'unassigned', $message);
                 }

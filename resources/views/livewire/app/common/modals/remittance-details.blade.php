@@ -43,6 +43,28 @@
                                         </svg>
                                         Issued
                                     </td>
+                                @elseif (isset($row['invoice_id']))
+                                    <td class="text-center align-middle">
+                                        {{ $row['invoice_number'] }}
+                                    </td>
+
+                                    <td class="text-center align-middle">
+                                            Provider Invoice
+                                    </td>
+                                    <td></td>
+                                    <td class=" align-middle">
+                                        {{ numberFormat($row['amount']) }}
+
+                                    </td>
+
+                                    <td class="align-middle">
+                                        <svg width="13" height="12" viewBox="0 0 13 12" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="6.5" cy="6" r="6" fill="#F4D115" />
+                                        </svg>
+                                        Issued
+                                    </td>
+                              
                                 @elseif (isset($row['number']))
                                     <td class="text-center align-middle">
                                             {{$row['booking'] ? $row['booking']['booking_number'] : ''}}<br>
