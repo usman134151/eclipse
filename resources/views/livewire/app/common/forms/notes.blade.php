@@ -50,7 +50,7 @@
 
                             @if($editData)
                                 <small>Edited - {{$editData['editorName']}} at </small>
-                                <small>{{date_format(date_create($editData['edited_at']), "d/m/Y h:i A")}}</small>
+                                <small>{{modifyDateTimeFormat($editData['edited_at'])}}</small>
                             @endif
                         @endif
 
