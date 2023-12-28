@@ -37,8 +37,7 @@
                             payment
                             cycle.</p>
                         <div class="mb-4">
-                            <img src="/tenant-resources/images/portrait/small/pending-payment.png" class="img-fluid"
-                                alt="Pending Payments Statistics">
+                            <canvas id="PaymentGraph" style="width:100%;"></canvas>
                         </div>
                         <!-- BEGIN: Filters -->
                         <div class="bg-muted rounded p-4 mb-1">
@@ -184,6 +183,34 @@
         </div>
 
     </div>
+    <script src="/tenant-resources/js/Chart.js"></script>
+    <script>
+        let PaymentGraph = new Chart("PaymentGraph", {
+		  type: 'line',
+		  data: @json($paymentGraph),
+		  options: {
+		    responsive: true,
+		    plugins: {
+		      legend: {
+		        position: 'top',
+		      },
+		      title: {
+		        display: true,
+		        text: 'Payment Line Chart'
+		      }
+		    },
+		    elements: {
+		      line: {
+		        tension: 0, // Make the lines straight (sharp)
+		        borderWidth: 5, // Adjust line width as needed
+		        fill: false, // Disable fill (remove highlighted area under the line)
+		      }
+		    }
+		  },
+		});
+
+    </script>
+    
 @push('scripts')
 <script>
         Livewire.on('close-mark-as-paid', () => {
