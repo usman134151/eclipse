@@ -170,6 +170,7 @@
                                     </a>
                                     @endif
                                     <a href="javascript:void(0)" title="Download File" aria-label="Download File"
+                                        wire:click="$emit('downloadPdf','{{ $remittance['id'] }}')"
                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                         <svg aria-label="Download PDF" width="16" height="20"
                                             viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">

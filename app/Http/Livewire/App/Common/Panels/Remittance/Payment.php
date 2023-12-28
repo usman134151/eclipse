@@ -2,17 +2,27 @@
 
 namespace App\Http\Livewire\App\Common\Panels\Remittance;
 
+use App\Models\Tenant\BookingProvider;
+use App\Models\Tenant\BookingReimbursement;
+use App\Models\Tenant\ProviderRemittancePayment;
 use App\Models\Tenant\Remittance;
 use App\Models\Tenant\User;
+use App\Services\PdfService;
 use Livewire\Component;
-
+use PDF;
 class Payment extends Component
 {
     public $showForm, $provider, $remittances, $total=0, $stats=[];
-    protected $listeners = ['showList' => 'resetForm'];
+    protected $listeners = ['showList' => 'resetForm', 'downloadPdf' => 'createPaymentPDF'];
     public $status = [2 => ['code' => '/css/provider.svg#green-dot', 'title' => 'Paid'], 1 => ['code' => '/css/common-icons.svg#blue-dot', 'title' => 'Issued'], 0 => ['code' => '/css/provider.svg#red-dot', 'title' => 'Pending']];
     public $selectedRemittance = [], $isSelectAll = false;
 
+    protected $pdfService;
+
+    public function __construct()
+    {
+        $this->pdfService = new PdfService;
+    }
 
     public function render()
     {
@@ -43,6 +53,25 @@ class Payment extends Component
         $this->stats['totalPending'] = $remittances->where('payment_status',1 )->sum('amount');
         $this->remittances = $remittances->toArray();
 
+    }
+
+    public function createPaymentPDF($remittanceId)
+    {
+        $remittance = Remittance::where('id', $remittanceId)->first()->toArray();
+        $rmb = BookingReimbursement::where(['remittance_id' => $remittance['id']])->with('booking')->select(['reimbursement_number as number', 'amount', 'payment_status','booking_id'])->get()->toArray();
+        $bookings = BookingProvider::where(['remittance_id' => $remittance['id']])
+        ->select(['total_amount', 'override_price', 'is_override_price', 'payment_status','booking_id','booking_service_id'])
+        ->with(['booking','booking.customer','booking_service', 'booking_service.service'])->get()->toArray();
+        $payments = ProviderRemittancePayment::where(['remittance_id' => $remittance['id']])->select(['id as payment_id','number', 'total_amount as amount', 'payment_status'])->get()->toArray();
+
+        $datalist=array_merge($rmb,$bookings, $payments);
+        $data['payments'] = $datalist;
+        $data['remittance'] = $remittance;
+        $data['provider'] = $this->provider;
+
+        $fileName = 'Remittance# ' .$remittance['number'];
+        return $this->pdfService->generateRemittancesPdf($data,$fileName,1); // currently showing company with 1 id
+        
     }
 
     function showForm()
