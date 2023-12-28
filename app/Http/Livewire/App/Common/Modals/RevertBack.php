@@ -5,6 +5,7 @@ namespace App\Http\Livewire\App\Common\Modals;
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\BookingReimbursement;
 use App\Models\Tenant\Invoice;
+use App\Models\Tenant\ProviderInvoice;
 use App\Models\Tenant\ProviderRemittancePayment;
 use App\Models\Tenant\Remittance;
 use App\Services\App\InvoiceService;
@@ -85,6 +86,8 @@ class RevertBack extends Component
                         BookingProvider::where('remittance_id', $remittance->id)->update(['paid_at' => null, 'paid_amount' => null, 'payment_method' => null, 'payment_status' => 1]);
                         BookingReimbursement::where('remittance_id', $remittance->id)->update(['paid_at' => null, 'payment_method' => null, 'payment_status' => 1]);
                         ProviderRemittancePayment::where('remittance_id', $remittance->id)->update(['paid_at' => null, 'payment_method' => null, 'payment_status' => 1]);
+                        ProviderInvoice::where('remittance_id', $remittance->id)->update(['paid_at' => null, 'payment_method' => null, 'payment_status' => 1]);
+                  
                     }
                 }
         } else {
@@ -96,6 +99,7 @@ class RevertBack extends Component
             BookingProvider::where('remittance_id', $this->remittance->id)->update(['paid_at' => null, 'paid_amount' => null, 'payment_method' => null, 'payment_status' => 1]);
             BookingReimbursement::where('remittance_id', $this->remittance->id)->update(['paid_at' => null, 'payment_method' => null, 'payment_status' => 1]);
             ProviderRemittancePayment::where('remittance_id', $this->remittance->id)->update(['paid_at' => null, 'payment_method' => 0, 'payment_status' => 1]);
+            ProviderInvoice::where('remittance_id', $this->remittance->id)->update(['paid_at' => null, 'payment_method' => 0, 'payment_status' => 1]);
        
         }
         $this->emit('close-revert-modal');

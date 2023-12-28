@@ -10,6 +10,7 @@ use App\Models\Tenant\User;
 use Carbon\Carbon;
 use Livewire\Component;
 use App\Services\App\BookingAssignmentService;
+use App\Services\App\NotificationService;
 use Illuminate\Support\Facades\Auth;
 
 class Unassign extends Component
@@ -43,14 +44,14 @@ class Unassign extends Component
         $this->data = [
             'unassign_reason' => '',
             'unassign_date' => null,
-            
+
         ];
     }
 
     public function save()
     {
         $this->data['unassign_date'] = Carbon::now();
-      
+
         BookingUnassignProvider::updateOrCreate([
             'booking_id' => $this->booking_id, 'booking_service_id' => $this->booking_service_id,
             'provider_id' => $this->provider_id
@@ -58,40 +59,29 @@ class Unassign extends Component
 
         BookingProvider::where(['booking_service_id' => $this->booking_service_id, 'provider_id' => $this->provider_id, 'booking_id' => $this->booking_id])->delete();
         //updating invite data too to avoid reassignment
-        BookingInvitationProvider::where(['booking_id' => $this->booking_id, 'provider_id' =>$this->provider_id])
-        ->update(['status'=>3]);
-        //send unassign email 
+        BookingInvitationProvider::where(['booking_id' => $this->booking_id, 'provider_id' => $this->provider_id])
+            ->update(['status' => 3]);
+
+        $booking = Booking::find($this->booking_id);
         $user = User::find($this->provider_id);
-        $templateId = getTemplate('Booking: Provider Unassigned', 'email_template');
 
-            $params = [
-                'email'       =>  $user->email, //
-                'user'        =>  $user->name,
-                'user_id'     =>  $user->id,
-                'templateId'  =>  $templateId,
-                'booking_id'     => $this->booking_id,
-                'mail_type'   => 'booking',
-                'templateName' => 'Unassigned From Assignment',
-                // 'bookingData' => $this->booking,
-                'booking_service_id' => $this->booking_service_id,
-            ];
+        //send unassign email 
+        $emailData['bookingData'] = $booking;
+        NotificationService::sendNotification('Booking: Provider Unassigned', $emailData, 7, true);
 
-            sendTemplatemail($params);
 
-        $booking = Booking::findOrFail($this->booking_id);
-        $booking->update(['status' => 1]);    
+        $booking->update(['status' => 1]);
         $bookingNumber = $booking->booking_number;
-            
-        $message="Provider '".$user->name."' unassigned from booking '".$bookingNumber;
-        if($this->data['unassign_reason'])
-           $message.="' (Reason: ".$this->data['unassign_reason'].')';
-        $message .= ' by '. Auth::user()->name;
-        callLogs($this->booking_id,'Booking','unassigned',$message);
-        BookingAssignmentService::reTriggerAutoAssign( $this->booking_id,$this->booking_service_id);
+
+        $message = "Provider '" . $user->name . "' unassigned from booking '" . $bookingNumber;
+        if ($this->data['unassign_reason'])
+            $message .= "' (Reason: " . $this->data['unassign_reason'] . ')';
+        $message .= ' by ' . Auth::user()->name;
+        callLogs($this->booking_id, 'Booking', 'unassigned', $message);
+        BookingAssignmentService::reTriggerAutoAssign($this->booking_id, $this->booking_service_id);
         //add check for booking_status update
         $this->emit('showConfirmation', 'Provider Assignment has been revoked successfully');
         $this->emit('closeUnassignModel');
-        
     }
     function showForm()
     {

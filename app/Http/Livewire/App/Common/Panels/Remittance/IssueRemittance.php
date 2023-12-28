@@ -5,6 +5,7 @@ namespace App\Http\Livewire\App\Common\Panels\Remittance;
 use App\Http\Livewire\App\Common\Modals\BookingReimbursements;
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\BookingReimbursement;
+use App\Models\Tenant\ProviderInvoice;
 use App\Models\Tenant\ProviderRemittancePayment;
 use App\Models\Tenant\Remittance;
 use App\Models\Tenant\User;
@@ -13,8 +14,9 @@ use Livewire\Component;
 
 class IssueRemittance extends Component
 {
-    public $showForm, $list = [], $provider, $selectedBookings = [], $selectedRMB = [], $selectedPayments=[], $totalAmount = 0;
+    public $showForm, $list = [], $provider, $selectedBookings = [], $selectedRMB = [], $selectedPayments = [], $totalAmount = 0;
     protected $listeners = ['showList' => 'resetForm', 'issueRemittances'];
+    public $selectedInvoices = [];
 
     public function render()
     {
@@ -36,23 +38,33 @@ class IssueRemittance extends Component
                 }
                 $this->selectedRMB[] = $rmb['id'];
                 $this->list[$index][0] = $rmb;
-            }
-            elseif (key_exists('payment_id', $row)) {
+            } elseif (key_exists('payment_id', $row)) {
                 // fetch payment data
                 $payment =  ProviderRemittancePayment::where('id', $row['payment_id'])->first()->toArray();
-               $payment['payment'] =true;
-               
+                $payment['payment'] = true;
+
                 $this->selectedPayments[] = $payment['id'];
                 $this->list[$index][0] = $payment;
-            }elseif (key_exists('invoice_id', $row)) {
-            
-            }
-             else {
+            } elseif (key_exists('invoice_id', $row)) {
+
+                $invoiceRecords = BookingProvider::where(['provider_id' => $providerId, 'invoice_id' => $row['invoice_id']])->with([
+                     'booking_service', 'booking_service.service', 'booking', 'booking.company',
+                    'booking.customer', 'booking.booking_supervisor', 'booking.billing_manager', 'provider_invoice'
+                ])->get()->toArray();
+
+                $this->list[$index][0] = $invoiceRecords;
+                $this->list[$index]['provider_invoice'] = ProviderInvoice::find($row['invoice_id'])->toArray();
+                $this->selectedInvoices[] = $row['invoice_id'];
+            } else {
                 //fetch booking details + associated reimbursements
+
+
                 $bookingRecords = BookingProvider::where(['provider_id' => $providerId, 'booking_id' => $row['booking_id']])->with([
                     'reimbursements', 'booking_service', 'booking_service.service', 'booking', 'booking.company',
                     'booking.customer', 'booking.booking_supervisor', 'booking.billing_manager'
                 ])->get()->toArray();
+
+
                 $sum = 0;
                 foreach ($bookingRecords as $record) {
                     if ($record['is_override_price'])
@@ -76,35 +88,41 @@ class IssueRemittance extends Component
                 $bookingRecords[0]['sum'] = $sum;
 
                 $this->list[$index] = $bookingRecords;
-                $this->selectedBookings[] = $row['booking_id'];
+                $this->selectedBookings[] = isset($row['invoice_id']) ? $row['invoice_id'] : $row['booking_id'];
             }
         }
         // dd($this->list);
     }
     public function createRemittance()
-    {   $now = Carbon::now();
+    {
+        $now = Carbon::now();
         $remittanceArr = [
             'number' => genetrateRemittanceNumber($this->provider),
             'provider_id' => $this->provider->id,
             'amount' => $this->totalAmount,
             'outstanding_amount' => $this->totalAmount,
-            'payment_status' => 1, 'payment_method' =>null, 
+            'payment_status' => 1, 'payment_method' => null,
             'issued_at' => $now,
         ];
         $remittance = Remittance::create($remittanceArr);
-        foreach($this->selectedBookings as $bookingId){
-            BookingProvider::where(['provider_id'=>$this->provider->id, 'booking_id'=>$bookingId])->update(['remittance_id'=>$remittance->id]);
-        }
-        foreach ($this->selectedRMB as $rmbId) {
-            BookingReimbursement::where(['provider_id' => $this->provider->id, 'id' => $rmbId])->update(['remittance_id' => $remittance->id,'issued_at'=>$now]);
-        }
-        foreach ($this->selectedPayments as $paymentId) {
-            ProviderRemittancePayment::where(['id' => $paymentId])->update(['remittance_id' => $remittance->id, 'payment_status' => 1]);
-        }
+        // foreach ($this->selectedBookings as $bookingId) {
+        BookingProvider::where('provider_id', $this->provider->id)->whereIn('booking_id', $this->selectedBookings)->update(['remittance_id' => $remittance->id]);
+        // }
+        // foreach ($this->selectedRMB as $rmbId) {
+        BookingReimbursement::where('provider_id', $this->provider->id)->whereIn('id', $this->selectedRMB)->update(['remittance_id' => $remittance->id, 'issued_at' => $now]);
+        // }
+        // foreach ($this->selectedPayments as $paymentId) {
+        ProviderRemittancePayment::whereIn('id', $this->selectedPayments)->update(['remittance_id' => $remittance->id, 'payment_status' => 1]);
+        // }
+
+        // foreach ($this->selectedInvoices as $invoiceId) {
+        ProviderInvoice::whereIn('id', $this->selectedInvoices)->update(['remittance_id' => $remittance->id, 'invoice_status' => 1]);
+        BookingProvider::where('provider_id', $this->provider->id)->whereIn('invoice_id', $this->selectedInvoices)->update(['remittance_id' => $remittance->id]);
+
+        // }
 
         $this->dispatchBrowserEvent('issued-remittance');
         $this->emit('showList', 'Remittance created successfully');
-
     }
     function showForm()
     {

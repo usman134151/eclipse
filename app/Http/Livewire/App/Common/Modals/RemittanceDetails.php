@@ -4,6 +4,7 @@ namespace App\Http\Livewire\App\Common\Modals;
 
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\BookingReimbursement;
+use App\Models\Tenant\ProviderInvoice;
 use App\Models\Tenant\ProviderRemittancePayment;
 use Livewire\Component;
 
@@ -25,8 +26,11 @@ class RemittanceDetails extends Component
         ->select(['total_amount', 'override_price', 'is_override_price', 'payment_status','booking_id','booking_service_id'])
         ->with(['booking','booking.customer','booking_service', 'booking_service.service'])->get()->toArray();
         $payments = ProviderRemittancePayment::where(['remittance_id' => $remittanceId])->select(['id as payment_id','number', 'total_amount as amount', 'payment_status'])->get()->toArray();
+        $invoices = ProviderInvoice::where(['remittance_id' => $remittanceId])
+        // ->with(['provider_bookings', 'provider_bookings.booking'])
+        ->select(['id as invoice_id', 'invoice_number', 'total_amount as amount', 'payment_status'])->get()->toArray();
 
-        $this->list=array_merge($rmb,$bookings, $payments);
+        $this->list=array_merge($rmb,$bookings, $payments, $invoices);
         // dd($this->list);
     }
 

@@ -1,5 +1,5 @@
 <div>
-    <div x-data="{ addInvoice: false }">
+    <div x-data="{ providerInvoiceDetails: false }">
         <div id="loader-section" class="loader-section" wire:loading>
             <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
                 <div class="spinner-border" role="status" aria-live="polite">
@@ -114,13 +114,14 @@
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td>{{ formatPayment($invoice['total_amount']) }}</td>
+                                                    <td>{{ numberFormat($invoice['total_amount']) }}</td>
                                                     <td>{{ $status[$invoice['invoice_status']] }}</td>
-                                                    <td>{{ $invoice['invoice_date'] ? date_format(date_create($invoice['issued_at']), 'm/d/Y') : 'N/A' }}
+                                                    <td>{{ date_format(date_create($invoice['invoice_date']), 'm/d/Y') }}
                                                     </td>
                                                     <td>
                                                         <div class="d-flex actions">
-                                                            <a href="#" title="View" aria-label="View"
+                                                            <a href="#" title="View" aria-label="View" @click="providerInvoiceDetails= true"
+                                                            wire:click="openProviderInvoiceDetails('{{$invoice['id']}}')"
                                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                 <svg width="20" height="20" viewBox="0 0 20 20"
                                                                     fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -259,7 +260,7 @@
                     </div>
                 </div>
             </section>
-            {{-- @include('panels.common.add-invoice') --}}
+            @include('panels.common.view-provider-invoice')
         </div>
         <!-- Basic Floating Label Form section end -->
         @include('modals.accept-remittance')
