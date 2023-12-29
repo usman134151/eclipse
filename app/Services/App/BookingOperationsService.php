@@ -822,7 +822,8 @@ class BookingOperationsService
         $customize_data = array_map("customize_data", $customize_data, array($newBookingId));
         $customize_data =   self::arrayReplace($customize_data, 'booking_id', $newBookingId);
         foreach ($customize_data as $data) {
-          if (key_exists('customize_data', $data) && !is_null($data['customize_data']) && $data['customize_data'] != '') {
+          //condition has been commented out as no array key exists -> LBT 83 -- Maarooshaa Asim 29/12/23
+          // if (key_exists('customize_data', $data) && !is_null($data['customize_data']) && $data['customize_data'] != '') {
             BookingCustomizeData::insert([
               'booking_log_id' => $data['booking_log_id'],
               'booking_log_bbid' => $data['booking_log_bbid'],
@@ -830,11 +831,11 @@ class BookingOperationsService
               'service_id' => $data['service_id'],
               'customize_id' => $data['customize_id'],
               'data_value' => $data['data_value'],
-              'customize_data' => $data['customize_data'],
+              // 'customize_data' => $data['customize_data'],
               'added_by' => $data['added_by'],
               'field_title' => json_encode($data['field_title']),
             ]);
-          }
+          // }
         }
         //        BookingCustomizeData::insert($customize_data); // customize data
       }

@@ -14,7 +14,7 @@ use Livewire\Component;
 
 class RemittanceGeneratorBooking extends Component
 {
-    public $showForm, $provider, $data = [], $selectedBookings = [], $showError = false, $providerData =[];
+    public $showForm, $provider, $data = [], $selectedBookings = [], $showError = false, $providerData = [];
     protected $listeners = ['showList' => 'resetForm', 'addToRemittance'];
 
     public function render()
@@ -25,13 +25,12 @@ class RemittanceGeneratorBooking extends Component
     public function mount($providerId)
     {
         $this->provider = User::where('id', $providerId)->with('userdetail')->first()->toArray();
-        // 'check_in_status'=>3, TODO :: ADD CONDITION WHEN AUTO-CLOSE ENABLED
         // TODO :: Add check to include bookings that have been added to a remittance, yet reimbursement is added later
         $bookings = BookingProvider::where(['provider_id' => $providerId, 'payment_status' => 0, 'remittance_id' => 0])
             ->whereHas('booking', function ($query) {
 
                 $query->where('is_paid', 0)
-                // ->where('is_closed',1)
+                    ->where('is_closed', 1)
                     ->whereRaw("DATE(booking_end_at) < '" . Carbon::now()->toDateString() . "'");
             })
             ->where('booking_providers.invoice_id', null)
@@ -46,15 +45,15 @@ class RemittanceGeneratorBooking extends Component
         //fetching unassociated approved reimbursements
         $reimbursements = BookingReimbursement::where(['provider_id' => $providerId, 'status' => 1, 'booking_id' => null, 'payment_status' => 0, 'remittance_id' => 0])->select(['id as reimbursement_id', 'reimbursement_number', 'amount', 'booking_id'])->get()->toArray();
         $payments = ProviderRemittancePayment::where(['provider_id' => $providerId, 'payment_status' => 0, 'remittance_id' => null])->select(['id as payment_id', 'number', 'total_amount as amount'])->get()->toArray();
-        $invoices = ProviderInvoice::where(['provider_id' => $providerId, 'invoice_status' => 1, 'remittance_id'=>null])
+        $invoices = ProviderInvoice::where(['provider_id' => $providerId, 'invoice_status' => 1, 'remittance_id' => null])
             ->select(['id as invoice_id', 'invoice_number', 'total_amount as amount'])->get()->toArray();
         // dd($invoices);
 
         $this->data = array_merge($bookings, $reimbursements, $payments, $invoices);
 
-        $this->providerData['total_invoiced'] = Remittance::where('provider_id' , $providerId)->where('payment_status',1)->sum('amount');
-        $this->providerData['total_pending'] = BookingReimbursement::where('provider_id' , $providerId)->where('status',0)->sum('amount');
-        $nextPayment = Remittance::where('provider_id' , $providerId)->where('payment_status',1)->where('payment_scheduled_at', '>', now())->orderBy('payment_scheduled_at')->first();
+        $this->providerData['total_invoiced'] = Remittance::where('provider_id', $providerId)->where('payment_status', 1)->sum('amount');
+        $this->providerData['total_pending'] = BookingReimbursement::where('provider_id', $providerId)->where('status', 0)->sum('amount');
+        $nextPayment = Remittance::where('provider_id', $providerId)->where('payment_status', 1)->where('payment_scheduled_at', '>', now())->orderBy('payment_scheduled_at')->first();
         $this->providerData['payment_date'] = $nextPayment ? $nextPayment->payment_scheduled_at : null;
     }
 
