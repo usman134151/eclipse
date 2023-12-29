@@ -59,11 +59,18 @@ final class DraftRemittances extends PowerGridComponent
                 $query->where('role_id', 2);
             }
         )
-            // TODO :: ADD checks like in remGen
-            ->join('booking_providers', 'booking_providers.provider_id', 'users.id')
+            ->join('booking_providers', function ($q) {
+                // checks like in remGen
+                $q->on('booking_providers.provider_id', 'users.id');
+                $q->whereIn('booking_id', function ($sub) {
+                    $sub->from('bookings')->where(['is_closed' => 1, 'is_paid' => 0])
+                        ->whereRaw("DATE(booking_end_at) < '" . Carbon::now()->toDateString() . "'")
+                        ->select('id');
+                });
+            })
             ->leftJoin('payment_preferences', 'payment_preferences.provider_id', 'users.id')
             ->where(['payment_status' => 0,  'remittance_id' => 0])
-            ->where('booking_providers.invoice_id',null) //remove bookings that have been added to provider-invoicces
+            ->where('booking_providers.invoice_id', null) //remove bookings that have been added to provider-invoicces
             ->join('user_details', function ($userdetails) {
                 $userdetails->on('user_details.user_id', '=', 'users.id');
             })
