@@ -50,8 +50,7 @@
                         <div class="form-check">
                             <input class="form-check-input position-static" type="checkbox" value="1"
                                 wire:model.defer="booking.cancel_provider_payment">
-                            <label class="form-check-label" for="blankCheckbox2CancellationModal">Cancel Provider
-                                Payment</label>
+                            <label class="form-check-label" for="blankCheckbox2CancellationModal">Mark as Unpayable</label>
                         </div>
                     </div>
                 </div>

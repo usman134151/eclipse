@@ -49,8 +49,9 @@ class Payment extends Component
         $this->provider = User::where('id', $providerId)->with(['userdetail', 'paymentPreference'])->first();
         $remittances = Remittance::where('provider_id', $providerId)->orderBy('issued_at', 'desc')->get();
 
-        $this->stats['totalPaid'] = $remittances->where('payment_status',2)->sum('amount');
-        $this->stats['totalPending'] = $remittances->where('payment_status',1 )->sum('amount');
+        $this->stats['totalPaid'] = $remittances->where('provider_id',$providerId)->where('payment_status',2)->sum('amount');
+        $this->stats['totalPending'] = $remittances->where('provider_id',$providerId)->where('payment_status',1 )->sum('amount');
+        $this->stats['totalOverDue'] = $remittances->where('provider_id',$providerId)->sum('amount')-$this->stats['totalPaid'];
         $this->remittances = $remittances->toArray();
 
     }
