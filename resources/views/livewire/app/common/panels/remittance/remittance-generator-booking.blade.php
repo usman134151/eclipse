@@ -189,7 +189,7 @@
                                             </a>
                                         @endif
 
-                                        @if (isset($row['invoice_id']))
+                                        {{-- @if (isset($row['invoice_id']))
                                             <a href="#" title="View Invoice Details"
                                                 aria-label="View Invoice Details" data-bs-toggle="modal"
                                                 data-bs-target="#bookingReimbursementsModal"
@@ -209,7 +209,7 @@
                                                         fill="black" />
                                                 </svg>
                                             </a>
-                                        @endif
+                                        @endif --}}
                                     </div>
                                 </td>
                             </tr>

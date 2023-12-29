@@ -46,7 +46,7 @@ class InvoicesDetails extends Component
         $this->data['total'] = $total;
         $this->data['invoice_number'] = genetrateProviderInvoiceNumber(Auth::user());
         $this->data['provider_invoice_number'] = '';
-        $this->data['invoice_due_date'] = Carbon::now()->addDays(15);
+        $this->data['invoice_due_date'] = Carbon::now()->addDays(15)->toDateString();
     }
 
     public function submitInvoice()
