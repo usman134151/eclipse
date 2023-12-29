@@ -42,7 +42,7 @@ class CancelBooking extends Component
             $this->unbillable = 3;
 
         if (!is_null($this->booking->payment->cancellation_charges)) {
-            $this->override_charges = $this->charges = $this->booking->payment->cancellation_charges;
+            $this->override_charges = $this->charges = number_format($this->booking->payment->cancellation_charges,2);
         }
         $this->setting['type'] = "only_this_booking";
         $this->setting['reschedule_until'] = null;

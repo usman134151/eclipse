@@ -404,6 +404,8 @@ class BookingList extends Component
 				$row->accommodation_name = $booking_service ? ($booking_service->service ? ($booking_service->service->accommodation->name  ?? null) : null) : null;
 				$row->service_name = $booking_service ? ($booking_service->service ? $booking_service->service->name : null) : null;
 				$row->booking_service_id = $booking_service ? $booking_service->id : null;
+				$row->assignedProvidersCount = count(BookingProvider::where(['booking_id' => $row['id'], 'booking_service_id' => $row->booking_service_id])
+				->get()->toArray());
 			} else {
 				// UC -2 ( current system )
 				// booking -> booking services -> booking providers (mapped to)=>  booking_services_id

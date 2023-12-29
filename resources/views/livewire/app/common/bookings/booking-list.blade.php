@@ -322,7 +322,7 @@
                                                                         style="background-color:{{ $colorCodes[$code] }};">
 
                                                                         <div>
-                                                                            {{ $booking['provider_count'] }}
+                                                                            {{ $booking['assignedProvidersCount'].'/'.$booking['provider_count'] }}
                                                                         </div>
                                                                     </td>
                                                                     <td class="{{ $cssClass }}"

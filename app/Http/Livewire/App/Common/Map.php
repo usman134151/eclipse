@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class Map extends Component
 {
     public $showForm;
-    protected $listeners = ['showList' => 'resetForm', 'apply' => 'applyFilters','updateVal','openBookingDetails'];
+    protected $listeners = ['showList' => 'resetForm', 'apply' => 'applyFilters','updateVal','openMapBookingDetails'];
     public $locations = [];
     public $selectDate;
     public $selectedBookingNo;
@@ -168,12 +168,12 @@ class Map extends Component
         ])->get();
     }
 
-    public function openBookingDetails($bookingID)
+    public function openMapBookingDetails($bookingID)
     {
-        // $decryptedID = decrypt($bookingID);
-        // $this->booking_id = $decryptedID;
-		// $this->providerPanelType = 3;
-		// $this->emit('setBookingId', $this->booking_id);
+        $decryptedID = decrypt($bookingID);
+        $this->booking_id = $decryptedID;
+		$this->providerPanelType = 3;
+		$this->emit('setBookingId', $decryptedID);
     }
 
 }

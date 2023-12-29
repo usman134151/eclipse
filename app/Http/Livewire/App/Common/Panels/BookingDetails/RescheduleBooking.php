@@ -33,7 +33,7 @@ class RescheduleBooking extends Component
             $this->previousReschedulings = RescheduleBookingLog::where('booking_id', $this->booking->id)->get();
             //sum charges if found
 
-            $this->override_charges = round($this->booking->payment->reschedule_booking_charges, 1);
+            $this->override_charges = number_format(round($this->booking->payment->reschedule_booking_charges, 1),2);
             $start = Carbon::parse($this->booking->booking_start_at);
             $end = Carbon::parse($this->booking->booking_end_at);
             $this->reschedule_details['booking_start_at'] = $start->format('m/d/Y');
