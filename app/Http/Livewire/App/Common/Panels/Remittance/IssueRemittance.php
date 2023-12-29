@@ -48,7 +48,7 @@ class IssueRemittance extends Component
             } elseif (key_exists('invoice_id', $row)) {
 
                 $invoiceRecords = BookingProvider::where(['provider_id' => $providerId, 'invoice_id' => $row['invoice_id']])->with([
-                     'booking_service', 'booking_service.service', 'booking', 'booking.company',
+                     'booking_service', 'booking_service.service', 'booking', 'booking.company', 
                     'booking.customer', 'booking.booking_supervisor', 'booking.billing_manager', 'provider_invoice'
                 ])->get()->toArray();
 
@@ -61,7 +61,7 @@ class IssueRemittance extends Component
 
                 $bookingRecords = BookingProvider::where(['provider_id' => $providerId, 'booking_id' => $row['booking_id']])->with([
                     'reimbursements', 'booking_service', 'booking_service.service', 'booking', 'booking.company',
-                    'booking.customer', 'booking.booking_supervisor', 'booking.billing_manager'
+                    'booking.customer', 'booking.booking_supervisor', 'booking.billing_manager', 
                 ])->get()->toArray();
 
 

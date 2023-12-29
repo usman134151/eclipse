@@ -163,6 +163,14 @@
 			<span class="menu-item">Payments </span>
 		  </a>
 		  <ul class="menu-content" >
+			<li class="nav-item" id="my-invoices">
+			  <a class="nav-link"  href="/provider/my-invoices">
+				<svg aria-label="My Invoices" width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <use xlink:href="/css/provider-menu.svg#invoice-generator-icon"></use>
+                </svg>
+				<span class="menu-item" >My Invoices</span>
+			  </a>
+			</li>
 			<li class="nav-item" id="draft-invoices">
 			  <a class="nav-link"  href="/provider/draft-invoices">
 				<svg aria-label="Invoice generator" width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
