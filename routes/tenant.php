@@ -195,6 +195,8 @@ Route::group([
 				Route::view('/reimbursement', 'tenant/provider/reimbursement');
 				Route::view('/remittances', 'tenant/provider/remittances');
 				Route::view('/draft-invoices', 'tenant/provider/draft-invoices');
+				Route::view('/my-invoices', 'tenant/provider/my-invoices');
+
 
 				Route::view('/profile', 'tenant/provider/profile');
 

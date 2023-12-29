@@ -167,6 +167,11 @@
                                                     </div>
                                                     <div class="text-sm">
                                                         Service Consumer(s):
+                                                        {{-- @if ($providerDetails['booking_service']['is_manual_consumer'])
+                                                            {{ $providerDetails['booking_service']['service_consumer_manual'] ? $providerDetails['booking_service']['service_consumer_manual'] : 'N/A' }}
+                                                        @else
+                                                            {{ isset($providerDetails['booking_service']['serviceConsumerUser']) ? $providerDetails['booking_service']['serviceConsumerUser']['name'] : 'N/A' }}
+                                                        @endif --}}
                                                     </div>
 
                                                 </div>

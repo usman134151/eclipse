@@ -1,4 +1,4 @@
-<div x-data="{ invoicesDetails: false, assignmentDetails: false, addReimbursement: false, step: 1 }">
+<div x-data="{ providerInvoiceDetails: false }">
     <div id="loader-section" class="loader-section" wire:loading>
         <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
             <div class="spinner-border" role="status" aria-live="polite">
@@ -10,7 +10,7 @@
         <div class="content-header-left col-md-9 col-12 mb-2">
             <div class="row breadcrumbs-top">
                 <div class="col-12">
-                    <h1 class="content-header-title float-start mb-0">Invoice Generator</h1>
+                    <h1 class="content-header-title float-start mb-0">My Invoices</h1>
                     <div class="breadcrumb-wrapper">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
@@ -27,7 +27,7 @@
                                 </a>
                             </li>
                             <li class="breadcrumb-item">
-                                Invoice Generator
+                                My Invoices
                             </li>
                         </ol>
                     </div>
@@ -40,7 +40,7 @@
             <div class="row mb-3 mt-3">
                 <div class="col-md-11">
                     <p>
-                        Here you can review your scheduled payroll based on the assignments, reimbursements, and
+                        Here you can review your created invoices based on the assignments, reimbursements, and
                         referrals you've completed during the pay period.
                     </p>
                 </div>
@@ -82,48 +82,42 @@
                                 <div class="form-check">
                                     <input class="form-check-input" id="check-all-bookings" name=""
                                         type="checkbox" wire:model="selectAll" tabindex=""
-                                        aria-label="Select All Bookings">
+                                        aria-label="Select All Invoices">
                                 </div>
                             </th>
-                            <th scope="col">Booking id</th>
-                            <th scope="col">Date & Time</th>
-                            <th scope="col">Accommodation</th>
-                            <th scope="col" width="20%">Company Name</th>
+                            <th scope="col">Invoice id</th>
+                            <th scope="col">Date</th>
+                            {{-- <th scope="col">Accommodation</th> --}}
                             <th scope="col">Total Pay</th>
                             <th scope="col">Status</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($invoiceData as $booking)
+                        @foreach ($myInvoices as $invoice)
                             <tr role="row" class="odd">
                                 <td>
                                     <div class="form-check">
-                                        <input class="form-check-input booking-checkbox" aria-label="Select Booking"
-                                            id="" wire:model="selectedBookings"
-                                            value="{{ $booking->booking_id }}" data-value="{{ $booking->booking_id }}"
-                                            type="checkbox" tabindex="">
+                                        <input class="form-check-input booking-checkbox" aria-label="Select Invoices"
+                                            id="" wire:model="selectedInvoices" value="{{ $invoice->id }}"
+                                            data-value="{{ $invoice->id }}" type="checkbox" tabindex="">
                                     </div>
                                 </td>
-                                <td x-on:click="assignmentDetails = true">
-                                    {{ $booking->booking_number }}
+                                <td x-on:click="providerInvoiceDetails = true">
+                                    {{ $invoice->invoice_number }}
                                 </td>
                                 <td>
-                                    <div>{{ formatDate($booking->booking_start_at) }}</div>
+                                    <div>{{ formatDate($invoice->invoice_due_date) }}</div>
                                     <div class="text-sm">
-                                        {{ date_format(date_create($booking->booking_start_at), 'h:i A') }} To <br>
-                                        {{ date_format(date_create($booking->booking_end_at), 'h:i A') }}</div>
+                                        <div><strong>Due:</strong> {{ formatDate($invoice->invoice_date) }}</div>
+                                    </div>
                                 </td>
-                                <td>
+                                {{-- <td>
                                     <div class="text-sm">{{ $booking->accommodation_name }}</div>
-                                    <div class="text-sm">
-                                        @if ($booking->specializationNames)
-                                            Specialization: {{ $booking->specializationNames }}
-                                        @endif
-                                    </div>
+                                    <div class="text-sm">Specialization: Closed-Captioning</div>
                                     <div class="text-sm">Service: {{ $booking->service_name }}</div>
-                                </td>
-                                <td>
+                                </td> --}}
+                                {{-- <td>
                                     <div class="row g-2">
                                         <div class="col-md-2">
                                             <img src="{{ $booking->company && $booking->company->company_logo ? $booking->company->company_logo : '/tenant-resources/images/portrait/small/image4.png' }}"
@@ -132,40 +126,23 @@
                                         <div class="col-md-10 align-self-center">
                                             <div class="fw-semibold text-sm">
                                                 {{ $booking->company ? $booking->company->name : 'N/A' }}</div>
-                                            {{-- <p class="text-sm">examplecompany@gmail.com</p> --}}
                                         </div>
                                     </div>
-                                </td>
-                                <td>{{ numberFormat($booking->is_override_price ? $booking->override_price : $booking->total_amount) }}
+                                </td> --}}
+                                <td>{{ numberFormat($invoice->total_amount) }}
                                 </td>
                                 <td>
-                                    <div class="d-inline-flex">
-                                        <div><svg aria-label="Completed" width="10" height="10"
-                                                viewBox="0 0 10 10" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <use xlink:href="{{ $type[$booking->status]['code'] }}"></use>
-                                            </svg></div>
-                                        <div class="mx-1 text-sm mt-1">{{ $type[$booking->status]['title'] }}</div>
-                                    </div>
+                                    {{ $status[$invoice->invoice_status] }}
                                 </td>
                                 <td>
                                     <div class="d-flex actions">
-                                        <a @click="invoicesDetails = true" href="#" title="Invoice Generate"
-                                            wire:click="$emit('openInvoiceDetailsPanel',[{{ $booking->booking_id }}])"
-                                            aria-label="Invoice Generate"
-                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                            <svg aria-label="Invoice Generate" width="22" height="19"
-                                                viewBox="0 0 22 19" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <use xlink:href="/css/provider.svg#invoice-generate"></use>
-                                            </svg>
-                                        </a>
+
                                         <a href="#" title="View" aria-label="View"
+                                            wire:click="openProviderInvoiceDetails('{{ $invoice->id }}')"
                                             class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                            x-on:click="assignmentDetails = true">
+                                            x-on:click="providerInvoiceDetails = true">
                                             <svg aria-label="View" class="fill" width="20" height="20"
-                                                viewBox="0 0 20 20" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
+                                                viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <use xlink:href="/css/provider.svg#view"></use>
                                             </svg>
                                         </a>
@@ -194,11 +171,11 @@
                         </small>
                     </div>
                 </div>
-                {{ $invoiceData->links('livewire.app.common.bookings.booking-nav') }}
+                {{ $myInvoices->links('livewire.app.common.bookings.booking-nav') }}
             </div>
             <!-- Icon Help -->
             <div class="d-flex actions gap-3 justify-content-end mb-2">
-                <div class="d-flex gap-2 align-items-center">
+                {{-- <div class="d-flex gap-2 align-items-center">
                     <a href="#" title="Invoice Generate" aria-label="Invoice Generate"
                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
                         <svg aria-label="Invoice Generate" width="22" height="19" viewBox="0 0 22 19"
@@ -209,7 +186,7 @@
                     <span class="text-sm">
                         Invoice Generate
                     </span>
-                </div>
+                </div> --}}
                 <div class="d-flex gap-2 align-items-center">
                     <a href="#" title="View" aria-label="View"
                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
@@ -223,36 +200,9 @@
                     </span>
                 </div>
             </div>
-            <!-- /Icon Help -->
-            <div class="d-flex justify-content-center mt-4">
-                <button class="btn btn-primary rounded" @click="invoicesDetails = true"
-                    wire:click="$emit('openInvoiceDetailsPanel',)">Generate Invoice</button>
-            </div>
         </div>
     </div>
-    @include('panels.provider.invoices-details')
-    @include('panels.common.assignment-details')
-    @include('panels.provider.add-reimbursement')
-    @include('modals.common.running-late')
-    @include('modals.return-assignment')
 
 
+    @include('panels.common.view-provider-invoice')
 </div>
-@push('scripts')
-    <script>
-        $('#check-all-bookings').change(function() {
-            const isChecked = $(this).is(':checked');
-            $('.booking-checkbox').prop('checked', isChecked);
-
-            //update livewire variable
-            var booking_ids = [];
-            $('.booking-checkbox:checked').each(function() {
-                const booking_id = parseFloat($(this).data('value'));
-                booking_ids.push(booking_id);
-
-            });
-            @this.set('selectedBookings', booking_ids);
-
-        });
-    </script>
-@endpush

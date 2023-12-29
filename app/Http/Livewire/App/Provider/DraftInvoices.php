@@ -4,6 +4,7 @@ namespace App\Http\Livewire\App\Provider;
 
 use App\Http\Livewire\App\Common\Import\Bookings;
 use App\Models\Tenant\Booking;
+use App\Models\Tenant\Specialization;
 use App\Models\Tenant\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -76,13 +77,27 @@ class DraftInvoices extends Component
                 // can add check for check in status but cancelled-billable might contradict.
             })->join('service_categories', 'booking_services.services', 'service_categories.id')
             ->join('accommodations', 'accommodations.id', 'service_categories.accommodations_id')
-            ->select(['bookings.*', 'bookings.id as booking_id', 'booking_providers.*', 'accommodations.name as accommodation_name', 'service_categories.name as service_name'])
+            ->select(['bookings.*', 'bookings.id as booking_id', 'booking_services.specialization', 
+            'booking_providers.*', 'accommodations.name as accommodation_name', 'service_categories.name as service_name'])
             ->orderBy('booking_start_at', 'DESC')
 
             ->paginate($this->limit);
-
-        // dd($data->get()->count());
+            foreach($data as $booking){
+            $booking->specializationNames = $this->specializationsNameString($booking->specialization);
+            }
+        // dd($data->first()->toArray());
         return $data;
+    }
+
+    public function specializationsNameString($specialization)
+    {
+        $str = null;
+        $s = json_decode($specialization);
+        if (count($s) && !is_array($s[0])) {
+            $val = Specialization::whereIn('id', $s)->where('status', 1)->pluck('name')->toArray();
+            $str = count($val) ? implode(', ', $val) : null;
+        } // dd($val);
+        return $str;
     }
     function showForm()
     {
