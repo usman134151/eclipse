@@ -105,11 +105,12 @@
                                 </td>
                                 <td x-on:click="providerInvoiceDetails = true">
                                     {{ $invoice->invoice_number }}
+                                    <br> <small> {{ $invoice->provider_invoice_number ? $invoice->provider_invoice_number  :''}}</small>
                                 </td>
                                 <td>
-                                    <div>{{ formatDate($invoice->invoice_due_date) }}</div>
+                                    <div>{{ formatDate($invoice->invoice_date) }}</div>
                                     <div class="text-sm">
-                                        <div><strong>Due:</strong> {{ formatDate($invoice->invoice_date) }}</div>
+                                        <div><strong>Due:</strong> {{ formatDate($invoice->invoice_due_date) }}</div>
                                     </div>
                                 </td>
                                 {{-- <td>
