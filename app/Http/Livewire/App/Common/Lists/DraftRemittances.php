@@ -62,8 +62,8 @@ final class DraftRemittances extends PowerGridComponent
             // TODO :: ADD checks like in remGen
             ->join('booking_providers', 'booking_providers.provider_id', 'users.id')
             ->leftJoin('payment_preferences', 'payment_preferences.provider_id', 'users.id')
-            ->where(['payment_status' => 0, 'check_in_status' => 3, 'remittance_id' => 0])
-            ->where('booking_providers.invoice_id',null) 
+            ->where(['payment_status' => 0,  'remittance_id' => 0])
+            ->where('booking_providers.invoice_id',null) //remove bookings that have been added to provider-invoicces
             ->join('user_details', function ($userdetails) {
                 $userdetails->on('user_details.user_id', '=', 'users.id');
             })
