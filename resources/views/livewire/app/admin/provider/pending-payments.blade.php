@@ -37,9 +37,9 @@
                             payment
                             cycle.</p>
                         <div class="mb-4">
-                            <canvas id="PaymentGraph" style="width:100%;"></canvas>
+                            <canvas id="PaymentGraph" style="width:50%;max-width:50%"></canvas>
                         </div>
-                        <!-- BEGIN: Filters -->
+                        <!-- BEGIN: Filters
                         <div class="bg-muted rounded p-4 mb-1">
                             (Coming Soon)
                             <div class="d-lg-flex gap-5 align-items-center mb-4">
@@ -124,7 +124,7 @@
                             </div>
                             <x-advancefilters />
                         </div>
-                        <!-- END: Filters -->
+                         END: Filters -->
                     </div>
                     @livewire('app.common.lists.pending-payments')
                     <!-- Icon Help -->
