@@ -186,18 +186,12 @@
                 }
             });
 
-            //  var content = '<div class="marker-label"><strong>' + location.address + '</strong><br>' + location.detail +
-            //   '</div>';
-    //         var content = '<div class="marker-label"><p><strong>Assignment Number: ' + location.title + '</strong></p><p>' +
-    //             location.service + '</p><p>Address: ' + location.address +
-    //             '</p><a href="https://www.google.com/maps/place/' + encodeURIComponent(location.address) +
-    //             '" target="_blank">Get Directions</a>&nbsp;&nbsp;&nbsp; <a href="#" class="booking-details-link" data-booking-id="' +
-    // location.booking_id + '">Booking Details</a></div>';
             var content = '<div class="marker-label"><p><strong>Assignment Number: ' + location.title + '</strong></p><p>' +
                 location.service + '</p><p>Address: ' + location.address +
                 '</p><a href="https://www.google.com/maps/place/' + encodeURIComponent(location.address) +
-                '" target="_blank">Get Directions</a>&nbsp;&nbsp;&nbsp; <a  style="float:right;" target="_blank" href="/admin/bookings/view-booking/' +
-                location.booking_id + '">Booking Details</a></div>';
+                '" target="_blank">Get Directions</a>&nbsp;&nbsp;&nbsp; @if (Session::get("isProvider"))<a style="float:right;" href="#" class="booking-details-link" data-booking-id="' +
+                location.booking_id + '" x-on:click="assignmentDetails = true">Booking Details</a> @else <a style="float:right;" target="_blank" href="/admin/bookings/view-booking/' +
+                location.booking_id + '" >Booking Details</a>  @endif </div>';
 
             var infoWindow = new google.maps.InfoWindow({
                 content: content
@@ -225,19 +219,12 @@
                         }
                     });
 
-                    var content = '<a href="https://www.google.com/maps/place/'+location.address+'">View on Google Maps</a>';
-                    var content = '<div class="marker-label"><p><strong>Assignment Number: ' + location.title +
-                        '</strong></p><p>' + location.service + '</p><p>Address: ' + location.address +
-                        '</p><a href="https://www.google.com/maps/place/' + encodeURIComponent(location.address) +
-                        '" target="_blank">Get Directions</a>&nbsp;&nbsp;&nbsp; <a  style="float:right;" target="_blank" href="/admin/bookings/view-booking/' +
-                        location.booking_id + '">Booking Details</a></div>';
-
-                    //                 var content = '<div class="marker-label"><p><strong>Assignment Number: ' + location.title + '</strong></p><p>' +
-                    //             location.service + '</p><p>Address: ' + location.address +
-                    //             '</p><a href="https://www.google.com/maps/place/' + encodeURIComponent(location.address) +
-                    //             '" target="_blank">Get Directions</a>&nbsp;&nbsp;&nbsp; <a href="#" class="booking-details-link" data-booking-id="' +
-                    // location.booking_id + '">Booking Details</a></div>';
-
+                    var content = '<div class="marker-label"><p><strong>Assignment Number: ' + location.title + '</strong></p><p>' +
+                location.service + '</p><p>Address: ' + location.address +
+                '</p><a href="https://www.google.com/maps/place/' + encodeURIComponent(location.address) +
+                '" target="_blank">Get Directions</a>&nbsp;&nbsp;&nbsp; @if (Session::get("isProvider"))<a style="float:right;" href="#" class="booking-details-link" data-booking-id="' +
+                location.booking_id + '" x-on:click="assignmentDetails = true">Booking Details</a> @else <a style="float:right;" target="_blank" href="/admin/bookings/view-booking/' +
+                location.booking_id + '" >Booking Details</a>  @endif </div>';
                     var infoWindow = new google.maps.InfoWindow({
                         content: content
                     });
@@ -273,13 +260,9 @@
                 event.preventDefault(); // Prevent the default action of the anchor tag
 
                 var bookingID = event.target.getAttribute('data-booking-id');
-                bookingDetails(bookingID);
+                @this.emit('openMapBookingDetails', bookingID);                                
             }
         });
-        
-        function bookingDetails(bookingID) {
-            Livewire.emit('openBookingDetails', bookingID);
-        }
     </script>
 {{-- update to fix multiple root element issue --}}
 
