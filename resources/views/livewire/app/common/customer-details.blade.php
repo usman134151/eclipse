@@ -1328,6 +1328,37 @@
 <!-- Log Tab End-->
 <div class="tab-pane fade" id="service-requests-tab-pane" role="tabpanel" aria-labelledby="service-requests-tab"
     tabindex="0">
+     <!-- Nav tabs -->
+     <ul class="nav nav-tabs" id="myTabServiceRequest" role="tablist">
+        @php
+            $tabs = [
+                ['id' => 'today', 'label' => "Today's"],
+                ['id' => 'upcoming', 'label' => 'Upcoming'],
+                ['id' => 'past', 'label' => 'Past'],
+                ['id' => 'draft', 'label' => 'Draft'],
+            ];
+        @endphp
+        @foreach($tabs as $tab)
+        <li class="nav-item" role="presentation">
+            <button class="nav-link @if($loop->first) active @endif" id="{{ $tab['id'] }}-tab" data-bs-toggle="tab" data-bs-target="#{{ $tab['id'] }}-tab-pane" type="button" role="tab" aria-controls="{{ $tab['id'] }}-tab-pane" aria-selected="{{ $loop->first ? 'true' : 'false' }}">
+                {{-- <svg aria-label="{{ $tab['id'] }}" width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <use xlink:href="/css/menu.svg#{{$tab['id']}}-icon"></use>
+                </svg> --}}
+                <span>{{ $tab['label'] }}</span>
+            </button>
+        </li>
+        @endforeach
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content" id="myTabServiceRequestContent">
+        @foreach($tabs as $tab)
+        <div class="tab-pane fade @if($loop->first) show active @endif" id="{{ $tab['id'] }}-tab-pane" role="tabpanel" aria-labelledby="{{ $tab['id'] }}-tab">
+            <!-- Content for the {{ $tab['label'] }} tab pane -->
+            @livewire('app.common.bookings.booking-list', ['bookingType' => $tab['label'], 'bookingSection' => 'customer', 'showHeader' => false, 'isCustomer' => true, 'customerId' => $userid])
+        </div>
+        @endforeach
+    </div>
 </div>
 <!-- Settings Tab End-->
 
