@@ -75,7 +75,7 @@ class ReturnAssignment extends Component
              $this->bookingProvider->provider_response = $this->provider_response ?? '';
              $this->bookingProvider->save();
 
-            $logMessage = "Provider '" . Auth::user()->name . "' requested to surrender from booking '" . $this->booking->booking_number ."'";
+            $logMessage = "Provider '" . Auth::user()->name . "' requested to surrender booking '" . $this->booking->booking_number ."'";
             callLogs($this->booking->id, 'Booking', 'surrendered', $logMessage);
 
              $message = "Return Request submitted to Admin successfully";
