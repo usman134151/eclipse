@@ -42,13 +42,13 @@
                         <div class="form-label-sm">Total Pending:
                         </div>
                         <div class="form-label-sm">Total Overdue:
-                            <small>(coming soon)</small>
+                            {{-- <small>(coming soon)</small> --}}
                         </div>
                     </div>
                     <div>
                         <div class="">{{numberFormat($stats['totalPaid'])}}</div>
                         <div class="">{{numberFormat($stats['totalPending'])}}</div>
-                        <div class="">$500</div>
+                        <div class="">{{numberFormat($stats['totalOverDue'])}}</div>
                     </div>
                 </div>
             </div>
