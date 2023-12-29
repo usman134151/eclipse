@@ -59,7 +59,7 @@ class BookingList extends Component
 	public $selectedBookingIds = [], $checkout_booking_id = 0;
 
 
-	public $isCustomer = false;
+	public $isCustomer = false, $customerId = null;
 
 	protected $listeners = [
 		'showList' => 'resetForm', 'updateVal', 'showConfirmation',
@@ -277,7 +277,8 @@ class BookingList extends Component
 			// }
 		});
 		if ($this->isCustomer) {
-			$customer = User::find(Auth::id());
+			$id = $this->customerId ? $this->customerId : Auth::id();
+			$customer = User::find($id);
 			$query->where('company_id', $customer->company_name);
 			$customerIds = [];
 
@@ -294,7 +295,7 @@ class BookingList extends Component
 			$customerIds[] = $customer->id;
 
 			// if not admin
-			if (!in_array(10, session()->get('customerRoles'))) {
+			if (!in_array(10, $customer->roles->pluck('id')->toArray())) {
 
 
 
