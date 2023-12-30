@@ -2082,6 +2082,7 @@
                         <div class="hidden-content">
                             <label class="form-label-sm">Select Form</label>
                             <select class="form-select" wire:model.defer="checkIn.customize_form_id">
+                                <option value="">Select Form</option>
                                 @foreach ($checkin_customForms as $form)
                                     <option value="{{ $form['id'] }}">{{ $form['request_form_name'] }}</option>
                                 @endforeach
@@ -2170,6 +2171,7 @@
                         <div class="hidden-content">
                             <label class="form-label-sm">Select Form</label>
                             <select class="form-select" wire:model.defer="checkOut.customize_form_id">
+                                <option value="">Select form</form>
                                 @foreach ($checkout_customForms as $form)
                                     <option value="{{ $form['id'] }}">{{ $form['request_form_name'] }}</option>
                                 @endforeach
