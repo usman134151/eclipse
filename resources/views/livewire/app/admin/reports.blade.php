@@ -45,7 +45,7 @@
 	                                <div class="row">
 	                                    <div class="col-lg-2 col-md-6 mb-4">
 	                                        <div class="btn btn-primary w-100 flex-column gap-1">
-	                                            <svg aria-label="Upload Picture" width="57" height="57" viewBox="0 0 57 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+	                                            <svg aria-label="Select Custom Range" width="57" height="57" viewBox="0 0 57 57" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <use xlink:href="/css/common-icons.svg#custom-range"></use>
                                                 </svg>
 	                                            Custom Range
@@ -88,13 +88,13 @@
 	                                        </button>
 	                                    </div>
 	                                    <div class="col-12">
-	                                        <div class="row">
+	                                        <!-- <div class="row">
 	                                            <div class="col-lg-3 col-md-6">
 	                                                <select class="form-select border-primary w-100" aria-label="Advance Filter" id="show_status">
 	                                                    <option>Advance Filter</option>
 	                                                </select>
 	                                            </div>
-	                                        </div>
+	                                        </div> -->
 	                                    </div>
 	                                </div>
 	                            </div>
