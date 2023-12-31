@@ -397,6 +397,7 @@ class Reports extends Component
 
     public function getRevenueByService()
     {
+        $result=[];
         $startDate = Carbon::createFromFormat('Y-m-d', $this->date['start_date'])->format('m/d/Y');
         $endDate = Carbon::createFromFormat('Y-m-d', $this->date['end_date'])->format('m/d/Y');
         
