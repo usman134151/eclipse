@@ -43,7 +43,7 @@ class Booknow extends Component
         'updateSelectedDepartments', 'confirmation', 'showConfirmation',
         'saveCustomFormData' => 'save', 'switch', 'updateAddress' => 'addAddress',
         'checkModificationCharges', 'updateUsers', 'openAssignProvidersPanel',
-        'reloadFalse'
+        'reloadFalse','updateCompanies'
     ];
 
     public $dates = [], $isCustomer = false, $customerDetails = [], $cantRequest = false;
@@ -332,6 +332,11 @@ class Booknow extends Component
                 // $this->save($redirect = 1, $draft = 0, $step = 1);
             }
         }
+    }
+
+    public function updateCompanies()
+    {
+        $this->setupValues = SetupHelper::loadSetupValues($this->setupValues);
     }
 
 

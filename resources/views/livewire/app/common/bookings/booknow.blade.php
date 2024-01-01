@@ -153,16 +153,25 @@
                                     <div class="d-flex justify-content-between align-items-center">
                                         <label class="form-label" for="company-column">Company <span
                                                 class="mandatory">*</span></label>
-                                        <a href="#" class="fw-bold">
-                                            <small>
-                                                {{-- 
-                                                <svg aria-label="Add New" class="me-1" width="20" height="21"
-                                                    viewBox="0 0 20 21">
-                                                    <use xlink:href="/css/common-icons.svg#add-new"></use>
+                                        @if (!Session::get('isCustomer'))
+                                            
+                                        <div class="form-check-inline">
+                                            <button type="button"
+                                                class="btn btn-has-icon px-0 btn-multiselect-popup"
+                                                data-bs-toggle="modal" data-bs-target="#addNewCompany"
+                                                aria-label="Requester">
+                                                <svg aria-label="Requester" width="25" height="18"
+                                                    viewBox="0 0 25 18" fill="currentColor"
+                                                    stroke="currentColor">
+                                                    <use
+                                                        xlink:href="/css/common-icons.svg#right-color-arrow">
+                                                    </use>
                                                 </svg>
-                                                 --}}
-                                            </small>
-                                        </a>
+                                                Add New Company
+                                            </button>
+                                        </div>
+                                        @endif        
+                                        
                                     </div>
                                     @if (!$isCustomer)
                                         {!! $setupValues['companies']['rendered'] !!}
@@ -2484,6 +2493,7 @@
 @include('modals.common.add-department')
 
 @include('modals.common.add-new-customer')
+@include('modals.common.add-new-company')
 
 @include('modals.common.assign-admin-staff')
 @include('modals.common.assign-admin-staff-team')
@@ -2548,6 +2558,10 @@
         });
         Livewire.on('customerModalDismissed', () => {
             $('#addNewCustomer').modal('hide');
+
+        });
+        Livewire.on('companyModalDismissed', () => {
+            $('#addNewCompany').modal('hide');
 
         });
 
