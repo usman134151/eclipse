@@ -568,7 +568,7 @@
                                                                         </div>
                                                                         <div class="col-md-7 align-self-center">
                                                                             <div class="font-family-secondary">
-                                                                                {{$company['company_service_start_date'] ? date_format(date_create($company['company_service_start_date']), "d/m/Y")   : 'N/A'}}
+                                                                                {{$company['company_service_start_date'] ? date_format(date_create($company['company_service_start_date']), "m/d/Y")   : 'N/A'}}
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -583,7 +583,7 @@
                                                                         </div>
                                                                         <div class="col-md-7 align-self-center">
                                                                             <div class="font-family-secondary">
-                                                                                {{$company['company_service_end_date'] ? date_format(date_create($company['company_service_end_date']), "d/m/Y") : 'N/A'}}
+                                                                                {{$company['company_service_end_date'] ? date_format(date_create($company['company_service_end_date']), "m/d/Y") : 'N/A'}}
                                                                             </div>
                                                                         </div>
                                                                     </div>
