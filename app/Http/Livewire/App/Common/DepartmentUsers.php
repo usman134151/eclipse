@@ -6,11 +6,12 @@ use App\Models\Tenant\Department;
 use App\Models\Tenant\User;
 use App\Models\Tenant\UserDepartment;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
 class DepartmentUsers extends Component
 {
-    public $showForm, $departmentLabel,$departmentId,$users, $isDepartmentSupervisor;
+    public $showForm, $departmentLabel,$departmentId,$users, $isDepartmentSupervisor, $isCompanyAdmin , $isAdmin;
     protected $listeners = ['showList' => 'resetForm'];
 
     public function render()
@@ -52,6 +53,8 @@ class DepartmentUsers extends Component
             // Handle the case where no UserDepartment was found for the given conditions
             $this->isDepartmentSupervisor = false; // For example, set a default value
         }
+        $this->isCompanyAdmin = Session::get('companyAdmin');
+        $this->isAdmin = Session::get('isSuperAdmin') ;
     }
 
     public function updateStatus($user)

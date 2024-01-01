@@ -9,7 +9,7 @@
                 <th scope="col">Name</th>
                 <th scope="col">Phone Number</th>
                 <th scope="col">Position</th>
-                @if ($isDepartmentSupervisor)
+                @if ($isDepartmentSupervisor || $isCompanyAdmin || $isAdmin)
                 <th scope="col">Status</th>
                 @endif
 
@@ -42,7 +42,7 @@
                 <td>
                     <p>{{$user->position}}</p>
                 </td>
-                @if ($isDepartmentSupervisor) 
+                @if ($isDepartmentSupervisor || $isCompanyAdmin || $isAdmin) 
                 <td>
                     <div class="form-check form-switch">
                         <input class="form-check-input"
