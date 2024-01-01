@@ -342,9 +342,11 @@ class Calendar extends Component
 				elseif ($invitation_status == 1)
 					$newEvents[$key]['title'] = "Pending: " . $booking_number;
 			} elseif (!empty($booking_title)) {
-				$newEvents[$key]['title'] = $booking_number . ': ' . $booking_title;
+				// $newEvents[$key]['title'] = $booking_number . ': ' . $booking_title;
+				$newEvents[$key]['title'] = $booking_title . ': ' .  modifyTimeFormat($booking_start_at) . ' - ' . modifyTimeFormat($booking_end_at);
 			} else {
-				$newEvents[$key]['title'] = $booking_number;
+				// $newEvents[$key]['title'] = $booking_number;
+				$newEvents[$key]['title'] =  modifyTimeFormat($booking_start_at) . ' - ' . modifyTimeFormat($booking_end_at);
 			}
 
 			$mappingCode = "";
