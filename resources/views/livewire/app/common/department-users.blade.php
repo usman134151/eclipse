@@ -9,6 +9,9 @@
                 <th scope="col">Name</th>
                 <th scope="col">Phone Number</th>
                 <th scope="col">Position</th>
+                @if ($isDepartmentSupervisor)
+                <th scope="col">Status</th>
+                @endif
 
                 <th scope="col">Action</th>
             </tr>
@@ -39,6 +42,16 @@
                 <td>
                     <p>{{$user->position}}</p>
                 </td>
+                @if ($isDepartmentSupervisor) 
+                <td>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input"
+                        type="checkbox"
+                        wire:click="updateStatus({{ $user->id }})"
+                        {{ $user->status ? 'checked' : '' }}>
+                    </div>
+                </td>
+                @endif
                 <td>
                     <div class="d-flex actions">
                         <a href="{{route('tenant.customer-profile',['customerID'=> encrypt($user->id)])}}" title="View " aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
