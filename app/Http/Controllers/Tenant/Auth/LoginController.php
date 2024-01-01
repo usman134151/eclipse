@@ -11,6 +11,7 @@ use App\Http\Controllers\Tenant\Helper\Helper;
 use App\Models\Tenant\BusinessSetup;
 use App\Models\Tenant\RoleUser;
 use App\Models\Tenant\Schedule;
+use App\Models\Tenant\User;
 use App\Models\Tenant\UserDetail;
 use App\Models\Tenant\UserLoginAddress;
 use App\Services\App\BookingOperationsService;
@@ -178,8 +179,9 @@ class LoginController extends Controller
 				return redirect('home');
 			}
 			} else {
+				$admin = User::where('id',1)->first()->name;
 			  Auth::logout();
-			return redirect("login")->withErrors(['loginError' => __('auth.notActiveError')]);
+			return redirect("login")->withErrors(['loginError' => __('auth.notActiveError',['admin' => $admin])]);
 			}
 		}
 
