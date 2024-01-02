@@ -100,7 +100,7 @@ class BookingDetails extends Component
 
 	function fetchData()
 	{
-		// fetch all services for booking 
+        // fetch all services for booking
 		$this->data['service_charges'] = 0;
 		$this->data['service_billed'] = 0;
 		$this->data['service_additional_charges'] = 0;
@@ -173,11 +173,11 @@ class BookingDetails extends Component
 		if ($this->booking->status == 2) {
 			$this->status = 'assigned';
 		}
-		if ($this->booking->status == 3) {	//cancelled 
+        if ($this->booking->status == 3) {    //cancelled
 			$this->status = 'unbill-cancelled';
 		}
 
-		if ($this->booking->status == 4) {	//cancelled 
+        if ($this->booking->status == 4) {    //cancelled
 			$this->status = 'cancelled';
 		}
 
@@ -189,7 +189,7 @@ class BookingDetails extends Component
 		// shifting this close out check to generic function
 		if ($start_date->isPast() || $start_date->isToday() )
 		// || $this->booking->checked_in_providers->count() -- commented out to enable for unassigned bookings
-			// show button if all booking services are NOT auto-close-able 
+            // show button if all booking services are NOT auto-close-able
 			$this->data['show_close_button'] = true;
 			// BookingOperationsService::checkCloseOutRequired($this->booking_services);	--commented out to show for all past bookings as per client requirements
 		else
@@ -218,7 +218,7 @@ class BookingDetails extends Component
 		//reschedulling charges were not added
 		if(!is_null($this->booking['payment']) && !is_null($this->booking['payment']['reschedule_booking_charges']))
             $reschedullingCharges=$this->booking['payment']['reschedule_booking_charges'];
-		else 
+        else
 		$reschedullingCharges=0;
 		//end of reschedulling charges check
 		$totalCost = (
@@ -370,4 +370,14 @@ class BookingDetails extends Component
 			$this->emit('showConfirmation', 'Providers have been ' . str_replace("_", " ", $propertyName) . ' successfully');
 		}
 	}
+
+    public function copyBooking($bookingID)
+    {
+        $bookingOperationService = new BookingOperationsService();
+        $newBooking = $bookingOperationService->copyBooking($bookingID);
+        if ($this->isCustomer) {
+            return redirect()->route('tenant.customer-booking-view', ['bookingID' => encrypt($newBooking->id)]);
+        }
+        return redirect()->route('tenant.booking-view', ['bookingID' => encrypt($newBooking->id)]);
+    }
 }

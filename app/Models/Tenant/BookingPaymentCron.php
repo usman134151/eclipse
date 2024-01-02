@@ -14,7 +14,5 @@ class BookingPaymentCron extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'fieldName', 'fieldValue',
-    ];
+    protected $fillable = ['booking_id', 'payment_deduct_time', 'payment_status', 'cron_status', 'added_by'];
 }

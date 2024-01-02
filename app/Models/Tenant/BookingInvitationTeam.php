@@ -15,6 +15,6 @@ class BookingInvitationTeam extends Model
      * @var array
      */
     protected $fillable = [
-        'fieldName', 'fieldValue',
+        'invitation_id', 'booking_id', 'team_id', 'status'
     ];
 }
