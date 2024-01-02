@@ -161,6 +161,7 @@
                                             </svg>
                                         </a>
                                         <a href="#" title="View" aria-label="View"
+                                        wire:click="setAssignmentDetails({{ $booking['booking_id'] }},'{{ $booking['booking_number'] }}')"
                                             class="btn btn-sm btn-secondary rounded btn-hs-icon"
                                             x-on:click="assignmentDetails = true">
                                             <svg aria-label="View" class="fill" width="20" height="20"
