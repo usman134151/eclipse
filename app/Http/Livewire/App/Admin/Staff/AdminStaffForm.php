@@ -41,6 +41,8 @@ class AdminStaffForm extends Component
     public function mount(User $user){
 		$this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
         $this->user=$user;
+        // incase role is not active or deleted array will be empty[] like default
+        $this->user_roles=Arr::flatten(SystemRole::where(['system_role_name' => 'Account Admin','status' => 1])->select('id')->get()->toArray()); 
 
         if (request()->userID != null) {    //edit
             $user = User::where('id', request()->userID)->with(['phones', 'userdetail', 'addresses'])->first();
