@@ -43,6 +43,9 @@ class TenantDatabaseSeeder extends Seeder
       
       $this->call(BookingColorCodesSeeder::class); //added records in setup table by Amna Bilal
       $this->call(AdditionalBookingColorCodeSeeder::class);
+      $this->call(SystemRoleSeeder::class); // added Account Admin Role by Hammad
+      $this->call(UserRoleSeeder::class); // assign Account Admin Role to user 1 by Hammad
+      $this->call(SectionRightsSeeder::class); // added all rights to role Account Admin by Hammad
     }
 
 }
