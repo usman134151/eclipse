@@ -14,6 +14,7 @@ class DraftInvoices extends Component
 {
     use WithPagination;
 
+    public $bookingNumber, $booking_id, $providerPanelType;
     public $showForm, $bookingIds = [], $counter = 0, $selectedBookings = [], $selectAll = false;
     protected $listeners = ['showList' => 'resetForm', 'openInvoiceDetailsPanel', 'showConfirmation'];
     public $provider, $limit = 10;
@@ -107,4 +108,15 @@ class DraftInvoices extends Component
     {
         $this->showForm = false;
     }
+
+    public function setAssignmentDetails($booking_id = 0, $bookingNumber = null)
+	{
+		if ($bookingNumber)
+			$this->bookingNumber = $bookingNumber;
+
+		$this->booking_id = $booking_id;
+		$this->emit('setBookingId', $booking_id);
+		$this->providerPanelType = 3;
+		
+	}
 }
