@@ -167,11 +167,11 @@
                                         </div>
                                         {{-- <div class="col-lg col-12 mb-4">
                                             <div class="mb-4">
-                                               
+
                                                 <label class="form-label text-primary">Pending Details <small>(coming soon)</small>
                                                 </label>
                                                 <div class="d-flex flex-column gap-1">
-                                               
+
                                                     <div class="font-family-tertiary value">
                                                         Requests from Users
                                                     </div>
@@ -230,7 +230,8 @@
                                                         (Auth::id() == $booking['customer_id'] ||
                                                             Auth::id() == $booking['supervisor'] ||
                                                             session()->get('companyAdmin'))))
-                                                <a href="#" class="btn btn-has-icon btn-primary rounded">
+                                                <a href="#" class="btn btn-has-icon btn-primary rounded"
+                                                   wire:click="copyBooking({{$booking->id}})">
                                                     {{-- Updated by Shanila to Add svg icon --}}
                                                     <svg aria-label="Duplicate" width="19" height="19"
                                                         viewBox="0 0 19 19" fill="currentColor"
@@ -870,14 +871,14 @@
                                                                         </div>
                                                                         {{-- <a href="#"
                                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                        
+
                                                                         <svg aria-label="Edit" width="20"
                                                                             height="20" viewBox="0 0 20 20">
                                                                             <use
                                                                                 xlink:href="/css/common-icons.svg#pencil">
                                                                             </use>
                                                                         </svg>
-                                                                
+
                                                                     </a> --}}
                                                                     </div>
                                                                 </div>
@@ -1041,7 +1042,7 @@
                                                         Provider Notes
                                                     </label>
                                                     <textarea class="form-control" rows="4" cols="4" wire:model.defer="booking.provider_notes">
-													
+
 												</textarea>
                                                 </div>
                                                 <!-- /Provider Notes -->
@@ -1053,7 +1054,7 @@
                                                         Customer Notes
                                                     </label>
                                                     <textarea class="form-control" rows="4" cols="4" wire:model.defer="booking.customer_notes">
-													
+
 												</textarea>
                                                 </div>
                                                 <!-- /Customer Notes -->
@@ -1066,7 +1067,7 @@
                                                         Private Notes
                                                     </label>
                                                     <textarea class="form-control" rows="4" cols="4" wire:model.defer="booking.private_notes">
-													
+
 												</textarea>
                                                 </div>
                                                 <!-- /Private Notes -->
@@ -1320,7 +1321,7 @@
                                                     <div class="d-lg-flex flex-wrap gap-3 mb-3">
                                                         {{-- @if (!is_null($tags))
                                                             @foreach ($tags as $tag)
-                                                                <div class="tag">{{$tag}}</div>    
+                                                                <div class="tag">{{$tag}}</div>
                                                             @endforeach
                                                         @endif --}}
                                                     </div>

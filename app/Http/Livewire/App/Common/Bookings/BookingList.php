@@ -35,7 +35,7 @@ class BookingList extends Component
 	public $bookingSection;
 	public  $limit = 10, $counter, $ad_counter = 0, $ci_counter = 0, $co_counter = 0, $currentServiceId, $panelType = 1;
 	public  $booking_id = 0, $provider_id = null, $booking_service_id = 0;
-	public $providerPanelType = 0; //to ensure only clicked panel loads in provider-panel 
+    public $providerPanelType = 0; //to ensure only clicked panel loads in provider-panel
 	public $bookingNumber = '', $selectedProvider = 0, $checkin_booking_id = 0;
 	public $deleteRecordId = 0;
 	public $isDashboard = false;
@@ -159,7 +159,7 @@ class BookingList extends Component
 				break;
 			case ("Today's"):
 				$conditions = ['type' => 1, 'booking_status' => '1',];
-				// if (!session()->get('isProvider'))	 
+                // if (!session()->get('isProvider'))
 				// 	$conditions['bookings.status'] = 2;
 
 				$query->where($conditions)
@@ -185,7 +185,7 @@ class BookingList extends Component
 				break;
 			case ('Upcoming'):
 				if (session()->get('isCustomer')) {
-					//if customer show future unassigned bookings -> LBT 139 (Maarooshaa) 
+                    //if customer show future unassigned bookings -> LBT 139 (Maarooshaa)
 					$query->where(['bookings.status' => 1, 'type' => 1, 'booking_status' => '1'])
 						->whereRaw("DATE(booking_start_at) > '$yesterday'")
 						->orderBy('booking_start_at', 'ASC');
@@ -207,7 +207,7 @@ class BookingList extends Component
 					$query
 						->where('type', 1)	// removing drafts
 						->where('is_closed', 0)
-						->where('booking_status', '1')	// approved bookings 
+                        ->where('booking_status', '1')    // approved bookings
 						->where(function ($q) use ($today) {
 							$q->where(function ($ca) use ($today) {
 								$ca->whereRaw("DATE(booking_start_at) <= '$today'")
@@ -215,7 +215,7 @@ class BookingList extends Component
 							});
 							// ->orWhereIn('bookings.status', [3, 4]);
 						})
-						// commented out to display partially assigned bookings here => their services with not be closed 
+                        // commented out to display partially assigned bookings here => their services with not be closed
 						// ->where(function ($q) {
 						// 	$q->orWhereHas('booking_services', function ($query) {
 						// 		$query->where('is_closed', 1);
@@ -263,7 +263,7 @@ class BookingList extends Component
 		}
 
 
-		// check to ensure all bookings are for active customer 
+        // check to ensure all bookings are for active customer
 		$query->whereHas('customer', function ($q) {
 			$q->where('status', '1');
 		});
@@ -298,8 +298,7 @@ class BookingList extends Component
 			if (!in_array(10, $customer->roles->pluck('id')->toArray())) {
 
 
-
-				//display only of booking is associated with customer 
+                //display only of booking is associated with customer
 				$query->where(function ($g) use ($customer, $customerIds) {
 					$g->whereIn('customer_id', $customerIds);
 					$g->orWhereIn('supervisor', $customerIds);
@@ -343,7 +342,7 @@ class BookingList extends Component
 				]);
 
 
-				
+
 			} elseif ($this->bookingType == "Invitations") {
 				//  subquery to remove already assigned bookings
 				$query->whereNotIn('bookings.id', function ($query) {
@@ -504,7 +503,7 @@ class BookingList extends Component
 			])->get()->toArray();
 
 		if (Session::get('isCustomer')) {
-			// query to filter customers users 
+            // query to filter customers users
 			$userQuery = User::where('status', 1)
 				->whereNot('id', Auth::user()->id) // Exclude the current user
 				->select(['users.id', 'users.name']);
@@ -527,7 +526,9 @@ class BookingList extends Component
 			}
 
 			// Common filter for roles exclusion
-			$userQuery->whereHas('roles', fn ($query) => $query->whereNotIn('role_id', [1, 2, 3]));
+            $userQuery->whereHas('roles', function ($query) {
+                return $query->whereNotIn('role_id', [1, 2, 3]);
+            });
 
 			$this->filterUsers = $userQuery->get()->toArray();
 		}
@@ -668,7 +669,7 @@ class BookingList extends Component
 	{
 		$this->showBookingDetails = true;
 		$this->booking_id = $booking_id;
-		//to set booking_id in panels and sub-components 
+        //to set booking_id in panels and sub-components
 		$this->emit('setBookingId', $booking_id);
 	}
 

@@ -2,6 +2,21 @@
 
 namespace app\Services\App;
 
+use App\Models\Tenant\BookingAvailableProvider;
+use App\Models\Tenant\BookingDocument;
+use App\Models\Tenant\BookingDocumentUser;
+use App\Models\Tenant\BookingInvitation;
+use App\Models\Tenant\BookingInvitationProvider;
+use App\Models\Tenant\BookingInvitationTeam;
+use App\Models\Tenant\BookingPaymentCron;
+use App\Models\Tenant\BookingReimbursement;
+use App\Models\Tenant\BookingRequestNotification;
+use App\Models\Tenant\BookingServiceCharges;
+use App\Models\Tenant\BookingSetting;
+use App\Models\Tenant\BookingSpecialization;
+use App\Models\Tenant\BookingUnassignProvider;
+use App\Models\Tenant\Invoice;
+use App\Models\Tenant\ProviderPayment;
 use App\Models\Tenant\User;
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingServices;
@@ -17,11 +32,11 @@ use App\Models\Tenant\BusinessSetup;
 use App\Models\Tenant\ServiceSpecialization;
 use App\Models\Tenant\BookingCustomizeData;
 use App\Models\Tenant\BookingProvider;
-use Auth;
 use Carbon\Carbon;
 use App\Helpers\GlobalFunctions;
 use App\Models\Tenant\RescheduleBookingLog;
 use DateTime;
+use Illuminate\Support\Facades\Auth;
 use Log;
 use DB;
 use Arr;
@@ -105,7 +120,7 @@ class BookingOperationsService
           $service['service_data'] = $serviceData;
       } else {
         $service['created_at'] = date('Y-m-d H:i:s');
-      
+
         BookingServices::updateOrCreate(
           ['booking_id' => $booking->id, 'services' => $service['services']],
           $service
@@ -272,7 +287,7 @@ class BookingOperationsService
       $servicePayments = json_decode($service['service_data']['service_payment' . $service['postFix']], true);
       // dd($servicePayments);
       foreach ($servicePayments as $servicePayment) {
-        // 
+          //
         if (array_key_exists('charge_customer', $servicePayment[0]) && $servicePayment[0]['charge_customer']) {
           $charges = $servicePayment[0]['price'];
           if (array_key_exists('multiply_providers', $servicePayment[0]) && $servicePayment[0]['multiply_providers'])
@@ -283,7 +298,7 @@ class BookingOperationsService
       }
     }
 
-    //step 4 : check for specializations 
+      //step 4 : check for specializations
     $service['specialization'] = json_decode($service['specialization'], true);
     $service['specialization_total'] = 0;
     $service['specialization_charges'] = [];
@@ -320,9 +335,9 @@ class BookingOperationsService
           }
         }
       }
-    }   //end of specialization calculations 
+    }   //end of specialization calculations
 
-    //step 5: check for expedited service charges and add 
+      //step 5: check for expedited service charges and add
 
     $service['expedited_charges'] = SELF::getExpeditedCharge($service['start_time'], $service['service_data']['emergency_hour' . $service['postFix']]);
     if ($service['expedited_charges']['multiply_duration']) {
@@ -384,7 +399,7 @@ class BookingOperationsService
 
   public static function getBillableDuration($service, $schedule)
   {
-    //for single date 
+      //for single date
     if (is_null($schedule))
       return;
     $duration = SELF::calculateDuration($service['start_time'], $service['end_time'], $service['day_rate']);
@@ -408,8 +423,8 @@ class BookingOperationsService
     $service['after_business_end_time'] = '';
 
     if (!is_null($duration) && ($duration['days'] == 0 &&  $duration['hours'] < 24)) {
-      //single day booking 
-   
+        //single day booking
+
       foreach ($schedule->timeslots as $timeSlot) {
 
         if ($timeSlot->timeslot_day == $startDayOfWeek && $timeSlot->timeslot_type == 1  && $service['business_hours']==0) {
@@ -434,7 +449,7 @@ class BookingOperationsService
 
           if ($overlapEnd > $overlapStart) {
 
-          
+
             // Calculate the duration of the overlapping period in hours and minutes
             $overlapInterval = $overlapEnd->diff($overlapStart);
             $service['business_hours'] += $overlapInterval->h;
@@ -462,7 +477,7 @@ class BookingOperationsService
           }
         }
       }
-    
+
     } else {
 
       $days = SELF::getDaysInBetween($startDayOfWeek, $endDayOfWeek);
@@ -1021,7 +1036,7 @@ class BookingOperationsService
         // set $booking->reschedule_date according to admin/customer permissions
         $booking->booking_reschedule_at = Carbon::now();
 
-        // $booking existing dates + diff 
+          // $booking existing dates + diff
         $existingStartDate = Carbon::parse($booking->booking_start_at);
         $existingEndDate = Carbon::parse($booking->booking_end_at);
         $booking->reschedule_start_at = $existingStartDate->addSeconds($startDifferenceInSeconds);
@@ -1045,7 +1060,7 @@ class BookingOperationsService
         $shiftToPending = false;
 
         if (session()->get('isCustomer')) {
-          //check if bookings auto-approved 
+            //check if bookings auto-approved
           $customer = User::where('id', Auth::id())->with('userdetail')->first()->toArray();
           if (key_exists('user_configuration', $customer['userdetail']) && !is_null($customer['userdetail']['user_configuration'])) {
             $configurations = json_decode($customer['userdetail']['user_configuration'], true);
@@ -1069,7 +1084,7 @@ class BookingOperationsService
           foreach ($booking->booking_services as $bookingService) {
             $bookingService->start_time = $booking->booking_start_at;
             $bookingService->end_time = $booking->booking_end_at;
-            // TODO :: recalculate duration and calculcations according 
+              // TODO :: recalculate duration and calculcations according
             $bookingService->save();
           }
         }
@@ -1081,7 +1096,7 @@ class BookingOperationsService
       }
     } else {
 
-      // CHANGE STATUS FOR ONLY PASSED BOOKING 
+        // CHANGE STATUS FOR ONLY PASSED BOOKING
 
       // set $booking->reschedule_date according to admin/customer permissions
       $booking->booking_reschedule_at = Carbon::now();
@@ -1120,7 +1135,7 @@ class BookingOperationsService
         foreach ($booking->booking_services as $bookingService) {
           $bookingService->start_time = $booking->booking_start_at;
           $bookingService->end_time = $booking->booking_end_at;
-          // TODO :: recalculate duration and calculcations according 
+            // TODO :: recalculate duration and calculcations according
           $bookingService->save();
         }
       }
@@ -1261,7 +1276,7 @@ class BookingOperationsService
         if (!is_null($checkIn) && key_exists('require_provider_invoice', $checkIn) && ($checkIn['require_provider_invoice'] == true || $checkIn['require_provider_invoice'] == "true")) {
           // fetch total checked out VS total providers
           $check =  BookingProvider::where('booking_service_id', $bService['id'])
-            ->selectRAW('SUM(CASE WHEN (booking_providers.check_in_status = 1 OR booking_providers.check_in_status = 3)  THEN 1 ELSE 0 END) AS resolved, 
+              ->selectRAW('SUM(CASE WHEN (booking_providers.check_in_status = 1 OR booking_providers.check_in_status = 3)  THEN 1 ELSE 0 END) AS resolved,
           COUNT(booking_providers.id) as total_providers')->first()->toArray();
           $check['resolved'] = !is_null($check['resolved']) ? $check['resolved'] : 0;
           if ($check['resolved'] != $check['total_providers'])
@@ -1274,7 +1289,7 @@ class BookingOperationsService
 
           // fetch total checked out VS total providers
           $check =  BookingProvider::where('booking_service_id', $bService['id'])
-            ->selectRAW('SUM(CASE WHEN booking_providers.check_in_status = 3 THEN 1 ELSE 0 END) AS resolved, 
+              ->selectRAW('SUM(CASE WHEN booking_providers.check_in_status = 3 THEN 1 ELSE 0 END) AS resolved,
           COUNT(booking_providers.id) as total_providers')->first()->toArray();
 
           $check['resolved'] = !is_null($check['resolved']) ? $check['resolved'] : 0;
@@ -1286,7 +1301,7 @@ class BookingOperationsService
           // fetch total checked out VS total providers
 
           $check =  BookingProvider::where('booking_service_id', $bService['id'])
-            ->selectRAW('SUM(CASE WHEN booking_providers.check_in_status = 3 THEN 1 ELSE 0 END) AS resolved, 
+              ->selectRAW('SUM(CASE WHEN booking_providers.check_in_status = 3 THEN 1 ELSE 0 END) AS resolved,
           COUNT(booking_providers.id) as total_providers')->first()->toArray();
           $check['resolved'] = !is_null($check['resolved']) ? $check['resolved'] : 0;
           if ($check['resolved'] != $check['total_providers'])
@@ -1296,7 +1311,7 @@ class BookingOperationsService
         if (!is_null($closeOut) && (!key_exists('time_extension', $closeOut) || (key_exists('time_extension', $closeOut) && ($closeOut['time_extension'] == false || $closeOut['time_extension'] == "false")))) {
           // fetch total resolved time extensions VS total providers
           $timeExtensions =  BookingProvider::where('booking_service_id', $bService['id'])
-            ->selectRAW('SUM(CASE WHEN booking_providers.time_extension_status < 3 THEN 1 ELSE 0 END) AS resolved, 
+              ->selectRAW('SUM(CASE WHEN booking_providers.time_extension_status < 3 THEN 1 ELSE 0 END) AS resolved,
           COUNT(booking_providers.id) as total_providers')->first()->toArray();
           $timeExtensions['resolved'] = !is_null($timeExtensions['resolved']) ? $timeExtensions['resolved'] : 0;
           if ($timeExtensions['resolved'] != $timeExtensions['total_providers'])
@@ -1355,7 +1370,7 @@ class BookingOperationsService
           }
         }
 
-        // close assignment service 
+          // close assignment service
         $bookingService->is_closed = true;
         $bookingService->save();
       }
@@ -1363,16 +1378,16 @@ class BookingOperationsService
       $booking->is_closed = true;
       $booking->save();
     }
-    // else booking will be closed manually 
+      // else booking will be closed manually
 
   }
 
   // the function will get all open bookings, with bookingServices and service end date and call closeActiveBooking function.
   public static function closeAllActiveBookings()
   {
-    // loop to get all open bookings that needs to be checked (route will call this function) 
-    // only close bookings where 
-    // booking is_closed == false and fully assigned and endDate>current date 
+      // loop to get all open bookings that needs to be checked (route will call this function)
+      // only close bookings where
+      // booking is_closed == false and fully assigned and endDate>current date
 
     $bookings = Booking::where(['is_closed' => 0, 'type' => 1, 'booking_status' => 1])
       ->where('status', 2)
@@ -1411,9 +1426,189 @@ class BookingOperationsService
       $bookingProvider->admin_approved_payment_detail = $details;        //saving approved extension details
       $bookingProvider->time_extension_status = 1;
     } else {
-      // admin will approve time extension on close out 
+        // admin will approve time extension on close out
       $bookingProvider->time_extension_status = 3;
     }
     $bookingProvider->save();
   }
+
+    //the function to duplicate the booking data
+    public function copyBooking($bookingID)
+    {
+        $user = Auth::user();
+        $booking = Booking::where('id', $bookingID)->first();
+        $newBooking = $booking->replicate();
+        $bookingNumber = self::generateBookingNumber();
+        $newBooking->booking_number = $bookingNumber;
+        $newBooking->booking_title = $booking->booking_title . ' - Copy';
+        $newBooking->added_by = $user->id;
+        //$newBooking->user_id = $user->id;
+        //save booking as draft status
+        $newBooking->type = 2;
+        $newBooking->save();
+        //copy booking providers
+        $bookingProvider = BookingProvider::where('booking_id', $bookingID)->get();
+        if ($bookingProvider->isNotEmpty()) {
+            foreach ($bookingProvider as $provider) {
+                $newProvider = $provider->replicate();
+                $newProvider->booking_id = $newBooking->id;
+                $newProvider->save();
+            }
+        }
+        //copy booking services
+        $bookingService = BookingServices::where('booking_id', $bookingID)->get();
+        if ($bookingService->isNotEmpty()) {
+            foreach ($bookingService as $service) {
+                $newService = $service->replicate();
+                $newService->booking_id = $newBooking->id;
+                $newService->save();
+            }
+        }
+        //copy booking department
+        $bookingDepartment = BookingDepartment::where('booking_id', $bookingID)->get();
+        if ($bookingDepartment->isNotEmpty()) {
+            foreach ($bookingDepartment as $department) {
+                $newDepartment = $department->replicate();
+                $newDepartment->booking_id = $newBooking->id;
+                $newDepartment->save();
+            }
+        }
+        //copy booking industry
+        $bookingIndustry = BookingIndustry::where('booking_id', $bookingID)->get();
+        if ($bookingIndustry->isNotEmpty()) {
+            foreach ($bookingIndustry as $industry) {
+                $newIndustry = $industry->replicate();
+                $newIndustry->booking_id = $newBooking->id;
+                $newIndustry->save();
+            }
+        }
+        //copy booking service charges
+        $bookingServiceCharges = BookingServiceCharges::where('booking_id', $bookingID)->get();
+        if ($bookingServiceCharges->isNotEmpty()) {
+            foreach ($bookingServiceCharges as $serviceCharge) {
+                $newServiceCharge = $serviceCharge->replicate();
+                $newServiceCharge->booking_id = $newBooking->id;
+                $newServiceCharge->save();
+            }
+        }
+        //copy booking payments
+        $bookingPayment = Payment::where('booking_id', $bookingID)->get();
+        if ($bookingPayment->isNotEmpty()) {
+            foreach ($bookingPayment as $payment) {
+                $newPayment = $payment->replicate();
+                $newPayment->booking_id = $newBooking->id;
+                $newPayment->save();
+            }
+        }
+        //copy booking payment cron
+        $bookingPaymentCron = BookingPaymentCron::where('booking_id', $bookingID)->get();
+        if ($bookingPaymentCron->isNotEmpty()) {
+            foreach ($bookingPaymentCron as $paymentCron) {
+                $newPaymentCron = $paymentCron->replicate();
+                $newPaymentCron->booking_id = $newBooking->id;
+                $newPaymentCron->save();
+            }
+        }
+        //copy booking provider payment
+        $providerPayment = ProviderPayment::where('booking_id', $bookingID)->get();
+        if ($providerPayment->isNotEmpty()) {
+            foreach ($providerPayment as $payment) {
+                $newPayment = $payment->replicate();
+                $newPayment->booking_id = $newBooking->id;
+                $newPayment->save();
+            }
+        }
+        //copy booking request notification
+        $bookingRequestNotification = BookingRequestNotification::where('booking_id', $bookingID)->get();
+        if ($bookingRequestNotification->isNotEmpty()) {
+            foreach ($bookingRequestNotification as $notification) {
+                $newNotification = $notification->replicate();
+                $newNotification->booking_id = $newBooking->id;
+                $newNotification->save();
+            }
+        }
+        //copy booking invitation
+        $bookingInvitation = BookingInvitation::where('booking_id', $bookingID)->get();
+        if ($bookingInvitation->isNotEmpty()) {
+            foreach ($bookingInvitation as $invitation) {
+                $newInvitation = $invitation->replicate();
+                $newInvitation->booking_id = $newBooking->id;
+                $newInvitation->save();
+            }
+        }
+        //copy booking document
+        $bookingDocument = BookingDocument::where('booking_id', $bookingID)->get();
+        if ($bookingDocument->isNotEmpty()) {
+            foreach ($bookingDocument as $document) {
+                $newDocument = $document->replicate();
+                $newDocument->booking_id = $newBooking->id;
+                $newDocument->save();
+            }
+        }
+        //copy booking reimbursement
+        $bookingReimbursement = BookingReimbursement::where('booking_id', $bookingID)->get();
+        if ($bookingReimbursement->isNotEmpty()) {
+            foreach ($bookingReimbursement as $reimbursement) {
+                $newReimbursementData = $reimbursement->replicate();
+                $newReimbursementData->booking_id = $newBooking->id;
+                $newReimbursementData->save();
+            }
+        }
+        //copy booking specializations
+        $bookingSpecialization = BookingSpecialization::where('booking_id', $bookingID)->get();
+        if ($bookingSpecialization->isNotEmpty()) {
+            foreach ($bookingSpecialization as $specialization) {
+                $newSpecializationData = $specialization->replicate();
+                $newSpecializationData->booking_id = $newBooking->id;
+                $newSpecializationData->save();
+            }
+        }
+        //copy booking unassign provider
+        $bookingUnassignProvider = BookingUnassignProvider::where('booking_id', $bookingID)->get();
+        if ($bookingUnassignProvider->isNotEmpty()) {
+            foreach ($bookingUnassignProvider as $unassignProvider) {
+                $newUnassignProviderData = $unassignProvider->replicate();
+                $newUnassignProviderData->booking_id = $newBooking->id;
+                $newUnassignProviderData->save();
+            }
+        }
+        //copy booking available provider
+        $bookingAvailableProvider = BookingAvailableProvider::where('booking_id', $bookingID)->get();
+        if ($bookingAvailableProvider->isNotEmpty()) {
+            foreach ($bookingAvailableProvider as $availableProvider) {
+                $newAvailableProviderData = $availableProvider->replicate();
+                $newAvailableProviderData->booking_id = $newBooking->id;
+                $newAvailableProviderData->save();
+            }
+        }
+        //copy booking invitation provider
+        $bookingInvitationProvider = BookingInvitationProvider::where('booking_id', $bookingID)->get();
+        if ($bookingInvitationProvider->isNotEmpty()) {
+            foreach ($bookingInvitationProvider as $invitationProvider) {
+                $newInvitationProviderData = $invitationProvider->replicate();
+                $newInvitationProviderData->booking_id = $newBooking->id;
+                $newInvitationProviderData->save();
+            }
+        }
+        //copy booking invitation team
+        $bookingInvitationTeam = BookingInvitationTeam::where('booking_id', $bookingID)->get();
+        if ($bookingInvitationTeam->isNotEmpty()) {
+            foreach ($bookingInvitationTeam as $invitationTeam) {
+                $newInvitationTeamData = $invitationTeam->replicate();
+                $newInvitationTeamData->booking_id = $newBooking->id;
+                $newInvitationTeamData->save();
+            }
+        }
+        //copy booking document user
+        $bookingDocumentUser = BookingDocumentUser::where('booking_id', $bookingID)->get();
+        if ($bookingDocumentUser->isNotEmpty()) {
+            foreach ($bookingDocumentUser as $documentUser) {
+                $newDocumentUserData = $documentUser->replicate();
+                $newDocumentUserData->booking_id = $newBooking->id;
+                $newDocumentUserData->save();
+            }
+        }
+        return $newBooking;
+    }
+
 }
