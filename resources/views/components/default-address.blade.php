@@ -7,6 +7,11 @@
         </svg>
         <span>Add @if($type==1) Service @else Billing @endif Address</span>
     </button>
+    <div class="mb-3">
+        <label for="addressFilter" class="form-label">Search by Address:</label>
+        <input type="text" class="form-control" id="addressFilter" placeholder="Enter address..." >
+    </div>
+    
     <table class="table table-hover border">
         <thead>
             <th>#</th>
@@ -80,4 +85,23 @@
             @endforeach
         </tbody>
     </table>
+    
+<script>
+    function filterTable(searchTerm) {
+        const tableRows = document.querySelectorAll('.table tbody tr');
+        const searchRegex = new RegExp(searchTerm.trim(), 'i');
+        tableRows.forEach(row => {
+            const addressColumn = row.querySelector('td:nth-child(2)'); // Assuming address is in the second column
+            if (searchRegex.test(addressColumn.textContent)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }
+
+    document.getElementById('addressFilter').addEventListener('keyup', function() {
+        filterTable(this.value);
+    });
+</script>
 </div>
