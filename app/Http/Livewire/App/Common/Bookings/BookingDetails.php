@@ -360,7 +360,6 @@ class BookingDetails extends Component
 
 	public function updateServiceSettings($propertyName, $index)
 	{
-
 		$value = $this->booking_services[$index][$propertyName];
 		BookingServices::where('id', $this->booking_services[$index]['id'])->update([$propertyName => $this->booking_services[$index][$propertyName]]);
 		if ($value == 1 && $propertyName == "auto_notify") {
@@ -373,11 +372,10 @@ class BookingDetails extends Component
 
     public function copyBooking($bookingID)
     {
+        $booking = Booking::find($bookingID);
         $bookingOperationService = new BookingOperationsService();
         $newBooking = $bookingOperationService->copyBooking($bookingID);
-        if ($this->isCustomer) {
-            return redirect()->route('tenant.customer-booking-view', ['bookingID' => encrypt($newBooking->id)]);
-        }
-        return redirect()->route('tenant.booking-view', ['bookingID' => encrypt($newBooking->id)]);
+        $this->showConfirmation($booking->booking_number . ' has been duplicated successfully.');
+        return redirect()->route('tenant.booking-edit', ['bookingID' => encrypt($newBooking->id), 'isDuplicate' => true]);
     }
 }

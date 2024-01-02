@@ -1438,11 +1438,11 @@ class BookingOperationsService
         $user = Auth::user();
         $booking = Booking::where('id', $bookingID)->first();
         $newBooking = $booking->replicate();
-        $bookingNumber = $booking->booking_number . '-1';
+        $bookingNumber = self::generateBookingNumber();
         $newBooking->booking_number = $bookingNumber;
-        $newBooking->booking_title = $booking->title . ' - Copy';
-        $booking->added_by = $user->id;
-        $booking->user_id = $user->id;
+        $newBooking->booking_title = $booking->booking_title . ' - Copy';
+        $newBooking->added_by = $user->id;
+        //$newBooking->user_id = $user->id;
         //save booking as draft status
         $newBooking->type = 2;
         $newBooking->save();
