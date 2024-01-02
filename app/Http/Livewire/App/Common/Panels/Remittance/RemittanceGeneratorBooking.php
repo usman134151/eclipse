@@ -11,21 +11,18 @@ use App\Models\Tenant\Remittance;
 use App\Models\Tenant\User;
 use Carbon\Carbon;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class RemittanceGeneratorBooking extends Component
 {
+    use WithPagination;
     public $showForm, $provider, $data = [], $selectedBookings = [], $showError = false, $providerData = [];
     protected $listeners = ['showList' => 'resetForm', 'addToRemittance'];
-
+    public $bookings = [];
+    public $providerId;
     public function render()
     {
-        return view('livewire.app.common.panels.remittance.remittance-generator-booking');
-    }
-
-    public function mount($providerId)
-    {
-        $this->provider = User::where('id', $providerId)->with('userdetail')->first()->toArray();
-        // TODO :: Add check to include bookings that have been added to a remittance, yet reimbursement is added later
+        $providerId = $this->providerId;
         $bookings = BookingProvider::where(['provider_id' => $providerId, 'payment_status' => 0, 'remittance_id' => 0])
             ->whereHas('booking', function ($query) {
 
@@ -41,16 +38,17 @@ class RemittanceGeneratorBooking extends Component
                ELSE total_amount
           END ) AS amount')
             ->groupBy('booking_id')
-            ->get()->toArray();
-        //fetching unassociated approved reimbursements
-        $reimbursements = BookingReimbursement::where(['provider_id' => $providerId, 'status' => 1, 'booking_id' => null, 'payment_status' => 0, 'remittance_id' => 0])->select(['id as reimbursement_id', 'reimbursement_number', 'amount', 'booking_id'])->get()->toArray();
-        $payments = ProviderRemittancePayment::where(['provider_id' => $providerId, 'payment_status' => 0, 'remittance_id' => null])->select(['id as payment_id', 'number', 'total_amount as amount'])->get()->toArray();
-        $invoices = ProviderInvoice::where(['provider_id' => $providerId, 'invoice_status' => 1, 'remittance_id' => null])
-            ->select(['id as invoice_id', 'invoice_number', 'total_amount as amount'])->get()->toArray();
-        // dd($invoices);
+            ->paginate(20);
+        $this->bookings['bookingData'] = $bookings;
+        return view('livewire.app.common.panels.remittance.remittance-generator-booking')
+            ->with('bookings', $this->bookings);
+    }
 
-        $this->data = array_merge($bookings, $reimbursements, $payments, $invoices);
-
+    public function mount($providerId)
+    {
+        $this->provider = User::where('id', $providerId)->with('userdetail')->first()->toArray();
+        // TODO :: Add check to include bookings that have been added to a remittance, yet reimbursement is added later
+        $this->providerId = $providerId;
         $this->providerData['total_invoiced'] = Remittance::where('provider_id', $providerId)->where('payment_status', 1)->sum('amount');
         $this->providerData['total_pending'] = BookingReimbursement::where('provider_id', $providerId)->where('status', 0)->sum('amount');
         $nextPayment = Remittance::where('provider_id', $providerId)->where('payment_status', 1)->where('payment_scheduled_at', '>', now())->orderBy('payment_scheduled_at')->first();
