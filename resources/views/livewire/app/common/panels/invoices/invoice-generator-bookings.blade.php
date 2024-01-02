@@ -431,7 +431,7 @@
                                 </div>
                             </td>
                         </tr> --}}
-                            @foreach ($bookings as $booking)
+                            @foreach ($bookings['bookingData'] as $booking)
                                 <tr role="row" class="odd">
                                     <td class="text-center">
                                         <input class="form-check-input booking-checkbox" type="checkbox"
@@ -590,10 +590,15 @@
                                     </td>
                                 </tr>
                             @endforeach
-                            {{-- end updated by shanila --}}
+
                         </tbody>
                     </table>
+
                 </div>
+                <!-- Render the pagination navigations links -->
+                {{ $bookings['bookingData']->links() }}
+                <!-- /Render the pagination navigations links  -->
+
             </div>
         </div>
         <!-- Total -->
