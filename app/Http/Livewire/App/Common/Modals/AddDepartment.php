@@ -10,7 +10,7 @@ use Livewire\Component;
 class AddDepartment extends Component
 {
     public $showForm, $user = null, $departments, $selectedDepartments = [], $svDepartments = [], $defaultDepartment = 0, $companyId = 0,$isBooking=false;
-    protected $listeners = ['showList' => 'resetForm', 'editRecord' => 'setUser', 'setDepartmentsDetails', 'updateCompany','isBooking','setBookingDepartments'];
+    protected $listeners = ['showList' => 'resetForm', 'editRecord' => 'setUser', 'setDepartmentsDetails', 'updateCompany','isBooking','setBookingDepartments','updateData'];
 
     public function render()
     {
@@ -76,8 +76,15 @@ class AddDepartment extends Component
        
     }
     // Child Laravel component's updateData function
-    public function updateData()
+    public function updateData($ids = [])
     {
+        if($ids)
+        {
+            $this->selectedDepartments = array_map(static function ($item) {
+                return ['department_id' => $item];
+            }, $ids);
+        
+        }
         $departmentNames = [];
         foreach ($this->selectedDepartments as $dept) {
             if ($this->departments->firstWhere('id', $dept['department_id']) != null)

@@ -5,7 +5,12 @@
     </div>
     <div class="modal-body">
       <div class="row justify-content-center">
-        <div class="col-lg-11">
+        @if(count($departments)==0)
+        <div class="text-center mt-5">Departments has not been added for this company</div>
+        @else
+          @livewire('app.common.lists.departments', ['companyId' => $companyId, 'selectDepartment' => true])
+        @endif
+        {{-- <div class="col-lg-11">
           <div class="row">
             <div class="col-lg-6 py-2">
               <label class="form-label-sm fw-bold mb-0">Select Department</label>
@@ -50,7 +55,7 @@
           </div>
           <!-- END: Row Data -->
           @endforeach
-        </div>
+        </div> --}}
       </div>
     </div>
     <div class="modal-footer">
@@ -59,8 +64,16 @@
           <button type="button" class="btn rounded w-100 btn-outline-dark" data-bs-dismiss="modal">Cancel</button>
         </div>
         <div class="col-lg-3">
-          <button type="button" data-bs-dismiss="modal" class="btn rounded w-100 btn-primary" wire:click="updateData">Add</button>
+          <button type="button" id="addbtn" data-bs-dismiss="modal"  class="btn rounded w-100 btn-primary" >Add</button>
         </div>
       </div>
     </div>
   </div>
+  @push('scripts')
+    <script>
+       document.getElementById('addbtn').addEventListener('click', function() {
+        console.log("hello")
+        Livewire.emit('getSelectedIds');
+    });
+    </script>
+  @endpush

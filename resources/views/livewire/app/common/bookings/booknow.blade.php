@@ -1162,9 +1162,9 @@
         <div class="col-lg-12">
             <!-- Physical Address -->
             <div class="row mb-4">
-                <div class="col-lg-6 mb-4 align-self-center">
+                {{-- <div class="col-lg-6 mb-4 align-self-center">
                     <h2 class="mb-lg-0">Physical Address</h2>
-                </div>
+                </div> --}}
                 <div class="col-lg-6">
                     <div class="row">
                         <div class="col-md-6 mb-4">
