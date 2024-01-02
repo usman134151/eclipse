@@ -596,7 +596,7 @@
 
                 </div>
                 <!-- Render the pagination navigations links -->
-                {{ $bookings['bookingData']->links() }}
+                {{ $bookings['bookingData']->links('livewire.app.common.bookings.booking-nav') }}
                 <!-- /Render the pagination navigations links  -->
 
             </div>

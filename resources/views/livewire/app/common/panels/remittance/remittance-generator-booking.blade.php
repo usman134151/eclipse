@@ -124,7 +124,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($data as $row)
+                    @foreach ($bookings['bookingData'] as $row)
                             <tr role="row" class="odd ivp">
                                 <td class="text-center align-middle">
                                     <input class="form-check-input booking-checkbox" value="{{ $loop->index }}"
@@ -217,6 +217,10 @@
                     </tbody>
                 </table>
             </div>
+
+            <!-- Render the pagination navigations links -->
+            {{ $bookings['bookingData']->links('livewire.app.common.bookings.booking-nav') }}
+            <!-- /Render the pagination navigations links  -->
         </div>
     </div>
     <!-- Hoverable rows end -->
@@ -241,7 +245,7 @@
                 View Details
             </span>
         </div>
-        
+
     </div>
     <!-- /Icon Help -->
     {{-- <div class="d-flex justify-content-between">
