@@ -270,7 +270,7 @@ class Reports extends Component
             
             if ($total !== 0) {
                 $percentages = array_map(function ($data) use ($total) {
-                    return number_format(($data / $total) * 100, 2) . '%';
+                    return number_format(($data / ($total ?: 1)) * 100, 2) . '%';
                 }, $dataArray['data']);
             } else {
                 throw new Exception("Total is zero");
