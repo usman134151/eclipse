@@ -176,37 +176,93 @@
 	                    <div class="card">
 	                        <div class="card-body">
 	                            <h3>Revenue</h3>
-	                            <div class="mb-4">
+	                            {{-- <div class="mb-4">
 	                                <canvas id="jsChartRevenue" style="width:100%;"></canvas>
-	                            </div>
+	                            </div> --}}
 	                            <div class="row">
 									<div class="col-md-6 mb-2">
-										<div class="fw-semibold text-sm">Date</div>
+										<div class="fw-semibold text-sm"></div>
 									</div>
 									<div class="col-md-6 mb-2">
 										<div class="fw-semibold text-sm text-lg-end">Payments</div>
 									</div>
-									@forelse ($revenues as $revenue)
 									<div class="col-md-6 mb-2">
-										<div class="text-sm">{{formatDate($revenue['paid_date'])}}</div>
+										<div class="text-sm">Total Revenue</div>
 									</div>
 									<div class="col-md-6 mb-2">
-										<div class="text-sm text-lg-end">{{formatPayment($revenue['total_paid_amount'])}}</div>
+										<div class="text-sm text-lg-end">{{formatPayment($revenues['totalRevenue'])}}</div>
 									</div>
 									<div class="col-lg-12">
 										<hr class="mt-0 mb-2">
 									</div>
-									@empty
-									<div class="col-lg-12">
-	                                    <small>No Records Available</small>
-	                                </div>
-									@endforelse
 									<div class="col-md-6 mb-2">
+										<div class="text-sm">Total Service Revenue</div>
+									</div>
+									<div class="col-md-6 mb-2">
+										<div class="text-sm text-lg-end">{{formatPayment($revenues['service'])}}</div>
+									</div>
+									<div class="col-lg-12">
+										<hr class="mt-0 mb-2">
+									</div>
+									<div class="col-md-6 mb-2">
+										<div class="text-sm">Total Specialization Revenue</div>
+									</div>
+									<div class="col-md-6 mb-2">
+										<div class="text-sm text-lg-end">{{formatPayment($revenues['specialization'])}}</div>
+									</div>
+									<div class="col-lg-12">
+										<hr class="mt-0 mb-2">
+									</div>
+									<div class="col-md-6 mb-2">
+										<div class="text-sm">Total Service Charge Revenue</div>
+									</div>
+									<div class="col-md-6 mb-2">
+										<div class="text-sm text-lg-end">{{formatPayment($revenues['serviceCharge'])}}</div>
+									</div>
+									<div class="col-lg-12">
+										<hr class="mt-0 mb-2">
+									</div>
+									<div class="col-md-6 mb-2">
+										<div class="text-sm">Total Expedited Service Charges Revenue</div>
+									</div>
+									<div class="col-md-6 mb-2">
+										<div class="text-sm text-lg-end">{{formatPayment($revenues['expeditedServiceCharge'])}}</div>
+									</div>
+									<div class="col-lg-12">
+										<hr class="mt-0 mb-2">
+									</div>
+									<div class="col-md-6 mb-2">
+										<div class="text-sm">Total Cancellation Charge Revenue</div>
+									</div>
+									<div class="col-md-6 mb-2">
+										<div class="text-sm text-lg-end">{{formatPayment($revenues['cancellationCharge'])}}</div>
+									</div>
+									<div class="col-lg-12">
+										<hr class="mt-0 mb-2">
+									</div>
+									<div class="col-md-6 mb-2">
+										<div class="text-sm">Total Payroll</div>
+									</div>
+									<div class="col-md-6 mb-2">
+										<div class="text-sm text-lg-end">{{formatPayment($revenues['totalPayroll'])}}</div>
+									</div>
+									<div class="col-lg-12">
+										<hr class="mt-0 mb-2">
+									</div>
+									<div class="col-md-6 mb-2">
+										<div class="text-sm">Total Net Profit</div>
+									</div>
+									<div class="col-md-6 mb-2">
+										<div class="text-sm text-lg-end">{{formatPayment($revenues['totalprofit'])}}</div>
+									</div>
+									
+									
+									{{-- <div class="col-md-6 mb-2">
 										<div class="fw-semibold text-sm">Total Revenue</div>
 									</div>
 									<div class="col-md-6 mb-2">
 										<div class="fw-semibold text-sm text-lg-end">{{formatPayment($totalRevenue)}}</div>
-									</div>
+									</div> --}}
 								</div>
 	                            {{-- <a href="" class="btn btn-primary w-100">View Detail</a> --}}
 	                        </div>
@@ -225,14 +281,14 @@
 											<div class="fw-semibold text-sm">Services</div>
 										</div>
 										<div class="col-md-6 mb-2">
-											<div class="fw-semibold text-sm text-lg-end">No. of Bookings</div>
+											<div class="fw-semibold text-sm text-lg-end">Revenue</div>
 										</div>
 	                                   @forelse ($topServices as $topService)
 									   		<div class="col-md-6 mb-2">
-												<div class="text-sm">{{$topService['name']}}</div>
+												<div class="text-sm">{{$topService['service_name']}} {{$this->calculatePercentage($topService['total_paid_amount'],$totalRevenueByServices)}}%</div>
 											</div>
 											<div class="col-md-6 mb-2">
-												<div class="text-sm text-lg-end">{{$topService['booking_count']}}</div>
+												<div class="text-sm text-lg-end">{{formatpayment($topService['total_paid_amount'])}}</div>
 											</div>
 											<div class="col-lg-12">
 												<hr class="mt-0 mb-2">
@@ -242,6 +298,12 @@
 	                                    	<small>No Records Available</small>
 	                                	</div>
 									   @endforelse
+									   <div class="col-md-6 mb-2">
+										   <div class="fw-semibold text-sm">Total Revenue</div>
+									   </div>
+									   <div class="col-md-6 mb-2">
+										   <div class="fw-semibold text-sm text-lg-end">{{formatpayment($totalRevenueByServices)}}</div>
+									   </div>
 	                                </div>
 	                            </div>
 	                            {{-- <a href="" class="btn btn-primary w-100">View Detail</a> --}}
@@ -632,7 +694,7 @@
 			jsChartServices = createDoughnutChart("jsChartServices", newData['servicesGraph'],false);
 
 			// Update revenue chart
-			jsChartRevenue = createDoughnutChart("jsChartRevenue", newData['revenuesGraph'],false);
+			// jsChartRevenue = createDoughnutChart("jsChartRevenue", newData['revenuesGraph'],false);
 
 			// Update cancellation chart
 			jsChartCancellations = createDoughnutChart("jsChartCancellations", newData['cancellationsGraph'],false);
@@ -687,7 +749,7 @@
 		let jsChartServices = createDoughnutChart("jsChartServices", @json($graph['servicesGraph']),false);
 
 		// Update revenue chart
-		let jsChartRevenue = createDoughnutChart("jsChartRevenue", @json($graph['revenuesGraph']),false);
+		// let jsChartRevenue = createDoughnutChart("jsChartRevenue", @json($graph['revenuesGraph']),false);
 
 		// Update cancellation chart
 		let jsChartCancellations = createDoughnutChart("jsChartCancellations", @json($graph['cancellationsGraph']),false);
