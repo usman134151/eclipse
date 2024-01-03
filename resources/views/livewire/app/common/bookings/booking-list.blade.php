@@ -596,27 +596,31 @@
                                                                                                     class="fa fa-clone"></i>
                                                                                                 Duplicate
                                                                                             </a>
-                                                                                            <a href="javascript:void(0)"
-                                                                                                aria-label="Reschedule"
-                                                                                                title="Reschedule"
-                                                                                                class="dropdown-item"
-                                                                                                wire:click="$emit('getRescheduleBookingData','{{ $booking->id }}')"
-                                                                                                @click="rescheduleBooking = true">
-                                                                                                <i
-                                                                                                    class="fa fa-calendar"></i>
-                                                                                                Reschedule
-                                                                                            </a>
-                                                                                            @if (!$isCustomer)
-                                                                                                <a title="Manage Assigned Providers"
-                                                                                                    aria-label="Manage Assigned Providers"
-                                                                                                    class="dropdown-item"
-                                                                                                    wire:click="openAssignProvidersPanel({{ $booking->id }},{{ $booking->service_id }})"
-                                                                                                    @click="assignProvider = true"
-                                                                                                    href="javascript:void(0)">
+                                                                                            @if($booking['type']!=2)
+                                                                                                <a href="javascript:void(0)"
+                                                                                                   aria-label="Reschedule"
+                                                                                                   title="Reschedule"
+                                                                                                   class="dropdown-item"
+                                                                                                   wire:click="$emit('getRescheduleBookingData','{{ $booking->id }}')"
+                                                                                                   @click="rescheduleBooking = true">
                                                                                                     <i
-                                                                                                        class="fa fa-user-plus"></i>
-                                                                                                    {{ $bookingType == 'Unassigned' ? 'Assign Providers' : 'Manage Assigned Providers ' }}
+                                                                                                        class="fa fa-calendar"></i>
+                                                                                                    Reschedule
                                                                                                 </a>
+                                                                                            @endif
+                                                                                            @if (!$isCustomer)
+                                                                                                @if($booking['type']!=2)
+                                                                                                    <a title="Manage Assigned Providers"
+                                                                                                       aria-label="Manage Assigned Providers"
+                                                                                                       class="dropdown-item"
+                                                                                                       wire:click="openAssignProvidersPanel({{ $booking->id }},{{ $booking->service_id }})"
+                                                                                                       @click="assignProvider = true"
+                                                                                                       href="javascript:void(0)">
+                                                                                                        <i
+                                                                                                            class="fa fa-user-plus"></i>
+                                                                                                        {{ $bookingType == 'Unassigned' ? 'Assign Providers' : 'Manage Assigned Providers ' }}
+                                                                                                    </a>
+                                                                                                @endif
                                                                                             @endif
                                                                                         @endif
                                                                                         @if ($bookingType == 'Invitations')
@@ -640,16 +644,18 @@
                                                                                             </a>
                                                                                         @endif
                                                                                         @if (($bookingType == 'Unassigned' || $bookingType == 'Invitations' || $bookingType == 'Draft') && !$isCustomer)
-                                                                                            <a href="javascript:void(0)"
-                                                                                                aria-label="Invite Providers"
-                                                                                                title="Invite Providers"
-                                                                                                class="dropdown-item"
-                                                                                                wire:click="openAssignProvidersPanel({{ $booking->id }},{{ $booking->service_id }}, 2)"
-                                                                                                @click="assignProvider = true">
-                                                                                                <i
-                                                                                                    class="fa fa-envelope"></i>
-                                                                                                Invite Providers
-                                                                                            </a>
+                                                                                            @if($booking['type']!=2)
+                                                                                                <a href="javascript:void(0)"
+                                                                                                   aria-label="Invite Providers"
+                                                                                                   title="Invite Providers"
+                                                                                                   class="dropdown-item"
+                                                                                                   wire:click="openAssignProvidersPanel({{ $booking->id }},{{ $booking->service_id }}, 2)"
+                                                                                                   @click="assignProvider = true">
+                                                                                                    <i
+                                                                                                        class="fa fa-envelope"></i>
+                                                                                                    Invite Providers
+                                                                                                </a>
+                                                                                            @endif
                                                                                         @endif
                                                                                         @if ($bookingType != 'Invitations')
                                                                                             <a title="Message Customer"
@@ -670,23 +676,26 @@
                                                                                                 Message Provider Team
                                                                                             </a>
                                                                                             @if ($booking->is_closed == 0)
-                                                                                                <a href="#"
-                                                                                                    wire:click.prevent="closeBooking({{ $booking->id }})"
-                                                                                                    title="Close booking"
-                                                                                                    aria-label="Close booking and move to invoice generator"
-                                                                                                    class="dropdown-item">
-                                                                                                    <svg aria-label="Invoice Generator"
-                                                                                                        width="19"
-                                                                                                        height="20"
-                                                                                                        viewBox="0 0 19 20"
-                                                                                                        fill="none"
-                                                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                                                        <use
-                                                                                                            xlink:href="/css/admin-menu.svg#invoice-genrator-icon">
-                                                                                                        </use>
-                                                                                                    </svg>
-                                                                                                    Close Booking
-                                                                                                </a>
+                                                                                                @if($booking['type']!=2)
+                                                                                                    <a href="#"
+                                                                                                       wire:click.prevent="closeBooking({{ $booking->id }})"
+                                                                                                       title="Close booking"
+                                                                                                       aria-label="Close booking and move to invoice generator"
+                                                                                                       class="dropdown-item">
+                                                                                                        <svg
+                                                                                                            aria-label="Invoice Generator"
+                                                                                                            width="19"
+                                                                                                            height="20"
+                                                                                                            viewBox="0 0 19 20"
+                                                                                                            fill="none"
+                                                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                                                            <use
+                                                                                                                xlink:href="/css/admin-menu.svg#invoice-genrator-icon">
+                                                                                                            </use>
+                                                                                                        </svg>
+                                                                                                        Close Booking
+                                                                                                    </a>
+                                                                                                @endif
                                                                                             @else
                                                                                                 <a href="#"
                                                                                                     wire:click.prevent="reOpenBooking({{ $booking->id }})"
@@ -728,27 +737,29 @@
                                                                                                     Reinstate booking
                                                                                                 </a>
                                                                                             @else
-                                                                                                <a href="javascript:void(0)"
-                                                                                                    aria-label="Cancel"
-                                                                                                    title="Cancel"
-                                                                                                    class="dropdown-item"
-                                                                                                    @click="cancelBooking = true"
-                                                                                                    wire:click="getBookingData({{ $booking->id }})">
-                                                                                                    <svg width="17"
-                                                                                                        height="18"
-                                                                                                        viewBox="0 0 17 18"
-                                                                                                        fill="none"
-                                                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                                                        <path
-                                                                                                            d="M8.3125 16.8125H1.4375V1.1875H14.5625V9.3125M15.8125 12.4375L11.4375 16.8125M5.1875 8.6875H10.8125M5.1875 12.4375H7.0625M5.1875 4.9375H10.8125M11.4375 12.4375L15.8125 16.8125"
-                                                                                                            stroke="black"
-                                                                                                            stroke-width="1.5"
-                                                                                                            stroke-linecap="round"
-                                                                                                            stroke-linejoin="round">
-                                                                                                        </path>
-                                                                                                    </svg>
-                                                                                                    Cancel Booking
-                                                                                                </a>
+                                                                                                @if($booking['type']!=2)
+                                                                                                    <a href="javascript:void(0)"
+                                                                                                       aria-label="Cancel"
+                                                                                                       title="Cancel"
+                                                                                                       class="dropdown-item"
+                                                                                                       @click="cancelBooking = true"
+                                                                                                       wire:click="getBookingData({{ $booking->id }})">
+                                                                                                        <svg width="17"
+                                                                                                             height="18"
+                                                                                                             viewBox="0 0 17 18"
+                                                                                                             fill="none"
+                                                                                                             xmlns="http://www.w3.org/2000/svg">
+                                                                                                            <path
+                                                                                                                d="M8.3125 16.8125H1.4375V1.1875H14.5625V9.3125M15.8125 12.4375L11.4375 16.8125M5.1875 8.6875H10.8125M5.1875 12.4375H7.0625M5.1875 4.9375H10.8125M11.4375 12.4375L15.8125 16.8125"
+                                                                                                                stroke="black"
+                                                                                                                stroke-width="1.5"
+                                                                                                                stroke-linecap="round"
+                                                                                                                stroke-linejoin="round">
+                                                                                                            </path>
+                                                                                                        </svg>
+                                                                                                        Cancel Booking
+                                                                                                    </a>
+                                                                                                @endif
                                                                                             @endif
                                                                                         @endif
 
