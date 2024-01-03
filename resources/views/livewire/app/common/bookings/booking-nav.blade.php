@@ -49,13 +49,13 @@
                 </a>
             </li>
 
-            @for ($i = 1; $i <= $paginator->lastPage(); $i++) 
+            @for ($i = 1; $i <= $paginator->lastPage(); $i++)
                 @if ($i <=2 || $i>= $paginator->lastPage() - 1 || ($i >=$paginator->currentPage() - 1 && $i <= $paginator->currentPage() + 1))
                     <li class="page-item {{ ($paginator->currentPage() == $i) ? ' active' : '' }}">
                         <a class="page-link" href="#" wire:click="gotoPage({{$i}})">{{ $i }}</a>
                     </li>
                     @elseif (($i == 3 && $paginator->currentPage() > 4) || ($i == $paginator->lastPage() - 2 &&
-                    $paginator->currentPage() < $paginator->lastPage() - 3)) 
+                    $paginator->currentPage() < $paginator->lastPage() - 3))
                     <li class="page-item disabled">
                         <span class="page-link">...</span>
                     </li>
@@ -73,14 +73,17 @@
             <small>
                 <li class="input-group input-group-sm">
                     <input type="text" id="pageNumberInput" class="form-control form-control-sm text-center" size="1" placeholder="{{$paginator->currentPage()}}">
-                    <button onclick="gotoLivewirePage()" class="btn btn-primary btn-sm">Go</button>
+                    <span class="input-group-append">
+                        <button type="button" class="btn btn-sm btn-primary"
+                                wire:click="gotoPage(parseInt(document.getElementById('pageNumberInput').value))">Go</button>
+                    </span>
                 </li>
             </small>
         </ul>
         <ul>
             <small id="errorMessage" class="text-danger" style="display: none;"></small>
         </ul>
-    
+
     </nav>
     @endif
     <input type="hidden" id="lastPage" name="lastPage" value="{{$paginator->lastPage()}}">
@@ -90,7 +93,7 @@
     function gotoLivewirePage() {
             let lastPage = parseInt(document.getElementById('lastPage').value);
             // Get the value from the text field
-            let pageNumber = parseInt(document.getElementById('pageNumberInput').value); 
+        let pageNumber = parseInt(document.getElementById('pageNumberInput').value);
             if (pageNumber < 1 || isNaN(pageNumber)) {
                 let errorMessage = document.getElementById('errorMessage');
                 errorMessage.textContent = 'Please enter a valid page number.';
@@ -102,7 +105,7 @@
             } else {
                 console.log(pageNumber,lastPage,pageNumber>lastPage);
                 // Call Livewire method using wire:click and pass the page number
-                @this.call('gotoPage', pageNumber);
+                Livewire.emit('gotoPage', pageNumber);
             }
         }
 </script>
