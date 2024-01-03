@@ -659,13 +659,26 @@ class AssignProviders extends Component
                     unset($previousAssigned[$key]);
                 }
 
+
+
+                $provider['booking_id'] = $this->booking_id;
+                $provider['booking_service_id'] = $booking_service ? $booking_service->id : null;
+
+                BookingProvider::updateOrCreate(
+                    [
+                        'booking_id' => $provider['booking_id'],
+                        'provider_id' => $provider['provider_id'],
+                        'booking_service_id' => $provider['booking_service_id'],
+                    ],
+                    $provider
+                );
                 if (!empty($user)) {
 
                     $templateId = getTemplate('Booking: Provider Assigned (manual-assign)', 'email_template');
 
                     if (!in_array($provider['provider_id'], $previousAssigned)) {
 
-                        NotificationService::sendNotification('Booking: Provider Assigned (manual-assign)', $notifData, 7, true);
+                        NotificationService::sendNotification('Booking: Provider Assigned (manual-assign)', $notifData, 7, false,$provider['provider_id']);
 
                         // $params = [
                         //     'email'       =>  $user->email, //
@@ -688,18 +701,6 @@ class AssignProviders extends Component
                         callLogs($this->booking->id, 'Booking', 'assigned', $message);
                     }
                 }
-
-                $provider['booking_id'] = $this->booking_id;
-                $provider['booking_service_id'] = $booking_service ? $booking_service->id : null;
-
-                BookingProvider::updateOrCreate(
-                    [
-                        'booking_id' => $provider['booking_id'],
-                        'provider_id' => $provider['provider_id'],
-                        'booking_service_id' => $provider['booking_service_id'],
-                    ],
-                    $provider
-                );
             }
             $status = 1;
             //sending notification for unassign

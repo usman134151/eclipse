@@ -25,6 +25,8 @@ class NotificationService{
 
     public static function sendNotification($triggerName,$data,$triggerType=6,$authProvider=false){
        
+        //exclude all notifications
+
         
         $admin            = User::find(1);
         $notificationData=NotificationTemplates::where('trigger',$triggerName)->with('notificationTemplateRoles')->orderBy('notification_type')->get()->toArray();
@@ -33,18 +35,19 @@ class NotificationService{
         $templateName=trim($parts[0]);
         
         foreach($notificationData as $notification){
+          
             if($notification['status']==0)
               return; //notification is disabled
             $notification['trigger_type_id']=$triggerType;
             //get list of users to send notification to
             
             $notification['notification_template_roles']=SELF::getUsers($notification['notification_template_roles'],$notification['trigger_type_id'],$data['bookingData'],$admin,$authProvider);
-          
+        
             //loop to send
             foreach($notification['notification_template_roles'] as $roleData){
-              
              
-            //send notification
+             
+            //send notification session check
             if($notification['notification_type']==1){
               //checking if email notifications are enabled
               if(SESSION::get('email_notifications',1)){
@@ -62,9 +65,10 @@ class NotificationService{
               }
 
 
+
             }
             elseif($notification['notification_type']==2){ //system
-
+                
             }
             else{ //sms
 
@@ -285,7 +289,7 @@ class NotificationService{
                    sendMail($userData['email'], $data['templateSubject'],  $data, 'emails.templates', [], 'dispatch');
    }
 
-    public static function getUsers($rolesData,$triggerType,$data,$admin,$authProvider=false){
+    public static function getUsers($rolesData,$triggerType,$data,$admin,$authProvider=false,$specificProvider=0){
 
        
         //booking type
@@ -327,8 +331,11 @@ class NotificationService{
                 $role['user_information']=$adminUserIds;
             }
             elseif($role['role_id']==2){
+                if($specificProvider){
+                    $providerIds=User::where('id',$specificProvider)->get();
+                }
                 //provider
-                if(!$authProvider){
+                elseif(!$authProvider && $specificProvider==0){
                     $providerIds = User::whereIn('id', function ($query) use ($data) {
                         $query->select('user_id')
                             ->from('role_user')
@@ -345,6 +352,7 @@ class NotificationService{
                 }
                 else
                 {
+                 
                     $providerIds = User::whereIn('id', function ($query) use ($data) {
                         $query->select('user_id')
                             ->from('role_user')
