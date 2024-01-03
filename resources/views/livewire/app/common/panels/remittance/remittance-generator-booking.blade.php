@@ -107,6 +107,21 @@
     </div>
     <!-- Hoverable rows start -->
     <div class="row" id="table-hover-row">
+        <div class="col-6 mb-5">
+            <label class="form-label" for="filter_booking_id">BookingID</label>
+            <input type="text" class="form-control" name="filter_booking_id" id="filter_booking_id"
+                   placeholder="Enter Booking ID" wire:model="bookingID"/>
+        </div>
+        <div class="col-6 mb-5">
+            <label class="form-label" for="filter_type">Type</label>
+            <select class="form-control" name="filter_type" id="filter_type" wire:model="type">
+                <option value="">Select Type</option>
+                <option value="booking">Booking</option>
+                <option value="reimbursement">Reimbursement</option>
+                <option value="invoice">Invoice</option>
+                <option value="payment">Payment</option>
+            </select>
+        </div>
         <div class="col-12">
             <div class="table-responsive border mb-4">
                 <table id="" class="table table-fs-md table-hover" aria-label="">
