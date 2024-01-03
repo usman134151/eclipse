@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\URL;
 use DOMDocument;
 use DOMXPath;
 use Auth;
+use Session;
 
 class NotificationService{
 
@@ -23,16 +24,17 @@ class NotificationService{
     }
 
     public static function sendNotification($triggerName,$data,$triggerType=6,$authProvider=false){
-        //get notification trigger 
-        
+       
         
         $admin            = User::find(1);
         $notificationData=NotificationTemplates::where('trigger',$triggerName)->with('notificationTemplateRoles')->orderBy('notification_type')->get()->toArray();
-       
+      
         $parts = explode("(", $triggerName);
         $templateName=trim($parts[0]);
         
         foreach($notificationData as $notification){
+            if($notification['status']==0)
+              return; //notification is disabled
             $notification['trigger_type_id']=$triggerType;
             //get list of users to send notification to
             
@@ -44,7 +46,8 @@ class NotificationService{
              
             //send notification
             if($notification['notification_type']==1){
-              
+              //checking if email notifications are enabled
+              if(SESSION::get('email_notifications',1)){
                 if(key_exists('user_information',$roleData)){
                     foreach($roleData['user_information'] as $userData){
                         //send email
@@ -56,6 +59,8 @@ class NotificationService{
                         
                     }
                 }
+              }
+
 
             }
             elseif($notification['notification_type']==2){ //system

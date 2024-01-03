@@ -68,6 +68,9 @@ class LoginController extends Controller
 			$data['foreground_colour'] = $businessSetup->foreground_colour;
 			$data['dark_default_colour'] = $businessSetup->dark_default_colour;
 			$data['dark_foreground_colour'] = $businessSetup->dark_foreground_colour;
+			$data['email_notifications'] = $businessSetup->email_notifications;
+			$data['sms_notifications'] = $businessSetup->sms_notifications;
+			$data['system_notifications'] = $businessSetup->system_notifications;
 		}
 		session($data);	//storing setup details 
 

@@ -135,7 +135,7 @@ nav[aria-label="Page Navigation"]{
 :has(.selected-provider) .table-hover tbody [aria-label="Days"]{
     color:white !important;
 }
-:has(.selected-provider) label{
+.selected-provider label{
     display: inline !important;
 }
 

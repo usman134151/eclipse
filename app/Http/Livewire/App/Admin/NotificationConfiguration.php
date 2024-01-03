@@ -7,6 +7,7 @@ use Livewire\Component;
 use App\Models\Tenant\NotificationTemplates;
 use App\Models\Tenant\TriggerType;
 use App\Services\ExportDataFile;
+use Session;
 
 class NotificationConfiguration extends Component
 {
@@ -86,6 +87,7 @@ class NotificationConfiguration extends Component
     public function excludeNotificationToggle()
     {
         BusinessSetup::first()->update([$this->notificationType[$this->type] => $this->toggleNotification ? 1 : 0]);
+        Session::put($this->type, $this->toggleNotification ? 1 : 0);
     }
 
     public function mount()
