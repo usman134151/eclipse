@@ -23,7 +23,7 @@ class RemittanceGeneratorBooking extends Component
     protected $listeners = ['showList' => 'resetForm', 'addToRemittance' => 'addToRemittance', 'gotoPage' => 'gotoPage'];
     public $bookings = [];
     public $providerId, $bookingID, $type;
-    public $perPage = 1, $pageNo;
+    public $perPage = 2, $pageNo;
     public function render()
     {
         $this->applyFilters();
