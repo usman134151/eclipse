@@ -12,6 +12,7 @@ use App\Models\Tenant\Remittance;
 use App\Models\Tenant\ServiceCategory;
 use App\Models\Tenant\User;
 use Carbon\Carbon;
+use Exception;
 use Livewire\Component;
 
 class Reports extends Component
@@ -111,7 +112,7 @@ class Reports extends Component
         return $companiesWithInvoices;
     }
 
-    public function getRevenue($withLimit = true)
+    public function getRevenueGraphData($withLimit = true)
     {
         // converted dates according to invoice payments table format
         $startDate = Carbon::createFromFormat('Y-m-d', $this->date['start_date'])->format('m/d/Y');
@@ -124,8 +125,8 @@ class Reports extends Component
             ->where('paid_date', '<=', $endDate)
             ->groupBy('paid_date')
             ->orderByDesc('paid_date');
-        if($withLimit){
-            $payments->take(5);
+        if ($withLimit) {
+            $payments = $payments->take(5);
         }
         $payments = $payments->get()->toArray();
 
@@ -135,6 +136,30 @@ class Reports extends Component
         // Calculate the sum of 'total_paid_amount' values
         $this->totalRevenue = array_sum($totalPaidAmounts);
         return $payments;
+    }
+
+    public function getRevenueData()
+    {
+        $revenue = [];
+        // converted dates according to invoice payments table format
+        $startDate = Carbon::createFromFormat('Y-m-d', $this->date['start_date'])->format('m/d/Y');
+        $endDate = Carbon::createFromFormat('Y-m-d', $this->date['end_date'])->format('m/d/Y');
+
+        $revenue['totalRevenue'] = InvoicePayment::selectRaw('COALESCE(SUM(paid_amount), 0) as total_paid_amount')
+        ->where('paid_date', '>=', $startDate)
+        ->where('paid_date', '<=', $endDate)
+        ->first()->total_paid_amount;
+    
+        $this->getRevenueByService($withLimit = false);
+        $revenue['service'] = $this->totalRevenueByServices;
+        $revenue['specialization'] = $this->getTotalRevenueBySpecialization();
+        $revenue['serviceCharge'] = $this->getTotalServiceChargeRevenue();
+        $revenue['expeditedServiceCharge'] = $this->getTotalExpeditedServiceChargeRevenue();
+        $revenue['cancellationCharge'] = $this->getTotalCancellationChargeRevenue();
+        $revenue['totalPayroll'] = -$this->getTotalPayroll();
+        $revenue['totalprofit'] = $revenue['totalRevenue'] - $this->getTotalPayroll();
+
+        return $revenue;
     }
 
     public function getAssignments()
@@ -239,15 +264,19 @@ class Reports extends Component
         $dataArray['label'] = collect($data)->take(5)->pluck($labelKey)->toArray();
         $dataArray['data'] = collect($data)->take(5)->pluck($dataKey)->toArray();
 
-        // Calculate contribution percentages for each data point
-        $total = array_sum($dataArray['data']);
-        // Check if total is zero
-        if ($total !== 0) {
-            $percentages = array_map(function ($data) use ($total) {
-                return number_format(($data / $total) * 100, 2) . '%';
-            }, $dataArray['data']);
-        } else {
-            // If total is zero, assign equal percentages to each data point
+        try {
+            // Calculate contribution percentages for each data point
+            $total = array_sum($dataArray['data']);
+            
+            if ($total !== 0) {
+                $percentages = array_map(function ($data) use ($total) {
+                    return number_format(($data / ($total ?: 1)) * 100, 2) . '%';
+                }, $dataArray['data']);
+            } else {
+                throw new Exception("Total is zero");
+            }
+        } catch (Exception $e) {
+            // Handle the exception (Total is zero)
             $count = count($dataArray['data']);
             $equalPercentage = ($count > 0) ? 100 / $count : 0;
             $percentages = array_fill(0, $count, number_format($equalPercentage, 2) . '%');
@@ -301,32 +330,32 @@ class Reports extends Component
 
     public function refreshData()
     {
+        $this->revenues = $this->getRevenueData();
         $this->payments = $this->getPayments();
         $this->cancellations = $this->getCancellations();
         $this->assignments = $this->getAssignments();
-        $this->revenues = $this->getRevenue();
         $this->topInvoices = $this->getTopInvoices();
         $this->topProviders = $this->getTopProviders();
-        $this->topServices = $this->getTopServices();
+        $this->topServices = $this->getRevenueByService();
 
         $this->graph['companyGraph'] = $this->generateGraphData($this->topInvoices, 'name', 'invoices_total');
         $this->graph['providerGraph'] = $this->generateGraphData($this->topProviders, 'name', 'closed_bookings_count');
         $this->graph['assignmentGraph'] = $this->generateGraphData($this->assignments, 'booking_number', 'total_amount');
-        $this->graph['servicesGraph'] = $this->generateGraphData($this->topServices, 'name', 'booking_count');
+        $this->graph['servicesGraph'] = $this->generateGraphData($this->getRevenueByService(), 'service_name', 'total_paid_amount');
         $this->graph['revenuesGraph'] = $this->generateGraphData($this->revenues, 'paid_date', 'total_paid_amount');
         $this->graph['cancellationsGraph'] = $this->generateGraphData($this->cancellations, 'company_name', 'canceled_bookings_count');
         $this->graph['paymentsGraph'] = $this->generateGraphData($this->payments, 'provider.name', 'total_amount');
         $this->graph['revenueByService'] = $this->generateGraphData($this->getRevenueByService(), 'service_name', 'total_paid_amount');
         $this->graph['paymentsVsRevenue'] = $this->getPaymentVsRevenueGraphData();
 
-        $this->emit('refreshCharts',$this->graph);
+        $this->emit('refreshCharts', $this->graph);
     }
 
     public function getPaymentVsRevenueGraphData()
     {
         $startDate = Carbon::createFromFormat('Y-m-d', $this->date['start_date'])->startOfDay();
         $endDate = Carbon::createFromFormat('Y-m-d', $this->date['end_date'])->endOfDay();
-        
+
         $payments = Remittance::select('paid_at')
             ->selectRaw('SUM(amount) as total_amount')
             ->where('paid_at', '>=', $startDate)
@@ -339,7 +368,7 @@ class Reports extends Component
 
         // Assuming $paymentData and $revenueData are arrays of payment and revenue data
         $paymentDates = $this->extractData($payments, 'paid_at', 'total_amount');
-        $revenueDates = $this->extractData($this->getRevenue(false), 'paid_date', 'total_paid_amount');
+        $revenueDates = $this->extractData($this->getRevenueGraphData(false), 'paid_date', 'total_paid_amount');
 
         // Merging and sorting dates
         $allDates = array_unique(array_merge(array_column($paymentDates, 'date'), array_column($revenueDates, 'date')));
@@ -395,48 +424,51 @@ class Reports extends Component
         }, $dataArray);
     }
 
-    public function getRevenueByService()
+    public function getRevenueByService($withLimit = true)
     {
-        $result=[];
+        $result = [];
         $startDate = Carbon::createFromFormat('Y-m-d', $this->date['start_date'])->format('m/d/Y');
         $endDate = Carbon::createFromFormat('Y-m-d', $this->date['end_date'])->format('m/d/Y');
-        
+
         $services = ServiceCategory::select('id', 'name')
-        ->with(['booking' => function ($query) use ($startDate, $endDate) {
-            $query->select('bookings.id', 'bookings.invoice_id')
-                ->whereHas('invoices', function ($subQuery) {
+            ->with(['booking' => function ($query) use ($startDate, $endDate) {
+                $query->select('bookings.id', 'bookings.invoice_id')
+                    ->whereHas('invoices', function ($subQuery) {
+                        $subQuery->where('invoice_status', 2);
+                    })
+                    ->with(['invoices' => function ($query) use ($startDate, $endDate) {
+                        $query->select('invoices.id')
+                            ->with(['invoicePayments' => function ($invoiceQuery) use ($startDate, $endDate) {
+                                $invoiceQuery->where('paid_date', '>=', $startDate)
+                                    ->where('paid_date', '<=', $endDate);
+                            }]);
+                    }]);
+            }])
+            ->whereHas('booking', function ($query) {
+                $query->whereHas('invoices', function ($subQuery) {
                     $subQuery->where('invoice_status', 2);
-                })
-                ->with(['invoices' => function ($query) use ($startDate, $endDate) {
-                    $query->select('invoices.id')
-                        ->with(['invoicePayments' => function ($invoiceQuery) use ($startDate, $endDate) {
-                            $invoiceQuery->where('paid_date', '>=', $startDate)
-                                ->where('paid_date', '<=', $endDate);
-                        }]);
-                }]);
-        }])
-        ->whereHas('booking', function ($query) {
-            $query->whereHas('invoices', function ($subQuery) {
-                $subQuery->where('invoice_status', 2);
+                });
             });
-        })
-        ->take(5)
-        ->get()
-        ->toArray();    
+        if ($withLimit) {
+            $services = $services->take(5);
+        }
+        // ->take(5)
+        $services = $services->get()
+            ->toArray();
 
         foreach ($services as $service) {
             $serviceName = $service['name'];
             $paidAmountSum = array_reduce($service['booking'], function ($carry, $booking) {
                 return $carry + array_sum(array_column($booking['invoices']['invoice_payments'], 'paid_amount'));
             }, 0);
-            
+
             $result[] = [
                 'service_name' => $serviceName,
                 'total_paid_amount' => $paidAmountSum,
             ];
         }
 
-        
+
 
         // Extract 'total_amount' values into a separate array
         $total_amounts = array_column($result, 'total_paid_amount');
@@ -446,6 +478,99 @@ class Reports extends Component
 
         return $result;
     }
+
+    public function getPaidBookingIds()
+    {
+        $startDate = Carbon::createFromFormat('Y-m-d', $this->date['start_date'])->format('m/d/Y');
+        $endDate = Carbon::createFromFormat('Y-m-d', $this->date['end_date'])->format('m/d/Y');
+
+        $bookingIds = Booking::select('id', 'invoice_id')
+            ->whereHas('invoices', function ($query) use ($startDate, $endDate) {
+                $query->where('invoice_status', 2)
+                    ->whereHas('invoicePayments', function ($invoiceQuery) use ($startDate, $endDate) {
+                        $invoiceQuery->where('paid_date', '>=', $startDate)
+                            ->where('paid_date', '<=', $endDate);
+                    });
+            })
+            ->get()->pluck('id')->toArray();
+        return $bookingIds;
+    }
+
+    public function getTotalRevenueBySpecialization()
+    {
+        $bookingIds = $this->getPaidBookingIds();
+        $service_calculations_with_specialization = BookingServices::whereIn('booking_id', $bookingIds)
+            ->where('specialization', '!=', '[]') // Assuming 'specialization' column stores arrays as strings
+            ->get()->pluck('service_calculations')
+            ->toArray();
+
+        $sum = 0;
+        foreach ($service_calculations_with_specialization as $specialization_total_amount) {
+            $sum += json_decode($specialization_total_amount)->specialization_total;
+        }
+
+        return $sum;
+    }
+
+    public function getTotalServiceChargeRevenue()
+    {
+        $bookingIds = $this->getPaidBookingIds();
+        $service_calculations = BookingServices::whereIn('booking_id', $bookingIds)
+            ->get()->pluck('service_calculations')
+            ->toArray();
+
+        $sum = 0;
+        foreach ($service_calculations as $service_calculation) {
+            $sum += json_decode($service_calculation)->service_charges;
+        }
+
+        return $sum;
+    }
+
+    public function getTotalExpeditedServiceChargeRevenue()
+    {
+        $bookingIds = $this->getPaidBookingIds();
+        $service_calculations = BookingServices::whereIn('booking_id', $bookingIds)
+            ->get()->pluck('service_calculations')
+            ->toArray();
+
+        $sum = 0;
+        foreach ($service_calculations as $service_calculation) {
+            $sum += json_decode($service_calculation)->expedited_charges->charges;
+        }
+
+        return $sum;
+    }
+
+    public function getTotalCancellationChargeRevenue()
+    {
+        $startDate = $this->date['start_date'];
+        $endDate = $this->date['end_date'];
+
+        $totalCancellationCharges = Booking::join('payments', 'bookings.id', '=', 'payments.booking_id')
+        ->whereNotNull('bookings.booking_cancelled_at')
+        ->where('bookings.booking_cancelled_at', '>=', $startDate)
+        ->where('bookings.booking_cancelled_at', '<=', $endDate)
+        ->sum('payments.cancellation_charges');
+
+        return $totalCancellationCharges;
+    }
+
+    public function getTotalPayroll()
+    {
+        $startDate = $this->date['start_date'];
+        $endDate = $this->date['end_date'];
+
+        $totalPayroll = Remittance::where('payment_status',2)
+        ->where('paid_at', '>=', $startDate)
+        ->where('paid_at', '<=', $endDate)
+        ->sum('amount');
+        return $totalPayroll;
+    }
+
+    function calculatePercentage($partial, $total) {
+        $percentage = ($total != 0) ? ($partial / $total) * 100 : 0;
+        return number_format($percentage, 2);    }
 
     function showForm()
     {
