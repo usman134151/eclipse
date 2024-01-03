@@ -110,17 +110,31 @@
         <div class="col-6 mb-5">
             <label class="form-label" for="filter_booking_id">BookingID</label>
             <input type="text" class="form-control" name="filter_booking_id" id="filter_booking_id"
-                   placeholder="Enter Booking ID" wire:model="bookingID"/>
+                   placeholder="Enter Booking ID" wire:model.defer="bookingID"/>
         </div>
         <div class="col-6 mb-5">
             <label class="form-label" for="filter_type">Type</label>
-            <select class="form-control" name="filter_type" id="filter_type" wire:model="type">
+            <select class="form-control" name="filter_type" id="filter_type" wire:model.defer="type">
                 <option value="">Select Type</option>
                 <option value="booking">Booking</option>
                 <option value="reimbursement">Reimbursement</option>
                 <option value="invoice">Invoice</option>
                 <option value="payment">Payment</option>
             </select>
+        </div>
+        <div class="col-md-12">
+            <div class="col-lg-4 d-flex mb-5  mt-1">
+                <div class="text-start my-1 mb-lg-0 me-1 ">
+                    <button wire:click="applyFilters" type="button" class="btn btn-xs btn-outline-dark rounded">
+                        Apply Filters
+                    </button>
+                </div>
+                <div class="text-start my-1 mb-lg-0 ">
+                    <button wire:click="resetFilters" type="button" class="btn btn-xs btn-outline-dark rounded">
+                        Clear all
+                    </button>
+                </div>
+            </div>
         </div>
         <div class="col-12">
             <div class="table-responsive border mb-4">
