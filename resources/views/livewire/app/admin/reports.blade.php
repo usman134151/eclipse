@@ -281,14 +281,14 @@
 											<div class="fw-semibold text-sm">Services</div>
 										</div>
 										<div class="col-md-6 mb-2">
-											<div class="fw-semibold text-sm text-lg-end">No. of Bookings</div>
+											<div class="fw-semibold text-sm text-lg-end">Revenue</div>
 										</div>
 	                                   @forelse ($topServices as $topService)
 									   		<div class="col-md-6 mb-2">
-												<div class="text-sm">{{$topService['name']}}</div>
+												<div class="text-sm">{{$topService['service_name']}} {{$this->calculatePercentage($topService['total_paid_amount'],$totalRevenueByServices)}}%</div>
 											</div>
 											<div class="col-md-6 mb-2">
-												<div class="text-sm text-lg-end">{{$topService['booking_count']}}</div>
+												<div class="text-sm text-lg-end">{{formatpayment($topService['total_paid_amount'])}}</div>
 											</div>
 											<div class="col-lg-12">
 												<hr class="mt-0 mb-2">
@@ -298,6 +298,12 @@
 	                                    	<small>No Records Available</small>
 	                                	</div>
 									   @endforelse
+									   <div class="col-md-6 mb-2">
+										   <div class="fw-semibold text-sm">Total Revenue</div>
+									   </div>
+									   <div class="col-md-6 mb-2">
+										   <div class="fw-semibold text-sm text-lg-end">{{formatpayment($totalRevenueByServices)}}</div>
+									   </div>
 	                                </div>
 	                            </div>
 	                            {{-- <a href="" class="btn btn-primary w-100">View Detail</a> --}}

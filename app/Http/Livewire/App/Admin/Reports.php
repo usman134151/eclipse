@@ -336,12 +336,12 @@ class Reports extends Component
         $this->assignments = $this->getAssignments();
         $this->topInvoices = $this->getTopInvoices();
         $this->topProviders = $this->getTopProviders();
-        $this->topServices = $this->getTopServices();
+        $this->topServices = $this->getRevenueByService();
 
         $this->graph['companyGraph'] = $this->generateGraphData($this->topInvoices, 'name', 'invoices_total');
         $this->graph['providerGraph'] = $this->generateGraphData($this->topProviders, 'name', 'closed_bookings_count');
         $this->graph['assignmentGraph'] = $this->generateGraphData($this->assignments, 'booking_number', 'total_amount');
-        $this->graph['servicesGraph'] = $this->generateGraphData($this->topServices, 'name', 'booking_count');
+        $this->graph['servicesGraph'] = $this->generateGraphData($this->getRevenueByService(), 'service_name', 'total_paid_amount');
         $this->graph['revenuesGraph'] = $this->generateGraphData($this->revenues, 'paid_date', 'total_paid_amount');
         $this->graph['cancellationsGraph'] = $this->generateGraphData($this->cancellations, 'company_name', 'canceled_bookings_count');
         $this->graph['paymentsGraph'] = $this->generateGraphData($this->payments, 'provider.name', 'total_amount');
@@ -567,6 +567,10 @@ class Reports extends Component
         ->sum('amount');
         return $totalPayroll;
     }
+
+    function calculatePercentage($partial, $total) {
+        $percentage = ($total != 0) ? ($partial / $total) * 100 : 0;
+        return number_format($percentage, 2);    }
 
     function showForm()
     {
