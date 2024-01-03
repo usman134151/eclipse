@@ -12,6 +12,7 @@ use App\Models\Tenant\Remittance;
 use App\Models\Tenant\ServiceCategory;
 use App\Models\Tenant\User;
 use Carbon\Carbon;
+use Exception;
 use Livewire\Component;
 
 class Reports extends Component
@@ -239,20 +240,24 @@ class Reports extends Component
         $dataArray['label'] = collect($data)->take(5)->pluck($labelKey)->toArray();
         $dataArray['data'] = collect($data)->take(5)->pluck($dataKey)->toArray();
 
-        // Calculate contribution percentages for each data point
-        $total = array_sum($dataArray['data']);
-        // Check if total is zero
-        if ($total !== 0) {
-            $percentages = array_map(function ($data) use ($total) {
-                return number_format(($data / $total) * 100, 2) . '%';
-            }, $dataArray['data']);
-        } else {
-            // If total is zero, assign equal percentages to each data point
+        try {
+            // Calculate contribution percentages for each data point
+            $total = array_sum($dataArray['data']);
+        
+            if ($total !== 0) {
+                $percentages = array_map(function ($data) use ($total) {
+                    return number_format(($data / $total) * 100, 2) . '%';
+                }, $dataArray['data']);
+            } else {
+                throw new Exception("Total is zero");
+            }
+        } catch (Exception $e) {
+            // Handle the exception (Total is zero)
             $count = count($dataArray['data']);
             $equalPercentage = ($count > 0) ? 100 / $count : 0;
             $percentages = array_fill(0, $count, number_format($equalPercentage, 2) . '%');
         }
-
+        
         // Concatenate labels with percentages
         $labelsWithPercentages = array_map(function ($label, $percentage) {
             return $label . ' ' . $percentage;
