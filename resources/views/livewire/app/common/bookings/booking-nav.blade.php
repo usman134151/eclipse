@@ -29,7 +29,6 @@
         <span class="font-semibold">{{$paginator->lastPage()}}</span>
         Pages
     </small>
-
     @if ($paginator->hasPages())
 
     @if($paginator->currentPage() > $paginator->lastPage())
@@ -48,7 +47,6 @@
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
-
             @for ($i = 1; $i <= $paginator->lastPage(); $i++)
                 @if ($i <=2 || $i>= $paginator->lastPage() - 1 || ($i >=$paginator->currentPage() - 1 && $i <= $paginator->currentPage() + 1))
                     <li class="page-item {{ ($paginator->currentPage() == $i) ? ' active' : '' }}">
@@ -61,7 +59,6 @@
                     </li>
                 @endif
             @endfor
-
             <li
                 class="page-item {{ ($paginator->currentPage() == $paginator->lastPage()) ? ' disabled' : '' }}">
                 <a class="page-link" wire:click="nextPage" aria-label="Next">
@@ -74,7 +71,7 @@
                 <li class="input-group input-group-sm">
                     <input type="text" id="pageNumberInput" class="form-control form-control-sm text-center" size="1" placeholder="{{$paginator->currentPage()}}">
                     <span class="input-group-append">
-                        <button type="button" class="btn btn-sm btn-primary"
+                        <button type="button" class="btn btn-sm btn-primary" onclick="gotoLivewirePage()"
                                 wire:click="gotoPage(parseInt(document.getElementById('pageNumberInput').value))">Go</button>
                     </span>
                 </li>
@@ -86,27 +83,21 @@
 
     </nav>
     @endif
-    <input type="hidden" id="lastPage" name="lastPage" value="{{$paginator->lastPage()}}">
+    <input type="hidden" id="lastPageNumber" name="lastPage" value="{{$paginator->lastPage()}}">
 </div>
 @push('scripts')
 <script>
     function gotoLivewirePage() {
-            let lastPage = parseInt(document.getElementById('lastPage').value);
-            // Get the value from the text field
         let pageNumber = parseInt(document.getElementById('pageNumberInput').value);
-            if (pageNumber < 1 || isNaN(pageNumber)) {
+        if (pageNumber < 1 || isNaN(pageNumber)) {
                 let errorMessage = document.getElementById('errorMessage');
                 errorMessage.textContent = 'Please enter a valid page number.';
                 errorMessage.style.display = 'block';
-            } else if (pageNumber > lastPage ){
-                let errorMessage = document.getElementById('errorMessage');
-                errorMessage.textContent = 'Page number exceeds the last page.';
-                errorMessage.style.display = 'block';
             } else {
                 console.log(pageNumber,lastPage,pageNumber>lastPage);
-                // Call Livewire method using wire:click and pass the page number
-                Livewire.emit('gotoPage', pageNumber);
+            return true;
             }
+        return false;
         }
 </script>
 @endpush

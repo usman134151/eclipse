@@ -20,26 +20,17 @@ class RemittanceGeneratorBooking extends Component
 {
     use WithPagination;
     public $showForm, $provider, $data = [], $selectedBookings = [], $showError = false, $providerData = [];
-    protected $listeners = ['showList' => 'resetForm', 'addToRemittance' => 'addToRemittance', 'gotoPage' => 'gotoPage'];
+    protected $listeners = ['showList' => 'resetForm', 'addToRemittance' => 'addToRemittance'];
     public $bookings = [];
     public $providerId, $bookingID, $type;
-    public $perPage = 20, $pageNo;
+    public $perPage = 20;
     public function render()
     {
         $this->applyFilters();
         $dataCollection = collect($this->data);
-        if (!empty($this->pageNo)) {
-            $this->bookings['bookingData'] = $this->paginate($dataCollection, $this->perPage, $this->pageNo);
-        } else {
-            $this->bookings['bookingData'] = $this->paginate($dataCollection, $this->perPage);
-        }
+        $this->bookings['bookingData'] = $this->paginate($dataCollection, $this->perPage);
         return view('livewire.app.common.panels.remittance.remittance-generator-booking')
             ->with('bookings', $this->bookings);
-    }
-
-    public function gotoPage($page, $pageName = 'page')
-    {
-        $this->pageNo = $page;
     }
     private function paginate(Collection $items, mixed $perPage = null, mixed $page = null, array $options = [], mixed $path = null)
     {
