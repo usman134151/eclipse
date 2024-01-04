@@ -7,6 +7,7 @@ use App\Models\Tenant\SetupValue;
 use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\Booking;
 use App\Models\Tenant\BookingDepartment;
+use App\Models\Tenant\Department;
 use App\Models\Tenant\ProviderSpecificSchedule;
 use App\Models\Tenant\ProviderVacation;
 use App\Models\Tenant\RoleUserDetail;
@@ -262,6 +263,15 @@ class Calendar extends Component
 					// if dept supervisor, then show all dept related bookings
 					$u_dept = $user->supervised_departments ? $user->supervised_departments->pluck('id')->toArray() : null;
 					if ($u_dept && count($u_dept)) {
+						// get ids of dept users of which the user is a supervisor
+						$departmentUserIds = Department::whereIn('id', $u_dept)
+						->with('users:id')->get()->pluck('users')
+						->flatMap(function ($users) {
+							return $users->pluck('id');
+						})->unique()->values()->all();
+
+						$g->orWhereIn('customer_id', $departmentUserIds);
+
 						$g->orWhereHas('bookingDepartments', function ($q) use ($u_dept) {
 							$q->whereIn('booking_departments.department_id', $u_dept);
 						});
