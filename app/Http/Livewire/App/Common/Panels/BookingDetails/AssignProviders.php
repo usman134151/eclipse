@@ -710,7 +710,7 @@ class AssignProviders extends Component
                 // $templateId = getTemplate('Booking: Provider Unassigned', 'email_template');
 
                 if (isset($user) && !in_array($user->id, $previousAssigned)) {
-                    NotificationService::sendNotification('Booking: Provider Unassigned', $notifData, 7, true);
+                    NotificationService::sendNotification('Booking: Provider Unassigned', $notifData, 7, false,$user->id);
 
                     // $params = [
                     //     'email'       =>  $user->email, //

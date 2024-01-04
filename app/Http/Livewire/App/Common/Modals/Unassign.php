@@ -67,7 +67,7 @@ class Unassign extends Component
 
         //send unassign email 
         $emailData['bookingData'] = $booking;
-        NotificationService::sendNotification('Booking: Provider Unassigned', $emailData, 7, true);
+        NotificationService::sendNotification('Booking: Provider Unassigned', $emailData, 7, false,$this->provider_id);
 
 
         $booking->update(['status' => 1]);
