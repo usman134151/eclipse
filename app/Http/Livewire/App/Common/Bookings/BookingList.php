@@ -450,13 +450,19 @@ class BookingList extends Component
 						if (isset($val['enable_button_provider']) && ($val['enable_button_provider']))
 							$row->display_check_out = true;
 						if (isset($val['enable_button_customer']) && ($val['enable_button_customer']) && isset($val['customers']) && $this->isCustomer)
-							if (is_array($val['customers'])) {
-								if (count(array_intersect($val['customers'], session()->get('customerRoles'))))
-									$row->display_customer_check_out = true;
-							} else {
-								if (in_array($val['customers'], session()->get('customerRoles')))
-									$row->display_customer_check_out = true;
+						$customerRoles = session()->get('customerRoles');
+						if($customerRoles != null)
+						{
+							if (is_array($customerRoles) && is_array($val['customers'])) {
+							    if (count(array_intersect($val['customers'], $customerRoles))) {
+							        $row->display_customer_check_out = true;
+							    }
+							} elseif (is_array($customerRoles)) {
+							    if (in_array($val['customers'], $customerRoles)) {
+							        $row->display_customer_check_out = true;
+							    }
 							}
+						}				
 					}
 				}
 			}
