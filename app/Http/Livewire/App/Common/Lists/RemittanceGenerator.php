@@ -41,7 +41,8 @@ class RemittanceGenerator extends Component
         })
         ->leftJoin('booking_reimbursements', function ($join) {
             $join->on('booking_reimbursements.provider_id', '=', 'users.id')
-                 ->where('booking_reimbursements.remittance_id', '=', 0);
+                 ->where('booking_reimbursements.remittance_id', '=', 0)
+                 ->where('booking_reimbursements.status','=',1);
         })
        
         ->leftJoin('payment_preferences', 'payment_preferences.provider_id', '=', 'users.id')
