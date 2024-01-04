@@ -65,15 +65,16 @@ class Unassign extends Component
         $booking = Booking::find($this->booking_id);
         $user = User::find($this->provider_id);
 
-        //send unassign email 
-        $emailData['bookingData'] = $booking;
-        NotificationService::sendNotification('Booking: Provider Unassigned', $emailData, 7, false,$this->provider_id);
-
+       
 
         $booking->update(['status' => 1]);
         $bookingNumber = $booking->booking_number;
 
         $message = "Provider '" . $user->name . "' unassigned from booking '" . $bookingNumber;
+         //send unassign email 
+         $emailData['bookingData'] = $booking;
+         NotificationService::sendNotification('Booking: Provider Unassigned', $emailData, 7, false,$user->id);
+ 
         if ($this->data['unassign_reason'])
             $message .= "' (Reason: " . $this->data['unassign_reason'] . ')';
         $message .= ' by ' . Auth::user()->name;
