@@ -82,6 +82,7 @@ class NotificationService{
 
     public static function replaceData($triggerType,$data,$userData,$admin,$providerId){
         $replacements=[];
+      
         if ($triggerType == 5) {
                 $replacements[] = array(
                     "@dashboard_url" =>  $dashboard_url,
@@ -124,11 +125,15 @@ class NotificationService{
                 //     $payment_for_provider  = Helper::get_provider_booking_service_price_total($data['booking_id'], $data['user_id']);
                 //     $payment_for_provider += ($bookingData->payment->additional_charge_provider + $bookingProvider->additional_charge_provider);
                 // }
+               
+                $providerName    = $userData->name;
                 if($providerId>0){
                     $provider    = User::find($providerId);
+                    $providerName=$provider->name;
+                    
                 }
                 else{
-                    $providerName    = $userData->name;
+                   
 
                     if (isset($data['provider_id']) || !empty($data['provider_id'])) {
                         $provider    = User::find($data['provider_id']);
@@ -261,7 +266,7 @@ class NotificationService{
           
         }
         
-
+       
        return call_user_func_array('array_merge', $replacements);
 
             
