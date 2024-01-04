@@ -453,7 +453,7 @@ class BookingList extends Component
 						$customerRoles = session()->get('customerRoles');
 						if(isset($customerRoles) && $customerRoles != null)
 						{
-							if (is_array($customerRoles) && is_array($val['customers'])) {
+							if (is_array($customerRoles) && key_exists($val,'customers') && is_array($val['customers'])) {
 							    if (count(array_intersect($val['customers'], $customerRoles))) {
 							        $row->display_customer_check_out = true;
 							    }
