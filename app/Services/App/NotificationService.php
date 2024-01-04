@@ -188,6 +188,7 @@ class NotificationService{
                 "@document_name" => $document_name ?? '',
                 "@document_category" => $document_category ?? '',
                 "@provider" => $providerName ?? '',
+                "@booking_provider_unassigned" => $providerName ?? '',
                 "@admin_company" => tenant()->company,
                 "@admin" => $admin->name,
                 "@customer" => $customer ?? '',
