@@ -276,6 +276,17 @@ class Calendar extends Component
 							$q->whereIn('booking_departments.department_id', $u_dept);
 						});
 					}
+
+					// get userids of whom schedule user have access
+					if ($user->userdetail && $user->userdetail->user_configuration) {
+						$userConfig = json_decode($user->userdetail->user_configuration, true);
+						if ($userConfig && isset($userConfig['grant_access_to_schedule']) && ($userConfig['grant_access_to_schedule'] != "false")) {
+							$haveAccessTo = isset($userConfig['have_access_to']) ? $userConfig['have_access_to'] : [];
+							if (!empty($haveAccessTo)) {
+								$g->orWhereIn('bookings.customer_id', $haveAccessTo);
+							}
+						}
+					}
 				});
 			}
 		}
@@ -318,6 +329,17 @@ class Calendar extends Component
 						$g->orWhereHas('bookingDepartments', function ($q) use ($u_dept) {
 							$q->whereIn('booking_departments.department_id', $u_dept);
 						});
+					}
+
+					// get userids of whom schedule user have access
+					if ($user->userdetail && $user->userdetail->user_configuration) {
+						$userConfig = json_decode($user->userdetail->user_configuration, true);
+						if ($userConfig && isset($userConfig['grant_access_to_schedule']) && ($userConfig['grant_access_to_schedule'] != "false")) {
+							$haveAccessTo = isset($userConfig['have_access_to']) ? $userConfig['have_access_to'] : [];
+							if (!empty($haveAccessTo)) {
+								$g->orWhereIn('bookings.customer_id', $haveAccessTo);
+							}
+						}
 					}
 				});
 			}
