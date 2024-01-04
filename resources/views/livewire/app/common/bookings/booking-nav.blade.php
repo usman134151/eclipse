@@ -1,3 +1,4 @@
+@php  $uuid=\Illuminate\Support\Str::random(5); @endphp
 {{-- <div class="col-xl-6 col-md-6 col-sm-12">
     @if ($paginator->lastPage() > 1)
     <nav aria-label="Page navigation">
@@ -21,6 +22,7 @@
     </nav>
     @endif
 </div> --}}
+
 <div class="d-flex flex-column flex-md-row justify-content-end">
     <small class="text-muted d-block mb-2 my-md-2 me-1">
         Showing
@@ -69,35 +71,47 @@
             &nbsp;
             <small>
                 <li class="input-group input-group-sm">
-                    <input type="text" id="pageNumberInput" class="form-control form-control-sm text-center" size="1" placeholder="{{$paginator->currentPage()}}">
+                    <input type="text" id="pageNumberInput_{{$uuid}}" class="form-control form-control-sm text-center"
+                           size="1" placeholder="{{$paginator->currentPage()}}">
                     <span class="input-group-append">
-                        <button type="button" class="btn btn-sm btn-primary" onclick="gotoLivewirePage()"
-                                wire:click="gotoPage(parseInt(document.getElementById('pageNumberInput').value))">Go</button>
+                        <button type="button" class="btn btn-sm btn-primary" onclick="gotoLivewirePage('{{$uuid}}')"
+                        >Go</button>
                     </span>
                 </li>
             </small>
         </ul>
         <ul>
-            <small id="errorMessage" class="text-danger" style="display: none;"></small>
+            <small id="errorMessage_{{$uuid}}" class="text-danger" style="display: none;"></small>
         </ul>
-
     </nav>
     @endif
-    <input type="hidden" id="lastPageNumber" name="lastPage" value="{{$paginator->lastPage()}}">
+    <input type="hidden" id="lastPageNumber_{{$uuid}}" name="lastPage" value="{{$paginator->lastPage()}}">
+    <button type="button" id="gotobtn_{{$uuid}}" class="btn btn-sm btn-outline-secondary hidden"
+            wire:click="gotoPage(1)">Next
+    </button>
 </div>
 @push('scripts')
 <script>
-    function gotoLivewirePage() {
-        let pageNumber = parseInt(document.getElementById('pageNumberInput').value);
+    function gotoLivewirePage(uuid) {
+        //javascript change the gotobtn attribute value wire:click  and clicked the button
+        let pageNumber = parseInt(document.getElementById('pageNumberInput_' + uuid).value);
+        let lastPage = parseInt(document.getElementById('lastPageNumber_' + uuid).value);
         if (pageNumber < 1 || isNaN(pageNumber)) {
-                let errorMessage = document.getElementById('errorMessage');
+            let errorMessage = document.getElementById('errorMessage_' + uuid);
                 errorMessage.textContent = 'Please enter a valid page number.';
                 errorMessage.style.display = 'block';
-            } else {
-                console.log(pageNumber,lastPage,pageNumber>lastPage);
+        } else if (pageNumber > lastPage) {
+            let errorMessage = document.getElementById('errorMessage_' + uuid);
+            errorMessage.textContent = 'Page number exceeds the last page.';
+            errorMessage.style.display = 'block';
+        } else {
+            console.log(pageNumber, lastPage, pageNumber > lastPage);
+            var btn = document.getElementById('gotobtn_' + uuid);
+            btn.setAttribute('wire:click', 'gotoPage(' + pageNumber + ')');
+            btn.click();
             return true;
-            }
-        return false;
         }
+        return false;
+    }
 </script>
 @endpush
