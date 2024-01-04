@@ -57,7 +57,7 @@
                     {{ $status[$invoice->invoice_status]['title'] }}
                 </div>
                 <div class="fw-semibold text-sm">Due Date: </div>
-                <div class="text-sm">{{ date_format(date_create($invoice->invoice_due_date), 'm/d/Y') }}</div>
+                <div class="text-sm">{{ formatDate($invoice->invoice_due_date)}} </div>
             </div>
         </div>
     </div>
