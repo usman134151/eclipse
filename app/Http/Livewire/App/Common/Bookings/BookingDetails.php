@@ -266,7 +266,7 @@ class BookingDetails extends Component
 			->whereNotNull('customize_form_fields.field_name')
 			->get([
 				'customize_form_fields.field_name', 'booking_customize_data.data_value', 'customize_form_fields.customize_form_id',
-				'customize_form_fields.position', 'request_form_name'
+				'customize_form_fields.position', 'request_form_name','customize_form_fields.field_type'
 			])
 			->groupBy('customize_form_id')->sortby('position')->toArray();
 	}

@@ -812,6 +812,15 @@ class BookingList extends Component
 		$this->emit('showConfirmation', 'Booking status updated successfully');
 	}
 
+	public function copyBooking($bookingID)
+    {
+        $booking = Booking::find($bookingID);
+        $bookingOperationService = new BookingOperationsService();
+        $newBooking = $bookingOperationService->copyBooking($bookingID);
+        $this->showConfirmation($booking->booking_number . ' has been duplicated successfully.');
+        return redirect()->route('tenant.booking-edit', ['bookingID' => encrypt($newBooking->id), 'isDuplicate' => true]);
+    }
+
 	public function refreshFilters($name, $value)
 	{
 		if ($name == "tags_selected") {
