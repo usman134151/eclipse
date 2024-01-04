@@ -23,7 +23,7 @@ class NotificationService{
         return $notification;
     }
 
-    public static function sendNotification($triggerName,$data,$triggerType=6,$authProvider=false){
+    public static function sendNotification($triggerName,$data,$triggerType=6,$authProvider=false,$providerId=0){
        
         //exclude all notifications
 
@@ -41,7 +41,7 @@ class NotificationService{
             $notification['trigger_type_id']=$triggerType;
             //get list of users to send notification to
             
-            $notification['notification_template_roles']=SELF::getUsers($notification['notification_template_roles'],$notification['trigger_type_id'],$data['bookingData'],$admin,$authProvider);
+            $notification['notification_template_roles']=SELF::getUsers($notification['notification_template_roles'],$notification['trigger_type_id'],$data['bookingData'],$admin,$authProvider,$providerId);
         
             //loop to send
             foreach($notification['notification_template_roles'] as $roleData){
@@ -334,6 +334,7 @@ class NotificationService{
             elseif($role['role_id']==2){
                 if($specificProvider){
                     $providerIds=User::where('id',$specificProvider)->get();
+                   
                 }
                 //provider
                 elseif(!$authProvider && $specificProvider==0){

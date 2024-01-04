@@ -73,6 +73,7 @@ class Unassign extends Component
         $message = "Provider '" . $user->name . "' unassigned from booking '" . $bookingNumber;
          //send unassign email 
          $emailData['bookingData'] = $booking;
+        
          NotificationService::sendNotification('Booking: Provider Unassigned', $emailData, 7, false,$user->id);
  
         if ($this->data['unassign_reason'])
