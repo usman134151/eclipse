@@ -590,8 +590,9 @@
                                                                                         @if ($bookingType != 'Invitations')
                                                                                             <a title="Duplicate"
                                                                                                 aria-label="Duplicate"
-                                                                                                href=""
-                                                                                                class="dropdown-item">
+                                                                                                href="#"
+                                                                                                class="dropdown-item"
+                                                                                                wire:click="copyBooking({{$booking->id}})">
                                                                                                 <i
                                                                                                     class="fa fa-clone"></i>
                                                                                                 Duplicate
@@ -911,9 +912,9 @@
 
         });
 
-        Livewire.on('closeConfirmCompletionModal', () => {
-            $('#confirmCompletion').modal('hide');
+        // Livewire.on('closeConfirmCompletionModal', () => {
+        //     $('#confirmCompletion').modal('hide');
 
-        });
+        // });
     </script>
 @endpush
