@@ -134,6 +134,7 @@
                                                           {{ $provider['additional_payments']['additional_label_provider'] ?? '' }}</div>
                                                           @if(is_array($provider['additional_payments']) && isset($provider['additional_payments']['additional_charge_provider']))
                                                             {{ $provider['additional_payments']['additional_charge_provider'] ? numberFormat($provider['additional_payments']['additional_charge_provider']) : 'N/A' }}
+                                                          @endif  
                                                   </td>
                                                   {{-- <td class="text-center align-middle">
                                                       {{ $provider['paid_at'] ?? 'N/A' }}
