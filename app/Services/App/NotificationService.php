@@ -56,7 +56,7 @@ class NotificationService{
                         //send email
                                     //replace data in loop
                                   
-                    $replacements=SELF::replaceData($notification['trigger_type_id'],$data,$userData,$admin);
+                    $replacements=SELF::replaceData($notification['trigger_type_id'],$data,$userData,$admin,$providerId);
               
                         SELF::getEmail($roleData['notification_text'],$roleData['notification_subject'],$replacements,$admin,$userData,$templateName);
                         
@@ -80,7 +80,7 @@ class NotificationService{
 
     }
 
-    public static function replaceData($triggerType,$data,$userData,$admin){
+    public static function replaceData($triggerType,$data,$userData,$admin,$providerId){
         $replacements=[];
         if ($triggerType == 5) {
                 $replacements[] = array(
@@ -124,12 +124,18 @@ class NotificationService{
                 //     $payment_for_provider  = Helper::get_provider_booking_service_price_total($data['booking_id'], $data['user_id']);
                 //     $payment_for_provider += ($bookingData->payment->additional_charge_provider + $bookingProvider->additional_charge_provider);
                 // }
-                $providerName    = $userData->name;
-
-                if (isset($data['provider_id']) || !empty($data['provider_id'])) {
-                    $provider    = User::find($data['provider_id']);
-                    $providerName    = $provider->name;
+                if($providerId>0){
+                    $provider    = User::find($providerId);
                 }
+                else{
+                    $providerName    = $userData->name;
+
+                    if (isset($data['provider_id']) || !empty($data['provider_id'])) {
+                        $provider    = User::find($data['provider_id']);
+                        $providerName    = $provider->name;
+                    }
+                }
+
 
                 $total              = 0;
                 $additional        = 0;
