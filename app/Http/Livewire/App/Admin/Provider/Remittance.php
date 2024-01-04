@@ -28,6 +28,7 @@ class Remittance extends Component
 				'title' => 'Success',
 				'text' => $message,
 			]);
+			$this->emit('refreshProviders');
 		}
 	}
 

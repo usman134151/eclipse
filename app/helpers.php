@@ -478,7 +478,7 @@ if (!function_exists('numberFormat')) {
 
     function numberFormat($foo)
     {
-        return '$ ' . number_format((float)$foo, 2, '.', ',');
+        return '$' . number_format((float)$foo, 2, '.', ',');
     }
 }
 

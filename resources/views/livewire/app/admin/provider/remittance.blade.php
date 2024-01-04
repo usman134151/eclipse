@@ -144,7 +144,7 @@
                 <!-- Hoverable rows start -->
                 <div class="row" id="table-hover-row">
                     <div class="col-12">
-                        @livewire('app.common.lists.draft-remittances', ['name_seacrh_filter' => $name_seacrh_filter, 'provider_ids' => $provider_ids, 'filter_payment_method' => $filter_payment_method])
+                        @livewire('app.common.lists.remittance-generator', ['name_seacrh_filter' => $name_seacrh_filter, 'provider_ids' => $provider_ids, 'filter_payment_method' => $filter_payment_method])
 
                     </div>
                 </div>
