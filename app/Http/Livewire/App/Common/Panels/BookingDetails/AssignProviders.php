@@ -307,7 +307,7 @@ class AssignProviders extends Component
         if (key_exists('day_rate',$this->providersPayment[$index]['service_payment_details']) && $this->providersPayment[$index]['service_payment_details']['day_rate'] == true) {
 
             $subTotal = (float)$this->providersPayment[$index]['service_payment_details']['rate'] * $this->providersPayment[$index]['service_payment_details']['total_duration'];
-        } elseif ($this->providersPayment[$index]['service_payment_details']['fixed_rate'] == true) {
+        } elseif (key_exists('fixed_rate',$this->providersPayment[$index]['service_payment_details']) && $this->providersPayment[$index]['service_payment_details']['fixed_rate'] == true) {
 
             $subTotal = (float)$this->providersPayment[$index]['service_payment_details']['rate'];
         } else {
