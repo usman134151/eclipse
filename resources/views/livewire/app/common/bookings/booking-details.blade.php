@@ -1001,7 +1001,17 @@
                                                                 <div class="col-lg-7 align-self-center">
                                                                     <div class="d-flex align-items-center gap-2">
                                                                         <div class="font-family-tertiary">
-                                                                            {{ $field['data_value'] ? $field['data_value'] : 'N/A' }}
+                                                                            @if($field['field_type'] == 6)
+                                                                            <button class="fileButton btn btn-primary px-4 rounded"
+                                                                                    data-filepath="{{ $field['data_value'] ?  $field['data_value'] : '' }}"
+                                                                                    data-popupid="imgPopup{{ $i }}">View</button>
+                                                                            <div id="imgPopup{{ $i }}" class="mt-3" style="display: none;">
+                                                                                <img id="imgPreviewimgPopup{{ $i }}" src="#" alt="Image Preview"
+                                                                                     style="max-width: 100%; max-height: 80vh;"/>
+                                                                            </div>
+                                                                            @else
+                                                                                {{ $field['data_value'] ? $field['data_value'] : 'N/A' }}
+                                                                            @endif
                                                                         </div>
                                                                         {{-- <a href="#"
                                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon">
@@ -1995,6 +2005,46 @@
                 });
             }
         @endif
+       
+        $('.fileButton').click(function() {
+            var popupid = $(this).data('popupid');
+            var imgPopup = $('#' + popupid);
+
+            // Check if the image popup is currently shown
+            var isImgShown = imgPopup.is(':visible');
+
+            if (isImgShown) {
+                // If image is shown, hide the popup
+                imgPopup.hide();
+            } else {
+                var filePath = $(this).data('filepath');
+            
+                if (filePath) {
+                    var extension = filePath.split('.').pop().toLowerCase();
+                    console.log(( popupid));
+                    if (['jpg', 'jpeg', 'gif', 'png', 'bmp'].includes(extension)) {
+                        // For image files, display in a popup
+                        $('#imgPreview' + popupid).attr('src', filePath);
+                        imgPopup.show();
+                    } else {
+                        // For other file types, initiate file download
+                        var a = document.createElement('a');
+                        a.href = filePath;
+                        a.download = filePath.split('/').pop(); // File name extracted from path
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                    }
+                } else {
+                    console.error('File path is not provided.');
+                }
+            }
+        });
+
+        // Click event to hide the image popup when clicked
+        $("[id^='imgPopup']").click(function() {
+            $(this).hide();
+        });
     </script>
 @endpush
 {{-- @if ($booking->physicalAddress)
