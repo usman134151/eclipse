@@ -18,7 +18,7 @@
             <div class="col-md-4">
                 <div><span class="fw-semibold"> Submission Date:</span> {{ formatDate(now()) }}</div>
                 <div class="ms-5"><span class="fw-semibold ms-3">Due Date:</span><span
-                        class="mx-1">{{ formatDate($data['invoice_due_date']) }}</span>
+                        class="mx-1">{{ formatDate($data['invoice_due_date']) }} </span>
                 </div>
             </div>
             <div class="col-md-3">
