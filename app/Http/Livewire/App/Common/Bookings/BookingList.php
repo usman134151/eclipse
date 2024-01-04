@@ -457,7 +457,7 @@ class BookingList extends Component
 							    if (count(array_intersect($val['customers'], $customerRoles))) {
 							        $row->display_customer_check_out = true;
 							    }
-							} elseif (is_array($customerRoles)) {
+							} elseif (is_array($customerRoles) && key_exists('customers',$val)) {
 							    if (in_array($val['customers'], $customerRoles)) {
 							        $row->display_customer_check_out = true;
 							    }
