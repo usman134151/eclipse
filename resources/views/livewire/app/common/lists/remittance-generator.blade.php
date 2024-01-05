@@ -51,7 +51,7 @@
                    @php $logo = $modal->profile_pic != null ? $modal->profile_pic : '/tenant-resources/images/portrait/small/avatar-s-20.jpg'; @endphp
                 <div class="d-flex gap-2 align-items-center">
 							<div>
-								<img width="50" height="50" src="' . $logo . '" class="rounded-circle" alt="User Profile Image">
+								<img width="50" height="50" src="' . {{$logo}} . '" class="rounded-circle" alt="User Profile Image">
 							</div>
 							<div class="pt-2">
 								<div class="font-family-secondary leading-none">
