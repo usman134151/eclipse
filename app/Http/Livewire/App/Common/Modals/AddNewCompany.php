@@ -46,10 +46,11 @@ class AddNewCompany extends Component
         $companyService = new CompanyService;
 
         $this->company = $companyService->createCompany($this->company, [], []);
-
         $this->showForm = false;
         $this->emit('updateCompanies');  // emit to update company list
         $this->emit('companyModalDismissed');  // emit to close modal
+        $this->emit('addupdatedCompany',  $this->company->id); // emit to update selected company
+
         $this->company = new Company;
         // Emit an event to display a success message using the SweetAlert package
         $this->dispatchBrowserEvent('swal:modal', [
