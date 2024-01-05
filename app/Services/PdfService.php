@@ -45,4 +45,15 @@ class PdfService
                 $fileTitle . ".pdf"
             );
     }
+
+    public function generateCustomerInvoicePdf($data , $fileTitle)
+    {
+        $header = $this->generateHeader('');
+        $footer = $this->generateFooter();
+        $pdfContent = PDF::loadView('tenant.common.download_invoice_pdf', ['orderData' => $data, 'header' => $header, 'footer' => $footer ])->output();
+            return response()->streamDownload(
+                fn () => print($pdfContent),
+                $fileTitle . ".pdf"
+            );
+    }
 }

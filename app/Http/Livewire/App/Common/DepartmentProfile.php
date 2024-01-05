@@ -6,6 +6,7 @@ use App\Models\Tenant\Booking;
 use App\Models\Tenant\Department;
 use App\Models\Tenant\Invoice;
 use App\Models\Tenant\Schedule;
+use App\Services\PdfService;
 use Livewire\Component;
 use PDF;
 class DepartmentProfile extends Component
@@ -127,12 +128,8 @@ class DepartmentProfile extends Component
             $orderData['invoice'] = $invoice;
             $orderData['bookings'] = $bookings ?? [];
 			$orderData['company_logo'] = public_path($invoice->company->company_logo != null ? $invoice->company->company_logo : '/tenant-resources/images/portrait/small/avatar-s-20.jpg');
-
-            $pdfContent = PDF::loadView('tenant.common.download_invoice_pdf', ['orderData' => $orderData])->output();
-            return response()->streamDownload(
-                fn () => print($pdfContent),
-                "invoice_" . $invoice->invoice_number . ".pdf"
-            );
+            $pdfService = new PdfService;
+            return $pdfService->generateCustomerInvoicePdf($orderData,"invoice_" . $invoice->invoice_number . ".pdf");
         }
     }
 
