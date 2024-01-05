@@ -1,6 +1,7 @@
 <?php 
 namespace App\Services;
 
+use App\Models\Tenant\BusinessSetup;
 use App\Models\Tenant\Company;
 use Dompdf\Dompdf;
 use Dompdf\Options;
@@ -9,15 +10,17 @@ class PdfService
 {
     protected $header, $footer;
 
-    protected function generateHeader($companyId)
+    protected function generateHeader($title)
     {
-        $company = Company::where('id', $companyId)->first();
-        $companyLogo = public_path($company->company_logo != null ? $company->company_logo : '/tenant-resources/images/portrait/small/avatar-s-20.jpg');;
-        $companyName = $company->name;
+        $businessSetup = BusinessSetup::select('business_name','company_logo')->first()->toArray();
+        $logo = public_path($businessSetup['company_logo'] != null ? $businessSetup['company_logo'] : '/tenant-resources/images/portrait/small/avatar-s-20.jpg');
+        $companyLogo = file_exists($logo) ? $logo : public_path('/tenant-resources/images/portrait/small/avatar-s-20.jpg');
+
+        $companyName = $businessSetup['business_name'];
         $header = 
         '<div class="header-section">
             <img src="'.$companyLogo.'" alt="Company Logo" width="80" height="80">
-            <h3 class="company-name">'. strtoupper($companyName).'</h3>
+            <h2 class="company-name">'. strtoupper($companyName) .'<br>'. strtoupper($title) . '</h2>
         </div>';
         return $header;
     }
@@ -33,7 +36,7 @@ class PdfService
 
     public function generateRemittancesPdf($data , $fileTitle, $companyId)
     {
-        $header = $this->generateHeader($companyId);
+        $header = $this->generateHeader('Remittance');
         $footer = $this->generateFooter();
         // dd($data , $fileTitle, $companyId);
         $pdfContent = PDF::loadView('tenant.common.download_remittances_pdf', ['data' => $data, 'header' => $header, 'footer' => $footer , 'fileTitle' => $fileTitle])->output();
