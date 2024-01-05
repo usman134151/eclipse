@@ -67,8 +67,8 @@ class RemittanceGeneratorBooking extends Component
         $bookings = BookingProvider::where(['provider_id' => $providerId, 'payment_status' => 0, 'remittance_id' => 0])
             ->whereHas('booking', function ($query) {
                 $query->where('is_paid', 0)
-                    ->where('is_closed', 1)
-                    ->whereRaw("DATE(booking_end_at) < '" . Carbon::now()->toDateString() . "'");
+                    ->where('is_closed', 1);
+                    //->whereRaw("DATE(booking_end_at) < '" . Carbon::now()->toDateString() . "'");
             })
             ->where('booking_providers.invoice_id', null)
             ->with(['booking', 'reimbursements'])
