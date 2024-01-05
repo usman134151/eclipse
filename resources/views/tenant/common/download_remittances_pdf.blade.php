@@ -119,6 +119,9 @@
                                     <p class="pl-4 my-1">
                                         Scheduled Payment Date: {{ $data['remittance']['payment_scheduled_at'] ? date('m/d/Y', strtotime($data['remittance']['payment_scheduled_at'])) : 'N/A' }}
                                     </p>
+                                    <p class="pl-4 my-1">
+                                        Service Address: {{ $serviceAddress }}
+                                    </p>
                                     {{-- <p>
                                         Due Date:{{ date('m/d/Y', strtotime($data['invoice']->invoice_due_date)) }}
                                     </p> --}}
