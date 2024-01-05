@@ -43,7 +43,7 @@ class Booknow extends Component
         'updateSelectedDepartments', 'confirmation', 'showConfirmation',
         'saveCustomFormData' => 'save', 'switch', 'updateAddress' => 'addAddress',
         'checkModificationCharges', 'updateUsers', 'openAssignProvidersPanel',
-        'reloadFalse','updateCompanies','addupdatedCompany'
+        'reloadFalse','updateCompanies','addupdatedCompany','updateRequestor'
     ];
 
     public $dates = [], $isCustomer = false, $customerDetails = [], $cantRequest = false;
@@ -318,6 +318,11 @@ class Booknow extends Component
     {
         $this->booking->company_id = $CompanyId;
         $this->emit('updateCompany',  $this->booking->company_id);
+    }
+
+    public function updateRequestor($requestorId)
+    {
+        $this->booking->customer_id = $requestorId;
     }
 
     public function checkModificationCharges()
