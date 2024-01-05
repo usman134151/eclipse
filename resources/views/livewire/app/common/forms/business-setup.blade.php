@@ -111,6 +111,17 @@
                                                             </span>
                                                         @enderror
                                                     </div>
+                                                    <div class="col-lg-12 mt-2">
+                                                        <label class="form-label" for="add-company-address">Company Address</label>
+                                                            <input aria-label="Company Address" type=""
+                                                            name="" wire:model.defer="configuration.business_address"
+                                                            class="form-control" placeholder="Address">
+                                                        @error('business_address')
+                                                            <span class="d-inline-block invalid-feedback mt-2">
+                                                                {{ $message }}
+                                                            </span>
+                                                        @enderror
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
@@ -1480,6 +1491,89 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                    </div>
+                                                    <div class="between-section-segment-spacing">
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <h3>Invoice Configuration</h3>
+                                                                <div class="row">
+                                                                    <div class="col-lg-6 mb-4">
+                                                                        <label class="form-label"
+                                                                            for="invoiceHeader">
+                                                                            Invoice Header
+                                                                        </label>
+                                                                        <input class="form-control" type="text"
+                                                                            wire:model.defer="configuration.invoice_header"
+                                                                            id="invoiceHeader"
+                                                                            placeholder="Enter Invoice Header">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-lg-6 mb-4">
+                                                                        <label class="form-label"
+                                                                            for="invoiceFooter">
+                                                                            Invoice Footer
+                                                                        </label>
+                                                                        <input class="form-control" type="test"
+                                                                            wire:model.defer="configuration.invoice_footer"
+                                                                            id="invoiceFooter"
+                                                                            placeholder="Enter Invoice Footer">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row inner-section-segment-spacing">
+                                                                    <div class="col-lg-6 mb-4">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-12">
+                                                                                <label class="form-label" for="invoice-logo">Invoice Logo</label>
+                                                                                <input aria-label="Invoice Logo" type="file"
+                                                                                    name="" accept="image/*"
+                                                                                    wire:model.defer="invoice_logo" class="form-control"
+                                                                                    placeholder="Name">
+                                                                                @error('invoice_logo')
+                                                                                    <span class="d-inline-block invalid-feedback mt-2">
+                                                                                        {{ $message }}
+                                                                                    </span>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div
+                                                                        class="col-md-3 col-lg-6 mb-4 align-self-end ps-lg-5 position-relative">
+                                                                        @if ($invoice_logo != null)
+                                                                            <img class="user_img w-50"
+                                                                                src="{{ '/tenant' . tenant('id') . '/app/livewire-tmp/' . $invoice_logo->getFilename() }}">
+                                                                            <div class="position-absolute top-0">
+                                                                                <a wire:click.prevent="deleteFile('invoice_logo')"
+                                                                                    href="#" title="Delete" aria-label="Delete"
+                                                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon mx-0">
+                                                                                    <svg aria-label="Delete" class="delete-icon"
+                                                                                        width="20" height="20" viewBox="0 0 20 20"
+                                                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                        <use xlink:href="/css/sprite.svg#delete-icon">
+                                                                                        </use>
+                                                                                    </svg>
+                                                                                </a>
+                                                                            </div>
+                                                                        @elseif($configuration->invoice_logo != null && $configuration->invoice_logo != '')
+                                                                            <img class="user_img w-50"
+                                                                                src="{{ $configuration->invoice_logo == null ? '' : url($configuration->invoice_logo) }}">
+                                                                            <div class="position-absolute top-0">
+                                                                                <a wire:click.prevent="deleteFile('invoice_logo')"
+                                                                                    href="#" title="Delete" aria-label="Delete"
+                                                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon mx-0">
+                                                                                    <svg aria-label="Delete" class="delete-icon"
+                                                                                        width="20" height="20" viewBox="0 0 20 20"
+                                                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                        <use xlink:href="/css/sprite.svg#delete-icon">
+                                                                                        </use>
+                                                                                    </svg>
+                                                                                </a>
+                                                                            </div>
+                                                                        @endif
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>   
                                                     </div>
                                                     <div class="between-section-segment-spacing">
                                                         <div class="row">

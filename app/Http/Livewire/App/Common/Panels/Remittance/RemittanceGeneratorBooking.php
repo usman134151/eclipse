@@ -94,7 +94,7 @@ class RemittanceGeneratorBooking extends Component
         if (!empty($this->bookingID)) {
             if (count($this->data) > 0) {
                 foreach ($this->data as $key => $row) {
-                    if (!isset($row['booking']['booking_number']) || $row['booking']['booking_number'] != $this->bookingID) {
+                    if (!isset($row['booking']['booking_number']) || !preg_match("/" . preg_quote($this->bookingID, '/') . "/", $row['booking']['booking_number'])) {
                         unset($this->data[$key]);
                     }
                 }

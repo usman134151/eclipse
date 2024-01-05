@@ -53,12 +53,47 @@
         .rounded {
             border-radius: 0.25rem;
         }
+
+        .header-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .company-logo {
+            max-width: 150px; /* Adjust the width as needed */
+            height: auto;
+            /* display: block; */
+        }
+
+        .company-name {
+            align-items: center;
+            text-transform: uppercase;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        body {
+            position: relative;
+            min-height: 100vh; /* Set minimum height of the body to 100% of viewport height */
+            /* margin-bottom: 50px; Adjust the margin bottom to accommodate the footer height */
+        }
+
+         footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 50px; /* Set the height of your footer */
+            text-align: center;
+            line-height: 50px; /* Vertically center content */
+        }
     </style>
 </head>
 
 <body>
     <section class="invoice max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-20">
-
+        {!! $header !!}
         <div class="">
             <table width=100%>
                 <tr>
@@ -66,8 +101,8 @@
                         <div class="flex justify-between gap-10">
                             <div></div>
                             <div class="items-end">
-                                <img src="{{ $orderData['company_logo'] }}" alt="Company Logo" width="80"
-                                    height="80">
+                                {{-- <img src="{{ $orderData['company_logo'] }}" alt="Company Logo" width="80"
+                                    height="80"> --}}
                                 <h3 class="">Invoice</h3>
                                 <div class="flex justify-between border-b border-black pb-3">
                                     <p class="pr-16">Invoice# {{ $orderData['invoice']->invoice_number }} </p>
@@ -241,6 +276,9 @@
         </div>
         <hr class="mt-10">
     </section>
+    <footer>
+        {!! $footer !!}
+    </footer>
 </body>
 
 </html>

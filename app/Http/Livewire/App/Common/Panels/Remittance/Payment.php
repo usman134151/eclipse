@@ -69,7 +69,7 @@ class Payment extends Component
         $data['payments'] = $datalist;
         $data['remittance'] = $remittance;
         $data['provider'] = $this->provider;
-
+        $data['providerAddress'] = $this->provider['userdetail']['address_line1'] . ', ' . $this->provider['userdetail']['address_line2'] . ', ' . $this->provider['userdetail']['city'] . ', ' . $this->provider['userdetail']['state'] . ', ' . $this->provider['userdetail']['country'];
         $fileName = 'Remittance# ' .$remittance['number'];
         return $this->pdfService->generateRemittancesPdf($data,$fileName,1); // currently showing company with 1 id
         

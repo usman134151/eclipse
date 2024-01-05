@@ -100,7 +100,7 @@
                         <div class="flex justify-between gap-10">
                             <div></div>
                             <div class="items-end">
-                                <h3 class="">Remittance</h3>
+                                {{-- <h3 class="">Remittance</h3> --}}
                                 <div class="flex justify-between border-b border-black pb-3">
                                     <p class="pr-16">Remittance# {{ $data['remittance']['number'] }} </p>
 
@@ -111,7 +111,16 @@
                                         Provider: {{ $data['provider']->name }}
                                     </p>
                                     <p class="pl-4 my-1">
-                                        Issue Date:{{ date('m/d/Y', strtotime($data['remittance']['issued_at'])) }}
+                                        Provider Address: {{ $data['providerAddress']}}
+                                    </p>
+                                    <p class="pl-4 my-1">
+                                        Issue Date: {{ date('m/d/Y', strtotime($data['remittance']['issued_at'])) }}
+                                    </p>
+                                    <p class="pl-4 my-1">
+                                        Scheduled Payment Date: {{ $data['remittance']['payment_scheduled_at'] ? date('m/d/Y', strtotime($data['remittance']['payment_scheduled_at'])) : 'N/A' }}
+                                    </p>
+                                    <p class="pl-4 my-1">
+                                        Service Address: {{ $serviceAddress }}
                                     </p>
                                     {{-- <p>
                                         Due Date:{{ date('m/d/Y', strtotime($data['invoice']->invoice_due_date)) }}
@@ -174,7 +183,7 @@
                         {{-- <th class="border-2 border-white text-left pl-3">Booking ID</th> --}}
                         <th class=" pl-3">ID</th>
                         <th class=" pl-3">Type</th>
-                        <th class=" pl-3">Customer</th>
+                        {{-- <th class=" pl-3">Customer</th> --}}
                         <th class=" pl-3">Total Pay</th>
                         {{-- <th class=" pl-3">Booking Total</th> --}}
 
@@ -190,7 +199,7 @@
                             <td class="  m-10 ">
                                 Payment
                             </td>
-                            <td></td>
+                            {{-- <td></td> --}}
                             <td class="  m-10 ">
                                 {{ numberFormat($payment['amount']) }}
                             </td>
@@ -205,7 +214,7 @@
                                 {{$payment['booking'] ? 'Booking' : ''}}
                                 Reimbursement
                             </td>
-                            <td></td>
+                            {{-- <td></td> --}}
                             <td class="  m-10 ">
                                 {{ numberFormat($payment['amount']) }}
                             </td>
@@ -219,9 +228,9 @@
                                 Booking<br>
                                        <span class="text-primary"> Service: {{$payment['booking_service']['service'] ? $payment['booking_service']['service']['name'] :''}} </span>
                             </td>
-                            <td>
+                            {{-- <td>
                                 {{$payment['booking']['customer'] ? $payment['booking']['customer']['name']:'N/A'}}
-                            </td>
+                            </td> --}}
                             <td class="  m-10 ">
                                 {{$payment['is_override_price']==1 ? numberFormat($payment['override_price']) : numberFormat($payment['total_amount'])}}
                             </td>
