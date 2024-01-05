@@ -107,7 +107,7 @@
     </div>
     <!-- Hoverable rows start -->
     <div class="row" id="table-hover-row">
-        <div class="col-6 mb-5">
+<!--        <div class="col-6 mb-5">
             <label class="form-label" for="filter_booking_id">BookingID</label>
             <input type="text" class="form-control" name="filter_booking_id" id="filter_booking_id"
                    placeholder="Enter Booking ID" wire:model.defer="bookingID"/>
@@ -135,7 +135,7 @@
                     </button>
                 </div>
             </div>
-        </div>
+        </div>-->
         <div class="col-12">
             <div class="table-responsive border mb-4">
                 <table id="" class="table table-fs-md table-hover" aria-label="">
