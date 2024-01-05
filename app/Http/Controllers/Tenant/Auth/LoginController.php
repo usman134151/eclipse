@@ -182,9 +182,10 @@ class LoginController extends Controller
 				return redirect('home');
 			}
 			} else {
-				$admin = User::where('id',1)->first()->name;
+				$businessSetup = BusinessSetup::first()->business_name ?? 'your';
+				$businessName = $businessSetup != '' ? $businessSetup : 'your';     
 			  Auth::logout();
-			return redirect("login")->withErrors(['loginError' => __('auth.notActiveError',['admin' => $admin])]);
+			return redirect("login")->withErrors(['loginError' => __('auth.notActiveError',['businessName' => $businessName])]);
 			}
 		}
 
