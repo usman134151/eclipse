@@ -34,7 +34,7 @@ class RemittanceGenerator extends Component
             $q->on('booking_providers.provider_id', '=', 'users.id');
             $q->whereIn('booking_id', function ($sub) {
                 $sub->from('bookings')->where(['is_closed' => 1, 'is_paid' => 0])
-                    ->whereRaw("DATE(booking_end_at) < '" . Carbon::now()->toDateString() . "'")
+                  //  ->whereRaw("DATE(booking_end_at) < '" . Carbon::now()->toDateString() . "'")
                     ->select('id');
             });
             $q->where('booking_providers.remittance_id',0);
