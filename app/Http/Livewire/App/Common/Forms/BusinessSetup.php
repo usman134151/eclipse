@@ -17,7 +17,7 @@ class BusinessSetup extends Component
     use WithFileUploads;
 
 	public $component = 'configuration-setting';
-	public $showForm, $configuration, $company_logo, $login_screen, $dark_company_logo, $deposit_form_file;
+	public $showForm, $configuration, $company_logo, $login_screen, $dark_company_logo, $deposit_form_file, $invoice_logo;
     public $staffProviders=[], $contractProviders = [];
         
 	protected $listeners = ['showList'=>'resetForm'];
@@ -28,6 +28,7 @@ class BusinessSetup extends Component
     {
         return [
             'configuration.business_name' => ['nullable'],
+            'configuration.business_address' => ['nullable'],
             'configuration.default_colour' => ['nullable'],
             'configuration.foreground_colour' => ['nullable'],
             'configuration.dark_default_colour' => ['nullable'],
@@ -73,6 +74,11 @@ class BusinessSetup extends Component
             'configuration.enable_contract_providers' => ['nullable'],
             'configuration.payment_payroll' => ['nullable'],
 
+            'configuration.invoice_header' => ['nullable'],
+            'configuration.invoice_footer' => ['nullable'],
+            'configuration.invoice_logo' => ['nullable'],
+
+
             'policies.*.title' => [ 'max:255', 'required_with:policies.*.url,policies.*.file'],
             'policies.*.url' => ['nullable','url'],
 
@@ -80,6 +86,7 @@ class BusinessSetup extends Component
             'company_logo' => 'nullable|image|mimes:png,jpg,jpeg,gif,bmp,svg',
             'dark_company_logo' => 'nullable|image|mimes:png,jpg,jpeg,gif,bmp,svg',
             'deposit_form_file' => 'nullable|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx',
+            'invoice_logo' => 'nullable|image|mimes:png,jpg,jpeg,gif,bmp,svg',
 
         ];
     }
@@ -210,6 +217,9 @@ class BusinessSetup extends Component
 
         if ($this->login_screen)
         $this->configuration->login_screen = $fileService->saveFile('setup', $this->login_screen, $this->configuration->login_screen);;
+
+        if ($this->invoice_logo)
+        $this->configuration->invoice_logo = $fileService->saveFile('setup', $this->invoice_logo, $this->configuration->invoice_logo);
 
         $this->configuration->user_id = Auth::id();
 
