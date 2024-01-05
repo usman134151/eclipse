@@ -105,7 +105,7 @@
             </div> --}}
         </div>
     </div>
-    <!-- Hoverable rows start 
+    <!-- Hoverable rows start -->
     <div class="row" id="table-hover-row">
         <div class="col-6 mb-5">
             <label class="form-label" for="filter_booking_id">BookingID</label>
@@ -247,12 +247,12 @@
                 </table>
             </div>
 
-        
+            <!-- Render the pagination navigations links -->
             {{ $bookings['bookingData']->links('livewire.app.common.bookings.booking-nav') }}
-           
+            <!-- /Render the pagination navigations links  -->
         </div>
     </div>
-    Hoverable rows end -->
+    <!-- Hoverable rows end -->
     <!-- Icon Help -->
     <div class="d-flex actions gap-3 justify-content-end mb-2">
         <div class="d-flex gap-2 align-items-center">
