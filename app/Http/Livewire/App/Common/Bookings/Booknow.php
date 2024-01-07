@@ -43,7 +43,7 @@ class Booknow extends Component
         'updateSelectedDepartments', 'confirmation', 'showConfirmation',
         'saveCustomFormData' => 'save', 'switch', 'updateAddress' => 'addAddress',
         'checkModificationCharges', 'updateUsers', 'openAssignProvidersPanel',
-        'reloadFalse','updateCompanies'
+        'reloadFalse','updateCompanies','addupdatedCompany','updateRequestor'
     ];
 
     public $dates = [], $isCustomer = false, $customerDetails = [], $cantRequest = false;
@@ -312,6 +312,17 @@ class Booknow extends Component
         // $this->dispatchBrowserEvent('refreshSelects');
 
         return view('livewire.app.common.bookings.booknow');
+    }
+
+    public function addupdatedCompany($CompanyId)
+    {
+        $this->booking->company_id = $CompanyId;
+        $this->emit('updateCompany',  $this->booking->company_id);
+    }
+
+    public function updateRequestor($requestorId)
+    {
+        $this->booking->customer_id = $requestorId;
     }
 
     public function checkModificationCharges()

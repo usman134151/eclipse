@@ -83,11 +83,15 @@ class AddNewCustomer extends Component
         foreach($this->rolesArr as $role){
             $roles[$role]=1;
         }
-      
+    
 		$this->user = $userService->createUser($this->user, $this->userdetail, 4, $this->email_invitation, $this->selectedIndustries, 1);
         $userService->storeCustomerRoles($roles, $this->user->id);
         $this->emit('updateUsers');
         $this->emit('customerModalDismissed');  // emit to close modal
+        if(in_array(6,$this->rolesArr))
+        {
+            $this->emit('updateRequestor',$this->user->id);  // emit to add new customer as requestor
+        }
         $companyId=$this->user->company_name;
         $this->user=new User;
         $this->user->company_name=$companyId;
