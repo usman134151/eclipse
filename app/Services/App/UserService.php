@@ -259,22 +259,18 @@ class UserService
     callLogs($userId, 'User',$user->name . ' Account has been delete');
   }
 
-  public static function hideUserDetailsFromProvider($userId, $bookingId)
+  public static function hideUserDetailsFromProvider($userId)
   {
     $userConfiguration = User::where(
     'id', $userId)
-    ->with('userdetail') // Load the 'userdetail' relationship
+    ->with('userdetail') 
     ->first();
 
     $userConfiguration = $userConfiguration->userdetail->user_configuration ?? null;
 
-    // Rest of your logic remains unchanged
-    $booking = Booking::where('id', $bookingId)
-    ->value('requester_information');
-
     $hideFromProviders = optional(json_decode($userConfiguration))->hide_from_providers ?? false;
 
-    return $hideFromProviders || $booking;
+    return $hideFromProviders;
   }
 
 }

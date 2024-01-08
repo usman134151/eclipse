@@ -191,7 +191,7 @@ class AssignmentDetails extends Component
 
     public function hideUserInfo()
     {
-        if((!Session::get('isProvider')) || (!UserService::hideUserDetailsFromProvider($this->booking->customer_id,$this->booking->id))){
+        if((!Session::get('isProvider')) || (!UserService::hideUserDetailsFromProvider($this->booking->customer_id))){
             return false;
         }
         return true;
