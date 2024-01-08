@@ -15,6 +15,7 @@ use App\Models\Tenant\Schedule;
 use App\Models\Tenant\Tag;
 use App\Models\Tenant\User;
 use App\Models\Tenant\UserAddress;
+use App\Services\App\UserService;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\Auth;
@@ -447,7 +448,9 @@ class Calendar extends Component
 			// dd($newEvents[$key]['timeSlot']);
 			$description = '<div class="pe-3">';
 			$description .= '<p class="mb-3 mt-2">Assignment No.: ' . $booking_number . ' </p>';
-			$description .= '<p class="my-3">Customer: ' . ($customer != null ? $customer['name'] : 'N/A') . ' </p>';
+			if((!Session::get('isProvider')) || (!UserService::hideUserDetailsFromProvider($customer['id'],$id))){
+				$description .= '<p class="my-3">Customer: ' . ($customer != null ? $customer['name'] : 'N/A') . ' </p>';
+			}
 			$description .= '<p class="my-3">No. of Providers: ' . $provider_count . ' </p>';
 			// $description .= '<p class="mb-1">Assign To.: ' . $booking_number . ' </p>';
 			if ($physical_address)
