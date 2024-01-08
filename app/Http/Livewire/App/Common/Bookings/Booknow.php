@@ -46,7 +46,7 @@ class Booknow extends Component
         'reloadFalse','updateCompanies','addupdatedCompany','updateRequestor'
     ];
 
-    public $dates = [], $isCustomer = false, $customerDetails = [], $cantRequest = false;
+    public $dates = [], $isCustomer = false, $customerDetails = [], $cantRequest = false, $isDuplicate = false;
     public $foundService = ['default_providers' => 2];
     public $payment, $discountedAmount = 0, $totalAmount = 0;
     public $allTags = [], $tags = [], $confirmed = false, $currentServiceId, $panelType = 1;
@@ -141,6 +141,7 @@ class Booknow extends Component
         if (request()->bookingID != null) {
             $id = request()->bookingID;
             $this->isEdit = true;
+            $this->isDuplicate = request()->isDuplicate;
 
 
 
@@ -329,11 +330,11 @@ class Booknow extends Component
     {
         //checking if booking is past or closed this modification is closed 
         $start_date = Carbon::parse($this->booking->booking_start_at);
-        if (($this->isCustomer && $start_date->isPast()) || $this->booking->is_closed)
+        if (($this->isCustomer && $start_date->isPast()) || $this->booking->is_closed && !$this->isDuplicate)
             $this->emit('modificationClosed', route('tenant.' . ($this->isCustomer ? 'customer-' : '') . 'booking-view', ['bookingID' => encrypt($this->booking->id)]), 'Modifications are closed for this booking.', 'Closed Booking');
 
         //making sure modification charges are checked at step 1 before editing booking
-        elseif ($this->confirmed == false && $this->isEdit) {
+        elseif ($this->confirmed == false && $this->isEdit && !$this->isDuplicate) {
             $mod_booking = BookingOperationsService::getBookingDetails($this->booking->id, $this->serviceTypes, 'modifications', 'cancellation_hour1');
             if (!is_null($mod_booking->payment) && isset($mod_booking->payment->modification_fee) && $mod_booking->payment->modification_fee > 0) {
                 $this->emit('setModificationCharges', $mod_booking);
