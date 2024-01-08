@@ -1441,6 +1441,8 @@ class BookingOperationsService
         $bookingNumber = self::generateBookingNumber();
         $newBooking->booking_number = $bookingNumber;
         $newBooking->booking_title = $booking->booking_title . ' - Copy';
+        $newBooking->booking_end_at = Carbon::now()->addSeconds(Carbon::parse($newBooking->booking_end_at)->diffInSeconds(Carbon::parse($newBooking->booking_start_at)))->format('Y-m-d H:i:s');
+        $newBooking->booking_start_at = Carbon::now()->format('Y-m-d H:i:s');
         $newBooking->added_by = $user->id;
         //$newBooking->user_id = $user->id;
         //save booking as draft status
@@ -1461,6 +1463,8 @@ class BookingOperationsService
             foreach ($bookingService as $service) {
                 $newService = $service->replicate();
                 $newService->booking_id = $newBooking->id;
+                $newService->start_time = $newBooking->booking_start_at;
+                $newService->end_time = $newBooking->booking_end_at;
                 $newService->save();
             }
         }
