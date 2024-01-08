@@ -819,6 +819,7 @@
 																					<small>After-hours Rate:</small> <span class="text-sm">$10.00</span>
 																				</div> --}}
                                             </th>
+                                            @if(Session::get('isSuperAdmin'))
                                             <th class="text-center align-middle ps-0" style="width:200px">
                                                 <div class="row">
                                                     <div class="col-4 align-self-center pe-0 text-end text-sm">
@@ -839,6 +840,7 @@
                                                     </div>
                                                 </div>
                                             </th>
+                                            @endif
                                             <th style="width:50px">
 
                                                 <div class="mb-3 fw-semibold" type="button">
