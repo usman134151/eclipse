@@ -46,6 +46,8 @@ class AssignmentDetails extends Component
         $assigned = BookingProvider::where(['booking_providers.booking_id' => $this->booking->id, 'provider_id' => Auth::id()])
             ->join('booking_services', 'booking_services.id', 'booking_service_id')->select('services')->get()->toArray();
 
+        // seting booking cancellation status
+        $this->data['isCancelled'] = $this->booking->status > 2 ? true : false;
         // fetch all services for booking 
         $this->data['booking_services'] = BookingServices::where('booking_id', $this->booking->id)
             ->whereIn('services', array_merge($invited, $assigned))

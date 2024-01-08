@@ -70,7 +70,7 @@
                                 </svg>
                                 <span>Message Coordinator</span>
                             </button>
-                            @if ($data['booking_services'][0]['display_check_in'] && $data['isToday'])
+                            @if ($data['booking_services'][0]['display_check_in'] && $data['isToday'] && !$data['isCancelled'])
                                 <button type="button" @click="offcanvasOpenCheckIn = true"
                                     wire:click="$emit('{{ $isCalendar ? 'openProviderCheckIn' : 'showCheckInPanel' }}','{{ $booking['id'] }}','{{ $data['booking_services'][0]['id'] }}','{{ $booking['booking_number'] }}')"
                                     title="Check In" aria-label="Check In"
@@ -144,7 +144,7 @@
                                     <span>Running Late</span>
                                 </button>
                             @endif
-                            @if (!$data['isPast'] && $this->data['providerStatus'] && $this->data['providerStatus']['return_status'] == 0 && !$data['checked_in'])
+                            @if (!$data['isPast'] && $this->data['providerStatus'] && $this->data['providerStatus']['return_status'] == 0 && !$data['checked_in'] && !$data['isCancelled'])
                                 <button type="button"
                                     class="btn btn-primary rounded text-sm d-inline-flex gap-1 align-items-center px-3"
                                     wire:click="$emit('openReturnAssignmentModal',{{ $booking['id'] }}, {{ $booking['service_id'] }})"
