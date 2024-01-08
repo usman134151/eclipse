@@ -246,7 +246,7 @@
                                                                     </td>
                                                                     <td class="{{ $cssClass }}"
                                                                         style="background-color:{{ $colorCodes[$code] }};">
-                                                                        <a href="{{ $isCustomer ? route('tenant.customer-booking-view', ['bookingID' => encrypt($booking['id'])]) : route('tenant.booking-view', ['bookingID' => encrypt($booking['id'])]) }}"
+                                                                        <a href="{{ Session::get('isCustomer') ? route('tenant.customer-booking-view', ['bookingID' => encrypt($booking['id'])]) : route('tenant.booking-view', ['bookingID' => encrypt($booking['id'])]) }}"
                                                                             class="{{ $cssClass }}">{{ $booking['booking_number'] ? $booking['booking_number'] : '' }}
                                                                             <div>
                                                                                 <div
@@ -368,7 +368,7 @@
                                                                                 </a>
                                                                             @else
                                                                                 @if ($isCustomer && $bookingType == 'Past')
-                                                                                    <a href="{{ $isCustomer ? route('tenant.customer-booking-view', ['bookingID' => encrypt($booking['id'])]) : route('tenant.booking-view', ['bookingID' => encrypt($booking['id'])]) }}"
+                                                                                    <a href="{{ Session::get('isCustomer') ? route('tenant.customer-booking-view', ['bookingID' => encrypt($booking['id'])]) : route('tenant.booking-view', ['bookingID' => encrypt($booking['id'])]) }}"
                                                                                         title="View Assignment"
                                                                                         aria-label="View Assignment"
                                                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
