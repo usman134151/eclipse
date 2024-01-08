@@ -1,5 +1,5 @@
-<script src="https://js.pusher.com/7.2.0/pusher.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@3.0.3/dist/index.min.js"></script>
+<script src="https://js.pusher.com/7.2.0/pusher.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@3.0.3/dist/index.min.js" defer></script>
 <script >
     // Gloabl Chatify variables from PHP to JS
     window.chatify = {
@@ -13,5 +13,5 @@
     };
     window.chatify.allAllowedExtensions = chatify.allowedImages.concat(chatify.allowedFiles);
 </script>
-<script src="/js/chatify/utils.js"></script>
-<script src="/js/chatify/code-single.js"></script>
+<script src="/js/chatify/utils.js" defer></script>
+<script src="/js/chatify/code-single.js" defer></script>
