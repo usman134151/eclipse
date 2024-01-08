@@ -2,6 +2,7 @@
 
 namespace app\Services\App;
 
+use App\Models\Tenant\Booking;
 use App\Models\Tenant\User;
 use App\Models\Tenant\UserDetail;
 use App\Models\Tenant\RoleUser;
@@ -257,4 +258,19 @@ class UserService
 		]);
     callLogs($userId, 'User',$user->name . ' Account has been delete');
   }
+
+  public static function hideUserDetailsFromProvider($userId)
+  {
+    $userConfiguration = User::where(
+    'id', $userId)
+    ->with('userdetail') 
+    ->first();
+
+    $userConfiguration = $userConfiguration->userdetail->user_configuration ?? null;
+
+    $hideFromProviders = optional(json_decode($userConfiguration))->hide_from_providers ?? false;
+
+    return $hideFromProviders;
+  }
+
 }

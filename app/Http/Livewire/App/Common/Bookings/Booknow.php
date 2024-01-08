@@ -130,6 +130,11 @@ class Booknow extends Component
             }]);
         }])->where('status', 1)->get()->toArray();
 
+        // added for auto select accomodation if its count is 1
+        if(count($this->accommodations) === 1) {
+            $this->services[0]['accommodation_id'] = $this->accommodations[0]['id'];
+            $this->updateServiceDefaults(0);
+        }
 
         $serviceTypeLabels = SetupValue::where('setup_id', 5)->pluck('setup_value_label')->toArray();
         for ($i = 0, $j = 1; $i < 4; $i++, $j++) {
@@ -739,7 +744,7 @@ class Booknow extends Component
     }
     public function addService()
     {
-        $this->services[] = [
+        $service = [
             'accommodation_id' => '',
             'services' => '',
             'service_types' => '',
@@ -761,7 +766,16 @@ class Booknow extends Component
             'auto_assign' => 0,
             'auto_notify' => 0
         ];
+        
+        // added for auto select accomodation if its count is 1
+        if(count($this->accommodations) === 1) {
+            $service['accommodation_id'] = $this->accommodations[0]['id'];
+        }
+        $this->services[] = $service;
+
         $this->dispatchBrowserEvent('refreshSelects');
+        $this->updateServiceDefaults((count($this->services) - 1));
+
     }
     public function removeServices($index)
     {
@@ -918,6 +932,14 @@ class Booknow extends Component
                 $this->dates = [];
                 $this->addDate($foundService['minimum_assistance_hours' . $postfix], $dayRate);
             }
+        }
+
+        // added for auto select service if its count is 1
+        $accommodationIndex = array_search($this->services[$index]['accommodation_id'], array_column($this->accommodations, 'id'));
+
+        $slectedAccommodation = $this->accommodations[$accommodationIndex];
+        if(count($slectedAccommodation['services']) === 1) {
+            $this->services[$index]['services'] = $slectedAccommodation['services'][0]['id'];
         }
     }
 
