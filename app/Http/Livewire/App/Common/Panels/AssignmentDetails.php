@@ -9,8 +9,10 @@ use App\Models\Tenant\BookingProvider;
 use App\Models\Tenant\BookingServices;
 use App\Models\Tenant\Specialization;
 use App\Models\Tenant\User;
+use App\Services\App\UserService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
 class AssignmentDetails extends Component
@@ -185,6 +187,14 @@ class AssignmentDetails extends Component
         $this->validate();
         $this->booking->save();
         $this->emit('showConfirmation', 'Booking notes updated');
+    }
+
+    public function hideUserInfo()
+    {
+        if((!Session::get('isProvider')) || (!UserService::hideUserDetailsFromProvider($this->booking->customer_id,$this->booking->id))){
+            return false;
+        }
+        return true;
     }
 
     function showForm()
