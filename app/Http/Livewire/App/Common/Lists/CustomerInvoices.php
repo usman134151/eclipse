@@ -228,15 +228,24 @@ final class CustomerInvoices extends PowerGridComponent
                 return '<div class="d-flex align-items-center gap-2"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><use xlink:href="' . $this->status[$model->invoice_status]['code'] . '"></use></svg><p>' . $this->status[$model->invoice_status]['title'] . '</p></div>';
             })
             ->addColumn('edit', function (Invoice $model) {
-                $view_b = '<a href="#" title="Revert" aria-label="back"
-                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="$emit(\'revertInvoice\',' . $model->id . ')"
-                                                        data-bs-toggle="modal" data-bs-target="#revertBackModal">
-                                                        <svg aria-label="Revert" class="fill-stroke" width="22"
-                                                            height="20" viewBox="0 0 22 20" fill="none"
-                                                            xmlns="http://www.w3.org/2000/svg">
-                                                            <use xlink:href="/css/provider.svg#revert"></use>
-                                                        </svg>
-                                                    </a>';
+                if($model->invoice_status == 2)
+               {
+                    $view_b = $model->id;
+               }
+            else
+                {
+                    $view_b = '<a href="#" title="Revert" aria-label="back"
+                                class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="$emit(\'revertInvoice\', ' . $model->id . ')"
+                                data-bs-toggle="modal" data-bs-target="#revertBackModal">
+                                <svg aria-label="Revert" class="fill-stroke" width="22"
+                                    height="20" viewBox="0 0 22 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <use xlink:href="/css/provider.svg#revert"></use>
+                                </svg>
+                            </a>';
+               
+          
+                }
                 $details_b = '
                                                     <a href="#" @click="invoiceDetailsPanel = true" wire:click="$emit(\'openInvoiceDetails\',' . $model->id . ')"
                                                         title="Invoice Details" aria-label="Invoice Details"
