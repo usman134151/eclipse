@@ -178,7 +178,7 @@
                                 <use xlink:href="/css/menu.svg#upcomming-icon"></use>
                             </svg>
                             <span class="menu-item">Upcoming Services </span>
-                        </a>
+                        </a>//
                     </li>
                     <li class="nav-item " id="past">
                         <a class="nav-link" href="/customer/booking/past">
